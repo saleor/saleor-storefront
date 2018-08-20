@@ -4,7 +4,6 @@ import { persistCache } from 'apollo-cache-persist';
 import * as React from 'react';
 import { render } from 'react-dom';
 
-
 import { App } from './components';
 
 const devMode = process.env.NODE_ENV !== 'production';

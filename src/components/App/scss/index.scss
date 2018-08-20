@@ -1,6 +1,9 @@
 @import '~reset-css';
+@import './variables.scss';
 
 body {
-    background: black;
-    color: white;
+    p {
+        font-size: $base-font-size;
+        line-height: $base-line-height;
+    }
 }
