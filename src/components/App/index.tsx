@@ -1,23 +1,9 @@
 import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from "react-apollo";
 import * as React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch
-} from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 
-import {
-  AccountPage,
-  CategoryPage,
-  CheckoutPage,
-  ContentPage,
-  HomePage,
-  ProductPage,
-  SearchPage,
-  WishListPage
-} from '..'
+import { default as Routes } from './routes';
 
 import './scss/index.scss';
 
@@ -28,7 +14,7 @@ interface AppProps {
 
 const App: React.SFC<AppProps> = ({apolloClient}) => (
   <ApolloProvider client={ apolloClient }>
-    <Router>
+    <BrowserRouter>
       <React.Fragment>
         <header>
           <h1>Saleor e-commerce</h1>
@@ -46,20 +32,11 @@ const App: React.SFC<AppProps> = ({apolloClient}) => (
           </nav>
         </header>
         <section className="container">
-          <Switch>
-            <Route exact path="/" component={HomePage}/>
-            <Route path="/search/" component={SearchPage}/>
-            <Route path="/category/:slug([a-z-]+)/:id([0-9]+)/" component={CategoryPage}/>
-            <Route path="/product/:slug([a-z-]+)/:id([0-9]+)/" component={ProductPage}/>
-            <Route path="/account/" component={AccountPage}/>
-            <Route path="/wish-list/" component={WishListPage}/>
-            <Route path="/checkout/:id/" component={CheckoutPage}/>
-            <Route component={ContentPage} />
-          </Switch>
+          <Routes />
         </section>
         <footer></footer>
       </React.Fragment>
-    </Router>
+    </BrowserRouter>
   </ApolloProvider>
 )
 
