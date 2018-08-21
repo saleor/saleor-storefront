@@ -5,8 +5,7 @@
 
 body {
     font-family: $base-font-family;
-    p {
-        font-size: $base-font-size;
-        line-height: $base-line-height;
-    }
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $base-font-color;
 }
