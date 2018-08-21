@@ -1,6 +1,11 @@
-@import '~reset-css';
+@import url('~reset-css');
+@import url('~typeface-montserrat');
+
+@import './variables.scss';
 
 body {
-    background: black;
-    color: white;
+    font-family: $base-font-family;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $base-font-color;
 }

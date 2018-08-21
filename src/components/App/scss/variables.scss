@@ -1,0 +1,28 @@
+// colors
+$base-font-color: #323232;
+$turquoise-dark: #55C4B3;
+$turquoise: #51E9D2;
+$blue: #21125E;
+$rose: #C22D74;
+$green: #3ED256;
+$gray: #949494;
+$white: #ffffff;
+
+// typography
+$base-font-family: 'montserrat';
+$base-font-size: 1rem;
+$base-line-height: 1.25rem;
+$h3-font-size: 1.5rem;
+
+// button
+$button-font-size: 1.125rem;
+$button-line-height: $base-line-height;
+$button-box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
+$button-box-shadow-clicked: -3px 3px 14px 0px rgba(0, 0, 0, 0.2);
+$button-padding: 0.9rem 4.7rem;
+$button-transition: 0.3s;
+$button-transform: skew(45deg);
+$button-content-transform: skew(-45deg);
+$button-left-margin: 1.5rem;
+$button-text-transform: uppercase;
+$button-font-weight: bold;
