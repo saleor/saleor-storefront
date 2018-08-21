@@ -5,7 +5,6 @@ import { BrowserRouter, Link } from 'react-router-dom';
 
 import { default as Routes } from './routes';
 
-import 'typeface-montserrat';
 import './scss/index.scss';
 
 
