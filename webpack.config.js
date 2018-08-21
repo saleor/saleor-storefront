@@ -31,7 +31,7 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader' },

@@ -2,6 +2,7 @@
 @import './variables.scss';
 
 body {
+    font-family: $base-font-family;
     p {
         font-size: $base-font-size;
         line-height: $base-line-height;

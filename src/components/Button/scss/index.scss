@@ -9,6 +9,7 @@ button {
   transition: $button-transition;
   outline: none;
   margin-left: $button-left-margin;
+  font-family: $base-font-family;
 
   * {
     display: inline-block;

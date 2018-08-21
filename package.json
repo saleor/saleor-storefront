@@ -23,7 +23,8 @@
         "react-router": "^4.3.1",
         "react-router-dom": "^4.3.1",
         "react-svg": "^5.0.6",
-        "reset-css": "^4.0.1"
+        "reset-css": "^4.0.1",
+        "typeface-montserrat": "0.0.54"
     },
     "devDependencies": {
         "@storybook/addon-options": "^3.4.10",
@@ -57,7 +58,6 @@
         "style-loader": "^0.21.0",
         "sw-precache-webpack-plugin": "^0.11.5",
         "ts-loader": "^4.4.2",
-        "typeface-catamaran": "0.0.54",
         "typescript": "^3.0.1",
         "webapp-webpack-plugin": "^2.2.0",
         "webpack": "^4.16.2",
