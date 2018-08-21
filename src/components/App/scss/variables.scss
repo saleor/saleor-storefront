@@ -9,19 +9,19 @@ $white: #ffffff;
 
 // typography
 $base-font-family: 'montserrat';
-$base-font-size: 16px;
-$base-line-height: 20px;
-$h3-font-size: 24px;
+$base-font-size: 1rem;
+$base-line-height: 1.25rem;
+$h3-font-size: 1.5rem;
 
 // button
-$button-font-size: 18px;
-$button-line-height: 20px;
+$button-font-size: 1.125rem;
+$button-line-height: $base-line-height;
 $button-box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
 $button-box-shadow-clicked: -3px 3px 14px 0px rgba(0, 0, 0, 0.2);
-$button-padding: 14px 75px;
+$button-padding: 0.9rem 4.7rem;
 $button-transition: 0.3s;
 $button-transform: skew(45deg);
 $button-content-transform: skew(-45deg);
-$button-left-margin: 24px;
+$button-left-margin: 1.5rem;
 $button-text-transform: uppercase;
 $button-font-weight: bold;

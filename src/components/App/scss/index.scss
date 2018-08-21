@@ -1,6 +1,7 @@
-@import '~reset-css';
+@import url('~reset-css');
+@import url('~typeface-montserrat');
+
 @import './variables.scss';
-@import '~typeface-montserrat/index.css';
 
 body {
     font-family: $base-font-family;
