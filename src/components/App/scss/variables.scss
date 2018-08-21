@@ -15,3 +15,12 @@ $h3-font-size: 24px;
 // button
 $button-font-size: 18px;
 $button-line-height: 20px;
+$button-box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
+$button-box-shadow-clicked: -3px 3px 14px 0px rgba(0, 0, 0, 0.2);
+$button-padding: 0.5rem 3rem;
+$button-transition: 0.3s;
+$button-transform: skew(45deg);
+$button-content-transform: skew(-45deg);
+$button-left-margin: 1.2rem;
+$button-text-transform: 'uppercase';
+$button-font-weight: 'bold';

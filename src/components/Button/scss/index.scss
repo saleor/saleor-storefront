@@ -2,29 +2,29 @@
 
 button {
   background-color: $turquoise;
-  transform: skew(45deg);
-  padding: 0.5rem 3rem;
+  transform: $button-transform;
+  padding: $button-padding;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  box-shadow: $button-box-shadow;
+  transition: $button-transition;
   outline: none;
-  margin-left: 1.2rem;
+  margin-left: $button-left-margin;
 
-  span {
-    display:inline-block;
+  * {
+    display: inline-block;
     color: $white;
     font-size: $button-font-size;
-    text-transform: uppercase;
-    font-weight: bold;
+    text-transform: $button-text-transform;
+    font-weight: $button-font-weight;
     line-height: $button-line-height;
-    transform: skew(-45deg);
+    transform: $button-content-transform;
   }
 
-  &:hover, &.hover {
+  &:hover {
     background-color: $turquoise-dark;
   }
 
-  &:active, &.active {
-    box-shadow: -3px 3px 14px 0px rgba(0, 0, 0, 0.2);
+  &:active {
+    box-shadow: $button-box-shadow-clicked;
   }
 }
