@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import './scss/index.scss';
 
-const Button: React.SFC<{}> = (props) => (
+const Button: React.SFC = ({ children }) => (
   <button>
-    {props.children}
+    {children}
   </button>
 )
 
