@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import './scss/index.scss';
 
-type inputType = {
+type TextFieldProps = {
   error?: string,
   helpText?: string,
   label?: string,
 }
 
-const TextField: React.SFC<inputType> = ({ label, error, helpText, ...rest}) => (
+const TextField: React.SFC<TextFieldProps> = ({ label, error, helpText, ...rest}) => (
   <div className='input'>
     <span className='input__label'>{label || ''}</span>
     <input

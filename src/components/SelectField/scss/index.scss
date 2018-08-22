@@ -1,0 +1,58 @@
+@import '../../App/scss/variables.scss';
+
+.react-select-wrapper {
+  .react-select {
+    &__control {
+      border-radius: 0;
+      border-color: $blue;
+      background-color: $white;
+
+      &:hover {
+        border-color: $blue;
+      }
+
+      &--is-focused {
+        box-shadow: 0 0 0 1px $blue;
+      }
+    }
+
+    &__placeholder {
+      font-weight: $bold-font-weight;
+      color: $gray;
+    }
+
+    &__value-container {
+      padding: 0.5rem 1rem;
+    }
+
+    &__indicator-separator {
+      display: none;
+    }
+
+    &__menu {
+      margin-top: 0;
+      border-radius: 0;
+      box-shadow: 0 0 0 1px $blue;
+      border: 1px solid $blue;
+    }
+
+    &__menu-list {
+      div {
+        padding: 1rem 0.5rem;
+        margin: 0 0.5rem;
+        width: auto;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $gray;
+        }
+      }
+    }
+
+    &__option {
+      &--is-focused, &--is-selected, &:active {
+        background-color: $turquoise-light;
+        color: $base-font-color;
+      }
+    }
+  }
+}
