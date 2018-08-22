@@ -10,9 +10,10 @@ $white: #ffffff;
 
 // typography
 $base-font-family: 'montserrat';
-$base-font-size: 1rem;
-$base-line-height: 1.25rem;
-$h3-font-size: 1.5rem;
+$base-font-size: 1rem; // 16px
+$base-line-height: 1.25rem; // 20px
+$h3-font-size: 1.5rem;  // 24px
+$bold-font-weight: 600;
 
 // button
 $button-font-size: 1.125rem;
@@ -25,4 +26,8 @@ $button-transform: skew(45deg);
 $button-content-transform: skew(-45deg);
 $button-left-margin: 1.5rem;
 $button-text-transform: uppercase;
-$button-font-weight: bold;
+$button-font-weight: $bold-font-weight;
+
+// input
+$label-font-size: 0.875rem; // 14px
+$label-color: $gray;

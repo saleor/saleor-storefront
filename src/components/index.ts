@@ -7,4 +7,5 @@ export { default as HomePage } from './HomePage';
 export { default as ProductPage } from './ProductPage';
 export { default as SearchPage } from './SearchPage';
 export { default as WishListPage } from './WishListPage';
-export { default as Button } from './Button'; 
+export { default as Button } from './Button';
+export { default as Input } from './Input'; 
