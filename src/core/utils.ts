@@ -13,7 +13,7 @@ export const getDBIdFromGraphqlId = (graphqlId: string, schema?: string): number
     const rawId = Base64.decode(graphqlId);
     const regexp = /(\w+):(\d+)/;
     const [, expectedSchema, id] = regexp.exec(rawId);
-    if (schema && schema != expectedSchema) {
+    if (schema && schema !== expectedSchema) {
         throw "Schema is not correct";
     }
     return parseInt(id, 10);
