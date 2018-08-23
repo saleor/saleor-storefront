@@ -117,6 +117,7 @@ module.exports = {
     new webpack.EnvironmentPlugin([
       'npm_package_version',
       'NODE_ENV',
+      'APP_GRAPHQL_URL'
     ]),
   ],
   node: {
