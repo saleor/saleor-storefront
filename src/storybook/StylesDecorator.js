@@ -1,11 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './index.scss'
+import "./index.scss";
 
-const StylesDecorator = (storyFn) => (
-  <div className='storybook'>
-    { storyFn() }
-  </div>
-);
+const StylesDecorator = storyFn => <div className="storybook">{storyFn()}</div>;
 
 export default StylesDecorator;
