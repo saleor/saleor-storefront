@@ -1,10 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './scss/index.scss';
+import "./scss/index.scss";
 
-
-const SearchPage: React.SFC = () => (
-  <div>Search Page</div>
-)
+const SearchPage: React.SFC = () => <div>Search Page</div>;
 
 export default SearchPage;

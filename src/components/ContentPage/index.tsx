@@ -1,10 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './scss/index.scss';
+import "./scss/index.scss";
 
-
-const ContentPage: React.SFC = () => (
-  <div>Content Page</div>
-)
+const ContentPage: React.SFC = () => <div>Content Page</div>;
 
 export default ContentPage;
