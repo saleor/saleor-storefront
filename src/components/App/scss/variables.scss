@@ -14,6 +14,7 @@ $base-font-family: "montserrat";
 $base-font-size: 1rem; // 16px
 $base-line-height: 1.25rem; // 20px
 $h3-font-size: 1.5rem; // 24px
+$h4-font-size: 1.125rem; // 18px
 $bold-font-weight: 600;
 
 // button
@@ -49,3 +50,11 @@ $message-title-transform: uppercase;
 $message-title-weight: $bold-font-weight;
 $message-title-margin: 0 1.5rem 0 0;
 $message-content-margin: 1rem 0 0;
+
+// product item
+$product-item-title-text-transform: uppercase;
+$product-item-title-font-weight: $bold-font-weight;
+$product-item-title-margin: 0.5rem 0;
+$product-item-category-color: $gray;
+$product-item-price-font-weight: $bold-font-weight;
+$product-item-category-margin: 1rem 0 0;

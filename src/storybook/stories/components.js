@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { Button, TextField, SelectField, Message } from "../../components";
+import { Button, TextField, SelectField, Message, ProductListItem } from "../../components";
 
 storiesOf("Components", module)
   .add("Button", () => (
@@ -42,5 +42,16 @@ storiesOf("Components", module)
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget erat id augue tincidunt aliquam ut efficitur nunc. Nullam in venenatis ante. Aenean at felis non sapien interdum.
         </p>
       </Message>
+    </div>
+  ))
+  .add("Product List Item", () => (
+    <div className="product-item-section">
+      <ProductListItem
+        title="Element T-Shirt Seal Flint Black"
+        thumbnaillUrl="../../images/sample-product-thumbnail.png"
+        category="T-Shirts"
+        currency="$"
+        price="50"
+      />
     </div>
   ));
