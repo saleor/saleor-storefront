@@ -1,5 +1,6 @@
-import { configure } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
+import  StylesDecorator from './StylesDecorator';
 
 setOptions({
   name: 'Saleor',
@@ -8,8 +9,11 @@ setOptions({
   sidebarAnimations: true,
 });
 
+addDecorator(StylesDecorator);
+
 function loadStories() {
-  require('./stories/button.js');
+  require('./stories/components.js');
+  require('./stories/base.js');
 };
 
 configure(loadStories, module);

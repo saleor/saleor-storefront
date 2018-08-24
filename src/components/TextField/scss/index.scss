@@ -1,0 +1,43 @@
+@import '../../App/scss/variables.scss';
+
+.input {
+  &__field {
+    display: block;
+    padding: 0.8rem 1rem;
+    font-size: $base-font-size;
+    font-weight: $bold-font-weight;
+    border: 1px solid $blue;
+    outline: none;
+    box-shadow: 0 0 0 1px $white;
+
+    &:focus {
+      box-shadow: 0 0 0 1px $blue;
+    }
+
+    &--error {
+      border: 1px solid $rose;
+
+      &:focus {
+        box-shadow: 0 0 0 1px $rose;
+      }
+    }
+  }
+
+  &__label {
+    font-size: $label-font-size;
+    color: $label-color;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-weight: $bold-font-weight;
+  }
+
+  &__error {
+    color: $rose;
+    font-size: $label-font-size;
+  }
+
+  &__help-text {
+    color: $label-color;
+    font-size: $label-font-size;
+  }
+}
