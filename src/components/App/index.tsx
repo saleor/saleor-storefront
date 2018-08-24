@@ -22,8 +22,6 @@ const App: React.SFC<AppProps> = ({apolloClient}) => (
             <ul>
               <li><Link to='/'>Home</Link></li>
               <li><Link to='/search/'>Search</Link></li>
-              <li><Link to='/category/category/10'>Category</Link></li>
-              <li><Link to='/product/product/10'>Product</Link></li>
               <li><Link to='/account/'>Account</Link></li>
               <li><Link to='/wish-list/'>Wish list</Link></li>
               <li><Link to='/checkout/12qwe13e23e232e/'>Checkout</Link></li>
