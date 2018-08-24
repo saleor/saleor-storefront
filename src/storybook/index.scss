@@ -1,10 +1,11 @@
-@import '../components/App/scss/variables.scss';
+@import "../components/App/scss/variables.scss";
 
 .storybook {
   padding: 1rem;
 
   .typography-section {
-    p, h3 {
+    p,
+    h3 {
       margin-bottom: 1rem;
     }
   }
@@ -20,7 +21,7 @@
       padding: 1rem;
 
       &:before {
-        content: '';
+        content: "";
         display: block;
         height: 4rem;
         margin-bottom: 0.5rem;

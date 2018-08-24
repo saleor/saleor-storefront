@@ -1,4 +1,4 @@
-@import '../../App/scss/variables.scss';
+@import "../../App/scss/variables.scss";
 
 .react-select-wrapper {
   .react-select {
@@ -30,8 +30,8 @@
     }
 
     &__indicator {
-      background: url('../../../images/arrow.svg');
-      background-repeat: no-repeat; 
+      background: url("../../../images/arrow.svg");
+      background-repeat: no-repeat;
       background-position: center;
       margin-right: 1rem;
 
@@ -62,7 +62,9 @@
     }
 
     &__option {
-      &--is-focused, &--is-selected, &:active {
+      &--is-focused,
+      &--is-selected,
+      &:active {
         background-color: $turquoise-light;
         color: $base-font-color;
       }

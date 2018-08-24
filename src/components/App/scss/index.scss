@@ -1,15 +1,15 @@
-@import url('~reset-css');
-@import url('~typeface-montserrat');
+@import url("~reset-css");
+@import url("~typeface-montserrat");
 
-@import './variables.scss';
+@import "./variables.scss";
 
 body {
-    font-family: $base-font-family;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
-    color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  color: $base-font-color;
 
-    h3 {
-        font-size: $h3-font-size;
-    }
+  h3 {
+    font-size: $h3-font-size;
+  }
 }
