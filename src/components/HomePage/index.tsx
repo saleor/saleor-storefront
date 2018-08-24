@@ -4,38 +4,35 @@ import { Link } from "react-router-dom";
 
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
+import { ProductListItem } from "..";
+
+import "./scss/index.scss";
 
 import "./scss/index.scss";
 
 const HomePage: React.SFC = () => (
-  <>
+  <div className="home-page">
     <h1>Home page</h1>
     <Query query={GET_PRODUCTS_AND_CATEGORIES}>
       {({ loading, error, data }) => {
-        if (loading) {
-          return "Loading";
-        }
-        if (error) {
-          return `Error!: ${error}`;
-        }
+        if (loading) return "Loading";
+        if (error) return `Error!: ${error}`;
         return (
           <>
             <h2>New Arrivals</h2>
-            {data.products.edges.map(({ node: product }) => (
-              <Link
-                to={`/product/${slugify(product.name)}/${getDBIdFromGraphqlId(
-                  product.id,
-                  "Product"
-                )}/`}
-                key={product.id}
-              >
-                <img
-                  src={product.thumbnailUrl}
+            <div className="home-page__new-arrivals">
+              {data.products.edges.map(({ node: product }) => (
+                <Link
+                  to={`/product/${slugify(product.name)}/${getDBIdFromGraphqlId(
+                    product.id,
+                    "Product"
+                  )}/`}
                   key={product.id}
-                  style={{ height: 100, width: 100 }}
-                />
-              </Link>
-            ))}
+                >
+                  <ProductListItem product={product} />
+                </Link>
+              ))}
+            </div>
             <h2>Categories</h2>
             <ul>
               {data.categories.edges.map(({ node: category }) => (
@@ -55,7 +52,7 @@ const HomePage: React.SFC = () => (
         );
       }}
     </Query>
-  </>
+  </div>
 );
 
 export default HomePage;

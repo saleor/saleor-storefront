@@ -5,6 +5,7 @@
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
     margin: $product-item-title-margin;
+    height: $product-item-title-height;
   }
 
   &__category {
@@ -13,6 +14,6 @@
 
   &__price {
     font-weight: $product-item-price-font-weight;
-    margin-top: $product-item-category-margin;
+    margin: $product-item-price-margin;
   }
 }

@@ -47,11 +47,17 @@ storiesOf("Components", module)
   .add("Product List Item", () => (
     <div className="product-item-section">
       <ProductListItem
-        title="Element T-Shirt Seal Flint Black"
-        thumbnaillUrl="../../images/sample-product-thumbnail.png"
-        category="T-Shirts"
+        product={{
+          name: "Element T-Shirt Seal Flint Black",
+          thumbnailUrl: "../../images/sample-product-thumbnail.png",
+          category: {
+            name: "T-Shirts",
+          },
+          price: {
+            amount: "50"
+          }
+        }}
         currency="$"
-        price="50"
       />
     </div>
   ));
