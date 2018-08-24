@@ -37,6 +37,7 @@
         "@types/react-router": "^4.0.30",
         "@types/react-router-dom": "^4.3.0",
         "@types/react-select": "^2.0.2",
+        "@types/react-svg": "^5.0.0",
         "@types/storybook__react": "^3.0.9",
         "babel-core": "^6.26.3",
         "babel-loader": "^7.1.5",
@@ -74,6 +75,6 @@
         "start": "NODE_ENV=develop webpack-dev-server --open --watch --port 3000 --mode development",
         "build": "webpack -p --progress",
         "watch": "webpack -d --watch --progress --colors",
-        "storybook": "start-storybook -p 9001 -c src/storybook/"
+        "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/"
     }
 }

@@ -69,4 +69,13 @@
       margin-bottom: 1rem;
     }
   }
+
+  .message-section {
+    .message {
+      position: relative;
+      margin-bottom: 1rem;
+      bottom: 0;
+      right: 0;
+    }
+  }
 }
