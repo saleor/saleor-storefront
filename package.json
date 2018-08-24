@@ -75,7 +75,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "NODE_ENV=develop webpack-dev-server --open --watch --port 3000 --mode development",
+        "start": "NODE_ENV=develop webpack-dev-server --history-api-fallback --open --watch --port 3000 --mode development",
         "build": "webpack -p --progress",
         "watch": "webpack -d --watch --progress --colors",
         "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/"
