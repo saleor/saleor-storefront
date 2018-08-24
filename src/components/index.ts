@@ -10,3 +10,4 @@ export { default as WishListPage } from './WishListPage';
 export { default as Button } from './Button';
 export { default as TextField } from './TextField';
 export { default as SelectField } from './SelectField';
+export { default as Message } from "./Message"
