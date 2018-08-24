@@ -8,9 +8,9 @@ type TextFieldProps = {
   label?: string,
 }
 
-const TextField: React.SFC<TextFieldProps> = ({ label, error, helpText, ...rest}) => (
+const TextField: React.SFC<TextFieldProps> = ({ label='', error, helpText, ...rest}) => (
   <div className='input'>
-    <span className='input__label'>{label || ''}</span>
+    <span className='input__label'>{label}</span>
     <input
       {...rest}
       className={`input__field${error ? ' input__field--error' : ''}`}
