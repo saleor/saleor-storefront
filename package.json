@@ -25,6 +25,8 @@
         "react-router-dom": "^4.3.1",
         "react-svg": "^5.0.6",
         "reset-css": "^4.0.1",
+        "tslint": "^5.11.0",
+        "tslint-config-prettier": "^1.15.0",
         "typeface-montserrat": "0.0.54"
     },
     "devDependencies": {
