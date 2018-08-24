@@ -26,5 +26,5 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
         }
       }
     }
-  }  
+  }
 `;

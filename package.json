@@ -25,6 +25,8 @@
         "react-router-dom": "^4.3.1",
         "react-svg": "^5.0.6",
         "reset-css": "^4.0.1",
+        "tslint": "^5.11.0",
+        "tslint-config-prettier": "^1.15.0",
         "typeface-montserrat": "0.0.54"
     },
     "devDependencies": {
@@ -73,7 +75,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "NODE_ENV=develop webpack-dev-server --open --watch --port 3000 --mode development",
+        "start": "NODE_ENV=develop webpack-dev-server --history-api-fallback --open --watch --port 3000 --mode development",
         "build": "webpack -p --progress",
         "watch": "webpack -d --watch --progress --colors",
         "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/"
