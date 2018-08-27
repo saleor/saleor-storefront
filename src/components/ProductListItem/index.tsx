@@ -1,19 +1,12 @@
 import * as React from "react";
 
+import { ProductsList_products_edges_node } from '../../gql-types'
+
 import "./scss/index.scss";
 
 
-type ProductListItemProps = {
-  product: {
-    name: string,
-    category: {
-      name: string,
-    },
-    price: {
-      amount: string,
-    },
-    thumbnailUrl: string,
-  },
+interface ProductListItemProps {
+  product: ProductsList_products_edges_node,
   currency?: string,
 }
 

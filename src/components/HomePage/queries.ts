@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_PRODUCTS_AND_CATEGORIES = gql`
-  {
+  query ProductsList {
     products(first: 10) {
       edges {
         node {
