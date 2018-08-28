@@ -36,7 +36,7 @@ const MainMenu: React.SFC = () => (
                       path="../../images/hamburger-hover.svg"
                     />
                   </li>
-                  {data.menus.edges[0].node.items.edges.map(item => (
+                  {data.shop.navigation.main.items.edges.map(item => (
                     <li className="main-menu__item" key={item.node.id}>
                       <a href={item.node.url}>{item.node.name}</a>
                     </li>
