@@ -1,0 +1,16 @@
+@import "../../App/scss/variables.scss";
+
+.home-page {
+  &__new-arrivals {
+    padding: 0 1rem;
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 3.125rem;
+
+    a {
+      text-decoration: none;
+      color: $base-font-color;
+    }
+  }
+}

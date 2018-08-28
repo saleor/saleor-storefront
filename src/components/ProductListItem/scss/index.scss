@@ -1,0 +1,19 @@
+@import "../../App/scss/variables.scss";
+
+.product-list-item {
+  &__title {
+    text-transform: $product-item-title-text-transform;
+    font-weight: $product-item-title-font-weight;
+    margin: $product-item-title-margin;
+    height: $product-item-title-height;
+  }
+
+  &__category {
+    color: $product-item-category-color;
+  }
+
+  &__price {
+    font-weight: $product-item-price-font-weight;
+    margin: $product-item-price-margin;
+  }
+}
