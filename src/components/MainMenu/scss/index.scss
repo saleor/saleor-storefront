@@ -24,12 +24,8 @@
     }
   }
 
-  &__center {
-    flex-basis: 1rem;
-  }
-
   &__item {
-    padding: 0 1rem;
+    padding: 0 $menu-spacer;
     text-transform: uppercase;
     font-weight: $bold-font-weight;
 
@@ -46,7 +42,7 @@
   }
 
   &__hamburger {
-    padding: 1rem;
+    padding: $menu-spacer;
     border-right: 1px solid $gray-light;
 
     &--hover {
@@ -65,33 +61,33 @@
   }
 
   &__icon {
-    padding: 0 1rem;
+    padding: 0 $menu-spacer;
     cursor: pointer;
 
-    svg path {
+    svg * {
       transition: 0.3s;
     }
 
     &:hover {
-      svg path {
+      svg * {
         fill: $turquoise;
       }
     }
   }
 
   &__search {
-    padding: 1rem;
+    padding: $menu-spacer;
     border-left: 1px solid $gray-light;
     cursor: pointer;
     transition: 0.3s;
 
-    svg path {
+    svg * {
       transition: 0.3s;
     }
 
     &:hover {
       color: $turquoise;
-      svg path {
+      svg * {
         fill: $turquoise;
       }
     }
@@ -99,7 +95,7 @@
     span {
       text-transform: uppercase;
       font-weight: $bold-font-weight;
-      margin-right: 1rem;
+      margin-right: $menu-spacer;
       vertical-align: super;
     }
 

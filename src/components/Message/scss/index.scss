@@ -38,12 +38,12 @@
     right: 1.5rem;
     transition: 0.3s;
 
-    path {
+    svg * {
       transition: 0.3s;
     }
 
     &:hover {
-      path {
+      svg * {
         fill: $gray;
       }
     }
