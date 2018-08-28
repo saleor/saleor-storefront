@@ -4,6 +4,7 @@ import * as React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 
 import { default as Routes } from "./routes";
+import { MainMenu } from "..";
 
 import "./scss/index.scss";
 
@@ -16,6 +17,7 @@ const App: React.SFC<AppProps> = ({ apolloClient }) => (
     <BrowserRouter>
       <React.Fragment>
         <header>
+          <MainMenu />
           <h1>Saleor e-commerce</h1>
           <nav>
             <ul>

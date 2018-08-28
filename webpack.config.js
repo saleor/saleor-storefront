@@ -95,7 +95,7 @@ module.exports = {
     ]),
     // PWA plugins
     new WebappWebpackPlugin({
-      logo: `${sourceDir}images/logo.svg`,
+      logo: `${sourceDir}images/favicon.svg`,
       prefix: "images/favicons/",
       favicons: {
         appName: "Saleor ecommerce",
