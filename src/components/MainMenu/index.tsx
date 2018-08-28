@@ -31,7 +31,7 @@ const MainMenu: React.SFC = () => (
                 />
               </li>
               {data.menus.edges[0].node.items.edges.map(item => (
-                <li className="main-menu__item">
+                <li className="main-menu__item" key={item.node.id}>
                   <a href={item.node.url}>{item.node.name}</a>
                 </li>
               ))}

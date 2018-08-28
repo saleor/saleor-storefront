@@ -5,10 +5,12 @@ export const GET_MAIN_MENU = gql`
     menus(query: "navbar") {
       edges {
         node {
+          id
           name
           items {
             edges {
               node {
+                id
                 name
                 url
               }
