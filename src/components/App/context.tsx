@@ -1,9 +1,8 @@
 import * as React from "react";
 
 export interface OverlayContextInterface {
-  visible: boolean;
-  type?: "checkout" | "navigation";
-  showOverlay(type: "checkout" | "navigation"): void;
+  type: "checkout" | "navigation" | null;
+  showOverlay(type: "checkout" | "navigation" | null): void;
   closeOverlay(): void;
 }
 

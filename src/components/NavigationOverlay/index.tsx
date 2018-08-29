@@ -11,7 +11,7 @@ import "./scss/index.scss";
 const NavigationOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => {
-      if (overlayContext.type === "navigation" && overlayContext.visible) {
+      if (overlayContext.type === "navigation") {
         return (
           <Query query={GET_CATEGORIES}>
             {({ loading, error, data }) => {
