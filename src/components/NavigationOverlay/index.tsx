@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { GET_CATEGORIES } from "./queries";
-import { OverlayContext } from "../App/context";
+import { OverlayContext, OverlayType } from "../App/context";
 import { Overlay } from "..";
 
 import "./scss/index.scss";
@@ -11,7 +11,7 @@ import "./scss/index.scss";
 const NavigationOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => {
-      if (overlayContext.type === "navigation") {
+      if (overlayContext.type === OverlayType.navigation) {
         return (
           <Query query={GET_CATEGORIES}>
             {({ loading, error, data }) => {
@@ -22,7 +22,7 @@ const NavigationOverlay: React.SFC = () => (
                 return `Error!: ${error}`;
               }
               return (
-                <Overlay onClose={overlayContext.closeOverlay}>
+                <Overlay onClose={overlayContext.hide}>
                   <div className="side-nav" onClick={e => e.stopPropagation()}>
                     <ul>
                       <li>

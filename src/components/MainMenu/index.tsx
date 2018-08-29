@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import { GET_MAIN_MENU } from "./queries";
-import { OverlayContext } from "../App/context";
+import { OverlayContext, OverlayType } from "../App/context";
 
 import "./scss/index.scss";
 
@@ -16,7 +16,7 @@ const MainMenu: React.SFC = () => (
           <ul>
             <li
               className="main-menu__hamburger"
-              onClick={() => overlayContext.showOverlay("navigation")}
+              onClick={() => overlayContext.show(OverlayType.navigation)}
             >
               <ReactSVG
                 className="main-menu__hamburger--icon"

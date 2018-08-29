@@ -1,24 +1,25 @@
 import * as React from "react";
 
-import { OverlayContext, OverlayContextInterface } from "../App/context";
+import {
+  OverlayContext,
+  OverlayContextInterface,
+  OverlayType
+} from "../App/context";
 
 class OverlayProvider extends React.Component<{}, OverlayContextInterface> {
-  showOverlay = (type: "checkout" | "navigation") => {
+  show = (type: OverlayType) => {
     this.setState({ type });
   };
 
-  closeOverlay = () => {
+  hide = () => {
     this.setState({ type: null });
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: null,
-      showOverlay: this.showOverlay,
-      closeOverlay: this.closeOverlay
-    };
-  }
+  state = {
+    type: null,
+    show: this.show,
+    hide: this.hide
+  };
 
   render() {
     return (

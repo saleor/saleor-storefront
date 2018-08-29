@@ -1,11 +1,17 @@
 import * as React from "react";
 
+export enum OverlayType {
+  checkout,
+  navigation
+}
 export interface OverlayContextInterface {
-  type: "checkout" | "navigation" | null;
-  showOverlay(type: "checkout" | "navigation" | null): void;
-  closeOverlay(): void;
+  type: OverlayType | null;
+  show(type: OverlayType): void;
+  hide(): void;
 }
 
-export const OverlayContext = React.createContext<OverlayContextInterface | null>(
-  null
-);
+export const OverlayContext = React.createContext<OverlayContextInterface>({
+  type: null,
+  show: type => {},
+  hide: () => {}
+});
