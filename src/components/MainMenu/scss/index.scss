@@ -1,0 +1,106 @@
+@import "../../App/scss/variables.scss";
+
+.main-menu {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $gray-light;
+
+  &__left {
+    flex-basis: calc(50% - 4rem);
+
+    ul {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__right {
+    flex-basis: calc(50% - 4rem);
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    padding: 0 $spacer;
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+
+    a {
+      text-decoration: none;
+      color: $base-font-color;
+      position: relative;
+      transition: 0.3s;
+
+      &:hover {
+        color: $turquoise;
+      }
+    }
+  }
+
+  &__hamburger {
+    padding: $spacer;
+    border-right: 1px solid $gray-light;
+
+    &--hover {
+      display: none;
+    }
+
+    &:hover {
+      .main-menu__hamburger--icon {
+        display: none;
+      }
+
+      .main-menu__hamburger--hover {
+        display: block;
+      }
+    }
+  }
+
+  &__icon {
+    padding: 0 $spacer;
+    cursor: pointer;
+
+    svg * {
+      transition: 0.3s;
+    }
+
+    &:hover {
+      svg * {
+        fill: $turquoise;
+      }
+    }
+  }
+
+  &__search {
+    padding: $spacer;
+    border-left: 1px solid $gray-light;
+    cursor: pointer;
+    transition: 0.3s;
+
+    svg * {
+      transition: 0.3s;
+    }
+
+    &:hover {
+      color: $turquoise;
+      svg * {
+        fill: $turquoise;
+      }
+    }
+
+    span {
+      text-transform: uppercase;
+      font-weight: $bold-font-weight;
+      margin-right: $spacer;
+      vertical-align: super;
+    }
+
+    div {
+      display: inline-block;
+    }
+  }
+}

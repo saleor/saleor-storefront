@@ -1,0 +1,54 @@
+@import "../../App/scss/variables.scss";
+
+@keyframes sidenavOpen {
+  from {
+    left: -100rem;
+  }
+  to {
+    left: 0;
+  }
+}
+
+.side-nav {
+  width: 30rem;
+  background-color: $white;
+  min-height: 100%;
+  animation: sidenavOpen 0.3s;
+  position: fixed;
+
+  ul {
+    li {
+      border-bottom: 1px solid $gray-light;
+
+      a {
+        display: block;
+        padding: $spacer;
+        text-decoration: none;
+        color: $base-font-color;
+        text-transform: uppercase;
+        font-weight: $bold-font-weight;
+        transition: 0.3s;
+
+        &:hover {
+          color: $turquoise;
+
+          svg * {
+            fill: $turquoise;
+          }
+        }
+      }
+    }
+  }
+
+  &__icon-item {
+    div {
+      display: inline-block;
+      margin-right: $spacer / 2;
+      vertical-align: middle;
+
+      svg * {
+        transition: 0.3s;
+      }
+    }
+  }
+}

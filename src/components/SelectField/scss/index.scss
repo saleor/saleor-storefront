@@ -22,7 +22,7 @@
     }
 
     &__value-container {
-      padding: 0.5rem 1rem;
+      padding: $spacer / 2 $spacer;
     }
 
     &__indicator-separator {
@@ -33,7 +33,7 @@
       background: url("../../../images/arrow.svg");
       background-repeat: no-repeat;
       background-position: center;
-      margin-right: 1rem;
+      margin-right: $spacer;
 
       svg {
         display: none;
@@ -51,8 +51,8 @@
       box-shadow: $select-menu-shadow;
 
       div {
-        padding: 1rem 0.5rem;
-        margin: 0 0.5rem;
+        padding: $spacer $spacer / 2;
+        margin: 0 $spacer;
         width: auto;
 
         &:not(:last-child) {
