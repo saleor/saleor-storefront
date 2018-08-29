@@ -26,7 +26,7 @@
   &__label {
     font-size: $label-font-size;
     color: $label-color;
-    margin-bottom: 0.5rem;
+    margin-bottom: $spacer / 2;
     display: inline-block;
     font-weight: $bold-font-weight;
   }

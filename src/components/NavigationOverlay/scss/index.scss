@@ -22,7 +22,7 @@
 
       a {
         display: block;
-        padding: $menu-spacer;
+        padding: $spacer;
         text-decoration: none;
         color: $base-font-color;
         text-transform: uppercase;
@@ -43,7 +43,7 @@
   &__icon-item {
     div {
       display: inline-block;
-      margin-right: $menu-spacer / 2;
+      margin-right: $spacer / 2;
       vertical-align: middle;
 
       svg * {

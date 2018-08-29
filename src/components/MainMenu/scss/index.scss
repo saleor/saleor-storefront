@@ -25,7 +25,7 @@
   }
 
   &__item {
-    padding: 0 $menu-spacer;
+    padding: 0 $spacer;
     text-transform: uppercase;
     font-weight: $bold-font-weight;
 
@@ -42,7 +42,7 @@
   }
 
   &__hamburger {
-    padding: $menu-spacer;
+    padding: $spacer;
     border-right: 1px solid $gray-light;
 
     &--hover {
@@ -61,7 +61,7 @@
   }
 
   &__icon {
-    padding: 0 $menu-spacer;
+    padding: 0 $spacer;
     cursor: pointer;
 
     svg * {
@@ -76,7 +76,7 @@
   }
 
   &__search {
-    padding: $menu-spacer;
+    padding: $spacer;
     border-left: 1px solid $gray-light;
     cursor: pointer;
     transition: 0.3s;
@@ -95,7 +95,7 @@
     span {
       text-transform: uppercase;
       font-weight: $bold-font-weight;
-      margin-right: $menu-spacer;
+      margin-right: $spacer;
       vertical-align: super;
     }
 
