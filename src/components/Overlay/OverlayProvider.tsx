@@ -6,7 +6,10 @@ import {
   OverlayType
 } from "../App/context";
 
-class OverlayProvider extends React.Component<{}, OverlayContextInterface> {
+class OverlayProvider extends React.Component<
+  { children: React.ReactNode },
+  OverlayContextInterface
+> {
   show = (type: OverlayType) => {
     this.setState({ type });
   };

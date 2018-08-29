@@ -10,8 +10,10 @@ export interface OverlayContextInterface {
   hide(): void;
 }
 
+/* tslint:disable:no-empty */
 export const OverlayContext = React.createContext<OverlayContextInterface>({
-  type: null,
+  hide: () => {},
   show: type => {},
-  hide: () => {}
+  type: null
 });
+/* tslint:enable:no-empty */
