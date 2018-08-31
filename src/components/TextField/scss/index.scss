@@ -1,6 +1,8 @@
 @import "../../App/scss/variables.scss";
 
 .input {
+  position: relative;
+
   &__field {
     display: block;
     padding: 0.8rem 1rem;

@@ -103,29 +103,4 @@
       display: inline-block;
     }
   }
-
-  &__search-form {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    svg * {
-      fill: $turquoise;
-    }
-
-    input {
-      border: none;
-      background-color: $turquoise-light;
-      padding: 1.35rem 1rem;
-      width: 15rem;
-
-      &:focus {
-        box-shadow: none;
-      }
-    }
-
-    &--hidden {
-      display: none;
-    }
-  }
 }

@@ -1,10 +1,10 @@
 import * as React from "react";
 
 export enum OverlayType {
-  cart,
-  checkout,
-  navigation,
-  search
+  cart = "cart",
+  checkout = "checkout",
+  navigation = "navigation",
+  search = "search"
 }
 export interface OverlayContextInterface {
   type: OverlayType | null;

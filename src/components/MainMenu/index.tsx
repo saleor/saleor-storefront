@@ -3,7 +3,6 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { TextField } from "..";
 import { OverlayContext, OverlayType } from "../App/context";
 import { CartContext } from "../Cart/context";
 import { GET_MAIN_MENU } from "./queries";
@@ -90,7 +89,10 @@ class MainMenu extends React.Component<{}, MainMenuState> {
                     {cart => <span>{cart.getQuantity()}</span>}
                   </CartContext.Consumer>
                 </li>
-                <li className="main-menu__search">
+                <li
+                  className="main-menu__search"
+                  onClick={() => overlayContext.show(OverlayType.search)}
+                >
                   <span>Search</span>
                   <ReactSVG path="../../images/search.svg" />
                 </li>

@@ -6,6 +6,10 @@
   width: 100%;
   background-color: rgba(199, 207, 207, 0.8);
 
+  &--search {
+    top: 3.8rem;
+  }
+
   &__wrapper {
     display: inline-block;
     position: fixed;

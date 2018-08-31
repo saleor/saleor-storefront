@@ -1,0 +1,77 @@
+@import "../../App/scss/variables.scss";
+
+.search {
+  width: 25rem;
+  position: fixed;
+  background-color: $white;
+  right: 0;
+  top: 0;
+
+  &--full-height {
+    min-height: 100%;
+  }
+
+  &__input {
+    svg * {
+      fill: $turquoise;
+    }
+
+    input {
+      border: none;
+      background-color: $turquoise-light;
+      padding: 1.35rem 1rem;
+      width: 100%;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__products {
+    max-height: calc(100vh - 9.8rem);
+    overflow: auto;
+    padding: $spacer / 2 0;
+
+    &__item {
+      padding: $spacer / 2 $spacer;
+
+      img {
+        max-width: 3.6rem;
+        display: inline-block;
+        margin-right: $spacer;
+        vertical-align: top;
+      }
+
+      span {
+        display: inline-block;
+        width: calc(100% - 4.6rem);
+      }
+
+      h4 {
+        text-transform: uppercase;
+        font-weight: $bold-font-weight;
+        padding: $spacer / 4 0;
+        color: $base-font-color;
+      }
+
+      p {
+        color: $gray;
+      }
+
+      &:hover {
+        background-color: $gray-light;
+      }
+    }
+
+    &__footer {
+      position: fixed;
+      width: 25rem;
+      bottom: 0;
+      border-top: 1px solid $gray-light;
+      text-align: center;
+      padding: $spacer 0;
+      background-color: $white;
+    }
+  }
+}
