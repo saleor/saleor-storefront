@@ -5,15 +5,14 @@ import { RouteComponentProps } from "react-router";
 import { getGraphqlIdFromDBId } from "../../core/utils";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
-import Button from "../Button";
-import { CartContext, CartInterface } from "../Cart/context";
+import { CartContext } from "../Cart/context";
 
 import { ProductVariantInterface } from "../../core/types";
 
 import "./scss/index.scss";
 
 interface ProductVariantFormProps {
-  productVariants: [ProductVariantInterface?];
+  productVariants: ProductVariantInterface[];
   onProductVariantSelect(variant: ProductVariantInterface): void;
 }
 

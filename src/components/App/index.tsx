@@ -21,7 +21,6 @@ const App: React.SFC<AppProps> = ({ apolloClient }) => (
         <BrowserRouter>
           <React.Fragment>
             <header>
-              <CartOverlay />
               <MainMenu />
               <h1>Saleor e-commerce</h1>
               <nav>
@@ -57,6 +56,7 @@ const App: React.SFC<AppProps> = ({ apolloClient }) => (
               <Routes />
             </section>
             <footer />
+            <CartOverlay />
             <NavigationOverlay />
           </React.Fragment>
         </BrowserRouter>
