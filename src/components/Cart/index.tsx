@@ -66,3 +66,53 @@ export class CartProvider extends React.Component<
     );
   }
 }
+
+export const CartOverlay: React.SFC = () => (
+  <OverlayContext.Consumer>
+    {overlay => (
+      <CartContext.Consumer>
+        {cart =>
+          overlay.type === OverlayType.cart ? (
+            <Overlay onClose={overlay.hide}>
+              {cart.lines.length ? (
+                <Query
+                  query={GET_VARIANTS}
+                  // TODO: we don't have productVariants query definition yet, for now use only one
+                  // https://github.com/mirumee/saleor/issues/2741
+                  variables={{ id: cart.lines[0].variantId }}
+                >
+                  {({ loading, error, data: { productVariant } }) => {
+                    if (loading) {
+                      return "Loading";
+                    }
+                    if (error) {
+                      return `Error!: ${error}`;
+                    }
+                    return (
+                      <ul>
+                        {cart.lines.map(line => (
+                          <li key={line.variantId}>
+                            <img
+                              src={productVariant.product.thumbnailUrl}
+                              alt={productVariant.product.name}
+                            />
+                            {productVariant.product.name} Qty: {line.quantity}
+                            <a onClick={() => cart.remove(productVariant.id)}>
+                              Delete
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }}
+                </Query>
+              ) : (
+                <div>Empty cart</div>
+              )}
+            </Overlay>
+          ) : null
+        }
+      </CartContext.Consumer>
+    )}
+  </OverlayContext.Consumer>
+);
