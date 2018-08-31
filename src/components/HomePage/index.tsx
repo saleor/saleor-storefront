@@ -2,11 +2,9 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
+import { ProductListItem } from "..";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
-import { ProductListItem } from "..";
-
-import "./scss/index.scss";
 
 import "./scss/index.scss";
 
@@ -15,8 +13,12 @@ const HomePage: React.SFC = () => (
     <h1>Home page</h1>
     <Query query={GET_PRODUCTS_AND_CATEGORIES}>
       {({ loading, error, data }) => {
-        if (loading) return "Loading";
-        if (error) return `Error!: ${error}`;
+        if (loading) {
+          return "Loading";
+        }
+        if (error) {
+          return `Error!: ${error}`;
+        }
         return (
           <>
             <h2>New Arrivals</h2>

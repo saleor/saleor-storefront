@@ -2,8 +2,8 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
-import { Overlay } from "..";
 import { OverlayContext, OverlayType } from "../App/context";
+import { Overlay } from "../Overlay";
 import { GET_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";

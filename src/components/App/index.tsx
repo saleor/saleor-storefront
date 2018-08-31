@@ -5,7 +5,7 @@ import { BrowserRouter, Link } from "react-router-dom";
 
 import { MainMenu, NavigationOverlay, SearchOverlay } from "..";
 import { CartOverlay, CartProvider } from "../Cart";
-import OverlayProvider from "../Overlay/OverlayProvider";
+import { OverlayProvider } from "../Overlay";
 import { default as Routes } from "./routes";
 
 import "./scss/index.scss";

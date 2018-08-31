@@ -3,8 +3,9 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, Overlay, TextField } from "..";
+import { Button, TextField } from "..";
 import { OverlayContext, OverlayType } from "../App/context";
+import { Overlay } from "../Overlay";
 import { GET_SEARCH_RESULTS } from "./queries";
 
 import "./scss/index.scss";
