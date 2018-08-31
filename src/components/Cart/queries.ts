@@ -7,6 +7,7 @@ export const GET_VARIANTS = gql`
     productVariant(id: $id) {
       id
       stockQuantity
+      name
       costPrice {
         currency
         amount

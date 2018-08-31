@@ -1,5 +1,3 @@
-
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -8,31 +6,31 @@
 // ====================================================
 
 export interface VariantList_productVariant_costPrice {
-  currency: string;  // Currency code.
-  amount: number;    // Amount of money.
+  currency: string; // Currency code.
+  amount: number; // Amount of money.
 }
 
 export interface VariantList_productVariant_product {
-  id: string;                   // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  thumbnailUrl: string | null;  // The URL of a main thumbnail for a product.
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
 }
 
 export interface VariantList_productVariant {
-  id: string;                                              // The ID of the object.
-  stockQuantity: number;                                   // Quantity of a product available for sale.
-  costPrice: VariantList_productVariant_costPrice | null;  // Cost price of the variant.
+  id: string; // The ID of the object.
+  name: string;
+  stockQuantity: number; // Quantity of a product available for sale.
+  costPrice: VariantList_productVariant_costPrice | null; // Cost price of the variant.
   product: VariantList_productVariant_product;
 }
 
 export interface VariantList {
-  productVariant: VariantList_productVariant | null;  // Lookup a variant by ID.
+  productVariant: VariantList_productVariant | null; // Lookup a variant by ID.
 }
 
 export interface VariantListVariables {
   id: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -42,24 +40,24 @@ export interface VariantListVariables {
 // ====================================================
 
 export interface ProductsList_products_edges_node_category {
-  id: string;  // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
 }
 
 export interface ProductsList_products_edges_node_price {
-  amount: number;  // Amount of money.
+  amount: number; // Amount of money.
 }
 
 export interface ProductsList_products_edges_node {
-  id: string;                                            // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  thumbnailUrl: string | null;                           // The URL of a main thumbnail for a product.
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
   category: ProductsList_products_edges_node_category;
-  price: ProductsList_products_edges_node_price | null;  // The product's base price (without any discounts         applied).
+  price: ProductsList_products_edges_node_price | null; // The product's base price (without any discounts         applied).
 }
 
 export interface ProductsList_products_edges {
-  node: ProductsList_products_edges_node;  // The item at the end of the edge
+  node: ProductsList_products_edges_node; // The item at the end of the edge
 }
 
 export interface ProductsList_products {
@@ -67,12 +65,12 @@ export interface ProductsList_products {
 }
 
 export interface ProductsList_categories_edges_node {
-  id: string;  // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
 }
 
 export interface ProductsList_categories_edges {
-  node: ProductsList_categories_edges_node;  // The item at the end of the edge
+  node: ProductsList_categories_edges_node; // The item at the end of the edge
 }
 
 export interface ProductsList_categories {
@@ -80,10 +78,9 @@ export interface ProductsList_categories {
 }
 
 export interface ProductsList {
-  products: ProductsList_products | null;      // List of the shop's products.
-  categories: ProductsList_categories | null;  // List of the shop's categories.
+  products: ProductsList_products | null; // List of the shop's products.
+  categories: ProductsList_categories | null; // List of the shop's categories.
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -93,13 +90,13 @@ export interface ProductsList {
 // ====================================================
 
 export interface MainMenu_shop_navigation_main_items_edges_node {
-  id: string;          // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  url: string | null;  // URL to the menu item.
+  url: string | null; // URL to the menu item.
 }
 
 export interface MainMenu_shop_navigation_main_items_edges {
-  node: MainMenu_shop_navigation_main_items_edges_node;  // The item at the end of the edge
+  node: MainMenu_shop_navigation_main_items_edges_node; // The item at the end of the edge
 }
 
 export interface MainMenu_shop_navigation_main_items {
@@ -111,17 +108,16 @@ export interface MainMenu_shop_navigation_main {
 }
 
 export interface MainMenu_shop_navigation {
-  main: MainMenu_shop_navigation_main | null;  // Main navigation bar.
+  main: MainMenu_shop_navigation_main | null; // Main navigation bar.
 }
 
 export interface MainMenu_shop {
-  navigation: MainMenu_shop_navigation | null;  // Shop's navigation.
+  navigation: MainMenu_shop_navigation | null; // Shop's navigation.
 }
 
 export interface MainMenu {
-  shop: MainMenu_shop | null;  // Represents a shop resources.
+  shop: MainMenu_shop | null; // Represents a shop resources.
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -131,13 +127,13 @@ export interface MainMenu {
 // ====================================================
 
 export interface Categories_categories_edges_node {
-  id: string;          // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  url: string | null;  // The storefront's URL for the category.
+  url: string | null; // The storefront's URL for the category.
 }
 
 export interface Categories_categories_edges {
-  node: Categories_categories_edges_node;  // The item at the end of the edge
+  node: Categories_categories_edges_node; // The item at the end of the edge
 }
 
 export interface Categories_categories {
@@ -145,9 +141,8 @@ export interface Categories_categories {
 }
 
 export interface Categories {
-  categories: Categories_categories | null;  // List of the shop's categories.
+  categories: Categories_categories | null; // List of the shop's categories.
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -157,12 +152,12 @@ export interface Categories {
 // ====================================================
 
 export interface ProductDetails_product_variants_edges_node {
-  id: string;  // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
 }
 
 export interface ProductDetails_product_variants_edges {
-  node: ProductDetails_product_variants_edges_node;  // The item at the end of the edge
+  node: ProductDetails_product_variants_edges_node; // The item at the end of the edge
 }
 
 export interface ProductDetails_product_variants {
@@ -170,21 +165,20 @@ export interface ProductDetails_product_variants {
 }
 
 export interface ProductDetails_product {
-  id: string;                   // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  thumbnailUrl: string | null;  // The URL of a main thumbnail for a product.
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
   description: string;
   variants: ProductDetails_product_variants | null;
 }
 
 export interface ProductDetails {
-  product: ProductDetails_product | null;  // Lookup a product by ID.
+  product: ProductDetails_product | null; // Lookup a product by ID.
 }
 
 export interface ProductDetailsVariables {
   id: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -194,31 +188,30 @@ export interface ProductDetailsVariables {
 // ====================================================
 
 export interface ProductVariantDetails_productVariant_costPrice {
-  currency: string;  // Currency code.
-  amount: number;    // Amount of money.
+  currency: string; // Currency code.
+  amount: number; // Amount of money.
 }
 
 export interface ProductVariantDetails_productVariant_product {
-  id: string;                   // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  thumbnailUrl: string | null;  // The URL of a main thumbnail for a product.
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
 }
 
 export interface ProductVariantDetails_productVariant {
-  id: string;                                                        // The ID of the object.
-  stockQuantity: number;                                             // Quantity of a product available for sale.
-  costPrice: ProductVariantDetails_productVariant_costPrice | null;  // Cost price of the variant.
+  id: string; // The ID of the object.
+  stockQuantity: number; // Quantity of a product available for sale.
+  costPrice: ProductVariantDetails_productVariant_costPrice | null; // Cost price of the variant.
   product: ProductVariantDetails_productVariant_product;
 }
 
 export interface ProductVariantDetails {
-  productVariant: ProductVariantDetails_productVariant | null;  // Lookup a variant by ID.
+  productVariant: ProductVariantDetails_productVariant | null; // Lookup a variant by ID.
 }
 
 export interface ProductVariantDetailsVariables {
   id: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -228,9 +221,9 @@ export interface ProductVariantDetailsVariables {
 // ====================================================
 
 export interface BasicProductFields {
-  id: string;                   // The ID of the object.
+  id: string; // The ID of the object.
   name: string;
-  thumbnailUrl: string | null;  // The URL of a main thumbnail for a product.
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
 }
 
 /* tslint:disable */
