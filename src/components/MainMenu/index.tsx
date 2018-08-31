@@ -1,10 +1,11 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
+import ReactSVG from "react-svg";
 
-import { GET_MAIN_MENU } from "./queries";
 import { OverlayContext, OverlayType } from "../App/context";
+import { CartContext } from "../Cart/context";
+import { GET_MAIN_MENU } from "./queries";
 
 import "./scss/index.scss";
 
@@ -54,8 +55,14 @@ const MainMenu: React.SFC = () => (
             <li className="main-menu__icon">
               <ReactSVG path="../../images/user.svg" />
             </li>
-            <li className="main-menu__icon">
+            <li
+              className="main-menu__icon"
+              onClick={() => overlayContext.show(OverlayType.cart)}
+            >
               <ReactSVG path="../../images/cart.svg" />
+              <CartContext.Consumer>
+                {cart => <span>{cart.getQuantity()}</span>}
+              </CartContext.Consumer>
             </li>
             <li className="main-menu__search">
               <span>Search</span>

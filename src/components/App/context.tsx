@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export enum OverlayType {
+  cart,
   checkout,
   navigation
 }
