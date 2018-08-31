@@ -1,13 +1,12 @@
 import * as React from "react";
 
-import { ProductsList_products_edges_node } from '../../gql-types'
+import { ProductListItemInterface } from "../../core/types";
 
 import "./scss/index.scss";
 
-
 interface ProductListItemProps {
-  product: ProductsList_products_edges_node,
-  currency?: string,
+  product: ProductListItemInterface;
+  currency?: string;
 }
 
 const ProductListItem: React.SFC<ProductListItemProps> = ({ product: {name, category, price, thumbnailUrl},
