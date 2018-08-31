@@ -3,7 +3,7 @@ import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter, Link } from "react-router-dom";
 
-import { MainMenu, NavigationOverlay } from "..";
+import { MainMenu, NavigationOverlay, SearchOverlay } from "..";
 import { CartOverlay, CartProvider } from "../Cart";
 import OverlayProvider from "../Overlay/OverlayProvider";
 import { default as Routes } from "./routes";
@@ -58,6 +58,7 @@ const App: React.SFC<AppProps> = ({ apolloClient }) => (
             <footer />
             <CartOverlay />
             <NavigationOverlay />
+            <SearchOverlay />
           </React.Fragment>
         </BrowserRouter>
       </OverlayProvider>

@@ -3,7 +3,8 @@ import * as React from "react";
 export enum OverlayType {
   cart,
   checkout,
-  navigation
+  navigation,
+  search
 }
 export interface OverlayContextInterface {
   type: OverlayType | null;

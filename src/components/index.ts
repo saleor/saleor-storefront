@@ -15,3 +15,4 @@ export { default as ProductListItem } from "./ProductListItem";
 export { default as MainMenu } from "./MainMenu";
 export { default as Overlay } from "./Overlay";
 export { default as NavigationOverlay } from "./NavigationOverlay";
+export { default as SearchOverlay } from "./SearchOverlay";

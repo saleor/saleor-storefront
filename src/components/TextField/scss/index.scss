@@ -40,4 +40,11 @@
     color: $label-color;
     font-size: $label-font-size;
   }
+
+  &__icon {
+    position: absolute;
+    right: $spacer;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 }
