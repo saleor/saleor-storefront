@@ -33,7 +33,7 @@ const MainMenu: React.SFC = () => (
               />
             </li>
             <Media
-              query={`(min-width: ${mediumScreen})`}
+              query={{ minWidth: mediumScreen }}
               render={() => (
                 <Query query={GET_MAIN_MENU}>
                   {({ loading, error, data }) => {
@@ -62,7 +62,7 @@ const MainMenu: React.SFC = () => (
         <div className="main-menu__right">
           <ul>
             <Media
-              query={`(min-width: ${smallScreen})`}
+              query={{ minWidth: smallScreen }}
               render={() => (
                 <li className="main-menu__icon">
                   <ReactSVG path="../../images/user.svg" />
@@ -93,7 +93,7 @@ const MainMenu: React.SFC = () => (
               }
             >
               <Media
-                query={`(min-width: ${mediumScreen})`}
+                query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
               <ReactSVG path="../../images/search.svg" />

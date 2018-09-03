@@ -35,7 +35,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                     <TextField
                       iconLeft={
                         <Media
-                          query={`(max-width: ${mediumScreen})`}
+                          query={{ maxWidth: mediumScreen }}
                           render={() => (
                             <ReactSVG
                               path="../../images/x.svg"
