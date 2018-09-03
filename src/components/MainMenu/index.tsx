@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -7,6 +8,7 @@ import { CartContext } from "../Cart/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { GET_MAIN_MENU } from "./queries";
 
+import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 const MainMenu: React.SFC = () => (
@@ -30,21 +32,26 @@ const MainMenu: React.SFC = () => (
                 path="../../images/hamburger-hover.svg"
               />
             </li>
-            <Query query={GET_MAIN_MENU}>
-              {({ loading, error, data }) => {
-                if (loading) {
-                  return "Loading";
-                }
-                if (error) {
-                  return `Error!: ${error}`;
-                }
-                return data.shop.navigation.main.items.edges.map(item => (
-                  <li className="main-menu__item" key={item.node.id}>
-                    <a href={item.node.url}>{item.node.name}</a>
-                  </li>
-                ));
-              }}
-            </Query>
+            <Media
+              query={`(min-width: ${mediumScreen})`}
+              render={() => (
+                <Query query={GET_MAIN_MENU}>
+                  {({ loading, error, data }) => {
+                    if (loading) {
+                      return "Loading";
+                    }
+                    if (error) {
+                      return `Error!: ${error}`;
+                    }
+                    return data.shop.navigation.main.items.edges.map(item => (
+                      <li className="main-menu__item" key={item.node.id}>
+                        <a href={item.node.url}>{item.node.name}</a>
+                      </li>
+                    ));
+                  }}
+                </Query>
+              )}
+            />
           </ul>
         </div>
         <div className="main-menu__center">
@@ -54,18 +61,29 @@ const MainMenu: React.SFC = () => (
         </div>
         <div className="main-menu__right">
           <ul>
-            <li className="main-menu__icon">
-              <ReactSVG path="../../images/user.svg" />
-            </li>
+            <Media
+              query={`(min-width: ${smallScreen})`}
+              render={() => (
+                <li className="main-menu__icon">
+                  <ReactSVG path="../../images/user.svg" />
+                </li>
+              )}
+            />
             <li
-              className="main-menu__icon"
+              className="main-menu__icon main-menu__cart"
               onClick={() =>
                 overlayContext.show(OverlayType.cart, OverlayTheme.right)
               }
             >
               <ReactSVG path="../../images/cart.svg" />
               <CartContext.Consumer>
-                {cart => <span>{cart.getQuantity()}</span>}
+                {cart =>
+                  cart.getQuantity() > 0 ? (
+                    <span className="main-menu__cart__quantity">
+                      {cart.getQuantity()}
+                    </span>
+                  ) : null
+                }
               </CartContext.Consumer>
             </li>
             <li
@@ -74,7 +92,10 @@ const MainMenu: React.SFC = () => (
                 overlayContext.show(OverlayType.search, OverlayTheme.right)
               }
             >
-              <span>Search</span>
+              <Media
+                query={`(min-width: ${mediumScreen})`}
+                render={() => <span>Search</span>}
+              />
               <ReactSVG path="../../images/search.svg" />
             </li>
           </ul>
