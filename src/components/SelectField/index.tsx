@@ -3,9 +3,9 @@ import Select from "react-select";
 
 import "./scss/index.scss";
 
-type SelectFieldProps = {
+interface SelectFieldProps {
   label: string;
-};
+}
 
 const SelectField: React.SFC<SelectFieldProps> = ({ label = "", ...rest }) => (
   <div className="react-select-wrapper">

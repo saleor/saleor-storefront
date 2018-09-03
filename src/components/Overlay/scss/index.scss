@@ -1,3 +1,23 @@
+@import "../../App/scss/variables.scss";
+
+@keyframes sidenavLeftOpen {
+  from {
+    left: -100rem;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes sidenavRightOpen {
+  from {
+    right: -100rem;
+  }
+  to {
+    right: 0;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -6,10 +26,27 @@
   width: 100%;
   background-color: rgba(199, 207, 207, 0.8);
 
-  &__wrapper {
-    display: inline-block;
+  &--search {
+    top: 3.8rem;
+
+    .overlay__right {
+      height: auto;
+    }
+  }
+
+  &__left {
     position: fixed;
+    min-height: 100%;
+    background-color: $white;
+    animation: sidenavLeftOpen 0.3s;
+  }
+
+  &__right {
+    position: fixed;
+    background-color: $white;
+    right: 0;
+    top: 0;
     height: 100%;
-    overflow: auto;
+    animation: sidenavRightOpen 0.3s;
   }
 }

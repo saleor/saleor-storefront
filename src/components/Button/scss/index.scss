@@ -8,8 +8,8 @@ button {
   box-shadow: $button-box-shadow;
   transition: $button-transition;
   outline: none;
-  margin-left: $button-left-margin;
   font-family: $base-font-family;
+  cursor: pointer;
 
   * {
     display: inline-block;

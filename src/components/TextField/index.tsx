@@ -2,20 +2,23 @@ import * as React from "react";
 
 import "./scss/index.scss";
 
-type TextFieldProps = {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   helpText?: string;
   label?: string;
-};
+  icon?: React.ReactNode;
+}
 
 const TextField: React.SFC<TextFieldProps> = ({
   label = "",
+  icon,
   error,
   helpText,
   ...rest
 }) => (
   <div className="input">
-    <span className="input__label">{label}</span>
+    {label ? <span className="input__label">{label}</span> : null}
+    {icon ? <span className="input__icon">{icon}</span> : null}
     <input
       {...rest}
       className={`input__field${error ? " input__field--error" : ""}`}

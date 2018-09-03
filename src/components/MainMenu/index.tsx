@@ -3,8 +3,8 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { OverlayContext, OverlayType } from "../App/context";
 import { CartContext } from "../Cart/context";
+import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { GET_MAIN_MENU } from "./queries";
 
 import "./scss/index.scss";
@@ -17,7 +17,9 @@ const MainMenu: React.SFC = () => (
           <ul>
             <li
               className="main-menu__hamburger"
-              onClick={() => overlayContext.show(OverlayType.navigation)}
+              onClick={() =>
+                overlayContext.show(OverlayType.navigation, OverlayTheme.left)
+              }
             >
               <ReactSVG
                 className="main-menu__hamburger--icon"
@@ -57,14 +59,21 @@ const MainMenu: React.SFC = () => (
             </li>
             <li
               className="main-menu__icon"
-              onClick={() => overlayContext.show(OverlayType.cart)}
+              onClick={() =>
+                overlayContext.show(OverlayType.cart, OverlayTheme.right)
+              }
             >
               <ReactSVG path="../../images/cart.svg" />
               <CartContext.Consumer>
                 {cart => <span>{cart.getQuantity()}</span>}
               </CartContext.Consumer>
             </li>
-            <li className="main-menu__search">
+            <li
+              className="main-menu__search"
+              onClick={() =>
+                overlayContext.show(OverlayType.search, OverlayTheme.right)
+              }
+            >
               <span>Search</span>
               <ReactSVG path="../../images/search.svg" />
             </li>

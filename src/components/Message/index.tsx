@@ -3,11 +3,11 @@ import ReactSVG from "react-svg";
 
 import "./scss/index.scss";
 
-type MessageProps = {
+interface MessageProps {
   visible: boolean;
   title: string;
   status?: "success" | "error";
-};
+}
 
 const Message: React.SFC<MessageProps> = ({
   visible,

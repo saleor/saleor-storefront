@@ -1,6 +1,8 @@
 @import "../../App/scss/variables.scss";
 
 .input {
+  position: relative;
+
   &__field {
     display: block;
     padding: 0.8rem 1rem;
@@ -39,5 +41,12 @@
   &__help-text {
     color: $label-color;
     font-size: $label-font-size;
+  }
+
+  &__icon {
+    position: absolute;
+    right: $spacer;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }

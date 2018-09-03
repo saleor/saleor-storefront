@@ -1,13 +1,21 @@
 import * as React from "react";
 
 export enum OverlayType {
-  cart,
-  checkout,
-  navigation
+  cart = "cart",
+  checkout = "checkout",
+  navigation = "navigation",
+  search = "search"
+}
+
+export enum OverlayTheme {
+  left = "left",
+  right = "right",
+  modal = "modal"
 }
 export interface OverlayContextInterface {
   type: OverlayType | null;
-  show(type: OverlayType): void;
+  theme: OverlayTheme | null;
+  show(type: OverlayType, theme?: OverlayTheme): void;
   hide(): void;
 }
 
@@ -15,6 +23,7 @@ export interface OverlayContextInterface {
 export const OverlayContext = React.createContext<OverlayContextInterface>({
   hide: () => {},
   show: type => {},
+  theme: null,
   type: null
 });
 /* tslint:enable:no-empty */
