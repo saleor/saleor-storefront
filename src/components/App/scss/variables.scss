@@ -13,6 +13,7 @@ $white: #ffffff;
 // typography
 $base-font-family: "montserrat";
 $base-font-size: 1rem; // 16px
+$small-font-size: 0.75rem; // 14px
 $base-line-height: 1.25rem; // 20px
 $h3-font-size: 1.5rem; // 24px
 $h4-font-size: 1.125rem; // 18px
@@ -62,3 +63,12 @@ $product-item-title-height: 2.5rem;
 $product-item-category-color: $gray;
 $product-item-price-font-weight: $bold-font-weight;
 $product-item-price-margin: $spacer 0 0;
+
+// breakpoints
+$medium-screen: 992px;
+$small-screen: 540px;
+
+:export {
+  mediumScreen: $medium-screen;
+  smallScreen: $small-screen;
+}

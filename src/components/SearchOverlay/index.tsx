@@ -1,9 +1,11 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, TextField } from "..";
+import { mediumScreen } from "../App/scss/variables.scss";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
@@ -31,7 +33,18 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                 >
                   <div className="search__input">
                     <TextField
-                      icon={<ReactSVG path="../../images/search.svg" />}
+                      iconLeft={
+                        <Media
+                          query={{ maxWidth: mediumScreen }}
+                          render={() => (
+                            <ReactSVG
+                              path="../../images/x.svg"
+                              onClick={() => overlayContext.hide()}
+                            />
+                          )}
+                        />
+                      }
+                      iconRight={<ReactSVG path="../../images/search.svg" />}
                       autoFocus={true}
                       onChange={e => this.setState({ search: e.target.value })}
                     />

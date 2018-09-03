@@ -23,6 +23,10 @@
         box-shadow: 0 0 0 1px $rose;
       }
     }
+
+    &--left-icon {
+      padding-left: $spacer * 3;
+    }
   }
 
   &__label {
@@ -43,7 +47,14 @@
     font-size: $label-font-size;
   }
 
-  &__icon {
+  &__icon-left {
+    position: absolute;
+    left: $spacer;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  &__icon-right {
     position: absolute;
     right: $spacer;
     top: 50%;

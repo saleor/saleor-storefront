@@ -1,21 +1,34 @@
 @import "../../App/scss/variables.scss";
 
 .search {
-  width: 25rem;
+  width: 100vw;
+
+  @media (min-width: $medium-screen) {
+    width: 25rem;
+  }
 
   &--full-height {
     min-height: 100vh;
   }
 
   &__input {
-    svg * {
-      fill: $turquoise;
+    .input__icon-right {
+      svg * {
+        fill: $turquoise;
+      }
     }
 
-    input {
+    .input__icon-left {
+      svg * {
+        fill: $base-font-color;
+      }
+    }
+
+    .input__field {
       border: none;
       background-color: $turquoise-light;
-      padding: 1.35rem 1rem;
+      padding-bottom: 1.35rem;
+      padding-top: 1.35rem;
       width: 100%;
 
       &:focus {
@@ -62,12 +75,16 @@
 
     &__footer {
       position: fixed;
-      width: 25rem;
       bottom: 0;
       border-top: 1px solid $gray-light;
       text-align: center;
       padding: $spacer 0;
       background-color: $white;
+      width: 100vw;
+
+      @media (min-width: $medium-screen) {
+        width: 25rem;
+      }
     }
   }
 }

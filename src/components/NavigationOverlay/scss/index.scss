@@ -2,6 +2,7 @@
 
 .side-nav {
   width: 30rem;
+  max-width: calc(100vw - 5rem);
 
   ul {
     li {
