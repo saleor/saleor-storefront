@@ -2,13 +2,9 @@
 
 .search {
   width: 25rem;
-  position: fixed;
-  background-color: $white;
-  right: 0;
-  top: 0;
 
   &--full-height {
-    min-height: 100%;
+    min-height: 100vh;
   }
 
   &__input {

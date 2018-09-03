@@ -2,8 +2,8 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
-import { OverlayContext, OverlayType } from "../App/context";
 import { Overlay } from "../Overlay";
+import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
@@ -13,7 +13,7 @@ const NavigationOverlay: React.SFC = () => (
     {overlayContext => {
       if (overlayContext.type === OverlayType.navigation) {
         return (
-          <Overlay onClose={overlayContext.hide}>
+          <Overlay context={overlayContext}>
             <div className="side-nav" onClick={e => e.stopPropagation()}>
               <ul>
                 <li>

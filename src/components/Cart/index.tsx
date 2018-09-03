@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Query } from "react-apollo";
 
-import { OverlayContext, OverlayType } from "../App/context";
-import Overlay from "../Overlay";
+import { Overlay } from "../Overlay";
+import { OverlayContext, OverlayType } from "../Overlay/context";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 import { GET_VARIANTS } from "./queries";
 
@@ -73,7 +73,7 @@ export const CartOverlay: React.SFC = () => (
       <CartContext.Consumer>
         {cart =>
           overlay.type === OverlayType.cart ? (
-            <Overlay onClose={overlay.hide}>
+            <Overlay context={overlay}>
               {cart.lines.length ? (
                 <Query
                   query={GET_VARIANTS}

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, TextField } from "..";
-import { OverlayContext, OverlayType } from "../App/context";
 import { Overlay } from "../Overlay";
+import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
 import "./scss/index.scss";
@@ -22,13 +22,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
         {overlayContext => {
           if (overlayContext.type === OverlayType.search) {
             return (
-              <Overlay
-                type={OverlayType.search}
-                onClose={() => {
-                  overlayContext.hide();
-                  this.setState({ search: "" });
-                }}
-              >
+              <Overlay context={overlayContext}>
                 <div
                   className={`search${
                     this.state.search ? " search--full-height" : ""
@@ -87,6 +81,8 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                 </div>
               </Overlay>
             );
+          } else if (this.state.search) {
+            this.setState({ search: "" });
           }
         }}
       </OverlayContext.Consumer>

@@ -5,8 +5,9 @@ import "./scss/index.scss";
 import {
   OverlayContext,
   OverlayContextInterface,
+  OverlayTheme,
   OverlayType
-} from "../App/context";
+} from "./context";
 
 export class OverlayProvider extends React.Component<
   { children: React.ReactNode },
@@ -17,12 +18,13 @@ export class OverlayProvider extends React.Component<
     this.state = {
       hide: this.hide,
       show: this.show,
+      theme: null,
       type: null
     };
   }
 
-  show = (type: OverlayType) => {
-    this.setState({ type });
+  show = (type: OverlayType, theme?: OverlayTheme) => {
+    this.setState({ type, theme });
     document.body.style.overflow = "hidden";
   };
 
@@ -39,16 +41,15 @@ export class OverlayProvider extends React.Component<
   }
 }
 
-export const Overlay: React.SFC<{ type?: OverlayType; onClose(): void }> = ({
+export const Overlay: React.SFC<{ context: OverlayContextInterface }> = ({
   children,
-  type,
-  onClose
+  context: { type, theme, hide }
 }) => (
   <div
     className={`overlay${type ? ` overlay--${type}` : ""}`}
-    onClick={() => onClose()}
+    onClick={() => hide()}
   >
-    <div className="overlay__wrapper" onClick={e => e.stopPropagation()}>
+    <div className={`overlay__${theme}`} onClick={e => e.stopPropagation()}>
       {children}
     </div>
   </div>
