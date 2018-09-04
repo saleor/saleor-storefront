@@ -65,6 +65,15 @@
     }
   }
 
+  .button-section {
+    padding: $spacer $spacer * 2;
+
+    button {
+      display: block;
+      margin-bottom: $spacer * 3;
+    }
+  }
+
   .input-section {
     .input {
       margin-bottom: 1rem;
