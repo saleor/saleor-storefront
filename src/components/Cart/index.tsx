@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import ReactSVG from "react-svg";
 
+import { Button } from "..";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 import { GET_VARIANTS } from "./queries";
+
+import "./scss/index.scss";
 
 export class CartProvider extends React.Component<
   { children: any },
@@ -74,41 +78,99 @@ export const CartOverlay: React.SFC = () => (
         {cart =>
           overlay.type === OverlayType.cart ? (
             <Overlay context={overlay}>
-              {cart.lines.length ? (
-                <Query
-                  query={GET_VARIANTS}
-                  // TODO: we don't have productVariants query definition yet, for now use only one
-                  // https://github.com/mirumee/saleor/issues/2741
-                  variables={{ id: cart.lines[0].variantId }}
-                >
-                  {({ loading, error, data: { productVariant } }) => {
-                    if (loading) {
-                      return "Loading";
-                    }
-                    if (error) {
-                      return `Error!: ${error}`;
-                    }
-                    return (
-                      <ul>
-                        {cart.lines.map(line => (
-                          <li key={line.variantId}>
-                            <img
-                              src={productVariant.product.thumbnailUrl}
-                              alt={productVariant.product.name}
-                            />
-                            {productVariant.product.name} Qty: {line.quantity}
-                            <a onClick={() => cart.remove(productVariant.id)}>
-                              Delete
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    );
-                  }}
-                </Query>
-              ) : (
-                <div>Empty cart</div>
-              )}
+              <div className="cart">
+                <div className="cart__header">
+                  <ReactSVG
+                    path="../../images/cart.svg"
+                    className="cart__header__cart-icon"
+                  />
+                  <p>
+                    My bag, <span>{cart.lines.length || 0} items</span>
+                  </p>
+                  <ReactSVG
+                    path="../../images/x.svg"
+                    onClick={() => overlay.hide()}
+                    className="cart__header__close-icon"
+                  />
+                </div>
+                {cart.lines.length ? (
+                  <>
+                    <Query
+                      query={GET_VARIANTS}
+                      // TODO: we don't have productVariants query definition yet, for now use only one
+                      // https://github.com/mirumee/saleor/issues/2741
+                      variables={{ id: cart.lines[0].variantId }}
+                    >
+                      {({ loading, error, data: { productVariant } }) => {
+                        if (loading) {
+                          return "Loading";
+                        }
+                        if (error) {
+                          return `Error!: ${error}`;
+                        }
+                        return (
+                          <ul className="cart__list">
+                            {cart.lines.map(line => (
+                              <li
+                                key={line.variantId}
+                                className="cart__list__item"
+                              >
+                                <img
+                                  src={
+                                    "http://localhost:8000" +
+                                    productVariant.product.thumbnailUrl
+                                  }
+                                  alt={productVariant.product.name}
+                                />
+                                <div className="cart__list__item__details">
+                                  <p>
+                                    {productVariant.costPrice.currency}
+                                    {productVariant.costPrice.amount}
+                                  </p>
+                                  <p>{productVariant.product.name}</p>
+                                  <span className="cart__list__item__details__variant">
+                                    <span>{productVariant.name}</span>
+                                    <span>Qty: {line.quantity}</span>
+                                  </span>
+                                  <ReactSVG
+                                    path="../../images/garbage.svg"
+                                    className="cart__list__item__details__delete-icon"
+                                    onClick={() =>
+                                      cart.remove(productVariant.id)
+                                    }
+                                  />
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }}
+                    </Query>
+                    <div className="cart__footer">
+                      <div className="cart__footer__subtotoal">
+                        <span>Subtotal</span>
+                        <span>$100</span>
+                      </div>
+                      <div className="cart__footer__button">
+                        <Button>Checkout</Button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="cart__empty">
+                    <h4>Yor bag is empty</h4>
+                    <p>
+                      You haven’t added anything to your bag. We’re sure you’ll
+                      find something in our store
+                    </p>
+                    <div className="cart__empty__action">
+                      <Button secondary onClick={() => overlay.hide()}>
+                        Continue Shopping
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </Overlay>
           ) : null
         }
