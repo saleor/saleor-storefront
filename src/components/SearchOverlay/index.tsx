@@ -32,22 +32,32 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                   onClick={e => e.stopPropagation()}
                 >
                   <div className="search__input">
-                    <TextField
-                      iconLeft={
-                        <Media
-                          query={{ maxWidth: mediumScreen }}
-                          render={() => (
-                            <ReactSVG
-                              path="../../images/x.svg"
-                              onClick={() => overlayContext.hide()}
-                            />
-                          )}
-                        />
+                    <Media query={{ maxWidth: mediumScreen }}>
+                      {matches =>
+                        matches ? (
+                          <TextField
+                            iconLeft={<ReactSVG path="../../images/x.svg" />}
+                            iconRight={
+                              <ReactSVG path="../../images/search.svg" />
+                            }
+                            autoFocus={true}
+                            onChange={e =>
+                              this.setState({ search: e.target.value })
+                            }
+                          />
+                        ) : (
+                          <TextField
+                            iconRight={
+                              <ReactSVG path="../../images/search.svg" />
+                            }
+                            autoFocus={true}
+                            onChange={e =>
+                              this.setState({ search: e.target.value })
+                            }
+                          />
+                        )
                       }
-                      iconRight={<ReactSVG path="../../images/search.svg" />}
-                      autoFocus={true}
-                      onChange={e => this.setState({ search: e.target.value })}
-                    />
+                    </Media>
                   </div>
                   {this.state.search ? (
                     <>
