@@ -2,7 +2,8 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { ProductListItem, SelectField } from "..";
+import { Button, ProductListItem, SelectField } from "..";
+import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { getGraphqlIdFromDBId } from "../../core/utils";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
@@ -13,11 +14,11 @@ interface AttributesType {
 }
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
-  { attributes: AttributesType }
+  { attributes: AttributesType; pageSize: number }
 > {
   constructor(props) {
     super(props);
-    this.state = { attributes: {} };
+    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE };
   }
 
   saveAttribute = (attribute, values) => {
@@ -25,7 +26,8 @@ class CategoryPage extends React.Component<
       attributes: {
         ...this.state.attributes,
         [attribute]: values.map(value => value.value)
-      }
+      },
+      pageSize: PRODUCTS_PER_PAGE
     });
   };
 
@@ -39,13 +41,20 @@ class CategoryPage extends React.Component<
     return attributesArray;
   };
 
+  loadMoreProducts = () => {
+    this.setState({
+      pageSize: this.state.pageSize + PRODUCTS_PER_PAGE
+    });
+  };
+
   render() {
     return (
       <Query
         query={GET_CATEGORY_AND_ATTRIBUTES}
         variables={{
           attributes: this.convertToAttributeScalar(this.state.attributes),
-          id: getGraphqlIdFromDBId(this.props.match.params.id, "Category")
+          id: getGraphqlIdFromDBId(this.props.match.params.id, "Category"),
+          pageSize: this.state.pageSize
         }}
       >
         {({ loading, error, data }) => {
@@ -90,7 +99,9 @@ class CategoryPage extends React.Component<
                 </div>
               </div>
               <div className="category__products container">
-                {loading && Object.keys(this.state.attributes).length > 0 ? (
+                {loading &&
+                Object.keys(this.state.attributes).length > 0 &&
+                this.state.pageSize > PRODUCTS_PER_PAGE ? (
                   <p>Loading...</p>
                 ) : (
                   <>
@@ -104,6 +115,24 @@ class CategoryPage extends React.Component<
                           key={item.node.id}
                         />
                       ))}
+                    </div>
+                    <div className="category__products__load-more">
+                      {loading && this.state.pageSize > PRODUCTS_PER_PAGE ? (
+                        <p>Loading...</p>
+                      ) : this.state.pageSize >=
+                      data.category.products.totalCount ? null : (
+                        <Button secondary onClick={this.loadMoreProducts}>
+                          Load more products (
+                          {`${
+                            this.state.pageSize + PRODUCTS_PER_PAGE >
+                            data.category.products.totalCount
+                              ? data.category.products.totalCount
+                              : this.state.pageSize + PRODUCTS_PER_PAGE
+                          } of 
+                          ${data.category.products.totalCount}`}
+                          )
+                        </Button>
+                      )}
                     </div>
                   </>
                 )}

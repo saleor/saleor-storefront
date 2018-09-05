@@ -49,5 +49,10 @@
       grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
       grid-gap: 2rem;
     }
+
+    &__load-more {
+      margin: $spacer * 5 0;
+      text-align: center;
+    }
   }
 }

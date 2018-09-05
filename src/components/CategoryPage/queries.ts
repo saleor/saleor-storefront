@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 
 export const GET_CATEGORY_AND_ATTRIBUTES = gql`
-  query Category($id: ID!, $attributes: [AttributeScalar]) {
+  query Category($id: ID!, $attributes: [AttributeScalar], $pageSize: Int) {
     category(id: $id) {
       id
       name
       backgroundImage
-      products(attributes: $attributes) {
+      products(attributes: $attributes, first: $pageSize) {
         totalCount
         edges {
           node {
