@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_CATEGORIES } from "./queries";
@@ -27,9 +29,15 @@ const NavigationOverlay: React.SFC = () => (
                     if (error) {
                       return `Error!: ${error}`;
                     }
-                    return data.categories.edges.map(item => (
-                      <li key={item.node.id}>
-                        <a href={item.node.url}>{item.node.name}</a>
+                    return data.categories.edges.map(({ node: category }) => (
+                      <li key={category.id}>
+                        <Link
+                          to={`/category/${slugify(
+                            category.name
+                          )}/${getDBIdFromGraphqlId(category.id, "Category")}/`}
+                        >
+                          {category.name}
+                        </Link>
                       </li>
                     ));
                   }}

@@ -10,7 +10,6 @@ export const GET_MAIN_MENU = gql`
               node {
                 id
                 name
-                url
               }
             }
           }

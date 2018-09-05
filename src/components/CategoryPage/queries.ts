@@ -1,0 +1,40 @@
+import gql from "graphql-tag";
+
+export const GET_CATEGORY_AND_ATTRIBUTES = gql`
+  query Category($id: ID!, $attributes: [AttributeScalar]) {
+    category(id: $id) {
+      id
+      name
+      backgroundImage
+      products(attributes: $attributes) {
+        totalCount
+        edges {
+          node {
+            id
+            name
+            thumbnailUrl
+            category {
+              id
+              name
+            }
+            price {
+              amount
+            }
+          }
+        }
+      }
+    }
+    attributes(inCategory: $id) {
+      edges {
+        node {
+          id
+          name
+          values {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;

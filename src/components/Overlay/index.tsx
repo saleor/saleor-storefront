@@ -30,6 +30,7 @@ export class OverlayProvider extends React.Component<
 
   hide = () => {
     this.setState({ type: null });
+    document.body.style.overflow = "";
   };
 
   render() {

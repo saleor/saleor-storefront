@@ -1,0 +1,53 @@
+@import "../../App/scss/variables.scss";
+
+.category {
+  &__header {
+    text-align: center;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    background-size: cover;
+
+    &__title {
+      background-color: $white;
+      display: inline-block;
+      transform: skew(-45deg);
+      padding: $spacer $spacer * 6;
+
+      h1 {
+        display: inline-block;
+        transform: skew(45deg);
+        font-weight: $bold-font-weight;
+        text-transform: uppercase;
+        color: $blue;
+      }
+    }
+  }
+
+  &__filters {
+    background-color: $gray-light;
+
+    &__grid {
+      display: flex;
+      flex-wrap: wrap;
+
+      .react-select-wrapper {
+        width: 15rem;
+        padding: $spacer;
+      }
+    }
+  }
+
+  &__products {
+    &__total {
+      color: $gray;
+      font-size: $small-font-size;
+      margin: $spacer 0;
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      grid-gap: 2rem;
+    }
+  }
+}

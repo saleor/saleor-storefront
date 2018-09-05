@@ -9,10 +9,21 @@ body {
   line-height: $base-line-height;
   color: $base-font-color;
 
+  h1 {
+    font-size: $h1-font-size;
+    line-height: $h1-line-height;
+  }
   h3 {
     font-size: $h3-font-size;
   }
   h4 {
     font-size: $h4-font-size;
+  }
+
+  .container {
+    width: 1140px;
+    max-width: 100vw;
+    margin: 0 auto;
+    padding: 0 $spacer;
   }
 }

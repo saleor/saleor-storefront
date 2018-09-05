@@ -9,13 +9,18 @@ interface ProductListItemProps {
   currency?: string;
 }
 
-const ProductListItem: React.SFC<ProductListItemProps> = ({ product: {name, category, price, thumbnailUrl},
-  currency='$' }) => (
+const ProductListItem: React.SFC<ProductListItemProps> = ({
+  product: { name, category, price, thumbnailUrl },
+  currency = "$"
+}) => (
   <div className="product-list-item">
-    <img src={thumbnailUrl} />
+    <img src={"http://localhost:8000" + thumbnailUrl} />
     <h4 className="product-list-item__title">{name}</h4>
-     <p className="product-list-item__category">{category.name}</p>
-    <p className="product-list-item__price">{currency}{price.amount}</p>
+    <p className="product-list-item__category">{category.name}</p>
+    <p className="product-list-item__price">
+      {currency}
+      {price.amount}
+    </p>
   </div>
 );
 
