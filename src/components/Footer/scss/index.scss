@@ -1,0 +1,66 @@
+@import "../../App/scss/variables.scss";
+
+.footer {
+  &__newsletter {
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    padding: $spacer * 2 0;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__favicons {
+    display: flex;
+    justify-content: center;
+
+    &__icon {
+      padding: $spacer $spacer / 2;
+
+      svg * {
+        transition: 0.3s;
+      }
+
+      &:hover {
+        svg * {
+          fill: $turquoise;
+        }
+      }
+    }
+  }
+
+  &__menu {
+    background-color: $gray-light;
+    padding: $spacer * 3 0 $spacer * 2;
+
+    h4 {
+      font-weight: $bold-font-weight;
+      margin-bottom: $spacer;
+    }
+
+    p {
+      font-weight: $bold-font-weight;
+      margin-bottom: $spacer;
+      font-size: $small-font-size;
+      color: $gray;
+
+      a {
+        text-decoration: none;
+        color: $gray;
+      }
+    }
+
+    .container {
+      display: flex;
+
+      div {
+        &:not(:last-of-type) {
+          padding-right: $spacer * 3;
+        }
+      }
+    }
+  }
+}
