@@ -4,7 +4,7 @@ import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Button, ProductListItem, SelectField } from "..";
+import { Breadcrumbs, Button, ProductListItem, SelectField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   getDBIdFromGraphqlId,
@@ -54,6 +54,31 @@ class CategoryPage extends React.Component<
     });
   };
 
+  formatBreadcrumbs = category => {
+    let breadcrumbs = [
+      {
+        link: `/category/${slugify(category.name)}/${getDBIdFromGraphqlId(
+          category.id,
+          "Category"
+        )}/`,
+        value: category.name
+      }
+    ];
+    if (category.ancestors.edges.length > 0) {
+      const ancestorsList = category.ancestors.edges.map(
+        ({ node: ancestor }) => ({
+          link: `/category/${slugify(ancestor.name)}/${getDBIdFromGraphqlId(
+            ancestor.id,
+            "Category"
+          )}/`,
+          value: ancestor.name
+        })
+      );
+      breadcrumbs = ancestorsList.concat(breadcrumbs);
+    }
+    return breadcrumbs;
+  };
+
   render() {
     return (
       <Query
@@ -82,6 +107,11 @@ class CategoryPage extends React.Component<
                 <span className="category__header__title">
                   <h1>{data.category.name}</h1>
                 </span>
+              </div>
+              <div className="container">
+                <Breadcrumbs
+                  breadcrumbs={this.formatBreadcrumbs(data.category)}
+                />
               </div>
               <div className="category__filters">
                 <div className="container">

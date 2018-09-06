@@ -1,0 +1,23 @@
+@import "../../App/scss/variables.scss";
+
+.breadcrumbs {
+  display: inline-flex;
+  margin: $spacer 0;
+
+  li {
+    &:not(:last-of-type) {
+      &:after {
+        content: url("../../../images/breadcrumbs-arrow.svg");
+        display: inline-block;
+        margin: 0 $spacer / 2;
+      }
+    }
+
+    a {
+      color: $gray;
+      font-weight: $bold-font-weight;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+  }
+}

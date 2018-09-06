@@ -16,3 +16,4 @@ export { default as MainMenu } from "./MainMenu";
 export { default as NavigationOverlay } from "./NavigationOverlay";
 export { default as SearchOverlay } from "./SearchOverlay";
 export { default as Footer } from "./Footer";
+export { default as Breadcrumbs } from "./Breadcrumbs";

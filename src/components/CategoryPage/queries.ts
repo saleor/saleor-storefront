@@ -6,6 +6,14 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
       id
       name
       backgroundImage
+      ancestors {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
       products(attributes: $attributes, first: $pageSize) {
         totalCount
         edges {
