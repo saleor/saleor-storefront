@@ -7,9 +7,30 @@
     padding: $spacer * 2 0;
 
     .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @media (min-width: $medium-screen) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $base-font-color;
+      }
+
+      h4 {
+        color: $gray;
+        font-weight: $bold-font-weight;
+
+        @media (min-width: $medium-screen) {
+          font-size: $h3-font-size;
+          color: $base-font-color;
+        }
+      }
+
+      button {
+        margin: $spacer * 2 0 0 $spacer * 2;
+
+        @media (min-width: $medium-screen) {
+          margin: 0 2rem 0 0;
+        }
+      }
     }
   }
 
@@ -55,6 +76,7 @@
 
     .container {
       display: flex;
+      flex-wrap: wrap;
 
       div {
         &:not(:last-of-type) {

@@ -22,7 +22,7 @@ body {
 
   .container {
     width: 1140px;
-    max-width: 100vw;
+    max-width: calc(100vw - #{$spacer} * 2);
     margin: 0 auto;
     padding: 0 $spacer;
   }

@@ -31,7 +31,7 @@
       flex-wrap: wrap;
 
       .react-select-wrapper {
-        width: 15rem;
+        min-width: 15rem;
         padding: $spacer;
       }
     }

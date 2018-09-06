@@ -82,18 +82,19 @@ class CategoryPage extends React.Component<
                 <div className="container">
                   <div className="category__filters__grid">
                     {data.attributes.edges.map(item => (
-                      <SelectField
-                        key={item.node.id}
-                        placeholder={item.node.name}
-                        options={item.node.values.map(value => ({
-                          label: value.name,
-                          value: value.name
-                        }))}
-                        isMulti
-                        onChange={values =>
-                          this.saveAttribute(item.node.name, values)
-                        }
-                      />
+                      <span key={item.node.id}>
+                        <SelectField
+                          placeholder={item.node.name}
+                          options={item.node.values.map(value => ({
+                            label: value.name,
+                            value: value.name
+                          }))}
+                          isMulti
+                          onChange={values =>
+                            this.saveAttribute(item.node.name, values)
+                          }
+                        />
+                      </span>
                     ))}
                   </div>
                 </div>
