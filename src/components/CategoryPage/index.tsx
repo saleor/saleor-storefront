@@ -1,10 +1,17 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import Media from "react-media";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 
 import { Button, ProductListItem, SelectField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
-import { getGraphqlIdFromDBId } from "../../core/utils";
+import {
+  getDBIdFromGraphqlId,
+  getGraphqlIdFromDBId,
+  slugify
+} from "../../core/utils";
+import { smallScreen } from "../App/scss/variables.scss";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 import "./scss/index.scss";
@@ -69,9 +76,7 @@ class CategoryPage extends React.Component<
               <div
                 className="category__header"
                 style={{
-                  backgroundImage: `url(http://localhost:8000/media/${
-                    data.category.backgroundImage
-                  })`
+                  backgroundImage: data.category.backgroundImage
                 }}
               >
                 <span className="category__header__title">
@@ -82,7 +87,10 @@ class CategoryPage extends React.Component<
                 <div className="container">
                   <div className="category__filters__grid">
                     {data.attributes.edges.map(item => (
-                      <span key={item.node.id}>
+                      <div
+                        key={item.node.id}
+                        className="category__filters__grid__filter"
+                      >
                         <SelectField
                           placeholder={item.node.name}
                           options={item.node.values.map(value => ({
@@ -94,7 +102,7 @@ class CategoryPage extends React.Component<
                             this.saveAttribute(item.node.name, values)
                           }
                         />
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -110,11 +118,15 @@ class CategoryPage extends React.Component<
                       {data.category.products.totalCount} Products
                     </p>
                     <div className="category__products__grid">
-                      {data.category.products.edges.map(item => (
-                        <ProductListItem
-                          product={item.node}
-                          key={item.node.id}
-                        />
+                      {data.category.products.edges.map(({ node: product }) => (
+                        <Link
+                          to={`/product/${slugify(
+                            product.name
+                          )}/${getDBIdFromGraphqlId(product.id, "Product")}/`}
+                          key={product.id}
+                        >
+                          <ProductListItem product={product} />
+                        </Link>
                       ))}
                     </div>
                     <div className="category__products__load-more">
@@ -122,17 +134,27 @@ class CategoryPage extends React.Component<
                         <p>Loading...</p>
                       ) : this.state.pageSize >=
                       data.category.products.totalCount ? null : (
-                        <Button secondary onClick={this.loadMoreProducts}>
-                          Load more products (
-                          {`${
-                            this.state.pageSize + PRODUCTS_PER_PAGE >
-                            data.category.products.totalCount
-                              ? data.category.products.totalCount
-                              : this.state.pageSize + PRODUCTS_PER_PAGE
-                          } of 
-                          ${data.category.products.totalCount}`}
-                          )
-                        </Button>
+                        <Media query={{ maxWidth: smallScreen }}>
+                          {matches =>
+                            matches ? (
+                              <Button secondary onClick={this.loadMoreProducts}>
+                                Load more products
+                              </Button>
+                            ) : (
+                              <Button secondary onClick={this.loadMoreProducts}>
+                                Load more products (
+                                {`${
+                                  this.state.pageSize + PRODUCTS_PER_PAGE >
+                                  data.category.products.totalCount
+                                    ? data.category.products.totalCount
+                                    : this.state.pageSize + PRODUCTS_PER_PAGE
+                                } of 
+                              ${data.category.products.totalCount}`}
+                                )
+                              </Button>
+                            )
+                          }
+                        </Media>
                       )}
                     </div>
                   </>

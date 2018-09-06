@@ -25,7 +25,8 @@
       }
 
       button {
-        margin: $spacer * 2 0 0 $spacer * 2;
+        margin: $spacer * 2 auto 0;
+        display: block;
 
         @media (min-width: $medium-screen) {
           margin: 0 2rem 0 0;

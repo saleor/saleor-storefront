@@ -11,7 +11,7 @@
       background-color: $white;
       display: inline-block;
       transform: skew(-45deg);
-      padding: $spacer $spacer * 6;
+      padding: 1.5vw 9vw;
 
       h1 {
         display: inline-block;
@@ -19,6 +19,12 @@
         font-weight: $bold-font-weight;
         text-transform: uppercase;
         color: $blue;
+        font-size: 8vw;
+        font-weight: 900;
+
+        @media (min-width: $small-screen) {
+          font-size: 4vw;
+        }
       }
     }
   }
@@ -30,9 +36,13 @@
       display: flex;
       flex-wrap: wrap;
 
-      .react-select-wrapper {
+      &__filter {
         min-width: 15rem;
-        padding: $spacer;
+        padding: $spacer $spacer $spacer 0;
+
+        &:last-child {
+          padding-right: 0;
+        }
       }
     }
   }
@@ -48,6 +58,11 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
       grid-gap: 2rem;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
 
     &__load-more {
