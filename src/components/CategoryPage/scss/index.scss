@@ -3,8 +3,8 @@
 .category {
   &__header {
     text-align: center;
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
+    padding-top: $spacer * 4.5;
+    padding-bottom: $spacer * 4.5;
     background-size: cover;
 
     &__title {
