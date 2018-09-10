@@ -48,10 +48,30 @@
   }
 
   &__products {
-    &__total {
-      color: $gray;
+    &__subheader {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       font-size: $small-font-size;
-      margin: $spacer 0;
+      align-items: center;
+
+      &__total {
+        color: $gray;
+        margin: $spacer 0;
+      }
+
+      &__sort {
+        display: flex;
+        align-items: center;
+
+        span {
+          color: $gray;
+        }
+
+        .dropdown-component {
+          min-width: 10rem;
+        }
+      }
     }
 
     &__grid {

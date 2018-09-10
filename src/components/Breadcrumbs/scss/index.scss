@@ -2,6 +2,7 @@
 
 .breadcrumbs {
   display: inline-flex;
+  flex-wrap: wrap;
   margin: $spacer 0;
 
   li {

@@ -1,7 +1,12 @@
 import gql from "graphql-tag";
 
 export const GET_CATEGORY_AND_ATTRIBUTES = gql`
-  query Category($id: ID!, $attributes: [AttributeScalar], $pageSize: Int) {
+  query Category(
+    $id: ID!
+    $attributes: [AttributeScalar]
+    $pageSize: Int
+    $sortBy: String
+  ) {
     category(id: $id) {
       id
       name
@@ -14,7 +19,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
           }
         }
       }
-      products(attributes: $attributes, first: $pageSize) {
+      products(attributes: $attributes, first: $pageSize, sortBy: $sortBy) {
         totalCount
         edges {
           node {

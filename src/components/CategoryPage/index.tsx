@@ -4,7 +4,13 @@ import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Breadcrumbs, Button, ProductListItem, SelectField } from "..";
+import {
+  Breadcrumbs,
+  Button,
+  Dropdown,
+  ProductListItem,
+  SelectField
+} from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   getDBIdFromGraphqlId,
@@ -21,11 +27,11 @@ interface AttributesType {
 }
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
-  { attributes: AttributesType; pageSize: number }
+  { attributes: AttributesType; pageSize: number; sortBy: string }
 > {
   constructor(props) {
     super(props);
-    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE };
+    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE, sortBy: "" };
   }
 
   saveAttribute = (attribute, values) => {
@@ -79,6 +85,12 @@ class CategoryPage extends React.Component<
     return breadcrumbs;
   };
 
+  setOrdering = (value: string) => {
+    this.setState({
+      sortBy: value
+    });
+  };
+
   render() {
     return (
       <Query
@@ -86,11 +98,16 @@ class CategoryPage extends React.Component<
         variables={{
           attributes: this.convertToAttributeScalar(this.state.attributes),
           id: getGraphqlIdFromDBId(this.props.match.params.id, "Category"),
-          pageSize: this.state.pageSize
+          pageSize: this.state.pageSize,
+          sortBy: this.state.sortBy
         }}
       >
         {({ loading, error, data }) => {
-          if (loading && Object.keys(this.state.attributes).length === 0) {
+          if (
+            loading &&
+            Object.keys(this.state.attributes).length === 0 &&
+            !this.state.sortBy
+          ) {
             return "Loading";
           }
           if (error) {
@@ -144,9 +161,23 @@ class CategoryPage extends React.Component<
                   <p>Loading...</p>
                 ) : (
                   <>
-                    <p className="category__products__total">
-                      {data.category.products.totalCount} Products
-                    </p>
+                    <div className="category__products__subheader">
+                      <span className="category__products__subheader__total">
+                        {data.category.products.totalCount} Products
+                      </span>
+                      <span className="category__products__subheader__sort">
+                        <span>Sort by:</span>{" "}
+                        <Dropdown
+                          options={[
+                            { value: "price", label: "Price Low-High" },
+                            { value: "-price", label: "Price High-Low" },
+                            { value: "name", label: "Name Increasing" },
+                            { value: "-name", label: "Name Decreasing" }
+                          ]}
+                          onChange={e => this.setOrdering(e.value)}
+                        />
+                      </span>
+                    </div>
                     <div className="category__products__grid">
                       {data.category.products.edges.map(({ node: product }) => (
                         <Link
