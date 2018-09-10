@@ -46,9 +46,9 @@ class CategoryPage extends React.Component<
 
   convertToAttributeScalar = (attributes: AttributesType) => {
     const attributesArray = [];
-    Object.entries(attributes).map(([key, value]) => {
-      value.map(value =>
-        attributesArray.push(`${key.toLowerCase()}:${value.toLowerCase()}`)
+    Object.entries(attributes).forEach(([key, value]) => {
+      value.forEach(attribute =>
+        attributesArray.push(`${key.toLowerCase()}:${attribute.toLowerCase()}`)
       );
     });
     return attributesArray;
