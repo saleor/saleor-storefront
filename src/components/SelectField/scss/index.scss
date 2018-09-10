@@ -5,7 +5,6 @@
     &__control {
       border-radius: 0;
       border-color: $blue;
-      background-color: $white;
 
       &:hover {
         border-color: $blue;
@@ -29,7 +28,7 @@
       display: none;
     }
 
-    &__indicator {
+    &__dropdown-indicator {
       background: url("../../../images/arrow.svg");
       background-repeat: no-repeat;
       background-position: center;

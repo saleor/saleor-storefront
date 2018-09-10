@@ -5,12 +5,12 @@ export const GET_MAIN_MENU = gql`
     shop {
       navigation {
         main {
+          id
           items {
             edges {
               node {
                 id
                 name
-                url
               }
             }
           }

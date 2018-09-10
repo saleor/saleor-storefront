@@ -18,8 +18,8 @@ export interface VariantList_productVariant_product {
 
 export interface VariantList_productVariant {
   id: string; // The ID of the object.
-  name: string;
   stockQuantity: number; // Quantity of a product available for sale.
+  name: string;
   costPrice: VariantList_productVariant_costPrice | null; // Cost price of the variant.
   product: VariantList_productVariant_product;
 }
@@ -36,6 +36,101 @@ export interface VariantListVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: Category
+// ====================================================
+
+export interface Category_category_products_edges_node_category {
+  id: string; // The ID of the object.
+  name: string;
+}
+
+export interface Category_category_products_edges_node_price {
+  amount: number; // Amount of money.
+  currency: string; // Currency code.
+}
+
+export interface Category_category_products_edges_node {
+  id: string; // The ID of the object.
+  name: string;
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
+  category: Category_category_products_edges_node_category;
+  price: Category_category_products_edges_node_price | null; // The product's base price (without any discounts         applied).
+}
+
+export interface Category_category_products_edges {
+  node: Category_category_products_edges_node; // The item at the end of the edge
+}
+
+export interface Category_category_products {
+  totalCount: number | null; // A total count of items in the collection
+  edges: Category_category_products_edges[];
+}
+
+export interface Category_category {
+  id: string; // The ID of the object.
+  name: string;
+  backgroundImage: string | null;
+  products: Category_category_products | null; // List of products in the category.
+}
+
+export interface Category_attributes_edges_node_values {
+  id: string; // The ID of the object.
+  name: string | null; // Visible name for display purposes.
+}
+
+export interface Category_attributes_edges_node {
+  id: string; // The ID of the object.
+  name: string | null; // Visible name for display purposes.
+  values: (Category_attributes_edges_node_values | null)[] | null; // List of attribute's values.
+}
+
+export interface Category_attributes_edges {
+  node: Category_attributes_edges_node; // The item at the end of the edge
+}
+
+export interface Category_attributes {
+  edges: Category_attributes_edges[];
+}
+
+export interface Category {
+  category: Category_category | null; // Lookup a category by ID.
+  attributes: Category_attributes | null; // List of the shop's product attributes.
+}
+
+export interface CategoryVariables {
+  id: string;
+  attributes?: (any | null)[] | null;
+  pageSize?: number | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Collections
+// ====================================================
+
+export interface Collections_collections_edges_node {
+  id: string; // The ID of the object.
+  name: string;
+}
+
+export interface Collections_collections_edges {
+  node: Collections_collections_edges_node; // The item at the end of the edge
+}
+
+export interface Collections_collections {
+  edges: Collections_collections_edges[];
+}
+
+export interface Collections {
+  collections: Collections_collections | null; // List of the shop's collections.
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: ProductsList
 // ====================================================
 
@@ -45,6 +140,7 @@ export interface ProductsList_products_edges_node_category {
 }
 
 export interface ProductsList_products_edges_node_price {
+  currency: string; // Currency code.
   amount: number; // Amount of money.
 }
 
@@ -92,7 +188,6 @@ export interface ProductsList {
 export interface MainMenu_shop_navigation_main_items_edges_node {
   id: string; // The ID of the object.
   name: string;
-  url: string | null; // URL to the menu item.
 }
 
 export interface MainMenu_shop_navigation_main_items_edges {
@@ -104,6 +199,7 @@ export interface MainMenu_shop_navigation_main_items {
 }
 
 export interface MainMenu_shop_navigation_main {
+  id: string; // The ID of the object.
   items: MainMenu_shop_navigation_main_items | null;
 }
 
@@ -211,6 +307,42 @@ export interface ProductVariantDetails {
 
 export interface ProductVariantDetailsVariables {
   id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: SearchResults
+// ====================================================
+
+export interface SearchResults_products_edges_node_category {
+  id: string; // The ID of the object.
+  name: string;
+}
+
+export interface SearchResults_products_edges_node {
+  id: string; // The ID of the object.
+  name: string;
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
+  url: string; // The storefront URL for the product.
+  category: SearchResults_products_edges_node_category;
+}
+
+export interface SearchResults_products_edges {
+  node: SearchResults_products_edges_node; // The item at the end of the edge
+}
+
+export interface SearchResults_products {
+  edges: SearchResults_products_edges[];
+}
+
+export interface SearchResults {
+  products: SearchResults_products | null; // List of the shop's products.
+}
+
+export interface SearchResultsVariables {
+  query: string;
 }
 
 /* tslint:disable */

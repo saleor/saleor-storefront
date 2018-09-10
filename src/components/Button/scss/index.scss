@@ -11,6 +11,12 @@ button {
   font-family: $base-font-family;
   cursor: pointer;
 
+  @media (max-width: $small-screen) {
+    padding: $button-padding-small-screen;
+    width: 90%;
+    max-width: 18rem;
+  }
+
   * {
     display: inline-block;
     color: $white;

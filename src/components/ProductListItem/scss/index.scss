@@ -1,6 +1,10 @@
 @import "../../App/scss/variables.scss";
 
 .product-list-item {
+  img {
+    max-width: 100%;
+  }
+
   &__title {
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;

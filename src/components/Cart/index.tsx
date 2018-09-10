@@ -116,10 +116,7 @@ export const CartOverlay: React.SFC = () => (
                                 className="cart__list__item"
                               >
                                 <img
-                                  src={
-                                    "http://localhost:8000" +
-                                    productVariant.product.thumbnailUrl
-                                  }
+                                  src={productVariant.product.thumbnailUrl}
                                   alt={productVariant.product.name}
                                 />
                                 <div className="cart__list__item__details">

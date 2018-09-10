@@ -4,6 +4,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { CartContext } from "../Cart/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { GET_MAIN_MENU } from "./queries";
@@ -43,11 +44,22 @@ const MainMenu: React.SFC = () => (
                     if (error) {
                       return `Error!: ${error}`;
                     }
-                    return data.shop.navigation.main.items.edges.map(item => (
-                      <li className="main-menu__item" key={item.node.id}>
-                        <a href={item.node.url}>{item.node.name}</a>
-                      </li>
-                    ));
+                    return data.shop.navigation.main.items.edges.map(
+                      ({ node: category }) => (
+                        <li className="main-menu__item" key={category.id}>
+                          <Link
+                            to={`/category/${slugify(
+                              category.name
+                            )}/${getDBIdFromGraphqlId(
+                              category.id,
+                              "MenuItem"
+                            )}/`}
+                          >
+                            {category.name}
+                          </Link>
+                        </li>
+                      )
+                    );
                   }}
                 </Query>
               )}

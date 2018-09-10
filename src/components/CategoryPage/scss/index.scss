@@ -1,0 +1,93 @@
+@import "../../App/scss/variables.scss";
+
+.category {
+  &__header {
+    text-align: center;
+    padding-top: $spacer * 4.5;
+    padding-bottom: $spacer * 4.5;
+    background-size: cover;
+
+    &__title {
+      background-color: $white;
+      display: inline-block;
+      transform: skew(-45deg);
+      padding: 1.5vw 9vw;
+
+      h1 {
+        display: inline-block;
+        transform: skew(45deg);
+        font-weight: $bold-font-weight;
+        text-transform: uppercase;
+        color: $blue;
+        font-size: 8vw;
+        font-weight: 900;
+
+        @media (min-width: $small-screen) {
+          font-size: 4vw;
+        }
+      }
+    }
+  }
+
+  &__filters {
+    background-color: $gray-light;
+
+    &__grid {
+      display: flex;
+      flex-wrap: wrap;
+
+      &__filter {
+        min-width: 15rem;
+        padding: $spacer $spacer $spacer 0;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  &__products {
+    &__subheader {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: $small-font-size;
+      align-items: center;
+
+      &__total {
+        color: $gray;
+        margin: $spacer 0;
+      }
+
+      &__sort {
+        display: flex;
+        align-items: center;
+
+        span {
+          color: $gray;
+        }
+
+        .dropdown-component {
+          min-width: 10rem;
+        }
+      }
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      grid-gap: 2rem;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+
+    &__load-more {
+      margin: $spacer * 5 0;
+      text-align: center;
+    }
+  }
+}
