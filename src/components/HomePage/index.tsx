@@ -36,16 +36,18 @@ const HomePage: React.SFC = () => (
               <div className="container">
                 <h3>Featured</h3>
                 <Carousel>
-                  {data.products.edges.map(({ node: product }) => (
-                    <Link
-                      to={`/product/${slugify(
-                        product.name
-                      )}/${getDBIdFromGraphqlId(product.id, "Product")}/`}
-                      key={product.id}
-                    >
-                      <ProductListItem product={product} />
-                    </Link>
-                  ))}
+                  {data.shop.homepageCollection.products.edges.map(
+                    ({ node: product }) => (
+                      <Link
+                        to={`/product/${slugify(
+                          product.name
+                        )}/${getDBIdFromGraphqlId(product.id, "Product")}/`}
+                        key={product.id}
+                      >
+                        <ProductListItem product={product} />
+                      </Link>
+                    )
+                  )}
                 </Carousel>
               </div>
             </div>
