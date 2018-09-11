@@ -21,7 +21,7 @@ body {
   }
 
   .container {
-    width: 1140px;
+    width: $container-width;
     max-width: calc(100vw - #{$spacer} * 2);
     margin: 0 auto;
     padding: 0 $spacer;

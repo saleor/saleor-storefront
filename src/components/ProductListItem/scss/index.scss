@@ -1,8 +1,11 @@
 @import "../../App/scss/variables.scss";
 
 .product-list-item {
+  text-align: left;
+
   img {
-    max-width: 100%;
+    width: auto;
+    height: 255px;
   }
 
   &__title {

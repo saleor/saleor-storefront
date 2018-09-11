@@ -2,19 +2,24 @@ import gql from "graphql-tag";
 
 export const GET_PRODUCTS_AND_CATEGORIES = gql`
   query ProductsList {
-    products(first: 10) {
-      edges {
-        node {
-          id
-          name
-          thumbnailUrl
-          category {
-            id
-            name
-          }
-          price {
-            currency
-            amount
+    shop {
+      homepageCollection {
+        id
+        products {
+          edges {
+            node {
+              id
+              name
+              thumbnailUrl
+              category {
+                id
+                name
+              }
+              price {
+                currency
+                amount
+              }
+            }
           }
         }
       }
@@ -24,6 +29,9 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
         node {
           id
           name
+          backgroundImage {
+            url
+          }
         }
       }
     }
