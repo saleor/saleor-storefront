@@ -24,6 +24,9 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
         node {
           id
           name
+          backgroundImage {
+            url
+          }
         }
       }
     }
