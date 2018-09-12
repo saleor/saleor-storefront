@@ -1,0 +1,129 @@
+@import "../../App/scss/variables.scss";
+
+.product-page {
+  background-color: $gray-light;
+
+  .breadcrumbs {
+    background-color: $white;
+    padding: $spacer / 2 $spacer $spacer / 2 $spacer * 1.5;
+    margin-top: $spacer * 2;
+  }
+
+  &__product {
+    display: flex;
+    margin-top: $spacer;
+
+    @media (max-width: $small-screen) {
+      display: block;
+      margin-bottom: $spacer * 2;
+    }
+
+    &__info {
+      flex-grow: 1;
+      width: 40%;
+      position: relative;
+
+      @media (max-width: $medium-screen) {
+        width: 50%;
+      }
+
+      @media (max-width: $small-screen) {
+        width: 100%;
+      }
+
+      &--fixed {
+        position: fixed;
+        width: calc(40 * #{$container-width} / 100);
+
+        @media (max-width: $container-width) {
+          max-width: calc(40% - 1rem);
+        }
+
+        @media (max-width: $medium-screen) {
+          max-width: calc(50% - 1rem);
+        }
+      }
+
+      &--absolute {
+        position: absolute;
+        width: 100%;
+        bottom: $spacer * 5;
+      }
+    }
+
+    &__gallery {
+      flex-grow: 2;
+      width: 60%;
+      padding: 0 $spacer 0 0;
+      box-sizing: border-box;
+
+      @media (max-width: $medium-screen) {
+        width: 50%;
+      }
+
+      @media (max-width: $small-screen) {
+        width: 100%;
+        padding: 0;
+        margin-bottom: $spacer * 2;
+        padding: 0;
+      }
+
+      img {
+        width: 100%;
+        margin-bottom: $spacer * 5;
+
+        @media (max-width: $small-screen) {
+          height: calc(100vw - #{$spacer * 2});
+          margin-bottom: $spacer * 2;
+        }
+      }
+
+      &__nav {
+        li {
+          display: inline-block;
+          padding: $spacer / 2;
+
+          span {
+            width: $spacer / 2;
+            height: $spacer / 2;
+            border: 1px solid $gray;
+            border-radius: $spacer / 2;
+            display: block;
+          }
+
+          &.active {
+            span {
+              background-color: $turquoise;
+              border-color: $turquoise;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__other-products {
+    background-color: $white;
+    padding: $spacer * 4 0;
+
+    &__title {
+      text-transform: uppercase;
+      font-weight: $bold-font-weight;
+      margin-bottom: $spacer * 2;
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: $spacer * 2;
+
+      @media (min-width: $small-screen) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (min-width: $medium-screen) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+  }
+}

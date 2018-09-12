@@ -118,7 +118,7 @@ class CategoryPage extends React.Component<
               <div
                 className="category__header"
                 style={{
-                  backgroundImage: data.category.backgroundImage
+                  backgroundImage: data.category.backgroundImage.url
                 }}
               >
                 <span className="category__header__title">
