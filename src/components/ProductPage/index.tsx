@@ -15,21 +15,36 @@ import { GET_PRODUCT_DETAILS } from "./queries";
 import "./scss/index.scss";
 
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
+  private fixedElement: React.RefObject<HTMLDivElement>;
+  private productGallery: React.RefObject<HTMLDivElement>;
+  private galleryImage: React.RefObject<HTMLImageElement>;
+
+  constructor(props) {
+    super(props);
+    this.fixedElement = React.createRef();
+    this.productGallery = React.createRef();
+    this.galleryImage = React.createRef();
+  }
+
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {
-    const fixedContainer = document.getElementById("fixed-container");
-    const fixedElement = document.getElementById("fixed");
-    if (fixedContainer && fixedElement) {
+    const productGallery = this.productGallery.current;
+    const fixedElement = this.fixedElement.current;
+
+    if (productGallery && fixedElement) {
       const containerPostion =
-        window.innerHeight - fixedContainer.getBoundingClientRect().bottom + 80;
+        window.innerHeight - productGallery.getBoundingClientRect().bottom;
       const fixedPosition =
         window.innerHeight - fixedElement.getBoundingClientRect().bottom;
       const fixedToTop = fixedElement.getBoundingClientRect().top;
+      const galleryToTop =
+        this.productGallery.current.getBoundingClientRect().top +
+        window.scrollY;
 
-      if (containerPostion >= fixedPosition && fixedToTop <= 163) {
+      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
         fixedElement.classList.remove("product-page__product__info--fixed");
         fixedElement.classList.add("product-page__product__info--absolute");
       } else {
@@ -78,7 +93,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                 />
               </div>
               <div className="container">
-                <div className="product-page__product" id="fixed-container">
+                <div className="product-page__product">
                   <Media query={{ maxWidth: smallScreen }}>
                     {matches =>
                       matches ? (
@@ -130,18 +145,22 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                         </>
                       ) : (
                         <>
-                          <div className="product-page__product__gallery">
+                          <div
+                            className="product-page__product__gallery"
+                            ref={this.productGallery}
+                          >
                             {product.images.edges.map(({ node: image }) => (
                               <img
                                 src={"http://localhost:8000" + image.url}
                                 key={image.id}
+                                ref={this.galleryImage}
                               />
                             ))}
                           </div>
                           <div className="product-page__product__info">
                             <div
                               className="product-page__product__info--fixed"
-                              id="fixed"
+                              ref={this.fixedElement}
                             >
                               <ProductDescription product={product} />
                             </div>

@@ -12,6 +12,7 @@
   &__product {
     display: flex;
     margin-top: $spacer;
+    padding-bottom: $spacer * 5;
 
     @media (max-width: $small-screen) {
       display: block;
@@ -47,7 +48,7 @@
       &--absolute {
         position: absolute;
         width: 100%;
-        bottom: $spacer * 5;
+        bottom: 0;
       }
     }
 
@@ -70,7 +71,10 @@
 
       img {
         width: 100%;
-        margin-bottom: $spacer * 5;
+
+        &:not(:last-of-type) {
+          margin-bottom: $spacer * 5;
+        }
 
         @media (max-width: $small-screen) {
           height: calc(100vw - #{$spacer * 2});
