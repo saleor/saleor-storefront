@@ -1,0 +1,28 @@
+@import "../../App/scss/variables.scss";
+
+.product-description {
+  h3 {
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+    margin-bottom: $spacer;
+  }
+
+  h4 {
+    font-weight: $bold-font-weight;
+    margin-bottom: $spacer;
+  }
+
+  &__about {
+    h4 {
+      font-weight: $bold-font-weight;
+      color: $gray;
+      border-bottom: 1px solid $gray;
+      padding-bottom: $spacer / 2;
+      margin-bottom: $spacer / 2;
+    }
+
+    p {
+      font-size: $small-font-size;
+    }
+  }
+}

@@ -39,6 +39,23 @@ export interface VariantListVariables {
 // GraphQL query operation: Category
 // ====================================================
 
+export interface Category_category_backgroundImage {
+  url: string; // The URL of the image.
+}
+
+export interface Category_category_ancestors_edges_node {
+  id: string; // The ID of the object.
+  name: string;
+}
+
+export interface Category_category_ancestors_edges {
+  node: Category_category_ancestors_edges_node; // The item at the end of the edge
+}
+
+export interface Category_category_ancestors {
+  edges: Category_category_ancestors_edges[];
+}
+
 export interface Category_category_products_edges_node_category {
   id: string; // The ID of the object.
   name: string;
@@ -69,7 +86,8 @@ export interface Category_category_products {
 export interface Category_category {
   id: string; // The ID of the object.
   name: string;
-  backgroundImage: string | null;
+  backgroundImage: Category_category_backgroundImage | null;
+  ancestors: Category_category_ancestors | null; // List of ancestors of the category.
   products: Category_category_products | null; // List of products in the category.
 }
 
@@ -101,6 +119,7 @@ export interface CategoryVariables {
   id: string;
   attributes?: (any | null)[] | null;
   pageSize?: number | null;
+  sortBy?: string | null;
 }
 
 /* tslint:disable */
@@ -134,35 +153,49 @@ export interface Collections {
 // GraphQL query operation: ProductsList
 // ====================================================
 
-export interface ProductsList_products_edges_node_category {
+export interface ProductsList_shop_homepageCollection_products_edges_node_category {
   id: string; // The ID of the object.
   name: string;
 }
 
-export interface ProductsList_products_edges_node_price {
+export interface ProductsList_shop_homepageCollection_products_edges_node_price {
   currency: string; // Currency code.
   amount: number; // Amount of money.
 }
 
-export interface ProductsList_products_edges_node {
+export interface ProductsList_shop_homepageCollection_products_edges_node {
   id: string; // The ID of the object.
   name: string;
   thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
-  category: ProductsList_products_edges_node_category;
-  price: ProductsList_products_edges_node_price | null; // The product's base price (without any discounts         applied).
+  category: ProductsList_shop_homepageCollection_products_edges_node_category;
+  price: ProductsList_shop_homepageCollection_products_edges_node_price | null; // The product's base price (without any discounts         applied).
 }
 
-export interface ProductsList_products_edges {
-  node: ProductsList_products_edges_node; // The item at the end of the edge
+export interface ProductsList_shop_homepageCollection_products_edges {
+  node: ProductsList_shop_homepageCollection_products_edges_node; // The item at the end of the edge
 }
 
-export interface ProductsList_products {
-  edges: ProductsList_products_edges[];
+export interface ProductsList_shop_homepageCollection_products {
+  edges: ProductsList_shop_homepageCollection_products_edges[];
+}
+
+export interface ProductsList_shop_homepageCollection {
+  id: string; // The ID of the object.
+  products: ProductsList_shop_homepageCollection_products | null; // List of collection products.
+}
+
+export interface ProductsList_shop {
+  homepageCollection: ProductsList_shop_homepageCollection | null; // Collection displayed on homepage
+}
+
+export interface ProductsList_categories_edges_node_backgroundImage {
+  url: string; // The URL of the image.
 }
 
 export interface ProductsList_categories_edges_node {
   id: string; // The ID of the object.
   name: string;
+  backgroundImage: ProductsList_categories_edges_node_backgroundImage | null;
 }
 
 export interface ProductsList_categories_edges {
@@ -174,7 +207,7 @@ export interface ProductsList_categories {
 }
 
 export interface ProductsList {
-  products: ProductsList_products | null; // List of the shop's products.
+  shop: ProductsList_shop | null; // Represents a shop resources.
   categories: ProductsList_categories | null; // List of the shop's categories.
 }
 
@@ -247,6 +280,56 @@ export interface Categories {
 // GraphQL query operation: ProductDetails
 // ====================================================
 
+export interface ProductDetails_product_category_products_edges_node_category {
+  id: string; // The ID of the object.
+  name: string;
+}
+
+export interface ProductDetails_product_category_products_edges_node_price {
+  amount: number; // Amount of money.
+  currency: string; // Currency code.
+}
+
+export interface ProductDetails_product_category_products_edges_node {
+  id: string; // The ID of the object.
+  name: string;
+  thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
+  category: ProductDetails_product_category_products_edges_node_category;
+  price: ProductDetails_product_category_products_edges_node_price | null; // The product's base price (without any discounts         applied).
+}
+
+export interface ProductDetails_product_category_products_edges {
+  node: ProductDetails_product_category_products_edges_node; // The item at the end of the edge
+}
+
+export interface ProductDetails_product_category_products {
+  edges: ProductDetails_product_category_products_edges[];
+}
+
+export interface ProductDetails_product_category {
+  id: string; // The ID of the object.
+  name: string;
+  products: ProductDetails_product_category_products | null; // List of products in the category.
+}
+
+export interface ProductDetails_product_price {
+  amount: number; // Amount of money.
+  currency: string; // Currency code.
+}
+
+export interface ProductDetails_product_images_edges_node {
+  id: string; // The ID of the object.
+  url: string; // The URL of the image.
+}
+
+export interface ProductDetails_product_images_edges {
+  node: ProductDetails_product_images_edges_node; // The item at the end of the edge
+}
+
+export interface ProductDetails_product_images {
+  edges: ProductDetails_product_images_edges[];
+}
+
 export interface ProductDetails_product_variants_edges_node {
   id: string; // The ID of the object.
   name: string;
@@ -265,6 +348,9 @@ export interface ProductDetails_product {
   name: string;
   thumbnailUrl: string | null; // The URL of a main thumbnail for a product.
   description: string;
+  category: ProductDetails_product_category;
+  price: ProductDetails_product_price | null; // The product's base price (without any discounts         applied).
+  images: ProductDetails_product_images | null;
   variants: ProductDetails_product_variants | null;
 }
 

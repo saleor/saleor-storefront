@@ -1,90 +1,189 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
-import { getGraphqlIdFromDBId } from "../../core/utils";
+import { Breadcrumbs, Carousel, ProductDescription, ProductListItem } from "..";
+import {
+  getDBIdFromGraphqlId,
+  getGraphqlIdFromDBId,
+  slugify
+} from "../../core/utils";
+import { smallScreen } from "../App/scss/variables.scss";
 import { GET_PRODUCT_DETAILS } from "./queries";
-
-import { CartContext } from "../Cart/context";
-
-import { ProductVariantInterface } from "../../core/types";
 
 import "./scss/index.scss";
 
-interface ProductVariantFormProps {
-  productVariants: ProductVariantInterface[];
-  onProductVariantSelect(variant: ProductVariantInterface): void;
-}
+class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
+  fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
+  productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+  galleryImage: React.RefObject<HTMLImageElement> = React.createRef();
 
-class ProductVariantForm extends React.Component<ProductVariantFormProps> {
-  state = {
-    variant: null
-  };
-
-  handleSubmit = event => {
-    if (this.state.variant) {
-      this.props.onProductVariantSelect(this.state.variant);
-    }
-    event.preventDefault();
-  };
-
-  handleChange = event => {
-    const variantId = event.target.value;
-    const variant =
-      this.props.productVariants.find(v => v.id === variantId) || null;
-    this.setState({ variant });
-  };
-
-  render = () => (
-    <form onSubmit={this.handleSubmit}>
-      <select onChange={this.handleChange}>
-        <option value="">Select Variant</option>
-        {this.props.productVariants.map(variant => (
-          <option key={variant.id} value={variant.id}>
-            {variant.name}
-          </option>
-        ))}
-      </select>
-      <input type="submit" value="Add to cart" />
-    </form>
-  );
-}
-
-const ProductPage: React.SFC<RouteComponentProps<{ id; slug }>> = ({
-  match: {
-    params: { id = "" }
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
   }
-}) => (
-  <Query
-    query={GET_PRODUCT_DETAILS}
-    variables={{ id: getGraphqlIdFromDBId(id, "Product") }}
-  >
-    {({ loading, error, data: { product } }) => {
-      if (loading) {
-        return "Loading";
+
+  handleScroll = () => {
+    const productGallery = this.productGallery.current;
+    const fixedElement = this.fixedElement.current;
+
+    if (productGallery && fixedElement) {
+      const containerPostion =
+        window.innerHeight - productGallery.getBoundingClientRect().bottom;
+      const fixedPosition =
+        window.innerHeight - fixedElement.getBoundingClientRect().bottom;
+      const fixedToTop = fixedElement.getBoundingClientRect().top;
+      const galleryToTop =
+        this.productGallery.current.getBoundingClientRect().top +
+        window.scrollY;
+
+      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
+        fixedElement.classList.remove("product-page__product__info--fixed");
+        fixedElement.classList.add("product-page__product__info--absolute");
+      } else {
+        fixedElement.classList.remove("product-page__product__info--absolute");
+        fixedElement.classList.add("product-page__product__info--fixed");
       }
-      if (error) {
-        return `Error!: ${error}`;
-      }
-      return (
-        <>
-          <h2>{product.name}</h2>
-          <p>
-            <img src={product.thumbnailUrl} alt={product.name} />
-            {product.description}
-          </p>
-          <CartContext.Consumer>
-            {cart => (
-              <ProductVariantForm
-                onProductVariantSelect={variant => cart.add(variant.id)}
-                productVariants={product.variants.edges.map(edge => edge.node)}
-              />
-            )}
-          </CartContext.Consumer>
-        </>
-      );
-    }}
-  </Query>
-);
+    }
+  };
+
+  render() {
+    return (
+      <Query
+        query={GET_PRODUCT_DETAILS}
+        variables={{
+          id: getGraphqlIdFromDBId(this.props.match.params.id, "Product")
+        }}
+      >
+        {({ loading, error, data: { product } }) => {
+          if (loading) {
+            return "Loading";
+          }
+          if (error) {
+            return `Error!: ${error}`;
+          }
+          return (
+            <div className="product-page">
+              <div className="container">
+                <Breadcrumbs
+                  breadcrumbs={[
+                    {
+                      link: `/category/${slugify(
+                        product.category.name
+                      )}/${getDBIdFromGraphqlId(
+                        product.category.id,
+                        "Category"
+                      )}/`,
+                      value: product.category.name
+                    },
+                    {
+                      link: `/product/${slugify(
+                        product.name
+                      )}/${getDBIdFromGraphqlId(product.id, "Product")}/`,
+                      value: product.name
+                    }
+                  ]}
+                />
+              </div>
+              <div className="container">
+                <div className="product-page__product">
+                  <Media query={{ maxWidth: smallScreen }}>
+                    {matches =>
+                      matches ? (
+                        <>
+                          <div className="product-page__product__gallery">
+                            <Carousel
+                              renderCenterLeftControls={() => null}
+                              renderCenterRightControls={() => null}
+                              renderBottomCenterControls={props => {
+                                const indexes = [];
+
+                                for (let i = 0; i < props.slideCount; i++) {
+                                  indexes.push(i);
+                                }
+
+                                return (
+                                  <ul className="product-page__product__gallery__nav">
+                                    {indexes.map(index => (
+                                      <li
+                                        key={index}
+                                        onClick={props.goToSlide.bind(
+                                          null,
+                                          index
+                                        )}
+                                        className={
+                                          props.currentSlide === index
+                                            ? "active"
+                                            : ""
+                                        }
+                                      >
+                                        <span />
+                                      </li>
+                                    ))}
+                                  </ul>
+                                );
+                              }}
+                            >
+                              {product.images.edges.map(({ node: image }) => (
+                                <img
+                                  src={"http://localhost:8000" + image.url}
+                                  key={image.id}
+                                />
+                              ))}
+                            </Carousel>
+                          </div>
+                          <div className="product-page__product__info">
+                            <ProductDescription product={product} />
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            className="product-page__product__gallery"
+                            ref={this.productGallery}
+                          >
+                            {product.images.edges.map(({ node: image }) => (
+                              <img
+                                src={"http://localhost:8000" + image.url}
+                                key={image.id}
+                                ref={this.galleryImage}
+                              />
+                            ))}
+                          </div>
+                          <div className="product-page__product__info">
+                            <div
+                              className="product-page__product__info--fixed"
+                              ref={this.fixedElement}
+                            >
+                              <ProductDescription product={product} />
+                            </div>
+                          </div>
+                        </>
+                      )
+                    }
+                  </Media>
+                </div>
+              </div>
+              <div className="product-page__other-products">
+                <div className="container">
+                  <h4 className="product-page__other-products__title">
+                    Other products in this category
+                  </h4>
+                  <div className="product-page__other-products__grid">
+                    {product.category.products.edges.map(
+                      ({ node: product }) => (
+                        <ProductListItem product={product} key={product.id} />
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
 export default ProductPage;

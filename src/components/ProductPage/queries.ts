@@ -14,6 +14,37 @@ export const GET_PRODUCT_DETAILS = gql`
     product(id: $id) {
       ...BasicProductFields
       description
+      category {
+        id
+        name
+        products(first: 4) {
+          edges {
+            node {
+              ...BasicProductFields
+              category {
+                id
+                name
+              }
+              price {
+                amount
+                currency
+              }
+            }
+          }
+        }
+      }
+      price {
+        amount
+        currency
+      }
+      images {
+        edges {
+          node {
+            id
+            url
+          }
+        }
+      }
       variants {
         edges {
           node {

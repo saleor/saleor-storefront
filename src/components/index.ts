@@ -19,3 +19,4 @@ export { default as Footer } from "./Footer";
 export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Dropdown } from "./Dropdown";
 export { default as Carousel } from "./Carousel";
+export { default as ProductDescription } from "./ProductDescription";

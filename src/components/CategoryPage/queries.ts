@@ -10,7 +10,9 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
     category(id: $id) {
       id
       name
-      backgroundImage
+      backgroundImage {
+        url
+      }
       ancestors {
         edges {
           node {
