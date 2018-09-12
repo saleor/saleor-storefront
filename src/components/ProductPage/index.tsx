@@ -15,16 +15,9 @@ import { GET_PRODUCT_DETAILS } from "./queries";
 import "./scss/index.scss";
 
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
-  private fixedElement: React.RefObject<HTMLDivElement>;
-  private productGallery: React.RefObject<HTMLDivElement>;
-  private galleryImage: React.RefObject<HTMLImageElement>;
-
-  constructor(props) {
-    super(props);
-    this.fixedElement = React.createRef();
-    this.productGallery = React.createRef();
-    this.galleryImage = React.createRef();
-  }
+  fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
+  productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+  galleryImage: React.RefObject<HTMLImageElement> = React.createRef();
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
