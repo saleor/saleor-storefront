@@ -136,12 +136,13 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                 <ProductDescription
                                   name={product.name}
                                   price={product.price}
-                                  description={product.description}
                                   productVariants={product.variants.edges.map(
                                     edge => edge.node
                                   )}
                                   addToCart={cart.add}
-                                />
+                                >
+                                  <p>{product.description}</p>
+                                </ProductDescription>
                               )}
                             </CartContext.Consumer>
                           </div>
@@ -170,12 +171,13 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                   <ProductDescription
                                     name={product.name}
                                     price={product.price}
-                                    description={product.description}
                                     productVariants={product.variants.edges.map(
                                       edge => edge.node
                                     )}
                                     addToCart={cart.add}
-                                  />
+                                  >
+                                    <p>{product.description}</p>
+                                  </ProductDescription>
                                 )}
                               </CartContext.Consumer>
                             </div>

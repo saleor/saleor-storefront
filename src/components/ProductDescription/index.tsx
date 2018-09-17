@@ -12,8 +12,8 @@ interface ProductDescriptionProps {
   productVariants: ProductVariantInterface[];
   name: string;
   price: ProductPriceInterface;
-  description: string;
   locale?: string;
+  children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
 
@@ -138,7 +138,7 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { name, price, description, locale } = this.props;
+    const { name, price, locale } = this.props;
     return (
       <div className="product-description">
         <h3>{name}</h3>
@@ -195,7 +195,7 @@ class ProductDescription extends React.Component<
         </div>
         <div className="product-description__about">
           <h4>Description</h4>
-          <p>{description}</p>
+          {this.props.children}
         </div>
         <Button
           className="product-description__action"
