@@ -2,15 +2,18 @@
 
 .input {
   position: relative;
+  box-sizing: border-box;
 
   &__field {
     display: block;
+    width: 100%;
     padding: 0.8rem 1rem;
     font-size: $base-font-size;
     font-weight: $bold-font-weight;
     border: 1px solid $blue;
     outline: none;
     box-shadow: 0 0 0 1px $white;
+    background-color: transparent;
 
     &:focus {
       box-shadow: 0 0 0 1px $blue;

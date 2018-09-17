@@ -11,7 +11,7 @@ const Button: React.SFC<ButtonType> = ({
   secondary,
   ...otherProps
 }) => (
-  <button {...otherProps} className={secondary ? "secondary" : ""}>
+  <button className={secondary ? "secondary" : ""} {...otherProps}>
     <span>{children}</span>
   </button>
 );

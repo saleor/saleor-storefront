@@ -34,14 +34,11 @@
 
       &--fixed {
         position: fixed;
-        width: calc(40 * #{$container-width} / 100);
+        width: auto;
+        padding-right: 1rem;
 
-        @media (max-width: $container-width) {
-          max-width: calc(40% - 1rem);
-        }
-
-        @media (max-width: $medium-screen) {
-          max-width: calc(50% - 1rem);
+        @media (min-width: $container-width) {
+          width: calc(#{$container-width} * 40 / 100);
         }
       }
 

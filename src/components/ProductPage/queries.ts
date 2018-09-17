@@ -50,6 +50,17 @@ export const GET_PRODUCT_DETAILS = gql`
           node {
             id
             name
+            attributes {
+              attribute {
+                id
+                name
+              }
+              value {
+                id
+                name
+                value: name
+              }
+            }
           }
         }
       }

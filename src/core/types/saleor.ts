@@ -330,9 +330,28 @@ export interface ProductDetails_product_images {
   edges: ProductDetails_product_images_edges[];
 }
 
+export interface ProductDetails_product_variants_edges_node_attributes_attribute {
+  id: string; // The ID of the object.
+  name: string | null; // Visible name for display purposes.
+}
+
+export interface ProductDetails_product_variants_edges_node_attributes_value {
+  id: string; // The ID of the object.
+  name: string | null; // Visible name for display purposes.
+  value: string | null; // Visible name for display purposes.
+}
+
+export interface ProductDetails_product_variants_edges_node_attributes {
+  attribute: ProductDetails_product_variants_edges_node_attributes_attribute | null; // Name of an attribute
+  value: ProductDetails_product_variants_edges_node_attributes_value | null; // Value of an attribute.
+}
+
 export interface ProductDetails_product_variants_edges_node {
   id: string; // The ID of the object.
   name: string;
+  attributes:
+    | (ProductDetails_product_variants_edges_node_attributes | null)[]
+    | null; // List of attributes assigned to this variant.
 }
 
 export interface ProductDetails_product_variants_edges {

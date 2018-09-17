@@ -35,6 +35,8 @@
 
   &__list {
     padding: 0 $spacer;
+    height: calc(100vh - 13rem);
+    overflow: auto;
 
     &__item {
       padding: $spacer 0;
@@ -97,7 +99,7 @@
     padding: $spacer;
     position: fixed;
     bottom: 0;
-    width: 23rem;
+    width: 25rem;
 
     &__subtotoal {
       display: flex;

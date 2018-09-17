@@ -10,6 +10,7 @@ import {
   slugify
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
+import { CartContext } from "../Cart/context";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
 import "./scss/index.scss";
@@ -125,15 +126,29 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                               }}
                             >
                               {product.images.edges.map(({ node: image }) => (
-                                <img
-                                  src={"http://localhost:8000" + image.url}
-                                  key={image.id}
-                                />
+                                <img src={image.url} key={image.id} />
                               ))}
                             </Carousel>
                           </div>
                           <div className="product-page__product__info">
-                            <ProductDescription product={product} />
+                            <CartContext.Consumer>
+                              {cart => (
+                                <ProductDescription
+                                  name={product.name}
+                                  price={product.price}
+                                  productVariants={product.variants.edges.map(
+                                    edge => edge.node
+                                  )}
+                                  addToCart={cart.add}
+                                >
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: product.description
+                                    }}
+                                  />
+                                </ProductDescription>
+                              )}
+                            </CartContext.Consumer>
                           </div>
                         </>
                       ) : (
@@ -144,7 +159,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                           >
                             {product.images.edges.map(({ node: image }) => (
                               <img
-                                src={"http://localhost:8000" + image.url}
+                                src={image.url}
                                 key={image.id}
                                 ref={this.galleryImage}
                               />
@@ -155,7 +170,24 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                               className="product-page__product__info--fixed"
                               ref={this.fixedElement}
                             >
-                              <ProductDescription product={product} />
+                              <CartContext.Consumer>
+                                {cart => (
+                                  <ProductDescription
+                                    name={product.name}
+                                    price={product.price}
+                                    productVariants={product.variants.edges.map(
+                                      edge => edge.node
+                                    )}
+                                    addToCart={cart.add}
+                                  >
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: product.description
+                                      }}
+                                    />
+                                  </ProductDescription>
+                                )}
+                              </CartContext.Consumer>
                             </div>
                           </div>
                         </>

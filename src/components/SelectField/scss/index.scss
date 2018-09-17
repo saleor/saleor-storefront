@@ -61,8 +61,12 @@
     }
 
     &__option {
-      &--is-focused,
+      &--is-focused {
+        background-color: $white;
+      }
+
       &--is-selected,
+      &--is-focused &--is-selected,
       &:active {
         background-color: $turquoise-light;
         color: $base-font-color;
