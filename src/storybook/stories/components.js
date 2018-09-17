@@ -5,7 +5,8 @@ import {
   TextField,
   SelectField,
   Message,
-  ProductListItem
+  ProductListItem,
+  Form
 } from "../../components";
 
 storiesOf("Components", module)
@@ -31,7 +32,7 @@ storiesOf("Components", module)
       <TextField
         label="Input label"
         defaultValue="Text inside"
-        error={"There is a problem with this field"}
+        errors={[{ message: "There is a problem with this field" }]}
       />
     </div>
   ))
@@ -86,4 +87,19 @@ storiesOf("Components", module)
         currency="$"
       />
     </div>
+  ))
+  .add("Form with validation", () => (
+    <Form onSubmit={event => event.preventDefault()}>
+      <TextField type="email" label="email" name="email" />
+      <TextField type="tel" label="phone" name="phone" required />
+      <TextField type="card" label="card" name="card" pattern="[0-9]{13,16}" />
+      <TextField
+        label="number"
+        type="number"
+        min="100"
+        max="200"
+        helpText="Number from 100 to 200"
+        name="number"
+      />
+    </Form>
   ));
