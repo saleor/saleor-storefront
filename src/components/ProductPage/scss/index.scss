@@ -34,7 +34,7 @@
 
       &--fixed {
         position: fixed;
-        width: calc(40 * #{$container-width} / 100);
+        width: calc(40 * #{$container-width} / 100 - #{$spacer});
 
         @media (max-width: $container-width) {
           max-width: calc(40% - 1rem);

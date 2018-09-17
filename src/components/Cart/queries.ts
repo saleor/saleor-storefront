@@ -8,7 +8,7 @@ export const GET_VARIANTS = gql`
       id
       stockQuantity
       name
-      costPrice {
+      price {
         currency
         amount
       }

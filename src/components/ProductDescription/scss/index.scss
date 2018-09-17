@@ -13,6 +13,8 @@
   }
 
   &__about {
+    margin: $spacer * 2 0;
+
     h4 {
       font-weight: $bold-font-weight;
       color: $gray;
@@ -23,6 +25,35 @@
 
     p {
       font-size: $small-font-size;
+    }
+  }
+
+  &__action {
+    margin-left: $spacer * 1.5;
+  }
+
+  &__variant-picker {
+    display: grid;
+
+    .react-select-wrapper {
+      width: 50%;
+
+      &:not(:last-of-type) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    &__quantity {
+      display: flex;
+
+      .input {
+        margin-left: $spacer * 2;
+        max-width: 6rem;
+
+        .input__field {
+          max-width: 100%;
+        }
+      }
     }
   }
 }

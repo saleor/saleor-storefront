@@ -121,8 +121,8 @@ export const CartOverlay: React.SFC = () => (
                                 />
                                 <div className="cart__list__item__details">
                                   <p>
-                                    {productVariant.costPrice.currency}
-                                    {productVariant.costPrice.amount}
+                                    {productVariant.price.currency}
+                                    {productVariant.price.amount}
                                   </p>
                                   <p>{productVariant.product.name}</p>
                                   <span className="cart__list__item__details__variant">

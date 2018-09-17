@@ -2,6 +2,7 @@
 
 .input {
   position: relative;
+  box-sizing: border-box;
 
   &__field {
     display: block;
@@ -11,6 +12,7 @@
     border: 1px solid $blue;
     outline: none;
     box-shadow: 0 0 0 1px $white;
+    background-color: transparent;
 
     &:focus {
       box-shadow: 0 0 0 1px $blue;
