@@ -10,18 +10,6 @@ import "./scss/index.scss";
 
 const HomePage: React.SFC = () => (
   <div className="home-page">
-    <div className="home-page__hero">
-      <span className="home-page__hero__title">
-        <h1>Final reduction</h1>
-      </span>
-      <br />
-      <span className="home-page__hero__title">
-        <h1>Up to 70% off sale</h1>
-      </span>
-      <br />
-      <Button>Shop sale</Button>
-    </div>
-
     <Query query={GET_PRODUCTS_AND_CATEGORIES}>
       {({ loading, error, data }) => {
         if (loading) {
@@ -32,6 +20,24 @@ const HomePage: React.SFC = () => (
         }
         return (
           <>
+            <div
+              className="home-page__hero"
+              style={{
+                backgroundImage: `url(${
+                  data.shop.homepageCollection.backgroundImage.url
+                })`
+              }}
+            >
+              <span className="home-page__hero__title">
+                <h1>Final reduction</h1>
+              </span>
+              <br />
+              <span className="home-page__hero__title">
+                <h1>Up to 70% off sale</h1>
+              </span>
+              <br />
+              <Button>Shop sale</Button>
+            </div>
             <div className="home-page__featured">
               <div className="container">
                 <h3>Featured</h3>
@@ -66,8 +72,8 @@ const HomePage: React.SFC = () => (
                         <div
                           className="home-page__categories__list__image"
                           style={{
-                            backgroundImage: `url(http://localhost:8000${
-                              category.backgroundImage
+                            backgroundImage: `url(${
+                              category.backgroundImage.url
                             })`
                           }}
                         />

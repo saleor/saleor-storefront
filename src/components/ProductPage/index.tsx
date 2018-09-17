@@ -141,7 +141,11 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                   )}
                                   addToCart={cart.add}
                                 >
-                                  <p>{product.description}</p>
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: product.description
+                                    }}
+                                  />
                                 </ProductDescription>
                               )}
                             </CartContext.Consumer>
@@ -176,7 +180,11 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                     )}
                                     addToCart={cart.add}
                                   >
-                                    <p>{product.description}</p>
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: product.description
+                                      }}
+                                    />
                                   </ProductDescription>
                                 )}
                               </CartContext.Consumer>
