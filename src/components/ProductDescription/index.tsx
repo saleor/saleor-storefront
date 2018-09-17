@@ -18,10 +18,10 @@ interface ProductDescriptionProps {
 }
 
 interface ProductDescriptionState {
-  pickers: Array<{ label: string; values: string[]; selected?: string }>;
+  primaryPicker?: { label: string; values: string[]; selected?: string };
+  secondaryPicker?: { label: string; values: string[]; selected?: string };
   quantity: number;
   variants: { [x: string]: string[] };
-  variant: string;
 }
 
 class ProductDescription extends React.Component<
@@ -30,105 +30,105 @@ class ProductDescription extends React.Component<
 > {
   constructor(props) {
     super(props);
+    const pickers =
+      this.props.productVariants[0].attributes.length > 0 &&
+      this.createPickers();
     this.state = {
-      pickers: [],
-      quantity: 1,
-      variant: null,
-      variants: {}
+      ...pickers,
+      quantity: 1
     };
   }
 
-  componentDidMount() {
-    if (this.props.productVariants[0].attributes.length > 0) {
-      const pickers = [
-        {
-          label: this.props.productVariants[0].attributes[0].attribute.name,
-          selected: "",
-          values: []
-        }
-      ];
+  createPickers = () => {
+    const primaryPicker = {
+      label: this.props.productVariants[0].attributes[0].attribute.name,
+      selected: "",
+      values: []
+    };
 
-      if (this.props.productVariants[0].attributes.length > 1) {
-        pickers.push({
-          label: this.props.productVariants[0].attributes
-            .slice(1)
-            .map(attribute => attribute.attribute.name)
-            .join(" / "),
-          selected: "",
-          values: []
-        });
+    let secondaryPicker;
+
+    if (this.props.productVariants[0].attributes.length > 1) {
+      secondaryPicker = {
+        label: this.props.productVariants[0].attributes
+          .slice(1)
+          .map(attribute => attribute.attribute.name)
+          .join(" / "),
+        selected: "",
+        values: []
+      };
+    }
+
+    const variants = {};
+
+    this.props.productVariants.map(variant => {
+      if (!primaryPicker.values.includes(variant.attributes[0].value.value)) {
+        primaryPicker.values.push(variant.attributes[0].value.value);
       }
 
-      const variants = {};
+      if (secondaryPicker) {
+        const combinedValues = variant.attributes
+          .slice(1)
+          .map(attribute => attribute.value.value)
+          .join(" / ");
 
-      this.props.productVariants.map(variant => {
-        if (!pickers[0].values.includes(variant.attributes[0].value.value)) {
-          pickers[0].values.push(variant.attributes[0].value.value);
+        if (!secondaryPicker.values.includes(combinedValues)) {
+          secondaryPicker.values.push(combinedValues);
         }
 
-        if (pickers[1]) {
-          const combinedValues = variant.attributes
-            .slice(1)
-            .map(attribute => attribute.value.value)
-            .join(" / ");
-
-          if (!pickers[1].values.includes(combinedValues)) {
-            pickers[1].values.push(combinedValues);
-          }
-
-          if (variants[variant.attributes[0].value.value]) {
-            variants[variant.attributes[0].value.value] = [
-              ...variants[variant.attributes[0].value.value],
-              combinedValues
-            ];
-          } else {
-            variants[variant.attributes[0].value.value] = [combinedValues];
-          }
+        if (variants[variant.attributes[0].value.value]) {
+          variants[variant.attributes[0].value.value] = [
+            ...variants[variant.attributes[0].value.value],
+            combinedValues
+          ];
+        } else {
+          variants[variant.attributes[0].value.value] = [combinedValues];
         }
+      }
 
-        pickers[0].selected = pickers[0].values[0];
-        if (pickers[1]) {
-          pickers[1].selected = pickers[1].values[0];
-        }
-      });
+      primaryPicker.selected = primaryPicker.values[0];
+      if (secondaryPicker) {
+        secondaryPicker.selected = secondaryPicker.values[0];
+      }
+    });
 
-      this.setState({
-        pickers,
-        variants
-      });
-    }
-  }
+    return {
+      primaryPicker,
+      secondaryPicker,
+      variants
+    };
+  };
 
-  onAttribute1Change = value => {
-    const pickers = this.state.pickers;
-    pickers[0].selected = value;
-    this.setState({ pickers });
+  onPrimaryPickerChange = value => {
+    const primaryPicker = this.state.primaryPicker;
+    primaryPicker.selected = value;
+    this.setState({ primaryPicker });
     if (
-      this.state.pickers[1] &&
-      !this.state.variants[value].includes(this.state.pickers[1].selected)
+      this.state.secondaryPicker &&
+      !this.state.variants[value].includes(this.state.secondaryPicker.selected)
     ) {
-      this.onAttribute2Change("");
+      this.onSecondaryPickerChange("");
     }
   };
 
-  onAttribute2Change = value => {
-    const pickers = this.state.pickers;
-    pickers[1].selected = value;
-    this.setState({ pickers });
+  onSecondaryPickerChange = value => {
+    const secondaryPicker = this.state.secondaryPicker;
+    secondaryPicker.selected = value;
+    this.setState({ secondaryPicker });
   };
 
   handleSubmit = () => {
     let variant;
-    if (this.state.pickers.length === 1) {
+    if (!this.state.secondaryPicker && this.state.primaryPicker) {
       variant = this.props.productVariants.find(
-        variant => variant.name === `${this.state.pickers[0].selected}`
+        variant => variant.name === `${this.state.primaryPicker.selected}`
       ).id;
-    } else if (this.state.pickers.length > 1) {
+    } else if (this.state.secondaryPicker && this.state.primaryPicker) {
       variant = this.props.productVariants.find(
         variant =>
           variant.name ===
-          `${this.state.pickers[0].selected} / ${
-            this.state.pickers[1].selected
+          `${this.state.primaryPicker.selected} / ${
+            this.state.secondaryPicker.selected
           }`
       ).id;
     } else {
@@ -151,44 +151,40 @@ class ProductDescription extends React.Component<
             : `${price.currency} ${price.amount}`}
         </h4>
         <div className="product-description__variant-picker">
-          {this.state.pickers.length > 0 ? (
-            <>
-              <SelectField
-                onChange={e => this.onAttribute1Change(e.value)}
-                label={this.state.pickers[0].label}
-                key={this.state.pickers[0].label}
-                value={{
-                  label: this.state.pickers[0].selected,
-                  value: this.state.pickers[0].selected
-                }}
-                options={this.state.pickers[0].values.map(value => ({
-                  label: value,
-                  value
-                }))}
-              />
-              <div className="product-description__variant-picker__quantity">
-                {this.state.pickers[1] ? (
-                  <SelectField
-                    onChange={e => this.onAttribute2Change(e.value)}
-                    label={this.state.pickers[1].label}
-                    key={this.state.pickers[1].label}
-                    value={
-                      this.state.pickers[1].selected && {
-                        label: this.state.pickers[1].selected,
-                        value: this.state.pickers[1].selected
-                      }
-                    }
-                    options={this.state.pickers[1].values.map(value => ({
-                      isDisabled: !this.state.variants[
-                        this.state.pickers[0].selected
-                      ].includes(value),
-                      label: value,
-                      value
-                    }))}
-                  />
-                ) : null}
-              </div>
-            </>
+          {this.state.primaryPicker ? (
+            <SelectField
+              onChange={e => this.onPrimaryPickerChange(e.value)}
+              label={this.state.primaryPicker.label}
+              key={this.state.primaryPicker.label}
+              value={{
+                label: this.state.primaryPicker.selected,
+                value: this.state.primaryPicker.selected
+              }}
+              options={this.state.primaryPicker.values.map(value => ({
+                label: value,
+                value
+              }))}
+            />
+          ) : null}
+          {this.state.secondaryPicker ? (
+            <SelectField
+              onChange={e => this.onSecondaryPickerChange(e.value)}
+              label={this.state.secondaryPicker.label}
+              key={this.state.secondaryPicker.label}
+              value={
+                this.state.secondaryPicker.selected && {
+                  label: this.state.secondaryPicker.selected,
+                  value: this.state.secondaryPicker.selected
+                }
+              }
+              options={this.state.secondaryPicker.values.map(value => ({
+                isDisabled: !this.state.variants[
+                  this.state.primaryPicker.selected
+                ].includes(value),
+                label: value,
+                value
+              }))}
+            />
           ) : null}
           <TextField
             type="number"
@@ -202,11 +198,12 @@ class ProductDescription extends React.Component<
           <p>{description}</p>
         </div>
         <Button
-          secondary
           className="product-description__action"
           onClick={this.handleSubmit}
           disabled={
-            this.state.pickers[1] && this.state.pickers[1].selected === ""
+            this.state.primaryPicker &&
+            this.state.secondaryPicker &&
+            this.state.secondaryPicker.selected === ""
           }
         >
           Add to cart

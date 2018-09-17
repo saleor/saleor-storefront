@@ -36,6 +36,10 @@
         position: fixed;
         width: auto;
         padding-right: 1rem;
+
+        @media (min-width: $container-width) {
+          width: calc(#{$container-width} * 40 / 100);
+        }
       }
 
       &--absolute {
