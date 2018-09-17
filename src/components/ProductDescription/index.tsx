@@ -2,21 +2,23 @@ import * as React from "react";
 
 import { Button, SelectField, TextField } from "..";
 import {
-  ProductDetailsInterface,
+  ProductPriceInterface,
   ProductVariantInterface
 } from "../../core/types";
-import { CartContext } from "../Cart/context";
 
 import "./scss/index.scss";
 
 interface ProductDescriptionProps {
-  product: ProductDetailsInterface;
+  productVariants: ProductVariantInterface[];
+  name: string;
+  price: ProductPriceInterface;
+  description: string;
   locale?: string;
+  addToCart(varinatId: string, quantity?: number): void;
 }
 
 interface ProductDescriptionState {
   pickers: Array<{ label: string; values: string[]; selected?: string }>;
-  productVariants: ProductVariantInterface[];
   quantity: number;
   variants: { [x: string]: string[] };
   variant: string;
@@ -30,7 +32,6 @@ class ProductDescription extends React.Component<
     super(props);
     this.state = {
       pickers: [],
-      productVariants: this.props.product.variants.edges.map(edge => edge.node),
       quantity: 1,
       variant: null,
       variants: {}
@@ -38,18 +39,18 @@ class ProductDescription extends React.Component<
   }
 
   componentDidMount() {
-    if (this.state.productVariants[0].attributes.length > 0) {
+    if (this.props.productVariants[0].attributes.length > 0) {
       const pickers = [
         {
-          label: this.state.productVariants[0].attributes[0].attribute.name,
+          label: this.props.productVariants[0].attributes[0].attribute.name,
           selected: "",
           values: []
         }
       ];
 
-      if (this.state.productVariants[0].attributes.length > 1) {
+      if (this.props.productVariants[0].attributes.length > 1) {
         pickers.push({
-          label: this.state.productVariants[0].attributes
+          label: this.props.productVariants[0].attributes
             .slice(1)
             .map(attribute => attribute.attribute.name)
             .join(" / "),
@@ -60,7 +61,7 @@ class ProductDescription extends React.Component<
 
       const variants = {};
 
-      this.state.productVariants.map(variant => {
+      this.props.productVariants.map(variant => {
         if (!pickers[0].values.includes(variant.attributes[0].value.value)) {
           pickers[0].values.push(variant.attributes[0].value.value);
         }
@@ -116,14 +117,14 @@ class ProductDescription extends React.Component<
     this.setState({ pickers });
   };
 
-  handleSubmit = cart => {
+  handleSubmit = () => {
     let variant;
     if (this.state.pickers.length === 1) {
-      variant = this.state.productVariants.find(
+      variant = this.props.productVariants.find(
         variant => variant.name === `${this.state.pickers[0].selected}`
       ).id;
     } else if (this.state.pickers.length > 1) {
-      variant = this.state.productVariants.find(
+      variant = this.props.productVariants.find(
         variant =>
           variant.name ===
           `${this.state.pickers[0].selected} / ${
@@ -131,16 +132,13 @@ class ProductDescription extends React.Component<
           }`
       ).id;
     } else {
-      variant = this.state.productVariants[0].id;
+      variant = this.props.productVariants[0].id;
     }
-    cart.add(variant, this.state.quantity);
+    this.props.addToCart(variant, this.state.quantity);
   };
 
   render() {
-    const {
-      product: { name, price, description },
-      locale
-    } = this.props;
+    const { name, price, description, locale } = this.props;
     return (
       <div className="product-description">
         <h3>{name}</h3>
@@ -152,75 +150,67 @@ class ProductDescription extends React.Component<
               })
             : `${price.currency} ${price.amount}`}
         </h4>
-        <CartContext.Consumer>
-          {cart => (
+        <div className="product-description__variant-picker">
+          {this.state.pickers.length > 0 ? (
             <>
-              <div className="product-description__variant-picker">
-                {this.state.pickers.length > 0 ? (
-                  <>
-                    <SelectField
-                      onChange={e => this.onAttribute1Change(e.value)}
-                      label={this.state.pickers[0].label}
-                      key={this.state.pickers[0].label}
-                      value={{
-                        label: this.state.pickers[0].selected,
-                        value: this.state.pickers[0].selected
-                      }}
-                      options={this.state.pickers[0].values.map(value => ({
-                        label: value,
-                        value
-                      }))}
-                    />
-                    <div className="product-description__variant-picker__quantity">
-                      {this.state.pickers[1] ? (
-                        <SelectField
-                          onChange={e => this.onAttribute2Change(e.value)}
-                          label={this.state.pickers[1].label}
-                          key={this.state.pickers[1].label}
-                          value={
-                            this.state.pickers[1].selected && {
-                              label: this.state.pickers[1].selected,
-                              value: this.state.pickers[1].selected
-                            }
-                          }
-                          options={this.state.pickers[1].values.map(value => ({
-                            isDisabled: !this.state.variants[
-                              this.state.pickers[0].selected
-                            ].includes(value),
-                            label: value,
-                            value
-                          }))}
-                        />
-                      ) : null}
-                    </div>
-                  </>
+              <SelectField
+                onChange={e => this.onAttribute1Change(e.value)}
+                label={this.state.pickers[0].label}
+                key={this.state.pickers[0].label}
+                value={{
+                  label: this.state.pickers[0].selected,
+                  value: this.state.pickers[0].selected
+                }}
+                options={this.state.pickers[0].values.map(value => ({
+                  label: value,
+                  value
+                }))}
+              />
+              <div className="product-description__variant-picker__quantity">
+                {this.state.pickers[1] ? (
+                  <SelectField
+                    onChange={e => this.onAttribute2Change(e.value)}
+                    label={this.state.pickers[1].label}
+                    key={this.state.pickers[1].label}
+                    value={
+                      this.state.pickers[1].selected && {
+                        label: this.state.pickers[1].selected,
+                        value: this.state.pickers[1].selected
+                      }
+                    }
+                    options={this.state.pickers[1].values.map(value => ({
+                      isDisabled: !this.state.variants[
+                        this.state.pickers[0].selected
+                      ].includes(value),
+                      label: value,
+                      value
+                    }))}
+                  />
                 ) : null}
-                <TextField
-                  type="number"
-                  label="Quantity"
-                  value={this.state.quantity || ""}
-                  onChange={e =>
-                    this.setState({ quantity: Number(e.target.value) })
-                  }
-                />
               </div>
-              <div className="product-description__about">
-                <h4>Description</h4>
-                <p>{description}</p>
-              </div>
-              <Button
-                secondary
-                className="product-description__action"
-                onClick={() => this.handleSubmit(cart)}
-                disabled={
-                  this.state.pickers[1] && this.state.pickers[1].selected === ""
-                }
-              >
-                Add to cart
-              </Button>
             </>
-          )}
-        </CartContext.Consumer>
+          ) : null}
+          <TextField
+            type="number"
+            label="Quantity"
+            value={this.state.quantity || ""}
+            onChange={e => this.setState({ quantity: Number(e.target.value) })}
+          />
+        </div>
+        <div className="product-description__about">
+          <h4>Description</h4>
+          <p>{description}</p>
+        </div>
+        <Button
+          secondary
+          className="product-description__action"
+          onClick={this.handleSubmit}
+          disabled={
+            this.state.pickers[1] && this.state.pickers[1].selected === ""
+          }
+        >
+          Add to cart
+        </Button>
       </div>
     );
   }

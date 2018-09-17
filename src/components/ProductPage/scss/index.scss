@@ -34,15 +34,8 @@
 
       &--fixed {
         position: fixed;
-        width: calc(40 * #{$container-width} / 100 - #{$spacer});
-
-        @media (max-width: $container-width) {
-          max-width: calc(40% - 1rem);
-        }
-
-        @media (max-width: $medium-screen) {
-          max-width: calc(50% - 1rem);
-        }
+        width: auto;
+        padding-right: 1rem;
       }
 
       &--absolute {

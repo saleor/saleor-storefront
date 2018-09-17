@@ -35,12 +35,10 @@
   &__variant-picker {
     display: grid;
 
-    .react-select-wrapper {
+    .react-select-wrapper,
+    .input {
       width: 50%;
-
-      &:not(:last-of-type) {
-        margin-bottom: 1rem;
-      }
+      margin-bottom: 0.5rem;
     }
 
     &__quantity {
