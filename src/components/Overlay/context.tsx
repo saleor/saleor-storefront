@@ -4,6 +4,7 @@ export enum OverlayType {
   cart = "cart",
   checkout = "checkout",
   navigation = "navigation",
+  login = "login",
   search = "search"
 }
 
