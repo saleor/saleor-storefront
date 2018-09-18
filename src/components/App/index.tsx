@@ -1,10 +1,11 @@
-import { ApolloClient } from "apollo-boost";
+import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 
 import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "..";
 import { CartOverlay, CartProvider } from "../Cart";
+import { LoginOverlay } from "../LoginOverlay";
 import { OverlayProvider } from "../Overlay";
 import { default as Routes } from "./routes";
 
@@ -17,8 +18,8 @@ interface AppProps {
 const App: React.SFC<AppProps> = ({ apolloClient }) => (
   <ApolloProvider client={apolloClient}>
     <CartProvider>
-      <OverlayProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <OverlayProvider>
           <React.Fragment>
             <header>
               <MainMenu />
@@ -28,11 +29,12 @@ const App: React.SFC<AppProps> = ({ apolloClient }) => (
             </section>
             <Footer />
             <CartOverlay />
+            <LoginOverlay />
             <NavigationOverlay />
             <SearchOverlay />
           </React.Fragment>
-        </BrowserRouter>
-      </OverlayProvider>
+        </OverlayProvider>
+      </BrowserRouter>
     </CartProvider>
   </ApolloProvider>
 );
