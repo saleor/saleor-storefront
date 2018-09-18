@@ -92,7 +92,14 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                   ))}
                                 </ul>
                                 <div className="search__products__footer">
-                                  <Button>Show all results</Button>
+                                  <Link
+                                    to={{
+                                      pathname: "/search",
+                                      search: `?q=${this.state.search}`
+                                    }}
+                                  >
+                                    <Button>Show all results</Button>
+                                  </Link>
                                 </div>
                               </>
                             );
