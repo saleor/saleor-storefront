@@ -1,8 +1,10 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer, Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
+import { getCartTotal, getVariantQuantity } from "../../core/cart";
+import { priceToString } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
@@ -94,65 +96,71 @@ export const CartOverlay: React.SFC = () => (
                   />
                 </div>
                 {cart.lines.length ? (
-                  <>
-                    <Query
-                      query={GET_VARIANTS}
-                      // TODO: we don't have productVariants query definition yet, for now use only one
-                      // https://github.com/mirumee/saleor/issues/2741
-                      variables={{ id: cart.lines[0].variantId }}
-                    >
-                      {({ loading, error, data: { productVariant } }) => {
-                        if (loading) {
-                          return "Loading";
-                        }
-                        if (error) {
-                          return `Error!: ${error}`;
-                        }
-                        return (
+                  <Query
+                    query={GET_VARIANTS}
+                    variables={{
+                      ids: cart.lines.map(line => line.variantId)
+                    }}
+                  >
+                    {({ loading, error, data }) => {
+                      const productsVariants = data.productVariants
+                        ? data.productVariants.edges.map(edge => edge.node)
+                        : [];
+                      if (loading) {
+                        return "Loading";
+                      }
+                      if (error) {
+                        return `Error!: ${error}`;
+                      }
+
+                      return (
+                        <>
                           <ul className="cart__list">
-                            {cart.lines.map(line => (
-                              <li
-                                key={line.variantId}
-                                className="cart__list__item"
-                              >
+                            {productsVariants.map(variant => (
+                              <li key={variant.id} className="cart__list__item">
                                 <img
-                                  src={productVariant.product.thumbnailUrl}
-                                  alt={productVariant.product.name}
+                                  src={variant.product.thumbnailUrl}
+                                  alt={variant.product.name}
                                 />
                                 <div className="cart__list__item__details">
                                   <p>
-                                    {productVariant.price.currency}
-                                    {productVariant.price.amount}
+                                    {variant.price.currency}
+                                    {variant.price.amount}
                                   </p>
-                                  <p>{productVariant.product.name}</p>
+                                  <p>{variant.product.name}</p>
                                   <span className="cart__list__item__details__variant">
-                                    <span>{productVariant.name}</span>
-                                    <span>Qty: {line.quantity}</span>
+                                    <span>{variant.name}</span>
+                                    <span>
+                                      Qty:
+                                      {getVariantQuantity(cart, variant.id)}
+                                    </span>
                                   </span>
                                   <ReactSVG
                                     path="../../images/garbage.svg"
                                     className="cart__list__item__details__delete-icon"
-                                    onClick={() =>
-                                      cart.remove(productVariant.id)
-                                    }
+                                    onClick={() => cart.remove(variant.id)}
                                   />
                                 </div>
                               </li>
                             ))}
                           </ul>
-                        );
-                      }}
-                    </Query>
-                    <div className="cart__footer">
-                      <div className="cart__footer__subtotoal">
-                        <span>Subtotal</span>
-                        <span>$100</span>
-                      </div>
-                      <div className="cart__footer__button">
-                        <Button>Checkout</Button>
-                      </div>
-                    </div>
-                  </>
+                          <div className="cart__footer">
+                            <div className="cart__footer__subtotoal">
+                              <span>Subtotal</span>
+                              <span>
+                                {priceToString(
+                                  getCartTotal(cart, productsVariants)
+                                )}
+                              </span>
+                            </div>
+                            <div className="cart__footer__button">
+                              <Button>Go to checkout</Button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    }}
+                  </Query>
                 ) : (
                   <div className="cart__empty">
                     <h4>Yor bag is empty</h4>
