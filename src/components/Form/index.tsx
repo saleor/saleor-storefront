@@ -31,6 +31,16 @@ function groupErrorsByFields(
   }, {});
 }
 
+function removeDuplicatedErrors(errors) {
+  const keys = [];
+  return errors.filter(error => {
+    const key = error.message + error.field || "";
+    const filter = !keys.includes(key);
+    keys.push(key);
+    return filter;
+  });
+}
+
 class Form extends React.Component<FormProps, FormState> {
   static getDerivedStateFromProps(props, state) {
     const propsKey = (props.errors || [])
@@ -42,7 +52,10 @@ class Form extends React.Component<FormProps, FormState> {
       .sort()
       .join();
     if (propsKey !== stateKey) {
-      const errors = [...(state.errors || []), ...(props.errors || [])];
+      const errors = removeDuplicatedErrors([
+        ...(state.errors || []),
+        ...(props.errors || [])
+      ]);
       return {
         errors
       };
