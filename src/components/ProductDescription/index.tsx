@@ -5,6 +5,7 @@ import {
   ProductPriceInterface,
   ProductVariantInterface
 } from "../../core/types";
+import { priceToString } from "../../core/utils";
 
 import "./scss/index.scss";
 
@@ -142,14 +143,7 @@ class ProductDescription extends React.Component<
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>
-          {locale
-            ? price.amount.toLocaleString(locale, {
-                currency: price.currency,
-                style: "currency"
-              })
-            : `${price.currency} ${price.amount}`}
-        </h4>
+        <h4>{priceToString(price, locale)}</h4>
         <div className="product-description__variant-picker">
           {this.state.primaryPicker ? (
             <SelectField

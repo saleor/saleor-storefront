@@ -1,4 +1,5 @@
 import { Base64 } from "js-base64";
+import { PriceInterface } from "./types";
 
 export const slugify = (text: string | number): string =>
   text
@@ -27,3 +28,18 @@ export const getDBIdFromGraphqlId = (
 export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
   // This is temporary solution, we will use slugs in the future
   Base64.encode(`${schema}:${id}`);
+
+export const priceToString = (
+  price: PriceInterface,
+  locale?: string
+): string => {
+  const { amount } = price;
+  if (locale) {
+    return amount.toLocaleString(locale, {
+      currency: price.currency,
+      style: "currency"
+    });
+  } else {
+    return `${price.currency} ${amount.toFixed(2)}`;
+  }
+};

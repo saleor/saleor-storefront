@@ -8,8 +8,32 @@ export const BASIC_PRODUCT_FRAGMENT = gql`
   }
 `;
 
+export const PRODUCT_VARIANT_FRAGMENT = gql`
+  fragment ProductVariantFields on ProductVariant {
+    id
+    name
+    stockQuantity
+    price {
+      currency
+      amount
+    }
+    attributes {
+      attribute {
+        id
+        name
+      }
+      value {
+        id
+        name
+        value: name
+      }
+    }
+  }
+`;
+
 export const GET_PRODUCT_DETAILS = gql`
   ${BASIC_PRODUCT_FRAGMENT}
+  ${PRODUCT_VARIANT_FRAGMENT}
   query ProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
@@ -48,19 +72,7 @@ export const GET_PRODUCT_DETAILS = gql`
       variants {
         edges {
           node {
-            id
-            name
-            attributes {
-              attribute {
-                id
-                name
-              }
-              value {
-                id
-                name
-                value: name
-              }
-            }
+            ...ProductVariantFields
           }
         }
       }
@@ -70,16 +82,29 @@ export const GET_PRODUCT_DETAILS = gql`
 
 export const GET_PRODUCT_VARIANT_DETAILS = gql`
   ${BASIC_PRODUCT_FRAGMENT}
+  ${PRODUCT_VARIANT_FRAGMENT}
   query ProductVariantDetails($id: ID!) {
     productVariant(id: $id) {
-      id
-      stockQuantity
-      costPrice {
-        currency
-        amount
-      }
+      ...ProductVariantFields
       product {
         ...BasicProductFields
+      }
+    }
+  }
+`;
+
+export const GET_PRODUCTS_VARIANTS = gql`
+  ${BASIC_PRODUCT_FRAGMENT}
+  ${PRODUCT_VARIANT_FRAGMENT}
+  query VariantList($ids: [ID!]) {
+    productVariants(ids: $ids) {
+      edges {
+        node {
+          ...ProductVariantFields
+          product {
+            ...BasicProductFields
+          }
+        }
       }
     }
   }
