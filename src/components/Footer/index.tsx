@@ -9,7 +9,7 @@ import { GET_COLLECTIONS } from "./queries";
 import "./scss/index.scss";
 
 const Footer: React.SFC = () => (
-  <div className="footer">
+  <div className="footer" id="footer">
     <div className="footer__newsletter">
       <div className="container">
         <h4>Subscribe to our newsletter to recieve new information</h4>
