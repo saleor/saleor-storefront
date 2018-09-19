@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { PriceInterface, ProductVariantInterface } from "../../core/types";
+
 export interface CartLineInterface {
   variantId: string;
   quantity: number;
@@ -12,6 +14,8 @@ export interface CartInterface {
   changeQuantity(variantId: string, quantity: number);
   clear(): void;
   getQuantity(): number;
+  getVariantQuantity(variantId: string): number;
+  getTotal(variants: ProductVariantInterface[]): PriceInterface;
 }
 
 /* tslint:disable:no-empty */
@@ -20,6 +24,8 @@ export const CartContext = React.createContext<CartInterface>({
   changeQuantity: (variantId, quantity) => {},
   clear: () => {},
   getQuantity: () => 0,
+  getTotal: variants => ({ currency: "USD", amount: 0 }),
+  getVariantQuantity: variantId => 0,
   lines: [],
   remove: variantId => {}
 });

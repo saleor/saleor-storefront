@@ -1,9 +1,9 @@
 import * as React from "react";
-import { ApolloConsumer, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
-import { getCartTotal, getVariantQuantity } from "../../core/cart";
+import { PriceInterface, ProductVariantInterface } from "../../core/types";
 import { priceToString } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
@@ -29,6 +29,8 @@ export class CartProvider extends React.Component<
       changeQuantity: this.changeQuantity,
       clear: this.clear,
       getQuantity: this.getQuantity,
+      getTotal: this.getTotal,
+      getVariantQuantity: this.getVariantQuantity,
       lines,
       remove: this.remove
     };
@@ -58,6 +60,27 @@ export class CartProvider extends React.Component<
 
   getQuantity = () =>
     this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
+
+  getTotal = (productsVariants: ProductVariantInterface[]): PriceInterface => {
+    const quantityMapping = this.state.lines.reduce((obj, line) => {
+      obj[line.variantId] = line.quantity;
+      return obj;
+    }, {});
+    const amount = productsVariants.reduce(
+      (sum, variant) =>
+        sum + variant.price.amount * quantityMapping[variant.id],
+      0
+    );
+    const { currency } = productsVariants[0].price;
+    return { amount, currency };
+  };
+
+  getVariantQuantity = variantId => {
+    const line = this.state.lines.filter(
+      line => line.variantId === variantId
+    )[0];
+    return line.quantity;
+  };
 
   remove = variantId => this.changeQuantity(variantId, 0);
 
@@ -132,7 +155,7 @@ export const CartOverlay: React.SFC = () => (
                                     <span>{variant.name}</span>
                                     <span>
                                       Qty:
-                                      {getVariantQuantity(cart, variant.id)}
+                                      {cart.getVariantQuantity(variant.id)}
                                     </span>
                                   </span>
                                   <ReactSVG
@@ -148,9 +171,7 @@ export const CartOverlay: React.SFC = () => (
                             <div className="cart__footer__subtotoal">
                               <span>Subtotal</span>
                               <span>
-                                {priceToString(
-                                  getCartTotal(cart, productsVariants)
-                                )}
+                                {priceToString(cart.getTotal(productsVariants))}
                               </span>
                             </div>
                             <div className="cart__footer__button">
