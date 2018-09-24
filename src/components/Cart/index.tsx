@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer, Query } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
@@ -7,8 +7,8 @@ import { PriceInterface, ProductVariantInterface } from "../../core/types";
 import { priceToString } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
+import { GET_PRODUCTS_VARIANTS } from "../ProductPage/queries";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
-import { GET_VARIANTS } from "./queries";
 
 import "./scss/index.scss";
 
@@ -120,7 +120,7 @@ export const CartOverlay: React.SFC = () => (
                 </div>
                 {cart.lines.length ? (
                   <Query
-                    query={GET_VARIANTS}
+                    query={GET_PRODUCTS_VARIANTS}
                     variables={{
                       ids: cart.lines.map(line => line.variantId)
                     }}
