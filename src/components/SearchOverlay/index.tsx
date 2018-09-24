@@ -4,7 +4,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, TextField } from "..";
+import { Button, Loader, TextField } from "..";
 import { mediumScreen } from "../App/scss/variables.scss";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
@@ -68,7 +68,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                         >
                           {({ loading, error, data }) => {
                             if (loading) {
-                              return "Loading";
+                              return <Loader />;
                             }
                             if (error) {
                               return `Error!: ${error}`;

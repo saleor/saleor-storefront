@@ -2,7 +2,7 @@ import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 
-import { Button, Dropdown, ProductListItem, SelectField } from "..";
+import { Button, Dropdown, Loader, ProductListItem, SelectField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   CategoryAttributesInterface,
@@ -17,17 +17,19 @@ interface AttributesType {
   [x: string]: string[];
 }
 
-interface FiltersFormatted {
-  attributes: string[];
+interface FiltersType {
+  attributes: AttributesType;
   pageSize: number;
   sortBy: string;
 }
 
 interface ProductsListProps {
   attributes: CategoryAttributesInterface[];
+  filters: FiltersType;
   loading: boolean;
   products: CategoryProductInterface;
-  onFltersChange(filters: FiltersFormatted): void;
+  searchQuery?: string;
+  onFltersChange(filters: FiltersType): void;
 }
 
 interface ProductsListState {
@@ -42,14 +44,19 @@ class ProductsList extends React.Component<
 > {
   constructor(props) {
     super(props);
-    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE, sortBy: "" };
+    this.state = this.props.filters;
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      const filters = this.state;
-      const attributes = this.convertToAttributeScalar(filters.attributes);
-      this.props.onFltersChange({ ...filters, attributes });
+      this.props.onFltersChange(this.state);
+    }
+    if (prevProps.searchQuery !== this.props.searchQuery) {
+      this.setState({
+        attributes: {},
+        pageSize: PRODUCTS_PER_PAGE,
+        sortBy: ""
+      });
     }
   }
 
@@ -75,17 +82,14 @@ class ProductsList extends React.Component<
     });
   };
 
-  convertToAttributeScalar = (attributes: AttributesType) => {
-    const attributesArray = [];
-    Object.entries(attributes).forEach(([key, value]) => {
-      value.forEach(attribute =>
-        attributesArray.push(`${key.toLowerCase()}:${attribute.toLowerCase()}`)
-      );
-    });
-    return attributesArray;
-  };
-
   render() {
+    const filterOptions = [
+      { value: "price", label: "Price Low-High" },
+      { value: "-price", label: "Price High-Low" },
+      { value: "name", label: "Name Increasing" },
+      { value: "-name", label: "Name Decreasing" }
+    ];
+
     return (
       <div className="products-list">
         <div className="products-list__filters">
@@ -97,6 +101,14 @@ class ProductsList extends React.Component<
                   className="products-list__filters__grid__filter"
                 >
                   <SelectField
+                    value={
+                      this.state.attributes[item.name]
+                        ? this.state.attributes[item.name].map(attribute => ({
+                            label: attribute,
+                            value: attribute
+                          }))
+                        : []
+                    }
                     placeholder={item.name}
                     options={item.values.map(value => ({
                       label: value.name,
@@ -113,8 +125,8 @@ class ProductsList extends React.Component<
         <div className="products-list__products container">
           {this.props.loading &&
           Object.keys(this.state.attributes).length > 0 &&
-          this.state.pageSize > PRODUCTS_PER_PAGE ? (
-            <p>Loading...</p>
+          this.state.pageSize === PRODUCTS_PER_PAGE ? (
+            <Loader full />
           ) : (
             <>
               <div className="products-list__products__subheader">
@@ -124,12 +136,12 @@ class ProductsList extends React.Component<
                 <span className="products-list__products__subheader__sort">
                   <span>Sort by:</span>{" "}
                   <Dropdown
-                    options={[
-                      { value: "price", label: "Price Low-High" },
-                      { value: "-price", label: "Price High-Low" },
-                      { value: "name", label: "Name Increasing" },
-                      { value: "-name", label: "Name Decreasing" }
-                    ]}
+                    options={filterOptions}
+                    value={
+                      filterOptions.find(
+                        option => option.value === this.state.sortBy
+                      ) || ""
+                    }
                     onChange={e => this.setOrdering(e.value)}
                   />
                 </span>
@@ -149,7 +161,7 @@ class ProductsList extends React.Component<
               <div className="products-list__products__load-more">
                 {this.props.loading &&
                 this.state.pageSize > PRODUCTS_PER_PAGE ? (
-                  <p>Loading...</p>
+                  <Loader />
                 ) : this.state.pageSize >=
                 this.props.products.totalCount ? null : (
                   <Media query={{ maxWidth: smallScreen }}>

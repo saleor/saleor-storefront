@@ -13,13 +13,17 @@ import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 import "./scss/index.scss";
 
+interface AttributesType {
+  [x: string]: string[];
+}
+
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
-  { attributes: string[]; pageSize: number; sortBy: string }
+  { attributes: AttributesType; pageSize: number; sortBy: string }
 > {
   constructor(props) {
     super(props);
-    this.state = { attributes: [], pageSize: PRODUCTS_PER_PAGE, sortBy: "" };
+    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE, sortBy: "" };
   }
 
   onFltersChange = filters => {
@@ -51,12 +55,25 @@ class CategoryPage extends React.Component<
     return breadcrumbs;
   };
 
+  convertToAttributeScalar = (attributes: AttributesType) => {
+    const attributesArray = [];
+    Object.entries(attributes).forEach(([key, value]) => {
+      value.forEach(attribute =>
+        attributesArray.push(
+          `${key.toLowerCase().replace(" ", "-")}:${attribute.toLowerCase()}`
+        )
+      );
+    });
+    return attributesArray;
+  };
+
   render() {
     return (
       <Query
         query={GET_CATEGORY_AND_ATTRIBUTES}
         variables={{
           ...this.state,
+          attributes: this.convertToAttributeScalar(this.state.attributes),
           id: getGraphqlIdFromDBId(this.props.match.params.id, "Category")
         }}
       >
@@ -90,7 +107,8 @@ class CategoryPage extends React.Component<
               </div>
               <ProductsList
                 products={data.category.products}
-                loading
+                loading={loading}
+                filters={this.state}
                 attributes={data.attributes.edges.map(edge => edge.node)}
                 onFltersChange={this.onFltersChange}
               />
