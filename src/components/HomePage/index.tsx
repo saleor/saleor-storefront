@@ -2,7 +2,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
-import { Button, Carousel, ProductListItem } from "..";
+import { Button, Carousel, Loader, ProductListItem } from "..";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 
@@ -13,7 +13,7 @@ const HomePage: React.SFC = () => (
     <Query query={GET_PRODUCTS_AND_CATEGORIES}>
       {({ loading, error, data }) => {
         if (loading) {
-          return "Loading";
+          return <Loader full />;
         }
         if (error) {
           return `Error!: ${error}`;

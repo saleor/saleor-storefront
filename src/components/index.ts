@@ -22,3 +22,5 @@ export { default as Carousel } from "./Carousel";
 export { default as ProductDescription } from "./ProductDescription";
 export { default as UserProvider } from "./User";
 export { default as Form } from "./Form";
+export { default as ProductsList } from "./ProductsList";
+export { default as Loader } from "./Loader";

@@ -16,7 +16,7 @@ import "./scss/index.scss";
 const MainMenu: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => (
-      <nav className="main-menu">
+      <nav className="main-menu" id="header">
         <div className="main-menu__left">
           <ul>
             <li

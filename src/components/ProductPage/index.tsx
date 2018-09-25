@@ -3,7 +3,13 @@ import { Query } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
-import { Breadcrumbs, Carousel, ProductDescription, ProductListItem } from "..";
+import {
+  Breadcrumbs,
+  Carousel,
+  Loader,
+  ProductDescription,
+  ProductListItem
+} from "..";
 import {
   getDBIdFromGraphqlId,
   getGraphqlIdFromDBId,
@@ -58,7 +64,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
       >
         {({ loading, error, data: { product } }) => {
           if (loading) {
-            return "Loading";
+            return <Loader full />;
           }
           if (error) {
             return `Error!: ${error}`;
