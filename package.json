@@ -16,7 +16,6 @@
     "eslint-plugin-prettier": "^2.6.2",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
-    "history": "^4.7.2",
     "js-base64": "^2.4.8",
     "nuka-carousel": "^4.3.9",
     "react": "^16.4.1",
