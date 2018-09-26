@@ -6,6 +6,7 @@ import ReactSVG from "react-svg";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
+import { UserContext } from "../User/context";
 import { GET_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
@@ -42,12 +43,18 @@ const NavigationOverlay: React.SFC = () => (
                     ));
                   }}
                 </Query>
-                <li className="side-nav__icon-item">
-                  <a href="/">
-                    <ReactSVG path="../../images/user.svg" />
-                    My account
-                  </a>
-                </li>
+                <UserContext.Consumer>
+                  {({ user }) =>
+                    user ? (
+                      <li className="side-nav__icon-item">
+                        <a href="/">
+                          <ReactSVG path="../../images/login-icon.svg" />
+                          My account
+                        </a>
+                      </li>
+                    ) : null
+                  }
+                </UserContext.Consumer>
               </ul>
             </div>
           </Overlay>

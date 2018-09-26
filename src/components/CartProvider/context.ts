@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createContext } from "react";
 
 import { PriceInterface, ProductVariantInterface } from "../../core/types";
 
@@ -19,7 +19,7 @@ export interface CartInterface {
 }
 
 /* tslint:disable:no-empty */
-export const CartContext = React.createContext<CartInterface>({
+export const CartContext = createContext<CartInterface>({
   add: (variantId, quantity = 1) => {},
   changeQuantity: (variantId, quantity) => {},
   clear: () => {},
