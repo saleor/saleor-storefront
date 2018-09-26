@@ -2,11 +2,11 @@ import * as React from "react";
 
 import "./scss/index.scss";
 
-interface ButtonType extends React.HTMLProps<HTMLButtonElement> {
+export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   secondary?: boolean;
 }
 
-const Button: React.SFC<ButtonType> = ({
+const Button: React.SFC<ButtonProps> = ({
   children,
   secondary,
   ...otherProps
