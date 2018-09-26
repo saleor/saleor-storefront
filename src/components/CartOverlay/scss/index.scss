@@ -4,35 +4,6 @@
   width: 25rem;
   max-width: 100vw;
 
-  &__header {
-    text-transform: uppercase;
-    font-weight: $bold-font-weight;
-    border-bottom: 1px solid $gray-light;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    p {
-      width: 100%;
-      padding: $spacer $spacer / 2;
-
-      span {
-        color: $gray;
-      }
-    }
-
-    &__cart-icon {
-      padding: $spacer $spacer / 2 $spacer $spacer;
-      svg * {
-        fill: $turquoise;
-      }
-    }
-
-    &__close-icon {
-      padding: $spacer $spacer $spacer $spacer / 2;
-    }
-  }
-
   &__list {
     padding: 0 $spacer;
     height: calc(100vh - 13rem);

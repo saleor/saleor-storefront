@@ -2,8 +2,14 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 
 import { getAuthToken, removeAuthToken, setAuthToken } from "../../core/auth";
+import { OverlayType } from "../Overlay/context";
 import { UserContext, UserContextInterface } from "./context";
-import { TOKEN_AUTH_MUTATION, TOKEN_VERIFICATION_MUTATION } from "./queries";
+import {
+  CUSTOMER_REGISTER_MUTATION,
+  PASSWORD_RESET_MUTATION,
+  TOKEN_AUTH_MUTATION,
+  TOKEN_VERIFICATION_MUTATION
+} from "./queries";
 
 export default class UserProvider extends React.Component<
   {
@@ -22,10 +28,12 @@ export default class UserProvider extends React.Component<
     const token = getAuthToken();
     this.state = {
       authenticate: this.authenticate,
+      createCustomer: this.createCustomer,
       errors: null,
       loading: false,
       login: this.login,
       logout: this.logout,
+      resetPassword: this.resetPassword,
       token,
       user: null
     };
@@ -38,7 +46,7 @@ export default class UserProvider extends React.Component<
     }
   };
 
-  login = async (email, password) => {
+  login = async (email, password, showNotification) => {
     const { apolloClient } = this.props;
     this.setState({ loading: true });
     const response = await apolloClient.mutate({
@@ -60,11 +68,53 @@ export default class UserProvider extends React.Component<
         token: data.token,
         user: data.user
       });
+      showNotification(OverlayType.message, null, {
+        title: "You are logged in"
+      });
     }
   };
 
   logout = () => {
     this.setState({ token: null, user: null });
+  };
+
+  resetPassword = async (email, showNotification) => {
+    const { apolloClient } = this.props;
+    this.setState({ loading: true });
+    const response = await apolloClient.mutate({
+      mutation: PASSWORD_RESET_MUTATION,
+      variables: { email }
+    });
+    showNotification(OverlayType.message, null, {
+      title: "Reset link is sent"
+    });
+  };
+
+  createCustomer = async (email, password, showNotification) => {
+    const { apolloClient } = this.props;
+    this.setState({ loading: true });
+    const response = await apolloClient.mutate({
+      mutation: CUSTOMER_REGISTER_MUTATION,
+      variables: { email, password }
+    });
+
+    const data = response.data.customerRegister;
+
+    if (data.errors.length) {
+      this.setState({
+        errors: data.errors,
+        loading: false,
+        user: null
+      });
+    } else {
+      showNotification(OverlayType.message, null, {
+        title: "You are reggistered"
+      });
+      this.setState({
+        errors: null,
+        loading: false
+      });
+    }
   };
 
   authenticate = async token => {

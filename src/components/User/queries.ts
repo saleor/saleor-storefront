@@ -36,3 +36,25 @@ export const TOKEN_VERIFICATION_MUTATION = gql`
     }
   }
 `;
+
+export const CUSTOMER_REGISTER_MUTATION = gql`
+  mutation RegisterCutomer($email: String!, $password: String!) {
+    customerRegister(input: { email: $email, password: $password }) {
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const PASSWORD_RESET_MUTATION = gql`
+  mutation ResetPassword($email: String!) {
+    customerPasswordReset(input: { email: $email }) {
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;

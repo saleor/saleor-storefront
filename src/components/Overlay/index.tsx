@@ -3,6 +3,7 @@ import * as React from "react";
 import "./scss/index.scss";
 
 import {
+  ContextInterface,
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
@@ -16,6 +17,7 @@ export class OverlayProvider extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
+      context: null,
       hide: this.hide,
       show: this.show,
       theme: null,
@@ -23,9 +25,13 @@ export class OverlayProvider extends React.Component<
     };
   }
 
-  show = (type: OverlayType, theme?: OverlayTheme) => {
-    this.setState({ type, theme });
-    document.body.style.overflow = "hidden";
+  show = (
+    type: OverlayType,
+    theme?: OverlayTheme,
+    context?: ContextInterface
+  ) => {
+    this.setState({ type, theme, context });
+    document.body.style.overflow = type !== OverlayType.message ? "hidden" : "";
   };
 
   hide = () => {

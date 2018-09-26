@@ -21,10 +21,10 @@ export const CartOverlay: React.SFC = () => (
           overlay.type === OverlayType.cart ? (
             <Overlay context={overlay}>
               <div className="cart">
-                <div className="cart__header">
+                <div className="overlay__header">
                   <ReactSVG
                     path="../../images/cart.svg"
-                    className="cart__header__cart-icon"
+                    className="overlay__header__cart-icon"
                   />
                   <p>
                     My bag, <span>{cart.lines.length || 0} items</span>
@@ -32,7 +32,7 @@ export const CartOverlay: React.SFC = () => (
                   <ReactSVG
                     path="../../images/x.svg"
                     onClick={() => overlay.hide()}
-                    className="cart__header__close-icon"
+                    className="overlay__header__close-icon"
                   />
                 </div>
                 {cart.lines.length ? (

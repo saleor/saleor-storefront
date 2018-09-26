@@ -49,4 +49,33 @@
     height: 100%;
     animation: sidenavRightOpen 0.3s;
   }
+
+  &__header {
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+    border-bottom: 1px solid $gray-light;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      width: 100%;
+      padding: $spacer;
+
+      span {
+        color: $gray;
+      }
+    }
+
+    &__close-icon {
+      padding: $spacer $spacer $spacer $spacer / 2;
+    }
+
+    &__cart-icon {
+      padding: $spacer $spacer / 2 $spacer $spacer;
+      svg * {
+        fill: $turquoise;
+      }
+    }
+  }
 }
