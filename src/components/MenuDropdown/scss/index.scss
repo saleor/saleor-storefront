@@ -1,0 +1,22 @@
+@import "../../App/scss/variables.scss";
+
+.menu-dropdown {
+  position: relative;
+
+  &__body {
+    display: none;
+    position: absolute;
+    box-shadow: $message-shadow;
+    background-color: $white;
+    padding: $spacer;
+    width: 8rem;
+
+    &--visible {
+      display: block;
+    }
+
+    ul {
+      display: block;
+    }
+  }
+}

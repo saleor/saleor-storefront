@@ -68,14 +68,21 @@ export default class UserProvider extends React.Component<
         token: data.token,
         user: data.user
       });
-      showNotification(OverlayType.message, null, {
-        title: "You are logged in"
-      });
+      if (showNotification) {
+        showNotification(OverlayType.message, null, {
+          title: "You are logged in"
+        });
+      }
     }
   };
 
-  logout = () => {
+  logout = showNotification => {
     this.setState({ token: null, user: null });
+    if (showNotification) {
+      showNotification(OverlayType.message, null, {
+        title: "You are logged out"
+      });
+    }
   };
 
   resetPassword = async (email, showNotification) => {
@@ -85,9 +92,11 @@ export default class UserProvider extends React.Component<
       mutation: PASSWORD_RESET_MUTATION,
       variables: { email }
     });
-    showNotification(OverlayType.message, null, {
-      title: "Reset link is sent"
-    });
+    if (showNotification) {
+      showNotification(OverlayType.message, null, {
+        title: "Reset link is sent"
+      });
+    }
   };
 
   createCustomer = async (email, password, showNotification) => {
@@ -107,13 +116,15 @@ export default class UserProvider extends React.Component<
         user: null
       });
     } else {
-      showNotification(OverlayType.message, null, {
-        title: "You are reggistered"
-      });
       this.setState({
         errors: null,
         loading: false
       });
+      if (showNotification) {
+        showNotification(OverlayType.message, null, {
+          title: "You are reggistered"
+        });
+      }
     }
   };
 

@@ -60,77 +60,64 @@ export class LoginOverlay extends React.Component<
                 </div>
                 <div className="login__content">
                   <UserContext.Consumer>
-                    {({
-                      user,
-                      loading,
-                      login,
-                      createCustomer,
-                      logout,
-                      errors
-                    }) =>
-                      user ? (
-                        <a onClick={logout} href="#">
-                          Logout
-                        </a>
-                      ) : (
-                        <Form
-                          errors={errors}
-                          onSubmit={(event, data) => {
-                            this.state.active === "register"
-                              ? createCustomer(
-                                  data.email,
-                                  data.password,
-                                  overlay.show
-                                )
-                              : login(data.email, data.password, overlay.show);
-                            event.preventDefault();
-                          }}
-                        >
-                          <TextField
-                            name="email"
-                            label="Email Address"
-                            type="email"
-                            required
-                          />
-                          <TextField
-                            name="password"
-                            label="Password"
-                            type="password"
-                            required
-                          />
-                          {this.state.active === "register" ? (
+                    {({ loading, login, createCustomer, errors }) => (
+                      <Form
+                        errors={errors}
+                        onSubmit={(event, data) => {
+                          this.state.active === "register"
+                            ? createCustomer(
+                                data.email,
+                                data.password,
+                                overlay.show
+                              )
+                            : login(data.email, data.password, overlay.show);
+                          event.preventDefault();
+                        }}
+                      >
+                        <TextField
+                          name="email"
+                          label="Email Address"
+                          type="email"
+                          required
+                        />
+                        <TextField
+                          name="password"
+                          label="Password"
+                          type="password"
+                          required
+                        />
+                        {this.state.active === "register" ? (
+                          <div className="login__content__button">
+                            <Button type="submit">
+                              {loading ? "Loading" : "Register"}
+                            </Button>
+                          </div>
+                        ) : (
+                          <>
                             <div className="login__content__button">
                               <Button type="submit">
-                                {loading ? "Loading" : "Register"}
+                                {loading ? "Loading" : "Sign in"}
                               </Button>
                             </div>
-                          ) : (
-                            <>
-                              <div className="login__content__button">
-                                <Button type="submit">
-                                  {loading ? "Loading" : "Sign in"}
-                                </Button>
-                              </div>
-                              <div className="login__content__password-reminder">
-                                <p>
-                                  Have you forgotten your password?&nbsp;
-                                  <span
-                                    onClick={() =>
-                                      overlay.show(
-                                        OverlayType.password,
-                                        OverlayTheme.right
-                                      )
-                                    }
-                                  >
-                                    Click Here
-                                  </span>
-                                </p>
-                              </div>
-                            </>
-                          )}
-                        </Form>
-                      )
-                    }
+                            <div className="login__content__password-reminder">
+                              <p>
+                                Have you forgotten your password?&nbsp;
+                                <span
+                                  onClick={() =>
+                                    overlay.show(
+                                      OverlayType.password,
+                                      OverlayTheme.right
+                                    )
+                                  }
+                                >
+                                  Click Here
+                                </span>
+                              </p>
+                            </div>
+                          </>
+                        )}
+                      </Form>
+                    )}
                   </UserContext.Consumer>
                 </div>
               </div>

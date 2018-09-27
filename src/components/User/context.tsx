@@ -18,7 +18,7 @@ export interface UserContextInterface {
     password: string,
     showNotification?: ShowOverlayType
   ): void;
-  logout(): void;
+  logout(showNotification?: ShowOverlayType): void;
   login(
     email: string,
     password: string,

@@ -26,3 +26,4 @@ export { default as UserProvider } from "./User";
 export { default as Form } from "./Form";
 export { default as ProductsList } from "./ProductsList";
 export { default as Loader } from "./Loader";
+export { default as MenuDropdown } from "./MenuDropdown";
