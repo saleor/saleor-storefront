@@ -1,5 +1,4 @@
 export { default as AccountPage } from "./AccountPage";
-export { default as AddressForm } from "./AddressForm";
 export { default as App } from "./App";
 export { default as CartPage } from "./CartPage";
 export { default as CategoryPage } from "./CategoryPage";

@@ -79,11 +79,20 @@ const MainMenu: React.SFC = () => (
               query={{ minWidth: smallScreen }}
               render={() => (
                 <UserContext.Consumer>
-                  {({ user }) =>
+                  {({ logout, user }) =>
                     user ? (
-                      <li className="main-menu__icon">
-                        <ReactSVG path="../../images/profile-icon.svg" />
-                      </li>
+                      <MenuDropdown
+                        head={
+                          <li className="main-menu__icon main-menu__user--active">
+                            <ReactSVG path="../../images/user.svg" />
+                          </li>
+                        }
+                        content={
+                          <ul className="main-menu__dropdown">
+                            <li onClick={() => logout()}>Log Out</li>
+                          </ul>
+                        }
+                      />
                     ) : (
                       <li
                         className="main-menu__icon"
