@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
@@ -7,8 +8,38 @@ import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import TextField from "../TextField";
 import { UserContext } from "../User/context";
+import { CUSTOMER_REGISTER_MUTATION } from "./queries";
 
 import "./scss/index.scss";
+
+const RegisterForm: React.SFC = () => (
+  <Mutation mutation={CUSTOMER_REGISTER_MUTATION}>
+    {(registerCustomer, { loading, data }) => {
+      return (
+        <Form
+          errors={data && data.customerRegister && data.customerRegister.errors}
+          onSubmit={(event, data) => {
+            registerCustomer({
+              variables: { email: data.email, password: data.password }
+            });
+            event.preventDefault();
+          }}
+        >
+          <TextField name="email" label="Email Address" type="email" required />
+          <TextField
+            name="password"
+            label="Password"
+            type="password"
+            required
+          />
+          <div className="login__content__button">
+            <Button type="submit">{loading ? "Loading" : "Register"}</Button>
+          </div>
+        </Form>
+      );
+    }}
+  </Mutation>
+);
 
 export class LoginOverlay extends React.Component<
   {},
@@ -60,64 +91,52 @@ export class LoginOverlay extends React.Component<
                 </div>
                 <div className="login__content">
                   <UserContext.Consumer>
-                    {({ loading, login, createCustomer, errors }) => (
-                      <Form
-                        errors={errors}
-                        onSubmit={(event, data) => {
-                          this.state.active === "register"
-                            ? createCustomer(
-                                data.email,
-                                data.password,
-                                overlay.show
-                              )
-                            : login(data.email, data.password, overlay.show);
-                          event.preventDefault();
-                        }}
-                      >
-                        <TextField
-                          name="email"
-                          label="Email Address"
-                          type="email"
-                          required
-                        />
-                        <TextField
-                          name="password"
-                          label="Password"
-                          type="password"
-                          required
-                        />
-                        {this.state.active === "register" ? (
+                    {({ loading, login, errors }) =>
+                      this.state.active === "login" ? (
+                        <Form
+                          errors={errors}
+                          onSubmit={(event, data) => {
+                            login(data.email, data.password);
+                            event.preventDefault();
+                          }}
+                        >
+                          <TextField
+                            name="email"
+                            label="Email Address"
+                            type="email"
+                            required
+                          />
+                          <TextField
+                            name="password"
+                            label="Password"
+                            type="password"
+                            required
+                          />
                           <div className="login__content__button">
                             <Button type="submit">
-                              {loading ? "Loading" : "Register"}
+                              {loading ? "Loading" : "Sign in"}
                             </Button>
                           </div>
-                        ) : (
-                          <>
-                            <div className="login__content__button">
-                              <Button type="submit">
-                                {loading ? "Loading" : "Sign in"}
-                              </Button>
-                            </div>
-                            <div className="login__content__password-reminder">
-                              <p>
-                                Have you forgotten your password?&nbsp;
-                                <span
-                                  onClick={() =>
-                                    overlay.show(
-                                      OverlayType.password,
-                                      OverlayTheme.right
-                                    )
-                                  }
-                                >
-                                  Click Here
-                                </span>
-                              </p>
-                            </div>
-                          </>
-                        )}
-                      </Form>
-                    )}
+                          <div className="login__content__password-reminder">
+                            <p>
+                              Have you forgotten your password?&nbsp;
+                              <span
+                                onClick={() =>
+                                  overlay.show(
+                                    OverlayType.password,
+                                    OverlayTheme.right
+                                  )
+                                }
+                              >
+                                Click Here
+                              </span>
+                            </p>
+                          </div>
+                        </Form>
+                      ) : (
+                        <RegisterForm />
+                      )
+                    }
                   </UserContext.Consumer>
                 </div>
               </div>

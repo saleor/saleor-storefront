@@ -7,6 +7,8 @@ import * as React from "react";
 import { render } from "react-dom";
 
 import { App, UserProvider } from "./components";
+import { OverlayProvider } from "./components/Overlay";
+import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
@@ -36,8 +38,27 @@ persistCache({
 const apolloClient = new ApolloClient({ cache, link });
 
 render(
-  <UserProviderWithTokenHandler apolloClient={apolloClient} refreshUser>
-    <App apolloClient={apolloClient} />
-  </UserProviderWithTokenHandler>,
+  <OverlayProvider>
+    <OverlayContext.Consumer>
+      {({ show }) => (
+        <UserProviderWithTokenHandler
+          apolloClient={apolloClient}
+          onUserLogin={() =>
+            show(OverlayType.message, null, {
+              title: "You are logged in"
+            })
+          }
+          onUserLogout={() =>
+            show(OverlayType.message, null, {
+              title: "You are logged out"
+            })
+          }
+          refreshUser
+        >
+          <App apolloClient={apolloClient} />
+        </UserProviderWithTokenHandler>
+      )}
+    </OverlayContext.Consumer>
+  </OverlayProvider>,
   document.getElementById("root")
 );

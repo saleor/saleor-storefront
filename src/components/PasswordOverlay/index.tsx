@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
@@ -6,7 +7,7 @@ import Form from "../Form";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import TextField from "../TextField";
-import { UserContext } from "../User/context";
+import { PASSWORD_RESET_MUTATION } from "./queries";
 
 import "./scss/index.scss";
 
@@ -25,18 +26,24 @@ export const PasswordOverlay: React.SFC = () => (
               />
             </div>
             <div className="password-reset__content">
-              <UserContext.Consumer>
-                {({ loading, resetPassword, errors }) => (
-                  <>
-                    <p>
-                      Please provide us your email address so we can share you a
-                      link to reset your password
-                    </p>
+              <p>
+                Please provide us your email address so we can share you a link
+                to reset your password
+              </p>
+              <Mutation mutation={PASSWORD_RESET_MUTATION}>
+                {(passwordReset, { loading, data }) => {
+                  return (
                     <Form
-                      errors={errors}
+                      errors={
+                        data &&
+                        data.customerPasswordReset &&
+                        data.customerPasswordReset.error
+                      }
                       onSubmit={(event, data) => {
-                        resetPassword(data.email, overlay.show);
                         event.preventDefault();
+                        passwordReset({
+                          variables: { email: data.email }
+                        });
                       }}
                     >
                       <TextField
@@ -51,9 +58,9 @@ export const PasswordOverlay: React.SFC = () => (
                         </Button>
                       </div>
                     </Form>
-                  </>
-                )}
-              </UserContext.Consumer>
+                  );
+                }}
+              </Mutation>
             </div>
           </div>
         </Overlay>
