@@ -32,6 +32,9 @@ export class OverlayProvider extends React.Component<
   ) => {
     this.setState({ type, theme, context });
     document.body.style.overflow = type !== OverlayType.message ? "hidden" : "";
+    if (type === OverlayType.message) {
+      setTimeout(() => this.hide(), 1000);
+    }
   };
 
   hide = () => {
