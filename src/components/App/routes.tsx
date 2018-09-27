@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import {
   AccountPage,
+  CartPage,
   CategoryPage,
   CheckoutPage,
   ContentPage,
@@ -26,7 +27,8 @@ const Routes: React.SFC = () => (
     />
     <Route path="/account/" component={AccountPage} />
     <Route path="/wish-list/" component={WishListPage} />
-    <Route path="/checkout/:id/" component={CheckoutPage} />
+    <Route path="/cart/:token/" component={CartPage} />
+    <Route path="/checkout/:token/" component={CheckoutPage} />
     <Route component={ContentPage} />
   </Switch>
 );

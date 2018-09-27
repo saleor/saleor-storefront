@@ -4,7 +4,8 @@ import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 
 import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "..";
-import { CartOverlay, CartProvider } from "../Cart";
+import { CartOverlay } from "../CartOverlay";
+import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
 import { OverlayProvider } from "../Overlay";
 import { default as Routes } from "./routes";

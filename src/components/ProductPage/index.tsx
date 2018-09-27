@@ -16,7 +16,7 @@ import {
   slugify
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
-import { CartContext } from "../Cart/context";
+import { CartContext } from "../CartProvider/context";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
 import "./scss/index.scss";
