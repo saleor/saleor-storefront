@@ -33,7 +33,9 @@ const RegisterForm: React.SFC = () => (
             required
           />
           <div className="login__content__button">
-            <Button type="submit">{loading ? "Loading" : "Register"}</Button>
+            <Button type="submit" {...loading && { disabled: true }}>
+              {loading ? "Loading" : "Register"}
+            </Button>
           </div>
         </Form>
       );
@@ -113,7 +115,10 @@ export class LoginOverlay extends React.Component<
                             required
                           />
                           <div className="login__content__button">
-                            <Button type="submit">
+                            <Button
+                              type="submit"
+                              {...loading && { disabled: true }}
+                            >
                               {loading ? "Loading" : "Sign in"}
                             </Button>
                           </div>

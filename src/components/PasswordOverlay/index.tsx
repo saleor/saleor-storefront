@@ -53,7 +53,10 @@ export const PasswordOverlay: React.SFC = () => (
                         required
                       />
                       <div className="password-reset__content__button">
-                        <Button type="submit">
+                        <Button
+                          type="submit"
+                          {...loading && { disabled: true }}
+                        >
                           {loading ? "Loading" : "Reset password"}
                         </Button>
                       </div>
