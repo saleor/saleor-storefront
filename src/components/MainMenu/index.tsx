@@ -4,6 +4,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { MenuDropdown } from "..";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
@@ -78,11 +79,20 @@ const MainMenu: React.SFC = () => (
               query={{ minWidth: smallScreen }}
               render={() => (
                 <UserContext.Consumer>
-                  {({ user }) =>
+                  {({ logout, user }) =>
                     user ? (
-                      <li className="main-menu__icon">
-                        <ReactSVG path="../../images/profile-icon.svg" />
-                      </li>
+                      <MenuDropdown
+                        head={
+                          <li className="main-menu__icon main-menu__user--active">
+                            <ReactSVG path="../../images/user.svg" />
+                          </li>
+                        }
+                        content={
+                          <ul className="main-menu__dropdown">
+                            <li onClick={() => logout()}>Log Out</li>
+                          </ul>
+                        }
+                      />
                     ) : (
                       <li
                         className="main-menu__icon"
@@ -93,7 +103,7 @@ const MainMenu: React.SFC = () => (
                           )
                         }
                       >
-                        <ReactSVG path="../../images/login-icon.svg" />
+                        <ReactSVG path="../../images/user.svg" />
                       </li>
                     )
                   }

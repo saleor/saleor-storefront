@@ -10,6 +10,8 @@ export default class UserProvider extends React.Component<
     children: any;
     refreshUser: boolean;
     apolloClient: ApolloClient<any>;
+    onUserLogin: () => void;
+    onUserLogout: () => void;
     tokenExpirationHandler?(callback: () => void): void;
   },
   UserContextInterface
@@ -60,11 +62,13 @@ export default class UserProvider extends React.Component<
         token: data.token,
         user: data.user
       });
+      this.props.onUserLogin();
     }
   };
 
   logout = () => {
     this.setState({ token: null, user: null });
+    this.props.onUserLogout();
   };
 
   authenticate = async token => {

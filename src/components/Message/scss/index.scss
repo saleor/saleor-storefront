@@ -5,7 +5,7 @@
   padding: $message-padding;
   background-color: $message-background-color;
   box-shadow: $message-shadow;
-  position: absolute;
+  position: fixed;
   bottom: $message-right-position;
   right: $message-botttom-position;
   border-left: $message-border-left;

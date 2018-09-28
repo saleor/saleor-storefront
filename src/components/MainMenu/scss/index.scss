@@ -118,6 +118,30 @@
     }
   }
 
+  &__user {
+    &--active * {
+      fill: $turquoise;
+      fill-rule: inherit;
+    }
+  }
+
+  &__dropdown {
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+
+    li {
+      cursor: pointer;
+
+      &:hover {
+        color: $gray;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid $gray-light;
+      }
+    }
+  }
+
   &__search {
     padding: $spacer;
     cursor: pointer;
