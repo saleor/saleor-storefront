@@ -2,7 +2,14 @@ import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 
-import { Button, Dropdown, Loader, ProductListItem, SelectField } from "..";
+import {
+  Button,
+  Dropdown,
+  Loader,
+  PriceRangeFilter,
+  ProductListItem,
+  SelectField
+} from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   CategoryAttributesInterface,
@@ -21,6 +28,8 @@ interface FiltersType {
   attributes: AttributesType;
   pageSize: number;
   sortBy: string;
+  priceLte: number;
+  priceGte: number;
 }
 
 interface ProductsListProps {
@@ -34,6 +43,8 @@ interface ProductsListProps {
 
 interface ProductsListState {
   attributes: AttributesType;
+  priceLte: number;
+  priceGte: number;
   pageSize: number;
   sortBy: string;
 }
@@ -55,6 +66,8 @@ class ProductsList extends React.Component<
       this.setState({
         attributes: {},
         pageSize: PRODUCTS_PER_PAGE,
+        priceGte: null,
+        priceLte: null,
         sortBy: ""
       });
     }
@@ -68,6 +81,10 @@ class ProductsList extends React.Component<
       },
       pageSize: PRODUCTS_PER_PAGE
     });
+  };
+
+  savePriceFilter = (priceGte, priceLte) => {
+    this.setState({ priceGte, priceLte });
   };
 
   setOrdering = (value: string) => {
@@ -119,13 +136,17 @@ class ProductsList extends React.Component<
                   />
                 </div>
               ))}
+              <div className="products-list__filters__grid__filter">
+                <PriceRangeFilter changePriceFilter={this.savePriceFilter} />
+              </div>
             </div>
           </div>
         </div>
         <div className="products-list__products container">
-          {this.props.loading &&
-          Object.keys(this.state.attributes).length > 0 &&
-          this.state.pageSize === PRODUCTS_PER_PAGE ? (
+          {(this.state.priceGte && this.state.priceLte && this.props.loading) ||
+          (Object.keys(this.state.attributes).length > 0 &&
+            this.props.loading &&
+            this.state.pageSize === PRODUCTS_PER_PAGE) ? (
             <Loader full />
           ) : (
             <>

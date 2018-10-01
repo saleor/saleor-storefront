@@ -2,7 +2,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { Breadcrumbs, ProductsList } from "..";
+import { Breadcrumbs, Loader, ProductsList } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   getDBIdFromGraphqlId,
@@ -19,11 +19,23 @@ interface AttributesType {
 
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
-  { attributes: AttributesType; pageSize: number; sortBy: string }
+  {
+    attributes: AttributesType;
+    pageSize: number;
+    sortBy: string;
+    priceGte: number;
+    priceLte: number;
+  }
 > {
   constructor(props) {
     super(props);
-    this.state = { attributes: {}, pageSize: PRODUCTS_PER_PAGE, sortBy: "" };
+    this.state = {
+      attributes: {},
+      pageSize: PRODUCTS_PER_PAGE,
+      priceGte: null,
+      priceLte: null,
+      sortBy: ""
+    };
   }
 
   onFltersChange = filters => {
@@ -79,11 +91,15 @@ class CategoryPage extends React.Component<
       >
         {({ loading, error, data }) => {
           if (
-            loading &&
-            Object.keys(this.state.attributes).length === 0 &&
-            !this.state.sortBy
+            (loading &&
+              !this.state.priceGte &&
+              !this.state.priceLte &&
+              !this.state.sortBy) ||
+            (loading &&
+              Object.keys(this.state.attributes).length === 0 &&
+              !this.state.sortBy)
           ) {
-            return "Loading";
+            return <Loader />;
           }
           if (error) {
             return `Error!: ${error}`;
