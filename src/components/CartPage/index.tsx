@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import ReactSVG from "react-svg";
 
@@ -8,6 +9,7 @@ import { priceToString } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutPage/queries";
 
+import { smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
@@ -35,9 +37,15 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                 <thead>
                   <tr>
                     <th>Products</th>
-                    <th>Price</th>
+                    <Media query={{ minWidth: smallScreen }}>
+                      {matches => (matches ? <th>Price</th> : null)}
+                    </Media>
                     <th>Quantity</th>
-                    <th>Total Price</th>
+                    <th>
+                      <Media query={{ minWidth: smallScreen }}>
+                        {matches => (matches ? "Total Price" : "Price")}
+                      </Media>
+                    </th>
                     <th />
                   </tr>
                 </thead>
@@ -45,17 +53,28 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                   {lines.map(line => (
                     <tr key={line.id}>
                       <td>
-                        <img
-                          width={50}
-                          src={
-                            "http://localhost:8000" +
-                            line.variant.product.thumbnailUrl
-                          }
+                        <Media
+                          query={{ minWidth: smallScreen }}
+                          render={() => (
+                            <img
+                              width={50}
+                              src={
+                                "http://localhost:8000" +
+                                line.variant.product.thumbnailUrl
+                              }
+                            />
+                          )}
                         />
                         {line.variant.product.name}
                         {line.variant.name ? `(${line.variant.name})` : null}
                       </td>
-                      <td>{priceToString(line.variant.price)}</td>
+                      <Media query={{ minWidth: smallScreen }}>
+                        {matches =>
+                          matches ? (
+                            <td>{priceToString(line.variant.price)}</td>
+                          ) : null
+                        }
+                      </Media>
                       <td>{line.quantity}</td>
                       <td>
                         {priceToString({
@@ -80,7 +99,9 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                 <tfoot>
                   <tr>
                     <td className="cart__table__subtotal">Subtotal</td>
-                    <td />
+                    <Media query={{ minWidth: smallScreen }}>
+                      {matches => (matches ? <td /> : null)}
+                    </Media>
                     <td />
                     <td>
                       {checkout
