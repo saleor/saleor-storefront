@@ -16,7 +16,13 @@ interface AttributesType {
 
 class SearchPage extends React.Component<
   RouteComponentProps<{}>,
-  { attributes: AttributesType; pageSize: number; sortBy: string }
+  {
+    attributes: AttributesType;
+    pageSize: number;
+    sortBy: string;
+    priceGte: number;
+    priceLte: number;
+  }
 > {
   onFieldChangeDebounced: (value: string) => void;
   constructor(props) {
@@ -25,6 +31,8 @@ class SearchPage extends React.Component<
     this.state = {
       attributes: {},
       pageSize: PRODUCTS_PER_PAGE,
+      priceGte: null,
+      priceLte: null,
       sortBy: ""
     };
   }

@@ -6,6 +6,8 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
     $attributes: [AttributeScalar]
     $pageSize: Int
     $sortBy: String
+    $priceLte: Float
+    $priceGte: Float
   ) {
     category(id: $id) {
       id
@@ -21,7 +23,13 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
           }
         }
       }
-      products(attributes: $attributes, first: $pageSize, sortBy: $sortBy) {
+      products(
+        attributes: $attributes
+        first: $pageSize
+        sortBy: $sortBy
+        price_Lte: $priceLte
+        price_Gte: $priceGte
+      ) {
         totalCount
         edges {
           node {
