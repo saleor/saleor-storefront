@@ -1,0 +1,44 @@
+@import "../../App/scss/variables.scss";
+
+.cart {
+  &__header {
+    margin-top: $spacer * 3;
+  }
+
+  &__table {
+    width: 100%;
+    margin: $spacer * 3 0;
+    font-size: $small-font-size;
+
+    th {
+      color: $gray-dark;
+      text-align: left;
+      padding: $spacer 0;
+      font-weight: $bold-font-weight;
+    }
+
+    tr {
+      border-bottom: 1px solid $gray-light;
+    }
+
+    td {
+      padding: $spacer 0;
+      vertical-align: middle;
+
+      img {
+        vertical-align: middle;
+        margin-right: $spacer;
+      }
+    }
+
+    &__subtotal {
+      color: $gray-dark;
+      font-weight: $bold-font-weight;
+    }
+  }
+
+  &__checkout-action {
+    text-align: right;
+    margin-bottom: $spacer * 3;
+  }
+}
