@@ -1,0 +1,11 @@
+@import "../../App/scss/variables.scss";
+
+.password-reset-form {
+  .input {
+    margin: $spacer 0 $spacer * 2;
+  }
+
+  &__button {
+    text-align: center;
+  }
+}

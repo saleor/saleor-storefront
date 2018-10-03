@@ -1,12 +1,14 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
-import { ApolloLink, Observable } from "apollo-link";
+import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import * as React from "react";
+import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { App, UserProvider } from "./components";
+import { App, CheckoutApp, UserProvider } from "./components";
 import { OverlayProvider } from "./components/Overlay";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import {
@@ -55,7 +57,14 @@ render(
           }
           refreshUser
         >
-          <App apolloClient={apolloClient} />
+          <ApolloProvider client={apolloClient}>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/checkout" component={CheckoutApp} />
+                <Route component={App} />
+              </Switch>
+            </BrowserRouter>
+          </ApolloProvider>
         </UserProviderWithTokenHandler>
       )}
     </OverlayContext.Consumer>

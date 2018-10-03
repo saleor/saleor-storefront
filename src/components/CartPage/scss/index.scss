@@ -1,0 +1,19 @@
+@import "../../App/scss/variables.scss";
+
+.cart {
+  &__header {
+    margin-top: $spacer * 3;
+  }
+
+  &__table {
+    &__subtotal {
+      color: $gray-dark;
+      font-weight: $bold-font-weight;
+    }
+  }
+
+  &__checkout-action {
+    text-align: right;
+    margin: 0 $spacer $spacer * 3;
+  }
+}

@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import {
   AccountPage,
   CartPage,
   CategoryPage,
+  CheckoutLogin,
   CheckoutPage,
   ContentPage,
   HomePage,
@@ -14,7 +15,7 @@ import {
 } from "..";
 
 const Routes: React.SFC = () => (
-  <Switch>
+  <>
     <Route exact path="/" component={HomePage} />
     <Route path="/search/" component={SearchPage} />
     <Route
@@ -29,8 +30,8 @@ const Routes: React.SFC = () => (
     <Route path="/wish-list/" component={WishListPage} />
     <Route path="/cart/:token/" component={CartPage} />
     <Route path="/checkout/:token/" component={CheckoutPage} />
-    <Route component={ContentPage} />
-  </Switch>
+    <Route path="/login/" component={CheckoutLogin} />
+  </>
 );
 
 export default Routes;

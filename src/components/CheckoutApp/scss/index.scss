@@ -1,0 +1,9 @@
+@import "../../App/scss/variables.scss";
+
+.checkout {
+  &__header {
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+    font-size: $h3-font-size;
+  }
+}
