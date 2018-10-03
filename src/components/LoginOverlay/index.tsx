@@ -2,11 +2,9 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import ReactSVG from "react-svg";
 
-import { Button } from "..";
-import Form from "../Form";
+import { Button, Form, LoginForm, TextField } from "..";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
-import TextField from "../TextField";
 import { UserContext } from "../User/context";
 import { CUSTOMER_REGISTER_MUTATION } from "./queries";
 
@@ -95,33 +93,8 @@ export class LoginOverlay extends React.Component<
                   <UserContext.Consumer>
                     {({ loading, login, errors }) =>
                       this.state.active === "login" ? (
-                        <Form
-                          errors={errors}
-                          onSubmit={(event, data) => {
-                            login(data.email, data.password);
-                            event.preventDefault();
-                          }}
-                        >
-                          <TextField
-                            name="email"
-                            label="Email Address"
-                            type="email"
-                            required
-                          />
-                          <TextField
-                            name="password"
-                            label="Password"
-                            type="password"
-                            required
-                          />
-                          <div className="login__content__button">
-                            <Button
-                              type="submit"
-                              {...loading && { disabled: true }}
-                            >
-                              {loading ? "Loading" : "Sign in"}
-                            </Button>
-                          </div>
+                        <>
+                          <LoginForm />
                           <div className="login__content__password-reminder">
                             <p>
                               Have you forgotten your password?&nbsp;
@@ -137,7 +110,7 @@ export class LoginOverlay extends React.Component<
                               </span>
                             </p>
                           </div>
-                        </Form>
+                        </>
                       ) : (
                         <RegisterForm />
                       )
