@@ -4,9 +4,11 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import * as React from "react";
+import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { GlobalRouting, UserProvider } from "./components";
+import { App, CheckoutApp, UserProvider } from "./components";
 import { OverlayProvider } from "./components/Overlay";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import {
@@ -55,7 +57,14 @@ render(
           }
           refreshUser
         >
-          <GlobalRouting apolloClient={apolloClient} />
+          <ApolloProvider client={apolloClient}>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/checkout" component={CheckoutApp} />
+                <Route component={App} />
+              </Switch>
+            </BrowserRouter>
+          </ApolloProvider>
         </UserProviderWithTokenHandler>
       )}
     </OverlayContext.Consumer>
