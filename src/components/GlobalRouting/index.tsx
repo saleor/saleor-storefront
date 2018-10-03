@@ -1,9 +1,9 @@
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Routes from "./routes";
+import { App, CheckoutApp } from "..";
 
 interface GlobalRoutingProps {
   apolloClient: ApolloClient<any>;
@@ -12,7 +12,10 @@ interface GlobalRoutingProps {
 const GlobalRouting: React.SFC<GlobalRoutingProps> = ({ apolloClient }) => (
   <ApolloProvider client={apolloClient}>
     <BrowserRouter>
-      <Routes />
+      <Switch>
+        <Route path="/checkout" component={CheckoutApp} />
+        <Route component={App} />
+      </Switch>
     </BrowserRouter>
   </ApolloProvider>
 );

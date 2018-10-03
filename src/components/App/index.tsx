@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
 
 import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "..";
 import { CartOverlay } from "../CartOverlay";
@@ -13,23 +12,17 @@ import "./scss/index.scss";
 
 const App: React.SFC<{}> = () => (
   <CartProvider>
-    <BrowserRouter>
-      <React.Fragment>
-        <header>
-          <MainMenu />
-        </header>
-        <section>
-          <Routes />
-        </section>
-        <Footer />
-        <CartOverlay />
-        <LoginOverlay />
-        <PasswordOverlay />
-        <NavigationOverlay />
-        <NotificationOverlay />
-        <SearchOverlay />
-      </React.Fragment>
-    </BrowserRouter>
+    <header>
+      <MainMenu />
+    </header>
+    <Routes />
+    <Footer />
+    <CartOverlay />
+    <LoginOverlay />
+    <PasswordOverlay />
+    <NavigationOverlay />
+    <NotificationOverlay />
+    <SearchOverlay />
   </CartProvider>
 );
 

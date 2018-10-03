@@ -29,3 +29,4 @@ export { default as MenuDropdown } from "./MenuDropdown";
 export { default as PriceRangeFilter } from "./PriceRangeFilter";
 export { default as CheckoutLogin } from "./CheckoutLogin";
 export { default as GlobalRouting } from "./GlobalRouting";
+export { default as CheckoutApp } from "./CheckoutApp";
