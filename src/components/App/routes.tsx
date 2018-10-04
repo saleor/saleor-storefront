@@ -6,8 +6,6 @@ import {
   CartPage,
   CategoryPage,
   CheckoutLogin,
-  CheckoutPage,
-  ContentPage,
   HomePage,
   ProductPage,
   SearchPage,
@@ -29,7 +27,6 @@ const Routes: React.SFC = () => (
     <Route path="/account/" component={AccountPage} />
     <Route path="/wish-list/" component={WishListPage} />
     <Route path="/cart/:token/" component={CartPage} />
-    <Route path="/checkout/:token/" component={CheckoutPage} />
     <Route path="/login/" component={CheckoutLogin} />
   </>
 );

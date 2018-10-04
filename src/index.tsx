@@ -60,7 +60,7 @@ render(
           <ApolloProvider client={apolloClient}>
             <BrowserRouter>
               <Switch>
-                <Route path="/checkout" component={CheckoutApp} />
+                <Route path="/checkout/:token/" component={CheckoutApp} />
                 <Route component={App} />
               </Switch>
             </BrowserRouter>

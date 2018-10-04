@@ -1,9 +1,42 @@
 @import "../../App/scss/variables.scss";
 
 .checkout {
+  &__menu {
+    &__bar {
+      text-align: center;
+      border-bottom: 1px solid $gray-light;
+      padding: $spacer 0;
+    }
+
+    a {
+      text-transform: uppercase;
+      text-decoration: none;
+      color: $gray;
+      font-weight: $bold-font-weight;
+      margin: $spacer;
+      display: block;
+
+      @media (min-width: $small-screen) {
+        position: absolute;
+        top: $spacer;
+        left: $spacer;
+      }
+
+      &:hover {
+        color: $gray-dark;
+      }
+    }
+  }
+
   &__header {
     text-transform: uppercase;
     font-weight: $bold-font-weight;
     font-size: $h3-font-size;
+  }
+
+  &__grid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: $spacer * 4;
   }
 }
