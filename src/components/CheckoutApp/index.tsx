@@ -1,14 +1,51 @@
+import { ApolloClient } from "apollo-client";
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer, Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { CartSummary, Loader } from "..";
-import { CREATE_CHECKOUT, GET_CHECKOUT } from "./queries";
+import { CheckoutInterface } from "../../core/types";
+import { CheckoutContext } from "./context";
+import { GET_CHECKOUT } from "./queries";
 import { default as Routes } from "./routes";
 
 import "./scss/index.scss";
+
+export class CheckoutProvider extends React.Component<
+  {
+    children: any;
+    apolloClient: ApolloClient<any>;
+    token: string;
+  },
+  { checkout: CheckoutInterface }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkout: null
+    };
+  }
+
+  async componentWillMount() {
+    const { data } = await this.props.apolloClient.query({
+      query: GET_CHECKOUT,
+      variables: { token: this.props.token }
+    });
+
+    this.setState(data);
+  }
+
+  render() {
+    const { children } = this.props;
+    return (
+      <CheckoutContext.Provider value={this.state}>
+        {children}
+      </CheckoutContext.Provider>
+    );
+  }
+}
 
 const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
   match: {
@@ -25,33 +62,16 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
     </div>
     <div className="container">
       <div className="checkout__grid">
-        <Query query={GET_CHECKOUT} variables={{ token }}>
-          {({ loading, error, data: { checkout } }) => {
-            const lines = checkout
-              ? checkout.lines.edges.map(edge => edge.node)
-              : [];
-            if (loading) {
-              return <Loader />;
-            }
-            if (error) {
-              return `Error!: ${error}`;
-            }
-            console.log(checkout);
-            return (
-              <>
-                <div className="checkout__grid__content">
-                  <Routes matchUrl={url} />
-                </div>
-                <CartSummary
-                  products={lines}
-                  subtotal={checkout.subtotalPrice}
-                  shippingPrice={checkout.shipping && checkout.shipping.price}
-                  total={checkout.totalPrice}
-                />
-              </>
-            );
-          }}
-        </Query>
+        <ApolloConsumer>
+          {client => (
+            <CheckoutProvider apolloClient={client} token={token}>
+              <div className="checkout__grid__content">
+                <Routes matchUrl={url} />
+              </div>
+              <CartSummary />
+            </CheckoutProvider>
+          )}
+        </ApolloConsumer>
       </div>
     </div>
   </div>

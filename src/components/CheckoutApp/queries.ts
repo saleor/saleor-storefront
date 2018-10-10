@@ -23,36 +23,41 @@ export const GET_CHECKOUT = gql`
         }
         currency
       }
+      shippingPrice {
+        net {
+          amount
+        }
+        gross {
+          amount
+        }
+        currency
+      }
       lines {
-        edges {
-          node {
+        id
+        quantity
+        totalPrice {
+          net {
+            amount
+          }
+          gross {
+            amount
+          }
+          currency
+        }
+        variant {
+          id
+          name
+          price {
+            amount
+            currency
+          }
+          product {
             id
-            quantity
-            totalPrice {
-              net {
-                amount
-              }
-              gross {
-                amount
-              }
-              currency
-            }
-            variant {
-              id
-              name
-              price {
-                amount
-                currency
-              }
-              product {
-                id
-                name
-                thumbnailUrl
-              }
-            }
-            quantity
+            name
+            thumbnailUrl
           }
         }
+        quantity
       }
     }
   }

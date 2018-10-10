@@ -1,4 +1,5 @@
 import * as React from "react";
+import { RouteComponentProps, withRouter } from "react-router";
 
 import "./scss/index.scss";
 
@@ -10,8 +11,8 @@ import {
   OverlayType
 } from "./context";
 
-export class OverlayProvider extends React.Component<
-  { children: React.ReactNode },
+class OverlayProvider extends React.Component<
+  RouteComponentProps<{}>,
   OverlayContextInterface
 > {
   constructor(props) {
@@ -23,6 +24,12 @@ export class OverlayProvider extends React.Component<
       theme: null,
       type: null
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.hide();
+    }
   }
 
   show = (
@@ -64,3 +71,5 @@ export const Overlay: React.SFC<{ context: OverlayContextInterface }> = ({
     </div>
   </div>
 );
+
+export default withRouter(OverlayProvider);

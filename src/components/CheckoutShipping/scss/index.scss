@@ -1,0 +1,11 @@
+@import "../../App/scss/variables.scss";
+
+.checkout-shipping {
+  .input {
+    margin-bottom: $spacer / 2;
+  }
+
+  button {
+    margin: $spacer * 2 0 0 $spacer * 2;
+  }
+}
