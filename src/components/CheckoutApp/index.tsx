@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { CartSummary, Loader } from "..";
-import { CheckoutInterface } from "../../core/types";
-import { CheckoutContext } from "./context";
+import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { GET_CHECKOUT } from "./queries";
 import { default as Routes } from "./routes";
 
@@ -20,14 +19,19 @@ export class CheckoutProvider extends React.Component<
     token: string;
     url: string;
   },
-  { checkout: CheckoutInterface; loading: boolean }
+  CheckoutContextInterface
 > {
   constructor(props) {
     super(props);
     this.state = {
       checkout: null,
-      loading: false
+      loading: false,
+      updateCheckout: this.updateCheckout
     };
+  }
+
+  componentWillMount() {
+    this.getCheckout();
   }
 
   getCheckout = async () => {
@@ -40,15 +44,9 @@ export class CheckoutProvider extends React.Component<
     this.setState({ ...data, loading: false });
   };
 
-  componentWillMount() {
-    this.getCheckout();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.url !== this.props.url) {
-      this.getCheckout();
-    }
-  }
+  updateCheckout = checkout => {
+    this.setState({ checkout });
+  };
 
   render() {
     const { children } = this.props;

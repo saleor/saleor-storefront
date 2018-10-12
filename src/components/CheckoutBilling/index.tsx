@@ -4,14 +4,10 @@ import { RouteComponentProps } from "react-router";
 
 import { Button, Form, SelectField, TextField } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
-import {
-  GET_COUNTRIES_LIST,
-  UPDATE_CHECKOUT_SHIPPING_ADDRESS
-} from "./queries";
+import { GET_COUNTRIES_LIST } from "../CheckoutShipping/queries";
+import { UPDATE_CHECKOUT_BILLING_ADDRESS } from "./queries";
 
-import "./scss/index.scss";
-
-class CheckoutShipping extends React.Component<
+class CheckoutBilling extends React.Component<
   RouteComponentProps<{ id }>,
   { resetPassword: boolean }
 > {
@@ -24,24 +20,61 @@ class CheckoutShipping extends React.Component<
     return (
       <div className="checkout-shipping">
         <CheckoutContext.Consumer>
-          {({ checkout, updateCheckout }) => (
+          {({ checkout }) => (
             <>
-              <div className="checkout__step">
+              <div className="checkout__step checkout__step--inactive">
                 <span>1</span>
                 <h4 className="checkout__header">Shipping Address</h4>
+              </div>
+              <div className="checkout__content">
+                <p>
+                  <strong>
+                    {checkout.shippingAddress.firstName}
+                    {checkout.shippingAddress.lastName}
+                  </strong>
+                  <br />
+                  {checkout.shippingAddress.companyName}
+                  <br />
+                  {checkout.shippingAddress.streetAddress1}
+                  <br />
+                  {checkout.shippingAddress.streetAddress2}
+                  <br />
+                  {checkout.shippingAddress.streetAddress2}
+                  <br />
+                  {checkout.shippingAddress.city},
+                  {checkout.shippingAddress.postalCode}
+                  <br />
+                  {checkout.shippingAddress.countryArea}
+                  <br />
+                  {checkout.shippingAddress.companyName}
+                  <br />
+                  Phone Number: {checkout.shippingAddress.phone}
+                </p>
+              </div>
+              <div className="checkout__step checkout__step--inactive">
+                <span>2</span>
+                <h4 className="checkout__header">Shipping Method</h4>
+              </div>
+              <div className="checkout__content">
+                <p>
+                  {`${checkout.shippingMethod.name} | ${
+                    checkout.shippingMethod.price.amount
+                  }`}
+                </p>
+              </div>
+              <div className="checkout__step">
+                <span>3</span>
+                <h4 className="checkout__header">Billing Address</h4>
               </div>
               <Query query={GET_COUNTRIES_LIST}>
                 {({ data: { shop } }) => {
                   return (
-                    <Mutation mutation={UPDATE_CHECKOUT_SHIPPING_ADDRESS}>
-                      {(saveShippingAddress, { data }) => {
+                    <Mutation mutation={UPDATE_CHECKOUT_BILLING_ADDRESS}>
+                      {(saveBillingAddress, { data }) => {
                         if (
                           data &&
                           data.checkoutShippingAddressUpdate.errors.length === 0
                         ) {
-                          updateCheckout(
-                            data.checkoutShippingAddressUpdate.checkout
-                          );
                           this.props.history.push(
                             `/checkout/${checkout.token}/shipping-options/`
                           );
@@ -51,7 +84,7 @@ class CheckoutShipping extends React.Component<
                             <Form
                               errors={data && data.errors}
                               onSubmit={(event, data) => {
-                                saveShippingAddress({
+                                saveBillingAddress({
                                   variables: {
                                     checkoutId: checkout.id,
                                     shippingAddress: {
@@ -113,11 +146,7 @@ class CheckoutShipping extends React.Component<
                                   value: country.code
                                 }))}
                               />
-                              <label>
-                                <input type="checkbox" />
-                                Use as Billing Address
-                              </label>
-                              <Button>Continue to shipping</Button>
+                              <Button>Continue to payment</Button>
                             </Form>
                           </div>
                         );
@@ -126,14 +155,6 @@ class CheckoutShipping extends React.Component<
                   );
                 }}
               </Query>
-              <div className="checkout__step checkout__step--inactive">
-                <span>2</span>
-                <h4 className="checkout__header">Shipping Method</h4>
-              </div>
-              <div className="checkout__step checkout__step--inactive">
-                <span>3</span>
-                <h4 className="checkout__header">Billing</h4>
-              </div>
               <div className="checkout__step checkout__step--inactive">
                 <span>4</span>
                 <h4 className="checkout__header">Payment Method</h4>
@@ -146,4 +167,4 @@ class CheckoutShipping extends React.Component<
   }
 }
 
-export default CheckoutShipping;
+export default CheckoutBilling;
