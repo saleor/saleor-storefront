@@ -1,10 +1,17 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
-import { CheckoutLogin } from "..";
+import { CheckoutBilling, CheckoutShipping, CheckoutShippingOptions } from "..";
 
 const Routes: React.SFC<{ matchUrl: string }> = ({ matchUrl }) => (
-  <Route path={`${matchUrl}/login`} component={CheckoutLogin} />
+  <>
+    <Route exact path={`${matchUrl}`} component={CheckoutShipping} />
+    <Route
+      path={`${matchUrl}/shipping-options/`}
+      component={CheckoutShippingOptions}
+    />
+    <Route path={`${matchUrl}/billing-address/`} component={CheckoutBilling} />
+  </>
 );
 
 export default Routes;

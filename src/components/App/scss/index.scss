@@ -57,4 +57,47 @@ body {
       }
     }
   }
+
+  .checkbox {
+    position: relative;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0.4rem;
+      top: 0.05rem;
+      width: 0.3rem;
+      height: 0.6rem;
+      border: solid $white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      z-index: 1;
+    }
+
+    input {
+      display: none;
+
+      &:checked ~ span {
+        &:before {
+          background-color: $blue;
+        }
+      }
+    }
+
+    span {
+      margin-left: $spacer * 2;
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid $blue;
+        border-radius: 0.2rem;
+        background-color: $white;
+      }
+    }
+  }
 }

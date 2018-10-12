@@ -7,7 +7,7 @@ import ReactSVG from "react-svg";
 import { Button, Loader } from "..";
 import { priceToString } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
-import { GET_CHECKOUT } from "../CheckoutPage/queries";
+import { GET_CHECKOUT } from "../CheckoutApp/queries";
 
 import { smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";

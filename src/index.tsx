@@ -9,7 +9,7 @@ import { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { App, CheckoutApp, UserProvider } from "./components";
-import { OverlayProvider } from "./components/Overlay";
+import OverlayProvider from "./components/Overlay";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import {
   authLink,
@@ -40,34 +40,34 @@ persistCache({
 const apolloClient = new ApolloClient({ cache, link });
 
 render(
-  <OverlayProvider>
-    <OverlayContext.Consumer>
-      {({ show }) => (
-        <UserProviderWithTokenHandler
-          apolloClient={apolloClient}
-          onUserLogin={() =>
-            show(OverlayType.message, null, {
-              title: "You are logged in"
-            })
-          }
-          onUserLogout={() =>
-            show(OverlayType.message, null, {
-              title: "You are logged out"
-            })
-          }
-          refreshUser
-        >
-          <ApolloProvider client={apolloClient}>
-            <BrowserRouter>
+  <BrowserRouter>
+    <OverlayProvider>
+      <OverlayContext.Consumer>
+        {({ show }) => (
+          <UserProviderWithTokenHandler
+            apolloClient={apolloClient}
+            onUserLogin={() =>
+              show(OverlayType.message, null, {
+                title: "You are logged in"
+              })
+            }
+            onUserLogout={() =>
+              show(OverlayType.message, null, {
+                title: "You are logged out"
+              })
+            }
+            refreshUser
+          >
+            <ApolloProvider client={apolloClient}>
               <Switch>
-                <Route path="/checkout" component={CheckoutApp} />
+                <Route path="/checkout/:token/" component={CheckoutApp} />
                 <Route component={App} />
               </Switch>
-            </BrowserRouter>
-          </ApolloProvider>
-        </UserProviderWithTokenHandler>
-      )}
-    </OverlayContext.Consumer>
-  </OverlayProvider>,
+            </ApolloProvider>
+          </UserProviderWithTokenHandler>
+        )}
+      </OverlayContext.Consumer>
+    </OverlayProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );

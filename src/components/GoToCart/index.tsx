@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Redirect } from "react-router";
 
-import { GoToCheckout } from "../CheckoutPage";
+import { GoToCheckout } from "../GoToCheckout";
 
 export default class GoToCart extends GoToCheckout {
   getRedirection() {
