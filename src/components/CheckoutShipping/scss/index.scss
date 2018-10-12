@@ -1,7 +1,8 @@
 @import "../../App/scss/variables.scss";
 
 .checkout-shipping {
-  .input {
+  .input,
+  .react-select-wrapper {
     margin-bottom: $spacer / 2;
   }
 

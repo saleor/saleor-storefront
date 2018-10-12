@@ -34,7 +34,7 @@ class CheckoutShipping extends React.Component<
                 {({ data: { shop } }) => {
                   return (
                     <Mutation mutation={UPDATE_CHECKOUT_SHIPPING_ADDRESS}>
-                      {(saveShippingAddress, { data }) => {
+                      {(saveShippingAddress, { data, loading }) => {
                         if (
                           data &&
                           data.checkoutShippingAddressUpdate.errors.length === 0
@@ -56,10 +56,12 @@ class CheckoutShipping extends React.Component<
                                     checkoutId: checkout.id,
                                     shippingAddress: {
                                       city: data.city,
+                                      companyName: data.organization,
                                       country: data.countryName,
                                       countryArea: data.state,
                                       firstName: data.givenName,
                                       lastName: data.familyName,
+                                      phone: data.phoneNumber,
                                       postalCode: data.postalCode,
                                       streetAddress1: data.addressLine1,
                                       streetAddress2: data.addressLine2
@@ -78,6 +80,11 @@ class CheckoutShipping extends React.Component<
                                 label="First Name"
                                 type="given-name"
                                 name="givenName"
+                              />
+                              <TextField
+                                label="Company"
+                                type="organization"
+                                name="organization"
                               />
                               <TextField
                                 label="Last Name"
@@ -113,11 +120,18 @@ class CheckoutShipping extends React.Component<
                                   value: country.code
                                 }))}
                               />
+                              <TextField
+                                label="Phone number"
+                                type="tel"
+                                name="phoneNumber"
+                              />
                               <label>
                                 <input type="checkbox" />
                                 Use as Billing Address
                               </label>
-                              <Button>Continue to shipping</Button>
+                              <Button disabled={loading}>
+                                {loading ? "Loading" : "Continue to shipping"}
+                              </Button>
                             </Form>
                           </div>
                         );

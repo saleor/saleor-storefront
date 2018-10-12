@@ -2,7 +2,7 @@ import * as React from "react";
 import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { Button } from "..";
+import { AddressSummary, Button } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { UPDATE_CHECKOUT_SHIPPING_OPTION } from "./queries";
 
@@ -28,36 +28,14 @@ class CheckoutShipping extends React.Component<
                   <h4 className="checkout__header">Shipping Address</h4>
                 </div>
                 <div className="checkout__content">
-                  <p>
-                    <strong>
-                      {checkout.shippingAddress.firstName}
-                      {checkout.shippingAddress.lastName}
-                    </strong>
-                    <br />
-                    {checkout.shippingAddress.companyName}
-                    <br />
-                    {checkout.shippingAddress.streetAddress1}
-                    <br />
-                    {checkout.shippingAddress.streetAddress2}
-                    <br />
-                    {checkout.shippingAddress.streetAddress2}
-                    <br />
-                    {checkout.shippingAddress.city},
-                    {checkout.shippingAddress.postalCode}
-                    <br />
-                    {checkout.shippingAddress.countryArea}
-                    <br />
-                    {checkout.shippingAddress.companyName}
-                    <br />
-                    Phone Number: {checkout.shippingAddress.phone}
-                  </p>
+                  <AddressSummary address={checkout.shippingAddress} />
                 </div>
                 <div className="checkout__step">
                   <span>2</span>
                   <h4 className="checkout__header">Shipping Method</h4>
                 </div>
                 <Mutation mutation={UPDATE_CHECKOUT_SHIPPING_OPTION}>
-                  {(updateCheckoutShippingOptions, { data }) => {
+                  {(updateCheckoutShippingOptions, { data, loading }) => {
                     if (
                       data &&
                       data.checkoutShippingMethodUpdate.errors.length === 0
@@ -106,8 +84,9 @@ class CheckoutShipping extends React.Component<
                             });
                             event.preventDefault();
                           }}
+                          disabled={loading}
                         >
-                          Continue to billing
+                          {loading ? "Loading" : "Continue to billing"}
                         </Button>
                       </div>
                     );

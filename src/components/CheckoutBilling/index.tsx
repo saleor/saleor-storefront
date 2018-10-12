@@ -70,7 +70,7 @@ class CheckoutBilling extends React.Component<
                 {({ data: { shop } }) => {
                   return (
                     <Mutation mutation={UPDATE_CHECKOUT_BILLING_ADDRESS}>
-                      {(saveBillingAddress, { data }) => {
+                      {(saveBillingAddress, { data, loading }) => {
                         if (
                           data &&
                           data.checkoutShippingAddressUpdate.errors.length === 0
@@ -146,7 +146,9 @@ class CheckoutBilling extends React.Component<
                                   value: country.code
                                 }))}
                               />
-                              <Button>Continue to payment</Button>
+                              <Button disabled={loading}>
+                                {loading ? "Loading" : "Continue to payment"}
+                              </Button>
                             </Form>
                           </div>
                         );

@@ -34,3 +34,4 @@ export { default as CartSummary } from "./CartSummary";
 export { default as CheckoutShipping } from "./CheckoutShipping";
 export { default as CheckoutShippingOptions } from "./CheckoutShippingOptions";
 export { default as CheckoutBilling } from "./CheckoutBilling";
+export { default as AddressSummary } from "./AddressSummary";

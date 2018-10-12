@@ -37,7 +37,6 @@ export class CheckoutProvider extends React.Component<
   getCheckout = async () => {
     this.setState({ loading: true });
     const { data } = await this.props.apolloClient.query({
-      fetchPolicy: "network-only",
       query: GET_CHECKOUT,
       variables: { token: this.props.token }
     });
