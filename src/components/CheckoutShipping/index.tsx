@@ -125,9 +125,9 @@ class CheckoutShipping extends React.Component<
                                 type="tel"
                                 name="phoneNumber"
                               />
-                              <label>
+                              <label className="checkbox">
                                 <input type="checkbox" />
-                                Use as Billing Address
+                                <span>Use as Billing Address</span>
                               </label>
                               <Button disabled={loading}>
                                 {loading ? "Loading" : "Continue to shipping"}
