@@ -16,3 +16,14 @@ export const UPDATE_CHECKOUT_SHIPPING_ADDRESS = gql`
     }
   }
 `;
+
+export const GET_COUNTRIES_LIST = gql`
+  query getCountriesList {
+    shop {
+      countries {
+        code
+        country
+      }
+    }
+  }
+`;

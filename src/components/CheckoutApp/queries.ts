@@ -23,6 +23,37 @@ export const GET_CHECKOUT = gql`
         }
         currency
       }
+      shippingAddress {
+        firstName
+        lastName
+        companyName
+        streetAddress1
+        streetAddress2
+        city
+        postalCode
+        country {
+          code
+          country
+        }
+        countryArea
+        phone
+      }
+      availableShippingMethods {
+        id
+        name
+        price {
+          currency
+          amount
+        }
+      }
+      shippingMethod {
+        id
+        name
+        price {
+          currency
+          amount
+        }
+      }
       shippingPrice {
         net {
           amount

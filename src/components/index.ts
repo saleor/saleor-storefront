@@ -32,3 +32,4 @@ export { default as LoginForm } from "./LoginForm";
 export { default as PasswordResetForm } from "./PasswordResetForm";
 export { default as CartSummary } from "./CartSummary";
 export { default as CheckoutShipping } from "./CheckoutShipping";
+export { default as CheckoutShippingOptions } from "./CheckoutShippingOptions";

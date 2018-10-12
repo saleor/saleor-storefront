@@ -1,6 +1,6 @@
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
-import { ApolloConsumer, Query } from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -18,23 +18,36 @@ export class CheckoutProvider extends React.Component<
     children: any;
     apolloClient: ApolloClient<any>;
     token: string;
+    url: string;
   },
-  { checkout: CheckoutInterface }
+  { checkout: CheckoutInterface; loading: boolean }
 > {
   constructor(props) {
     super(props);
     this.state = {
-      checkout: null
+      checkout: null,
+      loading: false
     };
   }
 
-  async componentWillMount() {
+  getCheckout = async () => {
+    this.setState({ loading: true });
     const { data } = await this.props.apolloClient.query({
+      fetchPolicy: "network-only",
       query: GET_CHECKOUT,
       variables: { token: this.props.token }
     });
+    this.setState({ ...data, loading: false });
+  };
 
-    this.setState(data);
+  componentWillMount() {
+    this.getCheckout();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.url !== this.props.url) {
+      this.getCheckout();
+    }
   }
 
   render() {
@@ -64,11 +77,21 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
       <div className="checkout__grid">
         <ApolloConsumer>
           {client => (
-            <CheckoutProvider apolloClient={client} token={token}>
-              <div className="checkout__grid__content">
-                <Routes matchUrl={url} />
-              </div>
-              <CartSummary />
+            <CheckoutProvider apolloClient={client} token={token} url={url}>
+              <CheckoutContext.Consumer>
+                {({ loading }) =>
+                  loading ? (
+                    <Loader />
+                  ) : (
+                    <>
+                      <div className="checkout__grid__content">
+                        <Routes matchUrl={url} />
+                      </div>
+                      <CartSummary />
+                    </>
+                  )
+                }
+              </CheckoutContext.Consumer>
             </CheckoutProvider>
           )}
         </ApolloConsumer>

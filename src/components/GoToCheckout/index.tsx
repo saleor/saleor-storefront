@@ -6,8 +6,6 @@ import { ButtonProps, default as Button } from "../Button";
 import { CartInterface } from "../CartProvider/context";
 import { CREATE_CHECKOUT } from "./queries";
 
-import "./scss/index.scss";
-
 export interface GoToCheckoutState {
   checkoutToken: string;
   loading: boolean;

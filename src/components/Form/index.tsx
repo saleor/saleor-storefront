@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import TextField from "../TextField";
+import { SelectField, TextField } from "..";
 
 export const NON_FIELD_ERROR = "nonFieldError";
 
@@ -148,6 +148,19 @@ class Form extends React.Component<FormProps, FormState> {
             }
             this.handleInputError(event);
             event.preventDefault();
+          }
+        });
+      } else if (child.type === SelectField) {
+        const defaultValue = this.state.data[child.props.name];
+
+        return React.cloneElement(child, {
+          defaultValue,
+
+          onChange: ({ value }) => {
+            this.setState(state => {
+              const data = { ...state.data, [child.props.name]: value };
+              return { data };
+            });
           }
         });
       } else {

@@ -125,6 +125,46 @@ export interface getCheckout_checkout_subtotalPrice {
   currency: string;
 }
 
+export interface getCheckout_checkout_shippingAddress_country {
+  code: string;
+  country: string;
+}
+
+export interface getCheckout_checkout_shippingAddress {
+  firstName: string;
+  lastName: string;
+  companyName: string;
+  streetAddress1: string;
+  streetAddress2: string;
+  city: string;
+  postalCode: string;
+  country: getCheckout_checkout_shippingAddress_country;
+  countryArea: string;
+  phone: string | null;
+}
+
+export interface getCheckout_checkout_availableShippingMethods_price {
+  currency: string;
+  amount: number;
+}
+
+export interface getCheckout_checkout_availableShippingMethods {
+  id: string;
+  name: string;
+  price: getCheckout_checkout_availableShippingMethods_price | null;
+}
+
+export interface getCheckout_checkout_shippingMethod_price {
+  currency: string;
+  amount: number;
+}
+
+export interface getCheckout_checkout_shippingMethod {
+  id: string;
+  name: string;
+  price: getCheckout_checkout_shippingMethod_price | null;
+}
+
 export interface getCheckout_checkout_shippingPrice_net {
   amount: number;
 }
@@ -183,6 +223,11 @@ export interface getCheckout_checkout {
   id: string;
   totalPrice: getCheckout_checkout_totalPrice | null;
   subtotalPrice: getCheckout_checkout_subtotalPrice | null;
+  shippingAddress: getCheckout_checkout_shippingAddress | null;
+  availableShippingMethods:
+    | (getCheckout_checkout_availableShippingMethods | null)[]
+    | null;
+  shippingMethod: getCheckout_checkout_shippingMethod | null;
   shippingPrice: getCheckout_checkout_shippingPrice | null;
   lines: (getCheckout_checkout_lines | null)[] | null;
 }
@@ -193,36 +238,6 @@ export interface getCheckout {
 
 export interface getCheckoutVariables {
   token: any;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: createCheckout
-// ====================================================
-
-export interface createCheckout_checkoutCreate_errors {
-  field: string | null;
-  message: string | null;
-}
-
-export interface createCheckout_checkoutCreate_checkout {
-  token: any;
-  id: string;
-}
-
-export interface createCheckout_checkoutCreate {
-  errors: (createCheckout_checkoutCreate_errors | null)[] | null;
-  checkout: createCheckout_checkoutCreate_checkout | null;
-}
-
-export interface createCheckout {
-  checkoutCreate: createCheckout_checkoutCreate | null;
-}
-
-export interface createCheckoutVariables {
-  checkoutInput: CheckoutCreateInput;
 }
 
 /* tslint:disable */
@@ -256,6 +271,33 @@ export interface updateCheckoutShippingAddressVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: updateCheckoutShippingOptions
+// ====================================================
+
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors {
+  field: string | null;
+  message: string | null;
+}
+
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
+  errors:
+    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[]
+    | null;
+}
+
+export interface updateCheckoutShippingOptions {
+  checkoutShippingMethodUpdate: updateCheckoutShippingOptions_checkoutShippingMethodUpdate | null;
+}
+
+export interface updateCheckoutShippingOptionsVariables {
+  checkoutId: string;
+  shippingMethodId: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: Collections
 // ====================================================
 
@@ -274,6 +316,36 @@ export interface Collections_collections {
 
 export interface Collections {
   collections: Collections_collections | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: createCheckout
+// ====================================================
+
+export interface createCheckout_checkoutCreate_errors {
+  field: string | null;
+  message: string | null;
+}
+
+export interface createCheckout_checkoutCreate_checkout {
+  token: any;
+  id: string;
+}
+
+export interface createCheckout_checkoutCreate {
+  errors: (createCheckout_checkoutCreate_errors | null)[] | null;
+  checkout: createCheckout_checkoutCreate_checkout | null;
+}
+
+export interface createCheckout {
+  checkoutCreate: createCheckout_checkoutCreate | null;
+}
+
+export interface createCheckoutVariables {
+  checkoutInput: CheckoutCreateInput;
 }
 
 /* tslint:disable */
@@ -893,19 +965,6 @@ export interface User {
 //==============================================================
 
 //
-export interface CheckoutCreateInput {
-  lines?: (CheckoutLineInput | null)[] | null;
-  email?: string | null;
-  shippingAddress?: AddressInput | null;
-}
-
-//
-export interface CheckoutLineInput {
-  quantity?: number | null;
-  variantId?: string | null;
-}
-
-//
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -918,6 +977,19 @@ export interface AddressInput {
   country?: string | null;
   countryArea?: string | null;
   phone?: string | null;
+}
+
+//
+export interface CheckoutCreateInput {
+  lines?: (CheckoutLineInput | null)[] | null;
+  email?: string | null;
+  shippingAddress?: AddressInput | null;
+}
+
+//
+export interface CheckoutLineInput {
+  quantity?: number | null;
+  variantId?: string | null;
 }
 
 //==============================================================

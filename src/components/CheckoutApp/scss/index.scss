@@ -45,10 +45,17 @@
       color: $blue;
       margin-right: $spacer;
     }
+
+    &__inactive {
+      span {
+        color: $white;
+        background-color: $blue;
+      }
+    }
   }
 
   &__content {
-    margin-left: $spacer * 3;
+    margin: 0 $spacer * 3 $spacer * 3;
   }
 
   &__header {
