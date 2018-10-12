@@ -1,6 +1,7 @@
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
+import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -10,6 +11,7 @@ import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { GET_CHECKOUT } from "./queries";
 import { default as Routes } from "./routes";
 
+import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 export class CheckoutProvider extends React.Component<
@@ -84,7 +86,10 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
                       <div className="checkout__grid__content">
                         <Routes matchUrl={url} />
                       </div>
-                      <CartSummary />
+                      <Media
+                        query={{ minWidth: mediumScreen }}
+                        render={() => <CartSummary />}
+                      />
                     </>
                   )
                 }

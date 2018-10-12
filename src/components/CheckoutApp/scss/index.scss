@@ -55,7 +55,11 @@
   }
 
   &__content {
-    margin: 0 $spacer * 3 $spacer * 3;
+    margin: 0 0 $spacer * 3 $spacer * 3;
+
+    @media (max-width: $small-screen) {
+      margin: 0 0 $spacer * 3 0;
+    }
   }
 
   &__header {
@@ -71,7 +75,7 @@
     align-items: flex-start;
 
     &__content {
-      width: calc(100% - 23rem);
+      max-width: 32rem;
     }
   }
 }
