@@ -11,6 +11,7 @@
     "apollo-cache-persist": "^0.1.1",
     "apollo-link-http": "^1.5.4",
     "babel-eslint": "^8.2.6",
+    "braintree-web": "^3.38.1",
     "core-js": "^2.5.7",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",

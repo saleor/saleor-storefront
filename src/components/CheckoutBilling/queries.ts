@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 
 export const UPDATE_CHECKOUT_BILLING_ADDRESS = gql`
-  mutation updateCheckoutShippingAddress(
+  mutation updateCheckoutBillingAddress(
     $checkoutId: ID!
-    $shippingAddress: AddressInput!
+    $billingAddress: AddressInput!
   ) {
-    checkoutShippingAddressUpdate(
+    checkoutBillingAddressUpdate(
       checkoutId: $checkoutId
-      shippingAddress: $shippingAddress
+      billingAddress: $billingAddress
     ) {
       errors {
         field

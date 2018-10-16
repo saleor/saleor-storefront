@@ -29,9 +29,13 @@ const AddressSummary: React.SFC<{ address: AddressInterface }> = ({
         {address.countryArea} <br />
       </>
     ) : null}
-    {address.country.code}
+    {address.country.country}
     <br />
-    Phone Number: {address.phone}
+    {address.phone ? (
+      <>
+        {address.phone} <br />
+      </>
+    ) : null}
   </p>
 );
 
