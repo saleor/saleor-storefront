@@ -1,6 +1,7 @@
 import * as braintree from "braintree-web";
 import * as React from "react";
 import { Query } from "react-apollo";
+import NumberFormat from "react-number-format";
 import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button, Form, Loader, TextField } from "..";
@@ -24,6 +25,7 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
             method: "post"
           },
           (err, response) => {
+            console.log(err, response);
             // Send response.creditCards[0].nonce to your server
           }
         );
@@ -89,9 +91,9 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
                             billingAddress: {
                               postalCode: checkout.billingAddress.postalCode
                             },
-                            cvv: data.cvc,
-                            expirationDate: data.expiry,
-                            number: data.number
+                            cvv: data.cvc.replace(/\s+/g, ""),
+                            expirationDate: data.expiry.replace(/\s+/g, ""),
+                            number: data.number.replace(/\s+/g, "")
                           });
                         }}
                       >
@@ -100,26 +102,23 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
                           name="name"
                           label="Name on Card"
                         />
-                        <TextField
-                          type="tel"
+                        <span className="input__label">Number</span>
+                        <NumberFormat
                           name="number"
-                          pattern="[\d| ]{16,22}"
-                          id="card-number"
-                          label="Card Number"
+                          customInput={TextField}
+                          format="#### #### #### ####"
                         />
-                        <TextField
-                          type="tel"
+                        <span className="input__label">CVC</span>
+                        <NumberFormat
                           name="cvc"
-                          id="cvv"
-                          pattern="\d{3,4}"
-                          label="CVC"
+                          customInput={TextField}
+                          format="####"
                         />
-                        <TextField
-                          type="tel"
+                        <span className="input__label">Expiry Date</span>
+                        <NumberFormat
                           name="expiry"
-                          id="expiration-date"
-                          pattern="\d\d/\d\d"
-                          label="Expiry Date"
+                          customInput={TextField}
+                          format="## / ##"
                         />
                         <Button>Continue to review your order</Button>
                       </Form>
