@@ -489,26 +489,6 @@ export interface updateCheckoutShippingAddressVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getCountriesList
-// ====================================================
-
-export interface getCountriesList_shop_countries {
-  code: string;
-  country: string;
-}
-
-export interface getCountriesList_shop {
-  countries: (getCountriesList_shop_countries | null)[];
-}
-
-export interface getCountriesList {
-  shop: getCountriesList_shop | null;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL mutation operation: updateCheckoutShippingOptions
 // ====================================================
 
@@ -1226,6 +1206,26 @@ export interface SearchProductsVariables {
   attributes?: (any | null)[] | null;
   pageSize?: number | null;
   sortBy?: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: getCountriesList
+// ====================================================
+
+export interface getCountriesList_shop_countries {
+  code: string;
+  country: string;
+}
+
+export interface getCountriesList_shop {
+  countries: (getCountriesList_shop_countries | null)[];
+}
+
+export interface getCountriesList {
+  shop: getCountriesList_shop | null;
 }
 
 /* tslint:disable */

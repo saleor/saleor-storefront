@@ -60,6 +60,7 @@ body {
 
   .checkbox {
     position: relative;
+    display: block;
 
     &:before {
       content: "";

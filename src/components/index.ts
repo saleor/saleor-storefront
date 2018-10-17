@@ -36,3 +36,4 @@ export { default as CheckoutShippingOptions } from "./CheckoutShippingOptions";
 export { default as CheckoutBilling } from "./CheckoutBilling";
 export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
+export { default as ShippingAddressForm } from "./ShippingAddressForm";

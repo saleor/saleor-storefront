@@ -92,11 +92,11 @@ class CheckoutShipping extends React.Component<
                     );
                   }}
                 </Mutation>
-                <div className="checkout__step checkout__step--inactive">
+                <div className="checkout__step">
                   <span>3</span>
                   <h4 className="checkout__header">Billing</h4>
                 </div>
-                <div className="checkout__step checkout__step--inactive">
+                <div className="checkout__step">
                   <span>4</span>
                   <h4 className="checkout__header">Payment Method</h4>
                 </div>

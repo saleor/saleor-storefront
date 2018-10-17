@@ -1,12 +1,17 @@
 @import "../../App/scss/variables.scss";
 
-.checkout-shipping {
-  .input,
-  .react-select-wrapper {
+.checkout-payment {
+  .input {
     margin-bottom: $spacer / 2;
   }
 
   button {
     margin: $spacer * 2 0 0 $spacer * 2;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-gap: 0 $spacer;
+    grid-template-columns: 1fr 1fr;
   }
 }

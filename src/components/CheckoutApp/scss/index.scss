@@ -29,7 +29,7 @@
   }
 
   &__step {
-    margin-bottom: $spacer * 3;
+    margin-bottom: $spacer;
     display: flex;
     align-items: center;
 
@@ -46,7 +46,7 @@
       margin-right: $spacer;
     }
 
-    &__inactive {
+    &--inactive {
       span {
         color: $white;
         background-color: $blue;
@@ -76,6 +76,7 @@
 
     &__content {
       max-width: 32rem;
+      width: 32rem;
     }
   }
 }
