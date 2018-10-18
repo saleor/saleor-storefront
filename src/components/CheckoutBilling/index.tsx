@@ -11,7 +11,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
     return (
       <div>
         <CheckoutContext.Consumer>
-          {({ checkout }) => (
+          {({ checkout, updateCheckout }) => (
             <>
               <div className="checkout__step checkout__step--inactive">
                 <span>1</span>
@@ -42,6 +42,9 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                     data &&
                     data.checkoutBillingAddressUpdate.errors.length === 0
                   ) {
+                    updateCheckout({
+                      checkout: data.checkoutBillingAddressUpdate.checkout
+                    });
                     this.props.history.push(
                       `/checkout/${checkout.token}/payment/`
                     );

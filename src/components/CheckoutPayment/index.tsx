@@ -4,15 +4,42 @@ import { Query } from "react-apollo";
 import NumberFormat from "react-number-format";
 import { RouteComponentProps } from "react-router";
 
-import { AddressSummary, Button, Form, Loader, TextField } from "..";
+import { AddressSummary, Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { GET_PAYMENT_TOKEN } from "./queries";
 
 import "./scss/index.scss";
 
-class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
-  tokenizeCcCard = (paymentClientToken, creditCard) => {
+class CheckoutPayment extends React.Component<
+  RouteComponentProps<{ id }>,
+  { errors: { [x: string]: string }; loading: boolean }
+> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: {
+        cvv: "",
+        expirationMonth: "",
+        expirationYear: "",
+        nonFieldError: "",
+        number: ""
+      },
+      loading: false
+    };
+  }
+
+  tokenizeCcCard = (paymentClientToken, creditCard, updateCheckout, token) => {
+    this.setState({
+      errors: {
+        cvv: "",
+        expirationMonth: "",
+        expirationYear: "",
+        nonFieldError: "",
+        number: ""
+      },
+      loading: true
+    });
     braintree.client.create(
       {
         authorization: paymentClientToken
@@ -24,9 +51,38 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
             endpoint: "payment_methods/credit_cards",
             method: "post"
           },
-          (err, response) => {
-            console.log(err, response);
-            // Send response.creditCards[0].nonce to your server
+          (error, response) => {
+            if (error) {
+              if (error.details.originalError.fieldErrors.length > 0) {
+                error.details.originalError.fieldErrors.map(error => {
+                  if (error.field === "creditCard") {
+                    error.fieldErrors.map(error => {
+                      this.setState(state => {
+                        const errors = {
+                          ...state.errors,
+                          [error.field]: state.errors[error.field]
+                            ? state.errors[error.field] + ". " + error.message
+                            : error.message
+                        };
+                        return {
+                          errors,
+                          loading: false
+                        };
+                      });
+                    });
+                  }
+                });
+              }
+            } else {
+              const lastDigits = response.creditCards[0].details.lastFour;
+              const ccType = response.creditCards[0].details.cardType;
+              const token = response.creditCards[0].nonce;
+              this.setState({
+                loading: false
+              });
+              updateCheckout({ cardData: { lastDigits, ccType, token } });
+              this.props.history.push(`/checkout/${token}/review/`);
+            }
           }
         );
       }
@@ -47,7 +103,7 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
             return (
               <div className="checkout-payment">
                 <CheckoutContext.Consumer>
-                  {({ checkout }) => (
+                  {({ checkout, updateCheckout }) => (
                     <>
                       <div className="checkout__step checkout__step--inactive">
                         <span>1</span>
@@ -80,43 +136,105 @@ class CheckoutPayment extends React.Component<RouteComponentProps<{ id }>, {}> {
                       </div>
                       <div className="checkout__content">
                         <Form
-                          onSubmit={(event, data) => {
+                          onSubmit={(event, formData) => {
                             event.preventDefault();
-                            this.tokenizeCcCard(paymentClientToken, {
-                              billingAddress: {
-                                postalCode: checkout.billingAddress.postalCode
+                            this.tokenizeCcCard(
+                              paymentClientToken,
+                              {
+                                billingAddress: {
+                                  postalCode: checkout.billingAddress.postalCode
+                                },
+                                cvv: formData.cvc
+                                  ? formData.cvc.replace(/\s+/g, "")
+                                  : "",
+                                expirationDate: formData.expiry
+                                  ? formData.expiry.replace(/\s+/g, "")
+                                  : "",
+                                number: formData.number
+                                  ? formData.number.replace(/\s+/g, "")
+                                  : ""
                               },
-                              cvv: data.cvc.replace(/\s+/g, ""),
-                              expirationDate: data.expiry.replace(/\s+/g, ""),
-                              number: data.number.replace(/\s+/g, "")
-                            });
+                              updateCheckout,
+                              checkout.token
+                            );
                           }}
                         >
                           <span className="input__label">Number</span>
-                          <NumberFormat
-                            name="number"
-                            customInput={TextField}
-                            format="#### #### #### ####"
-                          />
+                          <div
+                            className={
+                              this.state.errors.number
+                                ? "checkout-payment__field-error"
+                                : ""
+                            }
+                          >
+                            <NumberFormat
+                              name="number"
+                              customInput={TextField}
+                              format="#### #### #### ####"
+                            />
+                          </div>
+                          {this.state.errors.number ? (
+                            <span className="input__error checkout-payment__error">
+                              {this.state.errors.number}
+                            </span>
+                          ) : (
+                            ""
+                          )}
                           <div className="checkout-payment__form-grid">
-                            <div>
+                            <div
+                              className={
+                                this.state.errors.cvc
+                                  ? "checkout-payment__field-error"
+                                  : ""
+                              }
+                            >
                               <span className="input__label">CVC</span>
                               <NumberFormat
                                 name="cvc"
                                 customInput={TextField}
                                 format="####"
                               />
+                              {this.state.errors.cvv ? (
+                                <span className="input__error checkout-payment__error">
+                                  {this.state.errors.cvv}
+                                </span>
+                              ) : (
+                                ""
+                              )}
                             </div>
-                            <div>
+                            <div
+                              className={
+                                this.state.errors.expirationMonth ||
+                                this.state.errors.expirationYear
+                                  ? "checkout-payment__field-error"
+                                  : ""
+                              }
+                            >
                               <span className="input__label">Expiry Date</span>
                               <NumberFormat
                                 name="expiry"
                                 customInput={TextField}
                                 format="## / ##"
                               />
+                              {this.state.errors.expirationMonth ||
+                              this.state.errors.expirationYear ? (
+                                <span className="input__error checkout-payment__error">
+                                  {`${
+                                    this.state.errors.expirationMonth
+                                      ? `${this.state.errors.expirationMonth}. `
+                                      : ""
+                                  }${this.state.errors.expirationYear}`}
+                                </span>
+                              ) : (
+                                ""
+                              )}
                             </div>
                           </div>
-                          <Button>Continue to review your order</Button>
+                          <Button disabled={this.state.loading}>
+                            {this.state.loading
+                              ? "Loading"
+                              : "Continue to review your order"}
+                          </Button>
                         </Form>
                       </div>
                     </>

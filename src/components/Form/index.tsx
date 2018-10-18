@@ -1,4 +1,5 @@
 import * as React from "react";
+import NumberFormat from "react-number-format";
 
 import { SelectField, TextField } from "..";
 
@@ -118,7 +119,7 @@ class Form extends React.Component<FormProps, FormState> {
           children: this.renderWrappedChildren(child.props.children)
         });
       }
-      if (child.type === TextField) {
+      if (child.type === TextField || child.type === NumberFormat) {
         const defaultValue = this.state.data[child.props.name];
         const groupedErrors = groupErrorsByFields(this.state.errors);
         const errors = groupedErrors[child.props.name] || [];

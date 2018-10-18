@@ -32,7 +32,9 @@ class CheckoutShipping extends React.Component<
                     data &&
                     data.checkoutShippingAddressUpdate.errors.length === 0
                   ) {
-                    updateCheckout(data.checkoutShippingAddressUpdate.checkout);
+                    updateCheckout({
+                      checkout: data.checkoutShippingAddressUpdate.checkout
+                    });
                     this.props.history.push(
                       `/checkout/${checkout.token}/shipping-options/`
                     );

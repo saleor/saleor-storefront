@@ -14,4 +14,15 @@
     grid-gap: 0 $spacer;
     grid-template-columns: 1fr 1fr;
   }
+
+  &__field-error {
+    .input {
+      margin-bottom: 0;
+    }
+  }
+
+  &__error {
+    margin-bottom: $spacer;
+    display: block;
+  }
 }
