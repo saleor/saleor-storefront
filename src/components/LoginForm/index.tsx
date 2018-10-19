@@ -16,9 +16,16 @@ const LoginForm: React.SFC<{}> = () => (
             event.preventDefault();
           }}
         >
-          <TextField name="email" label="Email Address" type="email" required />
+          <TextField
+            name="email"
+            autoComplete="email"
+            label="Email Address"
+            type="email"
+            required
+          />
           <TextField
             name="password"
+            autoComplete="password"
             label="Password"
             type="password"
             required

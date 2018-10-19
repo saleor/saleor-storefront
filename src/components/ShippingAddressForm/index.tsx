@@ -17,54 +17,81 @@ const ShippingAddressForm: React.SFC<{
       return (
         <div className="address-form">
           <Form errors={errors} onSubmit={onSubmit}>
-            <TextField label="Email Address" type="email" name="email" />
+            <TextField
+              label="Email Address"
+              type="email"
+              autoComplete="email"
+              name="email"
+            />
             <div className="address-form__grid">
               <TextField
                 label="First Name"
                 type="given-name"
-                name="given-name"
+                name="givenName"
+                autoComplete="given-name"
               />
               <TextField
                 label="Last Name"
                 type="family-name"
-                name="family-name"
+                name="familyName"
+                autoComplete="family-name"
               />
             </div>
             <TextField
               label="Company"
               type="organization"
               name="organization"
+              autoComplete="organization"
             />
             <TextField
               label="Street Line 1"
               type="address-line1"
-              name="address-line1"
+              name="addressLine1"
+              autoComplete="address-line1"
             />
             <TextField
               label="Street Line 2"
               type="address-line2"
-              name="address-line2"
+              name="addressLine2"
+              autoComplete="address-line2"
             />
             <div className="address-form__grid">
-              <TextField label="City" type="city" name="city" />
-              <TextField label="State/Province" type="state" name="state" />
+              <TextField
+                label="City"
+                type="city"
+                name="city"
+                autoComplete="city"
+              />
+              <TextField
+                label="State/Province"
+                type="state"
+                name="state"
+                autoComplete="state"
+              />
             </div>
             <div className="address-form__grid">
               <TextField
                 label="Zip-Code"
                 type="postal-code"
-                name="postal-code"
+                name="postalCode"
+                autoComplete="postal-code"
               />
               <SelectField
                 label="Country"
-                name="country-name"
+                name="countryName"
+                autoComplete="country-name"
                 options={shop.countries.map(country => ({
                   label: country.country,
                   value: country.code
                 }))}
               />
             </div>
-            <TextField label="Phone number" type="tel" name="phone-number" />
+            <TextField
+              label="Phone number"
+              type="tel"
+              name="phoneNumber"
+              autoComplete="phone-number"
+            />
             <label className="checkbox">
               <input type="checkbox" />
               <span>Use as Billing Address</span>
