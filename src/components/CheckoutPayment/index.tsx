@@ -1,4 +1,3 @@
-import * as braintree from "braintree-web";
 import * as React from "react";
 import { Query } from "react-apollo";
 import NumberFormat from "react-number-format";
@@ -6,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
+import { barintreePayment } from "../../core/payments/braintree";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { GET_PAYMENT_TOKEN } from "./queries";
 
@@ -29,7 +29,12 @@ class CheckoutPayment extends React.Component<
     };
   }
 
-  tokenizeCcCard = (paymentClientToken, creditCard, updateCheckout, token) => {
+  tokenizeCcCard = async (
+    paymentClientToken,
+    creditCard,
+    updateCheckout,
+    token
+  ) => {
     this.setState({
       errors: {
         cvv: "",
@@ -40,53 +45,29 @@ class CheckoutPayment extends React.Component<
       },
       loading: true
     });
-    braintree.client.create(
-      {
-        authorization: paymentClientToken
-      },
-      (err, client) => {
-        client.request(
-          {
-            data: { creditCard },
-            endpoint: "payment_methods/credit_cards",
-            method: "post"
-          },
-          (error, response) => {
-            if (error) {
-              if (error.details.originalError.fieldErrors.length > 0) {
-                error.details.originalError.fieldErrors.map(error => {
-                  if (error.field === "creditCard") {
-                    error.fieldErrors.map(error => {
-                      this.setState(state => {
-                        const errors = {
-                          ...state.errors,
-                          [error.field]: state.errors[error.field]
-                            ? state.errors[error.field] + ". " + error.message
-                            : error.message
-                        };
-                        return {
-                          errors,
-                          loading: false
-                        };
-                      });
-                    });
-                  }
-                });
-              }
-            } else {
-              const lastDigits = response.creditCards[0].details.lastFour;
-              const ccType = response.creditCards[0].details.cardType;
-              const token = response.creditCards[0].nonce;
-              this.setState({
-                loading: false
-              });
-              updateCheckout({ cardData: { lastDigits, ccType, token } });
-              this.props.history.push(`/checkout/${token}/review/`);
-            }
-          }
-        );
-      }
-    );
+    try {
+      const cardData = await barintreePayment(paymentClientToken, creditCard);
+      this.setState({
+        loading: false
+      });
+      updateCheckout({ cardData });
+      this.props.history.push(`/checkout/${token}/review/`);
+    } catch (errors) {
+      errors.map(error => {
+        this.setState(state => {
+          const errors = {
+            ...state.errors,
+            [error.field]: state.errors[error.field]
+              ? state.errors[error.field] + ". " + error.message
+              : error.message
+          };
+          return {
+            errors,
+            loading: false
+          };
+        });
+      });
+    }
   };
 
   render() {
