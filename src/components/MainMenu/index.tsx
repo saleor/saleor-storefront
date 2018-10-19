@@ -110,23 +110,24 @@ const MainMenu: React.SFC = () => (
                 </UserContext.Consumer>
               )}
             />
-            <li
-              className="main-menu__icon main-menu__cart"
-              onClick={() =>
-                overlayContext.show(OverlayType.cart, OverlayTheme.right)
-              }
-            >
-              <ReactSVG path="../../images/cart.svg" />
-              <CartContext.Consumer>
-                {cart =>
-                  cart.getQuantity() > 0 ? (
+            <CartContext.Consumer>
+              {cart => (
+                <li
+                  className="main-menu__icon main-menu__cart"
+                  onClick={() => {
+                    cart.fetch();
+                    overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                  }}
+                >
+                  <ReactSVG path="../../images/cart.svg" />
+                  {cart.getQuantity() > 0 ? (
                     <span className="main-menu__cart__quantity">
                       {cart.getQuantity()}
                     </span>
-                  ) : null
-                }
-              </CartContext.Consumer>
-            </li>
+                  ) : null}
+                </li>
+              )}
+            </CartContext.Consumer>
             <li
               className="main-menu__search"
               onClick={() =>
