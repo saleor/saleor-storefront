@@ -26,6 +26,7 @@ export class CheckoutProvider extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
+      cardData: null,
       checkout: null,
       loading: false,
       updateCheckout: this.updateCheckout
@@ -45,8 +46,8 @@ export class CheckoutProvider extends React.Component<
     this.setState({ ...data, loading: false });
   };
 
-  updateCheckout = checkout => {
-    this.setState({ checkout });
+  updateCheckout = checkoutData => {
+    this.setState(checkoutData);
   };
 
   render() {

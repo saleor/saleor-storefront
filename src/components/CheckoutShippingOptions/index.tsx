@@ -20,7 +20,7 @@ class CheckoutShipping extends React.Component<
     return (
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
-          {({ checkout }) => {
+          {({ checkout, updateCheckout }) => {
             return (
               <>
                 <div className="checkout__step checkout__step--inactive">
@@ -40,6 +40,9 @@ class CheckoutShipping extends React.Component<
                       data &&
                       data.checkoutShippingMethodUpdate.errors.length === 0
                     ) {
+                      updateCheckout({
+                        checkout: data.checkoutShippingMethodUpdate.checkout
+                      });
                       this.props.history.push(
                         `/checkout/${checkout.token}/billing-address/`
                       );
@@ -92,11 +95,11 @@ class CheckoutShipping extends React.Component<
                     );
                   }}
                 </Mutation>
-                <div className="checkout__step checkout__step--inactive">
+                <div className="checkout__step">
                   <span>3</span>
                   <h4 className="checkout__header">Billing</h4>
                 </div>
-                <div className="checkout__step checkout__step--inactive">
+                <div className="checkout__step">
                   <span>4</span>
                   <h4 className="checkout__header">Payment Method</h4>
                 </div>

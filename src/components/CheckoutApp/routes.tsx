@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
-import { CheckoutBilling, CheckoutShipping, CheckoutShippingOptions } from "..";
+import {
+  CheckoutBilling,
+  CheckoutPayment,
+  CheckoutShipping,
+  CheckoutShippingOptions
+} from "..";
 
 const Routes: React.SFC<{ matchUrl: string }> = ({ matchUrl }) => (
   <>
@@ -11,6 +16,7 @@ const Routes: React.SFC<{ matchUrl: string }> = ({ matchUrl }) => (
       component={CheckoutShippingOptions}
     />
     <Route path={`${matchUrl}/billing-address/`} component={CheckoutBilling} />
+    <Route path={`${matchUrl}/payment/`} component={CheckoutPayment} />
   </>
 );
 

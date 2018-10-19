@@ -22,6 +22,21 @@ export const CHECKOUT_FRAGMENT = gql`
       }
       currency
     }
+    billingAddress {
+      firstName
+      lastName
+      companyName
+      streetAddress1
+      streetAddress2
+      city
+      postalCode
+      country {
+        code
+        country
+      }
+      countryArea
+      phone
+    }
     shippingAddress {
       firstName
       lastName

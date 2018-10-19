@@ -30,6 +30,7 @@ const PasswordResetForm: React.SFC = () => (
           >
             <TextField
               name="email"
+              autoComplete="email"
               label="Email Address"
               type="email"
               required
