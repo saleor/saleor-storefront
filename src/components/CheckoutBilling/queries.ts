@@ -1,6 +1,9 @@
 import gql from "graphql-tag";
 
+import { CHECKOUT_FRAGMENT } from "../CheckoutApp/queries";
+
 export const UPDATE_CHECKOUT_BILLING_ADDRESS = gql`
+  ${CHECKOUT_FRAGMENT}
   mutation updateCheckoutBillingAddress(
     $checkoutId: ID!
     $billingAddress: AddressInput!
@@ -12,6 +15,9 @@ export const UPDATE_CHECKOUT_BILLING_ADDRESS = gql`
       errors {
         field
         message
+      }
+      checkout {
+        ...Checkout
       }
     }
   }

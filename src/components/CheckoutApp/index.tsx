@@ -61,46 +61,61 @@ export class CheckoutProvider extends React.Component<
 }
 
 const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
+  history,
   match: {
     url,
     params: { token = "" }
   }
-}) => (
-  <div className="checkout">
-    <div className="checkout__menu">
-      <div className="checkout__menu__bar">
-        <ReactSVG path="../../images/logo.svg" />
+}) => {
+  const isReviewPage = history.location.pathname === `${url}/review/`;
+
+  return (
+    <div className="checkout">
+      <div className="checkout__menu">
+        <div className="checkout__menu__bar">
+          <ReactSVG path="../../images/logo.svg" />
+        </div>
+        <Link to="/">Return to shopping</Link>
       </div>
-      <Link to="/">Return to shopping</Link>
-    </div>
-    <div className="container">
-      <div className="checkout__grid">
-        <ApolloConsumer>
-          {client => (
-            <CheckoutProvider apolloClient={client} token={token} url={url}>
-              <CheckoutContext.Consumer>
-                {({ loading }) =>
-                  loading ? (
-                    <Loader />
-                  ) : (
-                    <>
-                      <div className="checkout__grid__content">
-                        <Routes matchUrl={url} />
-                      </div>
-                      <Media
-                        query={{ minWidth: mediumScreen }}
-                        render={() => <CartSummary />}
-                      />
-                    </>
-                  )
-                }
-              </CheckoutContext.Consumer>
-            </CheckoutProvider>
-          )}
-        </ApolloConsumer>
+      <div className="container">
+        <div
+          className={`checkout__grid${
+            isReviewPage ? " checkout__grid--review" : ""
+          }`}
+        >
+          <ApolloConsumer>
+            {client => (
+              <CheckoutProvider apolloClient={client} token={token} url={url}>
+                <CheckoutContext.Consumer>
+                  {({ loading }) =>
+                    loading ? (
+                      <Loader />
+                    ) : (
+                      <>
+                        <div
+                          className={
+                            isReviewPage ? "" : "checkout__grid__content"
+                          }
+                        >
+                          <Routes matchUrl={url} />
+                        </div>
+                        {!isReviewPage ? (
+                          <Media
+                            query={{ minWidth: mediumScreen }}
+                            render={() => <CartSummary />}
+                          />
+                        ) : null}
+                      </>
+                    )
+                  }
+                </CheckoutContext.Consumer>
+              </CheckoutProvider>
+            )}
+          </ApolloConsumer>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default CheckoutApp;
