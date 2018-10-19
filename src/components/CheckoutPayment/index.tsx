@@ -144,14 +144,14 @@ class CheckoutPayment extends React.Component<
                                 billingAddress: {
                                   postalCode: checkout.billingAddress.postalCode
                                 },
-                                cvv: formData.cvc
-                                  ? formData.cvc.replace(/\s+/g, "")
+                                cvv: formData["cc-csc"]
+                                  ? formData["cc-csc"].replace(/\s+/g, "")
                                   : "",
-                                expirationDate: formData.expiry
-                                  ? formData.expiry.replace(/\s+/g, "")
+                                expirationDate: formData["cc-exp"]
+                                  ? formData["cc-exp"].replace(/\s+/g, "")
                                   : "",
-                                number: formData.number
-                                  ? formData.number.replace(/\s+/g, "")
+                                number: formData["cc-number"]
+                                  ? formData["cc-number"].replace(/\s+/g, "")
                                   : ""
                               },
                               updateCheckout,
@@ -168,7 +168,7 @@ class CheckoutPayment extends React.Component<
                             }
                           >
                             <NumberFormat
-                              name="number"
+                              name="cc-number"
                               customInput={TextField}
                               format="#### #### #### ####"
                             />
@@ -190,7 +190,7 @@ class CheckoutPayment extends React.Component<
                             >
                               <span className="input__label">CVC</span>
                               <NumberFormat
-                                name="cvc"
+                                name="cc-csc"
                                 customInput={TextField}
                                 format="####"
                               />
@@ -212,7 +212,7 @@ class CheckoutPayment extends React.Component<
                             >
                               <span className="input__label">Expiry Date</span>
                               <NumberFormat
-                                name="expiry"
+                                name="cc-exp"
                                 customInput={TextField}
                                 format="## / ##"
                               />

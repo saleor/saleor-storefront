@@ -22,12 +22,12 @@ const ShippingAddressForm: React.SFC<{
               <TextField
                 label="First Name"
                 type="given-name"
-                name="givenName"
+                name="given-name"
               />
               <TextField
                 label="Last Name"
                 type="family-name"
-                name="familyName"
+                name="family-name"
               />
             </div>
             <TextField
@@ -38,12 +38,12 @@ const ShippingAddressForm: React.SFC<{
             <TextField
               label="Street Line 1"
               type="address-line1"
-              name="addressLine1"
+              name="address-line1"
             />
             <TextField
               label="Street Line 2"
               type="address-line2"
-              name="addressLine2"
+              name="address-line2"
             />
             <div className="address-form__grid">
               <TextField label="City" type="city" name="city" />
@@ -53,18 +53,18 @@ const ShippingAddressForm: React.SFC<{
               <TextField
                 label="Zip-Code"
                 type="postal-code"
-                name="postalCode"
+                name="postal-code"
               />
               <SelectField
                 label="Country"
-                name="countryName"
+                name="country-name"
                 options={shop.countries.map(country => ({
                   label: country.country,
                   value: country.code
                 }))}
               />
             </div>
-            <TextField label="Phone number" type="tel" name="phoneNumber" />
+            <TextField label="Phone number" type="tel" name="phone-number" />
             <label className="checkbox">
               <input type="checkbox" />
               <span>Use as Billing Address</span>
