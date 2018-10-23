@@ -115,3 +115,14 @@ export const GET_CHECKOUT = gql`
     }
   }
 `;
+
+export const UPDATE_CHECKOUT_LINE = gql`
+  mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
+    checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;

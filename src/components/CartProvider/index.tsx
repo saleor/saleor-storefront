@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import { ApolloClient } from "apollo-client";
-import { PriceInterface, ProductVariantInterface } from "../../core/types";
+import { PriceInterface } from "../../core/types";
+import { GET_CHECKOUT, UPDATE_CHECKOUT_LINE } from "../CheckoutApp/queries";
 import { GET_PRODUCTS_VARIANTS } from "../ProductPage/queries";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
-import { GET_CHECKOUT } from "../CheckoutPage/queries";
 
 export default class CartProvider extends React.Component<
   { children: any; apolloClient: ApolloClient<any> },
@@ -32,7 +32,7 @@ export default class CartProvider extends React.Component<
     };
   }
 
-  changeQuantity = (variantId, quantity) => {
+  changeQuantity = async (variantId, quantity) => {
     const newLine: CartLineInterface = {
       quantity,
       variantId
@@ -44,6 +44,33 @@ export default class CartProvider extends React.Component<
       }
       return { lines };
     });
+
+    const checkoutToken = localStorage.getItem("checkout");
+    if (checkoutToken) {
+      const { apolloClient } = this.props;
+      let data: { [key: string]: any };
+      const response = await apolloClient.query({
+        query: GET_CHECKOUT,
+        variables: { token: checkoutToken }
+      });
+      data = response.data;
+      const checkoutID = data.checkout.id;
+      apolloClient.mutate({
+        mutation: UPDATE_CHECKOUT_LINE,
+        update: cache => {
+          cache.readQuery({ query: GET_CHECKOUT });
+        },
+        variables: {
+          checkoutId: checkoutID,
+          lines: [
+            {
+              quantity,
+              variantId
+            }
+          ]
+        }
+      });
+    }
   };
 
   add = (variantId, quantity = 1) => {
@@ -67,11 +94,11 @@ export default class CartProvider extends React.Component<
         variables: { token: checkoutToken }
       });
       data = response.data;
-      lines = data.checkout
-        ? data.checkout.lines.edges.map(edge => ({
-            quantity: edge.node.quantity,
-            variant: edge.node.variant,
-            variantId: edge.node.variant.id
+      lines = data.checkout.lines
+        ? data.checkout.lines.map(line => ({
+            quantity: line.quantity,
+            variant: line.variant,
+            variantId: line.variant.id
           }))
         : [];
     } else {
@@ -84,11 +111,11 @@ export default class CartProvider extends React.Component<
         return obj;
       }, {});
       data = response.data;
-      lines = data.productsVariants
-        ? data.productsVariants.map(variant => ({
-            quantity: quantityMapping[variant.id],
-            variant,
-            variantId: variant.id
+      lines = data.productVariants
+        ? data.productVariants.edges.map(variant => ({
+            quantity: quantityMapping[variant.node.id],
+            variant: variant.node,
+            variantId: variant.node.id
           }))
         : [];
     }
