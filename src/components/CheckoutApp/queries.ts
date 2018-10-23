@@ -117,8 +117,12 @@ export const GET_CHECKOUT = gql`
 `;
 
 export const UPDATE_CHECKOUT_LINE = gql`
+  ${CHECKOUT_FRAGMENT}
   mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
+      checkout {
+        ...Checkout
+      }
       errors {
         field
         message

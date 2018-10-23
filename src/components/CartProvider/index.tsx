@@ -57,8 +57,11 @@ export default class CartProvider extends React.Component<
       const checkoutID = data.checkout.id;
       apolloClient.mutate({
         mutation: UPDATE_CHECKOUT_LINE,
-        update: cache => {
-          cache.readQuery({ query: GET_CHECKOUT });
+        update: (cache, { data: { checkoutLinesUpdate } }) => {
+          cache.writeQuery({
+            data: { checkout: checkoutLinesUpdate.checkout },
+            query: GET_CHECKOUT
+          });
         },
         variables: {
           checkoutId: checkoutID,
@@ -82,51 +85,53 @@ export default class CartProvider extends React.Component<
   clear = () => this.setState({ lines: [] });
 
   fetch = async () => {
-    const { apolloClient } = this.props;
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const checkoutToken = localStorage.getItem("checkout");
-    let data: { [key: string]: any };
-    let lines;
-    this.setState({ loading: true });
-    if (checkoutToken) {
-      const response = await apolloClient.query({
-        query: GET_CHECKOUT,
-        variables: { token: checkoutToken }
-      });
-      data = response.data;
-      lines = data.checkout.lines
-        ? data.checkout.lines.map(line => ({
-            quantity: line.quantity,
-            variant: line.variant,
-            variantId: line.variant.id
-          }))
-        : [];
-    } else {
-      const response = await apolloClient.query({
-        query: GET_PRODUCTS_VARIANTS,
-        variables: { ids: cart.map(line => line.variantId) }
-      });
-      const quantityMapping = cart.reduce((obj, line) => {
-        obj[line.variantId] = line.quantity;
-        return obj;
-      }, {});
-      data = response.data;
-      lines = data.productVariants
-        ? data.productVariants.edges.map(variant => ({
-            quantity: quantityMapping[variant.node.id],
-            variant: variant.node,
-            variantId: variant.node.id
-          }))
-        : [];
-    }
-    if (data.errors) {
-      this.setState({
-        errors: data.errors,
-        lines: [],
-        loading: false
-      });
-    } else {
-      this.setState({ loading: false, lines, errors: null });
+    if (cart.length) {
+      const { apolloClient } = this.props;
+      const checkoutToken = localStorage.getItem("checkout");
+      let data: { [key: string]: any };
+      let lines;
+      this.setState({ loading: true });
+      if (checkoutToken) {
+        const response = await apolloClient.query({
+          query: GET_CHECKOUT,
+          variables: { token: checkoutToken }
+        });
+        data = response.data;
+        lines = data.checkout.lines
+          ? data.checkout.lines.map(line => ({
+              quantity: line.quantity,
+              variant: line.variant,
+              variantId: line.variant.id
+            }))
+          : [];
+      } else {
+        const response = await apolloClient.query({
+          query: GET_PRODUCTS_VARIANTS,
+          variables: { ids: cart.map(line => line.variantId) }
+        });
+        const quantityMapping = cart.reduce((obj, line) => {
+          obj[line.variantId] = line.quantity;
+          return obj;
+        }, {});
+        data = response.data;
+        lines = data.productVariants
+          ? data.productVariants.edges.map(variant => ({
+              quantity: quantityMapping[variant.node.id],
+              variant: variant.node,
+              variantId: variant.node.id
+            }))
+          : [];
+      }
+      if (data.errors) {
+        this.setState({
+          errors: data.errors,
+          lines: [],
+          loading: false
+        });
+      } else {
+        this.setState({ loading: false, lines, errors: null });
+      }
     }
   };
 

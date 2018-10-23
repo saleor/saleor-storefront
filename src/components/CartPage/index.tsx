@@ -22,9 +22,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
       <h1 className="checkout__header cart__header">Shopping cart</h1>
       <Query query={GET_CHECKOUT} variables={{ token }}>
         {({ loading, error, data: { checkout } }) => {
-          const lines = checkout
-            ? checkout.lines.edges.map(edge => edge.node)
-            : [];
+          const lines = checkout ? checkout.lines : [];
           if (loading) {
             return <Loader />;
           }
