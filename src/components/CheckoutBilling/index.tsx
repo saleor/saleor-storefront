@@ -52,20 +52,23 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                   return (
                     <div className="checkout__content">
                       <ShippingAddressForm
-                        errors={data && data.errors}
+                        buttonText="Continue to Payment"
+                        errors={
+                          data && data.checkoutBillingAddressUpdate.errors
+                        }
                         loading={loading}
                         onSubmit={(event, data) => {
                           saveBillingAddress({
                             variables: {
                               billingAddress: {
                                 city: data.city,
-                                country: data.countryName,
-                                countryArea: data.state,
-                                firstName: data.givenName,
-                                lastName: data.familyName,
+                                country: data.country,
+                                countryArea: data.countryArea,
+                                firstName: data.firstName,
+                                lastName: data.lastName,
                                 postalCode: data.postalCode,
-                                streetAddress1: data.addressLine1,
-                                streetAddress2: data.addressLine2
+                                streetAddress1: data.streetAddress1,
+                                streetAddress2: data.streetAddress2
                               },
                               checkoutId: checkout.id
                             }

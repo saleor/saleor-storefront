@@ -8,100 +8,105 @@ import { GET_COUNTRIES_LIST } from "./queries";
 import "./scss/index.scss";
 
 const ShippingAddressForm: React.SFC<{
+  buttonText: string;
   errors: FormError[];
   loading: boolean;
   onSubmit(event: any, data: any): void;
-}> = ({ errors, loading, onSubmit }) => (
+}> = ({ buttonText, errors, loading, onSubmit }) => (
   <Query query={GET_COUNTRIES_LIST}>
     {({ data: { shop } }) => {
-      return (
-        <div className="address-form">
-          <Form errors={errors} onSubmit={onSubmit}>
-            <TextField
-              label="Email Address"
-              type="email"
-              autoComplete="email"
-              name="email"
-            />
-            <div className="address-form__grid">
+      if (shop) {
+        return (
+          <div className="address-form">
+            <Form errors={errors} onSubmit={onSubmit}>
               <TextField
-                label="First Name"
-                type="given-name"
-                name="givenName"
-                autoComplete="given-name"
+                label="Email Address"
+                type="email"
+                autoComplete="email"
+                name="email"
               />
+              <div className="address-form__grid">
+                <TextField
+                  label="First Name"
+                  type="given-name"
+                  name="firstName"
+                  autoComplete="given-name"
+                />
+                <TextField
+                  label="Last Name"
+                  type="family-name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </div>
               <TextField
-                label="Last Name"
-                type="family-name"
-                name="familyName"
-                autoComplete="family-name"
-              />
-            </div>
-            <TextField
-              label="Company"
-              type="organization"
-              name="organization"
-              autoComplete="organization"
-            />
-            <TextField
-              label="Street Line 1"
-              type="address-line1"
-              name="addressLine1"
-              autoComplete="address-line1"
-            />
-            <TextField
-              label="Street Line 2"
-              type="address-line2"
-              name="addressLine2"
-              autoComplete="address-line2"
-            />
-            <div className="address-form__grid">
-              <TextField
-                label="City"
-                type="city"
-                name="city"
-                autoComplete="city"
+                label="Company"
+                type="organization"
+                name="companyName"
+                autoComplete="organization"
               />
               <TextField
-                label="State/Province"
-                type="state"
-                name="state"
-                autoComplete="state"
+                label="Street Line 1"
+                type="address-line1"
+                name="streetAddress1"
+                autoComplete="address-line1"
               />
-            </div>
-            <div className="address-form__grid">
               <TextField
-                label="Zip-Code"
-                type="postal-code"
-                name="postalCode"
-                autoComplete="postal-code"
+                label="Street Line 2"
+                type="address-line2"
+                name="streetAddress2"
+                autoComplete="address-line2"
               />
-              <SelectField
-                label="Country"
-                name="countryName"
-                autoComplete="country-name"
-                options={shop.countries.map(country => ({
-                  label: country.country,
-                  value: country.code
-                }))}
+              <div className="address-form__grid">
+                <TextField
+                  label="City"
+                  type="city"
+                  name="city"
+                  autoComplete="city"
+                />
+                <TextField
+                  label="State/Province"
+                  type="state"
+                  name="countryArea"
+                  autoComplete="state"
+                />
+              </div>
+              <div className="address-form__grid">
+                <TextField
+                  label="Zip-Code"
+                  type="postal-code"
+                  name="postalCode"
+                  autoComplete="postal-code"
+                />
+                <SelectField
+                  label="Country"
+                  name="country"
+                  autoComplete="country-name"
+                  options={shop.countries.map(country => ({
+                    label: country.country,
+                    value: country.code
+                  }))}
+                />
+              </div>
+              <TextField
+                label="Phone number"
+                type="tel"
+                name="phone"
+                autoComplete="phone-number"
               />
-            </div>
-            <TextField
-              label="Phone number"
-              type="tel"
-              name="phoneNumber"
-              autoComplete="phone-number"
-            />
-            <label className="checkbox">
-              <input type="checkbox" />
-              <span>Use as Billing Address</span>
-            </label>
-            <Button disabled={loading}>
-              {loading ? "Loading" : "Continue to shipping"}
-            </Button>
-          </Form>
-        </div>
-      );
+              <label className="checkbox">
+                <input type="checkbox" />
+                <span>Use as Billing Address</span>
+              </label>
+              <Button disabled={loading}>
+                {loading ? "Loading" : buttonText}
+              </Button>
+            </Form>
+          </div>
+        );
+      } else {
+        return null;
+      }
     }}
   </Query>
 );

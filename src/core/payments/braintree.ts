@@ -14,11 +14,14 @@ interface ErrorData {
   number?: string;
 }
 
-export const barintreePayment = (paymentClientToken: string, creditCard: any) =>
+export const barintreePayment = (
+  paymentTransactionToken: string,
+  creditCard: any
+) =>
   new Promise<PaymentData | ErrorData[]>((resolve, reject) => {
     braintree.client.create(
       {
-        authorization: paymentClientToken
+        authorization: paymentTransactionToken
       },
       (err, client) => {
         client.request(

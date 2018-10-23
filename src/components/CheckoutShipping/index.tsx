@@ -42,7 +42,10 @@ class CheckoutShipping extends React.Component<
                   return (
                     <div className="checkout__content">
                       <ShippingAddressForm
-                        errors={data && data.errors}
+                        buttonText="Continue to Shipping"
+                        errors={
+                          data && data.checkoutShippingAddressUpdate.errors
+                        }
                         loading={loading}
                         onSubmit={(event, data) => {
                           saveShippingAddress({
@@ -50,15 +53,15 @@ class CheckoutShipping extends React.Component<
                               checkoutId: checkout.id,
                               shippingAddress: {
                                 city: data.city,
-                                companyName: data.organization,
-                                country: data.countryName,
-                                countryArea: data.state,
-                                firstName: data.givenName,
-                                lastName: data.familyName,
-                                phone: data.phoneNumber,
+                                companyName: data.companyName,
+                                country: data.country,
+                                countryArea: data.countryArea,
+                                firstName: data.firstName,
+                                lastName: data.lastName,
+                                phone: data.phone,
                                 postalCode: data.postalCode,
-                                streetAddress1: data.addressLine1,
-                                streetAddress2: data.addressLine2
+                                streetAddress1: data.streetAddress1,
+                                streetAddress2: data.streetAddress2
                               }
                             }
                           });

@@ -29,7 +29,11 @@ class CheckoutPayment extends React.Component<
     };
   }
 
-  tokenizeCcCard = async (paymentClientToken, creditCard, updateCheckout) => {
+  tokenizeCcCard = async (
+    paymentTransactionToken,
+    creditCard,
+    updateCheckout
+  ) => {
     this.setState({
       errors: {
         cvv: "",
@@ -42,7 +46,7 @@ class CheckoutPayment extends React.Component<
     });
     let cardData;
     try {
-      cardData = await barintreePayment(paymentClientToken, creditCard);
+      cardData = await barintreePayment(paymentTransactionToken, creditCard);
       this.setState({
         loading: false
       });
@@ -77,7 +81,7 @@ class CheckoutPayment extends React.Component<
       >
         {({ data }) => {
           if (data) {
-            const { paymentClientToken } = data;
+            const { paymentTransactionToken } = data;
             return (
               <div className="checkout-payment">
                 <CheckoutContext.Consumer>
@@ -139,7 +143,7 @@ class CheckoutPayment extends React.Component<
                                 onSubmit={async (event, formData) => {
                                   event.preventDefault();
                                   const token = await this.tokenizeCcCard(
-                                    paymentClientToken,
+                                    paymentTransactionToken,
                                     {
                                       billingAddress: {
                                         postalCode: billingAddress.postalCode
@@ -157,7 +161,6 @@ class CheckoutPayment extends React.Component<
                                     updateCheckout
                                   );
                                   if (token) {
-                                    console.log(token);
                                     createPaymentMethod({
                                       variables: {
                                         input: {
@@ -180,7 +183,6 @@ class CheckoutPayment extends React.Component<
                                           checkoutId: id,
                                           gateway:
                                             PROVIDERS[PROVIDERS.BRAINTREE],
-                                          storePaymentMethod: false,
                                           transactionToken: token
                                         }
                                       }
@@ -282,6 +284,8 @@ class CheckoutPayment extends React.Component<
                 </CheckoutContext.Consumer>
               </div>
             );
+          } else {
+            return null;
           }
         }}
       </Query>
