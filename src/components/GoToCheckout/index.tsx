@@ -49,7 +49,14 @@ export class GoToCheckout extends React.Component<
       this.setState({ loading: true });
       const { data } = await apolloClient.mutate({
         mutation: CREATE_CHECKOUT,
-        variables: { checkoutInput: { lines } }
+        variables: {
+          checkoutInput: {
+            lines: lines.map(line => ({
+              quantity: line.quantity,
+              variantId: line.variantId
+            }))
+          }
+        }
       });
       this.setState({
         checkoutToken: data.checkoutCreate.checkout.token,
