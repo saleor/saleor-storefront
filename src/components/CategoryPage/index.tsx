@@ -38,7 +38,7 @@ class CategoryPage extends React.Component<
     };
   }
 
-  onFltersChange = filters => {
+  onFiltersChange = filters => {
     this.setState(filters);
   };
 
@@ -126,7 +126,7 @@ class CategoryPage extends React.Component<
                 loading={loading}
                 filters={this.state}
                 attributes={data.attributes.edges.map(edge => edge.node)}
-                onFltersChange={this.onFltersChange}
+                onFiltersChange={this.onFiltersChange}
               />
             </div>
           );

@@ -37,7 +37,7 @@ class SearchPage extends React.Component<
     };
   }
 
-  onFltersChange = filters => {
+  onFiltersChange = filters => {
     this.setState(filters);
   };
 
@@ -104,7 +104,7 @@ class SearchPage extends React.Component<
                 loading={loading}
                 attributes={data.attributes.edges.map(edge => edge.node)}
                 filters={this.state}
-                onFltersChange={this.onFltersChange}
+                onFiltersChange={this.onFiltersChange}
                 searchQuery={parse(this.props.location.search).q}
               />
             );
