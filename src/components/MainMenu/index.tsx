@@ -46,8 +46,8 @@ const MainMenu: React.SFC = () => (
                     if (error) {
                       return `Error!: ${error}`;
                     }
-                    return data.shop.navigation.main.items.edges.map(
-                      ({ node: category }) => (
+                    return data.shop.navigation.main.items.map(
+                      (category) => (
                         <li className="main-menu__item" key={category.id}>
                           <Link
                             to={`/category/${slugify(
