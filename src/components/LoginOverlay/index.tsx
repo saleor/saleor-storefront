@@ -5,7 +5,6 @@ import ReactSVG from "react-svg";
 import { Button, Form, LoginForm, TextField } from "..";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
-import { UserContext } from "../User/context";
 import { CUSTOMER_REGISTER_MUTATION } from "./queries";
 
 import "./scss/index.scss";
@@ -97,32 +96,28 @@ export class LoginOverlay extends React.Component<
                   </span>
                 </div>
                 <div className="login__content">
-                  <UserContext.Consumer>
-                    {({ loading, login, errors }) =>
-                      this.state.active === "login" ? (
-                        <>
-                          <LoginForm />
-                          <div className="login__content__password-reminder">
-                            <p>
-                              Have you forgotten your password?&nbsp;
-                              <span
-                                onClick={() =>
-                                  overlay.show(
-                                    OverlayType.password,
-                                    OverlayTheme.right
-                                  )
-                                }
-                              >
-                                Click Here
-                              </span>
-                            </p>
-                          </div>
-                        </>
-                      ) : (
-                        <RegisterForm />
-                      )
-                    }
-                  </UserContext.Consumer>
+                  {this.state.active === "login" ? (
+                    <>
+                      <LoginForm />
+                      <div className="login__content__password-reminder">
+                        <p>
+                          Have you forgotten your password?&nbsp;
+                          <span
+                            onClick={() =>
+                              overlay.show(
+                                OverlayType.password,
+                                OverlayTheme.right
+                              )
+                            }
+                          >
+                            Click Here
+                          </span>
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <RegisterForm />
+                  )}
                 </div>
               </div>
             </Overlay>

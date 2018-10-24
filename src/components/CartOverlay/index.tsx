@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
+import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
@@ -10,6 +11,7 @@ import { GoToCheckout } from "../GoToCheckout";
 import Loader from "../Loader";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
+import { UserContext } from "../User/context";
 
 import "./scss/index.scss";
 
@@ -95,9 +97,22 @@ export const CartOverlay: React.SFC = () => (
                               </GoToCart>
                             </div>
                             <div className="cart__footer__button">
-                              <GoToCheckout apolloClient={client} cart={cart}>
-                                Checkout
-                              </GoToCheckout>
+                              <UserContext.Consumer>
+                                {({ user }) =>
+                                  user ? (
+                                    <GoToCheckout
+                                      apolloClient={client}
+                                      cart={cart}
+                                    >
+                                      Checkout
+                                    </GoToCheckout>
+                                  ) : (
+                                    <Link to="/login/">
+                                      <Button>Checkout</Button>
+                                    </Link>
+                                  )
+                                }
+                              </UserContext.Consumer>
                             </div>
                           </div>
                         </>

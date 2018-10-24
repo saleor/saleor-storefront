@@ -1,6 +1,6 @@
 @import "../../App/scss/variables.scss";
 
-.cart {
+.cart-page {
   &__header {
     margin-top: $spacer * 3;
   }
@@ -15,5 +15,25 @@
   &__checkout-action {
     text-align: right;
     margin: 0 $spacer $spacer * 3;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: $spacer * 5 0;
+
+    h4 {
+      font-weight: $bold-font-weight;
+      text-transform: uppercase;
+      margin-bottom: $spacer;
+    }
+
+    p {
+      color: $gray;
+    }
+
+    &__action {
+      text-align: center;
+      margin-top: $spacer;
+    }
   }
 }
