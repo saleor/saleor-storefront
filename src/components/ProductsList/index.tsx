@@ -38,7 +38,7 @@ interface ProductsListProps {
   loading: boolean;
   products: CategoryProductInterface;
   searchQuery?: string;
-  onFltersChange(filters: FiltersType): void;
+  onFiltersChange(filters: FiltersType): void;
 }
 
 interface ProductsListState {
@@ -60,7 +60,7 @@ class ProductsList extends React.Component<
 
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      this.props.onFltersChange(this.state);
+      this.props.onFiltersChange(this.state);
     }
     if (prevProps.searchQuery !== this.props.searchQuery) {
       this.setState({
