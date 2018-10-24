@@ -47,9 +47,6 @@ class CheckoutPayment extends React.Component<
     let cardData;
     try {
       cardData = await barintreePayment(paymentTransactionToken, creditCard);
-      this.setState({
-        loading: false
-      });
       updateCheckout({ cardData });
       return cardData.token;
     } catch (errors) {
@@ -133,6 +130,9 @@ class CheckoutPayment extends React.Component<
                               data &&
                               data.checkoutPaymentCreate.errors.length === 0
                             ) {
+                              this.setState({
+                                loading: false
+                              });
                               this.props.history.push(
                                 `/checkout/${token}/review/`
                               );

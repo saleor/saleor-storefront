@@ -146,7 +146,14 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                           this.props.history.push(`/`);
                           removeAuthToken();
                           show(OverlayType.message, null, {
+                            status: "error",
                             title: "Your order was placed"
+                          });
+                        } else {
+                          data.checkoutComplete.errors.map(error => {
+                            show(OverlayType.message, null, {
+                              title: error.message
+                            });
                           });
                         }
                         return (
