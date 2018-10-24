@@ -7,12 +7,8 @@ export const GET_MAIN_MENU = gql`
         main {
           id
           items {
-            edges {
-              node {
-                id
-                name
-              }
-            }
+            id
+            name
           }
         }
       }
