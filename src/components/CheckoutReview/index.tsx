@@ -1,14 +1,19 @@
 import * as React from "react";
+import { Mutation } from "react-apollo";
 import Media from "react-media";
+import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button } from "..";
+import { removeAuthToken } from "../../core/auth";
 import { priceToString } from "../../core/utils";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { OverlayContext, OverlayType } from "../Overlay/context";
+import { COMPLETE_CHECKOUT } from "./queries";
 
 import { smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
-class CheckoutReview extends React.Component<{}, {}> {
+class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
   render() {
     return (
       <CheckoutContext.Consumer>
@@ -44,10 +49,7 @@ class CheckoutReview extends React.Component<{}, {}> {
                           render={() => (
                             <img
                               width={50}
-                              src={
-                                "http://localhost:8000" +
-                                line.variant.product.thumbnailUrl
-                              }
+                              src={line.variant.product.thumbnailUrl}
                             />
                           )}
                         />
@@ -136,7 +138,35 @@ class CheckoutReview extends React.Component<{}, {}> {
                 </div>
               </div>
               <div className="checout-review__content__submit">
-                <Button>Place your order</Button>
+                <OverlayContext.Consumer>
+                  {({ show }) => (
+                    <Mutation mutation={COMPLETE_CHECKOUT}>
+                      {(completeCheckout, { data, loading }) => {
+                        if (data && data.checkoutComplete.errors.length === 0) {
+                          this.props.history.push(`/`);
+                          removeAuthToken();
+                          show(OverlayType.message, null, {
+                            title: "Your order was placed"
+                          });
+                        }
+                        return (
+                          <Button
+                            disabled={loading}
+                            onClick={() =>
+                              completeCheckout({
+                                variables: {
+                                  checkoutId: checkout.id
+                                }
+                              })
+                            }
+                          >
+                            {loading ? "Loading" : "Place your order"}
+                          </Button>
+                        );
+                      }}
+                    </Mutation>
+                  )}
+                </OverlayContext.Consumer>
               </div>
             </div>
           </div>

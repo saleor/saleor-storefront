@@ -30,10 +30,11 @@ class CheckoutShipping extends React.Component<
                 {(saveShippingAddress, { data, loading }) => {
                   if (
                     data &&
-                    data.checkoutShippingAddressUpdate.errors.length === 0
+                    data.checkoutShippingAddressUpdate.errors.length === 0 &&
+                    data.checkoutEmailUpdate.errors.length === 0
                   ) {
                     updateCheckout({
-                      checkout: data.checkoutShippingAddressUpdate.checkout
+                      checkout: data.checkoutEmailUpdate.checkout
                     });
                     this.props.history.push(
                       `/checkout/${checkout.token}/shipping-options/`
@@ -51,6 +52,7 @@ class CheckoutShipping extends React.Component<
                           saveShippingAddress({
                             variables: {
                               checkoutId: checkout.id,
+                              email: data.email,
                               shippingAddress: {
                                 city: data.city,
                                 companyName: data.companyName,

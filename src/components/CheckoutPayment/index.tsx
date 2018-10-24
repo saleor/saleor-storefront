@@ -131,8 +131,7 @@ class CheckoutPayment extends React.Component<
                           {(createPaymentMethod, { data }) => {
                             if (
                               data &&
-                              data.checkoutPaymentMethodCreate.errors.length ===
-                                0
+                              data.checkoutPaymentCreate.errors.length === 0
                             ) {
                               this.props.history.push(
                                 `/checkout/${token}/review/`

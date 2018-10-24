@@ -56,10 +56,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                           render={() => (
                             <img
                               width={50}
-                              src={
-                                "http://localhost:8000" +
-                                line.variant.product.thumbnailUrl
-                              }
+                              src={line.variant.product.thumbnailUrl}
                             />
                           )}
                         />
