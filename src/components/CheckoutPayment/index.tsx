@@ -5,7 +5,7 @@ import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
-import { barintreePayment } from "../../core/payments/braintree";
+import { braintreePayment } from "../../core/payments/braintree";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
 
@@ -46,7 +46,7 @@ class CheckoutPayment extends React.Component<
     });
     let cardData;
     try {
-      cardData = await barintreePayment(paymentTransactionToken, creditCard);
+      cardData = await braintreePayment(paymentTransactionToken, creditCard);
       updateCheckout({ cardData });
       return cardData.token;
     } catch (errors) {

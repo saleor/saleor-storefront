@@ -14,7 +14,7 @@ interface ErrorData {
   number?: string;
 }
 
-export const barintreePayment = (
+export const braintreePayment = (
   paymentTransactionToken: string,
   creditCard: any
 ) =>
