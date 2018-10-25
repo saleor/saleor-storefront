@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { ApolloConsumer, Query } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import { priceToString } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
 import { checkoutBaseUrl } from "../CheckoutApp/routes";
+import { GoToCheckout } from "../GoToCheckout";
 import { UserContext } from "../User/context";
 
 import { smallScreen } from "../App/scss/variables.scss";
@@ -116,11 +117,21 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                 </table>
                 <div className="cart-page__checkout-action">
                   <UserContext.Consumer>
-                    {({ user }) => (
-                      <Link to={user ? checkoutBaseUrl : "/login/"}>
-                        <Button>Checkout</Button>
-                      </Link>
-                    )}
+                    {({ user }) =>
+                      user ? (
+                        <ApolloConsumer>
+                          {client => (
+                            <GoToCheckout apolloClient={client}>
+                              Checkout
+                            </GoToCheckout>
+                          )}
+                        </ApolloConsumer>
+                      ) : (
+                        <Link to="/login/">
+                          <Button>Checkout</Button>
+                        </Link>
+                      )
+                    }
                   </UserContext.Consumer>
                 </div>
               </>

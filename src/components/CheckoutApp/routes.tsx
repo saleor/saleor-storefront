@@ -10,10 +10,10 @@ import {
 } from "..";
 
 export const checkoutBaseUrl = `/checkout/${localStorage.getItem("checkout")}/`;
-export const checkoutShippingOptionsUrl = `${checkoutBaseUrl}/shipping-options/`;
-export const checkoutBillingUrl = `${checkoutBaseUrl}/billing-address/`;
-export const checkoutPaymentUrl = `${checkoutBaseUrl}/payment/`;
-export const checkoutReviewUrl = `${checkoutBaseUrl}/review/`;
+export const checkoutShippingOptionsUrl = `${checkoutBaseUrl}shipping-options/`;
+export const checkoutBillingUrl = `${checkoutBaseUrl}billing-address/`;
+export const checkoutPaymentUrl = `${checkoutBaseUrl}payment/`;
+export const checkoutReviewUrl = `${checkoutBaseUrl}review/`;
 
 export const Routes: React.SFC = () => (
   <>
