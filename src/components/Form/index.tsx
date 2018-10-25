@@ -76,6 +76,14 @@ class Form extends React.Component<FormProps, FormState> {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      JSON.stringify(this.state.errors) !== JSON.stringify(prevState.errors)
+    ) {
+      this.setState({ errors: this.props.errors || [] });
+    }
+  }
+
   handleSubmit = event => {
     const { onSubmit } = this.props;
     if (onSubmit !== undefined) {

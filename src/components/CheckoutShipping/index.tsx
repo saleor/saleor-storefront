@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { ShippingAddressForm } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { checkoutShippingOptionsUrl } from "../CheckoutApp/routes";
 import { UPDATE_CHECKOUT_SHIPPING_ADDRESS } from "./queries";
 
 class CheckoutShipping extends React.Component<
@@ -30,35 +31,38 @@ class CheckoutShipping extends React.Component<
                 {(saveShippingAddress, { data, loading }) => {
                   if (
                     data &&
-                    data.checkoutShippingAddressUpdate.errors.length === 0
+                    data.checkoutShippingAddressUpdate.errors.length === 0 &&
+                    data.checkoutEmailUpdate.errors.length === 0
                   ) {
                     updateCheckout({
-                      checkout: data.checkoutShippingAddressUpdate.checkout
+                      checkout: data.checkoutEmailUpdate.checkout
                     });
-                    this.props.history.push(
-                      `/checkout/${checkout.token}/shipping-options/`
-                    );
+                    this.props.history.push(checkoutShippingOptionsUrl);
                   }
                   return (
                     <div className="checkout__content">
                       <ShippingAddressForm
-                        errors={data && data.errors}
+                        buttonText="Continue to Shipping"
+                        errors={
+                          data && data.checkoutShippingAddressUpdate.errors
+                        }
                         loading={loading}
                         onSubmit={(event, data) => {
                           saveShippingAddress({
                             variables: {
                               checkoutId: checkout.id,
+                              email: data.email,
                               shippingAddress: {
                                 city: data.city,
-                                companyName: data.organization,
-                                country: data.countryName,
-                                countryArea: data.state,
-                                firstName: data.givenName,
-                                lastName: data.familyName,
-                                phone: data.phoneNumber,
+                                companyName: data.companyName,
+                                country: data.country,
+                                countryArea: data.countryArea,
+                                firstName: data.firstName,
+                                lastName: data.lastName,
+                                phone: data.phone,
                                 postalCode: data.postalCode,
-                                streetAddress1: data.addressLine1,
-                                streetAddress2: data.addressLine2
+                                streetAddress1: data.streetAddress1,
+                                streetAddress2: data.streetAddress2
                               }
                             }
                           });

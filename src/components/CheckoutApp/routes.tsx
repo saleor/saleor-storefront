@@ -4,20 +4,26 @@ import { Route } from "react-router-dom";
 import {
   CheckoutBilling,
   CheckoutPayment,
+  CheckoutReview,
   CheckoutShipping,
   CheckoutShippingOptions
 } from "..";
 
-const Routes: React.SFC<{ matchUrl: string }> = ({ matchUrl }) => (
+export const checkoutBaseUrl = `/checkout/${localStorage.getItem("checkout")}/`;
+export const checkoutShippingOptionsUrl = `${checkoutBaseUrl}/shipping-options/`;
+export const checkoutBillingUrl = `${checkoutBaseUrl}/billing-address/`;
+export const checkoutPaymentUrl = `${checkoutBaseUrl}/payment/`;
+export const checkoutReviewUrl = `${checkoutBaseUrl}/review/`;
+
+export const Routes: React.SFC = () => (
   <>
-    <Route exact path={`${matchUrl}`} component={CheckoutShipping} />
+    <Route exact path={checkoutBaseUrl} component={CheckoutShipping} />
     <Route
-      path={`${matchUrl}/shipping-options/`}
+      path={checkoutShippingOptionsUrl}
       component={CheckoutShippingOptions}
     />
-    <Route path={`${matchUrl}/billing-address/`} component={CheckoutBilling} />
-    <Route path={`${matchUrl}/payment/`} component={CheckoutPayment} />
+    <Route path={checkoutBillingUrl} component={CheckoutBilling} />
+    <Route path={checkoutPaymentUrl} component={CheckoutPayment} />
+    <Route path={checkoutReviewUrl} component={CheckoutReview} />
   </>
 );
-
-export default Routes;

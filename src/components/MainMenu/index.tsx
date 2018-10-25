@@ -46,22 +46,17 @@ const MainMenu: React.SFC = () => (
                     if (error) {
                       return `Error!: ${error}`;
                     }
-                    return data.shop.navigation.main.items.map(
-                      (category) => (
-                        <li className="main-menu__item" key={category.id}>
-                          <Link
-                            to={`/category/${slugify(
-                              category.name
-                            )}/${getDBIdFromGraphqlId(
-                              category.id,
-                              "MenuItem"
-                            )}/`}
-                          >
-                            {category.name}
-                          </Link>
-                        </li>
-                      )
-                    );
+                    return data.shop.navigation.main.items.map(category => (
+                      <li className="main-menu__item" key={category.id}>
+                        <Link
+                          to={`/category/${slugify(
+                            category.name
+                          )}/${getDBIdFromGraphqlId(category.id, "MenuItem")}/`}
+                        >
+                          {category.name}
+                        </Link>
+                      </li>
+                    ));
                   }}
                 </Query>
               )}

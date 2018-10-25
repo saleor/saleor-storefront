@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, ShippingAddressForm } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { checkoutPaymentUrl } from "../CheckoutApp/routes";
 import { UPDATE_CHECKOUT_BILLING_ADDRESS } from "./queries";
 
 class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
@@ -45,27 +46,28 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                     updateCheckout({
                       checkout: data.checkoutBillingAddressUpdate.checkout
                     });
-                    this.props.history.push(
-                      `/checkout/${checkout.token}/payment/`
-                    );
+                    this.props.history.push(checkoutPaymentUrl);
                   }
                   return (
                     <div className="checkout__content">
                       <ShippingAddressForm
-                        errors={data && data.errors}
+                        buttonText="Continue to Payment"
+                        errors={
+                          data && data.checkoutBillingAddressUpdate.errors
+                        }
                         loading={loading}
                         onSubmit={(event, data) => {
                           saveBillingAddress({
                             variables: {
                               billingAddress: {
                                 city: data.city,
-                                country: data.countryName,
-                                countryArea: data.state,
-                                firstName: data.givenName,
-                                lastName: data.familyName,
+                                country: data.country,
+                                countryArea: data.countryArea,
+                                firstName: data.firstName,
+                                lastName: data.lastName,
                                 postalCode: data.postalCode,
-                                streetAddress1: data.addressLine1,
-                                streetAddress2: data.addressLine2
+                                streetAddress1: data.streetAddress1,
+                                streetAddress2: data.streetAddress2
                               },
                               checkoutId: checkout.id
                             }

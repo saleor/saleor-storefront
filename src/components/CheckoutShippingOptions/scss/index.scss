@@ -2,12 +2,11 @@
 
 .checkout-shipping-options {
   &__form {
-    display: flex;
-
     &__option {
       background-color: $gray-light;
       padding: $spacer $spacer $spacer $spacer * 2.5;
       width: 22rem;
+      margin-bottom: $spacer;
       position: relative;
       cursor: pointer;
 
