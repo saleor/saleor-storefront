@@ -7,6 +7,7 @@ import { AddressSummary, Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
 import { braintreePayment } from "../../core/payments/braintree";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { checkoutReviewUrl } from "../CheckoutApp/routes";
 import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
 
 import "./scss/index.scss";
@@ -133,9 +134,7 @@ class CheckoutPayment extends React.Component<
                               this.setState({
                                 loading: false
                               });
-                              this.props.history.push(
-                                `/checkout/${token}/review/`
-                              );
+                              this.props.history.push(checkoutReviewUrl);
                             }
                             return (
                               <Form

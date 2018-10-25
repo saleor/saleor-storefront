@@ -9,6 +9,7 @@ import { Button, Loader } from "..";
 import { priceToString } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
+import { checkoutBaseUrl } from "../CheckoutApp/routes";
 import { UserContext } from "../User/context";
 
 import { smallScreen } from "../App/scss/variables.scss";
@@ -116,7 +117,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                 <div className="cart-page__checkout-action">
                   <UserContext.Consumer>
                     {({ user }) => (
-                      <Link to={user ? `/checkout/${token}/` : "/login/"}>
+                      <Link to={user ? checkoutBaseUrl : "/login/"}>
                         <Button>Checkout</Button>
                       </Link>
                     )}

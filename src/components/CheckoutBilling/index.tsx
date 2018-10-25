@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, ShippingAddressForm } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { checkoutPaymentUrl } from "../CheckoutApp/routes";
 import { UPDATE_CHECKOUT_BILLING_ADDRESS } from "./queries";
 
 class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
@@ -45,9 +46,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                     updateCheckout({
                       checkout: data.checkoutBillingAddressUpdate.checkout
                     });
-                    this.props.history.push(
-                      `/checkout/${checkout.token}/payment/`
-                    );
+                    this.props.history.push(checkoutPaymentUrl);
                   }
                   return (
                     <div className="checkout__content">

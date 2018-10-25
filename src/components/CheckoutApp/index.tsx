@@ -9,7 +9,7 @@ import ReactSVG from "react-svg";
 import { CartSummary, Loader } from "..";
 import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { GET_CHECKOUT } from "./queries";
-import { default as Routes } from "./routes";
+import { Routes } from "./routes";
 
 import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
@@ -97,7 +97,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
                             isReviewPage ? "" : "checkout__grid__content"
                           }
                         >
-                          <Routes matchUrl={url} />
+                          <Routes />
                         </div>
                         {!isReviewPage ? (
                           <Media

@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
+import { checkoutBillingUrl } from "../CheckoutApp/routes";
 import { UPDATE_CHECKOUT_SHIPPING_OPTION } from "./queries";
 
 import "./scss/index.scss";
@@ -43,9 +44,7 @@ class CheckoutShipping extends React.Component<
                       updateCheckout({
                         checkout: data.checkoutShippingMethodUpdate.checkout
                       });
-                      this.props.history.push(
-                        `/checkout/${checkout.token}/billing-address/`
-                      );
+                      this.props.history.push(checkoutBillingUrl);
                     }
                     return (
                       <div className="checkout__content">
