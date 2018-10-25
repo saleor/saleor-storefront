@@ -93,9 +93,9 @@ class CheckoutPayment extends React.Component<
                     checkout: {
                       billingAddress,
                       id,
+                      email,
                       shippingAddress,
                       shippingMethod,
-                      token,
                       totalPrice
                     },
                     updateCheckout
@@ -108,7 +108,10 @@ class CheckoutPayment extends React.Component<
                         </div>
                       </Link>
                       <div className="checkout__content">
-                        <AddressSummary address={shippingAddress} />
+                        <AddressSummary
+                          address={shippingAddress}
+                          email={email}
+                        />
                       </div>
                       <Link to={checkoutShippingOptionsUrl}>
                         <div className="checkout__step checkout__step--inactive">

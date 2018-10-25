@@ -122,7 +122,10 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
               <div className="checout-review__content__summary">
                 <div>
                   <h4>Shipping address</h4>
-                  <AddressSummary address={checkout.shippingAddress} />
+                  <AddressSummary
+                    address={checkout.shippingAddress}
+                    email={checkout.email}
+                  />
                 </div>
                 <div>
                   <h4>Billing address</h4>

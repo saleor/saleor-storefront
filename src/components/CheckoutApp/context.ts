@@ -10,6 +10,7 @@ export interface CheckoutContextInterface {
   };
   checkout?: CheckoutInterface;
   loading?: boolean;
+  shippingAsBilling?: boolean;
   updateCheckout?(chekcoutData: CheckoutContextInterface): void;
 }
 

@@ -42,6 +42,10 @@ class CheckoutShipping extends React.Component<
                   return (
                     <div className="checkout__content">
                       <ShippingAddressForm
+                        data={{
+                          ...checkout.shippingAddress,
+                          email: checkout.email
+                        }}
                         buttonText="Continue to Shipping"
                         errors={
                           data && data.checkoutShippingAddressUpdate.errors
@@ -66,6 +70,7 @@ class CheckoutShipping extends React.Component<
                               }
                             }
                           });
+                          updateCheckout({ shippingAsBilling: data.asBilling });
                           event.preventDefault();
                         }}
                       />

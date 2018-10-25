@@ -4,9 +4,10 @@ import { AddressInterface } from "../../core/types";
 
 import "./scss/index.scss";
 
-const AddressSummary: React.SFC<{ address: AddressInterface }> = ({
-  address
-}) => (
+const AddressSummary: React.SFC<{
+  address: AddressInterface;
+  email?: string;
+}> = ({ address, email }) => (
   <p className="address-summary">
     <strong>{`${address.firstName} ${address.lastName}`}</strong>
     <br />
@@ -34,6 +35,11 @@ const AddressSummary: React.SFC<{ address: AddressInterface }> = ({
     {address.phone ? (
       <>
         {address.phone} <br />
+      </>
+    ) : null}
+    {email ? (
+      <>
+        {email} <br />
       </>
     ) : null}
   </p>

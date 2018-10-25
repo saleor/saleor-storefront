@@ -13,7 +13,7 @@ export interface FormError {
 interface FormProps {
   children: React.ReactNode;
   errors?: FormError[];
-  data?: { [key: string]: string };
+  data?: { [key: string]: string | any };
   onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
 }
 
@@ -168,6 +168,21 @@ class Form extends React.Component<FormProps, FormState> {
           onChange: ({ value }) => {
             this.setState(state => {
               const data = { ...state.data, [child.props.name]: value };
+              return { data };
+            });
+          }
+        });
+      } else if (child.props.type === "checkbox") {
+        const defaultValue = this.state.data[child.props.name] || false;
+        return React.cloneElement(child, {
+          defaultValue,
+
+          onChange: () => {
+            this.setState(state => {
+              const data = {
+                ...state.data,
+                [child.props.name]: !state.data[child.props.name]
+              };
               return { data };
             });
           }

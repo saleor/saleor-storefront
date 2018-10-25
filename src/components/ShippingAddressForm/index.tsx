@@ -2,23 +2,29 @@ import * as React from "react";
 import { Query } from "react-apollo";
 
 import { Button, Form, SelectField, TextField } from "..";
+import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
 import { GET_COUNTRIES_LIST } from "./queries";
 
 import "./scss/index.scss";
 
+interface AddressType extends AddressInterface {
+  email?: string;
+}
+
 const ShippingAddressForm: React.SFC<{
   buttonText: string;
+  data?: AddressType;
   errors: FormError[];
   loading: boolean;
   onSubmit(event: any, data: any): void;
-}> = ({ buttonText, errors, loading, onSubmit }) => (
+}> = ({ data, buttonText, errors, loading, onSubmit }) => (
   <Query query={GET_COUNTRIES_LIST}>
     {({ data: { shop } }) => {
       if (shop) {
         return (
           <div className="address-form">
-            <Form errors={errors} onSubmit={onSubmit}>
+            <Form errors={errors} onSubmit={onSubmit} data={data}>
               <TextField
                 label="Email Address"
                 type="email"
@@ -95,7 +101,7 @@ const ShippingAddressForm: React.SFC<{
                 autoComplete="phone-number"
               />
               <label className="checkbox">
-                <input type="checkbox" />
+                <input name="asBilling" type="checkbox" />
                 <span>Use as Billing Address</span>
               </label>
               <Button disabled={loading}>

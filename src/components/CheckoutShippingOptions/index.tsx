@@ -32,7 +32,10 @@ class CheckoutShipping extends React.Component<
                   </div>
                 </Link>
                 <div className="checkout__content">
-                  <AddressSummary address={checkout.shippingAddress} />
+                  <AddressSummary
+                    address={checkout.shippingAddress}
+                    email={checkout.email}
+                  />
                 </div>
                 <div className="checkout__step">
                   <span>2</span>
