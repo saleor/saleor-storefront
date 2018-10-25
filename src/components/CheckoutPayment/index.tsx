@@ -2,12 +2,18 @@ import * as React from "react";
 import { Mutation, Query } from "react-apollo";
 import NumberFormat from "react-number-format";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 
 import { AddressSummary, Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
 import { braintreePayment } from "../../core/payments/braintree";
 import { CheckoutContext } from "../CheckoutApp/context";
-import { checkoutReviewUrl } from "../CheckoutApp/routes";
+import {
+  checkoutBaseUrl,
+  checkoutBillingUrl,
+  checkoutReviewUrl,
+  checkoutShippingOptionsUrl
+} from "../CheckoutApp/routes";
 import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
 
 import "./scss/index.scss";
@@ -95,17 +101,21 @@ class CheckoutPayment extends React.Component<
                     updateCheckout
                   }) => (
                     <>
-                      <div className="checkout__step checkout__step--inactive">
-                        <span>1</span>
-                        <h4 className="checkout__header">Shipping Address</h4>
-                      </div>
+                      <Link to={checkoutBaseUrl}>
+                        <div className="checkout__step checkout__step--inactive">
+                          <span>1</span>
+                          <h4 className="checkout__header">Shipping Address</h4>
+                        </div>
+                      </Link>
                       <div className="checkout__content">
                         <AddressSummary address={shippingAddress} />
                       </div>
-                      <div className="checkout__step checkout__step--inactive">
-                        <span>2</span>
-                        <h4 className="checkout__header">Shipping Method</h4>
-                      </div>
+                      <Link to={checkoutShippingOptionsUrl}>
+                        <div className="checkout__step checkout__step--inactive">
+                          <span>2</span>
+                          <h4 className="checkout__header">Shipping Method</h4>
+                        </div>
+                      </Link>
                       <div className="checkout__content">
                         <p>
                           {`${shippingMethod.name} | +${
@@ -113,10 +123,12 @@ class CheckoutPayment extends React.Component<
                           }`}
                         </p>
                       </div>
-                      <div className="checkout__step checkout__step--inactive">
-                        <span>3</span>
-                        <h4 className="checkout__header">Billing Address</h4>
-                      </div>
+                      <Link to={checkoutBillingUrl}>
+                        <div className="checkout__step checkout__step--inactive">
+                          <span>3</span>
+                          <h4 className="checkout__header">Billing Address</h4>
+                        </div>
+                      </Link>
                       <div className="checkout__content">
                         <AddressSummary address={billingAddress} />
                       </div>

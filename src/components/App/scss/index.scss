@@ -23,6 +23,9 @@ body {
   h4 {
     font-size: $h4-font-size;
   }
+  a {
+    text-decoration: none;
+  }
 
   .container {
     width: $container-width;
