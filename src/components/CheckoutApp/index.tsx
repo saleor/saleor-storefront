@@ -73,7 +73,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
     <div className="checkout">
       <div className="checkout__menu">
         <div className="checkout__menu__bar">
-          <ReactSVG path="../../images/logo.svg" />
+          <ReactSVG path={require("../../images/logo.svg")} />
         </div>
         <Link to="/">Return to shopping</Link>
       </div>

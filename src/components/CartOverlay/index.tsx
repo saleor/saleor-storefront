@@ -35,14 +35,14 @@ export const CartOverlay: React.SFC = () => (
                     <div className="cart">
                       <div className="overlay__header">
                         <ReactSVG
-                          path="../../images/cart.svg"
+                          path={require("../../images/cart.svg")}
                           className="overlay__header__cart-icon"
                         />
                         <p>
                           My bag, <span>{lines.length || 0} items</span>
                         </p>
                         <ReactSVG
-                          path="../../images/x.svg"
+                          path={require("../../images/x.svg")}
                           onClick={() => overlay.hide()}
                           className="overlay__header__close-icon"
                         />
@@ -73,7 +73,7 @@ export const CartOverlay: React.SFC = () => (
                                     </span>
                                   </span>
                                   <ReactSVG
-                                    path="../../images/garbage.svg"
+                                    path={require("../../images/garbage.svg")}
                                     className="cart__list__item__details__delete-icon"
                                     onClick={() => cart.remove(line.variant.id)}
                                   />

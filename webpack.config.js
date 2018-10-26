@@ -5,7 +5,6 @@ const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
 const sourceDir = path.join(__dirname, "./src");
@@ -46,19 +45,21 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              outputPath: "fonts/"
+              outputPath: "fonts/",
+              publicPath: "/fonts/"
             }
           }
         ]
       },
       {
-        test: /\.(gif|jpg|png|svg|)$/,
+        test: /\.(gif|jpg|png|svg)$/,
         use: [
           {
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              outputPath: "images/"
+              outputPath: "images/",
+              publicPath: "/images/"
             }
           },
           {
@@ -91,9 +92,6 @@ module.exports = {
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
     }),
-    new CopyWebpackPlugin([
-      { from: `${sourceDir}/images/`, to: `${distDir}/images/` }
-    ]),
     // PWA plugins
     new WebappWebpackPlugin({
       logo: `${sourceDir}/images/favicon.svg`,

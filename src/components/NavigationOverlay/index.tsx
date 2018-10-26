@@ -48,7 +48,9 @@ const NavigationOverlay: React.SFC = () => (
                     user ? (
                       <li className="side-nav__icon-item">
                         <a href="/">
-                          <ReactSVG path="../../images/login-icon.svg" />
+                          <ReactSVG
+                            path={require("../../images/login-icon.svg")}
+                          />
                           My account
                         </a>
                       </li>

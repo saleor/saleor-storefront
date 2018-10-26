@@ -85,7 +85,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                           <CartContext.Consumer>
                             {({ remove }) => (
                               <ReactSVG
-                                path="../../images/garbage.svg"
+                                path={require("../../images/garbage.svg")}
                                 className="cart__list__item__details__delete-icon"
                                 onClick={() => remove(line.variant.id)}
                               />

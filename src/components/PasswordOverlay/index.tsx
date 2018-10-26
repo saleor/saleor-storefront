@@ -16,7 +16,7 @@ export const PasswordOverlay: React.SFC = () => (
             <div className="overlay__header">
               <p>Reset your password</p>
               <ReactSVG
-                path="../../images/x.svg"
+                path={require("../../images/x.svg")}
                 onClick={() => overlay.hide()}
                 className="overlay__header__close-icon"
               />
