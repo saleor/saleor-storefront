@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
+import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { mediumScreen } from "../App/scss/variables.scss";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
@@ -87,7 +88,14 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                       key={item.node.id}
                                       className="search__products__item"
                                     >
-                                      <Link to={item.node.url}>
+                                      <Link
+                                        to={`/product/${slugify(
+                                          item.node.name
+                                        )}/${getDBIdFromGraphqlId(
+                                          item.node.id,
+                                          "Product"
+                                        )}/`}
+                                      >
                                         <img src={item.node.thumbnailUrl} />
                                         <span>
                                           <h4>{item.node.name}</h4>

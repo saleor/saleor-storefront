@@ -24,10 +24,8 @@ class SearchPage extends React.Component<
     priceLte: number;
   }
 > {
-  onFieldChangeDebounced: (value: string) => void;
   constructor(props) {
     super(props);
-    this.onFieldChangeDebounced = debounce(this.onFieldChange, 1000);
     this.state = {
       attributes: {},
       pageSize: PRODUCTS_PER_PAGE,
@@ -74,7 +72,7 @@ class SearchPage extends React.Component<
               defaultValue={parse(this.props.location.search).q}
               onChange={e => {
                 e.persist();
-                this.onFieldChangeDebounced(e.target.value);
+                debounce(this.onFieldChange(e.target.value), 1000);
               }}
             />
           </div>

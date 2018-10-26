@@ -99,7 +99,7 @@ class CategoryPage extends React.Component<
               Object.keys(this.state.attributes).length === 0 &&
               !this.state.sortBy)
           ) {
-            return <Loader />;
+            return <Loader full />;
           }
           if (error) {
             return `Error!: ${error}`;
