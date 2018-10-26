@@ -112,7 +112,14 @@ module.exports = {
     new SWPrecacheWebpackPlugin({
       cacheId: "saleor-store-front",
       filename: "service-worker.js",
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+      navigateFallback: "/index.html",
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      runtimeCaching: [
+        {
+          urlPattern: /\/media\//,
+          handler: "networkFirst"
+        }
+      ]
     }),
     new webpack.EnvironmentPlugin([
       "npm_package_version",
