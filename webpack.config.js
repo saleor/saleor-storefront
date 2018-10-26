@@ -8,8 +8,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
-const sourceDir = path.join(__dirname, "./src/");
-const distDir = path.join(__dirname, "./dist/");
+const sourceDir = path.join(__dirname, "./src");
+const distDir = path.join(__dirname, "./dist");
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
@@ -17,11 +17,12 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   entry: {
-    app: `${sourceDir}index.tsx`
+    app: `${sourceDir}/index.tsx`
   },
   output: {
     path: distDir,
-    filename: "js/[name].js"
+    filename: "js/[name].js",
+    publicPath: "/"
   },
   devtool: "source-map",
   module: {
@@ -83,19 +84,19 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin([distDir]),
     new HtmlWebpackPlugin({
-      filename: `${distDir}index.html`,
-      template: `${sourceDir}index.html`
+      filename: `${distDir}/index.html`,
+      template: `${sourceDir}/index.html`
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
     }),
     new CopyWebpackPlugin([
-      { from: `${sourceDir}images/`, to: `${distDir}images/` }
+      { from: `${sourceDir}/images/`, to: `${distDir}/images/` }
     ]),
     // PWA plugins
     new WebappWebpackPlugin({
-      logo: `${sourceDir}images/favicon.svg`,
+      logo: `${sourceDir}/images/favicon.svg`,
       prefix: "images/favicons/",
       favicons: {
         appName: "Saleor ecommerce",
