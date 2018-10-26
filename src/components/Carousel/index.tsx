@@ -20,7 +20,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
           onClick={previousSlide}
           className="carousel__control carousel__control--left"
         >
-          <ReactSVG path="../../images/carousel-arrow.svg" />
+          <ReactSVG path={require("../../images/carousel-arrow.svg")} />
         </div>
       ) : null,
     renderCenterRightControls: ({
@@ -34,7 +34,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
           onClick={nextSlide}
           className="carousel__control carousel__control--right"
         >
-          <ReactSVG path="../../images/carousel-arrow.svg" />
+          <ReactSVG path={require("../../images/carousel-arrow.svg")} />
         </div>
       ) : null,
     ...rest

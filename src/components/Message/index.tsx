@@ -19,7 +19,7 @@ const Message: React.SFC<MessageProps> = ({
     <p className="message__title">{title}</p>
     {children ? <div className="message__content">{children}</div> : null}
     <ReactSVG
-      path="../../images/x.svg"
+      path={require("../../images/x.svg")}
       className="message__close-icon"
       onClick={() => onClose()}
     />

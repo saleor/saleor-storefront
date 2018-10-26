@@ -76,7 +76,7 @@ storiesOf("Components", module)
       <ProductListItem
         product={{
           name: "Element T-Shirt Seal Flint Black",
-          thumbnailUrl: "../../images/sample-product-thumbnail.png",
+          thumbnailUrl: require("../../images/sample-product-thumbnail.png"),
           category: {
             name: "T-Shirts"
           },

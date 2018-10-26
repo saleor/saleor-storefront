@@ -18,19 +18,19 @@ const Footer: React.SFC = () => (
     </div>
     <div className="footer__favicons container">
       <ReactSVG
-        path="../../images/facebook-icon.svg"
+        path={require("../../images/facebook-icon.svg")}
         className="footer__favicons__icon"
       />
       <ReactSVG
-        path="../../images/twitter-icon.svg"
+        path={require("../../images/twitter-icon.svg")}
         className="footer__favicons__icon"
       />
       <ReactSVG
-        path="../../images/instagram-icon.svg"
+        path={require("../../images/instagram-icon.svg")}
         className="footer__favicons__icon"
       />
       <ReactSVG
-        path="../../images/youtube-icon.svg"
+        path={require("../../images/youtube-icon.svg")}
         className="footer__favicons__icon"
       />
     </div>

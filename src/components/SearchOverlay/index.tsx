@@ -36,9 +36,13 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                       {matches =>
                         matches ? (
                           <TextField
-                            iconLeft={<ReactSVG path="../../images/x.svg" />}
+                            iconLeft={
+                              <ReactSVG path={require("../../images/x.svg")} />
+                            }
                             iconRight={
-                              <ReactSVG path="../../images/search.svg" />
+                              <ReactSVG
+                                path={require("../../images/search.svg")}
+                              />
                             }
                             autoFocus={true}
                             onChange={e =>
@@ -48,7 +52,9 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                         ) : (
                           <TextField
                             iconRight={
-                              <ReactSVG path="../../images/search.svg" />
+                              <ReactSVG
+                                path={require("../../images/search.svg")}
+                              />
                             }
                             autoFocus={true}
                             onChange={e =>

@@ -28,11 +28,11 @@ const MainMenu: React.SFC = () => (
             >
               <ReactSVG
                 className="main-menu__hamburger--icon"
-                path="../../images/hamburger.svg"
+                path={require("../../images/hamburger.svg")}
               />
               <ReactSVG
                 className="main-menu__hamburger--hover"
-                path="../../images/hamburger-hover.svg"
+                path={require("../../images/hamburger-hover.svg")}
               />
             </li>
             <Media
@@ -65,7 +65,7 @@ const MainMenu: React.SFC = () => (
         </div>
         <div className="main-menu__center">
           <Link to="/">
-            <ReactSVG path="../../images/logo.svg" />
+            <ReactSVG path={require("../../images/logo.svg")} />
           </Link>
         </div>
         <div className="main-menu__right">
@@ -79,7 +79,7 @@ const MainMenu: React.SFC = () => (
                       <MenuDropdown
                         head={
                           <li className="main-menu__icon main-menu__user--active">
-                            <ReactSVG path="../../images/user.svg" />
+                            <ReactSVG path={require("../../images/user.svg")} />
                           </li>
                         }
                         content={
@@ -98,7 +98,7 @@ const MainMenu: React.SFC = () => (
                           )
                         }
                       >
-                        <ReactSVG path="../../images/user.svg" />
+                        <ReactSVG path={require("../../images/user.svg")} />
                       </li>
                     )
                   }
@@ -114,7 +114,7 @@ const MainMenu: React.SFC = () => (
                     overlayContext.show(OverlayType.cart, OverlayTheme.right);
                   }}
                 >
-                  <ReactSVG path="../../images/cart.svg" />
+                  <ReactSVG path={require("../../images/cart.svg")} />
                   {cart.getQuantity() > 0 ? (
                     <span className="main-menu__cart__quantity">
                       {cart.getQuantity()}
@@ -133,7 +133,7 @@ const MainMenu: React.SFC = () => (
                 query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
-              <ReactSVG path="../../images/search.svg" />
+              <ReactSVG path={require("../../images/search.svg")} />
             </li>
           </ul>
         </div>
