@@ -1,5 +1,6 @@
 export { default as AccountPage } from "./AccountPage";
 export { default as App } from "./App";
+export { default as CachedImage } from "./CachedImage";
 export { default as CartPage } from "./CartPage";
 export { default as CategoryPage } from "./CategoryPage";
 export { default as ContentPage } from "./ContentPage";

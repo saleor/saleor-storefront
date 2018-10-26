@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 
 import {
   Breadcrumbs,
+  CachedImage,
   Carousel,
   Loader,
   ProductDescription,
@@ -24,7 +25,6 @@ import "./scss/index.scss";
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
-  galleryImage: React.RefObject<HTMLImageElement> = React.createRef();
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
@@ -132,7 +132,9 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                               }}
                             >
                               {product.images.edges.map(({ node: image }) => (
-                                <img src={image.url} key={image.id} />
+                                <CachedImage url={image.url} key={image.id}>
+                                  OFFLINE :(
+                                </CachedImage>
                               ))}
                             </Carousel>
                           </div>
@@ -164,11 +166,9 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                             ref={this.productGallery}
                           >
                             {product.images.edges.map(({ node: image }) => (
-                              <img
-                                src={image.url}
-                                key={image.id}
-                                ref={this.galleryImage}
-                              />
+                              <CachedImage url={image.url} key={image.id}>
+                                OFFLINE :(
+                              </CachedImage>
                             ))}
                           </div>
                           <div className="product-page__product__info">

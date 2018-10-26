@@ -1,4 +1,4 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
@@ -17,7 +17,6 @@ import {
 } from "./core/auth";
 
 const devMode = process.env.NODE_ENV !== "production";
-const cache = new InMemoryCache();
 const {
   component: UserProviderWithTokenHandler,
   link: invalidTokenLink
@@ -30,6 +29,15 @@ const link = ApolloLink.from([
     uri: process.env.APP_GRAPHQL_URL || "/graphql/"
   })
 ]);
+
+const cache = new InMemoryCache({
+  dataIdFromObject: obj => {
+    if (obj.__typename === "Shop") {
+      return "shop";
+    }
+    return defaultDataIdFromObject(obj);
+  }
+});
 
 persistCache({
   cache,
