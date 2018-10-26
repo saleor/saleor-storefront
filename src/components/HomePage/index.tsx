@@ -22,11 +22,15 @@ const HomePage: React.SFC = () => (
           <>
             <div
               className="home-page__hero"
-              style={{
-                backgroundImage: `url(${
-                  data.shop.homepageCollection.backgroundImage.url
-                })`
-              }}
+              style={
+                data.shop.homepageCollection.backgroundImage
+                  ? {
+                      backgroundImage: `url(${
+                        data.shop.homepageCollection.backgroundImage.url
+                      })`
+                    }
+                  : null
+              }
             >
               <span className="home-page__hero__title">
                 <h1>Final reduction</h1>
@@ -71,11 +75,15 @@ const HomePage: React.SFC = () => (
                       >
                         <div
                           className="home-page__categories__list__image"
-                          style={{
-                            backgroundImage: `url(${
-                              category.backgroundImage.url
-                            })`
-                          }}
+                          style={
+                            category.backgroundImage
+                              ? {
+                                  backgroundImage: `url(${
+                                    category.backgroundImage.url
+                                  })`
+                                }
+                              : null
+                          }
                         />
                         <h3>{category.name}</h3>
                       </Link>
