@@ -1,4 +1,3 @@
-import * as debounce from "lodash.debounce";
 import { parse } from "query-string";
 import * as React from "react";
 import { Query } from "react-apollo";
@@ -6,6 +5,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 
 import { Loader, ProductsList, TextField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { debounce } from "../../core/utils";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
 import "./scss/index.scss";

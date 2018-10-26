@@ -18,7 +18,7 @@ interface FormProps {
 }
 
 interface FormState {
-  data: { [key: string]: string };
+  data: { [key: string]: string | any };
   errors: FormError[];
 }
 
@@ -160,12 +160,23 @@ class Form extends React.Component<FormProps, FormState> {
           }
         });
       } else if (child.type === SelectField) {
-        const defaultValue = this.state.data[child.props.name];
+        let defaultValue;
+        if (
+          child.props.name === "country" &&
+          this.state.data[child.props.name]
+        ) {
+          defaultValue = {
+            label: this.state.data[child.props.name].country,
+            value: this.state.data[child.props.name].code
+          };
+        } else {
+          defaultValue = this.state.data[child.props.name];
+        }
 
         return React.cloneElement(child, {
           defaultValue,
 
-          onChange: ({ value }) => {
+          onChange: value => {
             this.setState(state => {
               const data = { ...state.data, [child.props.name]: value };
               return { data };

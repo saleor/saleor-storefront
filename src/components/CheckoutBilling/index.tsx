@@ -77,7 +77,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                             variables: {
                               billingAddress: {
                                 city: data.city,
-                                country: data.country,
+                                country: data.country.value,
                                 countryArea: data.countryArea,
                                 firstName: data.firstName,
                                 lastName: data.lastName,

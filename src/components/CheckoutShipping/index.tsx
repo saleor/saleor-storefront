@@ -59,7 +59,7 @@ class CheckoutShipping extends React.Component<
                               shippingAddress: {
                                 city: data.city,
                                 companyName: data.companyName,
-                                country: data.country,
+                                country: data.country.value,
                                 countryArea: data.countryArea,
                                 firstName: data.firstName,
                                 lastName: data.lastName,
