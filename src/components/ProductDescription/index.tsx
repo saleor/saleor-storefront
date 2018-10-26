@@ -219,7 +219,9 @@ class ProductDescription extends React.Component<
           className="product-description__action"
           onClick={this.handleSubmit}
           disabled={
-            this.state.variant && this.state.variantStock >= this.state.quantity
+            this.state.quantity !== 0 &&
+            (this.state.variant &&
+              this.state.variantStock >= this.state.quantity)
               ? false
               : true
           }
