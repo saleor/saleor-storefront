@@ -9,6 +9,31 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
     $priceLte: Float
     $priceGte: Float
   ) {
+    products(
+      attributes: $attributes
+      categories: [$id]
+      first: $pageSize
+      sortBy: $sortBy
+      priceLte: $priceLte
+      priceGte: $priceGte
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          name
+          thumbnailUrl
+          category {
+            id
+            name
+          }
+          price {
+            amount
+            currency
+          }
+        }
+      }
+    }
     category(id: $id) {
       id
       name
@@ -20,30 +45,6 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
           node {
             id
             name
-          }
-        }
-      }
-      products(
-        attributes: $attributes
-        first: $pageSize
-        sortBy: $sortBy
-        price_Lte: $priceLte
-        price_Gte: $priceGte
-      ) {
-        totalCount
-        edges {
-          node {
-            id
-            name
-            thumbnailUrl
-            category {
-              id
-              name
-            }
-            price {
-              amount
-              currency
-            }
           }
         }
       }
