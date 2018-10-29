@@ -2,11 +2,21 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { Redirect } from "react-router";
 
+import { CheckoutInterface } from "../../core/types";
 import { ButtonProps, default as Button } from "../Button";
 import { CartInterface } from "../CartProvider/context";
+import { CheckoutContext } from "../CheckoutApp/context";
+import { GET_CHECKOUT } from "../CheckoutApp/queries";
+import {
+  checkoutBaseUrl,
+  checkoutBillingUrl,
+  checkoutPaymentUrl,
+  checkoutShippingOptionsUrl
+} from "../CheckoutApp/routes";
 import { CREATE_CHECKOUT } from "./queries";
 
 export interface GoToCheckoutState {
+  checkout?: CheckoutInterface;
   checkoutToken: string;
   loading: boolean;
   redirect: boolean;
@@ -15,7 +25,7 @@ export interface GoToCheckoutState {
 export interface GoToCheckoutProps extends ButtonProps {
   children: any;
   apolloClient: ApolloClient<any>;
-  cart: CartInterface;
+  cart?: CartInterface;
 }
 
 export class GoToCheckout extends React.Component<
@@ -44,7 +54,20 @@ export class GoToCheckout extends React.Component<
       cart: { lines }
     } = this.props;
     if (checkoutToken) {
-      this.setState({ redirect: true, loading: false, checkoutToken });
+      let data: { [key: string]: any };
+      const response = await apolloClient.query({
+        query: GET_CHECKOUT,
+        variables: {
+          token: checkoutToken
+        }
+      });
+      data = response.data;
+      this.setState({
+        checkout: data.checkout,
+        checkoutToken,
+        loading: false,
+        redirect: true
+      });
     } else {
       this.setState({ loading: true });
       const { data } = await apolloClient.mutate({
@@ -59,6 +82,7 @@ export class GoToCheckout extends React.Component<
         }
       });
       this.setState({
+        checkout: data.checkoutCreate.checkout,
         checkoutToken: data.checkoutCreate.checkout.token,
         loading: false,
         redirect: true
@@ -67,7 +91,27 @@ export class GoToCheckout extends React.Component<
   };
 
   getRedirection() {
-    return <Redirect to={`/checkout/${this.state.checkoutToken}/`} />;
+    const { checkout } = this.state;
+    let pathname;
+    if (checkout.billingAddress) {
+      pathname = checkoutPaymentUrl;
+    } else if (checkout.shippingMethod) {
+      pathname = checkoutBillingUrl;
+    } else if (checkout.availableShippingMethods) {
+      pathname = checkoutShippingOptionsUrl;
+    } else {
+      pathname = checkoutBaseUrl;
+    }
+    if (pathname) {
+      return (
+        <CheckoutContext.Consumer>
+          {({ updateCheckout }) => {
+            updateCheckout({ checkout });
+            return <Redirect to={pathname} />;
+          }}
+        </CheckoutContext.Consumer>
+      );
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

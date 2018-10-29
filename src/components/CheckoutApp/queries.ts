@@ -52,6 +52,7 @@ export const CHECKOUT_FRAGMENT = gql`
       countryArea
       phone
     }
+    email
     availableShippingMethods {
       id
       name

@@ -7,7 +7,7 @@ import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
 import { NotificationOverlay } from "../NotificationOverlay";
 import { PasswordOverlay } from "../PasswordOverlay";
-import { default as Routes } from "./routes";
+import { Routes } from "./routes";
 
 import "./scss/index.scss";
 

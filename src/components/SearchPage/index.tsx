@@ -1,4 +1,3 @@
-import * as debounce from "lodash.debounce";
 import { parse } from "query-string";
 import * as React from "react";
 import { Query } from "react-apollo";
@@ -6,6 +5,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 
 import { Loader, ProductsList, TextField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { debounce } from "../../core/utils";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
 import "./scss/index.scss";
@@ -24,10 +24,8 @@ class SearchPage extends React.Component<
     priceLte: number;
   }
 > {
-  onFieldChangeDebounced: (value: string) => void;
   constructor(props) {
     super(props);
-    this.onFieldChangeDebounced = debounce(this.onFieldChange, 1000);
     this.state = {
       attributes: {},
       pageSize: PRODUCTS_PER_PAGE,
@@ -74,7 +72,7 @@ class SearchPage extends React.Component<
               defaultValue={parse(this.props.location.search).q}
               onChange={e => {
                 e.persist();
-                this.onFieldChangeDebounced(e.target.value);
+                debounce(this.onFieldChange(e.target.value), 1000);
               }}
             />
           </div>

@@ -38,7 +38,7 @@
   }
 
   &__products {
-    max-height: calc(100vh - 9.8rem);
+    max-height: calc(100vh - 9rem);
     overflow: auto;
     padding: $spacer / 2 0;
 
@@ -46,7 +46,8 @@
       padding: $spacer / 2 $spacer;
 
       img {
-        max-width: 3.6rem;
+        width: 3.6rem;
+        height: 3.6rem;
         display: inline-block;
         margin-right: $spacer;
         vertical-align: top;

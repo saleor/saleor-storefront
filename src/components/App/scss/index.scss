@@ -23,6 +23,10 @@ body {
   h4 {
     font-size: $h4-font-size;
   }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
   .container {
     width: $container-width;

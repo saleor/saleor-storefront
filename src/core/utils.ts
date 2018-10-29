@@ -43,3 +43,23 @@ export const priceToString = (
     return `${price.currency} ${amount.toFixed(2)}`;
   }
 };
+
+export const generateProductUrl = (id: string, name: string) =>
+  `/product/${slugify(name)}/${getDBIdFromGraphqlId(id, "Product")}/`;
+
+export const generateCategoryUrl = (id: string, name: string) =>
+  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "Category")}/`;
+
+export const generateMenuItemUrl = (id: string, name: string) =>
+  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "MenuItem")}/`;
+
+export const debounce = (fn, time) => {
+  let timeout;
+
+  return () => {
+    const functionCall = () => fn.apply(this, arguments);
+
+    clearTimeout(timeout);
+    timeout = setTimeout(functionCall, time);
+  };
+};

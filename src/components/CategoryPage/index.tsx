@@ -91,15 +91,11 @@ class CategoryPage extends React.Component<
       >
         {({ loading, error, data }) => {
           if (
-            (loading &&
-              !this.state.priceGte &&
-              !this.state.priceLte &&
-              !this.state.sortBy) ||
-            (loading &&
-              Object.keys(this.state.attributes).length === 0 &&
-              !this.state.sortBy)
+            loading &&
+            Object.keys(this.state.attributes).length === 0 &&
+            !this.state.sortBy
           ) {
-            return <Loader />;
+            return <Loader full />;
           }
           if (error) {
             return `Error!: ${error}`;

@@ -13,12 +13,12 @@ export interface FormError {
 interface FormProps {
   children: React.ReactNode;
   errors?: FormError[];
-  data?: { [key: string]: string };
+  data?: { [key: string]: string | any };
   onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
 }
 
 interface FormState {
-  data: { [key: string]: string };
+  data: { [key: string]: string | any };
   errors: FormError[];
 }
 
@@ -117,7 +117,7 @@ class Form extends React.Component<FormProps, FormState> {
     // Traverse through all children
     return React.Children.map(children, (child: React.ReactElement<any>) => {
       // This is support for non-node elements (eg. pure text), they have no props
-      if (!child.props) {
+      if (!child || !child.props) {
         return child;
       }
 
@@ -160,14 +160,40 @@ class Form extends React.Component<FormProps, FormState> {
           }
         });
       } else if (child.type === SelectField) {
-        const defaultValue = this.state.data[child.props.name];
+        let defaultValue;
+        if (
+          child.props.name === "country" &&
+          this.state.data[child.props.name]
+        ) {
+          defaultValue = {
+            label: this.state.data[child.props.name].country,
+            value: this.state.data[child.props.name].code
+          };
+        } else {
+          defaultValue = this.state.data[child.props.name];
+        }
 
         return React.cloneElement(child, {
           defaultValue,
 
-          onChange: ({ value }) => {
+          onChange: value => {
             this.setState(state => {
               const data = { ...state.data, [child.props.name]: value };
+              return { data };
+            });
+          }
+        });
+      } else if (child.props.type === "checkbox") {
+        const defaultValue = this.state.data[child.props.name] || false;
+        return React.cloneElement(child, {
+          defaultValue,
+
+          onChange: () => {
+            this.setState(state => {
+              const data = {
+                ...state.data,
+                [child.props.name]: !state.data[child.props.name]
+              };
               return { data };
             });
           }

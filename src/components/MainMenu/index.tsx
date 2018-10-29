@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { MenuDropdown } from "..";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { generateMenuItemUrl } from "../../core/utils";
+import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
@@ -41,7 +42,7 @@ const MainMenu: React.SFC = () => (
                 <Query query={GET_MAIN_MENU}>
                   {({ loading, error, data }) => {
                     if (loading) {
-                      return "Loading";
+                      return null;
                     }
                     if (error) {
                       return `Error!: ${error}`;
@@ -49,9 +50,7 @@ const MainMenu: React.SFC = () => (
                     return data.shop.navigation.main.items.map(category => (
                       <li className="main-menu__item" key={category.id}>
                         <Link
-                          to={`/category/${slugify(
-                            category.name
-                          )}/${getDBIdFromGraphqlId(category.id, "MenuItem")}/`}
+                          to={generateMenuItemUrl(category.id, category.name)}
                         >
                           {category.name}
                         </Link>
@@ -64,8 +63,8 @@ const MainMenu: React.SFC = () => (
           </ul>
         </div>
         <div className="main-menu__center">
-          <Link to="/">
-            <ReactSVG path={require("../../images/logo.svg")} />
+          <Link to={baseUrl}>
+            <ReactSVG path="../../images/logo.svg" />
           </Link>
         </div>
         <div className="main-menu__right">

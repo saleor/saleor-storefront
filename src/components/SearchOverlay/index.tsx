@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
-import { mediumScreen } from "../App/scss/variables.scss";
+import { generateProductUrl } from "../../core/utils";
+import { searchUrl } from "../App/routes";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
+import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 class SearchOverlay extends React.Component<{}, { search: string }> {
@@ -87,7 +89,12 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                       key={item.node.id}
                                       className="search__products__item"
                                     >
-                                      <Link to={item.node.url}>
+                                      <Link
+                                        to={generateProductUrl(
+                                          item.node.id,
+                                          item.node.name
+                                        )}
+                                      >
                                         <img src={item.node.thumbnailUrl} />
                                         <span>
                                           <h4>{item.node.name}</h4>
@@ -100,7 +107,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                 <div className="search__products__footer">
                                   <Link
                                     to={{
-                                      pathname: "/search",
+                                      pathname: searchUrl,
                                       search: `?q=${this.state.search}`
                                     }}
                                   >

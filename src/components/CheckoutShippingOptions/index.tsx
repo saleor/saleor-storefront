@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 
 import { AddressSummary, Button } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
-import { checkoutBillingUrl } from "../CheckoutApp/routes";
+import { checkoutBaseUrl, checkoutBillingUrl } from "../CheckoutApp/routes";
 import { UPDATE_CHECKOUT_SHIPPING_OPTION } from "./queries";
 
 import "./scss/index.scss";
@@ -24,12 +25,17 @@ class CheckoutShipping extends React.Component<
           {({ checkout, updateCheckout }) => {
             return (
               <>
-                <div className="checkout__step checkout__step--inactive">
-                  <span>1</span>
-                  <h4 className="checkout__header">Shipping Address</h4>
-                </div>
+                <Link to={checkoutBaseUrl}>
+                  <div className="checkout__step checkout__step--inactive">
+                    <span>1</span>
+                    <h4 className="checkout__header">Shipping Address</h4>
+                  </div>
+                </Link>
                 <div className="checkout__content">
-                  <AddressSummary address={checkout.shippingAddress} />
+                  <AddressSummary
+                    address={checkout.shippingAddress}
+                    email={checkout.email}
+                  />
                 </div>
                 <div className="checkout__step">
                   <span>2</span>
@@ -49,7 +55,8 @@ class CheckoutShipping extends React.Component<
                     return (
                       <div className="checkout__content">
                         <div className="checkout-shipping-options__form">
-                          {checkout.availableShippingMethods.length > 0 &&
+                          {checkout.availableShippingMethods &&
+                            checkout.availableShippingMethods.length > 0 &&
                             checkout.availableShippingMethods.map(method => (
                               <div
                                 key={method.id}

@@ -23,6 +23,8 @@ interface ProductDescriptionState {
   secondaryPicker?: { label: string; values: string[]; selected?: string };
   quantity: number;
   variants: { [x: string]: string[] };
+  variant: string;
+  variantStock: number;
 }
 
 class ProductDescription extends React.Component<
@@ -36,8 +38,14 @@ class ProductDescription extends React.Component<
       this.createPickers();
     this.state = {
       ...pickers,
-      quantity: 1
+      quantity: 1,
+      variant: "",
+      variantStock: null
     };
+  }
+
+  componentWillMount() {
+    this.getVariantId();
   }
 
   createPickers = () => {
@@ -104,11 +112,19 @@ class ProductDescription extends React.Component<
     const primaryPicker = this.state.primaryPicker;
     primaryPicker.selected = value;
     this.setState({ primaryPicker });
-    if (
-      this.state.secondaryPicker &&
-      !this.state.variants[value].includes(this.state.secondaryPicker.selected)
-    ) {
-      this.onSecondaryPickerChange("");
+    if (this.state.secondaryPicker) {
+      if (
+        !this.state.variants[value].includes(
+          this.state.secondaryPicker.selected
+        )
+      ) {
+        this.onSecondaryPickerChange("");
+        this.setState({ variant: "" });
+      } else {
+        this.getVariantId();
+      }
+    } else {
+      this.getVariantId();
     }
   };
 
@@ -116,9 +132,10 @@ class ProductDescription extends React.Component<
     const secondaryPicker = this.state.secondaryPicker;
     secondaryPicker.selected = value;
     this.setState({ secondaryPicker });
+    this.getVariantId();
   };
 
-  handleSubmit = () => {
+  getVariantId = () => {
     let variant;
     if (!this.state.secondaryPicker && this.state.primaryPicker) {
       variant = this.props.productVariants.find(
@@ -135,7 +152,14 @@ class ProductDescription extends React.Component<
     } else {
       variant = this.props.productVariants[0].id;
     }
-    this.props.addToCart(variant, this.state.quantity);
+    const variantStock = this.props.productVariants.find(
+      productVariant => productVariant.id === variant
+    ).stockQuantity;
+    this.setState({ variant, variantStock });
+  };
+
+  handleSubmit = () => {
+    this.props.addToCart(this.state.variant, this.state.quantity);
   };
 
   render() {
@@ -195,9 +219,11 @@ class ProductDescription extends React.Component<
           className="product-description__action"
           onClick={this.handleSubmit}
           disabled={
-            this.state.primaryPicker &&
-            this.state.secondaryPicker &&
-            this.state.secondaryPicker.selected === ""
+            this.state.quantity !== 0 &&
+            (this.state.variant &&
+              this.state.variantStock >= this.state.quantity)
+              ? false
+              : true
           }
         >
           Add to cart

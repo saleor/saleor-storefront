@@ -5,6 +5,7 @@ import ReactSVG from "react-svg";
 
 import { Button } from "..";
 import { priceToString } from "../../core/utils";
+import { checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import GoToCart from "../GoToCart";
 import { GoToCheckout } from "../GoToCheckout";
@@ -107,7 +108,7 @@ export const CartOverlay: React.SFC = () => (
                                       Checkout
                                     </GoToCheckout>
                                   ) : (
-                                    <Link to="/login/">
+                                    <Link to={checkoutLoginUrl}>
                                       <Button>Checkout</Button>
                                     </Link>
                                   )
