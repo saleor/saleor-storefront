@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import { Button, Carousel, Loader, ProductListItem } from "..";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { generateUrlfromGraphqlId } from "../../core/utils";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
@@ -49,9 +49,11 @@ const HomePage: React.SFC = () => (
                   {data.shop.homepageCollection.products.edges.map(
                     ({ node: product }) => (
                       <Link
-                        to={`/product/${slugify(
-                          product.name
-                        )}/${getDBIdFromGraphqlId(product.id, "Product")}/`}
+                        to={generateUrlfromGraphqlId(
+                          product.id,
+                          product.name,
+                          "Product"
+                        )}
                         key={product.id}
                       >
                         <ProductListItem product={product} />
@@ -68,9 +70,11 @@ const HomePage: React.SFC = () => (
                   {data.categories.edges.map(({ node: category }) => (
                     <div key={category.id}>
                       <Link
-                        to={`/category/${slugify(
-                          category.name
-                        )}/${getDBIdFromGraphqlId(category.id, "Category")}/`}
+                        to={generateUrlfromGraphqlId(
+                          category.id,
+                          category.name,
+                          "Category"
+                        )}
                         key={category.id}
                       >
                         <div

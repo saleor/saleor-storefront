@@ -15,7 +15,7 @@ import {
   CategoryAttributesInterface,
   CategoryProductInterface
 } from "../../core/types";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { generateUrlfromGraphqlId } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 
 import "./scss/index.scss";
@@ -170,9 +170,11 @@ class ProductsList extends React.Component<
               <div className="products-list__products__grid">
                 {this.props.products.edges.map(({ node: product }) => (
                   <Link
-                    to={`/product/${slugify(
-                      product.name
-                    )}/${getDBIdFromGraphqlId(product.id, "Product")}/`}
+                    to={generateUrlfromGraphqlId(
+                      product.id,
+                      product.name,
+                      "Product"
+                    )}
                     key={product.id}
                   >
                     <ProductListItem product={product} />

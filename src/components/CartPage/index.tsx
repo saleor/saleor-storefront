@@ -7,9 +7,9 @@ import ReactSVG from "react-svg";
 
 import { Button, Loader } from "..";
 import { priceToString } from "../../core/utils";
+import { baseUrl, checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
-import { checkoutBaseUrl } from "../CheckoutApp/routes";
 import { GoToCheckout } from "../GoToCheckout";
 import { UserContext } from "../User/context";
 
@@ -127,7 +127,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                           )}
                         </ApolloConsumer>
                       ) : (
-                        <Link to="/login/">
+                        <Link to={checkoutLoginUrl}>
                           <Button>Checkout</Button>
                         </Link>
                       )
@@ -145,7 +145,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                   something in our store
                 </p>
                 <div className="cart-page__empty__action">
-                  <Link to={"/"}>
+                  <Link to={baseUrl}>
                     <Button secondary>Continue Shopping</Button>
                   </Link>
                 </div>

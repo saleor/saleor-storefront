@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { baseUrl } from "../App/routes";
+
 import "./scss/index.scss";
 
 const Breadcrumbs: React.SFC<{
@@ -8,7 +10,7 @@ const Breadcrumbs: React.SFC<{
 }> = ({ breadcrumbs }) => (
   <ul className="breadcrumbs">
     <li>
-      <Link to="/">Home</Link>
+      <Link to={baseUrl}>Home</Link>
     </li>
     {breadcrumbs.map(breadcrumb => (
       <li key={breadcrumb.value}>

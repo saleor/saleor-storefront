@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { CartSummary, Loader } from "..";
+import { baseUrl } from "../App/routes";
 import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { GET_CHECKOUT } from "./queries";
 import { Routes } from "./routes";
@@ -75,7 +76,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
         <div className="checkout__menu__bar">
           <ReactSVG path={require("../../images/logo.svg")} />
         </div>
-        <Link to="/">Return to shopping</Link>
+        <Link to={baseUrl}>Return to shopping</Link>
       </div>
       <div className="container">
         <div

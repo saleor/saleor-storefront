@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { generateUrlfromGraphqlId } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
@@ -33,9 +33,11 @@ const NavigationOverlay: React.SFC = () => (
                     return data.categories.edges.map(({ node: category }) => (
                       <li key={category.id}>
                         <Link
-                          to={`/category/${slugify(
-                            category.name
-                          )}/${getDBIdFromGraphqlId(category.id, "Category")}/`}
+                          to={generateUrlfromGraphqlId(
+                            category.id,
+                            category.name,
+                            "Category"
+                          )}
                         >
                           {category.name}
                         </Link>

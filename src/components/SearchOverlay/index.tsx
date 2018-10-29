@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { mediumScreen } from "../App/scss/variables.scss";
+import { generateUrlfromGraphqlId } from "../../core/utils";
+import { searchUrl } from "../App/routes";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
+import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 class SearchOverlay extends React.Component<{}, { search: string }> {
@@ -89,12 +90,11 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                       className="search__products__item"
                                     >
                                       <Link
-                                        to={`/product/${slugify(
-                                          item.node.name
-                                        )}/${getDBIdFromGraphqlId(
+                                        to={generateUrlfromGraphqlId(
                                           item.node.id,
+                                          item.node.name,
                                           "Product"
-                                        )}/`}
+                                        )}
                                       >
                                         <img src={item.node.thumbnailUrl} />
                                         <span>
@@ -108,7 +108,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                 <div className="search__products__footer">
                                   <Link
                                     to={{
-                                      pathname: "/search",
+                                      pathname: searchUrl,
                                       search: `?q=${this.state.search}`
                                     }}
                                   >

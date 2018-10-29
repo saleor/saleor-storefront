@@ -44,6 +44,12 @@ export const priceToString = (
   }
 };
 
+export const generateUrlfromGraphqlId = (
+  id: string,
+  name: string,
+  type: "Product" | "Category" | "MenuItem"
+) => `/product/${slugify(name)}/${getDBIdFromGraphqlId(id, type)}/`;
+
 export const debounce = (fn, time) => {
   let timeout;
 

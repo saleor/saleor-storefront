@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Query } from "react-apollo";
-import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
@@ -54,9 +53,6 @@ const Footer: React.SFC = () => (
         </div>
         <div>
           <h4>Orders</h4>
-          <p>
-            <Link to="/account">My account</Link>
-          </p>
           <p>Track my orders</p>
           <p>Delivery</p>
           <p>Return policy</p>
