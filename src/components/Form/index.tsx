@@ -117,7 +117,7 @@ class Form extends React.Component<FormProps, FormState> {
     // Traverse through all children
     return React.Children.map(children, (child: React.ReactElement<any>) => {
       // This is support for non-node elements (eg. pure text), they have no props
-      if (!child.props) {
+      if (!child || !child.props) {
         return child;
       }
 

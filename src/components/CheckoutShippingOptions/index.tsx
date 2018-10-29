@@ -55,7 +55,8 @@ class CheckoutShipping extends React.Component<
                     return (
                       <div className="checkout__content">
                         <div className="checkout-shipping-options__form">
-                          {checkout.availableShippingMethods.length > 0 &&
+                          {checkout.availableShippingMethods &&
+                            checkout.availableShippingMethods.length > 0 &&
                             checkout.availableShippingMethods.map(method => (
                               <div
                                 key={method.id}

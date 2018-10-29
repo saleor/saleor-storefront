@@ -102,14 +102,16 @@ export class GoToCheckout extends React.Component<
     } else {
       pathname = checkoutBaseUrl;
     }
-    return (
-      <CheckoutContext.Consumer>
-        {({ updateCheckout }) => {
-          updateCheckout({ checkout });
-          return <Redirect to={pathname} />;
-        }}
-      </CheckoutContext.Consumer>
-    );
+    if (pathname) {
+      return (
+        <CheckoutContext.Consumer>
+          {({ updateCheckout }) => {
+            updateCheckout({ checkout });
+            return <Redirect to={pathname} />;
+          }}
+        </CheckoutContext.Consumer>
+      );
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

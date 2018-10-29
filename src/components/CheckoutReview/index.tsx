@@ -17,7 +17,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
   render() {
     return (
       <CheckoutContext.Consumer>
-        {({ cardData, checkout }) => (
+        {({ cardData, checkout, clearCheckout }) => (
           <div className="checout-review">
             <div className="checkout__step">
               <span>5</span>
@@ -145,19 +145,23 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                   {({ show }) => (
                     <Mutation mutation={COMPLETE_CHECKOUT}>
                       {(completeCheckout, { data, loading }) => {
-                        if (data && data.checkoutComplete.errors.length === 0) {
-                          this.props.history.push(`/`);
-                          removeAuthToken();
-                          show(OverlayType.message, null, {
-                            status: "error",
-                            title: "Your order was placed"
-                          });
-                        } else {
-                          data.checkoutComplete.errors.map(error => {
+                        if (data) {
+                          if (data.checkoutComplete.errors.length === 0) {
+                            clearCheckout();
                             show(OverlayType.message, null, {
-                              title: error.message
+                              status: "error",
+                              title: "Your order was placed"
                             });
-                          });
+                            localStorage.removeItem("checkout");
+                            localStorage.removeItem("cart");
+                            this.props.history.push(`/`);
+                          } else {
+                            data.checkoutComplete.errors.map(error => {
+                              show(OverlayType.message, null, {
+                                title: error.message
+                              });
+                            });
+                          }
                         }
                         return (
                           <Button

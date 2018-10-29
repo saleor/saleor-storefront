@@ -63,6 +63,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                     <div className="checkout__content">
                       <ShippingAddressForm
                         buttonText="Continue to Payment"
+                        billing
                         data={
                           !checkout.billingAddress && shippingAsBilling
                             ? checkout.shippingAddress
@@ -77,7 +78,8 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                             variables: {
                               billingAddress: {
                                 city: data.city,
-                                country: data.country.value,
+                                country:
+                                  data.country.value || data.country.code,
                                 countryArea: data.countryArea,
                                 firstName: data.firstName,
                                 lastName: data.lastName,

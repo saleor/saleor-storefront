@@ -29,6 +29,7 @@ export class CheckoutProvider extends React.Component<
     this.state = {
       cardData: null,
       checkout: null,
+      clearCheckout: this.clearCheckout,
       loading: false,
       updateCheckout: this.updateCheckout
     };
@@ -49,6 +50,13 @@ export class CheckoutProvider extends React.Component<
 
   updateCheckout = checkoutData => {
     this.setState(checkoutData);
+  };
+
+  clearCheckout = () => {
+    this.setState({
+      cardData: null,
+      checkout: null
+    });
   };
 
   render() {

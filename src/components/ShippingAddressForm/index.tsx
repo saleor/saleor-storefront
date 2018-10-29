@@ -14,23 +14,26 @@ interface AddressType extends AddressInterface {
 
 const ShippingAddressForm: React.SFC<{
   buttonText: string;
+  billing?: boolean;
   data?: AddressType;
   errors: FormError[];
   loading: boolean;
   onSubmit(event: any, data: any): void;
-}> = ({ data, buttonText, errors, loading, onSubmit }) => (
+}> = ({ data, billing, buttonText, errors, loading, onSubmit }) => (
   <Query query={GET_COUNTRIES_LIST}>
     {({ data: { shop } }) => {
       if (shop) {
         return (
           <div className="address-form">
             <Form errors={errors} onSubmit={onSubmit} data={data}>
-              <TextField
-                label="Email Address"
-                type="email"
-                autoComplete="email"
-                name="email"
-              />
+              {!billing ? (
+                <TextField
+                  label="Email Address"
+                  type="email"
+                  autoComplete="email"
+                  name="email"
+                />
+              ) : null}
               <div className="address-form__grid">
                 <TextField
                   label="First Name"
@@ -94,16 +97,20 @@ const ShippingAddressForm: React.SFC<{
                   }))}
                 />
               </div>
-              <TextField
-                label="Phone number"
-                type="tel"
-                name="phone"
-                autoComplete="phone-number"
-              />
-              <label className="checkbox">
-                <input name="asBilling" type="checkbox" />
-                <span>Use as Billing Address</span>
-              </label>
+              {!billing ? (
+                <>
+                  <TextField
+                    label="Phone number"
+                    type="tel"
+                    name="phone"
+                    autoComplete="phone-number"
+                  />
+                  <label className="checkbox">
+                    <input name="asBilling" type="checkbox" />
+                    <span>Use as Billing Address</span>
+                  </label>
+                </>
+              ) : null}
               <Button disabled={loading}>
                 {loading ? "Loading" : buttonText}
               </Button>

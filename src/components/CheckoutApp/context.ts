@@ -12,11 +12,13 @@ export interface CheckoutContextInterface {
   loading?: boolean;
   shippingAsBilling?: boolean;
   updateCheckout?(chekcoutData: CheckoutContextInterface): void;
+  clearCheckout?(): void;
 }
 
 export const CheckoutContext = createContext<CheckoutContextInterface>({
   cardData: null,
   checkout: null,
+  clearCheckout: () => null,
   loading: false,
   updateCheckout: (checkoutData: {}) => null
 });

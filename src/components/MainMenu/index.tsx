@@ -42,7 +42,7 @@ const MainMenu: React.SFC = () => (
                 <Query query={GET_MAIN_MENU}>
                   {({ loading, error, data }) => {
                     if (loading) {
-                      return "Loading";
+                      return null;
                     }
                     if (error) {
                       return `Error!: ${error}`;
