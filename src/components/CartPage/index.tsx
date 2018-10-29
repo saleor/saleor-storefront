@@ -24,15 +24,21 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
   return (
     <div className="container cart-page">
       <h1 className="checkout__header cart-page__header">Shopping cart</h1>
-      <Query query={GET_CHECKOUT} variables={{ token }}>
-        {({ loading, error, data: { checkout } }) => {
-          const lines = checkout ? checkout.lines : [];
+      <Query
+        query={GET_CHECKOUT}
+        variables={{ token }}
+        fetchPolicy="cache-and-network"
+        errorPolicy="all"
+      >
+        {({ loading, error, data }) => {
           if (loading) {
             return <Loader />;
           }
-          if (error) {
+          if (error && !data) {
             return `Error!: ${error}`;
           }
+          const { checkout } = data;
+          const lines = checkout ? checkout.lines : [];
           if (lines.length > 0) {
             return (
               <>

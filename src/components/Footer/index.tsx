@@ -37,12 +37,16 @@ const Footer: React.SFC = () => (
       <div className="container">
         <div>
           <h4>Collections</h4>
-          <Query query={GET_COLLECTIONS}>
+          <Query
+            query={GET_COLLECTIONS}
+            fetchPolicy="cache-and-network"
+            errorPolicy="all"
+          >
             {({ loading, error, data }) => {
               if (loading) {
                 return "Loading";
               }
-              if (error) {
+              if (error && !data) {
                 return `Error!: ${error}`;
               }
               return data.collections.edges.map(collection => (

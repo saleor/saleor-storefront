@@ -61,14 +61,17 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
         variables={{
           id: getGraphqlIdFromDBId(this.props.match.params.id, "Product")
         }}
+        fetchPolicy="cache-and-network"
+        errorPolicy="all"
       >
-        {({ loading, error, data: { product } }) => {
+        {({ loading, error, data }) => {
           if (loading) {
             return <Loader full />;
           }
-          if (error) {
+          if (error && !data) {
             return `Error!: ${error}`;
           }
+          const { product } = data;
           return (
             <div className="product-page">
               <div className="container">
