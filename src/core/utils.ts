@@ -44,11 +44,14 @@ export const priceToString = (
   }
 };
 
-export const generateUrlfromGraphqlId = (
-  id: string,
-  name: string,
-  type: "Product" | "Category" | "MenuItem"
-) => `/product/${slugify(name)}/${getDBIdFromGraphqlId(id, type)}/`;
+export const generateProductUrl = (id: string, name: string) =>
+  `/product/${slugify(name)}/${getDBIdFromGraphqlId(id, "Product")}/`;
+
+export const generateCategoryUrl = (id: string, name: string) =>
+  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "Category")}/`;
+
+export const generateMenuItemUrl = (id: string, name: string) =>
+  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "MenuItem")}/`;
 
 export const debounce = (fn, time) => {
   let timeout;

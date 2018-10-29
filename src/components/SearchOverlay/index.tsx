@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
-import { generateUrlfromGraphqlId } from "../../core/utils";
+import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
@@ -90,10 +90,9 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                       className="search__products__item"
                                     >
                                       <Link
-                                        to={generateUrlfromGraphqlId(
+                                        to={generateProductUrl(
                                           item.node.id,
-                                          item.node.name,
-                                          "Product"
+                                          item.node.name
                                         )}
                                       >
                                         <img src={item.node.thumbnailUrl} />

@@ -15,7 +15,7 @@ import {
   CategoryAttributesInterface,
   CategoryProductInterface
 } from "../../core/types";
-import { generateUrlfromGraphqlId } from "../../core/utils";
+import { generateProductUrl } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 
 import "./scss/index.scss";
@@ -170,11 +170,7 @@ class ProductsList extends React.Component<
               <div className="products-list__products__grid">
                 {this.props.products.edges.map(({ node: product }) => (
                   <Link
-                    to={generateUrlfromGraphqlId(
-                      product.id,
-                      product.name,
-                      "Product"
-                    )}
+                    to={generateProductUrl(product.id, product.name)}
                     key={product.id}
                   >
                     <ProductListItem product={product} />

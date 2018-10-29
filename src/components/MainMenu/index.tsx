@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { MenuDropdown } from "..";
-import { generateUrlfromGraphqlId } from "../../core/utils";
+import { generateMenuItemUrl } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
@@ -50,11 +50,7 @@ const MainMenu: React.SFC = () => (
                     return data.shop.navigation.main.items.map(category => (
                       <li className="main-menu__item" key={category.id}>
                         <Link
-                          to={generateUrlfromGraphqlId(
-                            category.id,
-                            category.name,
-                            "MenuItem"
-                          )}
+                          to={generateMenuItemUrl(category.id, category.name)}
                         >
                           {category.name}
                         </Link>

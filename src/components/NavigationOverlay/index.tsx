@@ -1,12 +1,10 @@
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
 
-import { generateUrlfromGraphqlId } from "../../core/utils";
+import { generateCategoryUrl } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
-import { UserContext } from "../User/context";
 import { GET_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
@@ -33,11 +31,7 @@ const NavigationOverlay: React.SFC = () => (
                     return data.categories.edges.map(({ node: category }) => (
                       <li key={category.id}>
                         <Link
-                          to={generateUrlfromGraphqlId(
-                            category.id,
-                            category.name,
-                            "Category"
-                          )}
+                          to={generateCategoryUrl(category.id, category.name)}
                         >
                           {category.name}
                         </Link>
@@ -45,20 +39,6 @@ const NavigationOverlay: React.SFC = () => (
                     ));
                   }}
                 </Query>
-                <UserContext.Consumer>
-                  {({ user }) =>
-                    user ? (
-                      <li className="side-nav__icon-item">
-                        <a href="/">
-                          <ReactSVG
-                            path={require("../../images/login-icon.svg")}
-                          />
-                          My account
-                        </a>
-                      </li>
-                    ) : null
-                  }
-                </UserContext.Consumer>
               </ul>
             </div>
           </Overlay>
