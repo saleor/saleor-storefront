@@ -3,6 +3,7 @@ import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
+import { RetryLink } from "apollo-link-retry";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
@@ -25,6 +26,7 @@ const {
 const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
+  new RetryLink(),
   new HttpLink({
     uri: process.env.APP_GRAPHQL_URL || "/graphql/"
   })
@@ -39,47 +41,52 @@ const cache = new InMemoryCache({
   }
 });
 
-persistCache({
-  cache,
-  debug: devMode,
-  storage: window.localStorage
-});
-
-const apolloClient = new ApolloClient({ cache, link });
-
-render(
-  <BrowserRouter>
-    <OverlayProvider>
-      <OverlayContext.Consumer>
-        {({ show }) => (
-          <UserProviderWithTokenHandler
-            apolloClient={apolloClient}
-            onUserLogin={() =>
-              show(OverlayType.message, null, {
-                title: "You are logged in"
-              })
-            }
-            onUserLogout={() =>
-              show(OverlayType.message, null, {
-                title: "You are logged out"
-              })
-            }
-            refreshUser
-          >
-            <ApolloProvider client={apolloClient}>
-              <Switch>
-                <Route path="/checkout/:token/" component={CheckoutApp} />
-                <Route component={App} />
-              </Switch>
-            </ApolloProvider>
-          </UserProviderWithTokenHandler>
-        )}
-      </OverlayContext.Consumer>
-    </OverlayProvider>
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+const startApp = async () => {
+  await persistCache({
+    cache,
+    debug: devMode,
+    storage: window.localStorage
+  });
+  const apolloClient = new ApolloClient({
+    cache,
+    link
+  });
+  render(
+    <BrowserRouter>
+      <OverlayProvider>
+        <OverlayContext.Consumer>
+          {({ show }) => (
+            <UserProviderWithTokenHandler
+              apolloClient={apolloClient}
+              onUserLogin={() =>
+                show(OverlayType.message, null, {
+                  title: "You are logged in"
+                })
+              }
+              onUserLogout={() =>
+                show(OverlayType.message, null, {
+                  title: "You are logged out"
+                })
+              }
+              refreshUser
+            >
+              <ApolloProvider client={apolloClient}>
+                <Switch>
+                  <Route path="/checkout/:token/" component={CheckoutApp} />
+                  <Route component={App} />
+                </Switch>
+              </ApolloProvider>
+            </UserProviderWithTokenHandler>
+          )}
+        </OverlayContext.Consumer>
+      </OverlayProvider>
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
+};
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js");
 }
+
+startApp();

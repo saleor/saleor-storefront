@@ -10,12 +10,16 @@ import "./scss/index.scss";
 
 const HomePage: React.SFC = () => (
   <div className="home-page">
-    <Query query={GET_PRODUCTS_AND_CATEGORIES}>
+    <Query
+      query={GET_PRODUCTS_AND_CATEGORIES}
+      fetchPolicy="cache-and-network"
+      errorPolicy="all"
+    >
       {({ loading, error, data }) => {
         if (loading) {
           return <Loader full />;
         }
-        if (error) {
+        if (error && !data) {
           return `Error!: ${error}`;
         }
         return (

@@ -84,6 +84,8 @@ class SearchPage extends React.Component<
             attributes: this.convertToAttributeScalar(this.state.attributes),
             query: parse(this.props.location.search).q
           }}
+          fetchPolicy="cache-and-network"
+          errorPolicy="all"
         >
           {({ loading, error, data }) => {
             if (
@@ -93,7 +95,7 @@ class SearchPage extends React.Component<
             ) {
               return <Loader full />;
             }
-            if (error) {
+            if (error && !data) {
               return `Error!: ${error}`;
             }
             return (

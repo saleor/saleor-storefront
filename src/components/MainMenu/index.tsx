@@ -39,12 +39,16 @@ const MainMenu: React.SFC = () => (
             <Media
               query={{ minWidth: mediumScreen }}
               render={() => (
-                <Query query={GET_MAIN_MENU}>
+                <Query
+                  query={GET_MAIN_MENU}
+                  fetchPolicy="cache-and-network"
+                  errorPolicy="all"
+                >
                   {({ loading, error, data }) => {
                     if (loading) {
                       return null;
                     }
-                    if (error) {
+                    if (error && !data) {
                       return `Error!: ${error}`;
                     }
                     return data.shop.navigation.main.items.map(category => (

@@ -20,12 +20,16 @@ const NavigationOverlay: React.SFC = () => (
                 <li>
                   <a href="/">Home</a>
                 </li>
-                <Query query={GET_CATEGORIES}>
+                <Query
+                  query={GET_CATEGORIES}
+                  fetchPolicy="cache-and-network"
+                  errorPolicy="all"
+                >
                   {({ loading, error, data }) => {
                     if (loading) {
                       return "Loading";
                     }
-                    if (error) {
+                    if (error && !data) {
                       return `Error!: ${error}`;
                     }
                     return data.categories.edges.map(({ node: category }) => (

@@ -73,12 +73,14 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                         <Query
                           query={GET_SEARCH_RESULTS}
                           variables={{ query: this.state.search }}
+                          fetchPolicy="cache-and-network"
+                          errorPolicy="all"
                         >
                           {({ loading, error, data }) => {
                             if (loading) {
                               return <Loader />;
                             }
-                            if (error) {
+                            if (error && !data) {
                               return `Error!: ${error}`;
                             }
                             return (

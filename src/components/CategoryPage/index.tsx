@@ -88,6 +88,8 @@ class CategoryPage extends React.Component<
           attributes: this.convertToAttributeScalar(this.state.attributes),
           id: getGraphqlIdFromDBId(this.props.match.params.id, "Category")
         }}
+        fetchPolicy="cache-and-network"
+        errorPolicy="all"
       >
         {({ loading, error, data }) => {
           if (
@@ -97,7 +99,7 @@ class CategoryPage extends React.Component<
           ) {
             return <Loader full />;
           }
-          if (error) {
+          if (error && !data) {
             return `Error!: ${error}`;
           }
           return (
