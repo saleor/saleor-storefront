@@ -27,10 +27,7 @@ const NavigationOverlay: React.SFC = () => (
                 >
                   {({ loading, error, data }) => {
                     if (loading) {
-                      return "Loading";
-                    }
-                    if (error && !data) {
-                      return `Error!: ${error}`;
+                      return null;
                     }
                     return data.categories.edges.map(({ node: category }) => (
                       <li key={category.id}>

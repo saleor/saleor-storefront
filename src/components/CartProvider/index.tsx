@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { ApolloClient } from "apollo-client";
-import { PriceInterface } from "../../core/types";
 import { GET_CHECKOUT, UPDATE_CHECKOUT_LINE } from "../CheckoutApp/queries";
 import { GET_PRODUCTS_VARIANTS } from "../ProductPage/queries";
 import { CartContext, CartInterface, CartLineInterface } from "./context";

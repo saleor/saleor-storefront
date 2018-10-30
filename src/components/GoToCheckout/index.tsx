@@ -65,6 +65,7 @@ export class GoToCheckout extends React.Component<
         loading: false,
         redirect: true
       });
+      localStorage.setItem("checkout", checkoutToken);
     } else {
       const {
         apolloClient,
@@ -88,6 +89,7 @@ export class GoToCheckout extends React.Component<
         loading: false,
         redirect: true
       });
+      localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
     }
   };
 
@@ -112,15 +114,6 @@ export class GoToCheckout extends React.Component<
           }}
         </CheckoutContext.Consumer>
       );
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { checkoutToken } = this.state;
-    if (checkoutToken) {
-      localStorage.setItem("checkout", this.state.checkoutToken);
-    } else {
-      localStorage.removeItem("checkout");
     }
   }
 

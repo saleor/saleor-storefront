@@ -9,7 +9,9 @@ import {
   CheckoutShippingOptions
 } from "..";
 
-export const checkoutBaseUrl = `/checkout/${localStorage.getItem("checkout")}/`;
+const checkoutToken = localStorage.getItem("checkout");
+
+export const checkoutBaseUrl = `/checkout/${checkoutToken}/`;
 export const checkoutShippingOptionsUrl = `${checkoutBaseUrl}shipping-options/`;
 export const checkoutBillingUrl = `${checkoutBaseUrl}billing-address/`;
 export const checkoutPaymentUrl = `${checkoutBaseUrl}payment/`;
