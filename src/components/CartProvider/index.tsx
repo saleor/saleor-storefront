@@ -32,6 +32,7 @@ export default class CartProvider extends React.Component<
   }
 
   changeQuantity = async (variantId, quantity) => {
+    this.setState({ loading: true });
     const newLine: CartLineInterface = {
       quantity,
       variantId
@@ -54,7 +55,7 @@ export default class CartProvider extends React.Component<
       });
       data = response.data;
       const checkoutID = data.checkout.id;
-      apolloClient.mutate({
+      await apolloClient.mutate({
         mutation: UPDATE_CHECKOUT_LINE,
         update: (cache, { data: { checkoutLinesUpdate } }) => {
           cache.writeQuery({
@@ -72,6 +73,7 @@ export default class CartProvider extends React.Component<
           ]
         }
       });
+      this.setState({ loading: false });
     }
   };
 
@@ -86,42 +88,26 @@ export default class CartProvider extends React.Component<
   fetch = async () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     if (cart.length) {
+      this.setState({ loading: true });
       const { apolloClient } = this.props;
-      const checkoutToken = localStorage.getItem("checkout");
       let data: { [key: string]: any };
       let lines;
-      this.setState({ loading: true });
-      if (checkoutToken) {
-        const response = await apolloClient.query({
-          query: GET_CHECKOUT,
-          variables: { token: checkoutToken }
-        });
-        data = response.data;
-        lines = data.checkout.lines
-          ? data.checkout.lines.map(line => ({
-              quantity: line.quantity,
-              variant: line.variant,
-              variantId: line.variant.id
-            }))
-          : [];
-      } else {
-        const response = await apolloClient.query({
-          query: GET_PRODUCTS_VARIANTS,
-          variables: { ids: cart.map(line => line.variantId) }
-        });
-        const quantityMapping = cart.reduce((obj, line) => {
-          obj[line.variantId] = line.quantity;
-          return obj;
-        }, {});
-        data = response.data;
-        lines = data.productVariants
-          ? data.productVariants.edges.map(variant => ({
-              quantity: quantityMapping[variant.node.id],
-              variant: variant.node,
-              variantId: variant.node.id
-            }))
-          : [];
-      }
+      const response = await apolloClient.query({
+        query: GET_PRODUCTS_VARIANTS,
+        variables: { ids: cart.map(line => line.variantId) }
+      });
+      const quantityMapping = cart.reduce((obj, line) => {
+        obj[line.variantId] = line.quantity;
+        return obj;
+      }, {});
+      data = response.data;
+      lines = data.productVariants
+        ? data.productVariants.edges.map(variant => ({
+            quantity: quantityMapping[variant.node.id],
+            variant: variant.node,
+            variantId: variant.node.id
+          }))
+        : [];
       if (data.errors) {
         this.setState({
           errors: data.errors,
@@ -150,7 +136,9 @@ export default class CartProvider extends React.Component<
   remove = variantId => this.changeQuantity(variantId, 0);
 
   componentDidUpdate(prevProps, prevState) {
-    localStorage.setItem("cart", JSON.stringify(this.state.lines));
+    if (JSON.stringify(this.state.lines) !== JSON.stringify(prevState.lines)) {
+      localStorage.setItem("cart", JSON.stringify(this.state.lines));
+    }
   }
 
   render() {

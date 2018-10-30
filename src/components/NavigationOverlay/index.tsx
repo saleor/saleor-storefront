@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import { generateCategoryUrl } from "../../core/utils";
+import Loader from "../Loader";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_CATEGORIES } from "./queries";
@@ -25,9 +26,9 @@ const NavigationOverlay: React.SFC = () => (
                   fetchPolicy="cache-and-network"
                   errorPolicy="all"
                 >
-                  {({ loading, error, data }) => {
+                  {({ loading, data }) => {
                     if (loading) {
-                      return null;
+                      return <Loader full />;
                     }
                     return data.categories.edges.map(({ node: category }) => (
                       <li key={category.id}>
