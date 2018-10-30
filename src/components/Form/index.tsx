@@ -78,9 +78,11 @@ class Form extends React.Component<FormProps, FormState> {
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      JSON.stringify(this.state.errors) !== JSON.stringify(prevState.errors)
+      JSON.stringify(prevProps.errors) !== JSON.stringify(this.props.errors)
     ) {
-      this.setState({ errors: this.props.errors || [] });
+      this.setState({
+        errors: this.props.errors || []
+      });
     }
   }
 
@@ -211,7 +213,9 @@ class Form extends React.Component<FormProps, FormState> {
     return (
       <form {...otherProps} onSubmit={this.handleSubmit}>
         {nonFieldErrors ? (
-          <span>{nonFieldErrors.map(error => error.message).join(" ")}</span>
+          <span className="form-error">
+            {nonFieldErrors.map(error => error.message).join(" ")}
+          </span>
         ) : null}
         {this.renderWrappedChildren(children)}
       </form>
