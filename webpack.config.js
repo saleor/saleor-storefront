@@ -119,6 +119,10 @@ module.exports = (env, argv) => {
           {
             urlPattern: /\/media\//,
             handler: "networkFirst"
+          },
+          {
+            urlPattern: /\/static\//,
+            handler: "networkFirst"
           }
         ]
       }),
