@@ -91,6 +91,7 @@ export interface CategoryVariables {
   priceGte?: number | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -252,9 +253,7 @@ export interface getCheckout_checkout {
   billingAddress: getCheckout_checkout_billingAddress | null;
   shippingAddress: getCheckout_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (getCheckout_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (getCheckout_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: getCheckout_checkout_shippingMethod | null;
   shippingPrice: getCheckout_checkout_shippingPrice | null;
   lines: (getCheckout_checkout_lines | null)[] | null;
@@ -267,6 +266,7 @@ export interface getCheckout {
 export interface getCheckoutVariables {
   token: any;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -429,14 +429,10 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   billingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {
@@ -457,6 +453,7 @@ export interface updateCheckoutLineVariables {
   checkoutId: string;
   lines: (CheckoutLineInput | null)[];
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -624,20 +621,14 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
-  errors:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[] | null;
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 
@@ -649,6 +640,7 @@ export interface updateCheckoutBillingAddressVariables {
   checkoutId: string;
   billingAddress: AddressInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -664,6 +656,7 @@ export interface getPaymentToken {
 export interface getPaymentTokenVariables {
   gateway: GatewaysEnum;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -688,6 +681,7 @@ export interface createPayment {
 export interface createPaymentVariables {
   input: PaymentInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -718,6 +712,7 @@ export interface completeCheckoutVariables {
   checkoutId: string;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -731,9 +726,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
-  errors:
-    | (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[] | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
@@ -895,20 +888,14 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   billingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate {
-  errors:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[] | null;
   checkout: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
 }
 
@@ -922,6 +909,7 @@ export interface updateCheckoutShippingAddressVariables {
   shippingAddress: AddressInput;
   email: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1089,20 +1077,14 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   billingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
-  errors:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[] | null;
   checkout: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout | null;
 }
 
@@ -1114,6 +1096,7 @@ export interface updateCheckoutShippingOptionsVariables {
   checkoutId: string;
   shippingMethodId: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1138,6 +1121,7 @@ export interface Collections_collections {
 export interface Collections {
   collections: Collections_collections | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1305,9 +1289,7 @@ export interface createCheckout_checkoutCreate_checkout {
   billingAddress: createCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: createCheckout_checkoutCreate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: createCheckout_checkoutCreate_checkout_shippingMethod | null;
   shippingPrice: createCheckout_checkoutCreate_checkout_shippingPrice | null;
   lines: (createCheckout_checkoutCreate_checkout_lines | null)[] | null;
@@ -1325,6 +1307,7 @@ export interface createCheckout {
 export interface createCheckoutVariables {
   checkoutInput: CheckoutCreateInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1397,6 +1380,7 @@ export interface ProductsList {
   categories: ProductsList_categories | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1421,6 +1405,7 @@ export interface RegisterCutomerVariables {
   email: string;
   password: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1451,6 +1436,7 @@ export interface MainMenu {
   shop: MainMenu_shop | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1475,6 +1461,7 @@ export interface Categories_categories {
 export interface Categories {
   categories: Categories_categories | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1562,9 +1549,7 @@ export interface ProductDetails_product_variants_edges_node {
   name: string;
   stockQuantity: number;
   price: ProductDetails_product_variants_edges_node_price | null;
-  attributes:
-    | (ProductDetails_product_variants_edges_node_attributes | null)[]
-    | null;
+  attributes: (ProductDetails_product_variants_edges_node_attributes | null)[] | null;
 }
 
 export interface ProductDetails_product_variants_edges {
@@ -1593,6 +1578,7 @@ export interface ProductDetails {
 export interface ProductDetailsVariables {
   id: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1634,9 +1620,7 @@ export interface VariantList_productVariants_edges_node {
   name: string;
   stockQuantity: number;
   price: VariantList_productVariants_edges_node_price | null;
-  attributes:
-    | (VariantList_productVariants_edges_node_attributes | null)[]
-    | null;
+  attributes: (VariantList_productVariants_edges_node_attributes | null)[] | null;
   product: VariantList_productVariants_edges_node_product;
 }
 
@@ -1655,6 +1639,7 @@ export interface VariantList {
 export interface VariantListVariables {
   ids?: string[] | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1691,6 +1676,7 @@ export interface SearchResults {
 export interface SearchResultsVariables {
   query: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1758,25 +1744,43 @@ export interface SearchProductsVariables {
   sortBy?: string | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getCountriesList
+// GraphQL query operation: getShop
 // ====================================================
 
-export interface getCountriesList_shop_countries {
+export interface getShop_shop_defaultCountry {
   code: string;
   country: string;
 }
 
-export interface getCountriesList_shop {
-  countries: (getCountriesList_shop_countries | null)[];
+export interface getShop_shop_countries {
+  country: string;
+  code: string;
 }
 
-export interface getCountriesList {
-  shop: getCountriesList_shop | null;
+export interface getShop_shop_geolocalization_country {
+  code: string;
+  country: string;
 }
+
+export interface getShop_shop_geolocalization {
+  country: getShop_shop_geolocalization_country | null;
+}
+
+export interface getShop_shop {
+  defaultCountry: getShop_shop_defaultCountry | null;
+  countries: (getShop_shop_countries | null)[];
+  geolocalization: getShop_shop_geolocalization | null;
+}
+
+export interface getShop {
+  shop: getShop_shop | null;
+}
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1812,6 +1816,7 @@ export interface TokenAuthVariables {
   password: string;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1838,6 +1843,7 @@ export interface VerifyToken {
 export interface VerifyTokenVariables {
   token: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -2006,6 +2012,7 @@ export interface Checkout {
   lines: (Checkout_lines | null)[] | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2018,6 +2025,7 @@ export interface BasicProductFields {
   name: string;
   thumbnailUrl: string | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -2056,6 +2064,7 @@ export interface ProductVariantFields {
   attributes: (ProductVariantFields_attributes | null)[] | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2079,16 +2088,16 @@ export interface User {
 
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY"
+  DUMMY = "DUMMY",
 }
 
-//
+// 
 export interface CheckoutLineInput {
   quantity?: number | null;
   variantId?: string | null;
 }
 
-//
+// 
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -2103,7 +2112,7 @@ export interface AddressInput {
   phone?: string | null;
 }
 
-//
+// 
 export interface PaymentInput {
   gateway?: GatewaysEnum | null;
   checkoutId?: string | null;
@@ -2112,7 +2121,7 @@ export interface PaymentInput {
   billingAddress?: AddressInput | null;
 }
 
-//
+// 
 export interface CheckoutCreateInput {
   lines?: (CheckoutLineInput | null)[] | null;
   email?: string | null;

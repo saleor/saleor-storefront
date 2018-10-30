@@ -6,5 +6,6 @@ export {
   Category_products as CategoryProductInterface,
   Category_attributes_edges_node as CategoryAttributesInterface,
   getCheckout_checkout as CheckoutInterface,
-  getCheckout_checkout_shippingAddress as AddressInterface
+  getCheckout_checkout_shippingAddress as AddressInterface,
+  getShop_shop as ShopInterface
 } from "./saleor";
