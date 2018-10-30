@@ -29,7 +29,7 @@ const link = ApolloLink.from([
   authLink,
   new RetryLink(),
   new HttpLink({
-    uri: process.env.APP_GRAPHQL_URL || "/graphql/"
+    uri: (process.env.BACKEND_URL || "") + "/graphql/"
   })
 ]);
 
