@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import {
+  ArticlePage,
   CartPage,
   CategoryPage,
   CheckoutLogin,
@@ -16,6 +17,7 @@ export const categoryUrl = `${baseUrl}category/:slug([a-z-]+)/:id([0-9]+)/`;
 export const productUrl = `${baseUrl}product/:slug([a-z-]+)/:id([0-9]+)/`;
 export const cartUrl = `${baseUrl}cart/:token/`;
 export const checkoutLoginUrl = `${baseUrl}login/`;
+export const pageUrl = `${baseUrl}page/:slug/`;
 
 export const Routes: React.SFC = () => (
   <>
@@ -25,5 +27,6 @@ export const Routes: React.SFC = () => (
     <Route path={productUrl} component={ProductPage} />
     <Route path={cartUrl} component={CartPage} />
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
+    <Route path={pageUrl} component={ArticlePage} />
   </>
 );

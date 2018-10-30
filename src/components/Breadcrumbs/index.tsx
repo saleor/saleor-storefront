@@ -5,8 +5,13 @@ import { baseUrl } from "../App/routes";
 
 import "./scss/index.scss";
 
+export interface Breadcrumb {
+  value: string;
+  link: string;
+}
+
 const Breadcrumbs: React.SFC<{
-  breadcrumbs: Array<{ value: string; link: string }>;
+  breadcrumbs: Breadcrumb[];
 }> = ({ breadcrumbs }) => (
   <ul className="breadcrumbs">
     <li>
