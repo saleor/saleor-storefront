@@ -12,6 +12,7 @@ import { GoToCheckout } from "../GoToCheckout";
 import Loader from "../Loader";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
+import { ShopContext } from "../ShopProvider/context";
 import { UserContext } from "../User/context";
 
 import "./scss/index.scss";
@@ -86,7 +87,18 @@ export const CartOverlay: React.SFC = () => (
                           <div className="cart__footer">
                             <div className="cart__footer__subtotoal">
                               <span>Subtotal</span>
-                              <span>{priceToString(cart.getTotal())}</span>
+                              <ShopContext.Consumer>
+                                {({ defaultCountry, geolocalization }) => (
+                                  <span>
+                                    {priceToString(
+                                      cart.getTotal(),
+                                      geolocalization.country
+                                        ? geolocalization.country.code
+                                        : defaultCountry.code
+                                    )}
+                                  </span>
+                                )}
+                              </ShopContext.Consumer>
                             </div>
 
                             <div className="cart__footer__button">

@@ -50,6 +50,7 @@ export class GoToCheckout extends React.Component<
   handleCheckoutCreation = async () => {
     const checkoutToken = localStorage.getItem("checkout");
     if (checkoutToken) {
+      localStorage.setItem("checkout", checkoutToken);
       const { apolloClient } = this.props;
       let data: { [key: string]: any };
       const response = await apolloClient.query({
@@ -65,7 +66,6 @@ export class GoToCheckout extends React.Component<
         loading: false,
         redirect: true
       });
-      localStorage.setItem("checkout", checkoutToken);
     } else {
       const {
         apolloClient,
@@ -83,13 +83,13 @@ export class GoToCheckout extends React.Component<
           }
         }
       });
+      localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
       this.setState({
         checkout: data.checkoutCreate.checkout,
         checkoutToken: data.checkoutCreate.checkout.token,
         loading: false,
         redirect: true
       });
-      localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
     }
   };
 

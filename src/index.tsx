@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { App, CheckoutApp, UserProvider } from "./components";
 import OverlayProvider from "./components/Overlay";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
+import ShopProvider from "./components/ShopProvider";
 import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
@@ -53,33 +54,35 @@ const startApp = async () => {
   });
   render(
     <BrowserRouter>
-      <OverlayProvider>
-        <OverlayContext.Consumer>
-          {({ show }) => (
-            <UserProviderWithTokenHandler
-              apolloClient={apolloClient}
-              onUserLogin={() =>
-                show(OverlayType.message, null, {
-                  title: "You are logged in"
-                })
-              }
-              onUserLogout={() =>
-                show(OverlayType.message, null, {
-                  title: "You are logged out"
-                })
-              }
-              refreshUser
-            >
-              <ApolloProvider client={apolloClient}>
-                <Switch>
-                  <Route path="/checkout/:token/" component={CheckoutApp} />
-                  <Route component={App} />
-                </Switch>
-              </ApolloProvider>
-            </UserProviderWithTokenHandler>
-          )}
-        </OverlayContext.Consumer>
-      </OverlayProvider>
+      <ShopProvider apolloClient={apolloClient}>
+        <OverlayProvider>
+          <OverlayContext.Consumer>
+            {({ show }) => (
+              <UserProviderWithTokenHandler
+                apolloClient={apolloClient}
+                onUserLogin={() =>
+                  show(OverlayType.message, null, {
+                    title: "You are logged in"
+                  })
+                }
+                onUserLogout={() =>
+                  show(OverlayType.message, null, {
+                    title: "You are logged out"
+                  })
+                }
+                refreshUser
+              >
+                <ApolloProvider client={apolloClient}>
+                  <Switch>
+                    <Route path="/checkout/:token/" component={CheckoutApp} />
+                    <Route component={App} />
+                  </Switch>
+                </ApolloProvider>
+              </UserProviderWithTokenHandler>
+            )}
+          </OverlayContext.Consumer>
+        </OverlayProvider>
+      </ShopProvider>
     </BrowserRouter>,
     document.getElementById("root")
   );

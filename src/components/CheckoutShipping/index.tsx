@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { ShippingAddressForm } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { checkoutShippingOptionsUrl } from "../CheckoutApp/routes";
+import { ShopContext } from "../ShopProvider/context";
 import { UPDATE_CHECKOUT_SHIPPING_ADDRESS } from "./queries";
 
 class CheckoutShipping extends React.Component<
@@ -41,40 +42,62 @@ class CheckoutShipping extends React.Component<
                   }
                   return (
                     <div className="checkout__content">
-                      <ShippingAddressForm
-                        data={{
-                          ...checkout.shippingAddress,
-                          email: checkout.email
-                        }}
-                        buttonText="Continue to Shipping"
-                        errors={
-                          data && data.checkoutShippingAddressUpdate.errors
-                        }
-                        loading={loading}
-                        onSubmit={(event, data) => {
-                          saveShippingAddress({
-                            variables: {
-                              checkoutId: checkout.id,
-                              email: data.email,
-                              shippingAddress: {
-                                city: data.city,
-                                companyName: data.companyName,
-                                country:
-                                  data.country.value || data.country.code,
-                                countryArea: data.countryArea,
-                                firstName: data.firstName,
-                                lastName: data.lastName,
-                                phone: data.phone,
-                                postalCode: data.postalCode,
-                                streetAddress1: data.streetAddress1,
-                                streetAddress2: data.streetAddress2
-                              }
+                      <ShopContext.Consumer>
+                        {({ defaultCountry, geolocalization }) => (
+                          <ShippingAddressForm
+                            data={
+                              checkout.shippingAddress &&
+                              checkout.shippingAddress.country
+                                ? {
+                                    ...checkout.shippingAddress,
+                                    email: checkout.email
+                                  }
+                                : {
+                                    ...checkout.shippingAddress,
+                                    country: {
+                                      code: geolocalization.country
+                                        ? geolocalization.country.code
+                                        : defaultCountry.code,
+                                      country: geolocalization.country
+                                        ? geolocalization.country.country
+                                        : defaultCountry.country
+                                    },
+                                    email: checkout.email
+                                  }
                             }
-                          });
-                          updateCheckout({ shippingAsBilling: data.asBilling });
-                          event.preventDefault();
-                        }}
-                      />
+                            buttonText="Continue to Shipping"
+                            errors={
+                              data && data.checkoutShippingAddressUpdate.errors
+                            }
+                            loading={loading}
+                            onSubmit={(event, data) => {
+                              saveShippingAddress({
+                                variables: {
+                                  checkoutId: checkout.id,
+                                  email: data.email,
+                                  shippingAddress: {
+                                    city: data.city,
+                                    companyName: data.companyName,
+                                    country:
+                                      data.country.value || data.country.code,
+                                    countryArea: data.countryArea,
+                                    firstName: data.firstName,
+                                    lastName: data.lastName,
+                                    phone: data.phone,
+                                    postalCode: data.postalCode,
+                                    streetAddress1: data.streetAddress1,
+                                    streetAddress2: data.streetAddress2
+                                  }
+                                }
+                              });
+                              updateCheckout({
+                                shippingAsBilling: data.asBilling
+                              });
+                              event.preventDefault();
+                            }}
+                          />
+                        )}
+                      </ShopContext.Consumer>
                     </div>
                   );
                 }}
