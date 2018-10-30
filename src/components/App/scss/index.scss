@@ -43,7 +43,7 @@ body {
     th {
       color: $gray-dark;
       text-align: left;
-      padding: $spacer 0;
+      padding: $spacer $spacer / 2;
       font-weight: $bold-font-weight;
     }
 
@@ -52,7 +52,7 @@ body {
     }
 
     td {
-      padding: $spacer 0;
+      padding: $spacer $spacer / 2;
       vertical-align: middle;
 
       img {

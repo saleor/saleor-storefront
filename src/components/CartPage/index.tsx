@@ -32,7 +32,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
       >
         {({ loading, error, data }) => {
           if (loading) {
-            return <Loader />;
+            return <Loader full />;
           }
           if (error && !data) {
             return `Error!: ${error}`;
@@ -72,7 +72,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                             )}
                           />
                           {line.variant.product.name}
-                          {line.variant.name ? `(${line.variant.name})` : null}
+                          {line.variant.name ? ` (${line.variant.name})` : null}
                         </td>
                         <Media query={{ minWidth: smallScreen }}>
                           {matches =>
