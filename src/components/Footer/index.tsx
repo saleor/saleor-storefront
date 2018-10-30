@@ -5,7 +5,10 @@ import ReactSVG from "react-svg";
 import { Button } from "..";
 import { GET_COLLECTIONS } from "./queries";
 
+import { Link } from "react-router-dom";
+import { STATIC_PAGES } from "../../core/config";
 import "./scss/index.scss";
+import { GET_CATEGORIES } from "../NavigationOverlay/queries";
 
 const Footer: React.SFC = () => (
   <div className="footer" id="footer">
@@ -38,7 +41,7 @@ const Footer: React.SFC = () => (
         <div>
           <h4>Collections</h4>
           <Query
-            query={GET_COLLECTIONS}
+            query={GET_CATEGORIES}
             fetchPolicy="cache-and-network"
             errorPolicy="all"
           >
@@ -49,29 +52,27 @@ const Footer: React.SFC = () => (
               if (error && !data) {
                 return `Error!: ${error}`;
               }
-              return data.collections.edges.map(collection => (
-                <p key={collection.node.id}>{collection.node.name}</p>
+              return data.categories.edges.map(category => (
+                <p key={category.node.id}>{category.node.name}</p>
               ));
             }}
           </Query>
         </div>
         <div>
-          <h4>Orders</h4>
-          <p>Track my orders</p>
-          <p>Delivery</p>
-          <p>Return policy</p>
-        </div>
-        <div>
-          <h4>Help</h4>
-          <p>Customer service</p>
-          <p>Size guide</p>
-          <p>Contact us</p>
-        </div>
-        <div>
           <h4>Saleor</h4>
-          <p>About us</p>
-          <p>Dashboard</p>
-          <p>Style guide</p>
+          {STATIC_PAGES.map(page => (
+            <p>
+              <Link to={page.url}>{page.label}</Link>
+            </p>
+          ))}
+          <p>
+            <a
+              href={(process.env.BACKEND_URL || "") + "/dashboard/"}
+              target="_blank"
+            >
+              Dashboard
+            </a>
+          </p>
         </div>
       </div>
     </footer>

@@ -122,7 +122,10 @@ module.exports = (env, argv) => {
           }
         ]
       }),
-      new webpack.EnvironmentPlugin(["npm_package_version", "APP_GRAPHQL_URL"])
+      new webpack.EnvironmentPlugin([
+        "npm_package_version",
+        "BACKEND_URL"
+      ])
     ],
     node: {
       fs: "empty"
