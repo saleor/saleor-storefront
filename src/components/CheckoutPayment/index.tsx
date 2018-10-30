@@ -36,11 +36,7 @@ class CheckoutPayment extends React.Component<
     };
   }
 
-  tokenizeCcCard = async (
-    paymentTransactionToken,
-    creditCard,
-    updateCheckout
-  ) => {
+  tokenizeCcCard = async (paymentClientToken, creditCard, updateCheckout) => {
     this.setState({
       errors: {
         cvv: "",
@@ -53,7 +49,7 @@ class CheckoutPayment extends React.Component<
     });
     let cardData;
     try {
-      cardData = await braintreePayment(paymentTransactionToken, creditCard);
+      cardData = await braintreePayment(paymentClientToken, creditCard);
       updateCheckout({ cardData });
       return cardData.token;
     } catch (errors) {
@@ -85,7 +81,7 @@ class CheckoutPayment extends React.Component<
       >
         {({ data }) => {
           if (data) {
-            const { paymentTransactionToken } = data;
+            const { paymentClientToken } = data;
             return (
               <div className="checkout-payment">
                 <CheckoutContext.Consumer>
@@ -122,7 +118,7 @@ class CheckoutPayment extends React.Component<
                       <div className="checkout__content">
                         <p>
                           {`${shippingMethod.name} | +${
-                            shippingMethod.price.amount
+                            shippingMethod.price.localized
                           }`}
                         </p>
                       </div>
@@ -156,7 +152,7 @@ class CheckoutPayment extends React.Component<
                                 onSubmit={async (event, formData) => {
                                   event.preventDefault();
                                   const token = await this.tokenizeCcCard(
-                                    paymentTransactionToken,
+                                    paymentClientToken,
                                     {
                                       billingAddress: {
                                         postalCode: billingAddress.postalCode
@@ -196,7 +192,7 @@ class CheckoutPayment extends React.Component<
                                           checkoutId: id,
                                           gateway:
                                             PROVIDERS[PROVIDERS.BRAINTREE],
-                                          transactionToken: token
+                                          token: "fake-valid-nonce"
                                         }
                                       }
                                     });

@@ -138,7 +138,7 @@ export default class CartProvider extends React.Component<
   getQuantity = () =>
     this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
 
-  getTotal = (): PriceInterface => {
+  getTotal = (): { amount: number; currency: string } => {
     const { lines } = this.state;
     const amount = lines.reduce(
       (sum, line) => sum + line.variant.price.amount * line.quantity,

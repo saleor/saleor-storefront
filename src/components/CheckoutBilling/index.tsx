@@ -40,7 +40,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
               <div className="checkout__content">
                 <p>
                   {`${checkout.shippingMethod.name} | +${
-                    checkout.shippingMethod.price.amount
+                    checkout.shippingMethod.price.localized
                   }`}
                 </p>
               </div>

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader } from "..";
-import { priceToString } from "../../core/utils";
 import { baseUrl, checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
@@ -77,17 +76,12 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                         <Media query={{ minWidth: smallScreen }}>
                           {matches =>
                             matches ? (
-                              <td>{priceToString(line.variant.price)}</td>
+                              <td>{line.variant.price.localized}</td>
                             ) : null
                           }
                         </Media>
                         <td>{line.quantity}</td>
-                        <td>
-                          {priceToString({
-                            amount: line.totalPrice.gross.amount,
-                            currency: line.totalPrice.currency
-                          })}
-                        </td>
+                        <td>{line.totalPrice.gross.localized}</td>
                         <td>
                           <CartContext.Consumer>
                             {({ remove }) => (
@@ -109,14 +103,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                         {matches => (matches ? <td /> : null)}
                       </Media>
                       <td />
-                      <td>
-                        {checkout
-                          ? priceToString({
-                              amount: checkout.subtotalPrice.gross.amount,
-                              currency: checkout.subtotalPrice.currency
-                            })
-                          : null}
-                      </td>
+                      <td>{checkout.subtotalPrice.gross.localized}</td>
                       <td />
                     </tr>
                   </tfoot>

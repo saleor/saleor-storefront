@@ -16,6 +16,7 @@ export const PRODUCT_VARIANT_FRAGMENT = gql`
     price {
       currency
       amount
+      localized
     }
     attributes {
       attribute {
@@ -52,6 +53,7 @@ export const GET_PRODUCT_DETAILS = gql`
               price {
                 amount
                 currency
+                localized
               }
             }
           }
@@ -60,6 +62,7 @@ export const GET_PRODUCT_DETAILS = gql`
       price {
         amount
         currency
+        localized
       }
       images {
         edges {
@@ -75,19 +78,6 @@ export const GET_PRODUCT_DETAILS = gql`
             ...ProductVariantFields
           }
         }
-      }
-    }
-  }
-`;
-
-export const GET_PRODUCT_VARIANT_DETAILS = gql`
-  ${BASIC_PRODUCT_FRAGMENT}
-  ${PRODUCT_VARIANT_FRAGMENT}
-  query ProductVariantDetails($id: ID!) {
-    productVariant(id: $id) {
-      ...ProductVariantFields
-      product {
-        ...BasicProductFields
       }
     }
   }

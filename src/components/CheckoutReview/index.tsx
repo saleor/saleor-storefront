@@ -4,8 +4,6 @@ import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button } from "..";
-import { removeAuthToken } from "../../core/auth";
-import { priceToString } from "../../core/utils";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { COMPLETE_CHECKOUT } from "./queries";
@@ -59,17 +57,12 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                       <Media query={{ minWidth: smallScreen }}>
                         {matches =>
                           matches ? (
-                            <td>{priceToString(line.variant.price)}</td>
+                            <td>{line.variant.price.localized}</td>
                           ) : null
                         }
                       </Media>
                       <td>{line.quantity}</td>
-                      <td>
-                        {priceToString({
-                          amount: line.totalPrice.gross.amount,
-                          currency: line.totalPrice.currency
-                        })}
-                      </td>
+                      <td>{line.totalPrice.gross.localized}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -80,12 +73,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                       {matches => (matches ? <td /> : null)}
                     </Media>
                     <td />
-                    <td>
-                      {priceToString({
-                        amount: checkout.subtotalPrice.gross.amount,
-                        currency: checkout.subtotalPrice.currency
-                      })}
-                    </td>
+                    <td>{checkout.subtotalPrice.gross.localized}</td>
                     <td />
                   </tr>
                   <tr>
@@ -94,13 +82,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                       {matches => (matches ? <td /> : null)}
                     </Media>
                     <td />
-                    <td>
-                      +
-                      {priceToString({
-                        amount: checkout.shippingPrice.gross.amount,
-                        currency: checkout.shippingPrice.currency
-                      })}
-                    </td>
+                    <td>+{checkout.shippingPrice.gross.localized}</td>
                     <td />
                   </tr>
                   <tr>
@@ -109,12 +91,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                       {matches => (matches ? <td /> : null)}
                     </Media>
                     <td />
-                    <td>
-                      {priceToString({
-                        amount: checkout.totalPrice.gross.amount,
-                        currency: checkout.totalPrice.currency
-                      })}
-                    </td>
+                    <td>{checkout.totalPrice.gross.localized}</td>
                     <td />
                   </tr>
                 </tfoot>

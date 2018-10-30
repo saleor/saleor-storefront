@@ -10,6 +10,7 @@ export const CHECKOUT_FRAGMENT = gql`
       }
       gross {
         amount
+        localized
       }
       currency
     }
@@ -19,6 +20,7 @@ export const CHECKOUT_FRAGMENT = gql`
       }
       gross {
         amount
+        localized
       }
       currency
     }
@@ -59,6 +61,7 @@ export const CHECKOUT_FRAGMENT = gql`
       price {
         currency
         amount
+        localized
       }
     }
     shippingMethod {
@@ -67,6 +70,7 @@ export const CHECKOUT_FRAGMENT = gql`
       price {
         currency
         amount
+        localized
       }
     }
     shippingPrice {
@@ -75,6 +79,7 @@ export const CHECKOUT_FRAGMENT = gql`
       }
       gross {
         amount
+        localized
       }
       currency
     }
@@ -87,6 +92,7 @@ export const CHECKOUT_FRAGMENT = gql`
         }
         gross {
           amount
+          localized
         }
         currency
       }
@@ -96,6 +102,7 @@ export const CHECKOUT_FRAGMENT = gql`
         price {
           amount
           currency
+          localized
         }
         product {
           id

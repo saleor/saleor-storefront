@@ -5,6 +5,34 @@
 // GraphQL query operation: Category
 // ====================================================
 
+export interface Category_products_edges_node_category {
+  id: string;
+  name: string;
+}
+
+export interface Category_products_edges_node_price {
+  amount: number;
+  currency: string;
+  localized: string;
+}
+
+export interface Category_products_edges_node {
+  id: string;
+  name: string;
+  thumbnailUrl: string | null;
+  category: Category_products_edges_node_category;
+  price: Category_products_edges_node_price | null;
+}
+
+export interface Category_products_edges {
+  node: Category_products_edges_node;
+}
+
+export interface Category_products {
+  totalCount: number | null;
+  edges: Category_products_edges[];
+}
+
 export interface Category_category_backgroundImage {
   url: string;
 }
@@ -22,39 +50,11 @@ export interface Category_category_ancestors {
   edges: Category_category_ancestors_edges[];
 }
 
-export interface Category_category_products_edges_node_category {
-  id: string;
-  name: string;
-}
-
-export interface Category_category_products_edges_node_price {
-  amount: number;
-  currency: string;
-}
-
-export interface Category_category_products_edges_node {
-  id: string;
-  name: string;
-  thumbnailUrl: string | null;
-  category: Category_category_products_edges_node_category;
-  price: Category_category_products_edges_node_price | null;
-}
-
-export interface Category_category_products_edges {
-  node: Category_category_products_edges_node;
-}
-
-export interface Category_category_products {
-  totalCount: number | null;
-  edges: Category_category_products_edges[];
-}
-
 export interface Category_category {
   id: string;
   name: string;
   backgroundImage: Category_category_backgroundImage | null;
   ancestors: Category_category_ancestors | null;
-  products: Category_category_products | null;
 }
 
 export interface Category_attributes_edges_node_values {
@@ -77,6 +77,7 @@ export interface Category_attributes {
 }
 
 export interface Category {
+  products: Category_products | null;
   category: Category_category | null;
   attributes: Category_attributes | null;
 }
@@ -89,7 +90,6 @@ export interface CategoryVariables {
   priceLte?: number | null;
   priceGte?: number | null;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -104,6 +104,7 @@ export interface getCheckout_checkout_totalPrice_net {
 
 export interface getCheckout_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_totalPrice {
@@ -118,6 +119,7 @@ export interface getCheckout_checkout_subtotalPrice_net {
 
 export interface getCheckout_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_subtotalPrice {
@@ -165,6 +167,7 @@ export interface getCheckout_checkout_shippingAddress {
 export interface getCheckout_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_availableShippingMethods {
@@ -176,6 +179,7 @@ export interface getCheckout_checkout_availableShippingMethods {
 export interface getCheckout_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_shippingMethod {
@@ -190,6 +194,7 @@ export interface getCheckout_checkout_shippingPrice_net {
 
 export interface getCheckout_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_shippingPrice {
@@ -204,6 +209,7 @@ export interface getCheckout_checkout_lines_totalPrice_net {
 
 export interface getCheckout_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface getCheckout_checkout_lines_totalPrice {
@@ -215,6 +221,7 @@ export interface getCheckout_checkout_lines_totalPrice {
 export interface getCheckout_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface getCheckout_checkout_lines_variant_product {
@@ -245,7 +252,9 @@ export interface getCheckout_checkout {
   billingAddress: getCheckout_checkout_billingAddress | null;
   shippingAddress: getCheckout_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (getCheckout_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (getCheckout_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: getCheckout_checkout_shippingMethod | null;
   shippingPrice: getCheckout_checkout_shippingPrice | null;
   lines: (getCheckout_checkout_lines | null)[] | null;
@@ -258,7 +267,6 @@ export interface getCheckout {
 export interface getCheckoutVariables {
   token: any;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -273,6 +281,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net 
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice {
@@ -287,6 +296,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_n
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
@@ -334,6 +344,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods {
@@ -345,6 +356,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippi
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod {
@@ -359,6 +371,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_n
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice {
@@ -373,6 +386,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
@@ -384,6 +398,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product {
@@ -414,10 +429,14 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   billingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice | null;
-  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {
@@ -439,7 +458,6 @@ export interface updateCheckoutLineVariables {
   lines: (CheckoutLineInput | null)[];
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -458,6 +476,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
@@ -472,6 +491,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
@@ -519,6 +539,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods {
@@ -530,6 +551,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod {
@@ -544,6 +566,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
@@ -558,6 +581,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
@@ -569,6 +593,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product {
@@ -599,14 +624,20 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice | null;
-  lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
-  errors: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[] | null;
+  errors:
+    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[]
+    | null;
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 
@@ -619,7 +650,6 @@ export interface updateCheckoutBillingAddressVariables {
   billingAddress: AddressInput;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -628,13 +658,12 @@ export interface updateCheckoutBillingAddressVariables {
 // ====================================================
 
 export interface getPaymentToken {
-  paymentTransactionToken: string | null;
+  paymentClientToken: string | null;
 }
 
 export interface getPaymentTokenVariables {
-  gateway: ProvidersEnum;
+  gateway: GatewaysEnum;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -659,7 +688,6 @@ export interface createPayment {
 export interface createPaymentVariables {
   input: PaymentInput;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -690,7 +718,6 @@ export interface completeCheckoutVariables {
   checkoutId: string;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -704,7 +731,9 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
-  errors: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[] | null;
+  errors:
+    | (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[]
+    | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
@@ -718,6 +747,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice {
@@ -732,6 +762,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice {
@@ -779,6 +810,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods {
@@ -790,6 +822,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod {
@@ -804,6 +837,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice {
@@ -818,6 +852,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice {
@@ -829,6 +864,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
@@ -859,14 +895,20 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   billingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice | null;
-  lines: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate {
-  errors: (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[] | null;
+  errors:
+    | (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[]
+    | null;
   checkout: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
 }
 
@@ -880,7 +922,6 @@ export interface updateCheckoutShippingAddressVariables {
   shippingAddress: AddressInput;
   email: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -900,6 +941,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice {
@@ -914,6 +956,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice {
@@ -961,6 +1004,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods {
@@ -972,6 +1016,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod {
@@ -986,6 +1031,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice {
@@ -1000,6 +1046,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice {
@@ -1011,6 +1058,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product {
@@ -1041,14 +1089,20 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   billingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice | null;
-  lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
-  errors: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[] | null;
+  errors:
+    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[]
+    | null;
   checkout: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout | null;
 }
 
@@ -1060,7 +1114,6 @@ export interface updateCheckoutShippingOptionsVariables {
   checkoutId: string;
   shippingMethodId: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1086,7 +1139,6 @@ export interface Collections {
   collections: Collections_collections | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1105,6 +1157,7 @@ export interface createCheckout_checkoutCreate_checkout_totalPrice_net {
 
 export interface createCheckout_checkoutCreate_checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_totalPrice {
@@ -1119,6 +1172,7 @@ export interface createCheckout_checkoutCreate_checkout_subtotalPrice_net {
 
 export interface createCheckout_checkoutCreate_checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_subtotalPrice {
@@ -1166,6 +1220,7 @@ export interface createCheckout_checkoutCreate_checkout_shippingAddress {
 export interface createCheckout_checkoutCreate_checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_availableShippingMethods {
@@ -1177,6 +1232,7 @@ export interface createCheckout_checkoutCreate_checkout_availableShippingMethods
 export interface createCheckout_checkoutCreate_checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_shippingMethod {
@@ -1191,6 +1247,7 @@ export interface createCheckout_checkoutCreate_checkout_shippingPrice_net {
 
 export interface createCheckout_checkoutCreate_checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_shippingPrice {
@@ -1205,6 +1262,7 @@ export interface createCheckout_checkoutCreate_checkout_lines_totalPrice_net {
 
 export interface createCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_lines_totalPrice {
@@ -1216,6 +1274,7 @@ export interface createCheckout_checkoutCreate_checkout_lines_totalPrice {
 export interface createCheckout_checkoutCreate_checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_lines_variant_product {
@@ -1246,7 +1305,9 @@ export interface createCheckout_checkoutCreate_checkout {
   billingAddress: createCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: createCheckout_checkoutCreate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods: (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[] | null;
+  availableShippingMethods:
+    | (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[]
+    | null;
   shippingMethod: createCheckout_checkoutCreate_checkout_shippingMethod | null;
   shippingPrice: createCheckout_checkoutCreate_checkout_shippingPrice | null;
   lines: (createCheckout_checkoutCreate_checkout_lines | null)[] | null;
@@ -1264,7 +1325,6 @@ export interface createCheckout {
 export interface createCheckoutVariables {
   checkoutInput: CheckoutCreateInput;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1285,6 +1345,7 @@ export interface ProductsList_shop_homepageCollection_products_edges_node_catego
 export interface ProductsList_shop_homepageCollection_products_edges_node_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface ProductsList_shop_homepageCollection_products_edges_node {
@@ -1336,7 +1397,6 @@ export interface ProductsList {
   categories: ProductsList_categories | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1362,7 +1422,6 @@ export interface RegisterCutomerVariables {
   password: string;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1377,7 +1436,7 @@ export interface MainMenu_shop_navigation_main_items {
 
 export interface MainMenu_shop_navigation_main {
   id: string;
-  items: (MainMenu_shop_navigation_main_items | null)[];
+  items: (MainMenu_shop_navigation_main_items | null)[] | null;
 }
 
 export interface MainMenu_shop_navigation {
@@ -1391,7 +1450,6 @@ export interface MainMenu_shop {
 export interface MainMenu {
   shop: MainMenu_shop | null;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1418,7 +1476,6 @@ export interface Categories {
   categories: Categories_categories | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1434,6 +1491,7 @@ export interface ProductDetails_product_category_products_edges_node_category {
 export interface ProductDetails_product_category_products_edges_node_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node {
@@ -1461,6 +1519,7 @@ export interface ProductDetails_product_category {
 export interface ProductDetails_product_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface ProductDetails_product_images_edges_node {
@@ -1479,6 +1538,7 @@ export interface ProductDetails_product_images {
 export interface ProductDetails_product_variants_edges_node_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface ProductDetails_product_variants_edges_node_attributes_attribute {
@@ -1502,7 +1562,9 @@ export interface ProductDetails_product_variants_edges_node {
   name: string;
   stockQuantity: number;
   price: ProductDetails_product_variants_edges_node_price | null;
-  attributes: (ProductDetails_product_variants_edges_node_attributes | null)[] | null;
+  attributes:
+    | (ProductDetails_product_variants_edges_node_attributes | null)[]
+    | null;
 }
 
 export interface ProductDetails_product_variants_edges {
@@ -1532,59 +1594,6 @@ export interface ProductDetailsVariables {
   id: string;
 }
 
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: ProductVariantDetails
-// ====================================================
-
-export interface ProductVariantDetails_productVariant_price {
-  currency: string;
-  amount: number;
-}
-
-export interface ProductVariantDetails_productVariant_attributes_attribute {
-  id: string;
-  name: string | null;
-}
-
-export interface ProductVariantDetails_productVariant_attributes_value {
-  id: string;
-  name: string | null;
-  value: string | null;
-}
-
-export interface ProductVariantDetails_productVariant_attributes {
-  attribute: ProductVariantDetails_productVariant_attributes_attribute | null;
-  value: ProductVariantDetails_productVariant_attributes_value | null;
-}
-
-export interface ProductVariantDetails_productVariant_product {
-  id: string;
-  name: string;
-  thumbnailUrl: string | null;
-}
-
-export interface ProductVariantDetails_productVariant {
-  id: string;
-  name: string;
-  stockQuantity: number;
-  price: ProductVariantDetails_productVariant_price | null;
-  attributes: (ProductVariantDetails_productVariant_attributes | null)[] | null;
-  product: ProductVariantDetails_productVariant_product;
-}
-
-export interface ProductVariantDetails {
-  productVariant: ProductVariantDetails_productVariant | null;
-}
-
-export interface ProductVariantDetailsVariables {
-  id: string;
-}
-
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1595,6 +1604,7 @@ export interface ProductVariantDetailsVariables {
 export interface VariantList_productVariants_edges_node_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface VariantList_productVariants_edges_node_attributes_attribute {
@@ -1624,7 +1634,9 @@ export interface VariantList_productVariants_edges_node {
   name: string;
   stockQuantity: number;
   price: VariantList_productVariants_edges_node_price | null;
-  attributes: (VariantList_productVariants_edges_node_attributes | null)[] | null;
+  attributes:
+    | (VariantList_productVariants_edges_node_attributes | null)[]
+    | null;
   product: VariantList_productVariants_edges_node_product;
 }
 
@@ -1643,7 +1655,6 @@ export interface VariantList {
 export interface VariantListVariables {
   ids?: string[] | null;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1681,7 +1692,6 @@ export interface SearchResultsVariables {
   query: string;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1697,6 +1707,7 @@ export interface SearchProducts_products_edges_node_category {
 export interface SearchProducts_products_edges_node_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface SearchProducts_products_edges_node {
@@ -1747,7 +1758,6 @@ export interface SearchProductsVariables {
   sortBy?: string | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1767,7 +1777,6 @@ export interface getCountriesList_shop {
 export interface getCountriesList {
   shop: getCountriesList_shop | null;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1803,7 +1812,6 @@ export interface TokenAuthVariables {
   password: string;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1831,7 +1839,6 @@ export interface VerifyTokenVariables {
   token: string;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1845,6 +1852,7 @@ export interface Checkout_totalPrice_net {
 
 export interface Checkout_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_totalPrice {
@@ -1859,6 +1867,7 @@ export interface Checkout_subtotalPrice_net {
 
 export interface Checkout_subtotalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_subtotalPrice {
@@ -1906,6 +1915,7 @@ export interface Checkout_shippingAddress {
 export interface Checkout_availableShippingMethods_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_availableShippingMethods {
@@ -1917,6 +1927,7 @@ export interface Checkout_availableShippingMethods {
 export interface Checkout_shippingMethod_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_shippingMethod {
@@ -1931,6 +1942,7 @@ export interface Checkout_shippingPrice_net {
 
 export interface Checkout_shippingPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_shippingPrice {
@@ -1945,6 +1957,7 @@ export interface Checkout_lines_totalPrice_net {
 
 export interface Checkout_lines_totalPrice_gross {
   amount: number;
+  localized: string;
 }
 
 export interface Checkout_lines_totalPrice {
@@ -1956,6 +1969,7 @@ export interface Checkout_lines_totalPrice {
 export interface Checkout_lines_variant_price {
   amount: number;
   currency: string;
+  localized: string;
 }
 
 export interface Checkout_lines_variant_product {
@@ -1992,7 +2006,6 @@ export interface Checkout {
   lines: (Checkout_lines | null)[] | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2006,7 +2019,6 @@ export interface BasicProductFields {
   thumbnailUrl: string | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2017,6 +2029,7 @@ export interface BasicProductFields {
 export interface ProductVariantFields_price {
   currency: string;
   amount: number;
+  localized: string;
 }
 
 export interface ProductVariantFields_attributes_attribute {
@@ -2043,7 +2056,6 @@ export interface ProductVariantFields {
   attributes: (ProductVariantFields_attributes | null)[] | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2065,18 +2077,18 @@ export interface User {
 // START Enums and Input Objects
 //==============================================================
 
-export enum ProvidersEnum {
+export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY",
+  DUMMY = "DUMMY"
 }
 
-// 
+//
 export interface CheckoutLineInput {
   quantity?: number | null;
   variantId?: string | null;
 }
 
-// 
+//
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -2091,16 +2103,16 @@ export interface AddressInput {
   phone?: string | null;
 }
 
-// 
+//
 export interface PaymentInput {
-  gateway?: ProvidersEnum | null;
+  gateway?: GatewaysEnum | null;
   checkoutId?: string | null;
-  transactionToken: string;
+  token: string;
   amount: any;
   billingAddress?: AddressInput | null;
 }
 
-// 
+//
 export interface CheckoutCreateInput {
   lines?: (CheckoutLineInput | null)[] | null;
   email?: string | null;

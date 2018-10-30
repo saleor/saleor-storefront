@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GET_PAYMENT_TOKEN = gql`
-  query getPaymentToken($gateway: ProvidersEnum!) {
-    paymentTransactionToken(gateway: $gateway)
+  query getPaymentToken($gateway: GatewaysEnum!) {
+    paymentClientToken(gateway: $gateway)
   }
 `;
 

@@ -5,7 +5,6 @@ import {
   ProductPriceInterface,
   ProductVariantInterface
 } from "../../core/types";
-import { priceToString } from "../../core/utils";
 
 import "./scss/index.scss";
 
@@ -13,7 +12,6 @@ interface ProductDescriptionProps {
   productVariants: ProductVariantInterface[];
   name: string;
   price: ProductPriceInterface;
-  locale?: string;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
@@ -163,11 +161,11 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { name, price, locale } = this.props;
+    const { name, price } = this.props;
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>{priceToString(price, locale)}</h4>
+        <h4>{price.localized}</h4>
         <div className="product-description__variant-picker">
           {this.state.primaryPicker ? (
             <SelectField
