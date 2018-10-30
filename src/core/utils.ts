@@ -30,7 +30,7 @@ export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
   Base64.encode(`${schema}:${id}`);
 
 export const priceToString = (
-  price: PriceInterface,
+  price: { amount: number; currency: string },
   locale?: string
 ): string => {
   const { amount } = price;

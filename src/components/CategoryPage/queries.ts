@@ -30,6 +30,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
           price {
             amount
             currency
+            localized
           }
         }
       }

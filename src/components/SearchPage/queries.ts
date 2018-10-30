@@ -26,6 +26,7 @@ export const GET_SEARCH_PRODUCTS = gql`
           price {
             amount
             currency
+            localized
           }
         }
       }

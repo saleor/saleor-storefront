@@ -49,11 +49,8 @@ export class GoToCheckout extends React.Component<
 
   handleCheckoutCreation = async () => {
     const checkoutToken = localStorage.getItem("checkout");
-    const {
-      apolloClient,
-      cart: { lines }
-    } = this.props;
     if (checkoutToken) {
+      const { apolloClient } = this.props;
       let data: { [key: string]: any };
       const response = await apolloClient.query({
         query: GET_CHECKOUT,
@@ -68,7 +65,12 @@ export class GoToCheckout extends React.Component<
         loading: false,
         redirect: true
       });
+      localStorage.setItem("checkout", checkoutToken);
     } else {
+      const {
+        apolloClient,
+        cart: { lines }
+      } = this.props;
       this.setState({ loading: true });
       const { data } = await apolloClient.mutate({
         mutation: CREATE_CHECKOUT,
@@ -87,6 +89,7 @@ export class GoToCheckout extends React.Component<
         loading: false,
         redirect: true
       });
+      localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
     }
   };
 
@@ -111,15 +114,6 @@ export class GoToCheckout extends React.Component<
           }}
         </CheckoutContext.Consumer>
       );
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { checkoutToken } = this.state;
-    if (checkoutToken) {
-      localStorage.setItem("checkout", this.state.checkoutToken);
-    } else {
-      localStorage.removeItem("checkout");
     }
   }
 

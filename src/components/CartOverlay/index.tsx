@@ -27,7 +27,11 @@ export const CartOverlay: React.SFC = () => (
                 {cart => {
                   const { lines, loading, errors } = cart;
                   if (loading) {
-                    return <Loader />;
+                    return (
+                      <div className="cart">
+                        <Loader full />
+                      </div>
+                    );
                   }
                   if (errors) {
                     return "Errors";

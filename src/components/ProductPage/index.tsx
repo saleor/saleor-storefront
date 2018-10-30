@@ -2,6 +2,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 
 import {
   Breadcrumbs,
@@ -12,9 +13,9 @@ import {
   ProductListItem
 } from "..";
 import {
-  getDBIdFromGraphqlId,
-  getGraphqlIdFromDBId,
-  slugify
+  generateCategoryUrl,
+  generateProductUrl,
+  getGraphqlIdFromDBId
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
@@ -78,18 +79,14 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                 <Breadcrumbs
                   breadcrumbs={[
                     {
-                      link: `/category/${slugify(
-                        product.category.name
-                      )}/${getDBIdFromGraphqlId(
+                      link: generateCategoryUrl(
                         product.category.id,
-                        "Category"
-                      )}/`,
+                        product.category.name
+                      ),
                       value: product.category.name
                     },
                     {
-                      link: `/product/${slugify(
-                        product.name
-                      )}/${getDBIdFromGraphqlId(product.id, "Product")}/`,
+                      link: generateProductUrl(product.id, product.name),
                       value: product.name
                     }
                   ]}
@@ -213,7 +210,12 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                   <div className="product-page__other-products__grid">
                     {product.category.products.edges.map(
                       ({ node: product }) => (
-                        <ProductListItem product={product} key={product.id} />
+                        <Link
+                          to={generateProductUrl(product.id, product.name)}
+                          key={product.id}
+                        >
+                          <ProductListItem product={product} key={product.id} />
+                        </Link>
                       )
                     )}
                   </div>

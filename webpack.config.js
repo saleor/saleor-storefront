@@ -95,7 +95,7 @@ module.exports = (env, argv) => {
       }),
       // PWA plugins
       new WebappWebpackPlugin({
-        logo: `${sourceDir}/images/favicon.svg`,
+        logo: `${sourceDir}/images/favicon.png`,
         prefix: "images/favicons/",
         favicons: {
           appName: "Saleor ecommerce",
@@ -122,13 +122,10 @@ module.exports = (env, argv) => {
           }
         ]
       }),
-      new webpack.EnvironmentPlugin([
-        "npm_package_version",
-        "APP_GRAPHQL_URL"
-      ])
+      new webpack.EnvironmentPlugin(["npm_package_version", "APP_GRAPHQL_URL"])
     ],
     node: {
       fs: "empty"
     }
-  }
-}
+  };
+};

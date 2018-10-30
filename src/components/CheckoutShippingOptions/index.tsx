@@ -77,8 +77,7 @@ class CheckoutShipping extends React.Component<
                                   value={method.id}
                                 />
                                 <label>
-                                  {method.name} | +{method.price.currency}
-                                  {method.price.amount}
+                                  {method.name} | +{method.price.localized}
                                 </label>
                               </div>
                             ))}

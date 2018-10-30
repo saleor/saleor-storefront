@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 import { ApolloError } from "apollo-client";
-import { PriceInterface, ProductVariantInterface } from "../../core/types";
+import { PriceInterface } from "../../core/types";
 
 export interface CartLineInterface {
   variantId: string;
@@ -19,7 +19,7 @@ export interface CartInterface {
   fetch(): void;
   clear(): void;
   getQuantity(): number;
-  getTotal(): PriceInterface;
+  getTotal(): { currency: string; amount: number };
 }
 
 /* tslint:disable:no-empty */
