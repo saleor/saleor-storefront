@@ -192,7 +192,7 @@ class CheckoutPayment extends React.Component<
                                           checkoutId: id,
                                           gateway:
                                             PROVIDERS[PROVIDERS.BRAINTREE],
-                                          token: "fake-valid-nonce"
+                                          token
                                         }
                                       }
                                     });

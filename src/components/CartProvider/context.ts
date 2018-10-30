@@ -1,7 +1,6 @@
 import { createContext } from "react";
 
 import { ApolloError } from "apollo-client";
-import { PriceInterface } from "../../core/types";
 
 export interface CartLineInterface {
   variantId: string;
