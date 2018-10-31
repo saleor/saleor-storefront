@@ -61,7 +61,7 @@ Make sure you have [Python 3](https://www.python.org/) installed in your system.
 In the project directory run:
 
 ```
-npm build
+npm run build
 ```
 
 Start the Python HTTP server:
