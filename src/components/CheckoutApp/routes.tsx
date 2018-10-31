@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import {
   CheckoutBilling,
@@ -8,6 +8,7 @@ import {
   CheckoutShipping,
   CheckoutShippingOptions
 } from "..";
+import { NotFound } from "../NotFound";
 
 export const checkoutBaseUrl = token => `/checkout/${token}/`;
 export const checkoutShippingOptionsUrl = token =>
@@ -18,7 +19,7 @@ export const checkoutPaymentUrl = token => `${checkoutBaseUrl(token)}payment/`;
 export const checkoutReviewUrl = token => `${checkoutBaseUrl(token)}review/`;
 
 export const Routes: React.SFC<{ token: string }> = ({ token }) => (
-  <>
+  <Switch>
     <Route exact path={checkoutBaseUrl(token)} component={CheckoutShipping} />
     <Route
       path={checkoutShippingOptionsUrl(token)}
@@ -27,5 +28,6 @@ export const Routes: React.SFC<{ token: string }> = ({ token }) => (
     <Route path={checkoutBillingUrl(token)} component={CheckoutBilling} />
     <Route path={checkoutPaymentUrl(token)} component={CheckoutPayment} />
     <Route path={checkoutReviewUrl(token)} component={CheckoutReview} />
-  </>
+    <Route component={NotFound} />
+  </Switch>
 );

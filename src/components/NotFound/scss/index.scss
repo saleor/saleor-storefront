@@ -1,0 +1,14 @@
+.not-found-page {
+  min-height: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__header {
+    font-size: 2.5rem;
+    font-family: "Montserrat";
+    font-weight: 600;
+    line-height: 3.5rem;
+    text-align: center;
+  }
+}
