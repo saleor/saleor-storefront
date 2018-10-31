@@ -27,6 +27,7 @@ class NetworkStatus extends React.Component<
   componentDidMount() {
     addEventListener("offline", this.updateOnlineStatus);
     addEventListener("online", this.updateOnlineStatus);
+    this.updateOnlineStatus();
   }
 
   componentWillUnmount() {
@@ -35,6 +36,8 @@ class NetworkStatus extends React.Component<
   }
 
   render() {
+    console.log(this.props);
+    console.log(this.props.children(this.state.online));
     return this.props.children(this.state.online);
   }
 }

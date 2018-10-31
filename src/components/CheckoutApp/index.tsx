@@ -13,6 +13,9 @@ import { GET_CHECKOUT } from "./queries";
 import { Routes } from "./routes";
 
 import { mediumScreen } from "../App/scss/variables.scss";
+import Offline from "../Offline";
+import OfflinePlaceholder from "../OfflinePlaceholder";
+import Online from "../Online";
 import "./scss/index.scss";
 
 export class CheckoutProvider extends React.Component<
@@ -87,41 +90,46 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
         <Link to={baseUrl}>Return to shopping</Link>
       </div>
       <div className="container">
-        <div
-          className={`checkout__grid${
-            isReviewPage ? " checkout__grid--review" : ""
-          }`}
-        >
-          <ApolloConsumer>
-            {client => (
-              <CheckoutProvider apolloClient={client} token={token} url={url}>
-                <CheckoutContext.Consumer>
-                  {({ loading }) =>
-                    loading ? (
-                      <Loader />
-                    ) : (
-                      <>
-                        <div
-                          className={
-                            isReviewPage ? "" : "checkout__grid__content"
-                          }
-                        >
-                          <Routes token={token} />
-                        </div>
-                        {!isReviewPage ? (
-                          <Media
-                            query={{ minWidth: mediumScreen }}
-                            render={() => <CartSummary />}
-                          />
-                        ) : null}
-                      </>
-                    )
-                  }
-                </CheckoutContext.Consumer>
-              </CheckoutProvider>
-            )}
-          </ApolloConsumer>
-        </div>
+        <Online>
+          <div
+            className={`checkout__grid${
+              isReviewPage ? " checkout__grid--review" : ""
+            }`}
+          >
+            <ApolloConsumer>
+              {client => (
+                <CheckoutProvider apolloClient={client} token={token} url={url}>
+                  <CheckoutContext.Consumer>
+                    {({ loading }) =>
+                      loading ? (
+                        <Loader />
+                      ) : (
+                        <>
+                          <div
+                            className={
+                              isReviewPage ? "" : "checkout__grid__content"
+                            }
+                          >
+                            <Routes token={token} />
+                          </div>
+                          {!isReviewPage ? (
+                            <Media
+                              query={{ minWidth: mediumScreen }}
+                              render={() => <CartSummary />}
+                            />
+                          ) : null}
+                        </>
+                      )
+                    }
+                  </CheckoutContext.Consumer>
+                </CheckoutProvider>
+              )}
+            </ApolloConsumer>
+          </div>
+        </Online>
+        <Offline>
+          <OfflinePlaceholder />
+        </Offline>
       </div>
     </div>
   );

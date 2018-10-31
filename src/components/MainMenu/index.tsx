@@ -13,6 +13,8 @@ import { UserContext } from "../User/context";
 import { GET_MAIN_MENU } from "./queries";
 
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
+import Offline from "../Offline";
+import Online from "../Online";
 import "./scss/index.scss";
 
 const MainMenu: React.SFC = () => (
@@ -68,64 +70,76 @@ const MainMenu: React.SFC = () => (
         </div>
         <div className="main-menu__center">
           <Link to={baseUrl}>
-            <ReactSVG path="../../images/logo.svg" />
+            <ReactSVG path={require("../../images/logo.svg")} />
           </Link>
         </div>
         <div className="main-menu__right">
           <ul>
-            <Media
-              query={{ minWidth: smallScreen }}
-              render={() => (
-                <UserContext.Consumer>
-                  {({ logout, user }) =>
-                    user ? (
-                      <MenuDropdown
-                        head={
-                          <li className="main-menu__icon main-menu__user--active">
-                            <ReactSVG path={require("../../images/user.svg")} />
-                          </li>
-                        }
-                        content={
-                          <ul className="main-menu__dropdown">
-                            <li onClick={() => logout()}>Log Out</li>
-                          </ul>
-                        }
-                      />
-                    ) : (
-                      <li
-                        className="main-menu__icon"
-                        onClick={() =>
-                          overlayContext.show(
-                            OverlayType.login,
-                            OverlayTheme.right
-                          )
-                        }
-                      >
-                        <ReactSVG path={require("../../images/user.svg")} />
-                      </li>
-                    )
-                  }
-                </UserContext.Consumer>
-              )}
-            />
-            <CartContext.Consumer>
-              {cart => (
-                <li
-                  className="main-menu__icon main-menu__cart"
-                  onClick={() => {
-                    cart.fetch();
-                    overlayContext.show(OverlayType.cart, OverlayTheme.right);
-                  }}
-                >
-                  <ReactSVG path={require("../../images/cart.svg")} />
-                  {cart.getQuantity() > 0 ? (
-                    <span className="main-menu__cart__quantity">
-                      {cart.getQuantity()}
-                    </span>
-                  ) : null}
-                </li>
-              )}
-            </CartContext.Consumer>
+            <Online>
+              <Media
+                query={{ minWidth: smallScreen }}
+                render={() => (
+                  <UserContext.Consumer>
+                    {({ logout, user }) =>
+                      user ? (
+                        <MenuDropdown
+                          head={
+                            <li className="main-menu__icon main-menu__user--active">
+                              <ReactSVG
+                                path={require("../../images/user.svg")}
+                              />
+                            </li>
+                          }
+                          content={
+                            <ul className="main-menu__dropdown">
+                              <li onClick={() => logout()}>Log Out</li>
+                            </ul>
+                          }
+                        />
+                      ) : (
+                        <li
+                          className="main-menu__icon"
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.right
+                            )
+                          }
+                        >
+                          <ReactSVG path={require("../../images/user.svg")} />
+                        </li>
+                      )
+                    }
+                  </UserContext.Consumer>
+                )}
+              />
+              <CartContext.Consumer>
+                {cart => (
+                  <li
+                    className="main-menu__icon main-menu__cart"
+                    onClick={() => {
+                      cart.fetch();
+                      overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                    }}
+                  >
+                    <ReactSVG path={require("../../images/cart.svg")} />
+                    {cart.getQuantity() > 0 ? (
+                      <span className="main-menu__cart__quantity">
+                        {cart.getQuantity()}
+                      </span>
+                    ) : null}
+                  </li>
+                )}
+              </CartContext.Consumer>
+            </Online>
+            <Offline>
+              <li className="main-menu__offline">
+                <Media
+                  query={{ minWidth: mediumScreen }}
+                  render={() => <span>Offline</span>}
+                />
+              </li>
+            </Offline>
             <li
               className="main-menu__search"
               onClick={() =>
