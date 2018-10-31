@@ -76,6 +76,10 @@
         display: block;
       }
     }
+
+    svg {
+      vertical-align: bottom;
+    }
   }
 
   &__icon {
@@ -90,6 +94,10 @@
       svg * {
         fill: $turquoise;
       }
+    }
+
+    svg {
+      vertical-align: bottom;
     }
   }
 
@@ -142,9 +150,21 @@
     }
   }
 
+  &__offline {
+    line-height: 24px;
+    padding: $spacer;
+
+    span {
+      text-transform: uppercase;
+      font-weight: $bold-font-weight;
+      vertical-align: bottom;
+    }
+  }
+
   &__search {
     padding: $spacer;
     cursor: pointer;
+    line-height: 24px;
     transition: 0.3s;
 
     @media (min-width: $medium-screen) {
@@ -166,11 +186,14 @@
       text-transform: uppercase;
       font-weight: $bold-font-weight;
       margin-right: $spacer;
-      vertical-align: super;
     }
 
     div {
       display: inline-block;
+    }
+
+    svg {
+      vertical-align: bottom;
     }
   }
 }

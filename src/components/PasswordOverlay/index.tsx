@@ -5,6 +5,9 @@ import { PasswordResetForm } from "..";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 
+import Offline from "../Offline";
+import OfflinePlaceholder from "../OfflinePlaceholder";
+import Online from "../Online";
 import "./scss/index.scss";
 
 export const PasswordOverlay: React.SFC = () => (
@@ -13,17 +16,22 @@ export const PasswordOverlay: React.SFC = () => (
       overlay.type === OverlayType.password ? (
         <Overlay context={overlay}>
           <div className="password-reset">
-            <div className="overlay__header">
-              <p>Reset your password</p>
-              <ReactSVG
-                path={require("../../images/x.svg")}
-                onClick={() => overlay.hide()}
-                className="overlay__header__close-icon"
-              />
-            </div>
-            <div className="password-reset__content">
-              <PasswordResetForm />
-            </div>
+            <Online>
+              <div className="overlay__header">
+                <p>Reset your password</p>
+                <ReactSVG
+                  path={require("../../images/x.svg")}
+                  onClick={() => overlay.hide()}
+                  className="overlay__header__close-icon"
+                />
+              </div>
+              <div className="password-reset__content">
+                <PasswordResetForm />
+              </div>
+            </Online>
+            <Offline>
+              <OfflinePlaceholder />
+            </Offline>
           </div>
         </Overlay>
       ) : null
