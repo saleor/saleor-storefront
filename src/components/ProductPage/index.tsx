@@ -21,6 +21,7 @@ import {
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
+import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_PRODUCT_DETAILS } from "./queries";
@@ -271,7 +272,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                 return <OfflinePlaceholder />;
               }
               if (error) {
-                return `Error!: ${error}`;
+                return <Error error={error.message} />;
               }
               return <Loader full />;
             }}

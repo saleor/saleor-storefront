@@ -10,6 +10,7 @@ import {
   getGraphqlIdFromDBId,
   slugify
 } from "../../core/utils";
+import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
@@ -146,7 +147,7 @@ class CategoryPage extends React.Component<
                 return <OfflinePlaceholder />;
               }
               if (error && !data) {
-                return <>{`Error!: ${error}`}</>;
+                return <Error error={error.message} />;
               }
               return <Loader full />;
             }}

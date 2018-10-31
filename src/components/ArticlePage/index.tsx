@@ -2,12 +2,13 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 
+import { STATIC_PAGES } from "../../core/config";
+import { generatePageUrl } from "../../core/utils";
+import { Error } from "../Error";
 import Loader from "../Loader";
 import ArticlePage from "./ArticlePage";
 import GET_ARTICLE from "./query";
 
-import { STATIC_PAGES } from "../../core/config";
-import { generatePageUrl } from "../../core/utils";
 import "./scss/index.scss";
 
 interface RouteParams {
@@ -59,7 +60,7 @@ export const ArticleView: React.SFC<ArticleViewProps> = ({
         );
       }
       if (error) {
-        return "error";
+        return <Error error={error.message} />;
       }
       return <Loader />;
     }}

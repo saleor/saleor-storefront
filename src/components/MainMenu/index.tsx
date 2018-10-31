@@ -8,6 +8,7 @@ import { MenuDropdown } from "..";
 import { generateMenuItemUrl } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
+import { Error } from "../Error";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
 import { GET_MAIN_MENU } from "./queries";
@@ -51,7 +52,7 @@ const MainMenu: React.SFC = () => (
                       return null;
                     }
                     if (error && !data) {
-                      return `Error!: ${error}`;
+                      return <Error error={error.message} />;
                     }
                     return data.shop.navigation.main.items.map(category => (
                       <li className="main-menu__item" key={category.id}>
