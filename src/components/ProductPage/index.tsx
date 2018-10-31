@@ -22,6 +22,7 @@ import {
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
 import NetworkStatus from "../NetworkStatus";
+import { NotFound } from "../NotFound";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
@@ -266,6 +267,9 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                     </div>
                   </div>
                 );
+              }
+              if (data && data.product === null) {
+                return <NotFound />;
               }
               if (!isOnline) {
                 return <OfflinePlaceholder />;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import {
   ArticlePage,
@@ -10,6 +10,7 @@ import {
   ProductPage,
   SearchPage
 } from "..";
+import { NotFound } from "../NotFound";
 
 export const baseUrl = "/";
 export const searchUrl = `${baseUrl}search/`;
@@ -20,7 +21,7 @@ export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
 
 export const Routes: React.SFC = () => (
-  <>
+  <Switch>
     <Route exact path={baseUrl} component={HomePage} />
     <Route path={searchUrl} component={SearchPage} />
     <Route path={categoryUrl} component={CategoryPage} />
@@ -28,5 +29,6 @@ export const Routes: React.SFC = () => (
     <Route path={cartUrl} component={CartPage} />
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={pageUrl} component={ArticlePage} />
-  </>
+    <Route component={NotFound} />
+  </Switch>
 );
