@@ -50,9 +50,6 @@ export const generateProductUrl = (id: string, name: string) =>
 export const generateCategoryUrl = (id: string, name: string) =>
   `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "Category")}/`;
 
-export const generateMenuItemUrl = (id: string, name: string) =>
-  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "MenuItem")}/`;
-
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
 export const debounce = (fn, time) => {
