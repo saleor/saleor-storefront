@@ -52,24 +52,7 @@ npm start
 Go to `http://localhost:3000` to access the storefront.
 
 
-### Offline mode
-
-Offline mode doesn't work on the development server (run with `npm start`). It is possible to test it locally with another HTTP server, one of the easiest being the one offered by Python. To use it, take the following steps:
-
-Make sure you have [Python 3](https://www.python.org/) installed in your system.
-
-In the project directory run:
-
-```
-npm run build
-```
-
-Start the Python HTTP server:
-```
-python3 -m http.server 3000
-```
-
-Go to `http://localhost:3000` to access the storefront.
+**Note:** Offline mode doesn't currently work on the development server (run with `npm start`), which is a known issue in [sw-precache-webpack-plugin](https://github.com/goldhand/sw-precache-webpack-plugin#webpack-dev-server-support) and will be fixed in future releases.
 
 
 ## License
