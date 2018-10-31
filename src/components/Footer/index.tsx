@@ -2,12 +2,15 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
+import urljoin from "url-join";
 
 import { Button } from "..";
 import { STATIC_PAGES } from "../../core/config";
 import { GET_CATEGORIES } from "../NavigationOverlay/queries";
 
 import "./scss/index.scss";
+
+const DASHBOARD_URL = urljoin(process.env.BACKEND_URL || "", "/dashboard/");
 
 const Footer: React.SFC = () => (
   <div className="footer" id="footer">
@@ -65,10 +68,7 @@ const Footer: React.SFC = () => (
             </p>
           ))}
           <p>
-            <a
-              href={(process.env.BACKEND_URL || "") + "/dashboard/"}
-              target="_blank"
-            >
+            <a href={DASHBOARD_URL} target="_blank" >
               Dashboard
             </a>
           </p>

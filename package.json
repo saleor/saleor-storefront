@@ -31,7 +31,8 @@
     "reset-css": "^4.0.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typeface-montserrat": "0.0.54"
+    "typeface-montserrat": "0.0.54",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "@storybook/addon-options": "^3.4.10",

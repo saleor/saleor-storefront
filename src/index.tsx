@@ -8,6 +8,7 @@ import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import urljoin from "url-join";
 
 import { App, CheckoutApp, UserProvider } from "./components";
 import OverlayProvider from "./components/Overlay";
@@ -17,6 +18,8 @@ import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
+
+const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
 
 const devMode = process.env.NODE_ENV !== "production";
 const {
@@ -28,9 +31,7 @@ const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
   new RetryLink(),
-  new HttpLink({
-    uri: (process.env.BACKEND_URL || "") + "/graphql/"
-  })
+  new HttpLink({ uri: API_URL })
 ]);
 
 const cache = new InMemoryCache({
