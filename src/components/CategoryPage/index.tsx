@@ -105,6 +105,7 @@ class CategoryPage extends React.Component<
             }}
             fetchPolicy="cache-and-network"
             errorPolicy="all"
+            key={this.props.match.params.id}
           >
             {({ loading, error, data }) => {
               if (canDisplay(data)) {
