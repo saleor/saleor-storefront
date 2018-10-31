@@ -15,6 +15,7 @@ import { OverlayContext, OverlayType } from "../Overlay/context";
 import { ShopContext } from "../ShopProvider/context";
 import { UserContext } from "../User/context";
 
+import CachedImage from "../CachedImage";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
@@ -65,12 +66,12 @@ export const CartOverlay: React.SFC = () => (
                                   key={line.variant.id}
                                   className="cart__list__item"
                                 >
-                                  <img
-                                    src={
+                                  <CachedImage
+                                    url={
                                       line.variant.product.thumbnailUrl ||
                                       require("../../images/nophoto.png")
                                     }
-                                    alt={line.variant.product.name}
+                                    url2x={line.variant.product.thumbnailUrl2x}
                                   />
                                   <div className="cart__list__item__details">
                                     <p>{line.variant.price.localized}</p>

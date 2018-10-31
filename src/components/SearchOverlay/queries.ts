@@ -8,6 +8,7 @@ export const GET_SEARCH_RESULTS = gql`
           id
           name
           thumbnailUrl
+          thumbnailUrl2x: thumbnailUrl(size: 510)
           url
           category {
             id

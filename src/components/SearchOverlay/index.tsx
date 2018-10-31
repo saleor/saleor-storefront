@@ -15,6 +15,7 @@ import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
 import { mediumScreen } from "../App/scss/variables.scss";
+import CachedImage from "../CachedImage";
 import "./scss/index.scss";
 
 const canDisplay = (data: SearchResults) =>
@@ -100,11 +101,12 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                                 item.node.name
                                               )}
                                             >
-                                              <img
-                                                src={
+                                              <CachedImage
+                                                url={
                                                   item.node.thumbnailUrl ||
                                                   require("../../images/nophoto.png")
                                                 }
+                                                url2x={item.node.thumbnailUrl2x}
                                               />
                                               <span>
                                                 <h4>{item.node.name}</h4>

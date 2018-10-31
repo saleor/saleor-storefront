@@ -1,6 +1,6 @@
 @import "../../App/scss/variables.scss";
 
-.checout-review {
+.checkut-review {
   &__content {
     margin: 0 0 $spacer * 3 $spacer * 3;
 
@@ -24,6 +24,13 @@
         margin-bottom: $spacer;
         padding-bottom: $spacer;
         border-bottom: 1px solid $gray-light;
+      }
+    }
+
+    &__thumbnail {
+      img {
+        width: 50px;
+        height: auto;
       }
     }
 

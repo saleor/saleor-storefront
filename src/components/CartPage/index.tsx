@@ -7,7 +7,7 @@ import ReactSVG from "react-svg";
 
 import { Button, Loader } from "..";
 import { getCheckout } from "../../core/types/saleor";
-import { baseUrl, checkoutLoginUrl } from "../App/routes";
+import { checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
 import { GoToCheckout } from "../GoToCheckout";
@@ -15,6 +15,7 @@ import { UserContext } from "../User/context";
 import { EmptyCart } from "./EmptyCart";
 
 import { smallScreen } from "../App/scss/variables.scss";
+import CachedImage from "../CachedImage";
 import "./scss/index.scss";
 
 const canDisplay = (data: getCheckout) =>
@@ -60,16 +61,16 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                     <tbody>
                       {lines.map(line => (
                         <tr key={line.id}>
-                          <td>
+                          <td className="cart-page__thumbnail">
                             <Media
                               query={{ minWidth: smallScreen }}
                               render={() => (
-                                <img
-                                  width={50}
-                                  src={
+                                <CachedImage
+                                  url={
                                     line.variant.product.thumbnailUrl ||
                                     require("../../images/nophoto.png")
                                   }
+                                  url2x={line.variant.product.thumbnailUrl2x}
                                 />
                               )}
                             />
