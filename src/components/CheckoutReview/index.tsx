@@ -47,7 +47,10 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                           render={() => (
                             <img
                               width={50}
-                              src={line.variant.product.thumbnailUrl}
+                              src={
+                                line.variant.product.thumbnailUrl ||
+                                require("../../images/nophoto.png")
+                              }
                             />
                           )}
                         />

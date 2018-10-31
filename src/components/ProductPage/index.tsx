@@ -149,10 +149,15 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                     {product.images.edges.map(
                                       ({ node: image }) => (
                                         <CachedImage
-                                          url={image.url}
+                                          url={
+                                            image.url ||
+                                            require("../../images/nophoto.png")
+                                          }
                                           key={image.id}
                                         >
-                                          <OfflinePlaceholder />
+                                          <img
+                                            src={require("../../images/nophoto.png")}
+                                          />
                                         </CachedImage>
                                       )
                                     )}
@@ -188,10 +193,15 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                   {product.images.edges.map(
                                     ({ node: image }) => (
                                       <CachedImage
-                                        url={image.url}
+                                        url={
+                                          image.url ||
+                                          require("../../images/nophoto.png")
+                                        }
                                         key={image.id}
                                       >
-                                        <OfflinePlaceholder />
+                                        <img
+                                          src={require("../../images/nophoto.png")}
+                                        />
                                       </CachedImage>
                                     )
                                   )}
