@@ -77,6 +77,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
         }}
         fetchPolicy="cache-and-network"
         errorPolicy="all"
+        key={this.props.match.params.id}
       >
         {({ error, data }) => (
           <NetworkStatus>

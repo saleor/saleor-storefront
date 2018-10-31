@@ -5,10 +5,12 @@ import { RouteComponentProps, withRouter } from "react-router";
 
 import { Loader, ProductsList, TextField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { SearchProducts } from "../../core/types/saleor";
 import { debounce } from "../../core/utils";
+import NetworkStatus from "../NetworkStatus";
+import { Offline } from "../Offline";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
-import { SearchProducts } from "../../core/types/saleor";
 import "./scss/index.scss";
 
 interface AttributesType {
@@ -86,35 +88,44 @@ class SearchPage extends React.Component<
             />
           </div>
         </div>
-        <Query
-          query={GET_SEARCH_PRODUCTS}
-          variables={{
-            ...this.state,
-            attributes: this.convertToAttributeScalar(this.state.attributes),
-            query: parse(this.props.location.search).q
-          }}
-          fetchPolicy="cache-and-network"
-          errorPolicy="all"
-        >
-          {({ error, data, loading }) => {
-            if (canDisplay(data)) {
-              return (
-                <ProductsList
-                  products={data.products}
-                  loading={loading}
-                  attributes={data.attributes.edges.map(edge => edge.node)}
-                  filters={this.state}
-                  onFiltersChange={this.onFiltersChange}
-                  searchQuery={parse(this.props.location.search).q}
-                />
-              );
-            }
-            if (error && !data) {
-              return `Error!: ${error}`;
-            }
-            return <Loader full />;
-          }}
-        </Query>
+        <NetworkStatus>
+          {isOnline => (
+            <Query
+              query={GET_SEARCH_PRODUCTS}
+              variables={{
+                ...this.state,
+                attributes: this.convertToAttributeScalar(
+                  this.state.attributes
+                ),
+                query: parse(this.props.location.search).q
+              }}
+              fetchPolicy="cache-and-network"
+              errorPolicy="all"
+            >
+              {({ error, data, loading }) => {
+                if (canDisplay(data)) {
+                  return (
+                    <ProductsList
+                      products={data.products}
+                      loading={loading}
+                      attributes={data.attributes.edges.map(edge => edge.node)}
+                      filters={this.state}
+                      onFiltersChange={this.onFiltersChange}
+                      searchQuery={parse(this.props.location.search).q}
+                    />
+                  );
+                }
+                if (error) {
+                  if (!isOnline) {
+                    return <Offline />;
+                  }
+                  return `Error!: ${error}`;
+                }
+                return <Loader full />;
+              }}
+            </Query>
+          )}
+        </NetworkStatus>
       </div>
     );
   }
