@@ -6,6 +6,7 @@ import urljoin from "url-join";
 
 import { Button } from "..";
 import { STATIC_PAGES } from "../../core/config";
+import { generateCategoryUrl } from "../../core/utils";
 import { Error } from "../Error";
 import Loader from "../Loader";
 import { GET_CATEGORIES } from "../NavigationOverlay/queries";
@@ -42,38 +43,51 @@ const Footer: React.SFC = () => (
     </div>
     <footer className="footer__menu">
       <div className="container">
-        <div>
-          <h4>Collections</h4>
-          <Query
-            query={GET_CATEGORIES}
-            fetchPolicy="cache-and-network"
-            errorPolicy="all"
-          >
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <Loader />;
-              }
-              if (error && !data) {
-                return <Error error={error.message} />;
-              }
-              return data.categories.edges.map(category => (
-                <p key={category.node.id}>{category.node.name}</p>
-              ));
-            }}
-          </Query>
+        <div className="footer__menu-section">
+          <h4 className="footer__menu-section-header">Collections</h4>
+          <div className="footer__menu-section-content footer__menu-section-content--split">
+            <Query
+              query={GET_CATEGORIES}
+              fetchPolicy="cache-and-network"
+              errorPolicy="all"
+            >
+              {({ loading, error, data }) => {
+                if (loading) {
+                  return <Loader />;
+                }
+                if (error && !data) {
+                  return <Error error={error.message} />;
+                }
+                return data.categories.edges.map(category => (
+                  <p key={category.node.id}>
+                    <Link
+                      to={generateCategoryUrl(
+                        category.node.id,
+                        category.node.name
+                      )}
+                    >
+                      {category.node.name}
+                    </Link>
+                  </p>
+                ));
+              }}
+            </Query>
+          </div>
         </div>
-        <div>
-          <h4>Saleor</h4>
-          {STATIC_PAGES.map(page => (
-            <p key={page.label}>
-              <Link to={page.url}>{page.label}</Link>
+        <div className="footer__menu-section">
+          <h4 className="footer__menu-section-header">Saleor</h4>
+          <div className="footer__menu-section-content">
+            {STATIC_PAGES.map(page => (
+              <p key={page.label}>
+                <Link to={page.url}>{page.label}</Link>
+              </p>
+            ))}
+            <p>
+              <a href={DASHBOARD_URL} target="_blank">
+                Dashboard
+              </a>
             </p>
-          ))}
-          <p>
-            <a href={DASHBOARD_URL} target="_blank">
-              Dashboard
-            </a>
-          </p>
+          </div>
         </div>
       </div>
     </footer>

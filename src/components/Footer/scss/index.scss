@@ -58,23 +58,6 @@
     background-color: $gray-light;
     padding: $spacer * 3 0 $spacer * 2;
 
-    h4 {
-      font-weight: $bold-font-weight;
-      margin-bottom: $spacer;
-    }
-
-    p {
-      font-weight: $bold-font-weight;
-      margin-bottom: $spacer;
-      font-size: $small-font-size;
-      color: $gray;
-
-      a {
-        text-decoration: none;
-        color: $gray;
-      }
-    }
-
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -82,6 +65,31 @@
       div {
         &:not(:last-of-type) {
           padding-right: $spacer * 3;
+        }
+      }
+    }
+
+    &-section {
+      &-header {
+        font-weight: $bold-font-weight;
+        margin-bottom: $spacer;
+      }
+      &-content {
+        p {
+          font-weight: $bold-font-weight;
+          margin-bottom: $spacer;
+          font-size: $small-font-size;
+          color: $gray;
+
+          a {
+            text-decoration: none;
+            color: $gray;
+          }
+        }
+        &--split {
+          display: grid;
+          column-gap: $spacer * 4;
+          grid-template-columns: repeat(2, 1fr);
         }
       }
     }
