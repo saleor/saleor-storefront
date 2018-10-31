@@ -23,6 +23,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
           id
           name
           thumbnailUrl
+          thumbnailUrl2x: thumbnailUrl(size: 510)
           category {
             id
             name

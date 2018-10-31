@@ -5,6 +5,7 @@ export const BASIC_PRODUCT_FRAGMENT = gql`
     id
     name
     thumbnailUrl
+    thumbnailUrl2x: thumbnailUrl(size: 510)
   }
 `;
 

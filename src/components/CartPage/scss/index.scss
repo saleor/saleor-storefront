@@ -12,6 +12,13 @@
     }
   }
 
+  &__thumbnail {
+    img {
+      width: 50px;
+      height: auto;
+    }
+  }
+
   &__checkout-action {
     text-align: right;
     margin: 0 $spacer * 2 $spacer * 3;

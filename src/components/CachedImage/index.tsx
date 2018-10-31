@@ -2,6 +2,7 @@ import * as React from "react";
 
 interface CachedImageProps {
   url: string;
+  url2x?: string;
 }
 
 interface CachedImageState {
@@ -20,12 +21,16 @@ class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
   };
 
   async updateAvailability() {
-    const { url } = this.props;
+    const { url, url2x } = this.props;
     let isUnavailable = false;
     if ("caches" in window) {
       if (!this.state.online) {
         const match = await window.caches.match(url);
-        if (!match) {
+        let match2x;
+        if (url2x) {
+          match2x = await window.caches.match(url2x);
+        }
+        if (!match && !match2x) {
           isUnavailable = true;
         }
       }
@@ -51,10 +56,13 @@ class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
   }
 
   render() {
+    const { url, url2x } = this.props;
     if (this.state.isUnavailable) {
       return this.props.children || null;
     }
-    return <img src={this.props.url} />;
+    return (
+      <img src={url} srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`} />
+    );
   }
 }
 

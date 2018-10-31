@@ -10,10 +10,10 @@ interface ProductListItemProps {
 }
 
 const ProductListItem: React.SFC<ProductListItemProps> = ({
-  product: { name, category, price, thumbnailUrl }
+  product: { name, category, price, thumbnailUrl, thumbnailUrl2x }
 }) => (
   <div className="product-list-item">
-    <CachedImage url={thumbnailUrl}>
+    <CachedImage url={thumbnailUrl} url2x={thumbnailUrl2x}>
       <img src={require("../../images/nophoto.png")} />
     </CachedImage>
     <h4 className="product-list-item__title">{name}</h4>

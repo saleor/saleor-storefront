@@ -9,6 +9,7 @@ import { OverlayContext, OverlayType } from "../Overlay/context";
 import { COMPLETE_CHECKOUT } from "./queries";
 
 import { smallScreen } from "../App/scss/variables.scss";
+import CachedImage from "../CachedImage";
 import "./scss/index.scss";
 
 class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
@@ -16,12 +17,12 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
     return (
       <CheckoutContext.Consumer>
         {({ cardData, checkout, clearCheckout }) => (
-          <div className="checout-review">
+          <div className="checkout-review">
             <div className="checkout__step">
               <span>5</span>
               <h4 className="checkout__header">Review your order</h4>
             </div>
-            <div className="checout-review__content">
+            <div className="checkout-review__content">
               <table className="cart__table">
                 <thead>
                   <tr>
@@ -41,16 +42,16 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                 <tbody>
                   {checkout.lines.map(line => (
                     <tr key={line.id}>
-                      <td>
+                      <td className="checkout-review__content__thumbnail">
                         <Media
                           query={{ minWidth: smallScreen }}
                           render={() => (
-                            <img
-                              width={50}
-                              src={
+                            <CachedImage
+                              url={
                                 line.variant.product.thumbnailUrl ||
                                 require("../../images/nophoto.png")
                               }
+                              url2x={line.variant.product.thumbnailUrl2x}
                             />
                           )}
                         />
@@ -99,7 +100,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                   </tr>
                 </tfoot>
               </table>
-              <div className="checout-review__content__summary">
+              <div className="checkout-review__content__summary">
                 <div>
                   <h4>Shipping address</h4>
                   <AddressSummary
@@ -120,7 +121,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                   Ending in {cardData.lastDigits}
                 </div>
               </div>
-              <div className="checout-review__content__submit">
+              <div className="checkout-review__content__submit">
                 <OverlayContext.Consumer>
                   {({ show }) => (
                     <Mutation mutation={COMPLETE_CHECKOUT}>

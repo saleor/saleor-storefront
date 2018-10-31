@@ -108,6 +108,7 @@ export const CHECKOUT_FRAGMENT = gql`
           id
           name
           thumbnailUrl
+          thumbnailUrl2x: thumbnailUrl(size: 510)
         }
       }
       quantity

@@ -15,6 +15,7 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
               id
               name
               thumbnailUrl
+              thumbnailUrl2x: thumbnailUrl(size: 510)
               category {
                 id
                 name
