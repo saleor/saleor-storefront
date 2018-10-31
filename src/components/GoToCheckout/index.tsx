@@ -97,13 +97,13 @@ export class GoToCheckout extends React.Component<
     const { checkout } = this.state;
     let pathname;
     if (checkout.billingAddress) {
-      pathname = checkoutPaymentUrl;
+      pathname = checkoutPaymentUrl(this.state.checkoutToken);
     } else if (checkout.shippingMethod) {
-      pathname = checkoutBillingUrl;
+      pathname = checkoutBillingUrl(this.state.checkoutToken);
     } else if (checkout.availableShippingMethods) {
-      pathname = checkoutShippingOptionsUrl;
+      pathname = checkoutShippingOptionsUrl(this.state.checkoutToken);
     } else {
-      pathname = checkoutBaseUrl;
+      pathname = checkoutBaseUrl(this.state.checkoutToken);
     }
     if (pathname) {
       return (

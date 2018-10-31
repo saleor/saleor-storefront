@@ -38,7 +38,9 @@ class CheckoutShipping extends React.Component<
                     updateCheckout({
                       checkout: data.checkoutEmailUpdate.checkout
                     });
-                    this.props.history.push(checkoutShippingOptionsUrl);
+                    this.props.history.push(
+                      checkoutShippingOptionsUrl(checkout.token)
+                    );
                   }
                   return (
                     <div className="checkout__content">

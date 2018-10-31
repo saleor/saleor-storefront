@@ -92,12 +92,13 @@ class CheckoutPayment extends React.Component<
                       email,
                       shippingAddress,
                       shippingMethod,
+                      token,
                       totalPrice
                     },
                     updateCheckout
                   }) => (
                     <>
-                      <Link to={checkoutBaseUrl}>
+                      <Link to={checkoutBaseUrl(token)}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>1</span>
                           <h4 className="checkout__header">Shipping Address</h4>
@@ -109,7 +110,7 @@ class CheckoutPayment extends React.Component<
                           email={email}
                         />
                       </div>
-                      <Link to={checkoutShippingOptionsUrl}>
+                      <Link to={checkoutShippingOptionsUrl(token)}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>2</span>
                           <h4 className="checkout__header">Shipping Method</h4>
@@ -122,7 +123,7 @@ class CheckoutPayment extends React.Component<
                           }`}
                         </p>
                       </div>
-                      <Link to={checkoutBillingUrl}>
+                      <Link to={checkoutBillingUrl(token)}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>3</span>
                           <h4 className="checkout__header">Billing Address</h4>
@@ -145,7 +146,7 @@ class CheckoutPayment extends React.Component<
                               this.setState({
                                 loading: false
                               });
-                              this.props.history.push(checkoutReviewUrl);
+                              this.props.history.push(checkoutReviewUrl(token));
                             }
                             return (
                               <Form

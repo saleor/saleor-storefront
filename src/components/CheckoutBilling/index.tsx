@@ -25,7 +25,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                 : checkout.billingAddress;
             return (
               <>
-                <Link to={checkoutBaseUrl}>
+                <Link to={checkoutBaseUrl(checkout.token)}>
                   <div className="checkout__step checkout__step--inactive">
                     <span>1</span>
                     <h4 className="checkout__header">Shipping Address</h4>
@@ -37,7 +37,7 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                     email={checkout.email}
                   />
                 </div>
-                <Link to={checkoutShippingOptionsUrl}>
+                <Link to={checkoutShippingOptionsUrl(checkout.token)}>
                   <div className="checkout__step checkout__step--inactive">
                     <span>2</span>
                     <h4 className="checkout__header">Shipping Method</h4>
@@ -63,7 +63,9 @@ class CheckoutBilling extends React.Component<RouteComponentProps<{ id }>, {}> {
                       updateCheckout({
                         checkout: data.checkoutBillingAddressUpdate.checkout
                       });
-                      this.props.history.push(checkoutPaymentUrl);
+                      this.props.history.push(
+                        checkoutPaymentUrl(checkout.token)
+                      );
                     }
                     return (
                       <div className="checkout__content">

@@ -106,7 +106,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
                             isReviewPage ? "" : "checkout__grid__content"
                           }
                         >
-                          <Routes />
+                          <Routes token={token} />
                         </div>
                         {!isReviewPage ? (
                           <Media
