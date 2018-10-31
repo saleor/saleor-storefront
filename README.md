@@ -54,7 +54,7 @@ Go to `http://localhost:3000` to access the storefront.
 
 ### Offline mode
 
-Offline mode doesn't work on development server (run with `npm start`). It is possible to test it locally with other HTTP server, one of the easiest being the one offered by Python. To use it take the following steps.
+Offline mode doesn't work on the development server (run with `npm start`). It is possible to test it locally with another HTTP server, one of the easiest being the one offered by Python. To use it, take the following steps:
 
 Make sure you have [Python 3](https://www.python.org/) installed in your system.
 
