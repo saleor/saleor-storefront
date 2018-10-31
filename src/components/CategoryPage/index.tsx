@@ -11,7 +11,7 @@ import {
   slugify
 } from "../../core/utils";
 import NetworkStatus from "../NetworkStatus";
-import { Offline } from "../Offline";
+import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 import "./scss/index.scss";
@@ -142,7 +142,7 @@ class CategoryPage extends React.Component<
                 );
               }
               if (!isOnline) {
-                return <Offline />;
+                return <OfflinePlaceholder />;
               }
               if (error && !data) {
                 return <>{`Error!: ${error}`}</>;

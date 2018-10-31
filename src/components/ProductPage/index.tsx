@@ -22,7 +22,7 @@ import {
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
 import NetworkStatus from "../NetworkStatus";
-import { Offline } from "../Offline";
+import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
 import "./scss/index.scss";
@@ -152,7 +152,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                           url={image.url}
                                           key={image.id}
                                         >
-                                          <Offline />
+                                          <OfflinePlaceholder />
                                         </CachedImage>
                                       )
                                     )}
@@ -191,7 +191,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                         url={image.url}
                                         key={image.id}
                                       >
-                                        <Offline />
+                                        <OfflinePlaceholder />
                                       </CachedImage>
                                     )
                                   )}
@@ -258,7 +258,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                 );
               }
               if (!isOnline) {
-                return <Offline />;
+                return <OfflinePlaceholder />;
               }
               if (error) {
                 return `Error!: ${error}`;
