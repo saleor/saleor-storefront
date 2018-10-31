@@ -1,14 +1,13 @@
 import * as React from "react";
 import { Query } from "react-apollo";
+import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
-import { GET_COLLECTIONS } from "./queries";
-
-import { Link } from "react-router-dom";
 import { STATIC_PAGES } from "../../core/config";
-import "./scss/index.scss";
 import { GET_CATEGORIES } from "../NavigationOverlay/queries";
+
+import "./scss/index.scss";
 
 const Footer: React.SFC = () => (
   <div className="footer" id="footer">
@@ -61,7 +60,7 @@ const Footer: React.SFC = () => (
         <div>
           <h4>Saleor</h4>
           {STATIC_PAGES.map(page => (
-            <p>
+            <p key={page.label}>
               <Link to={page.url}>{page.label}</Link>
             </p>
           ))}

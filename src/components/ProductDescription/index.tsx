@@ -5,6 +5,7 @@ import {
   ProductPriceInterface,
   ProductVariantInterface
 } from "../../core/types";
+import { CartContext } from "../CartProvider/context";
 
 import "./scss/index.scss";
 
@@ -213,19 +214,33 @@ class ProductDescription extends React.Component<
           <h4>Description</h4>
           {this.props.children}
         </div>
-        <Button
-          className="product-description__action"
-          onClick={this.handleSubmit}
-          disabled={
-            this.state.quantity !== 0 &&
-            (this.state.variant &&
-              this.state.variantStock >= this.state.quantity)
-              ? false
-              : true
-          }
-        >
-          Add to cart
-        </Button>
+        <CartContext.Consumer>
+          {({ lines }) => {
+            const calculateQuantityWithCart = () => {
+              const cartLine = lines.find(
+                line => line.variantId === this.state.variant
+              );
+              return cartLine
+                ? this.state.quantity + cartLine.quantity
+                : this.state.quantity;
+            };
+            return (
+              <Button
+                className="product-description__action"
+                onClick={this.handleSubmit}
+                disabled={
+                  this.state.quantity !== 0 &&
+                  (this.state.variant &&
+                    this.state.variantStock >= calculateQuantityWithCart())
+                    ? false
+                    : true
+                }
+              >
+                Add to cart
+              </Button>
+            );
+          }}
+        </CartContext.Consumer>
       </div>
     );
   }
