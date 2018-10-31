@@ -9,7 +9,7 @@ import { SearchResults } from "../../core/types/saleor";
 import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
 import NetworkStatus from "../NetworkStatus";
-import { Offline } from "../Offline";
+import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
@@ -130,7 +130,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                 }
                                 if (error) {
                                   if (!isOnline) {
-                                    return <Offline />;
+                                    return <OfflinePlaceholder />;
                                   }
                                   return `Error!: ${error}`;
                                 }

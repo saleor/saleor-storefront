@@ -8,7 +8,7 @@ import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { SearchProducts } from "../../core/types/saleor";
 import { debounce } from "../../core/utils";
 import NetworkStatus from "../NetworkStatus";
-import { Offline } from "../Offline";
+import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
 import "./scss/index.scss";
@@ -117,7 +117,7 @@ class SearchPage extends React.Component<
                 }
                 if (error) {
                   if (!isOnline) {
-                    return <Offline />;
+                    return <OfflinePlaceholder />;
                   }
                   return `Error!: ${error}`;
                 }
