@@ -79,15 +79,13 @@ const HomePage: React.SFC = () => (
                         >
                           <div
                             className="home-page__categories__list__image"
-                            style={
-                              category.backgroundImage
-                                ? {
-                                    backgroundImage: `url(${
-                                      category.backgroundImage.url
-                                    })`
-                                  }
-                                : null
-                            }
+                            style={{
+                              backgroundImage: `url(${
+                                category.backgroundImage
+                                  ? category.backgroundImage.url
+                                  : require("../../images/nophoto.png")
+                              })`
+                            }}
                           />
                           <h3>{category.name}</h3>
                         </Link>

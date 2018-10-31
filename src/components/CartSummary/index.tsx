@@ -12,7 +12,12 @@ const CartSummary: React.SFC<{}> = () => (
           <p className="cart-summary__header">Cart summary</p>
           {checkout.lines.map(product => (
             <div key={product.id} className="cart-summary__product-item">
-              <img src={product.variant.product.thumbnailUrl} />
+              <img
+                src={
+                  product.variant.product.thumbnailUrl ||
+                  require("../../images/nophoto.png")
+                }
+              />
               <div>
                 <p>{product.variant.price.localized}</p>
                 <p>{product.variant.product.name}</p>

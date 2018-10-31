@@ -101,7 +101,10 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                               )}
                                             >
                                               <img
-                                                src={item.node.thumbnailUrl}
+                                                src={
+                                                  item.node.thumbnailUrl ||
+                                                  require("../../images/nophoto.png")
+                                                }
                                               />
                                               <span>
                                                 <h4>{item.node.name}</h4>

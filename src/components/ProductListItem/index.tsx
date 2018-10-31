@@ -13,7 +13,9 @@ const ProductListItem: React.SFC<ProductListItemProps> = ({
   product: { name, category, price, thumbnailUrl }
 }) => (
   <div className="product-list-item">
-    <CachedImage url={thumbnailUrl}>OFFLINE :(</CachedImage>
+    <CachedImage url={thumbnailUrl}>
+      <img src={require("../../images/nophoto.png")} />
+    </CachedImage>
     <h4 className="product-list-item__title">{name}</h4>
     <p className="product-list-item__category">{category.name}</p>
     <p className="product-list-item__price">{price.localized}</p>

@@ -1,11 +1,9 @@
 import * as React from "react";
-import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import {
   Button,
   Dropdown,
-  Loader,
   PriceRangeFilter,
   ProductListItem,
   SelectField
@@ -16,7 +14,6 @@ import {
   CategoryProductInterface
 } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
-import { smallScreen } from "../App/scss/variables.scss";
 
 import "./scss/index.scss";
 
@@ -171,30 +168,12 @@ class ProductsList extends React.Component<
             ))}
           </div>
           <div className="products-list__products__load-more">
-            {this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE ? (
-              <Loader />
-            ) : this.state.pageSize >= this.props.products.totalCount ? null : (
-              <Media query={{ maxWidth: smallScreen }}>
-                {matches =>
-                  matches ? (
-                    <Button secondary onClick={this.loadMoreProducts}>
-                      Load more products
-                    </Button>
-                  ) : (
-                    <Button secondary onClick={this.loadMoreProducts}>
-                      Load more products (
-                      {`${
-                        this.state.pageSize + PRODUCTS_PER_PAGE >
-                        this.props.products.totalCount
-                          ? this.props.products.totalCount
-                          : this.state.pageSize + PRODUCTS_PER_PAGE
-                      } of 
-                              ${this.props.products.totalCount}`}
-                      )
-                    </Button>
-                  )
-                }
-              </Media>
+            {!(
+              this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE
+            ) && (
+              <Button secondary onClick={this.loadMoreProducts}>
+                Load more products
+              </Button>
             )}
           </div>
         </div>
