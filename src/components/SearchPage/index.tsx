@@ -8,11 +8,20 @@ import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { debounce } from "../../core/utils";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
+import { SearchProducts } from "../../core/types/saleor";
 import "./scss/index.scss";
 
 interface AttributesType {
   [x: string]: string[];
 }
+
+const canDisplay = (data: SearchProducts) =>
+  data &&
+  data.attributes &&
+  data.attributes.edges &&
+  data.products &&
+  data.products.edges &&
+  data.products.totalCount;
 
 class SearchPage extends React.Component<
   RouteComponentProps<{}>,
@@ -87,27 +96,23 @@ class SearchPage extends React.Component<
           fetchPolicy="cache-and-network"
           errorPolicy="all"
         >
-          {({ loading, error, data }) => {
-            if (
-              loading &&
-              Object.keys(this.state.attributes).length === 0 &&
-              !this.state.sortBy
-            ) {
-              return <Loader full />;
+          {({ error, data, loading }) => {
+            if (canDisplay(data)) {
+              return (
+                <ProductsList
+                  products={data.products}
+                  loading={loading}
+                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  filters={this.state}
+                  onFiltersChange={this.onFiltersChange}
+                  searchQuery={parse(this.props.location.search).q}
+                />
+              );
             }
             if (error && !data) {
               return `Error!: ${error}`;
             }
-            return (
-              <ProductsList
-                products={data.products}
-                loading={loading}
-                attributes={data.attributes.edges.map(edge => edge.node)}
-                filters={this.state}
-                onFiltersChange={this.onFiltersChange}
-                searchQuery={parse(this.props.location.search).q}
-              />
-            );
+            return <Loader full />;
           }}
         </Query>
       </div>

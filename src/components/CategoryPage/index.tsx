@@ -11,11 +11,22 @@ import {
 } from "../../core/utils";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
+import { Category } from "../../core/types/saleor";
 import "./scss/index.scss";
 
 interface AttributesType {
   [x: string]: string[];
 }
+
+const canDisplay = (data: Category) =>
+  data &&
+  data.attributes &&
+  data.attributes.edges &&
+  data.products &&
+  data.products.edges &&
+  data.products.totalCount &&
+  data.category &&
+  data.category.name;
 
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
@@ -92,42 +103,44 @@ class CategoryPage extends React.Component<
         errorPolicy="all"
       >
         {({ loading, error, data }) => {
-          if (
-            loading &&
-            Object.keys(this.state.attributes).length === 0 &&
-            !this.state.sortBy
-          ) {
-            return <Loader full />;
+          if (!loading && canDisplay(data)) {
+            return (
+              <div className="category">
+                <div
+                  className="category__header"
+                  style={
+                    data.category.backgroundImage
+                      ? {
+                          backgroundImage: `url(${
+                            data.category.backgroundImage.url
+                          })`
+                        }
+                      : undefined
+                  }
+                >
+                  <span className="category__header__title">
+                    <h1>{data.category.name}</h1>
+                  </span>
+                </div>
+                <div className="container">
+                  <Breadcrumbs
+                    breadcrumbs={this.formatBreadcrumbs(data.category)}
+                  />
+                </div>
+                <ProductsList
+                  products={data.products}
+                  loading={loading}
+                  filters={this.state}
+                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  onFiltersChange={this.onFiltersChange}
+                />
+              </div>
+            );
           }
           if (error && !data) {
             return `Error!: ${error}`;
           }
-          return (
-            <div className="category">
-              <div
-                className="category__header"
-                style={{
-                  backgroundImage: `url(${data.category.backgroundImage.url})`
-                }}
-              >
-                <span className="category__header__title">
-                  <h1>{data.category.name}</h1>
-                </span>
-              </div>
-              <div className="container">
-                <Breadcrumbs
-                  breadcrumbs={this.formatBreadcrumbs(data.category)}
-                />
-              </div>
-              <ProductsList
-                products={data.products}
-                loading={loading}
-                filters={this.state}
-                attributes={data.attributes.edges.map(edge => edge.node)}
-                onFiltersChange={this.onFiltersChange}
-              />
-            </div>
-          );
+          return <Loader full />;
         }}
       </Query>
     );
