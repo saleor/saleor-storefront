@@ -9,23 +9,23 @@ import {
   CheckoutShippingOptions
 } from "..";
 
-const checkoutToken = localStorage.getItem("checkout");
+export const checkoutBaseUrl = token => `/checkout/${token}/`;
+export const checkoutShippingOptionsUrl = token =>
+  `${checkoutBaseUrl(token)}shipping-options/`;
+export const checkoutBillingUrl = token =>
+  `${checkoutBaseUrl(token)}billing-address/`;
+export const checkoutPaymentUrl = token => `${checkoutBaseUrl(token)}payment/`;
+export const checkoutReviewUrl = token => `${checkoutBaseUrl(token)}review/`;
 
-export const checkoutBaseUrl = `/checkout/${checkoutToken}/`;
-export const checkoutShippingOptionsUrl = `${checkoutBaseUrl}shipping-options/`;
-export const checkoutBillingUrl = `${checkoutBaseUrl}billing-address/`;
-export const checkoutPaymentUrl = `${checkoutBaseUrl}payment/`;
-export const checkoutReviewUrl = `${checkoutBaseUrl}review/`;
-
-export const Routes: React.SFC = () => (
+export const Routes: React.SFC<{ token: string }> = ({ token }) => (
   <>
-    <Route exact path={checkoutBaseUrl} component={CheckoutShipping} />
+    <Route exact path={checkoutBaseUrl(token)} component={CheckoutShipping} />
     <Route
-      path={checkoutShippingOptionsUrl}
+      path={checkoutShippingOptionsUrl(token)}
       component={CheckoutShippingOptions}
     />
-    <Route path={checkoutBillingUrl} component={CheckoutBilling} />
-    <Route path={checkoutPaymentUrl} component={CheckoutPayment} />
-    <Route path={checkoutReviewUrl} component={CheckoutReview} />
+    <Route path={checkoutBillingUrl(token)} component={CheckoutBilling} />
+    <Route path={checkoutPaymentUrl(token)} component={CheckoutPayment} />
+    <Route path={checkoutReviewUrl(token)} component={CheckoutReview} />
   </>
 );

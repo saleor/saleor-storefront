@@ -25,7 +25,7 @@ class CheckoutShipping extends React.Component<
           {({ checkout, updateCheckout }) => {
             return (
               <>
-                <Link to={checkoutBaseUrl}>
+                <Link to={checkoutBaseUrl(checkout.token)}>
                   <div className="checkout__step checkout__step--inactive">
                     <span>1</span>
                     <h4 className="checkout__header">Shipping Address</h4>
@@ -50,7 +50,9 @@ class CheckoutShipping extends React.Component<
                       updateCheckout({
                         checkout: data.checkoutShippingMethodUpdate.checkout
                       });
-                      this.props.history.push(checkoutBillingUrl);
+                      this.props.history.push(
+                        checkoutBillingUrl(checkout.token)
+                      );
                     }
                     return (
                       <div className="checkout__content">
