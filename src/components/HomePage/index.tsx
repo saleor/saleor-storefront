@@ -24,7 +24,7 @@ const HomePage: React.SFC = () => (
       fetchPolicy="cache-and-network"
       errorPolicy="all"
     >
-      {({ error, data }) => {
+      {({ error, data, loading }) => {
         if (canDisplay(data)) {
           return (
             <>
@@ -48,7 +48,18 @@ const HomePage: React.SFC = () => (
                   <h1>Up to 70% off sale</h1>
                 </span>
                 <br />
-                <Button>Shop sale</Button>
+                {loading && !data ? (
+                  <Loader />
+                ) : (
+                  <Link
+                    to={generateCategoryUrl(
+                      data.categories.edges[0].node.id,
+                      data.categories.edges[0].node.name
+                    )}
+                  >
+                    <Button>Shop sale</Button>
+                  </Link>
+                )}
               </div>
               <div className="home-page__featured">
                 <div className="container">
