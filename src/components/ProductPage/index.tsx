@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { Query } from "react-apollo";
 import Media from "react-media";
@@ -12,6 +13,7 @@ import {
   ProductDescription,
   ProductListItem
 } from "..";
+import { ProductDetails } from "../../core/types/saleor";
 import {
   generateCategoryUrl,
   generateProductUrl,
@@ -19,9 +21,20 @@ import {
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
+import NetworkStatus from "../NetworkStatus";
+import { Offline } from "../Offline";
 import { GET_PRODUCT_DETAILS } from "./queries";
 
 import "./scss/index.scss";
+
+const canDisplay = (data: ProductDetails) =>
+  data &&
+  data.product &&
+  data.product.description &&
+  data.product.name &&
+  data.product.price &&
+  data.product.variants &&
+  data.product.variants.edges;
 
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -64,166 +77,196 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
         }}
         fetchPolicy="cache-and-network"
         errorPolicy="all"
+        key={this.props.match.params.id}
       >
-        {({ loading, error, data }) => {
-          if (loading) {
-            return <Loader full />;
-          }
-          if (error && !data) {
-            return `Error!: ${error}`;
-          }
-          const { product } = data;
-          return (
-            <div className="product-page">
-              <div className="container">
-                <Breadcrumbs
-                  breadcrumbs={[
-                    {
-                      link: generateCategoryUrl(
-                        product.category.id,
-                        product.category.name
-                      ),
-                      value: product.category.name
-                    },
-                    {
-                      link: generateProductUrl(product.id, product.name),
-                      value: product.name
-                    }
-                  ]}
-                />
-              </div>
-              <div className="container">
-                <div className="product-page__product">
-                  <Media query={{ maxWidth: smallScreen }}>
-                    {matches =>
-                      matches ? (
-                        <>
-                          <div className="product-page__product__gallery">
-                            <Carousel
-                              renderCenterLeftControls={() => null}
-                              renderCenterRightControls={() => null}
-                              renderBottomCenterControls={props => {
-                                const indexes = [];
+        {({ error, data }) => (
+          <NetworkStatus>
+            {isOnline => {
+              if (canDisplay(data)) {
+                const { product } = data;
+                return (
+                  <div className="product-page">
+                    <div className="container">
+                      <Breadcrumbs
+                        breadcrumbs={[
+                          {
+                            link: generateCategoryUrl(
+                              product.category.id,
+                              product.category.name
+                            ),
+                            value: product.category.name
+                          },
+                          {
+                            link: generateProductUrl(product.id, product.name),
+                            value: product.name
+                          }
+                        ]}
+                      />
+                    </div>
+                    <div className="container">
+                      <div className="product-page__product">
+                        <Media query={{ maxWidth: smallScreen }}>
+                          {matches =>
+                            matches ? (
+                              <>
+                                <div className="product-page__product__gallery">
+                                  <Carousel
+                                    renderCenterLeftControls={() => null}
+                                    renderCenterRightControls={() => null}
+                                    renderBottomCenterControls={props => {
+                                      const indexes = [];
 
-                                for (let i = 0; i < props.slideCount; i++) {
-                                  indexes.push(i);
-                                }
+                                      for (
+                                        let i = 0;
+                                        i < props.slideCount;
+                                        i++
+                                      ) {
+                                        indexes.push(i);
+                                      }
 
-                                return (
-                                  <ul className="product-page__product__gallery__nav">
-                                    {indexes.map(index => (
-                                      <li
-                                        key={index}
-                                        onClick={props.goToSlide.bind(
-                                          null,
-                                          index
-                                        )}
-                                        className={
-                                          props.currentSlide === index
-                                            ? "active"
-                                            : ""
-                                        }
-                                      >
-                                        <span />
-                                      </li>
-                                    ))}
-                                  </ul>
-                                );
-                              }}
-                            >
-                              {product.images.edges.map(({ node: image }) => (
-                                <CachedImage url={image.url} key={image.id}>
-                                  OFFLINE :(
-                                </CachedImage>
-                              ))}
-                            </Carousel>
-                          </div>
-                          <div className="product-page__product__info">
-                            <CartContext.Consumer>
-                              {cart => (
-                                <ProductDescription
-                                  name={product.name}
-                                  price={product.price}
-                                  productVariants={product.variants.edges.map(
-                                    edge => edge.node
-                                  )}
-                                  addToCart={cart.add}
-                                >
-                                  <div
-                                    dangerouslySetInnerHTML={{
-                                      __html: product.description
+                                      return (
+                                        <ul className="product-page__product__gallery__nav">
+                                          {indexes.map(index => (
+                                            <li
+                                              key={index}
+                                              onClick={props.goToSlide.bind(
+                                                null,
+                                                index
+                                              )}
+                                              className={
+                                                props.currentSlide === index
+                                                  ? "active"
+                                                  : ""
+                                              }
+                                            >
+                                              <span />
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      );
                                     }}
-                                  />
-                                </ProductDescription>
-                              )}
-                            </CartContext.Consumer>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div
-                            className="product-page__product__gallery"
-                            ref={this.productGallery}
-                          >
-                            {product.images.edges.map(({ node: image }) => (
-                              <CachedImage url={image.url} key={image.id}>
-                                OFFLINE :(
-                              </CachedImage>
-                            ))}
-                          </div>
-                          <div className="product-page__product__info">
-                            <div
-                              className="product-page__product__info--fixed"
-                              ref={this.fixedElement}
-                            >
-                              <CartContext.Consumer>
-                                {cart => (
-                                  <ProductDescription
-                                    name={product.name}
-                                    price={product.price}
-                                    productVariants={product.variants.edges.map(
-                                      edge => edge.node
-                                    )}
-                                    addToCart={cart.add}
                                   >
-                                    <div
-                                      dangerouslySetInnerHTML={{
-                                        __html: product.description
-                                      }}
-                                    />
-                                  </ProductDescription>
+                                    {product.images.edges.map(
+                                      ({ node: image }) => (
+                                        <CachedImage
+                                          url={image.url}
+                                          key={image.id}
+                                        >
+                                          <Offline />
+                                        </CachedImage>
+                                      )
+                                    )}
+                                  </Carousel>
+                                </div>
+                                <div className="product-page__product__info">
+                                  <CartContext.Consumer>
+                                    {cart => (
+                                      <ProductDescription
+                                        name={product.name}
+                                        price={product.price}
+                                        productVariants={product.variants.edges.map(
+                                          edge => edge.node
+                                        )}
+                                        addToCart={cart.add}
+                                      >
+                                        <div
+                                          dangerouslySetInnerHTML={{
+                                            __html: product.description
+                                          }}
+                                        />
+                                      </ProductDescription>
+                                    )}
+                                  </CartContext.Consumer>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div
+                                  className="product-page__product__gallery"
+                                  ref={this.productGallery}
+                                >
+                                  {product.images.edges.map(
+                                    ({ node: image }) => (
+                                      <CachedImage
+                                        url={image.url}
+                                        key={image.id}
+                                      >
+                                        <Offline />
+                                      </CachedImage>
+                                    )
+                                  )}
+                                </div>
+                                <div className="product-page__product__info">
+                                  <div
+                                    className={classNames({
+                                      ["product-page__product__info--fixed"]: true
+                                    })}
+                                    ref={this.fixedElement}
+                                  >
+                                    <CartContext.Consumer>
+                                      {cart => (
+                                        <ProductDescription
+                                          name={product.name}
+                                          price={product.price}
+                                          productVariants={product.variants.edges.map(
+                                            edge => edge.node
+                                          )}
+                                          addToCart={cart.add}
+                                        >
+                                          <div
+                                            dangerouslySetInnerHTML={{
+                                              __html: product.description
+                                            }}
+                                          />
+                                        </ProductDescription>
+                                      )}
+                                    </CartContext.Consumer>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          }
+                        </Media>
+                      </div>
+                    </div>
+                    <div className="product-page__other-products">
+                      <div className="container">
+                        <h4 className="product-page__other-products__title">
+                          Other products in this category
+                        </h4>
+                        <div className="product-page__other-products__grid">
+                          {product.category.products.edges.map(
+                            ({ node: product }) => (
+                              <Link
+                                to={generateProductUrl(
+                                  product.id,
+                                  product.name
                                 )}
-                              </CartContext.Consumer>
-                            </div>
-                          </div>
-                        </>
-                      )
-                    }
-                  </Media>
-                </div>
-              </div>
-              <div className="product-page__other-products">
-                <div className="container">
-                  <h4 className="product-page__other-products__title">
-                    Other products in this category
-                  </h4>
-                  <div className="product-page__other-products__grid">
-                    {product.category.products.edges.map(
-                      ({ node: product }) => (
-                        <Link
-                          to={generateProductUrl(product.id, product.name)}
-                          key={product.id}
-                        >
-                          <ProductListItem product={product} key={product.id} />
-                        </Link>
-                      )
-                    )}
+                                key={product.id}
+                              >
+                                <ProductListItem
+                                  product={product}
+                                  key={product.id}
+                                />
+                              </Link>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          );
-        }}
+                );
+              }
+              if (!isOnline) {
+                return <Offline />;
+              }
+              if (error) {
+                return `Error!: ${error}`;
+              }
+              return <Loader full />;
+            }}
+          </NetworkStatus>
+        )}
       </Query>
     );
   }

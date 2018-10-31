@@ -4,11 +4,14 @@ import { RouteComponentProps } from "react-router";
 
 import { Breadcrumbs, Loader, ProductsList } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { Category } from "../../core/types/saleor";
 import {
   getDBIdFromGraphqlId,
   getGraphqlIdFromDBId,
   slugify
 } from "../../core/utils";
+import NetworkStatus from "../NetworkStatus";
+import { Offline } from "../Offline";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 import "./scss/index.scss";
@@ -16,6 +19,16 @@ import "./scss/index.scss";
 interface AttributesType {
   [x: string]: string[];
 }
+
+const canDisplay = (data: Category) =>
+  data &&
+  data.attributes &&
+  data.attributes.edges &&
+  data.products &&
+  data.products.edges &&
+  data.products.totalCount &&
+  data.category &&
+  data.category.name;
 
 class CategoryPage extends React.Component<
   RouteComponentProps<{ id }>,
@@ -81,55 +94,64 @@ class CategoryPage extends React.Component<
 
   render() {
     return (
-      <Query
-        query={GET_CATEGORY_AND_ATTRIBUTES}
-        variables={{
-          ...this.state,
-          attributes: this.convertToAttributeScalar(this.state.attributes),
-          id: getGraphqlIdFromDBId(this.props.match.params.id, "Category")
-        }}
-        fetchPolicy="cache-and-network"
-        errorPolicy="all"
-      >
-        {({ loading, error, data }) => {
-          if (
-            loading &&
-            Object.keys(this.state.attributes).length === 0 &&
-            !this.state.sortBy
-          ) {
-            return <Loader full />;
-          }
-          if (error && !data) {
-            return `Error!: ${error}`;
-          }
-          return (
-            <div className="category">
-              <div
-                className="category__header"
-                style={{
-                  backgroundImage: `url(${data.category.backgroundImage.url})`
-                }}
-              >
-                <span className="category__header__title">
-                  <h1>{data.category.name}</h1>
-                </span>
-              </div>
-              <div className="container">
-                <Breadcrumbs
-                  breadcrumbs={this.formatBreadcrumbs(data.category)}
-                />
-              </div>
-              <ProductsList
-                products={data.products}
-                loading={loading}
-                filters={this.state}
-                attributes={data.attributes.edges.map(edge => edge.node)}
-                onFiltersChange={this.onFiltersChange}
-              />
-            </div>
-          );
-        }}
-      </Query>
+      <NetworkStatus>
+        {isOnline => (
+          <Query
+            query={GET_CATEGORY_AND_ATTRIBUTES}
+            variables={{
+              ...this.state,
+              attributes: this.convertToAttributeScalar(this.state.attributes),
+              id: getGraphqlIdFromDBId(this.props.match.params.id, "Category")
+            }}
+            fetchPolicy="cache-and-network"
+            errorPolicy="all"
+          >
+            {({ loading, error, data }) => {
+              if (canDisplay(data)) {
+                return (
+                  <div className="category">
+                    <div
+                      className="category__header"
+                      style={
+                        data.category.backgroundImage
+                          ? {
+                              backgroundImage: `url(${
+                                data.category.backgroundImage.url
+                              })`
+                            }
+                          : undefined
+                      }
+                    >
+                      <span className="category__header__title">
+                        <h1>{data.category.name}</h1>
+                      </span>
+                    </div>
+                    <div className="container">
+                      <Breadcrumbs
+                        breadcrumbs={this.formatBreadcrumbs(data.category)}
+                      />
+                    </div>
+                    <ProductsList
+                      products={data.products}
+                      loading={loading}
+                      filters={this.state}
+                      attributes={data.attributes.edges.map(edge => edge.node)}
+                      onFiltersChange={this.onFiltersChange}
+                    />
+                  </div>
+                );
+              }
+              if (!isOnline) {
+                return <Offline />;
+              }
+              if (error && !data) {
+                return <>{`Error!: ${error}`}</>;
+              }
+              return <Loader full />;
+            }}
+          </Query>
+        )}
+      </NetworkStatus>
     );
   }
 }

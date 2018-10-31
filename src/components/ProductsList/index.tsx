@@ -143,71 +143,60 @@ class ProductsList extends React.Component<
           </div>
         </div>
         <div className="products-list__products container">
-          {(this.state.priceGte && this.state.priceLte && this.props.loading) ||
-          (Object.keys(this.state.attributes).length > 0 &&
-            this.props.loading &&
-            this.state.pageSize === PRODUCTS_PER_PAGE) ? (
-            <Loader full />
-          ) : (
-            <>
-              <div className="products-list__products__subheader">
-                <span className="products-list__products__subheader__total">
-                  {this.props.products.totalCount} Products
-                </span>
-                <span className="products-list__products__subheader__sort">
-                  <span>Sort by:</span>{" "}
-                  <Dropdown
-                    options={filterOptions}
-                    value={
-                      filterOptions.find(
-                        option => option.value === this.state.sortBy
-                      ) || ""
-                    }
-                    onChange={e => this.setOrdering(e.value)}
-                  />
-                </span>
-              </div>
-              <div className="products-list__products__grid">
-                {this.props.products.edges.map(({ node: product }) => (
-                  <Link
-                    to={generateProductUrl(product.id, product.name)}
-                    key={product.id}
-                  >
-                    <ProductListItem product={product} />
-                  </Link>
-                ))}
-              </div>
-              <div className="products-list__products__load-more">
-                {this.props.loading &&
-                this.state.pageSize > PRODUCTS_PER_PAGE ? (
-                  <Loader />
-                ) : this.state.pageSize >=
-                this.props.products.totalCount ? null : (
-                  <Media query={{ maxWidth: smallScreen }}>
-                    {matches =>
-                      matches ? (
-                        <Button secondary onClick={this.loadMoreProducts}>
-                          Load more products
-                        </Button>
-                      ) : (
-                        <Button secondary onClick={this.loadMoreProducts}>
-                          Load more products (
-                          {`${
-                            this.state.pageSize + PRODUCTS_PER_PAGE >
-                            this.props.products.totalCount
-                              ? this.props.products.totalCount
-                              : this.state.pageSize + PRODUCTS_PER_PAGE
-                          } of 
+          <div className="products-list__products__subheader">
+            <span className="products-list__products__subheader__total">
+              {this.props.products.totalCount} Products
+            </span>
+            <span className="products-list__products__subheader__sort">
+              <span>Sort by:</span>{" "}
+              <Dropdown
+                options={filterOptions}
+                value={
+                  filterOptions.find(
+                    option => option.value === this.state.sortBy
+                  ) || ""
+                }
+                onChange={e => this.setOrdering(e.value)}
+              />
+            </span>
+          </div>
+          <div className="products-list__products__grid">
+            {this.props.products.edges.map(({ node: product }) => (
+              <Link
+                to={generateProductUrl(product.id, product.name)}
+                key={product.id}
+              >
+                <ProductListItem product={product} />
+              </Link>
+            ))}
+          </div>
+          <div className="products-list__products__load-more">
+            {this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE ? (
+              <Loader />
+            ) : this.state.pageSize >= this.props.products.totalCount ? null : (
+              <Media query={{ maxWidth: smallScreen }}>
+                {matches =>
+                  matches ? (
+                    <Button secondary onClick={this.loadMoreProducts}>
+                      Load more products
+                    </Button>
+                  ) : (
+                    <Button secondary onClick={this.loadMoreProducts}>
+                      Load more products (
+                      {`${
+                        this.state.pageSize + PRODUCTS_PER_PAGE >
+                        this.props.products.totalCount
+                          ? this.props.products.totalCount
+                          : this.state.pageSize + PRODUCTS_PER_PAGE
+                      } of 
                               ${this.props.products.totalCount}`}
-                          )
-                        </Button>
                       )
-                    }
-                  </Media>
-                )}
-              </div>
-            </>
-          )}
+                    </Button>
+                  )
+                }
+              </Media>
+            )}
+          </div>
         </div>
       </div>
     );

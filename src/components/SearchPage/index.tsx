@@ -5,7 +5,10 @@ import { RouteComponentProps, withRouter } from "react-router";
 
 import { Loader, ProductsList, TextField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { SearchProducts } from "../../core/types/saleor";
 import { debounce } from "../../core/utils";
+import NetworkStatus from "../NetworkStatus";
+import { Offline } from "../Offline";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 
 import "./scss/index.scss";
@@ -13,6 +16,14 @@ import "./scss/index.scss";
 interface AttributesType {
   [x: string]: string[];
 }
+
+const canDisplay = (data: SearchProducts) =>
+  data &&
+  data.attributes &&
+  data.attributes.edges &&
+  data.products &&
+  data.products.edges &&
+  data.products.totalCount;
 
 class SearchPage extends React.Component<
   RouteComponentProps<{}>,
@@ -77,39 +88,44 @@ class SearchPage extends React.Component<
             />
           </div>
         </div>
-        <Query
-          query={GET_SEARCH_PRODUCTS}
-          variables={{
-            ...this.state,
-            attributes: this.convertToAttributeScalar(this.state.attributes),
-            query: parse(this.props.location.search).q
-          }}
-          fetchPolicy="cache-and-network"
-          errorPolicy="all"
-        >
-          {({ loading, error, data }) => {
-            if (
-              loading &&
-              Object.keys(this.state.attributes).length === 0 &&
-              !this.state.sortBy
-            ) {
-              return <Loader full />;
-            }
-            if (error && !data) {
-              return `Error!: ${error}`;
-            }
-            return (
-              <ProductsList
-                products={data.products}
-                loading={loading}
-                attributes={data.attributes.edges.map(edge => edge.node)}
-                filters={this.state}
-                onFiltersChange={this.onFiltersChange}
-                searchQuery={parse(this.props.location.search).q}
-              />
-            );
-          }}
-        </Query>
+        <NetworkStatus>
+          {isOnline => (
+            <Query
+              query={GET_SEARCH_PRODUCTS}
+              variables={{
+                ...this.state,
+                attributes: this.convertToAttributeScalar(
+                  this.state.attributes
+                ),
+                query: parse(this.props.location.search).q
+              }}
+              fetchPolicy="cache-and-network"
+              errorPolicy="all"
+            >
+              {({ error, data, loading }) => {
+                if (canDisplay(data)) {
+                  return (
+                    <ProductsList
+                      products={data.products}
+                      loading={loading}
+                      attributes={data.attributes.edges.map(edge => edge.node)}
+                      filters={this.state}
+                      onFiltersChange={this.onFiltersChange}
+                      searchQuery={parse(this.props.location.search).q}
+                    />
+                  );
+                }
+                if (error) {
+                  if (!isOnline) {
+                    return <Offline />;
+                  }
+                  return `Error!: ${error}`;
+                }
+                return <Loader full />;
+              }}
+            </Query>
+          )}
+        </NetworkStatus>
       </div>
     );
   }

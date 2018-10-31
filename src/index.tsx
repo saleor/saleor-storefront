@@ -7,9 +7,10 @@ import { RetryLink } from "apollo-link-retry";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Router, Switch } from "react-router-dom";
 import urljoin from "url-join";
 
+import { createBrowserHistory } from "history";
 import { App, CheckoutApp, UserProvider } from "./components";
 import OverlayProvider from "./components/Overlay";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
@@ -43,6 +44,16 @@ const cache = new InMemoryCache({
   }
 });
 
+const history = createBrowserHistory();
+history.listen((_, action) => {
+  if (["PUSH", "REPLACE"].includes(action)) {
+    window.scroll({
+      behavior: "smooth",
+      top: 0
+    });
+  }
+});
+
 const startApp = async () => {
   await persistCache({
     cache,
@@ -54,7 +65,7 @@ const startApp = async () => {
     link
   });
   render(
-    <BrowserRouter>
+    <Router history={history}>
       <ShopProvider apolloClient={apolloClient}>
         <OverlayProvider>
           <OverlayContext.Consumer>
@@ -84,7 +95,7 @@ const startApp = async () => {
           </OverlayContext.Consumer>
         </OverlayProvider>
       </ShopProvider>
-    </BrowserRouter>,
+    </Router>,
     document.getElementById("root")
   );
 };

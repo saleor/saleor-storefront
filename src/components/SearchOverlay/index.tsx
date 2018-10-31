@@ -5,14 +5,20 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
+import { SearchResults } from "../../core/types/saleor";
 import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
+import NetworkStatus from "../NetworkStatus";
+import { Offline } from "../Offline";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
 import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
+
+const canDisplay = (data: SearchResults) =>
+  data && data.products && data.products.edges;
 
 class SearchOverlay extends React.Component<{}, { search: string }> {
   constructor(props) {
@@ -70,56 +76,69 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                   {this.state.search ? (
                     <>
                       <div className="search__products">
-                        <Query
-                          query={GET_SEARCH_RESULTS}
-                          variables={{ query: this.state.search }}
-                          fetchPolicy="cache-and-network"
-                          errorPolicy="all"
-                        >
-                          {({ loading, error, data }) => {
-                            if (loading) {
-                              return <Loader />;
-                            }
-                            if (error && !data) {
-                              return `Error!: ${error}`;
-                            }
-                            return (
-                              <>
-                                <ul>
-                                  {data.products.edges.map(item => (
-                                    <li
-                                      key={item.node.id}
-                                      className="search__products__item"
-                                    >
-                                      <Link
-                                        to={generateProductUrl(
-                                          item.node.id,
-                                          item.node.name
-                                        )}
-                                      >
-                                        <img src={item.node.thumbnailUrl} />
-                                        <span>
-                                          <h4>{item.node.name}</h4>
-                                          <p>{item.node.category.name}</p>
-                                        </span>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                                <div className="search__products__footer">
-                                  <Link
-                                    to={{
-                                      pathname: searchUrl,
-                                      search: `?q=${this.state.search}`
-                                    }}
-                                  >
-                                    <Button>Show all results</Button>
-                                  </Link>
-                                </div>
-                              </>
-                            );
-                          }}
-                        </Query>
+                        <NetworkStatus>
+                          {isOnline => (
+                            <Query
+                              query={GET_SEARCH_RESULTS}
+                              variables={{ query: this.state.search }}
+                              fetchPolicy="cache-and-network"
+                              errorPolicy="all"
+                            >
+                              {({ data, error, loading }) => {
+                                if (canDisplay(data)) {
+                                  return (
+                                    <>
+                                      <ul>
+                                        {data.products.edges.map(item => (
+                                          <li
+                                            key={item.node.id}
+                                            className="search__products__item"
+                                          >
+                                            <Link
+                                              to={generateProductUrl(
+                                                item.node.id,
+                                                item.node.name
+                                              )}
+                                            >
+                                              <img
+                                                src={item.node.thumbnailUrl}
+                                              />
+                                              <span>
+                                                <h4>{item.node.name}</h4>
+                                                <p>{item.node.category.name}</p>
+                                              </span>
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                      {loading ? (
+                                        <Loader />
+                                      ) : (
+                                        <div className="search__products__footer">
+                                          <Link
+                                            to={{
+                                              pathname: searchUrl,
+                                              search: `?q=${this.state.search}`
+                                            }}
+                                          >
+                                            <Button>Show all results</Button>
+                                          </Link>
+                                        </div>
+                                      )}
+                                    </>
+                                  );
+                                }
+                                if (error) {
+                                  if (!isOnline) {
+                                    return <Offline />;
+                                  }
+                                  return `Error!: ${error}`;
+                                }
+                                return <Loader />;
+                              }}
+                            </Query>
+                          )}
+                        </NetworkStatus>
                       </div>
                     </>
                   ) : null}
