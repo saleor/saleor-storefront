@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: distDir,
-      filename: "js/[name].js",
+      filename: devMode ? "js/[name].js" : "js/[name].[contenthash].js",
       publicPath: "/"
     },
     devtool: "source-map",
@@ -126,10 +126,7 @@ module.exports = (env, argv) => {
           }
         ]
       }),
-      new webpack.EnvironmentPlugin([
-        "npm_package_version",
-        "BACKEND_URL"
-      ])
+      new webpack.EnvironmentPlugin(["npm_package_version", "BACKEND_URL"])
     ],
     node: {
       fs: "empty"
