@@ -44,7 +44,7 @@ const Footer: React.SFC = () => (
     <footer className="footer__menu">
       <div className="container">
         <div className="footer__menu-section">
-          <h4 className="footer__menu-section-header">Collections</h4>
+          <h4 className="footer__menu-section-header">Categories</h4>
           <div className="footer__menu-section-content footer__menu-section-content--split">
             <Query
               query={GET_CATEGORIES}
