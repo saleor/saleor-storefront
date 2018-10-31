@@ -8,6 +8,7 @@ import { Button, Loader, TextField } from "..";
 import { SearchResults } from "../../core/types/saleor";
 import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
+import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { Overlay } from "../Overlay";
@@ -135,7 +136,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                   if (!isOnline) {
                                     return <OfflinePlaceholder />;
                                   }
-                                  return `Error!: ${error}`;
+                                  return <Error error={error.message} />;
                                 }
                                 return <Loader />;
                               }}

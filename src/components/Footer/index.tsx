@@ -6,6 +6,8 @@ import urljoin from "url-join";
 
 import { Button } from "..";
 import { STATIC_PAGES } from "../../core/config";
+import { Error } from "../Error";
+import Loader from "../Loader";
 import { GET_CATEGORIES } from "../NavigationOverlay/queries";
 
 import "./scss/index.scss";
@@ -49,10 +51,10 @@ const Footer: React.SFC = () => (
           >
             {({ loading, error, data }) => {
               if (loading) {
-                return "Loading";
+                return <Loader />;
               }
               if (error && !data) {
-                return `Error!: ${error}`;
+                return <Error error={error.message} />;
               }
               return data.categories.edges.map(category => (
                 <p key={category.node.id}>{category.node.name}</p>
@@ -68,7 +70,7 @@ const Footer: React.SFC = () => (
             </p>
           ))}
           <p>
-            <a href={DASHBOARD_URL} target="_blank" >
+            <a href={DASHBOARD_URL} target="_blank">
               Dashboard
             </a>
           </p>

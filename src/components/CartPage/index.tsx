@@ -10,6 +10,7 @@ import { getCheckout } from "../../core/types/saleor";
 import { baseUrl, checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
+import { Error } from "../Error";
 import { GoToCheckout } from "../GoToCheckout";
 import { UserContext } from "../User/context";
 import { EmptyCart } from "./EmptyCart";
@@ -139,7 +140,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
             }
           }
           if (error && !data) {
-            return `Error!: ${error}`;
+            return <Error error={error.message} />;
           }
           return <Loader full />;
         }}

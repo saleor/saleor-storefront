@@ -3,10 +3,11 @@ import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import { Button, Carousel, Loader, ProductListItem } from "..";
+import { ProductsList } from "../../core/types/saleor";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
+import { Error } from "../Error";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 
-import { ProductsList } from "../../core/types/saleor";
 import "./scss/index.scss";
 
 const canDisplay = (data: ProductsList) =>
@@ -109,7 +110,7 @@ const HomePage: React.SFC = () => (
           );
         }
         if (error && !data) {
-          return `Error!: ${error}`;
+          return <Error error={error.message} />;
         }
         return <Loader full />;
       }}

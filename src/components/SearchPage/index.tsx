@@ -7,6 +7,7 @@ import { Loader, ProductsList, TextField } from "..";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { SearchProducts } from "../../core/types/saleor";
 import { debounce } from "../../core/utils";
+import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { GET_SEARCH_PRODUCTS } from "./queries";
@@ -119,7 +120,7 @@ class SearchPage extends React.Component<
                   if (!isOnline) {
                     return <OfflinePlaceholder />;
                   }
-                  return `Error!: ${error}`;
+                  return <Error error={error.message} />;
                 }
                 return <Loader full />;
               }}

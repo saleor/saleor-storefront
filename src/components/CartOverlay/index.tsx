@@ -7,6 +7,7 @@ import { Button } from "..";
 import { priceToString } from "../../core/utils";
 import { checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
+import { Error } from "../Error";
 import GoToCart from "../GoToCart";
 import { GoToCheckout } from "../GoToCheckout";
 import Loader from "../Loader";
@@ -39,7 +40,9 @@ export const CartOverlay: React.SFC = () => (
                       );
                     }
                     if (errors) {
-                      return "Errors";
+                      return errors.map(error => (
+                        <Error error={error.message} />
+                      ));
                     }
                     return (
                       <div className="cart">
