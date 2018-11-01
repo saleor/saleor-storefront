@@ -33,7 +33,8 @@ class ProductDescription extends React.Component<
   constructor(props) {
     super(props);
     const pickers =
-      this.props.productVariants[0].attributes.length > 0 &&
+      this.props.productVariants[0].attributes &&
+      this.props.productVariants[0].attributes[0].attribute &&
       this.createPickers();
     this.state = {
       ...pickers,
