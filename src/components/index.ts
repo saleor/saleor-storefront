@@ -18,6 +18,7 @@ export { default as Footer } from "./Footer";
 export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Dropdown } from "./Dropdown";
 export { default as Carousel } from "./Carousel";
+export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as ProductDescription } from "./ProductDescription";
 export { default as UserProvider } from "./User";
 export { default as Form } from "./Form";
