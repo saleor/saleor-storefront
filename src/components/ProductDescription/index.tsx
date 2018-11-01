@@ -12,7 +12,6 @@ import "./scss/index.scss";
 interface ProductDescriptionProps {
   productVariants: ProductVariantInterface[];
   name: string;
-  price: ProductPriceInterface;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
@@ -24,6 +23,7 @@ interface ProductDescriptionState {
   variants: { [x: string]: string[] };
   variant: string;
   variantStock: number;
+  price: ProductPriceInterface;
 }
 
 class ProductDescription extends React.Component<
@@ -37,6 +37,7 @@ class ProductDescription extends React.Component<
       this.createPickers();
     this.state = {
       ...pickers,
+      price: this.props.productVariants[0].price,
       quantity: 1,
       variant: "",
       variantStock: null
@@ -139,7 +140,7 @@ class ProductDescription extends React.Component<
     if (!this.state.secondaryPicker && this.state.primaryPicker) {
       variant = this.props.productVariants.find(
         variant => variant.name === `${this.state.primaryPicker.selected}`
-      ).id;
+      );
     } else if (this.state.secondaryPicker && this.state.primaryPicker) {
       variant = this.props.productVariants.find(
         variant =>
@@ -147,14 +148,13 @@ class ProductDescription extends React.Component<
           `${this.state.primaryPicker.selected} / ${
             this.state.secondaryPicker.selected
           }`
-      ).id;
+      );
     } else {
-      variant = this.props.productVariants[0].id;
+      variant = this.props.productVariants[0];
     }
-    const variantStock = this.props.productVariants.find(
-      productVariant => productVariant.id === variant
-    ).stockQuantity;
-    this.setState({ variant, variantStock });
+    const variantStock = variant.stockQuantity;
+    const price = variant.price;
+    this.setState({ variant: variant.id, variantStock, price });
   };
 
   handleSubmit = () => {
@@ -162,11 +162,11 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { name, price } = this.props;
+    const { name } = this.props;
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>{price.localized}</h4>
+        <h4>{this.state.price.localized}</h4>
         <div className="product-description__variant-picker">
           {this.state.primaryPicker ? (
             <SelectField
