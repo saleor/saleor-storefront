@@ -94,6 +94,7 @@
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",
-    "codegen": "apollo-codegen generate 'src/**/*.ts' --target typescript --output ./src/core/types/saleor.ts --schema schema.json"
+    "codegen": "apollo-codegen generate 'src/**/*.ts' --target typescript --output ./src/core/types/saleor.ts --schema schema.json",
+    "heroku-postbuild": "npm run build"
   }
 }
