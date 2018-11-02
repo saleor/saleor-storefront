@@ -19,7 +19,9 @@ const NavigationOverlay: React.SFC = () => (
             <div className="side-nav" onClick={e => e.stopPropagation()}>
               <ul>
                 <li>
-                  <a href="/">Home</a>
+                  <Link to={"/"}>
+                    <span className="side-nav__menu-item-label">Home</span>
+                  </Link>
                 </li>
                 <Query
                   query={GET_CATEGORIES}
@@ -35,7 +37,9 @@ const NavigationOverlay: React.SFC = () => (
                         <Link
                           to={generateCategoryUrl(category.id, category.name)}
                         >
-                          {category.name}
+                          <span className="side-nav__menu-item-label">
+                            {category.name}
+                          </span>
                         </Link>
                       </li>
                     ));

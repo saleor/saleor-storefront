@@ -20,6 +20,7 @@ import CachedImage from "../CachedImage";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
+
 import "./scss/index.scss";
 
 export const CartOverlay: React.SFC = () => (
@@ -52,9 +53,12 @@ export const CartOverlay: React.SFC = () => (
                             path={require("../../images/cart.svg")}
                             className="overlay__header__cart-icon"
                           />
-                          <p>
-                            My bag, <span>{lines.length || 0} items</span>
-                          </p>
+                          <div className="overlay__header-text">
+                            My bag,{" "}
+                            <span className="overlay__header-text-items">
+                              {lines.length || 0} items
+                            </span>
+                          </div>
                           <ReactSVG
                             path={require("../../images/x.svg")}
                             onClick={() => overlay.hide()}

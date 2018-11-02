@@ -89,7 +89,7 @@ export class LoginOverlay extends React.Component<
               <div className="login">
                 <Online>
                   <div className="overlay__header">
-                    <p>Saleor account</p>
+                    <div className="overlay__header-text">Saleor account</div>
                     <ReactSVG
                       path={require("../../images/x.svg")}
                       onClick={() => overlay.hide()}

@@ -4,17 +4,22 @@
   width: 30rem;
   max-width: calc(100vw - 5rem);
 
+  &__menu-item-label {
+    margin: 0 $spacer;
+  }
+
   ul {
     li {
       border-bottom: 1px solid $gray-light;
 
       a {
-        display: block;
-        padding: $spacer;
+        align-items: center;
+        color: #323232;
+        display: flex;
+        font-weight: 600;
+        height: calc(3.6rem - 1px);
         text-decoration: none;
-        color: $base-font-color;
         text-transform: uppercase;
-        font-weight: $bold-font-weight;
         transition: 0.3s;
 
         &:hover {

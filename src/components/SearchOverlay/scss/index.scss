@@ -25,10 +25,11 @@
     }
 
     .input__field {
-      border: none;
       background-color: $turquoise-light;
-      padding-bottom: 1.35rem;
-      padding-top: 1.35rem;
+      border: none;
+      box-shadow: none;
+      padding-bottom: 1.2rem;
+      padding-top: 1.25rem;
       width: 100%;
 
       &:focus {

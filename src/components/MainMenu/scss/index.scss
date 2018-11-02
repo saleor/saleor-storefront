@@ -60,8 +60,9 @@
   }
 
   &__hamburger {
-    padding: $spacer;
     border-right: 1px solid $gray-light;
+    cursor: pointer;
+    padding: $spacer;
 
     &--hover {
       display: none;
