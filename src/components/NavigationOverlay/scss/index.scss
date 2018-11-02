@@ -61,6 +61,10 @@
       &:hover {
         color: $turquoise;
       }
+
+      &--noback {
+        height: 3.6rem;
+      }
     }
 
     &-label {

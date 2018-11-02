@@ -19,23 +19,35 @@ const NavigationOverlay: React.SFC = () => (
           <Overlay context={overlayContext}>
             <div className="side-nav" onClick={e => e.stopPropagation()}>
               <ul>
-                <li className="side-nav__menu-item side-nav__menu-item--parent">
-                  <Link to="/">
-                    <span className="side-nav__menu-item-label">
-                      <ReactSVG
-                        className="side-nav__menu-item-back"
-                        path={require("../../images/arrow-back.svg")}
-                      />{" "}
-                      Home
-                    </span>
-                  </Link>
-                  <span
-                    className="side-nav__menu-item-close"
-                    onClick={overlayContext.hide}
-                  >
+                {window.location.pathname === "/" ? (
+                  <li className="side-nav__menu-item side-nav__menu-item--parent">
                     <span />
-                  </span>
-                </li>
+                    <span
+                      className="side-nav__menu-item-close side-nav__menu-item-close--noback"
+                      onClick={overlayContext.hide}
+                    >
+                      <span />
+                    </span>
+                  </li>
+                ) : (
+                  <li className="side-nav__menu-item side-nav__menu-item--parent">
+                    <Link to="/">
+                      <span className="side-nav__menu-item-label">
+                        <ReactSVG
+                          className="side-nav__menu-item-back"
+                          path={require("../../images/arrow-back.svg")}
+                        />{" "}
+                        Home
+                      </span>
+                    </Link>
+                    <span
+                      className="side-nav__menu-item-close"
+                      onClick={overlayContext.hide}
+                    >
+                      <span />
+                    </span>
+                  </li>
+                )}
                 <Query
                   query={GET_CATEGORIES}
                   fetchPolicy="cache-and-network"
