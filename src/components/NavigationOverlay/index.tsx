@@ -19,7 +19,7 @@ const NavigationOverlay: React.SFC = () => (
             <div className="side-nav" onClick={e => e.stopPropagation()}>
               <ul>
                 <li>
-                  <Link to={"/"}>
+                  <Link to="/">
                     <span className="side-nav__menu-item-label">Home</span>
                   </Link>
                 </li>
@@ -36,6 +36,7 @@ const NavigationOverlay: React.SFC = () => (
                       <li key={category.id}>
                         <Link
                           to={generateCategoryUrl(category.id, category.name)}
+                          onClick={overlayContext.hide}
                         >
                           <span className="side-nav__menu-item-label">
                             {category.name}
