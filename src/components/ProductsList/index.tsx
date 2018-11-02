@@ -153,6 +153,7 @@ class ProductsList extends React.Component<
                     option => option.value === this.state.sortBy
                   ) || ""
                 }
+                isSearchable={false}
                 onChange={e => this.setOrdering(e.value)}
               />
             </span>
