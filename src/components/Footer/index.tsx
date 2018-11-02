@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
 import urljoin from "url-join";
 
-import { Button } from "..";
-import { STATIC_PAGES } from "../../core/config";
+import { Button, SocialMediaIcon } from "..";
+import { SOCIAL_MEDIA, STATIC_PAGES } from "../../core/config";
 import { generateCategoryUrl } from "../../core/utils";
 import { Error } from "../Error";
 import Loader from "../Loader";
@@ -24,22 +23,9 @@ const Footer: React.SFC = () => (
       </div>
     </div>
     <div className="footer__favicons container">
-      <ReactSVG
-        path={require("../../images/facebook-icon.svg")}
-        className="footer__favicons__icon"
-      />
-      <ReactSVG
-        path={require("../../images/twitter-icon.svg")}
-        className="footer__favicons__icon"
-      />
-      <ReactSVG
-        path={require("../../images/instagram-icon.svg")}
-        className="footer__favicons__icon"
-      />
-      <ReactSVG
-        path={require("../../images/youtube-icon.svg")}
-        className="footer__favicons__icon"
-      />
+      {SOCIAL_MEDIA.map(medium => (
+        <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
+      ))}
     </div>
     <footer className="footer__menu">
       <div className="container">

@@ -38,20 +38,6 @@
   &__favicons {
     display: flex;
     justify-content: center;
-
-    &__icon {
-      padding: $spacer $spacer / 2;
-
-      svg * {
-        transition: 0.3s;
-      }
-
-      &:hover {
-        svg * {
-          fill: $turquoise;
-        }
-      }
-    }
   }
 
   &__menu {
