@@ -21,10 +21,10 @@ interface AttributesType {
 const canDisplay = (data: SearchProducts) =>
   data &&
   data.attributes &&
-  data.attributes.edges &&
+  data.attributes.edges !== undefined &&
   data.products &&
-  data.products.edges &&
-  data.products.totalCount;
+  data.products.edges !== undefined &&
+  data.products.totalCount !== undefined;
 
 class SearchPage extends React.Component<
   RouteComponentProps<{}>,

@@ -65,5 +65,9 @@
       margin: $spacer * 5 0;
       text-align: center;
     }
+
+    &-not-found {
+      margin-bottom: 4 * $spacer;
+    }
   }
 }
