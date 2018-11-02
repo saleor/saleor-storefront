@@ -170,7 +170,6 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                     {cart => (
                                       <ProductDescription
                                         name={product.name}
-                                        price={product.price}
                                         productVariants={product.variants.edges.map(
                                           edge => edge.node
                                         )}
@@ -219,7 +218,6 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                       {cart => (
                                         <ProductDescription
                                           name={product.name}
-                                          price={product.price}
                                           productVariants={product.variants.edges.map(
                                             edge => edge.node
                                           )}

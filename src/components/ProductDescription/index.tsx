@@ -12,7 +12,6 @@ import "./scss/index.scss";
 interface ProductDescriptionProps {
   productVariants: ProductVariantInterface[];
   name: string;
-  price: ProductPriceInterface;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
@@ -24,6 +23,7 @@ interface ProductDescriptionState {
   variants: { [x: string]: string[] };
   variant: string;
   variantStock: number;
+  price: ProductPriceInterface;
 }
 
 class ProductDescription extends React.Component<
@@ -38,6 +38,7 @@ class ProductDescription extends React.Component<
       this.createPickers();
     this.state = {
       ...pickers,
+      price: this.props.productVariants[0].price,
       quantity: 1,
       variant: "",
       variantStock: null
@@ -45,7 +46,7 @@ class ProductDescription extends React.Component<
   }
 
   componentWillMount() {
-    this.getVariantId();
+    this.getVariant();
   }
 
   createPickers = () => {
@@ -121,10 +122,10 @@ class ProductDescription extends React.Component<
         this.onSecondaryPickerChange("");
         this.setState({ variant: "" });
       } else {
-        this.getVariantId();
+        this.getVariant();
       }
     } else {
-      this.getVariantId();
+      this.getVariant();
     }
   };
 
@@ -132,30 +133,29 @@ class ProductDescription extends React.Component<
     const secondaryPicker = this.state.secondaryPicker;
     secondaryPicker.selected = value;
     this.setState({ secondaryPicker });
-    this.getVariantId();
+    this.getVariant();
   };
 
-  getVariantId = () => {
+  getVariant = () => {
+    const { productVariants } = this.props;
+    const { primaryPicker, secondaryPicker } = this.state;
     let variant;
-    if (!this.state.secondaryPicker && this.state.primaryPicker) {
-      variant = this.props.productVariants.find(
-        variant => variant.name === `${this.state.primaryPicker.selected}`
-      ).id;
-    } else if (this.state.secondaryPicker && this.state.primaryPicker) {
-      variant = this.props.productVariants.find(
+    if (!secondaryPicker && primaryPicker) {
+      variant = productVariants.find(
+        variant => variant.name === `${primaryPicker.selected}`
+      );
+    } else if (secondaryPicker && primaryPicker) {
+      variant = productVariants.find(
         variant =>
           variant.name ===
-          `${this.state.primaryPicker.selected} / ${
-            this.state.secondaryPicker.selected
-          }`
-      ).id;
+          `${primaryPicker.selected} / ${secondaryPicker.selected}`
+      );
     } else {
-      variant = this.props.productVariants[0].id;
+      variant = this.props.productVariants[0];
     }
-    const variantStock = this.props.productVariants.find(
-      productVariant => productVariant.id === variant
-    ).stockQuantity;
-    this.setState({ variant, variantStock });
+    const variantStock = variant.stockQuantity;
+    const price = variant.price;
+    this.setState({ variant: variant.id, variantStock, price });
   };
 
   handleSubmit = () => {
@@ -163,42 +163,49 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { name, price } = this.props;
+    const { children, name } = this.props;
+    const {
+      price,
+      primaryPicker,
+      quantity,
+      secondaryPicker,
+      variant,
+      variants,
+      variantStock
+    } = this.state;
     return (
       <div className="product-description">
         <h3>{name}</h3>
         <h4>{price.localized}</h4>
         <div className="product-description__variant-picker">
-          {this.state.primaryPicker ? (
+          {primaryPicker ? (
             <SelectField
               onChange={e => this.onPrimaryPickerChange(e.value)}
-              label={this.state.primaryPicker.label}
-              key={this.state.primaryPicker.label}
+              label={primaryPicker.label}
+              key={primaryPicker.label}
               value={{
-                label: this.state.primaryPicker.selected,
-                value: this.state.primaryPicker.selected
+                label: primaryPicker.selected,
+                value: primaryPicker.selected
               }}
-              options={this.state.primaryPicker.values.map(value => ({
+              options={primaryPicker.values.map(value => ({
                 label: value,
                 value
               }))}
             />
           ) : null}
-          {this.state.secondaryPicker ? (
+          {secondaryPicker ? (
             <SelectField
               onChange={e => this.onSecondaryPickerChange(e.value)}
-              label={this.state.secondaryPicker.label}
-              key={this.state.secondaryPicker.label}
+              label={secondaryPicker.label}
+              key={secondaryPicker.label}
               value={
-                this.state.secondaryPicker.selected && {
-                  label: this.state.secondaryPicker.selected,
-                  value: this.state.secondaryPicker.selected
+                secondaryPicker.selected && {
+                  label: secondaryPicker.selected,
+                  value: secondaryPicker.selected
                 }
               }
-              options={this.state.secondaryPicker.values.map(value => ({
-                isDisabled: !this.state.variants[
-                  this.state.primaryPicker.selected
-                ].includes(value),
+              options={secondaryPicker.values.map(value => ({
+                isDisabled: !variants[primaryPicker.selected].includes(value),
                 label: value,
                 value
               }))}
@@ -207,32 +214,27 @@ class ProductDescription extends React.Component<
           <TextField
             type="number"
             label="Quantity"
-            value={this.state.quantity || ""}
+            value={quantity || ""}
             onChange={e => this.setState({ quantity: Number(e.target.value) })}
           />
         </div>
         <div className="product-description__about">
           <h4>Description</h4>
-          {this.props.children}
+          {children}
         </div>
         <CartContext.Consumer>
           {({ lines }) => {
             const calculateQuantityWithCart = () => {
-              const cartLine = lines.find(
-                line => line.variantId === this.state.variant
-              );
-              return cartLine
-                ? this.state.quantity + cartLine.quantity
-                : this.state.quantity;
+              const cartLine = lines.find(line => line.variantId === variant);
+              return cartLine ? quantity + cartLine.quantity : quantity;
             };
             return (
               <Button
                 className="product-description__action"
                 onClick={this.handleSubmit}
                 disabled={
-                  this.state.quantity !== 0 &&
-                  (this.state.variant &&
-                    this.state.variantStock >= calculateQuantityWithCart())
+                  quantity !== 0 &&
+                  (variant && variantStock >= calculateQuantityWithCart())
                     ? false
                     : true
                 }
