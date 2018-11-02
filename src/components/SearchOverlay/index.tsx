@@ -42,7 +42,10 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                         matches ? (
                           <TextField
                             iconLeft={
-                              <ReactSVG path={require("../../images/x.svg")} />
+                              <ReactSVG
+                                path={require("../../images/x.svg")}
+                                onClick={overlayContext.hide}
+                              />
                             }
                             iconRight={
                               <ReactSVG
