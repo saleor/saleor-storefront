@@ -1,14 +1,11 @@
 @import "../../App/scss/variables.scss";
 
 .search {
+  min-height: 100vh;
   width: 100vw;
 
   @media (min-width: $medium-screen) {
     width: 25rem;
-  }
-
-  &--full-height {
-    min-height: 100vh;
   }
 
   &__input {

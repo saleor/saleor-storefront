@@ -35,12 +35,7 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
           if (overlayContext.type === OverlayType.search) {
             return (
               <Overlay context={overlayContext}>
-                <div
-                  className={`search${
-                    this.state.search ? " search--full-height" : ""
-                  }`}
-                  onClick={e => e.stopPropagation()}
-                >
+                <div className="search" onClick={e => e.stopPropagation()}>
                   <div className="search__input">
                     <Media query={{ maxWidth: mediumScreen }}>
                       {matches =>
