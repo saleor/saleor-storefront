@@ -153,29 +153,38 @@ class ProductsList extends React.Component<
                     option => option.value === this.state.sortBy
                   ) || ""
                 }
+                isSearchable={false}
                 onChange={e => this.setOrdering(e.value)}
               />
             </span>
           </div>
-          <div className="products-list__products__grid">
-            {this.props.products.edges.map(({ node: product }) => (
-              <Link
-                to={generateProductUrl(product.id, product.name)}
-                key={product.id}
-              >
-                <ProductListItem product={product} />
-              </Link>
-            ))}
-          </div>
-          <div className="products-list__products__load-more">
-            {!(
-              this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE
-            ) && (
-              <Button secondary onClick={this.loadMoreProducts}>
-                Load more products
-              </Button>
-            )}
-          </div>
+          {this.props.products.edges.length > 0 ? (
+            <>
+              <div className="products-list__products__grid">
+                {this.props.products.edges.map(({ node: product }) => (
+                  <Link
+                    to={generateProductUrl(product.id, product.name)}
+                    key={product.id}
+                  >
+                    <ProductListItem product={product} />
+                  </Link>
+                ))}
+              </div>
+              <div className="products-list__products__load-more">
+                {!(
+                  this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE
+                ) && (
+                  <Button secondary onClick={this.loadMoreProducts}>
+                    Load more products
+                  </Button>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="products-list__products-not-found">
+              We couldn't find any product matching these conditions
+            </div>
+          )}
         </div>
       </div>
     );

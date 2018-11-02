@@ -18,7 +18,7 @@ const Footer: React.SFC = () => (
   <div className="footer" id="footer">
     <div className="footer__newsletter">
       <div className="container">
-        <h4>Subscribe to our newsletter to recieve new information</h4>
+        <h4>Subscribe to our newsletter to receive new information</h4>
         <Button secondary>Sign up</Button>
       </div>
     </div>

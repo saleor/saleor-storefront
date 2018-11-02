@@ -27,7 +27,7 @@
   background-color: rgba(199, 207, 207, 0.8);
 
   &--search {
-    top: 3.8rem;
+    top: 3.55rem;
 
     .overlay__right {
       height: auto;
@@ -51,30 +51,51 @@
   }
 
   &__header {
-    text-transform: uppercase;
-    font-weight: $bold-font-weight;
+    align-items: center;
     border-bottom: 1px solid $gray-light;
     display: flex;
+    flex: 1;
+    font-weight: $bold-font-weight;
+    height: 3.6rem;
     justify-content: space-between;
-    align-items: center;
+    text-transform: uppercase;
 
-    p {
-      width: 100%;
-      padding: $spacer;
+    &-text {
+      margin: 0 $spacer;
+      text-align: center;
 
-      span {
+      &-items {
         color: $gray;
       }
     }
 
     &__close-icon {
-      padding: $spacer $spacer $spacer $spacer / 2;
+      cursor: pointer;
+      margin: 0 $spacer;
+
+      &:hover,
+      &:focus {
+        svg {
+          * {
+            fill: $turquoise;
+          }
+        }
+      }
+      div {
+        display: flex;
+      }
     }
 
     &__cart-icon {
-      padding: $spacer $spacer / 2 $spacer $spacer;
-      svg * {
-        fill: $turquoise;
+      margin: 0 $spacer;
+
+      div {
+        display: flex;
+        svg {
+          * {
+            fill: $turquoise;
+          }
+        }
       }
     }
   }

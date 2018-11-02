@@ -19,6 +19,12 @@
       font-weight: $bold-font-weight;
       text-decoration: none;
       vertical-align: middle;
+      transition: 0.3s;
+
+      &:hover,
+      &:focus {
+        color: $blue;
+      }
     }
   }
 }

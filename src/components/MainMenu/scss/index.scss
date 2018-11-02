@@ -37,13 +37,13 @@
       width: 4rem;
 
       @media (min-width: $small-screen) {
-        width: 8rem;
+        width: 6rem;
       }
     }
   }
 
   &__item {
-    padding: 0 $spacer / 2;
+    margin: 0 1.5rem;
     text-transform: uppercase;
     font-weight: $bold-font-weight;
 
@@ -60,8 +60,9 @@
   }
 
   &__hamburger {
-    padding: $spacer;
     border-right: 1px solid $gray-light;
+    cursor: pointer;
+    padding: $spacer;
 
     &--hover {
       display: none;

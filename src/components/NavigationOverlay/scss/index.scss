@@ -4,27 +4,72 @@
   width: 30rem;
   max-width: calc(100vw - 5rem);
 
-  ul {
-    li {
-      border-bottom: 1px solid $gray-light;
+  &__menu-item {
+    border-bottom: 1px solid $gray-light;
+
+    a {
+      align-items: center;
+      color: #323232;
+      display: flex;
+      font-weight: 600;
+      height: calc(3.6rem - 1px);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: 0.3s;
+
+      &:hover {
+        color: $turquoise;
+      }
+
+      svg * {
+        fill: currentColor;
+      }
+    }
+
+    &--parent {
+      color: $gray;
+      display: grid;
+      grid-template-columns: 1fr 3.6rem;
 
       a {
-        display: block;
-        padding: $spacer;
-        text-decoration: none;
-        color: $base-font-color;
-        text-transform: uppercase;
-        font-weight: $bold-font-weight;
-        transition: 0.3s;
-
-        &:hover {
-          color: $turquoise;
-
-          svg * {
-            fill: $turquoise;
-          }
-        }
+        color: inherit;
       }
+    }
+
+    &-back {
+      div {
+        display: flex;
+      }
+      svg {
+        margin-right: 1rem;
+      }
+    }
+
+    &-close {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+
+      span {
+        background-color: currentColor;
+        border-radius: 1px;
+        height: 3px;
+        width: 24px;
+      }
+
+      &:hover {
+        color: $turquoise;
+      }
+
+      &--noback {
+        height: 3.6rem;
+      }
+    }
+
+    &-label {
+      display: flex;
+      margin: 0 $spacer;
     }
   }
 

@@ -1,14 +1,11 @@
 @import "../../App/scss/variables.scss";
 
 .search {
+  min-height: 100vh;
   width: 100vw;
 
   @media (min-width: $medium-screen) {
     width: 25rem;
-  }
-
-  &--full-height {
-    min-height: 100vh;
   }
 
   &__input {
@@ -25,10 +22,11 @@
     }
 
     .input__field {
-      border: none;
       background-color: $turquoise-light;
-      padding-bottom: 1.35rem;
-      padding-top: 1.35rem;
+      border: none;
+      box-shadow: none;
+      padding-bottom: 1.2rem;
+      padding-top: 1.25rem;
       width: 100%;
 
       &:focus {
