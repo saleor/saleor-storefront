@@ -17,15 +17,23 @@ body {
     font-size: $h1-font-size;
     line-height: $h1-line-height;
   }
+
   h3 {
     font-size: $h3-font-size;
+    line-height: 1.7rem;
   }
+
   h4 {
     font-size: $h4-font-size;
   }
+
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  p {
+    line-height: 1.5rem;
   }
 
   .container {
