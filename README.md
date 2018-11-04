@@ -23,7 +23,7 @@ These instructions will get you a copy of the project up and running on your loc
 - Node.js 10.0+ 
 - A running instance of Saleor.
 
-    To run the storefront, you have to set the `BACKEND_URL` environment to point to the Saleor instance. If you are running Saleor locally with its default settings, set it to: `http://localhost:8000/`.
+    To run the storefront, you have to set the `BACKEND_URL` environment to point to the Saleor instance. If you are running Saleor locally with the default settings, set `BACKEND_URL` to: `http://localhost:8000/`.
 
 ### Installing
 
