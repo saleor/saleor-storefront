@@ -21,7 +21,7 @@ interface AttributesType {
   [x: string]: string[];
 }
 
-interface FiltersType {
+export interface Filters {
   attributes: AttributesType;
   pageSize: number;
   sortBy: string;
@@ -31,11 +31,11 @@ interface FiltersType {
 
 interface ProductsListProps {
   attributes: CategoryAttributesInterface[];
-  filters: FiltersType;
-  loading: boolean;
+  filters: Filters;
+  hasNextPage: boolean;
   products: CategoryProductInterface;
   searchQuery?: string;
-  onFiltersChange(filters: FiltersType): void;
+  onFiltersChange(filters: Filters): void;
 }
 
 interface ProductsListState {
@@ -171,9 +171,7 @@ class ProductsList extends React.Component<
                 ))}
               </div>
               <div className="products-list__products__load-more">
-                {!(
-                  this.props.loading && this.state.pageSize > PRODUCTS_PER_PAGE
-                ) && (
+                {this.props.hasNextPage && (
                   <Button secondary onClick={this.loadMoreProducts}>
                     Load more products
                   </Button>

@@ -10,11 +10,11 @@ import {
   getGraphqlIdFromDBId,
   slugify
 } from "../../core/utils";
+import { GET_CATEGORY_AND_ATTRIBUTES } from "../../views/Category/queries";
 import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { NotFound } from "../NotFound";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
-import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 import "./scss/index.scss";
 
@@ -136,7 +136,7 @@ class CategoryPage extends React.Component<
                     </div>
                     <ProductsList
                       products={data.products}
-                      loading={loading}
+                      hasNextPage={loading}
                       filters={this.state}
                       attributes={data.attributes.edges.map(edge => edge.node)}
                       onFiltersChange={this.onFiltersChange}

@@ -108,7 +108,7 @@ class SearchPage extends React.Component<
                   return (
                     <ProductsList
                       products={data.products}
-                      loading={loading}
+                      hasNextPage={loading}
                       attributes={data.attributes.edges.map(edge => edge.node)}
                       filters={this.state}
                       onFiltersChange={this.onFiltersChange}

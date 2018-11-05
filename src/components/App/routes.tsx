@@ -1,15 +1,9 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import {
-  CartPage,
-  CategoryPage,
-  CheckoutLogin,
-  HomePage,
-  ProductPage,
-  SearchPage
-} from "..";
+import { CartPage, CheckoutLogin, HomePage, ProductPage, SearchPage } from "..";
 import ArticlePage from "../../views/Article";
+import CategoryPage from "../../views/Category";
 import { NotFound } from "../NotFound";
 
 export const baseUrl = "/";
