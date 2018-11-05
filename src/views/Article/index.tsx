@@ -2,10 +2,10 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 
+import { Error } from "../../components/Error";
+import Loader from "../../components/Loader";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl } from "../../core/utils";
-import { Error } from "../Error";
-import Loader from "../Loader";
 import ArticlePage from "./ArticlePage";
 import GET_ARTICLE from "./query";
 
