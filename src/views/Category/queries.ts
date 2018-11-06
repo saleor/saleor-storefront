@@ -56,9 +56,11 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
         node {
           id
           name
+          slug
           values {
             id
             name
+            slug
           }
         }
       }
