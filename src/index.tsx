@@ -22,7 +22,6 @@ import {
 
 const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
 
-const devMode = process.env.NODE_ENV !== "production";
 const {
   component: UserProviderWithTokenHandler,
   link: invalidTokenLink
@@ -45,8 +44,8 @@ const cache = new InMemoryCache({
 });
 
 const history = createBrowserHistory();
-history.listen((_, action) => {
-  if (["PUSH", "REPLACE"].includes(action)) {
+history.listen((location, action) => {
+  if (["PUSH"].includes(action)) {
     window.scroll({
       behavior: "smooth",
       top: 0
@@ -57,7 +56,6 @@ history.listen((_, action) => {
 const startApp = async () => {
   await persistCache({
     cache,
-    debug: devMode,
     storage: window.localStorage
   });
   const apolloClient = new ApolloClient({

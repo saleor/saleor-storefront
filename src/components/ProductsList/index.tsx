@@ -17,10 +17,12 @@ import { SelectValue } from "../SelectField";
 
 import "./scss/index.scss";
 
+export interface AttributeList {
+  [attributeSlug: string]: string[];
+}
+
 export interface Filters {
-  attributes: {
-    [attributeSlug: string]: string[];
-  };
+  attributes: AttributeList;
   pageSize: number;
   sortBy: string;
   priceLte: number;
@@ -52,7 +54,6 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     { value: "name", label: "Name Increasing" },
     { value: "-name", label: "Name Decreasing" }
   ];
-
   return (
     <div className="products-list">
       <div className="products-list__filters">
