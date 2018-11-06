@@ -17,7 +17,9 @@ interface CategoryPageProps {
   filters: Filters;
   hasNextPage: boolean;
   products: Category_products;
-  onFiltersChange: (filters: Filters) => void;
+  onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
+  onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
+  onOrder: (order: string) => void;
 }
 
 const formatBreadcrumbs = (category: Category_category) => {
@@ -51,7 +53,9 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
   filters,
   hasNextPage,
   products,
-  onFiltersChange
+  onAttributeFiltersChange,
+  onPriceChange,
+  onOrder
 }) => (
   <div className="category">
     <div
@@ -76,7 +80,9 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
       hasNextPage={hasNextPage}
       filters={filters}
       attributes={attributes.edges.map(edge => edge.node)}
-      onFiltersChange={onFiltersChange}
+      onAttributeFiltersChange={onAttributeFiltersChange}
+      onPriceChange={onPriceChange}
+      onOrder={onOrder}
     />
   </div>
 );

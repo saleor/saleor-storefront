@@ -106,14 +106,15 @@ class SearchPage extends React.Component<
               {({ error, data, loading }) => {
                 if (canDisplay(data)) {
                   return (
-                    <ProductsList
-                      products={data.products}
-                      hasNextPage={loading}
-                      attributes={data.attributes.edges.map(edge => edge.node)}
-                      filters={this.state}
-                      onFiltersChange={this.onFiltersChange}
-                      searchQuery={parse(this.props.location.search).q}
-                    />
+                    // <ProductsList
+                    //   products={data.products}
+                    //   hasNextPage={loading}
+                    //   attributes={data.attributes.edges.map(edge => edge.node)}
+                    //   filters={this.state}
+                    //   onFiltersChange={this.onFiltersChange}
+                    //   searchQuery={parse(this.props.location.search).q}
+                    // />
+                    null
                   );
                 }
                 if (error) {

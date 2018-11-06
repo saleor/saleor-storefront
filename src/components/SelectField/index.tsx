@@ -5,12 +5,12 @@ import { Props as SelectProps } from "react-select/lib/Select";
 
 import "./scss/index.scss";
 
-interface SelectValue {
+export interface SelectValue {
   label: string;
   value: string;
 }
 
-interface SelectFieldProps<TValue> extends SelectProps<TValue> {
+export interface SelectFieldProps<TValue> extends SelectProps<TValue> {
   label?: string;
 }
 

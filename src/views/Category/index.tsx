@@ -15,8 +15,12 @@ import { CategoryPage } from "./CategoryPage";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
 
 interface AttributesType {
-  [x: string]: string[];
+  [attributeSlug: string]: string[];
 }
+
+type CategoryViewProps = RouteComponentProps<{
+  id: string;
+}>;
 
 const canDisplay = (data: Category) =>
   data &&
@@ -28,10 +32,7 @@ const canDisplay = (data: Category) =>
   data.category &&
   data.category.name;
 
-class CategoryView extends React.Component<
-  RouteComponentProps<{ id }>,
-  Filters
-> {
+class CategoryView extends React.Component<CategoryViewProps, Filters> {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,11 +51,7 @@ class CategoryView extends React.Component<
   convertToAttributeScalar = (attributes: AttributesType) => {
     const attributesArray = [];
     Object.entries(attributes).forEach(([key, value]) => {
-      value.forEach(attribute =>
-        attributesArray.push(
-          `${key.toLowerCase().replace(" ", "-")}:${attribute.toLowerCase()}`
-        )
-      );
+      value.forEach(attribute => attributesArray.push(key + ":" + attribute));
     });
     return attributesArray;
   };
@@ -84,7 +81,27 @@ class CategoryView extends React.Component<
                       filters={this.state}
                       hasNextPage={!loading}
                       products={data.products}
-                      onFiltersChange={this.onFiltersChange}
+                      onAttributeFiltersChange={(attribute, values) => {
+                        const newAttributes = this.state.attributes;
+                        newAttributes[attribute] = values;
+                        this.setState({
+                          attributes: newAttributes
+                        });
+                      }}
+                      onPriceChange={(field, value) => {
+                        field === "priceGte"
+                          ? this.setState({
+                              priceGte: value
+                            })
+                          : this.setState({
+                              priceLte: value
+                            });
+                      }}
+                      onOrder={sortBy =>
+                        this.setState({
+                          sortBy
+                        })
+                      }
                     />
                     {loading && <Loader />}
                   </>

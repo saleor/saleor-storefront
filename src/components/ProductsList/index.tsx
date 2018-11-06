@@ -8,21 +8,19 @@ import {
   ProductListItem,
   SelectField
 } from "..";
-import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   CategoryAttributesInterface,
   CategoryProductInterface
 } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
+import { SelectValue } from "../SelectField";
 
 import "./scss/index.scss";
 
-interface AttributesType {
-  [x: string]: string[];
-}
-
 export interface Filters {
-  attributes: AttributesType;
+  attributes: {
+    [attributeSlug: string]: string[];
+  };
   pageSize: number;
   sortBy: string;
   priceLte: number;
@@ -34,159 +32,125 @@ interface ProductsListProps {
   filters: Filters;
   hasNextPage: boolean;
   products: CategoryProductInterface;
-  searchQuery?: string;
-  onFiltersChange(filters: Filters): void;
+  onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
+  onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
+  onOrder: (order: string) => void;
 }
 
-interface ProductsListState {
-  attributes: AttributesType;
-  priceLte: number;
-  priceGte: number;
-  pageSize: number;
-  sortBy: string;
-}
+export const ProductList: React.SFC<ProductsListProps> = ({
+  attributes,
+  filters,
+  hasNextPage,
+  products,
+  onAttributeFiltersChange,
+  onPriceChange,
+  onOrder
+}) => {
+  const filterOptions = [
+    { value: "price", label: "Price Low-High" },
+    { value: "-price", label: "Price High-Low" },
+    { value: "name", label: "Name Increasing" },
+    { value: "-name", label: "Name Decreasing" }
+  ];
 
-class ProductsList extends React.Component<
-  ProductsListProps,
-  ProductsListState
-> {
-  constructor(props) {
-    super(props);
-    this.state = this.props.filters;
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      this.props.onFiltersChange(this.state);
-    }
-    if (prevProps.searchQuery !== this.props.searchQuery) {
-      this.setState({
-        attributes: {},
-        pageSize: PRODUCTS_PER_PAGE,
-        priceGte: null,
-        priceLte: null,
-        sortBy: ""
-      });
-    }
-  }
-
-  saveAttribute = (attribute, values) => {
-    this.setState({
-      attributes: {
-        ...this.state.attributes,
-        [attribute]: values.map(value => value.value)
-      },
-      pageSize: PRODUCTS_PER_PAGE
-    });
-  };
-
-  savePriceFilter = (priceGte, priceLte) => {
-    this.setState({ priceGte, priceLte });
-  };
-
-  setOrdering = (value: string) => {
-    this.setState({
-      sortBy: value
-    });
-  };
-
-  loadMoreProducts = () => {
-    this.setState({
-      pageSize: this.state.pageSize + PRODUCTS_PER_PAGE
-    });
-  };
-
-  render() {
-    const filterOptions = [
-      { value: "price", label: "Price Low-High" },
-      { value: "-price", label: "Price High-Low" },
-      { value: "name", label: "Name Increasing" },
-      { value: "-name", label: "Name Decreasing" }
-    ];
-
-    return (
-      <div className="products-list">
-        <div className="products-list__filters">
-          <div className="container">
-            <div className="products-list__filters__grid">
-              {this.props.attributes.map(item => (
-                <div
-                  key={item.id}
-                  className="products-list__filters__grid__filter"
-                >
-                  <SelectField
-                    value={
-                      this.state.attributes[item.name]
-                        ? this.state.attributes[item.name].map(attribute => ({
-                            label: attribute,
-                            value: attribute
-                          }))
-                        : []
-                    }
-                    placeholder={item.name}
-                    options={item.values.map(value => ({
-                      label: value.name,
-                      value: value.name
-                    }))}
-                    isMulti
-                    onChange={values => this.saveAttribute(item.name, values)}
-                  />
-                </div>
-              ))}
-              <div className="products-list__filters__grid__filter">
-                <PriceRangeFilter changePriceFilter={this.savePriceFilter} />
+  return (
+    <div className="products-list">
+      <div className="products-list__filters">
+        <div className="container">
+          <div className="products-list__filters__grid">
+            {attributes.map(attribute => (
+              <div
+                key={attribute.id}
+                className="products-list__filters__grid__filter"
+              >
+                <SelectField
+                  value={
+                    filters.attributes[attribute.slug]
+                      ? filters.attributes[attribute.slug].map(
+                          attributeValueSlug => {
+                            const attributeValue = attribute.values.find(
+                              attributeValue =>
+                                attributeValue.slug === attributeValueSlug
+                            );
+                            return {
+                              label: attributeValue.name,
+                              value: attributeValue.slug
+                            };
+                          }
+                        )
+                      : []
+                  }
+                  placeholder={attribute.name}
+                  options={attribute.values.map(attributeValue => ({
+                    label: attributeValue.name,
+                    value: attributeValue.slug
+                  }))}
+                  isMulti
+                  onChange={(values: SelectValue[]) =>
+                    onAttributeFiltersChange(
+                      attribute.slug,
+                      values.map(value => value.value)
+                    )
+                  }
+                />
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="products-list__products container">
-          <div className="products-list__products__subheader">
-            <span className="products-list__products__subheader__total">
-              {this.props.products.totalCount} Products
-            </span>
-            <span className="products-list__products__subheader__sort">
-              <span>Sort by:</span>{" "}
-              <Dropdown
-                options={filterOptions}
-                value={
-                  filterOptions.find(
-                    option => option.value === this.state.sortBy
-                  ) || ""
-                }
-                isSearchable={false}
-                onChange={e => this.setOrdering(e.value)}
+            ))}
+            <div className="products-list__filters__grid__filter">
+              <PriceRangeFilter
+                from={filters.priceGte}
+                to={filters.priceLte}
+                onChange={onPriceChange}
               />
-            </span>
-          </div>
-          {this.props.products.edges.length > 0 ? (
-            <>
-              <div className="products-list__products__grid">
-                {this.props.products.edges.map(({ node: product }) => (
-                  <Link
-                    to={generateProductUrl(product.id, product.name)}
-                    key={product.id}
-                  >
-                    <ProductListItem product={product} />
-                  </Link>
-                ))}
-              </div>
-              <div className="products-list__products__load-more">
-                {this.props.hasNextPage && (
-                  <Button secondary onClick={this.loadMoreProducts}>
-                    Load more products
-                  </Button>
-                )}
-              </div>
-            </>
-          ) : (
-            <div className="products-list__products-not-found">
-              We couldn't find any product matching these conditions
             </div>
-          )}
+          </div>
         </div>
       </div>
-    );
-  }
-}
+      <div className="products-list__products container">
+        <div className="products-list__products__subheader">
+          <span className="products-list__products__subheader__total">
+            {products.totalCount} Products
+          </span>
+          <span className="products-list__products__subheader__sort">
+            <span>Sort by:</span>{" "}
+            <Dropdown
+              options={filterOptions}
+              value={
+                filterOptions.find(option => option.value === filters.sortBy) ||
+                ""
+              }
+              isSearchable={false}
+              onChange={event => onOrder(event.value)}
+            />
+          </span>
+        </div>
+        {products.edges.length > 0 ? (
+          <>
+            <div className="products-list__products__grid">
+              {products.edges.map(({ node: product }) => (
+                <Link
+                  to={generateProductUrl(product.id, product.name)}
+                  key={product.id}
+                >
+                  <ProductListItem product={product} />
+                </Link>
+              ))}
+            </div>
+            <div className="products-list__products__load-more">
+              {hasNextPage && (
+                <Button secondary onClick={this.loadMoreProducts}>
+                  Load more products
+                </Button>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="products-list__products-not-found">
+            We couldn't find any product matching these conditions
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-export default ProductsList;
+export default ProductList;

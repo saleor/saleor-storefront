@@ -17,7 +17,7 @@ export const pageUrl = `${baseUrl}page/:slug/`;
 export const Routes: React.SFC = () => (
   <Switch>
     <Route exact path={baseUrl} component={HomePage} />
-    <Route path={searchUrl} component={SearchPage} />
+    {/* <Route path={searchUrl} component={SearchPage} /> */}
     <Route path={categoryUrl} component={CategoryPage} />
     <Route path={productUrl} component={ProductPage} />
     <Route path={cartUrl} component={CartPage} />

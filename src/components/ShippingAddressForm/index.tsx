@@ -87,7 +87,6 @@ const ShippingAddressForm: React.SFC<{
             <SelectField
               label="Country"
               name="country"
-              autoComplete="country-name"
               options={countries.map(country => ({
                 label: country.country,
                 value: country.code

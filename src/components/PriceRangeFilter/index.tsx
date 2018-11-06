@@ -5,60 +5,85 @@ import { SelectField, TextField } from "..";
 
 import "./scss/index.scss";
 
-class PriceRangeFilter extends React.Component<
-  { locale?: string; changePriceFilter(from: number, to: number): void },
-  { active: boolean; from: string; to: string }
-> {
-  filterRef: any;
-  constructor(props) {
-    super(props);
-    this.state = { active: false, from: "", to: "" };
-  }
+interface PriceRangeFilterProps {
+  from: number;
+  to: number;
+  onChange: (field: "priceLte" | "priceGte", value: number) => void;
+}
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      (this.state.from &&
-        this.state.to &&
-        this.state.from !== prevState.from) ||
-      this.state.to !== prevState.to
-    ) {
-      this.props.changePriceFilter(
-        Number(this.state.from),
-        Number(this.state.to)
-      );
-    }
-  }
+interface PriceRangeFilterState {
+  active: boolean;
+}
+
+class PriceRangeFilter extends React.Component<
+  PriceRangeFilterProps,
+  PriceRangeFilterState
+> {
+  filterRef = React.createRef<HTMLDivElement>();
+
+  state: PriceRangeFilterState = {
+    active: false
+  };
 
   componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
+    document.addEventListener("mousedown", this.handleClickAway);
   }
 
-  handleClickOutside = event => {
-    if (this.filterRef && !this.filterRef.contains(event.target)) {
+  handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    this.setState({ active: true });
+    event.stopPropagation();
+  };
+
+  handleClickAway = (event: Event) => {
+    if (
+      this.state.active &&
+      !this.filterRef.current.contains(event.target as Node)
+    ) {
       this.setState({ active: false });
     }
   };
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickAway);
+  }
+
+  createLabel() {
+    const { from, to } = this.props;
+    if (!!from && !!to) {
+      return from + " - " + to;
+    } else if (!!from) {
+      return "from " + from;
+    } else if (!!to) {
+      return "to " + to;
+    } else {
+      return undefined;
+    }
+  }
 
   render() {
     const Control = props => (
       <components.Control {...props} isFocused={this.state.active} />
     );
 
+    const { from, onChange, to } = this.props;
+
     return (
       <div
         className="price-filter"
-        ref={node => (this.filterRef = node)}
-        onClick={() => this.setState({ active: true })}
+        ref={this.filterRef}
+        onClick={this.handleClick}
       >
         <SelectField
           placeholder="Price range"
           menuIsOpen={false}
           components={{ Control }}
           value={
-            this.state.from &&
-            this.state.to && {
-              label: `${this.state.from} - ${this.state.to}`
-            }
+            this.createLabel()
+              ? {
+                  label: this.createLabel(),
+                  value: ""
+                }
+              : undefined
           }
         />
         <div
@@ -69,12 +94,14 @@ class PriceRangeFilter extends React.Component<
           <TextField
             type="number"
             placeholder="From"
-            onChange={e => this.setState({ from: e.target.value })}
+            onChange={event => onChange("priceGte", event.target.value as any)}
+            value={from}
           />
           <TextField
             type="number"
             placeholder="To"
-            onChange={e => this.setState({ to: e.target.value })}
+            onChange={event => onChange("priceLte", event.target.value as any)}
+            value={to}
           />
         </div>
       </div>
