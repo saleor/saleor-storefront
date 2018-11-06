@@ -68,7 +68,7 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
           }}
           fetchPolicy="cache-and-network"
           errorPolicy="all"
-          key={match.params.id}
+          key={match.params.id + JSON.stringify(filters)}
         >
           {({ loading, error, data }) => {
             const canDisplay =
@@ -99,11 +99,10 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                       qs[field] = value;
                       history.replace("?" + stringifyQs(qs));
                     }}
-                    onOrder={sortBy =>
-                      this.setState({
-                        sortBy
-                      })
-                    }
+                    onOrder={sortBy => {
+                      qs.sortBy = sortBy;
+                      history.replace("?" + stringifyQs(qs));
+                    }}
                   />
                   {loading && <Loader />}
                 </>
