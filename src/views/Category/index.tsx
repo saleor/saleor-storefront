@@ -44,17 +44,10 @@ class CategoryView extends React.Component<CategoryViewProps, Filters> {
     };
   }
 
-  onFiltersChange = filters => {
-    this.setState(filters);
-  };
-
-  convertToAttributeScalar = (attributes: AttributesType) => {
-    const attributesArray = [];
-    Object.entries(attributes).forEach(([key, value]) => {
-      value.forEach(attribute => attributesArray.push(key + ":" + attribute));
-    });
-    return attributesArray;
-  };
+  convertToAttributeScalar = (attributes: AttributesType) =>
+    Object.entries(attributes)
+      .map(([key, value]) => value.map(attribute => key + ":" + attribute))
+      .reduce((prev, curr) => [...prev, ...curr], []);
 
   render() {
     return (
