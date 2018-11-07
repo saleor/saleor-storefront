@@ -13,6 +13,9 @@ A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://
 - Single-page application experience
 - [Braintree Payment Gateway](https://www.braintreepayments.com/) integration
 
+## Demo
+See the [public demo](http://pwa.getsaleor.com) of Saleor Storefront!
+
 
 ## Getting Started
 
