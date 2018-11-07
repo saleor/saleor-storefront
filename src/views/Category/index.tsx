@@ -91,7 +91,6 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                     hasNextPage={!loading}
                     products={data.products}
                     onAttributeFiltersChange={(attribute, values) => {
-                      const newAttributes = filters.attributes;
                       qs[attribute] = values;
                       history.replace("?" + stringifyQs(qs));
                     }}
