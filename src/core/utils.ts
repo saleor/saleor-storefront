@@ -62,3 +62,33 @@ export const debounce = (fn, time) => {
     timeout = setTimeout(functionCall, time);
   };
 };
+
+interface AttributeDict {
+  [attributeSlug: string]: string[];
+}
+export const convertToAttributeScalar = (attributes: AttributeDict) =>
+  Object.entries(attributes)
+    .map(
+      ([key, value]) =>
+        typeof value === "string"
+          ? key + ":" + value
+          : value.map(attribute => key + ":" + attribute)
+    )
+    .reduce(
+      (prev, curr) =>
+        typeof curr === "string" ? [...prev, curr] : [...prev, ...curr],
+      []
+    );
+
+interface QueryString {
+  [key: string]: string[] | string | null | undefined;
+}
+export const getAttributesFromQs = (qs: QueryString) =>
+  Object.keys(qs)
+    .filter(
+      key => !["pageSize", "priceGte", "priceLte", "sortBy", "q"].includes(key)
+    )
+    .reduce((prev, curr) => {
+      prev[curr] = typeof qs[curr] === "string" ? [qs[curr]] : qs[curr];
+      return prev;
+    }, {});

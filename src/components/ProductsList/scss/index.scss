@@ -5,12 +5,13 @@
     background-color: $gray-light;
 
     &__grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: $spacer * 2;
+      padding: $spacer 0;
 
       &__filter {
         min-width: 15rem;
-        padding: $spacer $spacer $spacer 0;
       }
     }
   }

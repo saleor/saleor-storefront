@@ -1745,11 +1745,13 @@ export interface SearchProducts_products {
 export interface SearchProducts_attributes_edges_node_values {
   id: string;
   name: string | null;
+  slug: string;
 }
 
 export interface SearchProducts_attributes_edges_node {
   id: string;
   name: string | null;
+  slug: string;
   values: (SearchProducts_attributes_edges_node_values | null)[] | null;
 }
 

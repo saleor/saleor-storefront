@@ -37,9 +37,11 @@ export const GET_SEARCH_PRODUCTS = gql`
         node {
           id
           name
+          slug
           values {
             id
             name
+            slug
           }
         }
       }
