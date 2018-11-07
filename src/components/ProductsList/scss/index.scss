@@ -10,6 +10,13 @@
       grid-gap: $spacer * 2;
       padding: $spacer 0;
 
+      @media (max-width: $medium-screen) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: $small-screen) {
+        grid-template-columns: 1fr;
+      }
+
       &__filter {
         min-width: 15rem;
       }
