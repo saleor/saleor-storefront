@@ -52,17 +52,6 @@ export const generateCategoryUrl = (id: string, name: string) =>
 
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
-export const debounce = (fn, time) => {
-  let timeout;
-
-  return () => {
-    const functionCall = () => fn.apply(this, arguments);
-
-    clearTimeout(timeout);
-    timeout = setTimeout(functionCall, time);
-  };
-};
-
 interface AttributeDict {
   [attributeSlug: string]: string[];
 }

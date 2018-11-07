@@ -5,7 +5,7 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { Loader, ProductsList } from "../../components";
+import { Loader, ProductsList, Debounce } from "../../components";
 import { Error } from "../../components/Error";
 import NetworkStatus from "../../components/NetworkStatus";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
@@ -13,7 +13,6 @@ import { AttributeList, Filters } from "../../components/ProductsList";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertToAttributeScalar,
-  debounce,
   getAttributesFromQs
 } from "../../core/utils";
 import { GET_SEARCH_PRODUCTS } from "./queries";
@@ -65,36 +64,42 @@ export const SearchView: React.SFC<SearchViewProps> = ({
             };
 
             return (
-              <SearchPage onQueryChange={handleQueryChange} query={qs.q}>
-                {canDisplayProducts ? (
-                  <ProductsList
-                    products={data.products}
-                    hasNextPage={!loading}
-                    filters={filters}
-                    attributes={data.attributes.edges.map(edge => edge.node)}
-                    onAttributeFiltersChange={(attribute, values) => {
-                      qs[attribute] = values;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                    onPriceChange={(field, value) => {
-                      qs[field] = value;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                    onOrder={sortBy => {
-                      qs.sortBy = sortBy;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                  />
-                ) : !!error ? (
-                  isOnline ? (
-                    <Error error={error.message} />
-                  ) : (
-                    <OfflinePlaceholder />
-                  )
-                ) : (
-                  <Loader full />
+              <Debounce debounce={handleQueryChange} value={qs.q}>
+                {({ change, value: query }) => (
+                  <SearchPage onQueryChange={change} query={query}>
+                    {canDisplayProducts ? (
+                      <ProductsList
+                        products={data.products}
+                        hasNextPage={!loading}
+                        filters={filters}
+                        attributes={data.attributes.edges.map(
+                          edge => edge.node
+                        )}
+                        onAttributeFiltersChange={(attribute, values) => {
+                          qs[attribute] = values;
+                          history.replace("?" + stringifyQs(qs));
+                        }}
+                        onPriceChange={(field, value) => {
+                          qs[field] = value;
+                          history.replace("?" + stringifyQs(qs));
+                        }}
+                        onOrder={sortBy => {
+                          qs.sortBy = sortBy;
+                          history.replace("?" + stringifyQs(qs));
+                        }}
+                      />
+                    ) : !!error ? (
+                      isOnline ? (
+                        <Error error={error.message} />
+                      ) : (
+                        <OfflinePlaceholder />
+                      )
+                    ) : (
+                      <Loader full />
+                    )}
+                  </SearchPage>
                 )}
-              </SearchPage>
+              </Debounce>
             );
           }}
         </Query>

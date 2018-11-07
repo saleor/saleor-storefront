@@ -36,3 +36,4 @@ export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
+export { default as Debounce } from "./Debounce";
