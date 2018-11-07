@@ -13,9 +13,11 @@ const ProductListItem: React.SFC<ProductListItemProps> = ({
   product: { name, category, price, thumbnailUrl, thumbnailUrl2x }
 }) => (
   <div className="product-list-item">
-    <CachedImage url={thumbnailUrl} url2x={thumbnailUrl2x}>
-      <img src={require("../../images/nophoto.png")} />
-    </CachedImage>
+    <div className="product-list-item__image">
+      <CachedImage url={thumbnailUrl} url2x={thumbnailUrl2x}>
+        <img src={require("../../images/nophoto.png")} />
+      </CachedImage>
+    </div>
     <h4 className="product-list-item__title">{name}</h4>
     <p className="product-list-item__category">{category.name}</p>
     <p className="product-list-item__price">{price.localized}</p>
