@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { Query } from "react-apollo";
 import Media from "react-media";
@@ -8,6 +9,7 @@ import { Button, Loader, TextField } from "..";
 import { SearchResults } from "../../core/types/saleor";
 import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
+import CachedImage from "../CachedImage";
 import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
@@ -16,7 +18,6 @@ import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
 
 import { mediumScreen } from "../App/scss/variables.scss";
-import CachedImage from "../CachedImage";
 import "./scss/index.scss";
 
 const canDisplay = (data: SearchResults) =>
@@ -34,8 +35,17 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
         {overlayContext => {
           if (overlayContext.type === OverlayType.search) {
             return (
-              <Overlay context={overlayContext}>
-                <div className="search" onClick={e => e.stopPropagation()}>
+              <Overlay
+                context={overlayContext}
+                className="overlay--no-background"
+              >
+                <div
+                  className={classNames({
+                    ["search"]: true,
+                    ["search--has-results"]: this.state.search.length > 0
+                  })}
+                  onClick={e => e.stopPropagation()}
+                >
                   <div className="search__input">
                     <Media query={{ maxWidth: mediumScreen }}>
                       {matches =>
