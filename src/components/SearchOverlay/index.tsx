@@ -83,79 +83,81 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                       }
                     </Media>
                   </div>
-                  {this.state.search ? (
-                    <>
-                      <div className="search__products">
-                        <NetworkStatus>
-                          {isOnline => (
-                            <Query
-                              query={GET_SEARCH_RESULTS}
-                              variables={{ query: this.state.search }}
-                              fetchPolicy="cache-and-network"
-                              errorPolicy="all"
-                            >
-                              {({ data, error, loading }) => {
-                                if (canDisplay(data)) {
-                                  return (
-                                    <>
-                                      <ul>
-                                        {data.products.edges.map(item => (
-                                          <li
-                                            key={item.node.id}
-                                            className="search__products__item"
-                                          >
-                                            <Link
-                                              to={generateProductUrl(
-                                                item.node.id,
-                                                item.node.name
-                                              )}
-                                            >
-                                              <CachedImage
-                                                url={
-                                                  item.node.thumbnailUrl ||
-                                                  require("../../images/nophoto.png")
-                                                }
-                                                url2x={item.node.thumbnailUrl2x}
-                                              />
-                                              <span>
-                                                <h4>{item.node.name}</h4>
-                                                <p>{item.node.category.name}</p>
-                                              </span>
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
-                                      {loading ? (
-                                        <Loader />
-                                      ) : (
-                                        <div className="search__products__footer">
-                                          <Link
-                                            to={{
-                                              pathname: searchUrl,
-                                              search: `?q=${this.state.search}`
-                                            }}
-                                          >
-                                            <Button>Show all results</Button>
-                                          </Link>
-                                        </div>
-                                      )}
-                                    </>
-                                  );
-                                }
-                                if (error) {
-                                  if (!isOnline) {
-                                    return <OfflinePlaceholder />;
-                                  }
-                                  return <Error error={error.message} />;
-                                }
-                                return <Loader />;
-                              }}
-                            </Query>
-                          )}
-                        </NetworkStatus>
-                      </div>
-                    </>
-                  ) : null}
+                  <div
+                    className={classNames({
+                      ["search__products"]: true,
+                      ["search__products--expanded"]:
+                        this.state.search.length > 0
+                    })}
+                  >
+                    <NetworkStatus>
+                      {isOnline => (
+                        <Query
+                          query={GET_SEARCH_RESULTS}
+                          variables={{ query: this.state.search }}
+                          fetchPolicy="cache-and-network"
+                          errorPolicy="all"
+                        >
+                          {({ data, error, loading }) => {
+                            if (canDisplay(data)) {
+                              return (
+                                <>
+                                  <ul>
+                                    {data.products.edges.map(item => (
+                                      <li
+                                        key={item.node.id}
+                                        className="search__products__item"
+                                      >
+                                        <Link
+                                          to={generateProductUrl(
+                                            item.node.id,
+                                            item.node.name
+                                          )}
+                                        >
+                                          <CachedImage
+                                            url={
+                                              item.node.thumbnailUrl ||
+                                              require("../../images/nophoto.png")
+                                            }
+                                            url2x={item.node.thumbnailUrl2x}
+                                          />
+                                          <span>
+                                            <h4>{item.node.name}</h4>
+                                            <p>{item.node.category.name}</p>
+                                          </span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  <div className="search__products__footer">
+                                    {loading ? (
+                                      <Loader />
+                                    ) : (
+                                      <Link
+                                        to={{
+                                          pathname: searchUrl,
+                                          search: `?q=${this.state.search}`
+                                        }}
+                                      >
+                                        <Button>Show all results</Button>
+                                      </Link>
+                                    )}
+                                  </div>
+                                </>
+                              );
+                            }
+                            if (error) {
+                              if (!isOnline) {
+                                return <OfflinePlaceholder />;
+                              }
+                              return <Error error={error.message} />;
+                            }
+                            return <Loader />;
+                          }}
+                        </Query>
+                      )}
+                    </NetworkStatus>
+                  </div>
                 </div>
               </Overlay>
             );

@@ -1,10 +1,12 @@
 @import "../../App/scss/variables.scss";
 
+$drawer-width: 25rem;
+
 .search {
   width: 100vw;
 
   @media (min-width: $medium-screen) {
-    width: 25rem;
+    width: $drawer-width;
   }
 
   &--has-results {
@@ -39,9 +41,17 @@
   }
 
   &__products {
-    max-height: calc(100vh - 9rem);
+    background: #ffffff;
     overflow: auto;
     padding: $spacer / 2 0;
+    position: relative;
+    right: -$drawer-width;
+    transition: 300ms;
+    height: calc(100vh - 3rem);
+
+    &--expanded {
+      right: 0;
+    }
 
     &__item {
       padding: $spacer / 2 $spacer;
@@ -72,6 +82,10 @@
 
       &:hover {
         background-color: $gray-light;
+      }
+
+      ul {
+        max-height: calc(100vh - 9rem);
       }
     }
 
