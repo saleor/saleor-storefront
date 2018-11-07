@@ -2,7 +2,6 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import {
-  ArticlePage,
   CartPage,
   CategoryPage,
   CheckoutLogin,
@@ -10,6 +9,7 @@ import {
   ProductPage,
   SearchPage
 } from "..";
+import ArticlePage from "../../views/Article";
 import { NotFound } from "../NotFound";
 
 export const baseUrl = "/";
