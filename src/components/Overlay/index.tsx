@@ -69,10 +69,11 @@ export const Overlay: React.SFC<OverlayProps> = ({
   context: { type, theme, hide }
 }) => (
   <div
-    className={classNames(
-      `overlay${type ? ` overlay--${type}` : ""}`,
-      className
-    )}
+    className={classNames({
+      overlay: true,
+      [`overlay--${type}`]: !!type,
+      [className]: !!className
+    })}
     onClick={() => hide()}
   >
     <div className={`overlay__${theme}`} onClick={e => e.stopPropagation()}>
