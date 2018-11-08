@@ -45,9 +45,13 @@ $drawer-width: 25rem;
     overflow: auto;
     padding: $spacer / 2 0;
     position: relative;
-    right: -$drawer-width;
+    right: 0;
     transition: 300ms;
     height: calc(100vh - 3rem);
+
+    @media (min-width: $medium-screen) {
+      right: -$drawer-width;
+    }
 
     &--expanded {
       right: 0;
