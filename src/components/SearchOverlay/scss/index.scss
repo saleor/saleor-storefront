@@ -41,7 +41,7 @@ $drawer-width: 25rem;
   }
 
   &__products {
-    background: #ffffff;
+    background: $white;
     overflow: auto;
     padding: $spacer / 2 0;
     position: relative;
