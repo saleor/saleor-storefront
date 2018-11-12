@@ -1,11 +1,16 @@
 @import "../../App/scss/variables.scss";
 
+$drawer-width: 25rem;
+
 .search {
-  min-height: 100vh;
   width: 100vw;
 
   @media (min-width: $medium-screen) {
-    width: 25rem;
+    width: $drawer-width;
+  }
+
+  &--has-results {
+    min-height: 100vh;
   }
 
   &__input {
@@ -36,9 +41,21 @@
   }
 
   &__products {
-    max-height: calc(100vh - 9rem);
+    background: $white;
     overflow: auto;
     padding: $spacer / 2 0;
+    position: relative;
+    right: 0;
+    transition: 300ms;
+    height: calc(100vh - 3rem);
+
+    @media (min-width: $medium-screen) {
+      right: -$drawer-width;
+    }
+
+    &--expanded {
+      right: 0;
+    }
 
     &__item {
       padding: $spacer / 2 $spacer;
@@ -69,6 +86,10 @@
 
       &:hover {
         background-color: $gray-light;
+      }
+
+      ul {
+        max-height: calc(100vh - 9rem);
       }
     }
 

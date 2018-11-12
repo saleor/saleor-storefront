@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 
@@ -58,12 +59,21 @@ class OverlayProvider extends React.Component<
   }
 }
 
-export const Overlay: React.SFC<{ context: OverlayContextInterface }> = ({
+interface OverlayProps {
+  context: OverlayContextInterface;
+  className?: string;
+}
+export const Overlay: React.SFC<OverlayProps> = ({
   children,
+  className,
   context: { type, theme, hide }
 }) => (
   <div
-    className={`overlay${type ? ` overlay--${type}` : ""}`}
+    className={classNames({
+      overlay: true,
+      [`overlay--${type}`]: !!type,
+      [className]: !!className
+    })}
     onClick={() => hide()}
   >
     <div className={`overlay__${theme}`} onClick={e => e.stopPropagation()}>

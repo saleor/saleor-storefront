@@ -25,13 +25,19 @@
   min-height: 100vh;
   width: 100%;
   background-color: rgba(199, 207, 207, 0.8);
+  transition: 300ms;
 
   &--search {
     top: 3.55rem;
 
     .overlay__right {
+      background-color: transparent;
       height: auto;
     }
+  }
+
+  &--no-background {
+    background-color: transparent;
   }
 
   &__left {
