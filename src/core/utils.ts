@@ -57,11 +57,10 @@ interface AttributeDict {
 }
 export const convertToAttributeScalar = (attributes: AttributeDict) =>
   Object.entries(attributes)
-    .map(
-      ([key, value]) =>
-        typeof value === "string"
-          ? key + ":" + value
-          : value.map(attribute => key + ":" + attribute)
+    .map(([key, value]) =>
+      typeof value === "string"
+        ? key + ":" + value
+        : value.map(attribute => key + ":" + attribute)
     )
     .reduce(
       (prev, curr) =>
@@ -81,3 +80,6 @@ export const getAttributesFromQs = (qs: QueryString) =>
       prev[curr] = typeof qs[curr] === "string" ? [qs[curr]] : qs[curr];
       return prev;
     }, {});
+
+export const getValueOrEmpty = <T>(value: T): T | string =>
+  value === undefined || value === null ? "" : value;

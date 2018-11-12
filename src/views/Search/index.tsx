@@ -34,9 +34,9 @@ export const SearchView: React.SFC<SearchViewProps> = ({
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: qs.priceGte || null,
-    priceLte: qs.priceLte || null,
-    sortBy: qs.sortBy || null
+    priceGte: qs.priceGte,
+    priceLte: qs.priceLte,
+    sortBy: qs.sortBy
   };
 
   return (

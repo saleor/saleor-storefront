@@ -4,6 +4,7 @@ import { components } from "react-select";
 import { SelectField, TextField } from "..";
 
 import "./scss/index.scss";
+import { getValueOrEmpty } from "../../core/utils";
 
 interface PriceRangeFilterProps {
   from: number;
@@ -95,13 +96,13 @@ class PriceRangeFilter extends React.Component<
             type="number"
             placeholder="From"
             onChange={event => onChange("priceGte", event.target.value as any)}
-            value={from}
+            value={getValueOrEmpty(from)}
           />
           <TextField
             type="number"
             placeholder="To"
             onChange={event => onChange("priceLte", event.target.value as any)}
-            value={to}
+            value={getValueOrEmpty(to)}
           />
         </div>
       </div>
