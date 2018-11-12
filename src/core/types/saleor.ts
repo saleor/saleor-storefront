@@ -32,6 +32,12 @@ export interface Category_products_edges {
 export interface Category_products {
   totalCount: number | null;
   edges: Category_products_edges[];
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string;
+  };
 }
 
 export interface Category_category_backgroundImage {
@@ -1696,6 +1702,12 @@ export interface SearchResults_products_edges {
 
 export interface SearchResults_products {
   edges: SearchResults_products_edges[];
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string;
+  };
 }
 
 export interface SearchResults {

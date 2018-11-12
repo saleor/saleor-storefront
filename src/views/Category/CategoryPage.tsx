@@ -3,20 +3,22 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { Breadcrumbs, ProductsList } from "../../components";
-import { Filters } from "../../components/ProductsList";
+import { Filters, ProductFilters } from "../../components/ProductFilters";
 import {
-  Category_attributes,
+  Category_attributes_edges_node,
   Category_category,
   Category_products
 } from "../../core/types/saleor";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 
 interface CategoryPageProps {
-  attributes: Category_attributes;
+  attributes: Category_attributes_edges_node[];
   category: Category_category;
+  displayLoader: boolean;
   filters: Filters;
   hasNextPage: boolean;
   products: Category_products;
+  onLoadMore: () => void;
   onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
   onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
   onOrder: (order: string) => void;
@@ -50,39 +52,54 @@ const formatBreadcrumbs = (category: Category_category) => {
 export const CategoryPage: React.SFC<CategoryPageProps> = ({
   attributes,
   category,
+  displayLoader,
   filters,
   hasNextPage,
+  onLoadMore,
   products,
   onAttributeFiltersChange,
   onPriceChange,
   onOrder
-}) => (
-  <div className="category">
-    <div
-      className="category__header"
-      style={
-        category.backgroundImage
-          ? {
-              backgroundImage: `url(${category.backgroundImage.url})`
-            }
-          : undefined
-      }
-    >
-      <span className="category__header__title">
-        <h1>{category.name}</h1>
-      </span>
+}) => {
+  const canDisplayProducts =
+    products &&
+    products.edges !== undefined &&
+    products.totalCount !== undefined;
+  return (
+    <div className="category">
+      <div
+        className="category__header"
+        style={
+          category.backgroundImage
+            ? {
+                backgroundImage: `url(${category.backgroundImage.url})`
+              }
+            : undefined
+        }
+      >
+        <span className="category__header__title">
+          <h1>{category.name}</h1>
+        </span>
+      </div>
+      <div className="container">
+        <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
+      </div>
+      <ProductFilters
+        filters={filters}
+        attributes={attributes}
+        onAttributeFiltersChange={onAttributeFiltersChange}
+        onPriceChange={onPriceChange}
+      />
+      {canDisplayProducts && (
+        <ProductsList
+          displayLoader={displayLoader}
+          filters={filters}
+          hasNextPage={hasNextPage}
+          onLoadMore={onLoadMore}
+          onOrder={onOrder}
+          products={products}
+        />
+      )}
     </div>
-    <div className="container">
-      <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
-    </div>
-    <ProductsList
-      products={products}
-      hasNextPage={hasNextPage}
-      filters={filters}
-      attributes={attributes.edges.map(edge => edge.node)}
-      onAttributeFiltersChange={onAttributeFiltersChange}
-      onPriceChange={onPriceChange}
-      onOrder={onOrder}
-    />
-  </div>
-);
+  );
+};

@@ -1,51 +1,29 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import {
-  Button,
-  Dropdown,
-  PriceRangeFilter,
-  ProductListItem,
-  SelectField
-} from "..";
-import {
-  CategoryAttributesInterface,
-  CategoryProductInterface
-} from "../../core/types";
+import { Button, Dropdown, ProductListItem } from "..";
+import { CategoryProductInterface } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
-import { SelectValue } from "../SelectField";
-
-import "./scss/index.scss";
-
-export interface AttributeList {
-  [attributeSlug: string]: string[];
-}
-
-export interface Filters {
-  attributes: AttributeList;
-  pageSize: number;
-  sortBy: string;
-  priceLte: number;
-  priceGte: number;
-}
+import Loader from "../Loader";
+import { Filters } from "../ProductFilters";
 
 interface ProductsListProps {
-  attributes: CategoryAttributesInterface[];
-  filters: Filters;
+  displayLoader: boolean;
   hasNextPage: boolean;
+  filters: Filters;
+  onLoadMore: () => void;
   products: CategoryProductInterface;
-  onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
-  onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
   onOrder: (order: string) => void;
 }
 
 export const ProductList: React.SFC<ProductsListProps> = ({
-  attributes,
+  displayLoader,
   filters,
   hasNextPage,
+  onLoadMore,
   products,
-  onAttributeFiltersChange,
-  onPriceChange,
   onOrder
 }) => {
   const filterOptions = [
@@ -56,61 +34,16 @@ export const ProductList: React.SFC<ProductsListProps> = ({
   ];
   return (
     <div className="products-list">
-      <div className="products-list__filters">
-        <div className="container">
-          <div className="products-list__filters__grid">
-            {attributes.map(attribute => (
-              <div
-                key={attribute.id}
-                className="products-list__filters__grid__filter"
-              >
-                <SelectField
-                  value={
-                    filters.attributes[attribute.slug]
-                      ? filters.attributes[attribute.slug].map(
-                          attributeValueSlug => {
-                            const attributeValue = attribute.values.find(
-                              attributeValue =>
-                                attributeValue.slug === attributeValueSlug
-                            );
-                            return {
-                              label: attributeValue.name,
-                              value: attributeValue.slug
-                            };
-                          }
-                        )
-                      : []
-                  }
-                  placeholder={attribute.name}
-                  options={attribute.values.map(attributeValue => ({
-                    label: attributeValue.name,
-                    value: attributeValue.slug
-                  }))}
-                  isMulti
-                  onChange={(values: SelectValue[]) =>
-                    onAttributeFiltersChange(
-                      attribute.slug,
-                      values.map(value => value.value)
-                    )
-                  }
-                />
-              </div>
-            ))}
-            <div className="products-list__filters__grid__filter">
-              <PriceRangeFilter
-                from={filters.priceGte}
-                to={filters.priceLte}
-                onChange={onPriceChange}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="products-list__products container">
         <div className="products-list__products__subheader">
           <span className="products-list__products__subheader__total">
             {products.totalCount} Products
           </span>
+          {displayLoader && (
+            <div className="products-list__loader">
+              <Loader />
+            </div>
+          )}
           <span className="products-list__products__subheader__sort">
             <span>Sort by:</span>{" "}
             <Dropdown
@@ -137,10 +70,14 @@ export const ProductList: React.SFC<ProductsListProps> = ({
               ))}
             </div>
             <div className="products-list__products__load-more">
-              {hasNextPage && (
-                <Button secondary onClick={this.loadMoreProducts}>
-                  Load more products
-                </Button>
+              {displayLoader ? (
+                <Loader />
+              ) : (
+                hasNextPage && (
+                  <Button secondary onClick={onLoadMore}>
+                    Load more products
+                  </Button>
+                )
               )}
             </div>
           </>

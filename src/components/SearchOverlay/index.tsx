@@ -1,3 +1,6 @@
+import { mediumScreen } from "../App/scss/variables.scss";
+import "./scss/index.scss";
+
 import classNames from "classnames";
 import * as React from "react";
 import { Query } from "react-apollo";
@@ -10,15 +13,13 @@ import { SearchResults } from "../../core/types/saleor";
 import { generateProductUrl } from "../../core/utils";
 import { searchUrl } from "../App/routes";
 import CachedImage from "../CachedImage";
+import Debounce from "../Debounce";
 import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_SEARCH_RESULTS } from "./queries";
-
-import { mediumScreen } from "../App/scss/variables.scss";
-import "./scss/index.scss";
 
 const canDisplay = (data: SearchResults) =>
   data && data.products && data.products.edges;
@@ -47,41 +48,51 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                   onClick={e => e.stopPropagation()}
                 >
                   <div className="search__input">
-                    <Media query={{ maxWidth: mediumScreen }}>
-                      {matches =>
-                        matches ? (
-                          <TextField
-                            iconLeft={
-                              <ReactSVG
-                                path={require("../../images/x.svg")}
-                                onClick={overlayContext.hide}
-                              />
-                            }
-                            iconRight={
-                              <ReactSVG
-                                path={require("../../images/search.svg")}
-                              />
-                            }
-                            autoFocus={true}
-                            onChange={e =>
-                              this.setState({ search: e.target.value })
-                            }
-                          />
-                        ) : (
-                          <TextField
-                            iconRight={
-                              <ReactSVG
-                                path={require("../../images/search.svg")}
-                              />
-                            }
-                            autoFocus={true}
-                            onChange={e =>
-                              this.setState({ search: e.target.value })
-                            }
-                          />
-                        )
+                    <Debounce
+                      debounce={event =>
+                        this.setState({
+                          search: event.target.value
+                        })
                       }
-                    </Media>
+                      value={this.state.search}
+                      time={500}
+                    >
+                      {({ change, value: query }) => (
+                        <Media query={{ maxWidth: mediumScreen }}>
+                          {matches =>
+                            matches ? (
+                              <TextField
+                                iconLeft={
+                                  <ReactSVG
+                                    path={require("../../images/x.svg")}
+                                    onClick={overlayContext.hide}
+                                  />
+                                }
+                                iconRight={
+                                  <ReactSVG
+                                    path={require("../../images/search.svg")}
+                                  />
+                                }
+                                autoFocus={true}
+                                onChange={change}
+                                value={query}
+                              />
+                            ) : (
+                              <TextField
+                                iconRight={
+                                  <ReactSVG
+                                    path={require("../../images/search.svg")}
+                                  />
+                                }
+                                autoFocus={true}
+                                onChange={change}
+                                value={query}
+                              />
+                            )
+                          }
+                        </Media>
+                      )}
+                    </Debounce>
                   </div>
                   <div
                     className={classNames({

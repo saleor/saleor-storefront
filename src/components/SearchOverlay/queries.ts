@@ -16,6 +16,12 @@ export const GET_SEARCH_RESULTS = gql`
           }
         }
       }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
     }
   }
 `;

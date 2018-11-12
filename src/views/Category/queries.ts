@@ -4,12 +4,14 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
   query Category(
     $id: ID!
     $attributes: [AttributeScalar]
+    $after: String
     $pageSize: Int
     $sortBy: String
     $priceLte: Float
     $priceGte: Float
   ) {
     products(
+      after: $after
       attributes: $attributes
       categories: [$id]
       first: $pageSize
@@ -34,6 +36,12 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
             localized
           }
         }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
       }
     }
     category(id: $id) {

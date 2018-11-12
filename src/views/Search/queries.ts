@@ -6,12 +6,14 @@ export const GET_SEARCH_PRODUCTS = gql`
     $attributes: [AttributeScalar]
     $pageSize: Int
     $sortBy: String
+    $after: String
   ) {
     products(
       query: $query
       attributes: $attributes
       first: $pageSize
       sortBy: $sortBy
+      after: $after
     ) {
       totalCount
       edges {
@@ -30,6 +32,10 @@ export const GET_SEARCH_PRODUCTS = gql`
             localized
           }
         }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
       }
     }
     attributes {

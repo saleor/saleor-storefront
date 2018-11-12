@@ -8,8 +8,13 @@ import { Error } from "../../components/Error";
 import NetworkStatus from "../../components/NetworkStatus";
 import { NotFound } from "../../components/NotFound";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
-import { AttributeList, Filters } from "../../components/ProductsList";
+import {
+  AttributeList,
+  Filters,
+  ProductFilters
+} from "../../components/ProductFilters";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { Category } from "../../core/types/saleor";
 import {
   convertToAttributeScalar,
   getAttributesFromQs,
@@ -48,43 +53,66 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
           }}
           fetchPolicy="cache-and-network"
           errorPolicy="all"
-          key={match.params.id + JSON.stringify(filters)}
         >
-          {({ loading, error, data }) => {
-            const canDisplay =
+          {({ loading, error, data, fetchMore }) => {
+            const canDisplayFilters =
               data &&
               data.attributes &&
               data.attributes.edges !== undefined &&
-              data.products &&
-              data.products.edges !== undefined &&
-              data.products.totalCount !== undefined &&
               data.category &&
-              data.category.name;
+              data.category.name !== undefined;
 
-            if (canDisplay) {
+            if (canDisplayFilters) {
+              const handleLoadMore = () =>
+                fetchMore({
+                  query: GET_CATEGORY_AND_ATTRIBUTES,
+                  updateQuery: (prev: Category, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) {
+                      return prev;
+                    }
+                    return {
+                      ...prev,
+                      products: {
+                        ...prev.products,
+                        edges: [
+                          ...prev.products.edges,
+                          ...fetchMoreResult.products.edges
+                        ],
+                        pageInfo: fetchMoreResult.products.pageInfo
+                      }
+                    };
+                  },
+                  variables: {
+                    ...filters,
+                    after: data.products.pageInfo.endCursor,
+                    attributes: convertToAttributeScalar(filters.attributes),
+                    id: getGraphqlIdFromDBId(match.params.id, "Category")
+                  }
+                });
               return (
-                <>
-                  <CategoryPage
-                    attributes={data.attributes}
-                    category={data.category}
-                    filters={filters}
-                    hasNextPage={!loading}
-                    products={data.products}
-                    onAttributeFiltersChange={(attribute, values) => {
-                      qs[attribute] = values;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                    onPriceChange={(field, value) => {
-                      qs[field] = value;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                    onOrder={sortBy => {
-                      qs.sortBy = sortBy;
-                      history.replace("?" + stringifyQs(qs));
-                    }}
-                  />
-                  {loading && <Loader />}
-                </>
+                <CategoryPage
+                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  category={data.category}
+                  displayLoader={loading}
+                  hasNextPage={
+                    data.products && data.products.pageInfo.hasNextPage
+                  }
+                  filters={filters}
+                  products={data.products}
+                  onAttributeFiltersChange={(attribute, values) => {
+                    qs[attribute] = values;
+                    history.replace("?" + stringifyQs(qs));
+                  }}
+                  onLoadMore={handleLoadMore}
+                  onOrder={sortBy => {
+                    qs.sortBy = sortBy;
+                    history.replace("?" + stringifyQs(qs));
+                  }}
+                  onPriceChange={(field, value) => {
+                    qs[field] = value;
+                    history.replace("?" + stringifyQs(qs));
+                  }}
+                />
               );
             }
             if (data && data.category === null) {

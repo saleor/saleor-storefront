@@ -7,7 +7,7 @@ export interface DebounceProps<TValue> {
       value: TValue;
     }
   ) => React.ReactElement<any>);
-  debounce: (event: React.FormEvent<any>) => void;
+  debounce: (event: React.ChangeEvent<any>) => void;
   time?: number;
   value: TValue;
 }
@@ -30,6 +30,7 @@ export class Debounce<TValue> extends React.Component<
         value: props.value
       };
     }
+    return state;
   }
 
   state: DebounceState<TValue> = {
