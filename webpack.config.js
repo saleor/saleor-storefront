@@ -98,16 +98,12 @@ module.exports = (env, argv) => {
         logo: `${sourceDir}/images/favicon.png`,
         prefix: "images/favicons/",
         favicons: {
-          appName: "Saleor ecommerce",
-          appDescription: "Store front for the Saloer ecommerce platform",
+          appName: "Saleor",
+          appDescription: "Storefront for the Saleor e-commerce platform",
           display: "standalone",
           developerURL: null, // prevent retrieving from the nearest package.json
           background: "#ddd",
           theme_color: "#333",
-          icons: {
-            coast: false,
-            yandex: false
-          }
         }
       }),
       new SWPrecacheWebpackPlugin({
