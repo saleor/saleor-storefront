@@ -1,5 +1,5 @@
-import * as React from "react";
 import classNames from "classnames";
+import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 
 import "./scss/index.scss";
