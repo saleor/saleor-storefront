@@ -45,11 +45,11 @@
         font-weight: $bold-font-weight;
         text-transform: uppercase;
         color: $blue;
-        font-size: 64px;
+        font-size: $h1-font-size;
         font-weight: 900;
 
         @media (max-width: $small-screen) {
-          font-size: 18px;
+          font-size: $h4-font-size;
         }
 
         @media (min-width: $small-screen) and (max-width: $medium-screen) {
