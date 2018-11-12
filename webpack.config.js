@@ -99,7 +99,7 @@ module.exports = (env, argv) => {
         prefix: "images/favicons/",
         favicons: {
           appName: "Saleor",
-          appDescription: "Store front for the Saleor ecommerce platform",
+          appDescription: "Storefront for the Saleor e-commerce platform",
           display: "standalone",
           developerURL: null, // prevent retrieving from the nearest package.json
           background: "#ddd",
