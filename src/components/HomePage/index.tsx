@@ -41,26 +41,28 @@ const HomePage: React.SFC = () => (
                     : null
                 }
               >
-                <span className="home-page__hero__title">
-                  <h1>Final reduction</h1>
-                </span>
-                <br />
-                <span className="home-page__hero__title">
-                  <h1>Up to 70% off sale</h1>
-                </span>
-                <br />
-                {loading && !data ? (
-                  <Loader />
-                ) : (
-                  <Link
-                    to={generateCategoryUrl(
-                      data.categories.edges[0].node.id,
-                      data.categories.edges[0].node.name
-                    )}
-                  >
-                    <Button>Shop sale</Button>
-                  </Link>
-                )}
+                <div className="home-page__hero-text">
+                  <span className="home-page__hero__title">
+                    <h1>Final reduction</h1>
+                  </span>
+                  <span className="home-page__hero__title">
+                    <h1>Up to 70% off sale</h1>
+                  </span>
+                </div>
+                <div className="home-page__hero-action">
+                  {loading && !data ? (
+                    <Loader />
+                  ) : (
+                    <Link
+                      to={generateCategoryUrl(
+                        data.categories.edges[0].node.id,
+                        data.categories.edges[0].node.name
+                      )}
+                    >
+                      <Button>Shop sale</Button>
+                    </Link>
+                  )}
+                </div>
               </div>
               <div className="home-page__featured">
                 <div className="container">
