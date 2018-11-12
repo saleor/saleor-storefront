@@ -52,13 +52,34 @@ export const generateCategoryUrl = (id: string, name: string) =>
 
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
-export const debounce = (fn, time) => {
-  let timeout;
+interface AttributeDict {
+  [attributeSlug: string]: string[];
+}
+export const convertToAttributeScalar = (attributes: AttributeDict) =>
+  Object.entries(attributes)
+    .map(([key, value]) =>
+      typeof value === "string"
+        ? key + ":" + value
+        : value.map(attribute => key + ":" + attribute)
+    )
+    .reduce(
+      (prev, curr) =>
+        typeof curr === "string" ? [...prev, curr] : [...prev, ...curr],
+      []
+    );
 
-  return () => {
-    const functionCall = () => fn.apply(this, arguments);
+interface QueryString {
+  [key: string]: string[] | string | null | undefined;
+}
+export const getAttributesFromQs = (qs: QueryString) =>
+  Object.keys(qs)
+    .filter(
+      key => !["pageSize", "priceGte", "priceLte", "sortBy", "q"].includes(key)
+    )
+    .reduce((prev, curr) => {
+      prev[curr] = typeof qs[curr] === "string" ? [qs[curr]] : qs[curr];
+      return prev;
+    }, {});
 
-    clearTimeout(timeout);
-    timeout = setTimeout(functionCall, time);
-  };
-};
+export const getValueOrEmpty = <T>(value: T): T | string =>
+  value === undefined || value === null ? "" : value;

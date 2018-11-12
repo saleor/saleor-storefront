@@ -42,12 +42,16 @@ const HomePage: React.SFC = () => (
                 }
               >
                 <div className="home-page__hero-text">
-                  <span className="home-page__hero__title">
-                    <h1>Final reduction</h1>
-                  </span>
-                  <span className="home-page__hero__title">
-                    <h1>Up to 70% off sale</h1>
-                  </span>
+                  <div>
+                    <span className="home-page__hero__title">
+                      <h1>Final reduction</h1>
+                    </span>
+                  </div>
+                  <div>
+                    <span className="home-page__hero__title">
+                      <h1>Up to 70% off sale</h1>
+                    </span>
+                  </div>
                 </div>
                 <div className="home-page__hero-action">
                   {loading && !data ? (

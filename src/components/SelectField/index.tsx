@@ -1,13 +1,24 @@
 import * as React from "react";
 import Select from "react-select";
+// tslint:disable
+import { Props as SelectProps } from "react-select/lib/Select";
 
 import "./scss/index.scss";
 
-interface SelectFieldProps {
+export interface SelectValue {
+  label: string;
+  value: string;
+}
+
+export interface SelectFieldProps<TValue> extends SelectProps<TValue> {
   label?: string;
 }
 
-const SelectField: React.SFC<SelectFieldProps | any> = ({
+type GenericSelectField<TValue> = React.StatelessComponent<
+  SelectFieldProps<TValue>
+>;
+
+const SelectField: GenericSelectField<SelectValue> = ({
   label = "",
   ...rest
 }) => (

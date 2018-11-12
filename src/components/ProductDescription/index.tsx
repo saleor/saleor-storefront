@@ -6,6 +6,7 @@ import {
   ProductVariantInterface
 } from "../../core/types";
 import { CartContext } from "../CartProvider/context";
+import { SelectValue } from "../SelectField";
 
 import "./scss/index.scss";
 
@@ -181,7 +182,7 @@ class ProductDescription extends React.Component<
         <div className="product-description__variant-picker">
           {primaryPicker ? (
             <SelectField
-              onChange={e => this.onPrimaryPickerChange(e.value)}
+              onChange={(e: SelectValue) => this.onPrimaryPickerChange(e.value)}
               label={primaryPicker.label}
               key={primaryPicker.label}
               value={{
@@ -196,7 +197,9 @@ class ProductDescription extends React.Component<
           ) : null}
           {secondaryPicker ? (
             <SelectField
-              onChange={e => this.onSecondaryPickerChange(e.value)}
+              onChange={(e: SelectValue) =>
+                this.onSecondaryPickerChange(e.value)
+              }
               label={secondaryPicker.label}
               key={secondaryPicker.label}
               value={

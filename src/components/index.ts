@@ -1,11 +1,9 @@
 export { default as App } from "./App";
 export { default as CachedImage } from "./CachedImage";
 export { default as CartPage } from "./CartPage";
-export { default as CategoryPage } from "./CategoryPage";
 export { default as ContentPage } from "./ContentPage";
 export { default as HomePage } from "./HomePage";
 export { default as ProductPage } from "./ProductPage";
-export { default as SearchPage } from "./SearchPage";
 export { default as Button } from "./Button";
 export { default as TextField } from "./TextField";
 export { default as SelectField } from "./SelectField";
@@ -38,3 +36,4 @@ export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
+export { default as Debounce } from "./Debounce";

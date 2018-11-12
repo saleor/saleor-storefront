@@ -32,6 +32,12 @@ export interface Category_products_edges {
 export interface Category_products {
   totalCount: number | null;
   edges: Category_products_edges[];
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string;
+  };
 }
 
 export interface Category_category_backgroundImage {
@@ -61,11 +67,13 @@ export interface Category_category {
 export interface Category_attributes_edges_node_values {
   id: string;
   name: string | null;
+  slug: string;
 }
 
 export interface Category_attributes_edges_node {
   id: string;
   name: string | null;
+  slug: string;
   values: (Category_attributes_edges_node_values | null)[] | null;
 }
 
@@ -1694,6 +1702,12 @@ export interface SearchResults_products_edges {
 
 export interface SearchResults_products {
   edges: SearchResults_products_edges[];
+  pageInfo: {
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string;
+  };
 }
 
 export interface SearchResults {
@@ -1743,11 +1757,13 @@ export interface SearchProducts_products {
 export interface SearchProducts_attributes_edges_node_values {
   id: string;
   name: string | null;
+  slug: string;
 }
 
 export interface SearchProducts_attributes_edges_node {
   id: string;
   name: string | null;
+  slug: string;
   values: (SearchProducts_attributes_edges_node_values | null)[] | null;
 }
 

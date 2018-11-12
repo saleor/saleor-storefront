@@ -1,18 +1,9 @@
 @import "../../App/scss/variables.scss";
 
 .products-list {
-  &__filters {
-    background-color: $gray-light;
-
-    &__grid {
-      display: flex;
-      flex-wrap: wrap;
-
-      &__filter {
-        min-width: 15rem;
-        padding: $spacer $spacer $spacer 0;
-      }
-    }
+  &__loader {
+    position: relative;
+    left: 68px;
   }
 
   &__products {

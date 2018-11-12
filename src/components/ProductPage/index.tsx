@@ -43,7 +43,9 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll, {
+      passive: true
+    });
   }
 
   handleScroll = () => {
