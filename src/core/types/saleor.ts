@@ -1,104 +1,4 @@
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
 
-// ====================================================
-// GraphQL query operation: Category
-// ====================================================
-
-export interface Category_products_edges_node_category {
-  id: string;
-  name: string;
-}
-
-export interface Category_products_edges_node_price {
-  amount: number;
-  currency: string;
-  localized: string;
-}
-
-export interface Category_products_edges_node {
-  id: string;
-  name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
-  category: Category_products_edges_node_category;
-  price: Category_products_edges_node_price | null;
-}
-
-export interface Category_products_edges {
-  node: Category_products_edges_node;
-}
-
-export interface Category_products {
-  totalCount: number | null;
-  edges: Category_products_edges[];
-  pageInfo: {
-    endCursor: string;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-    startCursor: string;
-  };
-}
-
-export interface Category_category_backgroundImage {
-  url: string;
-}
-
-export interface Category_category_ancestors_edges_node {
-  id: string;
-  name: string;
-}
-
-export interface Category_category_ancestors_edges {
-  node: Category_category_ancestors_edges_node;
-}
-
-export interface Category_category_ancestors {
-  edges: Category_category_ancestors_edges[];
-}
-
-export interface Category_category {
-  id: string;
-  name: string;
-  backgroundImage: Category_category_backgroundImage | null;
-  ancestors: Category_category_ancestors | null;
-}
-
-export interface Category_attributes_edges_node_values {
-  id: string;
-  name: string | null;
-  slug: string;
-}
-
-export interface Category_attributes_edges_node {
-  id: string;
-  name: string | null;
-  slug: string;
-  values: (Category_attributes_edges_node_values | null)[] | null;
-}
-
-export interface Category_attributes_edges {
-  node: Category_attributes_edges_node;
-}
-
-export interface Category_attributes {
-  edges: Category_attributes_edges[];
-}
-
-export interface Category {
-  products: Category_products | null;
-  category: Category_category | null;
-  attributes: Category_attributes | null;
-}
-
-export interface CategoryVariables {
-  id: string;
-  attributes?: (any | null)[] | null;
-  pageSize?: number | null;
-  sortBy?: string | null;
-  priceLte?: number | null;
-  priceGte?: number | null;
-}
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -262,9 +162,7 @@ export interface getCheckout_checkout {
   billingAddress: getCheckout_checkout_billingAddress | null;
   shippingAddress: getCheckout_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (getCheckout_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (getCheckout_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: getCheckout_checkout_shippingMethod | null;
   shippingPrice: getCheckout_checkout_shippingPrice | null;
   lines: (getCheckout_checkout_lines | null)[] | null;
@@ -277,6 +175,7 @@ export interface getCheckout {
 export interface getCheckoutVariables {
   token: any;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -440,14 +339,10 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   billingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {
@@ -468,6 +363,7 @@ export interface updateCheckoutLineVariables {
   checkoutId: string;
   lines: (CheckoutLineInput | null)[];
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -636,20 +532,14 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
-  errors:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[] | null;
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 
@@ -661,6 +551,7 @@ export interface updateCheckoutBillingAddressVariables {
   checkoutId: string;
   billingAddress: AddressInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -676,6 +567,7 @@ export interface getPaymentToken {
 export interface getPaymentTokenVariables {
   gateway: GatewaysEnum;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -700,6 +592,7 @@ export interface createPayment {
 export interface createPaymentVariables {
   input: PaymentInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -730,6 +623,7 @@ export interface completeCheckoutVariables {
   checkoutId: string;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -743,9 +637,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
-  errors:
-    | (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[] | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
@@ -908,20 +800,14 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   billingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate {
-  errors:
-    | (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[] | null;
   checkout: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
 }
 
@@ -935,6 +821,7 @@ export interface updateCheckoutShippingAddressVariables {
   shippingAddress: AddressInput;
   email: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1103,20 +990,14 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   billingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
-  errors:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[]
-    | null;
+  errors: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[] | null;
   checkout: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout | null;
 }
 
@@ -1128,6 +1009,7 @@ export interface updateCheckoutShippingOptionsVariables {
   checkoutId: string;
   shippingMethodId: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1152,6 +1034,7 @@ export interface Collections_collections {
 export interface Collections {
   collections: Collections_collections | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1320,9 +1203,7 @@ export interface createCheckout_checkoutCreate_checkout {
   billingAddress: createCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: createCheckout_checkoutCreate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (createCheckout_checkoutCreate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: createCheckout_checkoutCreate_checkout_shippingMethod | null;
   shippingPrice: createCheckout_checkoutCreate_checkout_shippingPrice | null;
   lines: (createCheckout_checkoutCreate_checkout_lines | null)[] | null;
@@ -1340,6 +1221,7 @@ export interface createCheckout {
 export interface createCheckoutVariables {
   checkoutInput: CheckoutCreateInput;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1383,6 +1265,7 @@ export interface ProductsList_shop_homepageCollection_products {
 export interface ProductsList_shop_homepageCollection {
   id: string;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage | null;
+  name: string;
   products: ProductsList_shop_homepageCollection_products | null;
 }
 
@@ -1413,6 +1296,7 @@ export interface ProductsList {
   categories: ProductsList_categories | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1438,6 +1322,7 @@ export interface RegisterCutomerVariables {
   password: string;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1445,9 +1330,14 @@ export interface RegisterCutomerVariables {
 // GraphQL query operation: MainMenu
 // ====================================================
 
+export interface MainMenu_shop_navigation_main_items_category {
+  id: string;
+}
+
 export interface MainMenu_shop_navigation_main_items {
   id: string;
   name: string;
+  category: MainMenu_shop_navigation_main_items_category | null;
 }
 
 export interface MainMenu_shop_navigation_main {
@@ -1466,6 +1356,7 @@ export interface MainMenu_shop {
 export interface MainMenu {
   shop: MainMenu_shop | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1491,6 +1382,7 @@ export interface Categories_categories {
 export interface Categories {
   categories: Categories_categories | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1539,57 +1431,39 @@ export interface ProductDetails_product_price {
   localized: string;
 }
 
-export interface ProductDetails_product_images_edges_node {
+export interface ProductDetails_product_images {
   id: string;
   url: string;
 }
 
-export interface ProductDetails_product_images_edges {
-  node: ProductDetails_product_images_edges_node;
-}
-
-export interface ProductDetails_product_images {
-  edges: ProductDetails_product_images_edges[];
-}
-
-export interface ProductDetails_product_variants_edges_node_price {
+export interface ProductDetails_product_variants_price {
   currency: string;
   amount: number;
   localized: string;
 }
 
-export interface ProductDetails_product_variants_edges_node_attributes_attribute {
+export interface ProductDetails_product_variants_attributes_attribute {
   id: string;
   name: string | null;
 }
 
-export interface ProductDetails_product_variants_edges_node_attributes_value {
+export interface ProductDetails_product_variants_attributes_value {
   id: string;
   name: string | null;
   value: string | null;
 }
 
-export interface ProductDetails_product_variants_edges_node_attributes {
-  attribute: ProductDetails_product_variants_edges_node_attributes_attribute | null;
-  value: ProductDetails_product_variants_edges_node_attributes_value | null;
-}
-
-export interface ProductDetails_product_variants_edges_node {
-  id: string;
-  name: string;
-  stockQuantity: number;
-  price: ProductDetails_product_variants_edges_node_price | null;
-  attributes:
-    | (ProductDetails_product_variants_edges_node_attributes | null)[]
-    | null;
-}
-
-export interface ProductDetails_product_variants_edges {
-  node: ProductDetails_product_variants_edges_node;
+export interface ProductDetails_product_variants_attributes {
+  attribute: ProductDetails_product_variants_attributes_attribute;
+  value: ProductDetails_product_variants_attributes_value;
 }
 
 export interface ProductDetails_product_variants {
-  edges: ProductDetails_product_variants_edges[];
+  id: string;
+  name: string;
+  stockQuantity: number;
+  price: ProductDetails_product_variants_price | null;
+  attributes: ProductDetails_product_variants_attributes[];
 }
 
 export interface ProductDetails_product {
@@ -1600,8 +1474,8 @@ export interface ProductDetails_product {
   description: string;
   category: ProductDetails_product_category;
   price: ProductDetails_product_price | null;
-  images: ProductDetails_product_images | null;
-  variants: ProductDetails_product_variants | null;
+  images: (ProductDetails_product_images | null)[] | null;
+  variants: (ProductDetails_product_variants | null)[] | null;
 }
 
 export interface ProductDetails {
@@ -1611,6 +1485,7 @@ export interface ProductDetails {
 export interface ProductDetailsVariables {
   id: string;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1637,8 +1512,8 @@ export interface VariantList_productVariants_edges_node_attributes_value {
 }
 
 export interface VariantList_productVariants_edges_node_attributes {
-  attribute: VariantList_productVariants_edges_node_attributes_attribute | null;
-  value: VariantList_productVariants_edges_node_attributes_value | null;
+  attribute: VariantList_productVariants_edges_node_attributes_attribute;
+  value: VariantList_productVariants_edges_node_attributes_value;
 }
 
 export interface VariantList_productVariants_edges_node_product {
@@ -1653,9 +1528,7 @@ export interface VariantList_productVariants_edges_node {
   name: string;
   stockQuantity: number;
   price: VariantList_productVariants_edges_node_price | null;
-  attributes:
-    | (VariantList_productVariants_edges_node_attributes | null)[]
-    | null;
+  attributes: VariantList_productVariants_edges_node_attributes[];
   product: VariantList_productVariants_edges_node_product;
 }
 
@@ -1674,6 +1547,7 @@ export interface VariantList {
 export interface VariantListVariables {
   ids?: string[] | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1700,14 +1574,16 @@ export interface SearchResults_products_edges {
   node: SearchResults_products_edges_node;
 }
 
+export interface SearchResults_products_pageInfo {
+  endCursor: string | null;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string | null;
+}
+
 export interface SearchResults_products {
   edges: SearchResults_products_edges[];
-  pageInfo: {
-    endCursor: string;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-    startCursor: string;
-  };
+  pageInfo: SearchResults_products_pageInfo;
 }
 
 export interface SearchResults {
@@ -1718,74 +1594,6 @@ export interface SearchResultsVariables {
   query: string;
 }
 
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL query operation: SearchProducts
-// ====================================================
-
-export interface SearchProducts_products_edges_node_category {
-  id: string;
-  name: string;
-}
-
-export interface SearchProducts_products_edges_node_price {
-  amount: number;
-  currency: string;
-  localized: string;
-}
-
-export interface SearchProducts_products_edges_node {
-  id: string;
-  name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
-  category: SearchProducts_products_edges_node_category;
-  price: SearchProducts_products_edges_node_price | null;
-}
-
-export interface SearchProducts_products_edges {
-  node: SearchProducts_products_edges_node;
-}
-
-export interface SearchProducts_products {
-  totalCount: number | null;
-  edges: SearchProducts_products_edges[];
-}
-
-export interface SearchProducts_attributes_edges_node_values {
-  id: string;
-  name: string | null;
-  slug: string;
-}
-
-export interface SearchProducts_attributes_edges_node {
-  id: string;
-  name: string | null;
-  slug: string;
-  values: (SearchProducts_attributes_edges_node_values | null)[] | null;
-}
-
-export interface SearchProducts_attributes_edges {
-  node: SearchProducts_attributes_edges_node;
-}
-
-export interface SearchProducts_attributes {
-  edges: SearchProducts_attributes_edges[];
-}
-
-export interface SearchProducts {
-  products: SearchProducts_products | null;
-  attributes: SearchProducts_attributes | null;
-}
-
-export interface SearchProductsVariables {
-  query: string;
-  attributes?: (any | null)[] | null;
-  pageSize?: number | null;
-  sortBy?: string | null;
-}
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -1823,6 +1631,7 @@ export interface getShop {
   shop: getShop_shop | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1857,6 +1666,7 @@ export interface TokenAuthVariables {
   password: string;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -1883,6 +1693,229 @@ export interface VerifyToken {
 export interface VerifyTokenVariables {
   token: string;
 }
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Article
+// ====================================================
+
+export interface Article_page {
+  content: string;
+  id: string;
+  seoDescription: string | null;
+  seoTitle: string | null;
+  slug: string;
+  title: string;
+}
+
+export interface Article_shop_homepageCollection_backgroundImage {
+  url: string;
+}
+
+export interface Article_shop_homepageCollection {
+  id: string;
+  backgroundImage: Article_shop_homepageCollection_backgroundImage | null;
+}
+
+export interface Article_shop {
+  homepageCollection: Article_shop_homepageCollection | null;
+}
+
+export interface Article {
+  page: Article_page | null;
+  shop: Article_shop | null;
+}
+
+export interface ArticleVariables {
+  slug: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Category
+// ====================================================
+
+export interface Category_products_edges_node_category {
+  id: string;
+  name: string;
+}
+
+export interface Category_products_edges_node_price {
+  amount: number;
+  currency: string;
+  localized: string;
+}
+
+export interface Category_products_edges_node {
+  id: string;
+  name: string;
+  thumbnailUrl: string | null;
+  thumbnailUrl2x: string | null;
+  category: Category_products_edges_node_category;
+  price: Category_products_edges_node_price | null;
+}
+
+export interface Category_products_edges {
+  node: Category_products_edges_node;
+}
+
+export interface Category_products_pageInfo {
+  endCursor: string | null;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string | null;
+}
+
+export interface Category_products {
+  totalCount: number | null;
+  edges: Category_products_edges[];
+  pageInfo: Category_products_pageInfo;
+}
+
+export interface Category_category_backgroundImage {
+  url: string;
+}
+
+export interface Category_category_ancestors_edges_node {
+  id: string;
+  name: string;
+}
+
+export interface Category_category_ancestors_edges {
+  node: Category_category_ancestors_edges_node;
+}
+
+export interface Category_category_ancestors {
+  edges: Category_category_ancestors_edges[];
+}
+
+export interface Category_category {
+  id: string;
+  name: string;
+  backgroundImage: Category_category_backgroundImage | null;
+  ancestors: Category_category_ancestors | null;
+}
+
+export interface Category_attributes_edges_node_values {
+  id: string;
+  name: string | null;
+  slug: string | null;
+}
+
+export interface Category_attributes_edges_node {
+  id: string;
+  name: string | null;
+  slug: string | null;
+  values: (Category_attributes_edges_node_values | null)[] | null;
+}
+
+export interface Category_attributes_edges {
+  node: Category_attributes_edges_node;
+}
+
+export interface Category_attributes {
+  edges: Category_attributes_edges[];
+}
+
+export interface Category {
+  products: Category_products | null;
+  category: Category_category | null;
+  attributes: Category_attributes | null;
+}
+
+export interface CategoryVariables {
+  id: string;
+  attributes?: (any | null)[] | null;
+  after?: string | null;
+  pageSize?: number | null;
+  sortBy?: string | null;
+  priceLte?: number | null;
+  priceGte?: number | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: SearchProducts
+// ====================================================
+
+export interface SearchProducts_products_edges_node_category {
+  id: string;
+  name: string;
+}
+
+export interface SearchProducts_products_edges_node_price {
+  amount: number;
+  currency: string;
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node {
+  id: string;
+  name: string;
+  thumbnailUrl: string | null;
+  thumbnailUrl2x: string | null;
+  category: SearchProducts_products_edges_node_category;
+  price: SearchProducts_products_edges_node_price | null;
+}
+
+export interface SearchProducts_products_edges {
+  node: SearchProducts_products_edges_node;
+}
+
+export interface SearchProducts_products_pageInfo {
+  endCursor: string | null;
+  hasNextPage: boolean;
+}
+
+export interface SearchProducts_products {
+  totalCount: number | null;
+  edges: SearchProducts_products_edges[];
+  pageInfo: SearchProducts_products_pageInfo;
+}
+
+export interface SearchProducts_attributes_edges_node_values {
+  id: string;
+  name: string | null;
+  slug: string | null;
+}
+
+export interface SearchProducts_attributes_edges_node {
+  id: string;
+  name: string | null;
+  slug: string | null;
+  values: (SearchProducts_attributes_edges_node_values | null)[] | null;
+}
+
+export interface SearchProducts_attributes_edges {
+  node: SearchProducts_attributes_edges_node;
+}
+
+export interface SearchProducts_attributes {
+  edges: SearchProducts_attributes_edges[];
+}
+
+export interface SearchProducts {
+  products: SearchProducts_products | null;
+  attributes: SearchProducts_attributes | null;
+}
+
+export interface SearchProductsVariables {
+  query: string;
+  attributes?: (any | null)[] | null;
+  pageSize?: number | null;
+  sortBy?: string | null;
+  after?: string | null;
+}
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -2052,6 +2085,7 @@ export interface Checkout {
   lines: (Checkout_lines | null)[] | null;
 }
 
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -2065,6 +2099,7 @@ export interface BasicProductFields {
   thumbnailUrl: string | null;
   thumbnailUrl2x: string | null;
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -2091,8 +2126,8 @@ export interface ProductVariantFields_attributes_value {
 }
 
 export interface ProductVariantFields_attributes {
-  attribute: ProductVariantFields_attributes_attribute | null;
-  value: ProductVariantFields_attributes_value | null;
+  attribute: ProductVariantFields_attributes_attribute;
+  value: ProductVariantFields_attributes_value;
 }
 
 export interface ProductVariantFields {
@@ -2100,8 +2135,9 @@ export interface ProductVariantFields {
   name: string;
   stockQuantity: number;
   price: ProductVariantFields_price | null;
-  attributes: (ProductVariantFields_attributes | null)[] | null;
+  attributes: ProductVariantFields_attributes[];
 }
+
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -2126,16 +2162,16 @@ export interface User {
 
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY"
+  DUMMY = "DUMMY",
 }
 
-//
+// 
 export interface CheckoutLineInput {
   quantity?: number | null;
   variantId?: string | null;
 }
 
-//
+// 
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -2150,7 +2186,7 @@ export interface AddressInput {
   phone?: string | null;
 }
 
-//
+// 
 export interface PaymentInput {
   gateway?: GatewaysEnum | null;
   checkoutId?: string | null;
@@ -2159,7 +2195,7 @@ export interface PaymentInput {
   billingAddress?: AddressInput | null;
 }
 
-//
+// 
 export interface CheckoutCreateInput {
   lines?: (CheckoutLineInput | null)[] | null;
   email?: string | null;

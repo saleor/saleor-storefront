@@ -66,19 +66,11 @@ export const GET_PRODUCT_DETAILS = gql`
         localized
       }
       images {
-        edges {
-          node {
-            id
-            url
-          }
-        }
+        id
+        url
       }
       variants {
-        edges {
-          node {
-            ...ProductVariantFields
-          }
-        }
+        ...ProductVariantFields
       }
     }
   }
@@ -89,13 +81,9 @@ export const GET_PRODUCTS_VARIANTS = gql`
   ${PRODUCT_VARIANT_FRAGMENT}
   query VariantList($ids: [ID!]) {
     productVariants(ids: $ids) {
-      edges {
-        node {
-          ...ProductVariantFields
-          product {
-            ...BasicProductFields
-          }
-        }
+      ...ProductVariantFields
+      product {
+        ...BasicProductFields
       }
     }
   }

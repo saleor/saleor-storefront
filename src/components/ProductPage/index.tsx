@@ -35,8 +35,7 @@ const canDisplay = (data: ProductDetails) =>
   data.product.description &&
   data.product.name &&
   data.product.price &&
-  data.product.variants &&
-  data.product.variants.edges;
+  data.product.variants;
 
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -150,8 +149,8 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                       );
                                     }}
                                   >
-                                    {product.images.edges.map(
-                                      ({ node: image }) => (
+                                    {product.images.map(
+                                      image => (
                                         <CachedImage
                                           url={
                                             image.url ||
@@ -172,9 +171,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                     {cart => (
                                       <ProductDescription
                                         name={product.name}
-                                        productVariants={product.variants.edges.map(
-                                          edge => edge.node
-                                        )}
+                                        productVariants={product.variants}
                                         addToCart={cart.add}
                                       >
                                         <div
@@ -193,8 +190,8 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                   className="product-page__product__gallery"
                                   ref={this.productGallery}
                                 >
-                                  {product.images.edges.map(
-                                    ({ node: image }) => (
+                                  {product.images.map(
+                                      image => (
                                       <CachedImage
                                         url={
                                           image.url ||
@@ -220,9 +217,7 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                       {cart => (
                                         <ProductDescription
                                           name={product.name}
-                                          productVariants={product.variants.edges.map(
-                                            edge => edge.node
-                                          )}
+                                          productVariants={product.variants}
                                           addToCart={cart.add}
                                         >
                                           <div
