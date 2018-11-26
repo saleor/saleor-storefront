@@ -81,9 +81,13 @@ export const GET_PRODUCTS_VARIANTS = gql`
   ${PRODUCT_VARIANT_FRAGMENT}
   query VariantList($ids: [ID!]) {
     productVariants(ids: $ids) {
-      ...ProductVariantFields
-      product {
-        ...BasicProductFields
+      edges {
+        node {
+          ...ProductVariantFields
+          product {
+            ...BasicProductFields
+          }
+        }
       }
     }
   }
