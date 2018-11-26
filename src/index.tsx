@@ -2,7 +2,7 @@ import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
-import { HttpLink } from "apollo-link-http";
+import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
@@ -31,7 +31,7 @@ const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
   new RetryLink(),
-  new HttpLink({ uri: API_URL })
+  new BatchHttpLink({ uri: API_URL })
 ]);
 
 const cache = new InMemoryCache({
