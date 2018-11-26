@@ -66,19 +66,11 @@ export const GET_PRODUCT_DETAILS = gql`
         localized
       }
       images {
-        edges {
-          node {
-            id
-            url
-          }
-        }
+        id
+        url
       }
       variants {
-        edges {
-          node {
-            ...ProductVariantFields
-          }
-        }
+        ...ProductVariantFields
       }
     }
   }
