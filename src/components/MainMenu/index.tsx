@@ -54,7 +54,9 @@ const MainMenu: React.SFC = () => (
                     if (error && !data) {
                       return <Error error={error.message} />;
                     }
-                    return data.shop.navigation.main.items.map(item => (
+                    return data.shop.navigation.main.items.filter(
+                      item => (item.category)
+                    ).map(item => (
                       <li className="main-menu__item" key={item.id}>
                         <Link
                           to={generateCategoryUrl(item.category.id, item.name)}
