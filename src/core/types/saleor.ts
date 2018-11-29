@@ -1834,7 +1834,7 @@ export interface CategoryVariables {
   attributes?: (any | null)[] | null;
   after?: string | null;
   pageSize?: number | null;
-  sortBy?: string | null;
+  sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
 }
@@ -1912,7 +1912,7 @@ export interface SearchProductsVariables {
   query: string;
   attributes?: (any | null)[] | null;
   pageSize?: number | null;
-  sortBy?: string | null;
+  sortBy?: ProductOrder | null;
   after?: string | null;
 }
 
@@ -2165,13 +2165,23 @@ export enum GatewaysEnum {
   DUMMY = "DUMMY",
 }
 
-// 
+export enum ProductOrderField {
+  NAME = "NAME",
+  PRICE = "PRICE",
+}
+
+export enum OrderDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+// null
 export interface CheckoutLineInput {
   quantity?: number | null;
   variantId?: string | null;
 }
 
-// 
+// null
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -2186,7 +2196,7 @@ export interface AddressInput {
   phone?: string | null;
 }
 
-// 
+// null
 export interface PaymentInput {
   gateway?: GatewaysEnum | null;
   checkoutId?: string | null;
@@ -2195,11 +2205,17 @@ export interface PaymentInput {
   billingAddress?: AddressInput | null;
 }
 
-// 
+// null
 export interface CheckoutCreateInput {
   lines?: (CheckoutLineInput | null)[] | null;
   email?: string | null;
   shippingAddress?: AddressInput | null;
+}
+
+// null
+export interface ProductOrder {
+  field: ProductOrderField;
+  direction: OrderDirection;
 }
 
 //==============================================================
