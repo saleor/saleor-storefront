@@ -34,11 +34,12 @@ const Footer: React.SFC = () => (
           <div className="footer__menu-section-content footer__menu-section-content--split">
             <Query
               query={GET_CATEGORIES}
+              variables={{level: 0}}
               fetchPolicy="cache-and-network"
               errorPolicy="all"
             >
               {({ loading, error, data }) => {
-                if (loading) {
+                if (loading || !data || !data.categories) {
                   return <Loader />;
                 }
                 if (error && !data) {

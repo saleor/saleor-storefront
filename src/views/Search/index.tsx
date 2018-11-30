@@ -17,6 +17,7 @@ import {
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { SearchResults } from "../../core/types/saleor";
 import {
+  convertSortByFromString,
   convertToAttributeScalar,
   getAttributesFromQs
 } from "../../core/utils";
@@ -47,7 +48,8 @@ export const SearchView: React.SFC<SearchViewProps> = ({
           variables={{
             ...filters,
             attributes: convertToAttributeScalar(filters.attributes),
-            query: qs.q
+            query: qs.q,
+            sortBy: convertSortByFromString(filters.sortBy)
           }}
           fetchPolicy="cache-and-network"
           errorPolicy="all"
@@ -91,7 +93,8 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                   ...filters,
                   after: data.products.pageInfo.endCursor,
                   attributes: convertToAttributeScalar(filters.attributes),
-                  query: qs.q
+                  query: qs.q,
+                  sortBy: convertSortByFromString(filters.sortBy)
                 }
               });
 

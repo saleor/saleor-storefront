@@ -16,6 +16,7 @@ import {
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { Category } from "../../core/types/saleor";
 import {
+  convertSortByFromString,
   convertToAttributeScalar,
   getAttributesFromQs,
   getGraphqlIdFromDBId
@@ -49,7 +50,8 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
           variables={{
             ...filters,
             attributes: convertToAttributeScalar(filters.attributes),
-            id: getGraphqlIdFromDBId(match.params.id, "Category")
+            id: getGraphqlIdFromDBId(match.params.id, "Category"),
+            sortBy: convertSortByFromString(filters.sortBy)
           }}
           fetchPolicy="cache-and-network"
           errorPolicy="all"
@@ -86,7 +88,8 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                     ...filters,
                     after: data.products.pageInfo.endCursor,
                     attributes: convertToAttributeScalar(filters.attributes),
-                    id: getGraphqlIdFromDBId(match.params.id, "Category")
+                    id: getGraphqlIdFromDBId(match.params.id, "Category"),
+                    sortBy: convertSortByFromString(filters.sortBy)
                   }
                 });
               return (

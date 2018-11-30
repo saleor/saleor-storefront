@@ -30,7 +30,7 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
         }
       }
     }
-    categories {
+    categories(level: 0) {
       edges {
         node {
           id

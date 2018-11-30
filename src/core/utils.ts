@@ -1,5 +1,5 @@
 import { Base64 } from "js-base64";
-import { PriceInterface } from "./types";
+import { OrderDirection, ProductOrderField } from "../core/types/saleor";
 
 export const slugify = (text: string | number): string =>
   text
@@ -83,3 +83,21 @@ export const getAttributesFromQs = (qs: QueryString) =>
 
 export const getValueOrEmpty = <T>(value: T): T | string =>
   value === undefined || value === null ? "" : value;
+
+export const convertSortByFromString = (sortBy: string) => {
+  if (!sortBy) {
+    return null;
+  }
+  const direction = sortBy.startsWith("-")
+    ? OrderDirection.DESC
+    : OrderDirection.ASC;
+
+  let field = sortBy.replace(/^-/, "");
+  field =
+    field === "name"
+      ? ProductOrderField.NAME
+      : field === "price"
+      ? ProductOrderField.PRICE
+      : undefined;
+  return { field, direction };
+};

@@ -6,7 +6,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
     $attributes: [AttributeScalar]
     $after: String
     $pageSize: Int
-    $sortBy: String
+    $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
   ) {

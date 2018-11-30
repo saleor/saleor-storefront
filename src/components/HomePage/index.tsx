@@ -14,7 +14,6 @@ const canDisplay = (data: ProductsList) =>
   data &&
   data.shop &&
   data.shop.homepageCollection &&
-  data.shop.homepageCollection &&
   data.categories &&
   data.categories.edges;
 
