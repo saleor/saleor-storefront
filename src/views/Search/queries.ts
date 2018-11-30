@@ -38,7 +38,7 @@ export const GET_SEARCH_PRODUCTS = gql`
         hasNextPage
       }
     }
-    attributes {
+    attributes(first: 100) {
       edges {
         node {
           id

@@ -76,11 +76,13 @@ export const GET_PRODUCT_DETAILS = gql`
   }
 `;
 
+// FIXME: Check how to handle pagination of `productVariants` in the UI. 
+// We need allow the user view  all cart items regardless of pagination.
 export const GET_PRODUCTS_VARIANTS = gql`
   ${BASIC_PRODUCT_FRAGMENT}
   ${PRODUCT_VARIANT_FRAGMENT}
   query VariantList($ids: [ID!]) {
-    productVariants(ids: $ids) {
+    productVariants(ids: $ids, first: 100) {
       edges {
         node {
           ...ProductVariantFields

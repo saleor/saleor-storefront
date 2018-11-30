@@ -9,7 +9,7 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
           url
         }
         name
-        products {
+        products(first: 20) {
           edges {
             node {
               id
@@ -30,7 +30,7 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
         }
       }
     }
-    categories(level: 0) {
+    categories(level: 0, first: 4) {
       edges {
         node {
           id

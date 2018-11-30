@@ -50,7 +50,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
       backgroundImage {
         url
       }
-      ancestors {
+      ancestors(last: 5) {
         edges {
           node {
             id
@@ -59,7 +59,7 @@ export const GET_CATEGORY_AND_ATTRIBUTES = gql`
         }
       }
     }
-    attributes(inCategory: $id) {
+    attributes(inCategory: $id, first: 100) {
       edges {
         node {
           id
