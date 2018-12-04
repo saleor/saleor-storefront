@@ -1,3 +1,4 @@
+import { get, isUndefined } from 'lodash';
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import * as React from "react";
 import { Query } from "react-apollo";
@@ -57,12 +58,10 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
           errorPolicy="all"
         >
           {({ loading, error, data, fetchMore }) => {
-            const canDisplayFilters =
-              data &&
-              data.attributes &&
-              data.attributes.edges !== undefined &&
-              data.category &&
-              data.category.name !== undefined;
+            const canDisplayFilters = ![
+              get(data, 'attributes.edges'),
+              get(data, 'category.name'),
+            ].every(isUndefined);
 
             if (canDisplayFilters) {
               const handleLoadMore = () =>
@@ -97,9 +96,7 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                   attributes={data.attributes.edges.map(edge => edge.node)}
                   category={data.category}
                   displayLoader={loading}
-                  hasNextPage={
-                    data.products && data.products.pageInfo.hasNextPage
-                  }
+                  hasNextPage={get(data, 'products.pageInfo.hasNextPage')}
                   filters={filters}
                   products={data.products}
                   onAttributeFiltersChange={(attribute, values) => {

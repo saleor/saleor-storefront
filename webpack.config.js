@@ -35,7 +35,10 @@ module.exports = (env, argv) => {
           test: /\.(scss|css)$/,
           use: [
             devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-            { loader: "css-loader" },
+            {
+              loader: "css-loader",
+              options: { sourceMap: true }
+            },
             { loader: "sass-loader" }
           ]
         },

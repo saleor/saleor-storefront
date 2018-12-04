@@ -1,11 +1,12 @@
 import "./scss/index.scss";
 
+import { get, isUndefined } from 'lodash';
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { Debounce, Loader, ProductsList } from "../../components";
+import { Debounce, Loader, ProductsFeatured, ProductsList } from "../../components";
 import { Error } from "../../components/Error";
 import NetworkStatus from "../../components/NetworkStatus";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
@@ -55,13 +56,11 @@ export const SearchView: React.SFC<SearchViewProps> = ({
           errorPolicy="all"
         >
           {({ error, data, loading, fetchMore }) => {
-            const canDisplayProducts =
-              data &&
-              data.attributes &&
-              data.attributes.edges !== undefined &&
-              data.products &&
-              data.products.edges !== undefined &&
-              data.products.totalCount !== undefined;
+            const canDisplayFilters = get(data, 'attributes.edges') !== undefined;
+            const canDisplayProducts = ![
+              get(data, 'products.totalCount'),
+              get(data, 'products.edges'),
+            ].every(isUndefined);
 
             const handleQueryChange = (
               event: React.ChangeEvent<HTMLInputElement>
@@ -98,54 +97,55 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                 }
               });
 
-            const canDisplayFilters =
-              data && data.attributes && data.attributes.edges !== undefined;
-
             return (
               <Debounce debounce={handleQueryChange} value={qs.q}>
-                {({ change, value: query }) => (
-                  <SearchPage onQueryChange={change} query={query}>
-                    {canDisplayFilters ? (
-                      <>
+                {({ change, value: query }) => {
+                  if (loading) {
+                    return <Loader full />;
+                  }
+
+                  const hasProducts = canDisplayProducts && !!data.products.totalCount;
+                  const historyReplace = (key: string, value?) => {
+                    qs[key] = value || key;
+                    history.replace("?" + stringifyQs(qs));
+                  };
+
+                  if (!!error) {
+                    return isOnline
+                      ? <Error error={error.message} />
+                      : <OfflinePlaceholder />;
+                  }
+
+                  return (
+                    <SearchPage onQueryChange={change} query={query}>
+                      {
+                        hasProducts &&
+                        canDisplayFilters &&
                         <ProductFilters
                           attributes={data.attributes.edges.map(
                             edge => edge.node
                           )}
                           filters={filters}
-                          onAttributeFiltersChange={(attribute, values) => {
-                            qs[attribute] = values;
-                            history.replace("?" + stringifyQs(qs));
-                          }}
-                          onPriceChange={(field, value) => {
-                            qs[field] = value;
-                            history.replace("?" + stringifyQs(qs));
-                          }}
+                          onAttributeFiltersChange={historyReplace}
+                          onPriceChange={historyReplace}
                         />
-                        {canDisplayProducts && (
-                          <ProductsList
-                            displayLoader={loading}
-                            products={data.products}
-                            hasNextPage={data.products.pageInfo.hasNextPage}
-                            filters={filters}
-                            onLoadMore={handleLoadMore}
-                            onOrder={sortBy => {
-                              qs.sortBy = sortBy;
-                              history.replace("?" + stringifyQs(qs));
-                            }}
-                          />
-                        )}
-                      </>
-                    ) : !!error ? (
-                      isOnline ? (
-                        <Error error={error.message} />
-                      ) : (
-                        <OfflinePlaceholder />
-                      )
-                    ) : (
-                      <Loader full />
-                    )}
-                  </SearchPage>
-                )}
+                      }
+                      {
+                        canDisplayProducts &&
+                        <ProductsList
+                          displayLoader={loading}
+                          products={data.products}
+                          hasNextPage={data.products.pageInfo.hasNextPage}
+                          filters={filters}
+                          onLoadMore={handleLoadMore}
+                          onOrder={historyReplace}
+                          notFoundPhrase="No results found, please double check your typing or use another phrase"
+                        />
+                      }
+                      {!hasProducts && <ProductsFeatured title="You might like" />}
+                    </SearchPage>
+                  );
+                }}
               </Debounce>
             );
           }}

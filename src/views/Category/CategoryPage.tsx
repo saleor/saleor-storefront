@@ -1,8 +1,9 @@
 import "./scss/index.scss";
 
+import { isUndefined } from 'lodash';
 import * as React from "react";
 
-import { Breadcrumbs, ProductsList } from "../../components";
+import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
 import { Filters, ProductFilters } from "../../components/ProductFilters";
 import {
   Category_attributes_edges_node,
@@ -61,19 +62,16 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
   onPriceChange,
   onOrder
 }) => {
-  const canDisplayProducts =
-    products &&
-    products.edges !== undefined &&
-    products.totalCount !== undefined;
+  const canDisplayProducts = ![products.edges, products.totalCount].every(isUndefined);
+  const hasProducts = canDisplayProducts && !!products.totalCount;
+
   return (
     <div className="category">
       <div
         className="category__header"
         style={
           category.backgroundImage
-            ? {
-                backgroundImage: `url(${category.backgroundImage.url})`
-              }
+            ? { backgroundImage: `url(${category.backgroundImage.url})` }
             : undefined
         }
       >
@@ -84,13 +82,17 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
       <div className="container">
         <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
       </div>
-      <ProductFilters
-        filters={filters}
-        attributes={attributes}
-        onAttributeFiltersChange={onAttributeFiltersChange}
-        onPriceChange={onPriceChange}
-      />
-      {canDisplayProducts && (
+      {
+        hasProducts &&
+        <ProductFilters
+          filters={filters}
+          attributes={attributes}
+          onAttributeFiltersChange={onAttributeFiltersChange}
+          onPriceChange={onPriceChange}
+        />
+      }
+      {
+        canDisplayProducts &&
         <ProductsList
           displayLoader={displayLoader}
           filters={filters}
@@ -99,7 +101,8 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
           onOrder={onOrder}
           products={products}
         />
-      )}
+      }
+      {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };
