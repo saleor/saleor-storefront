@@ -34,7 +34,9 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     { value: "name", label: "Name Increasing" },
     { value: "-name", label: "Name Decreasing" }
   ];
-  const sortValues = filterOptions.find((option) => option.value === filters.sortBy);
+  const sortValues = filterOptions.find(
+    option => option.value === filters.sortBy
+  );
   const hasProducts = !!products.totalCount;
   return (
     <div className="products-list">
@@ -43,25 +45,23 @@ export const ProductList: React.SFC<ProductsListProps> = ({
           <span className="products-list__products__subheader__total">
             {products.totalCount} Products
           </span>
-          {
-            displayLoader &&
+          {displayLoader && (
             <div className="products-list__loader">
               <Loader />
             </div>
-          }
+          )}
           <span className="products-list__products__subheader__sort">
-            {
-              hasProducts &&
+            {hasProducts && (
               <>
-                <span>Sort by:</span>{' '}
+                <span>Sort by:</span>{" "}
                 <Dropdown
                   options={filterOptions}
-                  value={sortValues || ''}
+                  value={sortValues || ""}
                   isSearchable={false}
                   onChange={event => onOrder(event.value)}
                 />
               </>
-            }
+            )}
           </span>
         </div>
         {hasProducts ? (
@@ -99,7 +99,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
 };
 
 ProductList.defaultProps = {
-  notFoundPhrase: 'We couldn\'t find any product matching these conditions'
+  notFoundPhrase: "We couldn't find any product matching these conditions"
 };
 
 export default ProductList;

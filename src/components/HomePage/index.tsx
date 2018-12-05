@@ -1,19 +1,23 @@
-import { get } from "lodash";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
-import { Button, Carousel, Loader, ProductListItem, ProductsFeatured } from "..";
+import {
+  Button,
+  Carousel,
+  Loader,
+  ProductListItem,
+  ProductsFeatured
+} from "..";
 import { ProductsList } from "../../core/types/saleor";
-import { generateCategoryUrl } from "../../core/utils";
+import { generateCategoryUrl, maybe } from "../../core/utils";
 import { Error } from "../Error";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
 
 const canDisplay = (data: ProductsList) =>
-  get(data, "shop.homepageCollection") &&
-  get(data, "categories.edges");
+  maybe(() => !!data.shop.homepageCollection && !!data.categories.edges, false);
 
 const HomePage: React.SFC = () => (
   <div className="home-page">
@@ -24,7 +28,7 @@ const HomePage: React.SFC = () => (
     >
       {({ error, data, loading }) => {
         if (canDisplay(data)) {
-          const backgroundImg = data.shop.homepageCollection.backgroundImage;
+          const { backgroundImg } = data.shop.homepageCollection;
           return (
             <>
               <div

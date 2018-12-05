@@ -1,6 +1,5 @@
 import "./scss/index.scss";
 
-import { isUndefined } from 'lodash';
 import * as React from "react";
 
 import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
@@ -10,7 +9,7 @@ import {
   Category_category,
   Category_products
 } from "../../core/types/saleor";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { getDBIdFromGraphqlId, maybe, slugify } from "../../core/utils";
 
 interface CategoryPageProps {
   attributes: Category_attributes_edges_node[];
@@ -62,9 +61,11 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
   onPriceChange,
   onOrder
 }) => {
-  const canDisplayProducts = ![products.edges, products.totalCount].every(isUndefined);
+  const canDisplayProducts = maybe(
+    () => products.edges && products.totalCount !== undefined,
+    false
+  );
   const hasProducts = canDisplayProducts && !!products.totalCount;
-
   return (
     <div className="category">
       <div
@@ -82,17 +83,15 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
       <div className="container">
         <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
       </div>
-      {
-        hasProducts &&
+      {hasProducts && (
         <ProductFilters
           filters={filters}
           attributes={attributes}
           onAttributeFiltersChange={onAttributeFiltersChange}
           onPriceChange={onPriceChange}
         />
-      }
-      {
-        canDisplayProducts &&
+      )}
+      {canDisplayProducts && (
         <ProductsList
           displayLoader={displayLoader}
           filters={filters}
@@ -101,7 +100,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
           onOrder={onOrder}
           products={products}
         />
-      }
+      )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );

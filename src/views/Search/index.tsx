@@ -1,12 +1,16 @@
 import "./scss/index.scss";
 
-import { get, isUndefined } from 'lodash';
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import * as React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { Debounce, Loader, ProductsFeatured, ProductsList } from "../../components";
+import {
+  Debounce,
+  Loader,
+  ProductsFeatured,
+  ProductsList
+} from "../../components";
 import { Error } from "../../components/Error";
 import NetworkStatus from "../../components/NetworkStatus";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
@@ -20,7 +24,8 @@ import { SearchResults } from "../../core/types/saleor";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  getAttributesFromQs
+  getAttributesFromQs,
+  maybe
 } from "../../core/utils";
 import { GET_SEARCH_PRODUCTS } from "./queries";
 import SearchPage from "./SearchPage";
@@ -56,12 +61,12 @@ export const SearchView: React.SFC<SearchViewProps> = ({
           errorPolicy="all"
         >
           {({ error, data, loading, fetchMore }) => {
-            const canDisplayFilters = get(data, 'attributes.edges') !== undefined;
-            const canDisplayProducts = ![
-              get(data, 'products.totalCount'),
-              get(data, 'products.edges'),
-            ].every(isUndefined);
-
+            const canDisplayFilters = maybe(() => data.attributes.edges, false);
+            const canDisplayProducts = maybe(
+              () =>
+                data.products.totalCount !== undefined && data.products.edges,
+              false
+            );
             const handleQueryChange = (
               event: React.ChangeEvent<HTMLInputElement>
             ) => {
@@ -104,45 +109,47 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                     return <Loader full />;
                   }
 
-                  const hasProducts = canDisplayProducts && !!data.products.totalCount;
-                  const historyReplace = (key: string, value?) => {
+                  const hasProducts =
+                    canDisplayProducts && !!data.products.totalCount;
+                  const updateQueryString = (key: string, value?) => {
                     qs[key] = value || key;
                     history.replace("?" + stringifyQs(qs));
                   };
 
                   if (!!error) {
-                    return isOnline
-                      ? <Error error={error.message} />
-                      : <OfflinePlaceholder />;
+                    return isOnline ? (
+                      <Error error={error.message} />
+                    ) : (
+                      <OfflinePlaceholder />
+                    );
                   }
 
                   return (
                     <SearchPage onQueryChange={change} query={query}>
-                      {
-                        hasProducts &&
-                        canDisplayFilters &&
+                      {hasProducts && canDisplayFilters && (
                         <ProductFilters
                           attributes={data.attributes.edges.map(
                             edge => edge.node
                           )}
                           filters={filters}
-                          onAttributeFiltersChange={historyReplace}
-                          onPriceChange={historyReplace}
+                          onAttributeFiltersChange={updateQueryString}
+                          onPriceChange={updateQueryString}
                         />
-                      }
-                      {
-                        canDisplayProducts &&
+                      )}
+                      {canDisplayProducts && (
                         <ProductsList
                           displayLoader={loading}
                           products={data.products}
                           hasNextPage={data.products.pageInfo.hasNextPage}
                           filters={filters}
                           onLoadMore={handleLoadMore}
-                          onOrder={historyReplace}
+                          onOrder={updateQueryString}
                           notFoundPhrase="No results found, please double check your typing or use another phrase"
                         />
-                      }
-                      {!hasProducts && <ProductsFeatured title="You might like" />}
+                      )}
+                      {!hasProducts && (
+                        <ProductsFeatured title="You might like" />
+                      )}
                     </SearchPage>
                   );
                 }}
