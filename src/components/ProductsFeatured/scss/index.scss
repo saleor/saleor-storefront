@@ -1,0 +1,17 @@
+@import "../../App/scss/variables.scss";
+
+.products-featured {
+  padding: 2rem 0 4rem;
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: $bold-font-weight;
+    margin-bottom: $spacer * 2;
+  }
+
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: $base-font-color;
+  }
+}

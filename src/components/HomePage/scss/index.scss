@@ -60,22 +60,6 @@
     }
   }
 
-  &__featured {
-    padding: 2rem 0 4rem;
-
-    h3 {
-      text-transform: uppercase;
-      font-weight: $bold-font-weight;
-      margin-bottom: 2rem;
-    }
-
-    a {
-      display: inline-block;
-      text-decoration: none;
-      color: $base-font-color;
-    }
-  }
-
   &__categories {
     margin-bottom: 2rem;
 

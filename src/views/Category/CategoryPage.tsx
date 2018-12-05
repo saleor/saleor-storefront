@@ -2,14 +2,14 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Breadcrumbs, ProductsList } from "../../components";
+import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
 import { Filters, ProductFilters } from "../../components/ProductFilters";
 import {
   Category_attributes_edges_node,
   Category_category,
   Category_products
 } from "../../core/types/saleor";
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { getDBIdFromGraphqlId, maybe, slugify } from "../../core/utils";
 
 interface CategoryPageProps {
   attributes: Category_attributes_edges_node[];
@@ -61,19 +61,18 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
   onPriceChange,
   onOrder
 }) => {
-  const canDisplayProducts =
-    products &&
-    products.edges !== undefined &&
-    products.totalCount !== undefined;
+  const canDisplayProducts = maybe(
+    () => products.edges && products.totalCount !== undefined,
+    false
+  );
+  const hasProducts = canDisplayProducts && !!products.totalCount;
   return (
     <div className="category">
       <div
         className="category__header"
         style={
           category.backgroundImage
-            ? {
-                backgroundImage: `url(${category.backgroundImage.url})`
-              }
+            ? { backgroundImage: `url(${category.backgroundImage.url})` }
             : undefined
         }
       >
@@ -84,12 +83,14 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
       <div className="container">
         <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
       </div>
-      <ProductFilters
-        filters={filters}
-        attributes={attributes}
-        onAttributeFiltersChange={onAttributeFiltersChange}
-        onPriceChange={onPriceChange}
-      />
+      {hasProducts && (
+        <ProductFilters
+          filters={filters}
+          attributes={attributes}
+          onAttributeFiltersChange={onAttributeFiltersChange}
+          onPriceChange={onPriceChange}
+        />
+      )}
       {canDisplayProducts && (
         <ProductsList
           displayLoader={displayLoader}
@@ -100,6 +101,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
           products={products}
         />
       )}
+      {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };

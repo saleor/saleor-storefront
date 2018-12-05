@@ -8,18 +8,15 @@ import { Error } from "../../components/Error";
 import NetworkStatus from "../../components/NetworkStatus";
 import { NotFound } from "../../components/NotFound";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
-import {
-  AttributeList,
-  Filters,
-  ProductFilters
-} from "../../components/ProductFilters";
+import { AttributeList, Filters } from "../../components/ProductFilters";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { Category } from "../../core/types/saleor";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
   getAttributesFromQs,
-  getGraphqlIdFromDBId
+  getGraphqlIdFromDBId,
+  maybe
 } from "../../core/utils";
 import { CategoryPage } from "./CategoryPage";
 import { GET_CATEGORY_AND_ATTRIBUTES } from "./queries";
@@ -57,13 +54,10 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
           errorPolicy="all"
         >
           {({ loading, error, data, fetchMore }) => {
-            const canDisplayFilters =
-              data &&
-              data.attributes &&
-              data.attributes.edges !== undefined &&
-              data.category &&
-              data.category.name !== undefined;
-
+            const canDisplayFilters = maybe(
+              () => data.attributes.edges && data.category.name,
+              false
+            );
             if (canDisplayFilters) {
               const handleLoadMore = () =>
                 fetchMore({
@@ -97,9 +91,10 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                   attributes={data.attributes.edges.map(edge => edge.node)}
                   category={data.category}
                   displayLoader={loading}
-                  hasNextPage={
-                    data.products && data.products.pageInfo.hasNextPage
-                  }
+                  hasNextPage={maybe(
+                    () => data.products.pageInfo.hasNextPage,
+                    false
+                  )}
                   filters={filters}
                   products={data.products}
                   onAttributeFiltersChange={(attribute, values) => {

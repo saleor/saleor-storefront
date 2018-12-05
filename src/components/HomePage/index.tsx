@@ -2,20 +2,22 @@ import * as React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 
-import { Button, Carousel, Loader, ProductListItem } from "..";
+import {
+  Button,
+  Carousel,
+  Loader,
+  ProductListItem,
+  ProductsFeatured
+} from "..";
 import { ProductsList } from "../../core/types/saleor";
-import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
+import { generateCategoryUrl, maybe } from "../../core/utils";
 import { Error } from "../Error";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
 
 const canDisplay = (data: ProductsList) =>
-  data &&
-  data.shop &&
-  data.shop.homepageCollection &&
-  data.categories &&
-  data.categories.edges;
+  maybe(() => !!data.shop.homepageCollection && !!data.categories.edges, false);
 
 const HomePage: React.SFC = () => (
   <div className="home-page">
@@ -26,17 +28,14 @@ const HomePage: React.SFC = () => (
     >
       {({ error, data, loading }) => {
         if (canDisplay(data)) {
+          const { backgroundImg } = data.shop.homepageCollection;
           return (
             <>
               <div
                 className="home-page__hero"
                 style={
-                  data.shop.homepageCollection.backgroundImage
-                    ? {
-                        backgroundImage: `url(${
-                          data.shop.homepageCollection.backgroundImage.url
-                        })`
-                      }
+                  backgroundImg
+                    ? { backgroundImage: `url(${backgroundImg.url})` }
                     : null
                 }
               >
@@ -67,23 +66,7 @@ const HomePage: React.SFC = () => (
                   )}
                 </div>
               </div>
-              <div className="home-page__featured">
-                <div className="container">
-                  <h3>Featured</h3>
-                  <Carousel>
-                    {data.shop.homepageCollection.products.edges.map(
-                      ({ node: product }) => (
-                        <Link
-                          to={generateProductUrl(product.id, product.name)}
-                          key={product.id}
-                        >
-                          <ProductListItem product={product} />
-                        </Link>
-                      )
-                    )}
-                  </Carousel>
-                </div>
-              </div>
+              <ProductsFeatured />
               <div className="home-page__categories">
                 <div className="container">
                   <h3>Shop by category</h3>
