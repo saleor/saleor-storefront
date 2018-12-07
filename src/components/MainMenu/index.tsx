@@ -5,17 +5,16 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { MenuDropdown } from "..";
-import { generateCategoryUrl } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
-import { Error } from "../Error";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
-import { GET_MAIN_MENU } from "./queries";
 
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import Offline from "../Offline";
 import Online from "../Online";
+import TopNav from "../TopNav";
+
 import "./scss/index.scss";
 
 const MainMenu: React.SFC = () => (
@@ -39,43 +38,16 @@ const MainMenu: React.SFC = () => (
                 path={require("../../images/hamburger-hover.svg")}
               />
             </li>
-            <Media
-              query={{ minWidth: mediumScreen }}
-              render={() => (
-                <Query
-                  query={GET_MAIN_MENU}
-                  fetchPolicy="cache-and-network"
-                  errorPolicy="all"
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) {
-                      return null;
-                    }
-                    if (error && !data) {
-                      return <Error error={error.message} />;
-                    }
-                    return data.shop.navigation.main.items.filter(
-                      item => (item.category)
-                    ).map(item => (
-                      <li className="main-menu__item" key={item.id}>
-                        <Link
-                          to={generateCategoryUrl(item.category.id, item.name)}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ));
-                  }}
-                </Query>
-              )}
-            />
+            <TopNav />
           </ul>
         </div>
+
         <div className="main-menu__center">
           <Link to={baseUrl}>
             <ReactSVG path={require("../../images/logo.svg")} />
           </Link>
         </div>
+
         <div className="main-menu__right">
           <ul>
             <Online>
@@ -95,7 +67,7 @@ const MainMenu: React.SFC = () => (
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li onClick={() => logout()}>Log Out</li>
+                              <li onClick={logout}>Log Out</li>
                             </ul>
                           }
                         />

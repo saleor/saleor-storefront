@@ -7,6 +7,7 @@ import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
 import { NotificationOverlay } from "../NotificationOverlay";
 import { PasswordOverlay } from "../PasswordOverlay";
+import { TopNavOverlay } from "../TopNavOverlay";
 import { Routes } from "./routes";
 
 import "./scss/index.scss";
@@ -26,6 +27,7 @@ const App: React.SFC<{}> = () => (
         <NavigationOverlay />
         <NotificationOverlay />
         <SearchOverlay />
+        <TopNavOverlay />
       </CartProvider>
     )}
   </ApolloConsumer>

@@ -1,9 +1,14 @@
 @import "../../App/scss/variables.scss";
 
 .main-menu {
-  display: flex;
   align-items: center;
+  align-items: stretch;
+  background-color: $white;
   border-bottom: 1px solid $gray-light;
+  display: flex;
+  flex-direction: row;
+  height: 3.55rem;
+  position: relative;
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -15,6 +20,7 @@
     ul {
       display: flex;
       align-items: center;
+      height: 100%;
     }
   }
 
@@ -33,6 +39,8 @@
   }
 
   &__center {
+    align-self: center;
+
     svg {
       width: 4rem;
 
@@ -43,9 +51,9 @@
   }
 
   &__item {
-    margin: 0 1.5rem;
-    text-transform: uppercase;
     font-weight: $bold-font-weight;
+    height: 100%;
+    text-transform: uppercase;
 
     a {
       text-decoration: none;
@@ -81,6 +89,14 @@
     svg {
       vertical-align: bottom;
     }
+  }
+
+  &__item,
+  &__hamburger {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__icon {

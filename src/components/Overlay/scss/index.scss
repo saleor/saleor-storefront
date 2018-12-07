@@ -27,6 +27,10 @@
   background-color: rgba(199, 207, 207, 0.8);
   transition: 300ms;
 
+  &--top-navigation {
+    top: 3.55rem;
+  }
+
   &--search {
     top: 3.55rem;
 

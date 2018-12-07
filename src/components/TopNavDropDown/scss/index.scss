@@ -1,0 +1,75 @@
+@import "../../App/scss/variables.scss";
+
+.top-nav-dropdown {
+  padding: 0 1.5rem;
+
+  &--active {
+    background-color: $turquoise-light;
+  }
+
+  &__body {
+    background: $white;
+    border-top-color: $gray-light;
+    border-top-style: solid;
+    border-top-width: 1px;
+    display: none;
+    left: 0;
+    padding: 2rem;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 1;
+
+    &--visible {
+      display: block;
+    }
+
+    li *,
+    ul * {
+      display: block !important;
+    }
+
+    > ul > li {
+      align-self: flex-start;
+      margin-left: 2rem;
+      position: relative;
+      width: 188px;
+
+      // 2nd level name
+      > a {
+        font-size: $base-font-size;
+        position: relative;
+        text-transform: uppercase;
+        padding-bottom: 9px;
+        margin-bottom: 3px;
+      }
+      > ul > li:first-child {
+        position: relative;
+
+        &:before {
+          background-color: $turquoise-light;
+          content: "";
+          height: 1px;
+          left: 0;
+          position: absolute;
+          top: -3px;
+          width: 100%;
+        }
+      }
+
+      ul {
+        // 3rd+ level names
+        a {
+          font-size: $small-font-size;
+          font-weight: normal;
+          padding: 6px 0;
+          text-transform: capitalize;
+        }
+
+        li > ul {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
