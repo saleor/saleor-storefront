@@ -2,32 +2,32 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: BottomMenuSubItem
+// GraphQL fragment: SecondaryMenuSubItem
 // ====================================================
 
-export interface BottomMenuSubItem_category {
+export interface SecondaryMenuSubItem_category {
   __typename: "Category";
   id: string;
   name: string;
 }
 
-export interface BottomMenuSubItem_collection {
+export interface SecondaryMenuSubItem_collection {
   __typename: "Collection";
   id: string;
   name: string;
 }
 
-export interface BottomMenuSubItem_page {
+export interface SecondaryMenuSubItem_page {
   __typename: "Page";
   slug: string;
 }
 
-export interface BottomMenuSubItem {
+export interface SecondaryMenuSubItem {
   __typename: "MenuItem";
   id: string;
   name: string;
-  category: BottomMenuSubItem_category | null;
+  category: SecondaryMenuSubItem_category | null;
   url: string | null;
-  collection: BottomMenuSubItem_collection | null;
-  page: BottomMenuSubItem_page | null;
+  collection: SecondaryMenuSubItem_collection | null;
+  page: SecondaryMenuSubItem_page | null;
 }

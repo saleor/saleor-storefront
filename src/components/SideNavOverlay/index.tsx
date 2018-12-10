@@ -36,7 +36,7 @@ const SideNavOverlay: React.SFC = () => (
                     </Link>
                   )}
                   <span
-                    className="side-nav__menu-item-close side-nav__menu-item-close--noback"
+                    className="side-nav__menu-item-close side-nav__menu-item-close"
                     onClick={overlayContext.hide}
                   >
                     <span />

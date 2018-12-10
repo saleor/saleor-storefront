@@ -48,8 +48,10 @@
       display: flex;
       flex-wrap: wrap;
 
-      div:not(:last-of-type) {
-        padding-right: $spacer * 3;
+      div {
+        &:not(:last-of-type) {
+          padding-right: $spacer * 3;
+        }
       }
     }
 
@@ -59,21 +61,18 @@
         margin-bottom: $spacer;
       }
 
-      &-content p {
-        font-weight: $bold-font-weight;
-        margin-bottom: $spacer;
-        font-size: $small-font-size;
-        color: $gray;
+      &-content {
 
-        a {
-          text-decoration: none;
+        p {
+          font-weight: $bold-font-weight;
+          margin-bottom: $spacer;
+          font-size: $small-font-size;
           color: $gray;
-        }
 
-        &--split {
-          display: grid;
-          column-gap: $spacer * 4;
-          grid-template-columns: repeat(2, 1fr);
+          a {
+            text-decoration: none;
+            color: $gray;
+          }
         }
       }
     }

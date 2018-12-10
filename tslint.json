@@ -4,6 +4,7 @@
     "interface-name": false,
     "member-access": [true, "no-public"],
     "no-console": [true, "log"],
+    "max-classes-per-file": false,
     "no-implicit-dependencies": [true, "dev"],
     "no-shadowed-variable": false,
     "no-submodule-imports": [true],

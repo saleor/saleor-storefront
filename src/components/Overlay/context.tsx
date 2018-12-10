@@ -5,7 +5,7 @@ export enum OverlayType {
   checkout = "checkout",
   login = "login",
   message = "message",
-  sideNav = "sideNav",
+  sideNav = "side-nav",
   password = "password",
   search = "search",
   topNav = "top-nav"

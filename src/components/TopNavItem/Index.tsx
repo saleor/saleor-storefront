@@ -1,22 +1,14 @@
 import * as React from "react";
 
-import { Link } from "react-router-dom";
-import { generateCategoryUrl } from "../../core/utils";
-import { TopMenuSubItem } from "../TopNav/types/TopMenuSubItem";
+import { MainMenuSubItem } from "../TopNav/types/MainMenuSubItem";
 import { generateNavLink } from "../TopNavDropDown";
 
-interface TopNavNestedItemProps extends TopMenuSubItem {
+interface TopNavNestedItemProps extends MainMenuSubItem {
   children?: TopNavNestedItemProps[];
 }
 
-const TopNavItem: React.SFC<TopNavNestedItemProps> = ({
-  children,
-  name,
-  category,
-  collection,
-  url,
-  page
-}) => {
+const TopNavItem: React.SFC<TopNavNestedItemProps> = props => {
+  const { children } = props;
   const content =
     children && children.length ? (
       <ul>
@@ -28,7 +20,7 @@ const TopNavItem: React.SFC<TopNavNestedItemProps> = ({
 
   return (
     <li>
-      {generateNavLink(name, url, category, collection, page)}
+      {generateNavLink(props)}
       {content}
     </li>
   );
