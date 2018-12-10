@@ -11,26 +11,20 @@ import { GET_CATEGORIES } from "./queries";
 
 import "./scss/index.scss";
 
-const NavigationOverlay: React.SFC = () => (
+const SideNavOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => {
-      if (overlayContext.type === OverlayType.navigation) {
+      if (overlayContext.type === OverlayType.sideNav) {
+        const isHomePage = window.location.pathname === "/";
+
         return (
           <Overlay context={overlayContext}>
             <div className="side-nav" onClick={e => e.stopPropagation()}>
               <ul>
-                {window.location.pathname === "/" ? (
-                  <li className="side-nav__menu-item side-nav__menu-item--parent">
+                <li className="side-nav__menu-item side-nav__menu-item--parent">
+                  {isHomePage ? (
                     <span />
-                    <span
-                      className="side-nav__menu-item-close side-nav__menu-item-close--noback"
-                      onClick={overlayContext.hide}
-                    >
-                      <span />
-                    </span>
-                  </li>
-                ) : (
-                  <li className="side-nav__menu-item side-nav__menu-item--parent">
+                  ) : (
                     <Link to="/">
                       <span className="side-nav__menu-item-label">
                         <ReactSVG
@@ -40,14 +34,15 @@ const NavigationOverlay: React.SFC = () => (
                         Home
                       </span>
                     </Link>
-                    <span
-                      className="side-nav__menu-item-close"
-                      onClick={overlayContext.hide}
-                    >
-                      <span />
-                    </span>
-                  </li>
-                )}
+                  )}
+                  <span
+                    className="side-nav__menu-item-close side-nav__menu-item-close--noback"
+                    onClick={overlayContext.hide}
+                  >
+                    <span />
+                  </span>
+                </li>
+
                 <Query
                   query={GET_CATEGORIES}
                   fetchPolicy="cache-and-network"
@@ -57,6 +52,7 @@ const NavigationOverlay: React.SFC = () => (
                     if (loading) {
                       return <Loader full />;
                     }
+
                     return data.categories.edges.map(({ node: category }) => (
                       <li className="side-nav__menu-item" key={category.id}>
                         <Link
@@ -80,4 +76,4 @@ const NavigationOverlay: React.SFC = () => (
   </OverlayContext.Consumer>
 );
 
-export default NavigationOverlay;
+export default SideNavOverlay;

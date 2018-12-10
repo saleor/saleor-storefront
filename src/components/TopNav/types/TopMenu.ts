@@ -11,10 +11,32 @@ export interface TopMenu_shop_navigation_main_items_category {
   name: string;
 }
 
+export interface TopMenu_shop_navigation_main_items_collection {
+  __typename: "Collection";
+  id: string;
+  name: string;
+}
+
+export interface TopMenu_shop_navigation_main_items_page {
+  __typename: "Page";
+  slug: string;
+}
+
 export interface TopMenu_shop_navigation_main_items_children_category {
   __typename: "Category";
   id: string;
   name: string;
+}
+
+export interface TopMenu_shop_navigation_main_items_children_collection {
+  __typename: "Collection";
+  id: string;
+  name: string;
+}
+
+export interface TopMenu_shop_navigation_main_items_children_page {
+  __typename: "Page";
+  slug: string;
 }
 
 export interface TopMenu_shop_navigation_main_items_children_children_category {
@@ -23,13 +45,25 @@ export interface TopMenu_shop_navigation_main_items_children_children_category {
   name: string;
 }
 
+export interface TopMenu_shop_navigation_main_items_children_children_collection {
+  __typename: "Collection";
+  id: string;
+  name: string;
+}
+
+export interface TopMenu_shop_navigation_main_items_children_children_page {
+  __typename: "Page";
+  slug: string;
+}
+
 export interface TopMenu_shop_navigation_main_items_children_children {
   __typename: "MenuItem";
   id: string;
   name: string;
   category: TopMenu_shop_navigation_main_items_children_children_category | null;
   url: string | null;
-  level: number;
+  collection: TopMenu_shop_navigation_main_items_children_children_collection | null;
+  page: TopMenu_shop_navigation_main_items_children_children_page | null;
 }
 
 export interface TopMenu_shop_navigation_main_items_children {
@@ -38,7 +72,8 @@ export interface TopMenu_shop_navigation_main_items_children {
   name: string;
   category: TopMenu_shop_navigation_main_items_children_category | null;
   url: string | null;
-  level: number;
+  collection: TopMenu_shop_navigation_main_items_children_collection | null;
+  page: TopMenu_shop_navigation_main_items_children_page | null;
   children: (TopMenu_shop_navigation_main_items_children_children | null)[] | null;
 }
 
@@ -48,7 +83,8 @@ export interface TopMenu_shop_navigation_main_items {
   name: string;
   category: TopMenu_shop_navigation_main_items_category | null;
   url: string | null;
-  level: number;
+  collection: TopMenu_shop_navigation_main_items_collection | null;
+  page: TopMenu_shop_navigation_main_items_page | null;
   children: (TopMenu_shop_navigation_main_items_children | null)[] | null;
 }
 

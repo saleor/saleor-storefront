@@ -9,7 +9,7 @@
 
     a {
       align-items: center;
-      color: #323232;
+      color: $base-font-color;
       display: flex;
       font-weight: 600;
       height: calc(3.6rem - 1px);
@@ -49,6 +49,7 @@
       align-items: center;
       cursor: pointer;
       display: flex;
+      height: 3.6rem;
       justify-content: center;
 
       span {
@@ -60,10 +61,6 @@
 
       &:hover {
         color: $turquoise;
-      }
-
-      &--noback {
-        height: 3.6rem;
       }
     }
 

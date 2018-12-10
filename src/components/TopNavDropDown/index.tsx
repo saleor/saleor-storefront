@@ -1,12 +1,57 @@
 import * as React from "react";
-
 import { Link } from "react-router-dom";
-import { generateCategoryUrl } from "../../core/utils";
+
+import {
+  generateCategoryUrl,
+  generateCollectionUrl,
+  generatePageUrl
+} from "../../core/utils";
+import {
+  BottomMenuSubItem_category,
+  BottomMenuSubItem_collection,
+  BottomMenuSubItem_page
+} from "../BottomNav/types/BottomMenuSubItem";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { TopMenu_shop_navigation_main_items } from "../TopNav/types/TopMenu";
+import {
+  TopMenuSubItem_category,
+  TopMenuSubItem_collection,
+  TopMenuSubItem_page
+} from "../TopNav/types/TopMenuSubItem";
 import TopNavItem from "../TopNavItem/Index";
 
 import "./scss/index.scss";
+
+export const generateNavLink = (
+  name: string,
+  url: string | null,
+  category: TopMenuSubItem_category | BottomMenuSubItem_category | null,
+  collection?: TopMenuSubItem_collection | BottomMenuSubItem_collection | null,
+  page?: TopMenuSubItem_page | BottomMenuSubItem_page | null,
+  props?
+) => {
+  const link = (url: string) => (
+    <Link to={url} {...props}>
+      {name}
+    </Link>
+  );
+
+  if (url) {
+    return (
+      <a href={url} {...props}>
+        {name}
+      </a>
+    );
+  } else if (category) {
+    return link(generateCategoryUrl(category.id, category.name));
+  } else if (collection) {
+    return link(generateCollectionUrl(collection.id, collection.name));
+  } else if (page) {
+    return link(generatePageUrl(page.slug));
+  }
+
+  return <span {...props}>{name}</span>;
+};
 
 class TopNavDropDown extends React.PureComponent<
   TopMenu_shop_navigation_main_items,
@@ -21,11 +66,9 @@ class TopNavDropDown extends React.PureComponent<
   }
 
   render() {
-    const { name, children, url, category } = this.props;
+    const { name, children, url, category, collection, page } = this.props;
     const { active } = this.state;
     const showDropDown = active && this.hasSubNavigation;
-    const href =
-      (category ? generateCategoryUrl(category.id, category.name) : url) || "#";
 
     return (
       <ul
@@ -35,13 +78,7 @@ class TopNavDropDown extends React.PureComponent<
         onMouseOver={this.mouseOverHandler}
         onMouseLeave={this.mouseLeaveHandler}
       >
-        <li>
-          {url ? (
-            <a href={href}>{name}</a>
-          ) : (
-            <Link to={href}>{name}</Link>
-          )}
-        </li>
+        <li>{generateNavLink(name, url, category, collection, page)}</li>
         <li
           className={`top-nav-dropdown__body${
             showDropDown ? " top-nav-dropdown__body--visible" : ""
@@ -58,11 +95,9 @@ class TopNavDropDown extends React.PureComponent<
   }
 
   private mouseOverHandler = () => {
-    const { children } = this.props;
-
     if (this.hasSubNavigation) {
       this.setState({ active: true });
-      this.context.show(OverlayType.topNavigation, OverlayTheme.modal);
+      this.context.show(OverlayType.topNav, OverlayTheme.modal);
     }
   };
 

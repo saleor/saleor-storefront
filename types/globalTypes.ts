@@ -8,6 +8,7 @@
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
   DUMMY = "DUMMY",
+  RAZORPAY = "RAZORPAY",
 }
 
 export enum OrderDirection {

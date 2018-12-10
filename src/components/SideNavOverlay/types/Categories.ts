@@ -8,8 +8,8 @@
 export interface Categories_categories_edges_node {
   __typename: "Category";
   id: string;
-  name: string;
   url: string | null;
+  name: string;
 }
 
 export interface Categories_categories_edges {
@@ -28,4 +28,5 @@ export interface Categories {
 
 export interface CategoriesVariables {
   level?: number | null;
+  first?: number | null;
 }

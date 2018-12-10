@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-export const GET_MAIN_MENU = gql`
-  fragment TopMenuSubItem on MenuItem {
+export const GET_SECONDARY_MENU = gql`
+  fragment BottomMenuSubItem on MenuItem {
     id
     name
     category {
@@ -18,18 +18,14 @@ export const GET_MAIN_MENU = gql`
     }
   }
 
-  query TopMenu {
+  query BottomMenu {
     shop {
       navigation {
-        main {
-          id
+        secondary {
           items {
-            ...TopMenuSubItem
+            ...BottomMenuSubItem
             children {
-              ...TopMenuSubItem
-              children {
-                ...TopMenuSubItem
-              }
+              ...BottomMenuSubItem
             }
           }
         }

@@ -3,20 +3,20 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { generateCategoryUrl } from "../../core/utils";
 import { TopMenuSubItem } from "../TopNav/types/TopMenuSubItem";
+import { generateNavLink } from "../TopNavDropDown";
 
 interface TopNavNestedItemProps extends TopMenuSubItem {
   children?: TopNavNestedItemProps[];
 }
 
 const TopNavItem: React.SFC<TopNavNestedItemProps> = ({
-  level,
   children,
   name,
   category,
-  url
+  collection,
+  url,
+  page
 }) => {
-  const href =
-    (category ? generateCategoryUrl(category.id, category.name) : url) || "#";
   const content =
     children && children.length ? (
       <ul>
@@ -27,8 +27,8 @@ const TopNavItem: React.SFC<TopNavNestedItemProps> = ({
     ) : null;
 
   return (
-    <li data-level={level}>
-      {url ? <a href={href}>{name}</a> : <Link to={href}>{name}</Link>}
+    <li>
+      {generateNavLink(name, url, category, collection, page)}
       {content}
     </li>
   );

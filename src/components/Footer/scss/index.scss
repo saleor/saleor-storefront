@@ -48,10 +48,8 @@
       display: flex;
       flex-wrap: wrap;
 
-      div {
-        &:not(:last-of-type) {
-          padding-right: $spacer * 3;
-        }
+      div:not(:last-of-type) {
+        padding-right: $spacer * 3;
       }
     }
 
@@ -60,18 +58,18 @@
         font-weight: $bold-font-weight;
         margin-bottom: $spacer;
       }
-      &-content {
-        p {
-          font-weight: $bold-font-weight;
-          margin-bottom: $spacer;
-          font-size: $small-font-size;
-          color: $gray;
 
-          a {
-            text-decoration: none;
-            color: $gray;
-          }
+      &-content p {
+        font-weight: $bold-font-weight;
+        margin-bottom: $spacer;
+        font-size: $small-font-size;
+        color: $gray;
+
+        a {
+          text-decoration: none;
+          color: $gray;
         }
+
         &--split {
           display: grid;
           column-gap: $spacer * 4;

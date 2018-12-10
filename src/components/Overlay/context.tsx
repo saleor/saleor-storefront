@@ -5,10 +5,10 @@ export enum OverlayType {
   checkout = "checkout",
   login = "login",
   message = "message",
-  navigation = "navigation",
+  sideNav = "sideNav",
   password = "password",
   search = "search",
-  topNavigation = "top-navigation"
+  topNav = "top-nav"
 }
 
 export enum OverlayTheme {

@@ -17,6 +17,10 @@ import TopNav from "../TopNav";
 
 import "./scss/index.scss";
 
+const Svg = (fileName, props?) => (
+  <ReactSVG path={require(`../../images/${fileName}.svg`)} {...props} />
+);
+
 const MainMenu: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => (
@@ -26,26 +30,20 @@ const MainMenu: React.SFC = () => (
             <li
               className="main-menu__hamburger"
               onClick={() =>
-                overlayContext.show(OverlayType.navigation, OverlayTheme.left)
+                overlayContext.show(OverlayType.sideNav, OverlayTheme.left)
               }
             >
-              <ReactSVG
-                className="main-menu__hamburger--icon"
-                path={require("../../images/hamburger.svg")}
-              />
-              <ReactSVG
-                className="main-menu__hamburger--hover"
-                path={require("../../images/hamburger-hover.svg")}
-              />
+              {Svg("hamburger", { className: "main-menu__hamburger--icon" })}
+              {Svg("hamburger-hover", {
+                className: "main-menu__hamburger--hover"
+              })}
             </li>
             <TopNav />
           </ul>
         </div>
 
         <div className="main-menu__center">
-          <Link to={baseUrl}>
-            <ReactSVG path={require("../../images/logo.svg")} />
-          </Link>
+          <Link to={baseUrl}>{Svg("logo")}</Link>
         </div>
 
         <div className="main-menu__right">
@@ -60,9 +58,7 @@ const MainMenu: React.SFC = () => (
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG
-                                path={require("../../images/user.svg")}
-                              />
+                              {Svg("user")}
                             </li>
                           }
                           content={
@@ -81,7 +77,7 @@ const MainMenu: React.SFC = () => (
                             )
                           }
                         >
-                          <ReactSVG path={require("../../images/user.svg")} />
+                          {Svg('user')}
                         </li>
                       )
                     }
@@ -97,8 +93,8 @@ const MainMenu: React.SFC = () => (
                       overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     }}
                   >
-                    <ReactSVG path={require("../../images/cart.svg")} />
-                    {cart.getQuantity() > 0 ? (
+                    {Svg("cart")}
+                    {cart.getQuantity() ? (
                       <span className="main-menu__cart__quantity">
                         {cart.getQuantity()}
                       </span>
@@ -125,7 +121,7 @@ const MainMenu: React.SFC = () => (
                 query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
-              <ReactSVG path={require("../../images/search.svg")} />
+              {Svg("search")}
             </li>
           </ul>
         </div>
