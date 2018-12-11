@@ -39,7 +39,7 @@ workflows:
       - build:
           filters:
             tags:
-              only: /.*/
+              only: /^v.*/
       - deploy:
           requires:
             - build
