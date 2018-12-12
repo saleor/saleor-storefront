@@ -5,19 +5,18 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { MenuDropdown } from "..";
+import { maybe } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
-import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
-import { UserContext } from "../User/context";
-import { TypedMainMenuQuery } from "../TopNav/queries";
-
-import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import Offline from "../Offline";
 import Online from "../Online";
-import TopNav from "../TopNav";
+import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
+import { UserContext } from "../User/context";
+import NavDropdown from "./NavDropdown";
+import { TypedMainMenuQuery } from "./queries";
 
+import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
-import TopNavDropDown from "../TopNavDropDown";
 
 const Svg = (fileName, props?) => (
   <ReactSVG path={require(`../../images/${fileName}.svg`)} {...props} />
@@ -28,9 +27,14 @@ const MainMenu: React.SFC = () => (
     {overlayContext => (
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
-          <TypedMainMenuQuery displayLoader={false}>
+          <TypedMainMenuQuery
+            renderOnError
+            displayError={false}
+            displayLoader={false}
+          >
             {({ data }) => {
-              const items = data.shop.navigation.main.items;
+              const items = maybe(() => data.shop.navigation.main.items, []);
+
               return (
                 <ul>
                   <Media
@@ -55,13 +59,12 @@ const MainMenu: React.SFC = () => (
                       </li>
                     )}
                   />
-
                   <Media
                     query={{ minWidth: mediumScreen }}
                     render={() =>
                       items.map(item => (
                         <li className="main-menu__item" key={item.id}>
-                          <TopNavDropDown {...item} />
+                          <NavDropdown {...item} />
                         </li>
                       ))
                     }
@@ -124,7 +127,7 @@ const MainMenu: React.SFC = () => (
                     }}
                   >
                     {Svg("cart")}
-                    {cart.getQuantity() ? (
+                    {cart.getQuantity() > 0 ? (
                       <span className="main-menu__cart__quantity">
                         {cart.getQuantity()}
                       </span>

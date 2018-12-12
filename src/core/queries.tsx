@@ -13,6 +13,7 @@ interface TypedQueryInnerProps<TData, TVariables> {
   displayLoader?: boolean;
   fetchPolicy?: FetchPolicy;
   loaderFull?: boolean;
+  renderOnError?: boolean;
   skip?: boolean;
   variables?: TVariables;
 }
@@ -24,6 +25,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
     children,
     displayError = true,
     displayLoader = true,
+    renderOnError = false,
     fetchPolicy = "cache-and-network",
     loaderFull,
     skip,
@@ -47,7 +49,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           return <Loader full={loaderFull} />;
         }
 
-        if (hasData) {
+        if (hasData || (renderOnError && error)) {
           return children(queryData);
         }
 
@@ -55,11 +57,4 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
       }}
     </StrictTypedQuery>
   );
-}
-
-export interface PageInfo {
-  endCursor: string;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
-  startCursor: string;
 }

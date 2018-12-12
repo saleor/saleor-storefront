@@ -8,7 +8,7 @@ export enum OverlayType {
   sideNav = "side-nav",
   password = "password",
   search = "search",
-  topNav = "top-nav"
+  mainMenuNav = "main-menu-nav"
 }
 
 export enum OverlayTheme {

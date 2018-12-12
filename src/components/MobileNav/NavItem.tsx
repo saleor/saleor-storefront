@@ -2,8 +2,8 @@ import classNames from "classnames";
 import * as React from "react";
 import ReactSVG from "react-svg";
 
-import { MainMenuSubItem } from "../TopNav/types/MainMenuSubItem";
-import { generateNavLink } from "../TopNavDropDown";
+import { generateNavLink } from "../MainMenu/NavDropdown";
+import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
 
 interface NavItem extends MainMenuSubItem {
   children?: NavItem[];
@@ -20,6 +20,7 @@ const NavItem: React.SFC<NavItemProps> = ({
   ...item
 }) => {
   const hasSubNavigation = item.children && !!item.children.length;
+
   return (
     <li
       className={classNames({
@@ -41,4 +42,5 @@ const NavItem: React.SFC<NavItemProps> = ({
     </li>
   );
 };
+
 export default NavItem;

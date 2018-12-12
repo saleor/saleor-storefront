@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Button, SocialMediaIcon } from "..";
 import { SOCIAL_MEDIA } from "../../core/config";
-import FooterNav from "../FooterNav";
+import Nav from "./Nav";
 
 import "./scss/index.scss";
 
@@ -19,7 +19,7 @@ const Footer: React.SFC = () => (
         <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
       ))}
     </div>
-    <FooterNav />
+    <Nav />
   </div>
 );
 

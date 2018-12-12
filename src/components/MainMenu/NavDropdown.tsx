@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,11 +7,14 @@ import {
   generateCollectionUrl,
   generatePageUrl
 } from "../../core/utils";
-import { SecondaryMenu_shop_navigation_secondary_items, SecondaryMenu_shop_navigation_secondary_items_children } from "../FooterNav/types/SecondaryMenu";
+import {
+  SecondaryMenu_shop_navigation_secondary_items,
+  SecondaryMenu_shop_navigation_secondary_items_children
+} from "../Footer/types/SecondaryMenu";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
-import { MainMenu_shop_navigation_main_items } from "../TopNav/types/MainMenu";
-import { MainMenuSubItem } from "../TopNav/types/MainMenuSubItem";
-import TopNavItem from "../TopNavItem/Index";
+import NavItem from "./NavItem";
+import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
+import { MainMenuSubItem } from "./types/MainMenuSubItem";
 
 import "./scss/index.scss";
 
@@ -46,7 +50,7 @@ export const generateNavLink = (
   return <span {...props}>{name}</span>;
 };
 
-class TopNavDropDown extends React.PureComponent<
+class NavDropDown extends React.PureComponent<
   MainMenu_shop_navigation_main_items,
   { active: boolean }
 > {
@@ -58,14 +62,14 @@ class TopNavDropDown extends React.PureComponent<
     return children && !!children.length;
   }
 
-  mouseOverHandler = () => {
+  showOverlayHandler = () => {
     if (this.hasSubNavigation) {
       this.setState({ active: true });
-      this.context.show(OverlayType.topNav, OverlayTheme.modal);
+      this.context.show(OverlayType.mainMenuNav, OverlayTheme.modal);
     }
   };
 
-  mouseLeaveHandler = () => {
+  hideOverlayHandler = () => {
     if (this.state.active) {
       this.context.hide();
       this.setState({ active: false });
@@ -79,21 +83,23 @@ class TopNavDropDown extends React.PureComponent<
 
     return (
       <ul
-        className={`top-nav-dropdown${
-          showDropDown ? " top-nav-dropdown--active" : ""
-        }`}
-        onMouseOver={this.mouseOverHandler}
-        onMouseLeave={this.mouseLeaveHandler}
+        className={classNames({
+          "main-menu__nav-dropdown": true,
+          "main-menu__nav-dropdown--active": showDropDown
+        })}
+        onMouseOver={this.showOverlayHandler}
+        onMouseLeave={this.hideOverlayHandler}
       >
-        <li>{generateNavLink(this.props)}</li>
+        <li>{generateNavLink(this.props, { onClick: this.hideOverlayHandler })}</li>
         <li
-          className={`top-nav-dropdown__body${
-            showDropDown ? " top-nav-dropdown__body--visible" : ""
-          }`}
+          className={classNames({
+            "main-menu__nav-dropdown__body": true,
+            "main-menu__nav-dropdown__body--visible": showDropDown
+          })}
         >
           <ul>
             {children.map((subItem, i) => (
-              <TopNavItem key={i} {...subItem} />
+              <NavItem key={i} hideOverlay={this.hideOverlayHandler} {...subItem} />
             ))}
           </ul>
         </li>
@@ -102,4 +108,4 @@ class TopNavDropDown extends React.PureComponent<
   }
 }
 
-export default TopNavDropDown;
+export default NavDropDown;

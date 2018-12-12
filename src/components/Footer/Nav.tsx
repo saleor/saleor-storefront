@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { generateNavLink } from "../TopNavDropDown";
+import { generateNavLink } from "../MainMenu/NavDropdown";
 import { TypedSecondaryMenuQuery } from "./queries";
 
 import "./scss/index.scss";
 
-class FooterNav extends React.PureComponent {
+class Nav extends React.PureComponent {
   render() {
     return (
       <footer className="footer-nav">
@@ -32,4 +32,4 @@ class FooterNav extends React.PureComponent {
   }
 }
 
-export default FooterNav;
+export default Nav;
