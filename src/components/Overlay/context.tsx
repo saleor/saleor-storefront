@@ -21,6 +21,7 @@ export interface ContextInterface {
   title?: string;
   content?: string | React.Component;
   status?: "success" | "error";
+  data?: any;
 }
 
 export type ShowOverlayType = (

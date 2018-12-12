@@ -6,7 +6,7 @@ import {
   generateCollectionUrl,
   generatePageUrl
 } from "../../core/utils";
-import { SecondaryMenu_shop_navigation_secondary_items } from "../FooterNav/types/SecondaryMenu";
+import { SecondaryMenu_shop_navigation_secondary_items, SecondaryMenu_shop_navigation_secondary_items_children } from "../FooterNav/types/SecondaryMenu";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { MainMenu_shop_navigation_main_items } from "../TopNav/types/MainMenu";
 import { MainMenuSubItem } from "../TopNav/types/MainMenuSubItem";
@@ -18,7 +18,8 @@ export const generateNavLink = (
   item:
     | MainMenu_shop_navigation_main_items
     | MainMenuSubItem
-    | SecondaryMenu_shop_navigation_secondary_items,
+    | SecondaryMenu_shop_navigation_secondary_items
+    | SecondaryMenu_shop_navigation_secondary_items_children,
   props?
 ) => {
   const { name, url, category, collection, page } = item;

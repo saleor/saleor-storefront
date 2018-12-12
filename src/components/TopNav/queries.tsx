@@ -18,6 +18,9 @@ export const mainMenu = gql`
     page {
       slug
     }
+    parent {
+      id
+    }
   }
 
   query MainMenu {

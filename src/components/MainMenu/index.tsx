@@ -9,6 +9,7 @@ import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
+import { TypedMainMenuQuery } from "../TopNav/queries";
 
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import Offline from "../Offline";
@@ -16,6 +17,7 @@ import Online from "../Online";
 import TopNav from "../TopNav";
 
 import "./scss/index.scss";
+import TopNavDropDown from "../TopNavDropDown";
 
 const Svg = (fileName, props?) => (
   <ReactSVG path={require(`../../images/${fileName}.svg`)} {...props} />
@@ -26,20 +28,48 @@ const MainMenu: React.SFC = () => (
     {overlayContext => (
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
-          <ul>
-            <li
-              className="main-menu__hamburger"
-              onClick={() =>
-                overlayContext.show(OverlayType.sideNav, OverlayTheme.left)
-              }
-            >
-              {Svg("hamburger", { className: "main-menu__hamburger--icon" })}
-              {Svg("hamburger-hover", {
-                className: "main-menu__hamburger--hover"
-              })}
-            </li>
-            <TopNav />
-          </ul>
+          <TypedMainMenuQuery displayLoader={false}>
+            {({ data }) => {
+              const items = data.shop.navigation.main.items;
+              return (
+                <ul>
+                  <Media
+                    query={{ maxWidth: mediumScreen }}
+                    render={() => (
+                      <li
+                        className="main-menu__hamburger"
+                        onClick={() =>
+                          overlayContext.show(
+                            OverlayType.sideNav,
+                            OverlayTheme.left,
+                            { data: items }
+                          )
+                        }
+                      >
+                        {Svg("hamburger", {
+                          className: "main-menu__hamburger--icon"
+                        })}
+                        {Svg("hamburger-hover", {
+                          className: "main-menu__hamburger--hover"
+                        })}
+                      </li>
+                    )}
+                  />
+
+                  <Media
+                    query={{ minWidth: mediumScreen }}
+                    render={() =>
+                      items.map(item => (
+                        <li className="main-menu__item" key={item.id}>
+                          <TopNavDropDown {...item} />
+                        </li>
+                      ))
+                    }
+                  />
+                </ul>
+              );
+            }}
+          </TypedMainMenuQuery>
         </div>
 
         <div className="main-menu__center">
@@ -77,7 +107,7 @@ const MainMenu: React.SFC = () => (
                             )
                           }
                         >
-                          {Svg('user')}
+                          {Svg("user")}
                         </li>
                       )
                     }

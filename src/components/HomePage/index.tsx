@@ -28,14 +28,15 @@ const HomePage: React.SFC = () => (
     >
       {({ error, data, loading }) => {
         if (canDisplay(data)) {
-          const { backgroundImg } = data.shop.homepageCollection;
+          const { backgroundImage } = data.shop.homepageCollection;
+
           return (
             <>
               <div
                 className="home-page__hero"
                 style={
-                  backgroundImg
-                    ? { backgroundImage: `url(${backgroundImg.url})` }
+                  backgroundImage
+                    ? { backgroundImage: `url(${backgroundImage.url})` }
                     : null
                 }
               >

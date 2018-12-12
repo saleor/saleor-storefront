@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { ApolloConsumer } from "react-apollo";
-import { Footer, MainMenu, SearchOverlay, SideNavOverlay, TopNavOverlay } from "..";
+import { Footer, MainMenu, MobileNav, SearchOverlay, TopNavOverlay } from "..";
 import { CartOverlay } from "../CartOverlay";
 import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
@@ -23,7 +23,7 @@ const App: React.SFC<{}> = () => (
         <CartOverlay />
         <LoginOverlay />
         <PasswordOverlay />
-        <SideNavOverlay />
+        <MobileNav />
         <NotificationOverlay />
         <SearchOverlay />
         <TopNavOverlay />

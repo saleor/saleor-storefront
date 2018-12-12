@@ -5,6 +5,7 @@ import { Query, QueryResult } from "react-apollo";
 
 import { Error } from "../components/Error";
 import Loader from "../components/Loader";
+import { maybe } from "./utils";
 
 interface TypedQueryInnerProps<TData, TVariables> {
   children: (result: QueryResult<TData, TVariables>) => React.ReactNode;
@@ -36,13 +37,13 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
     >
       {queryData => {
         const { error, loading, data } = queryData;
-        const hasData = Object.keys(data).length;
+        const hasData = maybe(() => !!Object.keys(data).length, false);
 
         if (displayError && error) {
           return <Error error={error.message} />;
         }
 
-        if (displayLoader && !hasData) {
+        if (displayLoader && loading && !hasData) {
           return <Loader full={loaderFull} />;
         }
 
@@ -54,4 +55,11 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
       }}
     </StrictTypedQuery>
   );
+}
+
+export interface PageInfo {
+  endCursor: string;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string;
 }

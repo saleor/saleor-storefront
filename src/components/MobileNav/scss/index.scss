@@ -1,20 +1,43 @@
 @import "../../App/scss/variables.scss";
 
 .side-nav {
+  $item-height: 3.7rem;
   width: 30rem;
   max-width: calc(100vw - 5rem);
 
   &__menu-item {
     border-bottom: 1px solid $gray-light;
+    height: $item-height;
 
-    a {
+    &-link,
+    &-back {
       align-items: center;
       color: $base-font-color;
       display: flex;
+      display: flex;
       font-weight: 600;
-      height: calc(3.6rem - 1px);
+      padding: $spacer;
       text-decoration: none;
       text-transform: uppercase;
+      transition: 0.3s;
+
+      svg * {
+        fill: currentColor;
+      }
+    }
+
+    &-logo {
+      padding: $spacer;
+
+      svg {
+        width: 5rem;
+      }
+    }
+
+    &-link,
+    &-more,
+    &-back,
+    &-close {
       transition: 0.3s;
 
       &:hover {
@@ -26,20 +49,19 @@
       }
     }
 
-    &--parent {
-      color: $gray;
-      display: grid;
-      grid-template-columns: 1fr 3.6rem;
-
-      a {
-        color: inherit;
+    &-close,
+    &-more,
+    &-back {
+      &:hover {
+        cursor: pointer;
       }
     }
 
+    &-more {
+      padding: $spacer $spacer * 2;
+    }
+
     &-back {
-      div {
-        display: flex;
-      }
       svg {
         margin-right: 1rem;
       }
@@ -47,7 +69,6 @@
 
     &-close {
       align-items: center;
-      cursor: pointer;
       display: flex;
       height: 3.6rem;
       justify-content: center;
@@ -64,20 +85,17 @@
       }
     }
 
-    &-label {
-      display: flex;
-      margin: 0 $spacer;
+    &--has-subnavigation,
+    &--parent {
+      display: grid;
+      grid-template-columns: 1fr $item-height;
     }
-  }
 
-  &__icon-item {
-    div {
-      display: inline-block;
-      margin-right: $spacer / 2;
-      vertical-align: middle;
+    &--parent {
+      color: $gray;
 
-      svg * {
-        transition: 0.3s;
+      a {
+        color: inherit;
       }
     }
   }
