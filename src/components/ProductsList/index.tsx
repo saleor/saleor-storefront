@@ -1,6 +1,5 @@
-import "./scss/index.scss";
-
 import * as React from "react";
+import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { Button, Dropdown, ProductListItem } from "..";
@@ -8,6 +7,9 @@ import { CategoryProductInterface } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
 import Loader from "../Loader";
 import { Filters } from "../ProductFilters";
+
+import "./scss/index.scss";
+import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 
 interface ProductsListProps {
   displayLoader: boolean;
@@ -38,6 +40,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     option => option.value === filters.sortBy
   );
   const hasProducts = !!products.totalCount;
+  displayLoader = true;
   return (
     <div className="products-list">
       <div className="products-list__products container">

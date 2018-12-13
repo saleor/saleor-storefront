@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { generateNavLink } from "./NavDropdown";
+import { NavLink } from "..";
 import { MainMenuSubItem } from "./types/MainMenuSubItem";
 
 interface NavNestedItemProps extends MainMenuSubItem {
@@ -24,7 +24,7 @@ const NavItem: React.SFC<NavNestedItemProps> = ({
 
   return (
     <li>
-      {generateNavLink(item, { onClick: hideOverlay })}
+      <NavLink item={item} onClick={hideOverlay} />
       {content}
     </li>
   );

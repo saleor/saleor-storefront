@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Query } from "react-apollo";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -18,20 +17,19 @@ import { TypedMainMenuQuery } from "./queries";
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
-const Svg = (fileName, props?) => (
-  <ReactSVG path={require(`../../images/${fileName}.svg`)} {...props} />
-);
+const cartIcon = require("../../images/cart.svg");
+const hamburgerHoverIcon = require("../../images/hamburger-hover.svg");
+const hamburgerIcon = require("../../images/hamburger.svg");
+const logoIcon = require("../../images/logo.svg");
+const searchIcon = require("../../images/search.svg");
+const userIcon = require("../../images/user.svg");
 
 const MainMenu: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlayContext => (
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
-          <TypedMainMenuQuery
-            renderOnError
-            displayError={false}
-            displayLoader={false}
-          >
+          <TypedMainMenuQuery renderOnError displayLoader={false}>
             {({ data }) => {
               const items = maybe(() => data.shop.navigation.main.items, []);
 
@@ -50,12 +48,14 @@ const MainMenu: React.SFC = () => (
                           )
                         }
                       >
-                        {Svg("hamburger", {
-                          className: "main-menu__hamburger--icon"
-                        })}
-                        {Svg("hamburger-hover", {
-                          className: "main-menu__hamburger--hover"
-                        })}
+                        <ReactSVG
+                          path={hamburgerIcon}
+                          className={"main-menu__hamburger--icon"}
+                        />
+                        <ReactSVG
+                          path={hamburgerHoverIcon}
+                          className={"main-menu__hamburger--hover"}
+                        />
                       </li>
                     )}
                   />
@@ -76,7 +76,9 @@ const MainMenu: React.SFC = () => (
         </div>
 
         <div className="main-menu__center">
-          <Link to={baseUrl}>{Svg("logo")}</Link>
+          <Link to={baseUrl}>
+            <ReactSVG path={logoIcon} />
+          </Link>
         </div>
 
         <div className="main-menu__right">
@@ -91,7 +93,7 @@ const MainMenu: React.SFC = () => (
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              {Svg("user")}
+                              <ReactSVG path={userIcon} />
                             </li>
                           }
                           content={
@@ -110,7 +112,7 @@ const MainMenu: React.SFC = () => (
                             )
                           }
                         >
-                          {Svg("user")}
+                          <ReactSVG path={userIcon} />
                         </li>
                       )
                     }
@@ -126,7 +128,7 @@ const MainMenu: React.SFC = () => (
                       overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     }}
                   >
-                    {Svg("cart")}
+                    <ReactSVG path={cartIcon} />
                     {cart.getQuantity() > 0 ? (
                       <span className="main-menu__cart__quantity">
                         {cart.getQuantity()}
@@ -154,7 +156,7 @@ const MainMenu: React.SFC = () => (
                 query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
-              {Svg("search")}
+              <ReactSVG path={searchIcon} />
             </li>
           </ul>
         </div>

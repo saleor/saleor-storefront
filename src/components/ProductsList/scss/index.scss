@@ -3,7 +3,13 @@
 .products-list {
   &__loader {
     position: relative;
-    left: 68px;
+    display: flex;
+
+    @media (max-width: $small-screen) {
+      order: 3;
+      flex-grow:0;
+      flex-basis:100%;
+    }
   }
 
   &__products {
@@ -14,14 +20,34 @@
       font-size: $small-font-size;
       align-items: center;
 
+      @media (max-width: $small-screen) {
+        flex-flow:row wrap;
+      }
+
+      &__total,
+      &__sort {
+        display: flex;
+        flex: 1;
+
+        @media (max-width: $small-screen) {
+          display: flex;
+          align-self: flex-start;
+        }
+      }
+
       &__total {
         color: $gray;
         margin: $spacer 0;
       }
 
       &__sort {
-        display: flex;
         align-items: center;
+        justify-content: flex-end;
+
+        @media (max-width: $small-screen) {
+          flex: 2;
+
+        }
 
         span {
           color: $gray;
@@ -29,6 +55,7 @@
 
         .dropdown-component {
           min-width: 10rem;
+          margin: $spacer / 2 0;
         }
       }
     }

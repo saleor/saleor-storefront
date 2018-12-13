@@ -38,3 +38,4 @@ export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
+export { NavLink } from './NavLink';

@@ -1,54 +1,12 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Link } from "react-router-dom";
 
-import {
-  generateCategoryUrl,
-  generateCollectionUrl,
-  generatePageUrl
-} from "../../core/utils";
-import {
-  SecondaryMenu_shop_navigation_secondary_items,
-  SecondaryMenu_shop_navigation_secondary_items_children
-} from "../Footer/types/SecondaryMenu";
+import { NavLink } from "..";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import NavItem from "./NavItem";
 import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
-import { MainMenuSubItem } from "./types/MainMenuSubItem";
 
 import "./scss/index.scss";
-
-export const generateNavLink = (
-  item:
-    | MainMenu_shop_navigation_main_items
-    | MainMenuSubItem
-    | SecondaryMenu_shop_navigation_secondary_items
-    | SecondaryMenu_shop_navigation_secondary_items_children,
-  props?
-) => {
-  const { name, url, category, collection, page } = item;
-  const link = (url: string) => (
-    <Link to={url} {...props}>
-      {name}
-    </Link>
-  );
-
-  if (url) {
-    return (
-      <a href={url} {...props}>
-        {name}
-      </a>
-    );
-  } else if (category) {
-    return link(generateCategoryUrl(category.id, category.name));
-  } else if (collection) {
-    return link(generateCollectionUrl(collection.id, collection.name));
-  } else if (page) {
-    return link(generatePageUrl(page.slug));
-  }
-
-  return <span {...props}>{name}</span>;
-};
 
 class NavDropDown extends React.PureComponent<
   MainMenu_shop_navigation_main_items,
@@ -90,7 +48,9 @@ class NavDropDown extends React.PureComponent<
         onMouseOver={this.showOverlayHandler}
         onMouseLeave={this.hideOverlayHandler}
       >
-        <li>{generateNavLink(this.props, { onClick: this.hideOverlayHandler })}</li>
+        <li>
+          <NavLink item={this.props} onClick={this.hideOverlayHandler} />
+        </li>
         <li
           className={classNames({
             "main-menu__nav-dropdown__body": true,
@@ -99,7 +59,11 @@ class NavDropDown extends React.PureComponent<
         >
           <ul>
             {children.map((subItem, i) => (
-              <NavItem key={i} hideOverlay={this.hideOverlayHandler} {...subItem} />
+              <NavItem
+                key={i}
+                hideOverlay={this.hideOverlayHandler}
+                {...subItem}
+              />
             ))}
           </ul>
         </li>

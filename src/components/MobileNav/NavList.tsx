@@ -5,6 +5,9 @@ import ReactSVG from "react-svg";
 import { baseUrl } from "../App/routes";
 import NavItem from "./NavItem";
 
+const backIcon = require("../../images/arrow-back.svg");
+const logoIcon = require("../../images/logo.svg");
+
 interface NavListProps {
   items: NavItem[];
   hideOverlay(): void;
@@ -16,27 +19,25 @@ interface NavListState {
 }
 
 class NavList extends React.PureComponent<NavListProps, NavListState> {
-  constructor(props: NavListProps) {
-    super(props);
-    this.state = {
-      displayedItems: [...props.items],
-      parent: null
-    };
-  }
+  state: NavListState = {
+    displayedItems: this.props.items,
+    parent: null
+  };
+
 
   handleShowSubItems = (item: NavItem) => {
-    this.setState({ parent: item, displayedItems: [...item.children] });
+    this.setState({ parent: item, displayedItems: item.children });
   };
 
   handleGoBack = () => {
     const grandparent = this.state.parent.parent;
 
     if (!grandparent) {
-      this.setState({ parent: null, displayedItems: [...this.props.items] });
+      this.setState({ parent: null, displayedItems: this.props.items });
     } else {
       const newParent = this.findItemById(grandparent.id);
       this.setState({
-        displayedItems: [...newParent.children],
+        displayedItems: newParent.children,
         parent: newParent
       });
     }
@@ -67,7 +68,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
               className="side-nav__menu-item-back"
               onClick={this.handleGoBack}
             >
-              <ReactSVG path={require("../../images/arrow-back.svg")} />{" "}
+              <ReactSVG path={backIcon} />{" "}
               {parent.name}
             </span>
           </li>
@@ -79,7 +80,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-logo"
                 onClick={hideOverlay}
               >
-                <ReactSVG path={require("../../images/logo.svg")} />
+                <ReactSVG path={logoIcon} />
               </Link>
               <span className="side-nav__menu-item-close" onClick={hideOverlay}>
                 <span />

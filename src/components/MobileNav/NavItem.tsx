@@ -2,8 +2,10 @@ import classNames from "classnames";
 import * as React from "react";
 import ReactSVG from "react-svg";
 
-import { generateNavLink } from "../MainMenu/NavDropdown";
+import { NavLink } from "..";
 import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
+
+const subcategoriesIcon = require("../../images/subcategories.svg");
 
 interface NavItem extends MainMenuSubItem {
   children?: NavItem[];
@@ -11,7 +13,7 @@ interface NavItem extends MainMenuSubItem {
 
 interface NavItemProps extends NavItem {
   hideOverlay(): void;
-  showSubItems(NavItem): void;
+  showSubItems(item: NavItem): void;
 }
 
 const NavItem: React.SFC<NavItemProps> = ({
@@ -28,13 +30,14 @@ const NavItem: React.SFC<NavItemProps> = ({
         "side-nav__menu-item--has-subnavigation": hasSubNavigation
       })}
     >
-      {generateNavLink(item, {
-        className: "side-nav__menu-item-link",
-        onClick: hideOverlay
-      })}
+      <NavLink
+        item={item}
+        className={"side-nav__menu-item-link"}
+        onClick={hideOverlay}
+      />
       {hasSubNavigation && (
         <ReactSVG
-          path={require(`../../images/subcategories.svg`)}
+          path={subcategoriesIcon}
           className="side-nav__menu-item-more"
           onClick={() => showSubItems(item)}
         />
