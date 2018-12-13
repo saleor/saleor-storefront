@@ -40,7 +40,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     option => option.value === filters.sortBy
   );
   const hasProducts = !!products.totalCount;
-  displayLoader = true;
+
   return (
     <div className="products-list">
       <div className="products-list__products container">
