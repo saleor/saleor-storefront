@@ -1,16 +1,40 @@
 import gql from "graphql-tag";
+import { TypedQuery } from "../../core/queries";
+import { MainMenu } from "./types/MainMenu";
 
-export const GET_MAIN_MENU = gql`
+export const mainMenu = gql`
+  fragment MainMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+    parent {
+      id
+    }
+  }
+
   query MainMenu {
     shop {
       navigation {
         main {
           id
           items {
-            id
-            name
-            category {
-              id
+            ...MainMenuSubItem
+            children {
+              ...MainMenuSubItem
+              children {
+                ...MainMenuSubItem
+              }
             }
           }
         }
@@ -18,3 +42,5 @@ export const GET_MAIN_MENU = gql`
     }
   }
 `;
+
+export const TypedMainMenuQuery = TypedQuery<MainMenu, {}>(mainMenu);

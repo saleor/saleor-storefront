@@ -52,8 +52,9 @@ export const ArticlePage: React.SFC<ArticlePageProps> = ({
                   ["article-page__navigation-element--active"]:
                     menuElement.active
                 })}
+                key={menuElement.url}
               >
-                <Link to={menuElement.url} key={menuElement.url}>
+                <Link to={menuElement.url}>
                   {menuElement.label}
                 </Link>
               </li>

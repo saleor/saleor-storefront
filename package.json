@@ -20,7 +20,7 @@
     "core-js": "^2.5.7",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "graphql": "^0.13.2",
+    "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "js-base64": "^2.4.8",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@storybook/addon-options": "^3.4.10",
-    "@storybook/cli": "^4.0.0-alpha.16",
+    "@storybook/cli": "^4.0.12",
     "@storybook/react": "^4.0.0-alpha.16",
     "@types/graphql": "^0.13.4",
     "@types/node": "^10.7.1",
@@ -51,8 +51,8 @@
     "@types/react-select": "^2.0.2",
     "@types/react-svg": "^5.0.0",
     "@types/storybook__react": "^3.0.9",
+    "apollo": "^2.1.7",
     "apollo-client": "^2.4.2",
-    "apollo-codegen": "^0.20.2",
     "apollo-link": "^1.2.3",
     "apollo-link-context": "^1.0.9",
     "apollo-link-error": "^1.1.1",
@@ -65,7 +65,7 @@
     "css-loader": "^1.0.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
-    "image-webpack-loader": "^4.3.1",
+    "image-webpack-loader": "^4.6.0",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.3",
     "postcss": "^7.0.1",
@@ -79,7 +79,7 @@
     "style-loader": "^0.21.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-loader": "^4.4.2",
-    "typescript": "^3.0.1",
+    "typescript": "^3.3.0-dev.20181206",
     "webapp-webpack-plugin": "^2.2.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
@@ -90,10 +90,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=develop webpack-dev-server --history-api-fallback --open --watch --port 3000 --mode development",
+    "start": "NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development",
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",
-    "codegen": "apollo-codegen generate 'src/**/*.ts' --target typescript --output ./src/core/types/saleor.ts --schema schema.json"
+    "codegen": "apollo codegen:generate --target=typescript types",
+    "codegen-watch": "npm run codegen -- --watch"
   }
 }
