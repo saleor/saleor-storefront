@@ -17,7 +17,7 @@ button {
     max-width: 18rem;
   }
 
-  span {
+  > span {
     display: inline-block;
     color: $white;
     font-size: $button-font-size;

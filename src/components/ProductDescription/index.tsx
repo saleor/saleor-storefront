@@ -8,6 +8,7 @@ import {
 import { CartContext } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 
+import AddToCartButton from "./AddToCartButton";
 import "./scss/index.scss";
 
 interface ProductDescriptionProps {
@@ -233,18 +234,18 @@ class ProductDescription extends React.Component<
               return cartLine ? quantity + cartLine.quantity : quantity;
             };
             return (
-              <Button
+              <AddToCartButton
                 className="product-description__action"
                 onClick={this.handleSubmit}
                 disabled={
-                  quantity !== 0 &&
-                  (variant && variantStock >= calculateQuantityWithCart())
-                    ? false
-                    : true
+                  !(
+                    quantity !== 0 &&
+                    (variant && variantStock >= calculateQuantityWithCart())
+                  )
                 }
               >
-                Add to cart
-              </Button>
+                Add to basket
+              </AddToCartButton>
             );
           }}
         </CartContext.Consumer>

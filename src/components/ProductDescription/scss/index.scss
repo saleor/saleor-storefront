@@ -30,6 +30,31 @@
 
   &__action {
     margin-left: $spacer * 1.5;
+    min-width: 280px;
+    min-height: 49px;
+
+    &--fade {
+      $animation-speed: 500ms;
+
+      &-enter {
+        opacity: 0;
+
+        @at-root #{&}#{&}-active {
+          opacity: 1;
+          transition: opacity $animation-speed ease-in;
+        }
+      }
+
+      &-leave {
+        opacity: 1;
+
+        @at-root #{&}#{&}-active {
+          opacity: 0;
+          display: none;
+          transition: opacity $animation-speed ease-out;
+        }
+      }
+    }
   }
 
   &__variant-picker {
