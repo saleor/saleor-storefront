@@ -6,25 +6,32 @@ import { Button, ButtonProps } from "..";
 
 interface AddToCartButtonState {
   animate: boolean;
+  disabled: boolean;
 }
 
 class AddToCartButton extends React.PureComponent<
   ButtonProps,
   AddToCartButtonState
 > {
-  state = { animate: false };
+  state = { animate: false, disabled: false };
   animationTimeout = 800;
   timeout;
 
   handleAnimation = (evt: React.MouseEvent<HTMLButtonElement>) => {
-    clearTimeout(this.timeout);
-    this.props.onClick(evt);
+    if (!this.state.disabled) {
+      this.props.onClick(evt);
 
-    this.setState({ animate: true }, () => {
-      this.timeout = setTimeout(() => {
-        this.setState({ animate: false });
-      }, this.animationTimeout);
-    });
+      this.setState({ animate: true, disabled: true }, () => {
+        setTimeout(() => {
+          this.setState({ animate: false }, () => {
+            setTimeout(
+              () => this.setState({ disabled: false }),
+              this.animationTimeout
+            );
+          });
+        }, this.animationTimeout);
+      });
+    }
   };
 
   render() {
@@ -33,6 +40,9 @@ class AddToCartButton extends React.PureComponent<
     return (
       <Button
         {...this.props}
+        className={classNames(this.props.className, {
+          "product-description__action--fade": animate
+        })}
         onClick={this.handleAnimation}
       >
         <ReactCSSTransitionGroup

@@ -34,7 +34,8 @@
     min-height: 49px;
 
     &--fade {
-      $animation-speed: 500ms;
+      $animation-speed: 200ms;
+      background-color: $turquoise-dark;
 
       &-enter {
         opacity: 0;
