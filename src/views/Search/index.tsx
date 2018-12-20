@@ -112,7 +112,11 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                   const hasProducts =
                     canDisplayProducts && !!data.products.totalCount;
                   const updateQueryString = (key: string, value?) => {
-                    qs[key] = value || key;
+                    if (value === "") {
+                      delete qs[key]
+                    } else {
+                      qs[key] = value || key;
+                    }
                     history.replace("?" + stringifyQs(qs));
                   };
 

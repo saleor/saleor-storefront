@@ -2,14 +2,20 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
+import {
+  Breadcrumbs,
+  extractBreadcrumbs,
+  ProductsFeatured,
+  ProductsList
+} from "../../components";
 import { Filters, ProductFilters } from "../../components/ProductFilters";
+
+import { maybe } from "../../core/utils";
 import {
   Category_attributes_edges_node,
   Category_category,
   Category_products
-} from "../../core/types/saleor";
-import { getDBIdFromGraphqlId, maybe, slugify } from "../../core/utils";
+} from "./types/Category";
 
 interface CategoryPageProps {
   attributes: Category_attributes_edges_node[];
@@ -23,31 +29,6 @@ interface CategoryPageProps {
   onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
   onOrder: (order: string) => void;
 }
-
-const formatBreadcrumbs = (category: Category_category) => {
-  let breadcrumbs = [
-    {
-      link: `/category/${slugify(category.name)}/${getDBIdFromGraphqlId(
-        category.id,
-        "Category"
-      )}/`,
-      value: category.name
-    }
-  ];
-  if (category.ancestors.edges.length > 0) {
-    const ancestorsList = category.ancestors.edges.map(
-      ({ node: ancestor }) => ({
-        link: `/category/${slugify(ancestor.name)}/${getDBIdFromGraphqlId(
-          ancestor.id,
-          "Category"
-        )}/`,
-        value: ancestor.name
-      })
-    );
-    breadcrumbs = ancestorsList.concat(breadcrumbs);
-  }
-  return breadcrumbs;
-};
 
 export const CategoryPage: React.SFC<CategoryPageProps> = ({
   attributes,
@@ -66,6 +47,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
     false
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
+
   return (
     <div className="category">
       <div
@@ -80,9 +62,11 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
           <h1>{category.name}</h1>
         </span>
       </div>
+
       <div className="container">
-        <Breadcrumbs breadcrumbs={formatBreadcrumbs(category)} />
+        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category, "Category")} />
       </div>
+
       {hasProducts && (
         <ProductFilters
           filters={filters}
@@ -91,6 +75,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
           onPriceChange={onPriceChange}
         />
       )}
+
       {canDisplayProducts && (
         <ProductsList
           displayLoader={displayLoader}

@@ -9,6 +9,7 @@ export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
   DUMMY = "DUMMY",
   RAZORPAY = "RAZORPAY",
+  STRIPE = "STRIPE",
 }
 
 export enum OrderDirection {
@@ -17,6 +18,7 @@ export enum OrderDirection {
 }
 
 export enum ProductOrderField {
+  DATE = "DATE",
   NAME = "NAME",
   PRICE = "PRICE",
 }

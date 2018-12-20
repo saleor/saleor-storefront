@@ -1,5 +1,12 @@
+import * as H from "history";
 import { Base64 } from "js-base64";
-import { OrderDirection, ProductOrderField } from "../core/types/saleor";
+import { parse as parseQs, stringify as stringifyQs } from "query-string";
+
+import {
+  OrderDirection,
+  ProductOrder,
+  ProductOrderField
+} from "../../types/globalTypes";
 
 export const slugify = (text: string | number): string =>
   text
@@ -60,16 +67,8 @@ interface AttributeDict {
 }
 export const convertToAttributeScalar = (attributes: AttributeDict) =>
   Object.entries(attributes)
-    .map(([key, value]) =>
-      typeof value === "string"
-        ? key + ":" + value
-        : value.map(attribute => key + ":" + attribute)
-    )
-    .reduce(
-      (prev, curr) =>
-        typeof curr === "string" ? [...prev, curr] : [...prev, ...curr],
-      []
-    );
+    .map(([key, value]) => value.map(attribute => `${key}:${attribute}`))
+    .reduce((prev, curr) => [...prev, ...curr], []);
 
 interface QueryString {
   [key: string]: string[] | string | null | undefined;
@@ -95,13 +94,19 @@ export const convertSortByFromString = (sortBy: string) => {
     ? OrderDirection.DESC
     : OrderDirection.ASC;
 
-  let field = sortBy.replace(/^-/, "");
-  field =
-    field === "name"
-      ? ProductOrderField.NAME
-      : field === "price"
-      ? ProductOrderField.PRICE
-      : undefined;
+  let field;
+  switch (sortBy.replace(/^-/, "")) {
+    case "name":
+      field = ProductOrderField.NAME;
+      break;
+
+    case "price":
+      field = ProductOrderField.PRICE;
+      break;
+
+    default:
+      return null;
+  }
   return { field, direction };
 };
 
@@ -113,3 +118,21 @@ export function maybe<T>(exp: () => T, d?: T) {
     return d;
   }
 }
+
+export const parseQueryString = (location: H.LocationState) =>
+  parseQs(location.search.substr(1));
+
+export const updateQueryString = (
+  location: H.LocationState,
+  history: H.History
+) => {
+  const querystring = parseQueryString(location);
+  return (key: string, value?) => {
+    if (value === "") {
+      delete querystring[key];
+    } else {
+      querystring[key] = value || key;
+    }
+    history.replace("?" + stringifyQs(querystring));
+  };
+};

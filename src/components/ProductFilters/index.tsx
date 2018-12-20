@@ -2,10 +2,8 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import {
-  Category_attributes_edges_node,
-  SearchProducts_attributes_edges_node
-} from "../../core/types/saleor";
+import { Category_attributes_edges_node } from "../../views/Category/types/Category";
+import { SearchProducts_attributes_edges_node } from "../../views/Search/types/SearchProducts";
 import PriceRangeFilter from "../PriceRangeFilter";
 import SelectField, { SelectValue } from "../SelectField";
 

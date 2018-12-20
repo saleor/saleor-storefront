@@ -1,10 +1,10 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { Category, CategoryVariables } from "./types/Category";
+import { Collection, CollectionVariables } from "./types/Collection";
 
-export const categoryProductsQuery = gql`
-  query Category(
+export const callectionPoroductsQuery = gql`
+  query Collection(
     $id: ID!
     $attributes: [AttributeScalar]
     $after: String
@@ -13,7 +13,16 @@ export const categoryProductsQuery = gql`
     $priceLte: Float
     $priceGte: Float
   ) {
+    collection(id: $id) {
+      id
+      slug
+      name
+      backgroundImage {
+        url
+      }
+    }
     products(
+      collections: [$id]
       after: $after
       attributes: $attributes
       categories: [$id]
@@ -29,7 +38,10 @@ export const categoryProductsQuery = gql`
           name
           thumbnailUrl
           thumbnailUrl2x: thumbnailUrl(size: 510)
-          category {
+          thumbnail {
+            url
+          }
+          collections {
             id
             name
           }
@@ -45,21 +57,6 @@ export const categoryProductsQuery = gql`
         hasNextPage
         hasPreviousPage
         startCursor
-      }
-    }
-    category(id: $id) {
-      id
-      name
-      backgroundImage {
-        url
-      }
-      ancestors(last: 5) {
-        edges {
-          node {
-            id
-            name
-          }
-        }
       }
     }
     attributes(inCategory: $id, first: 100) {
@@ -79,6 +76,7 @@ export const categoryProductsQuery = gql`
   }
 `;
 
-export const TypedCategoryProductsQuery = TypedQuery<Category, CategoryVariables>(
-  categoryProductsQuery
-);
+export const TypedCollectionProductsQuery = TypedQuery<
+  Collection,
+  CollectionVariables
+>(callectionPoroductsQuery);
