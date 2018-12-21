@@ -7,17 +7,17 @@ import { ProductOrder } from "./../../../../types/globalTypes";
 // GraphQL query operation: Category
 // ====================================================
 
-export interface Category_products_edges_node_category {
-  __typename: "Category";
-  id: string;
-  name: string;
-}
-
 export interface Category_products_edges_node_price {
   __typename: "Money";
   amount: number;
   currency: string;
   localized: string;
+}
+
+export interface Category_products_edges_node_category {
+  __typename: "Category";
+  id: string;
+  name: string;
 }
 
 export interface Category_products_edges_node {
@@ -26,8 +26,8 @@ export interface Category_products_edges_node {
   name: string;
   thumbnailUrl: string | null;
   thumbnailUrl2x: string | null;
-  category: Category_products_edges_node_category;
   price: Category_products_edges_node_price | null;
+  category: Category_products_edges_node_category;
 }
 
 export interface Category_products_edges {

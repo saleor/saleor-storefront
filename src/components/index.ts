@@ -34,6 +34,7 @@ export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
 export { default as Debounce } from "./Debounce";
 export { default as ProductsFeatured } from "./ProductsFeatured";
+export { Filters, ProductFilters } from "./ProductFilters";
 export {
   default as Breadcrumbs,
   Breadcrumb,

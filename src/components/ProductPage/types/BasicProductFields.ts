@@ -5,10 +5,15 @@
 // GraphQL fragment: BasicProductFields
 // ====================================================
 
+export interface BasicProductFields_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
 export interface BasicProductFields {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: BasicProductFields_thumbnail | null;
 }

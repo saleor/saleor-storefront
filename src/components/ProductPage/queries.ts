@@ -4,8 +4,10 @@ export const BASIC_PRODUCT_FRAGMENT = gql`
   fragment BasicProductFields on Product {
     id
     name
-    thumbnailUrl
-    thumbnailUrl2x: thumbnailUrl(size: 510)
+    thumbnail(size: 510) {
+      url
+      alt
+    }
   }
 `;
 
@@ -76,7 +78,7 @@ export const GET_PRODUCT_DETAILS = gql`
   }
 `;
 
-// FIXME: Check how to handle pagination of `productVariants` in the UI. 
+// FIXME: Check how to handle pagination of `productVariants` in the UI.
 // We need allow the user view  all cart items regardless of pagination.
 export const GET_PRODUCTS_VARIANTS = gql`
   ${BASIC_PRODUCT_FRAGMENT}

@@ -7,8 +7,10 @@ export const GET_SEARCH_RESULTS = gql`
         node {
           id
           name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
+          thumbnail(size: 510){
+            url
+            alt
+          }
           url
           category {
             id

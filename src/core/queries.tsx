@@ -69,7 +69,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             variables: { ...variables, [endCursorKey]: endCursor }
           });
 
-        if (displayError && error && !hasData) {
+          if (displayError && error && !hasData) {
           return <Error error={error.message} />;
         }
 

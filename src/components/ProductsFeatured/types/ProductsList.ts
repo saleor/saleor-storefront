@@ -5,17 +5,17 @@
 // GraphQL query operation: ProductsList
 // ====================================================
 
+export interface ProductsList_shop_homepageCollection_products_edges_node_price {
+  __typename: "Money";
+  amount: number;
+  currency: string;
+  localized: string;
+}
+
 export interface ProductsList_shop_homepageCollection_products_edges_node_category {
   __typename: "Category";
   id: string;
   name: string;
-}
-
-export interface ProductsList_shop_homepageCollection_products_edges_node_price {
-  __typename: "Money";
-  currency: string;
-  amount: number;
-  localized: string;
 }
 
 export interface ProductsList_shop_homepageCollection_products_edges_node {
@@ -24,8 +24,8 @@ export interface ProductsList_shop_homepageCollection_products_edges_node {
   name: string;
   thumbnailUrl: string | null;
   thumbnailUrl2x: string | null;
-  category: ProductsList_shop_homepageCollection_products_edges_node_category;
   price: ProductsList_shop_homepageCollection_products_edges_node_price | null;
+  category: ProductsList_shop_homepageCollection_products_edges_node_category;
 }
 
 export interface ProductsList_shop_homepageCollection_products_edges {

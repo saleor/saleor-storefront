@@ -1,9 +1,11 @@
 import gql from "graphql-tag";
 
+import { productNodeFragment } from "../../components/ProductListItem/queries";
 import { TypedQuery } from "../../core/queries";
 import { Collection, CollectionVariables } from "./types/Collection";
 
 export const callectionPoroductsQuery = gql`
+  ${productNodeFragment}
   query Collection(
     $id: ID!
     $attributes: [AttributeScalar]
@@ -25,7 +27,6 @@ export const callectionPoroductsQuery = gql`
       collections: [$id]
       after: $after
       attributes: $attributes
-      categories: [$id]
       first: $pageSize
       sortBy: $sortBy
       priceLte: $priceLte
@@ -34,21 +35,10 @@ export const callectionPoroductsQuery = gql`
       totalCount
       edges {
         node {
-          id
-          name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
-          thumbnail {
-            url
-          }
+          ...ProductNodeFragment
           collections {
             id
             name
-          }
-          price {
-            amount
-            currency
-            localized
           }
         }
       }
@@ -59,6 +49,8 @@ export const callectionPoroductsQuery = gql`
         startCursor
       }
     }
+    # attributes(inCollection: $id, first: 100) {
+    # TODO change after merge
     attributes(inCategory: $id, first: 100) {
       edges {
         node {

@@ -20,9 +20,11 @@ export interface Collection_collection {
   backgroundImage: Collection_collection_backgroundImage | null;
 }
 
-export interface Collection_products_edges_node_thumbnail {
-  __typename: "Image";
-  url: string;
+export interface Collection_products_edges_node_price {
+  __typename: "Money";
+  amount: number;
+  currency: string;
+  localized: string;
 }
 
 export interface Collection_products_edges_node_collections {
@@ -31,22 +33,14 @@ export interface Collection_products_edges_node_collections {
   name: string;
 }
 
-export interface Collection_products_edges_node_price {
-  __typename: "Money";
-  amount: number;
-  currency: string;
-  localized: string;
-}
-
 export interface Collection_products_edges_node {
   __typename: "Product";
   id: string;
   name: string;
   thumbnailUrl: string | null;
   thumbnailUrl2x: string | null;
-  thumbnail: Collection_products_edges_node_thumbnail | null;
-  collections: (Collection_products_edges_node_collections | null)[] | null;
   price: Collection_products_edges_node_price | null;
+  collections: (Collection_products_edges_node_collections | null)[] | null;
 }
 
 export interface Collection_products_edges {

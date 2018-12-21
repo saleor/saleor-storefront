@@ -1,34 +1,37 @@
+import "./scss/index.scss";
+
 import * as React from "react";
-import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { Button, Dropdown, ProductListItem } from "..";
-import { CategoryProductInterface } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
 import Loader from "../Loader";
 import { Filters } from "../ProductFilters";
 
-import "./scss/index.scss";
-import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
+import { Category_products } from "../../views/Category/types/Category";
+import { Collection_products } from "../../views/Collection/types/Collection";
+import { ProductNodeFragment } from "../ProductListItem/types/ProductNodeFragment";
 
 interface ProductsListProps {
+  products: ProductNodeFragment[];
   displayLoader: boolean;
   hasNextPage: boolean;
   filters: Filters;
   onLoadMore: () => void;
-  products: CategoryProductInterface;
   onOrder: (order: string) => void;
   notFoundPhrase?: string;
+  totalCount: number;
 }
 
 export const ProductList: React.SFC<ProductsListProps> = ({
   displayLoader,
   filters,
   hasNextPage,
+  notFoundPhrase,
   onLoadMore,
-  products,
   onOrder,
-  notFoundPhrase
+  products,
+  totalCount
 }) => {
   const filterOptions = [
     { value: "price", label: "Price Low-High" },
@@ -39,14 +42,14 @@ export const ProductList: React.SFC<ProductsListProps> = ({
   const sortValues = filterOptions.find(
     option => option.value === filters.sortBy
   );
-  const hasProducts = !!products.totalCount;
+  const hasProducts = !!totalCount;
 
   return (
     <div className="products-list">
       <div className="products-list__products container">
         <div className="products-list__products__subheader">
           <span className="products-list__products__subheader__total">
-            {products.totalCount} Products
+            {totalCount} Products
           </span>
           {displayLoader && (
             <div className="products-list__loader">
@@ -70,7 +73,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
         {hasProducts ? (
           <>
             <div className="products-list__products__grid">
-              {products.edges.map(({ node: product }) => (
+              {products.map(product => (
                 <Link
                   to={generateProductUrl(product.id, product.name)}
                   key={product.id}

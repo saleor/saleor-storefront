@@ -1,9 +1,12 @@
 import gql from "graphql-tag";
 
+import { productNodeFragment } from "../../components/ProductListItem/queries";
 import { TypedQuery } from "../../core/queries";
 import { Category, CategoryVariables } from "./types/Category";
 
+
 export const categoryProductsQuery = gql`
+  ${productNodeFragment}
   query Category(
     $id: ID!
     $attributes: [AttributeScalar]
@@ -25,18 +28,10 @@ export const categoryProductsQuery = gql`
       totalCount
       edges {
         node {
-          id
-          name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
+          ...ProductNodeFragment
           category {
             id
             name
-          }
-          price {
-            amount
-            currency
-            localized
           }
         }
       }
@@ -79,6 +74,7 @@ export const categoryProductsQuery = gql`
   }
 `;
 
-export const TypedCategoryProductsQuery = TypedQuery<Category, CategoryVariables>(
-  categoryProductsQuery
-);
+export const TypedCategoryProductsQuery = TypedQuery<
+  Category,
+  CategoryVariables
+>(categoryProductsQuery);
