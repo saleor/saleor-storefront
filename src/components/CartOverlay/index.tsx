@@ -1,10 +1,12 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
-import { priceToString } from "../../core/utils";
+import { maybe, priceToString } from "../../core/utils";
 import { checkoutLoginUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import { Error } from "../Error";
@@ -21,7 +23,10 @@ import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
 
-import "./scss/index.scss";
+const cartSvg = require("../../images/cart.svg");
+const closeSvg = require("../../images/x.svg");
+const noPhotoPng = require("../../images/nophoto.png");
+const removeSvg = require("../../images/garbage.svg");
 
 export const CartOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
@@ -50,7 +55,7 @@ export const CartOverlay: React.SFC = () => (
                       <div className="cart">
                         <div className="overlay__header">
                           <ReactSVG
-                            path={require("../../images/cart.svg")}
+                            path={cartSvg}
                             className="overlay__header__cart-icon"
                           />
                           <div className="overlay__header-text">
@@ -60,7 +65,7 @@ export const CartOverlay: React.SFC = () => (
                             </span>
                           </div>
                           <ReactSVG
-                            path={require("../../images/x.svg")}
+                            path={closeSvg}
                             onClick={() => overlay.hide()}
                             className="overlay__header__close-icon"
                           />
@@ -74,24 +79,23 @@ export const CartOverlay: React.SFC = () => (
                                   className="cart__list__item"
                                 >
                                   <CachedImage
-                                    url={
-                                      line.variant.product.thumbnailUrl ||
-                                      require("../../images/nophoto.png")
-                                    }
-                                    url2x={line.variant.product.thumbnailUrl2x}
+                                    url={maybe(
+                                      () => line.variant.product.thumbnail.url,
+                                      noPhotoPng
+                                    )}
+                                    url2x={maybe(
+                                      () => line.variant.product.thumbnail2x.url
+                                    )}
                                   />
                                   <div className="cart__list__item__details">
                                     <p>{line.variant.price.localized}</p>
                                     <p>{line.variant.product.name}</p>
                                     <span className="cart__list__item__details__variant">
                                       <span>{line.variant.name}</span>
-                                      <span>
-                                        Qty:
-                                        {line.quantity}
-                                      </span>
+                                      <span>{"Qty: " + line.quantity}</span>
                                     </span>
                                     <ReactSVG
-                                      path={require("../../images/garbage.svg")}
+                                      path={removeSvg}
                                       className="cart__list__item__details__delete-icon"
                                       onClick={() =>
                                         cart.remove(line.variant.id)

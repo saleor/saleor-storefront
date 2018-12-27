@@ -18,7 +18,7 @@ export interface completeCheckout_checkoutComplete_order {
 
 export interface completeCheckout_checkoutComplete {
   __typename: "CheckoutComplete";
-  errors: (completeCheckout_checkoutComplete_errors | null)[] | null;
+  errors: completeCheckout_checkoutComplete_errors[] | null;
   order: completeCheckout_checkoutComplete_order | null;
 }
 

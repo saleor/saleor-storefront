@@ -1,17 +1,26 @@
 import gql from "graphql-tag";
 
-export const BASIC_PRODUCT_FRAGMENT = gql`
+import { TypedQuery } from "../../core/queries";
+import {
+  ProductDetails,
+  ProductDetailsVariables
+} from "./types/ProductDetails";
+
+export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
     name
-    thumbnail(size: 510) {
+    thumbnail {
       url
       alt
+    }
+    thumbnail2x: thumbnail(size: 510) {
+      url
     }
   }
 `;
 
-export const PRODUCT_VARIANT_FRAGMENT = gql`
+export const productVariantFragment = gql`
   fragment ProductVariantFields on ProductVariant {
     id
     name
@@ -35,9 +44,9 @@ export const PRODUCT_VARIANT_FRAGMENT = gql`
   }
 `;
 
-export const GET_PRODUCT_DETAILS = gql`
-  ${BASIC_PRODUCT_FRAGMENT}
-  ${PRODUCT_VARIANT_FRAGMENT}
+export const productDetailsQuery = gql`
+  ${basicProductFragment}
+  ${productVariantFragment}
   query ProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
@@ -80,9 +89,9 @@ export const GET_PRODUCT_DETAILS = gql`
 
 // FIXME: Check how to handle pagination of `productVariants` in the UI.
 // We need allow the user view  all cart items regardless of pagination.
-export const GET_PRODUCTS_VARIANTS = gql`
-  ${BASIC_PRODUCT_FRAGMENT}
-  ${PRODUCT_VARIANT_FRAGMENT}
+export const productVariatnsQuery = gql`
+  ${basicProductFragment}
+  ${productVariantFragment}
   query VariantList($ids: [ID!]) {
     productVariants(ids: $ids, first: 100) {
       edges {
@@ -96,3 +105,8 @@ export const GET_PRODUCTS_VARIANTS = gql`
     }
   }
 `;
+
+export const TypedProductDetailsQuery = TypedQuery<
+  ProductDetails,
+  ProductDetailsVariables
+>(productDetailsQuery);

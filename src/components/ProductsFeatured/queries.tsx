@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { productNodeFragment } from "../ProductListItem/queries";
+import { basicProductFragment } from "../ProductPage/queries";
 import { ProductsList } from "./types/ProductsList";
 
 export const featuredProducts = gql`
-  ${productNodeFragment}
+  ${basicProductFragment}
   query ProductsList {
     shop {
       homepageCollection {
@@ -13,7 +13,12 @@ export const featuredProducts = gql`
         products(first: 20) {
           edges {
             node {
-              ...ProductNodeFragment
+              ...BasicProductFields
+              price {
+                amount
+                currency
+                localized
+              }
               category {
                 id
                 name

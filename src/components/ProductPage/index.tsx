@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Query } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
@@ -13,29 +12,31 @@ import {
   ProductDescription,
   ProductListItem
 } from "..";
-import { ProductDetails } from "../../core/types/saleor";
 import {
   generateCategoryUrl,
   generateProductUrl,
-  getGraphqlIdFromDBId
+  getGraphqlIdFromDBId,
+  maybe
 } from "../../core/utils";
 import { smallScreen } from "../App/scss/variables.scss";
 import { CartContext } from "../CartProvider/context";
-import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { NotFound } from "../NotFound";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
-import { GET_PRODUCT_DETAILS } from "./queries";
+import { TypedProductDetailsQuery } from "./queries";
 
 import "./scss/index.scss";
+import { ProductDetails } from "./types/ProductDetails";
 
+const noPhoto = require("../../images/nophoto.png");
 const canDisplay = (data: ProductDetails) =>
-  data &&
-  data.product &&
-  data.product.description &&
-  data.product.name &&
-  data.product.price &&
-  data.product.variants;
+  maybe(
+    () =>
+      !!data.product.description &&
+      !!data.product.name &&
+      !!data.product.price &&
+      !!data.product.variants
+  );
 
 class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -73,38 +74,37 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
 
   render() {
     return (
-      <Query
-        query={GET_PRODUCT_DETAILS}
+      <TypedProductDetailsQuery
+        loaderFull
         variables={{
           id: getGraphqlIdFromDBId(this.props.match.params.id, "Product")
         }}
-        fetchPolicy="cache-and-network"
         errorPolicy="all"
         key={this.props.match.params.id}
       >
-        {({ error, data }) => (
+        {({ data }) => (
           <NetworkStatus>
             {isOnline => {
               if (canDisplay(data)) {
                 const { product } = data;
+                const breadcrumbs = [
+                  {
+                    link: generateCategoryUrl(
+                      product.category.id,
+                      product.category.name
+                    ),
+                    value: product.category.name
+                  },
+                  {
+                    link: generateProductUrl(product.id, product.name),
+                    value: product.name
+                  }
+                ];
+
                 return (
                   <div className="product-page">
                     <div className="container">
-                      <Breadcrumbs
-                        breadcrumbs={[
-                          {
-                            link: generateCategoryUrl(
-                              product.category.id,
-                              product.category.name
-                            ),
-                            value: product.category.name
-                          },
-                          {
-                            link: generateProductUrl(product.id, product.name),
-                            value: product.name
-                          }
-                        ]}
-                      />
+                      <Breadcrumbs breadcrumbs={breadcrumbs} />
                     </div>
                     <div className="container">
                       <div className="product-page__product">
@@ -149,21 +149,14 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                       );
                                     }}
                                   >
-                                    {product.images.map(
-                                      image => (
-                                        <CachedImage
-                                          url={
-                                            image.url ||
-                                            require("../../images/nophoto.png")
-                                          }
-                                          key={image.id}
-                                        >
-                                          <img
-                                            src={require("../../images/nophoto.png")}
-                                          />
-                                        </CachedImage>
-                                      )
-                                    )}
+                                    {product.images.map(image => (
+                                      <CachedImage
+                                        url={image.url || noPhoto}
+                                        key={image.id}
+                                      >
+                                        <img src={noPhoto} />
+                                      </CachedImage>
+                                    ))}
                                   </Carousel>
                                 </div>
                                 <div className="product-page__product__info">
@@ -190,21 +183,14 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
                                   className="product-page__product__gallery"
                                   ref={this.productGallery}
                                 >
-                                  {product.images.map(
-                                      image => (
-                                      <CachedImage
-                                        url={
-                                          image.url ||
-                                          require("../../images/nophoto.png")
-                                        }
-                                        key={image.id}
-                                      >
-                                        <img
-                                          src={require("../../images/nophoto.png")}
-                                        />
-                                      </CachedImage>
-                                    )
-                                  )}
+                                  {product.images.map(image => (
+                                    <CachedImage
+                                      url={image.url || noPhoto}
+                                      key={image.id}
+                                    >
+                                      <img src={noPhoto} />
+                                    </CachedImage>
+                                  ))}
                                 </div>
                                 <div className="product-page__product__info">
                                   <div
@@ -270,14 +256,10 @@ class ProductPage extends React.Component<RouteComponentProps<{ id }>, {}> {
               if (!isOnline) {
                 return <OfflinePlaceholder />;
               }
-              if (error) {
-                return <Error error={error.message} />;
-              }
-              return <Loader full />;
             }}
           </NetworkStatus>
         )}
-      </Query>
+      </TypedProductDetailsQuery>
     );
   }
 }

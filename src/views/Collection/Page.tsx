@@ -9,7 +9,6 @@ import {
   ProductsFeatured,
   ProductsList
 } from "../../components";
-
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 import {
   Collection_attributes_edges_node,

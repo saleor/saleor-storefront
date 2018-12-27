@@ -1,16 +1,19 @@
+import { smallScreen } from "../App/scss/variables.scss";
+import "./scss/index.scss";
+
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
 import { AddressSummary, Button } from "..";
+import { maybe } from "../../core/utils";
+import CachedImage from "../CachedImage";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { COMPLETE_CHECKOUT } from "./queries";
 
-import { smallScreen } from "../App/scss/variables.scss";
-import CachedImage from "../CachedImage";
-import "./scss/index.scss";
+const noPhotoPng = require("../../images/nophoto.png");
 
 class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
   render() {
@@ -47,11 +50,13 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                           query={{ minWidth: smallScreen }}
                           render={() => (
                             <CachedImage
-                              url={
-                                line.variant.product.thumbnailUrl ||
-                                require("../../images/nophoto.png")
-                              }
-                              url2x={line.variant.product.thumbnailUrl2x}
+                              url={maybe(
+                                () => line.variant.product.thumbnail.url,
+                                noPhotoPng
+                              )}
+                              url2x={maybe(
+                                () => line.variant.product.thumbnail2x.url
+                              )}
                             />
                           )}
                         />

@@ -64,7 +64,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
       </div>
 
       <div className="container">
-        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category, "Category")} />
+        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
       </div>
 
       {hasProducts && (

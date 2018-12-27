@@ -2,7 +2,6 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { Redirect } from "react-router";
 
-import { CheckoutInterface } from "../../core/types";
 import { ButtonProps, default as Button } from "../Button";
 import { CartInterface } from "../CartProvider/context";
 import { CheckoutContext } from "../CheckoutApp/context";
@@ -13,10 +12,11 @@ import {
   checkoutPaymentUrl,
   checkoutShippingOptionsUrl
 } from "../CheckoutApp/routes";
+import { Checkout } from "../CheckoutApp/types/Checkout";
 import { CREATE_CHECKOUT } from "./queries";
 
 export interface GoToCheckoutState {
-  checkout?: CheckoutInterface;
+  checkout?: Checkout;
   checkoutToken: string;
   loading: boolean;
   redirect: boolean;

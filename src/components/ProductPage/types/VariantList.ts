@@ -37,11 +37,17 @@ export interface VariantList_productVariants_edges_node_product_thumbnail {
   alt: string | null;
 }
 
+export interface VariantList_productVariants_edges_node_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface VariantList_productVariants_edges_node_product {
   __typename: "Product";
   id: string;
   name: string;
   thumbnail: VariantList_productVariants_edges_node_product_thumbnail | null;
+  thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
 }
 
 export interface VariantList_productVariants_edges_node {

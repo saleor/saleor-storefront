@@ -10,8 +10,8 @@ import { maybe } from "./utils";
 interface LoadMore<TData> {
   loadMore: (
     mergeFunc: (prev: TData, next: TData) => TData,
-    endCursor: string,
-    endCursorKey?: string
+    cursor: string,
+    cursorKey?: string
   ) => Promise<ApolloQueryResult<TData>>;
 }
 
@@ -55,8 +55,8 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
         const hasData = maybe(() => !!Object.keys(data).length, false);
         const loadMore = (
           mergeFunc: (previousResults: TData, fetchMoreResult: TData) => TData,
-          endCursor: string,
-          endCursorKey: string = "after"
+          cursor: string,
+          cursorKey: string = "after"
         ) =>
           fetchMore({
             query,
@@ -66,10 +66,10 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
               }
               return mergeFunc(previousResults, fetchMoreResult);
             },
-            variables: { ...variables, [endCursorKey]: endCursor }
+            variables: { ...variables, [cursorKey]: cursor }
           });
 
-          if (displayError && error && !hasData) {
+        if (displayError && error && !hasData) {
           return <Error error={error.message} />;
         }
 

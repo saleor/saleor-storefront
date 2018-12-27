@@ -1,15 +1,21 @@
 import gql from "graphql-tag";
 
-export const GET_SEARCH_RESULTS = gql`
+import { TypedQuery } from "../../core/queries";
+import { SearchResults, SearchResultsVariables } from "./types/SearchResults";
+
+const searchResultsQuery = gql`
   query SearchResults($query: String!) {
     products(query: $query, first: 20) {
       edges {
         node {
           id
           name
-          thumbnail(size: 510){
+          thumbnail {
             url
             alt
+          }
+          thumbnail2x: thumbnail(size: 510) {
+            url
           }
           url
           category {
@@ -27,3 +33,8 @@ export const GET_SEARCH_RESULTS = gql`
     }
   }
 `;
+
+export const TypedSearchResults = TypedQuery<
+  SearchResults,
+  SearchResultsVariables
+>(searchResultsQuery);

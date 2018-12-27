@@ -15,7 +15,7 @@ export interface createPayment_checkoutPaymentCreate_errors {
 
 export interface createPayment_checkoutPaymentCreate {
   __typename: "CheckoutPaymentCreate";
-  errors: (createPayment_checkoutPaymentCreate_errors | null)[] | null;
+  errors: createPayment_checkoutPaymentCreate_errors[] | null;
 }
 
 export interface createPayment {

@@ -71,8 +71,7 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
 
               return (
                 <Page
-                  // attributes={data.attributes.edges.map(edge => edge.node)}
-                  attributes={[]}
+                  attributes={data.attributes.edges.map(edge => edge.node)}
                   collection={data.collection}
                   displayLoader={loading}
                   hasNextPage={maybe(

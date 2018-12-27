@@ -11,6 +11,11 @@ export interface SearchResults_products_edges_node_thumbnail {
   alt: string | null;
 }
 
+export interface SearchResults_products_edges_node_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface SearchResults_products_edges_node_category {
   __typename: "Category";
   id: string;
@@ -22,6 +27,7 @@ export interface SearchResults_products_edges_node {
   id: string;
   name: string;
   thumbnail: SearchResults_products_edges_node_thumbnail | null;
+  thumbnail2x: SearchResults_products_edges_node_thumbnail2x | null;
   url: string;
   category: SearchResults_products_edges_node_category;
 }

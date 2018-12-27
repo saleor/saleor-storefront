@@ -160,12 +160,23 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   localized: string;
 }
 
+export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail2x: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant {
@@ -201,7 +212,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
   __typename: "CheckoutBillingAddressUpdate";
-  errors: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors | null)[] | null;
+  errors: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[] | null;
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 

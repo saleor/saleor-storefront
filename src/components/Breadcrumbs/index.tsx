@@ -12,23 +12,20 @@ export interface Breadcrumb {
   link: string;
 }
 
-export const extractBreadcrumbs = (
-  iterable: Category_category,
-  type: "Category"
-) => {
+export const extractBreadcrumbs = (category: Category_category) => {
   const constructLink = item => ({
     link: [
-      `/${type.toLowerCase()}`,
+      `/category`,
       `/${slugify(item.name)}`,
-      `/${getDBIdFromGraphqlId(item.id, type)}/`
+      `/${getDBIdFromGraphqlId(item.id, "Category")}/`
     ].join(""),
     value: item.name
   });
 
-  let breadcrumbs = [constructLink(iterable)];
+  let breadcrumbs = [constructLink(category)];
 
-  if (iterable.ancestors.edges.length) {
-    const ancestorsList = iterable.ancestors.edges.map(constructLink);
+  if (category.ancestors.edges.length) {
+    const ancestorsList = category.ancestors.edges.map(constructLink);
     breadcrumbs = ancestorsList.concat(breadcrumbs);
   }
   return breadcrumbs;

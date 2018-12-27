@@ -8,12 +8,10 @@ import { generateProductUrl } from "../../core/utils";
 import Loader from "../Loader";
 import { Filters } from "../ProductFilters";
 
-import { Category_products } from "../../views/Category/types/Category";
-import { Collection_products } from "../../views/Collection/types/Collection";
-import { ProductNodeFragment } from "../ProductListItem/types/ProductNodeFragment";
+import { Product } from "../ProductListItem";
 
 interface ProductsListProps {
-  products: ProductNodeFragment[];
+  products: Product[];
   displayLoader: boolean;
   hasNextPage: boolean;
   filters: Filters;

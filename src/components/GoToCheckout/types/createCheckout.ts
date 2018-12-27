@@ -160,12 +160,23 @@ export interface createCheckout_checkoutCreate_checkout_lines_variant_price {
   localized: string;
 }
 
+export interface createCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface createCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface createCheckout_checkoutCreate_checkout_lines_variant_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: createCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail2x: createCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
 export interface createCheckout_checkoutCreate_checkout_lines_variant {
@@ -201,7 +212,7 @@ export interface createCheckout_checkoutCreate_checkout {
 
 export interface createCheckout_checkoutCreate {
   __typename: "CheckoutCreate";
-  errors: (createCheckout_checkoutCreate_errors | null)[] | null;
+  errors: createCheckout_checkoutCreate_errors[] | null;
   checkout: createCheckout_checkoutCreate_checkout | null;
 }
 

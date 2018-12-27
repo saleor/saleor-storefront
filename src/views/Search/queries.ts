@@ -20,8 +20,13 @@ export const GET_SEARCH_PRODUCTS = gql`
         node {
           id
           name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
+          thumbnail {
+            url
+            alt
+          }
+          thumbnail2x: thumbnail(size: 510) {
+            url
+          }
           category {
             id
             name
