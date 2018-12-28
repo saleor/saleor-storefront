@@ -19,13 +19,17 @@
       margin-bottom: $spacer * 2;
     }
 
+    @media (min-width: $small-screen) and (max-width: $medium-screen) {
+      min-height: 420px;
+    }
+
     &__info {
       flex-grow: 1;
       width: 40%;
       position: relative;
 
       @media (max-width: $medium-screen) {
-        width: 50%;
+        width: 60%;
       }
 
       @media (max-width: $small-screen) {
@@ -56,7 +60,7 @@
       box-sizing: border-box;
 
       @media (max-width: $medium-screen) {
-        width: 50%;
+        width: 40%;
       }
 
       @media (max-width: $small-screen) {
