@@ -15,7 +15,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
   __typename: "CheckoutShippingAddressUpdate";
-  errors: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors | null)[] | null;
+  errors: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[] | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
@@ -171,12 +171,23 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   localized: string;
 }
 
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail2x: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
@@ -212,7 +223,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate {
   __typename: "CheckoutEmailUpdate";
-  errors: (updateCheckoutShippingAddress_checkoutEmailUpdate_errors | null)[] | null;
+  errors: updateCheckoutShippingAddress_checkoutEmailUpdate_errors[] | null;
   checkout: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
 }
 

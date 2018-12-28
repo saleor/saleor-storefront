@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { ApolloConsumer, Query } from "react-apollo";
 import Media from "react-media";
@@ -6,18 +8,20 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader } from "..";
-import { getCheckout } from "../../core/types/saleor";
+import { maybe } from "../../core/utils";
 import { checkoutLoginUrl } from "../App/routes";
+import { smallScreen } from "../App/scss/variables.scss";
+import CachedImage from "../CachedImage";
 import { CartContext } from "../CartProvider/context";
 import { GET_CHECKOUT } from "../CheckoutApp/queries";
+import { getCheckout } from "../CheckoutApp/types/getCheckout";
 import { Error } from "../Error";
 import { GoToCheckout } from "../GoToCheckout";
 import { UserContext } from "../User/context";
 import { EmptyCart } from "./EmptyCart";
 
-import { smallScreen } from "../App/scss/variables.scss";
-import CachedImage from "../CachedImage";
-import "./scss/index.scss";
+const noPhotoPng = require("../../images/nophoto.png");
+const removeSvg = require("../../images/garbage.svg");
 
 const canDisplay = (data: getCheckout) =>
   data && data.checkout && data.checkout.lines && data.checkout.subtotalPrice;
@@ -67,11 +71,13 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                               query={{ minWidth: smallScreen }}
                               render={() => (
                                 <CachedImage
-                                  url={
-                                    line.variant.product.thumbnailUrl ||
-                                    require("../../images/nophoto.png")
-                                  }
-                                  url2x={line.variant.product.thumbnailUrl2x}
+                                  url={maybe(
+                                    () => line.variant.product.thumbnail.url,
+                                    noPhotoPng
+                                  )}
+                                  url2x={maybe(
+                                    () => line.variant.product.thumbnail2x.url
+                                  )}
                                 />
                               )}
                             />
@@ -93,7 +99,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                             <CartContext.Consumer>
                               {({ remove }) => (
                                 <ReactSVG
-                                  path={require("../../images/garbage.svg")}
+                                  path={removeSvg}
                                   className="cart__list__item__details__delete-icon"
                                   onClick={() => remove(line.variant.id)}
                                 />
@@ -122,7 +128,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
                           <ApolloConsumer>
                             {client => (
                               <GoToCheckout apolloClient={client}>
-                                Checkout
+                                Checkout{" "}
                               </GoToCheckout>
                             )}
                           </ApolloConsumer>

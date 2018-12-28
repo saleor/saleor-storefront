@@ -15,18 +15,14 @@ import {
   parseQueryString,
   updateQueryString
 } from "../../core/utils";
-import { CategoryPage } from "./CategoryPage";
-import {  TypedCategoryProductsQuery } from "./queries";
+import { Page } from "./Page";
+import { TypedCollectionProductsQuery } from "./queries";
 
-type CategoryViewProps = RouteComponentProps<{
+type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
-export const CategoryView: React.SFC<CategoryViewProps> = ({
-  match,
-  location,
-  history
-}) => {
+export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
   const querystring = parseQueryString(location);
   const updateQs = updateQueryString(location, history);
   const attributes: AttributeList = getAttributesFromQs(querystring);
@@ -41,44 +37,42 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
   const variables = {
     ...filters,
     attributes: convertToAttributeScalar(filters.attributes),
-    id: getGraphqlIdFromDBId(match.params.id, "Category"),
+    id: getGraphqlIdFromDBId(match.params.id, "Collection"),
     sortBy: convertSortByFromString(filters.sortBy)
   };
 
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCategoryProductsQuery
+        <TypedCollectionProductsQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
           {({ loading, data, loadMore }) => {
             const canDisplayFilters = maybe(
-              () => !!data.attributes.edges && !!data.category.name,
+              () => !!data.collection.name,
               false
             );
 
             if (canDisplayFilters) {
-              const handleLoadMore = () => loadMore(
-                (prev, next) => ({
-                  ...prev,
-                  products: {
-                    ...prev.products,
-                    edges: [
-                      ...prev.products.edges,
-                      ...next.products.edges
-                    ],
-                    pageInfo: next.products.pageInfo
-                  }
-                }),
-                data.products.pageInfo.endCursor
-              )
+              const handleLoadMore = () =>
+                loadMore(
+                  (prev, next) => ({
+                    ...prev,
+                    products: {
+                      ...prev.products,
+                      edges: [...prev.products.edges, ...next.products.edges],
+                      pageInfo: next.products.pageInfo
+                    }
+                  }),
+                  data.products.pageInfo.endCursor
+                );
 
               return (
-                <CategoryPage
+                <Page
                   attributes={data.attributes.edges.map(edge => edge.node)}
-                  category={data.category}
+                  collection={data.collection}
                   displayLoader={loading}
                   hasNextPage={maybe(
                     () => data.products.pageInfo.hasNextPage,
@@ -88,24 +82,24 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                   products={data.products}
                   onAttributeFiltersChange={updateQs}
                   onLoadMore={handleLoadMore}
-                  onOrder={(value) => updateQs("sortBy", value)}
+                  onOrder={value => updateQs("sortBy", value)}
                   onPriceChange={updateQs}
                 />
               );
             }
 
-            if (data && data.category === null) {
+            if (data && data.collection === null) {
               return <NotFound />;
             }
 
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
+
+            return null;
           }}
-        </TypedCategoryProductsQuery>
+        </TypedCollectionProductsQuery>
       )}
     </NetworkStatus>
   );
 };
-
-export default CategoryView;

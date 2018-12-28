@@ -13,7 +13,7 @@ export interface ResetPassword_customerPasswordReset_errors {
 
 export interface ResetPassword_customerPasswordReset {
   __typename: "CustomerPasswordReset";
-  errors: (ResetPassword_customerPasswordReset_errors | null)[] | null;
+  errors: ResetPassword_customerPasswordReset_errors[] | null;
 }
 
 export interface ResetPassword {

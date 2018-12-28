@@ -1,27 +1,43 @@
-import * as React from "react";
-
-import { ProductListItemInterface } from "../../core/types";
-import CachedImage from "../CachedImage";
-
 import "./scss/index.scss";
 
+import * as React from "react";
+
+import { maybe } from "../../core/utils";
+import CachedImage from "../CachedImage";
+import { BasicProductFields } from "../ProductPage/types/BasicProductFields";
+
+const noPhoto = require("../../images/nophoto.png");
+
+export interface Product extends BasicProductFields {
+  category?: {
+    id: string;
+    name: string;
+  };
+  price: {
+    localized: string;
+  }
+}
+
 interface ProductListItemProps {
-  product: ProductListItemInterface;
+  product: Product;
 }
 
 const ProductListItem: React.SFC<ProductListItemProps> = ({
-  product: { name, category, price, thumbnailUrl, thumbnailUrl2x }
-}) => (
-  <div className="product-list-item">
-    <div className="product-list-item__image">
-      <CachedImage url={thumbnailUrl} url2x={thumbnailUrl2x}>
-        <img src={require("../../images/nophoto.png")} />
-      </CachedImage>
+  product: { name, category, price, thumbnail, thumbnail2x }
+}) => {
+  const thumbnail2xUrl = maybe(() => thumbnail2x.url, undefined)
+  return (
+    <div className="product-list-item">
+      <div className="product-list-item__image">
+        <CachedImage url={thumbnail.url} url2x={thumbnail2xUrl}>
+          <img src={noPhoto} alt={thumbnail.alt} />
+        </CachedImage>
+      </div>
+      <h4 className="product-list-item__title">{name}</h4>
+      <p className="product-list-item__category">{category.name}</p>
+      <p className="product-list-item__price">{price.localized}</p>
     </div>
-    <h4 className="product-list-item__title">{name}</h4>
-    <p className="product-list-item__category">{category.name}</p>
-    <p className="product-list-item__price">{price.localized}</p>
-  </div>
-);
+  );
+};
 
 export default ProductListItem;

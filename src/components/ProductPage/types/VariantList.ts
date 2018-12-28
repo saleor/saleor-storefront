@@ -31,12 +31,23 @@ export interface VariantList_productVariants_edges_node_attributes {
   value: VariantList_productVariants_edges_node_attributes_value;
 }
 
+export interface VariantList_productVariants_edges_node_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface VariantList_productVariants_edges_node_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface VariantList_productVariants_edges_node_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: VariantList_productVariants_edges_node_product_thumbnail | null;
+  thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
 }
 
 export interface VariantList_productVariants_edges_node {

@@ -1,6 +1,11 @@
 import gql from "graphql-tag";
 
-export const GET_FEATURED_PRODUCTS = gql`
+import { TypedQuery } from "../../core/queries";
+import { basicProductFragment } from "../ProductPage/queries";
+import { ProductsList } from "./types/ProductsList";
+
+export const featuredProducts = gql`
+  ${basicProductFragment}
   query ProductsList {
     shop {
       homepageCollection {
@@ -8,18 +13,15 @@ export const GET_FEATURED_PRODUCTS = gql`
         products(first: 20) {
           edges {
             node {
-              id
-              name
-              thumbnailUrl
-              thumbnailUrl2x: thumbnailUrl(size: 510)
+              ...BasicProductFields
+              price {
+                amount
+                currency
+                localized
+              }
               category {
                 id
                 name
-              }
-              price {
-                currency
-                amount
-                localized
               }
             }
           }
@@ -28,3 +30,7 @@ export const GET_FEATURED_PRODUCTS = gql`
     }
   }
 `;
+
+export const TypedFeaturedProductsQuery = TypedQuery<ProductsList, {}>(
+  featuredProducts
+);

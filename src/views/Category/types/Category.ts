@@ -7,10 +7,15 @@ import { ProductOrder } from "./../../../../types/globalTypes";
 // GraphQL query operation: Category
 // ====================================================
 
-export interface Category_products_edges_node_category {
-  __typename: "Category";
-  id: string;
-  name: string;
+export interface Category_products_edges_node_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface Category_products_edges_node_thumbnail2x {
+  __typename: "Image";
+  url: string;
 }
 
 export interface Category_products_edges_node_price {
@@ -20,14 +25,20 @@ export interface Category_products_edges_node_price {
   localized: string;
 }
 
+export interface Category_products_edges_node_category {
+  __typename: "Category";
+  id: string;
+  name: string;
+}
+
 export interface Category_products_edges_node {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
-  category: Category_products_edges_node_category;
+  thumbnail: Category_products_edges_node_thumbnail | null;
+  thumbnail2x: Category_products_edges_node_thumbnail2x | null;
   price: Category_products_edges_node_price | null;
+  category: Category_products_edges_node_category;
 }
 
 export interface Category_products_edges {

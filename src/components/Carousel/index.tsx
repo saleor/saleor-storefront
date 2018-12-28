@@ -6,6 +6,8 @@ import ReactSVG from "react-svg";
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
+const arrowSvg = require("../../images/carousel-arrow.svg");
+
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;
 }
@@ -20,7 +22,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
           onClick={previousSlide}
           className="carousel__control carousel__control--left"
         >
-          <ReactSVG path={require("../../images/carousel-arrow.svg")} />
+          <ReactSVG path={arrowSvg} />
         </div>
       ) : null,
     renderCenterRightControls: ({
@@ -34,7 +36,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
           onClick={nextSlide}
           className="carousel__control carousel__control--right"
         >
-          <ReactSVG path={require("../../images/carousel-arrow.svg")} />
+          <ReactSVG path={arrowSvg} />
         </div>
       ) : null,
     ...rest

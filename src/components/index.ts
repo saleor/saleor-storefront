@@ -10,7 +10,6 @@ export { default as SelectField } from "./SelectField";
 export { default as Message } from "./Message";
 export { default as ProductListItem } from "./ProductListItem";
 export { default as SearchOverlay } from "./SearchOverlay";
-export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Dropdown } from "./Dropdown";
 export { default as Carousel } from "./Carousel";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
@@ -35,7 +34,13 @@ export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
 export { default as Debounce } from "./Debounce";
 export { default as ProductsFeatured } from "./ProductsFeatured";
+export { Filters, ProductFilters } from "./ProductFilters";
+export {
+  default as Breadcrumbs,
+  Breadcrumb,
+  extractBreadcrumbs
+} from "./Breadcrumbs";
 export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
-export { NavLink } from './NavLink';
+export { NavLink } from "./NavLink";

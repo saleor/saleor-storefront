@@ -13,7 +13,7 @@ export interface RegisterCutomer_customerRegister_errors {
 
 export interface RegisterCutomer_customerRegister {
   __typename: "CustomerRegister";
-  errors: (RegisterCutomer_customerRegister_errors | null)[] | null;
+  errors: RegisterCutomer_customerRegister_errors[] | null;
 }
 
 export interface RegisterCutomer {

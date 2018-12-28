@@ -1,38 +1,37 @@
-import "./scss/index.scss";
+import "../Category/scss/index.scss";
 
 import * as React from "react";
 
 import {
   Breadcrumbs,
-  extractBreadcrumbs,
+  Filters,
+  ProductFilters,
   ProductsFeatured,
   ProductsList
 } from "../../components";
-import { Filters, ProductFilters } from "../../components/ProductFilters";
-
-import { maybe } from "../../core/utils";
+import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 import {
-  Category_attributes_edges_node,
-  Category_category,
-  Category_products
-} from "./types/Category";
+  Collection_attributes_edges_node,
+  Collection_collection,
+  Collection_products
+} from "./types/Collection";
 
-interface CategoryPageProps {
-  attributes: Category_attributes_edges_node[];
-  category: Category_category;
+interface PageProps {
+  attributes: Collection_attributes_edges_node[];
+  collection: Collection_collection;
   displayLoader: boolean;
   filters: Filters;
   hasNextPage: boolean;
-  products: Category_products;
+  products: Collection_products;
   onLoadMore: () => void;
   onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
   onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
   onOrder: (order: string) => void;
 }
 
-export const CategoryPage: React.SFC<CategoryPageProps> = ({
+export const Page: React.SFC<PageProps> = ({
   attributes,
-  category,
+  collection,
   displayLoader,
   filters,
   hasNextPage,
@@ -47,24 +46,34 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
     false
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
+  const breadcrumbs = [
+    {
+      link: [
+        `/collection`,
+        `/${collection.slug}`,
+        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`
+      ].join(""),
+      value: collection.name
+    }
+  ];
 
   return (
     <div className="category">
       <div
         className="category__header"
         style={
-          category.backgroundImage
-            ? { backgroundImage: `url(${category.backgroundImage.url})` }
+          collection.backgroundImage
+            ? { backgroundImage: `url(${collection.backgroundImage.url})` }
             : undefined
         }
       >
         <span className="category__header__title">
-          <h1>{category.name}</h1>
+          <h1>{collection.name}</h1>
         </span>
       </div>
 
       <div className="container">
-        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
       </div>
 
       {hasProducts && (

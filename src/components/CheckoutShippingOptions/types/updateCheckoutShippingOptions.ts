@@ -158,12 +158,23 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   localized: string;
 }
 
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail2x: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant {
@@ -199,7 +210,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
   __typename: "CheckoutShippingMethodUpdate";
-  errors: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors | null)[] | null;
+  errors: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[] | null;
   checkout: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout | null;
 }
 

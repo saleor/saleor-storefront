@@ -3,14 +3,12 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
-import { Query } from "react-apollo";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button, Loader, TextField } from "..";
-import { SearchResults } from "../../core/types/saleor";
-import { generateProductUrl } from "../../core/utils";
+import { generateProductUrl, maybe } from "../../core/utils";
 import { searchUrl } from "../App/routes";
 import CachedImage from "../CachedImage";
 import Debounce from "../Debounce";
@@ -19,7 +17,12 @@ import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
-import { GET_SEARCH_RESULTS } from "./queries";
+import { TypedSearchResults } from "./queries";
+import { SearchResults } from "./types/SearchResults";
+
+const closeSvg = require("../../images/x.svg");
+const noPhotoPng = require("../../images/nophoto.png");
+const searcgSvg = require("../../images/search.svg");
 
 const canDisplay = (data: SearchResults) =>
   data && data.products && data.products.edges;
@@ -64,26 +67,18 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                               <TextField
                                 iconLeft={
                                   <ReactSVG
-                                    path={require("../../images/x.svg")}
+                                    path={closeSvg}
                                     onClick={overlayContext.hide}
                                   />
                                 }
-                                iconRight={
-                                  <ReactSVG
-                                    path={require("../../images/search.svg")}
-                                  />
-                                }
+                                iconRight={<ReactSVG path={searcgSvg} />}
                                 autoFocus={true}
                                 onChange={change}
                                 value={query}
                               />
                             ) : (
                               <TextField
-                                iconRight={
-                                  <ReactSVG
-                                    path={require("../../images/search.svg")}
-                                  />
-                                }
+                                iconRight={<ReactSVG path={searcgSvg} />}
                                 autoFocus={true}
                                 onChange={change}
                                 value={query}
@@ -103,11 +98,11 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                   >
                     <NetworkStatus>
                       {isOnline => (
-                        <Query
-                          query={GET_SEARCH_RESULTS}
-                          variables={{ query: this.state.search }}
-                          fetchPolicy="cache-and-network"
+                        <TypedSearchResults
+                          renderOnError
+                          displayError={false}
                           errorPolicy="all"
+                          variables={{ query: this.state.search }}
                         >
                           {({ data, error, loading }) => {
                             if (canDisplay(data)) {
@@ -126,11 +121,14 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                           )}
                                         >
                                           <CachedImage
-                                            url={
-                                              item.node.thumbnailUrl ||
-                                              require("../../images/nophoto.png")
-                                            }
-                                            url2x={item.node.thumbnailUrl2x}
+                                            url={maybe(
+                                              () => item.node.thumbnail.url,
+                                              noPhotoPng
+                                            )}
+                                            url2x={maybe(
+                                              () => item.node.thumbnail2x.url,
+                                              noPhotoPng
+                                            )}
                                           />
                                           <span>
                                             <h4>{item.node.name}</h4>
@@ -157,15 +155,15 @@ class SearchOverlay extends React.Component<{}, { search: string }> {
                                 </>
                               );
                             }
+
                             if (error) {
                               if (!isOnline) {
                                 return <OfflinePlaceholder />;
                               }
                               return <Error error={error.message} />;
                             }
-                            return <Loader />;
                           }}
-                        </Query>
+                        </TypedSearchResults>
                       )}
                     </NetworkStatus>
                   </div>

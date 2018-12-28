@@ -152,12 +152,23 @@ export interface getCheckout_checkout_lines_variant_price {
   localized: string;
 }
 
+export interface getCheckout_checkout_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+
+export interface getCheckout_checkout_lines_variant_product_thumbnail2x {
+  __typename: "Image";
+  url: string;
+}
+
 export interface getCheckout_checkout_lines_variant_product {
   __typename: "Product";
   id: string;
   name: string;
-  thumbnailUrl: string | null;
-  thumbnailUrl2x: string | null;
+  thumbnail: getCheckout_checkout_lines_variant_product_thumbnail | null;
+  thumbnail2x: getCheckout_checkout_lines_variant_product_thumbnail2x | null;
 }
 
 export interface getCheckout_checkout_lines_variant {

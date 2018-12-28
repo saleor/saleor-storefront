@@ -112,7 +112,11 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                   const hasProducts =
                     canDisplayProducts && !!data.products.totalCount;
                   const updateQueryString = (key: string, value?) => {
-                    qs[key] = value || key;
+                    if (value === "") {
+                      delete qs[key]
+                    } else {
+                      qs[key] = value || key;
+                    }
                     history.replace("?" + stringifyQs(qs));
                   };
 
@@ -139,12 +143,13 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                       {canDisplayProducts && (
                         <ProductsList
                           displayLoader={loading}
-                          products={data.products}
-                          hasNextPage={data.products.pageInfo.hasNextPage}
                           filters={filters}
+                          hasNextPage={data.products.pageInfo.hasNextPage}
+                          notFoundPhrase="No results found, please double check your typing or use another phrase"
                           onLoadMore={handleLoadMore}
                           onOrder={updateQueryString}
-                          notFoundPhrase="No results found, please double check your typing or use another phrase"
+                          products={data.products.edges.map(edge => edge.node)}
+                          totalCount={data.products.totalCount}
                         />
                       )}
                       {!hasProducts && (

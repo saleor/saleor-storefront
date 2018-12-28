@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { CheckoutInterface } from "../../core/types";
+import { Checkout } from "./types/Checkout";
 
 export interface CheckoutContextInterface {
   cardData?: {
@@ -8,7 +8,7 @@ export interface CheckoutContextInterface {
     ccType: string;
     token: string;
   };
-  checkout?: CheckoutInterface;
+  checkout?: Checkout;
   loading?: boolean;
   shippingAsBilling?: boolean;
   updateCheckout?(chekcoutData: CheckoutContextInterface): void;
