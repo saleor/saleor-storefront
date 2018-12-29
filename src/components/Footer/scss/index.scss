@@ -1,41 +1,8 @@
 @import "../../App/scss/variables.scss";
 
 .footer {
-  &__newsletter {
-    border-top: 1px solid $gray-light;
-    border-bottom: 1px solid $gray-light;
-    padding: $spacer * 2 0;
-
-    .container {
-      @media (min-width: $medium-screen) {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: $base-font-color;
-      }
-
-      h4 {
-        color: $gray;
-        font-weight: $bold-font-weight;
-
-        @media (min-width: $medium-screen) {
-          font-size: $h3-font-size;
-          color: $base-font-color;
-        }
-      }
-
-      button {
-        margin: $spacer * 2 auto 0;
-        display: block;
-
-        @media (min-width: $medium-screen) {
-          margin: 0 2rem 0 0;
-        }
-      }
-    }
-  }
-
   &__favicons {
+    border-top: 1px solid $gray-light;
     display: flex;
     justify-content: center;
   }

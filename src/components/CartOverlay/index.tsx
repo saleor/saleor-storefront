@@ -128,7 +128,7 @@ export const CartOverlay: React.SFC = () => (
                                   cart={cart}
                                   secondary
                                 >
-                                  My bag
+                                  Go to my bag
                                 </GoToCart>
                               </div>
                               <div className="cart__footer__button">
