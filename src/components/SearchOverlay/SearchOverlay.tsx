@@ -20,7 +20,7 @@ import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
 
 const closeSvg = require("../../images/x.svg");
-const searcgSvg = require("../../images/search.svg");
+const searchSvg = require("../../images/search.svg");
 
 type SearchOverlayProps = RouteComponentProps;
 
@@ -99,7 +99,7 @@ class SearchOverlay extends React.Component<
                     iconLeft={
                       <ReactSVG path={closeSvg} onClick={this.context.hide} />
                     }
-                    iconRight={<ReactSVG path={searcgSvg} />}
+                    iconRight={<ReactSVG path={searchSvg} />}
                     autoFocus={true}
                     onChange={change}
                     value={query}
