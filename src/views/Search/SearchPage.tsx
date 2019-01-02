@@ -20,9 +20,10 @@ export const SearchPage: React.SFC<SearchPageProps> = ({
         <div className="search-page__header">
           <div className="search-page__header__input container">
             <TextField
+              autoFocus
               label="Search term:"
-              value={query}
               onChange={onQueryChange}
+              value={query}
             />
           </div>
         </div>

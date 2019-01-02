@@ -9,7 +9,7 @@ export { default as TextField } from "./TextField";
 export { default as SelectField } from "./SelectField";
 export { default as Message } from "./Message";
 export { default as ProductListItem } from "./ProductListItem";
-export { default as SearchOverlay } from "./SearchOverlay";
+
 export { default as Dropdown } from "./Dropdown";
 export { default as Carousel } from "./Carousel";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
@@ -44,3 +44,4 @@ export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
 export { NavLink } from "./NavLink";
+export { SearchOverlay } from "./SearchOverlay";

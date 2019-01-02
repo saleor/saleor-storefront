@@ -16,7 +16,7 @@ import {
   updateQueryString
 } from "../../core/utils";
 import { CategoryPage } from "./CategoryPage";
-import {  TypedCategoryProductsQuery } from "./queries";
+import { TypedCategoryProductsQuery } from "./queries";
 
 type CategoryViewProps = RouteComponentProps<{
   id: string;
@@ -60,20 +60,18 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
             );
 
             if (canDisplayFilters) {
-              const handleLoadMore = () => loadMore(
-                (prev, next) => ({
-                  ...prev,
-                  products: {
-                    ...prev.products,
-                    edges: [
-                      ...prev.products.edges,
-                      ...next.products.edges
-                    ],
-                    pageInfo: next.products.pageInfo
-                  }
-                }),
-                data.products.pageInfo.endCursor
-              )
+              const handleLoadMore = () =>
+                loadMore(
+                  (prev, next) => ({
+                    ...prev,
+                    products: {
+                      ...prev.products,
+                      edges: [...prev.products.edges, ...next.products.edges],
+                      pageInfo: next.products.pageInfo
+                    }
+                  }),
+                  { after: data.products.pageInfo.endCursor }
+                );
 
               return (
                 <CategoryPage
@@ -88,7 +86,7 @@ export const CategoryView: React.SFC<CategoryViewProps> = ({
                   products={data.products}
                   onAttributeFiltersChange={updateQs}
                   onLoadMore={handleLoadMore}
-                  onOrder={(value) => updateQs("sortBy", value)}
+                  onOrder={value => updateQs("sortBy", value)}
                   onPriceChange={updateQs}
                 />
               );

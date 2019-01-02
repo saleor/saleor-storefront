@@ -26,7 +26,6 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
   const querystring = parseQueryString(location);
   const updateQs = updateQueryString(location, history);
   const attributes: AttributeList = getAttributesFromQs(querystring);
-
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
@@ -66,7 +65,7 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
                       pageInfo: next.products.pageInfo
                     }
                   }),
-                  data.products.pageInfo.endCursor
+                  { after: data.products.pageInfo.endCursor }
                 );
 
               return (
