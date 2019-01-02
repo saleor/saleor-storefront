@@ -3,8 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { maybe } from "../../core/utils";
+import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 import CachedImage from "../CachedImage";
-import { BasicProductFields } from "../ProductPage/types/BasicProductFields";
 
 const noPhoto = require("../../images/nophoto.png");
 

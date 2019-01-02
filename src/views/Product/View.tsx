@@ -3,10 +3,10 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import NetworkStatus from "../../components/NetworkStatus";
+import { NotFound } from "../../components/NotFound";
+import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
-import NetworkStatus from "../NetworkStatus";
-import { NotFound } from "../NotFound";
-import { OfflinePlaceholder } from "../OfflinePlaceholder";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
 import { ProductDetails } from "./types/ProductDetails";

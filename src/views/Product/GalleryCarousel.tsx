@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { CachedImage, Carousel } from "..";
+import { CachedImage, Carousel } from "../../components/";
 import { ProductDetails_product_images } from "./types/ProductDetails";
 
 const noPhoto = require("../../images/nophoto.png");

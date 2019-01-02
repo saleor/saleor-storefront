@@ -1,12 +1,12 @@
-import { smallScreen } from "../App/scss/variables.scss";
+import { smallScreen } from "../../components/App/scss/variables.scss";
 
 import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
 
-import { Breadcrumbs, CachedImage, ProductDescription } from "..";
+import { Breadcrumbs, CachedImage, ProductDescription } from "../../components";
+import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
-import { CartContext } from "../CartProvider/context";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails, ProductDetails_product } from "./types/ProductDetails";

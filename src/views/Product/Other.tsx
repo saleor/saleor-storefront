@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { ProductListItem } from "..";
+import { ProductListItem } from "../../components";
 import { generateProductUrl } from "../../core/utils";
 import { ProductDetails_product_category_products_edges } from "./types/ProductDetails";
 

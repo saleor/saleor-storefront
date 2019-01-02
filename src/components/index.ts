@@ -42,5 +42,4 @@ export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
 export { NavLink } from "./NavLink";
-export { ProductPage } from "./ProductPage";
 export { SearchOverlay } from "./SearchOverlay";
