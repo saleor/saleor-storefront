@@ -24,7 +24,7 @@
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "js-base64": "^2.4.8",
-    "nuka-carousel": "^4.3.9",
+    "nuka-carousel": "^4.4.5",
     "react": "^16.4.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.4.1",
@@ -40,11 +40,11 @@
   },
   "devDependencies": {
     "@storybook/addon-options": "^3.4.10",
-    "@storybook/cli": "^4.0.12",
+    "@storybook/cli": "^4.1.4",
     "@storybook/react": "^4.0.0-alpha.16",
     "@types/graphql": "^0.13.4",
     "@types/node": "^10.7.1",
-    "@types/nuka-carousel": "^4.2.3",
+    "@types/nuka-carousel": "^4.4.0",
     "@types/react": "^16.4.11",
     "@types/react-addons-css-transition-group": "^15.0.5",
     "@types/react-dom": "^16.0.7",
@@ -85,7 +85,7 @@
     "webapp-webpack-plugin": "^2.2.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.14"
   },
   "engines": {
     "node": ">=10.0.0 <11"

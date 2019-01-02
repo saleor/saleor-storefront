@@ -4,14 +4,15 @@
   padding: 2rem 0 4rem;
 
   h3 {
-    text-transform: uppercase;
     font-weight: $bold-font-weight;
     margin-bottom: $spacer * 2;
+    text-transform: uppercase;
   }
 
   a {
-    display: inline-block;
-    text-decoration: none;
     color: $base-font-color;
+    display: inline-block;
+    max-width: 255px;
+    text-decoration: none;
   }
 }
