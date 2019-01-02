@@ -33,7 +33,7 @@ const CartPage: React.SFC<RouteComponentProps<{ token }>> = ({
 }) => {
   return (
     <div className="container cart-page">
-      <h1 className="checkout__header cart-page__header">Shopping cart</h1>
+      <h1 className="checkout__header cart-page__header">Shopping bag</h1>
       <Query
         query={GET_CHECKOUT}
         variables={{ token }}

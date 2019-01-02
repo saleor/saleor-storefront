@@ -25,5 +25,6 @@ const NavOverlay: React.SFC = () => (
     }}
   </OverlayContext.Consumer>
 );
+NavOverlay.displayName = "MobileNavOverlay";
 
 export default NavOverlay;

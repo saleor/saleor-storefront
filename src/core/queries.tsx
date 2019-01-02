@@ -5,19 +5,18 @@ import { Query, QueryResult } from "react-apollo";
 
 import { Error } from "../components/Error";
 import Loader from "../components/Loader";
+import { RequireAtLeastOne } from "./tsUtils";
 import { maybe } from "./utils";
-
-interface LoadMore<TData> {
+interface LoadMore<TData, TVariables> {
   loadMore: (
     mergeFunc: (prev: TData, next: TData) => TData,
-    cursor: string,
-    cursorKey?: string
+    extraVariables: RequireAtLeastOne<TVariables>
   ) => Promise<ApolloQueryResult<TData>>;
 }
 
 interface TypedQueryInnerProps<TData, TVariables> {
   children: (
-    result: QueryResult<TData, TVariables> & LoadMore<TData>
+    result: QueryResult<TData, TVariables> & LoadMore<TData, TVariables>
   ) => React.ReactNode;
   displayError?: boolean;
   displayLoader?: boolean;
@@ -55,8 +54,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
         const hasData = maybe(() => !!Object.keys(data).length, false);
         const loadMore = (
           mergeFunc: (previousResults: TData, fetchMoreResult: TData) => TData,
-          cursor: string,
-          cursorKey: string = "after"
+          extraVariables: RequireAtLeastOne<TVariables>
         ) =>
           fetchMore({
             query,
@@ -66,7 +64,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
               }
               return mergeFunc(previousResults, fetchMoreResult);
             },
-            variables: { ...variables, [cursorKey]: cursor }
+            variables: { ...variables, ...extraVariables }
           });
 
         if (displayError && error && !hasData) {

@@ -1,6 +1,12 @@
 import gql from "graphql-tag";
 
-export const GET_SEARCH_PRODUCTS = gql`
+import { TypedQuery } from "../../core/queries";
+import {
+  SearchProducts,
+  SearchProductsVariables
+} from "./types/SearchProducts";
+
+export const searchProductsQuery = gql`
   query SearchProducts(
     $query: String!
     $attributes: [AttributeScalar]
@@ -59,3 +65,8 @@ export const GET_SEARCH_PRODUCTS = gql`
     }
   }
 `;
+
+export const TypedSearchProductsQuery = TypedQuery<
+  SearchProducts,
+  SearchProductsVariables
+>(searchProductsQuery);

@@ -37,6 +37,12 @@ $drawer-width: 25rem;
       &:focus {
         box-shadow: none;
       }
+
+      &::placeholder {
+        text-transform: uppercase;
+        font-size: $base-font-size;
+        color: $black;
+      }
     }
   }
 
@@ -55,6 +61,10 @@ $drawer-width: 25rem;
 
     &--expanded {
       right: 0;
+    }
+
+    &--not-found {
+      padding: 14px;
     }
 
     &__item {
