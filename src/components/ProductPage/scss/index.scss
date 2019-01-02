@@ -19,10 +19,6 @@
       margin-bottom: $spacer * 2;
     }
 
-    @media (min-width: $small-screen) and (max-width: $medium-screen) {
-      min-height: 420px;
-    }
-
     &__info {
       flex-grow: 1;
       width: 40%;
@@ -36,10 +32,15 @@
         width: 100%;
       }
 
+      > div {
+        @media (min-width: $small-screen) {
+          padding-right: 1rem;
+        }
+      }
+
       &--fixed {
         position: fixed;
         width: auto;
-        padding-right: 1rem;
 
         @media (min-width: $container-width) {
           width: calc(#{$container-width} * 40 / 100);
@@ -60,7 +61,7 @@
       box-sizing: border-box;
 
       @media (max-width: $medium-screen) {
-        width: 40%;
+        width: 50%;
       }
 
       @media (max-width: $small-screen) {

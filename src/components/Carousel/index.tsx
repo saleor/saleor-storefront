@@ -42,7 +42,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
       ) : null,
     ...rest
   };
-  const Carousel = (slides: number) => (
+  const carousel = (slides: number) => (
     <NukaCarousel slidesToShow={slides} slidesToScroll={slides} {...settings}>
       {children}
     </NukaCarousel>
@@ -52,10 +52,10 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
     <Media query={{ maxWidth: smallScreen }}>
       {matches =>
         matches ? (
-          Carousel(1)
+          carousel(1)
         ) : (
           <Media query={{ maxWidth: mediumScreen }}>
-            {matches => (matches ? Carousel(2) : Carousel(4))}
+            {matches => (matches ? carousel(2) : carousel(4))}
           </Media>
         )
       }
