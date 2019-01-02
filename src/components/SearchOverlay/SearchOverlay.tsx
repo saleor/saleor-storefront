@@ -1,9 +1,7 @@
-import { mediumScreen } from "../App/scss/variables.scss";
 import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
-import Media from "react-media";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -97,29 +95,18 @@ class SearchOverlay extends React.Component<
                 time={500}
               >
                 {({ change, value: query }) => (
-                  <Media query={{ maxWidth: mediumScreen }}>
-                    {matches => (
-                      <TextField
-                        iconLeft={
-                          matches ? (
-                            <ReactSVG
-                              path={closeSvg}
-                              onClick={this.context.hide}
-                            />
-                          ) : (
-                            undefined
-                          )
-                        }
-                        iconRight={<ReactSVG path={searcgSvg} />}
-                        autoFocus={true}
-                        onChange={change}
-                        value={query}
-                        placeholder="Search"
-                        onKeyPress={this.handleEnterPress}
-                        onBlur={this.handleInputBlur}
-                      />
-                    )}
-                  </Media>
+                  <TextField
+                    iconLeft={
+                      <ReactSVG path={closeSvg} onClick={this.context.hide} />
+                    }
+                    iconRight={<ReactSVG path={searcgSvg} />}
+                    autoFocus={true}
+                    onChange={change}
+                    value={query}
+                    placeholder="Search"
+                    onKeyPress={this.handleEnterPress}
+                    onBlur={this.handleInputBlur}
+                  />
                 )}
               </Debounce>
             </div>
