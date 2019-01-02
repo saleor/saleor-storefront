@@ -12,5 +12,6 @@ const NavOverlay: React.SFC = () => (
     }}
   </OverlayContext.Consumer>
 );
+NavOverlay.displayName = "MainMenuNavOverlay"
 
 export default NavOverlay;

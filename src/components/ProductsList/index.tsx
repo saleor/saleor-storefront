@@ -11,13 +11,13 @@ import { Filters } from "../ProductFilters";
 import { Product } from "../ProductListItem";
 
 interface ProductsListProps {
-  products: Product[];
   displayLoader: boolean;
-  hasNextPage: boolean;
   filters: Filters;
+  hasNextPage: boolean;
+  notFound?: string | React.ReactNode;
   onLoadMore: () => void;
   onOrder: (order: string) => void;
-  notFoundPhrase?: string;
+  products: Product[];
   totalCount: number;
 }
 
@@ -25,7 +25,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
   displayLoader,
   filters,
   hasNextPage,
-  notFoundPhrase,
+  notFound,
   onLoadMore,
   onOrder,
   products,
@@ -46,9 +46,11 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     <div className="products-list">
       <div className="products-list__products container">
         <div className="products-list__products__subheader">
-          <span className="products-list__products__subheader__total">
-            {totalCount} Products
-          </span>
+          {hasProducts && (
+            <span className="products-list__products__subheader__total">
+              {totalCount} Products
+            </span>
+          )}
           {displayLoader && (
             <div className="products-list__loader">
               <Loader />
@@ -93,9 +95,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
             </div>
           </>
         ) : (
-          <div className="products-list__products-not-found">
-            {notFoundPhrase}
-          </div>
+          <div className="products-list__products-not-found">{notFound}</div>
         )}
       </div>
     </div>
@@ -103,7 +103,7 @@ export const ProductList: React.SFC<ProductsListProps> = ({
 };
 
 ProductList.defaultProps = {
-  notFoundPhrase: "We couldn't find any product matching these conditions"
+  notFound: "We couldn't find any product matching these conditions"
 };
 
 export default ProductList;
