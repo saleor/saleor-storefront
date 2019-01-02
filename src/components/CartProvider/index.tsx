@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { ApolloClient } from "apollo-client";
+import { productVariatnsQuery } from "../../views/Product/queries";
 import { GET_CHECKOUT, UPDATE_CHECKOUT_LINE } from "../CheckoutApp/queries";
-import { productVariatnsQuery } from "../ProductPage/queries";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<

@@ -11,4 +11,5 @@ Add add to cart indicator #173 by @piotrgrundas
 Fix product page tablet view #181 by @piotrgrundas
 Add collection view, fix cursor pagination for categories, update storefront to use new thumbnail structure #178 by @piotrgrundas
 Storefront UX improvements, remove signup to newsletter #182 by @piotrgrundas
+Fix two line titles breaking fatured carousel, product page improvements #184 by @piotrgrundas
 Allow numbers in product, category & collection urls #185 by @piotrgrundas

@@ -1,10 +1,11 @@
+import "./scss/index.scss";
+
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
-import "./scss/index.scss";
 
 const arrowSvg = require("../../images/carousel-arrow.svg");
 
@@ -41,40 +42,24 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
       ) : null,
     ...rest
   };
+  const carousel = (slides: number) => (
+    <NukaCarousel slidesToShow={slides} slidesToScroll={slides} {...settings}>
+      {children}
+    </NukaCarousel>
+  );
+
   return (
-    <>
-      <Media query={{ maxWidth: smallScreen }}>
-        {matches =>
-          matches ? (
-            <NukaCarousel slidesToShow={1} slidesToScroll={1} {...settings}>
-              {children}
-            </NukaCarousel>
-          ) : (
-            <Media query={{ maxWidth: mediumScreen }}>
-              {matches =>
-                matches ? (
-                  <NukaCarousel
-                    slidesToShow={2}
-                    slidesToScroll={2}
-                    {...settings}
-                  >
-                    {children}
-                  </NukaCarousel>
-                ) : (
-                  <NukaCarousel
-                    slidesToShow={4}
-                    slidesToScroll={4}
-                    {...settings}
-                  >
-                    {children}
-                  </NukaCarousel>
-                )
-              }
-            </Media>
-          )
-        }
-      </Media>
-    </>
+    <Media query={{ maxWidth: smallScreen }}>
+      {matches =>
+        matches ? (
+          carousel(1)
+        ) : (
+          <Media query={{ maxWidth: mediumScreen }}>
+            {matches => carousel(matches ? 2 : 4)}
+          </Media>
+        )
+      }
+    </Media>
   );
 };
 
