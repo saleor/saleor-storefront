@@ -43,3 +43,9 @@ export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
 export { NavLink } from "./NavLink";
 export { SearchOverlay } from "./SearchOverlay";
+export {
+  MetaConsumer,
+  MetaProvider,
+  MetaContextInterface,
+  MetaWrapper
+} from "./Meta";

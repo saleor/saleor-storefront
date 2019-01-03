@@ -115,6 +115,11 @@ export interface ProductDetails_product_variants {
   attributes: ProductDetails_product_variants_attributes[];
 }
 
+export interface ProductDetails_product_availability {
+  __typename: "ProductAvailability";
+  available: boolean | null;
+}
+
 export interface ProductDetails_product {
   __typename: "Product";
   id: string;
@@ -126,6 +131,9 @@ export interface ProductDetails_product {
   price: ProductDetails_product_price | null;
   images: (ProductDetails_product_images | null)[] | null;
   variants: (ProductDetails_product_variants | null)[] | null;
+  seoDescription: string | null;
+  seoTitle: string | null;
+  availability: ProductDetails_product_availability | null;
 }
 
 export interface ProductDetails {

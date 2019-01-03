@@ -36,3 +36,11 @@ export const SOCIAL_MEDIA = [
     path: require("../images/youtube-icon.svg")
   }
 ];
+
+export const META_DEFAULTS = {
+  description: "PWA Storefront",
+  image: `${window.location.origin}${require("../images/logo.svg")}`,
+  title: "Saleor",
+  type: "website",
+  url: window.location.href
+};
