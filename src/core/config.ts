@@ -38,6 +38,7 @@ export const SOCIAL_MEDIA = [
 ];
 
 export const META_DEFAULTS = {
+  custom: [],
   description: "PWA Storefront",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
   title: "Saleor",

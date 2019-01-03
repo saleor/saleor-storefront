@@ -2,7 +2,6 @@ export { default as App } from "./App";
 export { default as CachedImage } from "./CachedImage";
 export { default as CartPage } from "./CartPage";
 export { default as ContentPage } from "./ContentPage";
-export { default as HomePage } from "./HomePage";
 export { default as Button, ButtonProps } from "./Button";
 export { default as TextField } from "./TextField";
 export { default as SelectField } from "./SelectField";

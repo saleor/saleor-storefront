@@ -1,8 +1,13 @@
 import gql from "graphql-tag";
 
-export const GET_PRODUCTS_AND_CATEGORIES = gql`
+import { TypedQuery } from "../../core/queries";
+import { ProductsList } from "./types/ProductsList";
+
+export const homePageQuery = gql`
   query ProductsList {
     shop {
+      description
+      name
       homepageCollection {
         id
         backgroundImage {
@@ -24,3 +29,5 @@ export const GET_PRODUCTS_AND_CATEGORIES = gql`
     }
   }
 `;
+
+export const TypedHomePageQuery = TypedQuery<ProductsList, {}>(homePageQuery);
