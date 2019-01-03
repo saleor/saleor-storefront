@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { CartPage, CheckoutLogin } from "..";
 import { ArticlePage } from "../../views/Article";
-import CategoryPage from "../../views/Category";
+import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";

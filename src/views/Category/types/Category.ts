@@ -84,6 +84,8 @@ export interface Category_category_ancestors {
 
 export interface Category_category {
   __typename: "Category";
+  seoDescription: string | null;
+  seoTitle: string | null;
   id: string;
   name: string;
   backgroundImage: Category_category_backgroundImage | null;

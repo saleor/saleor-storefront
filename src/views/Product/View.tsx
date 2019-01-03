@@ -21,31 +21,29 @@ const canDisplay = (product: ProductDetails_product) =>
       !!product.variants
   );
 const extractMeta = (product: ProductDetails_product) => ({
-  /* tslint:disable:object-literal-sort-keys */
-  description: product.seoDescription || product.name,
-  image: product.thumbnail.url,
-  title: product.seoTitle || product.name,
-  type: "product.item",
-  url: window.location.href,
   custom: [
     {
-      property: "product:price:amount",
-      content: product.price.amount.toString()
+      content: product.price.amount.toString(),
+      property: "product:price:amount"
     },
     {
-      property: "product:price:currency",
-      content: product.price.currency
+      content: product.price.currency,
+      property: "product:price:currency"
     },
     {
-      property: "product:availability",
-      content: product.availability.available ? "in stock" : "out off stock"
+      content: product.availability.available ? "in stock" : "out off stock",
+      property: "product:availability"
     },
     {
-      property: "product:category",
-      content: product.category.name
+      content: product.category.name,
+      property: "product:category"
     }
-  ]
-  /* tslint:enable:object-literal-sort-keys */
+  ],
+  description: product.seoDescription,
+  image: product.thumbnail.url,
+  title: product.seoTitle,
+  type: "product.item",
+  url: window.location.href
 });
 
 const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
@@ -61,6 +59,7 @@ const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
       <NetworkStatus>
         {isOnline => {
           const { product } = data;
+
           if (canDisplay(product)) {
             return (
               <MetaWrapper meta={extractMeta(product)}>
@@ -69,7 +68,7 @@ const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
             );
           }
 
-          if (data && data.product === null) {
+          if (product === null) {
             return <NotFound />;
           }
 

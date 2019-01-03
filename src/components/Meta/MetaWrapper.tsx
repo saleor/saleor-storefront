@@ -13,6 +13,7 @@ const removeEmpty = obj => {
   });
   return newObj;
 };
+
 interface MetaWrapperProps {
   meta: MetaContextInterface;
   children: React.ReactNode;
