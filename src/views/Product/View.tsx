@@ -39,9 +39,9 @@ const extractMeta = (product: ProductDetails_product) => ({
       property: "product:category"
     }
   ],
-  description: product.seoDescription,
+  description: product.seoDescription || product.description,
   image: product.thumbnail.url,
-  title: product.seoTitle,
+  title: product.seoTitle || product.name,
   type: "product.item",
   url: window.location.href
 });

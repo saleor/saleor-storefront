@@ -9,6 +9,10 @@
     text-align: center;
     padding: 12rem 0;
 
+    &-text {
+      overflow: hidden;
+    }
+
     @media (max-width: $small-screen) {
       align-items: center;
       display: flex;
@@ -74,12 +78,18 @@
       grid-template-columns: 1fr;
       grid-gap: 2rem;
 
-      @media (min-width: $medium-screen) {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
       @media (min-width: $small-screen) {
         grid-template-columns: 1fr 1fr;
+
+        > div {
+          &:nth-child(3) {
+            grid-column: 3 / 1;
+          }
+
+          &:last-child {
+            display: none;
+          }
+        }
       }
 
       a {

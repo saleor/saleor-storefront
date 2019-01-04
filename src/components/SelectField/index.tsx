@@ -1,9 +1,9 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import Select from "react-select";
 // tslint:disable
 import { Props as SelectProps } from "react-select/lib/Select";
-
-import "./scss/index.scss";
 
 export interface SelectValue {
   label: string;

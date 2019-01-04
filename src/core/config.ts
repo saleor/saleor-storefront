@@ -43,5 +43,5 @@ export const META_DEFAULTS = {
   image: `${window.location.origin}${require("../images/logo.svg")}`,
   title: "Saleor",
   type: "website",
-  url: window.location.href
+  url: window.location.origin
 };

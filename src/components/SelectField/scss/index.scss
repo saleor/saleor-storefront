@@ -48,19 +48,32 @@
 
     &__menu-list {
       box-shadow: $select-menu-shadow;
+      padding-bottom: 0;
+      padding-top: 0;
 
       div {
-        padding: $spacer $spacer / 2;
-        margin: 0 $spacer;
+        padding: $spacer $spacer + $spacer / 2;
         width: auto;
+        position: relative;
 
-        &:not(:last-child) {
-          border-bottom: 1px solid $gray;
+        &:not(:last-child)::after {
+          background-color: $gray;
+          bottom: 0;
+          content: "";
+          height: 1px;
+          left: $spacer;
+          position: absolute;
+          width: calc(100% - #{$spacer * 2});
         }
       }
     }
 
     &__option {
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(33, 18, 94, 0.1);
+      }
+
       &--is-focused {
         background-color: $white;
       }

@@ -1,3 +1,6 @@
+import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
+import "./scss/index.scss";
+
 import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
@@ -13,9 +16,6 @@ import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
-
-import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
-import "./scss/index.scss";
 
 const cartIcon = require("../../images/cart.svg");
 const hamburgerHoverIcon = require("../../images/hamburger-hover.svg");
