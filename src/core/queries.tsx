@@ -26,6 +26,7 @@ interface TypedQueryInnerProps<TData, TVariables> {
   skip?: boolean;
   variables?: TVariables;
   errorPolicy?: ErrorPolicy;
+  alwaysRender?: boolean;
 }
 
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
@@ -36,6 +37,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
     displayError = true,
     displayLoader = true,
     renderOnError = false,
+    alwaysRender = false,
     fetchPolicy = "cache-and-network",
     errorPolicy,
     loaderFull,
@@ -75,7 +77,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           return <Loader full={loaderFull} />;
         }
 
-        if (hasData || (renderOnError && error)) {
+        if (hasData || (renderOnError && error) || alwaysRender) {
           return children({ ...queryData, loadMore });
         }
 

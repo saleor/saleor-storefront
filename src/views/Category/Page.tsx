@@ -17,7 +17,7 @@ import {
   Category_products
 } from "./types/Category";
 
-interface CategoryPageProps {
+interface PageProps {
   attributes: Category_attributes_edges_node[];
   category: Category_category;
   displayLoader: boolean;
@@ -30,7 +30,7 @@ interface CategoryPageProps {
   onOrder: (order: string) => void;
 }
 
-export const CategoryPage: React.SFC<CategoryPageProps> = ({
+const Page: React.SFC<PageProps> = ({
   attributes,
   category,
   displayLoader,
@@ -43,8 +43,7 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
   onOrder
 }) => {
   const canDisplayProducts = maybe(
-    () => products.edges && products.totalCount !== undefined,
-    false
+    () => !!products.edges && products.totalCount !== undefined
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
 
@@ -91,3 +90,5 @@ export const CategoryPage: React.SFC<CategoryPageProps> = ({
     </div>
   );
 };
+
+export default Page;

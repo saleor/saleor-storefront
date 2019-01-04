@@ -72,7 +72,11 @@ export const SearchView: React.SFC<SearchViewProps> = ({
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedSearchProductsQuery variables={variables} errorPolicy="all">
+        <TypedSearchProductsQuery
+          loaderFull
+          variables={variables}
+          errorPolicy="all"
+        >
           {({ error, data, loading, loadMore }) => {
             const canDisplayFilters = maybe(
               () => !!data.attributes.edges.length

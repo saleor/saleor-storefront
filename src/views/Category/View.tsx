@@ -16,8 +16,8 @@ import {
   parseQueryString,
   updateQueryString
 } from "../../core/utils";
-import { Page } from "./Page";
-import { TypedCollectionProductsQuery } from "./queries";
+import Page from "./Page";
+import { TypedCategoryProductsQuery } from "./queries";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -27,6 +27,7 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
   const querystring = parseQueryString(location);
   const updateQs = updateQueryString(location, history);
   const attributes: AttributeList = getAttributesFromQs(querystring);
+
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
@@ -37,21 +38,21 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
   const variables = {
     ...filters,
     attributes: convertToAttributeScalar(filters.attributes),
-    id: getGraphqlIdFromDBId(match.params.id, "Collection"),
+    id: getGraphqlIdFromDBId(match.params.id, "Category"),
     sortBy: convertSortByFromString(filters.sortBy)
   };
 
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCollectionProductsQuery
-          loaderFull
-          errorPolicy="all"
+        <TypedCategoryProductsQuery
           variables={variables}
+          errorPolicy="all"
+          loaderFull
         >
           {({ loading, data, loadMore }) => {
             const canDisplayFilters = maybe(
-              () => !!data.collection.name,
+              () => !!data.attributes.edges && !!data.category.name,
               false
             );
 
@@ -72,14 +73,14 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
               return (
                 <MetaWrapper
                   meta={{
-                    description: data.collection.seoDescription,
-                    title: data.collection.seoTitle,
-                    type: "product.collection"
+                    description: data.category.seoDescription,
+                    title: data.category.seoTitle,
+                    type: "product.category"
                   }}
                 >
                   <Page
                     attributes={data.attributes.edges.map(edge => edge.node)}
-                    collection={data.collection}
+                    category={data.category}
                     displayLoader={loading}
                     hasNextPage={maybe(
                       () => data.products.pageInfo.hasNextPage,
@@ -96,18 +97,18 @@ export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
               );
             }
 
-            if (data && data.collection === null) {
+            if (data && data.category === null) {
               return <NotFound />;
             }
 
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
-
-            return null;
           }}
-        </TypedCollectionProductsQuery>
+        </TypedCategoryProductsQuery>
       )}
     </NetworkStatus>
   );
 };
+
+export default View;

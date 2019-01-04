@@ -2,18 +2,18 @@
 
 .side-nav {
   $item-height: 3.7rem;
-  width: 30rem;
   max-width: calc(100vw - 5rem);
+  width: 30rem;
 
   &__menu-item {
     border-bottom: 1px solid $gray-light;
+    display: grid;
     height: $item-height;
 
     &-link,
-    &-back {
+    &-back span {
       align-items: center;
       color: $base-font-color;
-      display: flex;
       display: flex;
       font-weight: 600;
       padding: $spacer;
@@ -27,7 +27,8 @@
     }
 
     &-logo {
-      padding: $spacer;
+      align-self: center;
+      padding: 0.75rem $spacer;
 
       svg {
         width: 5rem;
@@ -58,7 +59,8 @@
     }
 
     &-more {
-      padding: $spacer $spacer * 2;
+      align-self: center;
+      padding: 1.25rem 1.75rem;
     }
 
     &-back {
@@ -87,7 +89,6 @@
 
     &--has-subnavigation,
     &--parent {
-      display: grid;
       grid-template-columns: 1fr $item-height;
     }
 

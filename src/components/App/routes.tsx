@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { CartPage, CheckoutLogin, HomePage } from "..";
-import ArticlePage from "../../views/Article";
-import CategoryPage from "../../views/Category";
+import { CartPage, CheckoutLogin } from "..";
+import { ArticlePage } from "../../views/Article";
+import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
+import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";
 import SearchPage from "../../views/Search";
 import { NotFound } from "../NotFound";

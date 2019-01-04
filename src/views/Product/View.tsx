@@ -3,22 +3,48 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import { MetaWrapper } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { NotFound } from "../../components/NotFound";
 import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
-import { ProductDetails } from "./types/ProductDetails";
+import { ProductDetails_product } from "./types/ProductDetails";
 
-const canDisplay = (data: ProductDetails) =>
+const canDisplay = (product: ProductDetails_product) =>
   maybe(
     () =>
-      !!data.product.description &&
-      !!data.product.name &&
-      !!data.product.price &&
-      !!data.product.variants
+      !!product.description &&
+      !!product.name &&
+      !!product.price &&
+      !!product.variants
   );
+const extractMeta = (product: ProductDetails_product) => ({
+  custom: [
+    {
+      content: product.price.amount.toString(),
+      property: "product:price:amount"
+    },
+    {
+      content: product.price.currency,
+      property: "product:price:currency"
+    },
+    {
+      content: product.availability.available ? "in stock" : "out off stock",
+      property: "product:availability"
+    },
+    {
+      content: product.category.name,
+      property: "product:category"
+    }
+  ],
+  description: product.seoDescription || product.description,
+  image: product.thumbnail.url,
+  title: product.seoTitle || product.name,
+  type: "product.item",
+  url: window.location.href
+});
 
 const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
   <TypedProductDetailsQuery
@@ -32,11 +58,17 @@ const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
     {({ data }) => (
       <NetworkStatus>
         {isOnline => {
-          if (canDisplay(data)) {
-            return <Page product={data.product} />;
+          const { product } = data;
+
+          if (canDisplay(product)) {
+            return (
+              <MetaWrapper meta={extractMeta(product)}>
+                <Page product={product} />
+              </MetaWrapper>
+            );
           }
 
-          if (data && data.product === null) {
+          if (product === null) {
             return <NotFound />;
           }
 

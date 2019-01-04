@@ -19,6 +19,8 @@ export const collectionProductsQuery = gql`
       id
       slug
       name
+      seoDescription
+      seoTitle
       backgroundImage {
         url
       }

@@ -83,6 +83,11 @@ export const productDetailsQuery = gql`
       variants {
         ...ProductVariantFields
       }
+      seoDescription
+      seoTitle
+      availability {
+        available
+      }
     }
   }
 `;

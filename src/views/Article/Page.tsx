@@ -10,7 +10,7 @@ interface PageNavigationElement {
   url: string;
 }
 
-interface ArticlePageProps {
+interface PageProps {
   breadcrumbs: Breadcrumb[];
   headerImage: string | null;
   navigation: PageNavigationElement[];
@@ -19,7 +19,7 @@ interface ArticlePageProps {
     title: string;
   };
 }
-export const ArticlePage: React.SFC<ArticlePageProps> = ({
+export const Page: React.SFC<PageProps> = ({
   breadcrumbs,
   headerImage,
   navigation,
@@ -28,13 +28,7 @@ export const ArticlePage: React.SFC<ArticlePageProps> = ({
   <div className="article-page">
     <div
       className="article-page__header"
-      style={
-        headerImage
-          ? {
-              backgroundImage: `url(${headerImage})`
-            }
-          : null
-      }
+      style={headerImage ? { backgroundImage: `url(${headerImage})` } : null}
     >
       <span className="article-page__header__title">
         <h1>{page.title}</h1>
@@ -54,21 +48,17 @@ export const ArticlePage: React.SFC<ArticlePageProps> = ({
                 })}
                 key={menuElement.url}
               >
-                <Link to={menuElement.url}>
-                  {menuElement.label}
-                </Link>
+                <Link to={menuElement.url}>{menuElement.label}</Link>
               </li>
             ))}
           </ul>
         </div>
         <div
           className="article-page__content"
-          dangerouslySetInnerHTML={{
-            __html: page.content
-          }}
+          dangerouslySetInnerHTML={{ __html: page.content }}
         />
       </div>
     </div>
   </div>
 );
-export default ArticlePage;
+export default Page;

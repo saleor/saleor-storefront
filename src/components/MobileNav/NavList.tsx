@@ -24,7 +24,6 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     parent: null
   };
 
-
   handleShowSubItems = (item: NavItem) => {
     this.setState({ parent: item, displayedItems: item.children });
   };
@@ -63,13 +62,9 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     return (
       <ul>
         {parent ? (
-          <li className="side-nav__menu-item side-nav__menu-item--parent">
-            <span
-              className="side-nav__menu-item-back"
-              onClick={this.handleGoBack}
-            >
-              <ReactSVG path={backIcon} />{" "}
-              {parent.name}
+          <li className="side-nav__menu-item side-nav__menu-item-back">
+            <span onClick={this.handleGoBack}>
+              <ReactSVG path={backIcon} /> {parent.name}
             </span>
           </li>
         ) : (

@@ -47,6 +47,8 @@ export const categoryProductsQuery = gql`
       }
     }
     category(id: $id) {
+      seoDescription
+      seoTitle
       id
       name
       backgroundImage {
