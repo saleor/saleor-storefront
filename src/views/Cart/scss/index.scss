@@ -1,4 +1,4 @@
-@import "../../App/scss/variables.scss";
+@import "../../../components/App/scss/variables.scss";
 
 .cart-page {
   &__header {
@@ -9,6 +9,40 @@
     &__subtotal {
       color: $gray-dark;
       font-weight: $bold-font-weight;
+    }
+
+    &__quantity {
+      &-header {
+        text-align: center;
+      }
+
+      &-cell {
+        div {
+          align-items: center;
+          display: flex;
+          justify-content: space-around;
+        }
+
+        & > div {
+          padding: 0.5rem;
+        }
+
+        svg:hover {
+          cursor: pointer;
+        }
+
+        &--processing {
+          svg {
+            &:hover {
+              cursor: initial;
+            }
+
+            path {
+              stroke: $white;
+            }
+          }
+        }
+      }
     }
   }
 

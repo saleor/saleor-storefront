@@ -1,8 +1,23 @@
 import * as React from "react";
 
-import { ApolloClient } from "apollo-client";
+import { ApolloClient, ApolloError } from "apollo-client";
 import { productVariatnsQuery } from "../../views/Product/queries";
-import { GET_CHECKOUT, UPDATE_CHECKOUT_LINE } from "../CheckoutApp/queries";
+import {
+  VariantList,
+  VariantListVariables
+} from "../../views/Product/types/VariantList";
+import {
+  getCheckoutQuery,
+  updateCheckoutLineQuery
+} from "../CheckoutApp/queries";
+import {
+  getCheckout,
+  getCheckoutVariables
+} from "../CheckoutApp/types/getCheckout";
+import {
+  updateCheckoutLine,
+  updateCheckoutLineVariables
+} from "../CheckoutApp/types/updateCheckoutLine";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<
@@ -11,12 +26,14 @@ export default class CartProvider extends React.Component<
 > {
   constructor(props) {
     super(props);
+
     let lines;
     try {
       lines = JSON.parse(localStorage.getItem("cart")) || [];
     } catch {
       lines = [];
     }
+
     this.state = {
       add: this.add,
       changeQuantity: this.changeQuantity,
@@ -27,16 +44,20 @@ export default class CartProvider extends React.Component<
       getTotal: this.getTotal,
       lines,
       loading: false,
-      remove: this.remove
+      remove: this.remove,
+      subtract: this.subtract
     };
   }
 
+  getLine = (variantId: string): CartLineInterface =>
+    this.state.lines.find(line => line.variantId === variantId);
+
   changeQuantity = async (variantId, quantity) => {
     this.setState({ loading: true });
-    const newLine: CartLineInterface = {
-      quantity,
-      variantId
-    };
+
+    const checkoutToken = localStorage.getItem("checkout");
+    const newLine: CartLineInterface = { quantity, variantId };
+
     this.setState(prevState => {
       let lines = prevState.lines.filter(line => line.variantId !== variantId);
       if (newLine.quantity > 0) {
@@ -45,22 +66,24 @@ export default class CartProvider extends React.Component<
       return { lines };
     });
 
-    const checkoutToken = localStorage.getItem("checkout");
     if (checkoutToken) {
       const { apolloClient } = this.props;
-      let data: { [key: string]: any };
-      const response = await apolloClient.query({
-        query: GET_CHECKOUT,
+      const {
+        data: { checkout }
+      } = await apolloClient.query<getCheckout, getCheckoutVariables>({
+        query: getCheckoutQuery,
         variables: { token: checkoutToken }
       });
-      data = response.data;
-      const checkoutID = data.checkout.id;
-      await apolloClient.mutate({
-        mutation: UPDATE_CHECKOUT_LINE,
+      const checkoutID = checkout.id;
+
+      const x = await apolloClient.mutate({
+        mutation: updateCheckoutLineQuery,
         update: (cache, { data: { checkoutLinesUpdate } }) => {
           cache.writeQuery({
-            data: { checkout: checkoutLinesUpdate.checkout },
-            query: GET_CHECKOUT
+            data: {
+              checkout: checkoutLinesUpdate.checkout
+            },
+            query: getCheckoutQuery
           });
         },
         variables: {
@@ -73,13 +96,24 @@ export default class CartProvider extends React.Component<
           ]
         }
       });
-      this.setState({ loading: false });
+
+      if (x) {
+        debugger;
+      }
     }
+
+    this.setState({ loading: false });
   };
 
   add = (variantId, quantity = 1) => {
-    const line = this.state.lines.find(line => line.variantId === variantId);
+    const line = this.getLine(variantId);
     const newQuantity = line ? line.quantity + quantity : quantity;
+    this.changeQuantity(variantId, newQuantity);
+  };
+
+  subtract = (variantId, quantity = 1) => {
+    const line = this.getLine(variantId);
+    const newQuantity = line ? line.quantity - quantity : quantity;
     this.changeQuantity(variantId, newQuantity);
   };
 
@@ -87,20 +121,24 @@ export default class CartProvider extends React.Component<
 
   fetch = async () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     if (cart.length) {
       this.setState({ loading: true });
-      const { apolloClient } = this.props;
-      let data: { [key: string]: any };
       let lines;
-      const response = await apolloClient.query({
+      const { apolloClient } = this.props;
+      const { data, errors } = await apolloClient.query<
+        VariantList,
+        VariantListVariables
+      >({
         query: productVariatnsQuery,
-        variables: { ids: cart.map(line => line.variantId) }
+        variables: {
+          ids: cart.map(line => line.variantId)
+        }
       });
       const quantityMapping = cart.reduce((obj, line) => {
         obj[line.variantId] = line.quantity;
         return obj;
       }, {});
-      data = response.data;
       lines = data.productVariants
         ? data.productVariants.edges.map(variant => ({
             quantity: quantityMapping[variant.node.id],
@@ -108,15 +146,12 @@ export default class CartProvider extends React.Component<
             variantId: variant.node.id
           }))
         : [];
-      if (data.errors) {
-        this.setState({
-          errors: data.errors,
-          lines: [],
-          loading: false
-        });
-      } else {
-        this.setState({ loading: false, lines, errors: null });
-      }
+
+      this.setState({
+        errors: errors ? [new ApolloError({ graphQLErrors: errors })] : null,
+        lines: errors ? [] : lines,
+        loading: false
+      });
     }
   };
 
@@ -142,9 +177,10 @@ export default class CartProvider extends React.Component<
   }
 
   render() {
-    const { children } = this.props;
     return (
-      <CartContext.Provider value={this.state}>{children}</CartContext.Provider>
+      <CartContext.Provider value={this.state}>
+        {this.props.children}
+      </CartContext.Provider>
     );
   }
 }

@@ -8,20 +8,19 @@ import ReactSVG from "react-svg";
 import { Button } from "..";
 import { maybe, priceToString } from "../../core/utils";
 import { checkoutLoginUrl } from "../App/routes";
+import CachedImage from "../CachedImage";
 import { CartContext } from "../CartProvider/context";
 import { Error } from "../Error";
 import GoToCart from "../GoToCart";
 import { GoToCheckout } from "../GoToCheckout";
 import Loader from "../Loader";
+import Offline from "../Offline";
+import OfflinePlaceholder from "../OfflinePlaceholder";
+import Online from "../Online";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { ShopContext } from "../ShopProvider/context";
 import { UserContext } from "../User/context";
-
-import CachedImage from "../CachedImage";
-import Offline from "../Offline";
-import OfflinePlaceholder from "../OfflinePlaceholder";
-import Online from "../Online";
 
 const cartSvg = require("../../images/cart.svg");
 const closeSvg = require("../../images/x.svg");
@@ -46,11 +45,13 @@ export const CartOverlay: React.SFC = () => (
                         </div>
                       );
                     }
+
                     if (errors) {
                       return errors.map(error => (
                         <Error error={error.message} />
                       ));
                     }
+
                     return (
                       <div className="cart">
                         <div className="overlay__header">
@@ -127,6 +128,7 @@ export const CartOverlay: React.SFC = () => (
                                   apolloClient={client}
                                   cart={cart}
                                   secondary
+                                  onClick={overlay.hide}
                                 >
                                   Go to my bag
                                 </GoToCart>

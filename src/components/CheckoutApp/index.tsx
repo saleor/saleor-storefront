@@ -1,3 +1,6 @@
+import { mediumScreen } from "../App/scss/variables.scss";
+import "./scss/index.scss";
+
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
@@ -8,15 +11,12 @@ import ReactSVG from "react-svg";
 
 import { CartSummary, Loader } from "..";
 import { baseUrl } from "../App/routes";
-import { CheckoutContext, CheckoutContextInterface } from "./context";
-import { GET_CHECKOUT } from "./queries";
-import { Routes } from "./routes";
-
-import { mediumScreen } from "../App/scss/variables.scss";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
-import "./scss/index.scss";
+import { CheckoutContext, CheckoutContextInterface } from "./context";
+import { getCheckoutQuery } from "./queries";
+import { Routes } from "./routes";
 
 export class CheckoutProvider extends React.Component<
   {
@@ -45,7 +45,7 @@ export class CheckoutProvider extends React.Component<
   getCheckout = async () => {
     this.setState({ loading: true });
     const { data } = await this.props.apolloClient.query({
-      query: GET_CHECKOUT,
+      query: getCheckoutQuery,
       variables: { token: this.props.token }
     });
     this.setState({ ...data, loading: false });

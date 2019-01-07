@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { baseUrl } from "../App/routes";
-import Button from "../Button";
+import { baseUrl } from "./App/routes";
+import Button from "./Button";
 
 export const EmptyCart: React.SFC<{}> = () => (
   <div className="cart-page__empty">
