@@ -57,7 +57,7 @@
 
   &__checkout-action {
     text-align: right;
-    margin: 0 $spacer * 2 $spacer * 3;
+    margin: 0 $spacer * 2 $spacer * 3 0;
 
     @media (max-width: $small-screen) {
       text-align: center;

@@ -6,14 +6,10 @@ import { Mutation } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
-import { AddressSummary, Button } from "..";
-import { maybe } from "../../core/utils";
-import CachedImage from "../CachedImage";
+import { AddressSummary, Button, CachedThumbnail } from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { COMPLETE_CHECKOUT } from "./queries";
-
-const noPhotoPng = require("../../images/nophoto.png");
 
 class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
   render() {
@@ -49,15 +45,7 @@ class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {
                         <Media
                           query={{ minWidth: smallScreen }}
                           render={() => (
-                            <CachedImage
-                              url={maybe(
-                                () => line.variant.product.thumbnail.url,
-                                noPhotoPng
-                              )}
-                              url2x={maybe(
-                                () => line.variant.product.thumbnail2x.url
-                              )}
-                            />
+                            <CachedThumbnail source={line.variant.product} />
                           )}
                         />
                         {line.variant.product.name}

@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
-import { maybe, priceToString } from "../../core/utils";
+import { priceToString } from "../../core/utils";
 import { checkoutLoginUrl } from "../App/routes";
-import CachedImage from "../CachedImage";
 import { CartContext } from "../CartProvider/context";
 import { Error } from "../Error";
 import GoToCart from "../GoToCart";
@@ -21,13 +20,13 @@ import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { ShopContext } from "../ShopProvider/context";
 import { UserContext } from "../User/context";
+import Empty from "./Empty";
+import ProductList from "./ProductList";
 
 const cartSvg = require("../../images/cart.svg");
 const closeSvg = require("../../images/x.svg");
-const noPhotoPng = require("../../images/nophoto.png");
-const removeSvg = require("../../images/garbage.svg");
 
-export const CartOverlay: React.SFC = () => (
+const CartOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
     {overlay =>
       overlay.type === OverlayType.cart ? (
@@ -67,45 +66,16 @@ export const CartOverlay: React.SFC = () => (
                           </div>
                           <ReactSVG
                             path={closeSvg}
-                            onClick={() => overlay.hide()}
+                            onClick={overlay.hide}
                             className="overlay__header__close-icon"
                           />
                         </div>
                         {lines.length ? (
                           <>
-                            <ul className="cart__list">
-                              {lines.map(line => (
-                                <li
-                                  key={line.variant.id}
-                                  className="cart__list__item"
-                                >
-                                  <CachedImage
-                                    url={maybe(
-                                      () => line.variant.product.thumbnail.url,
-                                      noPhotoPng
-                                    )}
-                                    url2x={maybe(
-                                      () => line.variant.product.thumbnail2x.url
-                                    )}
-                                  />
-                                  <div className="cart__list__item__details">
-                                    <p>{line.variant.price.localized}</p>
-                                    <p>{line.variant.product.name}</p>
-                                    <span className="cart__list__item__details__variant">
-                                      <span>{line.variant.name}</span>
-                                      <span>{"Qty: " + line.quantity}</span>
-                                    </span>
-                                    <ReactSVG
-                                      path={removeSvg}
-                                      className="cart__list__item__details__delete-icon"
-                                      onClick={() =>
-                                        cart.remove(line.variant.id)
-                                      }
-                                    />
-                                  </div>
-                                </li>
-                              ))}
-                            </ul>
+                            <ProductList
+                              lines={lines}
+                              removeFromCart={cart.remove}
+                            />
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">
                                 <span>Subtotal</span>
@@ -128,7 +98,6 @@ export const CartOverlay: React.SFC = () => (
                                   apolloClient={client}
                                   cart={cart}
                                   secondary
-                                  onClick={overlay.hide}
                                 >
                                   Go to my bag
                                 </GoToCart>
@@ -154,18 +123,7 @@ export const CartOverlay: React.SFC = () => (
                             </div>
                           </>
                         ) : (
-                          <div className="cart__empty">
-                            <h4>Yor bag is empty</h4>
-                            <p>
-                              You haven’t added anything to your bag. We’re sure
-                              you’ll find something in our store
-                            </p>
-                            <div className="cart__empty__action">
-                              <Button secondary onClick={() => overlay.hide()}>
-                                Continue Shopping
-                              </Button>
-                            </div>
-                          </div>
+                          <Empty overlayHide={overlay.hide} />
                         )}
                       </div>
                     );
@@ -184,3 +142,5 @@ export const CartOverlay: React.SFC = () => (
     }
   </OverlayContext.Consumer>
 );
+
+export default CartOverlay;

@@ -1,5 +1,4 @@
 export { default as App } from "./App";
-export { default as CachedImage } from "./CachedImage";
 export { default as ContentPage } from "./ContentPage";
 export { default as Button, ButtonProps } from "./Button";
 export { default as TextField } from "./TextField";
@@ -36,6 +35,7 @@ export {
   extractBreadcrumbs
 } from "./Breadcrumbs";
 export { DebounceChange, DebouncedTextField } from "./Debounce";
+export { CachedImage, CachedThumbnail } from "./CachedImage";
 export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";
@@ -47,3 +47,4 @@ export {
   MetaContextInterface,
   MetaWrapper
 } from "./Meta";
+export { CartOverlay } from "./CartOverlay";

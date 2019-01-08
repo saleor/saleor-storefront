@@ -3,6 +3,7 @@ import * as React from "react";
 interface CachedImageProps {
   url: string;
   url2x?: string;
+  alt?: string;
 }
 
 interface CachedImageState {
@@ -56,12 +57,16 @@ class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
   }
 
   render() {
-    const { url, url2x } = this.props;
+    const { url, url2x, alt } = this.props;
     if (this.state.isUnavailable) {
       return this.props.children || null;
     }
     return (
-      <img src={url} srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`} />
+      <img
+        src={url}
+        srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`}
+        alt={alt}
+      />
     );
   }
 }

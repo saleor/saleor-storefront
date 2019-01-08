@@ -14,11 +14,11 @@ import {
   getCheckout,
   getCheckoutVariables
 } from "../CheckoutApp/types/getCheckout";
-import { CartContext, CartInterface, CartLineInterface } from "./context";
 import {
   updateCheckoutLine,
   updateCheckoutLineVariables
 } from "../CheckoutApp/types/updateCheckoutLine";
+import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<
   { children: any; apolloClient: ApolloClient<any> },
@@ -56,16 +56,7 @@ export default class CartProvider extends React.Component<
     this.setState({ loading: true });
 
     const checkoutToken = localStorage.getItem("checkout");
-    const newLine: CartLineInterface = { quantity, variantId };
-
-    this.setState(prevState => {
-      let lines = prevState.lines.filter(line => line.variantId !== variantId);
-      if (newLine.quantity > 0) {
-        lines = [...lines, newLine];
-      }
-
-      return { lines };
-    });
+    let apiError = false;
 
     if (checkoutToken) {
       const { apolloClient } = this.props;
@@ -77,7 +68,11 @@ export default class CartProvider extends React.Component<
         query: getCheckoutQuery,
         variables: { token: checkoutToken }
       });
-      const {} = await apolloClient.mutate<
+      const {
+        data: {
+          checkoutLinesUpdate: { errors }
+        }
+      } = await apolloClient.mutate<
         updateCheckoutLine,
         updateCheckoutLineVariables
       >({
@@ -100,9 +95,25 @@ export default class CartProvider extends React.Component<
           ]
         }
       });
+      apiError = !!errors.length;
+      if (apiError) {
+        // TODO Add notificaton after https://github.com/mirumee/saleor/pull/3563 will be resolved
+        this.setState({ loading: false });
+      }
     }
 
-    this.setState({ loading: false });
+    if (!apiError) {
+      const newLine = { quantity, variantId };
+      this.setState(prevState => {
+        let lines = prevState.lines.filter(
+          line => line.variantId !== variantId
+        );
+        if (newLine.quantity > 0) {
+          lines = [...lines, newLine];
+        }
+        return { lines, loading: false };
+      });
+    }
   };
 
   add = (variantId, quantity = 1) => {
@@ -175,7 +186,6 @@ export default class CartProvider extends React.Component<
       localStorage.setItem("cart", JSON.stringify(this.state.lines));
     }
   }
-
   render() {
     return (
       <CartContext.Provider value={this.state}>

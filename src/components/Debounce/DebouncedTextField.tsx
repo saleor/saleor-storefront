@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import TextField, { TextFieldProps } from "../TextField";
-import DebounceChange, { DebounceChangeProps } from "./DebounceChange";
+import DebounceChange from "./DebounceChange";
 
 interface DebouncedTextFieldProps extends TextFieldProps {
   time?: number;
