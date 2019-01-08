@@ -8,7 +8,6 @@
     "no-implicit-dependencies": [true, "dev"],
     "no-shadowed-variable": false,
     "no-submodule-imports": [true],
-    "no-unused-variable": true,
     "no-var-requires": false
   }
 }

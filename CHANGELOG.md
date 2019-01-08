@@ -16,3 +16,4 @@ Storefront UX improvements, remove signup to newsletter #182 by @piotrgrundas
 Fix two line titles breaking fatured carousel, product page improvements #184 by @piotrgrundas
 Allow numbers in product, category & collection urls #185 by @piotrgrundas
 Add OpenGraph and Meta tags, minor UI improvements #191 by @piotrgrundas
+Add tslint check in the CI, ability to change cart quantity, fix error after removing item from the cart #194 by @piotrgrundas

@@ -99,6 +99,7 @@
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",
     "codegen": "apollo codegen:generate --target=typescript types",
-    "codegen-watch": "npm run codegen -- --watch"
+    "codegen-watch": "npm run codegen -- --watch",
+    "tslint": "tslint 'src/**/*.ts?(x)'"
   }
 }

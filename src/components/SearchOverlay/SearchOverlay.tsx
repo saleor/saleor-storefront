@@ -5,9 +5,10 @@ import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, DebounceChange, Loader, TextField } from "..";
+import { Button, Loader } from "..";
 import { maybe } from "../../core/utils";
 import { searchUrl } from "../App/routes";
+import { DebouncedTextField } from "../Debounce";
 import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
@@ -17,7 +18,6 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
-import { DebouncedTextField } from "../Debounce";
 
 const closeSvg = require("../../images/x.svg");
 const searchSvg = require("../../images/search.svg");
