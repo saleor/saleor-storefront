@@ -28,7 +28,6 @@ export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
 export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
-export { default as Debounce } from "./Debounce";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {
@@ -36,6 +35,7 @@ export {
   Breadcrumb,
   extractBreadcrumbs
 } from "./Breadcrumbs";
+export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { Footer } from "./Footer";
 export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
 export { MobileNav } from "./MobileNav";

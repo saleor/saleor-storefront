@@ -6,6 +6,20 @@
   }
 
   &__table {
+    &-row--processing td {
+      position: relative;
+
+      &::after {
+        background-color: rgba($white, 0.65);
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+
     &__subtotal {
       color: $gray-dark;
       font-weight: $bold-font-weight;
@@ -26,23 +40,11 @@
         & > div {
           padding: 0.5rem;
         }
-
-        svg:hover {
-          cursor: pointer;
-        }
-
-        &--processing {
-          svg {
-            &:hover {
-              cursor: initial;
-            }
-
-            path {
-              stroke: $white;
-            }
-          }
-        }
       }
+    }
+
+    svg:hover {
+      cursor: pointer;
     }
   }
 

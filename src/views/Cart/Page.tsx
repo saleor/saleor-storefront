@@ -8,7 +8,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, Loader, TextField } from "../../components";
+import { Button, DebouncedTextField } from "../../components";
 import { checkoutLoginUrl } from "../../components/App/routes";
 import CachedImage from "../../components/CachedImage";
 import { CartContext } from "../../components/CartProvider/context";
@@ -30,28 +30,33 @@ const Page: React.SFC<{ checkout: getCheckout_checkout }> = ({ checkout }) => {
     return (
       <Media query={{ minWidth: smallScreen }}>
         {isTabletUp => (
-          <>
-            <table className="cart-page__table">
-              <thead>
-                <tr>
-                  <th>Products</th>
-                  {isTabletUp && <th>Price</th>}
-                  <th className="cart-page__table__quantity-header">
-                    Quantity
-                  </th>
-                  <th>{isTabletUp ? "Total Price" : "Price"}</th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                <CartContext.Consumer>
-                  {({ remove, add, subtract, loading, changeQuantity }) =>
-                    lines
+          <CartContext.Consumer>
+            {({ remove, add, subtract, loading, changeQuantity }) => (
+              <>
+                <table className="cart-page__table">
+                  <thead>
+                    <tr>
+                      <th>Products</th>
+                      {isTabletUp && <th>Price</th>}
+                      <th className="cart-page__table__quantity-header">
+                        Quantity
+                      </th>
+                      <th>{isTabletUp ? "Total Price" : "Price"}</th>
+                      <th />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {lines
                       .sort((a, b) =>
                         b.id.toLowerCase().localeCompare(a.id.toLowerCase())
                       )
                       .map(line => (
-                        <tr key={line.id}>
+                        <tr
+                          key={line.id}
+                          className={classNames({
+                            "cart-page__table-row--processing": loading
+                          })}
+                        >
                           <td className="cart-page__thumbnail">
                             {isTabletUp && (
                               <CachedImage
@@ -66,20 +71,13 @@ const Page: React.SFC<{ checkout: getCheckout_checkout }> = ({ checkout }) => {
                             )}
                             {line.variant.product.name}
                             {line.variant.name
-                              ? ` (${line.variant.name})`
+                              ? `(${line.variant.name})`
                               : null}
                           </td>
                           {isTabletUp && (
                             <td>{line.variant.price.localized}</td>
                           )}
-                          <td
-                            className={classNames(
-                              "cart-page__table__quantity-cell",
-                              {
-                                "cart-page__table__quantity-cell--processing": loading
-                              }
-                            )}
-                          >
+                          <td className="cart-page__table__quantity-cell">
                             {isTabletUp ? (
                               <div>
                                 <ReactSVG
@@ -93,15 +91,16 @@ const Page: React.SFC<{ checkout: getCheckout_checkout }> = ({ checkout }) => {
                                 />
                               </div>
                             ) : (
-                              <TextField
-                                type="number"
-                                value={line.quantity}
-                                onChange={evt =>
+                              <DebouncedTextField
+                                onChange={({ target: { value } }) =>
                                   changeQuantity(
                                     line.variant.id,
-                                    parseInt(evt.target.value, 10)
+                                    parseInt(value, 10)
                                   )
                                 }
+                                disabled={loading}
+                                value={line.quantity}
+                                type="number"
                               />
                             )}
                           </td>
@@ -113,40 +112,45 @@ const Page: React.SFC<{ checkout: getCheckout_checkout }> = ({ checkout }) => {
                             />
                           </td>
                         </tr>
-                      ))
-                  }
-                </CartContext.Consumer>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td className="cart-page__table__subtotal">Subtotal</td>
-                  {isTabletUp && <td />}
-                  <td />
-                  <td>{checkout.subtotalPrice.gross.localized}</td>
-                  <td />
-                </tr>
-              </tfoot>
-            </table>
-            <div className="cart-page__checkout-action">
-              <UserContext.Consumer>
-                {({ user }) =>
-                  user ? (
-                    <ApolloConsumer>
-                      {client => (
-                        <GoToCheckout apolloClient={client}>
-                          Proceed to Checkout{" "}
-                        </GoToCheckout>
-                      )}
-                    </ApolloConsumer>
-                  ) : (
-                    <Link to={checkoutLoginUrl}>
-                      <Button>Proceed to Checkout</Button>
-                    </Link>
-                  )
-                }
-              </UserContext.Consumer>
-            </div>
-          </>
+                      ))}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td className="cart-page__table__subtotal">Subtotal</td>
+                      {isTabletUp && <td />}
+                      <td />
+                      <td>{checkout.subtotalPrice.gross.localized}</td>
+                      <td />
+                    </tr>
+                  </tfoot>
+                </table>
+                <div className="cart-page__checkout-action">
+                  <UserContext.Consumer>
+                    {({ user }) =>
+                      user ? (
+                        <ApolloConsumer>
+                          {client => (
+                            <GoToCheckout
+                              disabled={loading}
+                              apolloClient={client}
+                            >
+                              Proceed to Checkout{" "}
+                            </GoToCheckout>
+                          )}
+                        </ApolloConsumer>
+                      ) : (
+                        <Link to={checkoutLoginUrl}>
+                          <Button disabled={loading}>
+                            Proceed to Checkout
+                          </Button>
+                        </Link>
+                      )
+                    }
+                  </UserContext.Consumer>
+                </div>
+              </>
+            )}
+          </CartContext.Consumer>
         )}
       </Media>
     );

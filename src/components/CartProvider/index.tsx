@@ -14,11 +14,11 @@ import {
   getCheckout,
   getCheckoutVariables
 } from "../CheckoutApp/types/getCheckout";
+import { CartContext, CartInterface, CartLineInterface } from "./context";
 import {
   updateCheckoutLine,
   updateCheckoutLineVariables
 } from "../CheckoutApp/types/updateCheckoutLine";
-import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<
   { children: any; apolloClient: ApolloClient<any> },
@@ -63,20 +63,24 @@ export default class CartProvider extends React.Component<
       if (newLine.quantity > 0) {
         lines = [...lines, newLine];
       }
+
       return { lines };
     });
 
     if (checkoutToken) {
       const { apolloClient } = this.props;
       const {
-        data: { checkout }
+        data: {
+          checkout: { id: checkoutID }
+        }
       } = await apolloClient.query<getCheckout, getCheckoutVariables>({
         query: getCheckoutQuery,
         variables: { token: checkoutToken }
       });
-      const checkoutID = checkout.id;
-
-      const x = await apolloClient.mutate({
+      const {} = await apolloClient.mutate<
+        updateCheckoutLine,
+        updateCheckoutLineVariables
+      >({
         mutation: updateCheckoutLineQuery,
         update: (cache, { data: { checkoutLinesUpdate } }) => {
           cache.writeQuery({
@@ -96,10 +100,6 @@ export default class CartProvider extends React.Component<
           ]
         }
       });
-
-      if (x) {
-        debugger;
-      }
     }
 
     this.setState({ loading: false });

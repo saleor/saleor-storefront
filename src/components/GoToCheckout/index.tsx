@@ -17,7 +17,11 @@ import {
   getCheckout,
   getCheckoutVariables
 } from "../CheckoutApp/types/getCheckout";
-import { CREATE_CHECKOUT } from "./queries";
+import { createCheckoutQuery } from "./queries";
+import {
+  createCheckout,
+  createCheckoutVariables
+} from "./types/createCheckout";
 
 export interface GoToCheckoutState {
   checkout?: Checkout;
@@ -78,11 +82,14 @@ export class GoToCheckout extends React.Component<
         cart: { lines }
       } = this.props;
       this.setState({ loading: true });
-      const { data } = await apolloClient.mutate({
-        mutation: CREATE_CHECKOUT,
+      const { data } = await apolloClient.mutate<
+        createCheckout,
+        createCheckoutVariables
+      >({
+        mutation: createCheckoutQuery,
         variables: {
           checkoutInput: {
-            lines: lines.map(line => ({
+            lines: lines.map((line: { quantity; variantId }) => ({
               quantity: line.quantity,
               variantId: line.variantId
             }))

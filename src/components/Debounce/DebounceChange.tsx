@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface DebounceProps<TValue> {
+export interface DebounceChangeProps<TValue> {
   children: ((
     props: {
       change: (event: React.ChangeEvent<any>) => void;
@@ -11,32 +11,26 @@ export interface DebounceProps<TValue> {
   time?: number;
   value: TValue;
 }
-export interface DebounceState<TValue> {
+export interface DebounceChangeState<TValue> {
   timer: any | null;
   value: TValue;
 }
 
-export class Debounce<TValue> extends React.Component<
-  DebounceProps<TValue>,
-  DebounceState<TValue>
+export class DebounceChange<TValue> extends React.Component<
+  DebounceChangeProps<TValue>,
+  DebounceChangeState<TValue>
 > {
   static getDerivedStateFromProps(
-    props: DebounceProps<any>,
-    state: DebounceState<any>
+    props: DebounceChangeProps<any>,
+    state: DebounceChangeState<any>
   ) {
     if (props.value !== state.value && state.timer === null) {
-      return {
-        ...state,
-        value: props.value
-      };
+      return { ...state, value: props.value };
     }
     return state;
   }
 
-  state: DebounceState<TValue> = {
-    timer: null,
-    value: this.props.value
-  };
+  state: DebounceChangeState<TValue> = { timer: null, value: this.props.value };
 
   handleChange = (event: React.ChangeEvent<any>) => {
     event.persist();
@@ -60,4 +54,4 @@ export class Debounce<TValue> extends React.Component<
     });
   }
 }
-export default Debounce;
+export default DebounceChange;
