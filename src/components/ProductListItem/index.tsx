@@ -30,7 +30,7 @@ const ProductListItem: React.SFC<ProductListItemProps> = ({ product }) => {
           <img src={noPhoto} alt={product.thumbnail.alt} />
         </CachedThumbnail>
       </div>
-      <h4 className="product-list-item__title">{name}</h4>
+      <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category.name}</p>
       <p className="product-list-item__price">{price.localized}</p>
     </div>
