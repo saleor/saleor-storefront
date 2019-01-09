@@ -19,7 +19,7 @@ export interface CartInterface {
   getQuantity(): number;
   getTotal(): { currency: string; amount: number };
   remove(variantId: string): void;
-  subtract(variantId, quantity?: number): void;
+  subtract(variantId: string, quantity?: number): void;
 }
 
 /* tslint:disable:no-empty */
