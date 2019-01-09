@@ -4,7 +4,8 @@ import { FormError } from "../Form";
 
 import "./scss/index.scss";
 
-interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   errors?: FormError[];
   helpText?: string;
   label?: string;

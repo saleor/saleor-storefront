@@ -13,6 +13,9 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
+          name: Run tslint
+          command: npm run tslint
+      - run:
           name: Build application
           command: npm run build
       - persist_to_workspace:

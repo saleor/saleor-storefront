@@ -10,15 +10,16 @@ export interface CartLineInterface {
 
 export interface CartInterface {
   errors: ApolloError[] | null;
-  loading: boolean;
   lines: CartLineInterface[];
+  loading: boolean;
   add(variantId: string, quantity?: number): void;
-  remove(variantId: string): void;
   changeQuantity(variantId: string, quantity: number);
-  fetch(): void;
   clear(): void;
+  fetch(): void;
   getQuantity(): number;
   getTotal(): { currency: string; amount: number };
+  remove(variantId: string): void;
+  subtract(variantId: string, quantity?: number): void;
 }
 
 /* tslint:disable:no-empty */
@@ -32,7 +33,7 @@ export const CartContext = createContext<CartInterface>({
   getTotal: () => ({ currency: "USD", amount: 0 }),
   lines: [],
   loading: false,
-
-  remove: variantId => {}
+  remove: variantId => {},
+  subtract: (variantId, quantity = 1) => {}
 });
 /* tslint:enable:no-empty */

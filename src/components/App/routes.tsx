@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { CartPage, CheckoutLogin } from "..";
+import { CheckoutLogin } from "..";
 import { ArticlePage } from "../../views/Article";
+import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";

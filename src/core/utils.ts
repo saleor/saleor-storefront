@@ -2,11 +2,7 @@ import * as H from "history";
 import { Base64 } from "js-base64";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 
-import {
-  OrderDirection,
-  ProductOrder,
-  ProductOrderField
-} from "../../types/globalTypes";
+import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
 
 export const slugify = (text: string | number): string =>
   text

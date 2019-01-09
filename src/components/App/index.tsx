@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { ApolloConsumer } from "react-apollo";
 import {
+  CartOverlay,
   Footer,
   MainMenu,
   MainMenuNavOverlay,
@@ -9,7 +10,6 @@ import {
   MobileNav,
   SearchOverlay
 } from "..";
-import { CartOverlay } from "../CartOverlay";
 import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
 import { NotificationOverlay } from "../NotificationOverlay";

@@ -5,7 +5,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
 import {
-  Debounce,
+  DebounceChange,
   Loader,
   ProductsFeatured,
   ProductsList
@@ -104,7 +104,7 @@ export const SearchView: React.SFC<SearchViewProps> = ({
               );
 
             return (
-              <Debounce
+              <DebounceChange
                 debounce={handleQueryChange}
                 value={querystring.q}
                 time={500}
@@ -152,7 +152,7 @@ export const SearchView: React.SFC<SearchViewProps> = ({
                     </SearchPage>
                   );
                 }}
-              </Debounce>
+              </DebounceChange>
             );
           }}
         </TypedSearchProductsQuery>

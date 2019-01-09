@@ -5,10 +5,10 @@ import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, Loader, TextField } from "..";
+import { Button, Loader } from "..";
 import { maybe } from "../../core/utils";
 import { searchUrl } from "../App/routes";
-import Debounce from "../Debounce";
+import { DebouncedTextField } from "../Debounce";
 import { Error } from "../Error";
 import NetworkStatus from "../NetworkStatus";
 import { OfflinePlaceholder } from "../OfflinePlaceholder";
@@ -89,26 +89,18 @@ class SearchOverlay extends React.Component<
             onClick={e => e.stopPropagation()}
           >
             <div className="search__input">
-              <Debounce
-                debounce={evt => this.setState({ search: evt.target.value })}
+              <DebouncedTextField
+                onChange={evt => this.setState({ search: evt.target.value })}
                 value={this.state.search}
-                time={500}
-              >
-                {({ change, value: query }) => (
-                  <TextField
-                    iconLeft={
-                      <ReactSVG path={closeSvg} onClick={this.context.hide} />
-                    }
-                    iconRight={<ReactSVG path={searchSvg} />}
-                    autoFocus={true}
-                    onChange={change}
-                    value={query}
-                    placeholder="Search"
-                    onKeyPress={this.handleEnterPress}
-                    onBlur={this.handleInputBlur}
-                  />
-                )}
-              </Debounce>
+                iconLeft={
+                  <ReactSVG path={closeSvg} onClick={this.context.hide} />
+                }
+                iconRight={<ReactSVG path={searchSvg} />}
+                autoFocus={true}
+                placeholder="Search"
+                onKeyPress={this.handleEnterPress}
+                onBlur={this.handleInputBlur}
+              />
             </div>
             <div
               className={classNames({
