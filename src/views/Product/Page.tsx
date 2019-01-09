@@ -11,7 +11,7 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
-const noPhoto = require("../../images/nophoto.png");
+const noPhoto = require("../../images/no-photo.svg");
 
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();

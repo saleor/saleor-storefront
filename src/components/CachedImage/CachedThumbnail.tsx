@@ -3,7 +3,7 @@ import * as React from "react";
 import { maybe } from "../../core/utils";
 import CachedImage from "./CachedImage";
 
-const noPhotoPng = require("../../images/nophoto.png");
+const noPhoto = require("../../images/no-photo.svg");
 
 const CachedThumbnail: React.SFC<{
   source: {
@@ -13,7 +13,7 @@ const CachedThumbnail: React.SFC<{
   noPhotoDefault?: boolean;
   children?: React.ReactNode;
 }> = ({ source, noPhotoDefault, children }) => {
-  const defaultImg = noPhotoDefault ? noPhotoPng : undefined;
+  const defaultImg = noPhotoDefault ? noPhoto : undefined;
   return (
     <CachedImage
       url={maybe(() => source.thumbnail.url, defaultImg)}

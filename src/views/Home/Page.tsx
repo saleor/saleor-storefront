@@ -1,5 +1,6 @@
 import "./scss/index.scss";
 
+import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
@@ -7,6 +8,8 @@ import { Button, Loader, ProductsFeatured } from "../../components";
 import { ProductsList_categories } from "../../core/types/saleor";
 import { generateCategoryUrl } from "../../core/utils";
 import { ProductsList_shop_homepageCollection_backgroundImage } from "./types/ProductsList";
+
+const noPhoto = require("../../images/no-photo.svg");
 
 const Page: React.SFC<{
   loading: boolean;
@@ -61,12 +64,14 @@ const Page: React.SFC<{
                 key={category.id}
               >
                 <div
-                  className="home-page__categories__list__image"
+                  className={classNames("home-page__categories__list__image", {
+                    "home-page__categories__list__image--no-photo": !category.backgroundImage
+                  })}
                   style={{
                     backgroundImage: `url(${
                       category.backgroundImage
                         ? category.backgroundImage.url
-                        : require("../../images/nophoto.png")
+                        : noPhoto
                     })`
                   }}
                 />
