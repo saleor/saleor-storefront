@@ -94,7 +94,9 @@ const ProductsTable: React.SFC<{
                           }
                           disabled={processing}
                           value={line.quantity}
-                          type="number"
+                          pattern="[0-9]{9}"
+                          maxLength={9}
+                          size={9}
                         />
                       )}
                     </td>

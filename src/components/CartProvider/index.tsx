@@ -38,6 +38,7 @@ export default class CartProvider extends React.Component<
       add: this.add,
       changeQuantity: this.changeQuantity,
       clear: this.clear,
+      clearErrors: this.clearErrors,
       errors: null,
       fetch: this.fetch,
       getQuantity: this.getQuantity,
@@ -97,8 +98,10 @@ export default class CartProvider extends React.Component<
       });
       apiError = !!errors.length;
       if (apiError) {
-        // TODO Add notificaton after https://github.com/mirumee/saleor/pull/3563 will be resolved
-        this.setState({ loading: false });
+        this.setState({
+          errors: [...errors],
+          loading: false
+        });
       }
     }
 
@@ -128,7 +131,9 @@ export default class CartProvider extends React.Component<
     this.changeQuantity(variantId, newQuantity);
   };
 
-  clear = () => this.setState({ lines: [] });
+  clear = () => this.setState({ lines: [], errors: [] });
+
+  clearErrors = () => this.setState({ errors: [] });
 
   fetch = async () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];

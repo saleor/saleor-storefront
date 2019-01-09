@@ -49,6 +49,11 @@
   }
 
   &__thumbnail {
+    a {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
     img {
       width: 50px;
       height: auto;
