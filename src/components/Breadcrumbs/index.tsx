@@ -25,7 +25,9 @@ export const extractBreadcrumbs = (category: Category_category) => {
   let breadcrumbs = [constructLink(category)];
 
   if (category.ancestors.edges.length) {
-    const ancestorsList = category.ancestors.edges.map(constructLink);
+    const ancestorsList = category.ancestors.edges.map(edge =>
+      constructLink(edge.node)
+    );
     breadcrumbs = ancestorsList.concat(breadcrumbs);
   }
   return breadcrumbs;

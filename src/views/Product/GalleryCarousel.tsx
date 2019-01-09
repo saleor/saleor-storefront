@@ -3,7 +3,7 @@ import * as React from "react";
 import { CachedImage, Carousel } from "../../components/";
 import { ProductDetails_product_images } from "./types/ProductDetails";
 
-const noPhoto = require("../../images/nophoto.png");
+const noPhoto = require("../../images/no-photo.svg");
 
 const GalleryCarousel: React.SFC<{
   images: ProductDetails_product_images[];

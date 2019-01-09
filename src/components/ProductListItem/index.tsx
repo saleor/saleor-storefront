@@ -5,7 +5,7 @@ import * as React from "react";
 import { CachedThumbnail } from "..";
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
-const noPhoto = require("../../images/nophoto.png");
+const noPhoto = require("../../images/no-photo.svg");
 
 export interface Product extends BasicProductFields {
   category?: {
