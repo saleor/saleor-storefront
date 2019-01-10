@@ -16,7 +16,6 @@ import {
 } from "../../components/Overlay/context";
 import { UserContext } from "../../components/User/context";
 import { maybe } from "../../core/utils";
-import { withCart, withOverlay } from "../../hoc";
 import ProductsTable from "./ProductsTable";
 
 interface PageProps {
@@ -89,4 +88,4 @@ class Page extends React.Component<PageProps> {
   }
 }
 
-export default withOverlay(withCart(Page));
+export default Page;
