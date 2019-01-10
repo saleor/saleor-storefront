@@ -4,18 +4,4 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-Hide filters and sorting when there are no search results, add trending products to empty search, categories #151 by @piotrgrundas
-Add fetching menus from the API #127 by @piotrgrundas
-Add add to cart indicator #138 by @piotrgrundas
-Hide filters and sorting when there are no search results, add trending products to empty search, categories #165 by @piotrgrundas
-Add fetching menus from the API #170 by @piotrgrundas
-Add add to cart indicator #173 by @piotrgrundas
-Fix product page tablet view #181 by @piotrgrundas
-Add collection view, fix cursor pagination for categories, update storefront to use new thumbnail structure #178 by @piotrgrundas
-Storefront UX improvements, remove signup to newsletter #182 by @piotrgrundas
-Fix two line titles breaking featured carousel, product page improvements #184 by @piotrgrundas
-Allow numbers in product, category & collection urls #185 by @piotrgrundas
-Add OpenGraph and Meta tags, minor UI improvements #191 by @piotrgrundas
-Add tslint check in the CI, ability to change cart quantity, fix error after removing item from the cart #194 by @piotrgrundas
-Update nophoto image #198 by @piotrgrundas
 Handle quantity API errors in the cart #199 by @piotrgrundas
