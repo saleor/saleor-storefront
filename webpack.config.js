@@ -106,7 +106,7 @@ module.exports = (env, argv) => {
           display: "standalone",
           developerURL: null, // prevent retrieving from the nearest package.json
           background: "#ddd",
-          theme_color: "#333",
+          theme_color: "#333"
         }
       }),
       new SWPrecacheWebpackPlugin({

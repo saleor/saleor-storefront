@@ -19,8 +19,8 @@ import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
 
-const closeSvg = require("../../images/x.svg");
-const searchSvg = require("../../images/search.svg");
+import searchImg from "../../images/search.svg";
+import closeImg from "../../images/x.svg";
 
 type SearchOverlayProps = RouteComponentProps;
 
@@ -93,9 +93,9 @@ class SearchOverlay extends React.Component<
                 onChange={evt => this.setState({ search: evt.target.value })}
                 value={this.state.search}
                 iconLeft={
-                  <ReactSVG path={closeSvg} onClick={this.context.hide} />
+                  <ReactSVG path={closeImg} onClick={this.context.hide} />
                 }
-                iconRight={<ReactSVG path={searchSvg} />}
+                iconRight={<ReactSVG path={searchImg} />}
                 autoFocus={true}
                 placeholder="Search"
                 onKeyPress={this.handleEnterPress}

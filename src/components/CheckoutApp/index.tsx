@@ -18,6 +18,7 @@ import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { getCheckoutQuery } from "./queries";
 import { Routes } from "./routes";
 
+import logoImg from "../../images/logo.svg";
 export class CheckoutProvider extends React.Component<
   {
     children: any;
@@ -85,7 +86,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
     <div className="checkout">
       <div className="checkout__menu">
         <div className="checkout__menu__bar">
-          <ReactSVG path={require("../../images/logo.svg")} />
+          <ReactSVG path={logoImg} />
         </div>
         <Link to={baseUrl}>Return to shopping</Link>
       </div>

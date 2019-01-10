@@ -23,8 +23,8 @@ import { UserContext } from "../User/context";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
-const cartSvg = require("../../images/cart.svg");
-const closeSvg = require("../../images/x.svg");
+import cartImg from "../../images/cart.svg";
+import closeImg from "../../images/x.svg";
 
 const CartOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
@@ -55,7 +55,7 @@ const CartOverlay: React.SFC = () => (
                       <div className="cart">
                         <div className="overlay__header">
                           <ReactSVG
-                            path={cartSvg}
+                            path={cartImg}
                             className="overlay__header__cart-icon"
                           />
                           <div className="overlay__header-text">
@@ -65,7 +65,7 @@ const CartOverlay: React.SFC = () => (
                             </span>
                           </div>
                           <ReactSVG
-                            path={closeSvg}
+                            path={closeImg}
                             onClick={overlay.hide}
                             className="overlay__header__close-icon"
                           />

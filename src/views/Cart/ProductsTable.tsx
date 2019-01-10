@@ -10,9 +10,9 @@ import { CachedThumbnail, DebouncedTextField } from "../../components";
 import { getCheckout_checkout } from "../../components/CheckoutApp/types/getCheckout";
 import { generateProductUrl } from "../../core/utils";
 
-const cartRemoveSvg = require("../../images/cart-remove.svg");
-const cartAddSvg = require("../../images/cart-add.svg");
-const cartSubtractSvg = require("../../images/cart-subtract.svg");
+import cartAddImg from "../../images/cart-add.svg";
+import cartRemoveImg from "../../images/cart-remove.svg";
+import cartSubtractImg from "../../images/cart-subtract.svg";
 
 const ProductsTable: React.SFC<{
   checkout: getCheckout_checkout;
@@ -75,12 +75,12 @@ const ProductsTable: React.SFC<{
                       {isMediumScreen ? (
                         <div>
                           <ReactSVG
-                            path={cartAddSvg}
+                            path={cartAddImg}
                             onClick={() => addToCart(line.variant.id)}
                           />
                           <p>{line.quantity}</p>
                           <ReactSVG
-                            path={cartSubtractSvg}
+                            path={cartSubtractImg}
                             onClick={() => subtractToCart(line.variant.id)}
                           />
                         </div>
@@ -101,7 +101,7 @@ const ProductsTable: React.SFC<{
                     <td>{line.totalPrice.gross.localized}</td>
                     <td>
                       <ReactSVG
-                        path={cartRemoveSvg}
+                        path={cartRemoveImg}
                         onClick={() => removeFromCart(line.variant.id)}
                       />
                     </td>

@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { Mutation } from "react-apollo";
 import ReactSVG from "react-svg";
@@ -10,7 +12,8 @@ import { CUSTOMER_REGISTER_MUTATION } from "./queries";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
-import "./scss/index.scss";
+
+import closeImg from "../../images/x.svg";
 
 const RegisterForm: React.SFC = () => (
   <OverlayContext.Consumer>
@@ -91,7 +94,7 @@ export class LoginOverlay extends React.Component<
                   <div className="overlay__header">
                     <div className="overlay__header-text">Saleor account</div>
                     <ReactSVG
-                      path={require("../../images/x.svg")}
+                      path={closeImg}
                       onClick={() => overlay.hide()}
                       className="overlay__header__close-icon"
                     />

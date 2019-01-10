@@ -1,7 +1,9 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import ReactSVG from "react-svg";
 
-import "./scss/index.scss";
+import closeImg from "../../images/x.svg";
 
 interface MessageProps {
   title: string;
@@ -19,9 +21,9 @@ const Message: React.SFC<MessageProps> = ({
     <p className="message__title">{title}</p>
     {children ? <div className="message__content">{children}</div> : null}
     <ReactSVG
-      path={require("../../images/x.svg")}
+      path={closeImg}
       className="message__close-icon"
-      onClick={() => onClose()}
+      onClick={onClose}
     />
   </div>
 );

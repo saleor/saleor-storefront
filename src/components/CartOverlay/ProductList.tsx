@@ -6,7 +6,7 @@ import { CachedThumbnail } from "..";
 import { generateProductUrl } from "../../core/utils";
 import { CartLineInterface } from "../CartProvider/context";
 
-const removeSvg = require("../../images/garbage.svg");
+import removeImg from "../../images/garbage.svg";
 
 const ProductList: React.SFC<{
   lines: CartLineInterface[];
@@ -33,7 +33,7 @@ const ProductList: React.SFC<{
               <span>{`Qty: ${line.quantity}`}</span>
             </span>
             <ReactSVG
-              path={removeSvg}
+              path={removeImg}
               className="cart__list__item__details__delete-icon"
               onClick={() => removeFromCart(line.variant.id)}
             />

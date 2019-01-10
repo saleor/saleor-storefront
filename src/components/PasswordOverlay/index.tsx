@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import ReactSVG from "react-svg";
 
@@ -8,7 +10,8 @@ import { OverlayContext, OverlayType } from "../Overlay/context";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
-import "./scss/index.scss";
+
+import closeImg from "../../images/x.svg";
 
 export const PasswordOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
@@ -20,8 +23,8 @@ export const PasswordOverlay: React.SFC = () => (
               <div className="overlay__header">
                 <p>Reset your password</p>
                 <ReactSVG
-                  path={require("../../images/x.svg")}
-                  onClick={() => overlay.hide()}
+                  path={closeImg}
+                  onClick={overlay.hide}
                   className="overlay__header__close-icon"
                 />
               </div>

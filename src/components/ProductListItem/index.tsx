@@ -5,7 +5,7 @@ import * as React from "react";
 import { CachedThumbnail } from "..";
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
-const noPhoto = require("../../images/no-photo.svg");
+import noPhotoImg from "../../images/no-photo.svg";
 
 export interface Product extends BasicProductFields {
   category?: {
@@ -27,7 +27,7 @@ const ProductListItem: React.SFC<ProductListItemProps> = ({ product }) => {
     <div className="product-list-item">
       <div className="product-list-item__image">
         <CachedThumbnail source={product}>
-          <img src={noPhoto} alt={product.thumbnail.alt} />
+          <img src={noPhotoImg} alt={product.thumbnail.alt} />
         </CachedThumbnail>
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
