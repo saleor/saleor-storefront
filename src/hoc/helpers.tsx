@@ -5,7 +5,7 @@ const getDisplayName = (prefix: string, component: React.ComponentType) => {
 };
 
 /**
- * Helper function for creating HOC which will inject passed context as a prop.
+ * Helper function for creating HOC which will inject context as a prop.
  * @param displayName - name for easier debugging
  * @param injectedPropName - under what prop context should be injected
  * @param Context - context returned by React.createContext()

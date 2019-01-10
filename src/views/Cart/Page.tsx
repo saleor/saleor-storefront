@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { ApolloConsumer, compose } from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 
 import { Button } from "../../components";
@@ -24,6 +24,7 @@ interface PageProps {
   overlay: OverlayContextInterface;
   cart: CartInterface;
 }
+
 class Page extends React.Component<PageProps> {
   shouldComponentUpdate(nextProps: PageProps) {
     const {
@@ -59,6 +60,7 @@ class Page extends React.Component<PageProps> {
             processing={loading}
             removeFromCart={remove}
             subtractToCart={subtract}
+            invalid={maybe(() => !!errors.length, false)}
           />
           <div className="cart-page__checkout-action">
             <UserContext.Consumer>

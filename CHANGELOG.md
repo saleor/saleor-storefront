@@ -18,3 +18,4 @@ Allow numbers in product, category & collection urls #185 by @piotrgrundas
 Add OpenGraph and Meta tags, minor UI improvements #191 by @piotrgrundas
 Add tslint check in the CI, ability to change cart quantity, fix error after removing item from the cart #194 by @piotrgrundas
 Update nophoto image #198 by @piotrgrundas
+Handle quantity API errors in the cart #199 by @piotrgrundas

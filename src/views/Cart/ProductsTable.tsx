@@ -6,9 +6,10 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail, DebouncedTextField } from "../../components";
+import { CachedThumbnail } from "../../components";
 import { getCheckout_checkout } from "../../components/CheckoutApp/types/getCheckout";
 import { generateProductUrl } from "../../core/utils";
+import CartLineQuantityInput from "./CartLineQuantityInput";
 
 const cartRemoveSvg = require("../../images/cart-remove.svg");
 const cartAddSvg = require("../../images/cart-add.svg");
@@ -17,6 +18,7 @@ const cartSubtractSvg = require("../../images/cart-subtract.svg");
 const ProductsTable: React.SFC<{
   checkout: getCheckout_checkout;
   processing: boolean;
+  invalid: boolean;
   addToCart(variantId: string): void;
   changeQuantityInCart(variantId: string, quantity: number): void;
   removeFromCart(variantId: string): void;
@@ -25,11 +27,13 @@ const ProductsTable: React.SFC<{
   addToCart,
   changeQuantityInCart,
   checkout,
+  invalid,
   processing,
   removeFromCart,
   subtractToCart
 }) => {
   const { lines } = checkout;
+
   return (
     <Media query={{ minWidth: smallScreen }}>
       {isMediumScreen => (
@@ -85,18 +89,12 @@ const ProductsTable: React.SFC<{
                           />
                         </div>
                       ) : (
-                        <DebouncedTextField
-                          onChange={({ target: { value } }) =>
-                            changeQuantityInCart(
-                              line.variant.id,
-                              parseInt(value, 10)
-                            )
-                          }
-                          disabled={processing}
+                        <CartLineQuantityInput
                           value={line.quantity}
-                          pattern="[0-9]{9}"
-                          maxLength={9}
-                          size={9}
+                          processing={processing}
+                          changeQuantityInCart={changeQuantityInCart}
+                          invalid={invalid}
+                          variantId={line.variant.id}
                         />
                       )}
                     </td>
