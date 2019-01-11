@@ -7,7 +7,9 @@ export const NotificationOverlay: React.SFC = () => (
   <OverlayContext.Consumer>
     {({ type, context, hide }) =>
       type === OverlayType.message ? (
-        <Message title={context.title} status={context.status} onClose={hide} />
+        <Message title={context.title} status={context.status} onClose={hide}>
+          {context.content}
+        </Message>
       ) : null
     }
   </OverlayContext.Consumer>
