@@ -6,10 +6,9 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail } from "../../components";
+import { CachedThumbnail, DebouncedTextField } from "../../components";
 import { getCheckout_checkout } from "../../components/CheckoutApp/types/getCheckout";
 import { generateProductUrl } from "../../core/utils";
-import CartLineQuantityInput from "./CartLineQuantityInput";
 
 const cartRemoveSvg = require("../../images/cart-remove.svg");
 const cartAddSvg = require("../../images/cart-add.svg");
@@ -64,15 +63,17 @@ const ProductsTable: React.SFC<{
                     })}
                   >
                     <td className="cart-page__thumbnail">
-                      {isMediumScreen && (
+                      <div>
+                        {isMediumScreen && (
+                          <Link to={productUrl}>
+                            <CachedThumbnail source={line.variant.product} />
+                          </Link>
+                        )}
                         <Link to={productUrl}>
-                          <CachedThumbnail source={line.variant.product} />
+                          {line.variant.product.name}
+                          {line.variant.name && ` (${line.variant.name})`}
                         </Link>
-                      )}
-                      <Link to={productUrl}>
-                        {line.variant.product.name}
-                        {line.variant.name && ` (${line.variant.name})`}
-                      </Link>
+                      </div>
                     </td>
                     {isMediumScreen && <td>{line.variant.price.localized}</td>}
                     <td className="cart-page__table__quantity-cell">
@@ -89,12 +90,16 @@ const ProductsTable: React.SFC<{
                           />
                         </div>
                       ) : (
-                        <CartLineQuantityInput
+                        <DebouncedTextField
                           value={line.quantity}
-                          processing={processing}
-                          changeQuantityInCart={changeQuantityInCart}
-                          invalid={invalid}
-                          variantId={line.variant.id}
+                          onChange={evt =>
+                            changeQuantityInCart(
+                              line.variant.id,
+                              parseInt(evt.target.value, 10)
+                            )
+                          }
+                          resetValue={invalid}
+                          disabled={processing}
                         />
                       )}
                     </td>

@@ -4,4 +4,4 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-Handle quantity API errors in the cart #199 by @piotrgrundas
+- Handle quantity API errors in the cart #199 by @piotrgrundas

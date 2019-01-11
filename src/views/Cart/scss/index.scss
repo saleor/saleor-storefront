@@ -49,9 +49,9 @@
   }
 
   &__thumbnail {
-    a {
-      display: table-cell;
-      vertical-align: middle;
+    div {
+      display: flex;
+      align-items: center;
     }
 
     img {

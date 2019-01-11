@@ -10,7 +10,9 @@ export interface DebounceChangeProps<TValue> {
   debounce: (event: React.ChangeEvent<any>) => void;
   time?: number;
   value: TValue;
+  resetValue?: boolean;
 }
+
 export interface DebounceChangeState<TValue> {
   timer: any | null;
   value: TValue;
@@ -24,10 +26,21 @@ export class DebounceChange<TValue> extends React.Component<
     props: DebounceChangeProps<any>,
     state: DebounceChangeState<any>
   ) {
-    if (props.value !== state.value && state.timer === null) {
-      return { ...state, value: props.value };
+    const { resetValue, value: propsValue } = props;
+    const { timer, value: stateValue } = state;
+
+    if (resetValue) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      return { value: propsValue, timer };
     }
-    return state;
+
+    if (propsValue !== stateValue && timer === null) {
+      return { value: propsValue };
+    }
+
+    return null;
   }
 
   state: DebounceChangeState<TValue> = { timer: null, value: this.props.value };
@@ -35,9 +48,11 @@ export class DebounceChange<TValue> extends React.Component<
   handleChange = (event: React.ChangeEvent<any>) => {
     event.persist();
     const { timer } = this.state;
+
     if (timer) {
       clearTimeout(timer);
     }
+
     this.setState({
       timer: setTimeout(
         () => this.props.debounce(event),
@@ -54,4 +69,5 @@ export class DebounceChange<TValue> extends React.Component<
     });
   }
 }
+
 export default DebounceChange;
