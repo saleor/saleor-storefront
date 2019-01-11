@@ -17,6 +17,7 @@ import cartSubtractImg from "../../images/cart-subtract.svg";
 const ProductsTable: React.SFC<{
   checkout: getCheckout_checkout;
   processing: boolean;
+  invalid: boolean;
   addToCart(variantId: string): void;
   changeQuantityInCart(variantId: string, quantity: number): void;
   removeFromCart(variantId: string): void;
@@ -25,11 +26,13 @@ const ProductsTable: React.SFC<{
   addToCart,
   changeQuantityInCart,
   checkout,
+  invalid,
   processing,
   removeFromCart,
   subtractToCart
 }) => {
   const { lines } = checkout;
+
   return (
     <Media query={{ minWidth: smallScreen }}>
       {isMediumScreen => (
@@ -60,15 +63,17 @@ const ProductsTable: React.SFC<{
                     })}
                   >
                     <td className="cart-page__thumbnail">
-                      {isMediumScreen && (
+                      <div>
+                        {isMediumScreen && (
+                          <Link to={productUrl}>
+                            <CachedThumbnail source={line.variant.product} />
+                          </Link>
+                        )}
                         <Link to={productUrl}>
-                          <CachedThumbnail source={line.variant.product} />
+                          {line.variant.product.name}
+                          {line.variant.name && ` (${line.variant.name})`}
                         </Link>
-                      )}
-                      <Link to={productUrl}>
-                        {line.variant.product.name}
-                        {line.variant.name && ` (${line.variant.name})`}
-                      </Link>
+                      </div>
                     </td>
                     {isMediumScreen && <td>{line.variant.price.localized}</td>}
                     <td className="cart-page__table__quantity-cell">
@@ -86,15 +91,15 @@ const ProductsTable: React.SFC<{
                         </div>
                       ) : (
                         <DebouncedTextField
-                          onChange={({ target: { value } }) =>
+                          value={line.quantity}
+                          onChange={evt =>
                             changeQuantityInCart(
                               line.variant.id,
-                              parseInt(value, 10)
+                              parseInt(evt.target.value, 10)
                             )
                           }
+                          resetValue={invalid}
                           disabled={processing}
-                          value={line.quantity}
-                          type="number"
                         />
                       )}
                     </td>

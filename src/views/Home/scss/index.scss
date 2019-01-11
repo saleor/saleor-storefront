@@ -86,7 +86,7 @@
             grid-column: 3 / 1;
           }
 
-          &:last-child {
+          &:nth-child(n + 4) {
             display: none;
           }
         }

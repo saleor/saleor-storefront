@@ -16,6 +16,7 @@ class OverlayProvider extends React.Component<
   RouteComponentProps<{}>,
   OverlayContextInterface
 > {
+  notificationCloseDelay = 2500;
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +42,7 @@ class OverlayProvider extends React.Component<
     this.setState({ type, theme, context });
     document.body.style.overflow = type !== OverlayType.message ? "hidden" : "";
     if (type === OverlayType.message) {
-      setTimeout(() => this.hide(), 1000);
+      setTimeout(this.hide, this.notificationCloseDelay);
     }
   };
 
