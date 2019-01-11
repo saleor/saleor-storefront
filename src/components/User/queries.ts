@@ -5,7 +5,6 @@ export const USER_FRAGMENT = gql`
     id
     email
     isStaff
-    note
   }
 `;
 

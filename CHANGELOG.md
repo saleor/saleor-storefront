@@ -5,3 +5,4 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Handle quantity API errors in the cart #199 by @piotrgrundas
+- Fix sticky footer, adjust cart overlay to the mocks, improve importing images via es6 syntax #205 by @piotrgrundas
