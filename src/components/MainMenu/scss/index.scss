@@ -1,9 +1,14 @@
 @import "../../App/scss/variables.scss";
 
 .main-menu {
-  display: flex;
   align-items: center;
+  align-items: stretch;
+  background-color: $white;
   border-bottom: 1px solid $gray-light;
+  display: flex;
+  flex-direction: row;
+  height: 3.55rem;
+  position: relative;
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -15,6 +20,7 @@
     ul {
       display: flex;
       align-items: center;
+      height: 100%;
     }
   }
 
@@ -33,6 +39,8 @@
   }
 
   &__center {
+    align-self: center;
+
     svg {
       width: 4rem;
 
@@ -43,9 +51,9 @@
   }
 
   &__item {
-    margin: 0 1.5rem;
-    text-transform: uppercase;
     font-weight: $bold-font-weight;
+    height: 100%;
+    text-transform: uppercase;
 
     a {
       text-decoration: none;
@@ -81,6 +89,14 @@
     svg {
       vertical-align: bottom;
     }
+  }
+
+  &__item,
+  &__hamburger {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__icon {
@@ -119,12 +135,6 @@
       line-height: 1rem;
       transition: 0.3s;
     }
-
-    &:hover {
-      span {
-        background-color: $turquoise;
-      }
-    }
   }
 
   &__user {
@@ -140,6 +150,7 @@
 
     li {
       cursor: pointer;
+      margin: 0 auto;
 
       &:hover {
         color: $gray;
@@ -195,6 +206,80 @@
 
     svg {
       vertical-align: bottom;
+    }
+  }
+
+  &__nav-dropdown {
+    padding: 0 1.5rem;
+
+    &--active {
+      background-color: $turquoise-light;
+    }
+
+    &__body {
+      background: $white;
+      border-top-color: $gray-light;
+      border-top-style: solid;
+      border-top-width: 1px;
+      display: none;
+      left: 0;
+      padding: 2rem;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      z-index: 1;
+
+      &--visible {
+        display: block;
+      }
+
+      li *,
+      ul * {
+        display: block !important;
+      }
+
+      > ul > li {
+        align-self: flex-start;
+        margin-left: 2rem;
+        position: relative;
+        width: 188px;
+
+        // 2nd level name
+        > a {
+          font-size: $base-font-size;
+          position: relative;
+          text-transform: uppercase;
+          padding-bottom: 9px;
+          margin-bottom: 3px;
+        }
+        > ul > li:first-child {
+          position: relative;
+
+          &:before {
+            background-color: $turquoise-light;
+            content: "";
+            height: 1px;
+            left: 0;
+            position: absolute;
+            top: -3px;
+            width: 100%;
+          }
+        }
+
+        ul {
+          // 3rd+ level names
+          a {
+            font-size: $small-font-size;
+            font-weight: normal;
+            padding: 6px 0;
+            text-transform: capitalize;
+          }
+
+          li > ul {
+            margin-left: 10px;
+          }
+        }
+      }
     }
   }
 }

@@ -1,10 +1,13 @@
-import * as React from "react";
-
-import { CheckoutContext } from "../CheckoutApp/context";
-
 import "./scss/index.scss";
 
-const CartSummary: React.SFC<{}> = () => (
+import * as React from "react";
+
+import { maybe } from "../../core/utils";
+import { CheckoutContext } from "../CheckoutApp/context";
+
+const noPhotoSvg = require("../../images/no-photo.svg");
+
+const CartSummary: React.SFC = () => (
   <CheckoutContext.Consumer>
     {({ checkout }) =>
       checkout ? (
@@ -13,10 +16,10 @@ const CartSummary: React.SFC<{}> = () => (
           {checkout.lines.map(product => (
             <div key={product.id} className="cart-summary__product-item">
               <img
-                src={
-                  product.variant.product.thumbnailUrl ||
-                  require("../../images/nophoto.png")
-                }
+                src={maybe(
+                  () => product.variant.product.thumbnail.url,
+                  noPhotoSvg
+                )}
               />
               <div>
                 <p>{product.variant.price.localized}</p>

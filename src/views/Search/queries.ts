@@ -1,11 +1,17 @@
 import gql from "graphql-tag";
 
-export const GET_SEARCH_PRODUCTS = gql`
+import { TypedQuery } from "../../core/queries";
+import {
+  SearchProducts,
+  SearchProductsVariables
+} from "./types/SearchProducts";
+
+export const searchProductsQuery = gql`
   query SearchProducts(
     $query: String!
     $attributes: [AttributeScalar]
     $pageSize: Int
-    $sortBy: String
+    $sortBy: ProductOrder
     $after: String
   ) {
     products(
@@ -20,8 +26,13 @@ export const GET_SEARCH_PRODUCTS = gql`
         node {
           id
           name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
+          thumbnail {
+            url
+            alt
+          }
+          thumbnail2x: thumbnail(size: 510) {
+            url
+          }
           category {
             id
             name
@@ -38,7 +49,7 @@ export const GET_SEARCH_PRODUCTS = gql`
         hasNextPage
       }
     }
-    attributes {
+    attributes(first: 100) {
       edges {
         node {
           id
@@ -54,3 +65,8 @@ export const GET_SEARCH_PRODUCTS = gql`
     }
   }
 `;
+
+export const TypedSearchProductsQuery = TypedQuery<
+  SearchProducts,
+  SearchProductsVariables
+>(searchProductsQuery);

@@ -2,10 +2,9 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import {
-  Category_attributes_edges_node,
-  SearchProducts_attributes_edges_node
-} from "../../core/types/saleor";
+import { Category_attributes_edges_node } from "../../views/Category/types/Category";
+import { Collection_attributes_edges_node } from "../../views/Collection/types/Collection";
+import { SearchProducts_attributes_edges_node } from "../../views/Search/types/SearchProducts";
 import PriceRangeFilter from "../PriceRangeFilter";
 import SelectField, { SelectValue } from "../SelectField";
 
@@ -24,6 +23,7 @@ export interface Filters {
 export interface ProductFiltersProps {
   attributes:
     | Category_attributes_edges_node[]
+    | Collection_attributes_edges_node[]
     | SearchProducts_attributes_edges_node[];
   filters: Filters;
   onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;

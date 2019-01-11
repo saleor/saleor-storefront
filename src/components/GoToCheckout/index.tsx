@@ -2,21 +2,29 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { Redirect } from "react-router";
 
-import { CheckoutInterface } from "../../core/types";
 import { ButtonProps, default as Button } from "../Button";
 import { CartInterface } from "../CartProvider/context";
 import { CheckoutContext } from "../CheckoutApp/context";
-import { GET_CHECKOUT } from "../CheckoutApp/queries";
+import { getCheckoutQuery } from "../CheckoutApp/queries";
 import {
   checkoutBaseUrl,
   checkoutBillingUrl,
   checkoutPaymentUrl,
   checkoutShippingOptionsUrl
 } from "../CheckoutApp/routes";
-import { CREATE_CHECKOUT } from "./queries";
+import { Checkout } from "../CheckoutApp/types/Checkout";
+import {
+  getCheckout,
+  getCheckoutVariables
+} from "../CheckoutApp/types/getCheckout";
+import { createCheckoutQuery } from "./queries";
+import {
+  createCheckout,
+  createCheckoutVariables
+} from "./types/createCheckout";
 
 export interface GoToCheckoutState {
-  checkout?: CheckoutInterface;
+  checkout?: Checkout;
   checkoutToken: string;
   loading: boolean;
   redirect: boolean;
@@ -51,15 +59,17 @@ export class GoToCheckout extends React.Component<
     const checkoutToken = localStorage.getItem("checkout");
     if (checkoutToken) {
       localStorage.setItem("checkout", checkoutToken);
+
       const { apolloClient } = this.props;
-      let data: { [key: string]: any };
-      const response = await apolloClient.query({
-        query: GET_CHECKOUT,
+      const { data } = await apolloClient.query<
+        getCheckout,
+        getCheckoutVariables
+      >({
+        query: getCheckoutQuery,
         variables: {
           token: checkoutToken
         }
       });
-      data = response.data;
       this.setState({
         checkout: data.checkout,
         checkoutToken,
@@ -72,11 +82,14 @@ export class GoToCheckout extends React.Component<
         cart: { lines }
       } = this.props;
       this.setState({ loading: true });
-      const { data } = await apolloClient.mutate({
-        mutation: CREATE_CHECKOUT,
+      const { data } = await apolloClient.mutate<
+        createCheckout,
+        createCheckoutVariables
+      >({
+        mutation: createCheckoutQuery,
         variables: {
           checkoutInput: {
-            lines: lines.map(line => ({
+            lines: lines.map((line: { quantity; variantId }) => ({
               quantity: line.quantity,
               variantId: line.variantId
             }))
@@ -96,6 +109,7 @@ export class GoToCheckout extends React.Component<
   getRedirection() {
     const { checkout } = this.state;
     let pathname;
+
     if (checkout.billingAddress) {
       pathname = checkoutPaymentUrl(this.state.checkoutToken);
     } else if (checkout.shippingMethod) {
@@ -105,6 +119,7 @@ export class GoToCheckout extends React.Component<
     } else {
       pathname = checkoutBaseUrl(this.state.checkoutToken);
     }
+
     if (pathname) {
       return (
         <CheckoutContext.Consumer>
@@ -117,15 +132,23 @@ export class GoToCheckout extends React.Component<
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.checkoutToken && this.state.redirect) {
+      this.setState({ redirect: false });
+    }
+  }
+
   render = () => {
     const { children, cart, apolloClient, ...buttonProps } = this.props;
+
     if (this.state.loading) {
       return <Button {...buttonProps}>Loading</Button>;
     }
+
     if (this.state.checkoutToken && this.state.redirect) {
-      this.setState({ redirect: false });
       return this.getRedirection();
     }
+
     return (
       <Button
         {...buttonProps}

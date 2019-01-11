@@ -3,11 +3,12 @@ import * as React from "react";
 export enum OverlayType {
   cart = "cart",
   checkout = "checkout",
-  navigation = "navigation",
   login = "login",
+  message = "message",
+  sideNav = "side-nav",
   password = "password",
   search = "search",
-  message = "message"
+  mainMenuNav = "main-menu-nav"
 }
 
 export enum OverlayTheme {
@@ -20,6 +21,7 @@ export interface ContextInterface {
   title?: string;
   content?: string | React.Component;
   status?: "success" | "error";
+  data?: any;
 }
 
 export type ShowOverlayType = (

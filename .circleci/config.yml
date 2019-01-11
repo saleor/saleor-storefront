@@ -13,6 +13,9 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
+          name: Run tslint
+          command: npm run tslint
+      - run:
           name: Build application
           command: npm run build
       - persist_to_workspace:
@@ -36,10 +39,15 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - deploy:
           requires:
             - build
           filters:
+            tags:
+              only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/

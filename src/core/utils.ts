@@ -1,5 +1,8 @@
+import * as H from "history";
 import { Base64 } from "js-base64";
-import { PriceInterface } from "./types";
+import { parse as parseQs, stringify as stringifyQs } from "query-string";
+
+import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
 
 export const slugify = (text: string | number): string =>
   text
@@ -50,6 +53,9 @@ export const generateProductUrl = (id: string, name: string) =>
 export const generateCategoryUrl = (id: string, name: string) =>
   `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "Category")}/`;
 
+export const generateCollectionUrl = (id: string, name: string) =>
+  `/collection/${slugify(name)}/${getDBIdFromGraphqlId(id, "Collection")}/`;
+
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
 interface AttributeDict {
@@ -57,16 +63,8 @@ interface AttributeDict {
 }
 export const convertToAttributeScalar = (attributes: AttributeDict) =>
   Object.entries(attributes)
-    .map(([key, value]) =>
-      typeof value === "string"
-        ? key + ":" + value
-        : value.map(attribute => key + ":" + attribute)
-    )
-    .reduce(
-      (prev, curr) =>
-        typeof curr === "string" ? [...prev, curr] : [...prev, ...curr],
-      []
-    );
+    .map(([key, value]) => value.map(attribute => `${key}:${attribute}`))
+    .reduce((prev, curr) => [...prev, ...curr], []);
 
 interface QueryString {
   [key: string]: string[] | string | null | undefined;
@@ -83,3 +81,54 @@ export const getAttributesFromQs = (qs: QueryString) =>
 
 export const getValueOrEmpty = <T>(value: T): T | string =>
   value === undefined || value === null ? "" : value;
+
+export const convertSortByFromString = (sortBy: string) => {
+  if (!sortBy) {
+    return null;
+  }
+  const direction = sortBy.startsWith("-")
+    ? OrderDirection.DESC
+    : OrderDirection.ASC;
+
+  let field;
+  switch (sortBy.replace(/^-/, "")) {
+    case "name":
+      field = ProductOrderField.NAME;
+      break;
+
+    case "price":
+      field = ProductOrderField.PRICE;
+      break;
+
+    default:
+      return null;
+  }
+  return { field, direction };
+};
+
+export function maybe<T>(exp: () => T, d?: T) {
+  try {
+    const result = exp();
+    return result === undefined ? d : result;
+  } catch {
+    return d;
+  }
+}
+
+export const parseQueryString = (location: H.LocationState) =>
+  parseQs(location.search.substr(1));
+
+export const updateQueryString = (
+  location: H.LocationState,
+  history: H.History
+) => {
+  const querystring = parseQueryString(location);
+  return (key: string, value?) => {
+    if (value === "") {
+      delete querystring[key];
+    } else {
+      querystring[key] = value || key;
+    }
+    history.replace("?" + stringifyQs(querystring));
+  };
+};

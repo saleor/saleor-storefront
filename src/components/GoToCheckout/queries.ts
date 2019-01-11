@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
-import { CHECKOUT_FRAGMENT } from "../CheckoutApp/queries";
+import { checkoutFragment } from "../CheckoutApp/queries";
 
-export const CREATE_CHECKOUT = gql`
-  ${CHECKOUT_FRAGMENT}
+export const createCheckoutQuery = gql`
+  ${checkoutFragment}
   mutation createCheckout($checkoutInput: CheckoutCreateInput!) {
     checkoutCreate(input: $checkoutInput) {
       errors {

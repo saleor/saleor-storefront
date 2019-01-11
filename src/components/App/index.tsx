@@ -1,8 +1,15 @@
 import * as React from "react";
 
 import { ApolloConsumer } from "react-apollo";
-import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "..";
-import { CartOverlay } from "../CartOverlay";
+import {
+  CartOverlay,
+  Footer,
+  MainMenu,
+  MainMenuNavOverlay,
+  MetaConsumer,
+  MobileNav,
+  SearchOverlay
+} from "..";
 import CartProvider from "../CartProvider";
 import { LoginOverlay } from "../LoginOverlay";
 import { NotificationOverlay } from "../NotificationOverlay";
@@ -14,19 +21,23 @@ import "./scss/index.scss";
 const App: React.SFC<{}> = () => (
   <ApolloConsumer>
     {client => (
-      <CartProvider apolloClient={client}>
-        <header>
-          <MainMenu />
-        </header>
-        <Routes />
-        <Footer />
-        <CartOverlay />
-        <LoginOverlay />
-        <PasswordOverlay />
-        <NavigationOverlay />
-        <NotificationOverlay />
-        <SearchOverlay />
-      </CartProvider>
+      <>
+        <MetaConsumer />
+        <CartProvider apolloClient={client}>
+          <header>
+            <MainMenu />
+          </header>
+          <Routes />
+          <Footer />
+          <CartOverlay />
+          <LoginOverlay />
+          <PasswordOverlay />
+          <MobileNav />
+          <MainMenuNavOverlay />
+          <NotificationOverlay />
+          <SearchOverlay />
+        </CartProvider>
+      </>
     )}
   </ApolloConsumer>
 );

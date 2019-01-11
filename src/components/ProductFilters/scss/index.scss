@@ -15,9 +15,5 @@
     @media (max-width: $small-screen) {
       grid-template-columns: 1fr;
     }
-
-    &__filter {
-      min-width: 15rem;
-    }
   }
 }

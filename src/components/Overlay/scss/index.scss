@@ -27,9 +27,12 @@
   background-color: rgba(199, 207, 207, 0.8);
   transition: 300ms;
 
-  &--search {
+  &--search,
+  &--main-menu-nav {
     top: 3.55rem;
+  }
 
+  &--search {
     .overlay__right {
       background-color: transparent;
       height: auto;

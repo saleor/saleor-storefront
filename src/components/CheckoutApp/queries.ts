@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import { TypedQuery } from "../../core/queries";
+import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 
-export const CHECKOUT_FRAGMENT = gql`
+export const checkoutFragment = gql`
   fragment Checkout on Checkout {
     token
     id
@@ -107,8 +109,13 @@ export const CHECKOUT_FRAGMENT = gql`
         product {
           id
           name
-          thumbnailUrl
-          thumbnailUrl2x: thumbnailUrl(size: 510)
+          thumbnail {
+            url
+            alt
+          }
+          thumbnail2x: thumbnail(size: 510) {
+            url
+          }
         }
       }
       quantity
@@ -116,8 +123,8 @@ export const CHECKOUT_FRAGMENT = gql`
   }
 `;
 
-export const GET_CHECKOUT = gql`
-  ${CHECKOUT_FRAGMENT}
+export const getCheckoutQuery = gql`
+  ${checkoutFragment}
   query getCheckout($token: UUID!) {
     checkout(token: $token) {
       ...Checkout
@@ -125,8 +132,8 @@ export const GET_CHECKOUT = gql`
   }
 `;
 
-export const UPDATE_CHECKOUT_LINE = gql`
-  ${CHECKOUT_FRAGMENT}
+export const updateCheckoutLineQuery = gql`
+  ${checkoutFragment}
   mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
@@ -139,3 +146,8 @@ export const UPDATE_CHECKOUT_LINE = gql`
     }
   }
 `;
+
+export const TypedGetCheckoutQuery = TypedQuery<
+  getCheckout,
+  getCheckoutVariables
+>(getCheckoutQuery);

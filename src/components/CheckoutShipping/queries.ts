@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
-import { CHECKOUT_FRAGMENT } from "../CheckoutApp/queries";
+import { checkoutFragment } from "../CheckoutApp/queries";
 
 export const UPDATE_CHECKOUT_SHIPPING_ADDRESS = gql`
-  ${CHECKOUT_FRAGMENT}
+  ${checkoutFragment}
   mutation updateCheckoutShippingAddress(
     $checkoutId: ID!
     $shippingAddress: AddressInput!

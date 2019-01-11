@@ -4,27 +4,32 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Dropdown, ProductListItem } from "..";
-import { CategoryProductInterface } from "../../core/types";
 import { generateProductUrl } from "../../core/utils";
 import Loader from "../Loader";
 import { Filters } from "../ProductFilters";
 
+import { Product } from "../ProductListItem";
+
 interface ProductsListProps {
   displayLoader: boolean;
-  hasNextPage: boolean;
   filters: Filters;
+  hasNextPage: boolean;
+  notFound?: string | React.ReactNode;
   onLoadMore: () => void;
-  products: CategoryProductInterface;
   onOrder: (order: string) => void;
+  products: Product[];
+  totalCount: number;
 }
 
 export const ProductList: React.SFC<ProductsListProps> = ({
   displayLoader,
   filters,
   hasNextPage,
+  notFound,
   onLoadMore,
+  onOrder,
   products,
-  onOrder
+  totalCount
 }) => {
   const filterOptions = [
     { value: "price", label: "Price Low-High" },
@@ -32,35 +37,43 @@ export const ProductList: React.SFC<ProductsListProps> = ({
     { value: "name", label: "Name Increasing" },
     { value: "-name", label: "Name Decreasing" }
   ];
+  const sortValues = filterOptions.find(
+    option => option.value === filters.sortBy
+  );
+  const hasProducts = !!totalCount;
+
   return (
     <div className="products-list">
       <div className="products-list__products container">
         <div className="products-list__products__subheader">
-          <span className="products-list__products__subheader__total">
-            {products.totalCount} Products
-          </span>
+          {hasProducts && (
+            <span className="products-list__products__subheader__total">
+              {totalCount} Products
+            </span>
+          )}
           {displayLoader && (
             <div className="products-list__loader">
               <Loader />
             </div>
           )}
           <span className="products-list__products__subheader__sort">
-            <span>Sort by:</span>{" "}
-            <Dropdown
-              options={filterOptions}
-              value={
-                filterOptions.find(option => option.value === filters.sortBy) ||
-                ""
-              }
-              isSearchable={false}
-              onChange={event => onOrder(event.value)}
-            />
+            {hasProducts && (
+              <>
+                <span>Sort by:</span>{" "}
+                <Dropdown
+                  options={filterOptions}
+                  value={sortValues || ""}
+                  isSearchable={false}
+                  onChange={event => onOrder(event.value)}
+                />
+              </>
+            )}
           </span>
         </div>
-        {products.edges.length > 0 ? (
+        {hasProducts ? (
           <>
             <div className="products-list__products__grid">
-              {products.edges.map(({ node: product }) => (
+              {products.map(product => (
                 <Link
                   to={generateProductUrl(product.id, product.name)}
                   key={product.id}
@@ -82,13 +95,15 @@ export const ProductList: React.SFC<ProductsListProps> = ({
             </div>
           </>
         ) : (
-          <div className="products-list__products-not-found">
-            We couldn't find any product matching these conditions
-          </div>
+          <div className="products-list__products-not-found">{notFound}</div>
         )}
       </div>
     </div>
   );
+};
+
+ProductList.defaultProps = {
+  notFound: "We couldn't find any product matching these conditions"
 };
 
 export default ProductList;
