@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import { TypedMutation } from "../../core/mutations";
+import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 
-export const USER_FRAGMENT = gql`
+export const userFragment = gql`
   fragment User on User {
     id
     email
@@ -8,8 +10,8 @@ export const USER_FRAGMENT = gql`
   }
 `;
 
-export const TOKEN_AUTH_MUTATION = gql`
-  ${USER_FRAGMENT}
+export const tokenAuthMutation = gql`
+  ${userFragment}
   mutation TokenAuth($email: String!, $password: String!) {
     tokenCreate(email: $email, password: $password) {
       token
@@ -24,8 +26,8 @@ export const TOKEN_AUTH_MUTATION = gql`
   }
 `;
 
-export const TOKEN_VERIFICATION_MUTATION = gql`
-  ${USER_FRAGMENT}
+export const tokenVeryficationMutation = gql`
+  ${userFragment}
   mutation VerifyToken($token: String!) {
     tokenVerify(token: $token) {
       payload
@@ -35,3 +37,8 @@ export const TOKEN_VERIFICATION_MUTATION = gql`
     }
   }
 `;
+
+export const TypedTokenAuthMutation = TypedMutation<
+  TokenAuth,
+  TokenAuthVariables
+>(tokenAuthMutation);

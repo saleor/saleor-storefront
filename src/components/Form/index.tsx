@@ -1,3 +1,4 @@
+import { ApolloError } from "apollo-client";
 import * as React from "react";
 import NumberFormat from "react-number-format";
 
@@ -12,7 +13,7 @@ export interface FormError {
 
 interface FormProps {
   children: React.ReactNode;
-  errors?: FormError[];
+  errors?: FormError[] | ApolloError[];
   data?: { [key: string]: string | any };
   onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
 }

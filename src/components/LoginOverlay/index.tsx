@@ -1,72 +1,17 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { Mutation } from "react-apollo";
 import ReactSVG from "react-svg";
 
-import { Button, Form, LoginForm, TextField } from "..";
-import { Overlay } from "../Overlay";
-import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
-import { CUSTOMER_REGISTER_MUTATION } from "./queries";
-
+import { LoginForm } from "..";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
 import Online from "../Online";
+import { Overlay } from "../Overlay";
+import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
+import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../images/x.svg";
-
-const RegisterForm: React.SFC = () => (
-  <OverlayContext.Consumer>
-    {({ show }) => (
-      <Mutation mutation={CUSTOMER_REGISTER_MUTATION}>
-        {(registerCustomer, { loading, data }) => {
-          if (
-            data &&
-            data.customerRegister &&
-            data.customerRegister.errors.length === 0
-          ) {
-            show(OverlayType.message, null, {
-              title: `New user has been created.`
-            });
-          }
-          return (
-            <Form
-              errors={
-                data && data.customerRegister && data.customerRegister.errors
-              }
-              onSubmit={(event, data) => {
-                registerCustomer({
-                  variables: { email: data.email, password: data.password }
-                });
-                event.preventDefault();
-              }}
-            >
-              <TextField
-                name="email"
-                autoComplete="email"
-                label="Email Address"
-                type="email"
-                required
-              />
-              <TextField
-                name="password"
-                autoComplete="password"
-                label="Password"
-                type="password"
-                required
-              />
-              <div className="login__content__button">
-                <Button type="submit" {...loading && { disabled: true }}>
-                  {loading ? "Loading" : "Register"}
-                </Button>
-              </div>
-            </Form>
-          );
-        }}
-      </Mutation>
-    )}
-  </OverlayContext.Consumer>
-);
 
 export class LoginOverlay extends React.Component<
   {},
