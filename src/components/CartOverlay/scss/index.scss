@@ -4,6 +4,14 @@
   width: 25rem;
   max-width: 100vw;
 
+  .overlay__header {
+    justify-content: initial;
+
+    &__close-icon {
+      margin-left: auto;
+    }
+  }
+
   &__list {
     padding: 0 $spacer;
     height: calc(100vh - 17.5rem);
@@ -82,8 +90,12 @@
     }
 
     &__button {
-      margin: $spacer auto $spacer;
+      margin: 1.3rem auto 1.3rem;
       text-align: center;
+
+      button {
+        width: 85%;
+      }
     }
   }
 
