@@ -1,16 +1,21 @@
+import "./scss/index.scss";
+
 import * as React from "react";
-import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
 import { AddressSummary, Button } from "..";
-import { CheckoutContext } from "../CheckoutApp/context";
+import { maybe } from "../../core/utils";
+import {
+  CheckoutContext,
+  CheckoutContextInterface
+} from "../CheckoutApp/context";
 import { checkoutBaseUrl, checkoutBillingUrl } from "../CheckoutApp/routes";
-import { UPDATE_CHECKOUT_SHIPPING_OPTION } from "./queries";
+import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
+import ShippingOptionsList from "./ShippingOptionsList";
+import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
 
-import "./scss/index.scss";
-
-class CheckoutShipping extends React.Component<
+class CheckoutShippingOptions extends React.Component<
   RouteComponentProps<{ id }>,
   { selectedShipping: string }
 > {
@@ -18,11 +23,33 @@ class CheckoutShipping extends React.Component<
     super(props);
     this.state = { selectedShipping: "" };
   }
+
+  proceedToBilling(
+    data: updateCheckoutShippingOptions,
+    checkoutCtx: CheckoutContextInterface
+  ) {
+    const canProceed = maybe(
+      () => !data.checkoutShippingMethodUpdate.errors.length
+    );
+
+    if (canProceed) {
+      checkoutCtx.updateCheckout({
+        checkout: data.checkoutShippingMethodUpdate.checkout
+      });
+      this.props.history.push(checkoutBillingUrl(checkoutCtx.checkout.token));
+    }
+  }
+
+  handleShippngChange = (shippingId: string) => {
+    this.setState({ selectedShipping: shippingId });
+  };
+
   render() {
     return (
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
-          {({ checkout, updateCheckout }) => {
+          {checkoutCtx => {
+            const { checkout } = checkoutCtx;
             return (
               <>
                 <Link to={checkoutBaseUrl(checkout.token)}>
@@ -41,49 +68,17 @@ class CheckoutShipping extends React.Component<
                   <span>2</span>
                   <h4 className="checkout__header">Shipping Method</h4>
                 </div>
-                <Mutation mutation={UPDATE_CHECKOUT_SHIPPING_OPTION}>
+                <TypedUpdateCheckoutShippingOptionsMutation
+                  onCompleted={data => this.proceedToBilling(data, checkoutCtx)}
+                >
                   {(updateCheckoutShippingOptions, { data, loading }) => {
-                    if (
-                      data &&
-                      data.checkoutShippingMethodUpdate.errors.length === 0
-                    ) {
-                      updateCheckout({
-                        checkout: data.checkoutShippingMethodUpdate.checkout
-                      });
-                      this.props.history.push(
-                        checkoutBillingUrl(checkout.token)
-                      );
-                    }
                     return (
                       <div className="checkout__content">
-                        <div className="checkout-shipping-options__form">
-                          {checkout.availableShippingMethods &&
-                            checkout.availableShippingMethods.length > 0 &&
-                            checkout.availableShippingMethods.map(method => (
-                              <div
-                                key={method.id}
-                                className={`checkout-shipping-options__form__option${
-                                  this.state.selectedShipping === method.id
-                                    ? " checkout-shipping-options__form__option--selected"
-                                    : ""
-                                }`}
-                                onClick={() =>
-                                  this.setState({
-                                    selectedShipping: method.id
-                                  })
-                                }
-                              >
-                                <input
-                                  type="radio"
-                                  name="shippingOprtions"
-                                  value={method.id}
-                                />
-                                <label>
-                                  {method.name} | +{method.price.localized}
-                                </label>
-                              </div>
-                            ))}
-                        </div>
+                        <ShippingOptionsList
+                          checkout={checkout}
+                          selected={this.state.selectedShipping}
+                          onShippingSelect={this.handleShippngChange}
+                        />
                         <Button
                           onClick={event => {
                             updateCheckoutShippingOptions({
@@ -101,7 +96,7 @@ class CheckoutShipping extends React.Component<
                       </div>
                     );
                   }}
-                </Mutation>
+                </TypedUpdateCheckoutShippingOptionsMutation>
                 <div className="checkout__step">
                   <span>3</span>
                   <h4 className="checkout__header">Billing</h4>
@@ -119,4 +114,4 @@ class CheckoutShipping extends React.Component<
   }
 }
 
-export default CheckoutShipping;
+export default CheckoutShippingOptions;

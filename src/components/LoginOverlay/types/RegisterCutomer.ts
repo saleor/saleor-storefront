@@ -6,13 +6,11 @@
 // ====================================================
 
 export interface RegisterCutomer_customerRegister_errors {
-  __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
 export interface RegisterCutomer_customerRegister {
-  __typename: "CustomerRegister";
   errors: RegisterCutomer_customerRegister_errors[] | null;
 }
 

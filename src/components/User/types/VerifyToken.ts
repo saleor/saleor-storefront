@@ -6,15 +6,12 @@
 // ====================================================
 
 export interface VerifyToken_tokenVerify_user {
-  __typename: "User";
   id: string;
   email: string;
   isStaff: boolean;
-  note: string | null;
 }
 
 export interface VerifyToken_tokenVerify {
-  __typename: "VerifyToken";
   payload: any | null;
   user: VerifyToken_tokenVerify_user | null;
 }

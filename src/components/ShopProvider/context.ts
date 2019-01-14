@@ -1,17 +1,16 @@
 import { createContext } from "react";
 
-import { ShopInterface } from "../../core/types";
+import { getShop_shop } from "./types/getShop";
 
-export const ShopContext = createContext<ShopInterface>({
+export const defaultCountry = {
+  code: "US",
+  country: "United States of America"
+};
+
+export const ShopContext = createContext<getShop_shop>({
   countries: [],
-  defaultCountry: {
-    code: "US",
-    country: "United States of America"
-  },
+  defaultCountry,
   geolocalization: {
-    country: {
-      code: "US",
-      country: "United States of America"
-    }
+    country: defaultCountry
   }
 });

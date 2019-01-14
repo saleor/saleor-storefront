@@ -1,48 +1,43 @@
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
 
-import { ShopInterface } from "../../core/types";
-import { ShopContext } from "./context";
-import { GET_SHOP } from "./queries";
+import { defaultCountry, ShopContext } from "./context";
+import { TypedGetShopQuery } from "./queries";
+import { getShop_shop } from "./types/getShop";
 
-export default class ShopProvider extends React.Component<
-  { children: any; apolloClient: ApolloClient<any> },
-  ShopInterface
+interface ShopProviderProps {
+  children: any;
+  apolloClient: ApolloClient<any>;
+}
+
+interface ShopProviderState extends getShop_shop {
+  fetched: boolean;
+}
+
+export default class ShopProvider extends React.PureComponent<
+  ShopProviderProps,
+  ShopProviderState
 > {
-  constructor(props) {
-    super(props);
-    this.state = {
-      countries: [],
-      defaultCountry: {
-        code: "US",
-        country: "United States of America"
-      },
-      geolocalization: {
-        country: {
-          code: "US",
-          country: "United States of America"
-        }
-      }
-    };
-  }
-  componentWillMount() {
-    this.getShopData();
-  }
-
-  getShopData = async () => {
-    const { apolloClient } = this.props;
-    let data;
-    const response = await apolloClient.query({
-      query: GET_SHOP
-    });
-    data = response.data;
-    this.setState(data.shop);
+  state = {
+    countries: [],
+    defaultCountry,
+    fetched: false,
+    geolocalization: { country: defaultCountry }
   };
 
   render() {
-    const { children } = this.props;
     return (
-      <ShopContext.Provider value={this.state}>{children}</ShopContext.Provider>
+      <ShopContext.Provider value={this.state}>
+        <TypedGetShopQuery
+          displayLoader={false}
+          displayError={false}
+          onCompleted={data => {
+            this.setState({ ...data.shop, fetched: true });
+          }}
+          skip={this.state.fetched}
+        />
+        {this.props.children}
+      </ShopContext.Provider>
     );
   }
 }

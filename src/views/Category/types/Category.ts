@@ -8,31 +8,26 @@ import { ProductOrder } from "./../../../../types/globalTypes";
 // ====================================================
 
 export interface Category_products_edges_node_thumbnail {
-  __typename: "Image";
   url: string;
   alt: string | null;
 }
 
 export interface Category_products_edges_node_thumbnail2x {
-  __typename: "Image";
   url: string;
 }
 
 export interface Category_products_edges_node_price {
-  __typename: "Money";
   amount: number;
   currency: string;
   localized: string;
 }
 
 export interface Category_products_edges_node_category {
-  __typename: "Category";
   id: string;
   name: string;
 }
 
 export interface Category_products_edges_node {
-  __typename: "Product";
   id: string;
   name: string;
   thumbnail: Category_products_edges_node_thumbnail | null;
@@ -42,12 +37,10 @@ export interface Category_products_edges_node {
 }
 
 export interface Category_products_edges {
-  __typename: "ProductCountableEdge";
   node: Category_products_edges_node;
 }
 
 export interface Category_products_pageInfo {
-  __typename: "PageInfo";
   endCursor: string | null;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
@@ -55,35 +48,29 @@ export interface Category_products_pageInfo {
 }
 
 export interface Category_products {
-  __typename: "ProductCountableConnection";
   totalCount: number | null;
   edges: Category_products_edges[];
   pageInfo: Category_products_pageInfo;
 }
 
 export interface Category_category_backgroundImage {
-  __typename: "Image";
   url: string;
 }
 
 export interface Category_category_ancestors_edges_node {
-  __typename: "Category";
   id: string;
   name: string;
 }
 
 export interface Category_category_ancestors_edges {
-  __typename: "CategoryCountableEdge";
   node: Category_category_ancestors_edges_node;
 }
 
 export interface Category_category_ancestors {
-  __typename: "CategoryCountableConnection";
   edges: Category_category_ancestors_edges[];
 }
 
 export interface Category_category {
-  __typename: "Category";
   seoDescription: string | null;
   seoTitle: string | null;
   id: string;
@@ -93,14 +80,12 @@ export interface Category_category {
 }
 
 export interface Category_attributes_edges_node_values {
-  __typename: "AttributeValue";
   id: string;
   name: string | null;
   slug: string | null;
 }
 
 export interface Category_attributes_edges_node {
-  __typename: "Attribute";
   id: string;
   name: string | null;
   slug: string | null;
@@ -108,12 +93,10 @@ export interface Category_attributes_edges_node {
 }
 
 export interface Category_attributes_edges {
-  __typename: "AttributeCountableEdge";
   node: Category_attributes_edges_node;
 }
 
 export interface Category_attributes {
-  __typename: "AttributeCountableConnection";
   edges: Category_attributes_edges[];
 }
 

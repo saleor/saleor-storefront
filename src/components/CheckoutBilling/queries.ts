@@ -1,8 +1,13 @@
 import gql from "graphql-tag";
 
+import { TypedMutation } from "../../core/mutations";
 import { checkoutFragment } from "../CheckoutApp/queries";
+import {
+  updateCheckoutBillingAddress,
+  updateCheckoutBillingAddressVariables
+} from "./types/updateCheckoutBillingAddress";
 
-export const UPDATE_CHECKOUT_BILLING_ADDRESS = gql`
+const updateCheckoutBillingAddressMutation = gql`
   ${checkoutFragment}
   mutation updateCheckoutBillingAddress(
     $checkoutId: ID!
@@ -22,3 +27,8 @@ export const UPDATE_CHECKOUT_BILLING_ADDRESS = gql`
     }
   }
 `;
+
+export const TypedUpdateCheckoutBillingAddressMutation = TypedMutation<
+  updateCheckoutBillingAddress,
+  updateCheckoutBillingAddressVariables
+>(updateCheckoutBillingAddressMutation);

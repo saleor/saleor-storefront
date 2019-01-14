@@ -6,9 +6,7 @@
 // ====================================================
 
 export interface User {
-  __typename: "User";
   id: string;
   email: string;
   isStaff: boolean;
-  note: string | null;
 }

@@ -6,13 +6,11 @@
 // ====================================================
 
 export interface ResetPassword_customerPasswordReset_errors {
-  __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
 export interface ResetPassword_customerPasswordReset {
-  __typename: "CustomerPasswordReset";
   errors: ResetPassword_customerPasswordReset_errors[] | null;
 }
 

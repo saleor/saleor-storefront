@@ -73,10 +73,10 @@ export default class UserProvider extends React.Component<
       });
     } else {
       this.setState({
+        errors: null,
         loading: false,
-        user: data.user,
         token,
-        errors: null
+        user: data.user
       });
     }
   };

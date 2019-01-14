@@ -19,6 +19,7 @@ import { getCheckoutQuery } from "./queries";
 import { Routes } from "./routes";
 
 import logoImg from "../../images/logo.svg";
+
 export class CheckoutProvider extends React.Component<
   {
     children: any;

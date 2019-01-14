@@ -64,35 +64,35 @@ const startApp = async () => {
   });
   render(
     <Router history={history}>
-      <ShopProvider apolloClient={apolloClient}>
-        <OverlayProvider>
-          <OverlayContext.Consumer>
-            {({ show }) => (
-              <UserProviderWithTokenHandler
-                apolloClient={apolloClient}
-                onUserLogin={() =>
-                  show(OverlayType.message, null, {
-                    title: "You are logged in"
-                  })
-                }
-                onUserLogout={() =>
-                  show(OverlayType.message, null, {
-                    title: "You are logged out"
-                  })
-                }
-                refreshUser
-              >
-                <ApolloProvider client={apolloClient}>
+      <ApolloProvider client={apolloClient}>
+        <ShopProvider apolloClient={apolloClient}>
+          <OverlayProvider>
+            <OverlayContext.Consumer>
+              {({ show }) => (
+                <UserProviderWithTokenHandler
+                  apolloClient={apolloClient}
+                  onUserLogin={() =>
+                    show(OverlayType.message, null, {
+                      title: "You are logged in"
+                    })
+                  }
+                  onUserLogout={() =>
+                    show(OverlayType.message, null, {
+                      title: "You are logged out"
+                    })
+                  }
+                  refreshUser
+                >
                   <Switch>
                     <Route path="/checkout/:token/" component={CheckoutApp} />
                     <Route component={App} />
                   </Switch>
-                </ApolloProvider>
-              </UserProviderWithTokenHandler>
-            )}
-          </OverlayContext.Consumer>
-        </OverlayProvider>
-      </ShopProvider>
+                </UserProviderWithTokenHandler>
+              )}
+            </OverlayContext.Consumer>
+          </OverlayProvider>
+        </ShopProvider>
+      </ApolloProvider>
     </Router>,
     document.getElementById("root")
   );

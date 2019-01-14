@@ -6,73 +6,60 @@
 // ====================================================
 
 export interface MainMenu_shop_navigation_main_items_category {
-  __typename: "Category";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_collection {
-  __typename: "Collection";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_page {
-  __typename: "Page";
   slug: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_parent {
-  __typename: "MenuItem";
   id: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_category {
-  __typename: "Category";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_collection {
-  __typename: "Collection";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_page {
-  __typename: "Page";
   slug: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_parent {
-  __typename: "MenuItem";
   id: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children_category {
-  __typename: "Category";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children_collection {
-  __typename: "Collection";
   id: string;
   name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children_page {
-  __typename: "Page";
   slug: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children_parent {
-  __typename: "MenuItem";
   id: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children {
-  __typename: "MenuItem";
   id: string;
   name: string;
   category: MainMenu_shop_navigation_main_items_children_children_category | null;
@@ -83,7 +70,6 @@ export interface MainMenu_shop_navigation_main_items_children_children {
 }
 
 export interface MainMenu_shop_navigation_main_items_children {
-  __typename: "MenuItem";
   id: string;
   name: string;
   category: MainMenu_shop_navigation_main_items_children_category | null;
@@ -95,7 +81,6 @@ export interface MainMenu_shop_navigation_main_items_children {
 }
 
 export interface MainMenu_shop_navigation_main_items {
-  __typename: "MenuItem";
   id: string;
   name: string;
   category: MainMenu_shop_navigation_main_items_category | null;
@@ -107,18 +92,15 @@ export interface MainMenu_shop_navigation_main_items {
 }
 
 export interface MainMenu_shop_navigation_main {
-  __typename: "Menu";
   id: string;
   items: (MainMenu_shop_navigation_main_items | null)[] | null;
 }
 
 export interface MainMenu_shop_navigation {
-  __typename: "Navigation";
   main: MainMenu_shop_navigation_main | null;
 }
 
 export interface MainMenu_shop {
-  __typename: "Shop";
   navigation: MainMenu_shop_navigation | null;
 }
 
