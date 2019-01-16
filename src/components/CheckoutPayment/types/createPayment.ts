@@ -8,11 +8,13 @@ import { PaymentInput } from "./../../../../types/globalTypes";
 // ====================================================
 
 export interface createPayment_checkoutPaymentCreate_errors {
+  __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
 export interface createPayment_checkoutPaymentCreate {
+  __typename: "CheckoutPaymentCreate";
   errors: createPayment_checkoutPaymentCreate_errors[] | null;
 }
 

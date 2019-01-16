@@ -1,7 +1,7 @@
 import { ApolloClient } from "apollo-client";
 import * as React from "react";
 
-import { defaultCountry, ShopContext } from "./context";
+import { defaultContext, ShopContext } from "./context";
 import { TypedGetShopQuery } from "./queries";
 import { getShop_shop } from "./types/getShop";
 
@@ -18,12 +18,7 @@ export default class ShopProvider extends React.Component<
   ShopProviderProps,
   ShopProviderState
 > {
-  state = {
-    countries: [],
-    defaultCountry,
-    fetched: false,
-    geolocalization: { country: defaultCountry }
-  };
+  state = { ...defaultContext, fetched: false };
 
   render() {
     return (
@@ -33,7 +28,10 @@ export default class ShopProvider extends React.Component<
             displayLoader={false}
             displayError={false}
             onCompleted={data => {
-              this.setState({ ...data.shop, fetched: true });
+              this.setState({
+                ...data.shop,
+                fetched: true
+              });
             }}
           />
         )}

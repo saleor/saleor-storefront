@@ -6,15 +6,18 @@
 // ====================================================
 
 export interface completeCheckout_checkoutComplete_errors {
+  __typename: "Error";
   field: string | null;
   message: string | null;
 }
 
 export interface completeCheckout_checkoutComplete_order {
+  __typename: "Order";
   id: string;
 }
 
 export interface completeCheckout_checkoutComplete {
+  __typename: "CheckoutComplete";
   errors: completeCheckout_checkoutComplete_errors[] | null;
   order: completeCheckout_checkoutComplete_order | null;
 }

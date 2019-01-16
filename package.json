@@ -100,7 +100,7 @@
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",
-    "codegen": "apollo codegen:generate --no-addTypename  --target=typescript types",
+    "codegen": "apollo codegen:generate --target=typescript types",
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
     "heroku-postbuild": "npm run build"
