@@ -142,7 +142,11 @@ export class GoToCheckout extends React.Component<
     const { children, cart, apolloClient, ...buttonProps } = this.props;
 
     if (this.state.loading) {
-      return <Button {...buttonProps}>Loading</Button>;
+      return (
+        <Button disabled {...buttonProps}>
+          Loading
+        </Button>
+      );
     }
 
     if (this.state.checkoutToken && this.state.redirect) {

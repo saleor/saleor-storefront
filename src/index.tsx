@@ -11,8 +11,7 @@ import { Route, Router, Switch } from "react-router-dom";
 import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
-import { App, CheckoutApp, UserProvider } from "./components";
-import OverlayProvider from "./components/Overlay";
+import { App, CheckoutApp, OverlayProvider, UserProvider } from "./components";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
 import {

@@ -1,21 +1,23 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { baseUrl } from "../App/routes";
-import NavItem from "./NavItem";
+import NavItem, { NavItemInterface } from "./NavItem";
 
 import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
 
 interface NavListProps {
-  items: NavItem[];
+  items: NavItemInterface[];
   hideOverlay(): void;
 }
 
 interface NavListState {
-  parent: NavItem | null;
-  displayedItems: NavItem[];
+  parent: NavItemInterface | null;
+  displayedItems: NavItemInterface[];
 }
 
 class NavList extends React.PureComponent<NavListProps, NavListState> {
@@ -24,7 +26,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     parent: null
   };
 
-  handleShowSubItems = (item: NavItem) => {
+  handleShowSubItems = (item: NavItemInterface) => {
     this.setState({ parent: item, displayedItems: item.children });
   };
 
@@ -42,7 +44,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     }
   };
 
-  findItemById(id: string): NavItem {
+  findItemById(id: string): NavItemInterface {
     let match = null;
     function find(item) {
       if (item.id === id) {

@@ -1,22 +1,11 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 
 import { ApolloConsumer } from "react-apollo";
-import {
-  CartOverlay,
-  Footer,
-  MainMenu,
-  MainMenuNavOverlay,
-  MetaConsumer,
-  MobileNav,
-  SearchOverlay
-} from "..";
+import { Footer, MainMenu, MetaConsumer, OverlayManager } from "..";
 import CartProvider from "../CartProvider";
-import { LoginOverlay } from "../LoginOverlay";
-import { NotificationOverlay } from "../NotificationOverlay";
-import { PasswordOverlay } from "../PasswordOverlay";
 import { Routes } from "./routes";
-
-import "./scss/index.scss";
 
 const App: React.SFC<{}> = () => (
   <ApolloConsumer>
@@ -29,13 +18,7 @@ const App: React.SFC<{}> = () => (
           </header>
           <Routes />
           <Footer />
-          <CartOverlay />
-          <LoginOverlay />
-          <PasswordOverlay />
-          <MobileNav />
-          <MainMenuNavOverlay />
-          <NotificationOverlay />
-          <SearchOverlay />
+          <OverlayManager />
         </CartProvider>
       </>
     )}

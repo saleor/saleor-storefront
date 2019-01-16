@@ -37,14 +37,23 @@ export {
 export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { CachedImage, CachedThumbnail } from "./CachedImage";
 export { Footer } from "./Footer";
-export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
-export { MobileNav } from "./MobileNav";
+export { MainMenu } from "./MainMenu";
+export { MobileNavList, MobileNavItemInterface } from "./MobileNav";
 export { NavLink } from "./NavLink";
-export { SearchOverlay } from "./SearchOverlay";
 export {
   MetaConsumer,
   MetaProvider,
   MetaContextInterface,
   MetaWrapper
 } from "./Meta";
-export { CartOverlay } from "./CartOverlay";
+export { OverlayManager } from "./OverlayManager";
+export {
+  InnerOverlayContextInterface,
+  Overlay,
+  OverlayContext,
+  OverlayContextInterface,
+  OverlayProvider,
+  OverlayTheme,
+  OverlayType,
+  ShowOverlayType
+} from "./Overlay";

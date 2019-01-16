@@ -2,6 +2,8 @@ import { generatePageUrl } from "./utils";
 
 export const PRODUCTS_PER_PAGE = 8;
 
+export const SUPPORT_EMAIL = "support@example.com";
+
 export enum PROVIDERS {
   BRAINTREE,
   DUMMY

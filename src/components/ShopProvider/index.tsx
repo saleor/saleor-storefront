@@ -14,7 +14,7 @@ interface ShopProviderState extends getShop_shop {
   fetched: boolean;
 }
 
-export default class ShopProvider extends React.PureComponent<
+export default class ShopProvider extends React.Component<
   ShopProviderProps,
   ShopProviderState
 > {
@@ -28,14 +28,15 @@ export default class ShopProvider extends React.PureComponent<
   render() {
     return (
       <ShopContext.Provider value={this.state}>
-        <TypedGetShopQuery
-          displayLoader={false}
-          displayError={false}
-          onCompleted={data => {
-            this.setState({ ...data.shop, fetched: true });
-          }}
-          skip={this.state.fetched}
-        />
+        {!this.state.fetched && (
+          <TypedGetShopQuery
+            displayLoader={false}
+            displayError={false}
+            onCompleted={data => {
+              this.setState({ ...data.shop, fetched: true });
+            }}
+          />
+        )}
         {this.props.children}
       </ShopContext.Provider>
     );

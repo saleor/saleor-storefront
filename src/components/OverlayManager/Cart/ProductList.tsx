@@ -2,11 +2,11 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail } from "..";
-import { generateProductUrl } from "../../core/utils";
-import { CartLineInterface } from "../CartProvider/context";
+import { CachedThumbnail } from "../..";
+import { generateProductUrl } from "../../../core/utils";
+import { CartLineInterface } from "../../CartProvider/context";
 
-import removeImg from "../../images/garbage.svg";
+import removeImg from "../../../images/garbage.svg";
 
 const ProductList: React.SFC<{
   lines: CartLineInterface[];

@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-import { TypedQuery } from "../../core/queries";
+import { TypedQuery } from "../../../core/queries";
 import { SearchResults, SearchResultsVariables } from "./types/SearchResults";
 
 const searchResultsQuery = gql`

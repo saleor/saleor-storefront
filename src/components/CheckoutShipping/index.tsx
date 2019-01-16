@@ -14,6 +14,8 @@ import { ShopContext } from "../ShopProvider/context";
 import { getShop_shop } from "../ShopProvider/types/getShop";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAddress";
+import { OverlayContext, OverlayType, OverlayTheme } from "../Overlay/context";
+import ShippingUnavailableModal from "./ShippingUnavailableModal";
 
 const proceedToShippingOptions = (
   data: updateCheckoutShippingAddress,
@@ -88,43 +90,58 @@ const CheckoutShipping: React.SFC<RouteComponentProps<{ id }>> = ({
               <span>1</span>
               <h4 className="checkout__header">Shipping Address</h4>
             </div>
-
-            <TypedUpdateCheckoutShippingAddressMutation
-              onCompleted={data =>
-                proceedToShippingOptions(data, checkoutCtx, history)
-              }
-            >
-              {(saveShippingAddress, { data, loading }) => {
-                return (
-                  <div className="checkout__content">
-                    <ShopContext.Consumer>
-                      {shop => {
-                        return (
-                          <ShippingAddressForm
-                            data={extractShippingData(checkout, shop)}
-                            buttonText="Continue to Shipping"
-                            errors={maybe(
-                              () => data.checkoutShippingAddressUpdate.errors,
-                              []
-                            )}
-                            loading={loading}
-                            onSubmit={(evt, data) => {
-                              saveShippingAddress(
-                                computeMutationVariables(data, checkout)
-                              );
-                              checkoutCtx.updateCheckout({
-                                shippingAsBilling: data.asBilling
-                              });
-                              evt.preventDefault();
-                            }}
-                          />
-                        );
-                      }}
-                    </ShopContext.Consumer>
-                  </div>
-                );
-              }}
-            </TypedUpdateCheckoutShippingAddressMutation>
+            <OverlayContext.Consumer>
+              {overlay => (
+                <TypedUpdateCheckoutShippingAddressMutation
+                  onCompleted={data =>
+                    proceedToShippingOptions(data, checkoutCtx, history)
+                  }
+                >
+                  {(saveShippingAddress, { data, loading }) => {
+                    return (
+                      <div className="checkout__content">
+                        <ShopContext.Consumer>
+                          {shop => {
+                            return (
+                              <ShippingAddressForm
+                                data={extractShippingData(checkout, shop)}
+                                buttonText="Continue to Shipping"
+                                errors={maybe(
+                                  () =>
+                                    data.checkoutShippingAddressUpdate.errors,
+                                  []
+                                )}
+                                loading={loading}
+                                onSubmit={(evt, data) => {
+                                  overlay.show(
+                                    OverlayType.modal,
+                                    OverlayTheme.modal,
+                                    {
+                                      content: (
+                                        <ShippingUnavailableModal
+                                          hide={overlay.hide}
+                                        />
+                                      )
+                                    }
+                                  );
+                                  // saveShippingAddress(
+                                  //   computeMutationVariables(data, checkout)
+                                  // );
+                                  // checkoutCtx.updateCheckout({
+                                  //   shippingAsBilling: data.asBilling
+                                  // });
+                                  evt.preventDefault();
+                                }}
+                              />
+                            );
+                          }}
+                        </ShopContext.Consumer>
+                      </div>
+                    );
+                  }}
+                </TypedUpdateCheckoutShippingAddressMutation>
+              )}
+            </OverlayContext.Consumer>
             <div className="checkout__step">
               <span>2</span>
               <h4 className="checkout__header">Shipping Method</h4>

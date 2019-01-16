@@ -7,13 +7,13 @@ import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
 
 import subcategoriesImg from "../../images/subcategories.svg";
 
-interface NavItem extends MainMenuSubItem {
-  children?: NavItem[];
+export interface NavItemInterface extends MainMenuSubItem {
+  children?: NavItemInterface[];
 }
 
-interface NavItemProps extends NavItem {
+interface NavItemProps extends NavItemInterface {
   hideOverlay(): void;
-  showSubItems(item: NavItem): void;
+  showSubItems(item: NavItemInterface): void;
 }
 
 const NavItem: React.SFC<NavItemProps> = ({

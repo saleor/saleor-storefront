@@ -9,7 +9,7 @@ import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CartSummary, Loader } from "..";
+import { CartSummary, Loader, OverlayManager } from "..";
 import { baseUrl } from "../App/routes";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
@@ -133,6 +133,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
           <OfflinePlaceholder />
         </Offline>
       </div>
+      <OverlayManager />
     </div>
   );
 };

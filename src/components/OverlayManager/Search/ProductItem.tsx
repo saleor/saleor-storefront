@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { CachedThumbnail } from "..";
-import { generateProductUrl, maybe } from "../../core/utils";
+import { CachedThumbnail } from "../..";
+import { generateProductUrl } from "../../../core/utils";
 import { SearchResults_products_edges } from "./types/SearchResults";
 
 const ProductItem: React.SFC<SearchResults_products_edges> = ({
