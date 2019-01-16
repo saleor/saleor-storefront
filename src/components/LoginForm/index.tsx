@@ -12,7 +12,8 @@ const performLogin = (
   login: (token: string, user: TokenAuth_tokenCreate_user) => void,
   data: TokenAuth
 ) => {
-  const successfull = maybe(() => !data.tokenCreate.errors.length, true);
+  const successfull = maybe(() => !data.tokenCreate.errors.length);
+
   if (successfull) {
     login(data.tokenCreate.token, data.tokenCreate.user);
   }

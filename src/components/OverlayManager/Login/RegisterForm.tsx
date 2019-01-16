@@ -12,7 +12,8 @@ const showSuccessNotofication = (
   show: ShowOverlayType,
   data: RegisterCutomer
 ) => {
-  const successful = maybe(() => !data.customerRegister.errors.length, true);
+  const successful = maybe(() => !data.customerRegister.errors.length);
+
   if (successful) {
     show(OverlayType.message, null, {
       title: `New user has been created.`

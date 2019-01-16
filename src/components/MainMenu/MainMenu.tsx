@@ -6,13 +6,12 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { MenuDropdown } from "..";
+import { MenuDropdown, OverlayContext, OverlayTheme, OverlayType } from "..";
 import { maybe } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import Offline from "../Offline";
 import Online from "../Online";
-import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -64,7 +63,7 @@ const MainMenu: React.SFC = () => (
                     render={() =>
                       items.map(item => (
                         <li className="main-menu__item" key={item.id}>
-                          <NavDropdown {...item} />
+                          <NavDropdown overlay={overlayContext} {...item} />
                         </li>
                       ))
                     }

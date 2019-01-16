@@ -28,7 +28,11 @@ const proceedToPayment = (
   checkoutCtx: CheckoutContextInterface,
   history: H.History
 ) => {
-  if (data && data.checkoutBillingAddressUpdate.errors.length === 0) {
+  const canProceed = maybe(
+    () => !data.checkoutBillingAddressUpdate.errors.length
+  );
+
+  if (canProceed) {
     checkoutCtx.updateCheckout({
       checkout: data.checkoutBillingAddressUpdate.checkout
     });
@@ -44,6 +48,7 @@ const extractBillingData = (
   if (hasAddress) {
     return address;
   }
+
   const { geolocalization, defaultCountry } = shop;
   return {
     ...address,

@@ -7,7 +7,7 @@ import MobileNav from "./MobileNav";
 import Modal from "./Modal";
 import Notification from "./Notification";
 import Password from "./Password";
-import Search from "./Search/Search";
+import Search from "./Search";
 
 const Manager: React.SFC = () => (
   <OverlayContext.Consumer>

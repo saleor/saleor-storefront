@@ -2,7 +2,13 @@ import * as H from "history";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { ShippingAddressForm } from "..";
+import {
+  OverlayContext,
+  OverlayContextInterface,
+  OverlayTheme,
+  OverlayType,
+  ShippingAddressForm
+} from "..";
 import { maybe } from "../../core/utils";
 import {
   CheckoutContext,
@@ -13,26 +19,35 @@ import { Checkout } from "../CheckoutApp/types/Checkout";
 import { ShopContext } from "../ShopProvider/context";
 import { getShop_shop } from "../ShopProvider/types/getShop";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
-import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAddress";
-import { OverlayContext, OverlayType, OverlayTheme } from "../Overlay/context";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
+import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAddress";
 
 const proceedToShippingOptions = (
   data: updateCheckoutShippingAddress,
   checkoutCtx: CheckoutContextInterface,
-  history: H.History
+  history: H.History,
+  overlay: OverlayContextInterface
 ) => {
   const canProceed = maybe(
     () =>
       !data.checkoutShippingAddressUpdate.errors.length &&
       !data.checkoutEmailUpdate.errors.length
   );
+  const shippingUnavailable = maybe(
+    () => !data.checkoutEmailUpdate.checkout.availableShippingMethods.length
+  );
 
   if (canProceed) {
-    checkoutCtx.updateCheckout({
-      checkout: data.checkoutEmailUpdate.checkout
-    });
-    history.push(checkoutShippingOptionsUrl(checkoutCtx.checkout.token));
+    if (shippingUnavailable) {
+      overlay.show(OverlayType.modal, OverlayTheme.modal, {
+        content: <ShippingUnavailableModal hide={overlay.hide} />
+      });
+    } else {
+      checkoutCtx.updateCheckout({
+        checkout: data.checkoutEmailUpdate.checkout
+      });
+      history.push(checkoutShippingOptionsUrl(checkoutCtx.checkout.token));
+    }
   }
 };
 
@@ -94,7 +109,12 @@ const CheckoutShipping: React.SFC<RouteComponentProps<{ id }>> = ({
               {overlay => (
                 <TypedUpdateCheckoutShippingAddressMutation
                   onCompleted={data =>
-                    proceedToShippingOptions(data, checkoutCtx, history)
+                    proceedToShippingOptions(
+                      data,
+                      checkoutCtx,
+                      history,
+                      overlay
+                    )
                   }
                 >
                   {(saveShippingAddress, { data, loading }) => {
@@ -113,23 +133,12 @@ const CheckoutShipping: React.SFC<RouteComponentProps<{ id }>> = ({
                                 )}
                                 loading={loading}
                                 onSubmit={(evt, data) => {
-                                  overlay.show(
-                                    OverlayType.modal,
-                                    OverlayTheme.modal,
-                                    {
-                                      content: (
-                                        <ShippingUnavailableModal
-                                          hide={overlay.hide}
-                                        />
-                                      )
-                                    }
+                                  saveShippingAddress(
+                                    computeMutationVariables(data, checkout)
                                   );
-                                  // saveShippingAddress(
-                                  //   computeMutationVariables(data, checkout)
-                                  // );
-                                  // checkoutCtx.updateCheckout({
-                                  //   shippingAsBilling: data.asBilling
-                                  // });
+                                  checkoutCtx.updateCheckout({
+                                    shippingAsBilling: data.asBilling
+                                  });
                                   evt.preventDefault();
                                 }}
                               />

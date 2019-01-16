@@ -1,18 +1,21 @@
 import classNames from "classnames";
 import * as React from "react";
 
-import { NavLink } from "..";
-import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
+import {
+  NavLink,
+  OverlayContextInterface,
+  OverlayTheme,
+  OverlayType
+} from "..";
 import NavItem from "./NavItem";
 import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
 
 import "./scss/index.scss";
 
-class NavDropDown extends React.PureComponent<
-  MainMenu_shop_navigation_main_items,
+class NavDropdown extends React.PureComponent<
+  MainMenu_shop_navigation_main_items & { overlay: OverlayContextInterface },
   { active: boolean }
 > {
-  static contextType = OverlayContext;
   state = { active: false };
 
   get hasSubNavigation() {
@@ -23,13 +26,13 @@ class NavDropDown extends React.PureComponent<
   showOverlayHandler = () => {
     if (this.hasSubNavigation) {
       this.setState({ active: true });
-      this.context.show(OverlayType.mainMenuNav, OverlayTheme.modal);
+      this.props.overlay.show(OverlayType.mainMenuNav, OverlayTheme.modal);
     }
   };
 
   hideOverlayHandler = () => {
     if (this.state.active) {
-      this.context.hide();
+      this.props.overlay.hide();
       this.setState({ active: false });
     }
   };
@@ -72,4 +75,4 @@ class NavDropDown extends React.PureComponent<
   }
 }
 
-export default NavDropDown;
+export default NavDropdown;
