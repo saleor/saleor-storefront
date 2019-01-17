@@ -82,7 +82,7 @@ const computeMutationVariables = (
     shippingAddress: {
       city: data.city,
       companyName: data.companyName,
-      country: data.country.value,
+      country: data.country.value || data.country.code,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,
