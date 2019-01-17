@@ -11,7 +11,7 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
-const noPhoto = require("../../images/no-photo.svg");
+import noPhotoImg from "../../images/no-photo.svg";
 
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -110,8 +110,11 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       ref={this.productGallery}
                     >
                       {product.images.map(image => (
-                        <CachedImage url={image.url || noPhoto} key={image.id}>
-                          <img src={noPhoto} />
+                        <CachedImage
+                          url={image.url || noPhotoImg}
+                          key={image.id}
+                        >
+                          <img src={noPhotoImg} />
                         </CachedImage>
                       ))}
                     </div>

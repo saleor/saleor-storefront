@@ -3,7 +3,7 @@ import * as React from "react";
 import { CachedImage, Carousel } from "../../components/";
 import { ProductDetails_product_images } from "./types/ProductDetails";
 
-const noPhoto = require("../../images/no-photo.svg");
+import noPhotoImg from "../../images/no-photo.svg";
 
 const GalleryCarousel: React.SFC<{
   images: ProductDetails_product_images[];
@@ -35,8 +35,8 @@ const GalleryCarousel: React.SFC<{
       }}
     >
       {images.map(image => (
-        <CachedImage url={image.url || noPhoto} key={image.id}>
-          <img src={noPhoto} />
+        <CachedImage url={image.url || noPhotoImg} key={image.id}>
+          <img src={noPhotoImg} />
         </CachedImage>
       ))}
     </Carousel>

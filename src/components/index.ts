@@ -25,7 +25,11 @@ export { default as CheckoutShippingOptions } from "./CheckoutShippingOptions";
 export { default as CheckoutBilling } from "./CheckoutBilling";
 export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
-export { default as ShippingAddressForm } from "./ShippingAddressForm";
+export {
+  default as ShippingAddressForm,
+  AddressType,
+  FormAddressType
+} from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
@@ -37,14 +41,23 @@ export {
 export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { CachedImage, CachedThumbnail } from "./CachedImage";
 export { Footer } from "./Footer";
-export { MainMenu, MainMenuNavOverlay } from "./MainMenu";
-export { MobileNav } from "./MobileNav";
+export { MainMenu } from "./MainMenu";
+export { MobileNavList, INavItem } from "./MobileNav";
 export { NavLink } from "./NavLink";
-export { SearchOverlay } from "./SearchOverlay";
 export {
   MetaConsumer,
   MetaProvider,
   MetaContextInterface,
   MetaWrapper
 } from "./Meta";
-export { CartOverlay } from "./CartOverlay";
+export { OverlayManager } from "./OverlayManager";
+export {
+  InnerOverlayContextInterface,
+  Overlay,
+  OverlayContext,
+  OverlayContextInterface,
+  OverlayProvider,
+  OverlayTheme,
+  OverlayType,
+  ShowOverlayType
+} from "./Overlay";

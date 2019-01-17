@@ -5,7 +5,7 @@ import * as React from "react";
 import { maybe } from "../../core/utils";
 import { CheckoutContext } from "../CheckoutApp/context";
 
-const noPhotoSvg = require("../../images/no-photo.svg");
+import noPhotoImg from "../../images/no-photo.svg";
 
 const CartSummary: React.SFC = () => (
   <CheckoutContext.Consumer>
@@ -18,7 +18,7 @@ const CartSummary: React.SFC = () => (
               <img
                 src={maybe(
                   () => product.variant.product.thumbnail.url,
-                  noPhotoSvg
+                  noPhotoImg
                 )}
               />
               <div>

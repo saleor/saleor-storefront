@@ -1,4 +1,4 @@
-import * as H from "history";
+import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 
@@ -115,12 +115,12 @@ export function maybe<T>(exp: () => T, d?: T) {
   }
 }
 
-export const parseQueryString = (location: H.LocationState) =>
+export const parseQueryString = (location: LocationState) =>
   parseQs(location.search.substr(1));
 
 export const updateQueryString = (
-  location: H.LocationState,
-  history: H.History
+  location: LocationState,
+  history: History
 ) => {
   const querystring = parseQueryString(location);
   return (key: string, value?) => {

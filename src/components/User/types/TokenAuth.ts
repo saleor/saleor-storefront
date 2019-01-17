@@ -16,7 +16,6 @@ export interface TokenAuth_tokenCreate_user {
   id: string;
   email: string;
   isStaff: boolean;
-  note: string | null;
 }
 
 export interface TokenAuth_tokenCreate {

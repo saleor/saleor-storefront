@@ -6,9 +6,14 @@ import { Mutation } from "react-apollo";
 import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
-import { AddressSummary, Button, CachedThumbnail } from "..";
+import {
+  AddressSummary,
+  Button,
+  CachedThumbnail,
+  OverlayContext,
+  OverlayType
+} from "..";
 import { CheckoutContext } from "../CheckoutApp/context";
-import { OverlayContext, OverlayType } from "../Overlay/context";
 import { COMPLETE_CHECKOUT } from "./queries";
 
 class CheckoutReview extends React.Component<RouteComponentProps<{ id }>, {}> {

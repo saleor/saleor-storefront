@@ -1,10 +1,10 @@
+import "./scss/index.scss";
+
 import * as React from "react";
-import { Mutation } from "react-apollo";
 
 import { Button, Form, TextField } from "..";
-import { PASSWORD_RESET_MUTATION } from "./queries";
-
-import "./scss/index.scss";
+import { maybe } from "../../core/utils";
+import { TypedPasswordResetMutation } from "./queries";
 
 const PasswordResetForm: React.SFC = () => (
   <div className="password-reset-form">
@@ -12,20 +12,14 @@ const PasswordResetForm: React.SFC = () => (
       Please provide us your email address so we can share you a link to reset
       your password
     </p>
-    <Mutation mutation={PASSWORD_RESET_MUTATION}>
+    <TypedPasswordResetMutation>
       {(passwordReset, { loading, data }) => {
         return (
           <Form
-            errors={
-              data &&
-              data.customerPasswordReset &&
-              data.customerPasswordReset.error
-            }
-            onSubmit={(event, data) => {
+            errors={maybe(() => data.customerPasswordReset.errors, [])}
+            onSubmit={(event, { email }) => {
               event.preventDefault();
-              passwordReset({
-                variables: { email: data.email }
-              });
+              passwordReset({ variables: { email } });
             }}
           >
             <TextField
@@ -43,7 +37,7 @@ const PasswordResetForm: React.SFC = () => (
           </Form>
         );
       }}
-    </Mutation>
+    </TypedPasswordResetMutation>
   </div>
 );
 

@@ -61,8 +61,8 @@
   &__content {
     margin: 0 0 $spacer * 3 $spacer * 3;
 
-    @media (max-width: $small-screen) {
-      margin: 0 0 $spacer * 3 0;
+    @media (max-width: $medium-screen) {
+      margin-left: 0;
     }
   }
 
@@ -81,6 +81,10 @@
     &__content {
       max-width: 32rem;
       width: 32rem;
+
+      @media (max-width: $medium-screen) {
+        margin: 0 auto;
+      }
     }
 
     &--review {

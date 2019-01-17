@@ -10,5 +10,4 @@ export interface User {
   id: string;
   email: string;
   isStaff: boolean;
-  note: string | null;
 }

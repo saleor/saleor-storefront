@@ -1,3 +1,4 @@
+import { ApolloError } from "apollo-client";
 import * as React from "react";
 import NumberFormat from "react-number-format";
 
@@ -76,7 +77,7 @@ class Form extends React.Component<FormProps, FormState> {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
       JSON.stringify(prevProps.errors) !== JSON.stringify(this.props.errors)
     ) {

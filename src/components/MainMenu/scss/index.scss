@@ -216,6 +216,10 @@
       background-color: $turquoise-light;
     }
 
+    & > li:first-child {
+      text-align: center;
+    }
+
     &__body {
       background: $white;
       border-top-color: $gray-light;
@@ -227,7 +231,7 @@
       position: absolute;
       top: 100%;
       width: 100%;
-      z-index: 1;
+      z-index: 3;
 
       &--visible {
         display: block;

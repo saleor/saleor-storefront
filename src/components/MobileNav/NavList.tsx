@@ -1,21 +1,23 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { baseUrl } from "../App/routes";
-import NavItem from "./NavItem";
+import NavItem, { INavItem } from "./NavItem";
 
-const backIcon = require("../../images/arrow-back.svg");
-const logoIcon = require("../../images/logo.svg");
+import backImg from "../../images/arrow-back.svg";
+import logoImg from "../../images/logo.svg";
 
 interface NavListProps {
-  items: NavItem[];
+  items: INavItem[];
   hideOverlay(): void;
 }
 
 interface NavListState {
-  parent: NavItem | null;
-  displayedItems: NavItem[];
+  parent: INavItem | null;
+  displayedItems: INavItem[];
 }
 
 class NavList extends React.PureComponent<NavListProps, NavListState> {
@@ -24,7 +26,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     parent: null
   };
 
-  handleShowSubItems = (item: NavItem) => {
+  handleShowSubItems = (item: INavItem) => {
     this.setState({ parent: item, displayedItems: item.children });
   };
 
@@ -42,7 +44,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     }
   };
 
-  findItemById(id: string): NavItem {
+  findItemById(id: string): INavItem {
     let match = null;
     function find(item) {
       if (item.id === id) {
@@ -64,7 +66,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         {parent ? (
           <li className="side-nav__menu-item side-nav__menu-item-back">
             <span onClick={this.handleGoBack}>
-              <ReactSVG path={backIcon} /> {parent.name}
+              <ReactSVG path={backImg} /> {parent.name}
             </span>
           </li>
         ) : (
@@ -75,7 +77,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-logo"
                 onClick={hideOverlay}
               >
-                <ReactSVG path={logoIcon} />
+                <ReactSVG path={logoImg} />
               </Link>
               <span className="side-nav__menu-item-close" onClick={hideOverlay}>
                 <span />

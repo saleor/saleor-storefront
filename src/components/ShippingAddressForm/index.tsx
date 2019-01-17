@@ -1,14 +1,19 @@
 import * as React from "react";
 
 import { Button, Form, SelectField, TextField } from "..";
+import { Omit } from "../../core/tsUtils";
 import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
 import { ShopContext } from "../ShopProvider/context";
 
 import "./scss/index.scss";
-
-interface AddressType extends AddressInterface {
+export interface AddressType extends AddressInterface {
   email?: string;
+}
+
+export interface FormAddressType extends Omit<AddressType, "country"> {
+  asBilling?: boolean;
+  country: { label: string; value: string };
 }
 
 const ShippingAddressForm: React.SFC<{
@@ -17,12 +22,16 @@ const ShippingAddressForm: React.SFC<{
   data?: AddressType;
   errors: FormError[];
   loading: boolean;
-  onSubmit(event: any, data: any): void;
+  onSubmit: (event: React.FormEvent<any>, data: FormAddressType) => any;
 }> = ({ data, billing, buttonText, errors, loading, onSubmit }) => (
   <div className="address-form">
     <ShopContext.Consumer>
       {({ countries }) => (
-        <Form errors={errors} onSubmit={onSubmit} data={data}>
+        <Form
+          errors={errors}
+          onSubmit={(evt, data) => onSubmit(evt, data as any)}
+          data={data}
+        >
           {!billing ? (
             <TextField
               label="Email Address"

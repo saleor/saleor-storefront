@@ -9,7 +9,7 @@ import { ProductsList_categories } from "../../core/types/saleor";
 import { generateCategoryUrl } from "../../core/utils";
 import { ProductsList_shop_homepageCollection_backgroundImage } from "./types/ProductsList";
 
-const noPhoto = require("../../images/no-photo.svg");
+import noPhotoImg from "../../images/no-photo.svg";
 
 const Page: React.SFC<{
   loading: boolean;
@@ -71,7 +71,7 @@ const Page: React.SFC<{
                     backgroundImage: `url(${
                       category.backgroundImage
                         ? category.backgroundImage.url
-                        : noPhoto
+                        : noPhotoImg
                     })`
                   }}
                 />

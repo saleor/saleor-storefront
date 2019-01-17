@@ -6,23 +6,22 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { MenuDropdown } from "..";
+import { MenuDropdown, OverlayContext, OverlayTheme, OverlayType } from "..";
 import { maybe } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
 import Offline from "../Offline";
 import Online from "../Online";
-import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
-const cartIcon = require("../../images/cart.svg");
-const hamburgerHoverIcon = require("../../images/hamburger-hover.svg");
-const hamburgerIcon = require("../../images/hamburger.svg");
-const logoIcon = require("../../images/logo.svg");
-const searchIcon = require("../../images/search.svg");
-const userIcon = require("../../images/user.svg");
+import cartImg from "../../images/cart.svg";
+import hamburgerHoverImg from "../../images/hamburger-hover.svg";
+import hamburgerImg from "../../images/hamburger.svg";
+import logoImg from "../../images/logo.svg";
+import searchImg from "../../images/search.svg";
+import userImg from "../../images/user.svg";
 
 const MainMenu: React.SFC = () => (
   <OverlayContext.Consumer>
@@ -49,11 +48,11 @@ const MainMenu: React.SFC = () => (
                         }
                       >
                         <ReactSVG
-                          path={hamburgerIcon}
+                          path={hamburgerImg}
                           className={"main-menu__hamburger--icon"}
                         />
                         <ReactSVG
-                          path={hamburgerHoverIcon}
+                          path={hamburgerHoverImg}
                           className={"main-menu__hamburger--hover"}
                         />
                       </li>
@@ -64,7 +63,7 @@ const MainMenu: React.SFC = () => (
                     render={() =>
                       items.map(item => (
                         <li className="main-menu__item" key={item.id}>
-                          <NavDropdown {...item} />
+                          <NavDropdown overlay={overlayContext} {...item} />
                         </li>
                       ))
                     }
@@ -77,7 +76,7 @@ const MainMenu: React.SFC = () => (
 
         <div className="main-menu__center">
           <Link to={baseUrl}>
-            <ReactSVG path={logoIcon} />
+            <ReactSVG path={logoImg} />
           </Link>
         </div>
 
@@ -93,7 +92,7 @@ const MainMenu: React.SFC = () => (
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userIcon} />
+                              <ReactSVG path={userImg} />
                             </li>
                           }
                           content={
@@ -112,7 +111,7 @@ const MainMenu: React.SFC = () => (
                             )
                           }
                         >
-                          <ReactSVG path={userIcon} />
+                          <ReactSVG path={userImg} />
                         </li>
                       )
                     }
@@ -128,7 +127,7 @@ const MainMenu: React.SFC = () => (
                       overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     }}
                   >
-                    <ReactSVG path={cartIcon} />
+                    <ReactSVG path={cartImg} />
                     {cart.getQuantity() > 0 ? (
                       <span className="main-menu__cart__quantity">
                         {cart.getQuantity()}
@@ -156,7 +155,7 @@ const MainMenu: React.SFC = () => (
                 query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
-              <ReactSVG path={searchIcon} />
+              <ReactSVG path={searchImg} />
             </li>
           </ul>
         </div>

@@ -22,9 +22,9 @@ class AddToCartButton extends React.PureComponent<
       this.props.onClick(evt);
 
       this.setState({ animate: true, disabled: true }, () => {
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
           this.setState({ animate: false }, () => {
-            setTimeout(
+            this.timeout = setTimeout(
               () => this.setState({ disabled: false }),
               this.animationTimeout
             );
@@ -33,6 +33,10 @@ class AddToCartButton extends React.PureComponent<
       });
     }
   };
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
   render() {
     const { animate } = this.state;

@@ -7,6 +7,7 @@ import { Error } from "../components/Error";
 import Loader from "../components/Loader";
 import { RequireAtLeastOne } from "./tsUtils";
 import { maybe } from "./utils";
+
 interface LoadMore<TData, TVariables> {
   loadMore: (
     mergeFunc: (prev: TData, next: TData) => TData,
@@ -27,6 +28,7 @@ interface TypedQueryInnerProps<TData, TVariables> {
   variables?: TVariables;
   errorPolicy?: ErrorPolicy;
   alwaysRender?: boolean;
+  onCompleted?: (data: TData) => void;
 }
 
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
@@ -42,7 +44,8 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
     errorPolicy,
     loaderFull,
     skip,
-    variables
+    variables,
+    onCompleted
   }: TypedQueryInnerProps<TData, TVariables>) => (
     <StrictTypedQuery
       query={query}
@@ -50,6 +53,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
       skip={skip}
       fetchPolicy={fetchPolicy}
       errorPolicy={errorPolicy}
+      onCompleted={onCompleted}
     >
       {queryData => {
         const { error, loading, data, fetchMore } = queryData;

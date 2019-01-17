@@ -9,7 +9,7 @@ import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CartSummary, Loader } from "..";
+import { CartSummary, Loader, OverlayManager } from "..";
 import { baseUrl } from "../App/routes";
 import Offline from "../Offline";
 import OfflinePlaceholder from "../OfflinePlaceholder";
@@ -17,6 +17,8 @@ import Online from "../Online";
 import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { getCheckoutQuery } from "./queries";
 import { Routes } from "./routes";
+
+import logoImg from "../../images/logo.svg";
 
 export class CheckoutProvider extends React.Component<
   {
@@ -85,7 +87,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
     <div className="checkout">
       <div className="checkout__menu">
         <div className="checkout__menu__bar">
-          <ReactSVG path={require("../../images/logo.svg")} />
+          <ReactSVG path={logoImg} />
         </div>
         <Link to={baseUrl}>Return to shopping</Link>
       </div>
@@ -131,6 +133,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
           <OfflinePlaceholder />
         </Offline>
       </div>
+      <OverlayManager />
     </div>
   );
 };

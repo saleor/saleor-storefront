@@ -11,7 +11,7 @@ export interface CheckoutContextInterface {
   checkout?: Checkout;
   loading?: boolean;
   shippingAsBilling?: boolean;
-  updateCheckout?(chekcoutData: CheckoutContextInterface): void;
+  updateCheckout?(checkoutData: CheckoutContextInterface): void;
   clearCheckout?(): void;
 }
 

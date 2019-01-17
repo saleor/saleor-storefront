@@ -37,6 +37,16 @@ body {
     line-height: 1.5rem;
   }
 
+  #root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    & > div:first-of-type {
+      flex: 1;
+    }
+  }
+
   .container {
     width: $container-width;
     max-width: 100vw;

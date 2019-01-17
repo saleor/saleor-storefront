@@ -10,7 +10,6 @@ export interface VerifyToken_tokenVerify_user {
   id: string;
   email: string;
   isStaff: boolean;
-  note: string | null;
 }
 
 export interface VerifyToken_tokenVerify {

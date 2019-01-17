@@ -8,7 +8,8 @@ export enum OverlayType {
   sideNav = "side-nav",
   password = "password",
   search = "search",
-  mainMenuNav = "main-menu-nav"
+  mainMenuNav = "main-menu-nav",
+  modal = "modal"
 }
 
 export enum OverlayTheme {
@@ -17,9 +18,9 @@ export enum OverlayTheme {
   modal = "modal"
 }
 
-export interface ContextInterface {
+export interface InnerOverlayContextInterface {
   title?: string;
-  content?: string | React.Component;
+  content?: string | React.ReactNode;
   status?: "success" | "error";
   data?: any;
 }
@@ -27,13 +28,13 @@ export interface ContextInterface {
 export type ShowOverlayType = (
   type: OverlayType,
   theme?: OverlayTheme,
-  context?: ContextInterface
+  context?: InnerOverlayContextInterface
 ) => void;
 
 export interface OverlayContextInterface {
   type: OverlayType | null;
   theme: OverlayTheme | null;
-  context: ContextInterface;
+  context: InnerOverlayContextInterface;
   show: ShowOverlayType;
   hide(): void;
 }
