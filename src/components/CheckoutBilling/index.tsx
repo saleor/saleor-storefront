@@ -68,7 +68,7 @@ const computeMutationVariables = (
   variables: {
     billingAddress: {
       city: data.city,
-      country: data.country.value,
+      country: data.country.value || data.country.code,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,

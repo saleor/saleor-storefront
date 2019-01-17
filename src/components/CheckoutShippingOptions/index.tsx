@@ -68,7 +68,7 @@ class CheckoutShippingOptions extends React.Component<
                 <TypedUpdateCheckoutShippingOptionsMutation
                   onCompleted={data => this.proceedToBilling(data, checkoutCtx)}
                 >
-                  {(updateCheckoutShippingOptions, { data, loading }) => {
+                  {(updateCheckoutShippingOptions, { loading }) => {
                     return (
                       <div className="checkout__content">
                         <ShippingOptionsList
@@ -86,7 +86,9 @@ class CheckoutShippingOptions extends React.Component<
                             });
                             event.preventDefault();
                           }}
-                          disabled={loading}
+                          disabled={
+                            loading || !checkout.availableShippingMethods.length
+                          }
                         >
                           {loading ? "Loading" : "Continue to billing"}
                         </Button>

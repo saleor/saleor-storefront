@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 
 import { Button, Form, SelectField, TextField } from "..";
@@ -6,14 +8,13 @@ import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
 import { ShopContext } from "../ShopProvider/context";
 
-import "./scss/index.scss";
 export interface AddressType extends AddressInterface {
   email?: string;
 }
 
 export interface FormAddressType extends Omit<AddressType, "country"> {
   asBilling?: boolean;
-  country: { label: string; value: string };
+  country: { value?: string; code?: string };
 }
 
 const ShippingAddressForm: React.SFC<{
