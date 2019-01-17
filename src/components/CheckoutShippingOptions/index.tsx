@@ -42,6 +42,8 @@ class CheckoutShippingOptions extends React.Component<
   };
 
   render() {
+    const { selectedShipping } = this.state;
+
     return (
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
@@ -73,7 +75,7 @@ class CheckoutShippingOptions extends React.Component<
                       <div className="checkout__content">
                         <ShippingOptionsList
                           checkout={checkout}
-                          selected={this.state.selectedShipping}
+                          selected={selectedShipping}
                           onShippingSelect={this.handleShippngChange}
                         />
                         <Button
@@ -81,13 +83,15 @@ class CheckoutShippingOptions extends React.Component<
                             updateCheckoutShippingOptions({
                               variables: {
                                 checkoutId: checkout.id,
-                                shippingMethodId: this.state.selectedShipping
+                                shippingMethodId: selectedShipping
                               }
                             });
                             event.preventDefault();
                           }}
                           disabled={
-                            loading || !checkout.availableShippingMethods.length
+                            loading ||
+                            !checkout.availableShippingMethods.length ||
+                            !selectedShipping
                           }
                         >
                           {loading ? "Loading" : "Continue to billing"}
