@@ -1,9 +1,9 @@
-import * as H from "history";
+import { History } from "history";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AddressSummary, ShippingAddressForm } from "..";
+import { AddressSummary, FormAddressType, ShippingAddressForm } from "..";
 import { maybe } from "../../core/utils";
 import {
   CheckoutContext,
@@ -26,11 +26,9 @@ import { updateCheckoutBillingAddress } from "./types/updateCheckoutBillingAddre
 const proceedToPayment = (
   data: updateCheckoutBillingAddress,
   checkoutCtx: CheckoutContextInterface,
-  history: H.History
+  history: History
 ) => {
-  const canProceed = maybe(
-    () => !data.checkoutBillingAddressUpdate.errors.length
-  );
+  const canProceed = !data.checkoutBillingAddressUpdate.errors.length;
 
   if (canProceed) {
     checkoutCtx.updateCheckout({
@@ -63,11 +61,14 @@ const extractBillingData = (
   };
 };
 
-const computeMutationVariables = (data: any, checkout: Checkout) => ({
+const computeMutationVariables = (
+  data: FormAddressType,
+  checkout: Checkout
+) => ({
   variables: {
     billingAddress: {
       city: data.city,
-      country: data.country.value || data.country.code,
+      country: data.country.value,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,

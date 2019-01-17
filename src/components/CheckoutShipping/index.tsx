@@ -1,8 +1,9 @@
-import * as H from "history";
+import { History } from "history";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
 import {
+  FormAddressType,
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
@@ -25,14 +26,12 @@ import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAdd
 const proceedToShippingOptions = (
   data: updateCheckoutShippingAddress,
   checkoutCtx: CheckoutContextInterface,
-  history: H.History,
+  history: History,
   overlay: OverlayContextInterface
 ) => {
-  const canProceed = maybe(
-    () =>
-      !data.checkoutShippingAddressUpdate.errors.length &&
-      !data.checkoutEmailUpdate.errors.length
-  );
+  const canProceed =
+    !data.checkoutShippingAddressUpdate.errors.length &&
+    !data.checkoutEmailUpdate.errors.length;
   const shippingUnavailable = maybe(
     () => !data.checkoutEmailUpdate.checkout.availableShippingMethods.length
   );
@@ -73,14 +72,17 @@ const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
   };
 };
 
-const computeMutationVariables = (data: any, checkout: Checkout) => ({
+const computeMutationVariables = (
+  data: FormAddressType,
+  checkout: Checkout
+) => ({
   variables: {
     checkoutId: checkout.id,
     email: data.email,
     shippingAddress: {
       city: data.city,
       companyName: data.companyName,
-      country: data.country.value || data.country.code,
+      country: data.country.value,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,

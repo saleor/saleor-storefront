@@ -13,7 +13,7 @@ export interface FormError {
 
 interface FormProps {
   children: React.ReactNode;
-  errors?: FormError[] | ApolloError[];
+  errors?: FormError[];
   data?: { [key: string]: string | any };
   onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
 }
@@ -77,7 +77,7 @@ class Form extends React.Component<FormProps, FormState> {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
       JSON.stringify(prevProps.errors) !== JSON.stringify(this.props.errors)
     ) {

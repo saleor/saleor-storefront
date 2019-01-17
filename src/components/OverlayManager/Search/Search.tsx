@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import classNames from "classnames";
+import { stringify } from "query-string";
 import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -37,30 +38,30 @@ interface SearchState {
 
 class Search extends React.Component<SearchProps, SearchState> {
   state = { search: "", inputFocused: false };
-  allResultsLinkRef = React.createRef<Link>();
+  submitBtnRef = React.createRef<HTMLButtonElement>();
 
   get hasSearchPhrase() {
     return this.state.search.length > 0;
   }
 
   get redirectTo() {
-    return { pathname: searchUrl, search: `?q=${this.state.search}` };
+    return { pathname: searchUrl, search: `?${this.searchQs}` };
+  }
+
+  get searchQs() {
+    return stringify({ q: this.state.search });
   }
 
   hasResults = (data: SearchResults) =>
     maybe(() => !!data.products.edges.length);
 
-  handleEnterPress = ({ charCode }: React.KeyboardEvent<HTMLInputElement>) => {
-    const enterCharCode = 13;
-
-    if (
-      this.hasSearchPhrase &&
-      charCode === enterCharCode &&
-      this.allResultsLinkRef.current
-    ) {
-      this.props.history.push(`${searchUrl}?q=${this.state.search}`);
+  handleSubmit = (evt: React.FormEvent) => {
+    if (this.hasSearchPhrase && this.submitBtnRef.current) {
       this.props.overlay.hide();
+      this.props.history.push(`${searchUrl}?${this.searchQs}`);
     }
+
+    evt.preventDefault();
   };
 
   handleInputBlur = () => {
@@ -81,11 +82,12 @@ class Search extends React.Component<SearchProps, SearchState> {
   render() {
     return (
       <Overlay context={this.props.overlay} className="overlay--no-background">
-        <div
+        <form
           className={classNames("search", {
             "search--has-results": this.hasSearchPhrase
           })}
           onClick={e => e.stopPropagation()}
+          onSubmit={this.handleSubmit}
         >
           <div className="search__input">
             <DebouncedTextField
@@ -97,7 +99,6 @@ class Search extends React.Component<SearchProps, SearchState> {
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}
               placeholder="Search"
-              onKeyPress={this.handleEnterPress}
               onBlur={this.handleInputBlur}
             />
           </div>
@@ -133,12 +134,9 @@ class Search extends React.Component<SearchProps, SearchState> {
                                 {loading ? (
                                   <Loader />
                                 ) : (
-                                  <Link
-                                    to={this.redirectTo}
-                                    ref={this.allResultsLinkRef}
-                                  >
-                                    <Button>Show all results</Button>
-                                  </Link>
+                                  <Button btnRef={this.submitBtnRef} type="submit">
+                                    Show all results
+                                  </Button>
                                 )}
                               </div>
                             </>
@@ -162,7 +160,7 @@ class Search extends React.Component<SearchProps, SearchState> {
               }}
             </NetworkStatus>
           </div>
-        </div>
+        </form>
       </Overlay>
     );
   }

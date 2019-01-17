@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import { TypedMutation } from "../../core/mutations";
+import { ResetPassword, ResetPasswordVariables } from "./types/ResetPassword";
 
-export const PASSWORD_RESET_MUTATION = gql`
+const passwordResetMutation = gql`
   mutation ResetPassword($email: String!) {
     customerPasswordReset(input: { email: $email }) {
       errors {
@@ -10,3 +12,8 @@ export const PASSWORD_RESET_MUTATION = gql`
     }
   }
 `;
+
+export const TypedPasswordResetMutation = TypedMutation<
+  ResetPassword,
+  ResetPasswordVariables
+>(passwordResetMutation);

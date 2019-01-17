@@ -5,7 +5,6 @@ import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
 import { AddressSummary, Button } from "..";
-import { maybe } from "../../core/utils";
 import {
   CheckoutContext,
   CheckoutContextInterface
@@ -28,9 +27,7 @@ class CheckoutShippingOptions extends React.Component<
     data: updateCheckoutShippingOptions,
     checkoutCtx: CheckoutContextInterface
   ) {
-    const canProceed = maybe(
-      () => !data.checkoutShippingMethodUpdate.errors.length
-    );
+    const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
       checkoutCtx.updateCheckout({

@@ -31,7 +31,7 @@ const DebouncedTextField: React.SFC<DebouncedTextFieldProps> = props => {
 };
 
 DebouncedTextField.defaultProps = {
-  time: 500
+  time: 250
 };
 
 export default DebouncedTextField;

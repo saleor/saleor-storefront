@@ -25,7 +25,11 @@ export { default as CheckoutShippingOptions } from "./CheckoutShippingOptions";
 export { default as CheckoutBilling } from "./CheckoutBilling";
 export { default as AddressSummary } from "./AddressSummary";
 export { default as CheckoutPayment } from "./CheckoutPayment";
-export { default as ShippingAddressForm } from "./ShippingAddressForm";
+export {
+  default as ShippingAddressForm,
+  AddressType,
+  FormAddressType
+} from "./ShippingAddressForm";
 export { default as CheckoutReview } from "./CheckoutReview";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
@@ -38,7 +42,7 @@ export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { CachedImage, CachedThumbnail } from "./CachedImage";
 export { Footer } from "./Footer";
 export { MainMenu } from "./MainMenu";
-export { MobileNavList, MobileNavItemInterface } from "./MobileNav";
+export { MobileNavList, INavItem } from "./MobileNav";
 export { NavLink } from "./NavLink";
 export {
   MetaConsumer,
