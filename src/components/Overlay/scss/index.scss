@@ -1,22 +1,5 @@
-@import "../../App/scss/variables.scss";
-
-@keyframes sidenavLeftOpen {
-  from {
-    left: -100rem;
-  }
-  to {
-    left: 0;
-  }
-}
-
-@keyframes sidenavRightOpen {
-  from {
-    right: -100rem;
-  }
-  to {
-    right: 0;
-  }
-}
+@import "../../App/scss/variables";
+@import "../../App/scss/animations";
 
 .overlay {
   background-color: rgba(199, 207, 207, 0.8);
