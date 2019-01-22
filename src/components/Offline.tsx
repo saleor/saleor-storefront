@@ -1,9 +1,7 @@
 import * as React from "react";
 
-import NetworkStatus from "./";
+import { NetworkStatus } from "./";
 
-const Offline: React.SFC = ({ children }) => (
+export const Offline: React.SFC = ({ children }) => (
   <NetworkStatus>{online => (online ? null : children)}</NetworkStatus>
 );
-
-export default Offline;

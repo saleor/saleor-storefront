@@ -1,0 +1,28 @@
+@import "../../../../components/App/scss/variables.scss";
+
+.checkout-payment {
+  .input {
+    margin-bottom: $spacer / 2;
+  }
+
+  button {
+    margin: $spacer * 2 0 0 $spacer * 2;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-gap: 0 $spacer;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__field-error {
+    .input {
+      margin-bottom: 0;
+    }
+  }
+
+  &__error {
+    margin-bottom: $spacer;
+    display: block;
+  }
+}

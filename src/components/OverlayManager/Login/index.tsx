@@ -5,14 +5,14 @@ import ReactSVG from "react-svg";
 
 import {
   LoginForm,
+  Offline,
+  OfflinePlaceholder,
+  Online,
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
   OverlayType
 } from "../..";
-import Offline from "../../Offline";
-import OfflinePlaceholder from "../../OfflinePlaceholder";
-import Online from "../../Online";
 import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";

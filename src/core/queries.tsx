@@ -16,7 +16,7 @@ interface LoadMore<TData, TVariables> {
 }
 
 interface TypedQueryInnerProps<TData, TVariables> {
-  children: (
+  children?: (
     result: QueryResult<TData, TVariables> & LoadMore<TData, TVariables>
   ) => React.ReactNode;
   displayError?: boolean;
@@ -81,7 +81,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           return <Loader full={loaderFull} />;
         }
 
-        if (hasData || (renderOnError && error) || alwaysRender) {
+        if (children && (hasData || (renderOnError && error) || alwaysRender)) {
           return children({ ...queryData, loadMore });
         }
 

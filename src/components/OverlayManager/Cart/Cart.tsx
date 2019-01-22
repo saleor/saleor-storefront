@@ -5,7 +5,14 @@ import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Button, Overlay, OverlayContextInterface } from "../..";
+import {
+  Button,
+  Offline,
+  OfflinePlaceholder,
+  Online,
+  Overlay,
+  OverlayContextInterface
+} from "../..";
 import { priceToString } from "../../../core/utils";
 import { checkoutLoginUrl } from "../../App/routes";
 import { CartContext } from "../../CartProvider/context";
@@ -13,9 +20,7 @@ import { Error } from "../../Error";
 import GoToCart from "../../GoToCart";
 import { GoToCheckout } from "../../GoToCheckout";
 import Loader from "../../Loader";
-import Offline from "../../Offline";
-import OfflinePlaceholder from "../../OfflinePlaceholder";
-import Online from "../../Online";
+
 import { ShopContext } from "../../ShopProvider/context";
 import { UserContext } from "../../User/context";
 import Empty from "./Empty";

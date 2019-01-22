@@ -1,16 +1,19 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import { ApolloConsumer } from "react-apollo";
 import { RouteComponentProps } from "react-router";
 
-import { LoginForm, PasswordResetForm } from "..";
+import {
+  LoginForm,
+  Offline,
+  OfflinePlaceholder,
+  Online,
+  PasswordResetForm
+} from "..";
 import { CartContext } from "../CartProvider/context";
 import { GoToCheckout } from "../GoToCheckout";
 import { UserContext } from "../User/context";
-
-import Offline from "../Offline";
-import OfflinePlaceholder from "../OfflinePlaceholder";
-import Online from "../Online";
-import "./scss/index.scss";
 
 class CheckoutLogin extends React.Component<
   RouteComponentProps<{}>,

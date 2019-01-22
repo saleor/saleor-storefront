@@ -9,16 +9,22 @@ import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CartSummary, Loader, OverlayManager } from "..";
+import {
+  CartSummary,
+  Loader,
+  Offline,
+  OfflinePlaceholder,
+  Online,
+  OverlayManager
+} from "..";
 import { baseUrl } from "../App/routes";
-import Offline from "../Offline";
-import OfflinePlaceholder from "../OfflinePlaceholder";
-import Online from "../Online";
+
 import { CheckoutContext, CheckoutContextInterface } from "./context";
 import { getCheckoutQuery } from "./queries";
 import { Routes } from "./routes";
 
 import logoImg from "../../images/logo.svg";
+import Provider from "./provider";
 
 export class CheckoutProvider extends React.Component<
   {
@@ -46,6 +52,8 @@ export class CheckoutProvider extends React.Component<
 
   getCheckout = async () => {
     this.setState({ loading: true });
+    console.log("getCheckout");
+
     const { data } = await this.props.apolloClient.query({
       query: getCheckoutQuery,
       variables: { token: this.props.token }
@@ -58,10 +66,7 @@ export class CheckoutProvider extends React.Component<
   };
 
   clearCheckout = () => {
-    this.setState({
-      cardData: null,
-      checkout: null
-    });
+    this.setState({ cardData: null, checkout: null });
   };
 
   render() {
@@ -100,7 +105,8 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
           >
             <ApolloConsumer>
               {client => (
-                <CheckoutProvider apolloClient={client} token={token} url={url}>
+                <Provider apolloClient={client} token={token} url={url}>
+                  {/* <Provider apolloClient={client} token={token} url={url}> */}
                   <CheckoutContext.Consumer>
                     {({ loading }) =>
                       loading ? (
@@ -124,7 +130,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
                       )
                     }
                   </CheckoutContext.Consumer>
-                </CheckoutProvider>
+                </Provider>
               )}
             </ApolloConsumer>
           </div>

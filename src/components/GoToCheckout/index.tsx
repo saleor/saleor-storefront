@@ -18,11 +18,6 @@ import {
   getCheckout,
   getCheckoutVariables
 } from "../CheckoutApp/types/getCheckout";
-import { createCheckoutQuery } from "./queries";
-import {
-  createCheckout,
-  createCheckoutVariables
-} from "./types/createCheckout";
 
 export interface GoToCheckoutState {
   checkout?: Checkout;
@@ -56,56 +51,56 @@ export class GoToCheckout extends React.Component<
     };
   }
 
-  handleCheckoutCreation = async () => {
-    const checkoutToken = localStorage.getItem("checkout");
-    if (checkoutToken) {
-      localStorage.setItem("checkout", checkoutToken);
+  // handleCheckoutCreation = async () => {
+  //   const checkoutToken = localStorage.getItem("checkout");
+  //   if (checkoutToken) {
+  //     localStorage.setItem("checkout", checkoutToken);
 
-      const { apolloClient } = this.props;
-      const { data } = await apolloClient.query<
-        getCheckout,
-        getCheckoutVariables
-      >({
-        query: getCheckoutQuery,
-        variables: {
-          token: checkoutToken
-        }
-      });
-      this.setState({
-        checkout: data.checkout,
-        checkoutToken,
-        loading: false,
-        redirect: true
-      });
-    } else {
-      const {
-        apolloClient,
-        cart: { lines }
-      } = this.props;
-      this.setState({ loading: true });
-      const { data } = await apolloClient.mutate<
-        createCheckout,
-        createCheckoutVariables
-      >({
-        mutation: createCheckoutQuery,
-        variables: {
-          checkoutInput: {
-            lines: lines.map((line: { quantity; variantId }) => ({
-              quantity: line.quantity,
-              variantId: line.variantId
-            }))
-          }
-        }
-      });
-      localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
-      this.setState({
-        checkout: data.checkoutCreate.checkout,
-        checkoutToken: data.checkoutCreate.checkout.token,
-        loading: false,
-        redirect: true
-      });
-    }
-  };
+  //     const { apolloClient } = this.props;
+  //     const { data } = await apolloClient.query<
+  //       getCheckout,
+  //       getCheckoutVariables
+  //     >({
+  //       query: getCheckoutQuery,
+  //       variables: {
+  //         token: checkoutToken
+  //       }
+  //     });
+  //     this.setState({
+  //       checkout: data.checkout,
+  //       checkoutToken,
+  //       loading: false,
+  //       redirect: true
+  //     });
+  //   } else {
+  //     const {
+  //       apolloClient,
+  //       cart: { lines }
+  //     } = this.props;
+  //     this.setState({ loading: true });
+  //     const { data } = await apolloClient.mutate<
+  //       createCheckout,
+  //       createCheckoutVariables
+  //     >({
+  //       mutation: createCheckoutQuery,
+  //       variables: {
+  //         checkoutInput: {
+  //           lines: lines.map((line: { quantity; variantId }) => ({
+  //             quantity: line.quantity,
+  //             variantId: line.variantId
+  //           }))
+  //         }
+  //       }
+  //     });
+  //     localStorage.setItem("checkout", data.checkoutCreate.checkout.token);
+  //     this.setState({
+  //       checkout: data.checkoutCreate.checkout,
+  //       checkoutToken: data.checkoutCreate.checkout.token,
+  //       loading: false,
+  //       redirect: true
+  //     });
+  //   }
+  // };
 
   getRedirection() {
     const { checkout } = this.state;
@@ -123,6 +118,7 @@ export class GoToCheckout extends React.Component<
     } else {
       pathname = checkoutBaseUrl(this.state.checkoutToken);
     }
+    // pathname = checkoutBaseUrl(this.state.checkoutToken);
 
     if (pathname) {
       return (
@@ -161,7 +157,7 @@ export class GoToCheckout extends React.Component<
       <Button
         {...buttonProps}
         onClick={event => {
-          this.handleCheckoutCreation();
+          // this.handleCheckoutCreation();
           event.preventDefault();
         }}
       >

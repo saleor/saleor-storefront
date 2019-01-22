@@ -11,7 +11,9 @@ import { Route, Router, Switch } from "react-router-dom";
 import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
-import { App, CheckoutApp, OverlayProvider, UserProvider } from "./components";
+import CheckoutApp from "./checkout";
+// import { CheckoutApp } from "./components";
+import { App, OverlayProvider, UserProvider } from "./components";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
 import {
@@ -61,6 +63,7 @@ const startApp = async () => {
     cache,
     link
   });
+
   render(
     <Router history={history}>
       <ApolloProvider client={apolloClient}>
@@ -83,7 +86,7 @@ const startApp = async () => {
                   refreshUser
                 >
                   <Switch>
-                    <Route path="/checkout/:token/" component={CheckoutApp} />
+                    <Route path="/checkout/:token?/" component={CheckoutApp} />
                     <Route component={App} />
                   </Switch>
                 </UserProviderWithTokenHandler>

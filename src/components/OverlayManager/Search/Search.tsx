@@ -134,7 +134,10 @@ class Search extends React.Component<SearchProps, SearchState> {
                                 {loading ? (
                                   <Loader />
                                 ) : (
-                                  <Button btnRef={this.submitBtnRef} type="submit">
+                                  <Button
+                                    btnRef={this.submitBtnRef}
+                                    type="submit"
+                                  >
                                     Show all results
                                   </Button>
                                 )}
