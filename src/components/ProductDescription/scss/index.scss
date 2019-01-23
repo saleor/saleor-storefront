@@ -26,6 +26,10 @@
     p {
       font-size: $small-font-size;
     }
+
+    img {
+      max-width: 100%;
+    }
   }
 
   &__action {
