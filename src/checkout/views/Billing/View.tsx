@@ -12,11 +12,7 @@ import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
 import { CheckoutContext, CheckoutContextInterface } from "../../context";
-import {
-  checkoutBaseUrl,
-  checkoutPaymentUrl,
-  checkoutShippingOptionsUrl
-} from "../../routes";
+import { baseUrl, paymentUrl, shippingOptionsUrl } from "../../routes";
 import { Checkout, Checkout_billingAddress } from "../../types/Checkout";
 import { TypedUpdateCheckoutBillingAddressMutation } from "./queries";
 import { updateCheckoutBillingAddress } from "./types/updateCheckoutBillingAddress";
@@ -29,10 +25,10 @@ const proceedToPayment = (
   const canProceed = !data.checkoutBillingAddressUpdate.errors.length;
 
   if (canProceed) {
-    checkoutCtx.updateCheckout({
+    checkoutCtx.update({
       checkout: data.checkoutBillingAddressUpdate.checkout
     });
-    history.push(checkoutPaymentUrl(checkoutCtx.checkout.token));
+    history.push(paymentUrl);
   }
 };
 
@@ -82,14 +78,14 @@ const View: React.SFC<RouteComponentProps<{ id }>> = ({ history }) => (
   <div>
     <CheckoutContext.Consumer>
       {checkoutCtx => {
-        const { checkout, shippingAsBilling, updateCheckout } = checkoutCtx;
+        const { checkout, shippingAsBilling, update } = checkoutCtx;
         const address =
           !checkout.billingAddress && shippingAsBilling
             ? checkout.shippingAddress
             : checkout.billingAddress;
         return (
           <>
-            <Link to={checkoutBaseUrl(checkout.token)}>
+            <Link to={baseUrl}>
               <div className="checkout__step checkout__step--inactive">
                 <span>1</span>
                 <h4 className="checkout__header">Shipping Address</h4>
@@ -101,7 +97,7 @@ const View: React.SFC<RouteComponentProps<{ id }>> = ({ history }) => (
                 email={checkout.email}
               />
             </div>
-            <Link to={checkoutShippingOptionsUrl(checkout.token)}>
+            <Link to={shippingOptionsUrl}>
               <div className="checkout__step checkout__step--inactive">
                 <span>2</span>
                 <h4 className="checkout__header">Shipping Method</h4>

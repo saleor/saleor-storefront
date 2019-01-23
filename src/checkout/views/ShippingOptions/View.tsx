@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { AddressSummary, Button } from "../../../components";
 import { CheckoutContext, CheckoutContextInterface } from "../../context";
-import { checkoutBaseUrl, checkoutBillingUrl } from "../../routes";
+import { baseUrl, billingUrl } from "../../routes";
 import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
 import ShippingOptionsList from "./ShippingOptionsList";
 import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
@@ -27,10 +27,10 @@ class View extends React.Component<
     const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
-      checkoutCtx.updateCheckout({
+      checkoutCtx.update({
         checkout: data.checkoutShippingMethodUpdate.checkout
       });
-      this.props.history.push(checkoutBillingUrl(checkoutCtx.checkout.token));
+      this.props.history.push(billingUrl);
     }
   }
 
@@ -48,7 +48,7 @@ class View extends React.Component<
             const { checkout } = checkoutCtx;
             return (
               <>
-                <Link to={checkoutBaseUrl(checkout.token)}>
+                <Link to={baseUrl}>
                   <div className="checkout__step checkout__step--inactive">
                     <span>1</span>
                     <h4 className="checkout__header">Shipping Address</h4>

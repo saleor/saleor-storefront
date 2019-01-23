@@ -12,18 +12,11 @@ const updateCheckoutShippingAddressMutation = gql`
   mutation updateCheckoutShippingAddress(
     $checkoutId: ID!
     $shippingAddress: AddressInput!
-    $email: String!
   ) {
     checkoutShippingAddressUpdate(
       checkoutId: $checkoutId
       shippingAddress: $shippingAddress
     ) {
-      errors {
-        field
-        message
-      }
-    }
-    checkoutEmailUpdate(checkoutId: $checkoutId, email: $email) {
       errors {
         field
         message

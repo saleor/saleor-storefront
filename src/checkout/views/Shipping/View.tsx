@@ -10,27 +10,36 @@ import {
   OverlayType,
   ShippingAddressForm
 } from "../../../components";
+import { FormError } from "../../../components/Form";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
-import { CheckoutContext, CheckoutContextInterface } from "../../context";
-import { checkoutShippingOptionsUrl } from "../../routes";
-import { Checkout } from "../../types/Checkout";
+import {
+  CheckoutContext,
+  CheckoutContextInterface,
+  CheckoutErrors,
+  CheckoutStep
+} from "../../context";
+import { shippingOptionsUrl } from "../../routes";
+import { Checkout, Checkout_shippingAddress } from "../../types/Checkout";
+import { createCheckout_checkoutCreate } from "../../types/createCheckout";
+import Steps from "../Steps";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
-import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAddress";
+import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
 
 const proceedToShippingOptions = (
-  data: updateCheckoutShippingAddress,
-  checkoutCtx: CheckoutContextInterface,
+  update: (checkoutData: CheckoutContextInterface) => void,
   history: History,
   overlay: OverlayContextInterface
+) => (
+  data:
+    | createCheckout_checkoutCreate
+    | updateCheckoutShippingAddress_checkoutShippingAddressUpdate
 ) => {
-  const canProceed =
-    !data.checkoutShippingAddressUpdate.errors.length &&
-    !data.checkoutEmailUpdate.errors.length;
+  const canProceed = !data.errors.length;
   const shippingUnavailable = maybe(
-    () => !data.checkoutEmailUpdate.checkout.availableShippingMethods.length
+    () => !data.checkout.availableShippingMethods.length
   );
 
   if (canProceed) {
@@ -39,15 +48,17 @@ const proceedToShippingOptions = (
         content: <ShippingUnavailableModal hide={overlay.hide} />
       });
     } else {
-      checkoutCtx.updateCheckout({
-        checkout: data.checkoutEmailUpdate.checkout
-      });
-      history.push(checkoutShippingOptionsUrl(checkoutCtx.checkout.token));
+      update({ checkout: data.checkout, step: CheckoutStep.ShippingOption });
+      history.push(shippingOptionsUrl);
     }
   }
 };
 
-const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
+const extractShippingData = (
+  checkout: Checkout,
+  shop: getShop_shop,
+  shippingAddress: Checkout_shippingAddress
+) => {
   const hasShippingCountry = maybe(() => !!checkout.shippingAddress.country);
 
   if (hasShippingCountry) {
@@ -55,116 +66,125 @@ const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
   }
 
   const { geolocalization, defaultCountry } = shop;
-  return {
-    ...checkout.shippingAddress,
-    country: {
-      code: geolocalization.country
-        ? geolocalization.country.code
-        : defaultCountry.code,
-      country: geolocalization.country
-        ? geolocalization.country.country
-        : defaultCountry.country
-    },
-    email: checkout.email
+  const country = {
+    code: geolocalization.country
+      ? geolocalization.country.code
+      : defaultCountry.code,
+    country: geolocalization.country
+      ? geolocalization.country.country
+      : defaultCountry.country
   };
+
+  if (!checkout) {
+    return { country, ...shippingAddress };
+  }
+
+  return { ...checkout.shippingAddress, country, email: checkout.email };
 };
 
-const computeMutationVariables = (
-  data: FormAddressType,
-  checkout: Checkout
-) => ({
-  variables: {
-    checkoutId: checkout.id,
-    email: data.email,
-    shippingAddress: {
-      city: data.city,
-      companyName: data.companyName,
-      country: data.country.value || data.country.code,
-      countryArea: data.countryArea,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      phone: data.phone,
-      postalCode: data.postalCode,
-      streetAddress1: data.streetAddress1,
-      streetAddress2: data.streetAddress2
-    }
+const computeCheckoutData = (data: FormAddressType) => ({
+  email: data.email,
+  shippingAddress: {
+    city: data.city,
+    companyName: data.companyName,
+    country: data.country.value || data.country.code,
+    countryArea: data.countryArea,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    phone: data.phone,
+    postalCode: data.postalCode,
+    streetAddress1: data.streetAddress1,
+    streetAddress2: data.streetAddress2
   }
 });
 
-const View: React.SFC<RouteComponentProps<{ id }>> = ({ history }) => (
-  <div className="checkout-shipping">
-    <CheckoutContext.Consumer>
-      {checkoutCtx => {
-        const { checkout } = checkoutCtx;
-        return (
-          <>
-            <div className="checkout__step">
-              <span>1</span>
-              <h4 className="checkout__header">Shipping Address</h4>
-            </div>
-            <OverlayContext.Consumer>
-              {overlay => (
-                <TypedUpdateCheckoutShippingAddressMutation
-                  onCompleted={data =>
-                    proceedToShippingOptions(
-                      data,
-                      checkoutCtx,
-                      history,
-                      overlay
-                    )
-                  }
-                >
-                  {(saveShippingAddress, { data, loading }) => {
-                    return (
-                      <div className="checkout__content">
-                        <ShopContext.Consumer>
-                          {shop => {
-                            return (
+const extractErrors = (
+  createErrors: CheckoutErrors,
+  updateErrors: CheckoutErrors
+): FormError[] => {
+  if (createErrors.length) {
+    return createErrors;
+  }
+  if (updateErrors.length) {
+    return updateErrors;
+  }
+  return [];
+};
+
+const View: React.SFC<RouteComponentProps<{ id }>> = ({ history }) => {
+  let shippingAddress = null;
+
+  return (
+    <div className="checkout-shipping">
+      <CheckoutContext.Consumer>
+        {({ create, update, checkout, step, errors, loading }) => {
+          return (
+            <Steps currentStep={step}>
+              <OverlayContext.Consumer>
+                {overlay => (
+                  <div className="checkout__content">
+                    <ShopContext.Consumer>
+                      {shop => {
+                        const proceedNext = proceedToShippingOptions(
+                          update,
+                          history,
+                          overlay
+                        );
+                        return (
+                          <TypedUpdateCheckoutShippingAddressMutation
+                            onCompleted={({ checkoutShippingAddressUpdate }) =>
+                              proceedNext(checkoutShippingAddressUpdate)
+                            }
+                          >
+                            {(
+                              saveShippingAddress,
+                              { loading: mutationLoading, data }
+                            ) => (
                               <ShippingAddressForm
-                                data={extractShippingData(checkout, shop)}
-                                buttonText="Continue to Shipping"
-                                errors={maybe(
-                                  () =>
-                                    data.checkoutShippingAddressUpdate.errors,
-                                  []
+                                data={extractShippingData(
+                                  checkout,
+                                  shop,
+                                  shippingAddress
                                 )}
-                                loading={loading}
+                                buttonText="Continue to Shipping"
+                                errors={extractErrors(
+                                  errors,
+                                  data.checkoutShippingAddressUpdate.errors
+                                )}
+                                loading={loading || mutationLoading}
                                 onSubmit={(evt, data) => {
-                                  saveShippingAddress(
-                                    computeMutationVariables(data, checkout)
-                                  );
-                                  checkoutCtx.updateCheckout({
-                                    shippingAsBilling: data.asBilling
-                                  });
+                                  shippingAddress = data;
+                                  if (!checkout) {
+                                    (async () => {
+                                      proceedNext(
+                                        await create(computeCheckoutData(data))
+                                      );
+                                    })();
+                                  } else {
+                                    saveShippingAddress({
+                                      variables: {
+                                        checkoutId: checkout.id,
+                                        ...computeCheckoutData(data)
+                                      }
+                                    });
+                                  }
                                   evt.preventDefault();
                                 }}
                               />
-                            );
-                          }}
-                        </ShopContext.Consumer>
-                      </div>
-                    );
-                  }}
-                </TypedUpdateCheckoutShippingAddressMutation>
-              )}
-            </OverlayContext.Consumer>
-            <div className="checkout__step">
-              <span>2</span>
-              <h4 className="checkout__header">Shipping Method</h4>
-            </div>
-            <div className="checkout__step">
-              <span>3</span>
-              <h4 className="checkout__header">Billing</h4>
-            </div>
-            <div className="checkout__step">
-              <span>4</span>
-              <h4 className="checkout__header">Payment Method</h4>
-            </div>
-          </>
-        );
-      }}
-    </CheckoutContext.Consumer>
-  </div>
-);
+                            )}
+                          </TypedUpdateCheckoutShippingAddressMutation>
+                        );
+                      }}
+                    </ShopContext.Consumer>
+                  </div>
+                )}
+              </OverlayContext.Consumer>
+            </Steps>
+          );
+        }}
+      </CheckoutContext.Consumer>
+    </div>
+  );
+};
 
 export default View;

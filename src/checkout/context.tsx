@@ -1,36 +1,54 @@
 import { createContext } from "react";
 
+import { CheckoutCreateInput } from "../../types/globalTypes";
+import { Omit } from "../core/tsUtils";
 import { Checkout } from "./types/Checkout";
+import {
+  createCheckout_checkoutCreate,
+  createCheckout_checkoutCreate_errors
+} from "./types/createCheckout";
 
-enum CheckoutStep {
-  ShippingAddress,
-  ShippingOption,
-  BillingAddress,
-  Payment,
-  Review
+export enum CheckoutStep {
+  ShippingAddress = "Shipping Address",
+  ShippingOption = "Shipping Option",
+  BillingAddress = "Billing Address",
+  Payment = "Payment",
+  Review = "Review"
 }
 
+export type CheckoutCreateData = Omit<CheckoutCreateInput, "lines">;
+export type CheckoutErrors = createCheckout_checkoutCreate_errors[];
+
 export interface CheckoutContextInterface {
-  step?: CheckoutStep;
   cardData?: {
     lastDigits: string;
     ccType: string;
     token: string;
   };
   checkout?: Checkout;
+  checkoutToken?: string | null;
+  errors?: CheckoutErrors;
   loading?: boolean;
   shippingAsBilling?: boolean;
-  updateCheckout?(checkoutData: CheckoutContextInterface): void;
-  clearCheckout?(): void;
+  step?: CheckoutStep;
+  create?(
+    checkoutCreateData?: CheckoutCreateData
+  ): Promise<createCheckout_checkoutCreate | null>;
+  update?(checkoutData: CheckoutContextInterface): void;
+  clear?(): void;
 }
 
 export const defaultContext = {
   cardData: null,
   checkout: null,
-  clearCheckout: () => null,
+  checkoutToken: null,
+  clear: () => null,
+  create: (checkoutCreateData: {}) => null,
+  errors: [],
   loading: false,
+  shippingAsBilling: false,
   step: CheckoutStep.ShippingAddress,
-  updateCheckout: (checkoutData: {}) => null
+  update: (checkoutData: {}) => null
 };
 
 export const CheckoutContext = createContext<CheckoutContextInterface>(

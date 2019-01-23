@@ -9,7 +9,7 @@ import {
 
 const updateCheckoutShippingAddressMutation = gql`
   ${checkoutFragment}
-  mutation updateCheckoutShippingAddress(
+  mutation updateCheckoutShippingAddresss(
     $checkoutId: ID!
     $shippingAddress: AddressInput!
     $email: String!

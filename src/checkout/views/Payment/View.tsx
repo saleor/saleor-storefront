@@ -11,10 +11,10 @@ import { PROVIDERS } from "../../../core/config";
 import { braintreePayment } from "../../../core/payments/braintree";
 import { CheckoutContext } from "../../context";
 import {
-  checkoutBaseUrl,
-  checkoutBillingUrl,
-  checkoutReviewUrl,
-  checkoutShippingOptionsUrl
+  baseUrl,
+  billingUrl,
+  reviewUrl,
+  shippingOptionsUrl
 } from "../../routes";
 import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
 
@@ -95,10 +95,10 @@ class View extends React.Component<
                       token,
                       totalPrice
                     },
-                    updateCheckout
+                    update
                   }) => (
                     <>
-                      <Link to={checkoutBaseUrl(token)}>
+                      <Link to={baseUrl}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>1</span>
                           <h4 className="checkout__header">Shipping Address</h4>
@@ -110,7 +110,7 @@ class View extends React.Component<
                           email={email}
                         />
                       </div>
-                      <Link to={checkoutShippingOptionsUrl(token)}>
+                      <Link to={shippingOptionsUrl}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>2</span>
                           <h4 className="checkout__header">Shipping Method</h4>
@@ -123,7 +123,7 @@ class View extends React.Component<
                           }`}
                         </p>
                       </div>
-                      <Link to={checkoutBillingUrl(token)}>
+                      <Link to={billingUrl}>
                         <div className="checkout__step checkout__step--inactive">
                           <span>3</span>
                           <h4 className="checkout__header">Billing Address</h4>
@@ -146,7 +146,7 @@ class View extends React.Component<
                               this.setState({
                                 loading: false
                               });
-                              this.props.history.push(checkoutReviewUrl(token));
+                              this.props.history.push(reviewUrl);
                             }
                             return (
                               <Form
@@ -168,7 +168,7 @@ class View extends React.Component<
                                         ? formData.ccNumber.replace(/\s+/g, "")
                                         : ""
                                     },
-                                    updateCheckout
+                                    update
                                   );
                                   if (token) {
                                     createPaymentMethod({

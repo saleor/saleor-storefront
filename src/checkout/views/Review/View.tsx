@@ -20,7 +20,7 @@ class View extends React.Component<RouteComponentProps<{ id }>, {}> {
   render() {
     return (
       <CheckoutContext.Consumer>
-        {({ cardData, checkout, clearCheckout }) => (
+        {({ cardData, checkout, clear }) => (
           <div className="checkout-review">
             <div className="checkout__step">
               <span>5</span>
@@ -126,12 +126,11 @@ class View extends React.Component<RouteComponentProps<{ id }>, {}> {
                       {(completeCheckout, { data, loading }) => {
                         if (data) {
                           if (data.checkoutComplete.errors.length === 0) {
-                            clearCheckout();
+                            clear();
                             show(OverlayType.message, null, {
                               status: "error",
                               title: "Your order was placed"
                             });
-                            localStorage.removeItem("checkout");
                             localStorage.removeItem("cart");
                             this.props.history.push(`/`);
                           } else {

@@ -13,12 +13,15 @@ import {
   Offline,
   OfflinePlaceholder,
   Online,
-  OverlayManager
+  OverlayManager,
+  Loader
 } from "../components";
 import { BASE_URL } from "../core/config";
-import { Routes } from "./routes";
+import CheckoutProvider from "./provider";
+import { reviewUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
+import { CheckoutContext } from "./context";
 
 const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
   history,
@@ -27,7 +30,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
     params: { token = "" }
   }
 }) => {
-  const reviewPage = history.location.pathname === `${url}/review/`;
+  const reviewPage = history.location.pathname === reviewUrl;
   const tokenCreationPage = !token;
 
   return (
@@ -42,22 +45,36 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
         <Online>
           <div
             className={classNames("checkout__grid", {
-              "checkout__grid--review": reviewPage || tokenCreationPage
+              "checkout__grid--review": reviewPage
             })}
           >
-            <div
-              className={classNames({
-                checkout__grid__content: !(reviewPage || tokenCreationPage)
-              })}
-            >
-              <Routes token={token} />
-            </div>
-            {!reviewPage && (
-              <Media
-                query={{ minWidth: mediumScreen }}
-                render={() => <CartSummary />}
-              />
-            )}
+            <CheckoutProvider>
+              <CheckoutContext.Consumer>
+                {({ loading, checkoutToken }) => {
+                  const fetchingExisting = loading && !!checkoutToken;
+
+                  return fetchingExisting ? (
+                    <Loader />
+                  ) : (
+                    <>
+                      <div
+                        className={classNames({
+                          checkout__grid__content: !reviewPage
+                        })}
+                      >
+                        <Routes token={token} />
+                      </div>
+                      {!reviewPage && (
+                        <Media
+                          query={{ minWidth: mediumScreen }}
+                          render={() => <CartSummary />}
+                        />
+                      )}
+                    </>
+                  );
+                }}
+              </CheckoutContext.Consumer>
+            </CheckoutProvider>
           </div>
         </Online>
         <Offline>

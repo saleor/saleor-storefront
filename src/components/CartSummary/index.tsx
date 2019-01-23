@@ -7,7 +7,8 @@ import { CheckoutContext } from "../CheckoutApp/context";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
-const CartSummary: React.SFC = () => (
+// TODO take from cart where there's no checkout
+const CartSummary: React.FC = () => (
   <CheckoutContext.Consumer>
     {({ checkout }) =>
       checkout ? (
