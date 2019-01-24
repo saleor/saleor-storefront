@@ -1,47 +1,46 @@
-import * as React from "react";
-
-import { AddressInterface } from "../../core/types";
-
 import "./scss/index.scss";
 
-const AddressSummary: React.SFC<{
-  address: AddressInterface;
+import * as React from "react";
+import { getCheckout_checkout_shippingAddress } from "../../types/getCheckout";
+
+const AddressSummary: React.FC<{
+  address: getCheckout_checkout_shippingAddress;
   email?: string;
 }> = ({ address, email }) => (
   <p className="address-summary">
     <strong>{`${address.firstName} ${address.lastName}`}</strong>
     <br />
-    {address.companyName ? (
+    {address.companyName && (
       <>
         {address.companyName} <br />
       </>
-    ) : null}
+    )}
     {address.streetAddress1}
     <br />
-    {address.streetAddress2 ? (
+    {address.streetAddress2 && (
       <>
         {address.streetAddress2} <br />
       </>
-    ) : null}
+    )}
     {address.city}, {address.postalCode}
     <br />
-    {address.countryArea ? (
+    {address.countryArea && (
       <>
         {address.countryArea} <br />
       </>
-    ) : null}
+    )}
     {address.country.country}
     <br />
-    {address.phone ? (
+    {address.phone && (
       <>
         {address.phone} <br />
       </>
-    ) : null}
-    {email ? (
+    )}
+    {email && (
       <>
         {email} <br />
       </>
-    ) : null}
+    )}
   </p>
 );
 

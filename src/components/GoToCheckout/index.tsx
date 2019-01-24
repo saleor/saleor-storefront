@@ -18,6 +18,7 @@ import {
   getCheckout,
   getCheckoutVariables
 } from "../CheckoutApp/types/getCheckout";
+// import { baseUrl as checkoutUrl } from "../../checkout/r"
 
 export interface GoToCheckoutState {
   checkout?: Checkout;

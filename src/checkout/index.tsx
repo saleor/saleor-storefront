@@ -4,34 +4,32 @@ import "./scss/index.scss";
 import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
-import { RouteComponentProps } from "react-router";
+import { generatePath, Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { ApolloConsumer } from "react-apollo";
 import {
   CartSummary,
+  Loader,
   Offline,
   OfflinePlaceholder,
   Online,
-  OverlayManager,
-  Loader
+  OverlayManager
 } from "../components";
+import CartProvider from "../components/CartProvider";
+import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
+import logoImg from "../images/logo.svg";
+import { CheckoutContext } from "./context";
 import CheckoutProvider from "./provider";
 import { reviewUrl, Routes } from "./routes";
 
-import logoImg from "../images/logo.svg";
-import { CheckoutContext } from "./context";
-
-const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
-  history,
-  match: {
-    url,
-    params: { token = "" }
-  }
-}) => {
-  const reviewPage = history.location.pathname === reviewUrl;
-  const tokenCreationPage = !token;
+const CheckoutApp: React.FC<RouteComponentProps> = ({ history, match }) => {
+  const reviewPage =
+    history.location.pathname.indexOf(
+      generatePath(reviewUrl, { token: undefined })
+    ) !== -1;
 
   return (
     <div className="checkout">
@@ -48,33 +46,51 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
               "checkout__grid--review": reviewPage
             })}
           >
-            <CheckoutProvider>
-              <CheckoutContext.Consumer>
-                {({ loading, checkoutToken }) => {
-                  const fetchingExisting = loading && !!checkoutToken;
+            <ApolloConsumer>
+              {client => (
+                <CartProvider apolloClient={client}>
+                  <CartContext.Consumer>
+                    {({ lines }) => (
+                      <CheckoutProvider>
+                        <CheckoutContext.Consumer>
+                          {({ checkout, loading, checkoutToken }) => {
+                            const fetchingExisting = loading && !!checkoutToken;
+                            const emptyCartAndCheckout =
+                              !lines.length && !checkout;
 
-                  return fetchingExisting ? (
-                    <Loader />
-                  ) : (
-                    <>
-                      <div
-                        className={classNames({
-                          checkout__grid__content: !reviewPage
-                        })}
-                      >
-                        <Routes token={token} />
-                      </div>
-                      {!reviewPage && (
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => <CartSummary />}
-                        />
-                      )}
-                    </>
-                  );
-                }}
-              </CheckoutContext.Consumer>
-            </CheckoutProvider>
+                            if (fetchingExisting) {
+                              return <Loader />;
+                            }
+
+                            if (emptyCartAndCheckout) {
+                              return <Redirect to={BASE_URL} />;
+                            }
+
+                            return (
+                              <>
+                                <div
+                                  className={classNames({
+                                    checkout__grid__content: !reviewPage
+                                  })}
+                                >
+                                  <Routes />
+                                </div>
+                                {!reviewPage && (
+                                  <Media
+                                    query={{ minWidth: mediumScreen }}
+                                    render={() => <CartSummary />}
+                                  />
+                                )}
+                              </>
+                            );
+                          }}
+                        </CheckoutContext.Consumer>
+                      </CheckoutProvider>
+                    )}
+                  </CartContext.Consumer>
+                </CartProvider>
+              )}
+            </ApolloConsumer>
           </div>
         </Online>
         <Offline>

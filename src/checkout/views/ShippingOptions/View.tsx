@@ -1,36 +1,40 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
+import { RouteComponentProps, generatePath } from "react-router";
 
-import { AddressSummary, Button } from "../../../components";
-import { CheckoutContext, CheckoutContextInterface } from "../../context";
-import { baseUrl, billingUrl } from "../../routes";
+import { Button } from "../../../components";
+import { maybe } from "../../../core/utils";
+import { Steps } from "../../components";
+import {
+  CheckoutContext,
+  CheckoutContextInterface,
+  CheckoutStep
+} from "../../context";
+import { billingUrl } from "../../routes";
 import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
 import ShippingOptionsList from "./ShippingOptionsList";
 import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
 
 class View extends React.Component<
-  RouteComponentProps<{ id }>,
+  RouteComponentProps<{ token?: string }>,
   { selectedShipping: string }
 > {
-  constructor(props) {
-    super(props);
-    this.state = { selectedShipping: "" };
-  }
+  state = { selectedShipping: "" };
 
   proceedToBilling(
     data: updateCheckoutShippingOptions,
-    checkoutCtx: CheckoutContextInterface
+    update: (checkoutData: CheckoutContextInterface) => void,
+    token?: string
   ) {
     const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
-      checkoutCtx.update({
-        checkout: data.checkoutShippingMethodUpdate.checkout
+      update({
+        checkout: data.checkoutShippingMethodUpdate.checkout,
+        step: CheckoutStep.BillingAddress
       });
-      this.props.history.push(billingUrl);
+      this.props.history.push(generatePath(billingUrl, { token }));
     }
   }
 
@@ -40,74 +44,53 @@ class View extends React.Component<
 
   render() {
     const { selectedShipping } = this.state;
+    const {
+      params: { token },
+      path
+    } = this.props.match;
 
     return (
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
-          {checkoutCtx => {
-            const { checkout } = checkoutCtx;
-            return (
-              <>
-                <Link to={baseUrl}>
-                  <div className="checkout__step checkout__step--inactive">
-                    <span>1</span>
-                    <h4 className="checkout__header">Shipping Address</h4>
-                  </div>
-                </Link>
-                <div className="checkout__content">
-                  <AddressSummary
-                    address={checkout.shippingAddress}
-                    email={checkout.email}
-                  />
-                </div>
-                <div className="checkout__step">
-                  <span>2</span>
-                  <h4 className="checkout__header">Shipping Method</h4>
-                </div>
-                <TypedUpdateCheckoutShippingOptionsMutation
-                  onCompleted={data => this.proceedToBilling(data, checkoutCtx)}
-                >
-                  {(updateCheckoutShippingOptions, { loading }) => {
-                    return (
-                      <div className="checkout__content">
-                        <ShippingOptionsList
-                          checkout={checkout}
-                          selected={selectedShipping}
-                          onShippingSelect={this.handleShippngChange}
-                        />
-                        <Button
-                          onClick={event => {
-                            updateCheckoutShippingOptions({
-                              variables: {
-                                checkoutId: checkout.id,
-                                shippingMethodId: selectedShipping
-                              }
-                            });
-                            event.preventDefault();
-                          }}
-                          disabled={
-                            loading ||
-                            !checkout.availableShippingMethods.length ||
-                            !selectedShipping
-                          }
-                        >
-                          {loading ? "Loading" : "Continue to billing"}
-                        </Button>
-                      </div>
-                    );
-                  }}
-                </TypedUpdateCheckoutShippingOptionsMutation>
-                <div className="checkout__step">
-                  <span>3</span>
-                  <h4 className="checkout__header">Billing</h4>
-                </div>
-                <div className="checkout__step">
-                  <span>4</span>
-                  <h4 className="checkout__header">Payment Method</h4>
-                </div>
-              </>
-            );
-          }}
+          {({ checkout, update }) => (
+            <Steps path={path} token={token} checkout={checkout}>
+              <TypedUpdateCheckoutShippingOptionsMutation
+                onCompleted={data => this.proceedToBilling(data, update, token)}
+              >
+                {(updateCheckoutShippingOptions, { loading }) => {
+                  return (
+                    <div className="checkout__content">
+                      <ShippingOptionsList
+                        checkout={checkout}
+                        selected={selectedShipping}
+                        onShippingSelect={this.handleShippngChange}
+                      />
+                      <Button
+                        onClick={event => {
+                          updateCheckoutShippingOptions({
+                            variables: {
+                              checkoutId: checkout.id,
+                              shippingMethodId: selectedShipping
+                            }
+                          });
+                          event.preventDefault();
+                        }}
+                        disabled={
+                          loading ||
+                          maybe(
+                            () => !checkout.availableShippingMethods.length
+                          ) ||
+                          !selectedShipping
+                        }
+                      >
+                        {loading ? "Loading" : "Continue to billing"}
+                      </Button>
+                    </div>
+                  );
+                }}
+              </TypedUpdateCheckoutShippingOptionsMutation>
+            </Steps>
+          )}
         </CheckoutContext.Consumer>
       </div>
     );

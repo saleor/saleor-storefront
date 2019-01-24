@@ -12,7 +12,7 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 import CheckoutApp from "./checkout";
-// import { CheckoutApp } from "./components";
+import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { App, OverlayProvider, UserProvider } from "./components";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
@@ -86,7 +86,7 @@ const startApp = async () => {
                   refreshUser
                 >
                   <Switch>
-                    <Route path="/checkout/:token?/" component={CheckoutApp} />
+                    <Route path={checkoutBaseUrl} component={CheckoutApp} />
                     <Route component={App} />
                   </Switch>
                 </UserProviderWithTokenHandler>

@@ -2,7 +2,10 @@ import { ApolloClient } from "apollo-client";
 import * as React from "react";
 
 import { ApolloConsumer } from "react-apollo";
-import { CartContext } from "../components/CartProvider/context";
+import {
+  CartContext,
+  CartLineInterface
+} from "../components/CartProvider/context";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -24,7 +27,7 @@ import {
 // TODO
 // Create on item addition to cart
 interface ProviderProps {
-  lines: any;
+  lines: CartLineInterface[];
   client: ApolloClient<any>;
 }
 
@@ -104,12 +107,21 @@ class Provider extends React.Component<
   ): Promise<createCheckout_checkoutCreate | null> => {
     this.setState({ loading: true, errors: [] });
     const { lines } = this.props;
+
     const {
       data: { checkoutCreate }
     } = await this.props.client.mutate<createCheckout, createCheckoutVariables>(
       {
         mutation: createCheckoutMutation,
-        variables: { checkoutInput: { lines, ...checkoutInput } }
+        variables: {
+          checkoutInput: {
+            lines: lines.map(({ quantity, variantId }) => ({
+              quantity,
+              variantId
+            })),
+            ...checkoutInput
+          }
+        }
       }
     );
     const { checkout, errors } = checkoutCreate;
@@ -126,8 +138,12 @@ class Provider extends React.Component<
     return checkoutCreate;
   };
 
-  update = (checkoutData: CheckoutContextInterface) =>
+  update = (checkoutData: CheckoutContextInterface) => {
     this.setState(checkoutData);
+    if ("step" in checkoutData) {
+      localStorage.setItem(this.storageCheckoutStepKey, checkoutData.step);
+    }
+  };
 
   render() {
     return (
