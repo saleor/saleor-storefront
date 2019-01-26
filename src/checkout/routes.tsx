@@ -12,11 +12,11 @@ import {
 } from "./views";
 
 export const baseUrl = "/checkout/";
-export const shippingAddressUrl = `${baseUrl}shipping-address/:token?`;
-export const shippingOptionsUrl = `${baseUrl}shipping-options/:token?`;
-export const billingUrl = `${baseUrl}billing-address/:token?`;
-export const paymentUrl = `${baseUrl}payment/:token?`;
-export const reviewUrl = `${baseUrl}review/:token?`;
+export const shippingAddressUrl = `${baseUrl}shipping-address/:token?/`;
+export const shippingOptionsUrl = `${baseUrl}shipping-options/:token?/`;
+export const billingUrl = `${baseUrl}billing-address/:token?/`;
+export const paymentUrl = `${baseUrl}payment/:token?/`;
+export const reviewUrl = `${baseUrl}review/:token?/`;
 
 export const Routes: React.FC = () => {
   return (

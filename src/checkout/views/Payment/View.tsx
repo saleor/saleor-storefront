@@ -6,9 +6,10 @@ import NumberFormat from "react-number-format";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AddressSummary, Button, Form, TextField } from "../../../components";
+import { Button, Form, TextField } from "../../../components";
 import { PROVIDERS } from "../../../core/config";
 import { braintreePayment } from "../../../core/payments/braintree";
+import { AddressSummary } from "../../components";
 import { CheckoutContext } from "../../context";
 import {
   baseUrl,

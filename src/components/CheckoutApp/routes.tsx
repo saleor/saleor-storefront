@@ -6,9 +6,9 @@ import {
   CheckoutPayment,
   CheckoutReview,
   CheckoutShipping,
-  CheckoutShippingOptions
+  CheckoutShippingOptions,
+  NotFound
 } from "..";
-import { NotFound } from "../NotFound";
 
 export const checkoutBaseUrl = token => `/checkout/${token}/`;
 export const checkoutShippingOptionsUrl = token =>

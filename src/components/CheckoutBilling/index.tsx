@@ -3,7 +3,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AddressSummary, FormAddressType, ShippingAddressForm } from "..";
+import { FormAddressType, ShippingAddressForm } from "..";
 import { maybe } from "../../core/utils";
 import {
   CheckoutContext,
@@ -22,6 +22,7 @@ import { ShopContext } from "../ShopProvider/context";
 import { getShop_shop } from "../ShopProvider/types/getShop";
 import { TypedUpdateCheckoutBillingAddressMutation } from "./queries";
 import { updateCheckoutBillingAddress } from "./types/updateCheckoutBillingAddress";
+import { AddressSummary } from "../../checkout/components";
 
 const proceedToPayment = (
   data: updateCheckoutBillingAddress,

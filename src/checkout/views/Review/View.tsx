@@ -7,12 +7,12 @@ import Media from "react-media";
 import { RouteComponentProps } from "react-router";
 
 import {
-  AddressSummary,
   Button,
   CachedThumbnail,
   OverlayContext,
   OverlayType
 } from "../../../components";
+import { AddressSummary } from "../../components";
 import { CheckoutContext } from "../../context";
 import { COMPLETE_CHECKOUT } from "./queries";
 

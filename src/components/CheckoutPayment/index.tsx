@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AddressSummary, Button, Form, TextField } from "..";
+import { Button, Form, TextField } from "..";
 import { PROVIDERS } from "../../core/config";
 import { braintreePayment } from "../../core/payments/braintree";
 import { CheckoutContext } from "../CheckoutApp/context";
@@ -17,6 +17,7 @@ import {
 import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
 
 import "./scss/index.scss";
+import { AddressSummary } from "../../checkout/components";
 
 class CheckoutPayment extends React.Component<
   RouteComponentProps<{ id }>,

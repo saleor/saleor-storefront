@@ -4,7 +4,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { AddressSummary, Button } from "..";
+import { Button } from "..";
 import {
   CheckoutContext,
   CheckoutContextInterface
@@ -13,6 +13,7 @@ import { checkoutBaseUrl, checkoutBillingUrl } from "../CheckoutApp/routes";
 import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
 import ShippingOptionsList from "./ShippingOptionsList";
 import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
+import { AddressSummary } from "../../checkout/components";
 
 class CheckoutShippingOptions extends React.Component<
   RouteComponentProps<{ id }>,

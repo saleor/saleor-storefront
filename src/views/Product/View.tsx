@@ -3,10 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { MetaWrapper } from "../../components";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { NotFound } from "../../components/NotFound";
-import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";

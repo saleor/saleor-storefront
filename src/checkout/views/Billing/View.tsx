@@ -3,14 +3,11 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import {
-  AddressSummary,
-  FormAddressType,
-  ShippingAddressForm
-} from "../../../components";
+import { FormAddressType, ShippingAddressForm } from "../../../components";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
+import { AddressSummary } from "../../components";
 import { CheckoutContext, CheckoutContextInterface } from "../../context";
 import { baseUrl, paymentUrl, shippingOptionsUrl } from "../../routes";
 import { Checkout, Checkout_billingAddress } from "../../types/Checkout";
