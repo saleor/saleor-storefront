@@ -9,7 +9,7 @@ interface NetworkStatusState {
   online: boolean;
 }
 
-export class NetworkStatus extends React.Component<
+class NetworkStatus extends React.Component<
   NetworkStatusProps,
   NetworkStatusState
 > {

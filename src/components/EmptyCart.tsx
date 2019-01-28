@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "./App/routes";
 import Button from "./Button";
 
-export const EmptyCart: React.SFC<{}> = () => (
+const EmptyCart: React.FC<{}> = () => (
   <div className="cart-page__empty">
     <h4>Yor bag is empty</h4>
     <p>
@@ -18,3 +18,5 @@ export const EmptyCart: React.SFC<{}> = () => (
     </div>
   </div>
 );
+
+export default EmptyCart;

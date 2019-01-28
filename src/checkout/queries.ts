@@ -161,3 +161,8 @@ export const createCheckoutMutation = gql`
     }
   }
 `;
+
+export const TypedGetCheckoutQuery = TypedQuery<
+  getCheckout,
+  getCheckoutVariables
+>(getCheckoutQuery);

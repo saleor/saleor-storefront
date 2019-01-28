@@ -198,14 +198,10 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   billingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {

@@ -6,8 +6,8 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { getCheckout_checkout } from "../../checkout/types/getCheckout";
 import { CachedThumbnail, DebouncedTextField } from "../../components";
-import { getCheckout_checkout } from "../../components/CheckoutApp/types/getCheckout";
 import { generateProductUrl } from "../../core/utils";
 
 import cartAddImg from "../../images/cart-add.svg";

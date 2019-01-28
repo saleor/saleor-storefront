@@ -1,23 +1,23 @@
 import * as React from "react";
 
 import { ApolloClient, ApolloError } from "apollo-client";
+import {
+  getCheckoutQuery,
+  updateCheckoutLineQuery
+} from "../../checkout/queries";
+import {
+  getCheckout,
+  getCheckoutVariables
+} from "../../checkout/types/getCheckout";
+import {
+  updateCheckoutLine,
+  updateCheckoutLineVariables
+} from "../../checkout/types/updateCheckoutLine";
 import { productVariatnsQuery } from "../../views/Product/queries";
 import {
   VariantList,
   VariantListVariables
 } from "../../views/Product/types/VariantList";
-import {
-  getCheckoutQuery,
-  updateCheckoutLineQuery
-} from "../CheckoutApp/queries";
-import {
-  getCheckout,
-  getCheckoutVariables
-} from "../CheckoutApp/types/getCheckout";
-import {
-  updateCheckoutLine,
-  updateCheckoutLineVariables
-} from "../CheckoutApp/types/updateCheckoutLine";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<

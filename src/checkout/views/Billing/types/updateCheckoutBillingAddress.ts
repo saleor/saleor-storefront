@@ -204,21 +204,15 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
   email: string;
-  availableShippingMethods:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[]
-    | null;
+  availableShippingMethods: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods | null)[] | null;
   shippingMethod: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod | null;
   shippingPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice | null;
-  lines:
-    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
   __typename: "CheckoutBillingAddressUpdate";
-  errors:
-    | updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[]
-    | null;
+  errors: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[] | null;
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 

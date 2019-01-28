@@ -1,15 +1,13 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 
-import { Button } from "../../components";
+import { baseUrl as checkoutUrl } from "../../checkout/routes";
+import { getCheckout_checkout } from "../../checkout/types/getCheckout";
+import { Button, EmptyCart } from "../../components";
 import { checkoutLoginUrl } from "../../components/App/routes";
 import { CartInterface } from "../../components/CartProvider/context";
-import { getCheckout_checkout } from "../../components/CheckoutApp/types/getCheckout";
-import { EmptyCart } from "../../components/EmptyCart";
-import { GoToCheckout } from "../../components/GoToCheckout";
 import {
   OverlayContextInterface,
   OverlayType
@@ -63,28 +61,17 @@ class Page extends React.Component<PageProps> {
           />
           <div className="cart-page__checkout-action">
             <UserContext.Consumer>
-              {({ user }) =>
-                user ? (
-                  <ApolloConsumer>
-                    {client => (
-                      <GoToCheckout disabled={loading} apolloClient={client}>
-                        Proceed to Checkout{" "}
-                      </GoToCheckout>
-                    )}
-                  </ApolloConsumer>
-                ) : (
-                  <Link to={checkoutLoginUrl}>
-                    <Button disabled={loading}>Proceed to Checkout</Button>
-                  </Link>
-                )
-              }
+              {({ user }) => (
+                <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+                  <Button>Checkout</Button>
+                </Link>
+              )}
             </UserContext.Consumer>
           </div>
         </>
       );
-    } else {
-      return <EmptyCart />;
     }
+    return <EmptyCart />;
   }
 }
 
