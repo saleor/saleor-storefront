@@ -8,12 +8,8 @@ import { generatePath, RouteComponentProps } from "react-router";
 import { GatewaysEnum } from "../../../../types/globalTypes";
 import { Button, Form, TextField } from "../../../components";
 import { braintreePayment, ErrorData } from "../../../core/payments/braintree";
-import { AddressSummary, Steps } from "../../components";
-import {
-  CheckoutContext,
-  CheckoutContextInterface,
-  CheckoutStep
-} from "../../context";
+import { Steps } from "../../components";
+import { CheckoutContext, CheckoutContextInterface } from "../../context";
 import { reviewUrl } from "../../routes";
 import {
   TypedGetPaymentTokenQuery,
@@ -126,7 +122,7 @@ class View extends React.Component<
     }
   };
 
-  proceedNext = (data: createPayment, update) => {
+  proceedNext = (data: createPayment) => {
     const canProceed = !data.checkoutPaymentCreate.errors.length;
 
     if (canProceed) {
@@ -138,7 +134,6 @@ class View extends React.Component<
       } = this.props;
       this.setState({ loading: false });
       history.push(generatePath(reviewUrl, { token }));
-      update({ step: CheckoutStep.Review });
     }
   };
 
@@ -164,9 +159,7 @@ class View extends React.Component<
                         checkout={checkout.checkout}
                       >
                         <TypedPaymentMethodCreateMutation
-                          onCompleted={data =>
-                            this.proceedNext(data, checkout.update)
-                          }
+                          onCompleted={data => this.proceedNext(data)}
                         >
                           {createPaymentMethod => {
                             return (
@@ -260,7 +253,10 @@ class View extends React.Component<
                                     )}
                                   </div>
                                 </div>
-                                <Button disabled={this.state.loading}>
+                                <Button
+                                  type="submit"
+                                  disabled={this.state.loading}
+                                >
                                   {this.state.loading
                                     ? "Loading"
                                     : "Continue to review your order"}

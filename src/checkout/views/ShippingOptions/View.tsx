@@ -59,7 +59,7 @@ class View extends React.Component<
               >
                 {(updateCheckoutShippingOptions, { loading }) => {
                   return (
-                    <div className="checkout__content">
+                    <>
                       <ShippingOptionsList
                         checkout={checkout}
                         selected={selectedShipping}
@@ -85,7 +85,7 @@ class View extends React.Component<
                       >
                         {loading ? "Loading" : "Continue to billing"}
                       </Button>
-                    </div>
+                    </>
                   );
                 }}
               </TypedUpdateCheckoutShippingOptionsMutation>

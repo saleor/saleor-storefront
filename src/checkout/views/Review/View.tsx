@@ -1,171 +1,120 @@
-import { smallScreen } from "../../../components/App/scss/variables.scss";
 import "./scss/index.scss";
 
+import { History } from "history";
 import * as React from "react";
-import { Mutation } from "react-apollo";
-import Media from "react-media";
-import { RouteComponentProps } from "react-router";
+
+import { Redirect, RouteComponentProps } from "react-router";
 
 import {
   Button,
-  CachedThumbnail,
   OverlayContext,
-  OverlayType
+  OverlayType,
+  ShowOverlayType
 } from "../../../components";
+import { BASE_URL } from "../../../core/config";
 import { AddressSummary } from "../../components";
 import { CheckoutContext } from "../../context";
-import { COMPLETE_CHECKOUT } from "./queries";
+import { baseUrl as checkoutBaseUrl } from "../../routes";
+import CartTable from "./CartTable";
+import { TypedCompleteCheckoutMutation } from "./queries";
+import { completeCheckout } from "./types/completeCheckout";
 
-class View extends React.Component<RouteComponentProps<{ id }>, {}> {
-  render() {
-    return (
-      <CheckoutContext.Consumer>
-        {({ cardData, checkout, clear }) => (
-          <div className="checkout-review">
-            <div className="checkout__step">
-              <span>5</span>
-              <h4 className="checkout__header">Review your order</h4>
+const completeCheckout = (
+  data: completeCheckout,
+  show: ShowOverlayType,
+  history: History,
+  clear: () => void
+) => {
+  const canProceed = !data.checkoutComplete.errors.length;
+
+  if (canProceed) {
+    clear();
+    show(OverlayType.message, null, {
+      status: "error",
+      title: "Your order was placed"
+    });
+    localStorage.removeItem("cart");
+    history.push(BASE_URL);
+  } else {
+    data.checkoutComplete.errors.map(error => {
+      show(OverlayType.message, null, {
+        title: error.message
+      });
+    });
+  }
+};
+
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
+  history
+}) => (
+  <CheckoutContext.Consumer>
+    {({ cardData, checkout, clear }) => {
+      if (!cardData) {
+        return <Redirect to={checkoutBaseUrl} />;
+      }
+
+      return (
+        <div className="checkout-review">
+          <div className="checkout__step checkout__step--inactive">
+            <span>5</span>
+            <h4 className="checkout__header">Review your order</h4>
+          </div>
+
+          <CartTable checkout={checkout} />
+
+          <div className="checkout-review__content">
+            <div className="checkout-review__content__summary">
+              <div>
+                <h4>Shipping address</h4>
+                <AddressSummary
+                  address={checkout.shippingAddress}
+                  email={checkout.email}
+                />
+              </div>
+              <div>
+                <h4>Billing address</h4>
+                <AddressSummary address={checkout.billingAddress} />
+              </div>
+              <div>
+                <h4>Shipping method</h4>
+                {checkout.shippingMethod.name}
+              </div>
+              <div>
+                <h4>Payment method</h4>
+                Ending in {cardData.lastDigits}
+              </div>
             </div>
-            <div className="checkout-review__content">
-              <table className="cart__table">
-                <thead>
-                  <tr>
-                    <th>Products</th>
-                    <Media query={{ minWidth: smallScreen }}>
-                      {matches => (matches ? <th>Price</th> : null)}
-                    </Media>
-                    <th>Quantity</th>
-                    <th>
-                      <Media query={{ minWidth: smallScreen }}>
-                        {matches => (matches ? "Total Price" : "Price")}
-                      </Media>
-                    </th>
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {checkout.lines.map(line => (
-                    <tr key={line.id}>
-                      <td className="checkout-review__content__thumbnail">
-                        <Media
-                          query={{ minWidth: smallScreen }}
-                          render={() => (
-                            <CachedThumbnail source={line.variant.product} />
-                          )}
-                        />
-                        {line.variant.product.name}
-                        {line.variant.name ? `(${line.variant.name})` : null}
-                      </td>
-                      <Media query={{ minWidth: smallScreen }}>
-                        {matches =>
-                          matches ? (
-                            <td>{line.variant.price.localized}</td>
-                          ) : null
+
+            <div className="checkout-review__content__submit">
+              <OverlayContext.Consumer>
+                {({ show }) => (
+                  <TypedCompleteCheckoutMutation
+                    onCompleted={data =>
+                      completeCheckout(data, show, history, clear)
+                    }
+                  >
+                    {(completeCheckout, { loading }) => (
+                      <Button
+                        type="submit"
+                        disabled={loading}
+                        onClick={() =>
+                          completeCheckout({
+                            variables: { checkoutId: checkout.id }
+                          })
                         }
-                      </Media>
-                      <td>{line.quantity}</td>
-                      <td>{line.totalPrice.gross.localized}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td className="cart__table__subtotal">Subtotal</td>
-                    <Media query={{ minWidth: smallScreen }}>
-                      {matches => (matches ? <td /> : null)}
-                    </Media>
-                    <td />
-                    <td>{checkout.subtotalPrice.gross.localized}</td>
-                    <td />
-                  </tr>
-                  <tr>
-                    <td className="cart__table__subtotal">Delivery cost</td>
-                    <Media query={{ minWidth: smallScreen }}>
-                      {matches => (matches ? <td /> : null)}
-                    </Media>
-                    <td />
-                    <td>+{checkout.shippingPrice.gross.localized}</td>
-                    <td />
-                  </tr>
-                  <tr>
-                    <td className="cart__table__subtotal">Total Cost</td>
-                    <Media query={{ minWidth: smallScreen }}>
-                      {matches => (matches ? <td /> : null)}
-                    </Media>
-                    <td />
-                    <td>{checkout.totalPrice.gross.localized}</td>
-                    <td />
-                  </tr>
-                </tfoot>
-              </table>
-              <div className="checkout-review__content__summary">
-                <div>
-                  <h4>Shipping address</h4>
-                  <AddressSummary
-                    address={checkout.shippingAddress}
-                    email={checkout.email}
-                  />
-                </div>
-                <div>
-                  <h4>Billing address</h4>
-                  <AddressSummary address={checkout.billingAddress} />
-                </div>
-                <div>
-                  <h4>Shipping method</h4>
-                  {checkout.shippingMethod.name}
-                </div>
-                <div>
-                  <h4>Payment method</h4>
-                  Ending in {cardData.lastDigits}
-                </div>
-              </div>
-              <div className="checkout-review__content__submit">
-                <OverlayContext.Consumer>
-                  {({ show }) => (
-                    <Mutation mutation={COMPLETE_CHECKOUT}>
-                      {(completeCheckout, { data, loading }) => {
-                        if (data) {
-                          if (data.checkoutComplete.errors.length === 0) {
-                            clear();
-                            show(OverlayType.message, null, {
-                              status: "error",
-                              title: "Your order was placed"
-                            });
-                            localStorage.removeItem("cart");
-                            this.props.history.push(`/`);
-                          } else {
-                            data.checkoutComplete.errors.map(error => {
-                              show(OverlayType.message, null, {
-                                title: error.message
-                              });
-                            });
-                          }
-                        }
-                        return (
-                          <Button
-                            disabled={loading}
-                            onClick={() =>
-                              completeCheckout({
-                                variables: {
-                                  checkoutId: checkout.id
-                                }
-                              })
-                            }
-                          >
-                            {loading ? "Loading" : "Place your order"}
-                          </Button>
-                        );
-                      }}
-                    </Mutation>
-                  )}
-                </OverlayContext.Consumer>
-              </div>
+                      >
+                        {loading ? "Loading" : "Place your order"}
+                      </Button>
+                    )}
+                  </TypedCompleteCheckoutMutation>
+                )}
+              </OverlayContext.Consumer>
             </div>
           </div>
-        )}
-      </CheckoutContext.Consumer>
-    );
-  }
-}
+        </div>
+      );
+    }}
+  </CheckoutContext.Consumer>
+);
 
 export default View;

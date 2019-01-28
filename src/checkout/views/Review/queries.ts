@@ -1,6 +1,12 @@
 import gql from "graphql-tag";
 
-export const COMPLETE_CHECKOUT = gql`
+import { TypedMutation } from "../../../core/mutations";
+import {
+  completeCheckout,
+  completeCheckoutVariables
+} from "./types/completeCheckout";
+
+const completeCheckoutMutation = gql`
   mutation completeCheckout($checkoutId: ID!) {
     checkoutComplete(checkoutId: $checkoutId) {
       errors {
@@ -13,3 +19,8 @@ export const COMPLETE_CHECKOUT = gql`
     }
   }
 `;
+
+export const TypedCompleteCheckoutMutation = TypedMutation<
+  completeCheckout,
+  completeCheckoutVariables
+>(completeCheckoutMutation);
