@@ -166,7 +166,9 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                               )}
                               loading={loading || mutationLoading}
                               onSubmit={(evt, data) => {
+                                evt.preventDefault();
                                 shippingAddress = data;
+
                                 if (!checkout) {
                                   (async () => {
                                     proceedNext(
@@ -181,7 +183,6 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                     }
                                   });
                                 }
-                                evt.preventDefault();
                               }}
                             />
                           )}

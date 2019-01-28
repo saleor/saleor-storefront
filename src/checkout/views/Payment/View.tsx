@@ -1,41 +1,44 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { Mutation, Query } from "react-apollo";
+import { MutationFn } from "react-apollo";
 import NumberFormat from "react-number-format";
-import { RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
+import { generatePath, RouteComponentProps } from "react-router";
 
+import { GatewaysEnum } from "../../../../types/globalTypes";
 import { Button, Form, TextField } from "../../../components";
-import { PROVIDERS } from "../../../core/config";
-import { braintreePayment } from "../../../core/payments/braintree";
-import { AddressSummary } from "../../components";
-import { CheckoutContext } from "../../context";
+import { braintreePayment, ErrorData } from "../../../core/payments/braintree";
+import { AddressSummary, Steps } from "../../components";
 import {
-  baseUrl,
-  billingUrl,
-  reviewUrl,
-  shippingOptionsUrl
-} from "../../routes";
-import { GET_PAYMENT_TOKEN, PAYMENT_METHOD_CREATE } from "./queries";
+  CheckoutContext,
+  CheckoutContextInterface,
+  CheckoutStep
+} from "../../context";
+import { reviewUrl } from "../../routes";
+import {
+  TypedGetPaymentTokenQuery,
+  TypedPaymentMethodCreateMutation
+} from "./queries";
+import { createPayment, createPaymentVariables } from "./types/createPayment";
 
 class View extends React.Component<
-  RouteComponentProps<{ id }>,
-  { errors: { [x: string]: string }; loading: boolean }
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      errors: {
-        cvv: "",
-        expirationMonth: "",
-        expirationYear: "",
-        nonFieldError: "",
-        number: ""
-      },
-      loading: false
-    };
+  RouteComponentProps<{ token?: string }>,
+  {
+    errors: ErrorData;
+    loading: boolean;
   }
+> {
+  gateway: GatewaysEnum = GatewaysEnum.BRAINTREE;
+  state = {
+    errors: {
+      cvv: "",
+      expirationMonth: "",
+      expirationYear: "",
+      nonFieldError: "",
+      number: ""
+    },
+    loading: false
+  };
 
   tokenizeCcCard = async (paymentClientToken, creditCard, updateCheckout) => {
     this.setState({
@@ -49,6 +52,7 @@ class View extends React.Component<
       loading: true
     });
     let cardData;
+
     try {
       cardData = await braintreePayment(paymentClientToken, creditCard);
       updateCheckout({ cardData });
@@ -72,133 +76,109 @@ class View extends React.Component<
     }
   };
 
+  processPayment = async (
+    createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
+    paymentClientToken: string,
+    formData: { [key: string]: string },
+    checkout: CheckoutContextInterface
+  ) => {
+    const {
+      checkout: { billingAddress, totalPrice, id },
+      update
+    } = checkout;
+
+    const token = await this.tokenizeCcCard(
+      paymentClientToken,
+      {
+        billingAddress: {
+          postalCode: billingAddress.postalCode
+        },
+        cvv: formData.ccCsc ? formData.ccCsc.replace(/\s+/g, "") : "",
+        expirationDate: formData.ccExp
+          ? formData.ccExp.replace(/\s+/g, "")
+          : "",
+        number: formData.ccNumber ? formData.ccNumber.replace(/\s+/g, "") : ""
+      },
+      update
+    );
+
+    if (token) {
+      createPaymentMethod({
+        variables: {
+          input: {
+            amount: totalPrice.net.amount,
+            billingAddress: {
+              city: billingAddress.city,
+              country: billingAddress.country.code,
+              countryArea: billingAddress.countryArea,
+              firstName: billingAddress.firstName,
+              lastName: billingAddress.lastName,
+              postalCode: billingAddress.postalCode,
+              streetAddress1: billingAddress.streetAddress1,
+              streetAddress2: billingAddress.streetAddress2
+            },
+            checkoutId: id,
+            gateway: this.gateway,
+            token
+          }
+        }
+      });
+    }
+  };
+
+  proceedNext = (data: createPayment, update) => {
+    const canProceed = !data.checkoutPaymentCreate.errors.length;
+
+    if (canProceed) {
+      const {
+        history,
+        match: {
+          params: { token }
+        }
+      } = this.props;
+      this.setState({ loading: false });
+      history.push(generatePath(reviewUrl, { token }));
+      update({ step: CheckoutStep.Review });
+    }
+  };
+
   render() {
+    const {
+      params: { token },
+      path
+    } = this.props.match;
+
     return (
-      <Query
-        query={GET_PAYMENT_TOKEN}
-        variables={{
-          gateway: PROVIDERS[PROVIDERS.BRAINTREE]
-        }}
-      >
+      <TypedGetPaymentTokenQuery variables={{ gateway: this.gateway }}>
         {({ data }) => {
           if (data) {
             const { paymentClientToken } = data;
             return (
               <div className="checkout-payment">
                 <CheckoutContext.Consumer>
-                  {({
-                    checkout: {
-                      billingAddress,
-                      id,
-                      email,
-                      shippingAddress,
-                      shippingMethod,
-                      token,
-                      totalPrice
-                    },
-                    update
-                  }) => (
-                    <>
-                      <Link to={baseUrl}>
-                        <div className="checkout__step checkout__step--inactive">
-                          <span>1</span>
-                          <h4 className="checkout__header">Shipping Address</h4>
-                        </div>
-                      </Link>
-                      <div className="checkout__content">
-                        <AddressSummary
-                          address={shippingAddress}
-                          email={email}
-                        />
-                      </div>
-                      <Link to={shippingOptionsUrl}>
-                        <div className="checkout__step checkout__step--inactive">
-                          <span>2</span>
-                          <h4 className="checkout__header">Shipping Method</h4>
-                        </div>
-                      </Link>
-                      <div className="checkout__content">
-                        <p>
-                          {`${shippingMethod.name} | +${
-                            shippingMethod.price.localized
-                          }`}
-                        </p>
-                      </div>
-                      <Link to={billingUrl}>
-                        <div className="checkout__step checkout__step--inactive">
-                          <span>3</span>
-                          <h4 className="checkout__header">Billing Address</h4>
-                        </div>
-                      </Link>
-                      <div className="checkout__content">
-                        <AddressSummary address={billingAddress} />
-                      </div>
-                      <div className="checkout__step">
-                        <span>4</span>
-                        <h4 className="checkout__header">Payment Method</h4>
-                      </div>
-                      <div className="checkout__content">
-                        <Mutation mutation={PAYMENT_METHOD_CREATE}>
-                          {(createPaymentMethod, { data }) => {
-                            if (
-                              data &&
-                              data.checkoutPaymentCreate.errors.length === 0
-                            ) {
-                              this.setState({
-                                loading: false
-                              });
-                              this.props.history.push(reviewUrl);
-                            }
+                  {checkout => {
+                    return (
+                      <Steps
+                        path={this.props.match.path}
+                        token={token}
+                        checkout={checkout.checkout}
+                      >
+                        <TypedPaymentMethodCreateMutation
+                          onCompleted={data =>
+                            this.proceedNext(data, checkout.update)
+                          }
+                        >
+                          {createPaymentMethod => {
                             return (
                               <Form
-                                onSubmit={async (event, formData) => {
+                                onSubmit={(event, formData) => {
                                   event.preventDefault();
-                                  const token = await this.tokenizeCcCard(
+                                  this.processPayment(
+                                    createPaymentMethod,
                                     paymentClientToken,
-                                    {
-                                      billingAddress: {
-                                        postalCode: billingAddress.postalCode
-                                      },
-                                      cvv: formData.ccCsc
-                                        ? formData.ccCsc.replace(/\s+/g, "")
-                                        : "",
-                                      expirationDate: formData.ccExp
-                                        ? formData.ccExp.replace(/\s+/g, "")
-                                        : "",
-                                      number: formData.ccNumber
-                                        ? formData.ccNumber.replace(/\s+/g, "")
-                                        : ""
-                                    },
-                                    update
+                                    formData,
+                                    checkout
                                   );
-                                  if (token) {
-                                    createPaymentMethod({
-                                      variables: {
-                                        input: {
-                                          amount: totalPrice.net.amount,
-                                          billingAddress: {
-                                            city: billingAddress.city,
-                                            country:
-                                              billingAddress.country.code,
-                                            countryArea:
-                                              billingAddress.countryArea,
-                                            firstName: billingAddress.firstName,
-                                            lastName: billingAddress.lastName,
-                                            postalCode:
-                                              billingAddress.postalCode,
-                                            streetAddress1:
-                                              billingAddress.streetAddress1,
-                                            streetAddress2:
-                                              billingAddress.streetAddress2
-                                          },
-                                          checkoutId: id,
-                                          gateway:
-                                            PROVIDERS[PROVIDERS.BRAINTREE],
-                                          token
-                                        }
-                                      }
-                                    });
-                                  }
                                 }}
                               >
                                 <span className="input__label">Number</span>
@@ -226,7 +206,7 @@ class View extends React.Component<
                                 <div className="checkout-payment__form-grid">
                                   <div
                                     className={
-                                      this.state.errors.cvc
+                                      this.state.errors.cvv
                                         ? "checkout-payment__field-error"
                                         : ""
                                     }
@@ -288,18 +268,17 @@ class View extends React.Component<
                               </Form>
                             );
                           }}
-                        </Mutation>
-                      </div>
-                    </>
-                  )}
+                        </TypedPaymentMethodCreateMutation>
+                      </Steps>
+                    );
+                  }}
                 </CheckoutContext.Consumer>
               </div>
             );
-          } else {
-            return null;
           }
+          return null;
         }}
-      </Query>
+      </TypedGetPaymentTokenQuery>
     );
   }
 }

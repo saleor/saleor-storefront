@@ -123,7 +123,7 @@ const CheckoutApp: React.SFC<RouteComponentProps<{ match; token }>> = ({
                           {!isReviewPage ? (
                             <Media
                               query={{ minWidth: mediumScreen }}
-                              render={() => <CartSummary />}
+                              render={() => <CartSummary checkout={null} />}
                             />
                           ) : null}
                         </>

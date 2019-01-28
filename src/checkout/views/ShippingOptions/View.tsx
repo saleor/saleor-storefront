@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { RouteComponentProps, generatePath } from "react-router";
+import { generatePath, RouteComponentProps } from "react-router";
 
 import { Button } from "../../../components";
 import { maybe } from "../../../core/utils";

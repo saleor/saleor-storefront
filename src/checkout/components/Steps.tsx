@@ -61,26 +61,25 @@ const getSummary = (
   return summary ? <div className="checkout__content">{summary}</div> : null;
 };
 
-const Steps: React.FC<{ path: string; token: string; checkout?: Checkout }> = ({
-  checkout,
-  path,
-  token,
-  children
-}) => {
+const Steps: React.FC<{
+  path: string;
+  token?: string;
+  checkout?: Checkout;
+}> = ({ checkout, path, token, children }) => {
   const steps = [
     {
       header: "Shipping Address",
-      link: shippingAddressUrl,
+      path: shippingAddressUrl,
       step: CheckoutStep.ShippingAddress
     },
     {
       header: "Shipping Method",
-      link: shippingOptionsUrl,
+      path: shippingOptionsUrl,
       step: CheckoutStep.ShippingOption
     },
     {
       header: "Billing Method",
-      link: billingUrl,
+      path: billingUrl,
       step: CheckoutStep.BillingAddress
     },
     { header: "Payment Method", step: CheckoutStep.Payment }
@@ -90,11 +89,11 @@ const Steps: React.FC<{ path: string; token: string; checkout?: Checkout }> = ({
 
   return (
     <>
-      {steps.map(({ header, step, link }, index) => (
+      {steps.map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>
-              <Link to={generatePath(link, { token })}>
+              <Link to={generatePath(path, { token })}>
                 <div className="checkout__step checkout__step--inactive">
                   <span>{index + 1}</span>
                   <h4 className="checkout__header">{header}</h4>

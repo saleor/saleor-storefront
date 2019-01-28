@@ -25,7 +25,7 @@ import { CheckoutContext } from "./context";
 import CheckoutProvider from "./provider";
 import { reviewUrl, Routes } from "./routes";
 
-const CheckoutApp: React.FC<RouteComponentProps> = ({ history, match }) => {
+const CheckoutApp: React.FC<RouteComponentProps> = ({ history }) => {
   const reviewPage =
     history.location.pathname.indexOf(
       generatePath(reviewUrl, { token: undefined })
@@ -50,13 +50,13 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({ history, match }) => {
               {client => (
                 <CartProvider apolloClient={client}>
                   <CartContext.Consumer>
-                    {({ lines }) => (
+                    {cart => (
                       <CheckoutProvider>
                         <CheckoutContext.Consumer>
                           {({ checkout, loading, checkoutToken }) => {
                             const fetchingExisting = loading && !!checkoutToken;
                             const emptyCartAndCheckout =
-                              !lines.length && !checkout;
+                              !cart.lines.length && !checkout;
 
                             if (fetchingExisting) {
                               return <Loader />;
@@ -78,7 +78,9 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({ history, match }) => {
                                 {!reviewPage && (
                                   <Media
                                     query={{ minWidth: mediumScreen }}
-                                    render={() => <CartSummary />}
+                                    render={() => (
+                                      <CartSummary checkout={checkout} />
+                                    )}
                                   />
                                 )}
                               </>

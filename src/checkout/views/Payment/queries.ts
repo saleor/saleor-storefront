@@ -1,12 +1,20 @@
 import gql from "graphql-tag";
 
-export const GET_PAYMENT_TOKEN = gql`
+import { TypedMutation } from "../../../core/mutations";
+import { TypedQuery } from "../../../core/queries";
+import { createPayment, createPaymentVariables } from "./types/createPayment";
+import {
+  getPaymentToken,
+  getPaymentTokenVariables
+} from "./types/getPaymentToken";
+
+const getPaymentTokenQuery = gql`
   query getPaymentToken($gateway: GatewaysEnum!) {
     paymentClientToken(gateway: $gateway)
   }
 `;
 
-export const PAYMENT_METHOD_CREATE = gql`
+const paymentMethodCreateMutation = gql`
   mutation createPayment($input: PaymentInput!) {
     checkoutPaymentCreate(input: $input) {
       errors {
@@ -16,3 +24,13 @@ export const PAYMENT_METHOD_CREATE = gql`
     }
   }
 `;
+
+export const TypedGetPaymentTokenQuery = TypedQuery<
+  getPaymentToken,
+  getPaymentTokenVariables
+>(getPaymentTokenQuery);
+
+export const TypedPaymentMethodCreateMutation = TypedMutation<
+  createPayment,
+  createPaymentVariables
+>(paymentMethodCreateMutation);
