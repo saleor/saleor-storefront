@@ -3,13 +3,10 @@ import { createContext } from "react";
 import { CheckoutCreateInput } from "../../types/globalTypes";
 import { Omit } from "../core/tsUtils";
 import { Checkout } from "./types/Checkout";
-import {
-  createCheckout_checkoutCreate,
-  createCheckout_checkoutCreate_errors
-} from "./types/createCheckout";
+import { createCheckout_checkoutCreate_errors } from "./types/createCheckout";
 
 export enum CheckoutStep {
-  ShippingAddress = "Shipping Address",
+  ShippingAddress = "shipping Address",
   ShippingOption = "Shipping Option",
   BillingAddress = "Billing Address",
   Payment = "Payment",
@@ -26,14 +23,9 @@ export interface CheckoutContextInterface {
     token: string;
   };
   checkout?: Checkout;
-  checkoutToken?: string | null;
-  errors?: CheckoutErrors;
   loading?: boolean;
   shippingAsBilling?: boolean;
   step?: CheckoutStep;
-  create?(
-    checkoutCreateData?: CheckoutCreateData
-  ): Promise<createCheckout_checkoutCreate | null>;
   update?(checkoutData: CheckoutContextInterface): void;
   clear?(): void;
 }
@@ -41,10 +33,7 @@ export interface CheckoutContextInterface {
 export const defaultContext = {
   cardData: null,
   checkout: null,
-  checkoutToken: null,
   clear: () => null,
-  create: (checkoutCreateData: {}) => null,
-  errors: [],
   loading: false,
   shippingAsBilling: false,
   step: CheckoutStep.ShippingAddress,

@@ -28,13 +28,13 @@ const completeCheckout = (
   const canProceed = !data.checkoutComplete.errors.length;
 
   if (canProceed) {
+    history.push(BASE_URL);
     clear();
+    localStorage.removeItem("cart");
     show(OverlayType.message, null, {
-      status: "error",
+      status: "success",
       title: "Your order was placed"
     });
-    localStorage.removeItem("cart");
-    history.push(BASE_URL);
   } else {
     data.checkoutComplete.errors.map(error => {
       show(OverlayType.message, null, {

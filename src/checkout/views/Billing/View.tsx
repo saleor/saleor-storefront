@@ -110,9 +110,9 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                         []
                       )}
                       loading={loading}
-                      onSubmit={(event, data) => {
+                      onSubmit={(event, formData) => {
                         saveBillingAddress(
-                          computeMutationVariables(data, checkout)
+                          computeMutationVariables(formData, checkout)
                         );
                         event.preventDefault();
                       }}

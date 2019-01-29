@@ -4,7 +4,6 @@ import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import { Button } from "../../../components";
-import { maybe } from "../../../core/utils";
 import { Steps } from "../../components";
 import {
   CheckoutContext,
@@ -77,9 +76,7 @@ class View extends React.Component<
                         }}
                         disabled={
                           loading ||
-                          maybe(
-                            () => !checkout.availableShippingMethods.length
-                          ) ||
+                          !checkout.availableShippingMethods.length ||
                           !selectedShipping
                         }
                       >

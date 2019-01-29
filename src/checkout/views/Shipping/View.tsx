@@ -15,19 +15,29 @@ import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
 
+import {
+  CartContext,
+  CartLineInterface
+} from "../../../components/CartProvider/context";
 import { Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
-  CheckoutErrors,
   CheckoutStep
 } from "../../context";
+import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
-import { Checkout, Checkout_shippingAddress } from "../../types/Checkout";
-import { createCheckout_checkoutCreate } from "../../types/createCheckout";
+import { Checkout } from "../../types/Checkout";
+import {
+  createCheckout,
+  createCheckout_checkoutCreate
+} from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
-import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
+import {
+  updateCheckoutShippingAddress,
+  updateCheckoutShippingAddress_checkoutShippingAddressUpdate
+} from "./types/updateCheckoutShippingAddress";
 
 const proceedToShippingOptions = (
   update: (checkoutData: CheckoutContextInterface) => void,
@@ -40,28 +50,25 @@ const proceedToShippingOptions = (
     | updateCheckoutShippingAddress_checkoutShippingAddressUpdate
 ) => {
   const canProceed = !data.errors.length;
-  const shippingUnavailable = maybe(
-    () => !data.checkout.availableShippingMethods.length,
-    true
-  );
 
   if (canProceed) {
+    const shippingUnavailable = !data.checkout.availableShippingMethods.length;
+
     if (shippingUnavailable) {
       overlay.show(OverlayType.modal, OverlayTheme.modal, {
         content: <ShippingUnavailableModal hide={overlay.hide} />
       });
     } else {
-      update({ checkout: data.checkout, step: CheckoutStep.ShippingOption });
+      update({
+        checkout: data.checkout,
+        step: CheckoutStep.ShippingOption
+      });
       history.push(generatePath(shippingOptionsUrl, { token }));
     }
   }
 };
 
-const extractShippingData = (
-  checkout: Checkout,
-  shop: getShop_shop,
-  shippingAddress: Checkout_shippingAddress
-) => {
+const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
   const hasShippingCountry = maybe(() => !!checkout.shippingAddress.country);
 
   if (hasShippingCountry) {
@@ -79,13 +86,16 @@ const extractShippingData = (
   };
 
   if (!checkout) {
-    return { country, ...shippingAddress };
+    return { country };
   }
 
   return { ...checkout.shippingAddress, country, email: checkout.email };
 };
 
-const computeCheckoutData = (data: FormAddressType) => ({
+const computeCheckoutData = (
+  data: FormAddressType,
+  lines?: CartLineInterface[]
+) => ({
   email: data.email,
   shippingAddress: {
     city: data.city,
@@ -98,21 +108,21 @@ const computeCheckoutData = (data: FormAddressType) => ({
     postalCode: data.postalCode,
     streetAddress1: data.streetAddress1,
     streetAddress2: data.streetAddress2
-  }
+  },
+  ...(lines && {
+    lines: lines.map(({ quantity, variantId }) => ({
+      quantity,
+      variantId
+    }))
+  })
 });
 
 const getErrors = (
-  createErrors: CheckoutErrors,
-  updateErrors: CheckoutErrors
-): FormError[] => {
-  if (createErrors.length) {
-    return createErrors;
-  }
-  if (updateErrors.length) {
-    return updateErrors;
-  }
-  return [];
-};
+  createData: createCheckout,
+  updateData: updateCheckoutShippingAddress
+): FormError[] =>
+  maybe(() => createData.checkoutCreate.errors, []) ||
+  maybe(() => updateData.checkoutShippingAddressUpdate.errors, []);
 
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   history,
@@ -120,81 +130,86 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
     path,
     params: { token }
   }
-}) => {
-  let shippingAddress = null;
+}) => (
+  <div className="checkout-shipping">
+    <CheckoutContext.Consumer>
+      {({ update, checkout }) => (
+        <Steps path={path} token={token}>
+          <OverlayContext.Consumer>
+            {overlay => (
+              <ShopContext.Consumer>
+                {shop => {
+                  const proceedNext = proceedToShippingOptions(
+                    update,
+                    history,
+                    overlay,
+                    token
+                  );
+                  return (
+                    <TypedCreateCheckoutMutation
+                      onCompleted={({ checkoutCreate }) =>
+                        proceedNext(checkoutCreate)
+                      }
+                    >
+                      {(
+                        createCheckout,
+                        { data: createData, loading: createLoading }
+                      ) => (
+                        <TypedUpdateCheckoutShippingAddressMutation
+                          onCompleted={({ checkoutShippingAddressUpdate }) =>
+                            proceedNext(checkoutShippingAddressUpdate)
+                          }
+                        >
+                          {(
+                            updateCheckout,
+                            { data: updateData, loading: updateLoading }
+                          ) => (
+                            <CartContext.Consumer>
+                              {({ lines }) => {
+                                return (
+                                  <ShippingAddressForm
+                                    data={extractShippingData(checkout, shop)}
+                                    buttonText="Continue to Shipping"
+                                    errors={getErrors(createData, updateData)}
+                                    loading={createLoading || updateLoading}
+                                    onSubmit={(evt, formData) => {
+                                      evt.preventDefault();
 
-  return (
-    <div className="checkout-shipping">
-      <CheckoutContext.Consumer>
-        {({ create, update, checkout, errors, loading }) => (
-          <Steps path={path} token={token}>
-            <OverlayContext.Consumer>
-              {overlay => (
-                <ShopContext.Consumer>
-                  {shop => {
-                    const proceedNext = proceedToShippingOptions(
-                      update,
-                      history,
-                      overlay,
-                      token
-                    );
-                    return (
-                      <TypedUpdateCheckoutShippingAddressMutation
-                        onCompleted={({ checkoutShippingAddressUpdate }) =>
-                          proceedNext(checkoutShippingAddressUpdate)
-                        }
-                      >
-                        {(
-                          saveShippingAddress,
-                          { loading: mutationLoading, data }
-                        ) => (
-                          <ShippingAddressForm
-                            data={extractShippingData(
-                              checkout,
-                              shop,
-                              shippingAddress
-                            )}
-                            buttonText="Continue to Shipping"
-                            errors={getErrors(
-                              errors,
-                              maybe(
-                                () => data.checkoutShippingAddressUpdate.errors,
-                                []
-                              )
-                            )}
-                            loading={loading || mutationLoading}
-                            onSubmit={(evt, data) => {
-                              evt.preventDefault();
-                              shippingAddress = data;
-
-                              if (!checkout) {
-                                (async () => {
-                                  proceedNext(
-                                    await create(computeCheckoutData(data))
-                                  );
-                                })();
-                              } else {
-                                saveShippingAddress({
-                                  variables: {
-                                    checkoutId: checkout.id,
-                                    ...computeCheckoutData(data)
-                                  }
-                                });
-                              }
-                            }}
-                          />
-                        )}
-                      </TypedUpdateCheckoutShippingAddressMutation>
-                    );
-                  }}
-                </ShopContext.Consumer>
-              )}
-            </OverlayContext.Consumer>
-          </Steps>
-        )}
-      </CheckoutContext.Consumer>
-    </div>
-  );
-};
+                                      if (!checkout) {
+                                        createCheckout({
+                                          variables: {
+                                            checkoutInput: computeCheckoutData(
+                                              formData,
+                                              lines
+                                            )
+                                          }
+                                        });
+                                      } else {
+                                        updateCheckout({
+                                          variables: {
+                                            checkoutId: checkout.id,
+                                            ...computeCheckoutData(formData)
+                                          }
+                                        });
+                                      }
+                                    }}
+                                  />
+                                );
+                              }}
+                            </CartContext.Consumer>
+                          )}
+                        </TypedUpdateCheckoutShippingAddressMutation>
+                      )}
+                    </TypedCreateCheckoutMutation>
+                  );
+                }}
+              </ShopContext.Consumer>
+            )}
+          </OverlayContext.Consumer>
+        </Steps>
+      )}
+    </CheckoutContext.Consumer>
+  </div>
+);
 
 export default View;

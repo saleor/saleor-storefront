@@ -1,5 +1,11 @@
 import gql from "graphql-tag";
+
+import { TypedMutation } from "../core/mutations";
 import { TypedQuery } from "../core/queries";
+import {
+  createCheckout,
+  createCheckoutVariables
+} from "./types/createCheckout";
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 
 export const checkoutFragment = gql`
@@ -166,3 +172,8 @@ export const TypedGetCheckoutQuery = TypedQuery<
   getCheckout,
   getCheckoutVariables
 >(getCheckoutQuery);
+
+export const TypedCreateCheckoutMutation = TypedMutation<
+  createCheckout,
+  createCheckoutVariables
+>(createCheckoutMutation);

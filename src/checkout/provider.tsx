@@ -1,76 +1,44 @@
-import { ApolloClient } from "apollo-client";
 import * as React from "react";
 
-import { ApolloConsumer } from "react-apollo";
-import {
-  CartContext,
-  CartLineInterface
-} from "../components/CartProvider/context";
 import {
   CheckoutContext,
   CheckoutContextInterface,
-  CheckoutCreateData,
   CheckoutStep
 } from "./context";
-import { createCheckoutMutation, getCheckoutQuery } from "./queries";
-import {
-  createCheckout,
-  createCheckout_checkoutCreate,
-  createCheckoutVariables
-} from "./types/createCheckout";
-import {
-  getCheckout,
-  getCheckout_checkout,
-  getCheckoutVariables
-} from "./types/getCheckout";
+import { TypedGetCheckoutQuery } from "./queries";
 
-// TODO
-// Create on item addition to cart
-interface ProviderProps {
-  lines: CartLineInterface[];
-  client: ApolloClient<any>;
-}
-
-class Provider extends React.Component<
-  ProviderProps,
-  CheckoutContextInterface
-> {
+class Provider extends React.Component<{}, CheckoutContextInterface> {
   storageTokenKey = "checkoutToken";
-  storageCheckoutStepKey = "checkoutStep";
+  storageStepKey = "checkoutStep";
+  providerContext = {};
 
-  constructor(props: ProviderProps) {
+  constructor(props) {
     super(props);
-    const storedCheckoutToken = localStorage.getItem(this.storageTokenKey);
     const storedStep = localStorage.getItem(
-      this.storageCheckoutStepKey
+      this.storageStepKey
     ) as CheckoutStep;
 
     this.state = {
       cardData: null,
       checkout: null,
-      checkoutToken: storedCheckoutToken,
-      clear: this.clear,
-      create: this.create,
-      errors: [],
-      loading: !!storedCheckoutToken,
+      loading: !!this.storedToken,
       shippingAsBilling: false,
-      step: storedStep || CheckoutStep.ShippingAddress,
+      step: storedStep || CheckoutStep.ShippingAddress
+    };
+  }
+
+  get storedToken(): null | string {
+    return localStorage.getItem(this.storageTokenKey);
+  }
+
+  get getContext(): CheckoutContextInterface {
+    return {
+      ...this.state,
+      clear: this.clear,
       update: this.update
     };
   }
 
-  /**
-   * When token is stored in the localstorage, get the checkout from the API.
-   */
-  componentDidMount() {
-    if (this.state.checkoutToken) {
-      this.get();
-    }
-  }
-
-  /**
-   * Clears existing checkout data from the state.
-   */
   clear = () => {
     this.setState({
       cardData: null,
@@ -78,90 +46,46 @@ class Provider extends React.Component<
       shippingAsBilling: false,
       step: CheckoutStep.ShippingAddress
     });
+    localStorage.removeItem(this.storageStepKey);
     localStorage.removeItem(this.storageTokenKey);
-    localStorage.removeItem(this.storageCheckoutStepKey);
-  };
-
-  /**
-   * Get existing checkout.
-   */
-  get = async (): Promise<getCheckout_checkout> => {
-    this.setState({ loading: true });
-    const { checkoutToken } = this.state;
-    const {
-      data: { checkout }
-    } = await this.props.client.query<getCheckout, getCheckoutVariables>({
-      query: getCheckoutQuery,
-      variables: { token: checkoutToken }
-    });
-    localStorage.setItem(this.storageTokenKey, checkout.token);
-    this.setState({ checkout, checkoutToken: checkout.token, loading: false });
-    return checkout;
-  };
-
-  /**
-   * Create new checkout.
-   */
-  create = async (
-    checkoutInput?: CheckoutCreateData
-  ): Promise<createCheckout_checkoutCreate | null> => {
-    this.setState({ loading: true, errors: [] });
-    const { lines } = this.props;
-
-    const {
-      data: { checkoutCreate }
-    } = await this.props.client.mutate<createCheckout, createCheckoutVariables>(
-      {
-        mutation: createCheckoutMutation,
-        variables: {
-          checkoutInput: {
-            lines: lines.map(({ quantity, variantId }) => ({
-              quantity,
-              variantId
-            })),
-            ...checkoutInput
-          }
-        }
-      }
-    );
-    const { checkout, errors } = checkoutCreate;
-
-    if (checkout) {
-      localStorage.setItem(this.storageTokenKey, checkout.token);
-    }
-    this.setState({
-      checkout,
-      errors,
-      loading: false,
-      ...(checkout && { checkoutToken: checkout.token })
-    });
-    return checkoutCreate;
   };
 
   update = (checkoutData: CheckoutContextInterface) => {
     this.setState(checkoutData);
     if ("step" in checkoutData) {
-      localStorage.setItem(this.storageCheckoutStepKey, checkoutData.step);
+      localStorage.setItem(this.storageStepKey, checkoutData.step);
+    }
+    if ("checkout" in checkoutData) {
+      localStorage.setItem(this.storageTokenKey, checkoutData.checkout.token);
     }
   };
 
   render() {
-    return (
-      <CheckoutContext.Provider value={this.state}>
+    const { checkout } = this.state;
+    const provider = (
+      <CheckoutContext.Provider value={{ ...this.getContext }}>
         {this.props.children}
       </CheckoutContext.Provider>
     );
+
+    if (checkout) {
+      return provider;
+    }
+
+    if (this.storedToken) {
+      return (
+        <TypedGetCheckoutQuery
+          variables={{ token: this.storedToken }}
+          onCompleted={({ checkout }) => {
+            this.setState({ checkout, loading: false });
+          }}
+        >
+          {() => provider}
+        </TypedGetCheckoutQuery>
+      );
+    }
+    return provider;
   }
 }
 
-const WrappedProvider: React.FC = props => (
-  <CartContext.Consumer>
-    {({ lines }) => (
-      <ApolloConsumer>
-        {client => <Provider lines={lines} client={client} {...props} />}
-      </ApolloConsumer>
-    )}
-  </CartContext.Consumer>
-);
-
-export default WrappedProvider;
+export default Provider;

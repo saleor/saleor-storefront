@@ -9,7 +9,7 @@ import Notification from "./Notification";
 import Password from "./Password";
 import Search from "./Search";
 
-const Manager: React.SFC = () => (
+const Manager: React.FC = () => (
   <OverlayContext.Consumer>
     {overlay => {
       switch (overlay.type) {

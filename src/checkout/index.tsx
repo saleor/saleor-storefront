@@ -53,12 +53,11 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({ history }) => {
                     {cart => (
                       <CheckoutProvider>
                         <CheckoutContext.Consumer>
-                          {({ checkout, loading, checkoutToken }) => {
-                            const fetchingExisting = loading && !!checkoutToken;
+                          {({ checkout, loading }) => {
                             const emptyCartAndCheckout =
                               !cart.lines.length && !checkout;
 
-                            if (fetchingExisting) {
+                            if (loading) {
                               return <Loader />;
                             }
 

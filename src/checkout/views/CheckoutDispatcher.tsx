@@ -1,18 +1,17 @@
 import * as React from "react";
 import { generatePath, Redirect, RouteComponentProps } from "react-router";
 
-import { BASE_URL } from "../../../core/config";
-import { CheckoutContext, CheckoutStep } from "../../context";
+import { BASE_URL } from "../../core/config";
+import { CheckoutContext, CheckoutStep } from "../context";
 import {
   billingUrl,
   paymentUrl,
-  reviewUrl,
   shippingAddressUrl,
   shippingOptionsUrl
-} from "../../routes";
+} from "../routes";
 
 const getRedirectUrl = (token: string, step: CheckoutStep): string => {
-  const generatedPath = path => generatePath(path, { token });
+  const generatedPath = (path: string) => generatePath(path, { token });
 
   switch (step) {
     case CheckoutStep.ShippingAddress:
@@ -26,9 +25,6 @@ const getRedirectUrl = (token: string, step: CheckoutStep): string => {
 
     case CheckoutStep.Payment:
       return generatedPath(paymentUrl);
-
-    case CheckoutStep.Review:
-      return generatedPath(reviewUrl);
 
     default:
       return BASE_URL;
