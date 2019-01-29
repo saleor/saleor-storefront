@@ -20,16 +20,23 @@ import {
 import CartProvider from "../components/CartProvider";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import logoImg from "../images/logo.svg";
 import { CheckoutContext } from "./context";
 import CheckoutProvider from "./provider";
-import { reviewUrl, Routes } from "./routes";
+import { baseUrl, reviewUrl, Routes, shippingAddressUrl } from "./routes";
 
-const CheckoutApp: React.FC<RouteComponentProps> = ({ history }) => {
+import logoImg from "../images/logo.svg";
+
+const CheckoutApp: React.FC<RouteComponentProps> = ({
+  history: {
+    location: { pathname }
+  }
+}) => {
   const reviewPage =
-    history.location.pathname.indexOf(
-      generatePath(reviewUrl, { token: undefined })
-    ) !== -1;
+    pathname.indexOf(generatePath(reviewUrl, { token: undefined })) !== -1;
+  const checkoutDispatchPage = pathname === baseUrl;
+  const shippingAddressPage =
+    pathname.indexOf(generatePath(shippingAddressUrl, { token: undefined })) !==
+    -1;
 
   return (
     <div className="checkout">
@@ -53,15 +60,17 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({ history }) => {
                     {cart => (
                       <CheckoutProvider>
                         <CheckoutContext.Consumer>
-                          {({ checkout, loading }) => {
-                            const emptyCartAndCheckout =
-                              !cart.lines.length && !checkout;
-
+                          {({ checkout, loading, step }) => {
                             if (loading) {
                               return <Loader />;
                             }
 
-                            if (emptyCartAndCheckout) {
+                            const emptyCart = !cart.lines.length;
+                            const routesWithoutCheckout =
+                              !(shippingAddressPage || checkoutDispatchPage) &&
+                              !checkout;
+
+                            if (emptyCart || routesWithoutCheckout) {
                               return <Redirect to={BASE_URL} />;
                             }
 

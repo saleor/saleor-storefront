@@ -6,7 +6,7 @@ import { Checkout } from "./types/Checkout";
 import { createCheckout_checkoutCreate_errors } from "./types/createCheckout";
 
 export enum CheckoutStep {
-  ShippingAddress = "shipping Address",
+  ShippingAddress = "Shipping Address",
   ShippingOption = "Shipping Option",
   BillingAddress = "Billing Address",
   Payment = "Payment",

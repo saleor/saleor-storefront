@@ -4,7 +4,7 @@ import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import { Button } from "../../../components";
-import { Steps } from "../../components";
+import { StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -51,42 +51,47 @@ class View extends React.Component<
     return (
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
-          {({ checkout, update }) => (
-            <Steps path={path} token={token} checkout={checkout}>
-              <TypedUpdateCheckoutShippingOptionsMutation
-                onCompleted={data => this.proceedToBilling(data, update, token)}
-              >
-                {(updateCheckoutShippingOptions, { loading }) => {
-                  return (
-                    <>
-                      <ShippingOptionsList
-                        checkout={checkout}
-                        selected={selectedShipping}
-                        onShippingSelect={this.handleShippngChange}
-                      />
-                      <Button
-                        onClick={event => {
-                          updateCheckoutShippingOptions({
-                            variables: {
-                              checkoutId: checkout.id,
-                              shippingMethodId: selectedShipping
-                            }
-                          });
-                          event.preventDefault();
-                        }}
-                        disabled={
-                          loading ||
-                          !checkout.availableShippingMethods.length ||
-                          !selectedShipping
-                        }
-                      >
-                        {loading ? "Loading" : "Continue to billing"}
-                      </Button>
-                    </>
-                  );
-                }}
-              </TypedUpdateCheckoutShippingOptionsMutation>
-            </Steps>
+          {({ checkout, update, step }) => (
+            <>
+              <StepCheck step={step} path={path} token={token} />
+              <Steps path={path} token={token} checkout={checkout}>
+                <TypedUpdateCheckoutShippingOptionsMutation
+                  onCompleted={data =>
+                    this.proceedToBilling(data, update, token)
+                  }
+                >
+                  {(updateCheckoutShippingOptions, { loading }) => {
+                    return (
+                      <>
+                        <ShippingOptionsList
+                          checkout={checkout}
+                          selected={selectedShipping}
+                          onShippingSelect={this.handleShippngChange}
+                        />
+                        <Button
+                          onClick={event => {
+                            updateCheckoutShippingOptions({
+                              variables: {
+                                checkoutId: checkout.id,
+                                shippingMethodId: selectedShipping
+                              }
+                            });
+                            event.preventDefault();
+                          }}
+                          disabled={
+                            loading ||
+                            !checkout.availableShippingMethods.length ||
+                            !selectedShipping
+                          }
+                        >
+                          {loading ? "Loading" : "Continue to billing"}
+                        </Button>
+                      </>
+                    );
+                  }}
+                </TypedUpdateCheckoutShippingOptionsMutation>
+              </Steps>
+            </>
           )}
         </CheckoutContext.Consumer>
       </div>

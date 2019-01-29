@@ -12,7 +12,10 @@ import {
 } from "../routes";
 import { Checkout } from "../types/Checkout";
 
-const getCurrentStep = (path: string, token: string): CheckoutStep => {
+/**
+ * Gets checkout step based on the provided path.
+ */
+export const getCurrentStep = (path: string, token?: string): CheckoutStep => {
   const generatedPath = path => generatePath(path, { token });
 
   switch (generatedPath(path)) {
@@ -44,6 +47,7 @@ const getSummary = (
 
   switch (step) {
     case CheckoutStep.ShippingAddress:
+    case CheckoutStep.BillingAddress:
       summary = (
         <AddressSummary
           email={checkout.email}

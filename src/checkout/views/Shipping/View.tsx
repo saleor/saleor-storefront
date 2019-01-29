@@ -188,6 +188,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                         updateCheckout({
                                           variables: {
                                             checkoutId: checkout.id,
+                                            email: checkout.email,
                                             ...computeCheckoutData(formData)
                                           }
                                         });

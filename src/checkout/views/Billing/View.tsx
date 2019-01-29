@@ -6,7 +6,7 @@ import { FormAddressType, ShippingAddressForm } from "../../../components";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
-import { Steps } from "../../components";
+import { StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -85,43 +85,46 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
 }) => (
   <div>
     <CheckoutContext.Consumer>
-      {({ checkout, shippingAsBilling, update }) => {
+      {({ checkout, shippingAsBilling, update, step }) => {
         const address =
           !checkout.billingAddress && shippingAsBilling
             ? checkout.shippingAddress
             : checkout.billingAddress;
 
         return (
-          <Steps path={path} token={token} checkout={checkout}>
-            <TypedUpdateCheckoutBillingAddressMutation
-              onCompleted={data =>
-                proceedToPayment(data, update, history, token)
-              }
-            >
-              {(saveBillingAddress, { data, loading }) => (
-                <ShopContext.Consumer>
-                  {shop => (
-                    <ShippingAddressForm
-                      buttonText="Continue to Payment"
-                      billing
-                      data={extractBillingData(address, shop)}
-                      errors={maybe(
-                        () => data.checkoutBillingAddressUpdate.errors,
-                        []
-                      )}
-                      loading={loading}
-                      onSubmit={(event, formData) => {
-                        saveBillingAddress(
-                          computeMutationVariables(formData, checkout)
-                        );
-                        event.preventDefault();
-                      }}
-                    />
-                  )}
-                </ShopContext.Consumer>
-              )}
-            </TypedUpdateCheckoutBillingAddressMutation>
-          </Steps>
+          <>
+            <StepCheck step={step} path={path} token={token} />
+            <Steps path={path} token={token} checkout={checkout}>
+              <TypedUpdateCheckoutBillingAddressMutation
+                onCompleted={data =>
+                  proceedToPayment(data, update, history, token)
+                }
+              >
+                {(saveBillingAddress, { data, loading }) => (
+                  <ShopContext.Consumer>
+                    {shop => (
+                      <ShippingAddressForm
+                        buttonText="Continue to Payment"
+                        billing
+                        data={extractBillingData(address, shop)}
+                        errors={maybe(
+                          () => data.checkoutBillingAddressUpdate.errors,
+                          []
+                        )}
+                        loading={loading}
+                        onSubmit={(event, formData) => {
+                          saveBillingAddress(
+                            computeMutationVariables(formData, checkout)
+                          );
+                          event.preventDefault();
+                        }}
+                      />
+                    )}
+                  </ShopContext.Consumer>
+                )}
+              </TypedUpdateCheckoutBillingAddressMutation>
+            </Steps>
+          </>
         );
       }}
     </CheckoutContext.Consumer>
