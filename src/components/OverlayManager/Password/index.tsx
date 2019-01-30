@@ -3,10 +3,14 @@ import "./scss/index.scss";
 import * as React from "react";
 import ReactSVG from "react-svg";
 
-import { Overlay, OverlayContextInterface, PasswordResetForm } from "../..";
-import Offline from "../../Offline";
-import OfflinePlaceholder from "../../OfflinePlaceholder";
-import Online from "../../Online";
+import {
+  Offline,
+  OfflinePlaceholder,
+  Online,
+  Overlay,
+  OverlayContextInterface,
+  PasswordResetForm
+} from "../..";
 
 import closeImg from "../../../images/x.svg";
 

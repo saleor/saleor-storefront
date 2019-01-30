@@ -6,7 +6,7 @@ interface PaymentData {
   token: string;
 }
 
-interface ErrorData {
+export interface ErrorData {
   cvv?: string;
   expirationMonth?: string;
   expirationYear?: string;

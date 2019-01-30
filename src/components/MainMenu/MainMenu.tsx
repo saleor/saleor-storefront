@@ -6,12 +6,17 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { MenuDropdown, OverlayContext, OverlayTheme, OverlayType } from "..";
+import {
+  MenuDropdown,
+  Offline,
+  Online,
+  OverlayContext,
+  OverlayTheme,
+  OverlayType
+} from "..";
 import { maybe } from "../../core/utils";
 import { baseUrl } from "../App/routes";
 import { CartContext } from "../CartProvider/context";
-import Offline from "../Offline";
-import Online from "../Online";
 import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";

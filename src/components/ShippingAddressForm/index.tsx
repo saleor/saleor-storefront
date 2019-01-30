@@ -8,7 +8,7 @@ import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
 import { ShopContext } from "../ShopProvider/context";
 
-export interface AddressType extends AddressInterface {
+export interface AddressType extends Partial<AddressInterface> {
   email?: string;
 }
 
@@ -117,7 +117,9 @@ const ShippingAddressForm: React.SFC<{
               </label>
             </>
           ) : null}
-          <Button disabled={loading}>{loading ? "Loading" : buttonText}</Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Loading" : buttonText}
+          </Button>
         </Form>
       )}
     </ShopContext.Consumer>

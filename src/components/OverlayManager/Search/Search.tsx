@@ -9,6 +9,7 @@ import ReactSVG from "react-svg";
 import {
   Button,
   Loader,
+  OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
   OverlayType
@@ -18,7 +19,6 @@ import { searchUrl } from "../../App/routes";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
-import { OfflinePlaceholder } from "../../OfflinePlaceholder";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
@@ -134,7 +134,10 @@ class Search extends React.Component<SearchProps, SearchState> {
                                 {loading ? (
                                   <Loader />
                                 ) : (
-                                  <Button btnRef={this.submitBtnRef} type="submit">
+                                  <Button
+                                    btnRef={this.submitBtnRef}
+                                    type="submit"
+                                  >
                                     Show all results
                                   </Button>
                                 )}

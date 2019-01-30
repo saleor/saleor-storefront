@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import NetworkStatus from "../NetworkStatus";
+import NetworkStatus from "./";
 
 const Offline: React.SFC = ({ children }) => (
   <NetworkStatus>{online => (online ? null : children)}</NetworkStatus>

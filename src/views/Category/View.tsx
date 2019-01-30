@@ -1,10 +1,8 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { MetaWrapper } from "../../components";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { NotFound } from "../../components/NotFound";
-import { OfflinePlaceholder } from "../../components/OfflinePlaceholder";
 import { AttributeList, Filters } from "../../components/ProductFilters";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {

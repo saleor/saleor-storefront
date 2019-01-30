@@ -1,0 +1,10 @@
+@import "../../../../components/App/scss/variables.scss";
+
+.address-summary {
+  color: $gray-dark;
+  line-height: 1.5;
+
+  strong {
+    font-weight: $bold-font-weight;
+  }
+}

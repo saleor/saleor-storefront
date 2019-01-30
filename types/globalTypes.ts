@@ -41,11 +41,12 @@ export interface CheckoutCreateInput {
   lines?: (CheckoutLineInput | null)[] | null;
   email?: string | null;
   shippingAddress?: AddressInput | null;
+  billingAddress?: AddressInput | null;
 }
 
 export interface CheckoutLineInput {
-  quantity?: number | null;
-  variantId?: string | null;
+  quantity: number;
+  variantId: string;
 }
 
 export interface PaymentInput {
