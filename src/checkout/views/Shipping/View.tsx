@@ -59,17 +59,14 @@ const proceedToShippingOptions = (
         content: <ShippingUnavailableModal hide={overlay.hide} />
       });
     } else {
-      update({
-        checkout: data.checkout,
-        step: CheckoutStep.ShippingOption
-      });
+      update({ checkout: data.checkout });
       history.push(generatePath(shippingOptionsUrl, { token }));
     }
   }
 };
 
 const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
-  const hasShippingCountry = maybe(() => !!checkout.shippingAddress.country);
+  const hasShippingCountry = !!maybe(() => checkout.shippingAddress.country);
 
   if (hasShippingCountry) {
     return { ...checkout.shippingAddress, email: checkout.email };
@@ -127,14 +124,13 @@ const getErrors = (
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    path,
     params: { token }
   }
 }) => (
   <div className="checkout-shipping">
     <CheckoutContext.Consumer>
       {({ update, checkout }) => (
-        <Steps path={path} token={token}>
+        <Steps step={CheckoutStep.ShippingAddress} token={token}>
           <OverlayContext.Consumer>
             {overlay => (
               <ShopContext.Consumer>

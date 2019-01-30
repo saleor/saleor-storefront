@@ -3,41 +3,8 @@ import { generatePath, Link } from "react-router-dom";
 
 import { AddressSummary, ShippingOptionSummary } from ".";
 import { CheckoutStep } from "../context";
-import {
-  billingUrl,
-  paymentUrl,
-  reviewUrl,
-  shippingAddressUrl,
-  shippingOptionsUrl
-} from "../routes";
+import { billingUrl, shippingAddressUrl, shippingOptionsUrl } from "../routes";
 import { Checkout } from "../types/Checkout";
-
-/**
- * Gets checkout step based on the provided path.
- */
-export const getCurrentStep = (path: string, token?: string): CheckoutStep => {
-  const generatedPath = path => generatePath(path, { token });
-
-  switch (generatedPath(path)) {
-    case generatedPath(shippingAddressUrl):
-      return CheckoutStep.ShippingAddress;
-
-    case generatedPath(shippingOptionsUrl):
-      return CheckoutStep.ShippingOption;
-
-    case generatedPath(billingUrl):
-      return CheckoutStep.BillingAddress;
-
-    case generatedPath(paymentUrl):
-      return CheckoutStep.Payment;
-
-    case generatedPath(reviewUrl):
-      return CheckoutStep.Review;
-
-    default:
-      return CheckoutStep.ShippingAddress;
-  }
-};
 
 const getSummary = (
   step: CheckoutStep,
@@ -66,10 +33,10 @@ const getSummary = (
 };
 
 const Steps: React.FC<{
-  path: string;
+  step: CheckoutStep;
   token?: string;
   checkout?: Checkout;
-}> = ({ checkout, path, token, children }) => {
+}> = ({ checkout, step: currentStep, token, children }) => {
   const steps = [
     {
       header: "Shipping Address",
@@ -88,7 +55,6 @@ const Steps: React.FC<{
     },
     { header: "Payment Method", step: CheckoutStep.Payment }
   ];
-  const currentStep = getCurrentStep(path, token);
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
 
   return (

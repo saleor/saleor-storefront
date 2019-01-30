@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import { History } from "history";
 import * as React from "react";
 
-import { Redirect, RouteComponentProps } from "react-router";
+import { generatePath, Redirect, RouteComponentProps } from "react-router";
 
 import {
   Button,
@@ -14,7 +14,7 @@ import {
 import { BASE_URL } from "../../../core/config";
 import { AddressSummary, StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
-import { baseUrl } from "../../routes";
+import { paymentUrl } from "../../routes";
 import CartTable from "./CartTable";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import { completeCheckout } from "./types/completeCheckout";
@@ -54,12 +54,17 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   <CheckoutContext.Consumer>
     {({ cardData, checkout, clear, step }) => {
       if (!cardData) {
-        return <Redirect to={baseUrl} />;
+        return <Redirect to={generatePath(paymentUrl, { token })} />;
       }
 
       return (
         <>
-          <StepCheck step={step} path={path} token={token} />
+          <StepCheck
+            checkout={checkout}
+            step={step}
+            path={path}
+            token={token}
+          />
           <div className="checkout-review">
             <div className="checkout__step checkout__step--inactive">
               <span>5</span>

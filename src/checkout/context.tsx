@@ -6,11 +6,11 @@ import { Checkout } from "./types/Checkout";
 import { createCheckout_checkoutCreate_errors } from "./types/createCheckout";
 
 export enum CheckoutStep {
-  ShippingAddress = "Shipping Address",
-  ShippingOption = "Shipping Option",
-  BillingAddress = "Billing Address",
-  Payment = "Payment",
-  Review = "Review"
+  ShippingAddress = "shippingAddress",
+  ShippingOption = "shippingOption",
+  BillingAddress = "billingAddress",
+  Payment = "payment",
+  Review = "review"
 }
 
 export type CheckoutCreateData = Omit<CheckoutCreateInput, "lines">;

@@ -9,7 +9,11 @@ import { GatewaysEnum } from "../../../../types/globalTypes";
 import { Button, Form, TextField } from "../../../components";
 import { braintreePayment, ErrorData } from "../../../core/payments/braintree";
 import { StepCheck, Steps } from "../../components";
-import { CheckoutContext, CheckoutContextInterface } from "../../context";
+import {
+  CheckoutContext,
+  CheckoutContextInterface,
+  CheckoutStep
+} from "../../context";
 import { reviewUrl } from "../../routes";
 import {
   TypedGetPaymentTokenQuery,
@@ -147,7 +151,12 @@ class View extends React.Component<
       <CheckoutContext.Consumer>
         {checkout => (
           <>
-            <StepCheck step={checkout.step} path={path} token={token} />
+            <StepCheck
+              checkout={checkout.checkout}
+              step={checkout.step}
+              path={path}
+              token={token}
+            />
             <TypedGetPaymentTokenQuery variables={{ gateway: this.gateway }}>
               {({ data }) => {
                 if (data) {
@@ -155,12 +164,12 @@ class View extends React.Component<
                   return (
                     <div className="checkout-payment">
                       <Steps
-                        path={this.props.match.path}
+                        step={CheckoutStep.Payment}
                         token={token}
                         checkout={checkout.checkout}
                       >
                         <TypedPaymentMethodCreateMutation
-                          onCompleted={data => this.proceedNext(data)}
+                          onCompleted={this.proceedNext}
                         >
                           {createPaymentMethod => (
                             <Form

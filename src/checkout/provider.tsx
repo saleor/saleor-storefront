@@ -7,36 +7,47 @@ import {
 } from "./context";
 import { TypedGetCheckoutQuery } from "./queries";
 
+enum LocalStorageKeys {
+  Token = "checkoutToken"
+}
+
 class Provider extends React.Component<{}, CheckoutContextInterface> {
-  storageTokenKey = "checkoutToken";
-  storageStepKey = "checkoutStep";
   providerContext = {};
 
   constructor(props) {
     super(props);
-    const storedStep = localStorage.getItem(
-      this.storageStepKey
-    ) as CheckoutStep;
 
     this.state = {
       cardData: null,
       checkout: null,
-      loading: !!this.storedToken,
-      shippingAsBilling: false,
-      step: storedStep || CheckoutStep.ShippingAddress
+      loading: !!this.getStoredToken(),
+      shippingAsBilling: false
     };
   }
 
-  get storedToken(): null | string {
-    return localStorage.getItem(this.storageTokenKey);
-  }
+  getStoredToken = (): null | string =>
+    localStorage.getItem(LocalStorageKeys.Token);
 
-  get getContext(): CheckoutContextInterface {
-    return {
-      ...this.state,
-      clear: this.clear,
-      update: this.update
-    };
+  getContext = (): CheckoutContextInterface => ({
+    ...this.state,
+    clear: this.clear,
+    step: this.getCurrentStep(),
+    update: this.update
+  });
+
+  getCurrentStep() {
+    const { checkout } = this.state;
+
+    if (!checkout) {
+      return CheckoutStep.ShippingAddress;
+    } else if (checkout.billingAddress) {
+      return CheckoutStep.Payment;
+    } else if (checkout.shippingMethod) {
+      return CheckoutStep.BillingAddress;
+    } else if (checkout.availableShippingMethods.length) {
+      return CheckoutStep.ShippingOption;
+    }
+    return CheckoutStep.ShippingAddress;
   }
 
   clear = () => {
@@ -46,24 +57,21 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
       shippingAsBilling: false,
       step: CheckoutStep.ShippingAddress
     });
-    localStorage.removeItem(this.storageStepKey);
-    localStorage.removeItem(this.storageTokenKey);
+    localStorage.removeItem(LocalStorageKeys.Token);
   };
 
   update = (checkoutData: CheckoutContextInterface) => {
     this.setState(checkoutData);
-    if ("step" in checkoutData) {
-      localStorage.setItem(this.storageStepKey, checkoutData.step);
-    }
     if ("checkout" in checkoutData) {
-      localStorage.setItem(this.storageTokenKey, checkoutData.checkout.token);
+      localStorage.setItem(LocalStorageKeys.Token, checkoutData.checkout.token);
     }
   };
 
   render() {
+    const token = this.getStoredToken();
     const { checkout } = this.state;
     const provider = (
-      <CheckoutContext.Provider value={{ ...this.getContext }}>
+      <CheckoutContext.Provider value={this.getContext()}>
         {this.props.children}
       </CheckoutContext.Provider>
     );
@@ -72,13 +80,14 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
       return provider;
     }
 
-    if (this.storedToken) {
+    if (token) {
       return (
         <TypedGetCheckoutQuery
-          variables={{ token: this.storedToken }}
-          onCompleted={({ checkout }) => {
-            this.setState({ checkout, loading: false });
-          }}
+          displayLoader
+          variables={{ token }}
+          onCompleted={({ checkout }) =>
+            this.setState({ checkout, loading: false })
+          }
         >
           {() => provider}
         </TypedGetCheckoutQuery>

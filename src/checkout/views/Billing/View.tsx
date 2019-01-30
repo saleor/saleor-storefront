@@ -26,10 +26,7 @@ const proceedToPayment = (
   const canProceed = !data.checkoutBillingAddressUpdate.errors.length;
 
   if (canProceed) {
-    update({
-      checkout: data.checkoutBillingAddressUpdate.checkout,
-      step: CheckoutStep.Payment
-    });
+    update({ checkout: data.checkoutBillingAddressUpdate.checkout });
     history.push(generatePath(paymentUrl, { token }));
   }
 };
@@ -93,8 +90,17 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
 
         return (
           <>
-            <StepCheck step={step} path={path} token={token} />
-            <Steps path={path} token={token} checkout={checkout}>
+            <StepCheck
+              step={step}
+              checkout={checkout}
+              path={path}
+              token={token}
+            />
+            <Steps
+              step={CheckoutStep.BillingAddress}
+              token={token}
+              checkout={checkout}
+            >
               <TypedUpdateCheckoutBillingAddressMutation
                 onCompleted={data =>
                   proceedToPayment(data, update, history, token)

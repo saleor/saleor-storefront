@@ -29,10 +29,7 @@ class View extends React.Component<
     const canProceed = !data.checkoutShippingMethodUpdate.errors.length;
 
     if (canProceed) {
-      update({
-        checkout: data.checkoutShippingMethodUpdate.checkout,
-        step: CheckoutStep.BillingAddress
-      });
+      update({ checkout: data.checkoutShippingMethodUpdate.checkout });
       this.props.history.push(generatePath(billingUrl, { token }));
     }
   }
@@ -53,8 +50,17 @@ class View extends React.Component<
         <CheckoutContext.Consumer>
           {({ checkout, update, step }) => (
             <>
-              <StepCheck step={step} path={path} token={token} />
-              <Steps path={path} token={token} checkout={checkout}>
+              <StepCheck
+                checkout={checkout}
+                step={step}
+                path={path}
+                token={token}
+              />
+              <Steps
+                step={CheckoutStep.ShippingOption}
+                token={token}
+                checkout={checkout}
+              >
                 <TypedUpdateCheckoutShippingOptionsMutation
                   onCompleted={data =>
                     this.proceedToBilling(data, update, token)
