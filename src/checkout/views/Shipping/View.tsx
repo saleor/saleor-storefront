@@ -170,7 +170,9 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                     loading={createLoading || updateLoading}
                                     onSubmit={(evt, formData) => {
                                       evt.preventDefault();
-
+                                      update({
+                                        shippingAsBilling: formData.asBilling
+                                      });
                                       if (!checkout) {
                                         createCheckout({
                                           variables: {

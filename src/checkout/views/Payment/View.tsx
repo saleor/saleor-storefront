@@ -26,6 +26,7 @@ class View extends React.Component<
   {
     errors: ErrorData;
     loading: boolean;
+    validateStep: boolean;
   }
 > {
   gateway: GatewaysEnum = GatewaysEnum.BRAINTREE;
@@ -37,7 +38,8 @@ class View extends React.Component<
       nonFieldError: "",
       number: ""
     },
-    loading: false
+    loading: false,
+    validateStep: true
   };
 
   tokenizeCcCard = async (paymentClientToken, creditCard, updateCheckout) => {
@@ -141,22 +143,27 @@ class View extends React.Component<
     }
   };
 
+  componentDidMount() {
+    this.setState({ validateStep: false });
+  }
+
   render() {
     const {
       params: { token },
       path
     } = this.props.match;
-
     return (
       <CheckoutContext.Consumer>
         {checkout => (
           <>
-            <StepCheck
-              checkout={checkout.checkout}
-              step={checkout.step}
-              path={path}
-              token={token}
-            />
+            {this.state.validateStep && (
+              <StepCheck
+                checkout={checkout.checkout}
+                step={checkout.step}
+                path={path}
+                token={token}
+              />
+            )}
             <TypedGetPaymentTokenQuery variables={{ gateway: this.gateway }}>
               {({ data }) => {
                 if (data) {

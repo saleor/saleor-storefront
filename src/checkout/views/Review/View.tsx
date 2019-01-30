@@ -56,7 +56,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
       if (!cardData) {
         return <Redirect to={generatePath(paymentUrl, { token })} />;
       }
-
       return (
         <>
           <StepCheck
