@@ -36,10 +36,12 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
   });
 
   getCurrentStep() {
-    const { checkout } = this.state;
+    const { checkout, cardData } = this.state;
 
     if (!checkout) {
       return CheckoutStep.ShippingAddress;
+    } else if (cardData) {
+      return CheckoutStep.Review;
     } else if (checkout.billingAddress) {
       return CheckoutStep.Payment;
     } else if (checkout.shippingMethod) {
@@ -61,7 +63,7 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
   };
 
   update = (checkoutData: CheckoutContextInterface) => {
-    this.setState(checkoutData);
+    this.setState({ ...checkoutData, step: this.getCurrentStep() });
     if ("checkout" in checkoutData) {
       localStorage.setItem(LocalStorageKeys.Token, checkoutData.checkout.token);
     }
