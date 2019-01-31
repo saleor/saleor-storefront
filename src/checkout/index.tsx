@@ -54,39 +54,40 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                 <CartProvider apolloClient={client}>
                   <CartContext.Consumer>
                     {cart => (
-                      <CheckoutProvider>
-                        <CheckoutContext.Consumer>
-                          {({ checkout, loading }) => {
-                            if (!cart.lines.length) {
-                              return <Redirect to={BASE_URL} />;
-                            }
+                      <CheckoutContext.Consumer>
+                        {({ checkout, loading }) => {
+                          if (!cart.lines.length) {
+                            return <Redirect to={BASE_URL} />;
+                          }
 
-                            if (loading) {
-                              return <Loader />;
-                            }
+                          if (loading) {
+                            return <Loader />;
+                          }
 
-                            return (
-                              <>
-                                <div
-                                  className={classNames({
-                                    checkout__grid__content: !reviewPage
-                                  })}
-                                >
-                                  <Routes />
-                                </div>
-                                {!reviewPage && (
-                                  <Media
-                                    query={{ minWidth: mediumScreen }}
-                                    render={() => (
-                                      <CartSummary checkout={checkout} />
-                                    )}
-                                  />
-                                )}
-                              </>
-                            );
-                          }}
-                        </CheckoutContext.Consumer>
-                      </CheckoutProvider>
+                          return (
+                            <>
+                              <div
+                                className={classNames({
+                                  checkout__grid__content: !reviewPage
+                                })}
+                              >
+                                <Routes />
+                              </div>
+                              {!reviewPage && (
+                                <Media
+                                  query={{ minWidth: mediumScreen }}
+                                  render={() => (
+                                    <CartSummary
+                                      checkout={checkout}
+                                      cart={cart}
+                                    />
+                                  )}
+                                />
+                              )}
+                            </>
+                          );
+                        }}
+                      </CheckoutContext.Consumer>
                     )}
                   </CartContext.Consumer>
                 </CartProvider>

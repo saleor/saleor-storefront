@@ -12,6 +12,7 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 import CheckoutApp from "./checkout";
+import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { App, OverlayProvider, UserProvider } from "./components";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
@@ -85,10 +86,12 @@ const startApp = async () => {
                   }
                   refreshUser
                 >
-                  <Switch>
-                    <Route path={checkoutBaseUrl} component={CheckoutApp} />
-                    <Route component={App} />
-                  </Switch>
+                  <CheckoutProvider>
+                    <Switch>
+                      <Route path={checkoutBaseUrl} component={CheckoutApp} />
+                      <Route component={App} />
+                    </Switch>
+                  </CheckoutProvider>
                 </UserProviderWithTokenHandler>
               )}
             </OverlayContext.Consumer>

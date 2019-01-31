@@ -24,6 +24,9 @@ export default class CartProvider extends React.Component<
   { children: any; apolloClient: ApolloClient<any> },
   CartInterface
 > {
+  static getQuantity = lines =>
+    lines.reduce((sum, line) => sum + line.quantity, 0);
+
   constructor(props) {
     super(props);
 
@@ -171,8 +174,7 @@ export default class CartProvider extends React.Component<
     }
   };
 
-  getQuantity = () =>
-    this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
+  getQuantity = () => CartProvider.getQuantity(this.state.lines);
 
   getTotal = (): { amount: number; currency: string } => {
     const { lines } = this.state;
