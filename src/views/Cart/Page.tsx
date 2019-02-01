@@ -8,7 +8,10 @@ import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { Button, EmptyCart, Loader } from "../../components";
 import { checkoutLoginUrl } from "../../components/App/routes";
 import { CartInterface } from "../../components/CartProvider/context";
-import { getTotal } from "../../components/CartProvider/uitls";
+import {
+  extractCartLines,
+  getTotal
+} from "../../components/CartProvider/uitls";
 import {
   OverlayContextInterface,
   OverlayType
@@ -52,33 +55,6 @@ class Page extends React.Component<PageProps> {
       totalPrice: line.totalPrice.gross.localized,
       ...line.variant
     }));
-  }
-
-  extractCartLines(data: VariantList) {
-    const {
-      cart: { lines },
-      shop: { geolocalization, defaultCountry }
-    } = this.props;
-    return data.productVariants.edges
-      .map(({ node }) => {
-        const line = lines.find(({ variantId }) => variantId === node.id);
-        if (!line) {
-          return null;
-        }
-        const quantity = line.quantity;
-        return {
-          ...node,
-          quantity,
-          totalPrice: priceToString(
-            {
-              amount: quantity * node.price.amount,
-              currency: node.price.currency
-            },
-            maybe(() => geolocalization.country.code, defaultCountry.code)
-          )
-        };
-      })
-      .filter(line => line);
   }
 
   render() {
@@ -134,7 +110,7 @@ class Page extends React.Component<PageProps> {
               return (
                 <ProductsTable
                   {...productTableProps}
-                  lines={this.extractCartLines(data)}
+                  lines={extractCartLines(data, lines, locale)}
                   subtotal={getTotal(data, lines, locale)}
                 />
               );

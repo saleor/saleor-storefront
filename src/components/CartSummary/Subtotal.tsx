@@ -3,9 +3,9 @@ import * as React from "react";
 import { Checkout } from "../../checkout/types/Checkout";
 import { maybe } from "../../core/utils";
 import { VariantList } from "../../views/Product/types/VariantList";
+import { CartLineInterface } from "../CartProvider/context";
+import { getTotal } from "../CartProvider/uitls";
 import { ShopContext } from "../ShopProvider/context";
-import { CartLineInterface } from "./context";
-import { getTotal } from "./uitls";
 
 const Subtotal: React.FC<{
   checkout: Checkout | null;
@@ -24,9 +24,7 @@ const Subtotal: React.FC<{
           <h4>
             {checkout
               ? checkout.subtotalPrice.gross.localized
-              : variants
-              ? getTotal(variants, lines, locale)
-              : "-"}
+              : getTotal(variants, lines, locale)}
           </h4>
         </div>
       );

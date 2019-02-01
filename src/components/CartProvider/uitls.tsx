@@ -17,3 +17,29 @@ export const getTotal = (
 
   return priceToString({ amount, currency }, locale);
 };
+
+export const extractCartLines = (
+  data: VariantList,
+  lines: CartLineInterface[],
+  locale?: string
+) =>
+  data.productVariants.edges
+    .map(({ node }) => {
+      const line = lines.find(({ variantId }) => variantId === node.id);
+      if (!line) {
+        return;
+      }
+      const quantity = line.quantity;
+      return {
+        ...node,
+        quantity,
+        totalPrice: priceToString(
+          {
+            amount: quantity * node.price.amount,
+            currency: node.price.currency
+          },
+          locale
+        )
+      };
+    })
+    .filter(line => line);

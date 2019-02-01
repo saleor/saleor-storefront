@@ -1,16 +1,18 @@
 import * as React from "react";
 
 import { maybe } from "../../core/utils";
-import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
 
-import { Checkout_lines_variant } from "../../checkout/types/Checkout";
+import { Omit } from "../../core/tsUtils";
 import noPhotoImg from "../../images/no-photo.svg";
+import { LineI } from "../../views/Cart/ProductRow";
 
-const Line: React.FC<
-  (VariantList_productVariants_edges_node | Checkout_lines_variant) & {
-    quantity: number;
-  }
-> = ({ id, product, price, name, quantity }) => (
+const Line: React.FC<Omit<LineI, "totalPrice">> = ({
+  id,
+  product,
+  price,
+  name,
+  quantity
+}) => (
   <div key={id} className="cart-summary__product-item">
     <img src={maybe(() => product.thumbnail.url, noPhotoImg)} />
     <div>

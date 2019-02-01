@@ -6,8 +6,8 @@ import { Checkout } from "../../checkout/types/Checkout";
 import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../../views/Product/queries";
 import { CartInterface } from "../CartProvider/context";
-import Subtotal from "../CartProvider/Subtotal";
 import Line from "./Line";
+import Subtotal from "./Subtotal";
 
 const CartSummary: React.FC<{
   cart: CartInterface;
@@ -45,16 +45,16 @@ const CartSummary: React.FC<{
             <Line key={id} {...variant} quantity={quantity} />
           ))}
           <Subtotal checkout={checkout} lines={lines} />
+          <div className="cart-summary__totals">
+            <h4>Delivery</h4>
+            <h4>{delivery}</h4>
+          </div>
+          <div className="cart-summary__totals last">
+            <h4>Grand total</h4>
+            <h4>{grandTotal}</h4>
+          </div>
         </>
       )}
-      <div className="cart-summary__totals">
-        <h4>Delivery</h4>
-        <h4>{delivery}</h4>
-      </div>
-      <div className="cart-summary__totals last">
-        <h4>Grand total</h4>
-        <h4>{grandTotal}</h4>
-      </div>
     </div>
   );
 };

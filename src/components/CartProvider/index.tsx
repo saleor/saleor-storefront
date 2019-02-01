@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { ApolloClient, ApolloError } from "apollo-client";
+import { ApolloClient } from "apollo-client";
 import {
   CheckoutContext,
   CheckoutContextInterface
@@ -14,11 +14,6 @@ import {
   updateCheckoutLineVariables
 } from "../../checkout/types/updateCheckoutLine";
 import { maybe } from "../../core/utils";
-import { productVariatnsQuery } from "../../views/Product/queries";
-import {
-  VariantList,
-  VariantListVariables
-} from "../../views/Product/types/VariantList";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
 
 export default class CartProvider extends React.Component<
@@ -26,17 +21,6 @@ export default class CartProvider extends React.Component<
   CartInterface
 > {
   static contextType = CheckoutContext;
-  static getQuantity = lines =>
-    lines.reduce((sum, line) => sum + line.quantity, 0);
-  static getTotal = (lines): { amount: number; currency: string } => {
-    const amount = lines.reduce(
-      (sum, line) => sum + line.variant.price.amount * line.quantity,
-      0
-    );
-    const { currency } = lines[0].variant.price;
-    return { amount, currency };
-  };
-
   context: CheckoutContextInterface;
 
   constructor(props) {
@@ -55,7 +39,6 @@ export default class CartProvider extends React.Component<
       clear: this.clear,
       clearErrors: this.clearErrors,
       errors: null,
-      fetch: this.fetch,
       getQuantity: this.getQuantity,
       getTotal: this.getTotal,
       lines,
@@ -144,45 +127,18 @@ export default class CartProvider extends React.Component<
 
   clearErrors = () => this.setState({ errors: [] });
 
-  fetch = async () => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  getQuantity = () =>
+    this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
 
-    if (cart.length) {
-      this.setState({ loading: true });
-      let lines;
-      const { apolloClient } = this.props;
-      const { data, errors } = await apolloClient.query<
-        VariantList,
-        VariantListVariables
-      >({
-        query: productVariatnsQuery,
-        variables: {
-          ids: cart.map(line => line.variantId)
-        }
-      });
-      const quantityMapping = cart.reduce((obj, line) => {
-        obj[line.variantId] = line.quantity;
-        return obj;
-      }, {});
-      lines = data.productVariants
-        ? data.productVariants.edges.map(variant => ({
-            quantity: quantityMapping[variant.node.id],
-            variant: variant.node,
-            variantId: variant.node.id
-          }))
-        : [];
-
-      this.setState({
-        errors: errors ? [new ApolloError({ graphQLErrors: errors })] : null,
-        lines: errors ? [] : lines,
-        loading: false
-      });
-    }
+  getTotal = (): { amount: number; currency: string } => {
+    const { lines } = this.state;
+    const amount = lines.reduce(
+      (sum, line) => sum + line.variant.price.amount * line.quantity,
+      0
+    );
+    const { currency } = lines[0].variant.price;
+    return { amount, currency };
   };
-
-  getQuantity = () => CartProvider.getQuantity(this.state.lines);
-
-  getTotal = () => CartProvider.getTotal(this.state.lines);
 
   remove = variantId => this.changeQuantity(variantId, 0);
 
