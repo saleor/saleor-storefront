@@ -57,13 +57,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
         return <Redirect to={generatePath(paymentUrl, { token })} />;
       }
       return (
-        <>
-          <StepCheck
-            checkout={checkout}
-            step={step}
-            path={path}
-            token={token}
-          />
+        <StepCheck checkout={checkout} step={step} path={path} token={token}>
           <div className="checkout-review">
             <div className="checkout__step checkout__step--inactive">
               <span>5</span>
@@ -122,7 +116,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               </div>
             </div>
           </div>
-        </>
+        </StepCheck>
       );
     }}
   </CheckoutContext.Consumer>
