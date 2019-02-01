@@ -3,66 +3,50 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { Checkout } from "../../checkout/types/Checkout";
-import { maybe, priceToString } from "../../core/utils";
+import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../../views/Product/queries";
 import { CartInterface } from "../CartProvider/context";
-import { ShopContext } from "../ShopProvider/context";
+import Subtotal from "../CartProvider/Subtotal";
 import Line from "./Line";
 
 const CartSummary: React.FC<{
   cart: CartInterface;
   checkout: Checkout | null;
-}> = ({ cart, checkout }) => {
+}> = ({ cart: { lines }, checkout }) => {
   const delivery = maybe(() => checkout.shippingPrice.gross.localized, "-");
   const grandTotal = maybe(() => checkout.totalPrice.gross.localized, "-");
-  const subtotal = (
-    <ShopContext.Consumer>
-      {({ defaultCountry, geolocalization }) => (
-        <>
-          {checkout
-            ? checkout.subtotalPrice.gross.localized
-            : priceToString(
-                cart.getTotal(),
-                geolocalization.country
-                  ? geolocalization.country.code
-                  : defaultCountry.code
-              )}
-        </>
-      )}
-    </ShopContext.Consumer>
-  );
 
   return (
     <div className="cart-summary">
       <p className="cart-summary__header">Cart summary</p>
-
       {!checkout ? (
         <TypedProductVariantsQuery
-          variables={{ ids: cart.lines.map(line => line.variantId) }}
+          variables={{ ids: lines.map(line => line.variantId) }}
         >
-          {({ data }) =>
-            data.productVariants.edges.map(({ node }) => (
-              <Line
-                key={node.id}
-                {...node}
-                quantity={
-                  cart.lines.find(({ variantId }) => variantId === node.id)
-                    .quantity
-                }
-              />
-            ))
-          }
+          {({ data }) => (
+            <>
+              {data.productVariants.edges.map(({ node }) => (
+                <Line
+                  key={node.id}
+                  {...node}
+                  quantity={
+                    lines.find(({ variantId }) => variantId === node.id)
+                      .quantity
+                  }
+                />
+              ))}
+              <Subtotal checkout={checkout} variants={data} lines={lines} />
+            </>
+          )}
         </TypedProductVariantsQuery>
       ) : (
-        checkout.lines.map(({ variant, quantity, id }) => (
-          <Line key={id} {...variant} quantity={quantity} />
-        ))
+        <>
+          {checkout.lines.map(({ variant, quantity, id }) => (
+            <Line key={id} {...variant} quantity={quantity} />
+          ))}
+          <Subtotal checkout={checkout} lines={lines} />
+        </>
       )}
-
-      <div className="cart-summary__totals">
-        <h4>Subtotal</h4>
-        <h4>{subtotal}</h4>
-      </div>
       <div className="cart-summary__totals">
         <h4>Delivery</h4>
         <h4>{delivery}</h4>

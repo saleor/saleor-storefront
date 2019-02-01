@@ -2,17 +2,18 @@ import * as React from "react";
 
 import { ApolloClient, ApolloError } from "apollo-client";
 import {
+  CheckoutContext,
+  CheckoutContextInterface
+} from "../../checkout/context";
+import {
   getCheckoutQuery,
   updateCheckoutLineQuery
 } from "../../checkout/queries";
 import {
-  getCheckout,
-  getCheckoutVariables
-} from "../../checkout/types/getCheckout";
-import {
   updateCheckoutLine,
   updateCheckoutLineVariables
 } from "../../checkout/types/updateCheckoutLine";
+import { maybe } from "../../core/utils";
 import { productVariatnsQuery } from "../../views/Product/queries";
 import {
   VariantList,
@@ -24,8 +25,19 @@ export default class CartProvider extends React.Component<
   { children: any; apolloClient: ApolloClient<any> },
   CartInterface
 > {
+  static contextType = CheckoutContext;
   static getQuantity = lines =>
     lines.reduce((sum, line) => sum + line.quantity, 0);
+  static getTotal = (lines): { amount: number; currency: string } => {
+    const amount = lines.reduce(
+      (sum, line) => sum + line.variant.price.amount * line.quantity,
+      0
+    );
+    const { currency } = lines[0].variant.price;
+    return { amount, currency };
+  };
+
+  context: CheckoutContextInterface;
 
   constructor(props) {
     super(props);
@@ -59,22 +71,14 @@ export default class CartProvider extends React.Component<
   changeQuantity = async (variantId, quantity) => {
     this.setState({ loading: true });
 
-    const checkoutToken = localStorage.getItem("checkout");
+    const checkoutID = maybe(() => this.context.checkout.id);
     let apiError = false;
 
-    if (checkoutToken) {
+    if (checkoutID) {
       const { apolloClient } = this.props;
       const {
         data: {
-          checkout: { id: checkoutID }
-        }
-      } = await apolloClient.query<getCheckout, getCheckoutVariables>({
-        query: getCheckoutQuery,
-        variables: { token: checkoutToken }
-      });
-      const {
-        data: {
-          checkoutLinesUpdate: { errors }
+          checkoutLinesUpdate: { errors, checkout }
         }
       } = await apolloClient.mutate<
         updateCheckoutLine,
@@ -105,6 +109,8 @@ export default class CartProvider extends React.Component<
           errors: [...errors],
           loading: false
         });
+      } else {
+        this.context.update({ checkout });
       }
     }
 
@@ -176,15 +182,7 @@ export default class CartProvider extends React.Component<
 
   getQuantity = () => CartProvider.getQuantity(this.state.lines);
 
-  getTotal = (): { amount: number; currency: string } => {
-    const { lines } = this.state;
-    const amount = lines.reduce(
-      (sum, line) => sum + line.variant.price.amount * line.quantity,
-      0
-    );
-    const { currency } = lines[0].variant.price;
-    return { amount, currency };
-  };
+  getTotal = () => CartProvider.getTotal(this.state.lines);
 
   remove = variantId => this.changeQuantity(variantId, 0);
 

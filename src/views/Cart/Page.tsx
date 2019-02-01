@@ -3,23 +3,28 @@ import "./scss/index.scss";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
-import { getCheckout_checkout } from "../../checkout/types/getCheckout";
-import { Button, EmptyCart } from "../../components";
+import { Button, EmptyCart, Loader } from "../../components";
 import { checkoutLoginUrl } from "../../components/App/routes";
 import { CartInterface } from "../../components/CartProvider/context";
+import { getTotal } from "../../components/CartProvider/uitls";
 import {
   OverlayContextInterface,
   OverlayType
 } from "../../components/Overlay/context";
+import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { UserContext } from "../../components/User/context";
-import { maybe } from "../../core/utils";
+import { maybe, priceToString } from "../../core/utils";
+import { TypedProductVariantsQuery } from "../Product/queries";
+import { VariantList } from "../Product/types/VariantList";
 import ProductsTable from "./ProductsTable";
 
 interface PageProps {
-  checkout: getCheckout_checkout;
+  checkout: CheckoutContextInterface;
   overlay: OverlayContextInterface;
   cart: CartInterface;
+  shop: getShop_shop;
 }
 
 class Page extends React.Component<PageProps> {
@@ -41,37 +46,113 @@ class Page extends React.Component<PageProps> {
     return true;
   }
 
+  extractCheckoutLines() {
+    return this.props.checkout.checkout.lines.map(line => ({
+      quantity: line.quantity,
+      totalPrice: line.totalPrice.gross.localized,
+      ...line.variant
+    }));
+  }
+
+  extractCartLines(data: VariantList) {
+    const {
+      cart: { lines },
+      shop: { geolocalization, defaultCountry }
+    } = this.props;
+    return data.productVariants.edges
+      .map(({ node }) => {
+        const line = lines.find(({ variantId }) => variantId === node.id);
+        if (!line) {
+          return null;
+        }
+        const quantity = line.quantity;
+        return {
+          ...node,
+          quantity,
+          totalPrice: priceToString(
+            {
+              amount: quantity * node.price.amount,
+              currency: node.price.currency
+            },
+            maybe(() => geolocalization.country.code, defaultCountry.code)
+          )
+        };
+      })
+      .filter(line => line);
+  }
+
   render() {
     const {
-      checkout,
-      cart: { remove, add, errors, subtract, loading, changeQuantity }
+      shop: { geolocalization, defaultCountry },
+      checkout: { checkout, loading: checkoutLoading },
+      cart: {
+        lines,
+        remove,
+        add,
+        errors,
+        subtract,
+        loading: cartLoading,
+        changeQuantity
+      }
     } = this.props;
 
-    if (checkout.lines.length > 0) {
-      return (
-        <>
-          <ProductsTable
-            addToCart={add}
-            changeQuantityInCart={changeQuantity}
-            checkout={checkout}
-            processing={loading}
-            removeFromCart={remove}
-            subtractToCart={subtract}
-            invalid={maybe(() => !!errors.length, false)}
-          />
-          <div className="cart-page__checkout-action">
-            <UserContext.Consumer>
-              {({ user }) => (
-                <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                  <Button>Checkout</Button>
-                </Link>
-              )}
-            </UserContext.Consumer>
-          </div>
-        </>
-      );
+    if (!checkout && checkoutLoading) {
+      return <Loader full />;
     }
-    return <EmptyCart />;
+
+    if (!checkout && !lines.length) {
+      return <EmptyCart />;
+    }
+
+    const productTableProps = {
+      add,
+      cartLoading,
+      changeQuantity,
+      invalid: maybe(() => !!errors.length, false),
+      processing: cartLoading,
+      remove,
+      subtract
+    };
+    const locale = maybe(
+      () => geolocalization.country.code,
+      defaultCountry.code
+    );
+
+    return (
+      <>
+        {checkout ? (
+          <ProductsTable
+            {...productTableProps}
+            subtotal={checkout.subtotalPrice.gross.localized}
+            lines={this.extractCheckoutLines()}
+          />
+        ) : (
+          <TypedProductVariantsQuery
+            variables={{ ids: lines.map(line => line.variantId) }}
+          >
+            {({ data }) => {
+              return (
+                <ProductsTable
+                  {...productTableProps}
+                  lines={this.extractCartLines(data)}
+                  subtotal={getTotal(data, lines, locale)}
+                />
+              );
+            }}
+          </TypedProductVariantsQuery>
+        )}
+
+        <div className="cart-page__checkout-action">
+          <UserContext.Consumer>
+            {({ user }) => (
+              <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+                <Button>Proceed to Checkout</Button>
+              </Link>
+            )}
+          </UserContext.Consumer>
+        </div>
+      </>
+    );
   }
 }
 
