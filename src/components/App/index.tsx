@@ -8,15 +8,21 @@ import CartProvider from "../CartProvider";
 import { Routes } from "./routes";
 
 const App: React.SFC<{}> = () => (
-  <>
-    <MetaConsumer />
-    <header>
-      <MainMenu />
-    </header>
-    <Routes />
-    <Footer />
-    <OverlayManager />
-  </>
+  <ApolloConsumer>
+    {client => (
+      <>
+        <MetaConsumer />
+        <CartProvider apolloClient={client}>
+          <header>
+            <MainMenu />
+          </header>
+          <Routes />
+          <Footer />
+          <OverlayManager />
+        </CartProvider>
+      </>
+    )}
+  </ApolloConsumer>
 );
 
 export default App;

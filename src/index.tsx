@@ -12,10 +12,8 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 import CheckoutApp from "./checkout";
-import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { App, OverlayProvider, UserProvider } from "./components";
-import CartProvider from "./components/CartProvider";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
 import {
@@ -87,14 +85,10 @@ const startApp = async () => {
                   }
                   refreshUser
                 >
-                  <CheckoutProvider>
-                    <CartProvider apolloClient={apolloClient}>
-                      <Switch>
-                        <Route path={checkoutBaseUrl} component={CheckoutApp} />
-                        <Route component={App} />
-                      </Switch>
-                    </CartProvider>
-                  </CheckoutProvider>
+                  <Switch>
+                    <Route path={checkoutBaseUrl} component={CheckoutApp} />
+                    <Route component={App} />
+                  </Switch>
                 </UserProviderWithTokenHandler>
               )}
             </OverlayContext.Consumer>
