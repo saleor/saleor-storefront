@@ -16,7 +16,7 @@ interface NavItemProps extends INavItem {
   showSubItems(item: INavItem): void;
 }
 
-const NavItem: React.SFC<NavItemProps> = ({
+const NavItem: React.FC<NavItemProps> = ({
   hideOverlay,
   showSubItems,
   ...item

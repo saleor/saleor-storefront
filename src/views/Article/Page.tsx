@@ -19,7 +19,7 @@ interface PageProps {
     title: string;
   };
 }
-export const Page: React.SFC<PageProps> = ({
+export const Page: React.FC<PageProps> = ({
   breadcrumbs,
   headerImage,
   navigation,

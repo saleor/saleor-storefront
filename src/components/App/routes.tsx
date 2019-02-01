@@ -19,7 +19,7 @@ export const cartUrl = `${baseUrl}cart/:token?/`;
 export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
 
-export const Routes: React.SFC = () => (
+export const Routes: React.FC = () => (
   <Switch>
     <Route exact path={baseUrl} component={HomePage} />
     <Route path={searchUrl} component={SearchPage} />

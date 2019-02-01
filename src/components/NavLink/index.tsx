@@ -20,7 +20,7 @@ interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     | SecondaryMenu_shop_navigation_secondary_items
     | SecondaryMenu_shop_navigation_secondary_items_children;
 }
-export const NavLink: React.SFC<NavLinkProps> = ({ item, ...props }) => {
+export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page } = item;
   const link = (url: string) => (
     <Link to={url} {...props}>

@@ -21,7 +21,7 @@ type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
-export const View: React.SFC<ViewProps> = ({ match, location, history }) => {
+export const View: React.FC<ViewProps> = ({ match, location, history }) => {
   const querystring = parseQueryString(location);
   const updateQs = updateQueryString(location, history);
   const attributes: AttributeList = getAttributesFromQs(querystring);

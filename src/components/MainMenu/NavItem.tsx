@@ -8,7 +8,7 @@ interface NavNestedItemProps extends MainMenuSubItem {
   hideOverlay?(): void;
 }
 
-const NavItem: React.SFC<NavNestedItemProps> = ({
+const NavItem: React.FC<NavNestedItemProps> = ({
   hideOverlay,
   children,
   ...item

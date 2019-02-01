@@ -14,7 +14,7 @@ import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
 
-const ProductsTable: React.SFC<{
+const ProductsTable: React.FC<{
   checkout: getCheckout_checkout;
   processing: boolean;
   invalid: boolean;

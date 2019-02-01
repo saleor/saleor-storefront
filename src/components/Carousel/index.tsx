@@ -12,7 +12,7 @@ interface CarouselType extends CarouselProps {
   children: React.ReactNode;
 }
 
-const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
+const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
   const settings = {
     className: "carousel",
     renderBottomCenterControls: () => null,

@@ -44,7 +44,7 @@ const extractMeta = (product: ProductDetails_product) => ({
   url: window.location.href
 });
 
-const View: React.SFC<RouteComponentProps<{ id: string }>> = ({ match }) => (
+const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => (
   <TypedProductDetailsQuery
     loaderFull
     variables={{

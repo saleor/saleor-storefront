@@ -11,7 +11,7 @@ import { ProductsList } from "./types/ProductsList";
 const canDisplay = (data: ProductsList) =>
   maybe(() => !!data.shop.homepageCollection && !!data.categories.edges.length);
 
-const View: React.SFC = () => (
+const View: React.FC = () => (
   <div className="home-page">
     <TypedHomePageQuery alwaysRender displayLoader={false} errorPolicy="all">
       {({ data, loading }) => {

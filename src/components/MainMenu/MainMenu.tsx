@@ -28,7 +28,7 @@ import logoImg from "../../images/logo.svg";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
-const MainMenu: React.SFC = () => (
+const MainMenu: React.FC = () => (
   <OverlayContext.Consumer>
     {overlayContext => (
       <nav className="main-menu" id="header">

@@ -17,7 +17,7 @@ export interface FormAddressType extends Omit<AddressType, "country"> {
   country: { value?: string; code?: string };
 }
 
-const ShippingAddressForm: React.SFC<{
+const ShippingAddressForm: React.FC<{
   buttonText: string;
   billing?: boolean;
   data?: AddressType;

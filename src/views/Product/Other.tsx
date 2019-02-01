@@ -5,7 +5,7 @@ import { ProductListItem } from "../../components";
 import { generateProductUrl } from "../../core/utils";
 import { ProductDetails_product_category_products_edges } from "./types/ProductDetails";
 
-const OtherProducts: React.SFC<{
+const OtherProducts: React.FC<{
   products: ProductDetails_product_category_products_edges[];
 }> = ({ products }) => (
   <div className="product-page__other-products">

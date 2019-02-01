@@ -73,7 +73,7 @@ const computeMutationVariables = (
   }
 });
 
-const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
     path,

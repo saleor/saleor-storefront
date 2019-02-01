@@ -5,7 +5,7 @@ import { ProductDetails_product_images } from "./types/ProductDetails";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
-const GalleryCarousel: React.SFC<{
+const GalleryCarousel: React.FC<{
   images: ProductDetails_product_images[];
 }> = ({ images }) => (
   <div className="product-page__product__gallery">

@@ -21,7 +21,7 @@ interface ProductsListProps {
   totalCount: number;
 }
 
-export const ProductList: React.SFC<ProductsListProps> = ({
+export const ProductList: React.FC<ProductsListProps> = ({
   displayLoader,
   filters,
   hasNextPage,

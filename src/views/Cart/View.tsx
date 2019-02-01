@@ -14,7 +14,7 @@ import Page from "./Page";
 const canDisplay = (checkout: getCheckout_checkout) =>
   maybe(() => checkout.lines && checkout.subtotalPrice);
 
-const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
     params: { token }
   }

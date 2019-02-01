@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import { Consumer as MetaConsumer } from "./context";
 
-const Consumer: React.SFC<{ children?: React.ReactNode }> = ({ children }) => (
+const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <MetaConsumer>
     {({ title, description, image, type, url, custom }) => (
       <>

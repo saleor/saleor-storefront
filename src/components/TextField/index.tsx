@@ -13,7 +13,7 @@ export interface TextFieldProps
   iconRight?: React.ReactNode;
 }
 
-const TextField: React.SFC<TextFieldProps> = ({
+const TextField: React.FC<TextFieldProps> = ({
   label = "",
   iconLeft,
   iconRight,

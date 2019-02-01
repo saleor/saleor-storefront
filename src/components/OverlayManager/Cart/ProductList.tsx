@@ -8,7 +8,7 @@ import { CartLineInterface } from "../../CartProvider/context";
 
 import removeImg from "../../../images/garbage.svg";
 
-const ProductList: React.SFC<{
+const ProductList: React.FC<{
   lines: CartLineInterface[];
   removeFromCart(variantId: string): void;
 }> = ({ lines, removeFromCart }) => (

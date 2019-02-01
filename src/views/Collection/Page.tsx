@@ -29,7 +29,7 @@ interface PageProps {
   onOrder: (order: string) => void;
 }
 
-export const Page: React.SFC<PageProps> = ({
+export const Page: React.FC<PageProps> = ({
   attributes,
   collection,
   displayLoader,

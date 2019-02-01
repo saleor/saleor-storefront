@@ -121,7 +121,7 @@ const getErrors = (
   maybe(() => createData.checkoutCreate.errors, []) ||
   maybe(() => updateData.checkoutShippingAddressUpdate.errors, []);
 
-const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
     params: { token }

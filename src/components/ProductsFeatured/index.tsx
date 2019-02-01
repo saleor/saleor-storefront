@@ -11,7 +11,7 @@ interface ProductsFeaturedProps {
   title?: string;
 }
 
-const ProductsFeatured: React.SFC<ProductsFeaturedProps> = ({ title }) => {
+const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   return (
     <TypedFeaturedProductsQuery displayError={false}>
       {({ data }) => {
