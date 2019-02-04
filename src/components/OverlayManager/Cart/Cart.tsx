@@ -13,9 +13,11 @@ import {
   OverlayContextInterface
 } from "../..";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
-import { priceToString } from "../../../core/utils";
+import { maybe } from "../../../core/utils";
+import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { cartUrl, checkoutLoginUrl } from "../../App/routes";
 import { CartContext } from "../../CartProvider/context";
+import { extractCartLines, getTotal } from "../../CartProvider/uitls";
 import { Error } from "../../Error";
 import Loader from "../../Loader";
 import { ShopContext } from "../../ShopProvider/context";
@@ -30,81 +32,96 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
   <Overlay context={overlay}>
     <Online>
       <CartContext.Consumer>
-        {cart => {
-          const { lines, loading, errors } = cart;
-          if (loading) {
-            return (
-              <div className="cart">
-                <Loader full />
-              </div>
-            );
-          }
+        {cart => (
+          <ShopContext.Consumer>
+            {({ defaultCountry, geolocalization }) => (
+              <TypedProductVariantsQuery
+                displayLoader={false}
+                variables={{ ids: cart.lines.map(line => line.variantId) }}
+                skip={!cart.lines.length}
+                alwaysRender
+              >
+                {({ data, loading, error }) => {
+                  if (loading) {
+                    return (
+                      <div className="cart">
+                        <Loader full />
+                      </div>
+                    );
+                  }
 
-          if (errors) {
-            return errors.map(error => <Error error={error.message} />);
-          }
+                  if (error) {
+                    return <Error error={error.message} />;
+                  }
 
-          return (
-            <div className="cart">
-              <div className="overlay__header">
-                <ReactSVG
-                  path={cartImg}
-                  className="overlay__header__cart-icon"
-                />
-                <div className="overlay__header-text">
-                  My bag,{" "}
-                  <span className="overlay__header-text-items">
-                    {lines.length || 0} items
-                  </span>
-                </div>
-                <ReactSVG
-                  path={closeImg}
-                  onClick={overlay.hide}
-                  className="overlay__header__close-icon"
-                />
-              </div>
-              {lines.length ? (
-                <>
-                  <ProductList lines={lines} removeFromCart={cart.remove} />
-                  <div className="cart__footer">
-                    <div className="cart__footer__subtotoal">
-                      <span>Subtotal</span>
-                      <ShopContext.Consumer>
-                        {({ defaultCountry, geolocalization }) => (
-                          <span>
-                            {priceToString(
-                              cart.getTotal(),
-                              geolocalization.country
-                                ? geolocalization.country.code
-                                : defaultCountry.code
-                            )}
+                  const locale = maybe(
+                    () => geolocalization.country.code,
+                    defaultCountry.code
+                  );
+                  return (
+                    <div className="cart">
+                      <div className="overlay__header">
+                        <ReactSVG
+                          path={cartImg}
+                          className="overlay__header__cart-icon"
+                        />
+                        <div className="overlay__header-text">
+                          My bag,{" "}
+                          <span className="overlay__header-text-items">
+                            {cart.lines.length || 0} items
                           </span>
-                        )}
-                      </ShopContext.Consumer>
-                    </div>
+                        </div>
+                        <ReactSVG
+                          path={closeImg}
+                          onClick={overlay.hide}
+                          className="overlay__header__close-icon"
+                        />
+                      </div>
+                      {cart.lines.length && data ? (
+                        <>
+                          <ProductList
+                            lines={extractCartLines(data, cart.lines, locale)}
+                            remove={cart.remove}
+                          />
+                          <div className="cart__footer">
+                            <div className="cart__footer__subtotoal">
+                              <span>Subtotal</span>
 
-                    <div className="cart__footer__button">
-                      <Link to={generatePath(cartUrl, { token: null })}>
-                        <Button secondary>Go to my bag</Button>
-                      </Link>
+                              <span>{getTotal(data, cart.lines, locale)}</span>
+                            </div>
+
+                            <div className="cart__footer__button">
+                              <Link
+                                to={generatePath(cartUrl, {
+                                  token: null
+                                })}
+                              >
+                                <Button secondary>Go to my bag</Button>
+                              </Link>
+                            </div>
+                            <div className="cart__footer__button">
+                              <UserContext.Consumer>
+                                {({ user }) => (
+                                  <Link
+                                    to={user ? checkoutUrl : checkoutLoginUrl}
+                                  >
+                                    <Button>Checkout</Button>
+                                  </Link>
+                                )}
+                              </UserContext.Consumer>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <Empty overlayHide={overlay.hide} />
+                      )}
                     </div>
-                    <div className="cart__footer__button">
-                      <UserContext.Consumer>
-                        {({ user }) => (
-                          <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                            <Button>Checkout</Button>
-                          </Link>
-                        )}
-                      </UserContext.Consumer>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <Empty overlayHide={overlay.hide} />
-              )}
-            </div>
-          );
-        }}
+                  );
+                }}
+              </TypedProductVariantsQuery>
+            )}
+          </ShopContext.Consumer>
+        )}
       </CartContext.Consumer>
     </Online>
     <Offline>

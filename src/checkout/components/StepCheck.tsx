@@ -47,12 +47,12 @@ const StepCheck: React.FC<{
   step: CheckoutStep;
   path: string;
   token?: string;
-}> = ({ step, checkout, path, token }) => {
+}> = ({ step, checkout, path, token, children }) => {
   if (!checkout || step !== getCurrentStep(path, token)) {
     return <Redirect to={baseUrl} />;
   }
 
-  return null;
+  return children ? <>{children}</> : null;
 };
 
 export default StepCheck;

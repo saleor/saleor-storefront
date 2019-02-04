@@ -78,7 +78,10 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                                   <Media
                                     query={{ minWidth: mediumScreen }}
                                     render={() => (
-                                      <CartSummary checkout={checkout} />
+                                      <CartSummary
+                                        cart={cart}
+                                        checkout={checkout}
+                                      />
                                     )}
                                   />
                                 )}

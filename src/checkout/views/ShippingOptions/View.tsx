@@ -49,13 +49,12 @@ class View extends React.Component<
       <div className="checkout-shipping-options">
         <CheckoutContext.Consumer>
           {({ checkout, update, step }) => (
-            <>
-              <StepCheck
-                checkout={checkout}
-                step={step}
-                path={path}
-                token={token}
-              />
+            <StepCheck
+              checkout={checkout}
+              step={step}
+              path={path}
+              token={token}
+            >
               <Steps
                 step={CheckoutStep.ShippingOption}
                 token={token}
@@ -97,7 +96,7 @@ class View extends React.Component<
                   }}
                 </TypedUpdateCheckoutShippingOptionsMutation>
               </Steps>
-            </>
+            </StepCheck>
           )}
         </CheckoutContext.Consumer>
       </div>

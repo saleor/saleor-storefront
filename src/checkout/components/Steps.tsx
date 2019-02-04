@@ -49,7 +49,7 @@ const Steps: React.FC<{
       step: CheckoutStep.ShippingOption
     },
     {
-      header: "Billing Method",
+      header: "Billing Address",
       path: billingUrl,
       step: CheckoutStep.BillingAddress
     },
