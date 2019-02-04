@@ -16,7 +16,6 @@ export interface CartInterface {
   changeQuantity(variantId: string, quantity: number);
   clear(): void;
   clearErrors(): void;
-  fetch(): void;
   getQuantity(): number;
   getTotal(): { currency: string; amount: number };
   remove(variantId: string): void;
@@ -30,7 +29,6 @@ export const CartContext = createContext<CartInterface>({
   clear: () => {},
   clearErrors: () => {},
   errors: null,
-  fetch: () => {},
   getQuantity: () => 0,
   getTotal: () => ({ currency: "USD", amount: 0 }),
   lines: [],

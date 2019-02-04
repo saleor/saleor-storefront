@@ -5,6 +5,7 @@ import {
   ProductDetails,
   ProductDetailsVariables
 } from "./types/ProductDetails";
+import { VariantList, VariantListVariables } from "./types/VariantList";
 
 export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
@@ -115,3 +116,8 @@ export const TypedProductDetailsQuery = TypedQuery<
   ProductDetails,
   ProductDetailsVariables
 >(productDetailsQuery);
+
+export const TypedProductVariantsQuery = TypedQuery<
+  VariantList,
+  VariantListVariables
+>(productVariatnsQuery);

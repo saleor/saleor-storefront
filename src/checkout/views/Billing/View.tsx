@@ -82,33 +82,26 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 }) => (
   <div>
     <CheckoutContext.Consumer>
-      {({ checkout, shippingAsBilling, update, step }) => {
-        const address =
-          !checkout.billingAddress && shippingAsBilling
-            ? checkout.shippingAddress
-            : checkout.billingAddress;
-
-        return (
-          <>
-            <StepCheck
-              step={step}
-              checkout={checkout}
-              path={path}
-              token={token}
-            />
-            <Steps
-              step={CheckoutStep.BillingAddress}
-              token={token}
-              checkout={checkout}
+      {({ checkout, shippingAsBilling, update, step }) => (
+        <StepCheck step={step} checkout={checkout} path={path} token={token}>
+          <Steps
+            step={CheckoutStep.BillingAddress}
+            token={token}
+            checkout={checkout}
+          >
+            <TypedUpdateCheckoutBillingAddressMutation
+              onCompleted={data =>
+                proceedToPayment(data, update, history, token)
+              }
             >
-              <TypedUpdateCheckoutBillingAddressMutation
-                onCompleted={data =>
-                  proceedToPayment(data, update, history, token)
-                }
-              >
-                {(saveBillingAddress, { data, loading }) => (
-                  <ShopContext.Consumer>
-                    {shop => (
+              {(saveBillingAddress, { data, loading }) => (
+                <ShopContext.Consumer>
+                  {shop => {
+                    const address =
+                      !checkout.billingAddress && shippingAsBilling
+                        ? checkout.shippingAddress
+                        : checkout.billingAddress;
+                    return (
                       <ShippingAddressForm
                         buttonText="Continue to Payment"
                         billing
@@ -125,14 +118,14 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                           event.preventDefault();
                         }}
                       />
-                    )}
-                  </ShopContext.Consumer>
-                )}
-              </TypedUpdateCheckoutBillingAddressMutation>
-            </Steps>
-          </>
-        );
-      }}
+                    );
+                  }}
+                </ShopContext.Consumer>
+              )}
+            </TypedUpdateCheckoutBillingAddressMutation>
+          </Steps>
+        </StepCheck>
+      )}
     </CheckoutContext.Consumer>
   </div>
 );

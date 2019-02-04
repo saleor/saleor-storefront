@@ -128,7 +128,6 @@ const MainMenu: React.FC = () => (
                   <li
                     className="main-menu__icon main-menu__cart"
                     onClick={() => {
-                      cart.fetch();
                       overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     }}
                   >
