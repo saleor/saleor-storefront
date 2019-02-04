@@ -10,7 +10,6 @@ import ReactSVG from "react-svg";
 
 import { ApolloConsumer } from "react-apollo";
 import {
-  CartSummary,
   Loader,
   Offline,
   OfflinePlaceholder,
@@ -20,8 +19,8 @@ import {
 import CartProvider from "../components/CartProvider";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
+import { CartSummary } from "./components";
 import { CheckoutContext } from "./context";
-import CheckoutProvider from "./provider";
 import { reviewUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
@@ -54,42 +53,40 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                 <CartProvider apolloClient={client}>
                   <CartContext.Consumer>
                     {cart => (
-                      <CheckoutProvider>
-                        <CheckoutContext.Consumer>
-                          {({ checkout, loading }) => {
-                            if (!cart.lines.length) {
-                              return <Redirect to={BASE_URL} />;
-                            }
+                      <CheckoutContext.Consumer>
+                        {({ checkout, loading }) => {
+                          if (!cart.lines.length) {
+                            return <Redirect to={BASE_URL} />;
+                          }
 
-                            if (loading) {
-                              return <Loader />;
-                            }
+                          if (loading) {
+                            return <Loader />;
+                          }
 
-                            return (
-                              <>
-                                <div
-                                  className={classNames({
-                                    checkout__grid__content: !reviewPage
-                                  })}
-                                >
-                                  <Routes />
-                                </div>
-                                {!reviewPage && (
-                                  <Media
-                                    query={{ minWidth: mediumScreen }}
-                                    render={() => (
-                                      <CartSummary
-                                        cart={cart}
-                                        checkout={checkout}
-                                      />
-                                    )}
-                                  />
-                                )}
-                              </>
-                            );
-                          }}
-                        </CheckoutContext.Consumer>
-                      </CheckoutProvider>
+                          return (
+                            <>
+                              <div
+                                className={classNames({
+                                  checkout__grid__content: !reviewPage
+                                })}
+                              >
+                                <Routes />
+                              </div>
+                              {!reviewPage && (
+                                <Media
+                                  query={{ minWidth: mediumScreen }}
+                                  render={() => (
+                                    <CartSummary
+                                      cart={cart}
+                                      checkout={checkout}
+                                    />
+                                  )}
+                                />
+                              )}
+                            </>
+                          );
+                        }}
+                      </CheckoutContext.Consumer>
                     )}
                   </CartContext.Consumer>
                 </CartProvider>

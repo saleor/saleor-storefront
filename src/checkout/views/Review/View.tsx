@@ -7,15 +7,16 @@ import { generatePath, Redirect, RouteComponentProps } from "react-router";
 
 import {
   Button,
+  CartTable,
   OverlayContext,
   OverlayType,
   ShowOverlayType
 } from "../../../components";
+import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
 import { BASE_URL } from "../../../core/config";
 import { AddressSummary, StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
-import CartTable from "./CartTable";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import { completeCheckout } from "./types/completeCheckout";
 
@@ -64,7 +65,12 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               <h4 className="checkout__header">Review your order</h4>
             </div>
 
-            <CartTable checkout={checkout} />
+            <CartTable
+              lines={extractCheckoutLines(checkout.lines)}
+              subtotal={checkout.subtotalPrice.gross.localized}
+              deliveryCost={checkout.shippingMethod.price.localized}
+              totalCost={checkout.totalPrice.gross.localized}
+            />
 
             <div className="checkout-review__content">
               <div className="checkout-review__content__summary">

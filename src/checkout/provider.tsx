@@ -71,31 +71,27 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
 
   render() {
     const token = this.getStoredToken();
-    const { checkout } = this.state;
-    const provider = (
-      <CheckoutContext.Provider value={this.getContext()}>
-        {this.props.children}
-      </CheckoutContext.Provider>
-    );
+    const { checkout: stateCheckout } = this.state;
 
-    if (checkout) {
-      return provider;
-    }
-
-    if (token) {
-      return (
-        <TypedGetCheckoutQuery
-          displayLoader
-          variables={{ token }}
-          onCompleted={({ checkout }) =>
-            this.setState({ checkout, loading: false })
+    return (
+      <TypedGetCheckoutQuery
+        alwaysRender
+        displayLoader={false}
+        variables={{ token }}
+        skip={!token || !!stateCheckout}
+        onCompleted={({ checkout }) => {
+          if (!stateCheckout) {
+            this.setState({ checkout, loading: false });
           }
-        >
-          {() => provider}
-        </TypedGetCheckoutQuery>
-      );
-    }
-    return provider;
+        }}
+      >
+        {() => (
+          <CheckoutContext.Provider value={this.getContext()}>
+            {this.props.children}
+          </CheckoutContext.Provider>
+        )}
+      </TypedGetCheckoutQuery>
+    );
   }
 }
 

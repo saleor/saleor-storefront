@@ -54,7 +54,6 @@ class View extends React.Component<
       loading: true
     });
     let cardData;
-
     try {
       cardData = await braintreePayment(paymentClientToken, creditCard);
       updateCheckout({ cardData });
@@ -180,6 +179,11 @@ class View extends React.Component<
                         >
                           {createPaymentMethod => (
                             <Form
+                              data={{
+                                ccNumber: "6304 0000 0000 0000",
+                                ccExp: "11 / 22",
+                                ccCsc: "123 "
+                              }}
                               onSubmit={(event, formData) => {
                                 event.preventDefault();
                                 this.processPayment(
