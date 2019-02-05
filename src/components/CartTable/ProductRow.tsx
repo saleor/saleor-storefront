@@ -3,14 +3,14 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { Checkout_lines_variant } from "../../checkout/types/Checkout";
-
 import { CachedThumbnail, DebouncedTextField } from "..";
+import { Checkout_lines_variant } from "../../checkout/types/Checkout";
 import { generateProductUrl } from "../../core/utils";
+import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
+
 import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
-import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
 
 export type LineI = (
   | VariantList_productVariants_edges_node
@@ -45,6 +45,20 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 }) => {
   const productUrl = generateProductUrl(line.product.id, line.product.name);
   const editable = !!(add && subtract && remove && changeQuantity);
+  const quantityChangeControls = mediumScreen ? (
+    <div>
+      <ReactSVG path={cartAddImg} onClick={() => add(line.id)} />
+      <p>{line.quantity}</p>
+      <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
+    </div>
+  ) : (
+    <DebouncedTextField
+      value={line.quantity}
+      onChange={evt => changeQuantity(line.id, parseInt(evt.target.value, 10))}
+      resetValue={invalid}
+      disabled={processing}
+    />
+  );
 
   return (
     <tr
@@ -69,29 +83,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       {mediumScreen && <td>{line.price.localized}</td>}
 
       <td className="cart-table__quantity-cell">
-        {editable ? (
-          mediumScreen ? (
-            <div>
-              <ReactSVG path={cartAddImg} onClick={() => add(line.id)} />
-              <p>{line.quantity}</p>
-              <ReactSVG
-                path={cartSubtractImg}
-                onClick={() => subtract(line.id)}
-              />
-            </div>
-          ) : (
-            <DebouncedTextField
-              value={line.quantity}
-              onChange={evt =>
-                changeQuantity(line.id, parseInt(evt.target.value, 10))
-              }
-              resetValue={invalid}
-              disabled={processing}
-            />
-          )
-        ) : (
-          <p>{line.quantity}</p>
-        )}
+        {editable ? quantityChangeControls : <p>{line.quantity}</p>}
       </td>
 
       <td>{line.totalPrice}</td>

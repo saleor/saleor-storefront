@@ -104,7 +104,7 @@ const ShippingAddressForm: React.SFC<{
             />
           </div>
           {!billing ? (
-            <>
+            <div>
               <TextField
                 label="Phone number"
                 type="tel"
@@ -115,7 +115,7 @@ const ShippingAddressForm: React.SFC<{
                 <input name="asBilling" type="checkbox" />
                 <span>Use as Billing Address</span>
               </label>
-            </>
+            </div>
           ) : null}
           <Button type="submit" disabled={loading}>
             {loading ? "Loading" : buttonText}

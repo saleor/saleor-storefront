@@ -167,6 +167,7 @@ class View extends React.Component<
               {({ data }) => {
                 if (data) {
                   const { paymentClientToken } = data;
+
                   return (
                     <div className="checkout-payment">
                       <Steps
@@ -179,11 +180,6 @@ class View extends React.Component<
                         >
                           {createPaymentMethod => (
                             <Form
-                              data={{
-                                ccNumber: "6304 0000 0000 0000",
-                                ccExp: "11 / 22",
-                                ccCsc: "123 "
-                              }}
                               onSubmit={(event, formData) => {
                                 event.preventDefault();
                                 this.processPayment(
@@ -278,7 +274,7 @@ class View extends React.Component<
                               >
                                 {this.state.loading
                                   ? "Loading"
-                                  : "Continue to review your order"}
+                                  : "Review your order"}
                               </Button>
                             </Form>
                           )}

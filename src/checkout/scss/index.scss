@@ -1,6 +1,10 @@
 @import "../../components/App/scss/variables.scss";
 
 .checkout {
+  @media (max-width: $medium-screen) {
+    overflow-x: hidden;
+  }
+
   &__menu {
     &__bar {
       text-align: center;
@@ -61,6 +65,17 @@
   &__content {
     margin: 0 0 $spacer * 3 $spacer * 3;
 
+    button[type="submit"] {
+      margin: 2.5 * $spacer 0;
+
+      @media (max-width: $medium-screen) {
+        display: block;
+        width: calc(100% - #{$spacer * 3});
+        margin: 2.5 * $spacer auto;
+        max-width: inherit;
+      }
+    }
+
     @media (max-width: $medium-screen) {
       margin-left: 0;
     }
@@ -75,7 +90,7 @@
   &__grid {
     display: flex;
     justify-content: space-between;
-    margin: $spacer * 4 0;
+    margin: $spacer * 1.5 0;
     align-items: flex-start;
 
     &__content {

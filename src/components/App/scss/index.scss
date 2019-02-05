@@ -87,7 +87,7 @@ body {
 
   .checkbox {
     position: relative;
-    display: block;
+    display: inline;
 
     &:before {
       content: "";
@@ -117,14 +117,15 @@ body {
       margin-left: $spacer * 2;
 
       &:before {
+        background-color: $white;
+        border-radius: 0.2rem;
+        border: 1px solid $blue;
         content: "";
         display: block;
-        position: absolute;
-        width: 1rem;
         height: 1rem;
-        border: 1px solid $blue;
-        border-radius: 0.2rem;
-        background-color: $white;
+        position: absolute;
+        top: 0;
+        width: 1rem;
       }
     }
   }
