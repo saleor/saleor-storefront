@@ -9,3 +9,4 @@ All notable, unreleased changes to this project will be documented in this file.
 - Disable ability to continue to billing without shipement chosen #211 by @piotrgrundas
 - Set max width of images in product description as 100% #220 by @jxltom
 - Refactor checkout, moved to a separate module, creation of checkout after user provides a valid email after first checkout step, change gotocheckout logic #223 by @piotrgrundas
+- Update checkout review page styles, fix checkboxes in FF #239 by @piotrgrundas

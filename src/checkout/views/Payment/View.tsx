@@ -54,7 +54,6 @@ class View extends React.Component<
       loading: true
     });
     let cardData;
-
     try {
       cardData = await braintreePayment(paymentClientToken, creditCard);
       updateCheckout({ cardData });
@@ -168,6 +167,7 @@ class View extends React.Component<
               {({ data }) => {
                 if (data) {
                   const { paymentClientToken } = data;
+
                   return (
                     <div className="checkout-payment">
                       <Steps
@@ -274,7 +274,7 @@ class View extends React.Component<
                               >
                                 {this.state.loading
                                   ? "Loading"
-                                  : "Continue to review your order"}
+                                  : "Review your order"}
                               </Button>
                             </Form>
                           )}

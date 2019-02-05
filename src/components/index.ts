@@ -1,7 +1,6 @@
 export { default as App } from "./App";
 export { default as Button, ButtonProps } from "./Button";
 export { default as Carousel } from "./Carousel";
-export { default as CartSummary } from "./CartSummary";
 export { default as CheckoutLogin } from "./CheckoutLogin";
 export { default as ContentPage } from "./ContentPage";
 export { default as Dropdown } from "./Dropdown";
@@ -25,7 +24,7 @@ export { default as SelectField } from "./SelectField";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as TextField } from "./TextField";
 export { default as UserProvider } from "./User";
-
+export { CartTable } from "./CartTable";
 export {
   default as ShippingAddressForm,
   AddressType,
