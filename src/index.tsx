@@ -12,6 +12,7 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 import CheckoutApp from "./checkout";
+import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { App, OverlayProvider, UserProvider } from "./components";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
@@ -69,29 +70,31 @@ const startApp = async () => {
       <ApolloProvider client={apolloClient}>
         <ShopProvider>
           <OverlayProvider>
-            <OverlayContext.Consumer>
-              {({ show }) => (
-                <UserProviderWithTokenHandler
-                  apolloClient={apolloClient}
-                  onUserLogin={() =>
-                    show(OverlayType.message, null, {
-                      title: "You are logged in"
-                    })
-                  }
-                  onUserLogout={() =>
-                    show(OverlayType.message, null, {
-                      title: "You are logged out"
-                    })
-                  }
-                  refreshUser
-                >
-                  <Switch>
-                    <Route path={checkoutBaseUrl} component={CheckoutApp} />
-                    <Route component={App} />
-                  </Switch>
-                </UserProviderWithTokenHandler>
-              )}
-            </OverlayContext.Consumer>
+            <CheckoutProvider>
+              <OverlayContext.Consumer>
+                {({ show }) => (
+                  <UserProviderWithTokenHandler
+                    apolloClient={apolloClient}
+                    onUserLogin={() =>
+                      show(OverlayType.message, null, {
+                        title: "You are logged in"
+                      })
+                    }
+                    onUserLogout={() =>
+                      show(OverlayType.message, null, {
+                        title: "You are logged out"
+                      })
+                    }
+                    refreshUser
+                  >
+                    <Switch>
+                      <Route path={checkoutBaseUrl} component={CheckoutApp} />
+                      <Route component={App} />
+                    </Switch>
+                  </UserProviderWithTokenHandler>
+                )}
+              </OverlayContext.Consumer>
+            </CheckoutProvider>
           </OverlayProvider>
         </ShopProvider>
       </ApolloProvider>

@@ -7,7 +7,7 @@ import { Footer, MainMenu, MetaConsumer, OverlayManager } from "..";
 import CartProvider from "../CartProvider";
 import { Routes } from "./routes";
 
-const App: React.FC<{}> = () => (
+const App: React.FC = () => (
   <ApolloConsumer>
     {client => (
       <>

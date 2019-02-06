@@ -6,8 +6,9 @@ import { getCheckout_checkout_shippingAddress } from "../../types/getCheckout";
 const AddressSummary: React.FC<{
   address: getCheckout_checkout_shippingAddress;
   email?: string;
-}> = ({ address, email }) => (
-  <p className="address-summary">
+  paragraphRef?: React.RefObject<HTMLParagraphElement>;
+}> = ({ address, email, paragraphRef }) => (
+  <p className="address-summary" ref={paragraphRef}>
     <strong>{`${address.firstName} ${address.lastName}`}</strong>
     <br />
     {address.companyName && (

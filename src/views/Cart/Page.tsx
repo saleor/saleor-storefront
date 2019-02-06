@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 
 import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
-import { Button, EmptyCart, Loader } from "../../components";
+import { Button, CartTable, EmptyCart, Loader } from "../../components";
 import { checkoutLoginUrl } from "../../components/App/routes";
 import { CartInterface } from "../../components/CartProvider/context";
 import {
   extractCartLines,
+  extractCheckoutLines,
   getTotal
 } from "../../components/CartProvider/uitls";
 import {
@@ -20,8 +21,6 @@ import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { UserContext } from "../../components/User/context";
 import { maybe, priceToString } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
-import { VariantList } from "../Product/types/VariantList";
-import ProductsTable from "./ProductsTable";
 
 interface PageProps {
   checkout: CheckoutContextInterface;
@@ -48,15 +47,6 @@ class Page extends React.Component<PageProps> {
     }
     return true;
   }
-
-  extractCheckoutLines() {
-    return this.props.checkout.checkout.lines.map(line => ({
-      quantity: line.quantity,
-      totalPrice: line.totalPrice.gross.localized,
-      ...line.variant
-    }));
-  }
-
   render() {
     const {
       shop: { geolocalization, defaultCountry },
@@ -72,17 +62,18 @@ class Page extends React.Component<PageProps> {
       }
     } = this.props;
 
-    if (!checkout && checkoutLoading) {
-      return <Loader full />;
-    }
+    if (!checkout) {
+      if (checkoutLoading) {
+        return <Loader full />;
+      }
 
-    if (!checkout && !lines.length) {
-      return <EmptyCart />;
+      if (!lines.length) {
+        return <EmptyCart />;
+      }
     }
 
     const productTableProps = {
       add,
-      cartLoading,
       changeQuantity,
       invalid: maybe(() => !!errors.length, false),
       processing: cartLoading,
@@ -97,10 +88,10 @@ class Page extends React.Component<PageProps> {
     return (
       <>
         {checkout ? (
-          <ProductsTable
+          <CartTable
             {...productTableProps}
+            lines={extractCheckoutLines(checkout.lines)}
             subtotal={checkout.subtotalPrice.gross.localized}
-            lines={this.extractCheckoutLines()}
           />
         ) : (
           <TypedProductVariantsQuery
@@ -108,7 +99,7 @@ class Page extends React.Component<PageProps> {
           >
             {({ data }) => {
               return (
-                <ProductsTable
+                <CartTable
                   {...productTableProps}
                   lines={extractCartLines(data, lines, locale)}
                   subtotal={getTotal(data, lines, locale)}
@@ -122,7 +113,7 @@ class Page extends React.Component<PageProps> {
           <UserContext.Consumer>
             {({ user }) => (
               <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                <Button>Proceed to Checkout</Button>
+                <Button disabled={cartLoading}>Proceed to Checkout</Button>
               </Link>
             )}
           </UserContext.Consumer>

@@ -1,3 +1,4 @@
+import { Checkout_lines } from "../../checkout/types/Checkout";
 import { priceToString } from "../../core/utils";
 import { VariantList } from "../../views/Product/types/VariantList";
 import { CartLineInterface } from "./context";
@@ -42,4 +43,15 @@ export const extractCartLines = (
         )
       };
     })
-    .filter(line => line);
+    .filter(line => line)
+    .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
+
+export const extractCheckoutLines = (lines: Checkout_lines[]) => {
+  return lines
+    .map(line => ({
+      quantity: line.quantity,
+      totalPrice: line.totalPrice.gross.localized,
+      ...line.variant
+    }))
+    .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
+};

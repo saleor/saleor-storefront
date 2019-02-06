@@ -1,10 +1,10 @@
 import * as React from "react";
 
-import { maybe } from "../../core/utils";
+import { LineI } from "../../../components/CartTable/ProductRow";
+import { Omit } from "../../../core/tsUtils";
+import { maybe } from "../../../core/utils";
 
-import { Omit } from "../../core/tsUtils";
-import noPhotoImg from "../../images/no-photo.svg";
-import { LineI } from "../../views/Cart/ProductRow";
+import noPhotoImg from "../../../images/no-photo.svg";
 
 const Line: React.FC<Omit<LineI, "totalPrice">> = ({
   id,

@@ -6,22 +6,21 @@ import { Checkout } from "./types/Checkout";
 import { createCheckout_checkoutCreate_errors } from "./types/createCheckout";
 
 export enum CheckoutStep {
-  ShippingAddress = "shippingAddress",
-  ShippingOption = "shippingOption",
-  BillingAddress = "billingAddress",
-  Payment = "payment",
-  Review = "review"
+  ShippingAddress = 1,
+  ShippingOption,
+  BillingAddress,
+  Payment,
+  Review
 }
 
-export type CheckoutCreateData = Omit<CheckoutCreateInput, "lines">;
-export type CheckoutErrors = createCheckout_checkoutCreate_errors[];
+export interface CardData {
+  lastDigits: string;
+  ccType: string;
+  token: string;
+}
 
 export interface CheckoutContextInterface {
-  cardData?: {
-    lastDigits: string;
-    ccType: string;
-    token: string;
-  };
+  cardData?: CardData;
   checkout?: Checkout;
   loading?: boolean;
   shippingAsBilling?: boolean;

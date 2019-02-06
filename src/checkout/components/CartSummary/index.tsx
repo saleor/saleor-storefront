@@ -2,10 +2,10 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Checkout } from "../../checkout/types/Checkout";
-import { maybe } from "../../core/utils";
-import { TypedProductVariantsQuery } from "../../views/Product/queries";
-import { CartInterface } from "../CartProvider/context";
+import { Checkout } from "../../../checkout/types/Checkout";
+import { CartInterface } from "../../../components/CartProvider/context";
+import { maybe } from "../../../core/utils";
+import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import Line from "./Line";
 import Subtotal from "./Subtotal";
 

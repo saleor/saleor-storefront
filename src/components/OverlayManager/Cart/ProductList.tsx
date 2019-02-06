@@ -6,7 +6,7 @@ import { CachedThumbnail } from "../..";
 import { generateProductUrl } from "../../../core/utils";
 
 import removeImg from "../../../images/garbage.svg";
-import { LineI } from "../../../views/Cart/ProductRow";
+import { LineI } from "../../CartTable/ProductRow";
 
 const ProductList: React.SFC<{
   lines: LineI[];
