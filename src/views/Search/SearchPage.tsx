@@ -9,7 +9,7 @@ interface SearchPageProps {
   onQueryChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SearchPage: React.SFC<SearchPageProps> = ({
+export const SearchPage: React.FC<SearchPageProps> = ({
   children,
   query,
   onQueryChange

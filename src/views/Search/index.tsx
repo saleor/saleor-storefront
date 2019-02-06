@@ -44,7 +44,7 @@ const notFound = (phrase: string) => (
   </>
 );
 
-export const SearchView: React.SFC<SearchViewProps> = ({
+export const SearchView: React.FC<SearchViewProps> = ({
   history,
   location
 }) => {

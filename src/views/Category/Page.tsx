@@ -30,7 +30,7 @@ interface PageProps {
   onOrder: (order: string) => void;
 }
 
-const Page: React.SFC<PageProps> = ({
+const Page: React.FC<PageProps> = ({
   attributes,
   category,
   displayLoader,

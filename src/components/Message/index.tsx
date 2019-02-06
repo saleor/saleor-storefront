@@ -11,7 +11,7 @@ interface MessageProps {
   onClose: () => void;
 }
 
-const Message: React.SFC<MessageProps> = ({
+const Message: React.FC<MessageProps> = ({
   title,
   status = "neutral",
   children,

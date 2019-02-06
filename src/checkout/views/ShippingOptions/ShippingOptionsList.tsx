@@ -4,7 +4,7 @@ import * as React from "react";
 import { maybe } from "../../../core/utils";
 import { Checkout } from "../../types/Checkout";
 
-const ShippingOptionsList: React.SFC<{
+const ShippingOptionsList: React.FC<{
   checkout: Checkout;
   selected: string;
   onShippingSelect(shippingId: string): void;

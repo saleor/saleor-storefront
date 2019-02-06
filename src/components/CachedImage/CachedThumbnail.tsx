@@ -5,7 +5,7 @@ import CachedImage from "./CachedImage";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
-const CachedThumbnail: React.SFC<{
+const CachedThumbnail: React.FC<{
   source: {
     thumbnail: { url: string; alt: string };
     thumbnail2x: { url: string };

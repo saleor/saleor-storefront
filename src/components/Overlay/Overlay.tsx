@@ -10,7 +10,7 @@ interface OverlayProps {
   className?: string;
 }
 
-const Overlay: React.SFC<OverlayProps> = ({
+const Overlay: React.FC<OverlayProps> = ({
   children,
   className,
   context: { type, theme, hide }

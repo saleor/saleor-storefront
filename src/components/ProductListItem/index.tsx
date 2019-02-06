@@ -21,7 +21,7 @@ interface ProductListItemProps {
   product: Product;
 }
 
-const ProductListItem: React.SFC<ProductListItemProps> = ({ product }) => {
+const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const { price, category } = product;
   return (
     <div className="product-list-item">

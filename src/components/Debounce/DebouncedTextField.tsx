@@ -8,7 +8,7 @@ interface DebouncedTextFieldProps extends TextFieldProps {
   resetValue?: boolean;
 }
 
-const DebouncedTextField: React.SFC<DebouncedTextFieldProps> = props => {
+const DebouncedTextField: React.FC<DebouncedTextFieldProps> = props => {
   const {
     time,
     resetValue,

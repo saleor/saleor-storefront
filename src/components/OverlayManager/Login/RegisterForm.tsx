@@ -21,7 +21,7 @@ const showSuccessNotofication = (
   }
 };
 
-const RegisterForm: React.SFC<{ show: ShowOverlayType }> = ({ show }) => (
+const RegisterForm: React.FC<{ show: ShowOverlayType }> = ({ show }) => (
   <TypedCustomerRegisterMutation
     onCompleted={data => showSuccessNotofication(show, data)}
   >

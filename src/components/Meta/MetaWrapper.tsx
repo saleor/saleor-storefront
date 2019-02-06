@@ -19,7 +19,7 @@ interface MetaWrapperProps {
   children: React.ReactNode;
 }
 
-const MetaWrapper: React.SFC<MetaWrapperProps> = ({ children, meta }) => (
+const MetaWrapper: React.FC<MetaWrapperProps> = ({ children, meta }) => (
   <MetaProvider value={{ ...META_DEFAULTS, ...removeEmpty(meta) }}>
     <MetaConsumer>{children}</MetaConsumer>
   </MetaProvider>

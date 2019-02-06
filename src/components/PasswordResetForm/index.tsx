@@ -6,7 +6,7 @@ import { Button, Form, TextField } from "..";
 import { maybe } from "../../core/utils";
 import { TypedPasswordResetMutation } from "./queries";
 
-const PasswordResetForm: React.SFC = () => (
+const PasswordResetForm: React.FC = () => (
   <div className="password-reset-form">
     <p>
       Please provide us your email address so we can share you a link to reset

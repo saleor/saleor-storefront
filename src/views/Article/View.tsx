@@ -17,7 +17,7 @@ const getHeaderImage = (shop: Article_shop) =>
 
 type ViewProps = RouteComponentProps<{ slug: string }>;
 
-export const View: React.SFC<ViewProps> = ({
+export const View: React.FC<ViewProps> = ({
   match: {
     params: { slug }
   }

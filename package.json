@@ -21,6 +21,7 @@
     "braintree-web": "^3.38.1",
     "classnames": "^2.2.6",
     "core-js": "^2.5.7",
+    "cross-env": "^5.2.0",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
@@ -96,7 +97,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development",
+    "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development",
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",

@@ -40,5 +40,4 @@ const ProductList: React.SFC<{
     })}
   </ul>
 );
-
 export default ProductList;
