@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { UserContextInterface } from "../components/User/context";
-import { User } from "../components/User/types/User";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -13,32 +12,49 @@ enum LocalStorageKeys {
   Token = "checkoutToken"
 }
 
-class Provider extends React.Component<
-  { user: UserContextInterface },
-  CheckoutContextInterface
-> {
+interface ProviderProps {
+  user: UserContextInterface;
+}
+
+interface ProviderState extends CheckoutContextInterface {
+  syncUserCheckout: boolean;
+}
+
+class Provider extends React.Component<ProviderProps, ProviderState> {
   providerContext = {};
 
-  constructor(props) {
+  constructor(props: ProviderProps) {
     super(props);
-
     this.state = {
       cardData: null,
       checkout: null,
       loading: !!this.getStoredToken(),
-      shippingAsBilling: false
+      shippingAsBilling: false,
+      /**
+       * Flag to determine, when the user checkout should be fetched from the
+       * API and override the current, storred one - happens after user log in
+       */
+      syncUserCheckout: false,
+      /**
+       * Flag to determine, when the cart lines should override the checkout
+       * lines - happens after user logs in
+       */
+      syncWithCart: false
     };
   }
 
   getStoredToken = (): null | string =>
     localStorage.getItem(LocalStorageKeys.Token);
 
-  getContext = (): CheckoutContextInterface => ({
-    ...this.state,
-    clear: this.clear,
-    step: this.getCurrentStep(),
-    update: this.update
-  });
+  getContext = (): CheckoutContextInterface => {
+    const { syncUserCheckout, ...state } = this.state;
+    return {
+      ...state,
+      clear: this.clear,
+      step: this.getCurrentStep(),
+      update: this.update
+    };
+  };
 
   getCurrentStep() {
     const { checkout, cardData } = this.state;
@@ -79,13 +95,23 @@ class Provider extends React.Component<
     localStorage.setItem(LocalStorageKeys.Token, this.state.checkout.token);
   };
 
+  componentDidUpdate(prevProps: ProviderProps) {
+    const { user: prevUser } = prevProps.user;
+    const { user: currUser } = this.props.user;
+    const { syncUserCheckout } = this.state;
+
+    if (!prevUser && currUser && !syncUserCheckout) {
+      this.setState({ syncUserCheckout: true });
+    }
+  }
+
   render() {
     const token = this.getStoredToken();
     const {
       user: { user, loading: userLoading }
     } = this.props;
-    const { checkout: stateCheckout } = this.state;
-    const skipUserCheckoutFetch = !!(userLoading || !user);
+    const { checkout: stateCheckout, syncUserCheckout } = this.state;
+    const skipUserCheckoutFetch = !syncUserCheckout;
 
     return (
       <TypedGetUserCheckoutQuery
@@ -93,13 +119,21 @@ class Provider extends React.Component<
         displayLoader={false}
         skip={skipUserCheckoutFetch}
         onCompleted={({ me: { checkout } }) => {
-          if (checkout && !stateCheckout) {
-            this.setState({ checkout, loading: false }, this.setCheckoutToken);
+          if (checkout && syncUserCheckout) {
+            this.setState(
+              {
+                checkout,
+                loading: false,
+                syncUserCheckout: false,
+                syncWithCart: true
+              },
+              this.setCheckoutToken
+            );
           }
         }}
       >
         {({ loading: userCheckoutLoading }) => {
-          const skip = !(
+          const skip = !!(
             userCheckoutLoading ||
             userLoading ||
             !token ||

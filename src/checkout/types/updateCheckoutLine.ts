@@ -61,10 +61,23 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines {
   variant: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
+  __typename: "Money";
+  amount: number;
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
+  __typename: "TaxedMoney";
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
+  currency: string;
+}
+
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   __typename: "Checkout";
   id: string;
   lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
+  subtotalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {

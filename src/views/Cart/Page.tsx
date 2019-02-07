@@ -62,14 +62,12 @@ class Page extends React.Component<PageProps> {
       }
     } = this.props;
 
-    if (!checkout) {
-      if (checkoutLoading) {
-        return <Loader full />;
-      }
+    if (!checkout && checkoutLoading) {
+      return <Loader full />;
+    }
 
-      if (!lines.length) {
-        return <EmptyCart />;
-      }
+    if (!lines.length) {
+      return <EmptyCart />;
     }
 
     const productTableProps = {

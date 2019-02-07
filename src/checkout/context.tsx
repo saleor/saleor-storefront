@@ -20,6 +20,7 @@ export interface CardData {
 }
 
 export interface CheckoutContextInterface {
+  syncWithCart?: boolean;
   cardData?: CardData;
   checkout?: Checkout;
   loading?: boolean;
@@ -36,6 +37,7 @@ export const defaultContext = {
   loading: false,
   shippingAsBilling: false,
   step: CheckoutStep.ShippingAddress,
+  syncWithCart: false,
   update: (checkoutData: {}) => null
 };
 

@@ -1,14 +1,9 @@
+import { debounce, isEqual, pullAllBy } from "lodash";
 import * as React from "react";
 
 import { ApolloClient } from "apollo-client";
-import {
-  CheckoutContext,
-  CheckoutContextInterface
-} from "../../checkout/context";
-import {
-  getCheckoutQuery,
-  updateCheckoutLineQuery
-} from "../../checkout/queries";
+import { CheckoutContextInterface } from "../../checkout/context";
+import { updateCheckoutLineQuery } from "../../checkout/queries";
 import {
   updateCheckoutLine,
   updateCheckoutLineVariables
@@ -20,19 +15,26 @@ import {
   CartLine,
   CartLineInterface
 } from "./context";
+import Subtotal from "../../checkout/components/CartSummary/Subtotal";
 
 enum LocalStorageKeys {
   Cart = "cart"
 }
 
-export default class CartProvider extends React.Component<
-  { checkout: CheckoutContextInterface; apolloClient: ApolloClient<any> },
-  CartInterface
-> {
-  static contextType = CheckoutContext;
-  context: CheckoutContextInterface;
+interface CartProviderProps {
+  checkout: CheckoutContextInterface;
+  apolloClient: ApolloClient<any>;
+}
 
-  constructor(props) {
+type CartProviderState = CartInterface;
+
+export default class CartProvider extends React.Component<
+  CartProviderProps,
+  CartProviderState
+> {
+  private debouncedSyncCheckoutFromCart;
+
+  constructor(props: CartProviderProps) {
     super(props);
 
     let lines;
@@ -41,7 +43,10 @@ export default class CartProvider extends React.Component<
     } catch {
       lines = [];
     }
-
+    this.debouncedSyncCheckoutFromCart = debounce(
+      this.syncCheckoutFromCart,
+      500
+    );
     this.state = {
       add: this.add,
       changeQuantity: this.changeQuantity,
@@ -49,13 +54,41 @@ export default class CartProvider extends React.Component<
       clearErrors: this.clearErrors,
       errors: null,
       getQuantity: this.getQuantity,
-      getTotal: this.getTotal,
       lines,
       loading: false,
       remove: this.remove,
       subtract: this.subtract
     };
   }
+
+  componentDidUpdate(props: CartProviderProps) {
+    const {
+      checkout: { syncWithCart, update }
+    } = props;
+
+    if (syncWithCart) {
+      this.debouncedSyncCheckoutFromCart();
+      update({ syncWithCart: false });
+    }
+  }
+
+  syncCheckoutFromCart = () => {
+    const { checkout } = this.props.checkout;
+    const { lines } = this.state;
+    const checkoutLines = checkout.lines.map(
+      ({ quantity, variant: { id } }) => ({ quantity, variantId: id })
+    );
+
+    if (!isEqual(lines, checkoutLines)) {
+      const linestoRemove = pullAllBy(checkoutLines, lines, "variantId").map(
+        ({ variantId }) => ({
+          quantity: 0,
+          variantId
+        })
+      );
+      this.changeQuantity([...linestoRemove, ...lines]);
+    }
+  };
 
   getLine = (variantId: string): CartLineInterface =>
     this.state.lines.find(line => line.variantId === variantId);
@@ -93,7 +126,8 @@ export default class CartProvider extends React.Component<
         checkout.update({
           checkout: {
             ...checkout.checkout,
-            lines: updatedCheckout.lines
+            lines: updatedCheckout.lines,
+            subtotalPrice: updatedCheckout.subtotalPrice
           }
         });
       }
@@ -101,14 +135,12 @@ export default class CartProvider extends React.Component<
 
     if (!apiError) {
       this.setState(prevState => {
-        let newLines = lines.filter(({ quantity }) => !!quantity);
-        const newLinesVariantIds = lines.map(({ variantId }) => variantId);
-        newLines = prevState.lines.filter(
-          ({ variantId }) => !newLinesVariantIds.includes(variantId)
-        );
-        lines = [...lines, ...newLines];
-        localStorage.setItem("cart", JSON.stringify(lines));
-        return { lines, loading: false };
+        const updatedLines = [
+          ...pullAllBy(prevState.lines, lines, "variantId"),
+          ...lines
+        ].filter(({ quantity }) => !!quantity);
+        localStorage.setItem("cart", JSON.stringify(updatedLines));
+        return { lines: updatedLines, loading: false };
       });
     }
   };
@@ -134,16 +166,6 @@ export default class CartProvider extends React.Component<
 
   getQuantity = () =>
     this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
-
-  getTotal = (): { amount: number; currency: string } => {
-    const { lines } = this.state;
-    const amount = lines.reduce(
-      (sum, line) => sum + line.variant.price.amount * line.quantity,
-      0
-    );
-    const { currency } = lines[0].variant.price;
-    return { amount, currency };
-  };
 
   remove = variantId => this.changeQuantity([{ variantId, quantity: 0 }]);
 

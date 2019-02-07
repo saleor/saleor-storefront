@@ -1,3 +1,4 @@
+import { Price } from "./types/Price";
 import gql from "graphql-tag";
 
 import { TypedMutation } from "../core/mutations";
@@ -136,12 +137,16 @@ export const TypedGetCheckoutQuery = TypedQuery<
 
 export const updateCheckoutLineQuery = gql`
   ${checkoutLineFragment}
+  ${checkoutPriceFragment}
   mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
         id
         lines {
           ...CheckoutLine
+        }
+        subtotalPrice {
+          ...Price
         }
       }
       errors {
