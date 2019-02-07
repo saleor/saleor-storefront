@@ -13,9 +13,9 @@ export interface createCheckout_checkoutCreate_errors {
   message: string | null;
 }
 
-export interface createCheckout_checkoutCreate_checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
+export interface createCheckout_checkoutCreate_checkout_user {
+  __typename: "User";
+  email: string;
 }
 
 export interface createCheckout_checkoutCreate_checkout_totalPrice_gross {
@@ -26,14 +26,8 @@ export interface createCheckout_checkoutCreate_checkout_totalPrice_gross {
 
 export interface createCheckout_checkoutCreate_checkout_totalPrice {
   __typename: "TaxedMoney";
-  net: createCheckout_checkoutCreate_checkout_totalPrice_net;
   gross: createCheckout_checkoutCreate_checkout_totalPrice_gross;
   currency: string;
-}
-
-export interface createCheckout_checkoutCreate_checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface createCheckout_checkoutCreate_checkout_subtotalPrice_gross {
@@ -44,7 +38,6 @@ export interface createCheckout_checkoutCreate_checkout_subtotalPrice_gross {
 
 export interface createCheckout_checkoutCreate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
-  net: createCheckout_checkoutCreate_checkout_subtotalPrice_net;
   gross: createCheckout_checkoutCreate_checkout_subtotalPrice_gross;
   currency: string;
 }
@@ -117,11 +110,6 @@ export interface createCheckout_checkoutCreate_checkout_shippingMethod {
   price: createCheckout_checkoutCreate_checkout_shippingMethod_price | null;
 }
 
-export interface createCheckout_checkoutCreate_checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface createCheckout_checkoutCreate_checkout_shippingPrice_gross {
   __typename: "Money";
   amount: number;
@@ -130,14 +118,8 @@ export interface createCheckout_checkoutCreate_checkout_shippingPrice_gross {
 
 export interface createCheckout_checkoutCreate_checkout_shippingPrice {
   __typename: "TaxedMoney";
-  net: createCheckout_checkoutCreate_checkout_shippingPrice_net;
   gross: createCheckout_checkoutCreate_checkout_shippingPrice_gross;
   currency: string;
-}
-
-export interface createCheckout_checkoutCreate_checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface createCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
@@ -148,7 +130,6 @@ export interface createCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
 
 export interface createCheckout_checkoutCreate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: createCheckout_checkoutCreate_checkout_lines_totalPrice_net;
   gross: createCheckout_checkoutCreate_checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -199,6 +180,7 @@ export interface createCheckout_checkoutCreate_checkout {
   __typename: "Checkout";
   token: any;
   id: string;
+  user: createCheckout_checkoutCreate_checkout_user | null;
   totalPrice: createCheckout_checkoutCreate_checkout_totalPrice | null;
   subtotalPrice: createCheckout_checkoutCreate_checkout_subtotalPrice | null;
   billingAddress: createCheckout_checkoutCreate_checkout_billingAddress | null;

@@ -8,7 +8,6 @@ import { generatePath, Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { ApolloConsumer } from "react-apollo";
 import {
   Loader,
   Offline,
@@ -16,7 +15,6 @@ import {
   Online,
   OverlayManager
 } from "../components";
-import CartProvider from "../components/CartProvider";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
 import { CartSummary } from "./components";
@@ -48,50 +46,41 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               "checkout__grid--review": reviewPage
             })}
           >
-            <ApolloConsumer>
-              {client => (
-                <CartProvider apolloClient={client}>
-                  <CartContext.Consumer>
-                    {cart => (
-                      <CheckoutContext.Consumer>
-                        {({ checkout, loading }) => {
-                          if (!cart.lines.length) {
-                            return <Redirect to={BASE_URL} />;
-                          }
+            <CartContext.Consumer>
+              {cart => (
+                <CheckoutContext.Consumer>
+                  {({ checkout, loading }) => {
+                    if (!cart.lines.length) {
+                      return <Redirect to={BASE_URL} />;
+                    }
 
-                          if (loading) {
-                            return <Loader />;
-                          }
+                    if (loading) {
+                      return <Loader />;
+                    }
 
-                          return (
-                            <>
-                              <div
-                                className={classNames({
-                                  checkout__grid__content: !reviewPage
-                                })}
-                              >
-                                <Routes />
-                              </div>
-                              {!reviewPage && (
-                                <Media
-                                  query={{ minWidth: mediumScreen }}
-                                  render={() => (
-                                    <CartSummary
-                                      cart={cart}
-                                      checkout={checkout}
-                                    />
-                                  )}
-                                />
-                              )}
-                            </>
-                          );
-                        }}
-                      </CheckoutContext.Consumer>
-                    )}
-                  </CartContext.Consumer>
-                </CartProvider>
+                    return (
+                      <>
+                        <div
+                          className={classNames({
+                            checkout__grid__content: !reviewPage
+                          })}
+                        >
+                          <Routes />
+                        </div>
+                        {!reviewPage && (
+                          <Media
+                            query={{ minWidth: mediumScreen }}
+                            render={() => (
+                              <CartSummary cart={cart} checkout={checkout} />
+                            )}
+                          />
+                        )}
+                      </>
+                    );
+                  }}
+                </CheckoutContext.Consumer>
               )}
-            </ApolloConsumer>
+            </CartContext.Consumer>
           </div>
         </Online>
         <Offline>

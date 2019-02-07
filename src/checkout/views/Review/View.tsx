@@ -15,7 +15,7 @@ import {
 } from "../../../components";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
 import { BASE_URL } from "../../../core/config";
-import { AddressSummary, StepCheck } from "../../components";
+import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
@@ -33,7 +33,6 @@ const completeCheckout = (
   if (canProceed) {
     history.push(BASE_URL);
     clear();
-    localStorage.removeItem("cart");
     show(OverlayType.message, null, {
       status: "success",
       title: "Your order was placed"

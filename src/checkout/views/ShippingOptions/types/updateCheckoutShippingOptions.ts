@@ -11,9 +11,9 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_erro
   message: string | null;
 }
 
-export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_user {
+  __typename: "User";
+  email: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_gross {
@@ -24,14 +24,8 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_net;
   gross: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_gross;
   currency: string;
-}
-
-export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_gross {
@@ -42,7 +36,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_net;
   gross: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_gross;
   currency: string;
 }
@@ -115,11 +108,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   price: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod_price | null;
 }
 
-export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_gross {
   __typename: "Money";
   amount: number;
@@ -128,14 +116,8 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_net;
   gross: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_gross;
   currency: string;
-}
-
-export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_gross {
@@ -146,7 +128,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_net;
   gross: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -197,6 +178,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   __typename: "Checkout";
   token: any;
   id: string;
+  user: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_user | null;
   totalPrice: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice | null;
   subtotalPrice: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice | null;
   billingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress | null;

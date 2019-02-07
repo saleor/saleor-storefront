@@ -5,9 +5,9 @@
 // GraphQL fragment: Checkout
 // ====================================================
 
-export interface Checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
+export interface Checkout_user {
+  __typename: "User";
+  email: string;
 }
 
 export interface Checkout_totalPrice_gross {
@@ -18,14 +18,8 @@ export interface Checkout_totalPrice_gross {
 
 export interface Checkout_totalPrice {
   __typename: "TaxedMoney";
-  net: Checkout_totalPrice_net;
   gross: Checkout_totalPrice_gross;
   currency: string;
-}
-
-export interface Checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface Checkout_subtotalPrice_gross {
@@ -36,7 +30,6 @@ export interface Checkout_subtotalPrice_gross {
 
 export interface Checkout_subtotalPrice {
   __typename: "TaxedMoney";
-  net: Checkout_subtotalPrice_net;
   gross: Checkout_subtotalPrice_gross;
   currency: string;
 }
@@ -109,11 +102,6 @@ export interface Checkout_shippingMethod {
   price: Checkout_shippingMethod_price | null;
 }
 
-export interface Checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface Checkout_shippingPrice_gross {
   __typename: "Money";
   amount: number;
@@ -122,14 +110,8 @@ export interface Checkout_shippingPrice_gross {
 
 export interface Checkout_shippingPrice {
   __typename: "TaxedMoney";
-  net: Checkout_shippingPrice_net;
   gross: Checkout_shippingPrice_gross;
   currency: string;
-}
-
-export interface Checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface Checkout_lines_totalPrice_gross {
@@ -140,7 +122,6 @@ export interface Checkout_lines_totalPrice_gross {
 
 export interface Checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: Checkout_lines_totalPrice_net;
   gross: Checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -191,6 +172,7 @@ export interface Checkout {
   __typename: "Checkout";
   token: any;
   id: string;
+  user: Checkout_user | null;
   totalPrice: Checkout_totalPrice | null;
   subtotalPrice: Checkout_subtotalPrice | null;
   billingAddress: Checkout_billingAddress | null;

@@ -2,16 +2,13 @@ import { ApolloError } from "apollo-client";
 import * as React from "react";
 
 import { TokenAuth_tokenCreate_user } from "./types/TokenAuth";
-
-interface UserInterface {
-  email: string;
-}
+import { User } from "./types/User";
 
 export interface UserContextInterface {
   loading: boolean;
   errors: ApolloError[] | null;
   token: string | null;
-  user: UserInterface | null;
+  user: User | null;
   authenticate(token: string): void;
   logout(): void;
   login(token: string, user: TokenAuth_tokenCreate_user): void;

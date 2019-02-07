@@ -13,9 +13,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_error
   message: string | null;
 }
 
-export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
+export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_user {
+  __typename: "User";
+  email: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_gross {
@@ -26,14 +26,8 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net;
   gross: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_gross;
   currency: string;
-}
-
-export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross {
@@ -44,7 +38,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net;
   gross: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross;
   currency: string;
 }
@@ -117,11 +110,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   price: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod_price | null;
 }
 
-export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_gross {
   __typename: "Money";
   amount: number;
@@ -130,14 +118,8 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net;
   gross: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_gross;
   currency: string;
-}
-
-export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross {
@@ -148,7 +130,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net;
   gross: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -199,6 +180,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   __typename: "Checkout";
   token: any;
   id: string;
+  user: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_user | null;
   totalPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice | null;
   subtotalPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice | null;
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;

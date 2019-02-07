@@ -12,11 +12,15 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 import CheckoutApp from "./checkout";
+import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { App, OverlayProvider, UserProvider } from "./components";
+import CartProvider from "./components/CartProvider";
+import { CartContext } from "./components/CartProvider/context";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
+import { UserContext } from "./components/User/context";
 import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
@@ -70,31 +74,51 @@ const startApp = async () => {
       <ApolloProvider client={apolloClient}>
         <ShopProvider>
           <OverlayProvider>
-            <CheckoutProvider>
-              <OverlayContext.Consumer>
-                {({ show }) => (
-                  <UserProviderWithTokenHandler
-                    apolloClient={apolloClient}
-                    onUserLogin={() =>
-                      show(OverlayType.message, null, {
-                        title: "You are logged in"
-                      })
-                    }
-                    onUserLogout={() =>
-                      show(OverlayType.message, null, {
-                        title: "You are logged out"
-                      })
-                    }
-                    refreshUser
-                  >
-                    <Switch>
-                      <Route path={checkoutBaseUrl} component={CheckoutApp} />
-                      <Route component={App} />
-                    </Switch>
-                  </UserProviderWithTokenHandler>
-                )}
-              </OverlayContext.Consumer>
-            </CheckoutProvider>
+            <OverlayContext.Consumer>
+              {({ show }) => (
+                <UserProviderWithTokenHandler
+                  apolloClient={apolloClient}
+                  onUserLogin={() =>
+                    show(OverlayType.message, null, {
+                      title: "You are logged in"
+                    })
+                  }
+                  onUserLogout={() =>
+                    show(OverlayType.message, null, {
+                      title: "You are logged out"
+                    })
+                  }
+                  refreshUser
+                >
+                  <UserContext.Consumer>
+                    {user => (
+                      <CheckoutProvider user={user}>
+                        <CheckoutContext.Consumer>
+                          {checkout => (
+                            <CartProvider
+                              checkout={checkout}
+                              apolloClient={apolloClient}
+                            >
+                              <CartContext.Consumer>
+                                {cart => (
+                                  <Switch>
+                                    <Route
+                                      path={checkoutBaseUrl}
+                                      component={CheckoutApp}
+                                    />
+                                    <Route component={App} />
+                                  </Switch>
+                                )}
+                              </CartContext.Consumer>
+                            </CartProvider>
+                          )}
+                        </CheckoutContext.Consumer>
+                      </CheckoutProvider>
+                    )}
+                  </UserContext.Consumer>
+                </UserProviderWithTokenHandler>
+              )}
+            </OverlayContext.Consumer>
           </OverlayProvider>
         </ShopProvider>
       </ApolloProvider>

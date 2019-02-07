@@ -14,10 +14,19 @@ import {
   updateCheckoutLineVariables
 } from "../../checkout/types/updateCheckoutLine";
 import { maybe } from "../../core/utils";
-import { CartContext, CartInterface, CartLineInterface } from "./context";
+import {
+  CartContext,
+  CartInterface,
+  CartLine,
+  CartLineInterface
+} from "./context";
+
+enum LocalStorageKeys {
+  Cart = "cart"
+}
 
 export default class CartProvider extends React.Component<
-  { children: any; apolloClient: ApolloClient<any> },
+  { checkout: CheckoutContextInterface; apolloClient: ApolloClient<any> },
   CartInterface
 > {
   static contextType = CheckoutContext;
@@ -28,7 +37,7 @@ export default class CartProvider extends React.Component<
 
     let lines;
     try {
-      lines = JSON.parse(localStorage.getItem("cart")) || [];
+      lines = JSON.parse(localStorage.getItem(LocalStorageKeys.Cart)) || [];
     } catch {
       lines = [];
     }
@@ -51,39 +60,27 @@ export default class CartProvider extends React.Component<
   getLine = (variantId: string): CartLineInterface =>
     this.state.lines.find(line => line.variantId === variantId);
 
-  changeQuantity = async (variantId, quantity) => {
+  changeQuantity = async (lines: CartLine[]) => {
     this.setState({ loading: true });
 
-    const checkoutID = maybe(() => this.context.checkout.id);
+    const { checkout } = this.props;
+    const checkoutID = maybe(() => checkout.checkout.id);
     let apiError = false;
 
     if (checkoutID) {
       const { apolloClient } = this.props;
       const {
         data: {
-          checkoutLinesUpdate: { errors, checkout }
+          checkoutLinesUpdate: { errors, checkout: updatedCheckout }
         }
       } = await apolloClient.mutate<
         updateCheckoutLine,
         updateCheckoutLineVariables
       >({
         mutation: updateCheckoutLineQuery,
-        update: (cache, { data: { checkoutLinesUpdate } }) => {
-          cache.writeQuery({
-            data: {
-              checkout: checkoutLinesUpdate.checkout
-            },
-            query: getCheckoutQuery
-          });
-        },
         variables: {
           checkoutId: checkoutID,
-          lines: [
-            {
-              quantity,
-              variantId
-            }
-          ]
+          lines
         }
       });
       apiError = !!errors.length;
@@ -93,19 +90,24 @@ export default class CartProvider extends React.Component<
           loading: false
         });
       } else {
-        this.context.update({ checkout });
+        checkout.update({
+          checkout: {
+            ...checkout.checkout,
+            lines: updatedCheckout.lines
+          }
+        });
       }
     }
 
     if (!apiError) {
-      const newLine = { quantity, variantId };
       this.setState(prevState => {
-        let lines = prevState.lines.filter(
-          line => line.variantId !== variantId
+        let newLines = lines.filter(({ quantity }) => !!quantity);
+        const newLinesVariantIds = lines.map(({ variantId }) => variantId);
+        newLines = prevState.lines.filter(
+          ({ variantId }) => !newLinesVariantIds.includes(variantId)
         );
-        if (newLine.quantity > 0) {
-          lines = [...lines, newLine];
-        }
+        lines = [...lines, ...newLines];
+        localStorage.setItem("cart", JSON.stringify(lines));
         return { lines, loading: false };
       });
     }
@@ -114,16 +116,19 @@ export default class CartProvider extends React.Component<
   add = (variantId, quantity = 1) => {
     const line = this.getLine(variantId);
     const newQuantity = line ? line.quantity + quantity : quantity;
-    this.changeQuantity(variantId, newQuantity);
+    this.changeQuantity([{ variantId, quantity: newQuantity }]);
   };
 
   subtract = (variantId, quantity = 1) => {
     const line = this.getLine(variantId);
     const newQuantity = line ? line.quantity - quantity : quantity;
-    this.changeQuantity(variantId, newQuantity);
+    this.changeQuantity([{ variantId, quantity: newQuantity }]);
   };
 
-  clear = () => this.setState({ lines: [], errors: [] });
+  clear = () => {
+    this.setState({ lines: [], errors: [] });
+    localStorage.removeItem(LocalStorageKeys.Cart);
+  };
 
   clearErrors = () => this.setState({ errors: [] });
 
@@ -140,13 +145,8 @@ export default class CartProvider extends React.Component<
     return { amount, currency };
   };
 
-  remove = variantId => this.changeQuantity(variantId, 0);
+  remove = variantId => this.changeQuantity([{ variantId, quantity: 0 }]);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (JSON.stringify(this.state.lines) !== JSON.stringify(prevState.lines)) {
-      localStorage.setItem("cart", JSON.stringify(this.state.lines));
-    }
-  }
   render() {
     return (
       <CartContext.Provider value={this.state}>

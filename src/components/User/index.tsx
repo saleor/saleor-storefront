@@ -5,10 +5,10 @@ import { getAuthToken, removeAuthToken, setAuthToken } from "../../core/auth";
 import { UserContext, UserContextInterface } from "./context";
 import { tokenVeryficationMutation } from "./queries";
 import { TokenAuth_tokenCreate_user } from "./types/TokenAuth";
+import { VerifyToken } from "./types/VerifyToken";
 
 export default class UserProvider extends React.Component<
   {
-    children: any;
     refreshUser: boolean;
     apolloClient: ApolloClient<any>;
     onUserLogin: () => void;
@@ -26,7 +26,7 @@ export default class UserProvider extends React.Component<
     this.state = {
       authenticate: this.authenticate,
       errors: null,
-      loading: false,
+      loading: !!token,
       login: this.login,
       logout: this.logout,
       token,
@@ -57,31 +57,28 @@ export default class UserProvider extends React.Component<
   };
 
   authenticate = async token => {
-    const { apolloClient } = this.props;
     this.setState({ loading: true });
-    const response = await apolloClient.mutate({
-      mutation: tokenVeryficationMutation,
-      variables: { token }
-    });
-    const data = response.data.tokenVerify;
-    if (data.errors) {
-      this.setState({
-        errors: data.errors,
-        loading: false,
-        token: null,
-        user: null
+    const { apolloClient } = this.props;
+    let state = { errors: null, loading: false, token: null, user: null };
+
+    try {
+      const {
+        data: {
+          tokenVerify: { user }
+        }
+      } = await apolloClient.mutate<VerifyToken>({
+        mutation: tokenVeryficationMutation,
+        variables: { token }
       });
-    } else {
-      this.setState({
-        errors: null,
-        loading: false,
-        token,
-        user: data.user
-      });
+      state = { ...state, user, token };
+    } catch ({ message }) {
+      state.errors = message;
     }
+
+    this.setState(state);
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = () => {
     if (this.state.token) {
       setAuthToken(this.state.token);
     } else {

@@ -11,6 +11,7 @@ import { VariantList_productVariants_edges_node } from "../../views/Product/type
 import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
+import { CartLine } from "../CartProvider/context";
 
 export type LineI = (
   | VariantList_productVariants_edges_node
@@ -28,7 +29,7 @@ export interface EditableProductRowProps {
   processing?: boolean;
   invalid?: boolean;
   add?(variantId: string): void;
-  changeQuantity?(variantId: string, quantity: number): void;
+  changeQuantity?(lines: CartLine[]): void;
   remove?(variantId: string): void;
   subtract?(variantId: string): void;
 }
@@ -54,7 +55,11 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   ) : (
     <DebouncedTextField
       value={line.quantity}
-      onChange={evt => changeQuantity(line.id, parseInt(evt.target.value, 10))}
+      onChange={evt =>
+        changeQuantity([
+          { variantId: line.id, quantity: parseInt(evt.target.value, 10) }
+        ])
+      }
       resetValue={invalid}
       disabled={processing}
     />
