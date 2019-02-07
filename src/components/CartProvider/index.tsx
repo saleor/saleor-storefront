@@ -78,14 +78,18 @@ export default class CartProvider extends React.Component<
       ({ quantity, variant: { id } }) => ({ quantity, variantId: id })
     );
 
-    if (!isEqual(lines, checkoutLines)) {
-      const linestoRemove = pullAllBy(checkoutLines, lines, "variantId").map(
-        ({ variantId }) => ({
-          quantity: 0,
-          variantId
-        })
-      );
-      this.changeQuantity([...linestoRemove, ...lines]);
+    if (lines.length) {
+      if (!isEqual(lines, checkoutLines)) {
+        const linestoRemove = pullAllBy(checkoutLines, lines, "variantId").map(
+          ({ variantId }) => ({
+            quantity: 0,
+            variantId
+          })
+        );
+        this.changeQuantity([...linestoRemove, ...lines]);
+      }
+    } else if (checkoutLines.length) {
+      this.changeQuantity(checkoutLines);
     }
   };
 
