@@ -107,7 +107,7 @@ class View extends React.Component<
       createPaymentMethod({
         variables: {
           input: {
-            amount: totalPrice.net.amount,
+            amount: totalPrice.gross.amount,
             billingAddress: {
               city: billingAddress.city,
               country: billingAddress.country.code,
