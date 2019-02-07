@@ -1,4 +1,3 @@
-import { Price } from "./types/Price";
 import gql from "graphql-tag";
 
 import { TypedMutation } from "../core/mutations";

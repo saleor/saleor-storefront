@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
+import { Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
 import {
@@ -15,21 +15,18 @@ import {
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { UserContext } from "../User/context";
 
-class CheckoutLogin extends React.Component<
+class CheckoutLogin extends React.PureComponent<
   RouteComponentProps<{}>,
   { resetPassword: boolean }
 > {
-  checkoutButton: any;
-  constructor(props) {
-    super(props);
-    this.state = { resetPassword: false };
-  }
+  state = { resetPassword: false };
+
   render() {
     return (
       <UserContext.Consumer>
         {({ user }) => {
           if (user) {
-            this.checkoutButton.handleCheckoutCreation();
+            return <Redirect to={checkoutUrl} />;
           }
           return (
             <div className="container">
@@ -55,11 +52,9 @@ class CheckoutLogin extends React.Component<
                         <div className="login__content__password-reminder">
                           <p>
                             <span
-                              onClick={() => {
-                                this.setState({
-                                  resetPassword: false
-                                });
-                              }}
+                              onClick={() =>
+                                this.setState({ resetPassword: false })
+                              }
                             >
                               Back to login
                             </span>
@@ -73,11 +68,9 @@ class CheckoutLogin extends React.Component<
                           <p>
                             Have you forgotten your password?&nbsp;
                             <span
-                              onClick={() => {
-                                this.setState({
-                                  resetPassword: true
-                                });
-                              }}
+                              onClick={() =>
+                                this.setState({ resetPassword: true })
+                              }
                             >
                               Click Here
                             </span>

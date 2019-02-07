@@ -19,50 +19,46 @@ const performLogin = (
   }
 };
 
-const LoginForm: React.FC = () => {
-  return (
-    <div className="login-form">
-      <UserContext.Consumer>
-        {({ login }) => (
-          <TypedTokenAuthMutation
-            onCompleted={data => performLogin(login, data)}
-          >
-            {(tokenCreate, { data, loading }) => {
-              return (
-                <Form
-                  errors={maybe(() => data.tokenCreate.errors, [])}
-                  onSubmit={(evt, { email, password }) => {
-                    evt.preventDefault();
-                    tokenCreate({ variables: { email, password } });
-                  }}
-                >
-                  <TextField
-                    name="email"
-                    autoComplete="email"
-                    label="Email Address"
-                    type="email"
-                    required
-                  />
-                  <TextField
-                    name="password"
-                    autoComplete="password"
-                    label="Password"
-                    type="password"
-                    required
-                  />
-                  <div className="login-form__button">
-                    <Button type="submit" {...loading && { disabled: true }}>
-                      {loading ? "Loading" : "Sign in"}
-                    </Button>
-                  </div>
-                </Form>
-              );
-            }}
-          </TypedTokenAuthMutation>
-        )}
-      </UserContext.Consumer>
-    </div>
-  );
-};
+const LoginForm: React.FC = () => (
+  <div className="login-form">
+    <UserContext.Consumer>
+      {({ login }) => (
+        <TypedTokenAuthMutation onCompleted={data => performLogin(login, data)}>
+          {(tokenCreate, { data, loading }) => {
+            return (
+              <Form
+                errors={maybe(() => data.tokenCreate.errors, [])}
+                onSubmit={(evt, { email, password }) => {
+                  evt.preventDefault();
+                  tokenCreate({ variables: { email, password } });
+                }}
+              >
+                <TextField
+                  name="email"
+                  autoComplete="email"
+                  label="Email Address"
+                  type="email"
+                  required
+                />
+                <TextField
+                  name="password"
+                  autoComplete="password"
+                  label="Password"
+                  type="password"
+                  required
+                />
+                <div className="login-form__button">
+                  <Button type="submit" {...loading && { disabled: true }}>
+                    {loading ? "Loading" : "Sign in"}
+                  </Button>
+                </div>
+              </Form>
+            );
+          }}
+        </TypedTokenAuthMutation>
+      )}
+    </UserContext.Consumer>
+  </div>
+);
 
 export default LoginForm;

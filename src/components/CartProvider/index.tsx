@@ -15,7 +15,6 @@ import {
   CartLine,
   CartLineInterface
 } from "./context";
-import Subtotal from "../../checkout/components/CartSummary/Subtotal";
 
 enum LocalStorageKeys {
   Cart = "cart"
