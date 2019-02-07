@@ -5,7 +5,7 @@ import { CachedThumbnail } from "../..";
 import { generateProductUrl } from "../../../core/utils";
 import { SearchResults_products_edges } from "./types/SearchResults";
 
-const ProductItem: React.SFC<SearchResults_products_edges> = ({
+const ProductItem: React.FC<SearchResults_products_edges> = ({
   node: product
 }) => (
   <li className="search__products__item">

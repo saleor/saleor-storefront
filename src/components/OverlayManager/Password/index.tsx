@@ -14,7 +14,7 @@ import {
 
 import closeImg from "../../../images/x.svg";
 
-const Password: React.SFC<{ overlay: OverlayContextInterface }> = ({
+const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay
 }) => (
   <Overlay context={overlay}>

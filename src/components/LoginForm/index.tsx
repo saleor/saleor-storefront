@@ -19,7 +19,7 @@ const performLogin = (
   }
 };
 
-const LoginForm: React.SFC = () => {
+const LoginForm: React.FC = () => {
   return (
     <div className="login-form">
       <UserContext.Consumer>

@@ -13,7 +13,7 @@ export interface IconProps extends React.HTMLProps<HTMLAnchorElement> {
   target?: string;
 }
 
-const SocialMediaIcon: React.SFC<IconProps> = ({ medium, target }) => (
+const SocialMediaIcon: React.FC<IconProps> = ({ medium, target }) => (
   <a
     href={medium.href}
     target={target || "_blank"}

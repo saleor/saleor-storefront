@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { INavItem, MobileNavList, Overlay, OverlayContextInterface } from "..";
 
-const MobileNav: React.SFC<{ overlay: OverlayContextInterface }> = ({
+const MobileNav: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay
 }) => {
   const items: INavItem[] = overlay.context.data;

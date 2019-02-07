@@ -7,7 +7,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   btnRef?: React.RefObject<HTMLButtonElement>;
 }
 
-const Button: React.SFC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   children,
   secondary,
   btnRef,

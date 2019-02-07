@@ -28,7 +28,7 @@ interface ResponseError extends ErrorResponse {
 
 export const invalidTokenLinkWithTokenHandlerComponent = (
   component: React.ComponentClass
-): { component: React.SFC<any>; link: ApolloLink } => {
+): { component: React.FC<any>; link: ApolloLink } => {
   // tslint:disable-next-line:no-empty
   let tokenExpirationCallback = () => {};
 

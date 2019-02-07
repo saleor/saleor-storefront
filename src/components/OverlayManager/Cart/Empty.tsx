@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Button } from "../..";
 
-const Empty: React.SFC<{ overlayHide(): void }> = ({ overlayHide }) => (
+const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
   <div className="cart__empty">
     <h4>Yor bag is empty</h4>
     <p>

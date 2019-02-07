@@ -11,7 +11,7 @@ import { ProductsList_shop_homepageCollection_backgroundImage } from "./types/Pr
 
 import noPhotoImg from "../../images/no-photo.svg";
 
-const Page: React.SFC<{
+const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;

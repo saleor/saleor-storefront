@@ -6,7 +6,7 @@ import { SUPPORT_EMAIL } from "../../../core/config";
 
 import closeImg from "../../../images/modal-close.svg";
 
-const ShippingUnavailableModal: React.SFC<{ hide(): void }> = ({ hide }) => (
+const ShippingUnavailableModal: React.FC<{ hide(): void }> = ({ hide }) => (
   <div className="modal">
     <div className="modal__title">
       <p>We’re not shipping to your country</p>{" "}

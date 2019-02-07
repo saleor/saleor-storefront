@@ -33,7 +33,7 @@ export const extractBreadcrumbs = (category: Category_category) => {
   return breadcrumbs;
 };
 
-const Breadcrumbs: React.SFC<{
+const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
 }> = ({ breadcrumbs }) => {
   return (

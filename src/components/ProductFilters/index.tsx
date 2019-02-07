@@ -30,7 +30,7 @@ export interface ProductFiltersProps {
   onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
 }
 
-export const ProductFilters: React.SFC<ProductFiltersProps> = ({
+export const ProductFilters: React.FC<ProductFiltersProps> = ({
   attributes,
   filters,
   onAttributeFiltersChange,

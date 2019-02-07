@@ -3,7 +3,7 @@ import Select from "react-select";
 
 import "./scss/index.scss";
 
-const Dropdown: React.SFC<{ [x: string]: any }> = props => (
+const Dropdown: React.FC<{ [x: string]: any }> = props => (
   <Select
     classNamePrefix="dropdown"
     className="dropdown-component"

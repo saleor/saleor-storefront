@@ -4,7 +4,7 @@ import { maybe } from "../../core/utils";
 import { defaultContext, ShopContext } from "./context";
 import { TypedGetShopQuery } from "./queries";
 
-const ShopProvider: React.SFC = ({ children }) => (
+const ShopProvider: React.FC = ({ children }) => (
   <TypedGetShopQuery displayLoader={false} displayError={false}>
     {({ data }) => (
       <ShopContext.Provider value={maybe(() => data.shop, defaultContext)}>
