@@ -19,7 +19,7 @@ import {
 } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { UserContext } from "../../components/User/context";
-import { maybe, priceToString } from "../../core/utils";
+import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
 
 interface PageProps {
@@ -50,7 +50,12 @@ class Page extends React.Component<PageProps> {
   render() {
     const {
       shop: { geolocalization, defaultCountry },
-      checkout: { checkout, loading: checkoutLoading },
+      checkout: {
+        checkout,
+        loading: checkoutLoading,
+        syncWithCart,
+        syncUserCheckout
+      },
       cart: {
         lines,
         remove,
@@ -62,7 +67,7 @@ class Page extends React.Component<PageProps> {
       }
     } = this.props;
 
-    if (!checkout && checkoutLoading) {
+    if ((!checkout && checkoutLoading) || syncWithCart || syncUserCheckout) {
       return <Loader full />;
     }
 

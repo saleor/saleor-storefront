@@ -1,4 +1,4 @@
-import { debounce, isEqual, pullAllBy } from "lodash";
+import { isEqual, pullAllBy } from "lodash";
 import * as React from "react";
 
 import { ApolloClient } from "apollo-client";
@@ -31,8 +31,6 @@ export default class CartProvider extends React.Component<
   CartProviderProps,
   CartProviderState
 > {
-  private debouncedSyncCheckoutFromCart;
-
   constructor(props: CartProviderProps) {
     super(props);
 
@@ -42,10 +40,6 @@ export default class CartProvider extends React.Component<
     } catch {
       lines = [];
     }
-    this.debouncedSyncCheckoutFromCart = debounce(
-      this.syncCheckoutFromCart,
-      500
-    );
     this.state = {
       add: this.add,
       changeQuantity: this.changeQuantity,
@@ -60,18 +54,18 @@ export default class CartProvider extends React.Component<
     };
   }
 
-  componentDidUpdate(props: CartProviderProps) {
+  componentDidUpdate() {
     const {
       checkout: { syncWithCart, update }
-    } = props;
+    } = this.props;
 
     if (syncWithCart) {
-      this.debouncedSyncCheckoutFromCart();
+      this.syncCheckoutFromCart();
       update({ syncWithCart: false });
     }
   }
 
-  syncCheckoutFromCart = () => {
+  syncCheckoutFromCart = async () => {
     const { checkout } = this.props.checkout;
     const { lines } = this.state;
     const checkoutLines = checkout.lines.map(

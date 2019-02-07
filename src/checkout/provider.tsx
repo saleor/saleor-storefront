@@ -16,9 +16,7 @@ interface ProviderProps {
   user: UserContextInterface;
 }
 
-interface ProviderState extends CheckoutContextInterface {
-  syncUserCheckout: boolean;
-}
+type ProviderState = CheckoutContextInterface;
 
 class Provider extends React.Component<ProviderProps, ProviderState> {
   providerContext = {};
@@ -46,15 +44,12 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
   getStoredToken = (): null | string =>
     localStorage.getItem(LocalStorageKeys.Token);
 
-  getContext = (): CheckoutContextInterface => {
-    const { syncUserCheckout, ...state } = this.state;
-    return {
-      ...state,
-      clear: this.clear,
-      step: this.getCurrentStep(),
-      update: this.update
-    };
-  };
+  getContext = (): CheckoutContextInterface => ({
+    ...this.state,
+    clear: this.clear,
+    step: this.getCurrentStep(),
+    update: this.update
+  });
 
   getCurrentStep() {
     const { checkout, cardData } = this.state;
@@ -133,7 +128,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
         }}
       >
         {({ loading: userCheckoutLoading }) => {
-          const skip = !!(
+          const skipLocalStorageCheckoutFetch = !!(
             userCheckoutLoading ||
             userLoading ||
             !token ||
@@ -146,7 +141,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
               alwaysRender
               displayLoader={false}
               variables={{ token }}
-              skip={skip}
+              skip={skipLocalStorageCheckoutFetch}
               onCompleted={({ checkout }) => {
                 if (checkout && !stateCheckout) {
                   this.setState(
