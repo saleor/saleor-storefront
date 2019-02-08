@@ -34,7 +34,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync dist s3://saleor-store-front/ --delete --acl public-read
+          command: aws s3 sync dist s3://saleor-store-front/ --acl public-read
 workflows:
   version: 2
   build-deploy:
