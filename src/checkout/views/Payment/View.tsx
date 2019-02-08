@@ -153,21 +153,19 @@ class View extends React.Component<
     } = this.props.match;
     return (
       <CheckoutContext.Consumer>
-        {checkout => (
-          <>
-            {this.state.validateStep && (
-              <StepCheck
-                checkout={checkout.checkout}
-                step={checkout.step}
-                path={path}
-                token={token}
-              />
-            )}
+        {checkout =>
+          this.state.validateStep ? (
+            <StepCheck
+              checkout={checkout.checkout}
+              step={checkout.step}
+              path={path}
+              token={token}
+            />
+          ) : (
             <TypedGetPaymentTokenQuery variables={{ gateway: this.gateway }}>
               {({ data }) => {
                 if (data) {
                   const { paymentClientToken } = data;
-
                   return (
                     <div className="checkout-payment">
                       <Steps
@@ -286,8 +284,8 @@ class View extends React.Component<
                 return null;
               }}
             </TypedGetPaymentTokenQuery>
-          </>
-        )}
+          )
+        }
       </CheckoutContext.Consumer>
     );
   }

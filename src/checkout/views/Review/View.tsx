@@ -4,7 +4,6 @@ import { History } from "history";
 import * as React from "react";
 import { generatePath, Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
 
 import {
   Button,
@@ -13,6 +12,7 @@ import {
   OverlayType,
   ShowOverlayType
 } from "../../../components";
+import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
 import { BASE_URL } from "../../../core/config";
 import { StepCheck } from "../../components";
@@ -26,13 +26,15 @@ const completeCheckout = (
   data: completeCheckout,
   show: ShowOverlayType,
   history: History,
-  clear: () => void
+  clearCheckout: () => void,
+  clearCart: () => void
 ) => {
   const canProceed = !data.checkoutComplete.errors.length;
 
   if (canProceed) {
     history.push(BASE_URL);
-    clear();
+    clearCheckout();
+    clearCart();
     show(OverlayType.message, null, {
       status: "success",
       title: "Your order was placed"
@@ -54,7 +56,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   }
 }) => (
   <CheckoutContext.Consumer>
-    {({ cardData, checkout, clear, step }) => {
+    {({ cardData, checkout, clear: clearCheckout, step }) => {
       if (!cardData) {
         return <Redirect to={generatePath(paymentUrl, { token })} />;
       }
@@ -80,31 +82,40 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 deliveryCost={checkout.shippingMethod.price.localized}
                 totalCost={checkout.totalPrice.gross.localized}
               />
-
               <div className="checkout-review__content">
                 <Summary checkout={checkout} cardData={cardData} />
                 <div className="checkout-review__content__submit">
                   <OverlayContext.Consumer>
                     {({ show }) => (
-                      <TypedCompleteCheckoutMutation
-                        onCompleted={data =>
-                          completeCheckout(data, show, history, clear)
-                        }
-                      >
-                        {(completeCheckout, { loading }) => (
-                          <Button
-                            type="submit"
-                            disabled={loading}
-                            onClick={() =>
-                              completeCheckout({
-                                variables: { checkoutId: checkout.id }
-                              })
+                      <CartContext.Consumer>
+                        {({ clear: clearCart }) => (
+                          <TypedCompleteCheckoutMutation
+                            onCompleted={data =>
+                              completeCheckout(
+                                data,
+                                show,
+                                history,
+                                clearCheckout,
+                                clearCart
+                              )
                             }
                           >
-                            {loading ? "Loading" : "Place your order"}
-                          </Button>
+                            {(completeCheckout, { loading }) => (
+                              <Button
+                                type="submit"
+                                disabled={loading}
+                                onClick={() =>
+                                  completeCheckout({
+                                    variables: { checkoutId: checkout.id }
+                                  })
+                                }
+                              >
+                                {loading ? "Loading" : "Place your order"}
+                              </Button>
+                            )}
+                          </TypedCompleteCheckoutMutation>
                         )}
-                      </TypedCompleteCheckoutMutation>
+                      </CartContext.Consumer>
                     )}
                   </OverlayContext.Consumer>
                 </div>

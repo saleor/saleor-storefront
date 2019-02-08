@@ -56,13 +56,21 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
 
     if (!checkout) {
       return CheckoutStep.ShippingAddress;
-    } else if (cardData) {
+    }
+
+    const isShippingOptionStep =
+      checkout.availableShippingMethods.length && checkout.shippingAddress;
+    const isBillingStep = isShippingOptionStep && checkout.shippingMethod;
+    const isPaymentStep = isBillingStep && checkout.billingAddress;
+    const isReviewStep = isPaymentStep && cardData;
+
+    if (isReviewStep) {
       return CheckoutStep.Review;
-    } else if (checkout.billingAddress) {
+    } else if (isPaymentStep) {
       return CheckoutStep.Payment;
-    } else if (checkout.shippingMethod) {
+    } else if (isBillingStep) {
       return CheckoutStep.BillingAddress;
-    } else if (checkout.availableShippingMethods.length) {
+    } else if (isShippingOptionStep) {
       return CheckoutStep.ShippingOption;
     }
     return CheckoutStep.ShippingAddress;
@@ -124,6 +132,8 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
               },
               this.setCheckoutToken
             );
+          } else if (!checkout && syncUserCheckout) {
+            this.setState({ syncUserCheckout: false });
           }
         }}
       >
