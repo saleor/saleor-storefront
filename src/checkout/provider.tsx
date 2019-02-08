@@ -86,12 +86,15 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
     localStorage.removeItem(LocalStorageKeys.Token);
   };
 
-  update = (checkoutData: CheckoutContextInterface) => {
-    this.setState({ ...checkoutData, step: this.getCurrentStep() }, () => {
-      if ("checkout" in checkoutData) {
-        this.setCheckoutToken();
+  update = async (checkoutData: CheckoutContextInterface) => {
+    await this.setState(
+      { ...checkoutData, step: this.getCurrentStep() },
+      () => {
+        if ("checkout" in checkoutData) {
+          this.setCheckoutToken();
+        }
       }
-    });
+    );
   };
 
   setCheckoutToken = () => {

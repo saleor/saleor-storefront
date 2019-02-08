@@ -1,9 +1,6 @@
 import { createContext } from "react";
 
-import { CheckoutCreateInput } from "../../types/globalTypes";
-import { Omit } from "../core/tsUtils";
 import { Checkout } from "./types/Checkout";
-import { createCheckout_checkoutCreate_errors } from "./types/createCheckout";
 
 export enum CheckoutStep {
   ShippingAddress = 1,
@@ -27,7 +24,7 @@ export interface CheckoutContextInterface {
   loading?: boolean;
   shippingAsBilling?: boolean;
   step?: CheckoutStep;
-  update?(checkoutData: CheckoutContextInterface): void;
+  update?(checkoutData: CheckoutContextInterface): Promise<void>;
   clear?(): void;
 }
 
