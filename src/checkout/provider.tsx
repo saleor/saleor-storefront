@@ -1,27 +1,43 @@
 import * as React from "react";
 
+import { UserContextInterface } from "../components/User/context";
 import {
   CheckoutContext,
   CheckoutContextInterface,
   CheckoutStep
 } from "./context";
-import { TypedGetCheckoutQuery } from "./queries";
+import { TypedGetCheckoutQuery, TypedGetUserCheckoutQuery } from "./queries";
 
 enum LocalStorageKeys {
   Token = "checkoutToken"
 }
 
-class Provider extends React.Component<{}, CheckoutContextInterface> {
+interface ProviderProps {
+  user: UserContextInterface;
+}
+
+type ProviderState = CheckoutContextInterface;
+
+class Provider extends React.Component<ProviderProps, ProviderState> {
   providerContext = {};
 
-  constructor(props) {
+  constructor(props: ProviderProps) {
     super(props);
-
     this.state = {
       cardData: null,
       checkout: null,
       loading: !!this.getStoredToken(),
-      shippingAsBilling: false
+      shippingAsBilling: false,
+      /**
+       * Flag to determine, when the user checkout should be fetched from the
+       * API and override the current, storred one - happens after user log in
+       */
+      syncUserCheckout: false,
+      /**
+       * Flag to determine, when the cart lines should override the checkout
+       * lines - happens after user logs in
+       */
+      syncWithCart: false
     };
   }
 
@@ -63,34 +79,87 @@ class Provider extends React.Component<{}, CheckoutContextInterface> {
   };
 
   update = (checkoutData: CheckoutContextInterface) => {
-    this.setState({ ...checkoutData, step: this.getCurrentStep() });
-    if ("checkout" in checkoutData) {
-      localStorage.setItem(LocalStorageKeys.Token, checkoutData.checkout.token);
-    }
+    this.setState({ ...checkoutData, step: this.getCurrentStep() }, () => {
+      if ("checkout" in checkoutData) {
+        this.setCheckoutToken();
+      }
+    });
   };
+
+  setCheckoutToken = () => {
+    localStorage.setItem(LocalStorageKeys.Token, this.state.checkout.token);
+  };
+
+  componentDidUpdate(prevProps: ProviderProps) {
+    const { user: prevUser } = prevProps.user;
+    const { user: currUser } = this.props.user;
+    const { syncUserCheckout } = this.state;
+
+    if (!prevUser && currUser && !syncUserCheckout) {
+      this.setState({ syncUserCheckout: true });
+    }
+  }
 
   render() {
     const token = this.getStoredToken();
-    const { checkout: stateCheckout } = this.state;
+    const {
+      user: { user, loading: userLoading }
+    } = this.props;
+    const { checkout: stateCheckout, syncUserCheckout } = this.state;
+    const skipUserCheckoutFetch = !syncUserCheckout;
 
     return (
-      <TypedGetCheckoutQuery
+      <TypedGetUserCheckoutQuery
         alwaysRender
         displayLoader={false}
-        variables={{ token }}
-        skip={!token || !!stateCheckout}
-        onCompleted={({ checkout }) => {
-          if (!stateCheckout) {
-            this.setState({ checkout, loading: false });
+        skip={skipUserCheckoutFetch}
+        onCompleted={({ me: { checkout } }) => {
+          if (checkout && syncUserCheckout) {
+            this.setState(
+              {
+                checkout,
+                loading: false,
+                syncUserCheckout: false,
+                syncWithCart: true
+              },
+              this.setCheckoutToken
+            );
           }
         }}
       >
-        {() => (
-          <CheckoutContext.Provider value={this.getContext()}>
-            {this.props.children}
-          </CheckoutContext.Provider>
-        )}
-      </TypedGetCheckoutQuery>
+        {({ loading: userCheckoutLoading }) => {
+          const skipLocalStorageCheckoutFetch = !!(
+            userCheckoutLoading ||
+            userLoading ||
+            !token ||
+            stateCheckout ||
+            user
+          );
+
+          return (
+            <TypedGetCheckoutQuery
+              alwaysRender
+              displayLoader={false}
+              variables={{ token }}
+              skip={skipLocalStorageCheckoutFetch}
+              onCompleted={({ checkout }) => {
+                if (checkout && !stateCheckout) {
+                  this.setState(
+                    { checkout, loading: false },
+                    this.setCheckoutToken
+                  );
+                }
+              }}
+            >
+              {() => (
+                <CheckoutContext.Provider value={this.getContext()}>
+                  {this.props.children}
+                </CheckoutContext.Provider>
+              )}
+            </TypedGetCheckoutQuery>
+          );
+        }}
+      </TypedGetUserCheckoutQuery>
     );
   }
 }

@@ -4,7 +4,11 @@ import { ApolloError } from "apollo-client";
 
 export interface CartLineInterface {
   variantId: string;
-  variant?: any;
+  quantity: number;
+}
+
+export interface CartLine {
+  variantId: string;
   quantity: number;
 }
 
@@ -13,11 +17,10 @@ export interface CartInterface {
   lines: CartLineInterface[];
   loading: boolean;
   add(variantId: string, quantity?: number): void;
-  changeQuantity(variantId: string, quantity: number);
+  changeQuantity(lines: CartLine[]);
   clear(): void;
   clearErrors(): void;
   getQuantity(): number;
-  getTotal(): { currency: string; amount: number };
   remove(variantId: string): void;
   subtract(variantId: string, quantity?: number): void;
 }
@@ -25,12 +28,11 @@ export interface CartInterface {
 /* tslint:disable:no-empty */
 export const CartContext = createContext<CartInterface>({
   add: (variantId, quantity = 1) => {},
-  changeQuantity: (variantId, quantity) => {},
+  changeQuantity: (lines: CartLine[]) => {},
   clear: () => {},
   clearErrors: () => {},
   errors: null,
   getQuantity: () => 0,
-  getTotal: () => ({ currency: "USD", amount: 0 }),
   lines: [],
   loading: false,
   remove: variantId => {},

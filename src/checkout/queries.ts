@@ -7,124 +7,115 @@ import {
   createCheckoutVariables
 } from "./types/createCheckout";
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
+import { getUserCheckout } from "./types/getUserCheckout";
+
+const checkoutAddressFragment = gql`
+  fragment Address on Address {
+    firstName
+    lastName
+    companyName
+    streetAddress1
+    streetAddress2
+    city
+    postalCode
+    country {
+      code
+      country
+    }
+    countryArea
+    phone
+  }
+`;
+
+const checkoutPriceFragment = gql`
+  fragment Price on TaxedMoney {
+    gross {
+      amount
+      localized
+    }
+    currency
+  }
+`;
+
+const checkoutShippingMethodFragment = gql`
+  fragment ShippingMethod on ShippingMethod {
+    id
+    name
+    price {
+      currency
+      amount
+      localized
+    }
+  }
+`;
+
+const checkoutLineFragment = gql`
+  ${checkoutPriceFragment}
+  fragment CheckoutLine on CheckoutLine {
+    id
+    quantity
+    totalPrice {
+      ...Price
+    }
+    variant {
+      id
+      name
+      price {
+        amount
+        currency
+        localized
+      }
+      product {
+        id
+        name
+        thumbnail {
+          url
+          alt
+        }
+        thumbnail2x: thumbnail(size: 510) {
+          url
+        }
+      }
+    }
+    quantity
+  }
+`;
 
 export const checkoutFragment = gql`
+  ${checkoutLineFragment}
+  ${checkoutAddressFragment}
+  ${checkoutPriceFragment}
+  ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
     token
     id
+    user {
+      email
+    }
     totalPrice {
-      net {
-        amount
-      }
-      gross {
-        amount
-        localized
-      }
-      currency
+      ...Price
     }
     subtotalPrice {
-      net {
-        amount
-      }
-      gross {
-        amount
-        localized
-      }
-      currency
+      ...Price
     }
     billingAddress {
-      firstName
-      lastName
-      companyName
-      streetAddress1
-      streetAddress2
-      city
-      postalCode
-      country {
-        code
-        country
-      }
-      countryArea
-      phone
+      ...Address
     }
     shippingAddress {
-      firstName
-      lastName
-      companyName
-      streetAddress1
-      streetAddress2
-      city
-      postalCode
-      country {
-        code
-        country
-      }
-      countryArea
-      phone
+      ...Address
     }
     email
     availableShippingMethods {
-      id
-      name
-      price {
-        currency
-        amount
-        localized
-      }
+      ...ShippingMethod
     }
     shippingMethod {
-      id
-      name
-      price {
-        currency
-        amount
-        localized
-      }
+      ...ShippingMethod
     }
     shippingPrice {
-      net {
-        amount
-      }
-      gross {
-        amount
-        localized
-      }
-      currency
+      ...Price
     }
     lines {
-      id
-      quantity
-      totalPrice {
-        net {
-          amount
-        }
-        gross {
-          amount
-          localized
-        }
-        currency
-      }
-      variant {
-        id
-        name
-        price {
-          amount
-          currency
-          localized
-        }
-        product {
-          id
-          name
-          thumbnail {
-            url
-            alt
-          }
-          thumbnail2x: thumbnail(size: 510) {
-            url
-          }
-        }
-      }
-      quantity
+      ...CheckoutLine
     }
   }
 `;
@@ -138,12 +129,24 @@ export const getCheckoutQuery = gql`
   }
 `;
 
+export const TypedGetCheckoutQuery = TypedQuery<
+  getCheckout,
+  getCheckoutVariables
+>(getCheckoutQuery);
+
 export const updateCheckoutLineQuery = gql`
-  ${checkoutFragment}
+  ${checkoutLineFragment}
+  ${checkoutPriceFragment}
   mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
-        ...Checkout
+        id
+        lines {
+          ...CheckoutLine
+        }
+        subtotalPrice {
+          ...Price
+        }
       }
       errors {
         field
@@ -153,7 +156,7 @@ export const updateCheckoutLineQuery = gql`
   }
 `;
 
-export const createCheckoutMutation = gql`
+const createCheckoutMutation = gql`
   ${checkoutFragment}
   mutation createCheckout($checkoutInput: CheckoutCreateInput!) {
     checkoutCreate(input: $checkoutInput) {
@@ -168,12 +171,22 @@ export const createCheckoutMutation = gql`
   }
 `;
 
-export const TypedGetCheckoutQuery = TypedQuery<
-  getCheckout,
-  getCheckoutVariables
->(getCheckoutQuery);
-
 export const TypedCreateCheckoutMutation = TypedMutation<
   createCheckout,
   createCheckoutVariables
 >(createCheckoutMutation);
+
+const getUserCheckoutQuery = gql`
+  ${checkoutFragment}
+  query getUserCheckout {
+    me {
+      checkout {
+        ...Checkout
+      }
+    }
+  }
+`;
+
+export const TypedGetUserCheckoutQuery = TypedQuery<getUserCheckout, {}>(
+  getUserCheckoutQuery
+);

@@ -5,9 +5,9 @@
 // GraphQL query operation: getCheckout
 // ====================================================
 
-export interface getCheckout_checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
+export interface getCheckout_checkout_user {
+  __typename: "User";
+  email: string;
 }
 
 export interface getCheckout_checkout_totalPrice_gross {
@@ -18,14 +18,8 @@ export interface getCheckout_checkout_totalPrice_gross {
 
 export interface getCheckout_checkout_totalPrice {
   __typename: "TaxedMoney";
-  net: getCheckout_checkout_totalPrice_net;
   gross: getCheckout_checkout_totalPrice_gross;
   currency: string;
-}
-
-export interface getCheckout_checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface getCheckout_checkout_subtotalPrice_gross {
@@ -36,7 +30,6 @@ export interface getCheckout_checkout_subtotalPrice_gross {
 
 export interface getCheckout_checkout_subtotalPrice {
   __typename: "TaxedMoney";
-  net: getCheckout_checkout_subtotalPrice_net;
   gross: getCheckout_checkout_subtotalPrice_gross;
   currency: string;
 }
@@ -109,11 +102,6 @@ export interface getCheckout_checkout_shippingMethod {
   price: getCheckout_checkout_shippingMethod_price | null;
 }
 
-export interface getCheckout_checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface getCheckout_checkout_shippingPrice_gross {
   __typename: "Money";
   amount: number;
@@ -122,14 +110,8 @@ export interface getCheckout_checkout_shippingPrice_gross {
 
 export interface getCheckout_checkout_shippingPrice {
   __typename: "TaxedMoney";
-  net: getCheckout_checkout_shippingPrice_net;
   gross: getCheckout_checkout_shippingPrice_gross;
   currency: string;
-}
-
-export interface getCheckout_checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
 }
 
 export interface getCheckout_checkout_lines_totalPrice_gross {
@@ -140,7 +122,6 @@ export interface getCheckout_checkout_lines_totalPrice_gross {
 
 export interface getCheckout_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: getCheckout_checkout_lines_totalPrice_net;
   gross: getCheckout_checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -191,6 +172,7 @@ export interface getCheckout_checkout {
   __typename: "Checkout";
   token: any;
   id: string;
+  user: getCheckout_checkout_user | null;
   totalPrice: getCheckout_checkout_totalPrice | null;
   subtotalPrice: getCheckout_checkout_subtotalPrice | null;
   billingAddress: getCheckout_checkout_billingAddress | null;

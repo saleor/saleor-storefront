@@ -7,133 +7,6 @@ import { CheckoutLineInput } from "./../../../types/globalTypes";
 // GraphQL mutation operation: updateCheckoutLine
 // ====================================================
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gross {
-  __typename: "Money";
-  amount: number;
-  localized: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice {
-  __typename: "TaxedMoney";
-  net: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net;
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gross;
-  currency: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
-  __typename: "Money";
-  amount: number;
-  localized: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
-  __typename: "TaxedMoney";
-  net: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net;
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
-  currency: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress_country {
-  __typename: "CountryDisplay";
-  code: string;
-  country: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress {
-  __typename: "Address";
-  firstName: string;
-  lastName: string;
-  companyName: string;
-  streetAddress1: string;
-  streetAddress2: string;
-  city: string;
-  postalCode: string;
-  country: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress_country;
-  countryArea: string;
-  phone: string | null;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress_country {
-  __typename: "CountryDisplay";
-  code: string;
-  country: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress {
-  __typename: "Address";
-  firstName: string;
-  lastName: string;
-  companyName: string;
-  streetAddress1: string;
-  streetAddress2: string;
-  city: string;
-  postalCode: string;
-  country: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress_country;
-  countryArea: string;
-  phone: string | null;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods_price {
-  __typename: "Money";
-  currency: string;
-  amount: number;
-  localized: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods {
-  __typename: "ShippingMethod";
-  id: string;
-  name: string;
-  price: updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods_price | null;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod_price {
-  __typename: "Money";
-  currency: string;
-  amount: number;
-  localized: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod {
-  __typename: "ShippingMethod";
-  id: string;
-  name: string;
-  price: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod_price | null;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_gross {
-  __typename: "Money";
-  amount: number;
-  localized: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice {
-  __typename: "TaxedMoney";
-  net: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_net;
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice_gross;
-  currency: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net {
-  __typename: "Money";
-  amount: number;
-}
-
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross {
   __typename: "Money";
   amount: number;
@@ -142,7 +15,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
-  net: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net;
   gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross;
   currency: string;
 }
@@ -189,19 +61,23 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines {
   variant: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
+  __typename: "Money";
+  amount: number;
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
+  __typename: "TaxedMoney";
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
+  currency: string;
+}
+
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   __typename: "Checkout";
-  token: any;
   id: string;
-  totalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice | null;
-  subtotalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
-  billingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_billingAddress | null;
-  shippingAddress: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingAddress | null;
-  email: string;
-  availableShippingMethods: (updateCheckoutLine_checkoutLinesUpdate_checkout_availableShippingMethods | null)[] | null;
-  shippingMethod: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingMethod | null;
-  shippingPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_shippingPrice | null;
   lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
+  subtotalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {
