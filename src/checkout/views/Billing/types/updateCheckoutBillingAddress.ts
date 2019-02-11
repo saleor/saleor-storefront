@@ -162,6 +162,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_price | null;

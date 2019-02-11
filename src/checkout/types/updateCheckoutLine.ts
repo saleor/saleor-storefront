@@ -47,6 +47,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price | null;

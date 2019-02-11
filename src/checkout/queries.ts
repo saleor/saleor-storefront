@@ -58,6 +58,7 @@ const checkoutLineFragment = gql`
       ...Price
     }
     variant {
+      stockQuantity
       id
       name
       price {

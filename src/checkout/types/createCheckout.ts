@@ -162,6 +162,7 @@ export interface createCheckout_checkoutCreate_checkout_lines_variant_product {
 
 export interface createCheckout_checkoutCreate_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: createCheckout_checkoutCreate_checkout_lines_variant_price | null;
