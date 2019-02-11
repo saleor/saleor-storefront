@@ -1,5 +1,8 @@
 module.exports = {
   client: {
-    service: 'saleor'
+    service: {
+      name: "saleor",
+      url: "http://localhost:8000/graphql/"
+    }
   }
 };

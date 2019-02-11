@@ -88,6 +88,7 @@ export const checkoutFragment = gql`
   ${checkoutPriceFragment}
   ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
+    availablePaymentGateways
     token
     id
     user {

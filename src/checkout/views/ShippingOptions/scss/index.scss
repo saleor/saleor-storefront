@@ -2,11 +2,14 @@
 
 .checkout-shipping-options {
   &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1.875rem;
+    grid-row-gap: 1.875rem;
+
     &__option {
       background-color: $gray-light;
       padding: $spacer $spacer $spacer $spacer * 2.5;
-      width: 22rem;
-      margin-bottom: $spacer;
       position: relative;
       cursor: pointer;
 

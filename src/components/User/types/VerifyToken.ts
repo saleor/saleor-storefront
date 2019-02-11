@@ -7,6 +7,9 @@
 
 export interface VerifyToken_tokenVerify_user {
   __typename: "User";
+  /**
+   * The ID of the object.
+   */
   id: string;
   email: string;
   isStaff: boolean;

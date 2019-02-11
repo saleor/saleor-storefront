@@ -77,12 +77,11 @@ class View extends React.Component<
     }
   };
 
-  processPayment = async (
+  processPayment = (
     createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
     paymentClientToken: string,
-    formData: { [key: string]: string },
     checkout: CheckoutContextInterface
-  ) => {
+  ) => async (formData: { [key: string]: string }) => {
     const {
       checkout: { billingAddress, totalPrice, id },
       update
@@ -166,6 +165,7 @@ class View extends React.Component<
               {({ data }) => {
                 if (data) {
                   const { paymentClientToken } = data;
+                  const {} = checkout.checkout;
                   return (
                     <div className="checkout-payment">
                       <Steps
@@ -176,106 +176,109 @@ class View extends React.Component<
                         <TypedPaymentMethodCreateMutation
                           onCompleted={this.proceedNext}
                         >
-                          {createPaymentMethod => (
-                            <Form
-                              onSubmit={(event, formData) => {
-                                event.preventDefault();
-                                this.processPayment(
-                                  createPaymentMethod,
-                                  paymentClientToken,
-                                  formData,
-                                  checkout
-                                );
-                              }}
-                            >
-                              <span className="input__label">Number</span>
-                              <div
-                                className={
-                                  this.state.errors.number
-                                    ? "checkout-payment__field-error"
-                                    : ""
-                                }
+                          {createPaymentMethod => {
+                            const processPayment = this.processPayment(
+                              createPaymentMethod,
+                              paymentClientToken,
+                              checkout
+                            );
+                            return (
+                              <Form
+                                onSubmit={(evt, formData) => {
+                                  evt.preventDefault();
+                                  processPayment(formData);
+                                }}
                               >
-                                <NumberFormat
-                                  name="ccNumber"
-                                  autoComplete="cc-number"
-                                  customInput={TextField}
-                                  format="#### #### #### ####"
-                                />
-                              </div>
-                              {this.state.errors.number ? (
-                                <span className="input__error checkout-payment__error">
-                                  {this.state.errors.number}
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                              <div className="checkout-payment__form-grid">
+                                <span className="input__label">Number</span>
                                 <div
                                   className={
-                                    this.state.errors.cvv
+                                    this.state.errors.number
                                       ? "checkout-payment__field-error"
                                       : ""
                                   }
                                 >
-                                  <span className="input__label">CVC</span>
                                   <NumberFormat
-                                    name="ccCsc"
-                                    autoComplete="cc-csc"
+                                    name="ccNumber"
+                                    autoComplete="cc-number"
                                     customInput={TextField}
-                                    format="####"
+                                    format="#### #### #### ####"
                                   />
-                                  {this.state.errors.cvv ? (
-                                    <span className="input__error checkout-payment__error">
-                                      {this.state.errors.cvv}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
                                 </div>
-                                <div
-                                  className={
-                                    this.state.errors.expirationMonth ||
-                                    this.state.errors.expirationYear
-                                      ? "checkout-payment__field-error"
-                                      : ""
-                                  }
-                                >
-                                  <span className="input__label">
-                                    Expiry Date
+                                {this.state.errors.number ? (
+                                  <span className="input__error checkout-payment__error">
+                                    {this.state.errors.number}
                                   </span>
-                                  <NumberFormat
-                                    name="ccExp"
-                                    autoComplete="cc-exp"
-                                    customInput={TextField}
-                                    format="## / ##"
-                                  />
-                                  {this.state.errors.expirationMonth ||
-                                  this.state.errors.expirationYear ? (
-                                    <span className="input__error checkout-payment__error">
-                                      {`${
-                                        this.state.errors.expirationMonth
-                                          ? `${
-                                              this.state.errors.expirationMonth
-                                            }. `
-                                          : ""
-                                      }${this.state.errors.expirationYear}`}
+                                ) : (
+                                  ""
+                                )}
+                                <div className="checkout-payment__form-grid">
+                                  <div
+                                    className={
+                                      this.state.errors.cvv
+                                        ? "checkout-payment__field-error"
+                                        : ""
+                                    }
+                                  >
+                                    <span className="input__label">CVC</span>
+                                    <NumberFormat
+                                      name="ccCsc"
+                                      autoComplete="cc-csc"
+                                      customInput={TextField}
+                                      format="####"
+                                    />
+                                    {this.state.errors.cvv ? (
+                                      <span className="input__error checkout-payment__error">
+                                        {this.state.errors.cvv}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
+                                  <div
+                                    className={
+                                      this.state.errors.expirationMonth ||
+                                      this.state.errors.expirationYear
+                                        ? "checkout-payment__field-error"
+                                        : ""
+                                    }
+                                  >
+                                    <span className="input__label">
+                                      Expiry Date
                                     </span>
-                                  ) : (
-                                    ""
-                                  )}
+                                    <NumberFormat
+                                      name="ccExp"
+                                      autoComplete="cc-exp"
+                                      customInput={TextField}
+                                      format="## / ##"
+                                    />
+                                    {this.state.errors.expirationMonth ||
+                                    this.state.errors.expirationYear ? (
+                                      <span className="input__error checkout-payment__error">
+                                        {`${
+                                          this.state.errors.expirationMonth
+                                            ? `${
+                                                this.state.errors
+                                                  .expirationMonth
+                                              }. `
+                                            : ""
+                                        }${this.state.errors.expirationYear}`}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                              <Button
-                                type="submit"
-                                disabled={this.state.loading}
-                              >
-                                {this.state.loading
-                                  ? "Loading"
-                                  : "Review your order"}
-                              </Button>
-                            </Form>
-                          )}
+                                <Button
+                                  type="submit"
+                                  disabled={this.state.loading}
+                                >
+                                  {this.state.loading
+                                    ? "Loading"
+                                    : "Review your order"}
+                                </Button>
+                              </Form>
+                            );
+                          }}
                         </TypedPaymentMethodCreateMutation>
                       </Steps>
                     </div>

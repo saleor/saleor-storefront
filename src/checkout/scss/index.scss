@@ -93,13 +93,27 @@
     margin: $spacer * 1.5 0;
     align-items: flex-start;
 
-    &__content {
-      max-width: 32rem;
-      width: 32rem;
+    @media (min-width: $medium-screen) {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-gap: 2rem;
+    }
 
+    &__content {
       @media (max-width: $medium-screen) {
         margin: 0 auto;
       }
+
+      @media (min-width: $small-screen) {
+        form {
+          max-width: 32rem;
+          width: 32rem;
+        }
+      }
+    }
+
+    &__cart-summary {
+      width: 100%;
     }
 
     &--review {
