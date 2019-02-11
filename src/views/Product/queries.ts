@@ -103,6 +103,7 @@ export const productVariatnsQuery = gql`
       edges {
         node {
           ...ProductVariantFields
+          stockQuantity
           product {
             ...BasicProductFields
           }

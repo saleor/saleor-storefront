@@ -7,11 +7,12 @@ import { CachedThumbnail, DebouncedTextField } from "..";
 import { Checkout_lines_variant } from "../../checkout/types/Checkout";
 import { generateProductUrl } from "../../core/utils";
 import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
+import { CartLine } from "../CartProvider/context";
 
+import cartAddDisabledImg from "../../images/cart-add-disabled.svg";
 import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
-import { CartLine } from "../CartProvider/context";
 
 export type LineI = (
   | VariantList_productVariants_edges_node
@@ -46,11 +47,16 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 }) => {
   const productUrl = generateProductUrl(line.product.id, line.product.name);
   const editable = !!(add && subtract && remove && changeQuantity);
+  const inStock = line.quantity < line.stockQuantity;
   const quantityChangeControls = mediumScreen ? (
     <div>
-      <ReactSVG path={cartAddImg} onClick={() => add(line.id)} />
-      <p>{line.quantity}</p>
       <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
+      <p>{line.quantity}</p>
+      <ReactSVG
+        className={classNames({ disabled: !inStock })}
+        path={inStock ? cartAddImg : cartAddDisabledImg}
+        onClick={inStock ? () => add(line.id) : undefined}
+      />
     </div>
   ) : (
     <DebouncedTextField

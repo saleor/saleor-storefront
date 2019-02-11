@@ -45,6 +45,7 @@ export interface CheckoutLine_variant_product {
 
 export interface CheckoutLine_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: CheckoutLine_variant_price | null;

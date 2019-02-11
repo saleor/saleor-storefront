@@ -154,6 +154,7 @@ export interface getUserCheckout_me_checkout_lines_variant_product {
 
 export interface getUserCheckout_me_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: getUserCheckout_me_checkout_lines_variant_price | null;

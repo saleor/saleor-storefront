@@ -142,6 +142,7 @@ class ProductDescription extends React.Component<
     const { productVariants } = this.props;
     const { primaryPicker, secondaryPicker } = this.state;
     let variant;
+
     if (!secondaryPicker && primaryPicker) {
       variant = productVariants.find(
         variant => variant.name === `${primaryPicker.selected}`
@@ -155,6 +156,7 @@ class ProductDescription extends React.Component<
     } else {
       variant = this.props.productVariants[0];
     }
+
     const variantStock = variant.stockQuantity;
     const price = variant.price;
     this.setState({ variant: variant.id, variantStock, price });

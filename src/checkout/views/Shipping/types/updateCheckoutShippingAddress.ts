@@ -162,6 +162,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price | null;
@@ -353,6 +354,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
+  stockQuantity: number;
   id: string;
   name: string;
   price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price | null;

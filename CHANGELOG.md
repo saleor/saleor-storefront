@@ -3,10 +3,11 @@
 All notable, unreleased changes to this project will be documented in this file. For the released changes, please visit the [Releases](https://github.com/mirumee/saleor-storefront/releases) page.
 
 ## [Unreleased]
-- ...
 
+- Add stock quantity check without checkout in cart page - #254 by @piotrgrundas
 
 ## 0.4.0
+
 - Handle quantity API errors in cart - #199 by @piotrgrundas
 - Fix sticky footer, adjust cart overlay to the mockups, fix error if no shipping method found - #205 by @piotrgrundas
 - Disable ability to continue to the billing step without shipement chosen - #211 by @piotrgrundas
@@ -16,8 +17,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add syncing checkout after user logs in - #243 by @piotrgrundas
 - Create checkout for logged in users without checkout upon adding to cart - #250 by @piotrgrundas
 
-
 ## 0.3.0
+
 - Hide filters and sorting when there are no search results; add trending products to empty search and categories pages - #165 by @piotrgrundas
 - Add fetching menus from API - #170 by @piotrgrundas
 - Add "Add to cart" indicator - #173 by @piotrgrundas

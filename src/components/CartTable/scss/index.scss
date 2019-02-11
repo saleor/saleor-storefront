@@ -33,6 +33,14 @@
         align-items: center;
         display: flex;
         justify-content: space-around;
+
+        &.disabled {
+          opacity: 0.8;
+
+          &:hover svg {
+            cursor: default;
+          }
+        }
       }
 
       & > div {
