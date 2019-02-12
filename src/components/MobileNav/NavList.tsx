@@ -2,12 +2,14 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { mdiKeyboardBackspace } from "@mdi/js";
 import ReactSVG from "react-svg";
+
+import { Icon } from "..";
 
 import { baseUrl } from "../App/routes";
 import NavItem, { INavItem } from "./NavItem";
 
-import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
 
 interface NavListProps {
@@ -66,7 +68,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         {parent ? (
           <li className="side-nav__menu-item side-nav__menu-item-back">
             <span onClick={this.handleGoBack}>
-              <ReactSVG path={backImg} /> {parent.name}
+              <Icon path={mdiKeyboardBackspace} /> {parent.name}
             </span>
           </li>
         ) : (

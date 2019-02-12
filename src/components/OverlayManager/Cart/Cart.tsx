@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { mdiCart, mdiClose } from "@mdi/js";
 
 import {
   Button,
@@ -10,7 +10,8 @@ import {
   OfflinePlaceholder,
   Online,
   Overlay,
-  OverlayContextInterface
+  OverlayContextInterface,
+  Icon
 } from "../..";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
@@ -24,9 +25,6 @@ import { ShopContext } from "../../ShopProvider/context";
 import { UserContext } from "../../User/context";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
-
-import cartImg from "../../../images/cart.svg";
-import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
   <Overlay context={overlay}>
@@ -61,8 +59,8 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
                   return (
                     <div className="cart">
                       <div className="overlay__header">
-                        <ReactSVG
-                          path={cartImg}
+                        <Icon
+                          path={mdiCart}
                           className="overlay__header__cart-icon"
                         />
                         <div className="overlay__header-text">
@@ -71,8 +69,8 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
                             {cart.lines.length || 0} items
                           </span>
                         </div>
-                        <ReactSVG
-                          path={closeImg}
+                        <Icon
+                          path={mdiClose}
                           onClick={overlay.hide}
                           className="overlay__header__close-icon"
                         />

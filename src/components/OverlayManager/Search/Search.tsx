@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { mdiMagnify, mdiClose } from "@mdi/js";
 
 import {
   Button,
@@ -12,7 +12,8 @@ import {
   OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
-  OverlayType
+  OverlayType,
+  Icon
 } from "../..";
 import { maybe } from "../../../core/utils";
 import { searchUrl } from "../../App/routes";
@@ -23,9 +24,6 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
-
-import searchImg from "../../../images/search.svg";
-import closeImg from "../../../images/x.svg";
 
 interface SearchProps extends RouteComponentProps {
   overlay: OverlayContextInterface;
@@ -94,9 +92,9 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
+                <Icon path={mdiClose} onClick={this.props.overlay.hide} />
               }
-              iconRight={<ReactSVG path={searchImg} />}
+              iconRight={<Icon path={mdiMagnify} />}
               autoFocus={true}
               placeholder="Search"
               onBlur={this.handleInputBlur}

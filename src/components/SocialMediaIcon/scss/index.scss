@@ -1,7 +1,11 @@
 @import "../../App/scss/variables.scss";
 
 .social-icon {
-  padding: $spacer $spacer / 2;
+  margin: 0 $spacer / 2;
+
+  &.md-icon {
+    fill: $base-font-color;
+  }
 
   svg * {
     transition: 0.3s;

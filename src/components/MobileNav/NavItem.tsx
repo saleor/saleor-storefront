@@ -1,11 +1,9 @@
 import classNames from "classnames";
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { mdiChevronRight } from "@mdi/js";
 
-import { NavLink } from "..";
+import { NavLink, Icon } from "..";
 import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
-
-import subcategoriesImg from "../../images/subcategories.svg";
 
 export interface INavItem extends MainMenuSubItem {
   children?: INavItem[];
@@ -36,8 +34,8 @@ const NavItem: React.FC<NavItemProps> = ({
         onClick={hideOverlay}
       />
       {hasSubNavigation && (
-        <ReactSVG
-          path={subcategoriesImg}
+        <Icon
+          path={mdiChevronRight}
           className="side-nav__menu-item-more"
           onClick={() => showSubItems(item)}
         />

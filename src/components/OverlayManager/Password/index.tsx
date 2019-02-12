@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { mdiClose } from "@mdi/js";
 
 import {
   Offline,
@@ -9,10 +9,9 @@ import {
   Online,
   Overlay,
   OverlayContextInterface,
-  PasswordResetForm
+  PasswordResetForm,
+  Icon
 } from "../..";
-
-import closeImg from "../../../images/x.svg";
 
 const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay
@@ -22,8 +21,8 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
       <Online>
         <div className="overlay__header">
           <p>Reset your password</p>
-          <ReactSVG
-            path={closeImg}
+          <Icon
+            path={mdiClose}
             onClick={overlay.hide}
             className="overlay__header__close-icon"
           />

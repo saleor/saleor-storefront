@@ -35,7 +35,7 @@
         justify-content: space-around;
 
         &.disabled {
-          opacity: 0.8;
+          opacity: 0.2;
 
           &:hover svg {
             cursor: default;
@@ -43,7 +43,7 @@
         }
       }
 
-      & > div {
+      &>div {
         padding: $spacer / 2;
       }
     }

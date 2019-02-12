@@ -5,6 +5,7 @@
     padding: $carousel-control-padding;
     background-color: $white;
     box-shadow: $carousel-control-shadow;
+    border-radius: 100%;
 
     &:hover {
       cursor: pointer;
@@ -19,7 +20,6 @@
 
       svg {
         transform: rotate(180deg);
-        margin-top: 0.5rem;
       }
     }
 
@@ -28,10 +28,6 @@
 
       @media (max-width: $container-width) {
         margin-left: 0;
-      }
-
-      svg {
-        margin-top: 0.4rem;
       }
     }
   }

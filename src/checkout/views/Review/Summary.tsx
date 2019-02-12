@@ -1,11 +1,11 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { mdiContentCopy } from "@mdi/js";
+
+import { Icon } from "../../../components";
 
 import { AddressSummary } from "../../components";
 import { CardData } from "../../context";
 import { Checkout } from "../../types/Checkout";
-
-import copyImg from "../../../images/copy.svg";
 
 class Summary extends React.PureComponent<{
   checkout: Checkout;
@@ -35,9 +35,9 @@ class Summary extends React.PureComponent<{
         <div>
           <h4>
             Shipping address
-            <ReactSVG
+            <Icon
               className="checkout-review__summary-copy"
-              path={copyImg}
+              path={mdiContentCopy}
               onClick={this.copyHandler(this.shippingAddressRef)}
             />
           </h4>
@@ -50,10 +50,10 @@ class Summary extends React.PureComponent<{
         <div>
           <h4>
             Billing address
-            <ReactSVG
+            <Icon
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.billingAddressRef)}
-              path={copyImg}
+              path={mdiContentCopy}
             />
           </h4>
           <AddressSummary
@@ -64,10 +64,10 @@ class Summary extends React.PureComponent<{
         <div>
           <h4>
             Shipping method
-            <ReactSVG
+            <Icon
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.shippingMethodRef)}
-              path={copyImg}
+              path={mdiContentCopy}
             />
           </h4>
           <p ref={this.shippingMethodRef}>{checkout.shippingMethod.name}</p>
@@ -75,10 +75,10 @@ class Summary extends React.PureComponent<{
         <div>
           <h4>
             Payment method
-            <ReactSVG
+            <Icon
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.paymentMethodRef)}
-              path={copyImg}
+              path={mdiContentCopy}
             />
           </h4>
           <p ref={this.paymentMethodRef}>Ending in {cardData.lastDigits}</p>

@@ -1,18 +1,16 @@
 import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { mdiPlus, mdiMinus, mdiDelete } from "@mdi/js";
 
-import { CachedThumbnail, DebouncedTextField } from "..";
+import { CachedThumbnail, DebouncedTextField, Icon } from "..";
 import { Checkout_lines_variant } from "../../checkout/types/Checkout";
 import { generateProductUrl } from "../../core/utils";
 import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
 import { CartLine } from "../CartProvider/context";
 
+// TODO:(hoflish) use opacity or lower contrast for disabled icons
 import cartAddDisabledImg from "../../images/cart-add-disabled.svg";
-import cartAddImg from "../../images/cart-add.svg";
-import cartRemoveImg from "../../images/cart-remove.svg";
-import cartSubtractImg from "../../images/cart-subtract.svg";
 
 export type LineI = (
   | VariantList_productVariants_edges_node
@@ -50,11 +48,11 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   const inStock = line.quantity < line.stockQuantity;
   const quantityChangeControls = mediumScreen ? (
     <div>
-      <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
+      <Icon path={mdiMinus} onClick={() => subtract(line.id)} />
       <p>{line.quantity}</p>
-      <ReactSVG
+      <Icon
         className={classNames({ disabled: !inStock })}
-        path={inStock ? cartAddImg : cartAddDisabledImg}
+        path={mdiPlus}
         onClick={inStock ? () => add(line.id) : undefined}
       />
     </div>
@@ -100,9 +98,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       <td>{line.totalPrice}</td>
 
       <td>
-        {editable && (
-          <ReactSVG path={cartRemoveImg} onClick={() => remove(line.id)} />
-        )}
+        {editable && <Icon path={mdiDelete} onClick={() => remove(line.id)} />}
       </td>
     </tr>
   );

@@ -4,9 +4,9 @@ import "./scss/index.scss";
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
-import ReactSVG from "react-svg";
+import { mdiChevronLeft } from "@mdi/js";
 
-import arrowImg from "../../images/carousel-arrow.svg";
+import { Icon } from "..";
 
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
           onClick={previousSlide}
           className="carousel__control carousel__control--left"
         >
-          <ReactSVG path={arrowImg} />
+          <Icon path={mdiChevronLeft} />
         </div>
       ) : null,
     renderCenterRightControls: ({
@@ -36,7 +36,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
           onClick={nextSlide}
           className="carousel__control carousel__control--right"
         >
-          <ReactSVG path={arrowImg} />
+          <Icon path={mdiChevronLeft} />
         </div>
       ) : null,
     ...rest

@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { mdiClose } from "@mdi/js";
 
 import {
   LoginForm,
@@ -11,11 +11,10 @@ import {
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
+  Icon
 } from "../..";
 import RegisterForm from "./RegisterForm";
-
-import closeImg from "../../../images/x.svg";
 
 class Login extends React.Component<
   { overlay: OverlayContextInterface },
@@ -42,8 +41,8 @@ class Login extends React.Component<
           <Online>
             <div className="overlay__header">
               <div className="overlay__header-text">Saleor account</div>
-              <ReactSVG
-                path={closeImg}
+              <Icon
+                path={mdiClose}
                 onClick={hide}
                 className="overlay__header__close-icon"
               />

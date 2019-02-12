@@ -1,9 +1,9 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { mdiClose } from "@mdi/js";
 
-import closeImg from "../../images/x.svg";
+import { Icon } from "..";
 
 interface MessageProps {
   title: string;
@@ -20,11 +20,7 @@ const Message: React.FC<MessageProps> = ({
   <div className={`message message__status-${status}`}>
     <p className="message__title">{title}</p>
     {children ? <div className="message__content">{children}</div> : null}
-    <ReactSVG
-      path={closeImg}
-      className="message__close-icon"
-      onClick={onClose}
-    />
+    <Icon path={mdiClose} className="message__close-icon" onClick={onClose} />
   </div>
 );
 

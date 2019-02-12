@@ -4,6 +4,13 @@ import "./scss/index.scss";
 import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
+import {
+  mdiMenu,
+  mdiForwardburger,
+  mdiAccount,
+  mdiCart,
+  mdiMagnify
+} from "@mdi/js";
 import ReactSVG from "react-svg";
 
 import {
@@ -12,7 +19,8 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
+  Icon
 } from "..";
 import { maybe } from "../../core/utils";
 import { baseUrl } from "../App/routes";
@@ -21,12 +29,7 @@ import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
-import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/logo.svg";
-import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
 
 const MainMenu: React.FC = () => (
   <OverlayContext.Consumer>
@@ -52,12 +55,12 @@ const MainMenu: React.FC = () => (
                           )
                         }
                       >
-                        <ReactSVG
-                          path={hamburgerImg}
+                        <Icon
+                          path={mdiMenu}
                           className={"main-menu__hamburger--icon"}
                         />
-                        <ReactSVG
-                          path={hamburgerHoverImg}
+                        <Icon
+                          path={mdiForwardburger}
                           className={"main-menu__hamburger--hover"}
                         />
                       </li>
@@ -97,7 +100,7 @@ const MainMenu: React.FC = () => (
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userImg} />
+                              <Icon path={mdiAccount} />
                             </li>
                           }
                           content={
@@ -116,7 +119,7 @@ const MainMenu: React.FC = () => (
                             )
                           }
                         >
-                          <ReactSVG path={userImg} />
+                          <Icon path={mdiAccount} />
                         </li>
                       )
                     }
@@ -131,7 +134,7 @@ const MainMenu: React.FC = () => (
                       overlayContext.show(OverlayType.cart, OverlayTheme.right);
                     }}
                   >
-                    <ReactSVG path={cartImg} />
+                    <Icon path={mdiCart} />
                     {cart.getQuantity() > 0 ? (
                       <span className="main-menu__cart__quantity">
                         {cart.getQuantity()}
@@ -159,7 +162,7 @@ const MainMenu: React.FC = () => (
                 query={{ minWidth: mediumScreen }}
                 render={() => <span>Search</span>}
               />
-              <ReactSVG path={searchImg} />
+              <Icon path={mdiMagnify} />
             </li>
           </ul>
         </div>

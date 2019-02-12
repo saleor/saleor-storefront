@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { mdiDelete } from "@mdi/js";
 
-import { CachedThumbnail } from "../..";
+import { CachedThumbnail, Icon } from "../..";
 import { generateProductUrl } from "../../../core/utils";
 
-import removeImg from "../../../images/garbage.svg";
 import { LineI } from "../../CartTable/ProductRow";
 
 const ProductList: React.SFC<{
@@ -29,8 +28,8 @@ const ProductList: React.SFC<{
               <span>{line.name}</span>
               <span>{`Qty: ${line.quantity}`}</span>
             </span>
-            <ReactSVG
-              path={removeImg}
+            <Icon
+              path={mdiDelete}
               className="cart__list__item__details__delete-icon"
               onClick={() => remove(line.id)}
             />
