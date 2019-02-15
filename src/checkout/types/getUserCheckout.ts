@@ -325,6 +325,9 @@ export interface getUserCheckout_me_checkout {
   subtotalPrice: getUserCheckout_me_checkout_subtotalPrice | null;
   billingAddress: getUserCheckout_me_checkout_billingAddress | null;
   shippingAddress: getUserCheckout_me_checkout_shippingAddress | null;
+  /**
+   * Email of a customer
+   */
   email: string;
   /**
    * Shipping methods that can be used with this order.

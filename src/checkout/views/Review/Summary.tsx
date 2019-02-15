@@ -10,6 +10,7 @@ import copyImg from "../../../images/copy.svg";
 class Summary extends React.PureComponent<{
   checkout: Checkout;
   cardData: CardData;
+  dummyStatus: string;
 }> {
   shippingAddressRef: React.RefObject<HTMLParagraphElement> = React.createRef();
   billingAddressRef: React.RefObject<HTMLParagraphElement> = React.createRef();
@@ -28,7 +29,7 @@ class Summary extends React.PureComponent<{
   };
 
   render() {
-    const { checkout, cardData } = this.props;
+    const { checkout, cardData, dummyStatus } = this.props;
 
     return (
       <div className="checkout-review__content__summary">
@@ -81,7 +82,11 @@ class Summary extends React.PureComponent<{
               path={copyImg}
             />
           </h4>
-          <p ref={this.paymentMethodRef}>Ending in {cardData.lastDigits}</p>
+          <p ref={this.paymentMethodRef}>
+            {!!cardData
+              ? `Ending in ${cardData.lastDigits}`
+              : `Dummy: ${dummyStatus}`}
+          </p>
         </div>
       </div>
     );

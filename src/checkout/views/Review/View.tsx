@@ -56,12 +56,17 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   }
 }) => (
   <CheckoutContext.Consumer>
-    {({ cardData, checkout, clear: clearCheckout, step }) => {
-      if (!cardData) {
-        return <Redirect to={generatePath(paymentUrl, { token })} />;
+    {({ cardData, dummyStatus, checkout, clear: clearCheckout, step }) => {
+      const stepCheck = (
+        <StepCheck checkout={checkout} step={step} path={path} token={token} />
+      );
+
+      if (!checkout) {
+        return stepCheck;
       }
       return (
-        <StepCheck checkout={checkout} step={step} path={path} token={token}>
+        <>
+          {stepCheck}
           <div className="checkout-review">
             <Link
               to={generatePath(paymentUrl, { token })}
@@ -83,7 +88,11 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 totalCost={checkout.totalPrice.gross.localized}
               />
               <div className="checkout-review__content">
-                <Summary checkout={checkout} cardData={cardData} />
+                <Summary
+                  checkout={checkout}
+                  cardData={cardData}
+                  dummyStatus={dummyStatus}
+                />
                 <div className="checkout-review__content__submit">
                   <OverlayContext.Consumer>
                     {({ show }) => (
@@ -122,7 +131,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               </div>
             </div>
           </div>
-        </StepCheck>
+        </>
       );
     }}
   </CheckoutContext.Consumer>

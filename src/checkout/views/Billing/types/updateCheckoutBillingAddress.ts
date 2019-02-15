@@ -339,6 +339,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   subtotalPrice: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice | null;
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
+  /**
+   * Email of a customer
+   */
   email: string;
   /**
    * Shipping methods that can be used with this order.

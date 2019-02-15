@@ -51,11 +51,10 @@ export interface CheckoutLineInput {
 }
 
 export interface PaymentInput {
-  gateway?: GatewaysEnum | null;
-  checkoutId?: string | null;
+  gateway: GatewaysEnum;
   token: string;
   amount: any;
-  billingAddress?: AddressInput | null;
+  billingAddress: AddressInput;
 }
 
 export interface ProductOrder {

@@ -3,50 +3,12 @@
 .checkout-shipping-options {
   &__form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 1.875rem;
-    grid-row-gap: 1.875rem;
+    grid-column-gap: 1.25rem;
+    grid-row-gap: 1.25rem;
+    grid-template-columns: 1fr;
 
-    &__option {
-      background-color: $gray-light;
-      padding: $spacer $spacer $spacer $spacer * 2.5;
-      position: relative;
-      cursor: pointer;
-
-      label {
-        cursor: pointer;
-
-        &:before {
-          display: block;
-          position: absolute;
-          content: "";
-          border-radius: 100%;
-          height: 0.5rem;
-          width: 0.5rem;
-          top: $spacer * 1.25;
-          left: $spacer;
-          margin: auto;
-          box-shadow: 0 0 0 1px $blue;
-          border: 2px solid $white;
-          background-color: $white;
-        }
-      }
-
-      &--selected {
-        label {
-          &:before {
-            background-color: $blue;
-          }
-        }
-      }
-
-      input {
-        display: none;
-      }
+    @media (min-width: $medium-screen) {
+      grid-template-columns: 1fr 1fr;
     }
-  }
-
-  button {
-    margin: $spacer * 2 0 0 $spacer * 2;
   }
 }

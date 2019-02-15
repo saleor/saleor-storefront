@@ -4,7 +4,7 @@ import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import { Button } from "../../../components";
-import { StepCheck, Steps } from "../../components";
+import { Option, StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -12,7 +12,6 @@ import {
 } from "../../context";
 import { billingUrl } from "../../routes";
 import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
-import ShippingOptionsList from "./ShippingOptionsList";
 import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
 
 class View extends React.Component<
@@ -66,14 +65,27 @@ class View extends React.Component<
                   }
                 >
                   {(updateCheckoutShippingOptions, { loading }) => {
+                    const shippingMethods =
+                      checkout.availableShippingMethods || [];
                     return (
                       <>
-                        <ShippingOptionsList
-                          checkout={checkout}
-                          selected={selectedShipping}
-                          onShippingSelect={this.handleShippngChange}
-                        />
+                        <div className="checkout-shipping-options__form">
+                          {shippingMethods.map(method => (
+                            <Option
+                              key={method.id}
+                              selected={selectedShipping === method.id}
+                              onSelect={() =>
+                                this.handleShippngChange(method.id)
+                              }
+                              value={method.id}
+                              label={`${method.name} | +${
+                                method.price.localized
+                              }`}
+                            />
+                          ))}
+                        </div>
                         <Button
+                          type="submit"
                           onClick={event => {
                             updateCheckoutShippingOptions({
                               variables: {

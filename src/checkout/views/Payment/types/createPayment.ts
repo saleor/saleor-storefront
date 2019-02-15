@@ -35,4 +35,5 @@ export interface createPayment {
 
 export interface createPaymentVariables {
   input: PaymentInput;
+  checkoutId: string;
 }

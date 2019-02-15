@@ -339,6 +339,9 @@ export interface createCheckout_checkoutCreate_checkout {
   subtotalPrice: createCheckout_checkoutCreate_checkout_subtotalPrice | null;
   billingAddress: createCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: createCheckout_checkoutCreate_checkout_shippingAddress | null;
+  /**
+   * Email of a customer
+   */
   email: string;
   /**
    * Shipping methods that can be used with this order.
