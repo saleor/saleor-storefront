@@ -41,47 +41,47 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
       </div>
       <div className="container">
         <Online>
-          <div
-            className={classNames("checkout__grid", {
-              "checkout__grid--review": reviewPage
-            })}
-          >
-            <CartContext.Consumer>
-              {cart => (
-                <CheckoutContext.Consumer>
-                  {({ checkout, loading }) => {
-                    if (!cart.lines.length) {
-                      return <Redirect to={BASE_URL} />;
-                    }
+          <CartContext.Consumer>
+            {cart => (
+              <CheckoutContext.Consumer>
+                {({ checkout, loading }) => {
+                  if (!cart.lines.length) {
+                    return <Redirect to={BASE_URL} />;
+                  }
 
-                    if (loading) {
-                      return <Loader />;
-                    }
+                  if (loading) {
+                    return <Loader />;
+                  }
 
-                    return (
-                      <>
-                        <div
-                          className={classNames({
-                            checkout__grid__content: !reviewPage
-                          })}
-                        >
-                          <Routes />
-                        </div>
-                        {!reviewPage && (
-                          <Media
-                            query={{ minWidth: mediumScreen }}
-                            render={() => (
+                  return (
+                    <div
+                      className={classNames("checkout__grid", {
+                        "checkout__grid--review": reviewPage
+                      })}
+                    >
+                      <div
+                        className={classNames({
+                          checkout__grid__content: !reviewPage
+                        })}
+                      >
+                        <Routes />
+                      </div>
+                      {!reviewPage && (
+                        <Media
+                          query={{ minWidth: mediumScreen }}
+                          render={() => (
+                            <div className="checkout__grid__cart-summary">
                               <CartSummary cart={cart} checkout={checkout} />
-                            )}
-                          />
-                        )}
-                      </>
-                    );
-                  }}
-                </CheckoutContext.Consumer>
-              )}
-            </CartContext.Consumer>
-          </div>
+                            </div>
+                          )}
+                        />
+                      )}
+                    </div>
+                  );
+                }}
+              </CheckoutContext.Consumer>
+            )}
+          </CartContext.Consumer>
         </Online>
         <Offline>
           <OfflinePlaceholder />

@@ -5,11 +5,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * An enumeration.
+ */
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
   DUMMY = "DUMMY",
-  RAZORPAY = "RAZORPAY",
-  STRIPE = "STRIPE",
 }
 
 export enum OrderDirection {
@@ -38,7 +39,7 @@ export interface AddressInput {
 }
 
 export interface CheckoutCreateInput {
-  lines?: (CheckoutLineInput | null)[] | null;
+  lines: (CheckoutLineInput | null)[];
   email?: string | null;
   shippingAddress?: AddressInput | null;
   billingAddress?: AddressInput | null;
@@ -50,11 +51,10 @@ export interface CheckoutLineInput {
 }
 
 export interface PaymentInput {
-  gateway?: GatewaysEnum | null;
-  checkoutId?: string | null;
+  gateway: GatewaysEnum;
   token: string;
   amount: any;
-  billingAddress?: AddressInput | null;
+  billingAddress: AddressInput;
 }
 
 export interface ProductOrder {

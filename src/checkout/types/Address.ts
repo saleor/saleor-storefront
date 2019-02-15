@@ -7,7 +7,13 @@
 
 export interface Address_country {
   __typename: "CountryDisplay";
+  /**
+   * Country code.
+   */
   code: string;
+  /**
+   * Country name.
+   */
   country: string;
 }
 
@@ -20,6 +26,9 @@ export interface Address {
   streetAddress2: string;
   city: string;
   postalCode: string;
+  /**
+   * Default shop's country
+   */
   country: Address_country;
   countryArea: string;
   phone: string | null;

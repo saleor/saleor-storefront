@@ -13,8 +13,10 @@ export interface FormError {
 
 interface FormProps {
   children: React.ReactNode;
+  className?: string;
   errors?: FormError[];
   data?: { [key: string]: string | any };
+  formRef?: React.RefObject<HTMLFormElement>;
   onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
 }
 
@@ -201,18 +203,23 @@ class Form extends React.Component<FormProps, FormState> {
             });
           }
         });
-      } else {
-        return child;
       }
+      return child;
     });
   }
 
   render = () => {
-    const { children, ...otherProps } = this.props;
+    const { children, formRef, className, ...otherProps } = this.props;
     const { errors } = this.state;
     const nonFieldErrors = groupErrorsByFields(errors)[NON_FIELD_ERROR];
+
     return (
-      <form {...otherProps} onSubmit={this.handleSubmit}>
+      <form
+        ref={formRef}
+        {...otherProps}
+        onSubmit={this.handleSubmit}
+        className={className}
+      >
         {nonFieldErrors ? (
           <span className="form-error">
             {nonFieldErrors.map(error => error.message).join(" ")}

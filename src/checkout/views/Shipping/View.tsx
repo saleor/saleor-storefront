@@ -117,9 +117,17 @@ const computeCheckoutData = (
 const getErrors = (
   createData: createCheckout,
   updateData: updateCheckoutShippingAddress
-): FormError[] =>
-  maybe(() => createData.checkoutCreate.errors, []) ||
-  maybe(() => updateData.checkoutShippingAddressUpdate.errors, []);
+): FormError[] => {
+  const createErrors = maybe(() => createData.checkoutCreate.errors, []);
+  const updateErrors = maybe(
+    () => [
+      ...updateData.checkoutShippingAddressUpdate.errors,
+      ...updateData.checkoutEmailUpdate.errors
+    ],
+    []
+  );
+  return [...createErrors, ...updateErrors];
+};
 
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
@@ -152,9 +160,14 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                         { data: createData, loading: createLoading }
                       ) => (
                         <TypedUpdateCheckoutShippingAddressMutation
-                          onCompleted={({ checkoutShippingAddressUpdate }) =>
-                            proceedNext(checkoutShippingAddressUpdate)
-                          }
+                          onCompleted={({
+                            checkoutShippingAddressUpdate,
+                            checkoutEmailUpdate
+                          }) => {
+                            if (!checkoutEmailUpdate.errors.length) {
+                              proceedNext(checkoutShippingAddressUpdate);
+                            }
+                          }}
                         >
                           {(
                             updateCheckout,
@@ -186,7 +199,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                                         updateCheckout({
                                           variables: {
                                             checkoutId: checkout.id,
-                                            email: checkout.email,
+                                            email: formData.email,
                                             ...computeCheckoutData(formData)
                                           }
                                         });

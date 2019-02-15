@@ -1,6 +1,27 @@
 @import "../../../../components/App/scss/variables.scss";
 
 .checkout-payment {
+  form {
+    width: 100%;
+  }
+
+  &__form {
+    display: grid;
+    grid-column-gap: 1.25rem;
+    grid-row-gap: 1.25rem;
+    grid-template-columns: 1fr;
+
+    > .c-option__content {
+      @media (min-width: $medium-screen) {
+        padding: 0 3rem 0 7rem;
+      }
+
+      .c-option {
+        background-color: $white;
+      }
+    }
+  }
+
   .input {
     margin-bottom: $spacer / 2;
   }
@@ -20,5 +41,9 @@
   &__error {
     margin-bottom: $spacer;
     display: block;
+
+    & ~ & {
+      margin-top: -1rem;
+    }
   }
 }

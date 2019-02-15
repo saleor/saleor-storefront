@@ -6,6 +6,7 @@ import { CheckoutContext, CheckoutStep } from "../context";
 import {
   billingUrl,
   paymentUrl,
+  reviewUrl,
   shippingAddressUrl,
   shippingOptionsUrl
 } from "../routes";
@@ -25,6 +26,9 @@ const getRedirectUrl = (token: string, step: CheckoutStep): string => {
 
     case CheckoutStep.Payment:
       return generatedPath(paymentUrl);
+
+    case CheckoutStep.Review:
+      return generatedPath(reviewUrl);
 
     default:
       return BASE_URL;
