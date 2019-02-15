@@ -4,19 +4,15 @@ import React from "react";
 import { GatewaysEnum } from "../../../../../types/globalTypes";
 import { ProviderProps } from "../View";
 
-enum DummyPaymentChargeStatusEnum {
-  CHARGED = "Charged",
-  NOT_CHARGED = "Not charged",
-  FULLY_REFUNDED = "Fully refunded"
-}
-
 class Dummy extends React.PureComponent<
   ProviderProps,
-  { selectedStatus: { value: string; label: string } }
+  { selectedStatus: { token: string; label: string } }
 > {
-  statuses = Object.entries(DummyPaymentChargeStatusEnum).map(
-    ([value, label]) => ({ label, value })
-  );
+  statuses = [
+    { token: "charged", label: "Charged" },
+    { token: "fully-refunded", label: "Fully refunded" },
+    { token: "not-charged", label: "Not charged" }
+  ];
   state = { selectedStatus: this.statuses[0] };
 
   render() {
@@ -34,24 +30,24 @@ class Dummy extends React.PureComponent<
         onSubmit={async evt => {
           evt.preventDefault();
           await update({ dummyStatus: selectedStatus.label });
-          processPayment(selectedStatus.value, GatewaysEnum.BRAINTREE);
+          processPayment(selectedStatus.token, GatewaysEnum.DUMMY);
         }}
         className="c-option__content"
       >
-        {this.statuses.map(({ value, label }) => {
-          const selected = selectedStatus.value === value;
+        {this.statuses.map(({ token, label }) => {
+          const selected = selectedStatus.token === token;
           return (
             <div
-              key={value}
+              key={token}
               className={classNames("c-option", {
                 "c-option--disabled": loading,
                 "c-option--selected": selected
               })}
               onClick={() =>
-                this.setState({ selectedStatus: { value, label } })
+                this.setState({ selectedStatus: { token, label } })
               }
             >
-              <input type="radio" name="status" value={value} />
+              <input type="radio" name="status" value={token} />
               <label>{label}</label>
             </div>
           );
