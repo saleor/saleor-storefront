@@ -1,6 +1,7 @@
 import { Checkout_lines } from "../../checkout/types/Checkout";
 import { priceToString } from "../../core/utils";
 import { VariantList } from "../../views/Product/types/VariantList";
+import { LineI } from "../CartTable/ProductRow";
 import { CartLineInterface } from "./context";
 
 export const getTotal = (
@@ -23,7 +24,7 @@ export const extractCartLines = (
   data: VariantList,
   lines: CartLineInterface[],
   locale?: string
-) =>
+): LineI[] =>
   data.productVariants.edges
     .map(({ node }) => {
       const line = lines.find(({ variantId }) => variantId === node.id);
@@ -46,7 +47,7 @@ export const extractCartLines = (
     .filter(line => line)
     .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
 
-export const extractCheckoutLines = (lines: Checkout_lines[]) => {
+export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,

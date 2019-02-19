@@ -4,21 +4,19 @@ import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { CachedThumbnail, DebouncedTextField } from "..";
-import { Checkout_lines_variant } from "../../checkout/types/Checkout";
 import { generateProductUrl } from "../../core/utils";
-import { VariantList_productVariants_edges_node } from "../../views/Product/types/VariantList";
 import { CartLine } from "../CartProvider/context";
 
+import { ProductVariant } from "../../checkout/types/ProductVariant";
 import cartAddDisabledImg from "../../images/cart-add-disabled.svg";
 import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
 
-export type LineI = (
-  | VariantList_productVariants_edges_node
-  | Checkout_lines_variant) & {
+export type LineI = ProductVariant & {
   quantity: number;
   totalPrice: string;
+  stockQuantity?: number;
 };
 
 interface ReadProductRowProps {
@@ -47,7 +45,10 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 }) => {
   const productUrl = generateProductUrl(line.product.id, line.product.name);
   const editable = !!(add && subtract && remove && changeQuantity);
-  const inStock = line.quantity < line.stockQuantity;
+  const inStock =
+    line.stockQuantity === undefined
+      ? false
+      : line.quantity < line.stockQuantity;
   const quantityChangeControls = mediumScreen ? (
     <div>
       <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
@@ -84,26 +85,25 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
               <CachedThumbnail source={line.product} />
             </Link>
           )}
-          <Link to={productUrl}>
-            {line.product.name}
-            {line.name && ` (${line.name})`}
-          </Link>
+          <Link to={productUrl}>{line.product.name}</Link>
         </div>
       </td>
 
       {mediumScreen && <td>{line.price.localized}</td>}
 
+      <td>{line.name}</td>
+
       <td className="cart-table__quantity-cell">
         {editable ? quantityChangeControls : <p>{line.quantity}</p>}
       </td>
 
-      <td>{line.totalPrice}</td>
+      <td colSpan={editable ? 1 : 2}>{line.totalPrice}</td>
 
-      <td>
-        {editable && (
+      {editable && (
+        <td>
           <ReactSVG path={cartRemoveImg} onClick={() => remove(line.id)} />
-        )}
-      </td>
+        </td>
+      )}
     </tr>
   );
 };
