@@ -23,17 +23,15 @@ import { orderConfirmationUrl, reviewUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
 
+const isPath = (pathname: string, url: string) =>
+  pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
+
 const CheckoutApp: React.FC<RouteComponentProps> = ({
   history: {
     location: { pathname }
   }
 }) => {
-  const reviewPage =
-    pathname.indexOf(generatePath(reviewUrl, { token: undefined })) !== -1;
-  const orderConfirmationPage =
-    pathname.indexOf(
-      generatePath(orderConfirmationUrl, { token: undefined })
-    ) !== -1;
+  const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
 
   return (
     <div className="checkout">
@@ -50,7 +48,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
           <CartContext.Consumer>
             {cart => (
               <CheckoutContext.Consumer>
-                {({ checkout, loading }) => {
+                {({ loading }) => {
                   if (!cart.lines.length && !orderConfirmationPage) {
                     return <Redirect to={BASE_URL} />;
                   }
@@ -59,32 +57,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                     return <Loader />;
                   }
 
-                  return (
-                    <div
-                      className={classNames("checkout__grid", {
-                        "checkout__grid--full-width":
-                          reviewPage || orderConfirmationPage
-                      })}
-                    >
-                      <div
-                        className={classNames({
-                          checkout__grid__content: !reviewPage
-                        })}
-                      >
-                        <Routes />
-                      </div>
-                      {!(orderConfirmationPage || reviewPage) && (
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <div className="checkout__grid__cart-summary">
-                              <CartSummary cart={cart} checkout={checkout} />
-                            </div>
-                          )}
-                        />
-                      )}
-                    </div>
-                  );
+                  return <Routes />;
                 }}
               </CheckoutContext.Consumer>
             )}

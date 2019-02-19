@@ -6,7 +6,7 @@ import { FormAddressType, ShippingAddressForm } from "../../../components";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
-import { StepCheck, Steps } from "../../components";
+import { CartSummary, StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -80,10 +80,10 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     params: { token }
   }
 }) => (
-  <div>
-    <CheckoutContext.Consumer>
-      {({ checkout, shippingAsBilling, update, step }) => (
-        <StepCheck step={step} checkout={checkout} path={path} token={token}>
+  <CheckoutContext.Consumer>
+    {({ checkout, shippingAsBilling, update, step }) => (
+      <StepCheck step={step} checkout={checkout} path={path} token={token}>
+        <CartSummary checkout={checkout}>
           <Steps
             step={CheckoutStep.BillingAddress}
             token={token}
@@ -124,10 +124,10 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               )}
             </TypedUpdateCheckoutBillingAddressMutation>
           </Steps>
-        </StepCheck>
-      )}
-    </CheckoutContext.Consumer>
-  </div>
+        </CartSummary>
+      </StepCheck>
+    )}
+  </CheckoutContext.Consumer>
 );
 
 export default View;
