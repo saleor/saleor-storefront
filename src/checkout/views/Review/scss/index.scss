@@ -38,6 +38,10 @@
         display: flex;
         justify-content: space-between;
       }
+
+      p {
+        color: $gray-dark;
+      }
     }
 
     &__thumbnail {

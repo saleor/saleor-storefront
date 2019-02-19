@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReactSVG from "react-svg";
 
-import { AddressSummary } from "../../components";
+import { AddressSummary } from "../../../components";
 import { CardData } from "../../context";
 import { Checkout } from "../../types/Checkout";
 

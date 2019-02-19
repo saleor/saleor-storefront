@@ -1,7 +1,8 @@
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
 
-import { AddressSummary, ShippingOptionSummary } from ".";
+import { ShippingOptionSummary } from ".";
+import { AddressSummary } from "../../components";
 import { CheckoutStep } from "../context";
 import { billingUrl, shippingAddressUrl, shippingOptionsUrl } from "../routes";
 import { Checkout } from "../types/Checkout";

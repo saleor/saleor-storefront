@@ -18,6 +18,26 @@ export enum OrderDirection {
   DESC = "DESC",
 }
 
+/**
+ * An enumeration.
+ */
+export enum OrderStatus {
+  CANCELED = "CANCELED",
+  DRAFT = "DRAFT",
+  FULFILLED = "FULFILLED",
+  PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
+  UNFULFILLED = "UNFULFILLED",
+}
+
+/**
+ * An enumeration.
+ */
+export enum PaymentChargeStatusEnum {
+  CHARGED = "CHARGED",
+  FULLY_REFUNDED = "FULLY_REFUNDED",
+  NOT_CHARGED = "NOT_CHARGED",
+}
+
 export enum ProductOrderField {
   DATE = "DATE",
   NAME = "NAME",

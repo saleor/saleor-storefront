@@ -9,7 +9,7 @@ import {
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 import { getUserCheckout } from "./types/getUserCheckout";
 
-const checkoutAddressFragment = gql`
+export const checkoutAddressFragment = gql`
   fragment Address on Address {
     firstName
     lastName
@@ -24,6 +24,29 @@ const checkoutAddressFragment = gql`
     }
     countryArea
     phone
+  }
+`;
+
+export const checkoutProductVariantFragment = gql`
+  fragment ProductVariant on ProductVariant {
+    id
+    name
+    price {
+      amount
+      currency
+      localized
+    }
+    product {
+      id
+      name
+      thumbnail {
+        url
+        alt
+      }
+      thumbnail2x: thumbnail(size: 510) {
+        url
+      }
+    }
   }
 `;
 
@@ -51,6 +74,7 @@ const checkoutShippingMethodFragment = gql`
 
 const checkoutLineFragment = gql`
   ${checkoutPriceFragment}
+  ${checkoutProductVariantFragment}
   fragment CheckoutLine on CheckoutLine {
     id
     quantity
@@ -59,24 +83,7 @@ const checkoutLineFragment = gql`
     }
     variant {
       stockQuantity
-      id
-      name
-      price {
-        amount
-        currency
-        localized
-      }
-      product {
-        id
-        name
-        thumbnail {
-          url
-          alt
-        }
-        thumbnail2x: thumbnail(size: 510) {
-          url
-        }
-      }
+      ...ProductVariant
     }
     quantity
   }

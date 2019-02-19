@@ -6,7 +6,7 @@ const CostRow: React.FC<{
   cost: string;
 }> = ({ mediumScreen, heading, cost }) => (
   <tr>
-    <td colSpan={mediumScreen ? 3 : 2} className="cart-table__cost">
+    <td colSpan={mediumScreen ? 4 : 3} className="cart-table__cost">
       {heading}
     </td>
     <td colSpan={2}>{cost}</td>
