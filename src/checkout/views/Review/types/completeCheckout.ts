@@ -25,6 +25,7 @@ export interface completeCheckout_checkoutComplete_order {
    * The ID of the object.
    */
   id: string;
+  token: string;
 }
 
 export interface completeCheckout_checkoutComplete {

@@ -19,7 +19,7 @@ import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
 import { CartSummary } from "./components";
 import { CheckoutContext } from "./context";
-import { reviewUrl, Routes } from "./routes";
+import { orderConfirmationUrl, reviewUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
 
@@ -30,6 +30,10 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
 }) => {
   const reviewPage =
     pathname.indexOf(generatePath(reviewUrl, { token: undefined })) !== -1;
+  const orderConfirmationPage =
+    pathname.indexOf(
+      generatePath(orderConfirmationUrl, { token: undefined })
+    ) !== -1;
 
   return (
     <div className="checkout">
@@ -37,7 +41,9 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
         <div className="checkout__menu__bar">
           <ReactSVG path={logoImg} />
         </div>
-        <Link to={BASE_URL}>Return to shopping</Link>
+        {!orderConfirmationPage && (
+          <Link to={BASE_URL}>Return to shopping</Link>
+        )}
       </div>
       <div className="container">
         <Online>
@@ -45,7 +51,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
             {cart => (
               <CheckoutContext.Consumer>
                 {({ checkout, loading }) => {
-                  if (!cart.lines.length) {
+                  if (!cart.lines.length && !orderConfirmationPage) {
                     return <Redirect to={BASE_URL} />;
                   }
 
@@ -56,7 +62,8 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                   return (
                     <div
                       className={classNames("checkout__grid", {
-                        "checkout__grid--review": reviewPage
+                        "checkout__grid--full-width":
+                          reviewPage || orderConfirmationPage
                       })}
                     >
                       <div
@@ -66,7 +73,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                       >
                         <Routes />
                       </div>
-                      {!reviewPage && (
+                      {!(orderConfirmationPage || reviewPage) && (
                         <Media
                           query={{ minWidth: mediumScreen }}
                           render={() => (

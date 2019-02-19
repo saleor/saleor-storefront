@@ -15,6 +15,7 @@ const completeCheckoutMutation = gql`
       }
       order {
         id
+        token
       }
     }
   }

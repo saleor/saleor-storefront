@@ -5,6 +5,7 @@ import { NotFound } from "../components";
 import {
   Billing,
   CheckoutDispatcher,
+  OrderConfirmation,
   Payment,
   Review,
   Shipping,
@@ -17,6 +18,7 @@ export const shippingOptionsUrl = `${baseUrl}shipping-options/:token?/`;
 export const billingUrl = `${baseUrl}billing-address/:token?/`;
 export const paymentUrl = `${baseUrl}payment/:token?/`;
 export const reviewUrl = `${baseUrl}review/:token?/`;
+export const orderConfirmationUrl = `${baseUrl}order-confirmation/`;
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -26,6 +28,7 @@ export const Routes: React.FC = () => (
     <Route path={billingUrl} component={Billing} />
     <Route path={paymentUrl} component={Payment} />
     <Route path={reviewUrl} component={Review} />
+    <Route path={orderConfirmationUrl} component={OrderConfirmation} />
     <Route component={NotFound} />
   </Switch>
 );
