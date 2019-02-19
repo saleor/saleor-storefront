@@ -11,6 +11,7 @@ import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
+import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import SearchPage from "../../views/Search";
 
@@ -22,7 +23,8 @@ export const productUrl = `${baseUrl}product/:slug([a-z-0-9]+)/:id([0-9]+)/`;
 export const cartUrl = `${baseUrl}cart/:token?/`;
 export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
-const guestOrderDetailsUrl = `/order/:token/`;
+export const guestOrderDetailsUrl = `/order/:token/`;
+export const orderConfirmationUrl = `${baseUrl}order-confirmation/`;
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -36,6 +38,7 @@ export const Routes: React.FC = () => (
     <Route path={pageUrl} component={ArticlePage} />
     <Route path={userAccountBaseUrl} component={UserAccount} />
     <Route path={guestOrderDetailsUrl} component={OrderDetails} />
+    <Route path={orderConfirmationUrl} component={OrderConfirmation} />
     <Route component={NotFound} />
   </Switch>
 );

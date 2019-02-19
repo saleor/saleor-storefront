@@ -63,10 +63,10 @@
   }
 
   &__content {
-    margin: 0 0 $spacer * 3 $spacer * 3;
+    margin: 0 0 ($spacer * 3) ($spacer * 3);
 
     button[type="submit"] {
-      margin: 2.5 * $spacer 0 0 1.5rem;
+      margin: ($spacer * 2.5) ($spacer * 1.5) 0 ($spacer * 1.5);
 
       @media (max-width: $medium-screen) {
         display: block;
@@ -119,7 +119,7 @@
       width: 100%;
     }
 
-    &--review {
+    &--full-width {
       display: block;
     }
   }

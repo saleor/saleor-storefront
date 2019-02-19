@@ -12,9 +12,10 @@ import {
   OverlayType,
   ShowOverlayType
 } from "../../../components";
+import { orderConfirmationUrl } from "../../../components/App/routes";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
-import { BASE_URL } from "../../../core/config";
+import { UserContext } from "../../../components/User/context";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
@@ -26,13 +27,18 @@ const completeCheckout = (
   data: completeCheckout,
   show: ShowOverlayType,
   history: History,
+  guest: boolean,
   clearCheckout: () => void,
   clearCart: () => void
 ) => {
   const canProceed = !data.checkoutComplete.errors.length;
 
   if (canProceed) {
-    history.push(BASE_URL);
+    const { id, token } = data.checkoutComplete.order;
+    history.push({
+      pathname: orderConfirmationUrl,
+      state: guest ? { token } : { id }
+    });
     clearCheckout();
     clearCart();
     show(OverlayType.message, null, {
@@ -98,31 +104,36 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                     {({ show }) => (
                       <CartContext.Consumer>
                         {({ clear: clearCart }) => (
-                          <TypedCompleteCheckoutMutation
-                            onCompleted={data =>
-                              completeCheckout(
-                                data,
-                                show,
-                                history,
-                                clearCheckout,
-                                clearCart
-                              )
-                            }
-                          >
-                            {(completeCheckout, { loading }) => (
-                              <Button
-                                type="submit"
-                                disabled={loading}
-                                onClick={() =>
-                                  completeCheckout({
-                                    variables: { checkoutId: checkout.id }
-                                  })
+                          <UserContext.Consumer>
+                            {({ user }) => (
+                              <TypedCompleteCheckoutMutation
+                                onCompleted={data =>
+                                  completeCheckout(
+                                    data,
+                                    show,
+                                    history,
+                                    !user,
+                                    clearCheckout,
+                                    clearCart
+                                  )
                                 }
                               >
-                                {loading ? "Loading" : "Place your order"}
-                              </Button>
+                                {(completeCheckout, { loading }) => (
+                                  <Button
+                                    type="submit"
+                                    disabled={loading}
+                                    onClick={() =>
+                                      completeCheckout({
+                                        variables: { checkoutId: checkout.id }
+                                      })
+                                    }
+                                  >
+                                    {loading ? "Loading" : "Place your order"}
+                                  </Button>
+                                )}
+                              </TypedCompleteCheckoutMutation>
                             )}
-                          </TypedCompleteCheckoutMutation>
+                          </UserContext.Consumer>
                         )}
                       </CartContext.Consumer>
                     )}

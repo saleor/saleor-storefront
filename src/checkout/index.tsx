@@ -56,7 +56,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                   return (
                     <div
                       className={classNames("checkout__grid", {
-                        "checkout__grid--review": reviewPage
+                        "checkout__grid--full-width": reviewPage
                       })}
                     >
                       <div
