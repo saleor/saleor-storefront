@@ -32,7 +32,7 @@ const proceedToPayment = (
 };
 
 const extractBillingData = (
-  address: Checkout_billingAddress,
+  address: Checkout_billingAddress | null,
   shop: getShop_shop
 ) => {
   const hasAddress = maybe(() => !!address.country);
@@ -73,61 +73,97 @@ const computeMutationVariables = (
   }
 });
 
-const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
-  history,
-  match: {
-    path,
-    params: { token }
+class View extends React.Component<
+  RouteComponentProps<{ token?: string }>,
+  { sameAsShipping: boolean; validateStep: boolean }
+> {
+  state = { sameAsShipping: false, validateStep: true };
+
+  componentDidMount() {
+    this.setState({ validateStep: false });
   }
-}) => (
-  <CheckoutContext.Consumer>
-    {({ checkout, shippingAsBilling, update, step }) => (
-      <StepCheck step={step} checkout={checkout} path={path} token={token}>
-        <CartSummary checkout={checkout}>
-          <Steps
-            step={CheckoutStep.BillingAddress}
-            token={token}
-            checkout={checkout}
-          >
-            <TypedUpdateCheckoutBillingAddressMutation
-              onCompleted={data =>
-                proceedToPayment(data, update, history, token)
-              }
-            >
-              {(saveBillingAddress, { data, loading }) => (
-                <ShopContext.Consumer>
-                  {shop => {
-                    const address =
-                      !checkout.billingAddress && shippingAsBilling
-                        ? checkout.shippingAddress
-                        : checkout.billingAddress;
-                    return (
-                      <ShippingAddressForm
-                        buttonText="Continue to Payment"
-                        billing
-                        data={extractBillingData(address, shop)}
-                        errors={maybe(
-                          () => data.checkoutBillingAddressUpdate.errors,
-                          []
-                        )}
-                        loading={loading}
-                        onSubmit={(event, formData) => {
-                          saveBillingAddress(
-                            computeMutationVariables(formData, checkout)
-                          );
-                          event.preventDefault();
-                        }}
-                      />
-                    );
-                  }}
-                </ShopContext.Consumer>
-              )}
-            </TypedUpdateCheckoutBillingAddressMutation>
-          </Steps>
-        </CartSummary>
-      </StepCheck>
-    )}
-  </CheckoutContext.Consumer>
-);
+
+  render() {
+    const {
+      history,
+      match: {
+        path,
+        params: { token }
+      }
+    } = this.props;
+    const { validateStep, sameAsShipping } = this.state;
+
+    return (
+      <div>
+        <CheckoutContext.Consumer>
+          {({ checkout, update, step }) =>
+            validateStep ? (
+              <StepCheck
+                step={step}
+                checkout={checkout}
+                path={path}
+                token={token}
+              />
+            ) : (
+              <Steps
+                step={CheckoutStep.BillingAddress}
+                token={token}
+                checkout={checkout}
+              >
+                <TypedUpdateCheckoutBillingAddressMutation
+                  onCompleted={data =>
+                    proceedToPayment(data, update, history, token)
+                  }
+                >
+                  {(saveBillingAddress, { data, loading }) => (
+                    <ShopContext.Consumer>
+                      {shop => (
+                        <>
+                          <div className="address-form__copy-address">
+                            <label className="checkbox">
+                              <input
+                                name="asBilling"
+                                type="checkbox"
+                                checked={sameAsShipping}
+                                onChange={({ target: { checked } }) =>
+                                  this.setState({ sameAsShipping: checked })
+                                }
+                              />
+                              <span>Same as Shipping Address</span>
+                            </label>
+                          </div>
+                          <ShippingAddressForm
+                            key={sameAsShipping ? "sameAsShipping" : "new"}
+                            buttonText="Continue to Payment"
+                            billing
+                            data={extractBillingData(
+                              sameAsShipping ? checkout.shippingAddress : null,
+                              shop
+                            )}
+                            errors={maybe(
+                              () => data.checkoutBillingAddressUpdate.errors,
+                              []
+                            )}
+                            loading={loading}
+                            onSubmit={(event, formData) => {
+                              saveBillingAddress(
+                                computeMutationVariables(formData, checkout)
+                              );
+                              event.preventDefault();
+                            }}
+                          />
+                        </>
+                      )}
+                    </ShopContext.Consumer>
+                  )}
+                </TypedUpdateCheckoutBillingAddressMutation>
+              </Steps>
+            )
+          }
+        </CheckoutContext.Consumer>
+      </div>
+    );
+  }
+}
 
 export default View;
