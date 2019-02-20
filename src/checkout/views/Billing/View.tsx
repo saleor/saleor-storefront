@@ -94,17 +94,17 @@ class View extends React.Component<
     const { validateStep, sameAsShipping } = this.state;
 
     return (
-      <div>
-        <CheckoutContext.Consumer>
-          {({ checkout, update, step }) =>
-            validateStep ? (
-              <StepCheck
-                step={step}
-                checkout={checkout}
-                path={path}
-                token={token}
-              />
-            ) : (
+      <CheckoutContext.Consumer>
+        {({ checkout, update, step }) =>
+          validateStep ? (
+            <StepCheck
+              step={step}
+              checkout={checkout}
+              path={path}
+              token={token}
+            />
+          ) : (
+            <CartSummary checkout={checkout}>
               <Steps
                 step={CheckoutStep.BillingAddress}
                 token={token}
@@ -158,10 +158,10 @@ class View extends React.Component<
                   )}
                 </TypedUpdateCheckoutBillingAddressMutation>
               </Steps>
-            )
-          }
-        </CheckoutContext.Consumer>
-      </div>
+            </CartSummary>
+          )
+        }
+      </CheckoutContext.Consumer>
     );
   }
 }
