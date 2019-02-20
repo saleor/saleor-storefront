@@ -78,13 +78,13 @@ const ShippingAddressForm: React.FC<{
               label="City"
               type="city"
               name="city"
-              autoComplete="city"
+              autoComplete="address-level2"
             />
             <TextField
               label="State/Province"
               type="state"
               name="countryArea"
-              autoComplete="state"
+              autoComplete="postal-code"
             />
           </div>
           <div className="address-form__grid">
@@ -109,7 +109,7 @@ const ShippingAddressForm: React.FC<{
                 label="Phone number"
                 type="tel"
                 name="phone"
-                autoComplete="phone-number"
+                autoComplete="tel"
               />
               <label className="checkbox">
                 <input name="asBilling" type="checkbox" />

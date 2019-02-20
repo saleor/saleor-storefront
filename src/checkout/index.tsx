@@ -1,10 +1,7 @@
-import { mediumScreen } from "../components/App/scss/variables.scss";
 import "./scss/index.scss";
 
-import classNames from "classnames";
 import * as React from "react";
-import Media from "react-media";
-import { generatePath, Redirect, RouteComponentProps } from "react-router";
+import { Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -17,9 +14,9 @@ import {
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import { CartSummary } from "./components";
+import { isPath } from "../core/utils";
 import { CheckoutContext } from "./context";
-import { reviewUrl, Routes } from "./routes";
+import { orderConfirmationUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
 
@@ -28,8 +25,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     location: { pathname }
   }
 }) => {
-  const reviewPage =
-    pathname.indexOf(generatePath(reviewUrl, { token: undefined })) !== -1;
+  const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
 
   return (
     <div className="checkout">
@@ -37,15 +33,17 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
         <div className="checkout__menu__bar">
           <ReactSVG path={logoImg} />
         </div>
-        <Link to={BASE_URL}>Return to shopping</Link>
+        {!orderConfirmationPage && (
+          <Link to={BASE_URL}>Return to shopping</Link>
+        )}
       </div>
       <div className="container">
         <Online>
           <CartContext.Consumer>
             {cart => (
               <CheckoutContext.Consumer>
-                {({ checkout, loading }) => {
-                  if (!cart.lines.length) {
+                {({ loading }) => {
+                  if (!cart.lines.length && !orderConfirmationPage) {
                     return <Redirect to={BASE_URL} />;
                   }
 
@@ -53,31 +51,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
                     return <Loader />;
                   }
 
-                  return (
-                    <div
-                      className={classNames("checkout__grid", {
-                        "checkout__grid--full-width": reviewPage
-                      })}
-                    >
-                      <div
-                        className={classNames({
-                          checkout__grid__content: !reviewPage
-                        })}
-                      >
-                        <Routes />
-                      </div>
-                      {!reviewPage && (
-                        <Media
-                          query={{ minWidth: mediumScreen }}
-                          render={() => (
-                            <div className="checkout__grid__cart-summary">
-                              <CartSummary cart={cart} checkout={checkout} />
-                            </div>
-                          )}
-                        />
-                      )}
-                    </div>
-                  );
+                  return <Routes />;
                 }}
               </CheckoutContext.Consumer>
             )}
