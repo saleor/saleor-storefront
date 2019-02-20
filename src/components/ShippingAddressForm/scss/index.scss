@@ -15,4 +15,8 @@
     grid-gap: 0 $spacer;
     grid-template-columns: 1fr 1fr;
   }
+
+  &__copy-address {
+    padding: $spacer 0 ($spacer * 2);
+  }
 }

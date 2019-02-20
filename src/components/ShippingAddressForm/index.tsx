@@ -24,7 +24,7 @@ const ShippingAddressForm: React.FC<{
   errors: FormError[];
   loading: boolean;
   onSubmit: (event: React.FormEvent<any>, data: FormAddressType) => any;
-}> = ({ data, billing, buttonText, errors, loading, onSubmit }) => (
+}> = ({ data, billing, buttonText, errors, loading, onSubmit, children }) => (
   <div className="address-form">
     <ShopContext.Consumer>
       {({ countries }) => (
@@ -33,14 +33,15 @@ const ShippingAddressForm: React.FC<{
           onSubmit={(evt, data) => onSubmit(evt, data as any)}
           data={data}
         >
-          {!billing ? (
+          {children}
+          {!billing && (
             <TextField
               label="Email Address"
               type="email"
               autoComplete="email"
               name="email"
             />
-          ) : null}
+          )}
           <div className="address-form__grid">
             <TextField
               label="First Name"
