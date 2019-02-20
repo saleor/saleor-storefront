@@ -12,12 +12,13 @@ import {
   OverlayType,
   ShowOverlayType
 } from "../../../components";
+import { orderConfirmationUrl } from "../../../components/App/routes";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
 import { UserContext } from "../../../components/User/context";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
-import { orderConfirmationUrl, paymentUrl } from "../../routes";
+import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
 import Summary from "./Summary";
 import { completeCheckout } from "./types/completeCheckout";

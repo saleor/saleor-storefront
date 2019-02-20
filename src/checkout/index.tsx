@@ -1,10 +1,7 @@
-import { mediumScreen } from "../components/App/scss/variables.scss";
 import "./scss/index.scss";
 
-import classNames from "classnames";
 import * as React from "react";
-import Media from "react-media";
-import { generatePath, Redirect, RouteComponentProps } from "react-router";
+import { Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -17,14 +14,11 @@ import {
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import { CartSummary } from "./components";
+import { isPath } from "../core/utils";
 import { CheckoutContext } from "./context";
-import { orderConfirmationUrl, reviewUrl, Routes } from "./routes";
+import { orderConfirmationUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
-
-const isPath = (pathname: string, url: string) =>
-  pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
 
 const CheckoutApp: React.FC<RouteComponentProps> = ({
   history: {

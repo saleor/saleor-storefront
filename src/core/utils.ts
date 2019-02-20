@@ -1,6 +1,7 @@
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
+import { generatePath } from "react-router";
 
 import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
 
@@ -132,3 +133,6 @@ export const updateQueryString = (
     history.replace("?" + stringifyQs(querystring));
   };
 };
+
+export const isPath = (pathname: string, url: string) =>
+  pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
