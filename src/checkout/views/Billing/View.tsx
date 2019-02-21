@@ -133,7 +133,7 @@ class View extends React.Component<
                             </label>
                           </div>
                           <ShippingAddressForm
-                            key={sameAsShipping ? "sameAsShipping" : "new"}
+                            key={`${sameAsShipping}`}
                             buttonText="Continue to Payment"
                             billing
                             data={extractBillingData(

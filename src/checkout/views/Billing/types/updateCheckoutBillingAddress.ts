@@ -88,6 +88,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;
@@ -117,6 +121,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;

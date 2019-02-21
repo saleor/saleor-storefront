@@ -19,7 +19,7 @@ import {
   CartContext,
   CartLineInterface
 } from "../../../components/CartProvider/context";
-import { CartSummary, Steps, AddressPicker } from "../../components";
+import { CartSummary, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -38,8 +38,6 @@ import {
   updateCheckoutShippingAddress,
   updateCheckoutShippingAddress_checkoutShippingAddressUpdate
 } from "./types/updateCheckoutShippingAddress";
-import { UserContext } from "../../../components/User/context";
-import UserAddressSelector from "./User";
 
 const proceedToShippingOptions = (
   update: (checkoutData: CheckoutContextInterface) => void,
@@ -177,22 +175,40 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                               { data: updateData, loading: updateLoading }
                             ) => (
                               <CartContext.Consumer>
-                                {({ lines }) => (
-                                  <UserContext.Consumer>
-                                    {({ user }) =>
-                                      user ? (
-                                        <UserAddressSelector
-                                          shipping
-                                          user={user}
-                                          checkout={checkout}
-                                          update={update}
-                                        />
-                                      ) : (
-                                        <h1>TODO GUEST</h1>
-                                      )
-                                    }
-                                  </UserContext.Consumer>
-                                )}
+                                {({ lines }) => {
+                                  return (
+                                    <ShippingAddressForm
+                                      data={extractShippingData(checkout, shop)}
+                                      buttonText="Continue to Shipping"
+                                      errors={getErrors(createData, updateData)}
+                                      loading={createLoading || updateLoading}
+                                      onSubmit={(evt, formData) => {
+                                        evt.preventDefault();
+                                        update({
+                                          shippingAsBilling: formData.asBilling
+                                        });
+                                        if (!checkout) {
+                                          createCheckout({
+                                            variables: {
+                                              checkoutInput: computeCheckoutData(
+                                                formData,
+                                                lines
+                                              )
+                                            }
+                                          });
+                                        } else {
+                                          updateCheckout({
+                                            variables: {
+                                              checkoutId: checkout.id,
+                                              email: formData.email,
+                                              ...computeCheckoutData(formData)
+                                            }
+                                          });
+                                        }
+                                      }}
+                                    />
+                                  );
+                                }}
                               </CartContext.Consumer>
                             )}
                           </TypedUpdateCheckoutShippingAddressMutation>
