@@ -65,6 +65,10 @@
   &__content {
     margin: 0 0 ($spacer * 3) ($spacer * 3);
 
+    @media (max-width: $medium-screen) {
+      margin-left: 0;
+    }
+
     button[type="submit"] {
       margin: ($spacer * 2.5) ($spacer * 1.5) 0 ($spacer * 1.5);
 
@@ -76,8 +80,8 @@
       }
     }
 
-    @media (max-width: $medium-screen) {
-      margin-left: 0;
+    & > .address-summary {
+      font-size: $base-font-size;
     }
   }
 

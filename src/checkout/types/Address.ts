@@ -19,6 +19,10 @@ export interface Address_country {
 
 export interface Address {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;

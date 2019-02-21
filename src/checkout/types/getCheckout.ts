@@ -74,6 +74,10 @@ export interface getCheckout_checkout_billingAddress_country {
 
 export interface getCheckout_checkout_billingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;
@@ -103,6 +107,10 @@ export interface getCheckout_checkout_shippingAddress_country {
 
 export interface getCheckout_checkout_shippingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;

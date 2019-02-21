@@ -11,6 +11,7 @@ import { getUserCheckout } from "./types/getUserCheckout";
 
 export const checkoutAddressFragment = gql`
   fragment Address on Address {
+    id
     firstName
     lastName
     companyName

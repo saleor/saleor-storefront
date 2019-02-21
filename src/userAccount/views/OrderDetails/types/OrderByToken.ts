@@ -21,6 +21,10 @@ export interface OrderByToken_orderByToken_shippingAddress_country {
 
 export interface OrderByToken_orderByToken_shippingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;
