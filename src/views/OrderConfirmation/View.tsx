@@ -48,12 +48,12 @@ class View extends React.PureComponent<RouteComponentProps> {
     return (
       <div className="order-confirmation">
         <h3>
-          Thank you for <br /> your order
+          Thank you for <br /> your order!
         </h3>
         <p className="order-confirmation__info">
-          We’ve emailed you a order confirmation
+          We’ve emailed you an order confirmation.
           <br />
-          and we’ll notify you when order has
+          We’ll notify you when the order has been
           <br />
           shipped.
         </p>
