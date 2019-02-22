@@ -182,13 +182,23 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                                     {({ user }) =>
                                       user ? (
                                         <UserAddressSelector
+                                          loading={updateLoading}
                                           shipping
                                           user={user}
                                           checkout={checkout}
                                           update={update}
+                                          onSubmit={address => {
+                                            updateCheckout({
+                                              variables: {
+                                                checkoutId: checkout.id,
+                                                email: address.email,
+                                                ...computeCheckoutData(address)
+                                              }
+                                            });
+                                          }}
                                         />
                                       ) : (
-                                        <h1>TODO GUEST</h1>
+                                        <h1>TODO GUEST // old code</h1>
                                       )
                                     }
                                   </UserContext.Consumer>

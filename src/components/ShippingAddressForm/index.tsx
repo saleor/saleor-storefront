@@ -85,7 +85,7 @@ const ShippingAddressForm: React.FC<{
               label="State/Province"
               type="state"
               name="countryArea"
-              autoComplete="postal-code"
+              autoComplete="address-level1"
             />
           </div>
           <div className="address-form__grid">

@@ -4,6 +4,7 @@ $transition: 0.3s;
 
 .address-picker {
   display: grid;
+  grid-auto-rows: 1fr;
   grid-column-gap: $spacer * 1.25;
   grid-row-gap: $spacer * 1.25;
   grid-template-columns: 1fr;
@@ -16,8 +17,10 @@ $transition: 0.3s;
 
   &__address {
     background-color: $turquoise-light;
-    padding: $spacer * 1.75;
     border: 1px transparent solid;
+    display: flex;
+    flex-direction: column;
+    padding: $spacer * 1.75;
     transition: $transition border-color;
 
     &:hover {
@@ -47,6 +50,10 @@ $transition: 0.3s;
 
       svg {
         margin-bottom: $spacer / 2;
+
+        path {
+          transition: $transition fill;
+        }
       }
     }
 
@@ -57,12 +64,13 @@ $transition: 0.3s;
 
     .address-summary {
       color: $base-font-color;
+      flex-grow: 1;
     }
 
     .c-option {
       background-color: inherit;
       font-size: $small-font-size;
-      margin: 0 0 -#{$spacer} -#{$spacer};
+      margin: auto 0 -#{$spacer} -#{$spacer};
     }
   }
 }
