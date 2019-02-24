@@ -1677,6 +1677,8 @@ export interface TokenAuthVariables {
 export interface VerifyToken_tokenVerify_user {
   id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   isStaff: boolean;
   note: string | null;
 }
@@ -2149,6 +2151,8 @@ export interface ProductVariantFields {
 export interface User {
   id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   isStaff: boolean;
   note: string | null;
 }

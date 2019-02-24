@@ -12,6 +12,8 @@ export interface VerifyToken_tokenVerify_user {
    */
   id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   isStaff: boolean;
 }
 
