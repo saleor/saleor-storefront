@@ -12,9 +12,10 @@ import {
   OverlayType,
   ShowOverlayType
 } from "../../../components";
+import { orderConfirmationUrl } from "../../../components/App/routes";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
-import { BASE_URL } from "../../../core/config";
+import { UserContext } from "../../../components/User/context";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
@@ -26,13 +27,18 @@ const completeCheckout = (
   data: completeCheckout,
   show: ShowOverlayType,
   history: History,
+  guest: boolean,
   clearCheckout: () => void,
   clearCart: () => void
 ) => {
   const canProceed = !data.checkoutComplete.errors.length;
 
   if (canProceed) {
-    history.push(BASE_URL);
+    const { id, token } = data.checkoutComplete.order;
+    history.push({
+      pathname: orderConfirmationUrl,
+      state: guest ? { token } : { id }
+    });
     clearCheckout();
     clearCart();
     show(OverlayType.message, null, {
@@ -56,12 +62,17 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   }
 }) => (
   <CheckoutContext.Consumer>
-    {({ cardData, checkout, clear: clearCheckout, step }) => {
-      if (!cardData) {
-        return <Redirect to={generatePath(paymentUrl, { token })} />;
+    {({ cardData, dummyStatus, checkout, clear: clearCheckout, step }) => {
+      const stepCheck = (
+        <StepCheck checkout={checkout} step={step} path={path} token={token} />
+      );
+
+      if (!checkout) {
+        return stepCheck;
       }
       return (
-        <StepCheck checkout={checkout} step={step} path={path} token={token}>
+        <>
+          {stepCheck}
           <div className="checkout-review">
             <Link
               to={generatePath(paymentUrl, { token })}
@@ -83,37 +94,46 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                 totalCost={checkout.totalPrice.gross.localized}
               />
               <div className="checkout-review__content">
-                <Summary checkout={checkout} cardData={cardData} />
+                <Summary
+                  checkout={checkout}
+                  cardData={cardData}
+                  dummyStatus={dummyStatus}
+                />
                 <div className="checkout-review__content__submit">
                   <OverlayContext.Consumer>
                     {({ show }) => (
                       <CartContext.Consumer>
                         {({ clear: clearCart }) => (
-                          <TypedCompleteCheckoutMutation
-                            onCompleted={data =>
-                              completeCheckout(
-                                data,
-                                show,
-                                history,
-                                clearCheckout,
-                                clearCart
-                              )
-                            }
-                          >
-                            {(completeCheckout, { loading }) => (
-                              <Button
-                                type="submit"
-                                disabled={loading}
-                                onClick={() =>
-                                  completeCheckout({
-                                    variables: { checkoutId: checkout.id }
-                                  })
+                          <UserContext.Consumer>
+                            {({ user }) => (
+                              <TypedCompleteCheckoutMutation
+                                onCompleted={data =>
+                                  completeCheckout(
+                                    data,
+                                    show,
+                                    history,
+                                    !user,
+                                    clearCheckout,
+                                    clearCart
+                                  )
                                 }
                               >
-                                {loading ? "Loading" : "Place your order"}
-                              </Button>
+                                {(completeCheckout, { loading }) => (
+                                  <Button
+                                    type="submit"
+                                    disabled={loading}
+                                    onClick={() =>
+                                      completeCheckout({
+                                        variables: { checkoutId: checkout.id }
+                                      })
+                                    }
+                                  >
+                                    {loading ? "Loading" : "Place your order"}
+                                  </Button>
+                                )}
+                              </TypedCompleteCheckoutMutation>
                             )}
-                          </TypedCompleteCheckoutMutation>
+                          </UserContext.Consumer>
                         )}
                       </CartContext.Consumer>
                     )}
@@ -122,7 +142,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               </div>
             </div>
           </div>
-        </StepCheck>
+        </>
       );
     }}
   </CheckoutContext.Consumer>

@@ -51,7 +51,6 @@ const StepCheck: React.FC<{
   if (!checkout || step < getCurrentStep(path, token)) {
     return <Redirect to={baseUrl} />;
   }
-
   return children ? <>{children}</> : null;
 };
 

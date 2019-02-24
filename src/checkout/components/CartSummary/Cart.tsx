@@ -1,15 +1,13 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 
-import { Checkout } from "../../../checkout/types/Checkout";
 import { CartInterface } from "../../../components/CartProvider/context";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
+import { Checkout } from "../../types/Checkout";
 import Line from "./Line";
 import Subtotal from "./Subtotal";
 
-const CartSummary: React.FC<{
+const Cart: React.FC<{
   cart: CartInterface;
   checkout: Checkout | null;
 }> = ({ cart: { lines }, checkout }) => {
@@ -59,4 +57,4 @@ const CartSummary: React.FC<{
   );
 };
 
-export default CartSummary;
+export default Cart;

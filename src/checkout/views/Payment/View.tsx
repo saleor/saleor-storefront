@@ -2,130 +2,52 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { MutationFn } from "react-apollo";
-import NumberFormat from "react-number-format";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import { GatewaysEnum } from "../../../../types/globalTypes";
-import { Button, Form, TextField } from "../../../components";
-import { braintreePayment, ErrorData } from "../../../core/payments/braintree";
-import { StepCheck, Steps } from "../../components";
+import { Button } from "../../../components";
+import { PROVIDERS } from "../../../core/config";
+import { maybe } from "../../../core/utils";
+import { CartSummary, Option, StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
   CheckoutStep
 } from "../../context";
 import { reviewUrl } from "../../routes";
+import CreditCard from "./Geteways/Braintree/CreditCard";
+import Dummy from "./Geteways/Dummy";
 import {
   TypedGetPaymentTokenQuery,
   TypedPaymentMethodCreateMutation
 } from "./queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
+export interface ProviderProps {
+  loading: boolean;
+  formRef: React.RefObject<HTMLFormElement>;
+  paymentClientToken: string;
+  checkout: CheckoutContextInterface;
+  processPayment(token: string, gateway: GatewaysEnum): Promise<void>;
+  setLoadingState(loading: boolean): void;
+}
+
 class View extends React.Component<
   RouteComponentProps<{ token?: string }>,
   {
-    errors: ErrorData;
     loading: boolean;
     validateStep: boolean;
+    selectedGeteway: GatewaysEnum;
   }
 > {
-  gateway: GatewaysEnum = GatewaysEnum.BRAINTREE;
   state = {
-    errors: {
-      cvv: "",
-      expirationMonth: "",
-      expirationYear: "",
-      nonFieldError: "",
-      number: ""
-    },
     loading: false,
+    selectedGeteway: null,
     validateStep: true
   };
+  formRef: React.RefObject<HTMLFormElement> = React.createRef();
 
-  tokenizeCcCard = async (paymentClientToken, creditCard, updateCheckout) => {
-    this.setState({
-      errors: {
-        cvv: "",
-        expirationMonth: "",
-        expirationYear: "",
-        nonFieldError: "",
-        number: ""
-      },
-      loading: true
-    });
-    let cardData;
-    try {
-      cardData = await braintreePayment(paymentClientToken, creditCard);
-      updateCheckout({ cardData });
-      return cardData.token;
-    } catch (errors) {
-      errors.map(error => {
-        this.setState(state => {
-          const errors = {
-            ...state.errors,
-            [error.field]: state.errors[error.field]
-              ? state.errors[error.field] + ". " + error.message
-              : error.message
-          };
-          return {
-            errors,
-            loading: false
-          };
-        });
-      });
-      return null;
-    }
-  };
-
-  processPayment = async (
-    createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
-    paymentClientToken: string,
-    formData: { [key: string]: string },
-    checkout: CheckoutContextInterface
-  ) => {
-    const {
-      checkout: { billingAddress, totalPrice, id },
-      update
-    } = checkout;
-
-    const token = await this.tokenizeCcCard(
-      paymentClientToken,
-      {
-        billingAddress: {
-          postalCode: billingAddress.postalCode
-        },
-        cvv: formData.ccCsc ? formData.ccCsc.replace(/\s+/g, "") : "",
-        expirationDate: formData.ccExp
-          ? formData.ccExp.replace(/\s+/g, "")
-          : "",
-        number: formData.ccNumber ? formData.ccNumber.replace(/\s+/g, "") : ""
-      },
-      update
-    );
-
-    if (token) {
-      createPaymentMethod({
-        variables: {
-          input: {
-            amount: totalPrice.gross.amount,
-            billingAddress: {
-              city: billingAddress.city,
-              country: billingAddress.country.code,
-              countryArea: billingAddress.countryArea,
-              firstName: billingAddress.firstName,
-              lastName: billingAddress.lastName,
-              postalCode: billingAddress.postalCode,
-              streetAddress1: billingAddress.streetAddress1,
-              streetAddress2: billingAddress.streetAddress2
-            },
-            checkoutId: id,
-            gateway: this.gateway,
-            token
-          }
-        }
-      });
-    }
-  };
+  setLoadingState = (loading: boolean) => this.setState({ loading });
 
   proceedNext = (data: createPayment) => {
     const canProceed = !data.checkoutPaymentCreate.errors.length;
@@ -146,11 +68,45 @@ class View extends React.Component<
     this.setState({ validateStep: false });
   }
 
+  processPayment = (
+    createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
+    checkout: CheckoutContextInterface
+  ) => async (token: string, gateway: GatewaysEnum) => {
+    const {
+      checkout: { billingAddress, totalPrice, id }
+    } = checkout;
+
+    if (token) {
+      createPaymentMethod({
+        variables: {
+          checkoutId: id,
+          input: {
+            amount: totalPrice.gross.amount,
+            billingAddress: {
+              city: billingAddress.city,
+              country: billingAddress.country.code,
+              countryArea: billingAddress.countryArea,
+              firstName: billingAddress.firstName,
+              lastName: billingAddress.lastName,
+              postalCode: billingAddress.postalCode,
+              streetAddress1: billingAddress.streetAddress1,
+              streetAddress2: billingAddress.streetAddress2
+            },
+            gateway,
+            token
+          }
+        }
+      });
+    }
+  };
+
   render() {
     const {
       params: { token },
       path
     } = this.props.match;
+    const { selectedGeteway, loading: stateLoding } = this.state;
+
     return (
       <CheckoutContext.Consumer>
         {checkout =>
@@ -162,128 +118,105 @@ class View extends React.Component<
               token={token}
             />
           ) : (
-            <TypedGetPaymentTokenQuery variables={{ gateway: this.gateway }}>
-              {({ data }) => {
-                if (data) {
-                  const { paymentClientToken } = data;
-                  return (
-                    <div className="checkout-payment">
-                      <Steps
-                        step={CheckoutStep.Payment}
-                        token={token}
-                        checkout={checkout.checkout}
+            <CartSummary checkout={checkout.checkout}>
+              <div className="checkout-payment">
+                <Steps
+                  step={CheckoutStep.Payment}
+                  token={token}
+                  checkout={checkout.checkout}
+                >
+                  <TypedPaymentMethodCreateMutation
+                    onCompleted={this.proceedNext}
+                  >
+                    {(
+                      createPaymentMethod,
+                      { loading: paymentCreateLoading }
+                    ) => (
+                      <TypedGetPaymentTokenQuery
+                        alwaysRender
+                        skip={!selectedGeteway}
+                        variables={{ gateway: selectedGeteway }}
                       >
-                        <TypedPaymentMethodCreateMutation
-                          onCompleted={this.proceedNext}
-                        >
-                          {createPaymentMethod => (
-                            <Form
-                              onSubmit={(event, formData) => {
-                                event.preventDefault();
-                                this.processPayment(
-                                  createPaymentMethod,
-                                  paymentClientToken,
-                                  formData,
-                                  checkout
-                                );
-                              }}
-                            >
-                              <span className="input__label">Number</span>
-                              <div
-                                className={
-                                  this.state.errors.number
-                                    ? "checkout-payment__field-error"
-                                    : ""
+                        {({ data, loading: getTokenLoading }) => {
+                          const paymentClientToken = maybe(
+                            () => data.paymentClientToken,
+                            null
+                          );
+                          const {
+                            availablePaymentGateways
+                          } = checkout.checkout;
+                          const processPayment = this.processPayment(
+                            createPaymentMethod,
+                            checkout
+                          );
+                          const loading =
+                            stateLoding ||
+                            getTokenLoading ||
+                            paymentCreateLoading;
+                          const optionProps = provider => ({
+                            key: provider,
+                            onSelect: () =>
+                              this.setState({ selectedGeteway: provider }),
+                            selected: selectedGeteway === provider,
+                            value: provider
+                          });
+                          const providerProps = {
+                            checkout,
+                            formRef: this.formRef,
+                            loading,
+                            paymentClientToken,
+                            processPayment,
+                            setLoadingState: this.setLoadingState
+                          };
+
+                          return (
+                            <div className="checkout-payment__form">
+                              {availablePaymentGateways.map(provider => {
+                                switch (provider) {
+                                  case PROVIDERS.BRAINTREE:
+                                    return (
+                                      <Option
+                                        label="Credit Card"
+                                        {...optionProps(provider)}
+                                      >
+                                        <CreditCard {...providerProps} />
+                                      </Option>
+                                    );
+
+                                  case PROVIDERS.DUMMY:
+                                    return (
+                                      <Option
+                                        label="Dummy"
+                                        {...optionProps(provider)}
+                                      >
+                                        <Dummy {...providerProps} />
+                                      </Option>
+                                    );
                                 }
-                              >
-                                <NumberFormat
-                                  name="ccNumber"
-                                  autoComplete="cc-number"
-                                  customInput={TextField}
-                                  format="#### #### #### ####"
-                                />
-                              </div>
-                              {this.state.errors.number ? (
-                                <span className="input__error checkout-payment__error">
-                                  {this.state.errors.number}
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                              <div className="checkout-payment__form-grid">
-                                <div
-                                  className={
-                                    this.state.errors.cvv
-                                      ? "checkout-payment__field-error"
-                                      : ""
-                                  }
+                              })}
+
+                              <div>
+                                <Button
+                                  type="submit"
+                                  disabled={loading || !paymentClientToken}
+                                  onClick={() => {
+                                    this.formRef.current.dispatchEvent(
+                                      new Event("submit")
+                                    );
+                                  }}
                                 >
-                                  <span className="input__label">CVC</span>
-                                  <NumberFormat
-                                    name="ccCsc"
-                                    autoComplete="cc-csc"
-                                    customInput={TextField}
-                                    format="####"
-                                  />
-                                  {this.state.errors.cvv ? (
-                                    <span className="input__error checkout-payment__error">
-                                      {this.state.errors.cvv}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
-                                </div>
-                                <div
-                                  className={
-                                    this.state.errors.expirationMonth ||
-                                    this.state.errors.expirationYear
-                                      ? "checkout-payment__field-error"
-                                      : ""
-                                  }
-                                >
-                                  <span className="input__label">
-                                    Expiry Date
-                                  </span>
-                                  <NumberFormat
-                                    name="ccExp"
-                                    autoComplete="cc-exp"
-                                    customInput={TextField}
-                                    format="## / ##"
-                                  />
-                                  {this.state.errors.expirationMonth ||
-                                  this.state.errors.expirationYear ? (
-                                    <span className="input__error checkout-payment__error">
-                                      {`${
-                                        this.state.errors.expirationMonth
-                                          ? `${
-                                              this.state.errors.expirationMonth
-                                            }. `
-                                          : ""
-                                      }${this.state.errors.expirationYear}`}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
-                                </div>
+                                  Continue to Review Your Order
+                                </Button>
                               </div>
-                              <Button
-                                type="submit"
-                                disabled={this.state.loading}
-                              >
-                                {this.state.loading
-                                  ? "Loading"
-                                  : "Review your order"}
-                              </Button>
-                            </Form>
-                          )}
-                        </TypedPaymentMethodCreateMutation>
-                      </Steps>
-                    </div>
-                  );
-                }
-                return null;
-              }}
-            </TypedGetPaymentTokenQuery>
+                            </div>
+                          );
+                        }}
+                      </TypedGetPaymentTokenQuery>
+                    )}
+                  </TypedPaymentMethodCreateMutation>
+                </Steps>
+              </div>
+            </CartSummary>
           )
         }
       </CheckoutContext.Consumer>

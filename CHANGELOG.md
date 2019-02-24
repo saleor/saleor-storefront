@@ -5,6 +5,10 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add stock quantity check without checkout in cart page - #254 by @piotrgrundas
+- Add ability to chose payment method, add dummy payment method, improve error handling on checkout shipping address update - #255 by @piotrgrundas
+- Add order details page - #262 by @piotrgrundas
+- Add order confirmation page - #263 by @piotrgrundas
+- Fix checkout composition - #264 by @piotrgrundas
 
 ## 0.4.0
 

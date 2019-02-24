@@ -63,10 +63,10 @@
   }
 
   &__content {
-    margin: 0 0 $spacer * 3 $spacer * 3;
+    margin: 0 0 ($spacer * 3) ($spacer * 3);
 
     button[type="submit"] {
-      margin: 2.5 * $spacer 0;
+      margin: ($spacer * 2.5) ($spacer * 1.5) 0 ($spacer * 1.5);
 
       @media (max-width: $medium-screen) {
         display: block;
@@ -93,17 +93,30 @@
     margin: $spacer * 1.5 0;
     align-items: flex-start;
 
-    &__content {
-      max-width: 32rem;
-      width: 32rem;
+    @media (min-width: $medium-screen) {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-gap: 2rem;
+    }
 
-      @media (max-width: $medium-screen) {
+    &__content {
+      width: 100%;
+
+      @media (min-width: $small-screen) and (max-width: $medium-screen) {
         margin: 0 auto;
+        width: 32rem;
+        max-width: 32rem;
+      }
+
+      @media (min-width: $small-screen) {
+        form {
+          width: 32rem;
+        }
       }
     }
 
-    &--review {
-      display: block;
+    &__cart-summary {
+      width: 100%;
     }
   }
 }

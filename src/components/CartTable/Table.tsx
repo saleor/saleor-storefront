@@ -28,6 +28,7 @@ const Table: React.FC<TableProps> = ({
           <tr>
             <th>Products</th>
             {mediumScreen && <th>Price</th>}
+            <th>Size</th>
             <th className="cart-table__quantity-header">Quantity</th>
             <th colSpan={2}>{mediumScreen ? "Total Price" : "Price"}</th>
           </tr>
@@ -52,7 +53,7 @@ const Table: React.FC<TableProps> = ({
             <CostRow
               mediumScreen={mediumScreen}
               heading="Delivery Cost"
-              cost={`+${deliveryCost}`}
+              cost={deliveryCost}
             />
           )}
           {totalCost && (

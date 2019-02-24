@@ -15,8 +15,8 @@ const getPaymentTokenQuery = gql`
 `;
 
 const paymentMethodCreateMutation = gql`
-  mutation createPayment($input: PaymentInput!) {
-    checkoutPaymentCreate(input: $input) {
+  mutation createPayment($input: PaymentInput!, $checkoutId: ID!) {
+    checkoutPaymentCreate(input: $input, checkoutId: $checkoutId) {
       errors {
         field
         message

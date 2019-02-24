@@ -1,5 +1,5 @@
-export { default as AddressSummary } from "./AddressSummary";
+export { default as Option } from "./Option";
 export { default as ShippingOptionSummary } from "./ShippingOptionSummary";
 export { default as StepCheck } from "./StepCheck";
 export { default as Steps } from "./Steps";
-export { default as CartSummary } from "./CartSummary";
+export { CartSummary } from "./CartSummary";

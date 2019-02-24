@@ -15,9 +15,9 @@ import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
+
 import { App, OverlayProvider, UserProvider } from "./components";
 import CartProvider from "./components/CartProvider";
-import { CartContext } from "./components/CartProvider/context";
 import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
 import { UserContext } from "./components/User/context";
@@ -99,17 +99,13 @@ const startApp = async () => {
                               checkout={checkout}
                               apolloClient={apolloClient}
                             >
-                              <CartContext.Consumer>
-                                {cart => (
-                                  <Switch>
-                                    <Route
-                                      path={checkoutBaseUrl}
-                                      component={CheckoutApp}
-                                    />
-                                    <Route component={App} />
-                                  </Switch>
-                                )}
-                              </CartContext.Consumer>
+                              <Switch>
+                                <Route
+                                  path={checkoutBaseUrl}
+                                  component={CheckoutApp}
+                                />
+                                <Route component={App} />
+                              </Switch>
                             </CartProvider>
                           )}
                         </CheckoutContext.Consumer>

@@ -18,16 +18,14 @@ export const billingUrl = `${baseUrl}billing-address/:token?/`;
 export const paymentUrl = `${baseUrl}payment/:token?/`;
 export const reviewUrl = `${baseUrl}review/:token?/`;
 
-export const Routes: React.FC = () => {
-  return (
-    <Switch>
-      <Route exact path={baseUrl} component={CheckoutDispatcher} />
-      <Route path={shippingAddressUrl} component={Shipping} />
-      <Route path={shippingOptionsUrl} component={ShippingOptions} />
-      <Route path={billingUrl} component={Billing} />
-      <Route path={paymentUrl} component={Payment} />
-      <Route path={reviewUrl} component={Review} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-};
+export const Routes: React.FC = () => (
+  <Switch>
+    <Route exact path={baseUrl} component={CheckoutDispatcher} />
+    <Route path={shippingAddressUrl} component={Shipping} />
+    <Route path={shippingOptionsUrl} component={ShippingOptions} />
+    <Route path={billingUrl} component={Billing} />
+    <Route path={paymentUrl} component={Payment} />
+    <Route path={reviewUrl} component={Review} />
+    <Route component={NotFound} />
+  </Switch>
+);

@@ -26,6 +26,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
     this.state = {
       cardData: null,
       checkout: null,
+      dummyStatus: null,
       loading: !!this.getStoredToken(),
       shippingAsBilling: false,
       /**
@@ -52,17 +53,17 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
   });
 
   getCurrentStep() {
-    const { checkout, cardData } = this.state;
+    const { checkout, cardData, dummyStatus } = this.state;
 
     if (!checkout) {
       return CheckoutStep.ShippingAddress;
     }
 
     const isShippingOptionStep =
-      checkout.availableShippingMethods.length && checkout.shippingAddress;
-    const isBillingStep = isShippingOptionStep && checkout.shippingMethod;
-    const isPaymentStep = isBillingStep && checkout.billingAddress;
-    const isReviewStep = isPaymentStep && cardData;
+      checkout.availableShippingMethods.length && !!checkout.shippingAddress;
+    const isBillingStep = isShippingOptionStep && !!checkout.shippingMethod;
+    const isPaymentStep = isBillingStep && !!checkout.billingAddress;
+    const isReviewStep = isPaymentStep && !!(cardData || dummyStatus);
 
     if (isReviewStep) {
       return CheckoutStep.Review;
@@ -80,6 +81,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
     this.setState({
       cardData: null,
       checkout: null,
+      dummyStatus: null,
       shippingAsBilling: false,
       step: CheckoutStep.ShippingAddress
     });

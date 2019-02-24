@@ -31,9 +31,6 @@ const updateCheckoutShippingAddressMutation = gql`
         field
         message
       }
-      checkout {
-        ...Checkout
-      }
     }
   }
 `;

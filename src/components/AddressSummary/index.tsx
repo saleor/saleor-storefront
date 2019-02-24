@@ -1,10 +1,11 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { getCheckout_checkout_shippingAddress } from "../../types/getCheckout";
+
+import { Address } from "../../checkout/types/Address";
 
 const AddressSummary: React.FC<{
-  address: getCheckout_checkout_shippingAddress;
+  address: Address;
   email?: string;
   paragraphRef?: React.RefObject<HTMLParagraphElement>;
 }> = ({ address, email, paragraphRef }) => (
