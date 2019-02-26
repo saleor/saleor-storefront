@@ -4,6 +4,8 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Fix image caching - #271 by @timuric
+
 ## 0.5.0
 
 - Add stock quantity check without checkout in cart page - #254 by @piotrgrundas
