@@ -31,6 +31,8 @@ These instructions will get you a copy of the project up and running on your loc
 - A running instance of Saleor.
 
     To run the storefront, you have to set the `BACKEND_URL` environment to point to the Saleor instance. If you are running Saleor locally with the default settings, set `BACKEND_URL` to: `http://localhost:8000/`.
+    <br>**For Quick Demo** use `BACKEND_URL` = `https://demo.getsaleor.com` <br>
+    **Or** `https://demo.getsaleor.com/graphql` for `API_URL` in src/index.tsx
 
 ### Installing
 
