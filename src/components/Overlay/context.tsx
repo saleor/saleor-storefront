@@ -48,3 +48,5 @@ export const OverlayContext = React.createContext<OverlayContextInterface>({
   type: null
 });
 /* tslint:enable:no-empty */
+
+OverlayContext.displayName = "OverlayContext";
