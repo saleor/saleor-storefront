@@ -25,3 +25,5 @@ export const UserContext = React.createContext<UserContextInterface>({
   user: null
 });
 /* tslint:enable:no-empty */
+
+UserContext.displayName = "UserContext";

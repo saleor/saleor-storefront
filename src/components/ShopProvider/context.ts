@@ -16,3 +16,5 @@ export const defaultContext: getShop_shop = {
 };
 
 export const ShopContext = createContext<getShop_shop>(defaultContext);
+
+ShopContext.displayName = "ShopContext";

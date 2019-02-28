@@ -45,3 +45,5 @@ export const defaultContext = {
 export const CheckoutContext = createContext<CheckoutContextInterface>(
   defaultContext
 );
+
+CheckoutContext.displayName = "CheckoutContext";
