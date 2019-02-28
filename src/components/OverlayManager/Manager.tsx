@@ -9,7 +9,7 @@ import Notification from "./Notification";
 import Password from "./Password";
 import Search from "./Search";
 
-const Manager: React.FC = () => (
+const OverlayManager: React.FC = () => (
   <OverlayContext.Consumer>
     {overlay => {
       switch (overlay.type) {
@@ -44,4 +44,4 @@ const Manager: React.FC = () => (
   </OverlayContext.Consumer>
 );
 
-export default Manager;
+export default OverlayManager;
