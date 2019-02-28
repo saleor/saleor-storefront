@@ -68,7 +68,7 @@ Go to `http://localhost:3000` to access the storefront.
 
 ## License
 
-This project is licensed under the BSD-3-Clause License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the BSD-3-Clause License - see the [LICENSE](LICENSE) file for details
 
 
 #### Crafted with ❤️ by [Mirumee Software](http://mirumee.com)
