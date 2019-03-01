@@ -163,7 +163,6 @@ const MainMenu: React.FC = () => (
             </li>
           </ul>
         </div>
-        <ul />
       </nav>
     )}
   </OverlayContext.Consumer>
