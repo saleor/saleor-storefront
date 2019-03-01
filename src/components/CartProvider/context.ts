@@ -39,3 +39,5 @@ export const CartContext = createContext<CartInterface>({
   subtract: (variantId, quantity = 1) => {}
 });
 /* tslint:enable:no-empty */
+
+CartContext.displayName = "CartContext";
