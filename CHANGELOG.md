@@ -21,6 +21,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix checkout composition - #264 by @piotrgrundas
 - Fix rendering order statuses and order line prices - #281 by @maarcingebala
 - Add ability to select user stored addresses, update copying shipping address to billing - #265 by @piotrgrundas
+- Fix rendering order statuses and order line prices - #281 by @maarcingebala
 
 ## 0.4.0
 
