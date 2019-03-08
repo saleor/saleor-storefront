@@ -103,11 +103,39 @@ export interface OrderByToken_orderByToken_lines_variant {
   product: OrderByToken_orderByToken_lines_variant_product;
 }
 
+export interface OrderByToken_orderByToken_lines_unitPrice_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
+export interface OrderByToken_orderByToken_lines_unitPrice {
+  __typename: "TaxedMoney";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderByToken_orderByToken_lines_unitPrice_gross;
+}
+
 export interface OrderByToken_orderByToken_lines {
   __typename: "OrderLine";
   productName: string;
   quantity: number;
+  /**
+   * A purchased product variant. Note: this field may be null if the
+   * variant has been removed from stock at all.
+   */
   variant: OrderByToken_orderByToken_lines_variant | null;
+  /**
+   * Price of the single item in the order line.
+   */
+  unitPrice: OrderByToken_orderByToken_lines_unitPrice | null;
 }
 
 export interface OrderByToken_orderByToken_subtotal_gross {
@@ -168,7 +196,15 @@ export interface OrderByToken_orderByToken {
    * Internal payment status.
    */
   paymentStatus: PaymentChargeStatusEnum | null;
+  /**
+   * User-friendly payment status.
+   */
+  paymentStatusDisplay: string | null;
   status: OrderStatus;
+  /**
+   * User-friendly order status.
+   */
+  statusDisplay: string | null;
   /**
    * The ID of the object.
    */
