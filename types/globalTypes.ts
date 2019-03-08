@@ -11,6 +11,8 @@
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
   DUMMY = "DUMMY",
+  RAZORPAY = "RAZORPAY",
+  STRIPE = "STRIPE",
 }
 
 export enum OrderDirection {
@@ -33,9 +35,11 @@ export enum OrderStatus {
  * An enumeration.
  */
 export enum PaymentChargeStatusEnum {
-  CHARGED = "CHARGED",
+  FULLY_CHARGED = "FULLY_CHARGED",
   FULLY_REFUNDED = "FULLY_REFUNDED",
   NOT_CHARGED = "NOT_CHARGED",
+  PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
+  PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
 }
 
 export enum ProductOrderField {
@@ -74,7 +78,7 @@ export interface PaymentInput {
   gateway: GatewaysEnum;
   token: string;
   amount: any;
-  billingAddress: AddressInput;
+  billingAddress?: AddressInput | null;
 }
 
 export interface ProductOrder {

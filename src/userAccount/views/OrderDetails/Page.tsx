@@ -19,8 +19,8 @@ const extractOrderLines = (
     .map(line => ({
       quantity: line.quantity,
       totalPrice: priceToString({
-        amount: line.quantity * line.variant.price.amount,
-        currency: line.variant.price.currency
+        amount: line.quantity * line.unitPrice.gross.amount,
+        currency: line.unitPrice.currency
       }),
       ...line.variant,
       name: line.productName
@@ -41,7 +41,7 @@ const Page: React.FC<{
       )}
       <h3>Your order nr: {order.number}</h3>
       <p className="order-details__status">
-        {order.paymentStatus} / {order.status}
+        {order.paymentStatusDisplay} / {order.statusDisplay}
       </p>
       <CartTable
         lines={extractOrderLines(order.lines)}

@@ -5,7 +5,6 @@ import {
   checkoutAddressFragment,
   checkoutProductVariantFragment
 } from "../../../checkout/queries";
-import { Order, OrderVariables } from "./types/Order";
 import { OrderById, OrderByIdVariables } from "./types/OrderById";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 
@@ -24,7 +23,9 @@ const orderDetailFragment = gql`
   fragment OrderDetail on Order {
     userEmail
     paymentStatus
+    paymentStatusDisplay
     status
+    statusDisplay
     id
     number
     shippingAddress {
@@ -35,6 +36,12 @@ const orderDetailFragment = gql`
       quantity
       variant {
         ...ProductVariant
+      }
+      unitPrice {
+        currency
+        gross {
+          amount
+        }
       }
     }
     subtotal {
