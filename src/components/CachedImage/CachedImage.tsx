@@ -41,10 +41,12 @@ class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
     }
   }
 
-  addImagesToCache(){
-    if("caches" in window) {
+  addImagesToCache() {
+    if ("caches" in window) {
       const { url, url2x } = this.props;
-      window.caches.open('image-cache').then((cache) => cache.addAll([ url, url2x ]));
+      window.caches
+        .open("image-cache")
+        .then(cache => cache.addAll([url, url2x]));
     }
   }
 
