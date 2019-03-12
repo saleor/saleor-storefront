@@ -41,7 +41,7 @@ class Login extends React.Component<
         <div className="login">
           <Online>
             <div className="overlay__header">
-              <div className="overlay__header-text">Saleor account</div>
+              <p className="overlay__header-text">Saleor account</p>
               <ReactSVG
                 path={closeImg}
                 onClick={hide}
