@@ -72,7 +72,21 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
 
   render() {
     const { product } = this.props;
-
+    const cartContextConsumer = <CartContext.Consumer>
+      {cart => (
+        <ProductDescription
+          name={product.name}
+          productVariants={product.variants}
+          addToCart={cart.add}
+        >
+          <div
+            dangerouslySetInnerHTML={{
+              __html: product.description
+            }}
+          />
+        </ProductDescription>
+      )}
+    </CartContext.Consumer>
     return (
       <div className="product-page">
         <div className="container">
@@ -86,21 +100,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                   <>
                     <GalleryCarousel images={product.images} />
                     <div className="product-page__product__info">
-                      <CartContext.Consumer>
-                        {cart => (
-                          <ProductDescription
-                            name={product.name}
-                            productVariants={product.variants}
-                            addToCart={cart.add}
-                          >
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: product.description
-                              }}
-                            />
-                          </ProductDescription>
-                        )}
-                      </CartContext.Consumer>
+                      {cartContextConsumer}
                     </div>
                   </>
                 ) : (
@@ -126,21 +126,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                         })}
                         ref={this.fixedElement}
                       >
-                        <CartContext.Consumer>
-                          {cart => (
-                            <ProductDescription
-                              name={product.name}
-                              productVariants={product.variants}
-                              addToCart={cart.add}
-                            >
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: product.description
-                                }}
-                              />
-                            </ProductDescription>
-                          )}
-                        </CartContext.Consumer>
+                      {cartContextConsumer}
                       </div>
                     </div>
                   </>
