@@ -15,8 +15,8 @@ import {
   CheckoutStep
 } from "../../context";
 import { reviewUrl } from "../../routes";
-import CreditCard from "./Geteways/Braintree/CreditCard";
-import Dummy from "./Geteways/Dummy";
+import CreditCard from "./Gateways/Braintree/CreditCard";
+import Dummy from "./Gateways/Dummy";
 import {
   TypedGetPaymentTokenQuery,
   TypedPaymentMethodCreateMutation
