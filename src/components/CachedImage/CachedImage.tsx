@@ -51,7 +51,6 @@ class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
   }
 
   componentDidMount() {
-    this.addImagesToCache();
     addEventListener("offline", this.updateOnlineStatus);
     addEventListener("online", this.updateOnlineStatus);
     this.updateAvailability();
