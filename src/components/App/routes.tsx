@@ -15,11 +15,12 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import SearchPage from "../../views/Search";
 
+const urlRules = ':slug([a-z-0-9]+)/:id([0-9]+)/';
 export const baseUrl = "/";
 export const searchUrl = `${baseUrl}search/`;
-export const categoryUrl = `${baseUrl}category/:slug([a-z-0-9]+)/:id([0-9]+)/`;
-export const collectionUrl = `${baseUrl}collection/:slug([a-z-0-9]+)/:id([0-9]+)/`;
-export const productUrl = `${baseUrl}product/:slug([a-z-0-9]+)/:id([0-9]+)/`;
+export const categoryUrl = `${baseUrl}category/${urlRules}`;
+export const collectionUrl = `${baseUrl}collection/${urlRules}`;
+export const productUrl = `${baseUrl}product/${urlRules}`;
 export const cartUrl = `${baseUrl}cart/:token?/`;
 export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
