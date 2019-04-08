@@ -4,6 +4,10 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+...
+
+## 0.5.1
+
 - Fix image caching - #271 by @timuric
 - Fix images cors - #288 by @piotrgrundas
 
