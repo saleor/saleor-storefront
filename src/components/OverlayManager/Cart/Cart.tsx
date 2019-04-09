@@ -68,7 +68,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
                         <div className="overlay__header-text">
                           My bag,{" "}
                           <span className="overlay__header-text-items">
-                            {cart.lines.length || 0} items
+                            {cart.getQuantity() || 0} items
                           </span>
                         </div>
                         <ReactSVG
