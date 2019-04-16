@@ -101,6 +101,10 @@ export const convertSortByFromString = (sortBy: string) => {
       field = ProductOrderField.PRICE;
       break;
 
+    case "updated_at":
+      field = ProductOrderField.DATE;
+      break;
+
     default:
       return null;
   }

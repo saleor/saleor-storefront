@@ -2172,6 +2172,7 @@ export enum GatewaysEnum {
 export enum ProductOrderField {
   NAME = "NAME",
   PRICE = "PRICE",
+  DATE = "DATE",
 }
 
 export enum OrderDirection {

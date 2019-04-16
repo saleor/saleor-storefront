@@ -35,7 +35,9 @@ export const ProductList: React.FC<ProductsListProps> = ({
     { value: "price", label: "Price Low-High" },
     { value: "-price", label: "Price High-Low" },
     { value: "name", label: "Name Increasing" },
-    { value: "-name", label: "Name Decreasing" }
+    { value: "-name", label: "Name Decreasing" },
+    { value: "updated_at", label: "Last updated Ascending" },
+    { value: "-updated_at", label: "Last updated Descending" }
   ];
   const sortValues = filterOptions.find(
     option => option.value === filters.sortBy
