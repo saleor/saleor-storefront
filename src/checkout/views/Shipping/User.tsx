@@ -3,7 +3,6 @@ import React from "react";
 
 import { Button } from "../../../components";
 import { User } from "../../../components/User/types/User";
-import { maybe } from "../../../core/utils";
 import { AddressPicker } from "../../components";
 import { CheckoutContextInterface } from "../../context";
 import { Address } from "../../types/Address";
@@ -14,8 +13,8 @@ interface UserAddressSelectorProps {
   user: User;
   checkout: Checkout;
   shipping: boolean;
-  onSubmit(selectedAddress: Address): void;
-  update?(checkoutData: CheckoutContextInterface): Promise<void>;
+  onSubmit: (selectedAddress: Address) => void;
+  update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
 }
 
 interface UserAddressSelectorState {
