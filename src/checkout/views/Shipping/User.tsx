@@ -2,25 +2,9 @@ import { isEqual, uniqWith } from "lodash";
 import React from "react";
 
 import { Button } from "../../../components";
-import { User } from "../../../components/User/types/User";
 import { AddressPicker } from "../../components";
-import { CheckoutContextInterface } from "../../context";
 import { Address } from "../../types/Address";
-import { Checkout } from "../../types/Checkout";
-
-interface UserAddressSelectorProps {
-  loading: boolean;
-  user: User;
-  checkout: Checkout;
-  shipping: boolean;
-  onSubmit: (selectedAddress: Address) => void;
-  update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
-}
-
-interface UserAddressSelectorState {
-  addresses: Address[];
-  selectedAddress?: Address;
-}
+import { UserAddressSelectorProps, UserAddressSelectorState } from "./types";
 
 class UserAddressSelector extends React.PureComponent<
   UserAddressSelectorProps,
