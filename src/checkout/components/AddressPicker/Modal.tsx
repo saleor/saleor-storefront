@@ -1,3 +1,4 @@
+import { get } from "lodash";
 import * as React from "react";
 import ReactSVG from "react-svg";
 
@@ -5,6 +6,7 @@ import { Button, Form, SelectField, TextField } from "../../../components";
 import { ShopContext } from "../../../components/ShopProvider/context";
 
 import closeImg from "../../../images/modal-close.svg";
+import { AddressType } from "../../types";
 import { Address } from "../../types/Address";
 
 export interface NewAddressI extends Address {
@@ -13,7 +15,7 @@ export interface NewAddressI extends Address {
 
 const AddNewAddressModal: React.FC<{
   hide(): void;
-  onAddNew(address: Address, select: boolean): void;
+  onAddNew(address: AddressType, select: boolean): void;
 }> = ({ hide, onAddNew }) => (
   <ShopContext.Consumer>
     {({ countries, geolocalization, defaultCountry }) => (
@@ -21,12 +23,12 @@ const AddNewAddressModal: React.FC<{
         <Form
           data={{
             country: {
-              code: geolocalization.country
-                ? geolocalization.country.code
-                : defaultCountry.code,
-              country: geolocalization.country
-                ? geolocalization.country.country
-                : defaultCountry.country
+              code: get(geolocalization, "country.code", defaultCountry.code),
+              country: get(
+                geolocalization,
+                "country.country",
+                defaultCountry.country
+              )
             }
           }}
           onSubmit={(evt, data) => {
