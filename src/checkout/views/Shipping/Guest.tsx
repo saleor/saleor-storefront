@@ -1,29 +1,15 @@
-import { get, omit } from "lodash";
+import { get } from "lodash";
 import * as React from "react";
-import { MutationFn } from "react-apollo";
 
-import { FormAddressType, ShippingAddressForm } from "../../../components";
+import { ShippingAddressForm } from "../../../components";
 import { FormError } from "../../../components/Form";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
 
-import { CartLineInterface } from "../../../components/CartProvider/context";
-import { CheckoutContextInterface } from "../../context";
 import { Checkout } from "../../types/Checkout";
 import { createCheckout } from "../../types/createCheckout";
+import { IGuestAddressProps } from "./types";
 import { updateCheckoutShippingAddress } from "./types/updateCheckoutShippingAddress";
-
-interface IGuest {
-  checkout: Checkout;
-  createCheckout: MutationFn;
-  createData: createCheckout;
-  lines: CartLineInterface[];
-  loading: boolean;
-  shop: getShop_shop;
-  updateCheckout: MutationFn;
-  update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
-  updateData: updateCheckoutShippingAddress;
-}
 
 const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
   const checkoutData = { ...checkout.shippingAddress, email: checkout.email };
@@ -46,23 +32,6 @@ const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
   return { ...checkoutData, country };
 };
 
-const computeCheckoutData = (
-  data: FormAddressType,
-  lines?: CartLineInterface[]
-) => ({
-  email: data.email,
-  shippingAddress: {
-    ...omit(data, ["email", "country"]),
-    country: data.country.value || data.country.code
-  },
-  ...(lines && {
-    lines: lines.map(({ quantity, variantId }) => ({
-      quantity,
-      variantId
-    }))
-  })
-});
-
 const getErrors = (
   createData: createCheckout,
   updateData: updateCheckoutShippingAddress
@@ -78,8 +47,9 @@ const getErrors = (
   return [...createErrors, ...updateErrors];
 };
 
-const Guest: React.SFC<IGuest> = ({
+const Guest: React.SFC<IGuestAddressProps> = ({
   checkout,
+  computeCheckoutData,
   createCheckout,
   createData,
   lines,

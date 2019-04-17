@@ -8,20 +8,16 @@ import {
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType,
-  ShippingAddressForm
+  OverlayType
 } from "../../../components";
-import { FormError } from "../../../components/Form";
 import { ShopContext } from "../../../components/ShopProvider/context";
-import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
-import { maybe } from "../../../core/utils";
 
 import {
   CartContext,
   CartLineInterface
 } from "../../../components/CartProvider/context";
 import { UserContext } from "../../../components/User/context";
-import { CartSummary, Steps, AddressPicker } from "../../components";
+import { CartSummary, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -29,18 +25,12 @@ import {
 } from "../../context";
 import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
-import { Checkout } from "../../types/Checkout";
-import {
-  createCheckout,
-  createCheckout_checkoutCreate
-} from "../../types/createCheckout";
+import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
-import {
-  updateCheckoutShippingAddress,
-  updateCheckoutShippingAddress_checkoutShippingAddressUpdate
-} from "./types/updateCheckoutShippingAddress";
+import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
 
+import GuestAddressSelector from "./Guest";
 import UserAddressSelector from "./User";
 
 const proceedToShippingOptions = (
@@ -75,7 +65,7 @@ const computeCheckoutData = (
 ) => ({
   email: data.email,
   shippingAddress: {
-    ...omit(data, ["email", "country"]),
+    ...omit(data, ["email", "country", "id", "__typename"]),
     country: data.country.value || data.country.code
   },
   ...(lines && {
@@ -85,21 +75,6 @@ const computeCheckoutData = (
     }))
   })
 });
-
-const getErrors = (
-  createData: createCheckout,
-  updateData: updateCheckoutShippingAddress
-): FormError[] => {
-  const createErrors = maybe(() => createData.checkoutCreate.errors, []);
-  const updateErrors = maybe(
-    () => [
-      ...updateData.checkoutShippingAddressUpdate.errors,
-      ...updateData.checkoutEmailUpdate.errors
-    ],
-    []
-  );
-  return [...createErrors, ...updateErrors];
-};
 
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
@@ -152,7 +127,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                                     {({ user }) =>
                                       user ? (
                                         <UserAddressSelector
-                                          loading={updateLoading}
+                                          loading={
+                                            updateLoading || createLoading
+                                          }
                                           shipping
                                           user={user}
                                           checkout={checkout}
@@ -161,14 +138,27 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                                             updateCheckout({
                                               variables: {
                                                 checkoutId: checkout.id,
-                                                email: "", // address.email,
+                                                email: user.email,
                                                 ...computeCheckoutData(address)
                                               }
                                             });
                                           }}
                                         />
                                       ) : (
-                                        <h1>TODO GUEST // old code</h1>
+                                        <GuestAddressSelector
+                                          loading={updateLoading}
+                                          lines={lines}
+                                          shop={shop}
+                                          checkout={checkout}
+                                          update={update}
+                                          createData={createData}
+                                          updateData={updateData}
+                                          updateCheckout={updateCheckout}
+                                          createCheckout={createCheckout}
+                                          computeCheckoutData={
+                                            computeCheckoutData
+                                          }
+                                        />
                                       )
                                     }
                                   </UserContext.Consumer>
