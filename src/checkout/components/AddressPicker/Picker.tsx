@@ -32,6 +32,7 @@ const Picker: React.FC<{
           selected={selectedAddress === address}
           value={`${id}`}
           label="Deliver to this address"
+          onSelect={() => onSelect(address)}
         />
       </div>
     ))}
