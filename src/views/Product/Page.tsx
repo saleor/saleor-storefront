@@ -55,10 +55,10 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
         window.innerHeight - productGallery.getBoundingClientRect().bottom;
       const fixedPosition =
         window.innerHeight - fixedElement.getBoundingClientRect().bottom;
-      const fixedToTop = fixedElement.getBoundingClientRect().top;
-      const galleryToTop =
-        this.productGallery.current.getBoundingClientRect().top +
-        window.scrollY;
+      const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
+      const galleryToTop = Math.floor(
+        this.productGallery.current.getBoundingClientRect().top + window.scrollY
+      );
 
       if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
         fixedElement.classList.remove("product-page__product__info--fixed");
@@ -72,21 +72,23 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
 
   render() {
     const { product } = this.props;
-    const cartContextConsumer = <CartContext.Consumer>
-      {cart => (
-        <ProductDescription
-          name={product.name}
-          productVariants={product.variants}
-          addToCart={cart.add}
-        >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: product.description
-            }}
-          />
-        </ProductDescription>
-      )}
-    </CartContext.Consumer>
+    const cartContextConsumer = (
+      <CartContext.Consumer>
+        {cart => (
+          <ProductDescription
+            name={product.name}
+            productVariants={product.variants}
+            addToCart={cart.add}
+          >
+            <div
+              dangerouslySetInnerHTML={{
+                __html: product.description
+              }}
+            />
+          </ProductDescription>
+        )}
+      </CartContext.Consumer>
+    );
     return (
       <div className="product-page">
         <div className="container">
@@ -126,7 +128,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                         })}
                         ref={this.fixedElement}
                       >
-                      {cartContextConsumer}
+                        {cartContextConsumer}
                       </div>
                     </div>
                   </>
