@@ -1,4 +1,5 @@
 import { History } from "history";
+import { omit } from "lodash";
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
@@ -19,6 +20,7 @@ import {
   CartContext,
   CartLineInterface
 } from "../../../components/CartProvider/context";
+import { UserContext } from "../../../components/User/context";
 import { CartSummary, Steps, AddressPicker } from "../../components";
 import {
   CheckoutContext,
@@ -38,7 +40,7 @@ import {
   updateCheckoutShippingAddress,
   updateCheckoutShippingAddress_checkoutShippingAddressUpdate
 } from "./types/updateCheckoutShippingAddress";
-import { UserContext } from "../../../components/User/context";
+
 import UserAddressSelector from "./User";
 
 const proceedToShippingOptions = (
@@ -67,46 +69,14 @@ const proceedToShippingOptions = (
   }
 };
 
-const extractShippingData = (checkout: Checkout, shop: getShop_shop) => {
-  const hasShippingCountry = !!maybe(() => checkout.shippingAddress.country);
-
-  if (hasShippingCountry) {
-    return { ...checkout.shippingAddress, email: checkout.email };
-  }
-
-  const { geolocalization, defaultCountry } = shop;
-  const country = {
-    code: geolocalization.country
-      ? geolocalization.country.code
-      : defaultCountry.code,
-    country: geolocalization.country
-      ? geolocalization.country.country
-      : defaultCountry.country
-  };
-
-  if (!checkout) {
-    return { country };
-  }
-
-  return { ...checkout.shippingAddress, country, email: checkout.email };
-};
-
 const computeCheckoutData = (
   data: FormAddressType,
   lines?: CartLineInterface[]
 ) => ({
   email: data.email,
   shippingAddress: {
-    city: data.city,
-    companyName: data.companyName,
-    country: data.country.value || data.country.code,
-    countryArea: data.countryArea,
-    firstName: data.firstName,
-    lastName: data.lastName,
-    phone: data.phone,
-    postalCode: data.postalCode,
-    streetAddress1: data.streetAddress1,
-    streetAddress2: data.streetAddress2
+    ...omit(data, ["email", "country"]),
+    country: data.country.value || data.country.code
   },
   ...(lines && {
     lines: lines.map(({ quantity, variantId }) => ({
@@ -191,7 +161,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                                             updateCheckout({
                                               variables: {
                                                 checkoutId: checkout.id,
-                                                email: address.email,
+                                                email: "", // address.email,
                                                 ...computeCheckoutData(address)
                                               }
                                             });
