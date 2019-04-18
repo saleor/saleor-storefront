@@ -1,5 +1,4 @@
 import { History } from "history";
-import { omit } from "lodash";
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
@@ -28,6 +27,7 @@ import { shippingOptionsUrl } from "../../routes";
 import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
+import { ICheckoutData } from "./types";
 import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
 
 import GuestAddressSelector from "./Guest";
@@ -62,11 +62,19 @@ const proceedToShippingOptions = (
 const computeCheckoutData = (
   data: FormAddressType,
   lines?: CartLineInterface[]
-) => ({
+): ICheckoutData => ({
   email: data.email,
   shippingAddress: {
-    ...omit(data, ["email", "country", "id", "__typename"]),
-    country: data.country.value || data.country.code
+    city: data.city,
+    companyName: data.companyName,
+    country: data.country.value || data.country.code,
+    countryArea: data.countryArea,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    phone: data.phone,
+    postalCode: data.postalCode,
+    streetAddress1: data.streetAddress1,
+    streetAddress2: data.streetAddress2
   },
   ...(lines && {
     lines: lines.map(({ quantity, variantId }) => ({

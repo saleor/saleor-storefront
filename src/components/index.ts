@@ -26,11 +26,8 @@ export { default as TextField } from "./TextField";
 export { default as UserProvider } from "./User";
 export { default as AddressSummary } from "./AddressSummary";
 export { CartTable } from "./CartTable";
-export {
-  default as ShippingAddressForm,
-  AddressType,
-  FormAddressType
-} from "./ShippingAddressForm";
+export { default as ShippingAddressForm } from "./ShippingAddressForm";
+export { AddressType, FormAddressType } from "./ShippingAddressForm/types";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {
@@ -61,3 +58,4 @@ export {
   OverlayType,
   ShowOverlayType
 } from "./Overlay";
+export { default as Modal } from "./Modal";

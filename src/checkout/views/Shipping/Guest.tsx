@@ -79,7 +79,6 @@ const Guest: React.SFC<IGuestAddressProps> = ({
         updateCheckout({
           variables: {
             checkoutId: checkout.id,
-            email: formData.email,
             ...computeCheckoutData(formData)
           }
         });
