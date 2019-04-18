@@ -2,10 +2,10 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Address } from "../../checkout/types/Address";
+import { FormAddressType } from "../ShippingAddressForm/types";
 
-const AddressSummary: React.FC<{
-  address: Address;
+const AddressSummary: React.SFC<{
+  address: FormAddressType;
   email?: string;
   paragraphRef?: React.RefObject<HTMLParagraphElement>;
 }> = ({ address, email, paragraphRef }) => (
