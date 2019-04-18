@@ -12,6 +12,7 @@ export interface FormError {
 }
 
 interface FormProps {
+  id?: string;
   children: React.ReactNode;
   className?: string;
   errors?: FormError[];
