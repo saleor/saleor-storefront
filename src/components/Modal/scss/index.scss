@@ -1,0 +1,14 @@
+.modal {
+  padding: 0 30px 50px;
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__footer {
+    margin-top: 10px;
+  }
+  &__cancelBtn {
+    background: transparent;
+    outline: none;
+    border: none;
+  }
+}
