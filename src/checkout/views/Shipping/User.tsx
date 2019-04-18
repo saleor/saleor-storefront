@@ -2,6 +2,7 @@ import { isEqual, uniqWith } from "lodash";
 import React from "react";
 
 import { Button } from "../../../components";
+import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { AddressPicker } from "../../components";
 import { Address } from "../../types/Address";
 import { UserAddressSelectorProps, UserAddressSelectorState } from "./types";
@@ -35,11 +36,11 @@ class UserAddressSelector extends React.PureComponent<
     };
   }
 
-  handleAddressSelect = (address: Address) => {
+  handleAddressSelect = (address: FormAddressType) => {
     this.setState({ selectedAddress: address });
   };
 
-  handleAddressAdd = (address: Address, select: boolean) => {
+  handleAddressAdd = (address: FormAddressType, select: boolean) => {
     this.setState(prevState => ({
       addresses: [...prevState.addresses, address],
       ...(select && { selectedAddress: address })
