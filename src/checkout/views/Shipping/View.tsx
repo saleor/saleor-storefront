@@ -1,5 +1,8 @@
+import { get } from "lodash";
+
 import { History } from "history";
 import * as React from "react";
+import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import {
@@ -9,14 +12,19 @@ import {
   OverlayTheme,
   OverlayType
 } from "../../../components";
-import { ShopContext } from "../../../components/ShopProvider/context";
-
 import {
   CartContext,
   CartLineInterface
 } from "../../../components/CartProvider/context";
+import { ShopContext } from "../../../components/ShopProvider/context";
+import { findFormErrors } from "../../../core/utils";
 import { UserContext } from "../../../components/User/context";
-import { CartSummary, Steps } from "../../components";
+import {
+  CartSummary,
+  GuestAddressSelector,
+  Steps,
+  UserAddressSelector
+} from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
@@ -24,14 +32,15 @@ import {
 } from "../../context";
 import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
+import {
+  ICheckoutData,
+  ILoggedSubmitArgs,
+  IUnloggedSubmitArgs
+} from "../../types";
 import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
-import { ICheckoutData } from "./types";
 import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
-
-import GuestAddressSelector from "./Guest";
-import UserAddressSelector from "./User";
 
 const proceedToShippingOptions = (
   update: (checkoutData: CheckoutContextInterface) => void,
@@ -61,9 +70,10 @@ const proceedToShippingOptions = (
 
 const computeCheckoutData = (
   data: FormAddressType,
-  lines?: CartLineInterface[]
+  lines?: CartLineInterface[],
+  email?: string
 ): ICheckoutData => ({
-  email: data.email,
+  email: data.email || email,
   shippingAddress: {
     city: data.city,
     companyName: data.companyName,
@@ -84,7 +94,51 @@ const computeCheckoutData = (
   })
 });
 
-const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
+const onLoggedShippingSubmit = ({
+  checkoutId,
+  email,
+  update,
+  updateCheckout
+}: ILoggedSubmitArgs) => (address: FormAddressType) => {
+  update({
+    shippingAsBilling: get(address, "asBilling")
+  });
+  updateCheckout({
+    variables: {
+      checkoutId,
+      email,
+      ...computeCheckoutData(address, null, email)
+    }
+  });
+};
+
+const onUnloggedShippingSubmit = ({
+  checkoutId,
+  createCheckout,
+  lines,
+  update,
+  updateCheckout
+}: IUnloggedSubmitArgs) => (address: FormAddressType) => {
+  update({
+    shippingAsBilling: get(address, "asBilling")
+  });
+  if (!checkoutId) {
+    createCheckout({
+      variables: {
+        checkoutInput: computeCheckoutData(address, lines)
+      }
+    });
+  } else {
+    updateCheckout({
+      variables: {
+        checkoutId,
+        ...computeCheckoutData(address)
+      }
+    });
+  }
+};
+
+const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
     params: { token }
@@ -111,10 +165,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                           proceedNext(checkoutCreate)
                         }
                       >
-                        {(
-                          createCheckout,
-                          { data: createData, loading: createLoading }
-                        ) => (
+                        {(createCheckout, createCheckoutResult) => (
                           <TypedUpdateCheckoutShippingAddressMutation
                             onCompleted={({
                               checkoutShippingAddressUpdate,
@@ -125,47 +176,51 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                               }
                             }}
                           >
-                            {(
-                              updateCheckout,
-                              { data: updateData, loading: updateLoading }
-                            ) => (
+                            {(updateCheckout, updateCheckoutResult) => (
                               <CartContext.Consumer>
                                 {({ lines }) => (
                                   <UserContext.Consumer>
                                     {({ user }) =>
                                       user ? (
                                         <UserAddressSelector
-                                          loading={
-                                            updateLoading || createLoading
-                                          }
+                                          loading={updateCheckoutResult.loading}
                                           shipping
                                           user={user}
                                           checkout={checkout}
                                           update={update}
-                                          onSubmit={address => {
-                                            updateCheckout({
-                                              variables: {
-                                                checkoutId: checkout.id,
-                                                email: user.email,
-                                                ...computeCheckoutData(address)
-                                              }
-                                            });
-                                          }}
+                                          checkoutUpdateErrors={findFormErrors(
+                                            updateCheckoutResult
+                                          )}
+                                          onSubmit={onLoggedShippingSubmit({
+                                            checkoutId: checkout.id,
+                                            email: user.email,
+                                            update,
+                                            updateCheckout
+                                          })}
                                         />
                                       ) : (
                                         <GuestAddressSelector
-                                          loading={updateLoading}
-                                          lines={lines}
+                                          loading={
+                                            updateCheckoutResult.loading ||
+                                            createCheckoutResult.loading
+                                          }
                                           shop={shop}
                                           checkout={checkout}
-                                          update={update}
-                                          createData={createData}
-                                          updateData={updateData}
-                                          updateCheckout={updateCheckout}
-                                          createCheckout={createCheckout}
-                                          computeCheckoutData={
-                                            computeCheckoutData
-                                          }
+                                          checkoutCreateUpdateErrors={[
+                                            ...findFormErrors(
+                                              updateCheckoutResult
+                                            ),
+                                            ...findFormErrors(
+                                              createCheckoutResult
+                                            )
+                                          ]}
+                                          onSubmit={onUnloggedShippingSubmit({
+                                            checkoutId: checkout.id,
+                                            createCheckout,
+                                            lines,
+                                            update,
+                                            updateCheckout
+                                          })}
                                         />
                                       )
                                     }
