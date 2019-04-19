@@ -145,7 +145,7 @@ class View extends React.Component<
                               []
                             )}
                             loading={loading}
-                            onSubmit={(event, formData) => {
+                            onSubmit={formData => {
                               saveBillingAddress(
                                 computeMutationVariables(formData, checkout)
                               );
