@@ -7,8 +7,17 @@
     margin-top: 10px;
   }
   &__cancelBtn {
+    font-size: 16px;
+    color: #21125e;
     background: transparent;
     outline: none;
     border: none;
+    box-shadow: none;
+    transform: none;
+    text-decoration: underline;
+    padding: 0;
+    &:hover {
+      background: transparent;
+    }
   }
 }

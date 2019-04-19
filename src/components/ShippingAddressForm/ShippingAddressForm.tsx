@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Button, Form, TextField, SelectField } from "..";
+import { Button, Form, SelectField, TextField } from "..";
 import { ShopContext } from "../ShopProvider/context";
 import { IShippingAddressFormProps } from "./types";
 import { getFormData } from "./utils";
