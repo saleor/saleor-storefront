@@ -21,7 +21,10 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
       {({ countries, geolocalization, defaultCountry }) => (
         <Form
           errors={errors}
-          onSubmit={(evt, data) => onSubmit(evt, data as any)}
+          onSubmit={(evt, data) => {
+            evt.preventDefault();
+            onSubmit(data as any);
+          }}
           data={getFormData(geolocalization, defaultCountry, data)}
         >
           {children}

@@ -21,7 +21,7 @@ const Picker: React.SFC<{
   addresses: FormAddressType[];
   selectedAddress?: FormAddressType;
   onSelect: (address: FormAddressType) => void;
-  onAddNew: (address: FormAddressType, select: boolean) => void;
+  onAddNew: (callback: () => void) => (address: FormAddressType) => void;
 }> = ({ addresses, selectedAddress, onSelect, onAddNew }) => (
   <div className="address-picker">
     {addresses.map((address, id) => (
@@ -54,15 +54,15 @@ const Picker: React.SFC<{
                   <Modal
                     title="Add New Address"
                     loading={false}
-                    formId={"new-address-form"}
+                    formId="new-address-form"
                     hide={overlay.hide}
-                    submitBtnText={"Save"}
-                    cancelBtnText={"Cancel"}
+                    submitBtnText="Save"
+                    cancelBtnText="Cancel"
                   >
                     <AddNewShippingAddressForm
                       loading={false}
                       errors={[]}
-                      onSubmit={onAddNew}
+                      onSubmit={onAddNew(overlay.hide)}
                     />
                   </Modal>
                 )

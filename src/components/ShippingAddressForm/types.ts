@@ -21,10 +21,10 @@ interface IBaseShippingAddressFormProps {
 export interface IShippingAddressFormProps
   extends IBaseShippingAddressFormProps {
   buttonText: string;
-  onSubmit: (event: React.FormEvent<any>, data: FormAddressType) => void;
+  onSubmit: (data: FormAddressType) => void;
 }
 
 export interface IShippingNewAddressFormProps
   extends IBaseShippingAddressFormProps {
-  onSubmit: (data: FormAddressType, select?: boolean) => void;
+  onSubmit: (data: FormAddressType) => void;
 }

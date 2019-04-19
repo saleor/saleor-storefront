@@ -17,9 +17,9 @@ export const AddNewShippingAddressForm: React.SFC<
         <Form
           id="new-address-form"
           errors={errors}
-          onSubmit={(evt, data, select?) => {
+          onSubmit={(evt, data) => {
             evt.preventDefault();
-            onSubmit(data as any, select);
+            onSubmit(data as any);
           }}
           data={getFormData(geolocalization, defaultCountry, data)}
         >
