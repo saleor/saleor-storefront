@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import * as React from "react";
 import ReactSVG from "react-svg";
 

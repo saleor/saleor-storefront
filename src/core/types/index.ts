@@ -9,3 +9,5 @@ export {
   getCheckout_checkout_shippingAddress as AddressInterface,
   getShop_shop as ShopInterface
 } from "./saleor";
+
+export { FormError } from "./form";

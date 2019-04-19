@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Form, TextField, SelectField } from "..";
+import { Form, SelectField, TextField } from "..";
 
 import { ShopContext } from "../ShopProvider/context";
 import { IShippingNewAddressFormProps } from "./types";
@@ -25,22 +25,6 @@ export const AddNewShippingAddressForm: React.SFC<
         >
           {children}
 
-          {!billing && (
-            <TextField
-              label="Email Address"
-              type="email"
-              autoComplete="email"
-              name="email"
-              required
-            />
-          )}
-          <TextField
-            label="Phone number"
-            type="tel"
-            name="phone"
-            autoComplete="tel"
-            required
-          />
           <div className="address-form__grid">
             <TextField
               label="First Name"
@@ -108,6 +92,21 @@ export const AddNewShippingAddressForm: React.SFC<
               }))}
             />
           </div>
+          {!billing && (
+            <TextField
+              label="Email Address"
+              type="email"
+              autoComplete="email"
+              name="email"
+              required
+            />
+          )}
+          <TextField
+            label="Phone number"
+            type="tel"
+            name="phone"
+            autoComplete="tel"
+          />
 
           <label className="checkbox">
             <input name="asNew" type="checkbox" />
