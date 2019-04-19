@@ -59,3 +59,4 @@ export {
   ShowOverlayType
 } from "./Overlay";
 export { default as Modal } from "./Modal";
+export { default as Error } from "./Error";

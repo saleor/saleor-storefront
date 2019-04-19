@@ -1,11 +1,14 @@
-import { isEqual, uniqWith } from "lodash";
+import { get, isEqual, map, uniqWith } from "lodash";
 import React from "react";
 
-import { Button } from "../../../components";
+import { Button, Error } from "../../../components";
 import { FormAddressType } from "../../../components/ShippingAddressForm/types";
-import { AddressPicker } from "../../components";
-import { Address } from "../../types/Address";
-import { UserAddressSelectorProps, UserAddressSelectorState } from "./types";
+import { FormError } from "../../../core/types";
+import { AddressPicker } from "../../components/AddressPicker";
+import {
+  UserAddressSelectorProps,
+  UserAddressSelectorState
+} from "../../types";
 
 class UserAddressSelector extends React.PureComponent<
   UserAddressSelectorProps,
@@ -13,7 +16,6 @@ class UserAddressSelector extends React.PureComponent<
 > {
   constructor(props: UserAddressSelectorProps) {
     super(props);
-
     const {
       shipping,
       checkout,
@@ -25,8 +27,8 @@ class UserAddressSelector extends React.PureComponent<
     } = props;
     const addresses = [
       ...(shipping
-        ? [checkout.shippingAddress, defaultShippingAddress]
-        : [checkout.billingAddress, defaultBillingAddress]),
+        ? [get(checkout, "shippingAddress"), defaultShippingAddress]
+        : [get(checkout, "billingAddress"), defaultBillingAddress]),
       ...userAddresses
     ].filter(address => address);
 
@@ -40,16 +42,24 @@ class UserAddressSelector extends React.PureComponent<
     this.setState({ selectedAddress: address });
   };
 
-  handleAddressAdd = (address: FormAddressType, select: boolean) => {
+  handleAddressAdd = (callback: () => void) => (address: FormAddressType) => {
     this.setState(prevState => ({
       addresses: [...prevState.addresses, address],
-      ...(select && { selectedAddress: address })
+      ...(address.asNew && { selectedAddress: address })
     }));
+    callback();
   };
+
+  renderErrors = (errors: [] | FormError[]) =>
+    map(errors, (error, index) => (
+      <p key={index}>
+        <Error error={error.message} />
+      </p>
+    ));
 
   render() {
     const { addresses, selectedAddress } = this.state;
-    const { onSubmit, loading } = this.props;
+    const { checkoutUpdateErrors, onSubmit, loading } = this.props;
 
     return (
       <>
@@ -66,6 +76,7 @@ class UserAddressSelector extends React.PureComponent<
         >
           Continue to Shipping
         </Button>
+        {this.renderErrors(checkoutUpdateErrors)}
       </>
     );
   }
