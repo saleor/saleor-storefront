@@ -17,8 +17,8 @@ class UserAddressSelector extends React.PureComponent<
   constructor(props: UserAddressSelectorProps) {
     super(props);
     const {
-      shipping,
       checkout,
+      type = "shipping",
       user: {
         addresses: userAddresses,
         defaultBillingAddress,
@@ -26,7 +26,7 @@ class UserAddressSelector extends React.PureComponent<
       }
     } = props;
     const addresses = [
-      ...(shipping
+      ...(type === "shipping"
         ? [get(checkout, "shippingAddress"), defaultShippingAddress]
         : [get(checkout, "billingAddress"), defaultBillingAddress]),
       ...userAddresses
@@ -59,7 +59,7 @@ class UserAddressSelector extends React.PureComponent<
 
   render() {
     const { addresses, selectedAddress } = this.state;
-    const { checkoutUpdateErrors, onSubmit, loading } = this.props;
+    const { buttonText, errors, onSubmit, loading } = this.props;
 
     return (
       <>
@@ -74,9 +74,9 @@ class UserAddressSelector extends React.PureComponent<
           disabled={!selectedAddress || loading}
           onClick={() => onSubmit(selectedAddress)}
         >
-          Continue to Shipping
+          {buttonText}
         </Button>
-        {this.renderErrors(checkoutUpdateErrors)}
+        {this.renderErrors(errors)}
       </>
     );
   }
