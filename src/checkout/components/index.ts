@@ -4,5 +4,5 @@ export { default as StepCheck } from "./StepCheck";
 export { default as Steps } from "./Steps";
 export { CartSummary } from "./CartSummary";
 export { AddressPicker } from "./AddressPicker";
-export { default as GuestAddressSelector } from "./GuestAddressSelector";
+export { default as GuestAddressForm } from "./GuestAddressForm";
 export { default as UserAddressSelector } from "./UserAddressSelector";

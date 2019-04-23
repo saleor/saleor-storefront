@@ -17,11 +17,11 @@ import {
   CartLineInterface
 } from "../../../components/CartProvider/context";
 import { ShopContext } from "../../../components/ShopProvider/context";
-import { findFormErrors } from "../../../core/utils";
 import { UserContext } from "../../../components/User/context";
+import { findFormErrors } from "../../../core/utils";
 import {
   CartSummary,
-  GuestAddressSelector,
+  GuestAddressForm,
   Steps,
   UserAddressSelector
 } from "../../components";
@@ -138,6 +138,58 @@ const onUnloggedShippingSubmit = ({
   }
 };
 
+const renderUserAddressSelector = ({
+  checkout,
+  user,
+  update,
+  updateCheckout,
+  updateCheckoutResult
+}) => (
+  <UserAddressSelector
+    loading={updateCheckoutResult.loading}
+    shipping
+    user={user}
+    checkout={checkout}
+    update={update}
+    checkoutUpdateErrors={findFormErrors(updateCheckoutResult)}
+    onSubmit={onLoggedShippingSubmit({
+      checkoutId: checkout.id,
+      email: user.email,
+      update,
+      updateCheckout
+    })}
+  />
+);
+
+const renderGuestAddressForm = ({
+  checkout,
+  createCheckout,
+  createCheckoutResult,
+  lines,
+  shop,
+  update,
+  updateCheckout,
+  updateCheckoutResult
+}) => (
+  <GuestAddressForm
+    buttonText="Continue to Shipping"
+    loading={updateCheckoutResult.loading || createCheckoutResult.loading}
+    shop={shop}
+    checkout={checkout}
+    errors={[
+      ...findFormErrors(updateCheckoutResult),
+      ...findFormErrors(createCheckoutResult)
+    ]}
+    onSubmit={onUnloggedShippingSubmit({
+      checkoutId: checkout.id,
+      createCheckout,
+      lines,
+      update,
+      updateCheckout
+    })}
+  />
+);
+
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
@@ -181,48 +233,24 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                 {({ lines }) => (
                                   <UserContext.Consumer>
                                     {({ user }) =>
-                                      user ? (
-                                        <UserAddressSelector
-                                          loading={updateCheckoutResult.loading}
-                                          shipping
-                                          user={user}
-                                          checkout={checkout}
-                                          update={update}
-                                          checkoutUpdateErrors={findFormErrors(
-                                            updateCheckoutResult
-                                          )}
-                                          onSubmit={onLoggedShippingSubmit({
-                                            checkoutId: checkout.id,
-                                            email: user.email,
+                                      user
+                                        ? renderUserAddressSelector({
+                                            checkout,
                                             update,
-                                            updateCheckout
-                                          })}
-                                        />
-                                      ) : (
-                                        <GuestAddressSelector
-                                          loading={
-                                            updateCheckoutResult.loading ||
-                                            createCheckoutResult.loading
-                                          }
-                                          shop={shop}
-                                          checkout={checkout}
-                                          checkoutCreateUpdateErrors={[
-                                            ...findFormErrors(
-                                              updateCheckoutResult
-                                            ),
-                                            ...findFormErrors(
-                                              createCheckoutResult
-                                            )
-                                          ]}
-                                          onSubmit={onUnloggedShippingSubmit({
-                                            checkoutId: checkout.id,
+                                            updateCheckout,
+                                            updateCheckoutResult,
+                                            user
+                                          })
+                                        : renderGuestAddressForm({
+                                            checkout,
                                             createCheckout,
+                                            createCheckoutResult,
                                             lines,
+                                            shop,
                                             update,
-                                            updateCheckout
-                                          })}
-                                        />
-                                      )
+                                            updateCheckout,
+                                            updateCheckoutResult
+                                          })
                                     }
                                   </UserContext.Consumer>
                                 )}

@@ -22,17 +22,20 @@ export type AddressType = Partial<
   };
 };
 
+export type CheckoutFormType = "billing" | "shipping";
 export interface ICheckoutData {
   shippingAddress: AddressInput;
   email?: string;
   lines?: CartLineInterface[];
 }
 export interface IGuestAddressProps {
-  checkout: Checkout;
+  buttonText: string;
+  checkout: Checkout | null;
   loading: boolean;
   shop: getShop_shop;
   onSubmit: (selectedAddress: FormAddressType) => void;
-  checkoutCreateUpdateErrors: [] | FormError[];
+  errors: [] | FormError[];
+  type?: CheckoutFormType;
 }
 
 export interface UserAddressSelectorProps {
