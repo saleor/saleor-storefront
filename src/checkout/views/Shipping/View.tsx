@@ -1,8 +1,7 @@
-import { get } from "lodash";
+import { get, omit } from "lodash";
 
 import { History } from "history";
 import * as React from "react";
-import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import {
@@ -32,15 +31,13 @@ import {
 } from "../../context";
 import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
-import {
-  ICheckoutData,
-  ILoggedSubmitArgs,
-  IUnloggedSubmitArgs
-} from "../../types";
+import { ICheckoutData, ISubmitArgs } from "../../types";
 import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
 import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
+
+const BTN_TEXT = " Continue to Shipping";
 
 const proceedToShippingOptions = (
   update: (checkoutData: CheckoutContextInterface) => void,
@@ -94,31 +91,14 @@ const computeCheckoutData = (
   })
 });
 
-const onLoggedShippingSubmit = ({
-  checkoutId,
-  email,
-  update,
-  updateCheckout
-}: ILoggedSubmitArgs) => (address: FormAddressType) => {
-  update({
-    shippingAsBilling: get(address, "asBilling")
-  });
-  updateCheckout({
-    variables: {
-      checkoutId,
-      email,
-      ...computeCheckoutData(address, null, email)
-    }
-  });
-};
-
-const onUnloggedShippingSubmit = ({
+const onShippingSubmit = ({
   checkoutId,
   createCheckout,
+  email,
   lines,
   update,
   updateCheckout
-}: IUnloggedSubmitArgs) => (address: FormAddressType) => {
+}: ISubmitArgs) => (address: FormAddressType) => {
   update({
     shippingAsBilling: get(address, "asBilling")
   });
@@ -132,63 +112,12 @@ const onUnloggedShippingSubmit = ({
     updateCheckout({
       variables: {
         checkoutId,
-        ...computeCheckoutData(address)
+        email,
+        ...computeCheckoutData(address, null, email)
       }
     });
   }
 };
-
-const renderUserAddressSelector = ({
-  checkout,
-  user,
-  update,
-  updateCheckout,
-  updateCheckoutResult
-}) => (
-  <UserAddressSelector
-    loading={updateCheckoutResult.loading}
-    shipping
-    user={user}
-    checkout={checkout}
-    update={update}
-    checkoutUpdateErrors={findFormErrors(updateCheckoutResult)}
-    onSubmit={onLoggedShippingSubmit({
-      checkoutId: checkout.id,
-      email: user.email,
-      update,
-      updateCheckout
-    })}
-  />
-);
-
-const renderGuestAddressForm = ({
-  checkout,
-  createCheckout,
-  createCheckoutResult,
-  lines,
-  shop,
-  update,
-  updateCheckout,
-  updateCheckoutResult
-}) => (
-  <GuestAddressForm
-    buttonText="Continue to Shipping"
-    loading={updateCheckoutResult.loading || createCheckoutResult.loading}
-    shop={shop}
-    checkout={checkout}
-    errors={[
-      ...findFormErrors(updateCheckoutResult),
-      ...findFormErrors(createCheckoutResult)
-    ]}
-    onSubmit={onUnloggedShippingSubmit({
-      checkoutId: checkout.id,
-      createCheckout,
-      lines,
-      update,
-      updateCheckout
-    })}
-  />
-);
 
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   history,
@@ -232,26 +161,46 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                               <CartContext.Consumer>
                                 {({ lines }) => (
                                   <UserContext.Consumer>
-                                    {({ user }) =>
-                                      user
-                                        ? renderUserAddressSelector({
-                                            checkout,
-                                            update,
-                                            updateCheckout,
-                                            updateCheckoutResult,
-                                            user
-                                          })
-                                        : renderGuestAddressForm({
-                                            checkout,
-                                            createCheckout,
-                                            createCheckoutResult,
-                                            lines,
-                                            shop,
-                                            update,
-                                            updateCheckout,
+                                    {({ user }) => {
+                                      const shippingProps = {
+                                        buttonText: BTN_TEXT,
+                                        checkout,
+                                        errors: [
+                                          ...findFormErrors(
                                             updateCheckoutResult
-                                          })
-                                    }
+                                          ),
+                                          ...findFormErrors(
+                                            createCheckoutResult
+                                          )
+                                        ],
+                                        loading:
+                                          updateCheckoutResult.loading ||
+                                          createCheckoutResult.loading,
+
+                                        onSubmit: onShippingSubmit({
+                                          checkoutId: get(checkout, "id"),
+                                          createCheckout,
+                                          email: get(user, "email"),
+                                          lines,
+                                          update,
+                                          updateCheckout
+                                        }),
+
+                                        user
+                                      };
+                                      return user ? (
+                                        <UserAddressSelector
+                                          {...shippingProps}
+                                          update={update}
+                                          type="shipping"
+                                        />
+                                      ) : (
+                                        <GuestAddressForm
+                                          {...shippingProps}
+                                          shop={shop}
+                                        />
+                                      );
+                                    }}
                                   </UserContext.Consumer>
                                 )}
                               </CartContext.Consumer>
