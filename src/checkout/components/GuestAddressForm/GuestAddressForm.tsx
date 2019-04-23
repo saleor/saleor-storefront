@@ -36,13 +36,13 @@ const extractShippingData = (checkout: Checkout | null, shop: getShop_shop) => {
 };
 
 const extractBillingData = (checkout: Checkout | null, shop: getShop_shop) => {
-  const { shippingAddress } = checkout;
-  const hasAddress = maybe(() => !!shippingAddress.country);
+  const address = get(checkout, "shippingAddress", null);
+  const hasAddress = maybe(() => !!address.country);
   if (hasAddress) {
-    return shippingAddress;
+    return address;
   }
   return {
-    ...shippingAddress,
+    ...address,
     country: getCountryData(shop)
   };
 };
