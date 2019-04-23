@@ -39,11 +39,12 @@ export interface IGuestAddressProps {
 }
 
 export interface UserAddressSelectorProps {
+  buttonText: string;
   loading: boolean;
   user: User;
   checkout: Checkout;
-  checkoutUpdateErrors: [] | FormError[];
-  shipping: boolean;
+  errors: [] | FormError[];
+  type?: CheckoutFormType;
   onSubmit: (selectedAddress: FormAddressType) => void;
   update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
 }
@@ -53,14 +54,8 @@ export interface UserAddressSelectorState {
   selectedAddress?: FormAddressType;
 }
 
-export interface ILoggedSubmitArgs {
+export interface ISubmitArgs {
   email: string;
-  checkoutId: string;
-  update: (checkoutData: CheckoutContextInterface) => void;
-  updateCheckout: MutationFn;
-}
-
-export interface IUnloggedSubmitArgs {
   checkoutId: string;
   update: (checkoutData: CheckoutContextInterface) => void;
   createCheckout: MutationFn;
