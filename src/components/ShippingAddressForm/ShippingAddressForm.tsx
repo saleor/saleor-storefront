@@ -108,7 +108,7 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
             label="Phone number"
             type="tel"
             name="phone"
-            autoComplete="tel"
+            autoComplete="phone"
           />
           {!billing ? (
             <label className="checkbox">
