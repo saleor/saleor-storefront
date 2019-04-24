@@ -9,7 +9,7 @@ export interface AddressType extends Partial<AddressInterface> {
 export interface FormAddressType extends Omit<AddressType, "country"> {
   asBilling?: boolean;
   asNew?: boolean;
-  country: { country?: string; code?: string; value?: string }; // value
+  country: { country?: string; code?: string; value?: string };
 }
 
 interface IBaseShippingAddressFormProps {

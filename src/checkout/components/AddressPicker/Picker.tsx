@@ -18,11 +18,12 @@ import { Option } from "../../components";
 import plusSvg from "../../../images/plus.svg";
 
 const Picker: React.SFC<{
+  billing: boolean;
   addresses: FormAddressType[];
   selectedAddress?: FormAddressType;
   onSelect: (address: FormAddressType) => void;
   onAddNew: (callback: () => void) => (address: FormAddressType) => void;
-}> = ({ addresses, selectedAddress, onSelect, onAddNew }) => (
+}> = ({ addresses, billing, selectedAddress, onSelect, onAddNew }) => (
   <div className="address-picker">
     {addresses.map((address, id) => (
       <div
@@ -60,6 +61,7 @@ const Picker: React.SFC<{
                     cancelBtnText="Cancel"
                   >
                     <AddNewShippingAddressForm
+                      billing={billing}
                       loading={false}
                       errors={[]}
                       onSubmit={onAddNew(overlay.hide)}
