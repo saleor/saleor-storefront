@@ -112,7 +112,7 @@ export const AddNewShippingAddressForm: React.SFC<
               autoComplete="tel"
             />
 
-            <label className="checkbox">
+            <label className="checkbox checkbox__bottom">
               <input name="asNew" type="checkbox" />
               <span>{checkboxText}</span>
             </label>

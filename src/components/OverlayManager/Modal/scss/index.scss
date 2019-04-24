@@ -2,7 +2,7 @@
 
 .overlay--modal {
   display: flex;
-
+  overflow-y: auto;
   @media (min-width: $small-screen) {
     align-items: center;
   }
