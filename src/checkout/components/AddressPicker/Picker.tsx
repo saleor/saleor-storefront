@@ -58,7 +58,7 @@ const Picker: React.SFC<IAddressPickerProps> = ({
                     loading={false}
                     formId="new-address-form"
                     hide={overlay.hide}
-                    submitBtnText="Save"
+                    submitBtnText="Add Address"
                     cancelBtnText="Cancel"
                   >
                     <AddNewShippingAddressForm
@@ -74,7 +74,7 @@ const Picker: React.SFC<IAddressPickerProps> = ({
           >
             <div>
               <ReactSVG path={plusSvg} />
-              <p>Add new address</p>
+              <p>Add address</p>
             </div>
           </div>
         )}

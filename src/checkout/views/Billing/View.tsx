@@ -119,7 +119,7 @@ class View extends React.Component<
                     <ShopContext.Consumer>
                       {shop => {
                         const billingProps = {
-                          buttonText: "Continue to Payment",
+                          buttonText: "Proceed to Payment",
                           checkout,
                           errors: maybe(
                             () => data.checkoutBillingAddressUpdate.errors,

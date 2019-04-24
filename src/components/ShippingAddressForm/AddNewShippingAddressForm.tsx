@@ -81,7 +81,7 @@ export const AddNewShippingAddressForm: React.SFC<
             </div>
             <div className="address-form__grid">
               <TextField
-                label="Zip-Code"
+                label="ZIP Code"
                 type="postal-code"
                 name="postalCode"
                 autoComplete="postal-code"
