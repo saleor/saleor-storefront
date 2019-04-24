@@ -44,6 +44,7 @@ export interface UserAddressSelectorProps {
   user: User;
   checkout: Checkout;
   errors: [] | FormError[];
+  shippingAsBilling?: boolean;
   type?: CheckoutFormType;
   onSubmit: (selectedAddress: FormAddressType) => void;
   update?: (checkoutData: CheckoutContextInterface) => Promise<void>;

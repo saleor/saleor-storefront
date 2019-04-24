@@ -1,5 +1,4 @@
 import { History } from "history";
-import { omit } from "lodash";
 import * as React from "react";
 import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
@@ -43,10 +42,10 @@ const proceedToPayment = (
 const computeMutationVariables = (
   formData: FormAddressType,
   checkout: Checkout,
-  sameAsShipping: boolean
+  shippingAsBilling: boolean
 ) => {
   const { shippingAddress } = checkout;
-  const data = sameAsShipping ? shippingAddress : formData;
+  const data = shippingAsBilling ? shippingAddress : formData;
 
   return {
     variables: {
@@ -67,9 +66,9 @@ const computeMutationVariables = (
 
 class View extends React.Component<
   RouteComponentProps<{ token?: string }>,
-  { sameAsShipping: boolean; validateStep: boolean }
+  { validateStep: boolean }
 > {
-  state = { sameAsShipping: false, validateStep: true };
+  state = { validateStep: true };
 
   componentDidMount() {
     this.setState({ validateStep: false });
@@ -78,10 +77,10 @@ class View extends React.Component<
   handleSubmit = (
     saveBillingAddress: MutationFn,
     checkout: Checkout,
-    sameAsShipping: boolean
+    shippingAsBilling: boolean
   ) => (formData: FormAddressType) =>
     saveBillingAddress(
-      computeMutationVariables(formData, checkout, sameAsShipping)
+      computeMutationVariables(formData, checkout, shippingAsBilling)
     );
 
   render() {
@@ -92,11 +91,11 @@ class View extends React.Component<
         params: { token }
       }
     } = this.props;
-    const { validateStep, sameAsShipping } = this.state;
+    const { validateStep } = this.state;
 
     return (
       <CheckoutContext.Consumer>
-        {({ checkout, update, step }) =>
+        {({ checkout, update, shippingAsBilling, step }) =>
           validateStep ? (
             <StepCheck
               step={step}
@@ -130,7 +129,7 @@ class View extends React.Component<
                           onSubmit: this.handleSubmit(
                             saveBillingAddress,
                             checkout,
-                            sameAsShipping
+                            shippingAsBilling
                           ),
                           type: "billing" as CheckoutFormType
                         };
@@ -142,10 +141,10 @@ class View extends React.Component<
                                 <input
                                   name="asBilling"
                                   type="checkbox"
-                                  checked={sameAsShipping}
+                                  checked={shippingAsBilling}
                                   onChange={({ target: { checked } }) =>
-                                    this.setState({
-                                      sameAsShipping: checked
+                                    update({
+                                      shippingAsBilling: checked
                                     })
                                   }
                                 />
@@ -157,16 +156,19 @@ class View extends React.Component<
                               {({ user }) =>
                                 user ? (
                                   <UserAddressSelector
-                                    user={user}
                                     update={update}
+                                    user={user}
+                                    shippingAsBilling={shippingAsBilling}
                                     {...billingProps}
                                   />
                                 ) : (
                                   <GuestAddressForm
-                                    key={`${sameAsShipping}`}
+                                    key={`${shippingAsBilling}`}
                                     shop={shop}
                                     {...billingProps}
-                                    checkout={sameAsShipping ? checkout : null}
+                                    checkout={
+                                      shippingAsBilling ? checkout : null
+                                    }
                                   />
                                 )
                               }
