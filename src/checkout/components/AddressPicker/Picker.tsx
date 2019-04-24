@@ -12,18 +12,19 @@ import {
 } from "../../../components";
 import AddressSummary from "../../../components/AddressSummary";
 import { AddNewShippingAddressForm } from "../../../components/ShippingAddressForm";
-import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { Option } from "../../components";
+import { IAddressPickerProps } from "../../types";
 
 import plusSvg from "../../../images/plus.svg";
 
-const Picker: React.SFC<{
-  billing: boolean;
-  addresses: FormAddressType[];
-  selectedAddress?: FormAddressType;
-  onSelect: (address: FormAddressType) => void;
-  onAddNew: (callback: () => void) => (address: FormAddressType) => void;
-}> = ({ addresses, billing, selectedAddress, onSelect, onAddNew }) => (
+const Picker: React.SFC<IAddressPickerProps> = ({
+  addresses,
+  billing,
+  errors,
+  selectedAddress,
+  onSelect,
+  onAddNew
+}) => (
   <div className="address-picker">
     {addresses.map((address, id) => (
       <div
@@ -63,7 +64,7 @@ const Picker: React.SFC<{
                     <AddNewShippingAddressForm
                       billing={billing}
                       loading={false}
-                      errors={[]}
+                      errors={errors}
                       onSubmit={onAddNew(overlay.hide)}
                     />
                   </Modal>

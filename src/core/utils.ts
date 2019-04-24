@@ -1,6 +1,6 @@
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
-import { each, get, map } from "lodash";
+import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import { MutationResult } from "react-apollo";
 import { generatePath } from "react-router";
@@ -157,21 +157,11 @@ export const isPath = (pathname: string, url: string) =>
   pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
 
 export const findFormErrors = (result: MutationResult): [] | FormError[] => {
-  const data = get(result, "data");
+  const data = Object.values(maybe(() => result.data, []));
 
-  if (data) {
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        return get(data[key], "errors");
-        // if (errors) {
-        //   return map(errors, error => error.message);
-        // }
-        // const error = get(data[key], "error", null);
-        // if (typeof error === "string") {
-        //   return [error];
-        // }
-      }
-    }
-  }
-  return [];
+  return data.reduce((prevVal, currVal) => {
+    const errors = currVal.errors || [];
+
+    return [...prevVal, ...errors];
+  }, []);
 };

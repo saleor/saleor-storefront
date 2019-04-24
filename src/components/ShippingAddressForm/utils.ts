@@ -1,5 +1,4 @@
-import { get } from "lodash";
-
+import { maybe } from "../../core/utils";
 import {
   getShop_shop_defaultCountry,
   getShop_shop_geolocalization
@@ -13,7 +12,10 @@ export const getFormData = (
 ) =>
   data || {
     country: {
-      code: get(geolocalization, "country.code", defaultCountry.code),
-      country: get(geolocalization, "country.country", defaultCountry.country)
+      code: maybe(() => geolocalization.country.code, defaultCountry.code),
+      country: maybe(
+        () => geolocalization.country.country,
+        defaultCountry.country
+      )
     }
   };

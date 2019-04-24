@@ -40,14 +40,18 @@ class UserAddressSelector extends React.PureComponent<
   }
 
   componentDidUpdate() {
-    if (this.state.selectedAddress && this.props.shippingAsBilling) {
-      this.setState({ selectedAddress: null });
-    }
+    this.unselectAddress();
   }
 
   handleAddressSelect = (address: FormAddressType) => {
     this.setState({ selectedAddress: address });
     this.uncheckShippingAsBilling();
+  };
+
+  unselectAddress = () => {
+    if (this.state.selectedAddress && this.props.shippingAsBilling) {
+      this.setState({ selectedAddress: null });
+    }
   };
 
   uncheckShippingAsBilling = () => {
@@ -99,7 +103,9 @@ class UserAddressSelector extends React.PureComponent<
           addresses={addresses}
           onSelect={this.handleAddressSelect}
           onAddNew={this.handleAddressAdd}
+          errors={errors}
         />
+        {this.renderErrors(errors)}
         <Button
           type="submit"
           disabled={(!selectedAddress && !shippingAsBilling) || loading}
@@ -107,11 +113,9 @@ class UserAddressSelector extends React.PureComponent<
         >
           {buttonText}
         </Button>
-        {this.renderErrors(errors)}
       </>
     );
   }
 }
 
 export default UserAddressSelector;
-// {this.renderSameAsShippingCheckbox(sameAsShippingCheckbox)}
