@@ -1,4 +1,3 @@
-import { get } from "lodash";
 import * as React from "react";
 
 import { ShippingAddressForm } from "../../../components";
@@ -10,33 +9,35 @@ import { Checkout } from "../../types/Checkout";
 const getCountryData = (shop: getShop_shop) => {
   const { geolocalization, defaultCountry } = shop;
   return {
-    code: get(geolocalization, "country.code", defaultCountry.code),
-    country: get(geolocalization, "country.country", defaultCountry.country)
+    code: maybe(() => geolocalization.country.code, defaultCountry.code),
+    country: maybe(
+      () => geolocalization.country.country,
+      defaultCountry.country
+    )
   };
 };
 
 const extractShippingData = (checkout: Checkout | null, shop: getShop_shop) => {
+  const country = getCountryData(shop);
+  if (!checkout) {
+    return { country };
+  }
+
   const checkoutData = checkout && {
     ...checkout.shippingAddress,
     email: checkout.email
   };
-  const hasShippingCountry = !!maybe(() => checkout.shippingAddress.country);
 
+  const hasShippingCountry = !!maybe(() => checkout.shippingAddress.country);
   if (hasShippingCountry) {
     return checkoutData;
-  }
-
-  const country = getCountryData(shop);
-
-  if (!checkout) {
-    return { country };
   }
 
   return { ...checkoutData, country };
 };
 
 const extractBillingData = (checkout: Checkout | null, shop: getShop_shop) => {
-  const address = get(checkout, "shippingAddress", null);
+  const address = maybe(() => checkout.shippingAddress, null);
   const hasAddress = maybe(() => !!address.country);
   if (hasAddress) {
     return address;
@@ -68,7 +69,7 @@ const GuestAddressForm: React.SFC<IGuestAddressProps> = ({
   return (
     <ShippingAddressForm
       billing={type === "billing"}
-      data={extractData(type, checkout, shop)}
+      data={extractData(type as CheckoutFormType, checkout, shop)}
       buttonText={buttonText}
       errors={errors}
       loading={loading}

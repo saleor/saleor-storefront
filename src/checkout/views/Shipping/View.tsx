@@ -1,5 +1,3 @@
-import { get, omit } from "lodash";
-
 import { History } from "history";
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
@@ -17,7 +15,7 @@ import {
 } from "../../../components/CartProvider/context";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { UserContext } from "../../../components/User/context";
-import { findFormErrors } from "../../../core/utils";
+import { findFormErrors, maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
@@ -36,8 +34,6 @@ import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
 import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
-
-const BTN_TEXT = " Continue to Shipping";
 
 const proceedToShippingOptions = (
   update: (checkoutData: CheckoutContextInterface) => void,
@@ -100,7 +96,7 @@ const onShippingSubmit = ({
   updateCheckout
 }: ISubmitArgs) => (address: FormAddressType) => {
   update({
-    shippingAsBilling: get(address, "asBilling")
+    shippingAsBilling: maybe(() => address.asBilling, false)
   });
   if (!checkoutId) {
     createCheckout({
@@ -112,7 +108,6 @@ const onShippingSubmit = ({
     updateCheckout({
       variables: {
         checkoutId,
-        email,
         ...computeCheckoutData(address, null, email)
       }
     });
@@ -129,7 +124,11 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
     {({ update, checkout }) => (
       <CartSummary checkout={checkout}>
         <div className="checkout-shipping">
-          <Steps step={CheckoutStep.ShippingAddress} token={token}>
+          <Steps
+            step={CheckoutStep.ShippingAddress}
+            token={token}
+            checkout={checkout}
+          >
             <OverlayContext.Consumer>
               {overlay => (
                 <ShopContext.Consumer>
@@ -163,7 +162,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                   <UserContext.Consumer>
                                     {({ user }) => {
                                       const shippingProps = {
-                                        buttonText: BTN_TEXT,
+                                        buttonText: "Continue to Shipping",
                                         checkout,
                                         errors: [
                                           ...findFormErrors(
@@ -178,9 +177,12 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                           createCheckoutResult.loading,
 
                                         onSubmit: onShippingSubmit({
-                                          checkoutId: get(checkout, "id"),
+                                          checkoutId: maybe(
+                                            () => checkout.id,
+                                            null
+                                          ),
                                           createCheckout,
-                                          email: get(user, "email"),
+                                          email: maybe(() => user.email, null),
                                           lines,
                                           update,
                                           updateCheckout
@@ -188,6 +190,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
 
                                         user
                                       };
+
                                       return user ? (
                                         <UserAddressSelector
                                           {...shippingProps}
