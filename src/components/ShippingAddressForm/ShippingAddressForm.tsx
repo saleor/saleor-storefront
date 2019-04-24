@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { Button, Form, SelectField, TextField } from "..";
 import { ShopContext } from "../ShopProvider/context";
-import { IShippingAddressFormProps } from "./types";
+import { FormAddressType, IShippingAddressFormProps } from "./types";
 import { getFormData } from "./utils";
 
 const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
@@ -19,11 +19,11 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
   <div className="address-form">
     <ShopContext.Consumer>
       {({ countries, geolocalization, defaultCountry }) => (
-        <Form
+        <Form<FormAddressType>
           errors={errors}
           onSubmit={(evt, data) => {
             evt.preventDefault();
-            onSubmit(data as any);
+            onSubmit(data);
           }}
           data={getFormData(geolocalization, defaultCountry, data)}
         >

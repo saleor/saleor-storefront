@@ -3,12 +3,12 @@ import {
   getShop_shop_defaultCountry,
   getShop_shop_geolocalization
 } from "../ShopProvider/types/getShop";
-import { AddressType } from "./types";
+import { FormAddressType } from "./types";
 
 export const getFormData = (
   geolocalization: getShop_shop_geolocalization | null,
   defaultCountry: getShop_shop_defaultCountry | null,
-  data?: AddressType
+  data?: FormAddressType
 ) =>
   data || {
     country: {
