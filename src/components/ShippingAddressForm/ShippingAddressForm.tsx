@@ -111,7 +111,7 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
             autoComplete="phone"
           />
           {!billing ? (
-            <label className="checkbox">
+            <label className="checkbox checkbox__bottom">
               <input name="asBilling" type="checkbox" />
               <span>Use as Billing Address</span>
             </label>

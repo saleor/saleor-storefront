@@ -1,10 +1,26 @@
+@import "../../App/scss/variables.scss";
+
+$horizontalPadding: 2rem;
+
 .modal {
-  padding: 0 30px 50px;
+  padding: 0 $horizontalPadding 0;
   &__title {
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
   }
   &__footer {
-    margin-top: 10px;
+    margin-top: 2rem;
+    position: relative;
+    &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $gray;
+      height: 1px;
+      width: calc(100% + #{$horizontalPadding} * 2);
+    }
   }
   &__cancelBtn {
     font-size: 16px;
@@ -16,6 +32,7 @@
     transform: none;
     text-decoration: underline;
     padding: 0;
+    margin-right: 1rem;
     &:hover {
       background: transparent;
     }

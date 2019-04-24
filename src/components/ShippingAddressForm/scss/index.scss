@@ -19,4 +19,10 @@
   &__copy-address {
     padding: $spacer 0 ($spacer * 2);
   }
+  .checkbox {
+    &__bottom {
+      display: block;
+      margin-top: 1.5rem;
+    }
+  }
 }
