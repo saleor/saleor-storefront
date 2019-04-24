@@ -5,7 +5,7 @@ import * as React from "react";
 import { Form, SelectField, TextField } from "..";
 
 import { ShopContext } from "../ShopProvider/context";
-import { IShippingNewAddressFormProps } from "./types";
+import { FormAddressType, IShippingNewAddressFormProps } from "./types";
 import { getFormData } from "./utils";
 
 export const AddNewShippingAddressForm: React.SFC<
@@ -18,12 +18,12 @@ export const AddNewShippingAddressForm: React.SFC<
           ? "Use this address as new billing address"
           : "Use this address as new shipping address";
         return (
-          <Form
+          <Form<FormAddressType>
             id="new-address-form"
             errors={errors}
             onSubmit={(evt, data) => {
               evt.preventDefault();
-              onSubmit(data as any);
+              onSubmit(data);
             }}
             data={getFormData(geolocalization, defaultCountry, data)}
           >

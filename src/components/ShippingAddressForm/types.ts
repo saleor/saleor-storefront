@@ -14,7 +14,7 @@ export interface FormAddressType extends Omit<AddressType, "country"> {
 
 interface IBaseShippingAddressFormProps {
   billing?: boolean;
-  data?: AddressType;
+  data?: FormAddressType;
   errors: FormError[];
   loading: boolean;
 }
