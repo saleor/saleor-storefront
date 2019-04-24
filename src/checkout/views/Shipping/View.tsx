@@ -187,7 +187,6 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
                                           update,
                                           updateCheckout
                                         }),
-
                                         user
                                       };
 

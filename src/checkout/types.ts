@@ -63,3 +63,12 @@ export interface ISubmitArgs {
   updateCheckout: MutationFn;
   lines: CartLineInterface[];
 }
+
+export interface IAddressPickerProps {
+  addresses: FormAddressType[];
+  billing: boolean;
+  errors: [] | FormError[];
+  selectedAddress?: FormAddressType;
+  onSelect: (address: FormAddressType) => void;
+  onAddNew: (callback: () => void) => (address: FormAddressType) => void;
+}
