@@ -1,9 +1,8 @@
-import { isEqual, map, uniqWith } from "lodash";
+import { isEqual, uniqWith } from "lodash";
 import React from "react";
 
-import { Button, Error } from "../../../components";
+import { Button } from "../../../components";
 import { FormAddressType } from "../../../components/ShippingAddressForm/types";
-import { FormError } from "../../../core/types";
 import { maybe } from "../../../core/utils";
 import { AddressPicker } from "../../components/AddressPicker";
 import {
@@ -35,6 +34,7 @@ class UserAddressSelector extends React.PureComponent<
 
     this.state = {
       addresses: uniqWith(addresses, isEqual),
+      errors: [],
       selectedAddress: !props.shippingAsBilling && addresses[0]
     };
   }
@@ -63,7 +63,7 @@ class UserAddressSelector extends React.PureComponent<
     }
   };
 
-  handleAddressAdd = (callback: () => void) => (address: FormAddressType) => {
+  handleAddressAdd = (address: FormAddressType) => {
     if (address.asNew) {
       this.uncheckShippingAsBilling();
     }
@@ -74,21 +74,12 @@ class UserAddressSelector extends React.PureComponent<
         selectedAddress: address
       })
     }));
-    callback();
   };
-
-  renderErrors = (errors: [] | FormError[]) =>
-    map(errors, (error, index) => (
-      <p key={index}>
-        <Error error={error.message} />
-      </p>
-    ));
 
   render() {
     const { addresses, selectedAddress } = this.state;
     const {
       buttonText,
-      errors,
       onSubmit,
       loading,
       shippingAsBilling = false,
@@ -103,13 +94,12 @@ class UserAddressSelector extends React.PureComponent<
           addresses={addresses}
           onSelect={this.handleAddressSelect}
           onAddNew={this.handleAddressAdd}
-          errors={errors}
+          onSubmit={onSubmit}
         />
-        {this.renderErrors(errors)}
         <Button
           type="submit"
           disabled={(!selectedAddress && !shippingAsBilling) || loading}
-          onClick={() => onSubmit(selectedAddress)}
+          // onClick={() => onSubmit(selectedAddress)}
         >
           {buttonText}
         </Button>

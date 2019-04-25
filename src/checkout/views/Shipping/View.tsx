@@ -99,19 +99,18 @@ const onShippingSubmit = ({
     shippingAsBilling: maybe(() => address.asBilling, false)
   });
   if (!checkoutId) {
-    createCheckout({
+    return createCheckout({
       variables: {
         checkoutInput: computeCheckoutData(address, lines)
       }
     });
-  } else {
-    updateCheckout({
-      variables: {
-        checkoutId,
-        ...computeCheckoutData(address, null, email)
-      }
-    });
   }
+  return updateCheckout({
+    variables: {
+      checkoutId,
+      ...computeCheckoutData(address, null, email)
+    }
+  });
 };
 
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
