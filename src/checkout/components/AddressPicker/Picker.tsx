@@ -8,7 +8,6 @@ import { Modal } from "../../../components";
 import AddressSummary from "../../../components/AddressSummary";
 import { AddNewShippingAddressForm } from "../../../components/ShippingAddressForm";
 import { FormAddressType } from "../../../components/ShippingAddressForm/types";
-import { findFormErrors } from "../../../core/utils";
 import { Option } from "../../components";
 import { IAddressPickerProps, IAddressPickerState } from "../../types";
 
@@ -19,18 +18,14 @@ class AddressPicker extends React.Component<
   IAddressPickerState
 > {
   readonly state = {
-    errors: [],
-    loading: false,
     showModal: false
   };
 
   onSubmitHandler = (data: FormAddressType) => {
-    this.setState({ loading: true });
-
     this.props.onSubmit(data).then(response => {
-      const errors = findFormErrors(response);
-      this.setState({ loading: false, errors, showModal: !!errors.length });
-      if (!errors.length) {
+      const hasErrors = response.errors.length;
+      this.setState({ showModal: !!hasErrors });
+      if (!hasErrors) {
         this.props.onAddNew(data);
       }
     });
@@ -63,23 +58,22 @@ class AddressPicker extends React.Component<
     <Modal
       show={this.state.showModal}
       title="Add New Address"
-      loading={this.state.loading}
+      loading={this.props.loading}
       formId="new-address-form"
-      hide={this.hideModal}
+      hide={() => this.changeModalVisibility(false)}
       submitBtnText="Add Address"
       cancelBtnText="Cancel"
     >
       <AddNewShippingAddressForm
         billing={this.props.billing}
-        loading={false}
-        errors={this.state.errors}
+        loading={this.props.loading}
+        errors={this.props.errors}
         onSubmit={this.onSubmitHandler}
       />
     </Modal>
   );
 
-  hideModal = () => this.setState({ showModal: false });
-  showModal = () => this.setState({ showModal: true });
+  changeModalVisibility = (showModal: boolean) => this.setState({ showModal });
 
   render() {
     return (
@@ -87,7 +81,7 @@ class AddressPicker extends React.Component<
         {this.renderAddressesList()}
         <div
           className="address-picker__address address-picker__address--add-new"
-          onClick={this.showModal}
+          onClick={() => this.changeModalVisibility(true)}
         >
           <div>
             <ReactSVG path={plusSvg} />

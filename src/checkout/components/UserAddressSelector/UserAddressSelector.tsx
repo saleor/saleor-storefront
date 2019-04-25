@@ -34,7 +34,6 @@ class UserAddressSelector extends React.PureComponent<
 
     this.state = {
       addresses: uniqWith(addresses, isEqual),
-      errors: [],
       selectedAddress: !props.shippingAsBilling && addresses[0]
     };
   }
@@ -80,8 +79,10 @@ class UserAddressSelector extends React.PureComponent<
     const { addresses, selectedAddress } = this.state;
     const {
       buttonText,
+      errors,
       onSubmit,
       loading,
+      proceedToNextStep,
       shippingAsBilling = false,
       type
     } = this.props;
@@ -89,17 +90,19 @@ class UserAddressSelector extends React.PureComponent<
     return (
       <>
         <AddressPicker
-          billing={type === "billing"}
-          selectedAddress={selectedAddress}
           addresses={addresses}
+          billing={type === "billing"}
+          errors={errors}
+          loading={loading}
           onSelect={this.handleAddressSelect}
           onAddNew={this.handleAddressAdd}
           onSubmit={onSubmit}
+          selectedAddress={selectedAddress}
         />
         <Button
           type="submit"
           disabled={(!selectedAddress && !shippingAsBilling) || loading}
-          // onClick={() => onSubmit(selectedAddress)}
+          onClick={proceedToNextStep}
         >
           {buttonText}
         </Button>
