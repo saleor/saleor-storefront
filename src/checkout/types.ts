@@ -33,8 +33,9 @@ export interface IGuestAddressProps {
   checkout: Checkout | null;
   loading: boolean;
   shop: getShop_shop;
-  onSubmit: (selectedAddress: FormAddressType) => void;
-  errors: [] | FormError[];
+  onSubmit: (selectedAddress: FormAddressType) => any;
+  errors: FormError[];
+  proceedToNextStep: () => void;
   type?: CheckoutFormType;
 }
 
@@ -43,10 +44,11 @@ export interface UserAddressSelectorProps {
   loading: boolean;
   user: User;
   checkout: Checkout;
-  errors: [] | FormError[];
+  errors: FormError[];
+  proceedToNextStep: () => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
-  onSubmit: (selectedAddress: FormAddressType) => void;
+  onSubmit: (selectedAddress: FormAddressType) => Promise<any>;
   update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
 }
 
@@ -67,8 +69,14 @@ export interface ISubmitArgs {
 export interface IAddressPickerProps {
   addresses: FormAddressType[];
   billing: boolean;
-  errors: [] | FormError[];
+  errors: FormError[];
+  loading: boolean;
   selectedAddress?: FormAddressType;
   onSelect: (address: FormAddressType) => void;
-  onAddNew: (callback: () => void) => (address: FormAddressType) => void;
+  onSubmit: (selectedAddress: FormAddressType) => Promise<any>;
+  onAddNew: (address: FormAddressType) => void;
+}
+
+export interface IAddressPickerState {
+  showModal: boolean;
 }
