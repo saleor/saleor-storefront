@@ -1,10 +1,32 @@
 import { History } from "history";
-import { CheckoutContextInterface } from "../../context";
-import { updateCheckoutBillingAddress } from "./types/updateCheckoutBillingAddress";
+import { MutationFn } from "react-apollo";
 
-export interface IProceedToPaymentArgs {
-  data: updateCheckoutBillingAddress;
+import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
+import { User } from "../../../components/User/types/User";
+import { CheckoutContextInterface, CheckoutStep } from "../../context";
+import { Checkout } from "../../types/Checkout";
+import {
+  updateCheckoutBillingAddress,
+  updateCheckoutBillingAddressVariables
+} from "./types/updateCheckoutBillingAddress";
+
+export interface IBillingPageProps {
+  checkoutId?: string;
+  checkout?: Checkout;
   update: (checkoutData: CheckoutContextInterface) => void;
-  history: History;
-  token?: string;
+  saveBillingAddress: MutationFn<
+    updateCheckoutBillingAddress,
+    updateCheckoutBillingAddressVariables
+  >;
+  shippingAsBilling: boolean;
+  user: User;
+  path: string;
+  shop: getShop_shop;
+  step: CheckoutStep;
+  proceedToNextStepData: {
+    update: (checkoutData: CheckoutContextInterface) => void;
+    history: History;
+    token?: string;
+  };
+  validateStep: boolean;
 }
