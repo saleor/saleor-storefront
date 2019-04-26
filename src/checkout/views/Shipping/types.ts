@@ -13,12 +13,6 @@ export interface ICheckoutData {
   email?: string;
   lines?: CartLineInterface[];
 }
-export interface IProceedToShippingArgs {
-  checkout?: any;
-  update: (checkoutData: CheckoutContextInterface) => void;
-  history: History;
-  token?: string;
-}
 
 export interface IShippingPageProps {
   checkoutId?: string;

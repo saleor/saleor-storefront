@@ -34,6 +34,7 @@ class UserAddressSelector extends React.PureComponent<
 
     this.state = {
       addresses: uniqWith(addresses, isEqual),
+      isVisibleAddNewModalForm: false,
       selectedAddress: !props.shippingAsBilling && addresses[0]
     };
   }
@@ -41,6 +42,10 @@ class UserAddressSelector extends React.PureComponent<
   componentDidUpdate() {
     this.unselectAddress();
   }
+
+  showAddNewModalForm = () => this.setState({ isVisibleAddNewModalForm: true });
+  hideAddNewModalForm = () =>
+    this.setState({ isVisibleAddNewModalForm: false });
 
   handleAddressSelect = (address: FormAddressType) => {
     this.setState({ selectedAddress: address });
@@ -62,7 +67,15 @@ class UserAddressSelector extends React.PureComponent<
     }
   };
 
-  handleAddressAdd = (address: FormAddressType) => {
+  handleAddressAdd = async (address: FormAddressType) => {
+    await this.props.onSubmit(address);
+
+    if (!this.props.errors.length) {
+      this.updateAddresses(address);
+    }
+  };
+
+  updateAddresses = (address: FormAddressType) => {
     if (address.asNew) {
       this.uncheckShippingAsBilling();
     }
@@ -71,7 +84,8 @@ class UserAddressSelector extends React.PureComponent<
       addresses: [...prevState.addresses, address],
       ...(address.asNew && {
         selectedAddress: address
-      })
+      }),
+      isVisibleAddNewModalForm: false
     }));
   };
 
@@ -80,7 +94,6 @@ class UserAddressSelector extends React.PureComponent<
     const {
       buttonText,
       errors,
-      onSubmit,
       loading,
       proceedToNextStep,
       shippingAsBilling = false,
@@ -94,10 +107,12 @@ class UserAddressSelector extends React.PureComponent<
           billing={type === "billing"}
           errors={errors}
           loading={loading}
-          onSelect={this.handleAddressSelect}
-          onAddNew={this.handleAddressAdd}
-          onSubmit={onSubmit}
+          onAddressSelect={this.handleAddressSelect}
+          handleAddressAdd={this.handleAddressAdd}
           selectedAddress={selectedAddress}
+          isVisibleAddNewModalForm={this.state.isVisibleAddNewModalForm}
+          hideAddNewModalForm={this.hideAddNewModalForm}
+          showAddNewModalForm={this.showAddNewModalForm}
         />
         <Button
           type="submit"
