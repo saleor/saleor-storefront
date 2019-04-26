@@ -49,6 +49,7 @@ const computeCheckoutData = (
 
 class Page extends React.Component<IShippingPageProps> {
   state = {
+    checkout: null,
     errors: [],
     loading: false,
     shippingUnavailable: false
@@ -61,7 +62,7 @@ class Page extends React.Component<IShippingPageProps> {
 
     if (canProceed) {
       update({
-        checkout: this.props.checkout
+        checkout: this.state.checkout || this.props.checkout
       });
       history.push(
         generatePath(shippingOptionsUrl, {
@@ -106,15 +107,16 @@ class Page extends React.Component<IShippingPageProps> {
     await this.onShippingSubmit(address).then(response => {
       const errors = findFormErrors(response);
       const checkout = maybe(
-        () => response.checkoutShippingAddressUpdate.checkout,
+        () => response.data.checkoutShippingAddressUpdate.checkout,
         null
       );
 
       this.setState({
+        checkout,
         errors,
         loading: false,
         shippingUnavailable:
-          (checkout && checkout.availableShippingMethods.length) || false
+          (checkout && !checkout.availableShippingMethods.length) || false
       });
     });
     return;

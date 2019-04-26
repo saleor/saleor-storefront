@@ -14,18 +14,12 @@ const getSummary = (
   let summary;
 
   switch (step) {
+    case CheckoutStep.BillingAddress:
     case CheckoutStep.ShippingAddress:
       summary = (
         <AddressSummary
           email={checkout.email}
           address={checkout.shippingAddress}
-        />
-      );
-    case CheckoutStep.BillingAddress:
-      summary = (
-        <AddressSummary
-          email={checkout.email}
-          address={checkout.billingAddress}
         />
       );
       break;
@@ -60,17 +54,25 @@ const Steps: React.FC<{
       path: billingUrl,
       step: CheckoutStep.BillingAddress
     },
-    { header: "Payment Method", step: CheckoutStep.Payment }
+    {
+      header: "Payment Method",
+      step: CheckoutStep.Payment
+    }
   ];
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
-
+  // tslint:disable-next-line:no-console
+  console.log("in steps", currentStep, checkout);
   return (
     <>
       {steps.map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>
-              <Link to={generatePath(path, { token })}>
+              <Link
+                to={generatePath(path, {
+                  token
+                })}
+              >
                 <div className="checkout__step checkout__step--inactive">
                   <span>{index + 1}</span>
                   <h4 className="checkout__header">{header}</h4>
