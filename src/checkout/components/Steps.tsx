@@ -60,8 +60,7 @@ const Steps: React.FC<{
     }
   ];
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
-  // tslint:disable-next-line:no-console
-  console.log("in steps", currentStep, checkout);
+
   return (
     <>
       {steps.map(({ header, step, path }, index) => (

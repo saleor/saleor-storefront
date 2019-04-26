@@ -53,7 +53,7 @@ const renderModalForm = ({
     loading={loading}
     formId="new-address-form"
     hide={hideAddNewModalForm}
-    submitBtnText="Add Address"
+    submitBtnText="Save"
     cancelBtnText="Cancel"
   >
     <AddNewShippingAddressForm
@@ -74,7 +74,7 @@ const AddressPicker: React.SFC<IAddressPickerProps> = props => (
     >
       <div>
         <ReactSVG path={plusSvg} />
-        <p>Add address</p>
+        <p>Add new address</p>
       </div>
     </div>
     {renderModalForm(props)}

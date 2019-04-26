@@ -70,13 +70,13 @@ export const AddNewShippingAddressForm: React.SFC<
                 type="city"
                 name="city"
                 autoComplete="address-level2"
+                required
               />
               <TextField
                 label="State/Province"
                 type="state"
                 name="countryArea"
                 autoComplete="address-level1"
-                required
               />
             </div>
             <div className="address-form__grid">
