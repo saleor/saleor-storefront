@@ -6,3 +6,6 @@ export { CartSummary } from "./CartSummary";
 export { AddressPicker } from "./AddressPicker";
 export { default as GuestAddressForm } from "./GuestAddressForm";
 export { default as UserAddressSelector } from "./UserAddressSelector";
+export {
+  default as ShippingUnavailableModal
+} from "./ShippingUnavailableModal";
