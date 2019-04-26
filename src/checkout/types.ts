@@ -49,7 +49,7 @@ export interface UserAddressSelectorProps {
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
   onSubmit: (selectedAddress: FormAddressType) => Promise<any>;
-  update?: (checkoutData: CheckoutContextInterface) => void; // (checkoutData: CheckoutContextInterface) => Promise<void>;
+  update?: (checkoutData: CheckoutContextInterface) => void;
 }
 
 export interface UserAddressSelectorState {
@@ -74,7 +74,7 @@ export interface IAddressPickerProps {
   isVisibleAddNewModalForm: boolean;
   loading: boolean;
   selectedAddress?: FormAddressType;
-  onSelect: (address: FormAddressType) => void;
+  onAddressSelect: (address: FormAddressType) => void;
   handleAddressAdd: (address: FormAddressType) => void;
   hideAddNewModalForm: () => any;
   showAddNewModalForm: () => any;

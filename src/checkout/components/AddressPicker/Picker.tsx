@@ -14,7 +14,7 @@ import plusSvg from "../../../images/plus.svg";
 
 const renderAddressesList = ({
   addresses,
-  onSelect,
+  onAddressSelect,
   selectedAddress
 }: IAddressPickerProps) =>
   addresses.map((address, id) => {
@@ -23,7 +23,7 @@ const renderAddressesList = ({
       <div
         key={id}
         onClick={() => {
-          onSelect(address);
+          onAddressSelect(address);
         }}
         className={classNames("address-picker__address", {
           "address-picker__address--selected": isSelected
