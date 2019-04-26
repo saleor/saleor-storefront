@@ -1,11 +1,9 @@
-import { History } from "history";
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
 import {
   FormAddressType,
   OverlayContext,
-  OverlayContextInterface,
   OverlayTheme,
   OverlayType
 } from "../../../components";
@@ -22,44 +20,13 @@ import {
   Steps,
   UserAddressSelector
 } from "../../components";
-import {
-  CheckoutContext,
-  CheckoutContextInterface,
-  CheckoutStep
-} from "../../context";
+import { CheckoutContext, CheckoutStep } from "../../context";
 import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ISubmitArgs } from "../../types";
-import { createCheckout_checkoutCreate } from "../../types/createCheckout";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
 import ShippingUnavailableModal from "./ShippingUnavailableModal";
-import { updateCheckoutShippingAddress_checkoutShippingAddressUpdate } from "./types/updateCheckoutShippingAddress";
-
-const proceedToShippingOptions = (
-  update: (checkoutData: CheckoutContextInterface) => void,
-  history: History,
-  overlay: OverlayContextInterface,
-  token?: string
-) => (
-  data:
-    | createCheckout_checkoutCreate
-    | updateCheckoutShippingAddress_checkoutShippingAddressUpdate
-) => {
-  const canProceed = !data.errors.length;
-
-  if (canProceed) {
-    const shippingUnavailable = !data.checkout.availableShippingMethods.length;
-
-    if (shippingUnavailable) {
-      overlay.show(OverlayType.modal, OverlayTheme.modal, {
-        content: <ShippingUnavailableModal hide={overlay.hide} />
-      });
-    } else {
-      update({ checkout: data.checkout });
-      history.push(generatePath(shippingOptionsUrl, { token }));
-    }
-  }
-};
+import { IProceedToShippingArgs } from "./types";
 
 const computeCheckoutData = (
   data: FormAddressType,
@@ -87,138 +54,176 @@ const computeCheckoutData = (
   })
 });
 
-const onShippingSubmit = ({
-  checkoutId,
-  createCheckout,
-  email,
-  lines,
-  update,
-  updateCheckout
-}: ISubmitArgs) => (address: FormAddressType) => {
-  update({
-    shippingAsBilling: maybe(() => address.asBilling, false)
-  });
-  if (!checkoutId) {
-    return createCheckout({
+class View extends React.Component<RouteComponentProps<{ token?: string }>> {
+  state = {
+    checkout: null,
+    errors: [],
+    loading: false,
+    shippingUnavailable: false,
+    showModal: false
+  };
+
+  proceedToShippingOptions = (proceedData: IProceedToShippingArgs) => () => {
+    const { update, history, token } = proceedData;
+    const canProceed = !this.state.errors && !this.state.shippingUnavailable;
+
+    if (canProceed) {
+      update({ checkout: this.state.checkout });
+      history.push(generatePath(shippingOptionsUrl, { token }));
+    } else {
+      this.setState({ showModal: true });
+    }
+  };
+
+  onShippingSubmit = ({
+    checkoutId,
+    createCheckout,
+    email,
+    lines,
+    update,
+    updateCheckout
+  }: ISubmitArgs) => (address: FormAddressType): Promise<any> => {
+    update({
+      shippingAsBilling: maybe(() => address.asBilling, false)
+    });
+    if (!checkoutId) {
+      return createCheckout({
+        variables: {
+          checkoutInput: computeCheckoutData(address, lines)
+        }
+      });
+    }
+    return updateCheckout({
       variables: {
-        checkoutInput: computeCheckoutData(address, lines)
+        checkoutId,
+        ...computeCheckoutData(address, null, email)
       }
     });
-  }
-  return updateCheckout({
-    variables: {
-      checkoutId,
-      ...computeCheckoutData(address, null, email)
-    }
+  };
+
+  onSubmitHandler = (data: ISubmitArgs) => (address: FormAddressType) => {
+    this.setState({ loading: true });
+
+    return this.onShippingSubmit(data)(address).then(response => {
+      const errors = findFormErrors(response);
+      const checkout = maybe(
+        () => response.checkoutShippingAddressUpdate.checkout,
+        null
+      );
+      this.setState({
+        checkout,
+        errors,
+        loading: false,
+        shippingUnavailable:
+          (checkout && !checkout.availableShippingMethods.length) || true
+      });
+      return { errors };
+    });
+  };
+
+  renderShippingUnavailableModal = () => (
+    <OverlayContext.Consumer>
+      {overlay => (
+        <>
+          {overlay.show(OverlayType.modal, OverlayTheme.modal, {
+            content: <ShippingUnavailableModal hide={overlay.hide} />
+          })}
+          ;
+        </>
+      )}
+    </OverlayContext.Consumer>
+  );
+
+  getShippingProps = (
+    submitData: ISubmitArgs,
+    proceedData: IProceedToShippingArgs,
+    user,
+    checkout
+  ) => ({
+    buttonText: "Continue to Shipping",
+    checkout,
+    errors: this.state.errors,
+    loading: this.state.loading,
+    onSubmit: this.onSubmitHandler(submitData),
+    proceedToNextStep: this.proceedToShippingOptions(proceedData),
+    user
   });
-};
 
-const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
-  history,
-  match: {
-    params: { token }
-  }
-}) => (
-  <CheckoutContext.Consumer>
-    {({ update, checkout }) => (
-      <CartSummary checkout={checkout}>
-        <div className="checkout-shipping">
-          <Steps
-            step={CheckoutStep.ShippingAddress}
-            token={token}
-            checkout={checkout}
-          >
-            <OverlayContext.Consumer>
-              {overlay => (
+  render() {
+    const {
+      history,
+      match: {
+        params: { token }
+      }
+    } = this.props;
+
+    return (
+      <CheckoutContext.Consumer>
+        {({ update, checkout }) => (
+          <CartSummary checkout={checkout}>
+            <div className="checkout-shipping">
+              <Steps
+                step={CheckoutStep.ShippingAddress}
+                token={token}
+                checkout={checkout}
+              >
                 <ShopContext.Consumer>
-                  {shop => {
-                    const proceedNext = proceedToShippingOptions(
-                      update,
-                      history,
-                      overlay,
-                      token
-                    );
-                    return (
-                      <TypedCreateCheckoutMutation
-                        onCompleted={({ checkoutCreate }) =>
-                          proceedNext(checkoutCreate)
-                        }
-                      >
-                        {(createCheckout, createCheckoutResult) => (
-                          <TypedUpdateCheckoutShippingAddressMutation
-                            onCompleted={({
-                              checkoutShippingAddressUpdate,
-                              checkoutEmailUpdate
-                            }) => {
-                              if (!checkoutEmailUpdate.errors.length) {
-                                proceedNext(checkoutShippingAddressUpdate);
-                              }
-                            }}
-                          >
-                            {(updateCheckout, updateCheckoutResult) => (
-                              <CartContext.Consumer>
-                                {({ lines }) => (
-                                  <UserContext.Consumer>
-                                    {({ user }) => {
-                                      const shippingProps = {
-                                        buttonText: "Continue to Shipping",
-                                        checkout,
-                                        errors: [
-                                          ...findFormErrors(
-                                            updateCheckoutResult
-                                          ),
-                                          ...findFormErrors(
-                                            createCheckoutResult
-                                          )
-                                        ],
-                                        loading:
-                                          updateCheckoutResult.loading ||
-                                          createCheckoutResult.loading,
+                  {shop => (
+                    <TypedCreateCheckoutMutation>
+                      {createCheckout => (
+                        <TypedUpdateCheckoutShippingAddressMutation>
+                          {updateCheckout => (
+                            <CartContext.Consumer>
+                              {({ lines }) => (
+                                <UserContext.Consumer>
+                                  {({ user }) => {
+                                    const shippingProps = this.getShippingProps(
+                                      {
+                                        checkoutId: maybe(
+                                          () => checkout.id,
+                                          null
+                                        ),
+                                        createCheckout,
+                                        email: maybe(() => user.email, null),
+                                        lines,
+                                        update,
+                                        updateCheckout
+                                      },
+                                      { history, token, update },
+                                      user,
+                                      checkout
+                                    );
 
-                                        onSubmit: onShippingSubmit({
-                                          checkoutId: maybe(
-                                            () => checkout.id,
-                                            null
-                                          ),
-                                          createCheckout,
-                                          email: maybe(() => user.email, null),
-                                          lines,
-                                          update,
-                                          updateCheckout
-                                        }),
-                                        user
-                                      };
-
-                                      return user ? (
-                                        <UserAddressSelector
-                                          {...shippingProps}
-                                          update={update}
-                                          type="shipping"
-                                        />
-                                      ) : (
-                                        <GuestAddressForm
-                                          {...shippingProps}
-                                          shop={shop}
-                                        />
-                                      );
-                                    }}
-                                  </UserContext.Consumer>
-                                )}
-                              </CartContext.Consumer>
-                            )}
-                          </TypedUpdateCheckoutShippingAddressMutation>
-                        )}
-                      </TypedCreateCheckoutMutation>
-                    );
-                  }}
+                                    return user ? (
+                                      <UserAddressSelector
+                                        {...shippingProps}
+                                        update={update}
+                                        type="shipping"
+                                      />
+                                    ) : (
+                                      <GuestAddressForm
+                                        {...shippingProps}
+                                        shop={shop}
+                                      />
+                                    );
+                                  }}
+                                </UserContext.Consumer>
+                              )}
+                            </CartContext.Consumer>
+                          )}
+                        </TypedUpdateCheckoutShippingAddressMutation>
+                      )}
+                    </TypedCreateCheckoutMutation>
+                  )}
                 </ShopContext.Consumer>
-              )}
-            </OverlayContext.Consumer>
-          </Steps>
-        </div>
-      </CartSummary>
-    )}
-  </CheckoutContext.Consumer>
-);
+              </Steps>
+              {this.state.showModal && this.renderShippingUnavailableModal()}
+            </div>
+          </CartSummary>
+        )}
+      </CheckoutContext.Consumer>
+    );
+  }
+}
 
 export default View;

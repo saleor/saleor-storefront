@@ -1,4 +1,3 @@
-import { History } from "history";
 import * as React from "react";
 import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
@@ -14,23 +13,20 @@ import {
   Steps,
   UserAddressSelector
 } from "../../components";
-import {
-  CheckoutContext,
-  CheckoutContextInterface,
-  CheckoutStep
-} from "../../context";
+import { CheckoutContext, CheckoutStep } from "../../context";
 import { paymentUrl } from "../../routes";
 import { CheckoutFormType } from "../../types";
 import { Checkout } from "../../types/Checkout";
 import { TypedUpdateCheckoutBillingAddressMutation } from "./queries";
-import { updateCheckoutBillingAddress } from "./types/updateCheckoutBillingAddress";
 
-const proceedToPayment = (
-  data: updateCheckoutBillingAddress,
-  update: (checkoutData: CheckoutContextInterface) => void,
-  history: History,
-  token?: string
-) => {
+import { IProceedToPaymentArgs } from "./types";
+
+const proceedToPayment = ({
+  data,
+  history,
+  token,
+  update
+}: IProceedToPaymentArgs) => () => {
   const canProceed = !data.checkoutBillingAddressUpdate.errors.length;
 
   if (canProceed) {
@@ -111,9 +107,9 @@ class View extends React.Component<
                 checkout={checkout}
               >
                 <TypedUpdateCheckoutBillingAddressMutation
-                  onCompleted={data =>
-                    proceedToPayment(data, update, history, token)
-                  }
+                // onCompleted={data =>
+                //   proceedToPayment({data, update, history, token})
+                // }
                 >
                   {(saveBillingAddress, { data, loading }) => (
                     <ShopContext.Consumer>
@@ -131,6 +127,12 @@ class View extends React.Component<
                             checkout,
                             shippingAsBilling
                           ),
+                          proceedToNextStep: proceedToPayment({
+                            data,
+                            history,
+                            token,
+                            update
+                          }),
                           type: "billing" as CheckoutFormType
                         };
 
