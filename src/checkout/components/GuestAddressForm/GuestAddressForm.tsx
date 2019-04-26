@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { ShippingAddressForm } from "../../../components";
+import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { maybe } from "../../../core/utils";
 import { CheckoutFormType, IGuestAddressProps } from "../../types";
@@ -57,12 +58,24 @@ const extractData = (
     ? extractBillingData(checkout, shop)
     : extractShippingData(checkout, shop);
 
+const onSubmitHandler = ({
+  errors,
+  onSubmit,
+  proceedToNextStep
+}: any) => async (data: FormAddressType) => {
+  await onSubmit(data);
+  if (!errors.length) {
+    proceedToNextStep();
+  }
+};
+
 const GuestAddressForm: React.SFC<IGuestAddressProps> = ({
   buttonText,
   checkout,
   errors,
   loading,
   onSubmit,
+  proceedToNextStep,
   shop,
   type = "shipping"
 }) => {
@@ -73,7 +86,7 @@ const GuestAddressForm: React.SFC<IGuestAddressProps> = ({
       buttonText={buttonText}
       errors={errors}
       loading={loading}
-      onSubmit={onSubmit}
+      onSubmit={onSubmitHandler({ errors, onSubmit, proceedToNextStep })}
     />
   );
 };
