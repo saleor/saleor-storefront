@@ -1,12 +1,7 @@
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
 
-import {
-  FormAddressType,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType
-} from "../../../components";
+import { FormAddressType } from "../../../components";
 import {
   CartContext,
   CartLineInterface
@@ -17,6 +12,7 @@ import { findFormErrors, maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
+  ShippingUnavailableModal,
   Steps,
   UserAddressSelector
 } from "../../components";
@@ -24,8 +20,8 @@ import { CheckoutContext, CheckoutStep } from "../../context";
 import { TypedCreateCheckoutMutation } from "../../queries";
 import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ISubmitArgs } from "../../types";
+import Page from "./Page";
 import { TypedUpdateCheckoutShippingAddressMutation } from "./queries";
-import ShippingUnavailableModal from "./ShippingUnavailableModal";
 import { IProceedToShippingArgs } from "./types";
 
 const computeCheckoutData = (
@@ -63,15 +59,19 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
     showModal: false
   };
 
+  onCheckoutCompleted = (data: any) => {
+    // tslint:disable-next-line:no-console
+    console.log("data compl", data);
+  };
+
   proceedToShippingOptions = (proceedData: IProceedToShippingArgs) => () => {
     const { update, history, token } = proceedData;
-    const canProceed = !this.state.errors && !this.state.shippingUnavailable;
+    const canProceed =
+      !this.state.errors.length && !this.state.shippingUnavailable;
 
     if (canProceed) {
       update({ checkout: this.state.checkout });
       history.push(generatePath(shippingOptionsUrl, { token }));
-    } else {
-      this.setState({ showModal: true });
     }
   };
 
@@ -121,33 +121,18 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
     });
   };
 
-  renderShippingUnavailableModal = () => (
-    <OverlayContext.Consumer>
-      {overlay => (
-        <>
-          {overlay.show(OverlayType.modal, OverlayTheme.modal, {
-            content: <ShippingUnavailableModal hide={overlay.hide} />
-          })}
-          ;
-        </>
-      )}
-    </OverlayContext.Consumer>
-  );
-
-  getShippingProps = (
-    submitData: ISubmitArgs,
-    proceedData: IProceedToShippingArgs,
-    user,
-    checkout
-  ) => ({
-    buttonText: "Continue to Shipping",
-    checkout,
-    errors: this.state.errors,
-    loading: this.state.loading,
-    onSubmit: this.onSubmitHandler(submitData),
-    proceedToNextStep: this.proceedToShippingOptions(proceedData),
-    user
-  });
+  // getShippingProps = (
+  //   submitData: ISubmitArgs,
+  //   proceedData: IProceedToShippingArgs,
+  //   userCheckoutData: ICheckoutUserArgs
+  // ) => ({
+  //   buttonText: "Continue to Shipping",
+  //   errors: this.state.errors,
+  //   loading: this.state.loading,
+  //   onSubmit: this.onSubmitHandler(submitData),
+  //   proceedToNextStep: this.proceedToShippingOptions(proceedData),
+  //   ...userCheckoutData
+  // });
 
   render() {
     const {
@@ -171,42 +156,33 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
                   {shop => (
                     <TypedCreateCheckoutMutation>
                       {createCheckout => (
-                        <TypedUpdateCheckoutShippingAddressMutation>
+                        <TypedUpdateCheckoutShippingAddressMutation
+                          onCompleted={this.onCheckoutCompleted}
+                        >
                           {updateCheckout => (
                             <CartContext.Consumer>
                               {({ lines }) => (
                                 <UserContext.Consumer>
-                                  {({ user }) => {
-                                    const shippingProps = this.getShippingProps(
-                                      {
-                                        checkoutId: maybe(
-                                          () => checkout.id,
-                                          null
-                                        ),
-                                        createCheckout,
-                                        email: maybe(() => user.email, null),
-                                        lines,
-                                        update,
-                                        updateCheckout
-                                      },
-                                      { history, token, update },
-                                      user,
-                                      checkout
-                                    );
-
-                                    return user ? (
-                                      <UserAddressSelector
-                                        {...shippingProps}
-                                        update={update}
-                                        type="shipping"
-                                      />
-                                    ) : (
-                                      <GuestAddressForm
-                                        {...shippingProps}
-                                        shop={shop}
-                                      />
-                                    );
-                                  }}
+                                  {({ user }) => (
+                                    <Page
+                                      checkoutId={maybe(
+                                        () => checkout.id,
+                                        null
+                                      )}
+                                      checkout={checkout}
+                                      createCheckout={createCheckout}
+                                      shop={shop}
+                                      update={update}
+                                      updateCheckout={updateCheckout}
+                                      user={user}
+                                      proceedToNextStepData={{
+                                        history,
+                                        token,
+                                        update
+                                      }}
+                                      lines={lines}
+                                    />
+                                  )}
                                 </UserContext.Consumer>
                               )}
                             </CartContext.Consumer>
@@ -217,7 +193,6 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
                   )}
                 </ShopContext.Consumer>
               </Steps>
-              {this.state.showModal && this.renderShippingUnavailableModal()}
             </div>
           </CartSummary>
         )}
