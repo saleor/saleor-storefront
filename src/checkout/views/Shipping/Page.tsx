@@ -18,8 +18,8 @@ import {
 } from "../../components";
 import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";
-import { ICheckoutData, ICheckoutUserArgs, ISubmitArgs } from "../../types";
-import { IProceedToShippingArgs, IShippingPageProps } from "./types";
+import { ICheckoutData, ICheckoutUserArgs } from "../../types";
+import { IShippingPageProps } from "./types";
 
 const computeCheckoutData = (
   data: FormAddressType,
@@ -51,13 +51,7 @@ class Page extends React.Component<IShippingPageProps> {
   state = {
     errors: [],
     loading: false,
-    shippingUnavailable: false,
-    showModal: false
-  };
-
-  onCheckoutCompleted = (data: any) => {
-    // tslint:disable-next-line:no-console
-    console.log("data compl", data);
+    shippingUnavailable: false
   };
 
   proceedToShippingOptions = () => {
@@ -66,8 +60,14 @@ class Page extends React.Component<IShippingPageProps> {
       !this.state.errors.length && !this.state.shippingUnavailable;
 
     if (canProceed) {
-      update({ checkout: this.props.checkout });
-      history.push(generatePath(shippingOptionsUrl, { token }));
+      update({
+        checkout: this.props.checkout
+      });
+      history.push(
+        generatePath(shippingOptionsUrl, {
+          token
+        })
+      );
     }
   };
 
@@ -75,15 +75,16 @@ class Page extends React.Component<IShippingPageProps> {
     const {
       checkoutId,
       createCheckout,
-      user: { email },
+      user,
       lines,
       update,
       updateCheckout
     } = this.props;
-
+    const email = maybe(() => user.email, null);
     update({
       shippingAsBilling: maybe(() => address.asBilling, false)
     });
+
     if (!checkoutId) {
       return createCheckout({
         variables: {
@@ -99,10 +100,10 @@ class Page extends React.Component<IShippingPageProps> {
     });
   };
 
-  onSubmitHandler = (address: FormAddressType) => {
+  onSubmitHandler = async (address: FormAddressType) => {
     this.setState({ loading: true });
 
-    return this.onShippingSubmit(address).then(response => {
+    await this.onShippingSubmit(address).then(response => {
       const errors = findFormErrors(response);
       const checkout = maybe(
         () => response.checkoutShippingAddressUpdate.checkout,
@@ -113,10 +114,10 @@ class Page extends React.Component<IShippingPageProps> {
         errors,
         loading: false,
         shippingUnavailable:
-          (checkout && !checkout.availableShippingMethods.length) || true
+          (checkout && checkout.availableShippingMethods.length) || false
       });
-      return { errors };
     });
+    return;
   };
 
   renderShippingUnavailableModal = () => (
@@ -132,43 +133,18 @@ class Page extends React.Component<IShippingPageProps> {
     </OverlayContext.Consumer>
   );
 
-  getShippingProps = (
-    submitData: ISubmitArgs,
-    userCheckoutData: ICheckoutUserArgs
-  ) => ({
+  getShippingProps = (userCheckoutData: ICheckoutUserArgs) => ({
     buttonText: "Continue to Shipping",
     errors: this.state.errors,
     loading: this.state.loading,
     onSubmit: this.onSubmitHandler,
     proceedToNextStep: this.proceedToShippingOptions,
-    ...submitData,
     ...userCheckoutData
   });
 
   render() {
-    const {
-      checkoutId,
-      checkout,
-      createCheckout,
-      lines,
-      proceedToNextStepData,
-      shop,
-      user,
-      update,
-      updateCheckout
-    } = this.props;
-
-    const shippingProps = this.getShippingProps(
-      {
-        checkoutId,
-        createCheckout,
-        email: maybe(() => user.email, null),
-        lines,
-        update,
-        updateCheckout
-      },
-      { checkout, user }
-    );
+    const { checkout, proceedToNextStepData, shop, user, update } = this.props;
+    const shippingProps = this.getShippingProps({ checkout, user });
 
     return (
       <CartSummary checkout={checkout}>
@@ -188,7 +164,8 @@ class Page extends React.Component<IShippingPageProps> {
               <GuestAddressForm {...shippingProps} shop={shop} />
             )}
           </Steps>
-          {this.state.showModal && this.renderShippingUnavailableModal()}
+          {/* {this.state.shippingUnavailable &&
+            this.renderShippingUnavailableModal()} */}
         </div>
       </CartSummary>
     );
