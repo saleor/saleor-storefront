@@ -55,6 +55,7 @@ export interface UserAddressSelectorProps {
 export interface UserAddressSelectorState {
   addresses: FormAddressType[];
   selectedAddress?: FormAddressType;
+  isVisibleAddNewModalForm: boolean;
 }
 
 export interface ISubmitArgs {
@@ -70,15 +71,13 @@ export interface IAddressPickerProps {
   addresses: FormAddressType[];
   billing: boolean;
   errors: FormError[];
+  isVisibleAddNewModalForm: boolean;
   loading: boolean;
   selectedAddress?: FormAddressType;
   onSelect: (address: FormAddressType) => void;
-  onSubmit: (selectedAddress: FormAddressType) => Promise<any>;
-  onAddNew: (address: FormAddressType) => void;
-}
-
-export interface IAddressPickerState {
-  showModal: boolean;
+  handleAddressAdd: (address: FormAddressType) => void;
+  hideAddNewModalForm: () => any;
+  showAddNewModalForm: () => any;
 }
 
 export interface ICheckoutUserArgs {
