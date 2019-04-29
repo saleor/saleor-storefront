@@ -8,6 +8,12 @@
     left: 17px;
     top: 0;
   }
+  &--grey {
+    .input__label,
+    .react-select__control {
+      background-color: $turquoise-light;
+    }
+  }
   .react-select {
     &__control {
       border-radius: 0;

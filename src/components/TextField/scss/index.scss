@@ -28,6 +28,17 @@
         top: 0;
       }
     }
+
+    &--grey {
+      &:focus,
+      &:not([value=""]),
+      &:-webkit-autofill {
+        & + .input__label {
+          background-color: $turquoise-light;
+        }
+      }
+    }
+
     &:not([value=""]) {
       & + .input__label {
         color: $base-font-color;
