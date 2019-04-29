@@ -201,6 +201,7 @@ class ProductDescription extends React.Component<
                 label: primaryPicker.selected,
                 value: primaryPicker.selected
               }}
+              styleType="grey"
               options={primaryPicker.values.map(value => ({
                 label: value,
                 value
@@ -220,6 +221,7 @@ class ProductDescription extends React.Component<
                   value: secondaryPicker.selected
                 }
               }
+              styleType="grey"
               options={secondaryPicker.values.map(value => ({
                 isDisabled: !variants[primaryPicker.selected].includes(value),
                 label: value,
@@ -232,6 +234,7 @@ class ProductDescription extends React.Component<
             label="Quantity"
             min = "1"
             value={quantity || ""}
+            styleType="grey"
             onChange={e => this.setState({ quantity: Number(e.target.value) })}
           />
         </div>

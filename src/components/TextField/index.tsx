@@ -4,6 +4,8 @@ import { FormError } from "../Form";
 
 import "./scss/index.scss";
 
+type Style = "white" | "grey";
+
 export interface TextFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   errors?: FormError[];
@@ -11,6 +13,7 @@ export interface TextFieldProps
   label?: string;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  styleType?: Style;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -19,6 +22,7 @@ const TextField: React.FC<TextFieldProps> = ({
   iconRight,
   errors,
   helpText,
+  styleType = "white",
   ...rest
 }) => (
   <div className="input">
@@ -29,7 +33,8 @@ const TextField: React.FC<TextFieldProps> = ({
         {...rest}
         className={`input__field${
           errors && errors.length ? " input__field--error" : ""
-        }${iconLeft ? " input__field--left-icon" : ""}`}
+        }${iconLeft ? " input__field--left-icon" : ""}
+        ${styleType === "grey" ? " input__field--grey" : ""}`}
       />
       {label ? <span className="input__label">{label}</span> : null}
     </div>
