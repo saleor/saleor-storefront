@@ -117,7 +117,7 @@ class UserAddressSelector extends React.PureComponent<
         <Button
           type="submit"
           disabled={(!selectedAddress && !shippingAsBilling) || loading}
-          onClick={proceedToNextStep}
+          onClick={proceedToNextStep.bind(null, this.state.selectedAddress)}
         >
           {buttonText}
         </Button>

@@ -46,7 +46,7 @@ export interface UserAddressSelectorProps {
   user: User;
   checkout: Checkout;
   errors: FormError[];
-  proceedToNextStep: () => void;
+  proceedToNextStep: (formData: FormAddressType) => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
   onSubmit: (selectedAddress: FormAddressType) => void;

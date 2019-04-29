@@ -22,6 +22,7 @@ export interface IShippingAddressFormProps
   extends IBaseShippingAddressFormProps {
   buttonText: string;
   onSubmit: (data: FormAddressType) => void;
+  shippingAsBilling?: boolean;
 }
 
 export interface IShippingNewAddressFormProps
