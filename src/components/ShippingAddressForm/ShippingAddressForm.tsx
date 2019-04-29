@@ -46,26 +46,29 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
                 required
               />
             </div>
-            <TextField
-              label="Street Line 1"
-              type="address-line1"
-              name="streetAddress1"
-              autoComplete="address-line1"
-              required
-            />
-            <TextField
-              label="Street Line 2"
-              type="address-line2"
-              name="streetAddress2"
-              autoComplete="address-line2"
-            />
-            <TextField
-              label="Company"
-              type="organization"
-              name="companyName"
-              autoComplete="organization"
-            />
             <div className="address-form__grid">
+              <TextField
+                label="Street Name"
+                type="address-line1"
+                name="streetAddress1"
+                autoComplete="address-line1"
+                required
+              />
+              <TextField
+                label="Company name (optional)"
+                type="organization"
+                name="companyName"
+                autoComplete="organization"
+              />
+            </div>
+            <div className="address-form__grid address-form__grid--uneven">
+              <TextField
+                label="ZIP Code"
+                type="postal-code"
+                name="postalCode"
+                autoComplete="postal-code"
+                required
+              />
               <TextField
                 label="City"
                 type="city"
@@ -73,20 +76,13 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
                 autoComplete="address-level2"
                 required
               />
+            </div>
+            <div className="address-form__grid">
               <TextField
                 label="State/Province"
                 type="state"
                 name="countryArea"
                 autoComplete="address-level1"
-              />
-            </div>
-            <div className="address-form__grid">
-              <TextField
-                label="ZIP Code"
-                type="postal-code"
-                name="postalCode"
-                autoComplete="postal-code"
-                required
               />
               <SelectField
                 label="Country"
@@ -97,21 +93,27 @@ const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
                 }))}
               />
             </div>
-            {!billing && (
+            <div
+              className={`address-form__grid address-form__grid--${billing &&
+                "full"}`}
+            >
+              {!billing && (
+                <TextField
+                  label="Email Address"
+                  type="email"
+                  autoComplete="email"
+                  name="email"
+                  required
+                />
+              )}
+
               <TextField
-                label="Email Address"
-                type="email"
-                autoComplete="email"
-                name="email"
-                required
+                label="Phone number"
+                type="tel"
+                name="phone"
+                autoComplete="phone"
               />
-            )}
-            <TextField
-              label="Phone number"
-              type="tel"
-              name="phone"
-              autoComplete="phone"
-            />
+            </div>
           </fieldset>
           <Button type="submit" disabled={loading}>
             {loading ? "Loading" : buttonText}
