@@ -23,13 +23,15 @@ const computeMutationVariables = (
   shippingAsBilling: boolean
 ) => {
   const { shippingAddress } = checkout;
-  const data = shippingAsBilling ? shippingAddress : formData;
+  const data = shippingAsBilling
+    ? (shippingAddress as FormAddressType)
+    : formData;
 
   return {
     variables: {
       billingAddress: {
         city: data.city,
-        country: data.country.code,
+        country: maybe(() => data.country.value, data.country.code),
         countryArea: data.countryArea,
         firstName: data.firstName,
         lastName: data.lastName,
@@ -61,7 +63,6 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
         () => response && response.data.checkoutBillingAddressUpdate.checkout,
         null
       );
-
       this.setState({
         checkout,
         errors,
@@ -106,7 +107,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
       buttonText: "Proceed to Payment",
       checkout,
       errors: this.state.errors,
-      loading: false,
+      loading: this.state.loading,
       onSubmit: this.onSubmitHandler,
       shippingAsBilling,
       type: "billing" as CheckoutFormType
@@ -153,7 +154,6 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                     shop={shop}
                     {...billingProps}
                     proceedToNextStep={this.proceedToPayment}
-                    checkout={checkout}
                   />
                 )
               }
