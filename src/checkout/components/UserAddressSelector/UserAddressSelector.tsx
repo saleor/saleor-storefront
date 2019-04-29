@@ -1,4 +1,4 @@
-import { isEqual, uniqWith } from "lodash";
+import { each, isEqual, omit, uniqWith } from "lodash";
 import React from "react";
 
 import { Button } from "../../../components";
@@ -33,7 +33,10 @@ class UserAddressSelector extends React.PureComponent<
     ].filter(address => address);
 
     this.state = {
-      addresses: uniqWith(addresses, isEqual),
+      addresses: uniqWith(
+        each(addresses, address => omit(address, "id")),
+        isEqual
+      ),
       isVisibleAddNewModalForm: false,
       selectedAddress: !props.shippingAsBilling && addresses[0]
     };
