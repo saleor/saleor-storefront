@@ -3,9 +3,16 @@ import * as React from "react";
 import { ShippingAddressForm } from "../../../components";
 import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
+import { FormError } from "../../../core/types";
 import { maybe } from "../../../core/utils";
 import { CheckoutFormType, IGuestAddressProps } from "../../types";
 import { Checkout } from "../../types/Checkout";
+
+interface ISubmitArgs {
+  errors: FormError[];
+  onSubmit: (selectedAddress: FormAddressType) => void;
+  proceedToNextStep: () => void;
+}
 
 const getCountryData = (shop: getShop_shop) => {
   const { geolocalization, defaultCountry } = shop;
@@ -37,32 +44,35 @@ const extractShippingData = (checkout: Checkout | null, shop: getShop_shop) => {
   return { ...checkoutData, country };
 };
 
-const extractBillingData = (checkout: Checkout | null, shop: getShop_shop) => {
-  const address = maybe(() => checkout.shippingAddress, null);
-  const hasAddress = maybe(() => !!address.country);
-  if (hasAddress) {
-    return address;
-  }
+const extractBillingData = (
+  checkout: Checkout,
+  shop: getShop_shop,
+  shippingAsBilling: boolean
+) => {
+  const addressKey = shippingAsBilling ? "shippingAddress" : "billingAddress";
+  const billingAddress = maybe(() => checkout[addressKey], null);
+
   return {
-    ...address,
-    country: getCountryData(shop)
+    country: getCountryData(shop),
+    ...billingAddress
   };
 };
 
 const extractData = (
   type: CheckoutFormType,
   checkout: Checkout,
-  shop: getShop_shop
+  shop: getShop_shop,
+  shippingAsBilling: boolean
 ) =>
   type === "billing"
-    ? extractBillingData(checkout, shop)
+    ? extractBillingData(checkout, shop, shippingAsBilling)
     : extractShippingData(checkout, shop);
 
 const onSubmitHandler = ({
   errors,
   onSubmit,
   proceedToNextStep
-}: any) => async (data: FormAddressType) => {
+}: ISubmitArgs) => async (data: FormAddressType) => {
   await onSubmit(data);
   if (!errors.length) {
     proceedToNextStep();
@@ -76,19 +86,24 @@ const GuestAddressForm: React.SFC<IGuestAddressProps> = ({
   loading,
   onSubmit,
   proceedToNextStep,
+  shippingAsBilling,
   shop,
   type = "shipping"
-}) => {
-  return (
-    <ShippingAddressForm
-      billing={type === "billing"}
-      data={extractData(type as CheckoutFormType, checkout, shop)}
-      buttonText={buttonText}
-      errors={errors}
-      loading={loading}
-      onSubmit={onSubmitHandler({ errors, onSubmit, proceedToNextStep })}
-    />
-  );
-};
+}) => (
+  <ShippingAddressForm
+    billing={type === "billing"}
+    data={extractData(
+      type as CheckoutFormType,
+      checkout,
+      shop,
+      shippingAsBilling
+    )}
+    buttonText={buttonText}
+    errors={errors}
+    loading={loading}
+    shippingAsBilling={shippingAsBilling}
+    onSubmit={onSubmitHandler({ errors, onSubmit, proceedToNextStep })}
+  />
+);
 
 export default GuestAddressForm;

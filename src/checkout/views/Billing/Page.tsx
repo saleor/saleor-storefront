@@ -49,14 +49,14 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
     loading: false
   };
 
-  handleSubmit = async (formData: FormAddressType) => {
+  onSubmitHandler = async (formData: FormAddressType) => {
     this.setState({ loading: true });
     const { saveBillingAddress, checkout, shippingAsBilling } = this.props;
 
     await saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
     ).then(response => {
-      const errors = findFormErrors(response as any);
+      const errors = findFormErrors(response);
       const checkout = maybe(
         () => response && response.data.checkoutBillingAddressUpdate.checkout,
         null
@@ -85,6 +85,11 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
     }
   };
 
+  onProceedToShippingSubmit = async (formData: FormAddressType) => {
+    await this.onSubmitHandler(formData);
+    this.proceedToPayment();
+  };
+
   render() {
     const {
       checkout,
@@ -102,8 +107,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
       checkout,
       errors: this.state.errors,
       loading: false,
-      onSubmit: this.handleSubmit,
-      proceedToNextStep: this.proceedToPayment,
+      onSubmit: this.onSubmitHandler,
       shippingAsBilling,
       type: "billing" as CheckoutFormType
     };
@@ -140,6 +144,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                   <UserAddressSelector
                     update={update}
                     user={user}
+                    proceedToNextStep={this.onProceedToShippingSubmit}
                     {...billingProps}
                   />
                 ) : (
@@ -147,6 +152,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                     key={`${shippingAsBilling}`}
                     shop={shop}
                     {...billingProps}
+                    proceedToNextStep={this.proceedToPayment}
                     checkout={checkout}
                   />
                 )

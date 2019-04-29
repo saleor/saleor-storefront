@@ -75,6 +75,11 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     }
   };
 
+  onProceedToShippingSubmit = async (formData: FormAddressType) => {
+    await this.onSubmitHandler(formData);
+    this.proceedToShippingOptions();
+  };
+
   onShippingSubmit = (address: FormAddressType): Promise<any> => {
     const {
       checkoutId,
@@ -143,15 +148,13 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     errors: this.state.errors,
     loading: this.state.loading,
     onSubmit: this.onSubmitHandler,
-    proceedToNextStep: this.proceedToShippingOptions,
     ...userCheckoutData
   });
 
   render() {
     const { checkout, proceedToNextStepData, shop, user, update } = this.props;
     const shippingProps = this.getShippingProps({ checkout, user });
-    // tslint:disable-next-line:no-console
-    console.log("checkout", checkout);
+
     return (
       <CartSummary checkout={checkout}>
         <div className="checkout-shipping">
@@ -164,10 +167,15 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
               <UserAddressSelector
                 {...shippingProps}
                 update={update}
+                proceedToNextStep={this.onProceedToShippingSubmit}
                 type="shipping"
               />
             ) : (
-              <GuestAddressForm {...shippingProps} shop={shop} />
+              <GuestAddressForm
+                {...shippingProps}
+                proceedToNextStep={this.proceedToShippingOptions}
+                shop={shop}
+              />
             )}
           </Steps>
         </div>
