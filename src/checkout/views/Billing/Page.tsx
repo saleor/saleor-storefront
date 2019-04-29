@@ -15,7 +15,7 @@ import { CheckoutStep } from "../../context";
 import { paymentUrl } from "../../routes";
 import { CheckoutFormType } from "../../types";
 import { Checkout } from "../../types/Checkout";
-import { IBillingPageProps } from "./types";
+import { IBillingPageProps, IBillingPageState } from "./types";
 
 const computeMutationVariables = (
   formData: FormAddressType,
@@ -42,8 +42,9 @@ const computeMutationVariables = (
   };
 };
 
-class View extends React.Component<IBillingPageProps> {
+class View extends React.Component<IBillingPageProps, IBillingPageState> {
   state = {
+    checkout: null,
     errors: [],
     loading: false
   };
@@ -56,8 +57,13 @@ class View extends React.Component<IBillingPageProps> {
       computeMutationVariables(formData, checkout, shippingAsBilling)
     ).then(response => {
       const errors = findFormErrors(response as any);
+      const checkout = maybe(
+        () => response && response.data.checkoutBillingAddressUpdate.checkout,
+        null
+      );
 
       this.setState({
+        checkout,
         errors,
         loading: false
       });
@@ -73,7 +79,7 @@ class View extends React.Component<IBillingPageProps> {
 
     if (canProceed) {
       update({
-        checkout: this.props.checkout
+        checkout: this.state.checkout || this.props.checkout
       });
       history.push(generatePath(paymentUrl, { token }));
     }
@@ -98,6 +104,7 @@ class View extends React.Component<IBillingPageProps> {
       loading: false,
       onSubmit: this.handleSubmit,
       proceedToNextStep: this.proceedToPayment,
+      shippingAsBilling,
       type: "billing" as CheckoutFormType
     };
 
@@ -133,7 +140,6 @@ class View extends React.Component<IBillingPageProps> {
                   <UserAddressSelector
                     update={update}
                     user={user}
-                    shippingAsBilling={shippingAsBilling}
                     {...billingProps}
                   />
                 ) : (
@@ -141,7 +147,7 @@ class View extends React.Component<IBillingPageProps> {
                     key={`${shippingAsBilling}`}
                     shop={shop}
                     {...billingProps}
-                    checkout={shippingAsBilling ? checkout : null}
+                    checkout={checkout}
                   />
                 )
               }

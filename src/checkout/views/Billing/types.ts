@@ -3,6 +3,7 @@ import { MutationFn } from "react-apollo";
 
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
+import { FormError } from "../../../core/types";
 import { CheckoutContextInterface, CheckoutStep } from "../../context";
 import { Checkout } from "../../types/Checkout";
 import {
@@ -29,4 +30,10 @@ export interface IBillingPageProps {
     token?: string;
   };
   validateStep: boolean;
+}
+
+export interface IBillingPageState {
+  checkout: Checkout;
+  errors: FormError[];
+  loading: boolean;
 }

@@ -30,12 +30,13 @@ export interface ICheckoutData {
 }
 export interface IGuestAddressProps {
   buttonText: string;
-  checkout: Checkout | null;
+  checkout: Checkout;
   loading: boolean;
   shop: getShop_shop;
   onSubmit: (selectedAddress: FormAddressType) => void;
   errors: FormError[];
   proceedToNextStep: () => void;
+  shippingAsBilling?: boolean;
   type?: CheckoutFormType;
 }
 

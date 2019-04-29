@@ -5,6 +5,7 @@ import { AddressInput } from "../../../../types/globalTypes";
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
+import { FormError } from "../../../core/types";
 import { CheckoutContextInterface } from "../../context";
 import { Checkout } from "../../types/Checkout";
 
@@ -28,4 +29,11 @@ export interface IShippingPageProps {
     history: History;
     token?: string;
   };
+}
+
+export interface IShippingPageState {
+  checkout: Checkout;
+  errors: FormError[];
+  loading: boolean;
+  shippingUnavailable: boolean;
 }
