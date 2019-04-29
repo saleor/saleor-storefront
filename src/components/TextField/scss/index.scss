@@ -33,18 +33,10 @@
   }
 
   &__label {
-    display: inline-block;
-    position: relative;
-    background-color: $white;
     font-size: $label-font-size;
     color: $label-color;
     margin-bottom: $spacer / 2;
-    display: inline-block;
     font-weight: $bold-font-weight;
-    left: 17px;
-    top: 18px;
-    padding: 0 6px;
-    z-index: 1;
   }
 
   &__error {
