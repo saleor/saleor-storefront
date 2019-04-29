@@ -6,6 +6,12 @@ import "./scss/index.scss";
 
 type Style = "white" | "grey";
 
+interface IClassNameArgs {
+  errors?: FormError[];
+  iconLeft?: React.ReactNode;
+  styleType?: Style;
+}
+
 export interface TextFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   errors?: FormError[];
@@ -16,13 +22,21 @@ export interface TextFieldProps
   styleType?: Style;
 }
 
+const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
+  const baseClass = "input__field";
+  const errorsClass = errors && errors.length ? " input__field--error" : "";
+  const iconLeftClass = iconLeft ? " input__field--left-icon" : "";
+  const styleTypeClass = styleType === "grey" ? " input__field--grey" : "";
+
+  return baseClass.concat(errorsClass, iconLeftClass, styleTypeClass);
+};
 const TextField: React.FC<TextFieldProps> = ({
   label = "",
   iconLeft,
   iconRight,
   errors,
   helpText,
-  styleType = "white",
+  styleType = "white" as Style,
   ...rest
 }) => (
   <div className="input">
@@ -31,10 +45,7 @@ const TextField: React.FC<TextFieldProps> = ({
     <div className="input__content">
       <input
         {...rest}
-        className={`input__field${
-          errors && errors.length ? " input__field--error" : ""
-        }${iconLeft ? " input__field--left-icon" : ""}
-        ${styleType === "grey" ? " input__field--grey" : ""}`}
+        className={generateClassName({ errors, iconLeft, styleType })}
       />
       {label ? <span className="input__label">{label}</span> : null}
     </div>
