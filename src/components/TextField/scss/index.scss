@@ -9,7 +9,7 @@
     width: 100%;
     padding: 0.8rem 1rem;
     font-size: $base-font-size;
-    font-weight: $bold-font-weight;
+    color: $base-font-color;
     border: 1px solid $blue;
     outline: none;
     box-shadow: 0 0 0 1px $white;
@@ -33,11 +33,18 @@
   }
 
   &__label {
+    display: inline-block;
+    position: relative;
+    background-color: $white;
     font-size: $label-font-size;
     color: $label-color;
     margin-bottom: $spacer / 2;
     display: inline-block;
     font-weight: $bold-font-weight;
+    left: 17px;
+    top: 18px;
+    padding: 0 6px;
+    z-index: 1;
   }
 
   &__error {
