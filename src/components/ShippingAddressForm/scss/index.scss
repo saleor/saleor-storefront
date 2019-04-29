@@ -5,6 +5,19 @@
     margin: $spacer * 2 0 0 $spacer * 2;
   }
 
+  .input {
+    &__label {
+      display: inline-block;
+      position: relative;
+      background-color: $white;
+      font-size: $label-font-size;
+      display: inline-block;
+      left: 17px;
+      top: 18px;
+      padding: 0 6px;
+      z-index: 1;
+    }
+  }
   &__grid {
     display: grid;
     grid-gap: 0 $spacer;
