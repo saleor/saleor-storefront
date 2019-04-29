@@ -19,7 +19,7 @@ import {
 import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ICheckoutUserArgs } from "../../types";
-import { IShippingPageProps } from "./types";
+import { IShippingPageProps, IShippingPageState } from "./types";
 
 const computeCheckoutData = (
   data: FormAddressType,
@@ -47,7 +47,7 @@ const computeCheckoutData = (
   })
 });
 
-class Page extends React.Component<IShippingPageProps> {
+class Page extends React.Component<IShippingPageProps, IShippingPageState> {
   state = {
     checkout: null,
     errors: [],
@@ -61,6 +61,9 @@ class Page extends React.Component<IShippingPageProps> {
       !this.state.errors.length && !this.state.shippingUnavailable;
 
     if (canProceed) {
+      if (this.state.shippingUnavailable) {
+        return this.renderShippingUnavailableModal();
+      }
       update({
         checkout: this.state.checkout || this.props.checkout
       });
@@ -147,7 +150,8 @@ class Page extends React.Component<IShippingPageProps> {
   render() {
     const { checkout, proceedToNextStepData, shop, user, update } = this.props;
     const shippingProps = this.getShippingProps({ checkout, user });
-
+    // tslint:disable-next-line:no-console
+    console.log("checkout", checkout);
     return (
       <CartSummary checkout={checkout}>
         <div className="checkout-shipping">
@@ -166,8 +170,6 @@ class Page extends React.Component<IShippingPageProps> {
               <GuestAddressForm {...shippingProps} shop={shop} />
             )}
           </Steps>
-          {/* {this.state.shippingUnavailable &&
-            this.renderShippingUnavailableModal()} */}
         </div>
       </CartSummary>
     );
