@@ -48,7 +48,7 @@ const computeCheckoutData = (
 });
 
 class Page extends React.Component<IShippingPageProps, IShippingPageState> {
-  state = {
+  readonly state = {
     checkout: null,
     errors: [],
     loading: false,

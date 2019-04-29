@@ -43,7 +43,7 @@ const computeMutationVariables = (
 };
 
 class View extends React.Component<IBillingPageProps, IBillingPageState> {
-  state = {
+  readonly state = {
     checkout: null,
     errors: [],
     loading: false
