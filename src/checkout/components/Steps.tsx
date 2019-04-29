@@ -14,12 +14,20 @@ const getSummary = (
   let summary;
 
   switch (step) {
-    case CheckoutStep.BillingAddress:
     case CheckoutStep.ShippingAddress:
       summary = (
         <AddressSummary
           email={checkout.email}
           address={checkout.shippingAddress}
+        />
+      );
+      break;
+
+    case CheckoutStep.BillingAddress:
+      summary = (
+        <AddressSummary
+          email={checkout.email}
+          address={checkout.billingAddress}
         />
       );
       break;
