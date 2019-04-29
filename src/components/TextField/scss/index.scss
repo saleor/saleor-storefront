@@ -1,9 +1,11 @@
 @import "../../App/scss/variables.scss";
 
 .input {
-  position: relative;
   box-sizing: border-box;
-
+  margin-bottom: $spacer;
+  &__content {
+    position: relative;
+  }
   &__field {
     display: block;
     width: 100%;
@@ -15,12 +17,41 @@
     box-shadow: 0 0 0 1px $white;
     background-color: transparent;
 
-    &:focus {
+    &:focus,
+    &:not([value=""]),
+    &:-webkit-autofill {
       box-shadow: 0 0 0 1px $blue;
+      & + .input__label {
+        background-color: $white;
+        font-size: $label-font-size;
+        left: 17px;
+        top: 0;
+      }
+    }
+    &:not([value=""]) {
+      & + .input__label {
+        color: $base-font-color;
+      }
+    }
+    &:focus {
+      & + .input__label {
+        color: $blue;
+      }
+    }
+    &:hover {
+      box-shadow: 0 0 0 1px $blue;
+      color: $blue;
+      transition: all 0.3s ease;
+      & + .input__label {
+        color: $blue;
+      }
     }
 
     &--error {
       border: 1px solid $rose;
+      & + .input__label {
+        color: $rose;
+      }
 
       &:focus {
         box-shadow: 0 0 0 1px $rose;
@@ -33,10 +64,16 @@
   }
 
   &__label {
-    font-size: $label-font-size;
+    display: inline-block;
+    position: absolute;
     color: $label-color;
-    margin-bottom: $spacer / 2;
-    font-weight: $bold-font-weight;
+    top: 50%;
+    left: 0.8rem;
+    transform: translate(0, -50%);
+    padding: 0 6px;
+    z-index: 1;
+    pointer-events: none;
+    transition: all 0.4s ease;
   }
 
   &__error {

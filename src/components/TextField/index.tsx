@@ -22,15 +22,17 @@ const TextField: React.FC<TextFieldProps> = ({
   ...rest
 }) => (
   <div className="input">
-    {label ? <span className="input__label">{label}</span> : null}
     {iconLeft ? <span className="input__icon-left">{iconLeft}</span> : null}
     {iconRight ? <span className="input__icon-right">{iconRight}</span> : null}
-    <input
-      {...rest}
-      className={`input__field${
-        errors && errors.length ? " input__field--error" : ""
-      }${iconLeft ? " input__field--left-icon" : ""}`}
-    />
+    <div className="input__content">
+      <input
+        {...rest}
+        className={`input__field${
+          errors && errors.length ? " input__field--error" : ""
+        }${iconLeft ? " input__field--left-icon" : ""}`}
+      />
+      {label ? <span className="input__label">{label}</span> : null}
+    </div>
     {errors && (
       <span className="input__error">
         {errors.map(error => error.message).join(" ")}
