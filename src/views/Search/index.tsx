@@ -106,11 +106,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
             return (
               <DebounceChange
                 debounce={handleQueryChange}
-                value={
-                  Array.isArray(querystring.q)
-                    ? querystring.q[0]
-                    : querystring.q
-                }
+                value={querystring.q}
                 time={500}
               >
                 {({ change, value: query }) => {
