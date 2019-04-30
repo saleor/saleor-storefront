@@ -1,24 +1,8 @@
+import classNames from "classnames";
 import { map } from "lodash";
 import * as React from "react";
 
-interface ISelectItem {
-  [key: string]: {
-    label: string;
-    value: string;
-  };
-}
-
-export interface ISelectProps {
-  clickedOutside: boolean;
-  label?: string;
-  value: string;
-  list: ISelectItem;
-  name: string;
-  setElementRef: (
-    el: React.RefObject<HTMLElement>
-  ) => React.RefObject<HTMLDivElement>;
-  setFieldValue?(field: string, value: string | number): void;
-}
+import { ISelectItem, ISelectProps } from "./types";
 
 const renderList = (
   list: ISelectItem,
@@ -47,14 +31,24 @@ export const SelectBase = (props: ISelectProps) => {
     setOpen(false);
   };
 
-  const renderLabel = (label?: string) => label && <p>{label}</p>;
+  const renderLabel = (label?: string) => label && <label>{label}</label>;
 
   return (
-    <div ref={setElementRef(selectRef)}>
+    <div
+      className={classNames("select", { "select--open": shouldOpen })}
+      ref={setElementRef(selectRef)}
+    >
+      <input value={value} type="hidden" />
       <div>
         {renderLabel(label)}
         <div onClick={() => setOpen(!open)}> {renderTitle(list)} </div>
-        <div>{renderList(list, handleValueChange)}</div>
+        <div
+          className={classNames("select__options", {
+            "select__options--open": shouldOpen
+          })}
+        >
+          {renderList(list, handleValueChange)}
+        </div>
       </div>
     </div>
   );
