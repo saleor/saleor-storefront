@@ -3,9 +3,11 @@
 .input {
   box-sizing: border-box;
   margin-bottom: $spacer;
+
   &__content {
     position: relative;
   }
+
   &__field {
     display: block;
     width: 100%;

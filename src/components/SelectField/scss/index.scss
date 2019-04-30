@@ -2,18 +2,21 @@
 
 .react-select-wrapper {
   position: relative;
+
   .input__label {
     background-color: $white;
     font-size: $label-font-size;
     left: 17px;
     top: 0;
   }
+
   &--grey {
     .input__label,
     .react-select__control {
       background-color: $turquoise-light;
     }
   }
+
   .react-select {
     &__control {
       border-radius: 0;
