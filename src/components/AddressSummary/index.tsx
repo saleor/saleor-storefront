@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { FormAddressType } from "../ShippingAddressForm/types";
 
-const AddressSummary: React.SFC<{
+const AddressSummary: React.FC<{
   address: FormAddressType;
   email?: string;
   paragraphRef?: React.RefObject<HTMLParagraphElement>;

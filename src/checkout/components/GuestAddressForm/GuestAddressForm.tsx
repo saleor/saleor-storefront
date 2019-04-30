@@ -79,7 +79,7 @@ const onSubmitHandler = ({
   }
 };
 
-const GuestAddressForm: React.SFC<IGuestAddressProps> = ({
+const GuestAddressForm: React.FC<IGuestAddressProps> = ({
   buttonText,
   checkout,
   errors,

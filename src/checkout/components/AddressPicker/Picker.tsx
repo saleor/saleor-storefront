@@ -65,7 +65,7 @@ const renderModalForm = ({
   </Modal>
 );
 
-const AddressPicker: React.SFC<IAddressPickerProps> = props => (
+const AddressPicker: React.FC<IAddressPickerProps> = props => (
   <div className="address-picker">
     {renderAddressesList(props)}
     <div

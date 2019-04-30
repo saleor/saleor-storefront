@@ -7,7 +7,7 @@ import { ShopContext } from "../ShopProvider/context";
 import { FormAddressType, IShippingAddressFormProps } from "./types";
 import { getFormData } from "./utils";
 
-const ShippingAddressForm: React.SFC<IShippingAddressFormProps> = ({
+const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
   data,
   billing,
   buttonText,

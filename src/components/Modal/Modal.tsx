@@ -19,7 +19,7 @@ interface IModalProps {
 }
 const modalRoot = document.getElementById("modal-root");
 
-const Modal: React.SFC<IModalProps> = ({
+const Modal: React.FC<IModalProps> = ({
   cancelBtnText,
   children,
   hide,
