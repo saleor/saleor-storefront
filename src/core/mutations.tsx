@@ -17,21 +17,26 @@ export function TypedMutation<TData, TVariables>(
   mutation: DocumentNode,
   update?: MutationUpdaterFn<TData>
 ) {
-  class StrictTypedMutation extends Mutation<TData, TVariables> {}
-  return ({
-    children,
-    onCompleted,
-    onError,
-    variables
-  }: TypedMutationInnerProps<TData, TVariables>) => (
-    <StrictTypedMutation
-      mutation={mutation}
-      onCompleted={onCompleted}
-      onError={onError}
-      variables={variables}
-      update={update}
-    >
-      {children}
-    </StrictTypedMutation>
-  );
+  return (props: TypedMutationInnerProps<TData, TVariables>) => {
+    const {
+      children,
+      onCompleted,
+      onError,
+      variables
+    } = props as JSX.LibraryManagedAttributes<
+      typeof TypedMutation,
+      typeof props
+    >;
+    return (
+      <Mutation
+        mutation={mutation}
+        onCompleted={onCompleted}
+        onError={onError}
+        variables={variables}
+        update={update}
+      >
+        {children}
+      </Mutation>
+    );
+  };
 }
