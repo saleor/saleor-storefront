@@ -1,5 +1,6 @@
 import "./scss/index.scss";
 
+import classNames from "classnames";
 import * as React from "react";
 import Select from "react-select";
 // tslint:disable
@@ -27,9 +28,9 @@ const SelectField: GenericSelectField<SelectValue> = ({
   ...rest
 }) => (
   <div
-    className={`react-select-wrapper ${
-      styleType === "grey" ? "react-select-wrapper--grey" : ""
-    }`}
+    className={classNames("react-select-wrapper", {
+      "react-select-wrapper--grey": styleType === "grey"
+    })}
   >
     {label ? <span className="input__label">{label}</span> : null}
     <Select classNamePrefix="react-select" {...rest} />
