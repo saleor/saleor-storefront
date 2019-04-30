@@ -29,8 +29,8 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: querystring.priceGte || null,
-    priceLte: querystring.priceLte || null,
+    priceGte: parseInt(querystring.priceGte, 0) || null,
+    priceLte: parseInt(querystring.priceLte, 0) || null,
     sortBy: querystring.sortBy || null
   };
   const variables = {

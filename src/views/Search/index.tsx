@@ -54,8 +54,8 @@ export const SearchView: React.FC<SearchViewProps> = ({
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: querystring.priceGte,
-    priceLte: querystring.priceLte,
+    priceGte: parseInt(querystring.priceGte, 0),
+    priceLte: parseInt(querystring.priceLte, 0),
     sortBy: querystring.sortBy
   };
   const variables = {
@@ -106,7 +106,11 @@ export const SearchView: React.FC<SearchViewProps> = ({
             return (
               <DebounceChange
                 debounce={handleQueryChange}
-                value={querystring.q}
+                value={
+                  Array.isArray(querystring.q)
+                    ? querystring.q[0]
+                    : querystring.q
+                }
                 time={500}
               >
                 {({ change, value: query }) => {

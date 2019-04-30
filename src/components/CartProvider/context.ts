@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import { ApolloError } from "apollo-client";
+import { updateCheckoutLine_checkoutLinesUpdate_errors } from "../../core/types/saleor";
 
 export interface CartLineInterface {
   variantId: string;
@@ -13,7 +13,7 @@ export interface CartLine {
 }
 
 export interface CartInterface {
-  errors: ApolloError[] | null;
+  errors: updateCheckoutLine_checkoutLinesUpdate_errors[] | null;
   lines: CartLineInterface[];
   loading: boolean;
   add(variantId: string, quantity?: number): void;
