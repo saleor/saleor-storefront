@@ -40,12 +40,12 @@ const renderAddressesList = ({
   });
 
 const renderModalForm = ({
-  billing,
   errors,
   handleAddressAdd,
   hideAddNewModalForm,
   isVisibleAddNewModalForm,
-  loading
+  loading,
+  type
 }: IAddressPickerProps) => (
   <Modal
     show={isVisibleAddNewModalForm}
@@ -57,7 +57,7 @@ const renderModalForm = ({
     cancelBtnText="Cancel"
   >
     <AddNewShippingAddressForm
-      billing={billing}
+      type={type}
       loading={loading}
       errors={errors}
       onSubmit={handleAddressAdd}
