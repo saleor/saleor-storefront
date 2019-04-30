@@ -70,7 +70,7 @@ export interface ISubmitArgs {
 
 export interface IAddressPickerProps {
   addresses: FormAddressType[];
-  billing: boolean;
+  type: CheckoutFormType;
   errors: FormError[];
   isVisibleAddNewModalForm: boolean;
   loading: boolean;

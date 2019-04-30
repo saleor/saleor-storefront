@@ -91,7 +91,7 @@ const GuestAddressForm: React.FC<IGuestAddressProps> = ({
   type = "shipping"
 }) => (
   <ShippingAddressForm
-    billing={type === "billing"}
+    type={type as CheckoutFormType}
     data={extractData(
       type as CheckoutFormType,
       checkout,

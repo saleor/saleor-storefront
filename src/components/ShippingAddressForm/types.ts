@@ -2,6 +2,7 @@ import { Omit } from "../../core/tsUtils";
 import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
 
+export type CheckoutFormType = "billing" | "shipping";
 export interface AddressType extends Partial<AddressInterface> {
   email?: string;
 }
@@ -13,7 +14,7 @@ export interface FormAddressType extends Omit<AddressType, "country"> {
 }
 
 interface IBaseShippingAddressFormProps {
-  billing?: boolean;
+  type?: CheckoutFormType;
   data?: FormAddressType;
   errors: FormError[];
   loading: boolean;

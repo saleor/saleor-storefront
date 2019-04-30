@@ -107,7 +107,7 @@ class UserAddressSelector extends React.PureComponent<
       <>
         <AddressPicker
           addresses={addresses}
-          billing={type === "billing"}
+          type={type}
           errors={errors}
           loading={loading}
           onAddressSelect={this.handleAddressSelect}

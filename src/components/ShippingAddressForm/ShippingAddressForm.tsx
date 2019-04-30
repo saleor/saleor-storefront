@@ -1,5 +1,6 @@
 import "./scss/index.scss";
 
+import classNames from "classnames";
 import * as React from "react";
 
 import { Button, Form, SelectField, TextField } from "..";
@@ -9,13 +10,13 @@ import { getFormData } from "./utils";
 
 const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
   data,
-  billing,
   buttonText,
   errors,
   loading,
   onSubmit,
   children,
-  shippingAsBilling = false
+  shippingAsBilling = false,
+  type = "shipping"
 }) => (
   <div className="address-form">
     <ShopContext.Consumer>
@@ -94,10 +95,11 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
               />
             </div>
             <div
-              className={`address-form__grid address-form__grid--${billing &&
-                "full"}`}
+              className={classNames("address-form__grid", {
+                "address-form__grid--full": type === "billing"
+              })}
             >
-              {!billing && (
+              {type === "shipping" && (
                 <TextField
                   label="Email Address"
                   type="email"
