@@ -4,14 +4,18 @@ import classNames from "classnames";
 import { filter, map } from "lodash";
 import * as React from "react";
 
+import { useClickedOutside } from "../../hooks";
 import { IFilteredListArgs, IListArgs, ISelectProps } from "./types";
 
-const renderList = ({ options, onChange }: IListArgs) =>
+const renderList = ({ options, onChange }: IListArgs, setOpen: any) =>
   map(options, ({ label, value }) => (
     <p
       className="select__option"
       key={value}
-      onClick={() => onChange({ country: label, code: value })}
+      onClick={() => {
+        onChange({ country: label, code: value });
+        setOpen(false);
+      }}
     >
       {label}
     </p>
@@ -23,19 +27,12 @@ const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
   );
 
 export const SelectBase = (props: ISelectProps) => {
-  const {
-    clickedOutside,
-    defaultValue,
-    label,
-    onChange,
-    options,
-    name,
-    setElementRef
-  } = props;
+  const { defaultValue, label, onChange, options, name } = props;
 
   const [open, setOpen] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
-  const selectRef = React.useRef<HTMLElement>(null);
+  const { clickedOutside, setElementRef } = useClickedOutside();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     setSearchPhrase(defaultValue.label);
@@ -46,10 +43,16 @@ export const SelectBase = (props: ISelectProps) => {
 
   const renderLabel = (label?: string) =>
     label && <label className="input__label">{label}</label>;
-  // ref={setElementRef(selectRef)}
+
+  const resetInput = (e: any) => {
+    const len = e.target.value.length;
+    e.target.setSelectionRange(0, len);
+    inputRef.current.focus();
+  };
 
   return (
     <div
+      ref={setElementRef()}
       className={classNames("react-select select", {
         "select--open": shouldOpen
       })}
@@ -63,9 +66,16 @@ export const SelectBase = (props: ISelectProps) => {
         {renderLabel(label)}
         <div className="select__title">
           <input
+            ref={inputRef}
             value={searchPhrase}
             onChange={e => setSearchPhrase(e.target.value)}
-            onClick={() => setOpen(!open)}
+            onClick={e => {
+              resetInput(e);
+              if (open) {
+                setSearchPhrase(defaultValue.label);
+              }
+              setOpen(!open);
+            }}
           />
         </div>
 
@@ -74,12 +84,15 @@ export const SelectBase = (props: ISelectProps) => {
             "select__options--open": shouldOpen
           })}
         >
-          {renderList({
-            onChange,
-            options: shouldSearch
-              ? filterList({ searchPhrase, options })
-              : options
-          })}
+          {renderList(
+            {
+              onChange,
+              options: shouldSearch
+                ? filterList({ searchPhrase, options })
+                : options
+            },
+            setOpen
+          )}
         </div>
       </div>
     </div>

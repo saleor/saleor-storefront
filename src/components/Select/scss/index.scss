@@ -8,16 +8,21 @@
     position: relative;
     cursor: pointer;
     width: 100%;
-    padding: 0.73rem 1rem;
     border: 1px solid $blue;
     box-shadow: 0 0 0 1px #fff;
     input {
       display: block;
       width: 100%;
+      padding: 0.8rem 1rem;
       font-size: 1rem;
       outline: none;
       border: none;
       background: transparent;
+      &:active,
+      &:focus,
+      &::selection {
+        background: transparent;
+      }
     }
     &:after {
       position: absolute;
@@ -47,11 +52,11 @@
     transform: translateY(100%);
     width: 100%;
     min-width: 80px;
-    min-height: 80px;
+    min-height: 43px;
     max-height: 40vh;
     opacity: 0;
     z-index: -1;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     box-shadow: $select-menu-shadow;
     overflow: hidden;
     &--open {
