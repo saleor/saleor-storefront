@@ -1,23 +1,95 @@
+@import "../../App/scss/variables.scss";
+
 .select {
   position: relative;
 
+  &__title {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.73rem 1rem;
+    border: 1px solid $blue;
+    box-shadow: 0 0 0 1px #fff;
+    input {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+      border: none;
+      background: transparent;
+    }
+    &:after {
+      position: absolute;
+      display: block;
+      content: "";
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.5rem;
+      height: 0.5rem;
+      transition: all 0.3s ease;
+      background: url("../../../images/arrow.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
   &__options {
+    border-radius: 0;
+    box-shadow: 0 0 0 1px $blue;
+    border: 1px solid $blue;
+    background-color: $white;
+
     position: absolute;
-    padding: 10px 0;
     left: 0;
-    bottom: -5px;
+    bottom: 0.6rem;
     transform: translateY(100%);
-    width: 105%;
+    width: 100%;
     min-width: 80px;
     min-height: 80px;
-    max-height: 60vh;
+    max-height: 40vh;
     opacity: 0;
     z-index: -1;
-    border-radius: 4px;
     transition: all 0.3s ease;
+    box-shadow: $select-menu-shadow;
+    overflow: hidden;
     &--open {
       opacity: 1;
       z-index: 1;
     }
+  }
+
+  &__option {
+    position: relative;
+    padding: $spacer $spacer + $spacer / 2;
+    &:not(:last-child)::after {
+      background-color: $gray;
+      bottom: 0;
+      content: "";
+      height: 1px;
+      left: $spacer;
+      position: absolute;
+      width: calc(100% - #{$spacer * 2});
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(33, 18, 94, 0.1);
+    }
+    &--is-selected,
+    &--is-focused &--is-selected,
+    &:active {
+      background-color: $turquoise-light;
+      color: $base-font-color;
+    }
+  }
+
+  &__hidden {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    height: 0;
+    width: 0;
   }
 }
