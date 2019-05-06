@@ -37,7 +37,7 @@ const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
     label.toLowerCase().includes(searchPhrase.toLowerCase())
   );
 
-export const SelectBase = (props: ISelectProps) => {
+export const Select = (props: ISelectProps) => {
   const { defaultValue, label, onChange, options, name } = props;
 
   const [open, setOpen] = React.useState(false);
@@ -107,5 +107,4 @@ export const SelectBase = (props: ISelectProps) => {
   );
 };
 
-const Select = SelectBase;
 export default Select;
