@@ -1,3 +1,5 @@
+export type ISelectChange = (value: { country: string; code: string }) => void;
+
 export interface ISelectItem {
   label: string;
   value: string;
@@ -18,7 +20,7 @@ export interface ISelectProps {
 
 export interface IListArgs {
   options: ISelectItem[];
-  onChange: (value: { country: string; code: string }) => void;
+  onChange: ISelectChange;
 }
 
 export interface IFilteredListArgs {

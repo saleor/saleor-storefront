@@ -56,7 +56,6 @@
     max-height: 40vh;
     opacity: 0;
     z-index: -1;
-    transition: all 0.1s ease;
     box-shadow: $select-menu-shadow;
     overflow: hidden;
     &--open {

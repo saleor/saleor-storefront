@@ -1,11 +1,22 @@
 import "./scss/index.scss";
 
 import classNames from "classnames";
-import { filter, map } from "lodash";
+import { filter, find } from "lodash";
 import * as React from "react";
 
 import { useClickedOutside } from "../../hooks";
-import { IFilteredListArgs, IListArgs, ISelectProps } from "./types";
+import {
+  IFilteredListArgs,
+  IListArgs,
+  ISelectChange,
+  ISelectItem,
+  ISelectProps
+} from "./types";
+
+const updateOptions = (
+  { label, value }: ISelectItem,
+  onChange: ISelectChange
+) => onChange({ country: label, code: value });
 
 const renderNoOptions = () => (
   <p className="select__option select__option--disabled" key="no-option">
@@ -18,12 +29,12 @@ const renderList = (
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) =>
   options.length
-    ? map(options, ({ label, value }) => (
+    ? options.map(({ label, value }) => (
         <p
           className="select__option"
           key={value}
           onClick={() => {
-            onChange({ country: label, code: value });
+            updateOptions({ label, value }, onChange);
             setOpen(false);
           }}
         >
@@ -37,6 +48,16 @@ const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
     label.toLowerCase().includes(searchPhrase.toLowerCase())
   );
 
+const isAutofilled = (inputValue: string, newInputValue: string) =>
+  newInputValue.length > 1 &&
+  newInputValue.substring(0, newInputValue.length - 1) !== inputValue;
+
+const findAutofilledOption = (options: ISelectItem[], inputValue: string) =>
+  find(
+    options,
+    ({ label }) => label.toLowerCase() === inputValue.toLowerCase()
+  );
+
 export const Select = (props: ISelectProps) => {
   const { autoComplete, defaultValue, label, onChange, options, name } = props;
 
@@ -45,8 +66,10 @@ export const Select = (props: ISelectProps) => {
   const { clickedOutside, setElementRef } = useClickedOutside();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
+  const resetInputValueToDefault = () => setSearchPhrase(defaultValue.label);
+
   React.useEffect(() => {
-    setSearchPhrase(defaultValue.label);
+    resetInputValueToDefault();
   }, [clickedOutside, defaultValue]);
 
   const shouldOpen = clickedOutside ? false : open;
@@ -77,11 +100,18 @@ export const Select = (props: ISelectProps) => {
           <input
             ref={inputRef}
             value={searchPhrase}
-            onChange={e => setSearchPhrase(e.target.value)}
+            onChange={e => {
+              const { value } = e.target;
+              setSearchPhrase(value);
+              if (isAutofilled(searchPhrase, value)) {
+                const country = findAutofilledOption(options, value);
+                return country && updateOptions(country, onChange);
+              }
+            }}
             onClick={e => {
               changeSelectionRange(e);
               if (open) {
-                setSearchPhrase(defaultValue.label);
+                resetInputValueToDefault();
               }
               setOpen(!open);
             }}
