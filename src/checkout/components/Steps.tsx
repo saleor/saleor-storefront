@@ -33,7 +33,7 @@ const getSummary = (
       break;
 
     case CheckoutStep.ShippingOption:
-      summary = (
+      summary = checkout.shippingMethod && (
         <ShippingOptionSummary shippingMethod={checkout.shippingMethod} />
       );
   }
