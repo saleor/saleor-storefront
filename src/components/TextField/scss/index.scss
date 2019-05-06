@@ -1,5 +1,11 @@
 @import "../../App/scss/variables.scss";
 
+@mixin focusedLabel {
+  font-size: $label-font-size;
+  left: 17px;
+  top: 0;
+}
+
 .input {
   box-sizing: border-box;
   margin-bottom: $spacer;
@@ -20,20 +26,33 @@
     background-color: transparent;
 
     &:focus,
-    &:not([value=""]),
-    &:-webkit-autofill {
+    &:not([value=""]) {
       box-shadow: 0 0 0 1px $blue;
       & + .input__label {
         background-color: $white;
-        font-size: $label-font-size;
-        left: 17px;
-        top: 0;
+        @include focusedLabel();
+      }
+    }
+
+    &:-webkit-autofill {
+      box-shadow: 0 0 0 1px $blue;
+      & + .input__label {
+        background-image: linear-gradient(
+          to bottom,
+          #fff 49%,
+          $autofillColor 50%
+        );
+        @include focusedLabel();
       }
     }
 
     &--grey {
       &:focus,
-      &:not([value=""]),
+      &:not([value=""]) {
+        & + .input__label {
+          background-color: $turquoise-light;
+        }
+      }
       &:-webkit-autofill {
         & + .input__label {
           background-color: $turquoise-light;
