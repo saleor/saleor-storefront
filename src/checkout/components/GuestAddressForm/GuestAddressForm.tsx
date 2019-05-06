@@ -68,23 +68,11 @@ const extractData = (
     ? extractBillingData(checkout, shop, shippingAsBilling)
     : extractShippingData(checkout, shop);
 
-const onSubmitHandler = ({
-  errors,
-  onSubmit,
-  proceedToNextStep
-}: ISubmitArgs) => async (data: FormAddressType) => {
-  await onSubmit(data);
-  if (!errors.length) {
-    proceedToNextStep();
-  }
-};
-
 const GuestAddressForm: React.FC<IGuestAddressProps> = ({
   buttonText,
   checkout,
   errors,
   loading,
-  onSubmit,
   proceedToNextStep,
   shippingAsBilling,
   shop,
@@ -102,7 +90,7 @@ const GuestAddressForm: React.FC<IGuestAddressProps> = ({
     errors={errors}
     loading={loading}
     shippingAsBilling={shippingAsBilling}
-    onSubmit={onSubmitHandler({ errors, onSubmit, proceedToNextStep })}
+    onSubmit={proceedToNextStep}
   />
 );
 
