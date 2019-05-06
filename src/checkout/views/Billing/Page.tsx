@@ -108,7 +108,8 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
       checkout,
       errors: this.state.errors,
       loading: this.state.loading,
-      onSubmit: this.onSubmitHandler,
+
+      proceedToNextStep: this.onProceedToShippingSubmit,
       shippingAsBilling,
       type: "billing" as CheckoutFormType
     };
@@ -145,7 +146,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                   <UserAddressSelector
                     update={update}
                     user={user}
-                    proceedToNextStep={this.onProceedToShippingSubmit}
+                    onSubmit={this.onSubmitHandler}
                     {...billingProps}
                   />
                 ) : (
@@ -153,7 +154,6 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                     key={`${shippingAsBilling}`}
                     shop={shop}
                     {...billingProps}
-                    proceedToNextStep={this.proceedToPayment}
                   />
                 )
               }

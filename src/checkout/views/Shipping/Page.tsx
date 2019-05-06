@@ -114,10 +114,11 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
 
     await this.onShippingSubmit(address).then(response => {
       const errors = findFormErrors(response);
-      const checkout = maybe(
-        () => response.data.checkoutShippingAddressUpdate.checkout,
-        null
-      );
+      const checkout =
+        maybe(
+          () => response.data.checkoutShippingAddressUpdate.checkout,
+          null
+        ) || maybe(() => response.data.checkoutCreate.checkout, null);
 
       this.setState({
         checkout,
@@ -147,13 +148,16 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     buttonText: "Continue to Shipping",
     errors: this.state.errors,
     loading: this.state.loading,
-    onSubmit: this.onSubmitHandler,
+    proceedToNextStep: this.onProceedToShippingSubmit,
     ...userCheckoutData
   });
 
   render() {
     const { checkout, proceedToNextStepData, shop, user, update } = this.props;
-    const shippingProps = this.getShippingProps({ checkout, user });
+    const shippingProps = this.getShippingProps({
+      checkout,
+      user
+    });
 
     return (
       <CartSummary checkout={checkout}>
@@ -167,15 +171,11 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
               <UserAddressSelector
                 {...shippingProps}
                 update={update}
-                proceedToNextStep={this.onProceedToShippingSubmit}
+                onSubmit={this.onSubmitHandler}
                 type="shipping"
               />
             ) : (
-              <GuestAddressForm
-                {...shippingProps}
-                proceedToNextStep={this.proceedToShippingOptions}
-                shop={shop}
-              />
+              <GuestAddressForm {...shippingProps} shop={shop} />
             )}
           </Steps>
         </div>

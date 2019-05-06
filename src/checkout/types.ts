@@ -33,9 +33,8 @@ export interface IGuestAddressProps {
   checkout: Checkout;
   loading: boolean;
   shop: getShop_shop;
-  onSubmit: (selectedAddress: FormAddressType) => void;
   errors: FormError[];
-  proceedToNextStep: () => void;
+  proceedToNextStep: (formData: FormAddressType) => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
 }
