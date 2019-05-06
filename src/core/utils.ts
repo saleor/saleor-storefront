@@ -1,5 +1,6 @@
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
+import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import { generatePath } from "react-router";
 
@@ -116,14 +117,26 @@ export function maybe<T>(exp: () => T, d?: T) {
   }
 }
 
-export const parseQueryString = (location: LocationState) =>
-  parseQs(location.search.substr(1));
+export const parseQueryString = (
+  location: LocationState
+): { [key: string]: string } => {
+  const query = {
+    ...parseQs(location.search.substr(1))
+  };
+  each(query, (value, key) => {
+    if (Array.isArray(value)) {
+      query[key] = value[0];
+    }
+  });
+  return query as { [key: string]: string };
+};
 
 export const updateQueryString = (
   location: LocationState,
   history: History
 ) => {
   const querystring = parseQueryString(location);
+
   return (key: string, value?) => {
     if (value === "") {
       delete querystring[key];

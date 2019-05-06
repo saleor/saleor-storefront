@@ -54,9 +54,9 @@ export const SearchView: React.FC<SearchViewProps> = ({
   const filters: Filters = {
     attributes,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: querystring.priceGte,
-    priceLte: querystring.priceLte,
-    sortBy: querystring.sortBy
+    priceGte: parseInt(querystring.priceGte, 0) || null,
+    priceLte: parseInt(querystring.priceLte, 0) || null,
+    sortBy: querystring.sortBy || null
   };
   const variables = {
     ...filters,
