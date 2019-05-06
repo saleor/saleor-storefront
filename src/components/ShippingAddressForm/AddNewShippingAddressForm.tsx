@@ -1,5 +1,6 @@
 import "./scss/index.scss";
 
+import classNames from "classnames";
 import * as React from "react";
 
 import { Form, SelectField, TextField } from "..";
@@ -86,20 +87,30 @@ export const AddNewShippingAddressForm: React.FC<
               }))}
             />
           </div>
-          <div className="address-form__grid address-form__grid--modal">
-            <TextField
-              label="Email Address"
-              type="email"
-              autoComplete="email"
-              name="email"
-              required
-            />
+          <div
+            className={classNames(
+              "address-form__grid address-form__grid--modal",
+              {
+                "address-form__grid--full": type === "billing"
+              }
+            )}
+          >
+            {type === "shipping" && (
+              <TextField
+                label="Email Address"
+                type="email"
+                autoComplete="email"
+                name="email"
+                required
+              />
+            )}
 
             <TextField
               label="Phone number"
               type="tel"
               name="phone"
               autoComplete="tel"
+              required
             />
           </div>
           <label className="checkbox checkbox__bottom">
