@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { Button, Form, SelectField, TextField } from "..";
+import { Button, Form, Select, SelectField, TextField } from "..";
 import { Omit } from "../../core/tsUtils";
 import { AddressInterface } from "../../core/types";
 import { FormError } from "../Form";
@@ -94,7 +94,7 @@ const ShippingAddressForm: React.FC<{
               name="postalCode"
               autoComplete="postal-code"
             />
-            <SelectField
+            <Select
               label="Country"
               name="country"
               options={countries.map(country => ({

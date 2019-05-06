@@ -78,6 +78,10 @@
       width: calc(100% - #{$spacer * 2});
     }
 
+    &--disabled {
+      color: $gray-dark;
+    }
+
     &:hover {
       cursor: pointer;
       background-color: rgba(33, 18, 94, 0.1);

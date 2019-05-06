@@ -7,19 +7,30 @@ import * as React from "react";
 import { useClickedOutside } from "../../hooks";
 import { IFilteredListArgs, IListArgs, ISelectProps } from "./types";
 
-const renderList = ({ options, onChange }: IListArgs, setOpen: any) =>
-  map(options, ({ label, value }) => (
-    <p
-      className="select__option"
-      key={value}
-      onClick={() => {
-        onChange({ country: label, code: value });
-        setOpen(false);
-      }}
-    >
-      {label}
-    </p>
-  ));
+const renderNoOptions = () => (
+  <p className="select__option select__option--disabled" key="no-option">
+    {"No Options"}
+  </p>
+);
+
+const renderList = (
+  { options, onChange }: IListArgs,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+) =>
+  options.length
+    ? map(options, ({ label, value }) => (
+        <p
+          className="select__option"
+          key={value}
+          onClick={() => {
+            onChange({ country: label, code: value });
+            setOpen(false);
+          }}
+        >
+          {label}
+        </p>
+      ))
+    : renderNoOptions();
 
 const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
   filter(options, ({ label }) =>
@@ -36,7 +47,7 @@ export const SelectBase = (props: ISelectProps) => {
 
   React.useEffect(() => {
     setSearchPhrase(defaultValue.label);
-  }, [defaultValue]);
+  }, [clickedOutside, defaultValue]);
 
   const shouldOpen = clickedOutside ? false : open;
   const shouldSearch = defaultValue.label !== searchPhrase;
@@ -44,11 +55,8 @@ export const SelectBase = (props: ISelectProps) => {
   const renderLabel = (label?: string) =>
     label && <label className="input__label">{label}</label>;
 
-  const resetInput = (e: any) => {
-    const len = e.target.value.length;
-    e.target.setSelectionRange(0, len);
-    inputRef.current.focus();
-  };
+  const changeSelectionRange = (e: React.ChangeEvent<any>) =>
+    inputRef.current.setSelectionRange(0, e.target.value.length);
 
   return (
     <div
@@ -70,7 +78,7 @@ export const SelectBase = (props: ISelectProps) => {
             value={searchPhrase}
             onChange={e => setSearchPhrase(e.target.value)}
             onClick={e => {
-              resetInput(e);
+              changeSelectionRange(e);
               if (open) {
                 setSearchPhrase(defaultValue.label);
               }

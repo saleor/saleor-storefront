@@ -13,7 +13,6 @@ export interface ISelectProps {
   setElementRef?: (
     el: React.RefObject<HTMLElement>
   ) => React.RefObject<HTMLDivElement>;
-  setFieldValue?(field: string, value: string | number): void;
 }
 
 export interface IListArgs {
