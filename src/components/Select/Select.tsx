@@ -11,7 +11,7 @@ import {
   ISelectChange,
   ISelectItem,
   ISelectProps
-} from "./types";
+} from "./customTypes";
 
 const updateOptions = (
   { label, value }: ISelectItem,
