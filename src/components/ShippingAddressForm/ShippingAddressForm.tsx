@@ -114,6 +114,7 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
                 type="tel"
                 name="phone"
                 autoComplete="phone"
+                required
               />
             </div>
           </fieldset>

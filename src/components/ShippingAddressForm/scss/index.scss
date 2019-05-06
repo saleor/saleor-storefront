@@ -29,6 +29,11 @@
       @media (min-width: $small-screen) {
         grid-template-columns: 1fr 1fr;
       }
+      &.address-form__grid--full {
+        @media (min-width: $small-screen) {
+          grid-template-columns: none;
+        }
+      }
     }
     &--uneven {
       @media (min-width: $medium-screen) {
