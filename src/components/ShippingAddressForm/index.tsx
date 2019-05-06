@@ -101,6 +101,7 @@ const ShippingAddressForm: React.FC<{
                 label: country.country,
                 value: country.code
               }))}
+              autoComplete="country"
             />
           </div>
           {!billing ? (

@@ -10,6 +10,7 @@ export interface ISelectProps {
   onChange?: (event: any) => void;
   options: ISelectItem[];
   name: string;
+  autoComplete?: string;
   setElementRef?: (
     el: React.RefObject<HTMLElement>
   ) => React.RefObject<HTMLDivElement>;

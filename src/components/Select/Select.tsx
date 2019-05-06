@@ -38,7 +38,7 @@ const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
   );
 
 export const Select = (props: ISelectProps) => {
-  const { defaultValue, label, onChange, options, name } = props;
+  const { autoComplete, defaultValue, label, onChange, options, name } = props;
 
   const [open, setOpen] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
@@ -67,6 +67,7 @@ export const Select = (props: ISelectProps) => {
     >
       <input
         className="select__hidden"
+        autoComplete={autoComplete}
         name={name}
         defaultValue={defaultValue.value}
       />
