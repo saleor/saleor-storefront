@@ -230,6 +230,7 @@ class ProductDescription extends React.Component<
           <TextField
             type="number"
             label="Quantity"
+            min = "1"
             value={quantity || ""}
             onChange={e => this.setState({ quantity: Number(e.target.value) })}
           />
