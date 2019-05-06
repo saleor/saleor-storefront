@@ -10,6 +10,7 @@
     width: 100%;
     border: 1px solid $blue;
     box-shadow: 0 0 0 1px #fff;
+
     input {
       display: block;
       width: 100%;
@@ -24,6 +25,7 @@
         background: transparent;
       }
     }
+
     &:after {
       position: absolute;
       display: block;
@@ -45,7 +47,6 @@
     box-shadow: 0 0 0 1px $blue;
     border: 1px solid $blue;
     background-color: $white;
-
     position: absolute;
     left: 0;
     bottom: 0.6rem;
@@ -58,6 +59,7 @@
     z-index: -1;
     box-shadow: $select-menu-shadow;
     overflow: hidden;
+
     &--open {
       opacity: 1;
       z-index: 1;
@@ -67,6 +69,7 @@
   &__option {
     position: relative;
     padding: $spacer $spacer + $spacer / 2;
+
     &:not(:last-child)::after {
       background-color: $gray;
       bottom: 0;
@@ -85,6 +88,7 @@
       cursor: pointer;
       background-color: rgba(33, 18, 94, 0.1);
     }
+
     &--is-selected,
     &--is-focused &--is-selected,
     &:active {
