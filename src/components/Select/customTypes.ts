@@ -29,6 +29,7 @@ export interface IFilteredListArgs {
 }
 
 export interface ISelectOptionsList extends IListArgs {
+  activeOption: ISelectItem;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   updateOptions: (
     { label, value }: ISelectItem,

@@ -46,12 +46,20 @@ export const Select = (props: ISelectProps) => {
   const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
   const { clickedOutside, setElementRef } = useClickedOutside();
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const activeOptionRef = React.useRef<HTMLParagraphElement>(null);
 
   const resetInputValueToDefault = () => setSearchPhrase(defaultValue.label);
 
   React.useEffect(() => {
     resetInputValueToDefault();
   }, [clickedOutside, defaultValue]);
+
+  React.useEffect(() => {
+    if (activeOptionRef.current && open) {
+      activeOptionRef.current.scrollIntoView();
+      activeOptionRef.current.focus();
+    }
+  }, [open]);
 
   const shouldOpen = clickedOutside ? false : open;
   const shouldSearch = defaultValue.label !== searchPhrase;
@@ -105,6 +113,8 @@ export const Select = (props: ISelectProps) => {
           })}
         >
           <SelectOptionsList
+            ref={activeOptionRef}
+            activeOption={defaultValue}
             options={
               shouldSearch ? filterList({ searchPhrase, options }) : options
             }
