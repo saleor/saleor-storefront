@@ -46,6 +46,17 @@
       }
     }
 
+    &:-internal-autofill-selected {
+      & + .input__label {
+        background-image: linear-gradient(
+          to bottom,
+          #fff 49%,
+          $autofillColorSelected 50%
+        );
+        @include focusedLabel();
+      }
+    }
+
     &--grey {
       &:focus,
       &:not([value=""]) {
