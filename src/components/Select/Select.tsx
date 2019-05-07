@@ -7,41 +7,16 @@ import * as React from "react";
 import { useClickedOutside } from "../../hooks";
 import {
   IFilteredListArgs,
-  IListArgs,
   ISelectChange,
   ISelectItem,
   ISelectProps
 } from "./customTypes";
+import SelectOptionsList from "./SelectOptionsList";
 
 const updateOptions = (
   { label, value }: ISelectItem,
   onChange: ISelectChange
 ) => onChange({ country: label, code: value });
-
-const renderNoOptions = () => (
-  <p className="select__option select__option--disabled" key="no-option">
-    {"No Options"}
-  </p>
-);
-
-const renderList = (
-  { options, onChange }: IListArgs,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-) =>
-  options.length
-    ? options.map(({ label, value }) => (
-        <p
-          className="select__option"
-          key={value}
-          onClick={() => {
-            updateOptions({ label, value }, onChange);
-            setOpen(false);
-          }}
-        >
-          {label}
-        </p>
-      ))
-    : renderNoOptions();
 
 const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
   filter(options, ({ label }) =>
@@ -123,15 +98,14 @@ export const Select = (props: ISelectProps) => {
             "select__options--open": shouldOpen
           })}
         >
-          {renderList(
-            {
-              onChange,
-              options: shouldSearch
-                ? filterList({ searchPhrase, options })
-                : options
-            },
-            setOpen
-          )}
+          <SelectOptionsList
+            options={
+              shouldSearch ? filterList({ searchPhrase, options }) : options
+            }
+            onChange={onChange}
+            setOpen={setOpen}
+            updateOptions={updateOptions}
+          />
         </div>
       </div>
     </div>

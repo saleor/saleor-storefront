@@ -27,3 +27,11 @@ export interface IFilteredListArgs {
   options: ISelectItem[];
   searchPhrase: string;
 }
+
+export interface ISelectOptionsList extends IListArgs {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  updateOptions: (
+    { label, value }: ISelectItem,
+    onChange: ISelectChange
+  ) => void;
+}

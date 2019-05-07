@@ -58,7 +58,7 @@
     opacity: 0;
     z-index: -1;
     box-shadow: $select-menu-shadow;
-    overflow: hidden;
+    overflow: auto;
 
     &--open {
       opacity: 1;
