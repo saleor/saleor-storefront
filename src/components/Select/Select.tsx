@@ -34,8 +34,14 @@ const findAutofilledOption = (options: ISelectItem[], inputValue: string) =>
   );
 
 export const Select = (props: ISelectProps) => {
-  const { autoComplete, defaultValue, label, onChange, options, name } = props;
-
+  const {
+    autoComplete,
+    defaultValue = { label: "", value: "" },
+    label,
+    onChange,
+    options,
+    name
+  } = props;
   const [open, setOpen] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
   const { clickedOutside, setElementRef } = useClickedOutside();

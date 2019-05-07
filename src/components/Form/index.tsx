@@ -164,7 +164,7 @@ class Form extends React.Component<FormProps, FormState> {
             event.preventDefault();
           }
         });
-      } else if (child.type === SelectField || Select) {
+      } else if (child.type === SelectField || child.type === Select) {
         let defaultValue;
         if (
           child.props.name === "country" &&
