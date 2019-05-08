@@ -84,10 +84,10 @@ export const Select = (props: ISelectProps) => {
         defaultValue={defaultValue.value}
       />
       <div>
-        {renderLabel(label)}
         <div className="select__title">
           <input
             ref={inputRef}
+            className="input__field"
             value={searchPhrase}
             onChange={e => {
               const { value } = e.target;
@@ -105,6 +105,7 @@ export const Select = (props: ISelectProps) => {
               setOpen(!open);
             }}
           />
+          {renderLabel(label)}
         </div>
 
         <div
