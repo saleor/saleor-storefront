@@ -1,18 +1,17 @@
-import { searchUrl } from "../../../components/App/routes"
+import { searchUrl } from "../../../components/App/routes";
 
-export const structuredData = (shop) => {
-    let data = {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "url": location.href,
-        "name": shop.name,
-        "description": shop.description,
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": searchUrl + "?q={q}",
-            "query-input": "required name=q",
-        }
-
-    }
-    return JSON.stringify(data)
-}
+export const structuredData = shop => {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    description: shop.description,
+    name: shop.name,
+    potentialAction: {
+      "@type": "SearchAction",
+      "query-input": "required name=q",
+      target: searchUrl + "?q={q}"
+    },
+    url: location.href
+  };
+  return JSON.stringify(data);
+};
