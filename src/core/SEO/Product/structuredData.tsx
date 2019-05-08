@@ -1,22 +1,3 @@
-const getBrandFromAttributtes = variants => {
-  let brand = "";
-  for (const variant of variants) {
-    if (!variant.attributes || !variant.attributes.length) {
-      return;
-    }
-    for (const attribute of variant.attributes) {
-      if (attribute.attribute.name === "brand") {
-        brand = attribute.value.name;
-        break;
-      }
-      if (attribute.attribute.name === "publisher") {
-        brand = attribute.value.name;
-      }
-    }
-  }
-  return brand;
-};
-
 const getVariantsStructuredData = variants => {
   const inStock = "https://schema.org/InStock";
   const outOfStock = "https://schema.org/OutOfStock";
