@@ -37,22 +37,6 @@
     &:-webkit-autofill {
       box-shadow: 0 0 0 1px $blue;
       & + .input__label {
-        background-image: linear-gradient(
-          to bottom,
-          #fff 49%,
-          $autofillColor 50%
-        );
-        @include focusedLabel();
-      }
-    }
-
-    &:-internal-autofill-selected {
-      & + .input__label {
-        background-image: linear-gradient(
-          to bottom,
-          #fff 49%,
-          $autofillColorSelected 50%
-        );
         @include focusedLabel();
       }
     }
