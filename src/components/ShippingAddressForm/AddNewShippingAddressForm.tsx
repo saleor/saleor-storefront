@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import classNames from "classnames";
 import * as React from "react";
 
-import { Form, SelectField, TextField } from "..";
+import { Form, Select, TextField } from "..";
 
 import { ShopContext } from "../ShopProvider/context";
 import { FormAddressType, IShippingNewAddressFormProps } from "./types";
@@ -78,13 +78,14 @@ export const AddNewShippingAddressForm: React.FC<
               name="countryArea"
               autoComplete="address-level1"
             />
-            <SelectField
+            <Select
               label="Country"
               name="country"
               options={countries.map(country => ({
                 label: country.country,
                 value: country.code
               }))}
+              autoComplete="country"
             />
           </div>
           <div
