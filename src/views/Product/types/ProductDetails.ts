@@ -87,8 +87,7 @@ export interface ProductDetails_product_category_products_edges_node {
   thumbnail2x: ProductDetails_product_category_products_edges_node_thumbnail2x | null;
   category: ProductDetails_product_category_products_edges_node_category;
   /**
-   * The product's base price (without any discounts
-   *         applied).
+   * The product's default base price.
    */
   price: ProductDetails_product_category_products_edges_node_price | null;
 }
@@ -209,11 +208,16 @@ export interface ProductDetails_product_variants {
    * The ID of the object.
    */
   id: string;
+  sku: string;
   name: string;
   /**
    * Quantity of a product available for sale.
    */
   stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Price of the product variant.
    */
@@ -225,7 +229,10 @@ export interface ProductDetails_product_variants {
 }
 
 export interface ProductDetails_product_availability {
-  __typename: "ProductAvailability";
+  __typename: "ProductPricingInfo";
+  /**
+   * Whether it is in stock and visible or not.
+   */
   available: boolean | null;
 }
 
@@ -247,8 +254,7 @@ export interface ProductDetails_product {
   description: string;
   category: ProductDetails_product_category;
   /**
-   * The product's base price (without any discounts
-   *         applied).
+   * The product's default base price.
    */
   price: ProductDetails_product_price | null;
   /**
@@ -263,7 +269,7 @@ export interface ProductDetails_product {
   seoTitle: string | null;
   /**
    * Informs about product's availability in the
-   *         storefront, current price and discounts.
+   *                storefront, current price and discounts.
    */
   availability: ProductDetails_product_availability | null;
 }

@@ -215,7 +215,7 @@ export interface OrderById_order {
   number: string | null;
   shippingAddress: OrderById_order_shippingAddress | null;
   /**
-   * List of order lines for the order
+   * List of order lines.
    */
   lines: (OrderById_order_lines | null)[];
   /**

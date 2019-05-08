@@ -215,7 +215,7 @@ export interface OrderByToken_orderByToken {
   number: string | null;
   shippingAddress: OrderByToken_orderByToken_shippingAddress | null;
   /**
-   * List of order lines for the order
+   * List of order lines.
    */
   lines: (OrderByToken_orderByToken_lines | null)[];
   /**
