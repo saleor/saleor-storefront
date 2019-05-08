@@ -49,7 +49,11 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   user
 }) => {
   const [addressesList, addAddressToList] = React.useState<FormAddressType[]>(
-    getInitialAddresses({ type, checkout, user })
+    React.useMemo(() => getInitialAddresses({ type, checkout, user }), [
+      checkout,
+      type,
+      user
+    ])
   );
   const [isVisibleAddNewModalForm, setModalVisibility] = React.useState<
     boolean
@@ -59,6 +63,15 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
     setSelectedAddress
   ] = React.useState<FormAddressType | null>(
     !shippingAsBilling ? addressesList[0] : null
+  );
+
+  const showAddModalForm = React.useCallback(
+    () => setModalVisibility(true),
+    []
+  );
+  const hideAddModalForm = React.useCallback(
+    () => setModalVisibility(false),
+    []
   );
 
   const unselectAddress = () => {
@@ -92,8 +105,7 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
       uncheckShippingAsBilling();
       setSelectedAddress(address);
     }
-
-    setModalVisibility(false);
+    hideAddModalForm();
   };
 
   const handleAddressAdd = async (address: FormAddressType) => {
@@ -115,13 +127,15 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
         handleAddressAdd={handleAddressAdd}
         selectedAddress={selectedAddress}
         isVisibleAddNewModalForm={isVisibleAddNewModalForm}
-        hideAddNewModalForm={() => setModalVisibility(false)}
-        showAddNewModalForm={() => setModalVisibility(true)}
+        hideAddNewModalForm={hideAddModalForm}
+        showAddNewModalForm={showAddModalForm}
       />
       <Button
         type="submit"
         disabled={(!selectedAddress && !shippingAsBilling) || loading}
-        onClick={proceedToNextStep.bind(null, selectedAddress)}
+        onClick={React.useCallback(() => proceedToNextStep(selectedAddress), [
+          selectedAddress
+        ])}
       >
         {buttonText}
       </Button>
