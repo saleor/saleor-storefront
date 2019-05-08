@@ -8,8 +8,8 @@ import { Button, Loader, ProductsFeatured } from "../../components";
 import { ProductsList_categories } from "../../core/types/saleor";
 import { generateCategoryUrl } from "../../core/utils";
 import {
-  ProductsList_shop_homepageCollection_backgroundImage,
-  ProductsList_shop
+  ProductsList_shop,
+  ProductsList_shop_homepageCollection_backgroundImage
 } from "./types/ProductsList";
 
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
