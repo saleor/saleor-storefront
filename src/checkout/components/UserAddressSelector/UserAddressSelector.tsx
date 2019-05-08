@@ -6,63 +6,72 @@ import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { maybe } from "../../../core/utils";
 import { AddressPicker } from "../../components/AddressPicker";
 import {
-  UserAddressSelectorProps,
-  UserAddressSelectorState
+  CheckoutFormType,
+  IInitialUserAddressesArgs,
+  UserAddressSelectorProps
 } from "../../types";
 
-class UserAddressSelector extends React.PureComponent<
-  UserAddressSelectorProps,
-  UserAddressSelectorState
-> {
-  constructor(props: UserAddressSelectorProps) {
-    super(props);
-    const {
-      checkout,
-      type = "shipping",
-      user: {
-        addresses: userAddresses,
-        defaultBillingAddress,
-        defaultShippingAddress
-      }
-    } = props;
-    const addresses = [
-      ...(type === "shipping"
-        ? [maybe(() => checkout.shippingAddress, defaultShippingAddress)]
-        : [maybe(() => checkout.billingAddress, defaultBillingAddress)]),
-      ...userAddresses
-    ].filter(address => address);
+const getInitialAddresses = ({
+  type,
+  checkout,
+  user
+}: IInitialUserAddressesArgs) => {
+  const {
+    addresses: userAddresses,
+    defaultBillingAddress,
+    defaultShippingAddress
+  } = user;
 
-    this.state = {
-      addresses: uniqWith(
-        each(addresses, address => omit(address, "id")),
-        isEqual
-      ),
-      isVisibleAddNewModalForm: false,
-      selectedAddress: !props.shippingAsBilling && addresses[0]
-    };
-  }
+  return uniqWith(
+    each(
+      [
+        ...(type === "shipping"
+          ? [maybe(() => checkout.shippingAddress, defaultShippingAddress)]
+          : [maybe(() => checkout.billingAddress, defaultBillingAddress)]),
+        ...userAddresses
+      ].filter(address => address),
+      address => omit(address, "id")
+    ),
+    isEqual
+  );
+};
 
-  componentDidUpdate() {
-    this.unselectAddress();
-  }
+const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
+  buttonText,
+  checkout,
+  errors,
+  loading,
+  onSubmit,
+  proceedToNextStep,
+  shippingAsBilling,
+  type = "shipping" as CheckoutFormType,
+  update,
+  user
+}) => {
+  const [addressesList, addAddressToList] = React.useState<FormAddressType[]>(
+    getInitialAddresses({ type, checkout, user })
+  );
+  const [isVisibleAddNewModalForm, setModalVisibility] = React.useState<
+    boolean
+  >(false);
+  const [
+    selectedAddress,
+    setSelectedAddress
+  ] = React.useState<FormAddressType | null>(
+    !shippingAsBilling ? addressesList[0] : null
+  );
 
-  showAddNewModalForm = () => this.setState({ isVisibleAddNewModalForm: true });
-  hideAddNewModalForm = () =>
-    this.setState({ isVisibleAddNewModalForm: false });
-
-  handleAddressSelect = (address: FormAddressType) => {
-    this.setState({ selectedAddress: address });
-    this.uncheckShippingAsBilling();
-  };
-
-  unselectAddress = () => {
-    if (this.state.selectedAddress && this.props.shippingAsBilling) {
-      this.setState({ selectedAddress: null });
+  const unselectAddress = () => {
+    if (selectedAddress && shippingAsBilling) {
+      setSelectedAddress(null);
     }
   };
 
-  uncheckShippingAsBilling = () => {
-    const { shippingAsBilling, update } = this.props;
+  React.useEffect(() => {
+    unselectAddress();
+  });
+
+  const uncheckShippingAsBilling = () => {
     if (shippingAsBilling) {
       update({
         shippingAsBilling: false
@@ -70,63 +79,54 @@ class UserAddressSelector extends React.PureComponent<
     }
   };
 
-  handleAddressAdd = async (address: FormAddressType) => {
-    await this.props.onSubmit(address);
+  const handleAddressSelect = (address: FormAddressType) => {
+    setSelectedAddress(address);
+    uncheckShippingAsBilling();
+  };
 
-    if (!this.props.errors.length) {
-      this.updateAddresses(address);
+  const updateAddresses = (address: FormAddressType) => {
+    const isSelectedAsNew = address.asNew;
+
+    addAddressToList([...addressesList, address]);
+    if (isSelectedAsNew) {
+      uncheckShippingAsBilling();
+      setSelectedAddress(address);
+    }
+
+    setModalVisibility(false);
+  };
+
+  const handleAddressAdd = async (address: FormAddressType) => {
+    await onSubmit(address);
+
+    if (!errors.length) {
+      updateAddresses(address);
     }
   };
 
-  updateAddresses = (address: FormAddressType) => {
-    if (address.asNew) {
-      this.uncheckShippingAsBilling();
-    }
-
-    this.setState(prevState => ({
-      addresses: [...prevState.addresses, address],
-      ...(address.asNew && {
-        selectedAddress: address
-      }),
-      isVisibleAddNewModalForm: false
-    }));
-  };
-
-  render() {
-    const { addresses, selectedAddress } = this.state;
-    const {
-      buttonText,
-      errors,
-      loading,
-      proceedToNextStep,
-      shippingAsBilling = false,
-      type
-    } = this.props;
-
-    return (
-      <>
-        <AddressPicker
-          addresses={addresses}
-          type={type}
-          errors={errors}
-          loading={loading}
-          onAddressSelect={this.handleAddressSelect}
-          handleAddressAdd={this.handleAddressAdd}
-          selectedAddress={selectedAddress}
-          isVisibleAddNewModalForm={this.state.isVisibleAddNewModalForm}
-          hideAddNewModalForm={this.hideAddNewModalForm}
-          showAddNewModalForm={this.showAddNewModalForm}
-        />
-        <Button
-          type="submit"
-          disabled={(!selectedAddress && !shippingAsBilling) || loading}
-          onClick={proceedToNextStep.bind(null, this.state.selectedAddress)}
-        >
-          {buttonText}
-        </Button>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <AddressPicker
+        addresses={addressesList}
+        type={type}
+        errors={errors}
+        loading={loading}
+        onAddressSelect={handleAddressSelect}
+        handleAddressAdd={handleAddressAdd}
+        selectedAddress={selectedAddress}
+        isVisibleAddNewModalForm={isVisibleAddNewModalForm}
+        hideAddNewModalForm={() => setModalVisibility(false)}
+        showAddNewModalForm={() => setModalVisibility(true)}
+      />
+      <Button
+        type="submit"
+        disabled={(!selectedAddress && !shippingAsBilling) || loading}
+        onClick={proceedToNextStep.bind(null, selectedAddress)}
+      >
+        {buttonText}
+      </Button>
+    </>
+  );
+};
 
 export default UserAddressSelector;

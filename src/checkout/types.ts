@@ -52,10 +52,10 @@ export interface UserAddressSelectorProps {
   update?: (checkoutData: CheckoutContextInterface) => void;
 }
 
-export interface UserAddressSelectorState {
-  addresses: FormAddressType[];
-  selectedAddress?: FormAddressType;
-  isVisibleAddNewModalForm: boolean;
+export interface IInitialUserAddressesArgs {
+  checkout: Checkout;
+  type: CheckoutFormType;
+  user: User;
 }
 
 export interface ISubmitArgs {
