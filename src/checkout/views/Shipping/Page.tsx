@@ -115,10 +115,12 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     await this.onShippingSubmit(address).then(response => {
       const errors = findFormErrors(response);
       const checkout =
+        maybe(() => response.data.checkoutEmailUpdate.checkout, null) ||
         maybe(
           () => response.data.checkoutShippingAddressUpdate.checkout,
           null
-        ) || maybe(() => response.data.checkoutCreate.checkout, null);
+        ) ||
+        maybe(() => response.data.checkoutCreate.checkout, null);
 
       this.setState({
         checkout,
