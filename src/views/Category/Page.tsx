@@ -66,7 +66,7 @@ const Page: React.FC<PageProps> = ({
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
       </div>
 
-      {hasProducts && (
+      {canDisplayProducts && (
         <ProductFilters
           filters={filters}
           attributes={attributes}
