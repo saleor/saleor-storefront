@@ -29,7 +29,7 @@ const renderAddressesList = ({
           "address-picker__address--selected": isSelected
         })}
       >
-        <AddressSummary address={address} />
+        <AddressSummary address={address} email={address.email} />
         <Option
           selected={isSelected}
           value={`${id}`}
