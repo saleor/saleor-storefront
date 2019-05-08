@@ -18,13 +18,16 @@ import RegisterForm from "./RegisterForm";
 import closeImg from "../../../images/x.svg";
 
 class Login extends React.Component<
-  { overlay: OverlayContextInterface },
+  { overlay: OverlayContextInterface; active?: "login" | "register" },
   { active: "login" | "register" }
 > {
+  static defaultProps = {
+    active: "login"
+  };
   constructor(props) {
     super(props);
     this.state = {
-      active: "login"
+      active: props.active
     };
   }
 

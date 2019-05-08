@@ -28,6 +28,9 @@ const OverlayManager: React.FC = () => (
         case OverlayType.login:
           return <Login overlay={overlay} />;
 
+        case OverlayType.register:
+          return <Login overlay={overlay} active="register" />;
+
         case OverlayType.password:
           return <Password overlay={overlay} />;
 
