@@ -1,7 +1,7 @@
 import { searchUrl } from "../../../components/App/routes";
 
 export const structuredData = shop => {
-  const data = {
+  return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
     description: shop.description,
@@ -12,6 +12,5 @@ export const structuredData = shop => {
       target: searchUrl + "?q={q}"
     },
     url: location.href
-  };
-  return JSON.stringify(data);
+  });
 };
