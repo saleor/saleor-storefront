@@ -6,6 +6,7 @@ All notable, unreleased changes to this project will be documented in this file.
 
 - Fix items number in cart based on total sum of quantities - #286 by @bogdandjukic
 - Create custom Select component and add it to ShippingAddress form - ##312 by @AlicjaSzu
+- Add schema.org data to homepage and product detail page - #316 by @koradon
 
 ## 0.5.1
 
