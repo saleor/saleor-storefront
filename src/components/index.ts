@@ -61,3 +61,4 @@ export {
 export { default as Select } from "./Select";
 export { default as Modal } from "./Modal";
 export { default as Error } from "./Error";
+export { default as NotificationTemplate } from "./NotificationTemplate";
