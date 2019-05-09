@@ -57,7 +57,7 @@ export interface AddressInput {
   city?: string | null;
   cityArea?: string | null;
   postalCode?: string | null;
-  country: string;
+  country?: string | null;
   countryArea?: string | null;
   phone?: string | null;
 }
@@ -77,7 +77,7 @@ export interface CheckoutLineInput {
 export interface PaymentInput {
   gateway: GatewaysEnum;
   token: string;
-  amount: any;
+  amount?: any | null;
   billingAddress?: AddressInput | null;
 }
 

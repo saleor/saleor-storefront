@@ -89,8 +89,7 @@ export interface Collection_products_edges_node {
    */
   thumbnail2x: Collection_products_edges_node_thumbnail2x | null;
   /**
-   * The product's base price (without any discounts
-   *         applied).
+   * The product's default base price.
    */
   price: Collection_products_edges_node_price | null;
   category: Collection_products_edges_node_category;
