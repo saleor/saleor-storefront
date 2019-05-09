@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 
 import { CheckoutContextInterface } from "../../checkout/context";
@@ -13,10 +14,7 @@ import {
   extractCheckoutLines,
   getTotal
 } from "../../components/CartProvider/uitls";
-import {
-  OverlayContextInterface,
-  OverlayType
-} from "../../components/Overlay/context";
+import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { UserContext } from "../../components/User/context";
 import { maybe } from "../../core/utils";
@@ -29,99 +27,92 @@ interface PageProps {
   shop: getShop_shop;
 }
 
-class Page extends React.Component<PageProps> {
-  shouldComponentUpdate(nextProps: PageProps) {
-    const {
-      cart: { errors, clearErrors },
-      overlay: { show }
-    } = nextProps;
-    const hasErrors = maybe(() => !!errors.length);
+const Page: React.FC<PageProps> = ({
+  shop: { geolocalization, defaultCountry },
+  checkout: {
+    checkout,
+    loading: checkoutLoading,
+    syncWithCart,
+    syncUserCheckout
+  },
+  cart: {
+    lines,
+    remove,
+    add,
+    errors,
+    clearErrors,
+    subtract,
+    loading: cartLoading,
+    changeQuantity
+  }
+}) => {
+  const alert = useAlert();
+  const hasErrors: boolean | null = maybe(() => !!errors.length);
+  const isLoading =
+    (!checkout && checkoutLoading) || syncWithCart || syncUserCheckout;
 
+  React.useEffect(() => {
     if (hasErrors) {
-      show(OverlayType.message, null, {
-        content: errors.map(err => err.message).join(", "),
-        status: "error",
-        title: "Error"
-      });
+      alert.show(
+        {
+          content: errors.map(err => err.message).join(", "),
+          title: "Error"
+        },
+        { type: "error" }
+      );
       clearErrors();
     }
-    return true;
+  }, [hasErrors]);
+
+  if (isLoading) {
+    return <Loader full />;
   }
-  render() {
-    const {
-      shop: { geolocalization, defaultCountry },
-      checkout: {
-        checkout,
-        loading: checkoutLoading,
-        syncWithCart,
-        syncUserCheckout
-      },
-      cart: {
-        lines,
-        remove,
-        add,
-        errors,
-        subtract,
-        loading: cartLoading,
-        changeQuantity
-      }
-    } = this.props;
-
-    if ((!checkout && checkoutLoading) || syncWithCart || syncUserCheckout) {
-      return <Loader full />;
-    }
-
-    if (!lines.length) {
-      return <EmptyCart />;
-    }
-
-    const productTableProps = {
-      add,
-      changeQuantity,
-      invalid: maybe(() => !!errors.length, false),
-      processing: cartLoading,
-      remove,
-      subtract
-    };
-    const locale = maybe(
-      () => geolocalization.country.code,
-      defaultCountry.code
-    );
-
-    return (
-      <>
-        {checkout ? (
-          <CartTable
-            {...productTableProps}
-            lines={extractCheckoutLines(checkout.lines)}
-            subtotal={checkout.subtotalPrice.gross.localized}
-          />
-        ) : (
-          <TypedProductVariantsQuery
-            variables={{ ids: lines.map(line => line.variantId) }}
-          >
-            {({ data }) => (
-              <CartTable
-                {...productTableProps}
-                lines={extractCartLines(data, lines, locale)}
-                subtotal={getTotal(data, lines, locale)}
-              />
-            )}
-          </TypedProductVariantsQuery>
-        )}
-
-        <div className="cart-page__checkout-action">
-          <UserContext.Consumer>
-            {({ user }) => (
-              <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                <Button disabled={cartLoading}>Proceed to Checkout</Button>
-              </Link>
-            )}
-          </UserContext.Consumer>
-        </div>
-      </>
-    );
+  if (!lines.length) {
+    return <EmptyCart />;
   }
-}
+  const productTableProps = {
+    add,
+    changeQuantity,
+    invalid: maybe(() => !!errors.length, false),
+    processing: cartLoading,
+    remove,
+    subtract
+  };
+  const locale = maybe(() => geolocalization.country.code, defaultCountry.code);
+  return (
+    <>
+      {checkout ? (
+        <CartTable
+          {...productTableProps}
+          lines={extractCheckoutLines(checkout.lines)}
+          subtotal={checkout.subtotalPrice.gross.localized}
+        />
+      ) : (
+        <TypedProductVariantsQuery
+          variables={{
+            ids: lines.map(line => line.variantId)
+          }}
+        >
+          {({ data }) => (
+            <CartTable
+              {...productTableProps}
+              lines={extractCartLines(data, lines, locale)}
+              subtotal={getTotal(data, lines, locale)}
+            />
+          )}
+        </TypedProductVariantsQuery>
+      )}
+      <div className="cart-page__checkout-action">
+        <UserContext.Consumer>
+          {({ user }) => (
+            <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+              <Button disabled={cartLoading}>Proceed to Checkout</Button>
+            </Link>
+          )}
+        </UserContext.Consumer>
+      </div>
+    </>
+  );
+};
 
 export default Page;
