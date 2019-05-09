@@ -47,6 +47,7 @@ const Page: React.FC<PageProps> = ({
   }
 }) => {
   const alert = useAlert();
+  const user = React.useContext(UserContext);
   const hasErrors: boolean | null = maybe(() => !!errors.length);
   const isLoading =
     (!checkout && checkoutLoading) || syncWithCart || syncUserCheckout;
@@ -79,6 +80,7 @@ const Page: React.FC<PageProps> = ({
     subtract
   };
   const locale = maybe(() => geolocalization.country.code, defaultCountry.code);
+
   return (
     <>
       {checkout ? (
@@ -103,13 +105,9 @@ const Page: React.FC<PageProps> = ({
         </TypedProductVariantsQuery>
       )}
       <div className="cart-page__checkout-action">
-        <UserContext.Consumer>
-          {({ user }) => (
-            <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-              <Button disabled={cartLoading}>Proceed to Checkout</Button>
-            </Link>
-          )}
-        </UserContext.Consumer>
+        <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+          <Button disabled={cartLoading}>Proceed to Checkout</Button>
+        </Link>
       </div>
     </>
   );
