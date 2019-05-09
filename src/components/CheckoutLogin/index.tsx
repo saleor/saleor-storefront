@@ -2,22 +2,15 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { Redirect, RouteComponentProps } from "react-router";
-import { Link } from "react-router-dom";
 
-import {
-  Button,
-  LoginForm,
-  Offline,
-  OfflinePlaceholder,
-  Online,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType,
-  PasswordResetForm
-} from "..";
+import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { UserContext } from "../User/context";
+
+import CheckoutAsGuest from "./CheckoutAsGuest";
+import ResetPasswordForm from "./ResetPasswordForm";
+import SignInForm from "./SignInForm";
 
 class CheckoutLogin extends React.PureComponent<
   RouteComponentProps<{}>,
@@ -39,68 +32,23 @@ class CheckoutLogin extends React.PureComponent<
                   <div className="container">
                     <Online>
                       <div className="checkout-login">
-                        <div className="checkout-login__guest">
-                          <h3 className="checkout__header">
-                            Continue as a guest
-                          </h3>
-                          <p>
-                            If you don’t want to register you account at our
-                            store don’t worry. You can finish your checkout as a
-                            guest. You’ll be treated just as good as a
-                            registered user.
-                          </p>
-                          <Link to={checkoutUrl}>
-                            <Button>Continue as a guest</Button>
-                          </Link>
-
-                          <p>
-                            or you can{" "}
-                            <span
-                              onClick={() =>
-                                overlayContext.show(
-                                  OverlayType.register,
-                                  OverlayTheme.right
-                                )
-                              }
-                            >
-                              create an account
-                            </span>
-                          </p>
-                        </div>
+                        <CheckoutAsGuest
+                          overlayContext={overlayContext}
+                          checkoutUrl={checkoutUrl}
+                        />
                         <div className="checkout-login__user">
-                          <h3 className="checkout__header">Registered user</h3>
-
                           {this.state.resetPassword ? (
-                            <>
-                              <PasswordResetForm />
-                              <div className="login__content__password-reminder">
-                                <p>
-                                  <span
-                                    onClick={() =>
-                                      this.setState({ resetPassword: false })
-                                    }
-                                  >
-                                    Back to login
-                                  </span>
-                                </p>
-                              </div>
-                            </>
+                            <ResetPasswordForm
+                              onClick={() => {
+                                this.setState({ resetPassword: false });
+                              }}
+                            />
                           ) : (
-                            <>
-                              <LoginForm />
-                              <div className="login__content__password-reminder">
-                                <p>
-                                  Have you forgotten your password?&nbsp;
-                                  <span
-                                    onClick={() =>
-                                      this.setState({ resetPassword: true })
-                                    }
-                                  >
-                                    Click Here
-                                  </span>
-                                </p>
-                              </div>
-                            </>
+                            <SignInForm
+                              onClick={() => {
+                                this.setState({ resetPassword: true });
+                              }}
+                            />
                           )}
                         </div>
                       </div>
