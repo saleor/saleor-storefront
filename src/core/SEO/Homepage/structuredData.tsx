@@ -1,3 +1,5 @@
+import urljoin from "url-join";
+
 import { searchUrl } from "../../../components/App/routes";
 
 export const structuredData = shop => {
@@ -9,7 +11,7 @@ export const structuredData = shop => {
     potentialAction: {
       "@type": "SearchAction",
       "query-input": "required name=q",
-      target: searchUrl + "?q={q}"
+      target: urljoin(location.href, searchUrl, "?q={q}")
     },
     url: location.href
   });
