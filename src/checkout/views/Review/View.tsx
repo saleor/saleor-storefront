@@ -2,16 +2,11 @@ import "./scss/index.scss";
 
 import { History } from "history";
 import * as React from "react";
+import { AlertManager, useAlert } from "react-alert";
 import { generatePath, Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import {
-  Button,
-  CartTable,
-  OverlayContext,
-  OverlayType,
-  ShowOverlayType
-} from "../../../components";
+import { Button, CartTable } from "../../../components";
 import { orderConfirmationUrl } from "../../../components/App/routes";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
@@ -25,11 +20,11 @@ import { completeCheckout } from "./types/completeCheckout";
 
 const completeCheckout = (
   data: completeCheckout,
-  show: ShowOverlayType,
   history: History,
   guest: boolean,
   clearCheckout: () => void,
-  clearCart: () => void
+  clearCart: () => void,
+  alert: AlertManager
 ) => {
   const canProceed = !data.checkoutComplete.errors.length;
 
@@ -41,15 +36,26 @@ const completeCheckout = (
     });
     clearCheckout();
     clearCart();
-    show(OverlayType.message, null, {
-      status: "success",
-      title: "Your order was placed"
-    });
+    alert.show(
+      { title: "Your order was placed" },
+      {
+        type: "success"
+      }
+    );
+    alert.show(
+      { title: "Your order was placed again" },
+      {
+        type: "success"
+      }
+    );
   } else {
     data.checkoutComplete.errors.map(error => {
-      show(OverlayType.message, null, {
-        title: error.message
-      });
+      alert.show(
+        { title: error.message },
+        {
+          type: "error"
+        }
+      );
     });
   }
 };
@@ -60,92 +66,100 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     path,
     params: { token }
   }
-}) => (
-  <CheckoutContext.Consumer>
-    {({ cardData, dummyStatus, checkout, clear: clearCheckout, step }) => {
-      const stepCheck = (
-        <StepCheck checkout={checkout} step={step} path={path} token={token} />
-      );
+}) => {
+  const alert = useAlert();
 
-      if (!checkout) {
-        return stepCheck;
-      }
-      return (
-        <>
-          {stepCheck}
-          <div className="checkout-review">
-            <Link
-              to={generatePath(paymentUrl, { token })}
-              className="checkout-review__back"
-            >
-              Go back to Previous Step
-            </Link>
+  return (
+    <CheckoutContext.Consumer>
+      {({ cardData, dummyStatus, checkout, clear: clearCheckout, step }) => {
+        const stepCheck = (
+          <StepCheck
+            checkout={checkout}
+            step={step}
+            path={path}
+            token={token}
+          />
+        );
 
-            <div className="checkout__step checkout__step--inactive">
-              <span>5</span>
-              <h4 className="checkout__header">Review your order</h4>
-            </div>
+        if (!checkout) {
+          return stepCheck;
+        }
 
-            <div className="checkout__content">
-              <CartTable
-                lines={extractCheckoutLines(checkout.lines)}
-                subtotal={checkout.subtotalPrice.gross.localized}
-                deliveryCost={checkout.shippingMethod.price.localized}
-                totalCost={checkout.totalPrice.gross.localized}
-              />
-              <div className="checkout-review__content">
-                <Summary
-                  checkout={checkout}
-                  cardData={cardData}
-                  dummyStatus={dummyStatus}
+        return (
+          <>
+            {stepCheck}
+            <div className="checkout-review">
+              <Link
+                to={generatePath(paymentUrl, { token })}
+                className="checkout-review__back"
+              >
+                Go back to Previous Step
+              </Link>
+
+              <div className="checkout__step checkout__step--inactive">
+                <span>5</span>
+                <h4 className="checkout__header">Review your order</h4>
+              </div>
+
+              <div className="checkout__content">
+                <CartTable
+                  lines={extractCheckoutLines(checkout.lines)}
+                  subtotal={checkout.subtotalPrice.gross.localized}
+                  deliveryCost={checkout.shippingMethod.price.localized}
+                  totalCost={checkout.totalPrice.gross.localized}
                 />
-                <div className="checkout-review__content__submit">
-                  <OverlayContext.Consumer>
-                    {({ show }) => (
-                      <CartContext.Consumer>
-                        {({ clear: clearCart }) => (
-                          <UserContext.Consumer>
-                            {({ user }) => (
-                              <TypedCompleteCheckoutMutation
-                                onCompleted={data =>
-                                  completeCheckout(
-                                    data,
-                                    show,
-                                    history,
-                                    !user,
-                                    clearCheckout,
-                                    clearCart
-                                  )
-                                }
-                              >
-                                {(completeCheckout, { loading }) => (
-                                  <Button
-                                    type="submit"
-                                    disabled={loading}
-                                    onClick={() =>
-                                      completeCheckout({
-                                        variables: { checkoutId: checkout.id }
-                                      })
-                                    }
-                                  >
-                                    {loading ? "Loading" : "Place your order"}
-                                  </Button>
-                                )}
-                              </TypedCompleteCheckoutMutation>
-                            )}
-                          </UserContext.Consumer>
-                        )}
-                      </CartContext.Consumer>
-                    )}
-                  </OverlayContext.Consumer>
+                <div className="checkout-review__content">
+                  <Summary
+                    checkout={checkout}
+                    cardData={cardData}
+                    dummyStatus={dummyStatus}
+                  />
+                  <div className="checkout-review__content__submit">
+                    <CartContext.Consumer>
+                      {({ clear: clearCart }) => (
+                        <UserContext.Consumer>
+                          {({ user }) => (
+                            <TypedCompleteCheckoutMutation
+                              onCompleted={data =>
+                                completeCheckout(
+                                  data,
+                                  history,
+                                  !user,
+                                  clearCheckout,
+                                  clearCart,
+                                  alert
+                                )
+                              }
+                            >
+                              {(completeCheckout, { loading }) => (
+                                <Button
+                                  type="submit"
+                                  disabled={loading}
+                                  onClick={() =>
+                                    completeCheckout({
+                                      variables: {
+                                        checkoutId: checkout.id
+                                      }
+                                    })
+                                  }
+                                >
+                                  {loading ? "Loading" : "Place your order"}
+                                </Button>
+                              )}
+                            </TypedCompleteCheckoutMutation>
+                          )}
+                        </UserContext.Consumer>
+                      )}
+                    </CartContext.Consumer>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      );
-    }}
-  </CheckoutContext.Consumer>
-);
+          </>
+        );
+      }}
+    </CheckoutContext.Consumer>
+  );
+};
 
 export default View;
