@@ -32,13 +32,6 @@
       color: $gray-dark;
     }
 
-    p > span {
-      color: $blue;
-      font-weight: $bold-font-weight;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
     button {
       margin: $spacer * 2 0 $spacer * 2 $spacer * 2;
     }

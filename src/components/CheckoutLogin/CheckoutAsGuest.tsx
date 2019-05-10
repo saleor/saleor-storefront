@@ -22,6 +22,7 @@ const CheckoutAsGuest: React.FC<{
     <p>
       or you can{" "}
       <span
+        className="u-link"
         onClick={() =>
           overlayContext.show(OverlayType.register, OverlayTheme.right)
         }

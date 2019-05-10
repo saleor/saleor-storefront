@@ -49,13 +49,6 @@
       color: $gray;
       font-size: $small-font-size;
       margin-top: $spacer * 2;
-
-      span {
-        color: $blue;
-        font-weight: $bold-font-weight;
-        text-decoration: underline;
-        cursor: pointer;
-      }
     }
   }
 }
