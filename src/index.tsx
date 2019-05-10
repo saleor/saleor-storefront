@@ -5,13 +5,14 @@ import { ApolloLink } from "apollo-link";
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
 import * as React from "react";
-import { positions, Provider as AlertProvider } from "react-alert";
+import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
 import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
+
 import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
@@ -23,17 +24,17 @@ import {
   OverlayProvider,
   UserProvider
 } from "./components";
+
 import CartProvider from "./components/CartProvider";
-import { OverlayContext, OverlayType } from "./components/Overlay/context";
 import ShopProvider from "./components/ShopProvider";
 import { UserContext } from "./components/User/context";
+
 import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
 
 const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
-
 const {
   component: UserProviderWithTokenHandler,
   link: invalidTokenLink
@@ -70,6 +71,7 @@ const startApp = async () => {
     cache,
     storage: window.localStorage
   });
+
   const apolloClient = new ApolloClient({
     cache,
     link
@@ -77,61 +79,71 @@ const startApp = async () => {
 
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
-    timeout: 500000000
+    timeout: 2500
+  };
+
+  const Root = () => {
+    const alert = useAlert();
+
+    return (
+      <Router history={history}>
+        <ApolloProvider client={apolloClient}>
+          <ShopProvider>
+            <OverlayProvider>
+              <UserProviderWithTokenHandler
+                apolloClient={apolloClient}
+                onUserLogin={() =>
+                  alert.show(
+                    {
+                      title: "You are logged in"
+                    },
+                    { type: "success" }
+                  )
+                }
+                onUserLogout={() =>
+                  alert.show(
+                    {
+                      title: "You are logged out"
+                    },
+                    { type: "success" }
+                  )
+                }
+                refreshUser
+              >
+                <UserContext.Consumer>
+                  {user => (
+                    <CheckoutProvider user={user}>
+                      <CheckoutContext.Consumer>
+                        {checkout => (
+                          <CartProvider
+                            checkout={checkout}
+                            apolloClient={apolloClient}
+                          >
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
+                          </CartProvider>
+                        )}
+                      </CheckoutContext.Consumer>
+                    </CheckoutProvider>
+                  )}
+                </UserContext.Consumer>
+              </UserProviderWithTokenHandler>
+            </OverlayProvider>
+          </ShopProvider>
+        </ApolloProvider>
+      </Router>
+    );
   };
 
   render(
-    <Router history={history}>
-      <ApolloProvider client={apolloClient}>
-        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-          <ShopProvider>
-            <OverlayProvider>
-              <OverlayContext.Consumer>
-                {({ show }) => (
-                  <UserProviderWithTokenHandler
-                    apolloClient={apolloClient}
-                    onUserLogin={() =>
-                      show(OverlayType.message, null, {
-                        title: "You are logged in"
-                      })
-                    }
-                    onUserLogout={() =>
-                      show(OverlayType.message, null, {
-                        title: "You are logged out"
-                      })
-                    }
-                    refreshUser
-                  >
-                    <UserContext.Consumer>
-                      {user => (
-                        <CheckoutProvider user={user}>
-                          <CheckoutContext.Consumer>
-                            {checkout => (
-                              <CartProvider
-                                checkout={checkout}
-                                apolloClient={apolloClient}
-                              >
-                                <Switch>
-                                  <Route
-                                    path={checkoutBaseUrl}
-                                    component={CheckoutApp}
-                                  />
-                                  <Route component={App} />
-                                </Switch>
-                              </CartProvider>
-                            )}
-                          </CheckoutContext.Consumer>
-                        </CheckoutProvider>
-                      )}
-                    </UserContext.Consumer>
-                  </UserProviderWithTokenHandler>
-                )}
-              </OverlayContext.Consumer>
-            </OverlayProvider>
-          </ShopProvider>
-        </AlertProvider>
-      </ApolloProvider>
-    </Router>,
+    <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+      <Root />
+    </AlertProvider>,
     document.getElementById("root")
   );
 };
