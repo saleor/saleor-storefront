@@ -2,7 +2,7 @@ import { ApolloError } from "apollo-client";
 import * as React from "react";
 import NumberFormat from "react-number-format";
 
-import { SelectField, TextField } from "..";
+import { Select, SelectField, TextField } from "..";
 
 export const NON_FIELD_ERROR = "nonFieldError";
 
@@ -164,7 +164,7 @@ class Form extends React.Component<FormProps, FormState> {
             event.preventDefault();
           }
         });
-      } else if (child.type === SelectField) {
+      } else if (child.type === SelectField || child.type === Select) {
         let defaultValue;
         if (
           child.props.name === "country" &&

@@ -11,6 +11,8 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
+import { structuredData } from "../../core/SEO/Product/structuredData";
+
 import noPhotoImg from "../../images/no-photo.svg";
 
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
@@ -96,6 +98,12 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
         </div>
         <div className="container">
           <div className="product-page__product">
+            {/* Add script here */}
+            <script className="structured-data-list" type="application/ld+json">
+              {structuredData(product)}
+            </script>
+
+            {/*  */}
             <Media query={{ maxWidth: smallScreen }}>
               {matches =>
                 matches ? (
