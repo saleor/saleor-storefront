@@ -2,8 +2,12 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import { Button, OverlayTheme, OverlayType } from "..";
+import { OverlayContextInterface } from "../Overlay";
 
-const CheckoutAsGuest = ({ overlayContext, checkoutUrl }) => (
+const CheckoutAsGuest: React.FC<{
+  overlayContext: OverlayContextInterface;
+  checkoutUrl: string;
+}> = ({ overlayContext, checkoutUrl }) => (
   <div className="checkout-login__guest">
     <h3 className="checkout__header">Continue as a guest</h3>
     <p>
