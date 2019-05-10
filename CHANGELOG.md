@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Fix items number in cart based on total sum of quantities - #286 by @bogdandjukic
+- Add link for creating account for anonymous users - #317 by @mateuszkula
 
 ## 0.5.1
 
