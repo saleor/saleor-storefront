@@ -7,11 +7,11 @@ const ResetPasswordForm: React.FC<{
   <>
     <h3 className="checkout__header">Registered user</h3>
     <PasswordResetForm />
-    <div className="login__content__password-reminder">
-      <p>
-        <span onClick={onClick}>Back to login</span>
-      </p>
-    </div>
+    <p>
+      <span className="u-link" onClick={onClick}>
+        Back to login
+      </span>
+    </p>
   </>
 );
 
