@@ -88,7 +88,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           to={generatePath(paymentUrl, { token })}
           className="checkout-review__back"
         >
-          Go back to Previous Step
+          Go back to the previous Step
         </Link>
 
         <div className="checkout__step checkout__step--inactive">
