@@ -42,12 +42,6 @@ const completeCheckout = (
         type: "success"
       }
     );
-    alert.show(
-      { title: "Your order was placed again" },
-      {
-        type: "success"
-      }
-    );
   } else {
     data.checkoutComplete.errors.map(error => {
       alert.show(
@@ -68,97 +62,87 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   }
 }) => {
   const alert = useAlert();
+  const {
+    cardData,
+    dummyStatus,
+    checkout,
+    clear: clearCheckout,
+    step
+  } = React.useContext(CheckoutContext);
+  const { clear: clearCart } = React.useContext(CartContext);
+  const user = React.useContext(UserContext);
+
+  const stepCheck = (
+    <StepCheck checkout={checkout} step={step} path={path} token={token} />
+  );
+
+  if (!checkout) {
+    return stepCheck;
+  }
 
   return (
-    <CheckoutContext.Consumer>
-      {({ cardData, dummyStatus, checkout, clear: clearCheckout, step }) => {
-        const stepCheck = (
-          <StepCheck
-            checkout={checkout}
-            step={step}
-            path={path}
-            token={token}
+    <>
+      {stepCheck}
+      <div className="checkout-review">
+        <Link
+          to={generatePath(paymentUrl, { token })}
+          className="checkout-review__back"
+        >
+          Go back to Previous Step
+        </Link>
+
+        <div className="checkout__step checkout__step--inactive">
+          <span>5</span>
+          <h4 className="checkout__header">Review your order</h4>
+        </div>
+
+        <div className="checkout__content">
+          <CartTable
+            lines={extractCheckoutLines(checkout.lines)}
+            subtotal={checkout.subtotalPrice.gross.localized}
+            deliveryCost={checkout.shippingMethod.price.localized}
+            totalCost={checkout.totalPrice.gross.localized}
           />
-        );
-
-        if (!checkout) {
-          return stepCheck;
-        }
-
-        return (
-          <>
-            {stepCheck}
-            <div className="checkout-review">
-              <Link
-                to={generatePath(paymentUrl, { token })}
-                className="checkout-review__back"
+          <div className="checkout-review__content">
+            <Summary
+              checkout={checkout}
+              cardData={cardData}
+              dummyStatus={dummyStatus}
+            />
+            <div className="checkout-review__content__submit">
+              <TypedCompleteCheckoutMutation
+                onCompleted={data =>
+                  completeCheckout(
+                    data,
+                    history,
+                    !user,
+                    clearCheckout,
+                    clearCart,
+                    alert
+                  )
+                }
               >
-                Go back to Previous Step
-              </Link>
-
-              <div className="checkout__step checkout__step--inactive">
-                <span>5</span>
-                <h4 className="checkout__header">Review your order</h4>
-              </div>
-
-              <div className="checkout__content">
-                <CartTable
-                  lines={extractCheckoutLines(checkout.lines)}
-                  subtotal={checkout.subtotalPrice.gross.localized}
-                  deliveryCost={checkout.shippingMethod.price.localized}
-                  totalCost={checkout.totalPrice.gross.localized}
-                />
-                <div className="checkout-review__content">
-                  <Summary
-                    checkout={checkout}
-                    cardData={cardData}
-                    dummyStatus={dummyStatus}
-                  />
-                  <div className="checkout-review__content__submit">
-                    <CartContext.Consumer>
-                      {({ clear: clearCart }) => (
-                        <UserContext.Consumer>
-                          {({ user }) => (
-                            <TypedCompleteCheckoutMutation
-                              onCompleted={data =>
-                                completeCheckout(
-                                  data,
-                                  history,
-                                  !user,
-                                  clearCheckout,
-                                  clearCart,
-                                  alert
-                                )
-                              }
-                            >
-                              {(completeCheckout, { loading }) => (
-                                <Button
-                                  type="submit"
-                                  disabled={loading}
-                                  onClick={() =>
-                                    completeCheckout({
-                                      variables: {
-                                        checkoutId: checkout.id
-                                      }
-                                    })
-                                  }
-                                >
-                                  {loading ? "Loading" : "Place your order"}
-                                </Button>
-                              )}
-                            </TypedCompleteCheckoutMutation>
-                          )}
-                        </UserContext.Consumer>
-                      )}
-                    </CartContext.Consumer>
-                  </div>
-                </div>
-              </div>
+                {(completeCheckout, { loading }) => (
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    onClick={() =>
+                      completeCheckout({
+                        variables: {
+                          checkoutId: checkout.id
+                        }
+                      })
+                    }
+                  >
+                    {loading ? "Loading" : "Place your order"}
+                  </Button>
+                )}
+              </TypedCompleteCheckoutMutation>
             </div>
-          </>
-        );
-      }}
-    </CheckoutContext.Consumer>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
