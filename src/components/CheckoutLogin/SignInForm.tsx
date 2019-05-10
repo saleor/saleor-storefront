@@ -1,5 +1,6 @@
 import React from "react";
 import { LoginForm } from "../";
+import ForgottenPassword from "../OverlayManager/Login/ForgottenPassword";
 
 const SignInForm: React.FC<{
   onClick: () => void;
@@ -7,12 +8,7 @@ const SignInForm: React.FC<{
   <>
     <h3 className="checkout__header">Registered user</h3>
     <LoginForm />
-    <div className="login__content__password-reminder">
-      <p>
-        Have you forgotten your password?&nbsp;
-        <span onClick={onClick}>Click Here</span>
-      </p>
-    </div>
+    <ForgottenPassword onClick={onClick} />
   </>
 );
 

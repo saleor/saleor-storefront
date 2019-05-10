@@ -16,6 +16,7 @@ import {
 import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
+import ForgottenPassword from "./ForgottenPassword";
 
 class Login extends React.Component<
   { overlay: OverlayContextInterface; active?: "login" | "register" },
@@ -69,18 +70,11 @@ class Login extends React.Component<
               {this.state.active === "login" ? (
                 <>
                   <LoginForm />
-                  <div className="login__content__password-reminder">
-                    <p>
-                      Have you forgotten your password?&nbsp;
-                      <span
-                        onClick={() =>
-                          show(OverlayType.password, OverlayTheme.right)
-                        }
-                      >
-                        Click Here
-                      </span>
-                    </p>
-                  </div>
+                  <ForgottenPassword
+                    onClick={() => {
+                      show(OverlayType.password, OverlayTheme.right);
+                    }}
+                  />
                 </>
               ) : (
                 <RegisterForm show={show} />
