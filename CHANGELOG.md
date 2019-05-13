@@ -9,6 +9,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Create custom Select component and add it to ShippingAddress form - ##312 by @AlicjaSzu
 - Add schema.org data to homepage and product detail page - #316 by @koradon
 - Add link for creating account for anonymous users - #317 by @mateuszkula
+- Add react-alert library = #320 by @AlicjaSzu
 
 ## 0.5.1
 
