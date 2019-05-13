@@ -67,11 +67,16 @@ export interface ProductVariantFields {
    * The ID of the object.
    */
   id: string;
+  sku: string;
   name: string;
   /**
    * Quantity of a product available for sale.
    */
   stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Price of the product variant.
    */

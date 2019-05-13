@@ -24,8 +24,10 @@ export const basicProductFragment = gql`
 export const productVariantFragment = gql`
   fragment ProductVariantFields on ProductVariant {
     id
+    sku
     name
     stockQuantity
+    isAvailable
     price {
       currency
       amount

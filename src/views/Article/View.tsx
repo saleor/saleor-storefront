@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-import { MetaWrapper } from "../../components";
+import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
 import Page from "./Page";
@@ -52,6 +52,10 @@ export const View: React.FC<ViewProps> = ({
             />
           </MetaWrapper>
         );
+      }
+
+      if (page === null) {
+        return <NotFound />;
       }
     }}
   </TypedArticleQuery>

@@ -27,6 +27,7 @@ const View: React.FC = () => (
                 loading={loading}
                 backgroundImage={data.shop.homepageCollection.backgroundImage}
                 categories={data.categories}
+                shop={data.shop}
               />
             </MetaWrapper>
           );

@@ -7,7 +7,12 @@ import { Link } from "react-router-dom";
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { ProductsList_categories } from "../../core/types/saleor";
 import { generateCategoryUrl } from "../../core/utils";
-import { ProductsList_shop_homepageCollection_backgroundImage } from "./types/ProductsList";
+import {
+  ProductsList_shop,
+  ProductsList_shop_homepageCollection_backgroundImage
+} from "./types/ProductsList";
+
+import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
@@ -15,8 +20,12 @@ const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
-}> = ({ loading, categories, backgroundImage }) => (
+  shop: ProductsList_shop;
+}> = ({ loading, categories, backgroundImage, shop }) => (
   <>
+    <script className="structured-data-list" type="application/ld+json">
+      {structuredData(shop)}
+    </script>
     <div
       className="home-page__hero"
       style={
