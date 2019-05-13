@@ -17,8 +17,6 @@ const CheckoutLogin: React.FC<{}> = () => {
   const overlay = useContext(OverlayContext);
   const { user } = useContext(UserContext);
   if (user) {
-    // tslint:disable-next-line: no-console
-    console.log(user);
     return <Redirect to={checkoutUrl} />;
   }
   return (
