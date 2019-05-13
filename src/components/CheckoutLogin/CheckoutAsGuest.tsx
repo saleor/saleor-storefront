@@ -5,9 +5,9 @@ import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
 
 const CheckoutAsGuest: React.FC<{
-  overlayContext: OverlayContextInterface;
+  overlay: OverlayContextInterface;
   checkoutUrl: string;
-}> = ({ overlayContext, checkoutUrl }) => (
+}> = ({ overlay, checkoutUrl }) => (
   <div className="checkout-login__guest">
     <h3 className="checkout__header">Continue as a guest</h3>
     <p>
@@ -23,9 +23,7 @@ const CheckoutAsGuest: React.FC<{
       or you can{" "}
       <span
         className="u-link"
-        onClick={() =>
-          overlayContext.show(OverlayType.register, OverlayTheme.right)
-        }
+        onClick={() => overlay.show(OverlayType.register, OverlayTheme.right)}
       >
         create an account
       </span>
