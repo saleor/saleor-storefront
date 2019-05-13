@@ -9,7 +9,8 @@ export enum OverlayType {
   password = "password",
   search = "search",
   mainMenuNav = "main-menu-nav",
-  modal = "modal"
+  modal = "modal",
+  register = "register"
 }
 
 export enum OverlayTheme {
