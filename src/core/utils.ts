@@ -2,9 +2,11 @@ import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
+import { FetchResult } from "react-apollo";
 import { generatePath } from "react-router";
 
 import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
+import { FormError } from "./types";
 
 export const slugify = (text: string | number): string =>
   text
@@ -153,3 +155,16 @@ export const updateQueryString = (
 
 export const isPath = (pathname: string, url: string) =>
   pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
+
+export const findFormErrors = (result: void | FetchResult): FormError[] => {
+  if (result) {
+    const data = Object.values(maybe(() => result.data, []));
+
+    return data.reduce((prevVal, currVal) => {
+      const errors = currVal.errors || [];
+
+      return [...prevVal, ...errors];
+    }, []);
+  }
+  return [];
+};

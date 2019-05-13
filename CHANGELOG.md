@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Fix items number in cart based on total sum of quantities - #286 by @bogdandjukic
+- Add new styles for inputs and labels - #311 by @AlicjaSzu
 - Create custom Select component and add it to ShippingAddress form - ##312 by @AlicjaSzu
 - Add schema.org data to homepage and product detail page - #316 by @koradon
 
@@ -20,6 +21,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add order details page - #262 by @piotrgrundas
 - Add order confirmation page - #263 by @piotrgrundas
 - Fix checkout composition - #264 by @piotrgrundas
+- Add ability to select user stored addresses, update copying shipping address to billing - #265 by @piotrgrundas
 - Fix rendering order statuses and order line prices - #281 by @maarcingebala
 
 ## 0.4.0

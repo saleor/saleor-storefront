@@ -11,17 +11,18 @@ export interface FormError {
   field?: string;
 }
 
-interface FormProps {
+interface FormProps<Values> {
+  id?: string;
   children: React.ReactNode;
   className?: string;
   errors?: FormError[];
-  data?: { [key: string]: string | any };
+  data?: Values;
   formRef?: React.RefObject<HTMLFormElement>;
-  onSubmit?(event: React.FormEvent<any>, data: { [key: string]: string });
+  onSubmit?(event: React.FormEvent<any>, data: Values);
 }
 
-interface FormState {
-  data: { [key: string]: string | any };
+interface FormState<Values> {
+  data: Values;
   errors: FormError[];
 }
 
@@ -45,7 +46,10 @@ function removeDuplicatedErrors(errors) {
   });
 }
 
-class Form extends React.Component<FormProps, FormState> {
+class Form<Values> extends React.Component<
+  FormProps<Values>,
+  FormState<Values>
+> {
   static getDerivedStateFromProps(props, state) {
     const propsKey = (props.errors || [])
       .map(error => error.field || NON_FIELD_ERROR)

@@ -27,6 +27,9 @@ const updateCheckoutShippingAddressMutation = gql`
       }
     }
     checkoutEmailUpdate(checkoutId: $checkoutId, email: $email) {
+      checkout {
+        ...Checkout
+      }
       errors {
         field
         message

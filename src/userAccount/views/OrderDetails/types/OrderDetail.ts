@@ -21,6 +21,10 @@ export interface OrderDetail_shippingAddress_country {
 
 export interface OrderDetail_shippingAddress {
   __typename: "Address";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   firstName: string;
   lastName: string;
   companyName: string;

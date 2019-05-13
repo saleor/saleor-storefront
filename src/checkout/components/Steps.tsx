@@ -15,7 +15,6 @@ const getSummary = (
 
   switch (step) {
     case CheckoutStep.ShippingAddress:
-    case CheckoutStep.BillingAddress:
       summary = (
         <AddressSummary
           email={checkout.email}
@@ -24,8 +23,17 @@ const getSummary = (
       );
       break;
 
-    case CheckoutStep.ShippingOption:
+    case CheckoutStep.BillingAddress:
       summary = (
+        <AddressSummary
+          email={checkout.email}
+          address={checkout.billingAddress}
+        />
+      );
+      break;
+
+    case CheckoutStep.ShippingOption:
+      summary = checkout.shippingMethod && (
         <ShippingOptionSummary shippingMethod={checkout.shippingMethod} />
       );
   }
@@ -54,7 +62,10 @@ const Steps: React.FC<{
       path: billingUrl,
       step: CheckoutStep.BillingAddress
     },
-    { header: "Payment Method", step: CheckoutStep.Payment }
+    {
+      header: "Payment Method",
+      step: CheckoutStep.Payment
+    }
   ];
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
 
@@ -64,7 +75,11 @@ const Steps: React.FC<{
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>
-              <Link to={generatePath(path, { token })}>
+              <Link
+                to={generatePath(path, {
+                  token
+                })}
+              >
                 <div className="checkout__step checkout__step--inactive">
                   <span>{index + 1}</span>
                   <h4 className="checkout__header">{header}</h4>
