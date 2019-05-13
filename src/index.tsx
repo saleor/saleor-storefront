@@ -95,7 +95,7 @@ const startApp = async () => {
                 onUserLogin={() =>
                   alert.show(
                     {
-                      title: "You are logged in"
+                      title: "You are now logged in"
                     },
                     { type: "success" }
                   )
@@ -103,7 +103,7 @@ const startApp = async () => {
                 onUserLogout={() =>
                   alert.show(
                     {
-                      title: "You are logged out"
+                      title: "You are now logged out"
                     },
                     { type: "success" }
                   )
