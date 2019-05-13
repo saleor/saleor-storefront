@@ -15,8 +15,10 @@ import SignInForm from "./SignInForm";
 const CheckoutLogin: React.FC<{}> = () => {
   const [resetPassword, setResetPassword] = useState(false);
   const overlay = useContext(OverlayContext);
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
   if (user) {
+    // tslint:disable-next-line: no-console
+    console.log(user);
     return <Redirect to={checkoutUrl} />;
   }
   return (
