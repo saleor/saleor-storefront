@@ -1,0 +1,7 @@
+[
+  {
+    "data": {
+      "customerRegister": { "errors": [], "__typename": "CustomerRegister" }
+    }
+  }
+]
