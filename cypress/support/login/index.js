@@ -33,8 +33,6 @@ const loginOrRegisterUser = (type = "login", user) => {
 };
 
 Cypress.Commands.add("registerUser", user =>
-  loginOrRegisterUser("login", user)
-);
-Cypress.Commands.add("loginUser", user =>
   loginOrRegisterUser("register", user)
 );
+Cypress.Commands.add("loginUser", user => loginOrRegisterUser("login", user));

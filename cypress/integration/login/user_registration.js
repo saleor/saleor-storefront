@@ -2,6 +2,10 @@
 import { userBuilder } from "../../support/generate";
 
 describe.only("User registration", () => {
+  beforeEach(() => {
+    cy.visit("/");
+  });
+
   let user = null;
 
   it("should open ovarlay with a sign in and register form", () => {
