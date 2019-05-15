@@ -98,7 +98,6 @@ const MainMenu: React.FC = () => (
                     {({ logout, user }) =>
                       user ? (
                         <MenuDropdown
-                          data-testid="logout-btn"
                           head={
                             <li className="main-menu__icon main-menu__user--active">
                               <ReactSVG path={userImg} />

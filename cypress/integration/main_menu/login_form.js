@@ -1,14 +1,14 @@
 /// <reference types="cypress" />
 import { userBuilder } from "../../support/generate";
 
-describe.only("User login, logout and registration", () => {
+describe("User login, logout and registration", () => {
   let user = null;
 
   beforeEach(() => {
     cy.visit("/");
   });
 
-  it("should open ovarlay with a sign in and register form", () => {
+  it("should open overlay with a sign in and register form", () => {
     cy.getByTestId("login-btn")
       .click()
       .get(".overlay")
@@ -33,21 +33,25 @@ describe.only("User login, logout and registration", () => {
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser(user)
-        .get(".message__title")
+        .get(".message__title", { timeout: 4000 })
         .contains("You are logged in");
     });
 
     it("should display an error if user does not exist", () => {
-      const user = userBuilder();
-      cy.loginUser(user)
-        .get(".login__content .form-error")
+      const notRegisteredUser = userBuilder();
+      cy.loginUser(notRegisteredUser)
+        .get(".login__content .form-error", { timeout: 4000 })
         .contains("Please, enter valid credentials");
     });
   });
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      cy.loginUser(user);
+      const user = userBuilder();
+      cy.registerUser(user).loginUser(user);
+      cy.logoutUser()
+        .get(".message__title", { timeout: 4000 })
+        .should("contain", "You are logged out");
     });
   });
 });
