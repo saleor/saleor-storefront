@@ -1,0 +1,184 @@
+{
+  "operation": "ProductDetails",
+  "response": {
+    "data": {
+      "product": {
+        "id": "UHJvZHVjdDo4Mw==",
+        "name": "Seaman Lager",
+        "thumbnail": {
+          "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_beer-02_1_Rqj1oVa-thumbnail-255x255.png",
+          "alt": "",
+          "__typename": "Image"
+        },
+        "thumbnail2x": {
+          "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_beer-02_1_Rqj1oVa-thumbnail-510x510.png",
+          "__typename": "Image"
+        },
+        "__typename": "Product",
+        "description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
+        "category": {
+          "id": "Q2F0ZWdvcnk6OA==",
+          "name": "Groceries",
+          "products": {
+            "edges": [
+              {
+                "node": {
+                  "id": "UHJvZHVjdDo3Mg==",
+                  "name": "Apple Juice",
+                  "thumbnail": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_9bOBp4D-thumbnail-255x255.png",
+                    "alt": "",
+                    "__typename": "Image"
+                  },
+                  "thumbnail2x": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_9bOBp4D-thumbnail-510x510.png",
+                    "__typename": "Image"
+                  },
+                  "__typename": "Product",
+                  "category": {
+                    "id": "Q2F0ZWdvcnk6OA==",
+                    "name": "Groceries",
+                    "__typename": "Category"
+                  },
+                  "price": {
+                    "amount": 3.0,
+                    "currency": "USD",
+                    "localized": "$3.00",
+                    "__typename": "Money"
+                  }
+                },
+                "__typename": "ProductCountableEdge"
+              },
+              {
+                "node": {
+                  "id": "UHJvZHVjdDo3NA==",
+                  "name": "Banana Juice",
+                  "thumbnail": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_01_RUX1zTm-thumbnail-255x255.png",
+                    "alt": "",
+                    "__typename": "Image"
+                  },
+                  "thumbnail2x": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_01_RUX1zTm-thumbnail-510x510.png",
+                    "__typename": "Image"
+                  },
+                  "__typename": "Product",
+                  "category": {
+                    "id": "Q2F0ZWdvcnk6OA==",
+                    "name": "Groceries",
+                    "__typename": "Category"
+                  },
+                  "price": {
+                    "amount": 3.0,
+                    "currency": "USD",
+                    "localized": "$3.00",
+                    "__typename": "Money"
+                  }
+                },
+                "__typename": "ProductCountableEdge"
+              },
+              {
+                "node": {
+                  "id": "UHJvZHVjdDo3OQ==",
+                  "name": "Bean Juice",
+                  "thumbnail": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_02_nj97QwG-thumbnail-255x255.png",
+                    "alt": "",
+                    "__typename": "Image"
+                  },
+                  "thumbnail2x": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_02_nj97QwG-thumbnail-510x510.png",
+                    "__typename": "Image"
+                  },
+                  "__typename": "Product",
+                  "category": {
+                    "id": "Q2F0ZWdvcnk6OA==",
+                    "name": "Groceries",
+                    "__typename": "Category"
+                  },
+                  "price": {
+                    "amount": 3.0,
+                    "currency": "USD",
+                    "localized": "$3.00",
+                    "__typename": "Money"
+                  }
+                },
+                "__typename": "ProductCountableEdge"
+              },
+              {
+                "node": {
+                  "id": "UHJvZHVjdDo3Mw==",
+                  "name": "Carrot Juice",
+                  "thumbnail": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_05_IMug5SG-thumbnail-255x255.png",
+                    "alt": "",
+                    "__typename": "Image"
+                  },
+                  "thumbnail2x": {
+                    "url": "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_05_IMug5SG-thumbnail-510x510.png",
+                    "__typename": "Image"
+                  },
+                  "__typename": "Product",
+                  "category": {
+                    "id": "Q2F0ZWdvcnk6OA==",
+                    "name": "Groceries",
+                    "__typename": "Category"
+                  },
+                  "price": {
+                    "amount": 3.0,
+                    "currency": "USD",
+                    "localized": "$3.00",
+                    "__typename": "Money"
+                  }
+                },
+                "__typename": "ProductCountableEdge"
+              }
+            ],
+            "__typename": "ProductCountableConnection"
+          },
+          "__typename": "Category"
+        },
+        "price": {
+          "amount": 3.0,
+          "currency": "USD",
+          "localized": "$3.00",
+          "__typename": "Money"
+        },
+        "images": [
+          {
+            "id": "UHJvZHVjdEltYWdlOjE3",
+            "url": "http://localhost:8000/media/products/saleordemoproduct_beer-02_1_Rqj1oVa.png",
+            "__typename": "ProductImage"
+          },
+          {
+            "id": "UHJvZHVjdEltYWdlOjE4",
+            "url": "http://localhost:8000/media/products/saleordemoproduct_beer-02_2_i1ZKOha.png",
+            "__typename": "ProductImage"
+          }
+        ],
+        "variants": [
+          {
+            "id": "UHJvZHVjdFZhcmlhbnQ6MTk1",
+            "sku": "98616712",
+            "name": "",
+            "stockQuantity": 12121,
+            "price": {
+              "currency": "USD",
+              "amount": 3.0,
+              "localized": "$3.00",
+              "__typename": "Money"
+            },
+            "attributes": [],
+            "__typename": "ProductVariant"
+          }
+        ],
+        "seoDescription": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
+        "seoTitle": "",
+        "availability": {
+          "available": true,
+          "__typename": "ProductAvailability"
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,11 @@
-[
-  {
+{
+  "operationName": "CustomerRegister",
+  "response": {
     "data": {
-      "customerRegister": { "errors": [], "__typename": "CustomerRegister" }
+      "customerRegister": {
+        "errors": [{ "error": "error" }],
+        "__typename": "CustomerRegister"
+      }
     }
   }
-]
+}

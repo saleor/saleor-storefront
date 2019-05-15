@@ -36,3 +36,4 @@ Cypress.Commands.add("registerUser", user =>
   loginOrRegisterUser("register", user)
 );
 Cypress.Commands.add("loginUser", user => loginOrRegisterUser("login", user));
+Cypress.Commands.add("logoutUser", () => cy.getByTestId("logout-btn").click());
