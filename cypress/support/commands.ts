@@ -14,7 +14,8 @@ Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
   }
 
   function serverStub(path, req) {
-    const { operationName } = JSON.parse(req.body);
+    const body = JSON.parse(req.body);
+    const { operationName } = body[0];
 
     if (Object.keys(operations).indexOf(operationName) !== false) {
       return Promise.resolve(responseStub(operations[operationName]));
@@ -29,5 +30,36 @@ Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
         .callsFake(serverStub)
         .as("fetch stub");
     }
+  });
+});
+
+Cypress.Commands.add("mockGraphQL", stubs => {
+  cy.on("window:before:load", win => {
+    cy.stub(win, "fetch", (...args) => {
+      const [url, request] = args;
+      const postBody = JSON.parse(request.body)[0];
+      let promise;
+
+      if (url.indexOf("graphql") !== -1) {
+        stubs.some(stub => {
+          if (postBody.operationName === stub.operation) {
+            promise = Promise.resolve({
+              ok: true,
+              text() {
+                return Promise.resolve(JSON.stringify(stub.response));
+              }
+            });
+            return true;
+          }
+        });
+      }
+
+      if (promise) {
+        return promise;
+      }
+
+      console.log("Could not find a stub for the operation.");
+      return false;
+    });
   });
 });
