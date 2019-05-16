@@ -83,7 +83,7 @@ export const Select = (props: ISelectProps) => {
         name={name}
         defaultValue={defaultValue.value}
       />
-      <div>
+      <div className="select__container">
         <div className="select__title">
           <input
             ref={inputRef}
