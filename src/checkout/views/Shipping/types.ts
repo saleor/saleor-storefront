@@ -2,12 +2,6 @@ import { History } from "history";
 import { MutationFn } from "react-apollo";
 
 import { AddressInput } from "../../../../types/globalTypes";
-<<<<<<< HEAD
-=======
-import { FormAddressType } from "../../../components";
-import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
-
->>>>>>> update address type in shipping components
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
@@ -29,7 +23,6 @@ export interface IShippingPageProps {
   createCheckout: MutationFn;
   updateCheckout: MutationFn;
   user: User;
-<<<<<<< HEAD
   shop: getShop_shop;
   proceedToNextStepData: {
     update: (checkoutData: CheckoutContextInterface) => void;
@@ -43,15 +36,4 @@ export interface IShippingPageState {
   errors: FormError[];
   loading: boolean;
   shippingUnavailable: boolean;
-=======
-  checkout: Checkout;
-  shipping: boolean;
-  onSubmit: (selectedAddress: FormAddressType) => void;
-  update?: (checkoutData: CheckoutContextInterface) => Promise<void>;
-}
-
-export interface UserAddressSelectorState {
-  addresses: FormAddressType[];
-  selectedAddress?: FormAddressType;
->>>>>>> update address type in shipping components
 }

@@ -1,18 +1,10 @@
 import * as React from "react";
 
 import { ShippingAddressForm } from "../../../components";
-import { FormAddressType } from "../../../components/ShippingAddressForm/types";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
-import { FormError } from "../../../core/types";
 import { maybe } from "../../../core/utils";
 import { CheckoutFormType, IGuestAddressProps } from "../../types";
 import { Checkout } from "../../types/Checkout";
-
-interface ISubmitArgs {
-  errors: FormError[];
-  onSubmit: (selectedAddress: FormAddressType) => void;
-  proceedToNextStep: () => void;
-}
 
 const getCountryData = (shop: getShop_shop) => {
   const { geolocalization, defaultCountry } = shop;
