@@ -1,40 +1,10 @@
-import { each, isEqual, omit, uniqWith } from "lodash";
 import React from "react";
 
 import { Button } from "../../../components";
 import { FormAddressType } from "../../../components/ShippingAddressForm/types";
-import { maybe } from "../../../core/utils";
 import { AddressPicker } from "../../components/AddressPicker";
-import {
-  CheckoutFormType,
-  IInitialUserAddressesArgs,
-  UserAddressSelectorProps
-} from "../../types";
-
-const getInitialAddresses = ({
-  type,
-  checkout,
-  user
-}: IInitialUserAddressesArgs) => {
-  const {
-    addresses: userAddresses,
-    defaultBillingAddress,
-    defaultShippingAddress
-  } = user;
-
-  return uniqWith(
-    each(
-      [
-        ...(type === "shipping"
-          ? [maybe(() => checkout.shippingAddress, defaultShippingAddress)]
-          : [maybe(() => checkout.billingAddress, defaultBillingAddress)]),
-        ...userAddresses
-      ].filter(address => address),
-      address => omit(address, "id")
-    ),
-    isEqual
-  );
-};
+import { CheckoutFormType, UserAddressSelectorProps } from "../../types";
+import { getInitialAddresses } from "./utils";
 
 const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   buttonText,
@@ -55,9 +25,9 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
       user
     ])
   );
-  const [isVisibleAddNewModalForm, setModalVisibility] = React.useState<
-    boolean
-  >(false);
+  const [isVisibleModalForm, setModalVisibility] = React.useState<boolean>(
+    false
+  );
   const [
     selectedAddress,
     setSelectedAddress
@@ -126,16 +96,14 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
         onAddressSelect={handleAddressSelect}
         handleAddressAdd={handleAddressAdd}
         selectedAddress={selectedAddress}
-        isVisibleAddNewModalForm={isVisibleAddNewModalForm}
+        isVisibleModalForm={isVisibleModalForm}
         hideAddNewModalForm={hideAddModalForm}
         showAddNewModalForm={showAddModalForm}
       />
       <Button
         type="submit"
         disabled={(!selectedAddress && !shippingAsBilling) || loading}
-        onClick={React.useCallback(() => proceedToNextStep(selectedAddress), [
-          selectedAddress
-        ])}
+        onClick={() => proceedToNextStep(selectedAddress)}
       >
         {buttonText}
       </Button>
