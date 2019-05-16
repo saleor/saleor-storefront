@@ -1,3 +1,5 @@
+import "./scss/index.scss";
+
 import classNames from "classnames";
 import React from "react";
 import NumberFormat from "react-number-format";
@@ -6,15 +8,23 @@ import { GatewaysEnum } from "../../../../../../types/globalTypes";
 import { Form, TextField } from "../../../../../components";
 import {
   braintreePayment,
-  ErrorData
+  ICreditCardState
 } from "../../../../../core/payments/braintree";
 import { ProviderProps } from "../../View";
 
-class CreditCard extends React.PureComponent<ProviderProps, ErrorData> {
+const FOCUS_CLASS = "input__label--focus";
+class CreditCard extends React.PureComponent<ProviderProps, ICreditCardState> {
   state = {
     cvv: "",
     expirationMonth: "",
     expirationYear: "",
+    focusedInput: null,
+    inputs: {
+      ccCsc: null,
+      ccExp: null,
+      ccNumber: null
+    },
+
     nonFieldError: "",
     number: ""
   };
@@ -78,8 +88,34 @@ class CreditCard extends React.PureComponent<ProviderProps, ErrorData> {
     processPayment(token, GatewaysEnum.BRAINTREE);
   };
 
+  handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) =>
+    this.setState({
+      focusedInput: e.target.name
+    });
+
+  handleOnBlur = () => this.setState({ focusedInput: null });
+
+  handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const inputs = { ...this.state.inputs };
+    inputs[name] = value;
+    this.setState({ inputs });
+  };
+
+  classNameActive = (name: string) =>
+    (this.state.focusedInput === name || this.state.inputs[name]) &&
+    FOCUS_CLASS;
+
+  getInputProps = () => ({
+    customInput: TextField,
+    disabled: this.props.loading,
+    onBlur: this.handleOnBlur,
+    onChange: this.handleOnChange,
+    onFocus: this.handleOnFocus
+  });
+
   render() {
-    const { formRef, loading } = this.props;
+    const { formRef } = this.props;
     const {
       expirationMonth,
       expirationYear,
@@ -95,39 +131,64 @@ class CreditCard extends React.PureComponent<ProviderProps, ErrorData> {
 
     return (
       <Form formRef={formRef} onSubmit={this.handleSubmit}>
-        <span className="input__label">Number</span>
-        <div className={classNameError(cardNumber)}>
+        <div
+          className={classNames("input__payment", classNameError(cardNumber))}
+        >
+          <span
+            className={classNames(
+              "input__label",
+              this.classNameActive("ccNumber")
+            )}
+          >
+            Number
+          </span>
           <NumberFormat
             autoComplete="cc-number"
-            customInput={TextField}
-            disabled={loading}
             format="#### #### #### ####"
             name="ccNumber"
+            {...this.getInputProps()}
           />
         </div>
         {fieldError(cardNumber)}
 
         <div className="checkout-payment__form-grid">
-          <div className={classNameError(cvv)}>
-            <span className="input__label">CVC</span>
+          <div className={classNames("input__payment", classNameError(cvv))}>
+            <span
+              className={classNames(
+                "input__label",
+                this.classNameActive("ccCsc")
+              )}
+            >
+              CVC
+            </span>
             <NumberFormat
               autoComplete="cc-csc"
-              customInput={TextField}
-              disabled={loading}
               format="####"
               name="ccCsc"
+              {...this.getInputProps()}
             />
             {fieldError(cvv)}
           </div>
 
-          <div className={classNameError(expirationMonth || expirationYear)}>
-            <span className="input__label">Expiry Date</span>
+          <div
+            className={classNames(
+              "input__payment",
+              classNameError(expirationMonth || expirationYear)
+            )}
+          >
+            <span
+              className={classNames(
+                "input__label",
+                this.classNameActive("ccExp")
+              )}
+            >
+              Expiry Date
+            </span>
             <NumberFormat
               autoComplete="cc-exp"
-              customInput={TextField}
-              disabled={loading}
               format="## / ##"
               name="ccExp"
+              {...this.getInputProps()}
             />
             {fieldError(expirationMonth)}
             {fieldError(expirationYear)}

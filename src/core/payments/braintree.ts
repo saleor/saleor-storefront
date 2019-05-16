@@ -6,12 +6,23 @@ interface PaymentData {
   token: string;
 }
 
+interface IInputs {
+  ccCsc: string | null;
+  ccExp: string | null;
+  ccNumber: string | null;
+}
+
 export interface ErrorData {
   cvv?: string;
   expirationMonth?: string;
   expirationYear?: string;
   nonFieldError?: string;
   number?: string;
+}
+
+export interface ICreditCardState extends ErrorData {
+  focusedInput: string;
+  inputs: IInputs;
 }
 
 export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
