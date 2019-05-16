@@ -14,6 +14,8 @@ import { HomePage } from "../../views/Home";
 import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import SearchPage from "../../views/Search";
+import CheckoutApp from "../../checkout";
+import { baseUrl as checkoutBaseUrl } from "../../checkout/routes";
 
 const slugUrl = ':slug([a-z-0-9]+)/:id([0-9]+)/';
 export const baseUrl = "/";
@@ -35,6 +37,7 @@ export const Routes: React.FC = () => (
     <Route path={collectionUrl} component={CollectionPage} />
     <Route path={productUrl} component={ProductPage} />
     <Route path={cartUrl} component={CartPage} />
+    <Route path={checkoutBaseUrl} component={CheckoutApp} />
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={pageUrl} component={ArticlePage} />
     <Route path={userAccountBaseUrl} component={UserAccount} />

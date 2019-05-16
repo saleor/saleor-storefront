@@ -8,15 +8,13 @@ import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 
-import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
-import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 
 import {
   App,
@@ -119,13 +117,7 @@ const startApp = async () => {
                             checkout={checkout}
                             apolloClient={apolloClient}
                           >
-                            <Switch>
-                              <Route
-                                path={checkoutBaseUrl}
-                                component={CheckoutApp}
-                              />
-                              <Route component={App} />
-                            </Switch>
+                            <Route component={App} />
                           </CartProvider>
                         )}
                       </CheckoutContext.Consumer>
