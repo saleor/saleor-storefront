@@ -4,8 +4,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
+import { baseUrl } from "../../routes";
 import { Category_category } from "../../views/Category/types/Category";
-import { baseUrl } from "../App/routes";
 
 export interface Breadcrumb {
   value: string;

@@ -1,4 +1,4 @@
-import "./scss/index.scss";
+import "../globalStyles/scss/index.scss";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";

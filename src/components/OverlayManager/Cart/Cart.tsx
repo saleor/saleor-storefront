@@ -14,8 +14,8 @@ import {
 } from "../..";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
+import { cartUrl, checkoutLoginUrl } from "../../../routes";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
-import { cartUrl, checkoutLoginUrl } from "../../App/routes";
 import { CartContext } from "../../CartProvider/context";
 import { extractCartLines, getTotal } from "../../CartProvider/uitls";
 import { Error } from "../../Error";
