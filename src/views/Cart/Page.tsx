@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { Button, CartTable, EmptyCart, Loader } from "../../components";
-import { checkoutLoginUrl } from "../../components/App/routes";
 import { CartInterface } from "../../components/CartProvider/context";
 import {
   extractCartLines,
@@ -18,6 +17,7 @@ import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { UserContext } from "../../components/User/context";
 import { maybe } from "../../core/utils";
+import { checkoutLoginUrl } from "../../routes";
 import { TypedProductVariantsQuery } from "../Product/queries";
 
 interface PageProps {

@@ -1,4 +1,4 @@
-@import "../../App/scss/variables.scss";
+@import "../../../globalStyles/scss/variables.scss";
 
 .products-list {
   &__loader {
@@ -7,8 +7,8 @@
 
     @media (max-width: $small-screen) {
       order: 3;
-      flex-grow:0;
-      flex-basis:100%;
+      flex-grow: 0;
+      flex-basis: 100%;
     }
   }
 
@@ -21,7 +21,7 @@
       align-items: center;
 
       @media (max-width: $small-screen) {
-        flex-flow:row wrap;
+        flex-flow: row wrap;
       }
 
       &__total,
@@ -46,7 +46,6 @@
 
         @media (max-width: $small-screen) {
           flex: 2;
-
         }
 
         span {
