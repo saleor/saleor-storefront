@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import React, { useContext, useState } from "react";
-import { Redirect, RouteComponentProps } from "react-router";
+import { Redirect } from "react-router";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 

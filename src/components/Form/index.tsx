@@ -1,4 +1,3 @@
-import { ApolloError } from "apollo-client";
 import * as React from "react";
 import NumberFormat from "react-number-format";
 

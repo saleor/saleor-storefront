@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { Redirect, RouteComponentProps } from "react-router";
+import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 

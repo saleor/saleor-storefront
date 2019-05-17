@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import { History } from "history";
 import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
-import { generatePath, Redirect, RouteComponentProps } from "react-router";
+import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
 import { Button, CartTable } from "../../../components";
