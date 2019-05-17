@@ -13,13 +13,13 @@ import urljoin from "url-join";
 
 import { createBrowserHistory } from "history";
 
+import { App } from "./app";
 import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 
 import {
-  App,
   NotificationTemplate,
   OverlayProvider,
   UserProvider
