@@ -17,15 +17,13 @@ const showSuccessNotification = (
   const successful = maybe(() => !data.customerRegister.errors.length);
 
   if (successful) {
-    if (!!hide) {
-      hide();
-      alert.show(
-        {
-          title: "New user has been created"
-        },
-        { type: "success" }
-      );
-    }
+    hide();
+    alert.show(
+      {
+        title: "New user has been created"
+      },
+      { type: "success" }
+    );
   }
 };
 

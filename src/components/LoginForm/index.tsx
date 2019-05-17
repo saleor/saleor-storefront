@@ -15,7 +15,7 @@ interface ILoginForm {
 const performLogin = (
   login: (token: string, user: TokenAuth_tokenCreate_user) => void,
   data: TokenAuth,
-  hide: () => void
+  hide?: () => void
 ) => {
   const successfull = !data.tokenCreate.errors.length;
 
