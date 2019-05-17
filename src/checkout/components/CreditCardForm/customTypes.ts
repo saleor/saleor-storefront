@@ -11,7 +11,7 @@ interface IInputProps {
 }
 
 export interface ICreditCardForm {
-  formRef: any;
+  formRef: React.RefObject<HTMLFormElement>;
   cardErrors: ICardErrors;
   cardValues: ICardInputs;
   focusedInputName: ICardName;
