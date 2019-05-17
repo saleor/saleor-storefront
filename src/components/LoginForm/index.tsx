@@ -8,22 +8,32 @@ import { UserContext } from "../User/context";
 import { TypedTokenAuthMutation } from "../User/queries";
 import { TokenAuth, TokenAuth_tokenCreate_user } from "../User/types/TokenAuth";
 
+interface ILoginForm {
+  hide?: () => void;
+}
+
 const performLogin = (
   login: (token: string, user: TokenAuth_tokenCreate_user) => void,
-  data: TokenAuth
+  data: TokenAuth,
+  hide: () => void
 ) => {
   const successfull = !data.tokenCreate.errors.length;
 
   if (successfull) {
+    if (!!hide) {
+      hide();
+    }
     login(data.tokenCreate.token, data.tokenCreate.user);
   }
 };
 
-const LoginForm: React.FC = () => (
+const LoginForm: React.FC<ILoginForm> = ({ hide }) => (
   <div className="login-form">
     <UserContext.Consumer>
       {({ login }) => (
-        <TypedTokenAuthMutation onCompleted={data => performLogin(login, data)}>
+        <TypedTokenAuthMutation
+          onCompleted={data => performLogin(login, data, hide)}
+        >
           {(tokenCreate, { data, loading }) => {
             return (
               <Form
