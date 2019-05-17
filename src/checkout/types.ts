@@ -52,10 +52,10 @@ export interface UserAddressSelectorProps {
   update?: (checkoutData: CheckoutContextInterface) => void;
 }
 
-export interface UserAddressSelectorState {
-  addresses: FormAddressType[];
-  selectedAddress?: FormAddressType;
-  isVisibleAddNewModalForm: boolean;
+export interface IInitialUserAddressesArgs {
+  checkout: Checkout;
+  type: CheckoutFormType;
+  user: User;
 }
 
 export interface ISubmitArgs {
@@ -71,13 +71,13 @@ export interface IAddressPickerProps {
   addresses: FormAddressType[];
   type: CheckoutFormType;
   errors: FormError[];
-  isVisibleAddNewModalForm: boolean;
+  isVisibleModalForm: boolean;
   loading: boolean;
   selectedAddress?: FormAddressType;
   onAddressSelect: (address: FormAddressType) => void;
   handleAddressAdd: (address: FormAddressType) => void;
-  hideAddNewModalForm: () => any;
-  showAddNewModalForm: () => any;
+  hideAddNewModalForm: () => void;
+  showAddNewModalForm: () => void;
 }
 
 export interface ICheckoutUserArgs {

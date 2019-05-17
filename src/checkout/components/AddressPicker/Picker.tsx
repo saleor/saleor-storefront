@@ -43,12 +43,12 @@ const renderModalForm = ({
   errors,
   handleAddressAdd,
   hideAddNewModalForm,
-  isVisibleAddNewModalForm,
+  isVisibleModalForm,
   loading,
   type
 }: IAddressPickerProps) => (
   <Modal
-    show={isVisibleAddNewModalForm}
+    show={isVisibleModalForm}
     title="Add New Address"
     loading={loading}
     formId="new-address-form"
