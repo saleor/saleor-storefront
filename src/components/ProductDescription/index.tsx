@@ -8,7 +8,7 @@ import {
   ProductVariantInterface
 } from "../../core/types";
 import { maybe } from "../../core/utils";
-import { CartContext, CartLine } from "../CartProvider/context";
+import { CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
 
@@ -17,6 +17,7 @@ interface ProductDescriptionProps {
   name: string;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
+  lines: CartLine[];
 }
 
 interface ProductDescriptionState {
@@ -178,7 +179,7 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { children, name } = this.props;
+    const { children, name, lines } = this.props;
     const {
       price,
       primaryPicker,
@@ -242,15 +243,11 @@ class ProductDescription extends React.Component<
           <h4>Description</h4>
           {children}
         </div>
-        <CartContext.Consumer>
-          {({ lines }) => (
-            <AddToCart
-              onSubmit={this.handleSubmit}
-              lines={lines}
-              disabled={!this.canAddToCart(lines)}
-            />
-          )}
-        </CartContext.Consumer>
+        <AddToCart
+          onSubmit={this.handleSubmit}
+          lines={lines}
+          disabled={!this.canAddToCart(lines)}
+        />
       </div>
     );
   }
