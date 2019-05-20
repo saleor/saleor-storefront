@@ -70,7 +70,9 @@ class CreditCard extends React.PureComponent<ProviderProps, ICreditCardState> {
             ...prevState,
             cardErrors: {
               ...cardErrors,
-              [field]: maybe(() => cardErrors[field] + ". " + message, message)
+              [field]: cardErrors[field]
+                ? cardErrors[field] + ". " + message
+                : message
             }
           };
         },
