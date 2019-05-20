@@ -1,14 +1,15 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/app
     docker:
-      - image: circleci/node:10.7.0
+      # the Docker image with Cypress dependencies
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    parallelism: 1
     steps:
       - checkout
-      - run:
-          name: Install system dependencies
-          command: sudo apt-get install -y libpng-dev
       - run:
           name: Install dependencies
           command: npm install
@@ -28,6 +29,15 @@ jobs:
           root: ~/app
           paths:
             - dist/*
+      - run:
+          name: Running E2E tests
+          command: npm run test:e2e:run
+      - store_test_results:
+          path: multiple-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
   deploy:
     working_directory: ~/app
     docker:
