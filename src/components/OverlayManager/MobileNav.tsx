@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { INavItem, MobileNavList, Overlay, OverlayContextInterface } from "..";
 import { useSwipeable } from "react-swipeable";
+import { INavItem, MobileNavList, Overlay, OverlayContextInterface } from "..";
 
 const MobileNav: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay
