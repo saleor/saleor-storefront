@@ -1,6 +1,8 @@
-import { ICardErrors, ICardInputs } from "../../../core/payments/braintree";
-
-type ICardName = "ccCsc" | "ccExp" | "ccNumber";
+import {
+  ICardErrors,
+  ICardInputs,
+  ICardName
+} from "../../../core/payments/braintree";
 
 interface ICardText {
   ccCsc: string;
@@ -21,7 +23,7 @@ export interface ICreditCardForm {
   cardErrors: ICardErrors;
   cardText: ICardText;
   cardValues: ICardInputs;
-  focusedInputName: ICardName;
+  focusedInputName: ICardName | null;
   handleSubmit: (e: React.FormEvent, formData: any) => void;
   inputProps: IInputProps;
 }

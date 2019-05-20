@@ -168,3 +168,5 @@ export const findFormErrors = (result: void | FetchResult): FormError[] => {
   }
   return [];
 };
+
+export const removeEmptySpaces = (text: string) => text.replace(/\s+/g, "");

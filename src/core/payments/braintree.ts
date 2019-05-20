@@ -6,6 +6,7 @@ export interface PaymentData {
   token: string;
 }
 
+export type ICardName = "ccCsc" | "ccExp" | "ccNumber";
 export interface ICardInputs {
   ccCsc: string | null;
   ccExp: string | null;
@@ -20,15 +21,9 @@ export interface ICardErrors {
 }
 
 export interface ErrorData {
-  cardErrors: ICardErrors;
+  fieldErrors: ICardErrors;
   nonFieldError?: string;
 }
-
-export interface ICreditCardState extends ErrorData {
-  focusedInput: string;
-  cardValues: ICardInputs;
-}
-
 export interface IPaymentCardError {
   code: string;
   field: string;
