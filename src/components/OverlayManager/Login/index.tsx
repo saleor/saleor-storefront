@@ -69,7 +69,7 @@ class Login extends React.Component<
             <div className="login__content">
               {this.state.active === "login" ? (
                 <>
-                  <LoginForm />
+                  <LoginForm hide={hide} />
                   <ForgottenPassword
                     onClick={() => {
                       show(OverlayType.password, OverlayTheme.right);
@@ -77,7 +77,7 @@ class Login extends React.Component<
                   />
                 </>
               ) : (
-                <RegisterForm show={show} />
+                <RegisterForm hide={hide} />
               )}
             </div>
           </Online>
