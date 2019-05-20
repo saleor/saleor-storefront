@@ -67,24 +67,23 @@ const Page: React.FC<PageProps> = ({
       </div>
 
       {canDisplayProducts && (
-        <ProductFilters
-          filters={filters}
-          attributes={attributes}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          onPriceChange={onPriceChange}
-        />
-      )}
-
-      {canDisplayProducts && (
-        <ProductsList
-          displayLoader={displayLoader}
-          filters={filters}
-          hasNextPage={hasNextPage}
-          onLoadMore={onLoadMore}
-          onOrder={onOrder}
-          products={products.edges.map(edge => edge.node)}
-          totalCount={products.totalCount}
-        />
+        <>
+          <ProductFilters
+            filters={filters}
+            attributes={attributes}
+            onAttributeFiltersChange={onAttributeFiltersChange}
+            onPriceChange={onPriceChange}
+          />
+          <ProductsList
+            displayLoader={displayLoader}
+            filters={filters}
+            hasNextPage={hasNextPage}
+            onLoadMore={onLoadMore}
+            onOrder={onOrder}
+            products={products.edges.map(edge => edge.node)}
+            totalCount={products.totalCount}
+          />
+        </>
       )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
