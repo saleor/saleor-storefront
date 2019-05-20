@@ -68,10 +68,10 @@ body {
       color: $gray-dark;
       text-align: left;
       padding: $spacer $spacer / 2;
-      font-weight: $bold-font-weight;
     }
 
     tr {
+      color: $base-font-color;
       border-bottom: 1px solid $gray-light;
     }
 
