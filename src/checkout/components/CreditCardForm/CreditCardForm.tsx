@@ -20,72 +20,80 @@ const generateLabelClassName = (isFocused: boolean, value: string) =>
 
 export const CreditCardForm = ({
   formRef,
-  cardErrors: { number: cardNumber, cvv, expirationMonth, expirationYear },
+  cardErrors: {
+    number: cardNumberError,
+    cvv: ccCscError,
+    expirationMonth: expirationMonthError,
+    expirationYear: expirationYearError
+  },
+  cardText: { ccCsc: ccCscText, ccExp: ccExpText, ccNumber: ccNumberText },
   cardValues: { ccCsc, ccExp, ccNumber },
   focusedInputName,
   inputProps,
   handleSubmit
-}: ICreditCardForm) => {
-  return (
-    <Form formRef={formRef} onSubmit={handleSubmit}>
-      <div className={generateClassName(cardNumber)}>
+}: ICreditCardForm) => (
+  <Form formRef={formRef} onSubmit={handleSubmit}>
+    <div className={generateClassName(cardNumberError)}>
+      <span
+        className={generateLabelClassName(
+          focusedInputName === "ccNumber",
+          ccNumber
+        )}
+      >
+        {ccNumberText}
+      </span>
+      <NumberFormat
+        autoComplete="cc-number"
+        format="#### #### #### ####"
+        name="ccNumber"
+        {...inputProps}
+      />
+      {renderFieldError(cardNumberError)}
+    </div>
+
+    <div className="checkout-payment__form-grid">
+      <div className={generateClassName(ccCscError)}>
         <span
           className={generateLabelClassName(
-            focusedInputName === "ccNumber",
-            ccNumber
+            focusedInputName === "ccCsc",
+            ccCsc
           )}
         >
-          Number
+          {ccCscText}
         </span>
         <NumberFormat
-          autoComplete="cc-number"
-          format="#### #### #### ####"
-          name="ccNumber"
+          autoComplete="cc-csc"
+          format="####"
+          name="ccCsc"
           {...inputProps}
         />
+        {renderFieldError(ccCscError)}
       </div>
-      {renderFieldError(cardNumber)}
 
-      <div className="checkout-payment__form-grid">
-        <div className={generateClassName(cvv)}>
-          <span
-            className={generateLabelClassName(
-              focusedInputName === "ccCsc",
-              ccCsc
-            )}
-          >
-            CVC
-          </span>
-          <NumberFormat
-            autoComplete="cc-csc"
-            format="####"
-            name="ccCsc"
-            {...inputProps}
-          />
-          {renderFieldError(cvv)}
-        </div>
-
-        <div className={generateClassName(expirationMonth || expirationYear)}>
-          <span
-            className={generateLabelClassName(
-              focusedInputName === "ccExp",
-              ccExp
-            )}
-          >
-            Expiry Date
-          </span>
-          <NumberFormat
-            autoComplete="cc-exp"
-            format="## / ##"
-            name="ccExp"
-            {...inputProps}
-          />
-          {renderFieldError(expirationMonth)}
-          {renderFieldError(expirationYear)}
-        </div>
+      <div
+        className={generateClassName(
+          expirationMonthError || expirationYearError
+        )}
+      >
+        <span
+          className={generateLabelClassName(
+            focusedInputName === "ccExp",
+            ccExp
+          )}
+        >
+          {ccExpText}
+        </span>
+        <NumberFormat
+          autoComplete="cc-exp"
+          format="## / ##"
+          name="ccExp"
+          {...inputProps}
+        />
+        {renderFieldError(expirationMonthError)}
+        {renderFieldError(expirationYearError)}
       </div>
-    </Form>
-  );
-};
+    </div>
+  </Form>
+);
 
 export default CreditCardForm;

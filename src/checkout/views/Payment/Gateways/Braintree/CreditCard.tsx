@@ -135,6 +135,11 @@ class CreditCard extends React.PureComponent<ProviderProps, ICreditCardState> {
       <CreditCardForm
         formRef={this.props.formRef}
         cardErrors={cardErrors}
+        cardText={{
+          ccCsc: "CVC",
+          ccExp: "ExpiryDate",
+          ccNumber: "Number"
+        }}
         cardValues={cardValues}
         focusedInputName={focusedInput}
         inputProps={this.getInputProps()}
