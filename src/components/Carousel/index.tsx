@@ -1,4 +1,7 @@
-import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
+import {
+  mediumScreen,
+  smallScreen
+} from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
 import NukaCarousel, { CarouselProps } from "nuka-carousel";

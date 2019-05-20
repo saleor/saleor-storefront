@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { baseUrl } from "./App/routes";
+import { baseUrl } from "../routes";
 import Button from "./Button";
 
 const EmptyCart: React.FC<{}> = () => (

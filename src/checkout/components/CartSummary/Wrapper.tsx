@@ -1,4 +1,4 @@
-import { mediumScreen } from "../../../components/App/scss/variables.scss";
+import { mediumScreen } from "../../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
 import React from "react";

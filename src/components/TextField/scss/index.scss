@@ -1,4 +1,4 @@
-@import "../../App/scss/variables.scss";
+@import "../../../globalStyles/scss/variables.scss";
 
 @mixin focusedLabel {
   font-size: $label-font-size;
@@ -101,6 +101,10 @@
     z-index: 1;
     pointer-events: none;
     transition: all 0.4s ease;
+    &--focus {
+      background-color: $white;
+      @include focusedLabel();
+    }
   }
 
   &__error {

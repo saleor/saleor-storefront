@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { baseUrl } from "../App/routes";
+import { baseUrl } from "../../routes";
 import NavItem, { INavItem } from "./NavItem";
 
 import backImg from "../../images/arrow-back.svg";

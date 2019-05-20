@@ -1,4 +1,7 @@
-import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
+import {
+  mediumScreen,
+  smallScreen
+} from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
 import * as React from "react";
@@ -15,7 +18,7 @@ import {
   OverlayType
 } from "..";
 import { maybe } from "../../core/utils";
-import { baseUrl } from "../App/routes";
+import { baseUrl } from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import { UserContext } from "../User/context";
 import NavDropdown from "./NavDropdown";

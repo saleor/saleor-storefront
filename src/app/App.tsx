@@ -1,11 +1,11 @@
-import "./scss/index.scss";
+import "../globalStyles/scss/index.scss";
 
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { Footer, MainMenu, MetaConsumer, OverlayManager } from "..";
-import { isPath } from "../../core/utils";
-import { orderConfirmationUrl, Routes } from "./routes";
+import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
+import { isPath } from "../core/utils";
+import { orderConfirmationUrl, Routes } from "../routes";
 
 const App: React.FC<RouteComponentProps> = ({
   history: {
