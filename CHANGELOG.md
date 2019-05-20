@@ -15,6 +15,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add link for creating account for anonymous users - #317 by @mateuszkula
 - Add react-alert library = #320 by @AlicjaSzu
 - Move App component to seperate module = #327 by @AlicjaSzu
+- Update Footer, Breadcrumbs and Table styles = #332 by @AlicjaSzu
 
 ## 0.5.1
 
