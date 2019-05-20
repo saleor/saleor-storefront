@@ -57,8 +57,11 @@ const CreditCard = ({
       null
     );
 
-    const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) =>
-      setFocusedInput(e.target.name as ICardName);
+    const handleOnFocus = React.useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) =>
+        setFocusedInput(e.target.name as ICardName),
+      [focusedInput]
+    );
 
     const handleOnBlur = React.useCallback(() => setFocusedInput(null), []);
 
