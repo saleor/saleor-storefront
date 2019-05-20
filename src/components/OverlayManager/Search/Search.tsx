@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
-import { Link, RouteComponentProps, withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import {
