@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Fix login and registration overlay not showing - #322 by @mateuszkula
+- Add new design for 404 page - #183 by @mateuszkula
 
 ## 0.6.0
 
