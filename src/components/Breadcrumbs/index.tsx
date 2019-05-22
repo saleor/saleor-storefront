@@ -1,6 +1,9 @@
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
+import classNames from "classnames";
 import * as React from "react";
+import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
@@ -33,20 +36,41 @@ export const extractBreadcrumbs = (category: Category_category) => {
   return breadcrumbs;
 };
 
+const getBackLink = (breadcrumbs: Breadcrumb[]) =>
+  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
+
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
-}> = ({ breadcrumbs }) => {
-  return (
-    <ul className="breadcrumbs">
-      <li>
-        <Link to={baseUrl}>Home</Link>
-      </li>
-      {breadcrumbs.map(breadcrumb => (
-        <li key={breadcrumb.value}>
-          <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
-        </li>
-      ))}
-    </ul>
-  );
-};
+}> = ({ breadcrumbs }) => (
+  <Media
+    query={{
+      minWidth: smallScreen
+    }}
+  >
+    {matches =>
+      matches ? (
+        <ul className="breadcrumbs">
+          <li>
+            <Link to={baseUrl}>Home</Link>
+          </li>
+          {breadcrumbs.map((breadcrumb, index) => (
+            <li
+              key={breadcrumb.value}
+              className={classNames({
+                breadcrumbs__active: index === breadcrumbs.length - 1
+              })}
+            >
+              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="breadcrumbs">
+          <Link to={getBackLink(breadcrumbs)}>Back</Link>
+        </div>
+      )
+    }
+  </Media>
+);
+
 export default Breadcrumbs;
