@@ -2,9 +2,7 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { CheckoutLogin, NotFound } from "../components";
-import UserAccount, {
-  baseUrl as userAccountBaseUrl
-} from "../userAccount/routes";
+import { UserAccount } from "../views/UserAccount";
 import { OrderDetails } from "../userAccount/views";
 import { ArticlePage } from "../views/Article";
 import { CartPage } from "../views/Cart";
@@ -26,6 +24,10 @@ export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
 export const guestOrderDetailsUrl = `/order/:token/`;
 export const orderConfirmationUrl = `${baseUrl}order-confirmation/`;
+export const accountUrl = `${baseUrl}my-account/`;
+export const orderHistoryUrl = `${baseUrl}order-history/`;
+export const addressBookUrl = `${baseUrl}address-book/`;
+export const paymentOptionsUrl = `${baseUrl}payment-options/`;
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -37,9 +39,12 @@ export const Routes: React.FC = () => (
     <Route path={cartUrl} component={CartPage} />
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={pageUrl} component={ArticlePage} />
-    <Route path={userAccountBaseUrl} component={UserAccount} />
     <Route path={guestOrderDetailsUrl} component={OrderDetails} />
     <Route path={orderConfirmationUrl} component={OrderConfirmation} />
+    <Route path={accountUrl} component={UserAccount} />
+    <Route path={orderHistoryUrl} component={UserAccount} />
+    <Route path={addressBookUrl} component={UserAccount} />
+    <Route path={paymentOptionsUrl} component={UserAccount} />
     <Route component={NotFound} />
   </Switch>
 );

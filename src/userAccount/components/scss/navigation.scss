@@ -1,0 +1,13 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.user-account-navigation {
+  display: flex;
+  width: 100%;
+  margin-top: 3rem;
+  justify-content: space-between;
+
+  &__link {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
