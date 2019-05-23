@@ -19,7 +19,7 @@ describe("User login, logout and registration", () => {
     it("should register a new user", () => {
       user = userBuilder();
       cy.registerUser(user)
-        .get(".message__title")
+        .get(".message__title", { timeout: 10000 })
         .contains("New user has been created.");
     });
 
