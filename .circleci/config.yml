@@ -67,7 +67,7 @@ jobs:
           at: ~/
       - run:
           name: Run Cypress tests
-          command: "npm test:e2e:run"
+          command: "npm run test:e2e:run"
 workflows:
   build:
     jobs:
