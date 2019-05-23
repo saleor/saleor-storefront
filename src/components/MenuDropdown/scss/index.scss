@@ -9,14 +9,25 @@
     box-shadow: $message-shadow;
     background-color: $white;
     padding: $spacer;
-    width: 8rem;
+    width: 15rem;
 
     &--visible {
       display: block;
     }
 
     ul {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      font-style: normal;
+      font-weight: normal;
+
+      line-height: 2rem;
+      align-items: flex-start;
+
+      li {
+        width: 80%;
+      }
+
     }
   }
 }

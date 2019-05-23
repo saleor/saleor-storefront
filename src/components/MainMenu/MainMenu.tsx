@@ -105,6 +105,20 @@ const MainMenu: React.FC = () => (
                           }
                           content={
                             <ul className="main-menu__dropdown">
+                              <li>
+                                <Link to="/my-account">My Account</Link>
+                              </li>
+                              <li>
+                                <Link to="/order-history">Order history</Link>
+                              </li>
+                              <li>
+                                <Link to="/address-book">Address book</Link>
+                              </li>
+                              <li>
+                                <Link to="/payment-options">
+                                  Payment options
+                                </Link>
+                              </li>
                               <li onClick={logout}>Log Out</li>
                             </ul>
                           }
