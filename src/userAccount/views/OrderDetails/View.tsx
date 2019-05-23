@@ -3,7 +3,6 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { Authenticated } from "../../components";
 import Page from "./Page";
 import {
   TypedOrderDetailsByIdQuery,
@@ -26,9 +25,7 @@ const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
       ) : (
         <TypedOrderDetailsByIdQuery variables={{ id }}>
           {({ data: { order } }) => (
-            <Authenticated>
               <Page guest={false} order={order} />
-            </Authenticated>
           )}
         </TypedOrderDetailsByIdQuery>
       )}

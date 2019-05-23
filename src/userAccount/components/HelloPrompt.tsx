@@ -9,7 +9,7 @@ export interface HelloPromptProps {
 const HelloPrompt = ({name}) => {
     return (
       <div>
-       <h3>Hello, {name} </h3>
+       <h3>Hello{name!==""?`, ${name}`: ""}</h3>
        <p>Welcome to your user account</p>
       </div>
     );

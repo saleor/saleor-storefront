@@ -8,6 +8,25 @@
 
   &__link {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    outline: none;
+  }
+
+  &__link_container {
+    display: flex;
+    flex-direction: column;
+    width: 16rem;
+  }
+
+  &__underline {
+    margin: 1rem 0;
+    height: 0.5rem;
+    width: 16rem;
+    background-color: #3ee7cd;
+    mix-blend-mode: normal;
+    -ms-transform: skew(70deg);
+    -webkit-transform: skew(70deg);
+    transform: skew(70deg);
   }
 }

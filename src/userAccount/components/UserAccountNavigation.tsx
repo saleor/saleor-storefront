@@ -1,19 +1,24 @@
 import "./scss/navigation.scss";
 
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import TabTitle from "./TabTitle";
 
 export interface IUserAccountNavigation {
-    links: string[];
+  links: string[];
+  active: string;
 }
 
-const UserAccountNavigation: React.FC<IUserAccountNavigation> = ({links}) => {
-    return (
-        <div className="user-account-navigation">
-           {links.map((element) => <Link to={element} className="user-account-navigation__link">{element.replace("-", " ").toUpperCase()}</Link>)}
-        </div>
-    )
+const UserAccountNavigation: React.FC<IUserAccountNavigation> = ({
+  links,
+  active
+}) => {
+  return (
+    <div className="user-account-navigation">
+      {links.map(element => (
+          <TabTitle key={element} element={element} active={active} />
+      ))}
+    </div>
+  );
 };
 
-export default UserAccountNavigation
+export default UserAccountNavigation;
