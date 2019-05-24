@@ -6,6 +6,8 @@
   &__body {
     display: none;
     position: absolute;
+    right: 1rem;
+    top: 2rem;
     box-shadow: $message-shadow;
     background-color: $white;
     padding: $spacer;
@@ -27,7 +29,6 @@
       li {
         width: 80%;
       }
-
     }
   }
 }
