@@ -4,4 +4,10 @@
     width: 80%; 
     justify-content: center;
     margin: 5rem auto;
+
+    @media (max-width: $small-screen) {
+        width: 100%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }

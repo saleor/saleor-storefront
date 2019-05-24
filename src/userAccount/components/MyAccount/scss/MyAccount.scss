@@ -1,0 +1,17 @@
+@import "../../../../globalStyles/scss/variables.scss";
+
+.my-account-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @media (max-width: $small-screen){
+        flex-direction: column;
+    }
+
+    &__item {
+        min-width: 48%;
+        margin: 1rem;
+    }
+
+}

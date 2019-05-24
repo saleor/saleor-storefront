@@ -6,14 +6,15 @@ import HelloPrompt from "../../userAccount/components/HelloPrompt";
 import UserAccountNavigation from "../../userAccount/components/UserAccountNavigation";
 
 import { RouteComponentProps } from "react-router";
-import { UserContext } from "../../components/User/context";
 import { NotFound } from "../../components";
+import { UserContext } from "../../components/User/context";
+import { MyAccount } from "../../userAccount/components/MyAccount";
 
 const returnTab: any = (path: string) => {
   let tabContent = <></>;
   switch(path) {
     case "/my-account/": {
-      tabContent = <></>
+      tabContent = <MyAccount />
     }
   }
   return tabContent; 
