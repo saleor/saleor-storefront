@@ -11,7 +11,7 @@ export interface ICart {
 const Card: React.FC<ICart> = ({ children, header, footer }) => (
   <div className="card">
     {!!header ? <div className="card__header">{header}</div> : ""}
-    <div>{children}</div>
+    <div className="card__content">{children}</div>
     {!!footer ? <div>{footer}</div> : ""}
   </div>
 );
