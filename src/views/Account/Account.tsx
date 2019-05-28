@@ -30,6 +30,7 @@ const Account: React.FC<RouteComponentProps> = ({ match }) => {
           links={links}
           active={match.path.replace(/\//g, "")}
         />
+        {returnTab(match.path)}
       </div>
     );
   }
