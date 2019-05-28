@@ -1,0 +1,18 @@
+@import "../../globalStyles/scss/variables.scss";
+
+.card {
+  background-color: $turquoise-light;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    border-bottom: 1px solid $gray;
+    padding: 1rem 1rem;
+    font-weight: bold;
+  }
+
+  &__content {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+}
