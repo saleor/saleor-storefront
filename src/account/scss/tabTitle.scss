@@ -24,10 +24,7 @@
     margin: 0.25rem 0;
     height: 0.5rem;
     width: 16rem;
-    background-color: #3ee7cd;
-    mix-blend-mode: normal;
-    -ms-transform: skew(70deg);
-    -webkit-transform: skew(70deg);
+    background-color: $turquoise;
     transform: skew(70deg);
     @media screen and (max-width: $small-screen) {
       width: 8rem;
