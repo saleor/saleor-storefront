@@ -6,6 +6,8 @@
   margin: 5rem auto;
 
   @media screen and (max-width: $small-screen) {
-    margin: 2rem auto;
+    width: 90%;
+    justify-content: center;
+    margin: 3rem auto;
   }
 }
