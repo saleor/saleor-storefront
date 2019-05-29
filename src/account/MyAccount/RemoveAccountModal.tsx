@@ -19,7 +19,7 @@ const RemoveAccountModal: React.FC<IRemoveAccountModal> = ({
       formId="new-address-form"
       hide={hide}
       loading={false}
-      submitBtnText="Remove account"
+      submitBtnText="Remove"
       cancelBtnText="Cancel"
       onClick={user.removeAccount}
     >
