@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Card from "../Card";
 import RemoveAccountModal from "./RemoveAccountModal";
+import CardHeader from "../CardHeader";
 
 export interface IRemoveAccount {}
 
@@ -8,8 +9,10 @@ const RemoveAccount: React.FC<IRemoveAccount> = () => {
   const [isVisibleModal, setModalVisibility] = useState(false);
   const showModal = useCallback(() => setModalVisibility(true), []);
   const hideModal = useCallback(() => setModalVisibility(false), []);
-  return (
-    <Card header="Remove Account">
+
+  const header = <CardHeader title="Remove Account" />;
+  const content = (
+    <>
       <p>
         If you want to remove your account from our store please use the link
         you can find below
@@ -19,8 +22,9 @@ const RemoveAccount: React.FC<IRemoveAccount> = () => {
         Remove my account
       </p>
       <RemoveAccountModal isVisibleModal={isVisibleModal} hide={hideModal} />
-    </Card>
+    </>
   );
+  return <Card header={header}>{content}</Card>;
 };
 
 export default RemoveAccount;
