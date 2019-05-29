@@ -12,6 +12,7 @@ export interface UserContextInterface {
   authenticate(token: string): void;
   logout(): void;
   login(token: string, user: TokenAuth_tokenCreate_user): void;
+  removeAccount(): void;
 }
 
 /* tslint:disable:no-empty */
@@ -21,6 +22,7 @@ export const UserContext = React.createContext<UserContextInterface>({
   loading: false,
   login: (token, user) => {},
   logout: () => {},
+  removeAccount: () => {},
   token: null,
   user: null
 });

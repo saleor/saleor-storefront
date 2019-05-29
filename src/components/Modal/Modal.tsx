@@ -13,6 +13,8 @@ interface IModalProps {
   hide: () => void;
   cancelBtnText?: string;
   submitBtnText?: string;
+  type?: "submit" | "button" | "reset";
+  onClick?: () => void;
   loading: boolean;
   formId?: string;
   show: boolean;
@@ -27,6 +29,8 @@ const Modal: React.FC<IModalProps> = ({
   formId = "modal-submit",
   submitBtnText,
   target = modalRoot,
+  type = "submit",
+  onClick,
   show,
   title
 }) =>
@@ -52,10 +56,14 @@ const Modal: React.FC<IModalProps> = ({
                 )}
                 {submitBtnText && (
                   <Button
-                    type="submit"
+                    type={type}
                     form={formId}
                     disabled={loading}
                     className="modal__button"
+                    onClick={() => {
+                      hide();
+                      onClick();
+                    }}
                   >
                     {loading ? "Loading" : submitBtnText}
                   </Button>
