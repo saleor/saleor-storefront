@@ -15,6 +15,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add schema.org data to homepage and product detail page - #316 by @koradon
 - Add link for creating account for anonymous users - #317 by @mateuszkula
 - Add react-alert library = #320 by @AlicjaSzu
+- CreditCard component refactor = #323 by @AlicjaSzu
 - Move App component to seperate module = #327 by @AlicjaSzu
 - Update Footer, Breadcrumbs and Table styles = #332 by @AlicjaSzu
 

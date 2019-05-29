@@ -1,141 +1,138 @@
-import classNames from "classnames";
+import "./scss/index.scss";
+
 import React from "react";
-import NumberFormat from "react-number-format";
 
 import { GatewaysEnum } from "../../../../../../types/globalTypes";
-import { Form, TextField } from "../../../../../components";
+import { TextField } from "../../../../../components";
+
 import {
   braintreePayment,
-  ErrorData
+  ErrorData,
+  ICardInputs,
+  ICardName,
+  IPaymentCardError,
+  PaymentData
 } from "../../../../../core/payments/braintree";
+import { maybe, removeEmptySpaces } from "../../../../../core/utils";
+import { CreditCardForm } from "../../../../components";
 import { ProviderProps } from "../../View";
 
-class CreditCard extends React.PureComponent<ProviderProps, ErrorData> {
-  state = {
+const INITIAL_CARD_ERROR_STATE = {
+  fieldErrors: {
     cvv: "",
     expirationMonth: "",
     expirationYear: "",
-    nonFieldError: "",
     number: ""
-  };
+  },
+  nonFieldError: ""
+};
 
-  tokenizeCcCard = async creditCard => {
-    const {
-      checkout: { update },
-      setLoadingState,
-      paymentClientToken
-    } = this.props;
-    let cardData;
+const INITIAL_CARD_VALUES_STATE = {
+  ccCsc: null,
+  ccExp: null,
+  ccNumber: null
+};
 
-    this.setState({
-      cvv: "",
-      expirationMonth: "",
-      expirationYear: "",
-      nonFieldError: "",
-      number: ""
+const CreditCard = ({
+  checkout: {
+    update,
+    checkout: {
+      billingAddress: { postalCode }
+    }
+  },
+  formRef,
+  loading,
+  setLoadingState,
+  paymentClientToken,
+  processPayment
+}: ProviderProps) => {
+  {
+    const [cardErrors, setCardErrors] = React.useState<ErrorData>(
+      INITIAL_CARD_ERROR_STATE
+    );
+    const [cardValues, setCardValues] = React.useState<ICardInputs>(
+      INITIAL_CARD_VALUES_STATE
+    );
+    const [focusedInput, setFocusedInput] = React.useState<ICardName | null>(
+      null
+    );
+
+    const handleOnFocus = React.useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) =>
+        setFocusedInput(e.target.name as ICardName),
+      [focusedInput]
+    );
+
+    const handleOnBlur = React.useCallback(() => setFocusedInput(null), []);
+
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setCardValues({ ...cardValues, [name]: value });
+    };
+
+    const setCardErrorsHelper = (errors: IPaymentCardError[]) =>
+      errors.map(({ field, message }: IPaymentCardError) =>
+        setCardErrors(({ fieldErrors }) => ({
+          fieldErrors: {
+            ...fieldErrors,
+            [field]: message
+          }
+        }))
+      );
+
+    const tokenizeCcCard = async creditCard => {
+      setCardErrors(INITIAL_CARD_ERROR_STATE);
+      try {
+        const cardData = (await braintreePayment(
+          paymentClientToken,
+          creditCard
+        )) as PaymentData;
+        await update({ cardData });
+        return cardData.token;
+      } catch (errors) {
+        setCardErrorsHelper(errors);
+        return null;
+      }
+    };
+
+    const handleSubmit = async (evt: React.FormEvent, formData) => {
+      evt.preventDefault();
+      setLoadingState(true);
+      const creditCard = {
+        billingAddress: { postalCode },
+        cvv: removeEmptySpaces(maybe(() => formData.ccCsc, "")),
+        expirationDate: removeEmptySpaces(maybe(() => formData.ccExp, "")),
+        number: removeEmptySpaces(maybe(() => formData.ccNumber, ""))
+      };
+      const token = await tokenizeCcCard(creditCard);
+      processPayment(token, GatewaysEnum.BRAINTREE);
+      setLoadingState(false);
+    };
+
+    const getInputProps = () => ({
+      customInput: TextField,
+      disabled: loading,
+      onBlur: handleOnBlur,
+      onChange: handleOnChange,
+      onFocus: handleOnFocus
     });
 
-    try {
-      cardData = await braintreePayment(paymentClientToken, creditCard);
-      await update({ cardData });
-      return cardData.token;
-    } catch (errors) {
-      errors.map(error => {
-        this.setState(
-          prevState => ({
-            ...prevState,
-            [error.field]: prevState[error.field]
-              ? prevState[error.field] + ". " + error.message
-              : error.message
-          }),
-          () => setLoadingState(false)
-        );
-      });
-      return null;
-    }
-  };
-
-  handleSubmit = async (evt, formData) => {
-    const {
-      setLoadingState,
-      checkout: {
-        checkout: { billingAddress }
-      },
-      processPayment
-    } = this.props;
-
-    evt.preventDefault();
-    setLoadingState(true);
-    const creditCard = {
-      billingAddress: {
-        postalCode: billingAddress.postalCode
-      },
-      cvv: formData.ccCsc ? formData.ccCsc.replace(/\s+/g, "") : "",
-      expirationDate: formData.ccExp ? formData.ccExp.replace(/\s+/g, "") : "",
-      number: formData.ccNumber ? formData.ccNumber.replace(/\s+/g, "") : ""
-    };
-    const token = await this.tokenizeCcCard(creditCard);
-    processPayment(token, GatewaysEnum.BRAINTREE);
-  };
-
-  render() {
-    const { formRef, loading } = this.props;
-    const {
-      expirationMonth,
-      expirationYear,
-      cvv,
-      number: cardNumber
-    } = this.state;
-    const fieldError = (error: string) =>
-      error ? (
-        <span className="input__error checkout-payment__error">{error}</span>
-      ) : null;
-    const classNameError = (error: string) =>
-      classNames({ "checkout-payment__field-error": !!error });
-
     return (
-      <Form formRef={formRef} onSubmit={this.handleSubmit}>
-        <span className="input__label">Number</span>
-        <div className={classNameError(cardNumber)}>
-          <NumberFormat
-            autoComplete="cc-number"
-            customInput={TextField}
-            disabled={loading}
-            format="#### #### #### ####"
-            name="ccNumber"
-          />
-        </div>
-        {fieldError(cardNumber)}
-
-        <div className="checkout-payment__form-grid">
-          <div className={classNameError(cvv)}>
-            <span className="input__label">CVC</span>
-            <NumberFormat
-              autoComplete="cc-csc"
-              customInput={TextField}
-              disabled={loading}
-              format="####"
-              name="ccCsc"
-            />
-            {fieldError(cvv)}
-          </div>
-
-          <div className={classNameError(expirationMonth || expirationYear)}>
-            <span className="input__label">Expiry Date</span>
-            <NumberFormat
-              autoComplete="cc-exp"
-              customInput={TextField}
-              disabled={loading}
-              format="## / ##"
-              name="ccExp"
-            />
-            {fieldError(expirationMonth)}
-            {fieldError(expirationYear)}
-          </div>
-        </div>
-      </Form>
+      <CreditCardForm
+        formRef={formRef}
+        cardErrors={cardErrors.fieldErrors}
+        cardText={{
+          ccCsc: "CVC",
+          ccExp: "ExpiryDate",
+          ccNumber: "Number"
+        }}
+        cardValues={cardValues}
+        focusedInputName={focusedInput}
+        inputProps={getInputProps()}
+        handleSubmit={handleSubmit}
+      />
     );
   }
-}
+};
 
 export default CreditCard;

@@ -1,17 +1,33 @@
 import * as braintree from "braintree-web";
 
-interface PaymentData {
+export interface PaymentData {
   lastDigits: string;
   ccType: string;
   token: string;
 }
 
-export interface ErrorData {
+export type ICardName = "ccCsc" | "ccExp" | "ccNumber";
+export interface ICardInputs {
+  ccCsc: string | null;
+  ccExp: string | null;
+  ccNumber: string | null;
+}
+
+export interface ICardErrors {
   cvv?: string;
   expirationMonth?: string;
   expirationYear?: string;
-  nonFieldError?: string;
   number?: string;
+}
+
+export interface ErrorData {
+  fieldErrors: ICardErrors;
+  nonFieldError?: string;
+}
+export interface IPaymentCardError {
+  code: string;
+  field: string;
+  message: string;
 }
 
 export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
