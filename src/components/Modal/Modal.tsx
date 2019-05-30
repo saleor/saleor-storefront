@@ -60,10 +60,6 @@ const Modal: React.FC<IModalProps> = ({
                     form={formId}
                     disabled={loading}
                     className="modal__button"
-                    onClick={() => {
-                      hide();
-                      onClick();
-                    }}
                   >
                     {loading ? "Loading" : submitBtnText}
                   </Button>
