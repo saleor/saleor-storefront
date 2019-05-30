@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Card from "../Card";
 import CardHeader from "../CardHeader";
+import MyPasswordContent from "./MyPasswordContent";
+import MyPasswordEdit from "./MyPasswordEdit";
 
 export interface IMyPassword {}
 
@@ -16,12 +18,10 @@ const MyPassword: React.FC<IMyPassword> = () => {
       onClick={onClick}
     />
   );
-  const content = (
-    <>
-      <p>Password</p>
-      <br />
-      <p>***************</p>
-    </>
+  const content = isEditing ? (
+    <MyPasswordEdit setEditing={setEditing} />
+  ) : (
+    <MyPasswordContent />
   );
   return <Card header={header}>{content}</Card>;
 };
