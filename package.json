@@ -83,6 +83,7 @@
     "react-number-format": "^3.6.2",
     "react-select": "^2.0.0",
     "sass-loader": "^7.1.0",
+    "sitemap": "^2.2.0",
     "style-loader": "^0.21.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-loader": "^4.4.2",
@@ -106,6 +107,7 @@
     "codegen": "apollo codegen:generate --target=typescript types",
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "sitemap": "ts-node ./src/sitemap-builder.ts"
   }
 }
