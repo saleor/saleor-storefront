@@ -1,11 +1,11 @@
 import fs from 'fs';
+import { chunk } from 'lodash';
 import path from 'path';
-import chunk from 'lodash/chunk';
 import { buildSitemapIndex, createSitemap } from 'sitemap';
 
 class SitemapGenerator {
-  urls: [Object?];
-  chunks: Object[][];
+  urls: [object?];
+  chunks: object[][];
   sitemapSize: number;
   sitemapName: string;
   hostname: string;
@@ -23,15 +23,15 @@ class SitemapGenerator {
     this.cacheTime = options.cacheTime || 600000;
   }
 
-  add(url: Object) {
+  add(url: object) {
     this.urls.push(url)
   }
 
-  generateSitemap(urls: [Object?], filename: string) {
+  generateSitemap(urls: [object?], filename: string) {
     this.sitemaps.push(filename)
     this.saveToFile(createSitemap({
-      hostname: this.hostname,
       cacheTime: this.cacheTime,
+      hostname: this.hostname,
       urls
     }).toString(), filename)
   }
@@ -49,7 +49,7 @@ class SitemapGenerator {
     this.chunks = chunk(this.urls, this.sitemapSize)
 
     if (this.chunks.length > 1) {
-      this.chunks.forEach((chunk: [Object], index) => {
+      this.chunks.forEach((chunk: [object], index) => {
         this.generateSitemap(chunk, `${this.sitemapName}-${index}.xml`);
       })
       this.generateSitemapIndex(filename)
@@ -59,4 +59,4 @@ class SitemapGenerator {
   }
 }
 
-export default SitemapGenerator;
+export default SitemapGenerator

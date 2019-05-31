@@ -4,8 +4,8 @@ import { createHttpLink } from 'apollo-link-http';
 import fetch from 'node-fetch';
 import urljoin from "url-join";
 
-import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from './queries';
 import { generateCategoryUrl, generateCollectionUrl, generateProductUrl } from '../core/utils';
+import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from './queries';
 
 const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
 
@@ -17,9 +17,11 @@ const fetchItems = async ({ uri, query, perPage }, callback: any) => {
   const field = query.definitions[0].selectionSet.selections[0].name.value
   const next = async (cursor=null) => {
     const response = await client.query({ query, variables: { perPage, cursor } });
-    const edges = response['data'][field]['edges']
-    edges.map(async ({ node }) => await callback(node))
-    if (edges.length === perPage) await next(edges[edges.length-1]['cursor'])
+    const edges = response.data[field].edges
+    edges.map(({ node }) => callback(node))
+    if (edges.length === perPage) {
+      await next(edges[edges.length-1].cursor)
+    }
   }
   await next()
 }

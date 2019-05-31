@@ -1,5 +1,5 @@
 import path from 'path';
-import { SitemapGenerator, getCategories, getCollections, getProducts }  from './sitemap';
+import { getCategories, getCollections, getProducts, SitemapGenerator }  from './sitemap';
 
 const distDir = path.join(__dirname, "../dist");
 
@@ -24,7 +24,7 @@ const generateSitemap = async (hostname: string) => {
 
 const args = process.argv.slice(2)
 if (args.length !== 1) {
-  console.log('Usage: npm run sitemap <hostname>');
+  console.error('Usage: npm run sitemap <hostname>');
   process.exit();
 }
 generateSitemap(args[0]);
