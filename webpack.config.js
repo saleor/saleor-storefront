@@ -2,7 +2,7 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
@@ -109,21 +109,22 @@ module.exports = (env, argv) => {
           theme_color: "#333"
         }
       }),
-      new SWPrecacheWebpackPlugin({
-        cacheId: "saleor-store-front",
-        filename: "service-worker.js",
+      new WorkboxPlugin.GenerateSW({
+        cacheId: 'saleor-store-front',
+        skipWaiting: true,
+        clientsClaim: true,
         navigateFallback: "/index.html",
         staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.xml$/],
         runtimeCaching: [
           {
-            urlPattern: /\/media\//,
-            handler: "networkFirst"
+            urlPattern: /media/,
+            handler: "cacheFirst"
           },
           {
-            urlPattern: /\/static\//,
-            handler: "networkFirst"
+            urlPattern: /static/,
+            handler: "cacheFirst"
           }
-        ]
+        ],
       }),
       new webpack.EnvironmentPlugin(["npm_package_version", "BACKEND_URL"])
     ],

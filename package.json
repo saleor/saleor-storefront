@@ -86,7 +86,6 @@
     "sass-loader": "^7.1.0",
     "sitemap": "^2.2.0",
     "style-loader": "^0.21.0",
-    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
@@ -94,7 +93,8 @@
     "webapp-webpack-plugin": "^2.2.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "engines": {
     "node": ">=10.0.0 <11"
