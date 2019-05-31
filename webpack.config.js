@@ -2,10 +2,11 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const urljoin = require("url-join");
 
 const sourceDir = path.join(__dirname, "./src");
 const distDir = path.join(__dirname, "./dist");
@@ -117,12 +118,8 @@ module.exports = (env, argv) => {
         staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.xml$/],
         runtimeCaching: [
           {
-            urlPattern: /media/,
-            handler: "cacheFirst"
-          },
-          {
-            urlPattern: /static/,
-            handler: "cacheFirst"
+            urlPattern: new RegExp(`^${urljoin(process.env.BACKEND_URL, "/media/")}`),
+            handler: "networkFirst",
           }
         ],
       }),
