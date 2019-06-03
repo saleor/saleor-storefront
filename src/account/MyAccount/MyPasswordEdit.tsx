@@ -28,6 +28,10 @@ const MyPasswordEdit: React.FC<IMyPasswordEdit> = ({ setEditing }) => {
         label="Confirm password"
         type="password"
         styleType="grey"
+        onChange={evt => {
+          // tslint:disable-next-line: no-console
+          console.log(evt.target.value);
+        }}
         required
       />
       <div className="login-form__button">

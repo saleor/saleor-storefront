@@ -37,6 +37,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-svg": "^5.0.6",
+    "react-toggle-component": "^2.0.9",
     "reset-css": "^4.0.1",
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0"

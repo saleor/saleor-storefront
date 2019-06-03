@@ -4,19 +4,13 @@ import CardHeader from "../CardHeader";
 import MyPasswordContent from "./MyPasswordContent";
 import MyPasswordEdit from "./MyPasswordEdit";
 
-export interface IMyPassword {}
-
-const MyPassword: React.FC<IMyPassword> = () => {
+const MyPassword: React.FC = () => {
   const [isEditing, setEditing] = useState(false);
   const onClick = () => {
     setEditing(!isEditing);
   };
   const header = (
-    <CardHeader
-      title="MY ACCOUNT PASSWORD"
-      editing={isEditing}
-      onClick={onClick}
-    />
+    <CardHeader title="MY PASSWORD" editing={isEditing} onClick={onClick} />
   );
   const content = isEditing ? (
     <MyPasswordEdit setEditing={setEditing} />

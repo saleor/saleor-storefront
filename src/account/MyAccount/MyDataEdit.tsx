@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Form, TextField } from "../../components";
 
-export interface IMyDataEdit {}
+import { IMyData } from "./MyData";
 
-const MyDataEdit: React.FC<IMyDataEdit> = () => {
+const MyDataEdit: React.FC<IMyData> = props => {
   return (
-    <Form>
+    <Form data={props}>
       <TextField
         name="firstName"
         autoComplete="firstName"
@@ -24,7 +24,7 @@ const MyDataEdit: React.FC<IMyDataEdit> = () => {
       <TextField
         name="email"
         label="E-mail address"
-        type="mail"
+        type="email"
         styleType="grey"
         required
       />

@@ -2,6 +2,7 @@ import React from "react";
 
 import MyData from "./MyData";
 import MyPassword from "./MyPassword";
+import Newsletter from "./Newsletter";
 import RemoveAccount from "./RemoveAccount";
 import "./scss/MyAccount.scss";
 
@@ -14,6 +15,9 @@ const MyAccount: React.FC<IMyAccount> = () => (
     </div>
     <div className="my-account-container__item">
       <MyPassword />
+    </div>
+    <div className="my-account-container__item">
+      <Newsletter />
     </div>
     <div className="my-account-container__item">
       <RemoveAccount />

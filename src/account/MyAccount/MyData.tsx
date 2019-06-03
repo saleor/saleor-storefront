@@ -5,9 +5,13 @@ import { UserContext } from "../../components/User/context";
 import MyDataContent from "./MyDataContent";
 import MyDataEdit from "./MyDataEdit";
 
-export interface IMyData {}
+export interface IMyData {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
-const MyData: React.FC<IMyData> = () => {
+const MyData: React.FC = () => {
   const [isEditing, setEditing] = useState(false);
   const { user } = useContext(UserContext);
   const onClick = () => {
@@ -18,7 +22,11 @@ const MyData: React.FC<IMyData> = () => {
   );
 
   const content = isEditing ? (
-    <MyDataEdit />
+    <MyDataEdit
+      firstName={user.firstName}
+      lastName={user.lastName}
+      email={user.email}
+    />
   ) : (
     <MyDataContent
       firstName={user.firstName}

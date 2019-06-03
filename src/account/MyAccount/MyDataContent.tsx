@@ -1,24 +1,22 @@
+import "./scss/MyData.scss";
+
 import React from "react";
 
-export interface IMyDataContent {
-  firstName?: string;
-  lastName?: string;
-  email: string;
-}
+import { IMyData } from "./MyData";
 
-const MyDataContent: React.FC<IMyDataContent> = ({
-  firstName = " ",
-  lastName = " ",
+const MyDataContent: React.FC<IMyData> = ({
+  firstName = "",
+  lastName = "",
   email
 }) => (
-  <>
-    <h4>First Name</h4>
-    <div>{firstName}</div>
-    <h4>Last Name</h4>
-    <p>{lastName}</p>
-    <h4>E-mail Address</h4>
+  <div className="myData-container">
+    <p>First Name</p>
+    <p>{firstName ? firstName : "-"}</p>
+    <p>Last Name</p>
+    <p>{lastName ? lastName : "-"}</p>
+    <p>E-mail Address</p>
     <p>{email}</p>
-  </>
+  </div>
 );
 
 export default MyDataContent;

@@ -1,0 +1,14 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.myData-container {
+  p:nth-child(odd) {
+    color: $gray-dark;
+    font-size: 0.9rem;
+    margin-top: $spacer/2;
+  }
+
+  p:nth-child(even) {
+    margin-bottom: $spacer;
+    font-size: 1rem;
+  }
+}
