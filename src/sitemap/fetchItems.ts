@@ -9,37 +9,36 @@ import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from './que
 
 const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
 
-const fetchItems = async ({ uri, query, perPage }, callback: any) => {
+const fetchItems = async ({ query, perPage=100 }, callback: any) => {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: createHttpLink({ uri, fetch })
+    link: createHttpLink({ uri: API_URL, fetch })
   });
-  const field = query.definitions[0].selectionSet.selections[0].name.value
   const next = async (cursor=null) => {
     const response = await client.query({ query, variables: { perPage, cursor } });
-    const edges = response.data[field].edges
-    edges.map(({ node }) => callback(node))
-    if (edges.length === perPage) {
-      await next(edges[edges.length-1].cursor)
+    const data = response.data[query.definitions[0].selectionSet.selections[0].name.value]
+    data.edges.map(({ node }) => callback(node))
+    if (data.pageInfo.hasNextPage) {
+      await next(data.pageInfo.endCursor)
     }
   }
   await next()
 }
 
 export const getCategories = async (callback) => {
-  await fetchItems({ uri: API_URL, perPage: 100, query: getCategoriesQuery}, ({ id, name }) => {
+  await fetchItems({ query: getCategoriesQuery }, ({ id, name }) => {
     callback({ url: generateCategoryUrl(id, name) });
   })
 }
 
 export const getCollections = async (callback) => {
-  await fetchItems({ uri: API_URL, perPage: 100, query: getCollectionsQuery}, ({ id, name }) => {
+  await fetchItems({ query: getCollectionsQuery }, ({ id, name }) => {
     callback({ url: generateCollectionUrl(id, name) });
   })
 }
 
 export const getProducts = async (callback) => {
-  await fetchItems({ uri: API_URL, perPage: 100, query: getProductsQuery}, ({ id, name }) => {
+  await fetchItems({ query: getProductsQuery }, ({ id, name }) => {
     callback({ url: generateProductUrl(id, name) });
   })
 }
