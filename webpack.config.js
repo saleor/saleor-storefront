@@ -113,7 +113,7 @@ module.exports = (env, argv) => {
         cacheId: "saleor-store-front",
         filename: "service-worker.js",
         navigateFallback: "/index.html",
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.xml$/],
         runtimeCaching: [
           {
             urlPattern: /\/media\//,
