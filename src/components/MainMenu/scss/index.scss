@@ -9,6 +9,7 @@
   flex-direction: row;
   height: 3.55rem;
   position: relative;
+  z-index: 1;
 
   &__left {
     flex-basis: calc(50% - 2rem);
