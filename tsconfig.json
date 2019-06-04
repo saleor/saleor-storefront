@@ -6,7 +6,6 @@
     "lib": ["es2017", "dom", "esnext"],
     "sourceMap": true,
     "target": "es6",
-    "noUnusedLocals": true,
-    "noEmit": true
+    "noUnusedLocals": true
   }
 }

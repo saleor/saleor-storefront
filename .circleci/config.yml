@@ -13,8 +13,8 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
-        name: Run typescript checker
-        command: npx tsc
+          name: Run typescript checker
+          command: npx tsc
       - run:
           name: Run tslint
           command: npm run tslint
