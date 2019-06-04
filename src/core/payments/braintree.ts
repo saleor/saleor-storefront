@@ -36,7 +36,7 @@ export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
       {
         authorization: paymentClientToken
       },
-      (err, client) => {
+      (_err, client) => {
         client.request(
           {
             data: { creditCard },

@@ -9,7 +9,7 @@ interface NotFoundProps {
   message?: string;
 }
 
-const NotFound: React.FC<NotFoundProps> = ({ message }) => (
+const NotFound: React.FC<NotFoundProps> = () => (
   <div className="not-found-page">
     <h2 className="not-found-page__header">404</h2>
     <div className="not-found-page__ruler" />

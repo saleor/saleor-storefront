@@ -70,7 +70,7 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
   };
 
-  componentDidUpdate(prevProps: SearchProps, prevState: SearchState) {
+  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
     if (
       !!prevState.search.length &&
       this.props.overlay.type !== OverlayType.search

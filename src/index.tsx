@@ -57,7 +57,7 @@ const cache = new InMemoryCache({
 });
 
 const history = createBrowserHistory();
-history.listen((location, action) => {
+history.listen((_location, action) => {
   if (["PUSH"].includes(action)) {
     window.scroll({
       behavior: "smooth",
