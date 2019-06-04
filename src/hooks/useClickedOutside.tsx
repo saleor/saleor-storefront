@@ -17,7 +17,7 @@ const useClickedOutside = () => {
   React.useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  });
+  }, []);
 
   return {
     clickedOutside,
