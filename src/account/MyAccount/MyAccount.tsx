@@ -6,21 +6,23 @@ import Newsletter from "./Newsletter";
 import RemoveAccount from "./RemoveAccount";
 import "./scss/MyAccount.scss";
 
-export interface IMyAccount {}
-
-const MyAccount: React.FC<IMyAccount> = () => (
+const MyAccount: React.FC = () => (
   <div className="my-account-container">
-    <div className="my-account-container__item">
-      <MyData />
+    <div className="my-account-container__column">
+      <div className="my-account-container__item">
+        <MyData />
+      </div>
+      <div className="my-account-container__item">
+        <MyPassword />
+      </div>
     </div>
-    <div className="my-account-container__item">
-      <MyPassword />
-    </div>
-    <div className="my-account-container__item">
-      <Newsletter />
-    </div>
-    <div className="my-account-container__item">
-      <RemoveAccount />
+    <div className="my-account-container__column">
+      <div className="my-account-container__item">
+        <Newsletter />
+      </div>
+      <div className="my-account-container__item">
+        <RemoveAccount />
+      </div>
     </div>
   </div>
 );

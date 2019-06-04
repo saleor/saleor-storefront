@@ -29,7 +29,6 @@ export default class UserProvider extends React.Component<
       loading: !!token,
       login: this.login,
       logout: this.logout,
-      removeAccount: this.removeAccount,
       token,
       user: null
     };
@@ -78,8 +77,6 @@ export default class UserProvider extends React.Component<
 
     this.setState(state);
   };
-
-  removeAccount = () => {};
 
   componentDidUpdate = () => {
     if (this.state.token) {

@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Modal } from "../../components";
-import { UserContext } from "../../components/User/context";
 
 export interface IRemoveAccountModal {
   isVisibleModal: boolean;
@@ -11,7 +10,6 @@ const RemoveAccountModal: React.FC<IRemoveAccountModal> = ({
   isVisibleModal,
   hide
 }) => {
-  const user = useContext(UserContext);
   return (
     <Modal
       show={isVisibleModal}
@@ -21,7 +19,6 @@ const RemoveAccountModal: React.FC<IRemoveAccountModal> = ({
       loading={false}
       submitBtnText="Remove"
       cancelBtnText="Cancel"
-      onClick={user.removeAccount}
     >
       Are you sure you want to remove your account? This action is irreversible.
     </Modal>

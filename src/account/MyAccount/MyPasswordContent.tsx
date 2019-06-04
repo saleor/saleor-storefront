@@ -1,9 +1,7 @@
-import "./scss/MyData.scss";
 import React from "react";
+import "./scss/MyData.scss";
 
-export interface IMyPasswordContent {}
-
-const MyPasswordContent: React.FC<IMyPasswordContent> = () => (
+const MyPasswordContent: React.FC = () => (
   <div className="myData-container">
     <p>Password</p>
     <p>***************</p>

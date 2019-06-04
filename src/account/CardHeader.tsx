@@ -1,6 +1,6 @@
-import "./scss/cardHeader.scss";
 import React from "react";
 import ReactSVG from "react-svg";
+import "./scss/cardHeader.scss";
 
 import editActive from "../images/edit-active.svg";
 import edit from "../images/edit.svg";

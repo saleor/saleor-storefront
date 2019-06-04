@@ -1,16 +1,32 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .my-account-container {
-  display: grid;
-  margin: $spacer 0;
-  grid-template-columns: 1fr;
-  // grid-auto-columns: 1fr 1fr;
-  grid-auto-flow: row dense;
-  @media screen and (min-width: $medium-screen) {
-    grid-template-columns: 1fr 1fr;
+  content: "";
+  width: 100%;
+  display: table;
+  clear: both;
+  margin-bottom: 2 * $spacer;
+
+  &__column {
+    float: left;
+    width: 48%;
+
+    @media screen and (min-width: $medium-screen) {
+      margin: $spacer / 2;
+    }
+
+    @media screen and (max-width: $small-screen) {
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 
   &__item {
-    margin: 5px;
+    @media screen and (max-width: $small-screen) {
+      margin-bottom: $spacer / 2;
+    }
+    @media screen and (min-width: $medium-screen) {
+      margin-bottom: $spacer;
+    }
   }
 }

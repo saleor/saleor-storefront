@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../components/User/context";
 import Card from "../Card";
 import CardHeader from "../CardHeader";
-import { UserContext } from "../../components/User/context";
 import MyDataContent from "./MyDataContent";
 import MyDataEdit from "./MyDataEdit";
 

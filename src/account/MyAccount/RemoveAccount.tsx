@@ -1,18 +1,18 @@
+import "./scss/RemoveAccount.scss";
+
 import React, { useCallback, useState } from "react";
 import Card from "../Card";
-import RemoveAccountModal from "./RemoveAccountModal";
 import CardHeader from "../CardHeader";
+import RemoveAccountModal from "./RemoveAccountModal";
 
-export interface IRemoveAccount {}
-
-const RemoveAccount: React.FC<IRemoveAccount> = () => {
+const RemoveAccount: React.FC = () => {
   const [isVisibleModal, setModalVisibility] = useState(false);
   const showModal = useCallback(() => setModalVisibility(true), []);
   const hideModal = useCallback(() => setModalVisibility(false), []);
 
   const header = <CardHeader title="Remove Account" />;
   const content = (
-    <>
+    <div className="removeAccount_container">
       <p>
         If you want to remove your account from our store please use the link
         you can find below
@@ -22,7 +22,7 @@ const RemoveAccount: React.FC<IRemoveAccount> = () => {
         Remove my account
       </p>
       <RemoveAccountModal isVisibleModal={isVisibleModal} hide={hideModal} />
-    </>
+    </div>
   );
   return <Card header={header}>{content}</Card>;
 };

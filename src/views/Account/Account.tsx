@@ -2,9 +2,9 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
+import MyAccount from "../../account/MyAccount/MyAccount";
 import { Loader, NotFound } from "../../components";
 import { UserContext } from "../../components/User/context";
-import MyAccount from "../../account/MyAccount/MyAccount";
 
 const returnTab: any = (path: string) => {
   let tabContent = <></>;
