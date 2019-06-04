@@ -1,0 +1,17 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.toggleElement-container {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 14px;
+
+  &__toggle {
+    width: 15%;
+    margin-right: $spacer;
+  }
+
+  &__message {
+    width: 85%;
+    margin-right: $spacer;
+  }
+}

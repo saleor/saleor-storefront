@@ -1,11 +1,19 @@
 import React from "react";
-import { Toggle } from "react-toggle-component";
 import Card from "../Card";
 import CardHeader from "../CardHeader";
+import ToggleElement from "./ToggleElement";
 
 const Newsletter: React.FC = () => {
   const header = <CardHeader title="NEWSLETTER" />;
-  const content = <Toggle name="toggle-1" />;
+  const messageEmail =
+    "I want to recieve newsletter with newest information about new sales and products";
+  const messageSMS = "I want to receive newsletter via SMS";
+  const content = (
+    <>
+      <ToggleElement message={messageEmail} toggleName={"email"} />
+      <ToggleElement message={messageSMS} toggleName={"sms"} />
+    </>
+  );
   return <Card header={header}>{content}</Card>;
 };
 
