@@ -148,19 +148,19 @@ const startApp = async () => {
   );
 };
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js")
       .then(registration => {
         window.setInterval(() => navigator.onLine && registration.update(), 60 * 1000);
         registration.onupdatefound = () => {
           const installingWorker = registration.installing;
           installingWorker.onstatechange = () => {
-            if (installingWorker.state === 'installed' &&
+            if (installingWorker.state === "installed" &&
                 navigator.serviceWorker.controller) {
 
               // tslint:disable-next-line: no-console
-              console.log('New version is available!. Refresh the page!')
+              console.log("New version is available!. Refresh the page!");
             }
           }
         }
