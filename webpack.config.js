@@ -6,7 +6,6 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
-const urljoin = require("url-join");
 
 const sourceDir = path.join(__dirname, "./src");
 const distDir = path.join(__dirname, "./dist");
@@ -110,18 +109,10 @@ module.exports = (env, argv) => {
           theme_color: "#333"
         }
       }),
-      new WorkboxPlugin.GenerateSW({
-        cacheId: 'saleor-store-front',
-        skipWaiting: true,
-        clientsClaim: true,
-        navigateFallback: "/index.html",
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.xml$/],
-        runtimeCaching: [
-          {
-            urlPattern: new RegExp(`^${urljoin(process.env.BACKEND_URL, "/media/")}`),
-            handler: "networkFirst",
-          }
-        ],
+      new WorkboxPlugin.InjectManifest({
+        swSrc: `${sourceDir}/sw.js`,
+        swDest: path.join(distDir, './service-worker.js'),
+        exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/, /\.js.map$/, /\.css.map/, /\.xls$/]
       }),
       new webpack.EnvironmentPlugin(["npm_package_version", "BACKEND_URL"])
     ],
