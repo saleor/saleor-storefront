@@ -8,7 +8,7 @@ import noPhotoImg from "../../images/no-photo.svg";
 const CachedThumbnail: React.FC<{
   source: {
     thumbnail: { url: string; alt: string };
-    thumbnail2x: { url: string };
+    thumbnail2x?: { url: string };
   };
   noPhotoDefault?: boolean;
   children?: React.ReactNode;

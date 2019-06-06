@@ -21,7 +21,12 @@ const ordersByUser = gql`
             }
           }
           lines {
-            id
+            variant {
+              product {
+                name
+                id
+              }
+            }
             thumbnail {
               alt
               url

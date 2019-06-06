@@ -1,0 +1,31 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.orderRow__container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #eaeaea;
+    height: 5rem;
+  }
+
+  &__indexNumber {
+    width: 25%;
+  }
+
+  &__date {
+    width: 30%;
+  }
+
+  &__status {
+    width: 30%;
+  }
+
+  &__price {
+    width: 15%;
+  }
+}

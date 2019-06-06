@@ -36,6 +36,16 @@ export interface OrdersByUser_orders_edges_node_total {
   gross: OrdersByUser_orders_edges_node_total_gross;
 }
 
+export interface OrdersByUser_orders_edges_node_lines_variant_product {
+  __typename: "Product";
+  name: string;
+}
+
+export interface OrdersByUser_orders_edges_node_lines_variant {
+  __typename: "ProductVariant";
+  product: OrdersByUser_orders_edges_node_lines_variant_product;
+}
+
 export interface OrdersByUser_orders_edges_node_lines_thumbnail {
   __typename: "Image";
   /**
@@ -54,6 +64,11 @@ export interface OrdersByUser_orders_edges_node_lines {
    * The ID of the object.
    */
   id: string;
+  /**
+   * A purchased product variant. Note: this field may be null if the
+   * variant has been removed from stock at all.
+   */
+  variant: OrdersByUser_orders_edges_node_lines_variant | null;
   /**
    * The main thumbnail for the ordered product.
    */
