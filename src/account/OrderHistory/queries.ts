@@ -31,6 +31,9 @@ const ordersByUser = gql`
               alt
               url
             }
+            thumbnail2x: thumbnail(size: 510) {
+              url
+            }
           }
         }
       }

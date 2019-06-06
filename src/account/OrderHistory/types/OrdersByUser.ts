@@ -62,6 +62,14 @@ export interface OrdersByUser_orders_edges_node_lines_thumbnail {
   url: string;
 }
 
+export interface OrdersByUser_orders_edges_node_lines_thumbnail2x {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface OrdersByUser_orders_edges_node_lines {
   __typename: "OrderLine";
   /**
@@ -73,6 +81,10 @@ export interface OrdersByUser_orders_edges_node_lines {
    * The main thumbnail for the ordered product.
    */
   thumbnail: OrdersByUser_orders_edges_node_lines_thumbnail | null;
+  /**
+   * The main thumbnail for the ordered product.
+   */
+  thumbnail2x: OrdersByUser_orders_edges_node_lines_thumbnail2x | null;
 }
 
 export interface OrdersByUser_orders_edges_node {
