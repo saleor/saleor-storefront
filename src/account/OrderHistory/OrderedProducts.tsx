@@ -7,7 +7,13 @@ export interface IOrderedProducts {
 }
 
 const OrderedProducts: React.FC<IOrderedProducts> = ({ products }) => {
-  return <ThumbnailUrl line={products[0]} />;
+  return (
+    <>
+      {products.slice(0, 5).map((product, index) => (
+        <ThumbnailUrl key={index} line={product} />
+      ))}
+    </>
+  );
 };
 
 export default OrderedProducts;

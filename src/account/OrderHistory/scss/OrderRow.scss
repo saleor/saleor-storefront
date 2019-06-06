@@ -12,20 +12,28 @@
     border-top: 1px solid #eaeaea;
     height: 5rem;
   }
+  img {
+    width: 50px;
+    height: auto;
+  }
 
   &__indexNumber {
+    width: 15%;
+  }
+
+  &__products {
     width: 25%;
   }
 
   &__date {
-    width: 30%;
+    width: 25%;
   }
 
   &__status {
-    width: 30%;
+    width: 25%;
   }
 
   &__price {
-    width: 15%;
+    width: 10%;
   }
 }

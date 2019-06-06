@@ -39,6 +39,10 @@ export interface OrdersByUser_orders_edges_node_total {
 export interface OrdersByUser_orders_edges_node_lines_variant_product {
   __typename: "Product";
   name: string;
+  /**
+   * The ID of the object.
+   */
+  id: string;
 }
 
 export interface OrdersByUser_orders_edges_node_lines_variant {
@@ -60,10 +64,6 @@ export interface OrdersByUser_orders_edges_node_lines_thumbnail {
 
 export interface OrdersByUser_orders_edges_node_lines {
   __typename: "OrderLine";
-  /**
-   * The ID of the object.
-   */
-  id: string;
   /**
    * A purchased product variant. Note: this field may be null if the
    * variant has been removed from stock at all.

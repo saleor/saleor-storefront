@@ -35,7 +35,9 @@ const OrderRow: React.FC<IOrderRow> = ({
             <div className="orderRow__container__products">
               <OrderedProducts products={products} />
             </div>
-            <div className="orderRow__container__date">{dateOfOrder}</div>
+            <div className="orderRow__container__date">
+              {dateOfOrder.slice(0, 15)}
+            </div>
             <div className="orderRow__container__price">{totalValue}</div>
           </>
         ) : (

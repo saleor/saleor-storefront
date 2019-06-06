@@ -9,9 +9,10 @@ export interface IThumbnailUrl {
 }
 
 const ThumbnailUrl: React.FC<IThumbnailUrl> = ({ line }) => {
-  // tslint:disable-next-line: no-console
-  console.log(line.id, line.variant.product.name);
-  const productUrl = generateProductUrl(line.id, line.variant.product.name);
+  const productUrl = generateProductUrl(
+    line.variant.product.id,
+    line.variant.product.name
+  );
   return (
     <Link to={productUrl}>
       <CachedThumbnail source={line} />
