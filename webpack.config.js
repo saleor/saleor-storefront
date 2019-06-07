@@ -2,7 +2,7 @@ const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
@@ -109,21 +109,10 @@ module.exports = (env, argv) => {
           theme_color: "#333"
         }
       }),
-      new SWPrecacheWebpackPlugin({
-        cacheId: "saleor-store-front",
-        filename: "service-worker.js",
-        navigateFallback: "/index.html",
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.xml$/],
-        runtimeCaching: [
-          {
-            urlPattern: /\/media\//,
-            handler: "networkFirst"
-          },
-          {
-            urlPattern: /\/static\//,
-            handler: "networkFirst"
-          }
-        ]
+      new WorkboxPlugin.InjectManifest({
+        swSrc: `${sourceDir}/sw.js`,
+        swDest: path.join(distDir, './service-worker.js'),
+        exclude: [/\.map$/, /^manifest.*\.js(?:on)?$/, /\.js.map$/, /\.css.map/, /\.xls$/]
       }),
       new webpack.EnvironmentPlugin(["npm_package_version", "BACKEND_URL"])
     ],

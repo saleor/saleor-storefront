@@ -61,9 +61,6 @@ npm start
 Go to `http://localhost:3000` to access the storefront.
 
 
-**Note:** Offline mode doesn't currently work on the development server (run with `npm start`), which is a known issue in [sw-precache-webpack-plugin](https://github.com/goldhand/sw-precache-webpack-plugin#webpack-dev-server-support) and will be fixed in future releases.
-
-
 ## License
 
 This project is licensed under the BSD-3-Clause License - see the [LICENSE.md](LICENSE.md) file for details
