@@ -80,6 +80,27 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     const alert = useAlert();
 
+    register('/service-worker.js', {
+      registered (registration) {
+        setInterval(() => navigator.onLine && registration.update(), 60 * 1000);
+      },
+      updated () {
+        alert.show(
+          {
+            content: "Please refresh the page!",
+            title: "New version is available!"
+          },
+          {
+            onClose: () => {
+              location.reload();
+            },
+            timeout: 0,
+            type: "info"
+          }
+        );
+      }
+    });
+
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
@@ -152,30 +173,5 @@ const startApp = async () => {
     module.hot.accept();
   }
 };
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(registration => {
-        window.setInterval(
-          () => navigator.onLine && registration.update(),
-          60 * 1000
-        );
-        registration.onupdatefound = () => {
-          const installingWorker = registration.installing;
-          installingWorker.onstatechange = () => {
-            if (
-              installingWorker.state === "installed" &&
-              navigator.serviceWorker.controller
-            ) {
-              // tslint:disable-next-line: no-console
-              console.log("New version is available!. Refresh the page!");
-            }
-          };
-        };
-      });
-  });
-}
 
 startApp();
