@@ -12,6 +12,7 @@ const OrderHistory: React.FC = () => {
               return (
                 <OrderRow
                   key={order.node.number}
+                  orderId={order.node.id}
                   indexNumber={order.node.number}
                   products={order.node.lines}
                   status={order.node.status}
