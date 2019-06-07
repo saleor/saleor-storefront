@@ -5,6 +5,7 @@ const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const webpack = require("webpack");
 
 const sourceDir = path.join(__dirname, "./src");
@@ -14,7 +15,12 @@ module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
   return {
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx"]
+      extensions: [".ts", ".tsx", ".js", ".jsx"],
+      plugins: [
+        new TsconfigPathsPlugin({
+          configFile: "./tsconfig.json"
+        })
+      ]
     },
     entry: {
       app: `${sourceDir}/index.tsx`
