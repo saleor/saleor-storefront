@@ -153,6 +153,10 @@
       cursor: pointer;
       margin: 0 auto;
 
+      a {
+        display: block;
+      }
+
       &:hover {
         color: $gray;
       }
