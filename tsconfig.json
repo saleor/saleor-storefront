@@ -1,11 +1,20 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "react",
     "lib": ["es2017", "dom", "esnext"],
     "sourceMap": true,
     "target": "es6",
-    "noUnusedLocals": true
-  }
+    "noUnusedLocals": true,
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@styles": ["./src/globalStyles/index.ts"]
+    },
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
