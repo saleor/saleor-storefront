@@ -9,7 +9,7 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
-      "@app/*": ["./src*"],
+      "@app/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@styles": ["./src/globalStyles/index.ts"]
     },

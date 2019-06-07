@@ -2,7 +2,7 @@ import baseStyled, { ThemedStyledInterface } from 'styled-components';
 
 const blue = '#21125e';
 
-export const theme = {
+export const defaultTheme = {
   breakpoints: {
     mediumScreen: 992,
     smallScreen: 540,
@@ -48,5 +48,5 @@ export const theme = {
   },
 }
 
-type Theme = typeof theme;
-export const styled = baseStyled as ThemedStyledInterface<Theme>;
+type DefaultTheme = typeof defaultTheme;
+export const styled = baseStyled as ThemedStyledInterface<DefaultTheme>;
