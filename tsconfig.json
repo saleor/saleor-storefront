@@ -13,6 +13,7 @@
       "@components/*": ["./src/components/*"],
       "@styles": ["./src/globalStyles/index.ts"]
     },
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules"

@@ -6,6 +6,7 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require("webpack");
 
 const sourceDir = path.join(__dirname, "./src");
@@ -35,7 +36,12 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          loader: "ts-loader"
+          loader: "ts-loader",
+          exclude: /node_modules/,
+          options: {
+            experimentalWatchApi: true,
+            transpileOnly: true
+          }
         },
         {
           test: /\.(scss|css)$/,
@@ -101,6 +107,10 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: devMode ? "[name].css" : "[name].[hash].css",
         chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        tslint: true,
+        exclude: 'node_modules'
       }),
       // PWA plugins
       new WebappWebpackPlugin({
