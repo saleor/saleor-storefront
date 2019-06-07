@@ -12,6 +12,7 @@ const webpack = require("webpack");
 const sourceDir = path.join(__dirname, "./src");
 const distDir = path.join(__dirname, "./dist");
 
+
 module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
   return {
@@ -114,9 +115,12 @@ module.exports = (env, argv) => {
       new ForkTsCheckerWebpackPlugin({
         tslint: true,
         exclude: "node_modules",
-        async: false,
+        async: false
       }),
-      new webpack.HotModuleReplacementPlugin(),
+      // DEV mode plugins
+      ...(devMode ? [
+        new webpack.HotModuleReplacementPlugin()
+      ] : []),
       // PWA plugins
       new WebappWebpackPlugin({
         logo: `${sourceDir}/images/favicon.png`,
