@@ -4,15 +4,20 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  cursor: pointer;
+  text-align: center;
 
   div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid #eaeaea;
     height: 5rem;
   }
+
+  & + div {
+    border-top: 1px solid #eaeaea;
+    cursor: pointer;
+  }
+
   img {
     width: 50px;
     height: auto;
@@ -20,6 +25,9 @@
 
   &__indexNumber {
     width: 15%;
+    @media screen and (max-width: $small-screen) {
+      width: 50%;
+    }
   }
 
   &__products {
@@ -32,6 +40,10 @@
 
   &__status {
     width: 25%;
+
+    @media screen and (max-width: $small-screen) {
+      width: 50%;
+    }
   }
 
   &__price {

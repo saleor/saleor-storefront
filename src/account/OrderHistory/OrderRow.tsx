@@ -14,14 +14,14 @@ export interface IOrderRow extends RouteComponentProps {
   orderId: string;
   products: OrdersByUser_orders_edges_node_lines[];
   totalValue: string;
-  status: string;
+  statusDisplay: string;
 }
 
 const OrderRow: React.FC<IOrderRow> = ({
   indexNumber,
   dateOfOrder,
   totalValue,
-  status,
+  statusDisplay,
   products,
   orderId,
   history
@@ -53,7 +53,7 @@ const OrderRow: React.FC<IOrderRow> = ({
         ) : (
           ""
         )}
-        <div className="orderRow__container__status">{status}</div>
+        <div className="orderRow__container__status">{statusDisplay}</div>
       </div>
     )}
   </Media>

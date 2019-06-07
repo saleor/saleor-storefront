@@ -2,8 +2,6 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { OrderStatus } from "./../../../../types/globalTypes";
-
 // ====================================================
 // GraphQL query operation: OrdersByUser
 // ====================================================
@@ -97,7 +95,10 @@ export interface OrdersByUser_orders_edges_node {
    * User-friendly number of an order.
    */
   number: string | null;
-  status: OrderStatus;
+  /**
+   * User-friendly order status.
+   */
+  statusDisplay: string | null;
   created: any;
   /**
    * Total amount of the order.

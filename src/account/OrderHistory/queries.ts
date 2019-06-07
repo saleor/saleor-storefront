@@ -13,7 +13,7 @@ const ordersByUser = gql`
         node {
           id
           number
-          status
+          statusDisplay
           created
           total {
             gross {
