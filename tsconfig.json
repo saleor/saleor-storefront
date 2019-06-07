@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "react",
@@ -9,9 +9,12 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
-      "@app/*": ["./*"],
-      "@components/*": ["./components/*"],
-      "@styles": ["./globalStyles/index.ts"]
-    }
-  }
+      "@app/*": ["./src*"],
+      "@components/*": ["./src/components/*"],
+      "@styles": ["./src/globalStyles/index.ts"]
+    },
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
