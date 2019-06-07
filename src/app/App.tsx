@@ -1,6 +1,7 @@
+import { hot } from "react-hot-loader";
 import "../globalStyles/scss/index.scss";
 
-import * as React from "react";
+import React from "react";
 import { RouteComponentProps } from "react-router";
 import { ThemeProvider } from "styled-components";
 
@@ -32,4 +33,4 @@ const App: React.FC<RouteComponentProps> = ({
   );
 };
 
-export default App;
+export default hot(module)(App);

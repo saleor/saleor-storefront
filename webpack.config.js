@@ -16,6 +16,9 @@ module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
   return {
     resolve: {
+      alias: {
+        "react-dom": "@hot-loader/react-dom"
+      },
       extensions: [".ts", ".tsx", ".js", ".jsx"],
       plugins: [
         new TsconfigPathsPlugin({
@@ -110,8 +113,10 @@ module.exports = (env, argv) => {
       }),
       new ForkTsCheckerWebpackPlugin({
         tslint: true,
-        exclude: 'node_modules'
+        exclude: "node_modules",
+        async: false,
       }),
+      new webpack.HotModuleReplacementPlugin(),
       // PWA plugins
       new WebappWebpackPlugin({
         logo: `${sourceDir}/images/favicon.png`,
