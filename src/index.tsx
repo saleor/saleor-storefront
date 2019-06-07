@@ -153,3 +153,7 @@ if ("serviceWorker" in navigator) {
 }
 
 startApp();
+
+if (module.hot) {
+  module.hot.accept();
+}
