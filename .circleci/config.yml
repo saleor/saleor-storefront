@@ -14,7 +14,7 @@ jobs:
           command: npm install
       - run:
           name: Run typescript checker
-          command: npx tsc --noEmit --skipLibCheck
+          command: npx tsc --noEmit
       - run:
           name: Run tslint
           command: npm run tslint
