@@ -33,6 +33,8 @@ import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
 import { UserContext } from "./components/User/context";
 
+import ServiceWorkerProvider, { ServiceWorkerContext } from "./components/ServiceWorkerProvider";
+
 import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
@@ -80,11 +82,10 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     const alert = useAlert();
 
-    register('/service-worker.js', {
-      registered (registration) {
-        setInterval(() => navigator.onLine && registration.update(), 60 * 1000);
-      },
-      updated () {
+    const { updateAvailable } = React .useContext(ServiceWorkerContext);
+
+    React.useEffect(() => {
+      if (updateAvailable) {
         alert.show(
           {
             content: "Please refresh the page!",
@@ -99,7 +100,7 @@ const startApp = async () => {
           }
         );
       }
-    });
+    }, [updateAvailable]);
 
     return (
       <Router history={history}>
@@ -163,7 +164,9 @@ const startApp = async () => {
 
   render(
     <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-      <Root />
+      <ServiceWorkerProvider>
+        <Root />
+      </ServiceWorkerProvider>
     </AlertProvider>,
     document.getElementById("root")
   );
