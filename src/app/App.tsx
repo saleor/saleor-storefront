@@ -1,4 +1,3 @@
-import { hot } from "react-hot-loader";
 import "../globalStyles/scss/index.scss";
 
 import React from "react";
@@ -33,4 +32,4 @@ const App: React.FC<RouteComponentProps> = ({
   );
 };
 
-export default hot(module)(App);
+export default App;
