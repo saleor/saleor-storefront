@@ -1,6 +1,7 @@
 import React from "react";
 import OrderRow from "./OrderRow";
 import { TypedOrdersByUser } from "./queries";
+import { Button, Loader } from "../../components";
 
 const OrderHistoryHeader = (
   <div className="orderRow__container">
@@ -15,13 +16,26 @@ const OrderHistoryHeader = (
 const OrderHistory: React.FC = () => {
   return (
     <>
-      <TypedOrdersByUser variables={{ perPage: 20 }}>
-        {({ data: { orders } }) => {
+      <TypedOrdersByUser variables={{ perPage: 20 }} fetchPolicy="cache-first">
+        {({ data, loadMore, loading }) => {
           {
+            const handleLoadMore = () =>
+              loadMore(
+                (prev, next) => ({
+                  ...prev,
+                  orders: {
+                    ...prev.orders,
+                    edges: [...prev.orders.edges, ...next.orders.edges],
+                    pageInfo: next.orders.pageInfo
+                  }
+                }),
+                { after: data.orders.pageInfo.endCursor }
+              );
+
             return (
               <>
                 {OrderHistoryHeader}
-                {orders.edges.map(order => {
+                {data.orders.edges.map(order => {
                   return (
                     <OrderRow
                       key={order.node.number}
@@ -34,6 +48,15 @@ const OrderHistory: React.FC = () => {
                     />
                   );
                 })}
+                {loading ? (
+                  <Loader />
+                ) : (
+                  data.orders.pageInfo.hasNextPage && (
+                    <Button secondary onClick={handleLoadMore}>
+                      Load more orders
+                    </Button>
+                  )
+                )}
               </>
             );
           }

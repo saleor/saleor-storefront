@@ -45,6 +45,10 @@ export interface OrdersByUser_orders_edges_node_lines_variant_product {
 
 export interface OrdersByUser_orders_edges_node_lines_variant {
   __typename: "ProductVariant";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   product: OrdersByUser_orders_edges_node_lines_variant_product;
 }
 
