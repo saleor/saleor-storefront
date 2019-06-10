@@ -15,7 +15,7 @@ const OrderHistoryHeader = (
 const OrderHistory: React.FC = () => {
   return (
     <>
-      <TypedOrdersByUser>
+      <TypedOrdersByUser variables={{ perPage: 20 }}>
         {({ data: { orders } }) => {
           {
             return (

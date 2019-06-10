@@ -9,13 +9,13 @@
 export interface OrdersByUser_orders_pageInfo {
   __typename: "PageInfo";
   /**
-   * When paginating backwards, are there more items?
+   * When paginating forwards, are there more items?
    */
-  hasPreviousPage: boolean;
+  hasNextPage: boolean;
   /**
-   * When paginating backwards, the cursor to continue.
+   * When paginating forwards, the cursor to continue.
    */
-  startCursor: string | null;
+  endCursor: string | null;
 }
 
 export interface OrdersByUser_orders_edges_node_total_gross {
@@ -129,4 +129,9 @@ export interface OrdersByUser {
    * List of the shop's orders.
    */
   orders: OrdersByUser_orders | null;
+}
+
+export interface OrdersByUserVariables {
+  perPage: number;
+  after?: string | null;
 }

@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
-import { OrdersByUser } from "./types/OrdersByUser";
+import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 
 const ordersByUser = gql`
-  query OrdersByUser {
-    orders(last: 2) {
+  query OrdersByUser($perPage: Int!, $after: String) {
+    orders(first: $perPage, after: $after) {
       pageInfo {
-        hasPreviousPage
-        startCursor
+        hasNextPage
+        endCursor
       }
       edges {
         node {
@@ -41,4 +41,7 @@ const ordersByUser = gql`
   }
 `;
 
-export const TypedOrdersByUser = TypedQuery<OrdersByUser, null>(ordersByUser);
+export const TypedOrdersByUser = TypedQuery<
+  OrdersByUser,
+  OrdersByUserVariables
+>(ordersByUser);
