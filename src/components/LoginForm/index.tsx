@@ -17,9 +17,9 @@ const performLogin = (
   data: TokenAuth,
   hide?: () => void
 ) => {
-  const successfull = !data.tokenCreate.errors.length;
+  const successful = !data.tokenCreate.errors.length;
 
-  if (successfull) {
+  if (successful) {
     if (!!hide) {
       hide();
     }
