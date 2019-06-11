@@ -1,0 +1,22 @@
+import React from "react";
+
+{{#if componentHasStyles}}
+import { Wrapper } from "./styles";
+{{else}}
+
+{{/if}}
+import { Props } from "./types";
+
+export const {{> p_componentName}}: React.FC<Props> = () => {
+  return (
+{{#if componentHasStyles}}
+    <Wrapper>
+      {/* --- here --- */}
+    </Wrapper>
+{{else}}
+    <>
+      {/* --- here --- */}
+    </>
+{{/if}}
+  )
+};

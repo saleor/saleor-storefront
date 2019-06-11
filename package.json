@@ -86,6 +86,7 @@
     "mini-css-extract-plugin": "^0.4.1",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.11.0",
+    "plop": "^2.3.0",
     "postcss": "^7.0.1",
     "postcss-loader": "^2.1.6",
     "postcss-preset-env": "^5.3.0",
@@ -125,6 +126,7 @@
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
     "heroku-postbuild": "npm run build",
-    "sitemap": "ts-node ./src/sitemap-builder.ts"
+    "sitemap": "ts-node ./src/sitemap-builder.ts",
+    "generate": "npx plop --plopfile ./.plop/index.js"
   }
 }
