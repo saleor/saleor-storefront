@@ -17,6 +17,17 @@ export interface IOrderRow extends RouteComponentProps {
   statusDisplay: string;
 }
 
+const addZero = num => ("0" + num).slice(-2);
+
+const formatData = dateOfOrder => {
+  const date = new Date(dateOfOrder);
+
+  const da = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(
+    date.getDay()
+  )} ${addZero(date.getHours())}:${addZero(date.getMinutes())}`;
+  return da;
+};
+
 const OrderRow: React.FC<IOrderRow> = ({
   indexNumber,
   dateOfOrder,
@@ -46,7 +57,7 @@ const OrderRow: React.FC<IOrderRow> = ({
               <OrderedProducts products={products} />
             </div>
             <div className="orderRow__container__date">
-              {dateOfOrder.slice(0, 15)}
+              {formatData(dateOfOrder)}
             </div>
             <div className="orderRow__container__price">{totalValue}</div>
           </>
