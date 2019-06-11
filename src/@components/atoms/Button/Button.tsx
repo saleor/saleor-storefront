@@ -1,18 +1,19 @@
 import React from "react";
 
-import { Main, Secondary, Text } from "./styles";
+import { Primary, Secondary, Text } from "./styles";
 import { Props } from "./types";
 
 export const Button: React.FC<Props> = ({
-  secondary = false,
+  color = "primary",
   btnRef,
+  children,
   ...props
 }) => {
-  const ButtonWithTheme = secondary ? Secondary : Main;
+  const ButtonWithTheme = color === "primary" ? Primary : Secondary;
 
   return (
-    <ButtonWithTheme ref={btnRef} {...props}>
-      <Text>Test</Text>
+    <ButtonWithTheme color={color} ref={btnRef} {...props}>
+      <Text>{children}</Text>
     </ButtonWithTheme>
   );
 };

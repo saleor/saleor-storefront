@@ -11,11 +11,10 @@
     "paths": {
       "@app/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
-      "@styles": ["./src/globalStyles/index.ts"]
+      "@styles": ["./src/globalStyles/index.ts"],
+      "@styles/*": ["./src/globalStyles/*"]
     },
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

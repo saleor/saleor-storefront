@@ -1,6 +1,6 @@
 import React from "react";
 
 export interface Props extends React.HTMLAttributes<HTMLButtonElement> {
-  secondary?: boolean;
+  color?: "primary" | "secondary";
   btnRef?: React.RefObject<HTMLButtonElement>;
 }
