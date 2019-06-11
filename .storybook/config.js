@@ -7,7 +7,7 @@ import { withThemesProvider } from "storybook-addon-styled-component-theme";
 import { OutLineDecorator } from "./OutlineDecorator";
 
 // themes
-import { defaultTheme } from "../src/globalStyles";
+import { defaultTheme } from "../src/@next/globalStyles";
 const themes = [defaultTheme];
 
 withOptions({
@@ -21,7 +21,7 @@ addDecorator(withKnobs);
 addDecorator(OutLineDecorator);
 addDecorator(withThemesProvider(themes));
 
-const req = require.context("../src/@components", true, /stories\.tsx$/);
+const req = require.context("../src/@next/components", true, /stories\.tsx$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));

@@ -4,7 +4,12 @@ const path = require("path");
 
 // paths
 const PROJECT_ROOT = path.join(__dirname, "..");
-const applicationComponentsPath = path.join(PROJECT_ROOT, "src", "@components");
+const applicationComponentsPath = path.join(
+  PROJECT_ROOT,
+  "src",
+  "@next",
+  "components"
+);
 const componentPath = filePath =>
   path.join(applicationComponentsPath, filePath);
 
