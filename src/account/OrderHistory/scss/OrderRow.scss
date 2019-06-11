@@ -11,11 +11,15 @@
     justify-content: center;
     align-items: center;
     height: 5rem;
+    color: $gray-dark;
   }
 
   & + div {
     border-top: 1px solid #eaeaea;
     cursor: pointer;
+    div {
+      color: $base-font-color;
+    }
   }
 
   img {

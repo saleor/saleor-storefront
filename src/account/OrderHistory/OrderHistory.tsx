@@ -1,7 +1,9 @@
+import "./scss/OrderHistory.scss";
+
 import React from "react";
+import { Button, Loader } from "../../components";
 import OrderRow from "./OrderRow";
 import { TypedOrdersByUser } from "./queries";
-import { Button, Loader } from "../../components";
 
 const OrderHistoryHeader = (
   <div className="orderRow__container">
@@ -33,7 +35,7 @@ const OrderHistory: React.FC = () => {
               );
 
             return (
-              <>
+              <div className="order-history__container">
                 {OrderHistoryHeader}
                 {data.orders.edges.map(order => {
                   return (
@@ -52,12 +54,14 @@ const OrderHistory: React.FC = () => {
                   <Loader />
                 ) : (
                   data.orders.pageInfo.hasNextPage && (
-                    <Button secondary onClick={handleLoadMore}>
-                      Load more orders
-                    </Button>
+                    <div className="order-history__container__loadMore__button">
+                      <Button secondary onClick={handleLoadMore}>
+                        Load more orders
+                      </Button>
+                    </div>
                   )
                 )}
-              </>
+              </div>
             );
           }
         }}
