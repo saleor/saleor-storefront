@@ -75,6 +75,10 @@ export interface OrdersByUser_orders_edges_node_lines_thumbnail2x {
 export interface OrdersByUser_orders_edges_node_lines {
   __typename: "OrderLine";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * A purchased product variant. Note: this field may be null if the
    * variant has been removed from stock at all.
    */

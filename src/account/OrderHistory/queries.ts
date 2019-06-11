@@ -21,6 +21,7 @@ const ordersByUser = gql`
             }
           }
           lines {
+            id
             variant {
               id
               product {
