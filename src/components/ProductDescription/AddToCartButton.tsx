@@ -45,7 +45,7 @@ class AddToCartButton extends React.PureComponent<
       <Button
         {...this.props}
         className={classNames(this.props.className, {
-          "product-description__action--fade": animate
+          "product-description__action--fade": animate,
         })}
         onClick={this.handleAnimation}
       >

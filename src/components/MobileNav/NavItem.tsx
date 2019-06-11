@@ -27,7 +27,7 @@ const NavItem: React.FC<NavItemProps> = ({
     <li
       className={classNames({
         "side-nav__menu-item": true,
-        "side-nav__menu-item--has-subnavigation": hasSubNavigation
+        "side-nav__menu-item--has-subnavigation": hasSubNavigation,
       })}
     >
       <NavLink

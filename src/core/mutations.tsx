@@ -22,7 +22,7 @@ export function TypedMutation<TData, TVariables>(
       children,
       onCompleted,
       onError,
-      variables
+      variables,
     } = props as JSX.LibraryManagedAttributes<
       typeof TypedMutation,
       typeof props

@@ -20,7 +20,7 @@ const View: React.FC = () => (
             <MetaWrapper
               meta={{
                 description: data.shop.description,
-                title: data.shop.name
+                title: data.shop.name,
               }}
             >
               <Page

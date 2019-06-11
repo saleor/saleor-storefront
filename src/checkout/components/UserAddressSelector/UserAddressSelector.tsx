@@ -16,13 +16,13 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   shippingAsBilling,
   type = "shipping" as CheckoutFormType,
   update,
-  user
+  user,
 }) => {
   const [addressesList, addAddressToList] = React.useState<FormAddressType[]>(
     React.useMemo(() => getInitialAddresses({ type, checkout, user }), [
       checkout,
       type,
-      user
+      user,
     ])
   );
   const [isVisibleModalForm, setModalVisibility] = React.useState<boolean>(
@@ -30,7 +30,7 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   );
   const [
     selectedAddress,
-    setSelectedAddress
+    setSelectedAddress,
   ] = React.useState<FormAddressType | null>(
     !shippingAsBilling ? addressesList[0] : null
   );
@@ -57,7 +57,7 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   const uncheckShippingAsBilling = () => {
     if (shippingAsBilling) {
       update({
-        shippingAsBilling: false
+        shippingAsBilling: false,
       });
     }
   };

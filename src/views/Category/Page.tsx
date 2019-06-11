@@ -40,7 +40,7 @@ const Page: React.FC<PageProps> = ({
   products,
   onAttributeFiltersChange,
   onPriceChange,
-  onOrder
+  onOrder,
 }) => {
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined

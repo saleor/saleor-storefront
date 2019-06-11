@@ -50,22 +50,22 @@ const Steps: React.FC<{
     {
       header: "Shipping Address",
       path: shippingAddressUrl,
-      step: CheckoutStep.ShippingAddress
+      step: CheckoutStep.ShippingAddress,
     },
     {
       header: "Shipping Method",
       path: shippingOptionsUrl,
-      step: CheckoutStep.ShippingOption
+      step: CheckoutStep.ShippingOption,
     },
     {
       header: "Billing Address",
       path: billingUrl,
-      step: CheckoutStep.BillingAddress
+      step: CheckoutStep.BillingAddress,
     },
     {
       header: "Payment Method",
-      step: CheckoutStep.Payment
-    }
+      step: CheckoutStep.Payment,
+    },
   ];
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
 
@@ -77,7 +77,7 @@ const Steps: React.FC<{
             <>
               <Link
                 to={generatePath(path, {
-                  token
+                  token,
                 })}
               >
                 <div className="checkout__step checkout__step--inactive">

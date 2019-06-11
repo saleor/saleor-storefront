@@ -22,33 +22,33 @@ const extractMeta = (product: ProductDetails_product) => ({
   custom: [
     {
       content: product.price.amount.toString(),
-      property: "product:price:amount"
+      property: "product:price:amount",
     },
     {
       content: product.price.currency,
-      property: "product:price:currency"
+      property: "product:price:currency",
     },
     {
       content: product.availability.available ? "in stock" : "out off stock",
-      property: "product:availability"
+      property: "product:availability",
     },
     {
       content: product.category.name,
-      property: "product:category"
-    }
+      property: "product:category",
+    },
   ],
   description: product.seoDescription || product.description,
   image: product.thumbnail.url,
   title: product.seoTitle || product.name,
   type: "product.item",
-  url: window.location.href
+  url: window.location.href,
 });
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => (
   <TypedProductDetailsQuery
     loaderFull
     variables={{
-      id: getGraphqlIdFromDBId(match.params.id, "Product")
+      id: getGraphqlIdFromDBId(match.params.id, "Product"),
     }}
     errorPolicy="all"
     key={match.params.id}

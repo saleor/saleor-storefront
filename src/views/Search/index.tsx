@@ -46,7 +46,7 @@ const notFound = (phrase: string) => (
 
 export const SearchView: React.FC<SearchViewProps> = ({
   history,
-  location
+  location,
 }) => {
   const querystring = parseQueryString(location);
   const updateQs = updateQueryString(location, history);
@@ -56,13 +56,13 @@ export const SearchView: React.FC<SearchViewProps> = ({
     pageSize: PRODUCTS_PER_PAGE,
     priceGte: parseInt(querystring.priceGte, 0) || null,
     priceLte: parseInt(querystring.priceLte, 0) || null,
-    sortBy: querystring.sortBy || null
+    sortBy: querystring.sortBy || null,
   };
   const variables = {
     ...filters,
     attributes: convertToAttributeScalar(filters.attributes),
     query: querystring.q,
-    sortBy: convertSortByFromString(filters.sortBy)
+    sortBy: convertSortByFromString(filters.sortBy),
   };
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     querystring.q = event.target.value;
@@ -94,12 +94,12 @@ export const SearchView: React.FC<SearchViewProps> = ({
                   products: {
                     ...prev.products,
                     edges: [...prev.products.edges, ...next.products.edges],
-                    pageInfo: next.products.pageInfo
-                  }
+                    pageInfo: next.products.pageInfo,
+                  },
                 }),
                 {
                   after: data.products.pageInfo.endCursor,
-                  query: querystring.q
+                  query: querystring.q,
                 }
               );
 

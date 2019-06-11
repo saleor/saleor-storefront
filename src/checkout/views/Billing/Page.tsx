@@ -37,10 +37,10 @@ const computeMutationVariables = (
         lastName: data.lastName,
         postalCode: data.postalCode,
         streetAddress1: data.streetAddress1,
-        streetAddress2: data.streetAddress2
+        streetAddress2: data.streetAddress2,
       },
-      checkoutId: checkout.id
-    }
+      checkoutId: checkout.id,
+    },
   };
 };
 
@@ -48,7 +48,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
   readonly state = {
     checkout: null,
     errors: [],
-    loading: false
+    loading: false,
   };
 
   onSubmitHandler = async (formData: FormAddressType) => {
@@ -66,7 +66,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
       this.setState({
         checkout,
         errors,
-        loading: false
+        loading: false,
       });
     });
     return;
@@ -74,13 +74,13 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
 
   proceedToPayment = () => {
     const {
-      proceedToNextStepData: { history, token, update }
+      proceedToNextStepData: { history, token, update },
     } = this.props;
     const canProceed = !this.state.errors.length;
 
     if (canProceed) {
       update({
-        checkout: this.state.checkout || this.props.checkout
+        checkout: this.state.checkout || this.props.checkout,
       });
       history.push(generatePath(paymentUrl, { token }));
     }
@@ -100,7 +100,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
       shippingAsBilling,
       shop,
       step,
-      update
+      update,
     } = this.props;
 
     const billingProps = {
@@ -111,7 +111,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
 
       proceedToNextStep: this.onProceedToShippingSubmit,
       shippingAsBilling,
-      type: "billing" as CheckoutFormType
+      type: "billing" as CheckoutFormType,
     };
 
     return validateStep ? (
@@ -132,7 +132,7 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
                   checked={shippingAsBilling}
                   onChange={({ target: { checked } }) =>
                     update({
-                      shippingAsBilling: checked
+                      shippingAsBilling: checked,
                     })
                   }
                 />

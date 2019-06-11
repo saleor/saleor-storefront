@@ -6,7 +6,7 @@ import { generateProductUrl } from "../../../core/utils";
 import { SearchResults_products_edges } from "./types/SearchResults";
 
 const ProductItem: React.FC<SearchResults_products_edges> = ({
-  node: product
+  node: product,
 }) => (
   <li className="search__products__item">
     <Link to={generateProductUrl(product.id, product.name)}>

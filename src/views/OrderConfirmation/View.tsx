@@ -15,7 +15,7 @@ class View extends React.PureComponent<RouteComponentProps> {
    */
   componentWillUnmount() {
     const {
-      history: { location, replace }
+      history: { location, replace },
     } = this.props;
     const { state } = location;
 
@@ -27,8 +27,8 @@ class View extends React.PureComponent<RouteComponentProps> {
   render() {
     const {
       history: {
-        location: { state }
-      }
+        location: { state },
+      },
     } = this.props;
 
     /**

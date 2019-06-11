@@ -16,6 +16,6 @@ export const getFormData = (
       country: maybe(
         () => geolocalization.country.country,
         defaultCountry.country
-      )
-    }
+      ),
+    },
   };

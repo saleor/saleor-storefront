@@ -93,7 +93,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => (
                             <div className="cart__footer__button">
                               <Link
                                 to={generatePath(cartUrl, {
-                                  token: null
+                                  token: null,
                                 })}
                               >
                                 <Button secondary>Go to my bag</Button>

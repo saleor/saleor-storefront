@@ -84,7 +84,7 @@ class Search extends React.Component<SearchProps, SearchState> {
       <Overlay context={this.props.overlay} className="overlay--no-background">
         <form
           className={classNames("search", {
-            "search--has-results": this.hasSearchPhrase
+            "search--has-results": this.hasSearchPhrase,
           })}
           onClick={e => e.stopPropagation()}
           onSubmit={this.handleSubmit}
@@ -105,7 +105,7 @@ class Search extends React.Component<SearchProps, SearchState> {
           <div
             className={classNames({
               ["search__products"]: true,
-              ["search__products--expanded"]: this.hasSearchPhrase
+              ["search__products--expanded"]: this.hasSearchPhrase,
             })}
           >
             <NetworkStatus>

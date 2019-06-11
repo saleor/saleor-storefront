@@ -44,7 +44,7 @@ export const priceToString = (
   if (locale) {
     return amount.toLocaleString(locale, {
       currency: price.currency,
-      style: "currency"
+      style: "currency",
     });
   } else {
     return `${price.currency} ${amount.toFixed(2)}`;
@@ -127,7 +127,7 @@ export const parseQueryString = (
   location: LocationState
 ): { [key: string]: string } => {
   const query = {
-    ...parseQs(location.search.substr(1))
+    ...parseQs(location.search.substr(1)),
   };
   each(query, (value, key) => {
     if (Array.isArray(value)) {

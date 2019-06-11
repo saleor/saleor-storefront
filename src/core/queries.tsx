@@ -44,7 +44,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
       loaderFull,
       skip,
       variables,
-      onCompleted
+      onCompleted,
     } = props as JSX.LibraryManagedAttributes<
       QueryProps<TData, TVariables>,
       TypedQueryInnerProps<TData, TVariables>
@@ -79,7 +79,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
                 }
                 return mergeFunc(previousResults, fetchMoreResult);
               },
-              variables: { ...variables, ...extraVariables }
+              variables: { ...variables, ...extraVariables },
             });
 
           if (displayError && error && !hasData) {

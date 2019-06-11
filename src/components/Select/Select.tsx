@@ -40,7 +40,7 @@ export const Select = (props: ISelectProps) => {
     label,
     onChange,
     options,
-    name
+    name,
   } = props;
   const [open, setOpen] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
@@ -74,7 +74,7 @@ export const Select = (props: ISelectProps) => {
     <div
       ref={setElementRef()}
       className={classNames("react-select select", {
-        "select--open": shouldOpen
+        "select--open": shouldOpen,
       })}
     >
       <input
@@ -110,7 +110,7 @@ export const Select = (props: ISelectProps) => {
 
         <div
           className={classNames("select__options", {
-            "select__options--open": shouldOpen
+            "select__options--open": shouldOpen,
           })}
         >
           <SelectOptionsList

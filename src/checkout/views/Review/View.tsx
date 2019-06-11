@@ -33,14 +33,14 @@ const completeCheckout = (
     const { id, token } = data.checkoutComplete.order;
     history.push({
       pathname: orderConfirmationUrl,
-      state: guest ? { token } : { id }
+      state: guest ? { token } : { id },
     });
     clearCheckout();
     clearCart();
     alert.show(
       { title: "Your order was placed" },
       {
-        type: "success"
+        type: "success",
       }
     );
   } else {
@@ -48,7 +48,7 @@ const completeCheckout = (
       alert.show(
         { title: error.message },
         {
-          type: "error"
+          type: "error",
         }
       );
     });
@@ -59,8 +59,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
     path,
-    params: { token }
-  }
+    params: { token },
+  },
 }) => {
   const alert = useAlert();
   const {
@@ -68,7 +68,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     dummyStatus,
     checkout,
     clear: clearCheckout,
-    step
+    step,
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
   const user = React.useContext(UserContext);
@@ -130,8 +130,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                     onClick={() =>
                       completeCheckout({
                         variables: {
-                          checkoutId: checkout.id
-                        }
+                          checkoutId: checkout.id,
+                        },
                       })
                     }
                   >

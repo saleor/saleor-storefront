@@ -9,7 +9,7 @@ import {
 import { TypedGetCheckoutQuery, TypedGetUserCheckoutQuery } from "./queries";
 
 enum LocalStorageKeys {
-  Token = "checkoutToken"
+  Token = "checkoutToken",
 }
 
 interface ProviderProps {
@@ -38,7 +38,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
        * Flag to determine, when the cart lines should override the checkout
        * lines - happens after user logs in
        */
-      syncWithCart: false
+      syncWithCart: false,
     };
   }
 
@@ -49,7 +49,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
     ...this.state,
     clear: this.clear,
     step: this.getCurrentStep(),
-    update: this.update
+    update: this.update,
   });
 
   getCurrentStep() {
@@ -83,7 +83,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
       checkout: null,
       dummyStatus: null,
       shippingAsBilling: false,
-      step: CheckoutStep.ShippingAddress
+      step: CheckoutStep.ShippingAddress,
     });
     localStorage.removeItem(LocalStorageKeys.Token);
   };
@@ -116,7 +116,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
   render() {
     const token = this.getStoredToken();
     const {
-      user: { user, loading: userLoading }
+      user: { user, loading: userLoading },
     } = this.props;
     const { checkout: stateCheckout, syncUserCheckout } = this.state;
     const skipUserCheckoutFetch = !syncUserCheckout;
@@ -133,7 +133,7 @@ class Provider extends React.Component<ProviderProps, ProviderState> {
                 checkout,
                 loading: false,
                 syncUserCheckout: false,
-                syncWithCart: true
+                syncWithCart: true,
               },
               this.setCheckoutToken
             );

@@ -38,7 +38,7 @@ export const invalidTokenLinkWithTokenHandlerComponent = (
   const extendedComponent = props => {
     return React.createElement(component, {
       ...props,
-      tokenExpirationHandler
+      tokenExpirationHandler,
     });
   };
   const link = onError((error: ResponseError) => {
@@ -56,8 +56,8 @@ export const authLink = setContext((_, context) => {
       ...context,
       headers: {
         ...context.headers,
-        Authorization: authToken ? `JWT ${authToken}` : null
-      }
+        Authorization: authToken ? `JWT ${authToken}` : null,
+      },
     };
   } else {
     return context;

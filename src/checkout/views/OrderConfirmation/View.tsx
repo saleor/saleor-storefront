@@ -10,8 +10,8 @@ import { userOrderDetailsUrl } from "../../../userAccount/routes";
 
 const View: React.FC<RouteComponentProps> = ({
   history: {
-    location: { state }
-  }
+    location: { state },
+  },
 }) => {
   if (!state) {
     return <NotFound />;

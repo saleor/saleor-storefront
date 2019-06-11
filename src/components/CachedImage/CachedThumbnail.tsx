@@ -26,7 +26,7 @@ const CachedThumbnail: React.FC<{
 };
 
 CachedThumbnail.defaultProps = {
-  noPhotoDefault: true
+  noPhotoDefault: true,
 };
 
 export default CachedThumbnail;

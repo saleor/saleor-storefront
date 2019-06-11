@@ -28,7 +28,7 @@ const Modal: React.FC<IModalProps> = ({
   submitBtnText,
   target = modalRoot,
   show,
-  title
+  title,
 }) =>
   target && show
     ? ReactDOM.createPortal(

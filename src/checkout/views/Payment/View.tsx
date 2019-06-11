@@ -43,7 +43,7 @@ class View extends React.Component<
   state = {
     loading: false,
     selectedGeteway: null,
-    validateStep: true
+    validateStep: true,
   };
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
 
@@ -56,8 +56,8 @@ class View extends React.Component<
       const {
         history,
         match: {
-          params: { token }
-        }
+          params: { token },
+        },
       } = this.props;
       this.setState({ loading: false });
       history.push(generatePath(reviewUrl, { token }));
@@ -73,7 +73,7 @@ class View extends React.Component<
     checkout: CheckoutContextInterface
   ) => async (token: string, gateway: GatewaysEnum) => {
     const {
-      checkout: { billingAddress, totalPrice, id }
+      checkout: { billingAddress, totalPrice, id },
     } = checkout;
 
     if (token) {
@@ -90,12 +90,12 @@ class View extends React.Component<
               lastName: billingAddress.lastName,
               postalCode: billingAddress.postalCode,
               streetAddress1: billingAddress.streetAddress1,
-              streetAddress2: billingAddress.streetAddress2
+              streetAddress2: billingAddress.streetAddress2,
             },
             gateway,
-            token
-          }
-        }
+            token,
+          },
+        },
       });
     }
   };
@@ -103,7 +103,7 @@ class View extends React.Component<
   render() {
     const {
       params: { token },
-      path
+      path,
     } = this.props.match;
     const { selectedGeteway, loading: stateLoding } = this.state;
 
@@ -143,7 +143,7 @@ class View extends React.Component<
                             null
                           );
                           const {
-                            availablePaymentGateways
+                            availablePaymentGateways,
                           } = checkout.checkout;
                           const processPayment = this.processPayment(
                             createPaymentMethod,
@@ -158,7 +158,7 @@ class View extends React.Component<
                             onSelect: () =>
                               this.setState({ selectedGeteway: provider }),
                             selected: selectedGeteway === provider,
-                            value: provider
+                            value: provider,
                           });
                           const providerProps = {
                             checkout,
@@ -166,7 +166,7 @@ class View extends React.Component<
                             loading,
                             paymentClientToken,
                             processPayment,
-                            setLoadingState: this.setLoadingState
+                            setLoadingState: this.setLoadingState,
                           };
 
                           return (

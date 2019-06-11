@@ -12,8 +12,8 @@ import {
 
 const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
   match: {
-    params: { id, token }
-  }
+    params: { id, token },
+  },
 }) => {
   const guest = !id;
 

@@ -74,14 +74,14 @@ const Page: React.FC<{
               >
                 <div
                   className={classNames("home-page__categories__list__image", {
-                    "home-page__categories__list__image--no-photo": !category.backgroundImage
+                    "home-page__categories__list__image--no-photo": !category.backgroundImage,
                   })}
                   style={{
                     backgroundImage: `url(${
                       category.backgroundImage
                         ? category.backgroundImage.url
                         : noPhotoImg
-                    })`
+                    })`,
                   }}
                 />
                 <h3>{category.name}</h3>

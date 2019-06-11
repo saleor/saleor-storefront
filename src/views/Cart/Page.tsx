@@ -33,7 +33,7 @@ const Page: React.FC<PageProps> = ({
     checkout,
     loading: checkoutLoading,
     syncWithCart,
-    syncUserCheckout
+    syncUserCheckout,
   },
   cart: {
     lines,
@@ -43,8 +43,8 @@ const Page: React.FC<PageProps> = ({
     clearErrors,
     subtract,
     loading: cartLoading,
-    changeQuantity
-  }
+    changeQuantity,
+  },
 }) => {
   const alert = useAlert();
   const user = React.useContext(UserContext);
@@ -57,7 +57,7 @@ const Page: React.FC<PageProps> = ({
       alert.show(
         {
           content: errors.map(err => err.message).join(", "),
-          title: "Error"
+          title: "Error",
         },
         { type: "error" }
       );
@@ -77,7 +77,7 @@ const Page: React.FC<PageProps> = ({
     invalid: maybe(() => !!errors.length, false),
     processing: cartLoading,
     remove,
-    subtract
+    subtract,
   };
   const locale = maybe(() => geolocalization.country.code, defaultCountry.code);
 
@@ -92,7 +92,7 @@ const Page: React.FC<PageProps> = ({
       ) : (
         <TypedProductVariantsQuery
           variables={{
-            ids: lines.map(line => line.variantId)
+            ids: lines.map(line => line.variantId),
           }}
         >
           {({ data }) => (

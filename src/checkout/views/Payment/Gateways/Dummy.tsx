@@ -11,7 +11,7 @@ class Dummy extends React.PureComponent<
   statuses = [
     { token: "charged", label: "Charged" },
     { token: "fully-refunded", label: "Fully refunded" },
-    { token: "not-charged", label: "Not charged" }
+    { token: "not-charged", label: "Not charged" },
   ];
   state = { selectedStatus: this.statuses[0] };
 
@@ -20,7 +20,7 @@ class Dummy extends React.PureComponent<
       loading,
       formRef,
       processPayment,
-      checkout: { update }
+      checkout: { update },
     } = this.props;
     const { selectedStatus } = this.state;
 
@@ -41,7 +41,7 @@ class Dummy extends React.PureComponent<
               key={token}
               className={classNames("c-option", {
                 "c-option--disabled": loading,
-                "c-option--selected": selected
+                "c-option--selected": selected,
               })}
               onClick={() =>
                 this.setState({ selectedStatus: { token, label } })

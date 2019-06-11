@@ -22,29 +22,29 @@ const INITIAL_CARD_ERROR_STATE = {
     cvv: "",
     expirationMonth: "",
     expirationYear: "",
-    number: ""
+    number: "",
   },
-  nonFieldError: ""
+  nonFieldError: "",
 };
 
 const INITIAL_CARD_VALUES_STATE = {
   ccCsc: null,
   ccExp: null,
-  ccNumber: null
+  ccNumber: null,
 };
 
 const CreditCard = ({
   checkout: {
     update,
     checkout: {
-      billingAddress: { postalCode }
-    }
+      billingAddress: { postalCode },
+    },
   },
   formRef,
   loading,
   setLoadingState,
   paymentClientToken,
-  processPayment
+  processPayment,
 }: ProviderProps) => {
   {
     const [cardErrors, setCardErrors] = React.useState<ErrorData>(
@@ -75,8 +75,8 @@ const CreditCard = ({
         setCardErrors(({ fieldErrors }) => ({
           fieldErrors: {
             ...fieldErrors,
-            [field]: message
-          }
+            [field]: message,
+          },
         }))
       );
 
@@ -102,7 +102,7 @@ const CreditCard = ({
         billingAddress: { postalCode },
         cvv: removeEmptySpaces(maybe(() => formData.ccCsc, "")),
         expirationDate: removeEmptySpaces(maybe(() => formData.ccExp, "")),
-        number: removeEmptySpaces(maybe(() => formData.ccNumber, ""))
+        number: removeEmptySpaces(maybe(() => formData.ccNumber, "")),
       };
       const token = await tokenizeCcCard(creditCard);
       processPayment(token, GatewaysEnum.BRAINTREE);
@@ -114,7 +114,7 @@ const CreditCard = ({
       disabled: loading,
       onBlur: handleOnBlur,
       onChange: handleOnChange,
-      onFocus: handleOnFocus
+      onFocus: handleOnFocus,
     });
 
     return (
@@ -124,7 +124,7 @@ const CreditCard = ({
         cardText={{
           ccCsc: "CVC",
           ccExp: "ExpiryDate",
-          ccNumber: "Number"
+          ccNumber: "Number",
         }}
         cardValues={cardValues}
         focusedInputName={focusedInput}

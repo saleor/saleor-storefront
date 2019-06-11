@@ -20,7 +20,7 @@ const showSuccessNotification = (
     hide();
     alert.show(
       {
-        title: "New user has been created"
+        title: "New user has been created",
       },
       { type: "success" }
     );

@@ -11,8 +11,8 @@ import Page from "./Page";
 
 const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   match: {
-    params: { token }
-  }
+    params: { token },
+  },
 }) => {
   return (
     <div className="container cart-page">
