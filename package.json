@@ -7,7 +7,6 @@
   "main": "dist/index.js",
   "browserslist": "last 2 versions",
   "dependencies": {
-    "@types/styled-components": "^4.1.16",
     "apollo": "^2.6.2",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-cache-persist": "^0.1.1",
@@ -44,6 +43,7 @@
     "url-join": "^4.0.0"
   },
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.8.6",
     "@storybook/addon-options": "^3.4.10",
     "@storybook/cli": "^4.1.11",
     "@storybook/react": "^4.0.0-alpha.16",
@@ -63,6 +63,7 @@
     "@types/react-select": "^2.0.2",
     "@types/react-svg": "^5.0.0",
     "@types/storybook__react": "^3.0.9",
+    "@types/styled-components": "^4.1.16",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
@@ -84,6 +85,7 @@
     "postcss-preset-env": "^5.3.0",
     "query-string": "^6.1.0",
     "react-apollo": "^2.5.1",
+    "react-hot-loader": "^4.9.0",
     "react-number-format": "^3.6.2",
     "react-select": "^2.0.0",
     "sass-loader": "^7.1.0",
@@ -98,6 +100,7 @@
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1",
     "workbox-webpack-plugin": "^4.3.1"
   },
   "engines": {
@@ -105,7 +108,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development",
+    "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly",
+    "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",

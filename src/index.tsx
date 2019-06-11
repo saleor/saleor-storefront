@@ -1,3 +1,5 @@
+import { hot } from "react-hot-loader";
+
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
@@ -11,13 +13,12 @@ import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
 import urljoin from "url-join";
 
-import { createBrowserHistory } from "history";
-
 import { App } from "./app";
 import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
+import { history } from "./history";
 
 import {
   NotificationTemplate,
@@ -57,16 +58,6 @@ const cache = new InMemoryCache({
   }
 });
 
-const history = createBrowserHistory();
-history.listen((_location, action) => {
-  if (["PUSH"].includes(action)) {
-    window.scroll({
-      behavior: "smooth",
-      top: 0
-    });
-  }
-});
-
 const startApp = async () => {
   await persistCache({
     cache,
@@ -83,7 +74,7 @@ const startApp = async () => {
     timeout: 2500
   };
 
-  const Root = () => {
+  const Root = hot(module)(() => {
     const alert = useAlert();
 
     return (
@@ -139,7 +130,7 @@ const startApp = async () => {
         </ApolloProvider>
       </Router>
     );
-  };
+  });
 
   render(
     <AlertProvider template={NotificationTemplate} {...notificationOptions}>
@@ -147,6 +138,11 @@ const startApp = async () => {
     </AlertProvider>,
     document.getElementById("root")
   );
+
+  // Hot Module Replacement API
+  if (module.hot) {
+    module.hot.accept();
+  }
 };
 
 if ("serviceWorker" in navigator) {

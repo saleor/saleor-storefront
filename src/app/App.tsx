@@ -1,6 +1,6 @@
 import "../globalStyles/scss/index.scss";
 
-import * as React from "react";
+import React from "react";
 import { RouteComponentProps } from "react-router";
 import { ThemeProvider } from "styled-components";
 
