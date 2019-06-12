@@ -13,12 +13,12 @@ interface OverlayProps {
 const Overlay: React.FC<OverlayProps> = ({
   children,
   className,
-  context: { type, theme, hide }
+  context: { type, theme, hide },
 }) => (
   <div
     className={classNames("overlay", {
       [`overlay--${type}`]: !!type,
-      [className]: !!className
+      [className]: !!className,
     })}
     onClick={hide}
   >

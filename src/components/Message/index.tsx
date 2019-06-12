@@ -15,7 +15,7 @@ const Message: React.FC<MessageProps> = ({
   title,
   status = "neutral",
   children,
-  onClose
+  onClose,
 }) => (
   <div className={`message message__status-${status}`}>
     <p className="message__title">{title}</p>

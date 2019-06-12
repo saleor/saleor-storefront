@@ -30,8 +30,8 @@ const AddToCart: React.FC<{
                   if (user && !checkout) {
                     createCheckout({
                       variables: {
-                        checkoutInput: { email: user.email, lines }
-                      }
+                        checkoutInput: { email: user.email, lines },
+                      },
                     });
                   } else {
                     onSubmit();

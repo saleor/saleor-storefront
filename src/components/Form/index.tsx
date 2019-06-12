@@ -61,10 +61,10 @@ class Form<Values> extends React.Component<
     if (propsKey !== stateKey) {
       const errors = removeDuplicatedErrors([
         ...(state.errors || []),
-        ...(props.errors || [])
+        ...(props.errors || []),
       ]);
       return {
-        errors
+        errors,
       };
     }
     return null;
@@ -78,7 +78,7 @@ class Form<Values> extends React.Component<
     const data = props.data || {};
     this.state = {
       data,
-      errors
+      errors,
     };
   }
 
@@ -87,7 +87,7 @@ class Form<Values> extends React.Component<
       JSON.stringify(prevProps.errors) !== JSON.stringify(this.props.errors)
     ) {
       this.setState({
-        errors: this.props.errors || []
+        errors: this.props.errors || [],
       });
     }
   }
@@ -132,7 +132,7 @@ class Form<Values> extends React.Component<
       // If current component has additional children, traverse through them as well
       if (child.props.children) {
         return React.cloneElement(child, {
-          children: this.renderWrappedChildren(child.props.children)
+          children: this.renderWrappedChildren(child.props.children),
         });
       }
       if (child.type === TextField || child.type === NumberFormat) {
@@ -165,7 +165,7 @@ class Form<Values> extends React.Component<
             }
             this.handleInputError(event);
             event.preventDefault();
-          }
+          },
         });
       } else if (child.type === SelectField || child.type === Select) {
         let defaultValue;
@@ -175,7 +175,7 @@ class Form<Values> extends React.Component<
         ) {
           defaultValue = {
             label: this.state.data[child.props.name].country,
-            value: this.state.data[child.props.name].code
+            value: this.state.data[child.props.name].code,
           };
         } else {
           defaultValue = this.state.data[child.props.name];
@@ -189,7 +189,7 @@ class Form<Values> extends React.Component<
               const data = { ...state.data, [child.props.name]: value };
               return { data };
             });
-          }
+          },
         });
       } else if (child.props.type === "checkbox") {
         const defaultValue = this.state.data[child.props.name] || false;
@@ -200,11 +200,11 @@ class Form<Values> extends React.Component<
             this.setState(state => {
               const data = {
                 ...state.data,
-                [child.props.name]: !state.data[child.props.name]
+                [child.props.name]: !state.data[child.props.name],
               };
               return { data };
             });
-          }
+          },
         });
       }
       return child;

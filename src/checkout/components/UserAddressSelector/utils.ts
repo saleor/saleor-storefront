@@ -5,12 +5,12 @@ import { IInitialUserAddressesArgs } from "../../types";
 export const getInitialAddresses = ({
   type,
   checkout,
-  user
+  user,
 }: IInitialUserAddressesArgs) => {
   const {
     addresses: userAddresses,
     defaultBillingAddress,
-    defaultShippingAddress
+    defaultShippingAddress,
   } = user;
 
   return uniqWith(
@@ -19,7 +19,7 @@ export const getInitialAddresses = ({
         ...(type === "shipping"
           ? [maybe(() => checkout.shippingAddress, defaultShippingAddress)]
           : [maybe(() => checkout.billingAddress, defaultBillingAddress)]),
-        ...userAddresses
+        ...userAddresses,
       ].filter(address => address),
       address => omit(address, "id")
     ),

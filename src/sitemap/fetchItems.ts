@@ -12,7 +12,7 @@ const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
 const fetchItems = async ({ query, perPage=100 }, callback: any) => {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: createHttpLink({ uri: API_URL, fetch })
+    link: createHttpLink({ uri: API_URL, fetch }),
   });
   const next = async (cursor=null) => {
     const response = await client.query({ query, variables: { perPage, cursor } });

@@ -19,14 +19,14 @@ type ViewProps = RouteComponentProps<{ slug: string }>;
 
 export const View: React.FC<ViewProps> = ({
   match: {
-    params: { slug }
-  }
+    params: { slug },
+  },
 }) => (
   <TypedArticleQuery loaderFull variables={{ slug }} errorPolicy="all">
     {({ data }) => {
       const navigation = STATIC_PAGES.map(page => ({
         ...page,
-        active: page.url === window.location.pathname
+        active: page.url === window.location.pathname,
       }));
       const { page, shop } = data;
 
@@ -34,14 +34,14 @@ export const View: React.FC<ViewProps> = ({
         const breadcrumbs = [
           {
             link: generatePageUrl(slug),
-            value: page.title
-          }
+            value: page.title,
+          },
         ];
         return (
           <MetaWrapper
             meta={{
               description: page.seoDescription,
-              title: page.seoTitle
+              title: page.seoTitle,
             }}
           >
             <Page

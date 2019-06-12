@@ -11,7 +11,7 @@ const Line: React.FC<Omit<LineI, "totalPrice">> = ({
   product,
   price,
   name,
-  quantity
+  quantity,
 }) => (
   <div key={id} className="cart-summary__product-item">
     <img src={maybe(() => product.thumbnail.url, noPhotoImg)} />

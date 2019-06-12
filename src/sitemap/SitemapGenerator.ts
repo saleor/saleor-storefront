@@ -33,7 +33,7 @@ class SitemapGenerator {
       createSitemap({
         cacheTime: this.cacheTime,
         hostname: this.hostname,
-        urls
+        urls,
       }).toString(),
       filename
     );

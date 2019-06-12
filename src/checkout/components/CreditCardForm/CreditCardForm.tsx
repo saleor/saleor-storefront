@@ -24,13 +24,13 @@ export const CreditCardForm = ({
     number: cardNumberError,
     cvv: ccCscError,
     expirationMonth: expirationMonthError,
-    expirationYear: expirationYearError
+    expirationYear: expirationYearError,
   },
   cardText: { ccCsc: ccCscText, ccExp: ccExpText, ccNumber: ccNumberText },
   cardValues: { ccCsc, ccExp, ccNumber },
   focusedInputName,
   inputProps,
-  handleSubmit
+  handleSubmit,
 }: ICreditCardForm) => (
   <Form formRef={formRef} onSubmit={handleSubmit}>
     <div className={generateClassName(cardNumberError)}>

@@ -9,13 +9,16 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
-      "@app/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@styles": ["./src/globalStyles/index.ts"]
+      "@app/*": ["./src/@next/*"],
+      "@components/*": ["./src/@next/components/*"],
+      "@components/atoms": ["./src/@next/components/atoms/index.ts"],
+      "@components/molecules": ["./src/@next/components/molecules/index.ts"],
+      "@components/organisms": ["./src/@next/components/organisms/index.ts"],
+      "@components/views": ["./src/@next/components/views/index.ts"],
+      "@styles": ["./src/@next/globalStyles/index.ts"],
+      "@styles/*": ["./src/@next/globalStyles/*"]
     },
     "skipLibCheck": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

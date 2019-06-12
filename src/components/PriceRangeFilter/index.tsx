@@ -23,7 +23,7 @@ class PriceRangeFilter extends React.Component<
   filterRef = React.createRef<HTMLDivElement>();
 
   state: PriceRangeFilterState = {
-    active: false
+    active: false,
   };
 
   componentDidMount() {
@@ -82,7 +82,7 @@ class PriceRangeFilter extends React.Component<
             this.createLabel()
               ? {
                   label: this.createLabel(),
-                  value: ""
+                  value: "",
                 }
               : undefined
           }

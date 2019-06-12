@@ -34,7 +34,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   attributes,
   filters,
   onAttributeFiltersChange,
-  onPriceChange
+  onPriceChange,
 }) => (
   <div className="product-filters">
     <div className="container">
@@ -52,7 +52,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                         );
                         return {
                           label: attributeValue.name,
-                          value: attributeValue.slug
+                          value: attributeValue.slug,
                         };
                       }
                     )
@@ -61,7 +61,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
               placeholder={attribute.name}
               options={attribute.values.map(attributeValue => ({
                 label: attributeValue.name,
-                value: attributeValue.slug
+                value: attributeValue.slug,
               }))}
               isMulti
               onChange={(values: SelectValue[]) =>

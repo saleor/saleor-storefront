@@ -34,14 +34,14 @@ export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
   new Promise<PaymentData | ErrorData[]>((resolve, reject) => {
     braintree.client.create(
       {
-        authorization: paymentClientToken
+        authorization: paymentClientToken,
       },
       (_err, client) => {
         client.request(
           {
             data: { creditCard },
             endpoint: "payment_methods/credit_cards",
-            method: "post"
+            method: "post",
           },
           (error, response) => {
             if (error) {

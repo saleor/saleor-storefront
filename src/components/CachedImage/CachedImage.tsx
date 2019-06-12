@@ -14,7 +14,7 @@ interface CachedImageState {
 class CachedImage extends React.Component<CachedImageProps, CachedImageState> {
   state: CachedImageState = {
     isUnavailable: false,
-    online: "onLine" in navigator ? navigator.onLine : true
+    online: "onLine" in navigator ? navigator.onLine : true,
   };
 
   updateOnlineStatus = () => {

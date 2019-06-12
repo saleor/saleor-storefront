@@ -20,7 +20,7 @@ class Provider extends React.Component<
       hide: this.hide,
       show: this.show,
       theme: null,
-      type: null
+      type: null,
     };
   }
 

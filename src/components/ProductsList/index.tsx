@@ -29,7 +29,7 @@ export const ProductList: React.FC<ProductsListProps> = ({
   onLoadMore,
   onOrder,
   products,
-  totalCount
+  totalCount,
 }) => {
   const filterOptions = [
     { value: "price", label: "Price Low-High" },
@@ -37,7 +37,7 @@ export const ProductList: React.FC<ProductsListProps> = ({
     { value: "name", label: "Name Increasing" },
     { value: "-name", label: "Name Decreasing" },
     { value: "updated_at", label: "Last updated Ascending" },
-    { value: "-updated_at", label: "Last updated Descending" }
+    { value: "-updated_at", label: "Last updated Descending" },
   ];
   const sortValues = filterOptions.find(
     option => option.value === filters.sortBy
@@ -105,7 +105,7 @@ export const ProductList: React.FC<ProductsListProps> = ({
 };
 
 ProductList.defaultProps = {
-  notFound: "We couldn't find any product matching these conditions"
+  notFound: "We couldn't find any product matching these conditions",
 };
 
 export default ProductList;

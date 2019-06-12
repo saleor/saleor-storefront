@@ -12,7 +12,7 @@ interface SearchPageProps {
 export const SearchPage: React.FC<SearchPageProps> = ({
   children,
   query,
-  onQueryChange
+  onQueryChange,
 }) => {
   return (
     <>

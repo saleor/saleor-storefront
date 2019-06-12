@@ -15,7 +15,7 @@ import {
 import closeImg from "../../../images/x.svg";
 
 const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
-  overlay
+  overlay,
 }) => (
   <Overlay context={overlay}>
     <div className="password-reset">

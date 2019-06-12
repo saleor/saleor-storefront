@@ -26,18 +26,18 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   populateBreadcrumbs = product => [
     {
       link: generateCategoryUrl(product.category.id, product.category.name),
-      value: product.category.name
+      value: product.category.name,
     },
     {
       link: generateProductUrl(product.id, product.name),
-      value: product.name
-    }
+      value: product.name,
+    },
   ];
 
   componentDidMount() {
     if (this.showCarousel) {
       window.addEventListener("scroll", this.handleScroll, {
-        passive: true
+        passive: true,
       });
     }
   }
@@ -84,7 +84,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
           >
             <div
               dangerouslySetInnerHTML={{
-                __html: product.description
+                __html: product.description,
               }}
             />
           </ProductDescription>
@@ -138,7 +138,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       <div
                         className={classNames({
                           ["product-page__product__info--fixed"]: this
-                            .showCarousel
+                            .showCarousel,
                         })}
                         ref={this.fixedElement}
                       >

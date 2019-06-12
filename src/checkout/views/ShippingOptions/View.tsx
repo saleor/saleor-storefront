@@ -41,7 +41,7 @@ class View extends React.Component<
     const { selectedShipping } = this.state;
     const {
       params: { token },
-      path
+      path,
     } = this.props.match;
 
     return (
@@ -91,8 +91,8 @@ class View extends React.Component<
                               updateCheckoutShippingOptions({
                                 variables: {
                                   checkoutId: checkout.id,
-                                  shippingMethodId: selectedShipping
-                                }
+                                  shippingMethodId: selectedShipping,
+                                },
                               });
                               event.preventDefault();
                             }}

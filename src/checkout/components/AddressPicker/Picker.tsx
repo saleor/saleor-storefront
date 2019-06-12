@@ -15,7 +15,7 @@ import plusSvg from "../../../images/plus.svg";
 const renderAddressesList = ({
   addresses,
   onAddressSelect,
-  selectedAddress
+  selectedAddress,
 }: IAddressPickerProps) =>
   addresses.map((address, id) => {
     const isSelected = selectedAddress === address;
@@ -26,7 +26,7 @@ const renderAddressesList = ({
           onAddressSelect(address);
         }}
         className={classNames("address-picker__address", {
-          "address-picker__address--selected": isSelected
+          "address-picker__address--selected": isSelected,
         })}
       >
         <AddressSummary address={address} email={address.email} />
@@ -45,7 +45,7 @@ const renderModalForm = ({
   hideAddNewModalForm,
   isVisibleModalForm,
   loading,
-  type
+  type,
 }: IAddressPickerProps) => (
   <Modal
     show={isVisibleModalForm}

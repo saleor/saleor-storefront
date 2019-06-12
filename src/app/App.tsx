@@ -12,8 +12,8 @@ import { orderConfirmationUrl, Routes } from "../routes";
 
 const App: React.FC<RouteComponentProps> = ({
   history: {
-    location: { pathname }
-  }
+    location: { pathname },
+  },
 }) => {
   const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
 

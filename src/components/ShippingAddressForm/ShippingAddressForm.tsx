@@ -16,7 +16,7 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
   onSubmit,
   children,
   shippingAsBilling = false,
-  type = "shipping"
+  type = "shipping",
 }) => (
   <div className="address-form">
     <ShopContext.Consumer>
@@ -90,14 +90,14 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
                 name="country"
                 options={countries.map(country => ({
                   label: country.country,
-                  value: country.code
+                  value: country.code,
                 }))}
                 autoComplete="country"
               />
             </div>
             <div
               className={classNames("address-form__grid", {
-                "address-form__grid--full": type === "billing"
+                "address-form__grid--full": type === "billing",
               })}
             >
               {type === "shipping" && (

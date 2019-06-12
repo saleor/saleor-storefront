@@ -83,7 +83,7 @@ export const AddNewShippingAddressForm: React.FC<
               name="country"
               options={countries.map(country => ({
                 label: country.country,
-                value: country.code
+                value: country.code,
               }))}
               autoComplete="country"
             />
@@ -92,7 +92,7 @@ export const AddNewShippingAddressForm: React.FC<
             className={classNames(
               "address-form__grid address-form__grid--modal",
               {
-                "address-form__grid--full": type === "billing"
+                "address-form__grid--full": type === "billing",
               }
             )}
           >

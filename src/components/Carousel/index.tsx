@@ -32,7 +32,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
       nextSlide,
       currentSlide,
       slideCount,
-      slidesToShow
+      slidesToShow,
     }) =>
       slideCount - slidesToShow !== currentSlide ? (
         <div
@@ -42,7 +42,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
           <ReactSVG path={arrowImg} />
         </div>
       ) : null,
-    ...rest
+    ...rest,
   };
   const carousel = (slides: number) => (
     <NukaCarousel slidesToShow={slides} slidesToScroll={slides} {...settings}>

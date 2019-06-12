@@ -39,14 +39,14 @@ const API_URL = urljoin(process.env.BACKEND_URL || "/", "/graphql/");
 
 const {
   component: UserProviderWithTokenHandler,
-  link: invalidTokenLink
+  link: invalidTokenLink,
 } = invalidTokenLinkWithTokenHandlerComponent(UserProvider);
 
 const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
   new RetryLink(),
-  new BatchHttpLink({ uri: API_URL })
+  new BatchHttpLink({ uri: API_URL }),
 ]);
 
 const cache = new InMemoryCache({
@@ -55,23 +55,23 @@ const cache = new InMemoryCache({
       return "shop";
     }
     return defaultDataIdFromObject(obj);
-  }
+  },
 });
 
 const startApp = async () => {
   await persistCache({
     cache,
-    storage: window.localStorage
+    storage: window.localStorage,
   });
 
   const apolloClient = new ApolloClient({
     cache,
-    link
+    link,
   });
 
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
-    timeout: 2500
+    timeout: 2500,
   };
 
   const Root = hot(module)(() => {
@@ -87,7 +87,7 @@ const startApp = async () => {
                 onUserLogin={() =>
                   alert.show(
                     {
-                      title: "You are now logged in"
+                      title: "You are now logged in",
                     },
                     { type: "success" }
                   )
@@ -95,7 +95,7 @@ const startApp = async () => {
                 onUserLogout={() =>
                   alert.show(
                     {
-                      title: "You are now logged out"
+                      title: "You are now logged out",
                     },
                     { type: "success" }
                   )
@@ -147,21 +147,26 @@ const startApp = async () => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js")
+    navigator.serviceWorker
+      .register("/service-worker.js")
       .then(registration => {
-        window.setInterval(() => navigator.onLine && registration.update(), 60 * 1000);
+        window.setInterval(
+          () => navigator.onLine && registration.update(),
+          60 * 1000
+        );
         registration.onupdatefound = () => {
           const installingWorker = registration.installing;
           installingWorker.onstatechange = () => {
-            if (installingWorker.state === "installed" &&
-                navigator.serviceWorker.controller) {
-
+            if (
+              installingWorker.state === "installed" &&
+              navigator.serviceWorker.controller
+            ) {
               // tslint:disable-next-line: no-console
               console.log("New version is available!. Refresh the page!");
             }
-          }
-        }
-      }); 
+          };
+        };
+      });
   });
 }
 

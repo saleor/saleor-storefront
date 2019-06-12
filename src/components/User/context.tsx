@@ -22,7 +22,7 @@ export const UserContext = React.createContext<UserContextInterface>({
   login: (token, user) => {},
   logout: () => {},
   token: null,
-  user: null
+  user: null,
 });
 /* tslint:enable:no-empty */
 

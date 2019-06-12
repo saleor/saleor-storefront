@@ -13,7 +13,7 @@ const getCountryData = (shop: getShop_shop) => {
     country: maybe(
       () => geolocalization.country.country,
       defaultCountry.country
-    )
+    ),
   };
 };
 
@@ -25,7 +25,7 @@ const extractShippingData = (checkout: Checkout | null, shop: getShop_shop) => {
 
   const checkoutData = checkout && {
     ...checkout.shippingAddress,
-    email: checkout.email
+    email: checkout.email,
   };
 
   const hasShippingCountry = !!maybe(() => checkout.shippingAddress.country);
@@ -46,7 +46,7 @@ const extractBillingData = (
 
   return {
     country: getCountryData(shop),
-    ...billingAddress
+    ...billingAddress,
   };
 };
 
@@ -68,7 +68,7 @@ const GuestAddressForm: React.FC<IGuestAddressProps> = ({
   proceedToNextStep,
   shippingAsBilling,
   shop,
-  type = "shipping"
+  type = "shipping",
 }) => (
   <ShippingAddressForm
     type={type as CheckoutFormType}

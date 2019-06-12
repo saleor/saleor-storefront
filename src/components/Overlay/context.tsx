@@ -10,13 +10,13 @@ export enum OverlayType {
   search = "search",
   mainMenuNav = "main-menu-nav",
   modal = "modal",
-  register = "register"
+  register = "register",
 }
 
 export enum OverlayTheme {
   left = "left",
   right = "right",
-  modal = "modal"
+  modal = "modal",
 }
 
 export interface InnerOverlayContextInterface {
@@ -46,7 +46,7 @@ export const OverlayContext = React.createContext<OverlayContextInterface>({
   hide: () => {},
   show: type => {},
   theme: null,
-  type: null
+  type: null,
 });
 /* tslint:enable:no-empty */
 

@@ -21,7 +21,7 @@ const useClickedOutside = () => {
 
   return {
     clickedOutside,
-    setElementRef
+    setElementRef,
   };
 };
 

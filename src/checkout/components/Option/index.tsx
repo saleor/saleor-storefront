@@ -12,7 +12,7 @@ const Option: React.FC<{
   <>
     <div
       className={classNames("c-option", {
-        "c-option--selected": selected
+        "c-option--selected": selected,
       })}
       onClick={onSelect}
     >
@@ -26,7 +26,7 @@ const Option: React.FC<{
 );
 
 Option.defaultProps = {
-  selected: false
+  selected: false,
 };
 
 export default Option;

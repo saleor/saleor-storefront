@@ -20,9 +20,9 @@ export const extractBreadcrumbs = (category: Category_category) => {
     link: [
       `/category`,
       `/${slugify(item.name)}`,
-      `/${getDBIdFromGraphqlId(item.id, "Category")}/`
+      `/${getDBIdFromGraphqlId(item.id, "Category")}/`,
     ].join(""),
-    value: item.name
+    value: item.name,
   });
 
   let breadcrumbs = [constructLink(category)];
@@ -44,7 +44,7 @@ const Breadcrumbs: React.FC<{
 }> = ({ breadcrumbs }) => (
   <Media
     query={{
-      minWidth: smallScreen
+      minWidth: smallScreen,
     }}
   >
     {matches =>
@@ -57,7 +57,7 @@ const Breadcrumbs: React.FC<{
             <li
               key={breadcrumb.value}
               className={classNames({
-                breadcrumbs__active: index === breadcrumbs.length - 1
+                breadcrumbs__active: index === breadcrumbs.length - 1,
               })}
             >
               <Link to={breadcrumb.link}>{breadcrumb.value}</Link>

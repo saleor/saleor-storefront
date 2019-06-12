@@ -24,7 +24,7 @@ const SelectOptionsList = React.forwardRef<Ref, ISelectOptionsList>(
               <p
                 {...getRef(isSelected, ref)}
                 className={classNames("select__option", {
-                  "select__option--selected": isSelected
+                  "select__option--selected": isSelected,
                 })}
                 key={value}
                 onClick={() => {

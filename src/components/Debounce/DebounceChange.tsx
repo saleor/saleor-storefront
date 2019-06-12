@@ -58,14 +58,14 @@ export class DebounceChange<TValue> extends React.Component<
         () => this.props.debounce(event),
         this.props.time || 200
       ),
-      value: event.target.value
+      value: event.target.value,
     });
   };
 
   render() {
     return this.props.children({
       change: this.handleChange,
-      value: this.state.value
+      value: this.state.value,
     });
   }
 }

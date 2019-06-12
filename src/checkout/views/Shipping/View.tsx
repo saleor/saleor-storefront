@@ -15,8 +15,8 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
     const {
       history,
       match: {
-        params: { token }
-      }
+        params: { token },
+      },
     } = this.props;
 
     return (
@@ -43,7 +43,7 @@ class View extends React.Component<RouteComponentProps<{ token?: string }>> {
                                 proceedToNextStepData={{
                                   history,
                                   token,
-                                  update
+                                  update,
                                 }}
                                 lines={lines}
                               />

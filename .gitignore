@@ -1,5 +1,7 @@
 .*
+!.storybook
 !.gitignore
+!.babelrc
+!.plop
 dist
-
 node_modules
