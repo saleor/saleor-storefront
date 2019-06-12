@@ -65,6 +65,10 @@ Cypress.Commands.add("mockGraphQL", stubs => {
   });
 });
 
+Cypress.on("uncaught:exception", () => {
+  return false;
+});
+
 // Cypress.on("window:before:load", win => {
 //   delete win.fetch;
 // });
