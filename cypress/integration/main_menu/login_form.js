@@ -39,31 +39,30 @@ describe("User login, logout and registration", () => {
   describe("Registration", () => {
     it("should register a new user", () => {
       user = userBuilder();
-      cy.registerUser(user);
-      cy.get(".message__title", { timeout: 6000 }).contains(
-        "New user has been created"
-      );
+      cy.registerUser(user)
+        .get(".message__title")
+        .should("contain", "New user has been created");
     });
     it("should display an error if user exists", () => {
       cy.registerUser(user)
         .get(".login__content .input")
         .first()
         .get(".input__error")
-        .contains("User with this Email already exists.", { timeout: 6000 });
+        .should("contain", "User with this Email already exists.");
     });
   });
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser(user)
-        .get(".message__title", { timeout: 6000 })
-        .contains("You are now logged in");
+        .get(".message__title")
+        .should("contain", "You are now logged in");
     });
     it("should display an error if user does not exist", () => {
       const notRegisteredUser = userBuilder();
       cy.loginUser(notRegisteredUser)
         .get(".login__content .form-error")
-        .contains("Please, enter valid credentials");
+        .should("contain", "Please, enter valid credentials");
     });
   });
 
@@ -72,7 +71,7 @@ describe("User login, logout and registration", () => {
       const user = userBuilder();
       cy.registerUser(user).loginUser(user);
       cy.logoutUser()
-        .get(".message__title", { timeout: 6000 })
+        .get(".message__title")
         .should("contain", "You are now logged out");
     });
   });
