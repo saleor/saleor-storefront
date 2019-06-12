@@ -119,7 +119,9 @@ const MainMenu: React.FC = () => (
                                   Payment options
                                 </Link>
                               </li>
-                              <li onClick={logout}>Log Out</li>
+                              <li onClick={logout} data-testid="logout-link">
+                                Log Out
+                              </li>
                             </ul>
                           }
                         />

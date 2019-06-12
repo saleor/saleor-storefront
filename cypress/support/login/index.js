@@ -38,8 +38,8 @@ Cypress.Commands.add("registerUser", user =>
 Cypress.Commands.add("loginUser", user => loginOrRegisterUser("login", user));
 Cypress.Commands.add("logoutUser", () =>
   cy
-    .getByTestId("logout-btn", { timeout: 3000 })
+    .getByTestId("user-btn", { timeout: 3000 })
     .trigger("mouseover")
-    .get(".main-menu__dropdown li")
+    .getByTestId("logout-link")
     .click()
 );
