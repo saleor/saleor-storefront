@@ -9,6 +9,7 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
+      "@temp/*": ["./src/*"],
       "@app/*": ["./src/@next/*"],
       "@components/*": ["./src/@next/components/*"],
       "@components/atoms": ["./src/@next/components/atoms/index.ts"],
@@ -20,5 +21,6 @@
     },
     "skipLibCheck": true
   },
+  "include": ["webpack.d.ts", "src/**/*"],
   "exclude": ["node_modules"]
 }
