@@ -17,9 +17,11 @@ export interface IOrderRow extends RouteComponentProps {
   statusDisplay: string;
 }
 
-const addZero = num => ("0" + num).slice(-2);
+const addZero = (num: number): string => {
+  return ("0" + num).slice(-2);
+};
 
-const formatData = dateOfOrder => {
+const formatData = (dateOfOrder: string): string => {
   const date = new Date(dateOfOrder);
 
   const da = `${date.getFullYear()}-${addZero(date.getMonth())}-${addZero(
