@@ -1,11 +1,34 @@
 /// <reference types="cypress" />
 
-describe("Search", () => {
+describe.only("Search", () => {
   const typedText = "t";
+  let polyfill;
+
+  before(() => {
+    const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
+    cy.request(polyfillUrl).then(response => {
+      polyfill = response.body;
+    });
+  });
 
   beforeEach(() => {
-    cy.visit("/");
-    cy.get(".main-menu__search")
+    cy.server();
+    cy.route(
+      "POST",
+      `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
+    ).as("graphqlQuery");
+
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        delete win.fetch;
+        // since the application code does not ship with a polyfill
+        // load a polyfilled "fetch" from the test
+        win.eval(polyfill);
+        win.fetch = win.unfetch;
+      }
+    });
+    cy.wait("@graphqlQuery", { timeout: 16000 });
+    cy.get(".main-menu__search", { timeout: 6000 })
       .click()
       .get("form.search input")
       .as("searchInput");

@@ -68,6 +68,10 @@ jobs:
       - run:
           name: Run Cypress tests
           command: "npm run test:e2e:run"
+      - store_artifacts:
+          path: "../cypress/videos"
+      - store_artifacts:
+          path: cypress/screenshots
 workflows:
   build:
     jobs:

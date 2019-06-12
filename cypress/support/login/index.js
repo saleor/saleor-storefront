@@ -6,7 +6,7 @@ const createUser = () => {
     .request({
       body: user,
       method: "POST",
-      url: "http://localhost:3000/graphql"
+      url: `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
     })
     .then(response => response.body.user);
 };

@@ -1,3 +1,7 @@
 {
-  "baseUrl": "http://localhost:3000"
+  "baseUrl": "http://localhost:3000",
+  "env": {
+    "BACKEND_URL": "http://localhost:8000",
+    "GRAPHQL_ID": "graphql"
+  }
 }
