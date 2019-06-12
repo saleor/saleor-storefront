@@ -1,13 +1,9 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/app
     docker:
-      # the Docker image with Cypress dependencies
-      - image: cypress/base:8
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    parallelism: 1
+      - image: circleci/node:10.7.0
     steps:
       - checkout
       - run:
@@ -29,19 +25,13 @@ jobs:
           root: ~/app
           paths:
             - dist/*
-      - run:
-          name: Running E2E tests
-          command: npm run test:e2e:run
-      - store_test_results:
-          path: multiple-results
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-  deploy:
-    working_directory: ~/app
+  cypress/run:
     docker:
-      - image: cypress/base:10
+      # the Docker image with Cypress dependencies
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
     parallelism: 1
     steps:
       - checkout
@@ -66,14 +56,41 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Run Cypress tests
-          command: "npm run test:e2e:run"
+          name: Running E2E tests
+          command: npm run test:e2e:run
+      - store_test_results:
+          path: cypress/results
       - store_artifacts:
-          path: "../cypress/videos"
+          path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
+  deploy:
+    working_directory: ~/app
+    docker:
+      - image: circleci/python:2.7-jessie
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install awscli
+          command: sudo pip install awscli
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync dist s3://saleor-store-front/ --acl public-read
 workflows:
-  build:
-    jobs:
-      - cypress/run
   version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - cypress/run
