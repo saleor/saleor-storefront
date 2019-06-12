@@ -40,21 +40,23 @@ describe("User login, logout and registration", () => {
     it("should register a new user", () => {
       user = userBuilder();
       cy.registerUser(user);
-      cy.get(".message__title").contains("New user has been created");
+      cy.get(".message__title", { timeout: 6000 }).contains(
+        "New user has been created"
+      );
     });
     it("should display an error if user exists", () => {
       cy.registerUser(user)
         .get(".login__content .input")
         .first()
         .get(".input__error")
-        .contains("User with this Email already exists.");
+        .contains("User with this Email already exists.", { timeout: 6000 });
     });
   });
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser(user)
-        .get(".message__title")
+        .get(".message__title", { timeout: 6000 })
         .contains("You are now logged in");
     });
     it("should display an error if user does not exist", () => {
@@ -70,7 +72,7 @@ describe("User login, logout and registration", () => {
       const user = userBuilder();
       cy.registerUser(user).loginUser(user);
       cy.logoutUser()
-        .get(".message__title")
+        .get(".message__title", { timeout: 6000 })
         .should("contain", "You are now logged out");
     });
   });
