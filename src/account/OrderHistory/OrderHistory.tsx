@@ -18,7 +18,7 @@ const OrderHistoryHeader = (
 const OrderHistory: React.FC = () => {
   return (
     <>
-      <TypedOrdersByUser variables={{ perPage: 20 }} fetchPolicy="cache-first">
+      <TypedOrdersByUser variables={{ perPage: 20 }}>
         {({ data, loadMore, loading }) => {
           {
             const handleLoadMore = () =>
