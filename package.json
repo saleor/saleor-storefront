@@ -145,7 +145,7 @@
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
     "generate": "npx plop --plopfile ./.plop/index.js",
-    "cy:run": "cypress run --record --headed --no-exit",
+    "cy:run": "cypress run --record",
     "cy:open": "cypress open",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open"
