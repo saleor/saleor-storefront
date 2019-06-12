@@ -1,19 +1,19 @@
 import React from "react";
 
-import { Primary, Secondary, Text } from "./styles";
-import { Props } from "./types";
+import * as S from "./styles";
+import { IProps } from "./types";
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<IProps> = ({
   color = "primary",
   btnRef,
   children,
   ...props
 }) => {
-  const ButtonWithTheme = color === "primary" ? Primary : Secondary;
+  const ButtonWithTheme = color === "primary" ? S.Primary : S.Secondary;
 
   return (
     <ButtonWithTheme color={color} ref={btnRef} {...props}>
-      <Text>{children}</Text>
+      <S.Text>{children}</S.Text>
     </ButtonWithTheme>
   );
 };

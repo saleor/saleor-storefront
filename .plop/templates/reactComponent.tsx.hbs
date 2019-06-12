@@ -1,18 +1,18 @@
 import React from "react";
 
 {{#if componentHasStyles}}
-import { Wrapper } from "./styles";
+import * as S from "./styles";
 {{else}}
 
 {{/if}}
-import { Props } from "./types";
+import { IProps } from "./types";
 
-export const {{> p_componentName}}: React.FC<Props> = () => {
+export const {{> p_componentName}}: React.FC<IProps> = () => {
   return (
 {{#if componentHasStyles}}
-    <Wrapper>
+    <S.Wrapper>
       {/* --- here --- */}
-    </Wrapper>
+    </S.Wrapper>
 {{else}}
     <>
       {/* --- here --- */}
