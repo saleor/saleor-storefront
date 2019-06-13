@@ -22,9 +22,6 @@ jobs:
           name: Build application
           command: npm run build
       - run:
-          name: Run storybook
-          command: npm run @storybook
-      - run:
           name: Run tests
           command: npm run test
       - persist_to_workspace:
