@@ -6,7 +6,7 @@ import { IProps } from "./types";
 
 export const CreditCardNumber: React.FC<IProps> = ({
   provider,
-  last4Digits
+  last4Digits,
 }) => {
   return (
     <>
