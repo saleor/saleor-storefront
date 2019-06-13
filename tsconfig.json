@@ -16,9 +16,11 @@
       "@components/organisms": ["./src/@next/components/organisms/index.ts"],
       "@components/views": ["./src/@next/components/views/index.ts"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
-      "@styles/*": ["./src/@next/globalStyles/*"]
+      "@styles/*": ["./src/@next/globalStyles/*"],
+      "images/*": ["./src/images/*"]
     },
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["webpack.d.ts", "src/images/*"]
 }
