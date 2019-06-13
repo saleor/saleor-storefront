@@ -3,5 +3,6 @@
 !.gitignore
 !.babelrc
 !.plop
+!.jest
 dist
 node_modules

@@ -1,0 +1,7 @@
+{
+  "rootDir": "../",
+  "setupFiles": ["<rootDir>/.jest/register-context.js"],
+  "moduleNameMapper": {
+    "^@styles": "<rootDir>/src/@next/globalStyles/index.ts"
+  }
+}

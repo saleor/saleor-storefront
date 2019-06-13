@@ -21,6 +21,6 @@
     },
     "skipLibCheck": true
   },
-  "include": ["webpack.d.ts", "src/**/*"],
+  "include": ["webpack.d.ts", "src/images/*"],
   "exclude": ["node_modules"]
 }
