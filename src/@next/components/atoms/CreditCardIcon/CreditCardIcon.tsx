@@ -9,6 +9,7 @@ import maestroImg from "images/maestro.svg";
 import mastercardImg from "images/mastercard.svg";
 import visaImg from "images/visa.svg";
 
+import * as S from "./styles";
 import { IProps } from "./types";
 
 const providers = new Map();
@@ -22,12 +23,12 @@ providers.set("discover", discoverImg);
 
 export const CreditCardIcon: React.FC<IProps> = ({ provider }) => {
   return (
-    <>
+    <S.CreditCardIcon>
       {providers.has(provider) ? (
         <ReactSVG path={providers.get(provider)} />
       ) : (
         ""
       )}
-    </>
+    </S.CreditCardIcon>
   );
 };
