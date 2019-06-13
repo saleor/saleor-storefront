@@ -96,6 +96,10 @@ export const defaultTheme = {
   spacing: {
     spacer: `${C.spacer}rem`, // 16px
   },
+  tile: {
+    backgroundColor: C.turquoiseLight,
+    divisionLine: C.gray,
+  },
   typography: {
     baseFontFamily: C.baseFontFamily,
     baseFontSize: C.baseFontSize, // 16px
