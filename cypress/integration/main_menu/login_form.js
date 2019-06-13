@@ -3,7 +3,7 @@ import { userBuilder } from "../../support/generate";
 
 describe("User login, logout and registration", () => {
   let user = null;
-  let polyfill;
+  let polyfill = null;
 
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
@@ -19,13 +19,7 @@ describe("User login, logout and registration", () => {
       `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
     ).as("graphqlQuery");
 
-    cy.visit("/", {
-      onBeforeLoad(win) {
-        delete win.fetch;
-        win.eval(polyfill);
-        win.fetch = win.unfetch;
-      }
-    });
+    cy.setup(polyfill);
     cy.wait("@graphqlQuery");
   });
 
@@ -70,6 +64,7 @@ describe("User login, logout and registration", () => {
     it("should successfully log out an user", () => {
       const user = userBuilder();
       cy.registerUser(user).loginUser(user);
+      cy.wait(500);
       cy.logoutUser()
         .get(".message__title")
         .should("contain", "You are now logged out");

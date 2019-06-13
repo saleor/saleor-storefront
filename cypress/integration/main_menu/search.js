@@ -18,17 +18,9 @@ describe.only("Search", () => {
       `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
     ).as("graphqlQuery");
 
-    cy.visit("/", {
-      onBeforeLoad(win) {
-        delete win.fetch;
-        // since the application code does not ship with a polyfill
-        // load a polyfilled "fetch" from the test
-        win.eval(polyfill);
-        win.fetch = win.unfetch;
-      }
-    });
-    cy.wait("@graphqlQuery", { timeout: 16000 });
-    cy.get(".main-menu__search", { timeout: 6000 })
+    cy.setup(polyfill);
+    cy.wait("@graphqlQuery");
+    cy.get(".main-menu__search")
       .click()
       .get("form.search input")
       .as("searchInput");

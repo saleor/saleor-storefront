@@ -1,4 +1,4 @@
-import { fetch as fetchPolyfill } from "whatwg-fetch";
+/// <reference types="cypress" />
 import "./login";
 
 Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
@@ -69,16 +69,12 @@ Cypress.on("uncaught:exception", () => {
   return false;
 });
 
-// Cypress.on("window:before:load", win => {
-//   delete win.fetch;
-// });
-
-// cy.visit("/", {
-//   onBeforeLoad(win) {
-//     delete win.fetch;
-//     // since the application code does not ship with a polyfill
-//     // load a polyfilled "fetch" from the test
-//     win.eval(polyfill);
-//     win.fetch = win.unfetch;
-//   }
-// });
+Cypress.Commands.add("setup", polyfill => {
+  cy.visit("/", {
+    onBeforeLoad(win) {
+      delete win.fetch;
+      win.eval(polyfill);
+      win.fetch = win.unfetch;
+    }
+  });
+});
