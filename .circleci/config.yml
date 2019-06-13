@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Build application
           command: npm run build
+      - run:
+          name: Run tests
+          command: npm run test
       - persist_to_workspace:
           root: ~/app
           paths:

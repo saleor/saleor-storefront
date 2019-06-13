@@ -21,8 +21,13 @@ module.exports = _plop => ({
     {
       type: "confirm",
       name: "componentHasStyles",
-      message: "Does component has it's own styles?",
-      default: false,
+      message: "Does component have its own styles?",
+      validate: utils.required
+    },
+    {
+      type: "confirm",
+      name: "componentHasTests",
+      message: "Does component have tests?",
       validate: utils.required
     }
   ],
@@ -66,6 +71,16 @@ module.exports = _plop => ({
           "{{componentGroup}}/{{> p_componentName}}/styles.ts"
         ),
         templateFile: utils.templatePath("reactComponentStyles.ts.hbs")
+      });
+    }
+
+    if (answers.componentHasTests) {
+      actions.push({
+        type: "add",
+        path: utils.componentPath(
+          "{{componentGroup}}/{{> p_componentName}}/test.tsx"
+        ),
+        templateFile: utils.templatePath("reactComponentTest.tsx.hbs")
       });
     }
 
