@@ -1,5 +1,9 @@
 {
-  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier",
+    "tslint-plugin-cypress"
+  ],
   "rules": {
     "interface-name": false,
     "member-access": [true, "no-public"],
@@ -7,7 +11,7 @@
     "max-classes-per-file": false,
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
-    "no-submodule-imports": [true],
+    "no-submodule-imports": [true, "cypress-testing-library"],
     "no-var-requires": false,
     "variable-name": {
       "options": [

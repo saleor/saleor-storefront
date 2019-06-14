@@ -119,12 +119,15 @@ const MainMenu: React.FC = () => (
                                   Payment options
                                 </Link>
                               </li>
-                              <li onClick={logout}>Log Out</li>
+                              <li onClick={logout} data-testid="logout-link">
+                                Log Out
+                              </li>
                             </ul>
                           }
                         />
                       ) : (
                         <li
+                          data-testid="login-btn"
                           className="main-menu__icon"
                           onClick={() =>
                             overlayContext.show(
