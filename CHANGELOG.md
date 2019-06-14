@@ -8,6 +8,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add new design for 404 page - #183 by @mateuszkula
 - Add Sitemap generator - #342 by @bogdal
 - Add cypress tests - ##333 by @AlicjaSzu
+- Add rich-text content renderer - ##361 by @AlicjaSzu
 
 ## 0.6.0
 
