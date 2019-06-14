@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -252,6 +253,7 @@ export interface ProductDetails_product {
    */
   thumbnail2x: ProductDetails_product_thumbnail2x | null;
   description: string;
+  descriptionJson: any;
   category: ProductDetails_product_category;
   /**
    * The product's default base price.

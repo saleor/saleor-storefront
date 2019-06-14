@@ -1,10 +1,16 @@
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import classNames from "classnames";
+import draftToHtml from "draftjs-to-html";
 import * as React from "react";
 import Media from "react-media";
 
-import { Breadcrumbs, CachedImage, CachedThumbnail, ProductDescription } from "../../components";
+import {
+  Breadcrumbs,
+  CachedImage,
+  CachedThumbnail,
+  ProductDescription
+} from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
@@ -82,11 +88,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             productVariants={product.variants}
             addToCart={cart.add}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: product.description,
-              }}
-            />
+            <div>{draftToHtml(JSON.parse(product.descriptionJson))}</div>
           </ProductDescription>
         )}
       </CartContext.Consumer>
@@ -124,12 +126,8 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                           url={image.url || noPhotoImg}
                           key={image.id}
                         >
-                          <CachedThumbnail
-                            source={product}
-                          >
-                            {!index && (
-                              <img src={noPhotoImg} />
-                            )}
+                          <CachedThumbnail source={product}>
+                            {!index && <img src={noPhotoImg} />}
                           </CachedThumbnail>
                         </CachedImage>
                       ))}
