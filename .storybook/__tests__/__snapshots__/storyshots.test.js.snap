@@ -40,15 +40,28 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje jIEIwM"
+  />
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/Loader default 1`] = `
 <div
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-EHOje bjkizQ"
+    className="sc-bZQynM jYtkKU"
   >
     <div
-      className="sc-bZQynM kuucPz"
+      className="sc-gzVnrw NdYuc"
     >
       <span />
       <span />
@@ -66,15 +79,15 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-gzVnrw byxPRz"
+    className="sc-htoDjs dYOgaz"
   >
     <p
-      className="sc-htoDjs gBzLKI"
+      className="sc-dnqmqq voifR"
     >
       Sample Message
     </p>
     <div
-      className="sc-dnqmqq hokPWs"
+      className="sc-EHOje sc-iwsKbI hRwuVo"
       onClick={[Function]}
     />
   </div>
@@ -89,15 +102,15 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-gzVnrw lduTcp"
+    className="sc-htoDjs jUSbIr"
   >
     <p
-      className="sc-htoDjs gBzLKI"
+      className="sc-dnqmqq voifR"
     >
       Sample Message
     </p>
     <div
-      className="sc-dnqmqq hokPWs"
+      className="sc-EHOje sc-iwsKbI hRwuVo"
       onClick={[Function]}
     />
   </div>
@@ -112,18 +125,37 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-gzVnrw dQTqPG"
+    className="sc-htoDjs flqwzg"
   >
     <p
-      className="sc-htoDjs gBzLKI"
+      className="sc-dnqmqq voifR"
     >
       Sample Message
     </p>
     <div
-      className="sc-dnqmqq hokPWs"
+      className="sc-EHOje sc-iwsKbI hRwuVo"
       onClick={[Function]}
     />
   </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <a
+    aria-label="facebook"
+    href="https://www.facebook.com/mirumeelabs/"
+    target="_blank"
+  >
+    <div
+      className="sc-EHOje sc-gqjmRU dCApik"
+    />
+  </a>
   <div
     className="sc-bwzfXH cyotrw"
   />
