@@ -60,20 +60,19 @@ export const defaultTheme = {
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
   message: {
-    messageBackgroundColor: C.white,
-    messageBorderLeft: `0.3rem solid ${C.turquoiseDark}`,
-    messageBotttomPosition: `${C.spacer}rem`,
-    messageContentMargin: `${C.spacer}rem 0 0`,
-    messageErrorColor: C.rose,
-    messageNeutralColor: C.turquoiseDark,
-    messagePadding: "1.5rem",
-    messageRightPosition: `${C.spacer}rem`,
-    messageShadow: "0px 6px 15px 3px rgba(0, 0, 0, 0.25)",
-    messageSuccessColor: C.green,
-    messageTitleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
-    messageTitleTransform: "uppercase",
-    messageTitleWeight: C.boldFontWeight,
-    messageWidth: "25rem",
+    backgroundColor: C.white,
+    borderLeft: `0.3rem solid ${C.turquoiseDark}`,
+    botttomPosition: `${C.spacer}rem`,
+    contentMargin: `${C.spacer}rem 0 0`,
+    errorColor: C.rose,
+    neutralColor: C.turquoiseDark,
+    padding: "1.5rem",
+    rightPosition: `${C.spacer}rem`,
+    successColor: C.green,
+    titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
+    titleTransform: "uppercase",
+    titleWeight: C.boldFontWeight,
+    width: "25rem",
   },
 
   modal: {
@@ -106,5 +105,5 @@ export const defaultTheme = {
   },
 };
 
-type DefaultTheme = typeof defaultTheme;
+export type DefaultTheme = typeof defaultTheme;
 export const styled = baseStyled as ThemedStyledInterface<DefaultTheme>;

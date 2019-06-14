@@ -39,3 +39,72 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   />
 </div>
 `;
+
+exports[`Storyshots @components/atoms/Message error 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje joghwt"
+  >
+    <p
+      className="sc-bZQynM bPiBYZ"
+    >
+      Sample Message
+    </p>
+    <div
+      className="sc-gzVnrw guhYi"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message neutral 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje eaQBxp"
+  >
+    <p
+      className="sc-bZQynM bPiBYZ"
+    >
+      Sample Message
+    </p>
+    <div
+      className="sc-gzVnrw guhYi"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message success 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje kdFZWQ"
+  >
+    <p
+      className="sc-bZQynM bPiBYZ"
+    >
+      Sample Message
+    </p>
+    <div
+      className="sc-gzVnrw guhYi"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
