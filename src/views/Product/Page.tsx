@@ -88,7 +88,11 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             productVariants={product.variants}
             addToCart={cart.add}
           >
-            <div>{draftToHtml(JSON.parse(product.descriptionJson))}</div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: draftToHtml(JSON.parse(product.descriptionJson)),
+              }}
+            />
           </ProductDescription>
         )}
       </CartContext.Consumer>
