@@ -3,7 +3,8 @@
   "setupFiles": ["<rootDir>/.jest/register-context.js"],
   "moduleNameMapper": {
     "^@styles": "<rootDir>/src/@next/globalStyles/index.ts",
-    "^@app": "<rootDir>/src/@next/$1",
+    "@app/([^\\.]*)$": "<rootDir>/src/@next/$1",
+    "@utils/([^\\.]*)$": "<rootDir>/src/@next/utils/$1",
     "images/([^\\.]*.*)$": "<rootDir>/src/images/$1"
   },
   "setupFilesAfterEnv": ["<rootDir>/.jest/setupTests.js"],

@@ -75,6 +75,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-select": "^2.0.2",
     "@types/react-svg": "^5.0.0",
+    "@types/storybook__addon-knobs": "^5.0.1",
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.16",
     "apollo-storybook-react": "^0.2.1",

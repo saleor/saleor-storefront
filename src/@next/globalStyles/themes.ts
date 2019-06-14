@@ -46,7 +46,7 @@ export const defaultTheme = {
     autofillColorSelected: C.autofillColorSelected,
     baseFontColor: C.baseFontColor,
     primaryColor: C.turquoise,
-    secondaryColor: C.white,
+    secondaryColor: C.blue,
   },
   container: {
     width: 1140,

@@ -10,7 +10,6 @@ const borderColors = (theme: DefaultTheme["message"]) => ({
 });
 
 export const Wrapper = styled.div<{ status: IProps["status"] }>`
-  display: ${props => (props.hidden ? "none" : "block")};
   width: ${props => props.theme.message.width};
   padding: ${props => props.theme.message.padding};
   background-color: ${props => props.theme.message.backgroundColor};

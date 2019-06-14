@@ -10,7 +10,7 @@ export const Message: React.FC<IProps> = ({
   status = "neutral",
   children,
   onClose,
-}) => (
+}: IProps) => (
   <S.Wrapper status={status}>
     <S.Title>{title}</S.Title>
     {children && <S.Content>{children}</S.Content>}

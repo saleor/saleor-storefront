@@ -8,7 +8,7 @@ export const Button: React.FC<IProps> = ({
   btnRef,
   children,
   ...props
-}) => {
+}: IProps) => {
   const ButtonWithTheme = color === "primary" ? S.Primary : S.Secondary;
 
   return (

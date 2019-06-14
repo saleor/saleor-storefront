@@ -40,20 +40,41 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/Loader default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje bjkizQ"
+  >
+    <div
+      className="sc-bZQynM kuucPz"
+    >
+      <span />
+      <span />
+      <span />
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/Message error 1`] = `
 <div
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-EHOje joghwt"
+    className="sc-gzVnrw byxPRz"
   >
     <p
-      className="sc-bZQynM bPiBYZ"
+      className="sc-htoDjs gBzLKI"
     >
       Sample Message
     </p>
     <div
-      className="sc-gzVnrw guhYi"
+      className="sc-dnqmqq hokPWs"
       onClick={[Function]}
     />
   </div>
@@ -68,15 +89,15 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-EHOje eaQBxp"
+    className="sc-gzVnrw lduTcp"
   >
     <p
-      className="sc-bZQynM bPiBYZ"
+      className="sc-htoDjs gBzLKI"
     >
       Sample Message
     </p>
     <div
-      className="sc-gzVnrw guhYi"
+      className="sc-dnqmqq hokPWs"
       onClick={[Function]}
     />
   </div>
@@ -91,15 +112,15 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
   className="sc-bdVaJa fkRMdE"
 >
   <div
-    className="sc-EHOje kdFZWQ"
+    className="sc-gzVnrw dQTqPG"
   >
     <p
-      className="sc-bZQynM bPiBYZ"
+      className="sc-htoDjs gBzLKI"
     >
       Sample Message
     </p>
     <div
-      className="sc-gzVnrw guhYi"
+      className="sc-dnqmqq hokPWs"
       onClick={[Function]}
     />
   </div>
