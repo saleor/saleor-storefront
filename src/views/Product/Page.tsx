@@ -1,10 +1,10 @@
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import classNames from "classnames";
-import draftToHtml from "draftjs-to-html";
 import * as React from "react";
 import Media from "react-media";
 
+import { RichTextContent } from "@components/atoms";
 import {
   Breadcrumbs,
   CachedImage,
@@ -88,11 +88,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             productVariants={product.variants}
             addToCart={cart.add}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: draftToHtml(JSON.parse(product.descriptionJson)),
-              }}
-            />
+            <RichTextContent descriptionJson={product.descriptionJson} />
           </ProductDescription>
         )}
       </CartContext.Consumer>

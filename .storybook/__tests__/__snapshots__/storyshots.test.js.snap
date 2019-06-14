@@ -629,3 +629,52 @@ exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
   />
 </div>
 `;
+
+exports[`Storyshots @components/atoms/RichTextContent custom 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p><strong>bold</strong></p>
+<p><em>italic</em></p>
+<p><del>strikethrough</del></p>
+<h1>h1</h1>
+<h2>h2</h2>
+<h3>h3</h3>
+<blockquote>blockquote</blockquote>
+<ul>
+<li>ul</li>
+</ul>
+<ol>
+<li>ol</li>
+</ol>
+<p><a href=\\"#\\" target=\\"_self\\">link</a></p>
+",
+      }
+    }
+  />
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>They say polo is the sport of kings.Or was that stamp collecting ? Either way, this shirt is fit for a king of Saturday night.</p>
+",
+      }
+    }
+  />
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
