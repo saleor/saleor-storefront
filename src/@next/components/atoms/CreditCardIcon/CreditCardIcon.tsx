@@ -1,5 +1,4 @@
 import React from "react";
-
 import ReactSVG from "react-svg";
 
 import amexImg from "images/amex.svg";
@@ -24,11 +23,7 @@ providers.set("discover", discoverImg);
 export const CreditCardIcon: React.FC<IProps> = ({ provider }) => {
   return (
     <S.CreditCardIcon>
-      {providers.has(provider) ? (
-        <ReactSVG path={providers.get(provider)} />
-      ) : (
-        ""
-      )}
+      {providers.has(provider) && <ReactSVG path={providers.get(provider)} />}
     </S.CreditCardIcon>
   );
 };

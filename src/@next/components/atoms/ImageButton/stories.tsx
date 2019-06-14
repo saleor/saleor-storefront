@@ -4,5 +4,5 @@ import { ImageButton } from ".";
 import { createStory } from "../baseStory";
 
 createStory("ImageButton")
-  .add("edit button", () => <ImageButton type="edit" />)
+  .add("edit icon", () => <ImageButton type="edit" />)
   .add("trash icon", () => <ImageButton type="trash" />);

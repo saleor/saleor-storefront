@@ -15,7 +15,7 @@ iconTypes.set("trash", trashIcon);
 export const ImageButton: React.FC<IProps> = ({ type }) => {
   return (
     <S.ImageButton>
-      {iconTypes.has(type) ? <ReactSVG path={iconTypes.get(type)} /> : ""}
+      {iconTypes.has(type) && <ReactSVG path={iconTypes.get(type)} />}
     </S.ImageButton>
   );
 };
