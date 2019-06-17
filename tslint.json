@@ -11,7 +11,7 @@
     "max-classes-per-file": false,
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
-    "no-submodule-imports": [true, "cypress-testing-library"],
+    "no-submodule-imports": [false],
     "no-var-requires": false,
     "variable-name": {
       "options": [

@@ -4,7 +4,7 @@ import React from "react";
 import { RouteComponentProps } from "react-router";
 import { ThemeProvider } from "styled-components";
 
-import { defaultTheme } from "@styles";
+import { defaultTheme, GlobalStyle } from "@styles";
 
 import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
 import { isPath } from "../core/utils";
@@ -27,6 +27,7 @@ const App: React.FC<RouteComponentProps> = ({
         <Routes />
         {!orderConfirmationPage && <Footer />}
         <OverlayManager />
+        <GlobalStyle />
       </>
     </ThemeProvider>
   );

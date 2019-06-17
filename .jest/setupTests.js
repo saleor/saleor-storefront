@@ -6,3 +6,6 @@ import { ThemeConsumer } from "styled-components";
 // set default theme for enzyme renderer
 ThemeConsumer._currentValue = defaultTheme;
 configure({ adapter: new Adapter() });
+
+// silence all console.errors in tests
+console.error = jest.fn();

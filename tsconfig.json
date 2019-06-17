@@ -17,10 +17,11 @@
       "@components/organisms": ["./src/@next/components/organisms/index.ts"],
       "@components/views": ["./src/@next/components/views/index.ts"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
-      "@styles/*": ["./src/@next/globalStyles/*"]
+      "@styles/*": ["./src/@next/globalStyles/*"],
+      "images/*": ["./src/images/*"],
+      "@utils/*": ["./src/@next/utils/*"]
     },
     "skipLibCheck": true
   },
-  "include": ["webpack.d.ts", "src/images/*"],
   "exclude": ["node_modules"]
 }
