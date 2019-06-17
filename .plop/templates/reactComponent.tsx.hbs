@@ -7,7 +7,9 @@ import * as S from "./styles";
 {{/if}}
 import { IProps } from "./types";
 
-export const {{> p_componentName}}: React.FC<IProps> = () => {
+export const {{> p_componentName}}: React.FC<IProps> = ({
+  // destructure props here if needed
+}: IProps) => {
   return (
 {{#if componentHasStyles}}
     <S.Wrapper>
