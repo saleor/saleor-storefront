@@ -4,13 +4,14 @@ import "jest-styled-components";
 import React from "react";
 
 import { Message } from ".";
+import { Title } from "./styles";
 
 describe("<Message />", () => {
   it("renders passed title", () => {
     const text = "test";
     const wrapper = shallow(<Message title={text} onClose={jest.fn()} />);
 
-    expect(wrapper.text()).toEqual(text);
+    expect(wrapper.find(Title).text()).toEqual(text);
   });
 
   it("renders children when passed in", () => {
