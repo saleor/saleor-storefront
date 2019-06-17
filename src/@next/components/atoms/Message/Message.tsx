@@ -1,7 +1,6 @@
 import React from "react";
 
-import closeImg from "images/x.svg";
-
+import { Icon } from "../Icon";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -14,6 +13,8 @@ export const Message: React.FC<IProps> = ({
   <S.Wrapper status={status}>
     <S.Title>{title}</S.Title>
     {children && <S.Content>{children}</S.Content>}
-    <S.CloseIcon path={closeImg} onClick={onClose} />
+    <S.IconButton onClick={onClose}>
+      <Icon name="x" size={15} />
+    </S.IconButton>
   </S.Wrapper>
 );
