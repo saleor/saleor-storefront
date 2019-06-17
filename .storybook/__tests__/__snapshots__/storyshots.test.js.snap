@@ -656,14 +656,30 @@ exports[`Storyshots @components/atoms/RichTextContent custom 1`] = `
     }
   />
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c1"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
     dangerouslySetInnerHTML={
@@ -674,7 +690,56 @@ exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
     }
   />
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c1"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  line-height: 0;
+  padding: 1rem NaNrem;
+}
+
+.c1 svg * {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1:hover svg * {
+  fill: #51e9d2;
+}
+
+<div
+  className="c0"
+>
+  <a
+    aria-label="facebook"
+    href="https://www.facebook.com/mirumeelabs/"
+    target="_blank"
+  >
+    <div
+      className="c1"
+    />
+  </a>
+  <div
+    className="c2"
   />
 </div>
 `;
