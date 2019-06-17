@@ -1,4 +1,4 @@
-export default `{
+const textBlocks = `{
    "blocks": [
       {
          "data": {},
@@ -125,3 +125,5 @@ export default `{
       }
    }
 }`;
+
+export default textBlocks;

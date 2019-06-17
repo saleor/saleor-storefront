@@ -1,4 +1,4 @@
-export default `
+const headers = `
 {
   "blocks": [
     {
@@ -31,3 +31,4 @@ export default `
   ]
 }
 `;
+export default headers;

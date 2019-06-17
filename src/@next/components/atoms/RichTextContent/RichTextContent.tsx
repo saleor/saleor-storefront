@@ -3,12 +3,11 @@ import React from "react";
 
 import { IProps } from "./types";
 
-export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) => {
-  return descriptionJson ? (
+export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) =>
+  descriptionJson && (
     <div
       dangerouslySetInnerHTML={{
         __html: draftToHtml(JSON.parse(descriptionJson)),
       }}
     />
-  ) : null;
-};
+  );

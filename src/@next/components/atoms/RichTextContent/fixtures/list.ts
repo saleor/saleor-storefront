@@ -1,4 +1,4 @@
-export default `
+const list = `
 {
   "blocks": [
     {
@@ -22,3 +22,5 @@ export default `
   ]
 }
 `;
+
+export default list;
