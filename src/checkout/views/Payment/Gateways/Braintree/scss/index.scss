@@ -2,5 +2,9 @@
   &__payment {
     position: relative;
     margin-bottom: 1rem;
+    .input__label:not(.input__label--focus) {
+      top: 1rem;
+      transform: translate(0, 0);
+    }
   }
 }
