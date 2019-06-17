@@ -1,12 +1,12 @@
 import React from "react";
 
 import { GlobalStyle } from "../src/@next/globalStyles";
-import { Wrapper, Outline } from "./styles";
+import * as S from "./styles";
 
 export const OutLineDecorator = storyFn => (
-  <Wrapper>
+  <S.Wrapper>
     {storyFn()}
-    <Outline />
+    <S.Outline />
     <GlobalStyle />
-  </Wrapper>
+  </S.Wrapper>
 );

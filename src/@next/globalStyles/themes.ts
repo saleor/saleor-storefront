@@ -62,19 +62,16 @@ export const defaultTheme = {
   message: {
     backgroundColor: C.white,
     borderLeft: `0.3rem solid ${C.turquoiseDark}`,
-    botttomPosition: `${C.spacer}rem`,
     contentMargin: `${C.spacer}rem 0 0`,
     errorColor: C.rose,
     neutralColor: C.turquoiseDark,
     padding: "1.5rem",
-    rightPosition: `${C.spacer}rem`,
     successColor: C.green,
     titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
     titleTransform: "uppercase",
     titleWeight: C.boldFontWeight,
     width: "25rem",
   },
-
   modal: {
     modalMinHeight: 455,
     modalWidth: 555,
