@@ -1,67 +1,299 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots @components/atoms/Button Primary 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #51e9d2;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+  padding: 0.9rem 3.7rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c1:hover {
+  background-color: #55c4b3;
+  color: #fff;
+}
+
+.c1:active {
+  background-color: #55c4b3;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c1:disabled {
+  background-color: $gray;
+}
+
+.c1:disabled,
+.c1:disabled:hover {
+  cursor: default;
+}
+
+.c2 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+}
+
+@media (max-width:540px) {
+  .c1 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <button
-    className="sc-htpNat eNQEjT"
+    className="c1"
     color="primary"
   >
     <span
-      className="sc-ifAKCX llBRr"
+      className="c2"
     >
       Primary Button
     </span>
   </button>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c3"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Button Secondary 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #fff;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+  padding: 0.9rem 3.7rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #21125e;
+  box-shadow: inset 0px 0px 0px 3px #21125e;
+  border-left: 1px solid #21125e;
+  border-right: 1px solid #21125e;
+}
+
+.c1:hover {
+  background-color: #21125e;
+  color: #fff;
+}
+
+.c1:active {
+  background-color: #190c4e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c1:disabled {
+  background-color: $gray;
+}
+
+.c1:disabled,
+.c1:disabled:hover {
+  cursor: default;
+}
+
+.c2 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+}
+
+@media (max-width:540px) {
+  .c1 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <button
-    className="sc-htpNat sc-bxivhb fcoXHK"
+    className="c1"
     color="secondary"
   >
     <span
-      className="sc-ifAKCX llBRr"
+      className="c2"
     >
       Secondary Button
     </span>
   </button>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c3"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  line-height: 0;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-EHOje jIEIwM"
+    className="c1"
   />
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c2"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Loader default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0;
+}
+
+.c2 {
+  position: relative;
+  width: 5rem;
+  height: 1rem;
+  margin: 0 auto;
+}
+
+.c2 span {
+  background-color: #21125e;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  position: absolute;
+}
+
+.c2 span:nth-child(1) {
+  left: 0;
+  -webkit-animation: hKcKTr 2s infinite;
+  animation: hKcKTr 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.c2 span:nth-child(2) {
+  left: 2rem;
+  -webkit-animation: jcXNMq 2s infinite;
+  animation: jcXNMq 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.c2 span:nth-child(3) {
+  right: 0;
+  -webkit-animation: ggvZqn 2s infinite;
+  animation: ggvZqn 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-bZQynM jYtkKU"
+    className="c1"
   >
     <div
-      className="sc-gzVnrw NdYuc"
+      className="c2"
     >
       <span />
       <span />
@@ -69,83 +301,281 @@ exports[`Storyshots @components/atoms/Loader default 1`] = `
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c3"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message error 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.3rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 1.5rem 0 0;
+}
+
+.c3 {
+  line-height: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 1.5rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg * {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover svg * {
+  fill: $gray;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-htoDjs dYOgaz"
+    className="c1"
   >
     <p
-      className="sc-dnqmqq voifR"
+      className="c2"
     >
       Sample Message
     </p>
     <div
-      className="sc-EHOje sc-iwsKbI hRwuVo"
+      className="c3"
       onClick={[Function]}
     />
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c4"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message neutral 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.3rem solid;
+  border-color: #55c4b3;
+}
+
+.c2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 1.5rem 0 0;
+}
+
+.c3 {
+  line-height: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 1.5rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg * {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover svg * {
+  fill: $gray;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-htoDjs jUSbIr"
+    className="c1"
   >
     <p
-      className="sc-dnqmqq voifR"
+      className="c2"
     >
       Sample Message
     </p>
     <div
-      className="sc-EHOje sc-iwsKbI hRwuVo"
+      className="c3"
       onClick={[Function]}
     />
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c4"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message success 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.3rem solid;
+  border-color: #3ed256;
+}
+
+.c2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 1.5rem 0 0;
+}
+
+.c3 {
+  line-height: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 1.5rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg * {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover svg * {
+  fill: $gray;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-htoDjs flqwzg"
+    className="c1"
   >
     <p
-      className="sc-dnqmqq voifR"
+      className="c2"
     >
       Sample Message
     </p>
     <div
-      className="sc-EHOje sc-iwsKbI hRwuVo"
+      className="c3"
       onClick={[Function]}
     />
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c4"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  line-height: 0;
+  padding: 1rem NaNrem;
+}
+
+.c1 svg * {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1:hover svg * {
+  fill: #51e9d2;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <a
     aria-label="facebook"
@@ -153,11 +583,11 @@ exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
     target="_blank"
   >
     <div
-      className="sc-EHOje sc-gqjmRU dCApik"
+      className="c1"
     />
   </a>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c2"
   />
 </div>
 `;
