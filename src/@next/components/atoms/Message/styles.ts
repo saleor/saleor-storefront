@@ -34,9 +34,12 @@ export const IconButton = styled.button`
   transform: translateY(-50%);
   right: 1.5rem;
 
+  path {
+    transition: 0.3s;
+  }
+
   &:hover {
     path {
-      transition: 0.3s;
       fill: ${gray};
     }
   }
