@@ -99,6 +99,7 @@ export const defaultTheme = {
   tile: {
     backgroundColor: C.turquoiseLight,
     divisionLine: C.gray,
+    hoverBorder: C.blueDark,
   },
   typography: {
     baseFontFamily: C.baseFontFamily,
