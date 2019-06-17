@@ -2,6 +2,8 @@ import "./scss/index.scss";
 
 import React from "react";
 
+import { CreditCardForm } from "@components/molecules";
+
 import { GatewaysEnum } from "../../../../../../types/globalTypes";
 import { TextField } from "../../../../../components";
 
@@ -14,7 +16,7 @@ import {
   PaymentData
 } from "../../../../../core/payments/braintree";
 import { maybe, removeEmptySpaces } from "../../../../../core/utils";
-import { CreditCardForm } from "../../../../components";
+// import { CreditCardForm } from "../../../../components";
 import { ProviderProps } from "../../View";
 
 const INITIAL_CARD_ERROR_STATE = {

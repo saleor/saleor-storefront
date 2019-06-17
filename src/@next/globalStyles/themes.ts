@@ -99,6 +99,7 @@ export const defaultTheme = {
     h1LineHeight: C.h1LineHeight,
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
+    labelFontSize: C.labelFontSize, // 12px
     smallFontSize: C.smallFontSize, // 14px
   },
 };
