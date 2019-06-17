@@ -9,6 +9,7 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
+      "@temp/*": ["./src/*"],
       "@app/*": ["./src/@next/*"],
       "@components/*": ["./src/@next/components/*"],
       "@components/atoms": ["./src/@next/components/atoms/index.ts"],
@@ -17,7 +18,8 @@
       "@components/views": ["./src/@next/components/views/index.ts"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
-      "images/*": ["./src/images/*"]
+      "images/*": ["./src/images/*"],
+      "@utils/*": ["./src/@next/utils/*"]
     },
     "skipLibCheck": true
   },

@@ -51,7 +51,7 @@ export const Secondary = styled(Primary)`
 export const Text = styled.span`
   display: inline-block;
   font-size: 1.125rem;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
   transform: skew(-45deg);

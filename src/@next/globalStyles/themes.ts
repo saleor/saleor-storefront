@@ -46,7 +46,7 @@ export const defaultTheme = {
     autofillColorSelected: C.autofillColorSelected,
     baseFontColor: C.baseFontColor,
     primaryColor: C.turquoise,
-    secondaryColor: C.white,
+    secondaryColor: C.blue,
   },
   container: {
     width: 1140,
@@ -64,22 +64,18 @@ export const defaultTheme = {
     hoverForegroundColor: C.white,
   },
   message: {
-    messageBackgroundColor: C.white,
-    messageBorderLeft: `0.3rem solid ${C.turquoiseDark}`,
-    messageBotttomPosition: `${C.spacer}rem`,
-    messageContentMargin: `${C.spacer}rem 0 0`,
-    messageErrorColor: C.rose,
-    messageNeutralColor: C.turquoiseDark,
-    messagePadding: "1.5rem",
-    messageRightPosition: `${C.spacer}rem`,
-    messageShadow: "0px 6px 15px 3px rgba(0, 0, 0, 0.25)",
-    messageSuccessColor: C.green,
-    messageTitleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
-    messageTitleTransform: "uppercase",
-    messageTitleWeight: C.boldFontWeight,
-    messageWidth: "25rem",
+    backgroundColor: C.white,
+    borderLeft: `0.3rem solid ${C.turquoiseDark}`,
+    contentMargin: `${C.spacer}rem 0 0`,
+    errorColor: C.rose,
+    neutralColor: C.turquoiseDark,
+    padding: "1.5rem",
+    successColor: C.green,
+    titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
+    titleTransform: "uppercase",
+    titleWeight: C.boldFontWeight,
+    width: "25rem",
   },
-
   modal: {
     modalMinHeight: 455,
     modalWidth: 555,
@@ -115,5 +111,5 @@ export const defaultTheme = {
   },
 };
 
-type DefaultTheme = typeof defaultTheme;
+export type DefaultTheme = typeof defaultTheme;
 export const styled = baseStyled as ThemedStyledInterface<DefaultTheme>;
