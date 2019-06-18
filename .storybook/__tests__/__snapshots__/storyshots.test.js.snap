@@ -219,6 +219,241 @@ exports[`Storyshots @components/atoms/Icon sample icon 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/Input default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.8rem 1rem;
+  border: 2px solid;
+  outline: none;
+}
+
+.c1:hover {
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c2 {
+  margin-right: 0.5rem;
+}
+
+.c4 {
+  margin-left: 0.5rem;
+}
+
+.c3 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    disabled={false}
+  >
+    <span
+      className="c2"
+    />
+    <input
+      className="c3"
+      disabled={false}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholder="Text goes here"
+    />
+    <span
+      className="c4"
+    />
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Input disabled 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.8rem 1rem;
+  border: 2px solid;
+  outline: none;
+}
+
+.c1:hover {
+  outline-width: 0px;
+  outline-style: solid;
+}
+
+.c2 {
+  margin-right: 0.5rem;
+}
+
+.c4 {
+  margin-left: 0.5rem;
+}
+
+.c3 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    disabled={true}
+  >
+    <span
+      className="c2"
+    />
+    <input
+      className="c3"
+      disabled={true}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholder="Text goes here"
+    />
+    <span
+      className="c4"
+    />
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Input error 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.8rem 1rem;
+  border: 2px solid #c22d74;
+  outline: none;
+}
+
+.c1:hover {
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #c22d74;
+  outline-color: #c22d74;
+}
+
+.c2 {
+  margin-right: 0.5rem;
+}
+
+.c4 {
+  margin-left: 0.5rem;
+}
+
+.c3 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    disabled={false}
+  >
+    <span
+      className="c2"
+    />
+    <input
+      className="c3"
+      disabled={false}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      placeholder="Text goes here"
+    />
+    <span
+      className="c4"
+    />
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/Loader default 1`] = `
 .c0 {
   position: relative;

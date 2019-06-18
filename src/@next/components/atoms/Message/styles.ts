@@ -2,11 +2,11 @@ import { DefaultTheme, styled } from "@styles";
 
 import { IProps } from "./types";
 
-const borderColors = (theme: DefaultTheme["message"]) => ({
-  action: theme.errorColor,
-  error: theme.errorColor,
-  neutral: theme.neutralColor,
-  success: theme.successColor,
+const borderColors = (theme: DefaultTheme) => ({
+  action: theme.colors.errorColor,
+  error: theme.colors.errorColor,
+  neutral: theme.message.neutralColor,
+  success: theme.message.successColor,
 });
 
 export const Wrapper = styled.div<{ status: IProps["status"] }>`
@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ status: IProps["status"] }>`
   bottom: ${props => props.theme.spacing.spacer};
   right: ${props => props.theme.spacing.spacer};
   border-left: 0.4rem solid;
-  border-color: ${props => borderColors(props.theme.message)[props.status!]};
+  border-color: ${props => borderColors(props.theme)[props.status!]};
 `;
 
 export const TopWrapper = styled.div`

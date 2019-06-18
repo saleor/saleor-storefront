@@ -43,7 +43,7 @@ describe("<Message />", () => {
     );
     expect(error).toHaveStyleRule(
       "border-color",
-      defaultTheme.message.errorColor
+      defaultTheme.colors.errorColor
     );
   });
 });
