@@ -1,6 +1,5 @@
 import { DefaultTheme, styled } from "@styles";
 
-import { IconSVG } from "../IconSVG";
 import { IProps } from "./types";
 
 const borderColors = (theme: DefaultTheme["message"]) => ({
@@ -27,21 +26,20 @@ export const Title = styled.p`
   margin: ${props => props.theme.message.titleMargin};
 `;
 
-export const CloseIcon = styled(IconSVG)`
+export const IconButton = styled.button`
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 1.5rem;
-  transition: 0.3s;
 
-  svg * {
+  path {
     transition: 0.3s;
   }
 
   &:hover {
-    svg * {
-      fill: $gray;
+    path {
+      fill: ${props => props.theme.colors.primaryColor};
     }
   }
 `;

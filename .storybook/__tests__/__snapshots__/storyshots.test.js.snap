@@ -183,13 +183,13 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
+exports[`Storyshots @components/atoms/Icon sample icon 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c2 {
+.c1 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -200,18 +200,21 @@ exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
   box-sizing: border-box;
 }
 
-.c1 {
-  line-height: 0;
-}
-
 <div
   className="c0"
 >
+  <svg
+    height={32}
+    viewBox="0 0 32 32"
+    width={32}
+  >
+    <path
+      d="M4.965 17.333h25.684c0.353 0 0.689-0.14 0.939-0.39s0.393-0.59 0.393-0.943-0.143-0.693-0.393-0.943c-0.25-0.25-0.586-0.39-0.939-0.39h-25.691l6.613-5.653c0.266-0.23 0.433-0.557 0.463-0.91 0.027-0.35-0.087-0.7-0.316-0.97-0.23-0.267-0.556-0.433-0.909-0.463-0.35-0.027-0.699 0.087-0.969 0.317l-9.354 8c-0.27 0.23-0.436 0.557-0.463 0.91-0.027 0.35 0.087 0.7 0.313 0.97 0.076 0.088 0.162 0.165 0.257 0.23l9.247 7.917c0.27 0.23 0.616 0.343 0.969 0.317s0.679-0.193 0.909-0.463c0.23-0.27 0.343-0.617 0.316-0.97s-0.193-0.68-0.463-0.91l-6.606-5.653z"
+      fill="#949494"
+    />
+  </svg>
   <div
     className="c1"
-  />
-  <div
-    className="c2"
   />
 </div>
 `;
@@ -342,7 +345,6 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
 }
 
 .c3 {
-  line-height: 0;
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -350,17 +352,15 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   right: 1.5rem;
+}
+
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c3 svg * {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c3:hover svg * {
-  fill: $gray;
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
@@ -374,10 +374,21 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
     >
       Sample Message
     </p>
-    <div
+    <button
       className="c3"
       onClick={[Function]}
-    />
+    >
+      <svg
+        height={15}
+        viewBox="0 0 32 32"
+        width={15}
+      >
+        <path
+          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+          fill="#c4c4c4"
+        />
+      </svg>
+    </button>
   </div>
   <div
     className="c4"
@@ -421,7 +432,6 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
 }
 
 .c3 {
-  line-height: 0;
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -429,17 +439,15 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   right: 1.5rem;
+}
+
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c3 svg * {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c3:hover svg * {
-  fill: $gray;
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
@@ -453,10 +461,21 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
     >
       Sample Message
     </p>
-    <div
+    <button
       className="c3"
       onClick={[Function]}
-    />
+    >
+      <svg
+        height={15}
+        viewBox="0 0 32 32"
+        width={15}
+      >
+        <path
+          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+          fill="#c4c4c4"
+        />
+      </svg>
+    </button>
   </div>
   <div
     className="c4"
@@ -500,7 +519,6 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
 }
 
 .c3 {
-  line-height: 0;
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -508,17 +526,15 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   right: 1.5rem;
+}
+
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c3 svg * {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c3:hover svg * {
-  fill: $gray;
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
@@ -532,10 +548,21 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
     >
       Sample Message
     </p>
-    <div
+    <button
       className="c3"
       onClick={[Function]}
-    />
+    >
+      <svg
+        height={15}
+        viewBox="0 0 32 32"
+        width={15}
+      >
+        <path
+          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+          fill="#c4c4c4"
+        />
+      </svg>
+    </button>
   </div>
   <div
     className="c4"
@@ -543,13 +570,13 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
+exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c2 {
+.c3 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -561,33 +588,44 @@ exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
 }
 
 .c1 {
-  line-height: 0;
   padding: 1rem NaNrem;
 }
 
-.c1 svg * {
+.c2 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c1:hover svg * {
+.c2:hover path {
   fill: #51e9d2;
 }
 
 <div
   className="c0"
 >
-  <a
-    aria-label="facebook"
-    href="https://www.facebook.com/mirumeelabs/"
-    target="_blank"
-  >
-    <div
-      className="c1"
-    />
-  </a>
   <div
-    className="c2"
+    className="c1"
+  >
+    <a
+      aria-label="facebook"
+      className="c2"
+      href="https://www.facebook.com/mirumeelabs/"
+      target="_blank"
+    >
+      <svg
+        height={36}
+        viewBox="0 0 32 32"
+        width={36}
+      >
+        <path
+          d="M16 0c-8.822 0-16 7.178-16 16s7.178 16 16 16c8.822 0 16-7.178 16-16s-7.177-16-16-16zM19.979 16.563h-2.603c0 4.159 0 9.278 0 9.278h-3.857c0 0 0-5.070 0-9.278h-1.834v-3.279h1.834v-2.121c0-1.519 0.722-3.893 3.893-3.893l2.858 0.011v3.183c0 0-1.737 0-2.075 0s-0.818 0.169-0.818 0.893v1.927h2.939l-0.337 3.279z"
+          fill="#21125e"
+        />
+      </svg>
+    </a>
+  </div>
+  <div
+    className="c3"
   />
 </div>
 `;

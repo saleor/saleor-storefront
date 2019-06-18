@@ -1,6 +1,10 @@
-interface Medium {
+export interface Medium {
   ariaLabel: string;
-  path: string;
+  iconName:
+    | "social_facebook"
+    | "social_instagram"
+    | "social_twitter"
+    | "social_youtube";
   href: string;
 }
 
