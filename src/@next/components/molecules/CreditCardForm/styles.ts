@@ -3,18 +3,21 @@ import { spacer } from "@styles/constants";
 
 export const Wrapper = styled.div``;
 
-export const PaymentInput = styled.div`
+export const PaymentInput = styled.div<{ error?: boolean }>`
   position: relative;
   margin-bottom: 1rem;
-  ${(props: { error?: boolean }) =>
+  ${props =>
     props.error &&
     `
   display: block;
-  margin-bottom: ${spacer};
+  margin-bottom: ${props.theme.spacing.spacer};
   .input_content {
     position: relative;
   }
   `}
+  .input {
+    margin-bottom: 0;
+  }
 `;
 
 interface ILabelFocus {
@@ -23,10 +26,9 @@ interface ILabelFocus {
 export const PaymentLabel = styled.span<ILabelFocus>`
   display: inline-block;
   position: absolute;
-  color: $label-color;
-  top: 50%;
+  color: ${props => props.theme.input.labelColor};
+  top: 1rem;
   left: 0.8rem;
-  transform: translate(0, -50%);
   padding: 0 6px;
   z-index: 1;
   pointer-events: none;
@@ -35,17 +37,19 @@ export const PaymentLabel = styled.span<ILabelFocus>`
     props.isFocused &&
     `
     background-color: ${props.theme.colors.white};
-font-size: ${props.theme.typography.labelFontSize};
-left: 17px;
-top: 0;
-`}
+    font-size: ${props.theme.input.labelFontSize};
+    left: 17px;
+    top: 0;
+    transform: translate(0, -50%);
+  `}
 `;
 
 export const ErrorMessage = styled.div`
   display: block;
   color: ${props => props.theme.colors.errorColor};
-  font-size: ${props => props.theme.typography.labelFontSize};
-  margin-bottom: ${spacer};
+  font-size: ${props => props.theme.input.labelFontSize};
+  margin-top: ${spacer / 2}rem;
+  margin-bottom: ${props => props.theme.spacing.spacer};
   & ~ & {
     margin-top: -1rem;
   }
@@ -53,6 +57,6 @@ export const ErrorMessage = styled.div`
 
 export const Grid = styled.div`
   display: grid;
-  grid-gap: 0 ${spacer};
+  grid-gap: 0 ${props => props.theme.spacing.spacer};
   grid-template-columns: 1fr 1fr;
 `;
