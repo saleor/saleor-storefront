@@ -24,5 +24,10 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 1rem;
+  padding: 1rem 1.25rem;
+`;
+
+export const Footer = styled.div`
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 `;

@@ -183,6 +183,222 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/CreditCardIcon AMEX 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon DISCOVER 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon JCB 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MAESTRO 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MASTERCARD 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon VISA 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
 .c0 {
   position: relative;
@@ -210,6 +426,100 @@ exports[`Storyshots @components/atoms/IconSvg example svg 1`] = `
   <div
     className="c1"
   />
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ImageButton edit icon 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  padding-right: 0.5rem;
+}
+
+.c1 div {
+  display: inline-block;
+}
+
+.c1 svg:hover circle {
+  fill: #21125e;
+}
+
+.c1 svg:hover path {
+  fill: #fff;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    <div />
+  </span>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ImageButton trash icon 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  padding-right: 0.5rem;
+}
+
+.c1 div {
+  display: inline-block;
+}
+
+.c1 svg:hover circle {
+  fill: #21125e;
+}
+
+.c1 svg:hover path {
+  fill: #fff;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    <div />
+  </span>
   <div
     className="c2"
   />
@@ -588,6 +898,349 @@ exports[`Storyshots @components/atoms/SocialMediaIcon default 1`] = `
   </a>
   <div
     className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Tile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c2 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c4 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="c3"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="c4"
+    />
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Tile with hover 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c1:hover {
+  cursor: pointer;
+  border-color: #190c4e;
+}
+
+.c2 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c4 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="c3"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="c4"
+    >
+      <p>
+        And this is footer
+      </p>
+    </div>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/CreditCardNumberWithIcon default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c2 {
+  padding: 0 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div>
+    <div
+      className="c1"
+    >
+      <div />
+    </div>
+    <span
+      className="c2"
+    >
+      XXXX XXXX XXXX 
+      1234
+    </span>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c10 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c4 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c9 {
+  padding-right: 0.5rem;
+}
+
+.c9 div {
+  display: inline-block;
+}
+
+.c9 svg:hover circle {
+  fill: #21125e;
+}
+
+.c9 svg:hover path {
+  fill: #fff;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c2 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c8 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.c5 {
+  padding: 0 1rem;
+}
+
+.c6 {
+  font-weight: 600;
+}
+
+.c7 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div>
+          <div
+            className="c4"
+          >
+            <div />
+          </div>
+          <span
+            className="c5"
+          >
+            XXXX XXXX XXXX 
+            1234
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c6"
+      >
+        Expires on
+      </div>
+      <div
+        className="c7"
+      >
+        05/2019
+      </div>
+      <div
+        className="c6"
+      >
+        Name on card
+      </div>
+      <div
+        className="c7"
+      >
+        John Doe
+      </div>
+    </div>
+    <div
+      className="c8"
+    >
+      <span>
+        <span
+          className="c9"
+        >
+          <div />
+        </span>
+      </span>
+      <span>
+        <span
+          className="c9"
+        >
+          <div />
+        </span>
+      </span>
+    </div>
+  </div>
+  <div
+    className="c10"
   />
 </div>
 `;
