@@ -1,5 +1,4 @@
 import { DefaultTheme, styled } from "@styles";
-import { gray } from "@styles/constants";
 
 import { IProps } from "./types";
 
@@ -40,7 +39,7 @@ export const IconButton = styled.button`
 
   &:hover {
     path {
-      fill: ${gray};
+      fill: ${props => props.theme.colors.primaryColor};
     }
   }
 `;

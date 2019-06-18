@@ -354,9 +354,13 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
   right: 1.5rem;
 }
 
-.c3:hover path {
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
@@ -437,9 +441,13 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
   right: 1.5rem;
 }
 
-.c3:hover path {
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
@@ -520,9 +528,13 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
   right: 1.5rem;
 }
 
-.c3:hover path {
+.c3 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.c3:hover path {
+  fill: #51e9d2;
 }
 
 <div
