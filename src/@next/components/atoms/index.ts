@@ -3,5 +3,4 @@ export * from "./Message";
 export * from "./Loader";
 export * from "./SocialMediaIcon";
 export * from "./Icon";
-export * from "./IconSVG";
 export * from "./RichTextContent";
