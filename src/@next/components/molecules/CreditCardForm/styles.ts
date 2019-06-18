@@ -20,6 +20,7 @@ export const PaymentInput = styled.div<{ error?: boolean }>`
   }
 `;
 
+PaymentInput.displayName = "S.PaymentInput";
 interface ILabelFocus {
   isFocused: boolean;
 }
@@ -43,6 +44,7 @@ export const PaymentLabel = styled.span<ILabelFocus>`
     transform: translate(0, -50%);
   `}
 `;
+PaymentLabel.displayName = "S.PaymentLabel";
 
 export const ErrorMessage = styled.div`
   display: block;

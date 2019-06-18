@@ -17,8 +17,12 @@ interface IInputProps {
   onFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
+export interface IFormikProps {
+  values: ICardInputs;
+  handleChange: (e: React.ChangeEvent) => void;
+}
 export interface IProps {
-  formRef: React.RefObject<HTMLFormElement>;
+  formRef?: React.RefObject<HTMLFormElement>;
   cardErrors: ICardErrors;
   cardText: ICardText;
   focusedInputName: ICardName | null;
