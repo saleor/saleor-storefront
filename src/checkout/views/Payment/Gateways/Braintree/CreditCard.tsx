@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import React from "react";
 
-// import { CreditCardForm } from "@components/molecules";
+import { CreditCardForm } from "@components/molecules";
 
 import { GatewaysEnum } from "../../../../../../types/globalTypes";
 import { TextField } from "../../../../../components";
@@ -10,13 +10,12 @@ import { TextField } from "../../../../../components";
 import {
   braintreePayment,
   ErrorData,
-  ICardInputs,
   ICardName,
   IPaymentCardError,
   PaymentData
 } from "../../../../../core/payments/braintree";
 import { maybe, removeEmptySpaces } from "../../../../../core/utils";
-import { CreditCardForm } from "../../../../components";
+// import { CreditCardForm } from "../../../../components";
 import { ProviderProps } from "../../View";
 
 const INITIAL_CARD_ERROR_STATE = {
@@ -27,12 +26,6 @@ const INITIAL_CARD_ERROR_STATE = {
     number: "",
   },
   nonFieldError: "",
-};
-
-const INITIAL_CARD_VALUES_STATE = {
-  ccCsc: null,
-  ccExp: null,
-  ccNumber: null,
 };
 
 const CreditCard = ({
@@ -52,9 +45,6 @@ const CreditCard = ({
     const [cardErrors, setCardErrors] = React.useState<ErrorData>(
       INITIAL_CARD_ERROR_STATE
     );
-    const [cardValues, setCardValues] = React.useState<ICardInputs>(
-      INITIAL_CARD_VALUES_STATE
-    );
     const [focusedInput, setFocusedInput] = React.useState<ICardName | null>(
       null
     );
@@ -66,11 +56,6 @@ const CreditCard = ({
     );
 
     const handleOnBlur = React.useCallback(() => setFocusedInput(null), []);
-
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setCardValues({ ...cardValues, [name]: value });
-    };
 
     const setCardErrorsHelper = (errors: IPaymentCardError[]) =>
       errors.map(({ field, message }: IPaymentCardError) =>
@@ -97,8 +82,7 @@ const CreditCard = ({
       }
     };
 
-    const handleSubmit = async (evt: React.FormEvent, formData) => {
-      evt.preventDefault();
+    const handleSubmit = async formData => {
       setLoadingState(true);
       const creditCard = {
         billingAddress: { postalCode },
@@ -115,7 +99,6 @@ const CreditCard = ({
       customInput: TextField,
       disabled: loading,
       onBlur: handleOnBlur,
-      onChange: handleOnChange,
       onFocus: handleOnFocus,
     });
 
@@ -128,7 +111,6 @@ const CreditCard = ({
           ccExp: "ExpiryDate",
           ccNumber: "Number",
         }}
-        cardValues={cardValues}
         focusedInputName={focusedInput}
         inputProps={getInputProps()}
         handleSubmit={handleSubmit}

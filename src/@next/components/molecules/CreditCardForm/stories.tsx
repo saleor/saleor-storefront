@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import React from "react";
-import { TextField } from "src/components";
+// import { TextField } from "src/components";
 import { CreditCardForm } from ".";
 
 import { createStory } from "../baseStory";
@@ -19,7 +19,7 @@ const CARD_VALUES = {
 };
 
 const INPUT_PROPS = {
-  customInput: TextField,
+  customInput: () => <div />,
   disabled: false,
   onBlur: action("onBlur"),
   onChange: action("onChange"),
