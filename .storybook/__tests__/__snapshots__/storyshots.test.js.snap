@@ -309,13 +309,13 @@ exports[`Storyshots @components/atoms/Loader default 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/atoms/Message error 1`] = `
+exports[`Storyshots @components/atoms/Message action card 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c4 {
+.c6 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -328,39 +328,47 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
 
 .c1 {
   width: 25rem;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: #fff;
   box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  border-left: 0.3rem solid;
+  border-left: 0.4rem solid;
   border-color: #c22d74;
 }
 
 .c2 {
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0 1.5rem 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  margin: 1rem 0 0;
+}
+
+.c5 {
+  color: #21125e;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 1.5rem;
-}
-
-.c3 path {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c3:hover path {
-  fill: #51e9d2;
+  font-size: 1rem;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div
@@ -369,40 +377,45 @@ exports[`Storyshots @components/atoms/Message error 1`] = `
   <div
     className="c1"
   >
-    <p
+    <div
       className="c2"
     >
-      Sample Message
-    </p>
-    <button
-      className="c3"
-      onClick={[Function]}
-    >
-      <svg
-        height={15}
-        viewBox="0 0 32 32"
-        width={15}
+      <p
+        className="c3"
       >
-        <path
-          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
-          fill="#c4c4c4"
-        />
-      </svg>
+        Sample Message
+      </p>
+    </div>
+    <div
+      className="c4"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
+    <button
+      className="c5"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginTop": "1rem",
+        }
+      }
+    >
+      Refresh
     </button>
   </div>
   <div
-    className="c4"
+    className="c6"
   />
 </div>
 `;
 
-exports[`Storyshots @components/atoms/Message neutral 1`] = `
+exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c4 {
+.c5 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -415,38 +428,242 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
 
 .c1 {
   width: 25rem;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: #fff;
   box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  border-left: 0.3rem solid;
+  border-left: 0.4rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  color: #21125e;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <p
+        className="c3"
+      >
+        Sample Message
+      </p>
+      <button
+        className="c4"
+        onClick={[Function]}
+      >
+        Try again
+      </button>
+    </div>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c4:hover path {
+  fill: #51e9d2;
+}
+
+.c5 {
+  margin: 1rem 0 0;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <p
+        className="c3"
+      >
+        Sample Message
+      </p>
+      <button
+        className="c4"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="c5"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
   border-color: #55c4b3;
 }
 
 .c2 {
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0 1.5rem 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .c3 {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
 }
 
-.c3 path {
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c3:hover path {
+.c4:hover path {
   fill: #51e9d2;
 }
 
@@ -456,40 +673,44 @@ exports[`Storyshots @components/atoms/Message neutral 1`] = `
   <div
     className="c1"
   >
-    <p
+    <div
       className="c2"
     >
-      Sample Message
-    </p>
-    <button
-      className="c3"
-      onClick={[Function]}
-    >
-      <svg
-        height={15}
-        viewBox="0 0 32 32"
-        width={15}
+      <p
+        className="c3"
       >
-        <path
-          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
-          fill="#c4c4c4"
-        />
-      </svg>
-    </button>
+        Sample Message
+      </p>
+      <button
+        className="c4"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
   <div
-    className="c4"
+    className="c5"
   />
 </div>
 `;
 
-exports[`Storyshots @components/atoms/Message success 1`] = `
+exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c4 {
+.c6 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -502,39 +723,52 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
 
 .c1 {
   width: 25rem;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: #fff;
   box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  border-left: 0.3rem solid;
+  border-left: 0.4rem solid;
   border-color: #3ed256;
 }
 
 .c2 {
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0 1.5rem 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .c3 {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
 }
 
-.c3 path {
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c3:hover path {
+.c4:hover path {
   fill: #51e9d2;
+}
+
+.c5 {
+  margin: 1rem 0 0;
 }
 
 <div
@@ -543,29 +777,38 @@ exports[`Storyshots @components/atoms/Message success 1`] = `
   <div
     className="c1"
   >
-    <p
+    <div
       className="c2"
     >
-      Sample Message
-    </p>
-    <button
-      className="c3"
-      onClick={[Function]}
-    >
-      <svg
-        height={15}
-        viewBox="0 0 32 32"
-        width={15}
+      <p
+        className="c3"
       >
-        <path
-          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
-          fill="#c4c4c4"
-        />
-      </svg>
-    </button>
+        Sample Message
+      </p>
+      <button
+        className="c4"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="c5"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
   </div>
   <div
-    className="c4"
+    className="c6"
   />
 </div>
 `;
