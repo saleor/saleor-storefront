@@ -100,6 +100,24 @@ export const defaultTheme = {
     h4FontSize: C.h4FontSize, // 18px
     smallFontSize: C.smallFontSize, // 14px
   },
+  flexboxgrid: {
+    // Defaults
+    gridSize: 12, // columns
+    gutterWidth: 5, // rem
+    mediaQuery: "only screen",
+    outerMargin: 2, // rem
+    container: {
+      sm: 46, // rem
+      md: 61, // rem
+      lg: 76, // rem
+    },
+    breakpoints: {
+      xs: 0, // em
+      sm: 48, // em
+      md: 64, // em
+      lg: 75, // em
+    },
+  },
 };
 
 export type DefaultTheme = typeof defaultTheme;
