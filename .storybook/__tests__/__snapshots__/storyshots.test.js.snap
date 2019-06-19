@@ -183,6 +183,32 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/ErrorMessage default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/Icon sample icon 1`] = `
 .c0 {
   position: relative;
