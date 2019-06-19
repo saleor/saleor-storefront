@@ -30,8 +30,8 @@ export const Input: React.FC<IProps> = ({
   const handleBlur = React.useCallback(
     e => {
       setActive(false);
-      if (onFocus) {
-        onFocus(e);
+      if (onBlur) {
+        onBlur(e);
       }
     },
     [setActive, onBlur]

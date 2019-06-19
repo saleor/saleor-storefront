@@ -1,5 +1,4 @@
 import { DefaultTheme, styled } from "@styles";
-import { gray, grayDark } from "@styles/constants";
 
 type WrapperProps = {
   active: boolean;
@@ -13,23 +12,23 @@ const getEdgeColor = (
   hovered = false
 ) => {
   if (disabled) {
-    return gray;
+    return theme.colors.disabled;
   }
 
   if (error) {
-    return theme.colors.errorColor;
+    return theme.colors.error;
   }
 
   if (hovered) {
-    return theme.colors.secondaryColor;
+    return theme.colors.secondary;
   }
 
-  return active ? theme.colors.secondaryColor : grayDark;
+  return active ? theme.colors.secondary : theme.colors.dark;
 };
 
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
-  border: 1.5px solid ${props => getEdgeColor(props)};
+  border: 1px solid ${props => getEdgeColor(props)};
   color: ${props => getEdgeColor(props)};
   outline: ${props =>
     props.active ? `1px solid ${getEdgeColor(props)};` : "none"};
@@ -66,8 +65,8 @@ export const Input = styled.input`
 
 export const Label = styled.label<{ active: boolean }>`
   position: absolute;
-  left: 1rem;
-  padding: 0 ${props => (props.active ? 10 : 0)}px;
+  left: ${props => (props.active ? "0.5rem" : "1rem")};
+  padding: 0 ${props => (props.active ? 0.5 : 0)}rem;
   background-color: ${props => (props.active ? "#fff" : "none")};
   font-size: ${props =>
     props.active

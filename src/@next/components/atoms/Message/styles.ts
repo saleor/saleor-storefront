@@ -3,10 +3,10 @@ import { DefaultTheme, styled } from "@styles";
 import { IProps } from "./types";
 
 const borderColors = (theme: DefaultTheme) => ({
-  action: theme.colors.errorColor,
-  error: theme.colors.errorColor,
-  neutral: theme.message.neutralColor,
-  success: theme.message.successColor,
+  action: theme.colors.error,
+  error: theme.colors.error,
+  neutral: theme.colors.primaryDark,
+  success: theme.colors.success,
 });
 
 export const Wrapper = styled.div<{ status: IProps["status"] }>`
@@ -42,7 +42,7 @@ export const IconButton = styled.button`
 
   &:hover {
     path {
-      fill: ${props => props.theme.colors.primaryColor};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;
@@ -52,7 +52,7 @@ export const Content = styled.div`
 `;
 
 export const ActionButton = styled.button`
-  color: ${props => props.theme.colors.secondaryColor};
+  color: ${props => props.theme.colors.secondary};
   cursor: pointer;
   font-size: ${props => props.theme.typography.baseFontSize};
   text-decoration: underline;

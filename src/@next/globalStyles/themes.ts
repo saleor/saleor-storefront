@@ -3,26 +3,23 @@ import baseStyled, { ThemedStyledInterface } from "styled-components";
 import * as C from "./constants";
 
 export const defaultTheme = {
-  // Theme name for storybook addon
-  name: "default",
-  // tslint:disable-next-line:object-literal-sort-keys
   button: {
     animation: {
       transition: "0.3s",
     },
     colors: {
       primary: {
-        activeBackground: C.turquoiseDark,
-        background: C.turquoise,
+        activeBackground: C.theme.primaryDark,
+        background: C.theme.primary,
         color: C.white,
-        hoverBackground: C.turquoiseDark,
+        hoverBackground: C.theme.primaryDark,
         hoverColor: C.white,
       },
       secondary: {
-        activeBackground: C.blueDark,
+        activeBackground: C.theme.secondaryDark,
         background: C.white,
-        color: C.blue,
-        hoverBackground: C.blue,
+        color: C.theme.secondary,
+        hoverBackground: C.theme.secondary,
         hoverColor: C.white,
       },
     },
@@ -42,12 +39,7 @@ export const defaultTheme = {
     carouselControlShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.25)",
   },
   colors: {
-    autofillColor: C.autofillColor,
-    autofillColorSelected: C.autofillColorSelected,
-    baseFontColor: C.baseFontColor,
-    errorColor: C.rose,
-    primaryColor: C.turquoise,
-    secondaryColor: C.blue,
+    ...C.theme,
   },
   container: {
     width: 1140,
@@ -62,12 +54,9 @@ export const defaultTheme = {
   },
   message: {
     backgroundColor: C.white,
-    borderLeft: `0.3rem solid ${C.turquoiseDark}`,
     contentMargin: `${C.spacer}rem 0 0`,
     letterSpacing: "0.5px",
-    neutralColor: C.turquoiseDark,
     padding: "1rem 1.5rem",
-    successColor: C.green,
     titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
     titleTransform: "uppercase",
     titleWeight: C.extraBoldFontWeight,

@@ -35,15 +35,12 @@ describe("<Message />", () => {
 
     expect(neutral).toHaveStyleRule(
       "border-color",
-      defaultTheme.message.neutralColor
+      defaultTheme.colors.primaryDark
     );
     expect(success).toHaveStyleRule(
       "border-color",
-      defaultTheme.message.successColor
+      defaultTheme.colors.success
     );
-    expect(error).toHaveStyleRule(
-      "border-color",
-      defaultTheme.colors.errorColor
-    );
+    expect(error).toHaveStyleRule("border-color", defaultTheme.colors.error);
   });
 });
