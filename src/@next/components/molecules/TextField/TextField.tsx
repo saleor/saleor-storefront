@@ -3,7 +3,7 @@ import React from "react";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-import { ErrorMessage, Input } from "@components/atoms";
+import { ErrorMessage, Input } from "../../atoms";
 
 export const TextField: React.FC<IProps> = ({
   errors,

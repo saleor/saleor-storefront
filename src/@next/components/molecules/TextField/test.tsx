@@ -2,8 +2,9 @@ import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { Input } from "@components/atoms";
 import { TextField } from ".";
+import { Input } from "../../atoms";
+import * as S from "./styles";
 import { IProps } from "./types";
 
 describe("<TextField />", () => {
@@ -56,5 +57,16 @@ describe("<TextField />", () => {
     );
 
     expect(input.prop("error")).toEqual(true);
+  });
+
+  it("should render <S.HelpText> if `helpText` prop is provided", () => {
+    const HELP_TEXT = "Some info text";
+    const help = renderTextField({
+      ...DEFAULT_PROPS,
+      helpText: HELP_TEXT,
+    }).find(S.HelpText);
+
+    expect(help.exists()).toBe(true);
+    expect(help.text()).toEqual(HELP_TEXT);
   });
 });
