@@ -8,9 +8,15 @@ import { IFormikProps, IProps } from "./types";
 
 describe("<CreditCardForm />", () => {
   const CARD_VALUES = {
-    ccCsc: null,
-    ccExp: null,
-    ccNumber: null,
+    ccCsc: "",
+    ccExp: "",
+    ccNumber: "",
+  };
+
+  const CARD_TEXT = {
+    ccCsc: "CVC",
+    ccExp: "Expiry Date",
+    ccNumber: "Number",
   };
 
   const INPUT_PROPS = {
@@ -23,11 +29,7 @@ describe("<CreditCardForm />", () => {
 
   const DEFAULT_PROPS = {
     cardErrors: {},
-    cardText: {
-      ccCsc: "CVC",
-      ccExp: "Expiry Date",
-      ccNumber: "Number",
-    },
+    cardText: CARD_TEXT,
     focusedInputName: null,
     // formRef: null,
     handleChange: jest.fn(),
@@ -41,8 +43,7 @@ describe("<CreditCardForm />", () => {
 
   it("exists", () => {
     const creditCardForm = renderCreditCardForm(DEFAULT_PROPS);
-    // tslint:disable-next-line:no-console
-    console.log("creditCardF", creditCardForm.debug());
+
     expect(creditCardForm.exists()).toEqual(true);
   });
 
@@ -54,7 +55,13 @@ describe("<CreditCardForm />", () => {
   });
 
   describe("<S.PaymentInput /> ", () => {
-    it("should render  with <S.ErrorMessage> if `error` prop is set to true", () => {
+    it("should render", () => {
+      const inputs = renderCreditCardForm(DEFAULT_PROPS).find(S.PaymentInput);
+
+      expect(inputs).toHaveLength(3);
+    });
+
+    it("should contain <S.ErrorMessage> if error occurs", () => {
       const CARD_ERRORS = {
         cvv: "",
         expirationMonth: "",
@@ -67,7 +74,6 @@ describe("<CreditCardForm />", () => {
         cardErrors: CARD_ERRORS,
       }).find(S.PaymentInput);
 
-      expect(inputs).toHaveLength(3);
       expect(
         inputs
           .at(0)
@@ -80,6 +86,38 @@ describe("<CreditCardForm />", () => {
           .find(S.ErrorMessage)
           .text()
       ).toEqual(CARD_ERRORS.expirationYear);
+    });
+
+    describe("<PaymentLabel />", () => {
+      it("should render", () => {
+        const labels = renderCreditCardForm(DEFAULT_PROPS).find(S.PaymentLabel);
+
+        expect(labels).toHaveLength(3);
+      });
+
+      it("should have `isFocused` set to true if `focusedInputName` prop is equal to input name", () => {
+        const labels = renderCreditCardForm({
+          ...DEFAULT_PROPS,
+          focusedInputName: "ccCsc",
+        }).find(S.PaymentLabel);
+
+        expect(labels.at(1).prop("isFocused")).toEqual(true);
+      });
+
+      it("should have `isFocused` set to true if input has value", () => {
+        const CARD_VALUES = {
+          ccCsc: "",
+          ccExp: "",
+          ccNumber: "3333",
+        };
+
+        const labels = renderCreditCardForm({
+          ...DEFAULT_PROPS,
+          values: CARD_VALUES,
+        }).find(S.PaymentLabel);
+
+        expect(labels.at(0).prop("isFocused")).toEqual(true);
+      });
     });
   });
 });
