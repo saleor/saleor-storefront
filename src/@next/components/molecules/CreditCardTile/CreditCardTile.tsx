@@ -9,10 +9,11 @@ import { IProps } from "./types";
 export const CreditCardTile: React.FC<IProps> = ({
   nameOnCard,
   expirationDate,
+  onRemove,
+  onEdit,
+  ...props
 }: IProps) => {
-  const header = (
-    <CreditCardNumberWithIcon provider="visa" last4Digits={1234} />
-  );
+  const header = <CreditCardNumberWithIcon {...props} />;
   const content = (
     <>
       <S.BoldTitle>Expires on</S.BoldTitle>
@@ -24,10 +25,10 @@ export const CreditCardTile: React.FC<IProps> = ({
   const footer = (
     <>
       <span>
-        <ImageButton type="edit" />
+        <ImageButton type="edit" onClick={onEdit} />
       </span>
       <span>
-        <ImageButton type="trash" />
+        <ImageButton type="trash" onClick={onRemove} />
       </span>
     </>
   );

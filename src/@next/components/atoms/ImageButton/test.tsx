@@ -3,11 +3,11 @@ import "jest-styled-components";
 import React from "react";
 import ReactSVG from "react-svg";
 
-import { CreditCardIcon } from ".";
+import { ImageButton } from ".";
 
-describe("<CreditCardIcon />", () => {
+describe("<ImageButton />", () => {
   it("contains ReactSVG", () => {
-    const wrapper = shallow(<CreditCardIcon provider="visa" />);
+    const wrapper = shallow(<ImageButton type="edit" />);
     expect(wrapper.exists(ReactSVG)).toBe(true);
   });
 });
