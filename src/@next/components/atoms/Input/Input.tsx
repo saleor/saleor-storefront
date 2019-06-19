@@ -10,6 +10,10 @@ export const Input: React.FC<IProps> = ({
   contentRight = null,
   error = false,
   disabled = false,
+  placeholder,
+  label,
+  value,
+  onChange,
   ...props
 }: IProps) => {
   const [active, setActive] = React.useState(false);
@@ -35,14 +39,19 @@ export const Input: React.FC<IProps> = ({
 
   return (
     <S.Wrapper active={active} error={error} disabled={disabled}>
-      <S.Content marginPosition="right">{contentLeft}</S.Content>
-      <S.Input
-        {...props}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        disabled={disabled}
-      />
-      <S.Content marginPosition="left">{contentRight}</S.Content>
+      {contentLeft && <S.Content>{contentLeft}</S.Content>}
+      <S.InputWrapper>
+        <S.Input
+          {...props}
+          value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          disabled={disabled}
+          onChange={onChange}
+        />
+        {label && <S.Label active={active || !!value}>{label}</S.Label>}
+      </S.InputWrapper>
+      {contentRight && <S.Content>{contentRight}</S.Content>}
     </S.Wrapper>
   );
 };
