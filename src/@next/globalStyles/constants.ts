@@ -29,6 +29,7 @@ export const theme = {
   secondary: blue,
   secondaryDark: blueDark,
   success: green,
+  white,
 };
 
 // typography

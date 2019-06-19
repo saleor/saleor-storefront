@@ -18,7 +18,7 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 }
 
 .c1 {
-  background-color: #51e9d2;
+  background-color: #3ee7cd;
   -webkit-transform: skew(45deg);
   -ms-transform: skew(45deg);
   transform: skew(45deg);
@@ -34,12 +34,12 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 }
 
 .c1:hover {
-  background-color: #55c4b3;
+  background-color: #42beab;
   color: #fff;
 }
 
 .c1:active {
-  background-color: #55c4b3;
+  background-color: #42beab;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -241,7 +241,8 @@ exports[`Storyshots @components/atoms/Input default 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border: 1.5px solid;
+  border: 1px solid #323232;
+  color: #323232;
   outline: none;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -273,8 +274,8 @@ exports[`Storyshots @components/atoms/Input default 1`] = `
 .c4 {
   position: absolute;
   left: 1rem;
-  padding: 0 0px;
-  background-color: none;
+  padding: 0 0rem;
+  background-color: transparent;
   font-size: 1rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -337,15 +338,19 @@ exports[`Storyshots @components/atoms/Input disabled 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border: 1.5px solid;
+  border: 1px solid #7d7d7d;
+  color: #7d7d7d;
   outline: none;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
 .c1:hover {
+  color: #7d7d7d;
   outline-width: 0px;
   outline-style: solid;
+  border-color: #7d7d7d;
+  outline-color: #7d7d7d;
 }
 
 .c2 {
@@ -366,8 +371,8 @@ exports[`Storyshots @components/atoms/Input disabled 1`] = `
 .c4 {
   position: absolute;
   left: 1rem;
-  padding: 0 0px;
-  background-color: none;
+  padding: 0 0rem;
+  background-color: transparent;
   font-size: 1rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -430,7 +435,7 @@ exports[`Storyshots @components/atoms/Input error 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border: 1.5px solid #c22d74;
+  border: 1px solid #c22d74;
   color: #c22d74;
   outline: none;
   -webkit-transition: all 0.3s ease;
@@ -462,8 +467,8 @@ exports[`Storyshots @components/atoms/Input error 1`] = `
 
 .c4 {
   position: absolute;
-  left: 1rem;
-  padding: 0 10px;
+  left: 0.5rem;
+  padding: 0 0.5rem;
   background-color: #fff;
   font-size: 0.875rem;
   top: 0;
@@ -527,7 +532,8 @@ exports[`Storyshots @components/atoms/Input with value 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border: 1.5px solid;
+  border: 1px solid #323232;
+  color: #323232;
   outline: none;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -569,8 +575,8 @@ exports[`Storyshots @components/atoms/Input with value 1`] = `
 
 .c4 {
   position: absolute;
-  left: 1rem;
-  padding: 0 10px;
+  left: 0.5rem;
+  padding: 0 0.5rem;
   background-color: #fff;
   font-size: 0.875rem;
   top: 0;
@@ -955,7 +961,7 @@ exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
 }
 
 .c4:hover path {
-  fill: #51e9d2;
+  fill: #3ee7cd;
 }
 
 .c5 {
@@ -1030,7 +1036,7 @@ exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
   bottom: 1rem;
   right: 1rem;
   border-left: 0.4rem solid;
-  border-color: #55c4b3;
+  border-color: #42beab;
 }
 
 .c2 {
@@ -1064,7 +1070,7 @@ exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
 }
 
 .c4:hover path {
-  fill: #51e9d2;
+  fill: #3ee7cd;
 }
 
 <div
@@ -1164,7 +1170,7 @@ exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
 }
 
 .c4:hover path {
-  fill: #51e9d2;
+  fill: #3ee7cd;
 }
 
 .c5 {
@@ -1321,7 +1327,7 @@ exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
 }
 
 .c2:hover path {
-  fill: #51e9d2;
+  fill: #3ee7cd;
 }
 
 <div
