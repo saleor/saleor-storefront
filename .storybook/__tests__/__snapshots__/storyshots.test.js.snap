@@ -1520,6 +1520,7 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
           className="c4"
           disabled={false}
           onBlur={[Function]}
+          onChange={[Function]}
           onFocus={[Function]}
           value="Value"
         />
@@ -1631,7 +1632,11 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
     >
       <span
         className="c3"
-      />
+      >
+        <span>
+          Content Left
+        </span>
+      </span>
       <div
         className="c4"
       >
@@ -1639,6 +1644,7 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
           className="c5"
           disabled={false}
           onBlur={[Function]}
+          onChange={[Function]}
           onFocus={[Function]}
           value="Value"
         />
@@ -1755,6 +1761,7 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
           className="c4"
           disabled={false}
           onBlur={[Function]}
+          onChange={[Function]}
           onFocus={[Function]}
           value="Value"
         />
@@ -1766,7 +1773,11 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
       </div>
       <span
         className="c6"
-      />
+      >
+        <span>
+          Content Right
+        </span>
+      </span>
     </div>
   </div>
   <div
@@ -1868,6 +1879,7 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
           className="c4"
           disabled={false}
           onBlur={[Function]}
+          onChange={[Function]}
           onFocus={[Function]}
           value="Value"
         />
