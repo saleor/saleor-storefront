@@ -1,17 +1,17 @@
 import { styled } from "@styles";
 import { spacer } from "@styles/constants";
 
-import { IconSVG } from "../IconSVG";
-
-export const Icon = styled(IconSVG)`
+export const Wrapper = styled.div`
   padding: ${props => `${props.theme.spacing.spacer} ${spacer / 2}rem`};
+`;
 
-  svg * {
+export const Link = styled.a`
+  path {
     transition: 0.3s;
   }
 
   &:hover {
-    svg * {
+    path {
       fill: ${props => props.theme.colors.primaryColor};
     }
   }

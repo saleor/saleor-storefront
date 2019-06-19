@@ -1,16 +1,15 @@
 import React from "react";
 
-import FacebookIcon from "images/facebook-icon.svg";
-
 import { SocialMediaIcon } from ".";
 import { createStory } from "../baseStory";
+import { Medium } from "./types";
 
-const FACEBOOK_MEDIUM = {
+const FACEBOOK_MEDIUM: Medium = {
   ariaLabel: "facebook",
   href: "https://www.facebook.com/mirumeelabs/",
-  path: FacebookIcon,
+  iconName: "social_facebook",
 };
 
-createStory("SocialMediaIcon").add("default", () => (
+createStory("SocialMediaIcon").add("sample medium", () => (
   <SocialMediaIcon medium={FACEBOOK_MEDIUM} key={FACEBOOK_MEDIUM.ariaLabel} />
 ));

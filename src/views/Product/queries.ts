@@ -53,7 +53,7 @@ export const productDetailsQuery = gql`
   query ProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
-      description
+      descriptionJson
       category {
         id
         name

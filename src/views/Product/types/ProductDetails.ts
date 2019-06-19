@@ -251,7 +251,7 @@ export interface ProductDetails_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: ProductDetails_product_thumbnail2x | null;
-  description: string;
+  descriptionJson: any;
   category: ProductDetails_product_category;
   /**
    * The product's default base price.

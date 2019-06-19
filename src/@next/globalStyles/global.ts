@@ -42,6 +42,13 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     line-height: 1.5rem;
   }
 
+  button {
+    border: none;
+    background-color: none;
+    outline: none;
+    padding: 0;
+  }
+
   #root {
     display: flex;
     min-height: 100vh;

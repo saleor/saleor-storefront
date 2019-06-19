@@ -5,4 +5,5 @@ export * from "./Tile";
 export * from "./Message";
 export * from "./Loader";
 export * from "./SocialMediaIcon";
-export * from "./IconSVG";
+export * from "./Icon";
+export * from "./RichTextContent";

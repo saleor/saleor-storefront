@@ -13,7 +13,7 @@ import { ProductDetails_product } from "./types/ProductDetails";
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
     () =>
-      !!product.description &&
+      !!product.descriptionJson &&
       !!product.name &&
       !!product.price &&
       !!product.variants
@@ -37,7 +37,7 @@ const extractMeta = (product: ProductDetails_product) => ({
       property: "product:category",
     },
   ],
-  description: product.seoDescription || product.description,
+  description: product.seoDescription || product.descriptionJson,
   image: product.thumbnail.url,
   title: product.seoTitle || product.name,
   type: "product.item",
