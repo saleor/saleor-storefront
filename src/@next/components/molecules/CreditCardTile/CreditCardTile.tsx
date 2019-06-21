@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ImageButton, Tile } from "@components/atoms/";
+import { IconButton, Tile } from "@components/atoms/";
 import { CreditCardNumberWithIcon } from "@components/molecules/";
 
 import * as S from "./styles";
@@ -25,10 +25,10 @@ export const CreditCardTile: React.FC<IProps> = ({
   const footer = (
     <>
       <span>
-        <ImageButton type="edit" onClick={onEdit} />
+        <IconButton name="edit" onClick={onEdit} />
       </span>
       <span>
-        <ImageButton type="trash" onClick={onRemove} />
+        <IconButton name="trash" onClick={onRemove} />
       </span>
     </>
   );

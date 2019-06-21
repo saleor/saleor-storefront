@@ -13,8 +13,8 @@ export const Message: React.FC<IProps> = ({
   <S.Wrapper status={status}>
     <S.Title>{title}</S.Title>
     {children && <S.Content>{children}</S.Content>}
-    <S.IconButton onClick={onClose}>
+    <S.CloseButton onClick={onClose}>
       <Icon name="x" size={15} />
-    </S.IconButton>
+    </S.CloseButton>
   </S.Wrapper>
 );

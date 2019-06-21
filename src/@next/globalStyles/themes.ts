@@ -59,10 +59,6 @@ export const defaultTheme = {
     labelFontSize: "0.75rem", // 12px
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
-  imageButton: {
-    hoverBackgroundColor: C.blue,
-    hoverForegroundColor: C.white,
-  },
   message: {
     backgroundColor: C.white,
     borderLeft: `0.3rem solid ${C.turquoiseDark}`,
@@ -108,6 +104,12 @@ export const defaultTheme = {
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
     smallFontSize: C.smallFontSize, // 14px
+  },
+  iconButton: {
+    backgroundColor: C.white,
+    hoverBackgroundColor: C.blue,
+    hoverForegroundColor: C.white,
+    size: 36,
   },
 };
 

@@ -26,7 +26,7 @@ export const Title = styled.p`
   margin: ${props => props.theme.message.titleMargin};
 `;
 
-export const IconButton = styled.button`
+export const CloseButton = styled.button`
   cursor: pointer;
   position: absolute;
   top: 50%;
