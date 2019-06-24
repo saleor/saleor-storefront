@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
   }
 
   :hover {
-    background-color: ${props => props.theme.colors.secondaryColor};
+    background-color: ${props => props.theme.iconButton.hoverBackgroundColor};
     svg {
       path {
         fill: ${props => props.theme.iconButton.hoverForegroundColor};
