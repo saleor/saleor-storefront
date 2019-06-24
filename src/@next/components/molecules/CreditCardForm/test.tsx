@@ -1,12 +1,12 @@
 import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import { NumberFormatProps } from "react-number-format";
+import NumberFormat, { NumberFormatProps } from "react-number-format";
 
 import { TextField } from "@components/molecules";
 import { CreditCardFormContent as CreditCardForm } from "./CreditCardFormContent";
 import * as S from "./styles";
-import { PropsWithFormik } from "./types";
+import { ICustomInputProps, PropsWithFormik } from "./types";
 
 describe("<CreditCardForm />", () => {
   const CARD_TEXT = {
@@ -32,7 +32,7 @@ describe("<CreditCardForm />", () => {
     expect(creditCardForm.exists()).toEqual(true);
   });
 
-  it("should render <form /> with `onSubmit` prop", () => {
+  it("should render <S.PaymentForm /> with `onSubmit` prop", () => {
     const form = renderCreditCardForm(DEFAULT_PROPS).find(S.PaymentForm);
 
     expect(form.exists()).toEqual(true);
@@ -50,12 +50,13 @@ describe("<CreditCardForm />", () => {
   describe("<NumberFormat /> ", () => {
     it("should pass [disabled, customInput, handleChange, label, onChange] props", () => {
       const numberInputProps = renderCreditCardForm(DEFAULT_PROPS)
-        .find("NumberFormat")
+        .find(NumberFormat)
         .at(0)
-        .props() as NumberFormatProps;
+        .props() as ICustomInputProps & NumberFormatProps;
 
       expect(numberInputProps.disabled).toEqual(DEFAULT_PROPS.disabled);
       expect(numberInputProps.customInput).toEqual(TextField);
+      expect(numberInputProps.label).toEqual(CARD_TEXT.ccNumber);
       expect(numberInputProps.onChange).toEqual(DEFAULT_PROPS.handleChange);
     });
 
@@ -73,7 +74,7 @@ describe("<CreditCardForm />", () => {
       const inputs = renderCreditCardForm({
         ...DEFAULT_PROPS,
         cardErrors: CARD_ERRORS,
-      }).find("NumberFormat");
+      }).find(NumberFormat);
 
       expect(inputs.at(1).prop("errors")).toEqual([]);
       expect(inputs.at(0).prop("errors")).toEqual([CARD_ERRORS.number]);

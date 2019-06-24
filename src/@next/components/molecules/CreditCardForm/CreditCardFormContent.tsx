@@ -9,11 +9,11 @@ import { PropsWithFormik } from "./types";
 const getInputProps = (
   disabled: boolean,
   handleChange: (e: React.ChangeEvent) => void
-) => (labelText: string, errors: any) => ({
+) => (label, errors) => ({
   customInput: TextField,
   disabled,
   errors: compact(errors),
-  label: labelText,
+  label,
   onChange: handleChange,
 });
 
@@ -36,6 +36,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
     <S.PaymentForm ref={formRef} onSubmit={handleSubmit}>
       <S.PaymentInput>
         <NumberFormat
+          autoFocus
           autoComplete="cc-number"
           format="#### #### #### ####"
           name="ccNumber"

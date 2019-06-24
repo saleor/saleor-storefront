@@ -1,5 +1,5 @@
 import { Omit } from "@utils/tsUtils";
-import { ICardErrors, ICardInputs } from "src/core/payments/braintree";
+import { CardError, ICardErrors, ICardInputs } from "src/core/payments/braintree";
 
 interface ILabelsText {
   ccCsc: string;
@@ -16,6 +16,11 @@ export interface IProps {
   labelsText: ILabelsText;
   handleSubmit: (formData: ICardInputs) => void;
   disabled: boolean;
+}
+
+export interface ICustomInputProps {
+  errors: CardError[],
+  label: string,
 }
 
 export type PropsWithFormik = Omit<IProps, "handleSubmit"> & IFormikProps;
