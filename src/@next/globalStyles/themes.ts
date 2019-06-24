@@ -47,6 +47,12 @@ export const defaultTheme = {
   grid: {
     containerWidth: 1140,
   },
+  iconButton: {
+    backgroundColor: C.white,
+    hoverBackgroundColor: C.blue,
+    hoverForegroundColor: C.white,
+    size: 36,
+  },
   input: {
     labelColor: C.grayDark,
     labelFontSize: "0.75rem", // 12px
@@ -94,12 +100,6 @@ export const defaultTheme = {
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
     smallFontSize: C.smallFontSize, // 14px
-  },
-  iconButton: {
-    backgroundColor: C.white,
-    hoverBackgroundColor: C.blue,
-    hoverForegroundColor: C.white,
-    size: 36,
   },
 };
 
