@@ -48,9 +48,9 @@ export const defaultTheme = {
     containerWidth: 1140,
   },
   iconButton: {
-    backgroundColor: C.white,
-    hoverBackgroundColor: C.blue,
-    hoverForegroundColor: C.white,
+    backgroundColor: C.theme.white,
+    hoverBackgroundColor: C.theme.secondary,
+    hoverForegroundColor: C.theme.white,
     size: 36,
   },
   input: {

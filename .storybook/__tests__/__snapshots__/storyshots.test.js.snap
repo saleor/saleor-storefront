@@ -558,6 +558,10 @@ exports[`Storyshots @components/atoms/IconButton edit icon button 1`] = `
   transition: 0.3s;
 }
 
+.c1:hover {
+  background-color: #21125e;
+}
+
 .c1:hover svg path {
   fill: #fff;
 }
@@ -634,6 +638,10 @@ exports[`Storyshots @components/atoms/IconButton trash icon button 1`] = `
 .c1 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
+}
+
+.c1:hover {
+  background-color: #21125e;
 }
 
 .c1:hover svg path {
@@ -1822,6 +1830,7 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
 }
 
 .c1 {
+  background-color: #f1f5f5;
   border: 1px transparent solid;
   padding: 0;
 }
@@ -1891,6 +1900,7 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
 }
 
 .c1 {
+  background-color: #f1f5f5;
   border: 1px transparent solid;
   padding: 0;
 }
@@ -2055,11 +2065,16 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
   transition: 0.3s;
 }
 
+.c10:hover {
+  background-color: #21125e;
+}
+
 .c10:hover svg path {
   fill: #fff;
 }
 
 .c1 {
+  background-color: #f1f5f5;
   border: 1px transparent solid;
   padding: 0;
 }
