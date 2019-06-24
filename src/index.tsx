@@ -89,14 +89,14 @@ const startApp = async () => {
         alert.show(
           {
             content: "Please refresh the page!",
-            title: "New version is available!"
+            title: "New version is available!",
           },
           {
             onClose: () => {
               location.reload();
             },
             timeout: 0,
-            type: "info"
+            type: "info",
           }
         );
       }

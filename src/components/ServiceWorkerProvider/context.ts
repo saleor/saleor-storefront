@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const ServiceWorkerContext = createContext({
-  updateAvailable: false
+  updateAvailable: false,
 });
 
-export default ServiceWorkerContext
+export default ServiceWorkerContext;
