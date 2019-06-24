@@ -183,6 +183,78 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/atoms/ErrorMessage default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    Error Message
+  </span>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ErrorMessage with multiple errors 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    Error Message Error Message
+  </span>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/atoms/Icon sample icon 1`] = `
 .c0 {
   position: relative;
@@ -1356,6 +1428,476 @@ exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
   </div>
   <div
     className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c2:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c3 {
+  position: relative;
+  width: 100%;
+}
+
+.c4 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  font-size: 0.875rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c1 {
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      disabled={false}
+    >
+      <div
+        className="c3"
+      >
+        <input
+          className="c4"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="c5"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with content left 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c2:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  position: relative;
+  width: 100%;
+}
+
+.c5 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c6 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  font-size: 0.875rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c1 {
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      disabled={false}
+    >
+      <span
+        className="c3"
+      >
+        <span>
+          Content Left
+        </span>
+      </span>
+      <div
+        className="c4"
+      >
+        <input
+          className="c5"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="c6"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with content right 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c2:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3 {
+  position: relative;
+  width: 100%;
+}
+
+.c4 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  font-size: 0.875rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c1 {
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      disabled={false}
+    >
+      <div
+        className="c3"
+      >
+        <input
+          className="c4"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="c5"
+        >
+          Label
+        </label>
+      </div>
+      <span
+        className="c6"
+      >
+        <span>
+          Content Right
+        </span>
+      </span>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with errors 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c6 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #c22d74;
+  color: #c22d74;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c2:hover {
+  color: #c22d74;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #c22d74;
+  outline-color: #c22d74;
+}
+
+.c3 {
+  position: relative;
+  width: 100%;
+}
+
+.c4 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  font-size: 0.875rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c1 {
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      disabled={false}
+    >
+      <div
+        className="c3"
+      >
+        <input
+          className="c4"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="c5"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+    <span
+      className="c6"
+    >
+      Some error
+    </span>
+  </div>
+  <div
+    className="c7"
   />
 </div>
 `;

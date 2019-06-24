@@ -5,3 +5,4 @@ export * from "./SocialMediaIcon";
 export * from "./Icon";
 export * from "./RichTextContent";
 export * from "./Input";
+export * from "./ErrorMessage";
