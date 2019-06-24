@@ -3,19 +3,15 @@ import "./scss/index.scss";
 import React from "react";
 
 import { CreditCardForm } from "@components/molecules";
-
 import { GatewaysEnum } from "../../../../../../types/globalTypes";
-import { TextField } from "../../../../../components";
 
 import {
   braintreePayment,
   ErrorData,
-  ICardName,
   IPaymentCardError,
   PaymentData
 } from "../../../../../core/payments/braintree";
 import { maybe, removeEmptySpaces } from "../../../../../core/utils";
-// import { CreditCardForm } from "../../../../components";
 import { ProviderProps } from "../../View";
 
 const INITIAL_CARD_ERROR_STATE = {
@@ -45,17 +41,6 @@ const CreditCard = ({
     const [cardErrors, setCardErrors] = React.useState<ErrorData>(
       INITIAL_CARD_ERROR_STATE
     );
-    const [focusedInput, setFocusedInput] = React.useState<ICardName | null>(
-      null
-    );
-
-    const handleOnFocus = React.useCallback(
-      (e: React.FocusEvent<HTMLInputElement>) =>
-        setFocusedInput(e.target.name as ICardName),
-      [focusedInput]
-    );
-
-    const handleOnBlur = React.useCallback(() => setFocusedInput(null), []);
 
     const setCardErrorsHelper = (errors: IPaymentCardError[]) =>
       errors.map(({ field, message }: IPaymentCardError) =>
@@ -95,24 +80,16 @@ const CreditCard = ({
       setLoadingState(false);
     };
 
-    const getInputProps = () => ({
-      customInput: TextField,
-      disabled: loading,
-      onBlur: handleOnBlur,
-      onFocus: handleOnFocus,
-    });
-
     return (
       <CreditCardForm
         formRef={formRef}
         cardErrors={cardErrors.fieldErrors}
-        cardText={{
+        labelsText={{
           ccCsc: "CVC",
           ccExp: "ExpiryDate",
           ccNumber: "Number",
         }}
-        focusedInputName={focusedInput}
-        inputProps={getInputProps()}
+        disabled={loading}
         handleSubmit={handleSubmit}
       />
     );

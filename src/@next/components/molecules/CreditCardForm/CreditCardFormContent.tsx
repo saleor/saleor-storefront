@@ -1,13 +1,25 @@
 import React from "react";
 import NumberFormat from "react-number-format";
 
+import { ErrorMessage } from "@components/atoms";
+import { TextField } from "@components/molecules";
 import * as S from "./styles";
-import { IFormikProps, IProps } from "./types";
+import { PropsWithFormik } from "./types";
 
-const renderFieldError = (error?: string) =>
-  !!error && <S.ErrorMessage>{error}</S.ErrorMessage>;
+const createErrorsList = (error?: string) =>
+  (error && [{ message: error }]) || [];
 
-export const CreditCardFormContent: React.FC<IProps & IFormikProps> = ({
+const getInputProps = (
+  disabled: boolean,
+  handleChange: (e: React.ChangeEvent) => void
+) => (labelText: string) => ({
+  customInput: TextField,
+  disabled,
+  label: labelText,
+  onChange: handleChange,
+});
+
+export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   formRef,
   cardErrors: {
     number: cardNumberError,
@@ -15,59 +27,48 @@ export const CreditCardFormContent: React.FC<IProps & IFormikProps> = ({
     expirationMonth: expirationMonthError,
     expirationYear: expirationYearError,
   },
-  cardText: { ccCsc: ccCscText, ccExp: ccExpText, ccNumber: ccNumberText },
-  focusedInputName,
-  inputProps,
+  disabled,
+  labelsText: { ccCsc: ccCscText, ccExp: ccExpText, ccNumber: ccNumberText },
   handleSubmit,
   handleChange,
-  values: { ccCsc, ccExp, ccNumber },
-}: IProps & IFormikProps) => {
+}: PropsWithFormik) => {
+  const basicInputProps = getInputProps(disabled, handleChange);
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <S.PaymentInput error={!!cardNumberError}>
-        <S.PaymentLabel
-          isFocused={focusedInputName === "ccNumber" || !!ccNumber}
-        >
-          {ccNumberText}
-        </S.PaymentLabel>
         <NumberFormat
           autoComplete="cc-number"
           format="#### #### #### ####"
           name="ccNumber"
-          {...inputProps}
-          onChange={handleChange}
+          {...basicInputProps(ccNumberText)}
         />
-        {renderFieldError(cardNumberError)}
+        <ErrorMessage errors={createErrorsList(cardNumberError)} />
       </S.PaymentInput>
 
       <S.Grid>
         <S.PaymentInput error={!!ccCscError}>
-          <S.PaymentLabel isFocused={focusedInputName === "ccCsc" || !!ccCsc}>
-            {ccCscText}
-          </S.PaymentLabel>
           <NumberFormat
             autoComplete="cc-csc"
             format="####"
             name="ccCsc"
-            {...inputProps}
-            onChange={handleChange}
+            {...basicInputProps(ccCscText)}
           />
-          {renderFieldError(ccCscError)}
+          <ErrorMessage errors={createErrorsList(ccCscError)} />
         </S.PaymentInput>
 
         <S.PaymentInput error={!!(expirationMonthError || expirationYearError)}>
-          <S.PaymentLabel isFocused={focusedInputName === "ccExp" || !!ccExp}>
-            {ccExpText}
-          </S.PaymentLabel>
           <NumberFormat
             autoComplete="cc-exp"
             format="## / ##"
             name="ccExp"
-            {...inputProps}
-            onChange={handleChange}
+            {...basicInputProps(ccExpText)}
           />
-          {renderFieldError(expirationMonthError)}
-          {renderFieldError(expirationYearError)}
+          <ErrorMessage
+            errors={[
+              ...createErrorsList(expirationMonthError),
+              ...createErrorsList(expirationYearError),
+            ]}
+          />
         </S.PaymentInput>
       </S.Grid>
     </form>

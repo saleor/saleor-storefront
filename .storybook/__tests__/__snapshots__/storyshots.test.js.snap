@@ -2212,6 +2212,214 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
 </div>
 `;
 
+exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c8 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c3:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c4 {
+  position: relative;
+  width: 100%;
+}
+
+.c5 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c6 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c2 {
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.c1 .input {
+  margin-bottom: 0;
+}
+
+.c7 {
+  display: grid;
+  grid-gap: 0 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+<div
+  className="c0"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+          disabled={false}
+        >
+          <div
+            className="c4"
+          >
+            <input
+              autoComplete="cc-number"
+              className="c5"
+              disabled={false}
+              name="ccNumber"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onMouseUp={[Function]}
+              type="text"
+              value=""
+            />
+            <label
+              className="c6"
+            >
+              Number
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c7"
+    >
+      <div
+        className="c1"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+            disabled={false}
+          >
+            <div
+              className="c4"
+            >
+              <input
+                autoComplete="cc-csc"
+                className="c5"
+                disabled={false}
+                name="ccCsc"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value=""
+              />
+              <label
+                className="c6"
+              >
+                CVC
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c1"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+            disabled={false}
+          >
+            <div
+              className="c4"
+            >
+              <input
+                autoComplete="cc-exp"
+                className="c5"
+                disabled={false}
+                name="ccExp"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseUp={[Function]}
+                type="text"
+                value=""
+              />
+              <label
+                className="c6"
+              >
+                Expiry Date
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c8"
+  />
+</div>
+`;
+
 exports[`Storyshots @components/molecules/TextField default 1`] = `
 .c0 {
   position: relative;

@@ -6,7 +6,6 @@ export interface PaymentData {
   token: string;
 }
 
-export type ICardName = "ccCsc" | "ccExp" | "ccNumber";
 export interface ICardInputs {
   ccCsc: string | null;
   ccExp: string | null;
