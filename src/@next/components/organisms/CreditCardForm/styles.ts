@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const PaymentForm = styled.form`
   width: 100%;
@@ -18,5 +18,9 @@ export const Grid = styled.div`
     &:last-child {
       padding-right: 0;
     }
+    ${media.smallScreen`
+      padding-right:  0;
+      flex-direction: column;
+    `}
   }
 `;

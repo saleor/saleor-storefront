@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import React from "react";
 import { CreditCardForm } from ".";
 
-import { createStory } from "../baseStory";
+import { createStory } from "../../molecules/baseStory";
 
 const PROPS = {
   cardErrors: {},
@@ -16,6 +16,11 @@ const PROPS = {
   },
 };
 
-createStory("CreditCardForm").add("default", () => (
-  <CreditCardForm {...PROPS} />
-));
+const PROPS_ERRORS = {
+  ...PROPS,
+  cardErrors: { number: { field: "number", message: "Wrong number" } },
+};
+createStory("CreditCardForm")
+  .add("default", () => <CreditCardForm {...PROPS} />)
+  .add("error", () => <CreditCardForm {...PROPS_ERRORS} />)
+  .add("disabled", () => <CreditCardForm {...PROPS} disabled={true} />);
