@@ -1,19 +1,24 @@
+import { action } from "@storybook/addon-actions";
 import React from "react";
 
+import { CCProviders } from "@components/atoms";
 import { CreditCardTile } from ".";
 import { createStory } from "../baseStory";
 
-const emptyFunction = () => {
-  // tslint:disable-next-line:no-console
-  console.log("");
+const onEdit = action("onEdit called");
+const onRemove = action("onRemove called");
+
+const visa: CCProviders = "visa";
+
+const DEFAULT_PROPS = {
+  expirationDate: "05/2019",
+  last4Digits: 9876,
+  nameOnCard: "John Doe",
+  onEdit,
+  onRemove,
+  provider: visa,
 };
+
 createStory("CreditCardTile").add("default", () => (
-  <CreditCardTile
-    nameOnCard="John Doe"
-    expirationDate="05/2019"
-    last4Digits={9876}
-    provider="visa"
-    onEdit={emptyFunction}
-    onRemove={emptyFunction}
-  />
+  <CreditCardTile {...DEFAULT_PROPS} />
 ));
