@@ -23,14 +23,14 @@ export const CreditCardTile: React.FC<IProps> = ({
     </>
   );
   const footer = (
-    <>
-      <span>
-        <IconButton name="edit" onClick={onEdit} />
-      </span>
-      <span>
-        <IconButton name="trash" onClick={onRemove} />
-      </span>
-    </>
+    <S.FooterContent>
+      <div>
+        <IconButton name="edit" onClick={onEdit} size={19} />
+      </div>
+      <div>
+        <IconButton name="trash" onClick={onRemove} size={22} />
+      </div>
+    </S.FooterContent>
   );
   return (
     <Tile header={header} footer={footer}>
