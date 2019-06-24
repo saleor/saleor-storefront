@@ -4,12 +4,12 @@ import NumberFormat from "react-number-format";
 
 import { TextField } from "@components/molecules";
 import * as S from "./styles";
-import { PropsWithFormik } from "./types";
+import { CardErrors, PropsWithFormik } from "./types";
 
 const getInputProps = (
   disabled: boolean,
   handleChange: (e: React.ChangeEvent) => void
-) => (label, errors) => ({
+) => (label: string, errors: CardErrors) => ({
   customInput: TextField,
   disabled,
   errors: compact(errors),

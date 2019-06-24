@@ -12,13 +12,13 @@ export interface ICardInputs {
   ccNumber: string | null;
 }
 
-export type CardError = { field?: string; message: string } | null
+export type CardError = { field?: string; message: string } | null;
 
 export interface ICardErrors {
-  cvv?: CardError;
-  expirationMonth?: CardError;
-  expirationYear?: CardError;
-  number?: CardError;
+  cvv: CardError;
+  expirationMonth: CardError;
+  expirationYear: CardError;
+  number: CardError;
 }
 
 export interface ErrorData {

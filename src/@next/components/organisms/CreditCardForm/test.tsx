@@ -16,7 +16,12 @@ describe("<CreditCardForm />", () => {
   };
 
   const DEFAULT_PROPS = {
-    cardErrors: {},
+    cardErrors: {
+      cvv: null,
+      expirationMonth: null,
+      expirationYear: null,
+      number: null,
+    },
     disabled: false,
     handleChange: jest.fn(),
     handleSubmit: jest.fn(),
@@ -52,7 +57,9 @@ describe("<CreditCardForm />", () => {
       const numberInputProps = renderCreditCardForm(DEFAULT_PROPS)
         .find(NumberFormat)
         .at(0)
-        .props() as ICustomInputProps & NumberFormatProps;
+        .props() as ICustomInputProps &
+        NumberFormatProps &
+        React.InputHTMLAttributes<HTMLInputElement>;
 
       expect(numberInputProps.disabled).toEqual(DEFAULT_PROPS.disabled);
       expect(numberInputProps.customInput).toEqual(TextField);

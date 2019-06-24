@@ -4,10 +4,16 @@ import { CreditCardForm } from ".";
 
 import { createStory } from "../../molecules/baseStory";
 
+const ERRORS = {
+  cvv: null,
+  expirationMonth: null,
+  expirationYear: null,
+  number: null,
+};
+
 const PROPS = {
-  cardErrors: {},
+  cardErrors: ERRORS,
   disabled: false,
-  handleChange: action("onChange"),
   handleSubmit: action("onSubmit"),
   labelsText: {
     ccCsc: "CVC",
@@ -18,7 +24,10 @@ const PROPS = {
 
 const PROPS_ERRORS = {
   ...PROPS,
-  cardErrors: { number: { field: "number", message: "Wrong number" } },
+  cardErrors: {
+    ...ERRORS,
+    number: { field: "number", message: "Wrong number" },
+  },
 };
 createStory("CreditCardForm")
   .add("default", () => <CreditCardForm {...PROPS} />)
