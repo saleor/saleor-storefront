@@ -1,20 +1,18 @@
+import { compact } from "lodash";
 import React from "react";
 import NumberFormat from "react-number-format";
 
-import { ErrorMessage } from "@components/atoms";
 import { TextField } from "@components/molecules";
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
 
-const createErrorsList = (error?: string) =>
-  (error && [{ message: error }]) || [];
-
 const getInputProps = (
   disabled: boolean,
   handleChange: (e: React.ChangeEvent) => void
-) => (labelText: string) => ({
+) => (labelText: string, errors: any) => ({
   customInput: TextField,
   disabled,
+  errors: compact(errors),
   label: labelText,
   onChange: handleChange,
 });
@@ -33,44 +31,40 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   handleChange,
 }: PropsWithFormik) => {
   const basicInputProps = getInputProps(disabled, handleChange);
+
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
-      <S.PaymentInput error={!!cardNumberError}>
+    <S.PaymentForm ref={formRef} onSubmit={handleSubmit}>
+      <S.PaymentInput>
         <NumberFormat
           autoComplete="cc-number"
           format="#### #### #### ####"
           name="ccNumber"
-          {...basicInputProps(ccNumberText)}
+          {...basicInputProps(ccNumberText, [cardNumberError])}
         />
-        <ErrorMessage errors={createErrorsList(cardNumberError)} />
       </S.PaymentInput>
 
       <S.Grid>
-        <S.PaymentInput error={!!ccCscError}>
+        <S.PaymentInput>
           <NumberFormat
             autoComplete="cc-csc"
             format="####"
             name="ccCsc"
-            {...basicInputProps(ccCscText)}
+            {...basicInputProps(ccCscText, [ccCscError])}
           />
-          <ErrorMessage errors={createErrorsList(ccCscError)} />
         </S.PaymentInput>
 
-        <S.PaymentInput error={!!(expirationMonthError || expirationYearError)}>
+        <S.PaymentInput>
           <NumberFormat
             autoComplete="cc-exp"
             format="## / ##"
             name="ccExp"
-            {...basicInputProps(ccExpText)}
-          />
-          <ErrorMessage
-            errors={[
-              ...createErrorsList(expirationMonthError),
-              ...createErrorsList(expirationYearError),
-            ]}
+            {...basicInputProps(ccExpText, [
+              expirationMonthError,
+              expirationYearError,
+            ])}
           />
         </S.PaymentInput>
       </S.Grid>
-    </form>
+    </S.PaymentForm>
   );
 };

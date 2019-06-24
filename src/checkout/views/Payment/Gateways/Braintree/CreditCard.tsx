@@ -1,5 +1,3 @@
-import "./scss/index.scss";
-
 import React from "react";
 
 import { CreditCardForm } from "@components/molecules";
@@ -16,10 +14,10 @@ import { ProviderProps } from "../../View";
 
 const INITIAL_CARD_ERROR_STATE = {
   fieldErrors: {
-    cvv: "",
-    expirationMonth: "",
-    expirationYear: "",
-    number: "",
+    cvv: null,
+    expirationMonth: null,
+    expirationYear: null,
+    number: null,
   },
   nonFieldError: "",
 };
@@ -47,7 +45,7 @@ const CreditCard = ({
         setCardErrors(({ fieldErrors }) => ({
           fieldErrors: {
             ...fieldErrors,
-            [field]: message,
+            [field]: { field, message },
           },
         }))
       );

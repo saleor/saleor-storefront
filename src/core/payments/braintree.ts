@@ -13,10 +13,10 @@ export interface ICardInputs {
 }
 
 export interface ICardErrors {
-  cvv?: string;
-  expirationMonth?: string;
-  expirationYear?: string;
-  number?: string;
+  cvv?: { field?: string; message: string } | null;
+  expirationMonth?: { field?: string; message: string } | null;
+  expirationYear?: { field?: string; message: string } | null;
+  number?: { field?: string; message: string } | null;
 }
 
 export interface ErrorData {

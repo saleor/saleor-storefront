@@ -1,8 +1,9 @@
 import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { NumberFormatProps } from "react-number-format";
 
-import { ErrorMessage } from "@components/atoms";
+import { TextField } from "@components/molecules";
 import { CreditCardFormContent as CreditCardForm } from "./CreditCardFormContent";
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
@@ -32,7 +33,7 @@ describe("<CreditCardForm />", () => {
   });
 
   it("should render <form /> with `onSubmit` prop", () => {
-    const form = renderCreditCardForm(DEFAULT_PROPS).find("form");
+    const form = renderCreditCardForm(DEFAULT_PROPS).find(S.PaymentForm);
 
     expect(form.exists()).toEqual(true);
     expect(form.prop("onSubmit")).toEqual(DEFAULT_PROPS.handleSubmit);
@@ -44,38 +45,39 @@ describe("<CreditCardForm />", () => {
 
       expect(inputs).toHaveLength(3);
     });
+  });
 
-    it("should render <ErrorMessage> with errors list if error occurs", () => {
+  describe("<NumberFormat /> ", () => {
+    it("should pass [disabled, customInput, handleChange, label, onChange] props", () => {
+      const numberInputProps = renderCreditCardForm(DEFAULT_PROPS)
+        .find("NumberFormat")
+        .at(0)
+        .props() as NumberFormatProps;
+
+      expect(numberInputProps.disabled).toEqual(DEFAULT_PROPS.disabled);
+      expect(numberInputProps.customInput).toEqual(TextField);
+      expect(numberInputProps.onChange).toEqual(DEFAULT_PROPS.handleChange);
+    });
+
+    it("should pass `errors` list props if error occurs", () => {
       const CARD_ERRORS = {
-        cvv: "",
-        expirationMonth: "",
-        expirationYear: "Expiration year is invalid",
-        number: "Wrong number",
+        cvv: null,
+        expirationMonth: null,
+        expirationYear: {
+          field: "expirationYear",
+          message: "Expiration year is invalid",
+        },
+        number: { field: "number", message: "Wrong number" },
       };
 
       const inputs = renderCreditCardForm({
         ...DEFAULT_PROPS,
         cardErrors: CARD_ERRORS,
-      }).find(S.PaymentInput);
+      }).find("NumberFormat");
 
-      expect(
-        inputs
-          .at(1)
-          .find(ErrorMessage)
-          .prop("errors")
-      ).toEqual([]);
-      expect(
-        inputs
-          .at(0)
-          .find(ErrorMessage)
-          .prop("errors")
-      ).toEqual([{ message: CARD_ERRORS.number }]);
-      expect(
-        inputs
-          .at(2)
-          .find(ErrorMessage)
-          .prop("errors")
-      ).toEqual([{ message: CARD_ERRORS.expirationYear }]);
+      expect(inputs.at(1).prop("errors")).toEqual([]);
+      expect(inputs.at(0).prop("errors")).toEqual([CARD_ERRORS.number]);
+      expect(inputs.at(2).prop("errors")).toEqual([CARD_ERRORS.expirationYear]);
     });
   });
 });

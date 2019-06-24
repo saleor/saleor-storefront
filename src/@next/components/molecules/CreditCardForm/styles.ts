@@ -1,20 +1,12 @@
 import { styled } from "@styles";
 
-export const PaymentInput = styled.div<{ error?: boolean }>`
+export const PaymentForm = styled.form`
+  width: 100%;
+`;
+
+export const PaymentInput = styled.div`
   position: relative;
   margin-bottom: 1rem;
-  ${props =>
-    props.error &&
-    `
-  display: block;
-  margin-bottom: ${props.theme.spacing.spacer};
-  .input_content {
-    position: relative;
-  }
-  `}
-  .input {
-    margin-bottom: 0;
-  }
 `;
 
 PaymentInput.displayName = "S.PaymentInput";

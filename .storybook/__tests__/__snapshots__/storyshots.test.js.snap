@@ -2218,7 +2218,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   margin: 20px;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -2229,7 +2229,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   box-sizing: border-box;
 }
 
-.c3 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2241,7 +2241,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   transition: all 0.3s ease;
 }
 
-.c3:hover {
+.c4:hover {
   color: #21125e;
   outline-width: 1px;
   outline-style: solid;
@@ -2249,12 +2249,12 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   outline-color: #21125e;
 }
 
-.c4 {
+.c5 {
   position: relative;
   width: 100%;
 }
 
-.c5 {
+.c6 {
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -2264,7 +2264,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   background-color: transparent;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   left: 1rem;
   padding: 0 0rem;
@@ -2279,20 +2279,20 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   pointer-events: none;
 }
 
-.c2 {
+.c3 {
   margin-bottom: 1rem;
 }
 
 .c1 {
+  width: 100%;
+}
+
+.c2 {
   position: relative;
   margin-bottom: 1rem;
 }
 
-.c1 .input {
-  margin-bottom: 0;
-}
-
-.c7 {
+.c8 {
   display: grid;
   grid-gap: 0 1rem;
   grid-template-columns: 1fr 1fr;
@@ -2302,24 +2302,25 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
   className="c0"
 >
   <form
+    className="c1"
     onSubmit={[Function]}
   >
     <div
-      className="c1"
+      className="c2"
     >
       <div
-        className="c2"
+        className="c3"
       >
         <div
-          className="c3"
+          className="c4"
           disabled={false}
         >
           <div
-            className="c4"
+            className="c5"
           >
             <input
               autoComplete="cc-number"
-              className="c5"
+              className="c6"
               disabled={false}
               name="ccNumber"
               onBlur={[Function]}
@@ -2331,7 +2332,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
               value=""
             />
             <label
-              className="c6"
+              className="c7"
             >
               Number
             </label>
@@ -2340,24 +2341,24 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
       </div>
     </div>
     <div
-      className="c7"
+      className="c8"
     >
       <div
-        className="c1"
+        className="c2"
       >
         <div
-          className="c2"
+          className="c3"
         >
           <div
-            className="c3"
+            className="c4"
             disabled={false}
           >
             <div
-              className="c4"
+              className="c5"
             >
               <input
                 autoComplete="cc-csc"
-                className="c5"
+                className="c6"
                 disabled={false}
                 name="ccCsc"
                 onBlur={[Function]}
@@ -2369,7 +2370,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
                 value=""
               />
               <label
-                className="c6"
+                className="c7"
               >
                 CVC
               </label>
@@ -2378,21 +2379,21 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
         </div>
       </div>
       <div
-        className="c1"
+        className="c2"
       >
         <div
-          className="c2"
+          className="c3"
         >
           <div
-            className="c3"
+            className="c4"
             disabled={false}
           >
             <div
-              className="c4"
+              className="c5"
             >
               <input
                 autoComplete="cc-exp"
-                className="c5"
+                className="c6"
                 disabled={false}
                 name="ccExp"
                 onBlur={[Function]}
@@ -2404,7 +2405,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
                 value=""
               />
               <label
-                className="c6"
+                className="c7"
               >
                 Expiry Date
               </label>
@@ -2415,7 +2416,7 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
     </div>
   </form>
   <div
-    className="c8"
+    className="c9"
   />
 </div>
 `;
