@@ -2,10 +2,11 @@ import { DefaultTheme, styled } from "@styles";
 
 import { IProps } from "./types";
 
-const borderColors = (theme: DefaultTheme["message"]) => ({
-  error: theme.errorColor,
-  neutral: theme.neutralColor,
-  success: theme.successColor,
+const borderColors = (theme: DefaultTheme) => ({
+  action: theme.colors.error,
+  error: theme.colors.error,
+  neutral: theme.colors.primaryDark,
+  success: theme.colors.success,
 });
 
 export const Wrapper = styled.div<{ status: IProps["status"] }>`
@@ -16,22 +17,24 @@ export const Wrapper = styled.div<{ status: IProps["status"] }>`
   position: fixed;
   bottom: ${props => props.theme.spacing.spacer};
   right: ${props => props.theme.spacing.spacer};
-  border-left: 0.3rem solid;
-  border-color: ${props => borderColors(props.theme.message)[props.status!]};
+  border-left: 0.4rem solid;
+  border-color: ${props => borderColors(props.theme)[props.status!]};
+`;
+
+export const TopWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Title = styled.p`
   text-transform: ${props => props.theme.message.titleTransform};
   font-weight: ${props => props.theme.message.titleWeight};
+  letter-spacing: ${props => props.theme.message.letterSpacing};
   margin: ${props => props.theme.message.titleMargin};
 `;
 
 export const CloseButton = styled.button`
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1.5rem;
 
   path {
     transition: 0.3s;
@@ -39,11 +42,18 @@ export const CloseButton = styled.button`
 
   &:hover {
     path {
-      fill: ${props => props.theme.colors.primaryColor};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;
 
 export const Content = styled.div`
   margin: ${props => props.theme.message.contentMargin};
+`;
+
+export const ActionButton = styled.button`
+  color: ${props => props.theme.colors.secondary};
+  cursor: pointer;
+  font-size: ${props => props.theme.typography.baseFontSize};
+  text-decoration: underline;
 `;

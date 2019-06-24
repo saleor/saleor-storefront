@@ -12,7 +12,7 @@ export const Link = styled.a`
 
   &:hover {
     path {
-      fill: ${props => props.theme.colors.primaryColor};
+      fill: ${props => props.theme.colors.primary};
     }
   }
 `;

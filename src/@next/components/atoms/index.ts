@@ -7,3 +7,5 @@ export * from "./SocialMediaIcon";
 export * from "./Icon";
 export * from "./RichTextContent";
 export * from "./IconButton";
+export * from "./Input";
+export * from "./ErrorMessage";
