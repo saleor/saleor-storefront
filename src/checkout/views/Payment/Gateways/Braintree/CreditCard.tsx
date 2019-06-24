@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CreditCardForm } from "@components/molecules";
+import { CreditCardForm } from "@components/organisms";
 import { GatewaysEnum } from "../../../../../../types/globalTypes";
 
 import {
