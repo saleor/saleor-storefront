@@ -26,5 +26,3 @@ export const Icon: React.FC<IProps> = ({ size = 32, color, name }: IProps) => {
     </svg>
   );
 };
-
-export { IProps as IIcon };

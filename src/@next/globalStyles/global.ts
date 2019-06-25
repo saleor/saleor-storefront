@@ -50,6 +50,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     padding: 0;
   }
 
+  ul {
+    list-style: none;
+  }
+
   #root {
     display: flex;
     min-height: 100vh;
