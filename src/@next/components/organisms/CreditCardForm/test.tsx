@@ -57,9 +57,7 @@ describe("<CreditCardForm />", () => {
       const numberInputProps = renderCreditCardForm(DEFAULT_PROPS)
         .find(NumberFormat)
         .at(0)
-        .props() as ICustomInputProps &
-        NumberFormatProps &
-        React.InputHTMLAttributes<HTMLInputElement>;
+        .props() as ICustomInputProps & NumberFormatProps;
 
       expect(numberInputProps.disabled).toEqual(DEFAULT_PROPS.disabled);
       expect(numberInputProps.customInput).toEqual(TextField);
