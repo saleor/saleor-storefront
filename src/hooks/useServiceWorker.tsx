@@ -1,7 +1,7 @@
 import React from "react";
 import { register, unregister } from 'register-service-worker';
 
-const useServiceWorker = () => {
+const useServiceWorker = ({ timeout = 1000 }) => {
   const [ updateAvailable, setUpdateAvailable ] = React.useState<boolean>(false);
   const [ registration, setRegistration ] = React.useState<any>(null);
 
@@ -10,7 +10,7 @@ const useServiceWorker = () => {
       if (registration) {
         registration.update()
       }
-    }, 60 * 1000);
+    }, timeout);
     return () => clearInterval(interval);
   }, [registration]);
 

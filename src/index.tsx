@@ -14,13 +14,13 @@ import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
-import urljoin from "url-join";
 
 import { App } from "./app";
 import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
+import { apiUrl, serviceWorkerTimeout } from './constants';
 import { history } from "./history";
 
 import {
@@ -40,8 +40,6 @@ import {
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
 
-const API_URL = urljoin(process.env.BACKEND_URL || "/", "/graphql/");
-
 const {
   component: UserProviderWithTokenHandler,
   link: invalidTokenLink,
@@ -51,7 +49,7 @@ const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
   new RetryLink(),
-  new BatchHttpLink({ uri: API_URL }),
+  new BatchHttpLink({ uri: apiUrl }),
 ]);
 
 const cache = new InMemoryCache({
@@ -164,7 +162,7 @@ const startApp = async () => {
 
   render(
     <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-      <ServiceWorkerProvider>
+      <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
         <Root />
       </ServiceWorkerProvider>
     </AlertProvider>,
