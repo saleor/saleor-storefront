@@ -12,7 +12,7 @@ const CheckoutAsGuest: React.FC<{
     <h3 className="checkout__header">Continue as a guest</h3>
     <p>
       If you don’t wish to register an account, don’t worry. You can checkout as
-      a guest. We care about you just as good as any registered user.
+      a guest. We care about you just as much as any registered user.
     </p>
     <Link to={checkoutUrl}>
       <Button>Continue as a guest</Button>
