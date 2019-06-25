@@ -44,6 +44,16 @@ export const defaultTheme = {
   container: {
     width: 1140,
   },
+  flexboxgrid: {
+    breakpoints: {
+      lg: 33.75, // em
+      md: 33.75, // em
+      sm: 0, // em
+      xs: 0, // em
+    },
+    gutterWidth: 2, // rem
+    mediaQuery: "only screen",
+  },
   grid: {
     containerWidth: 1140,
   },
@@ -86,7 +96,7 @@ export const defaultTheme = {
   },
   tile: {
     backgroundColor: C.grayLight,
-    divisionLine: C.gray,
+    divisionLine: C.grayMedium,
     hoverBorder: C.blueDark,
   },
   typography: {
@@ -99,25 +109,6 @@ export const defaultTheme = {
     h1LineHeight: C.h1LineHeight,
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
-    smallFontSize: C.smallFontSize, // 14px
-  },
-  flexboxgrid: {
-    // Defaults
-    gridSize: 12, // columns
-    gutterWidth: 5, // rem
-    mediaQuery: "only screen",
-    outerMargin: 2, // rem
-    container: {
-      sm: 46, // rem
-      md: 61, // rem
-      lg: 76, // rem
-    },
-    breakpoints: {
-      xs: 0, // em
-      sm: 48, // em
-      md: 64, // em
-      lg: 75, // em
-    },
   },
 };
 

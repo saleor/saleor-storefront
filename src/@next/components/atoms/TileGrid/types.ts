@@ -1,3 +1,7 @@
 export interface IProps {
-  elements: any;
+  elements: React.ReactNode[];
+  xs?: number;
+  sm?: number;
+  lg?: number;
+  md?: number;
 }

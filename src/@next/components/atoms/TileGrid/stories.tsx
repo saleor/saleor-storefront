@@ -2,20 +2,16 @@ import React from "react";
 
 import styled from "styled-components";
 import { TileGrid } from ".";
+import { Tile } from "../";
 import { createStory } from "../baseStory";
 
-const GridElement = styled.div`
-  background-color: lightgray;
-  width: 100%;
-  height: 17rem;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1rem;
-`;
+const tile = (
+  <Tile header={<>This is header</>} footer={<>This is footer</>}>
+    <p>Tile content</p>
+  </Tile>
+);
 
-const tile = <GridElement>tile</GridElement>;
-
-createStory("TileGrid").add("default", () => {
-  const tiles = [tile, tile, tile, tile, tile, tile];
-  return <TileGrid elements={tiles} />;
-});
+const tiles = [tile, tile, tile, tile, tile, tile];
+createStory("TileGrid")
+  .add("default", () => <TileGrid elements={tiles} />)
+  .add("custom grid size", () => <TileGrid elements={tiles} md={6} lg={6} />);
