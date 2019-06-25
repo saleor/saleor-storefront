@@ -22,9 +22,9 @@ export const Message: React.FC<IProps> = ({
             <S.ActionButton onClick={onClick}>{actionText}</S.ActionButton>
           )
         ) : (
-          <S.IconButton onClick={onClick}>
+          <S.CloseButton onClick={onClick}>
             <Icon name="x" size={15} />
-          </S.IconButton>
+          </S.CloseButton>
         )}
       </S.TopWrapper>
       {children && <S.Content>{children}</S.Content>}

@@ -13,7 +13,6 @@ const getPathColor = (color: string | string[], index: number) => {
 
 export const Icon: React.FC<IProps> = ({ size = 32, color, name }: IProps) => {
   const icon = icons[name];
-
   return (
     <svg height={size} viewBox="0 0 32 32" width={size}>
       {icon &&
@@ -27,3 +26,5 @@ export const Icon: React.FC<IProps> = ({ size = 32, color, name }: IProps) => {
     </svg>
   );
 };
+
+export { IProps as IIcon };

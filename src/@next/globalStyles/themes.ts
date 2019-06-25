@@ -47,6 +47,12 @@ export const defaultTheme = {
   grid: {
     containerWidth: 1140,
   },
+  iconButton: {
+    backgroundColor: C.theme.white,
+    hoverBackgroundColor: C.theme.secondary,
+    hoverForegroundColor: C.theme.white,
+    size: 36,
+  },
   input: {
     labelColor: C.grayDark,
     labelFontSize: "0.75rem", // 12px
@@ -77,6 +83,11 @@ export const defaultTheme = {
   },
   spacing: {
     spacer: `${C.spacer}rem`, // 16px
+  },
+  tile: {
+    backgroundColor: C.grayLight,
+    divisionLine: C.gray,
+    hoverBorder: C.blueDark,
   },
   typography: {
     baseFontFamily: C.baseFontFamily,
