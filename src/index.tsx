@@ -88,7 +88,8 @@ const startApp = async () => {
       if (updateAvailable) {
         alert.show(
           {
-            content: "Please refresh the page!",
+            closeLabel: "Refresh",
+            content: "To update the application to the latest version, please refresh the page!",
             title: "New version is available!",
           },
           {
@@ -96,7 +97,6 @@ const startApp = async () => {
               location.reload();
             },
             timeout: 0,
-            type: "info",
           }
         );
       }

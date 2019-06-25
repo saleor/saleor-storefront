@@ -11,7 +11,7 @@ export const NotificationTemplate: React.FC<INotificationTemplate> = ({
 }) => {
   return (
     <div className="notification">
-      <Message title={message.title} status={options.type} onClose={close}>
+      <Message closeLabel={message.closeLabel} title={message.title} status={options.type} onClose={close}>
         {message.content}
       </Message>
     </div>
