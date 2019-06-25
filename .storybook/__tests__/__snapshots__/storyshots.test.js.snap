@@ -2059,7 +2059,6 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
 
 .c2 {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .c8 {
@@ -2082,11 +2081,16 @@ exports[`Storyshots @components/molecules/CreditCardForm default 1`] = `
 }
 
 @media (max-width:540px) {
-  .c8 > div {
-    padding-right: 0;
+  .c8 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+}
+
+@media (max-width:540px) {
+  .c8 > div {
+    padding-right: 0;
   }
 }
 
@@ -2291,7 +2295,6 @@ exports[`Storyshots @components/molecules/CreditCardForm disabled 1`] = `
 
 .c2 {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .c8 {
@@ -2314,11 +2317,16 @@ exports[`Storyshots @components/molecules/CreditCardForm disabled 1`] = `
 }
 
 @media (max-width:540px) {
-  .c8 > div {
-    padding-right: 0;
+  .c8 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+}
+
+@media (max-width:540px) {
+  .c8 > div {
+    padding-right: 0;
   }
 }
 
@@ -2552,7 +2560,6 @@ exports[`Storyshots @components/molecules/CreditCardForm error 1`] = `
 
 .c2 {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .c10 {
@@ -2575,11 +2582,16 @@ exports[`Storyshots @components/molecules/CreditCardForm error 1`] = `
 }
 
 @media (max-width:540px) {
-  .c10 > div {
-    padding-right: 0;
+  .c10 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+}
+
+@media (max-width:540px) {
+  .c10 > div {
+    padding-right: 0;
   }
 }
 

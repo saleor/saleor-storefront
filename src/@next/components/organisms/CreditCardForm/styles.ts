@@ -6,13 +6,15 @@ export const PaymentForm = styled.form`
 
 export const PaymentInput = styled.div`
   width: 100%;
-  margin-bottom: 1rem;
 `;
 PaymentInput.displayName = "S.PaymentInput";
 
 export const Grid = styled.div`
   display: flex;
   justify-content: space-between;
+  ${media.smallScreen`
+     flex-direction: column;
+  `}
   & > div {
     padding-right: ${props => props.theme.spacing.spacer};
     &:last-child {
@@ -20,7 +22,7 @@ export const Grid = styled.div`
     }
     ${media.smallScreen`
       padding-right:  0;
-      flex-direction: column;
+      
     `}
   }
 `;
