@@ -29,8 +29,12 @@ describe("<ErrorMessage />", () => {
   });
 
   it("should render each message from `errors`", () => {
-    const error = renderErrorMessage({ errors: [...ERRORS, ...ERRORS] });
+    const errors = renderErrorMessage({
+      errors: [...ERRORS, ...ERRORS],
+    }).find(S.ErrorParagraph);
 
-    expect(error.text()).toEqual("Message Message");
+    expect(errors).toHaveLength(2);
+    expect(errors.at(0).text()).toEqual("Message");
+    expect(errors.at(1).text()).toEqual("Message");
   });
 });
