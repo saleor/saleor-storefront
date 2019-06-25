@@ -9,14 +9,14 @@ import { Title } from "./styles";
 describe("<Message />", () => {
   it("renders passed title", () => {
     const text = "test";
-    const wrapper = shallow(<Message title={text} onClose={jest.fn()} />);
+    const wrapper = shallow(<Message title={text} onClick={jest.fn()} />);
 
     expect(wrapper.find(Title).text()).toEqual(text);
   });
 
   it("renders children when passed in", () => {
     const wrapper = shallow(
-      <Message title="" onClose={jest.fn()}>
+      <Message title="" onClick={jest.fn()}>
         <div className="unique" />
       </Message>
     );
@@ -25,25 +25,22 @@ describe("<Message />", () => {
   });
 
   it("displays correct border color based on status prop", () => {
-    const neutral = mount(<Message title="" onClose={jest.fn()} />);
+    const neutral = mount(<Message title="" onClick={jest.fn()} />);
     const success = mount(
-      <Message title="" onClose={jest.fn()} status="success" />
+      <Message title="" onClick={jest.fn()} status="success" />
     );
     const error = mount(
-      <Message title="" onClose={jest.fn()} status="error" />
+      <Message title="" onClick={jest.fn()} status="error" />
     );
 
     expect(neutral).toHaveStyleRule(
       "border-color",
-      defaultTheme.message.neutralColor
+      defaultTheme.colors.primaryDark
     );
     expect(success).toHaveStyleRule(
       "border-color",
-      defaultTheme.message.successColor
+      defaultTheme.colors.success
     );
-    expect(error).toHaveStyleRule(
-      "border-color",
-      defaultTheme.message.errorColor
-    );
+    expect(error).toHaveStyleRule("border-color", defaultTheme.colors.error);
   });
 });

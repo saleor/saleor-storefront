@@ -3,26 +3,23 @@ import baseStyled, { ThemedStyledInterface } from "styled-components";
 import * as C from "./constants";
 
 export const defaultTheme = {
-  // Theme name for storybook addon
-  name: "default",
-  // tslint:disable-next-line:object-literal-sort-keys
   button: {
     animation: {
       transition: "0.3s",
     },
     colors: {
       primary: {
-        activeBackground: C.turquoiseDark,
-        background: C.turquoise,
+        activeBackground: C.theme.primaryDark,
+        background: C.theme.primary,
         color: C.white,
-        hoverBackground: C.turquoiseDark,
+        hoverBackground: C.theme.primaryDark,
         hoverColor: C.white,
       },
       secondary: {
-        activeBackground: C.blueDark,
+        activeBackground: C.theme.secondaryDark,
         background: C.white,
-        color: C.blue,
-        hoverBackground: C.blue,
+        color: C.theme.secondary,
+        hoverBackground: C.theme.secondary,
         hoverColor: C.white,
       },
     },
@@ -42,17 +39,19 @@ export const defaultTheme = {
     carouselControlShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.25)",
   },
   colors: {
-    autofillColor: C.autofillColor,
-    autofillColorSelected: C.autofillColorSelected,
-    baseFontColor: C.baseFontColor,
-    primaryColor: C.turquoise,
-    secondaryColor: C.blue,
+    ...C.theme,
   },
   container: {
     width: 1140,
   },
   grid: {
     containerWidth: 1140,
+  },
+  iconButton: {
+    backgroundColor: C.theme.white,
+    hoverBackgroundColor: C.theme.secondary,
+    hoverForegroundColor: C.theme.white,
+    size: 36,
   },
   input: {
     labelColor: C.grayDark,
@@ -61,15 +60,12 @@ export const defaultTheme = {
   },
   message: {
     backgroundColor: C.white,
-    borderLeft: `0.3rem solid ${C.turquoiseDark}`,
     contentMargin: `${C.spacer}rem 0 0`,
-    errorColor: C.rose,
-    neutralColor: C.turquoiseDark,
-    padding: "1.5rem",
-    successColor: C.green,
+    letterSpacing: "0.5px",
+    padding: "1rem 1.5rem",
     titleMargin: `0 ${C.spacer * 1.5}rem 0 0`,
     titleTransform: "uppercase",
-    titleWeight: C.boldFontWeight,
+    titleWeight: C.extraBoldFontWeight,
     width: "25rem",
   },
   modal: {
@@ -87,6 +83,11 @@ export const defaultTheme = {
   },
   spacing: {
     spacer: `${C.spacer}rem`, // 16px
+  },
+  tile: {
+    backgroundColor: C.grayLight,
+    divisionLine: C.gray,
+    hoverBorder: C.blueDark,
   },
   typography: {
     baseFontFamily: C.baseFontFamily,

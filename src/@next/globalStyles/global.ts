@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     font-family: ${props => props.theme.typography.baseFontFamily};
     font-size: ${props => props.theme.typography.baseFontSize};
     line-height: ${props => props.theme.typography.baseLineHeight};
-    color: ${props => props.theme.colors.baseFontColor};
+    color: ${props => props.theme.colors.baseFont};
   }
 
   h1 {
@@ -45,6 +45,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   button {
     border: none;
     background-color: none;
+    cursor: pointer;
     outline: none;
     padding: 0;
   }

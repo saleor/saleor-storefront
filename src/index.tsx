@@ -1,4 +1,7 @@
 import { hot } from "react-hot-loader";
+import { ThemeProvider } from "styled-components";
+
+import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
@@ -111,13 +114,18 @@ const startApp = async () => {
                             checkout={checkout}
                             apolloClient={apolloClient}
                           >
-                            <Switch>
-                              <Route
-                                path={checkoutBaseUrl}
-                                component={CheckoutApp}
-                              />
-                              <Route component={App} />
-                            </Switch>
+                            <ThemeProvider theme={defaultTheme}>
+                              <>
+                                <Switch>
+                                  <Route
+                                    path={checkoutBaseUrl}
+                                    component={CheckoutApp}
+                                  />
+                                  <Route component={App} />
+                                </Switch>
+                                <GlobalStyle />
+                              </>
+                            </ThemeProvider>
                           </CartProvider>
                         )}
                       </CheckoutContext.Consumer>
