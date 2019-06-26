@@ -38,7 +38,7 @@ exports[`Storyshots @components/molecules/CreditCardWithIcon default 1`] = `
     <span
       className="c2"
     >
-      XXXX XXXX XXXX 
+      XXXX XXXX XXXX
       1234
     </span>
   </div>

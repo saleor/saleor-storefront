@@ -127,7 +127,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
           <span
             className="c5"
           >
-            XXXX XXXX XXXX 
+            XXXX XXXX XXXX
             9876
           </span>
         </div>
