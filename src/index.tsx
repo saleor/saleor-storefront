@@ -1,6 +1,7 @@
 import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
+// import catalogEn from "./locales/en/messages.po";
 
 import {
   NotificationTemplate,
@@ -61,6 +62,21 @@ const cache = new InMemoryCache({
   },
 });
 
+const catalogs = {};
+const fallbackLang = "en";
+const language = (
+  (navigator.languages && navigator.languages[0]) ||
+  navigator.language ||
+  fallbackLang
+).toLowerCase();
+
+const loadCatalog = async () => {
+  const catalog = await import(
+    /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
+    `@lingui/loader!./locales/${language}/messages.po`
+  );
+  return catalog;
+};
 const startApp = async () => {
   await persistCache({
     cache,
@@ -105,7 +121,7 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <I18nProvider language="en">
+          <I18nProvider language={language} catalogs={loadCatalog()}>
             <ShopProvider>
               <OverlayProvider>
                 <UserProviderWithTokenHandler

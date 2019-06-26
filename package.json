@@ -55,6 +55,7 @@
     "@hot-loader/react-dom": "^16.8.6",
     "@lingui/babel-preset-react": "^2.8.3",
     "@lingui/cli": "^2.8.3",
+    "@lingui/loader": "^2.8.3",
     "@lingui/macro": "^2.8.3",
     "@storybook/addon-actions": "^5.1.7",
     "@storybook/addon-knobs": "^5.1.3",
