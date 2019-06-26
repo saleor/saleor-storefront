@@ -1,5 +1,5 @@
 import { compact } from "lodash";
-import React from "react";
+import React, { useCallback } from "react";
 import NumberFormat from "react-number-format";
 
 import { TextField } from "@components/molecules";
@@ -32,7 +32,10 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   handleChange,
   values,
 }: PropsWithFormik) => {
-  const basicInputProps = getInputProps(disabled, handleChange);
+  const basicInputProps = useCallback(getInputProps(disabled, handleChange), [
+    disabled,
+    handleChange,
+  ]);
 
   return (
     <S.PaymentForm ref={formRef} onSubmit={handleSubmit}>
