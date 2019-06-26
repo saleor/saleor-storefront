@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-styled-flexboxgrid";
 
-// import * as S from "./styles";
 import { IProps } from "./types";
 
 export const TileGrid: React.FC<IProps> = ({
