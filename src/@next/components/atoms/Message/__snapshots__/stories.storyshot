@@ -1,28 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots @components/atoms/Message action card 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  margin: 1rem 0 0;
+}
+
+.c5 {
+  color: #21125e;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-fjdhpX eiUmpY"
+    className="c1"
   >
     <div
-      className="sc-jzJRlG kYcudh"
+      className="c2"
     >
       <p
-        className="sc-cSHVUG hSSaX"
+        className="c3"
       >
         Sample Message
       </p>
     </div>
     <div
-      className="sc-chPdSV SMyhB"
+      className="c4"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
     </div>
     <button
-      className="sc-kgoBCf jlGvih"
+      className="c5"
       onClick={[Function]}
       style={
         Object {
@@ -34,28 +95,85 @@ exports[`Storyshots @components/atoms/Message action card 1`] = `
     </button>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c6"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  color: #21125e;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-fjdhpX eiUmpY"
+    className="c1"
   >
     <div
-      className="sc-jzJRlG kYcudh"
+      className="c2"
     >
       <p
-        className="sc-cSHVUG hSSaX"
+        className="c3"
       >
         Sample Message
       </p>
       <button
-        className="sc-kgoBCf jlGvih"
+        className="c4"
         onClick={[Function]}
       >
         Try again
@@ -63,28 +181,94 @@ exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c5"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #c22d74;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c4:hover path {
+  fill: #3ee7cd;
+}
+
+.c5 {
+  margin: 1rem 0 0;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-fjdhpX eiUmpY"
+    className="c1"
   >
     <div
-      className="sc-jzJRlG kYcudh"
+      className="c2"
     >
       <p
-        className="sc-cSHVUG hSSaX"
+        className="c3"
       >
         Sample Message
       </p>
       <button
-        className="sc-kAzzGY gvUHNs"
+        className="c4"
         onClick={[Function]}
       >
         <svg
@@ -100,34 +284,96 @@ exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
       </button>
     </div>
     <div
-      className="sc-chPdSV SMyhB"
+      className="c5"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c6"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #42beab;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c4:hover path {
+  fill: #3ee7cd;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-fjdhpX exnIJk"
+    className="c1"
   >
     <div
-      className="sc-jzJRlG kYcudh"
+      className="c2"
     >
       <p
-        className="sc-cSHVUG hSSaX"
+        className="c3"
       >
         Sample Message
       </p>
       <button
-        className="sc-kAzzGY gvUHNs"
+        className="c4"
         onClick={[Function]}
       >
         <svg
@@ -144,28 +390,94 @@ exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c5"
   />
 </div>
 `;
 
 exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #3ed256;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c4:hover path {
+  fill: #3ee7cd;
+}
+
+.c5 {
+  margin: 1rem 0 0;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-fjdhpX fyxNed"
+    className="c1"
   >
     <div
-      className="sc-jzJRlG kYcudh"
+      className="c2"
     >
       <p
-        className="sc-cSHVUG hSSaX"
+        className="c3"
       >
         Sample Message
       </p>
       <button
-        className="sc-kAzzGY gvUHNs"
+        className="c4"
         onClick={[Function]}
       >
         <svg
@@ -181,13 +493,13 @@ exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
       </button>
     </div>
     <div
-      className="sc-chPdSV SMyhB"
+      className="c5"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c6"
   />
 </div>
 `;

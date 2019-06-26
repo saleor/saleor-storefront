@@ -1,26 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c4 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c10 svg {
+  display: block;
+}
+
+.c10 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c10:hover {
+  background-color: #21125e;
+}
+
+.c10:hover svg path {
+  fill: #fff;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c2 {
+  border-bottom: 2px solid #7d7d7d;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c8 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.c5 {
+  padding: 0 1rem;
+}
+
+.c6 {
+  font-weight: 600;
+}
+
+.c7 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.c9 > div {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6rem;
+}
+
 <div
-  className="sc-bdVaJa fkRMdE"
+  className="c0"
 >
   <div
-    className="sc-dxgOiQ hGOXaO"
+    className="c1"
   >
     <div
-      className="sc-ckVGcZ dYkjtc"
+      className="c2"
     >
       <div
-        className="sc-jKJlTe bjjrsH"
+        className="c3"
       >
         <div>
           <div
-            className="sc-EHOje hoXtJp"
+            className="c4"
           >
             <div />
           </div>
           <span
-            className="sc-hMqMXs canDSS"
+            className="c5"
           >
             XXXX XXXX XXXX 
             9876
@@ -29,38 +131,38 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
       </div>
     </div>
     <div
-      className="sc-jKJlTe bjjrsH"
+      className="c3"
     >
       <div
-        className="sc-iAyFgw dmzIWI"
+        className="c6"
       >
         Expires on
       </div>
       <div
-        className="sc-hSdWYo enpXJ"
+        className="c7"
       >
         05/2019
       </div>
       <div
-        className="sc-iAyFgw dmzIWI"
+        className="c6"
       >
         Name on card
       </div>
       <div
-        className="sc-hSdWYo enpXJ"
+        className="c7"
       >
         John Doe
       </div>
     </div>
     <div
-      className="sc-eNQAEJ iMtlZq"
+      className="c8"
     >
       <div
-        className="sc-eHgmQL BBQBP"
+        className="c9"
       >
         <div>
           <div
-            className="sc-gzVnrw eGCsdw"
+            className="c10"
             onClick={[Function]}
           >
             <svg
@@ -77,7 +179,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
         </div>
         <div>
           <div
-            className="sc-gzVnrw eGCsdw"
+            className="c10"
             onClick={[Function]}
           >
             <svg
@@ -96,7 +198,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
     </div>
   </div>
   <div
-    className="sc-bwzfXH cyotrw"
+    className="c11"
   />
 </div>
 `;
