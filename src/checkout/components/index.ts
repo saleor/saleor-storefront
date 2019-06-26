@@ -9,4 +9,3 @@ export { default as UserAddressSelector } from "./UserAddressSelector";
 export {
   default as ShippingUnavailableModal
 } from "./ShippingUnavailableModal";
-export { default as CreditCardForm } from "./CreditCardForm";

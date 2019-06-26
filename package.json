@@ -22,6 +22,7 @@
     "core-js": "^2.5.7",
     "cross-env": "^5.2.0",
     "draftjs-to-html": "^0.8.4",
+    "formik": "^1.5.7",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
