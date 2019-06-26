@@ -13,6 +13,7 @@ interface ILabelsText {
 export interface IFormikProps {
   handleChange: (e: React.ChangeEvent) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  values: ICardInputs;
 }
 export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
