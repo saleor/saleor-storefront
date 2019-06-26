@@ -30,7 +30,7 @@ const PROPS_ERRORS = {
   },
 };
 
-storiesOf(`@components/molecules/CreditCardForm`, module)
+storiesOf(`@components/organisms/CreditCardForm`, module)
   .add("default", () => <CreditCardForm {...PROPS} />)
   .add("error", () => <CreditCardForm {...PROPS_ERRORS} />)
   .add("disabled", () => <CreditCardForm {...PROPS} disabled={true} />);
