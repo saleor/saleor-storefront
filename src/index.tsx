@@ -14,7 +14,6 @@ import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
-
 import urljoin from "url-join";
 
 import { App } from "./app";

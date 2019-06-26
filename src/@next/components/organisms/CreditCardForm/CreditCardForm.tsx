@@ -22,10 +22,11 @@ export const CreditCardForm: React.FC<IProps> = ({
         setSubmitting(false);
       }}
     >
-      {({ handleChange, handleSubmit }) => (
+      {({ handleChange, handleSubmit, values }) => (
         <CreditCardFormContent
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          values={values}
           {...props}
         />
       )}
