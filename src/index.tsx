@@ -80,7 +80,7 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     const alert = useAlert();
 
-    const { updateAvailable } = React .useContext(ServiceWorkerContext);
+    const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
     React.useEffect(() => {
       if (updateAvailable) {
