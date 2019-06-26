@@ -1,8 +1,8 @@
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Button } from ".";
-import { createStory } from "../baseStory";
 
-createStory("Button")
+storiesOf("@components/atoms/Button", module)
   .add("Primary", () => <Button>Primary Button</Button>)
   .add("Secondary", () => <Button color="secondary">Secondary Button</Button>);

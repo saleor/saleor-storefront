@@ -1,9 +1,9 @@
 import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CCProviders } from "@components/atoms";
 import { CreditCardTile } from ".";
-import { createStory } from "../baseStory";
 
 const onEdit = action("onEdit called");
 const onRemove = action("onRemove called");
@@ -19,6 +19,6 @@ const DEFAULT_PROPS = {
   provider: visa,
 };
 
-createStory("CreditCardTile").add("default", () => (
+storiesOf(`@components/molecules/CreditCardTile`, module).add("default", () => (
   <CreditCardTile {...DEFAULT_PROPS} />
 ));
