@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Input default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-htoDjs saTGr"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jlEUig"
+    >
+      <input
+        className="sc-gZMcBi ccQKjd"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        value=""
+      />
+      <label
+        className="sc-gqjmRU fzjzEb"
+      >
+        Empty
+      </label>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Input disabled 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-htoDjs gXhnzA"
+    disabled={true}
+  >
+    <div
+      className="sc-iwsKbI jlEUig"
+    >
+      <input
+        className="sc-gZMcBi ccQKjd"
+        disabled={true}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        value=""
+      />
+      <label
+        className="sc-gqjmRU fzjzEb"
+      >
+        Text goes here
+      </label>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Input error 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-htoDjs kxEaSv"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jlEUig"
+    >
+      <input
+        className="sc-gZMcBi ccQKjd"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        value="Some text"
+      />
+      <label
+        className="sc-gqjmRU bNusdB"
+      >
+        Text goes here
+      </label>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Input with value 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-htoDjs saTGr"
+    disabled={false}
+  >
+    <div
+      className="sc-iwsKbI jlEUig"
+    >
+      <input
+        className="sc-gZMcBi ccQKjd"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        value="Example text"
+      />
+      <label
+        className="sc-gqjmRU bNusdB"
+      >
+        Text goes here
+      </label>
+    </div>
+    <span
+      className="sc-dnqmqq gwXewl"
+    >
+      <div>
+        Content right
+      </div>
+    </span>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

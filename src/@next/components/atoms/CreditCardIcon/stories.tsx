@@ -1,9 +1,9 @@
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CreditCardIcon } from ".";
-import { createStory } from "../baseStory";
 
-createStory("CreditCardIcon")
+storiesOf("@components/atoms/CreditCardIcon", module)
   .add("VISA", () => <CreditCardIcon provider="visa" />)
   .add("MASTERCARD", () => <CreditCardIcon provider="mastercard" />)
   .add("DISCOVER", () => <CreditCardIcon provider="discover" />)

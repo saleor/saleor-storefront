@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Tile default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-dxgOiQ hGOXaO"
+  >
+    <div
+      className="sc-ckVGcZ dYkjtc"
+    >
+      <div
+        className="sc-jKJlTe bjjrsH"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="sc-jKJlTe bjjrsH"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="sc-eNQAEJ iMtlZq"
+    />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Tile with hover 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-dxgOiQ ckTsKc"
+  >
+    <div
+      className="sc-ckVGcZ dYkjtc"
+    >
+      <div
+        className="sc-jKJlTe bjjrsH"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="sc-jKJlTe bjjrsH"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="sc-eNQAEJ iMtlZq"
+    >
+      <p>
+        And this is footer
+      </p>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

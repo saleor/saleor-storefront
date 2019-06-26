@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/TextField default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-kEYyzF cwAVtT"
+  >
+    <div
+      className="sc-htoDjs saTGr"
+      disabled={false}
+    >
+      <div
+        className="sc-iwsKbI jlEUig"
+      >
+        <input
+          className="sc-gZMcBi ccQKjd"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="sc-gqjmRU bNusdB"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with content left 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-kEYyzF cwAVtT"
+  >
+    <div
+      className="sc-htoDjs saTGr"
+      disabled={false}
+    >
+      <span
+        className="sc-dnqmqq gwXewl"
+      >
+        <span>
+          Content Left
+        </span>
+      </span>
+      <div
+        className="sc-iwsKbI jlEUig"
+      >
+        <input
+          className="sc-gZMcBi ccQKjd"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="sc-gqjmRU bNusdB"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with content right 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-kEYyzF cwAVtT"
+  >
+    <div
+      className="sc-htoDjs saTGr"
+      disabled={false}
+    >
+      <div
+        className="sc-iwsKbI jlEUig"
+      >
+        <input
+          className="sc-gZMcBi ccQKjd"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="sc-gqjmRU bNusdB"
+        >
+          Label
+        </label>
+      </div>
+      <span
+        className="sc-dnqmqq gwXewl"
+      >
+        <span>
+          Content Right
+        </span>
+      </span>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/TextField with errors 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-kEYyzF cwAVtT"
+  >
+    <div
+      className="sc-htoDjs kxEaSv"
+      disabled={false}
+    >
+      <div
+        className="sc-iwsKbI jlEUig"
+      >
+        <input
+          className="sc-gZMcBi ccQKjd"
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          value="Value"
+        />
+        <label
+          className="sc-gqjmRU bNusdB"
+        >
+          Label
+        </label>
+      </div>
+    </div>
+    <span
+      className="sc-bZQynM cStvhc"
+    >
+      Some error
+    </span>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

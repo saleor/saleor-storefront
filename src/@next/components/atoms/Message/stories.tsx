@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Message } from ".";
@@ -9,7 +10,7 @@ const onClick = action("onClick called");
 const lipsum =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.";
 
-createStory("Message")
+storiesOf("@components/atoms/Message", module)
   .add("neutral snackbar", () => (
     <Message title="Sample Message" onClick={onClick} />
   ))

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/ErrorMessage default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <span
+    className="sc-bZQynM cStvhc"
+  >
+    Error Message
+  </span>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ErrorMessage with multiple errors 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <span
+    className="sc-bZQynM cStvhc"
+  >
+    Error Message Error Message
+  </span>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

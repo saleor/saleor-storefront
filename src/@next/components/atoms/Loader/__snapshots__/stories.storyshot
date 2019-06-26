@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Loader default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-VigVT fFhcGu"
+  >
+    <div
+      className="sc-jTzLTM csbESC"
+    >
+      <span />
+      <span />
+      <span />
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

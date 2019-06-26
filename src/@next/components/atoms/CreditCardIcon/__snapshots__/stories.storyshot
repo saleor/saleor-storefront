@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/CreditCardIcon AMEX 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon DISCOVER 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon JCB 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MAESTRO 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MASTERCARD 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon VISA 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-EHOje hoXtJp"
+  >
+    <div />
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

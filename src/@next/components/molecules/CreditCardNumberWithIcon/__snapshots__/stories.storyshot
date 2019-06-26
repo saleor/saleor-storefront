@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/CreditCardWithIcon default 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div>
+    <div
+      className="sc-EHOje hoXtJp"
+    >
+      <div />
+    </div>
+    <span
+      className="sc-hMqMXs canDSS"
+    >
+      XXXX XXXX XXXX 
+      1234
+    </span>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

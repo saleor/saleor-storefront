@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Button Primary 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <button
+    className="sc-htpNat kMelWi"
+    color="primary"
+  >
+    <span
+      className="sc-ifAKCX llBRr"
+    >
+      Primary Button
+    </span>
+  </button>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Button Secondary 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <button
+    className="sc-htpNat sc-bxivhb fcoXHK"
+    color="secondary"
+  >
+    <span
+      className="sc-ifAKCX llBRr"
+    >
+      Secondary Button
+    </span>
+  </button>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;

@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Message action card 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-fjdhpX eiUmpY"
+  >
+    <div
+      className="sc-jzJRlG kYcudh"
+    >
+      <p
+        className="sc-cSHVUG hSSaX"
+      >
+        Sample Message
+      </p>
+    </div>
+    <div
+      className="sc-chPdSV SMyhB"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
+    <button
+      className="sc-kgoBCf jlGvih"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginTop": "1rem",
+        }
+      }
+    >
+      Refresh
+    </button>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-fjdhpX eiUmpY"
+  >
+    <div
+      className="sc-jzJRlG kYcudh"
+    >
+      <p
+        className="sc-cSHVUG hSSaX"
+      >
+        Sample Message
+      </p>
+      <button
+        className="sc-kgoBCf jlGvih"
+        onClick={[Function]}
+      >
+        Try again
+      </button>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-fjdhpX eiUmpY"
+  >
+    <div
+      className="sc-jzJRlG kYcudh"
+    >
+      <p
+        className="sc-cSHVUG hSSaX"
+      >
+        Sample Message
+      </p>
+      <button
+        className="sc-kAzzGY gvUHNs"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="sc-chPdSV SMyhB"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-fjdhpX exnIJk"
+  >
+    <div
+      className="sc-jzJRlG kYcudh"
+    >
+      <p
+        className="sc-cSHVUG hSSaX"
+      >
+        Sample Message
+      </p>
+      <button
+        className="sc-kAzzGY gvUHNs"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
+<div
+  className="sc-bdVaJa fkRMdE"
+>
+  <div
+    className="sc-fjdhpX fyxNed"
+  >
+    <div
+      className="sc-jzJRlG kYcudh"
+    >
+      <p
+        className="sc-cSHVUG hSSaX"
+      >
+        Sample Message
+      </p>
+      <button
+        className="sc-kAzzGY gvUHNs"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="sc-chPdSV SMyhB"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum arcu lectus, ac viverra sapien volutpat eu. Nam et eros nunc. Nunc rutrum erat eu massa facilisis faucibus. Mauris ultrices eleifend sollicitudin. Vestibulum eleifend cursus arcu, et vehicula turpis blandit a. Fusce vitae arcu bibendum, dapibus felis eu, dignissim orci.
+    </div>
+  </div>
+  <div
+    className="sc-bwzfXH cyotrw"
+  />
+</div>
+`;
