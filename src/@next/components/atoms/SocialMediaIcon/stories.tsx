@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { SocialMediaIcon } from ".";
-import { createStory } from "../baseStory";
 import { Medium } from "./types";
 
 const FACEBOOK_MEDIUM: Medium = {

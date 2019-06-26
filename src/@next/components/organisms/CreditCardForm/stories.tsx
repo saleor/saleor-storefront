@@ -1,8 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import React from "react";
-import { CreditCardForm } from ".";
 
-import { createStory } from "../../molecules/baseStory";
+import { CreditCardForm } from ".";
 
 const ERRORS = {
   cvv: null,

@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Tile } from ".";
-import { createStory } from "../baseStory";
 
 storiesOf("@components/atoms/Tile", module)
   .add("default", () => (

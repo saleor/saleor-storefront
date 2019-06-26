@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Message } from ".";
-import { createStory } from "../baseStory";
 
 const onClick = action("onClick called");
 
