@@ -14,6 +14,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Display filters when no product was found - #319 by @aldomonteiro
 - Add ServiceWorker provider - #352 by @bogdal
 - Add ButtonLink atom component - #392 by @AlicjaSzu
+- Add lingui - #382 by @AlicjaSzu
 
 ## 0.6.0
 
