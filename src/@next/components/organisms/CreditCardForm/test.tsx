@@ -15,6 +15,12 @@ describe("<CreditCardForm />", () => {
     ccNumber: "Number",
   };
 
+  const VALUES = {
+    ccCsc: "",
+    ccExp: "",
+    ccNumber: "444",
+  };
+
   const DEFAULT_PROPS = {
     cardErrors: {
       cvv: null,
@@ -26,6 +32,7 @@ describe("<CreditCardForm />", () => {
     handleChange: jest.fn(),
     handleSubmit: jest.fn(),
     labelsText: CARD_TEXT,
+    values: VALUES,
   };
 
   const renderCreditCardForm = (props: PropsWithFormik) =>
@@ -53,7 +60,7 @@ describe("<CreditCardForm />", () => {
   });
 
   describe("<NumberFormat /> ", () => {
-    it("should pass [disabled, customInput, handleChange, label, onChange] props", () => {
+    it("should pass [disabled, customInput, handleChange, label, onChange, value] props", () => {
       const numberInputProps = renderCreditCardForm(DEFAULT_PROPS)
         .find(NumberFormat)
         .at(0)
@@ -63,6 +70,7 @@ describe("<CreditCardForm />", () => {
       expect(numberInputProps.customInput).toEqual(TextField);
       expect(numberInputProps.label).toEqual(CARD_TEXT.ccNumber);
       expect(numberInputProps.onChange).toEqual(DEFAULT_PROPS.handleChange);
+      expect(numberInputProps.value).toEqual(VALUES.ccNumber);
     });
 
     it("should pass `errors` list props if error occurs", () => {

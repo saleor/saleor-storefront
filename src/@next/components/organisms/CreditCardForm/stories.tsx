@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import React from "react";
 import { CreditCardForm } from ".";
 
-import { createStory } from "../../molecules/baseStory";
+import { createStory } from "../baseStory";
 
 const ERRORS = {
   cvv: null,
