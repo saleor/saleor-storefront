@@ -9,12 +9,13 @@ import { CardErrors, PropsWithFormik } from "./types";
 const getInputProps = (
   disabled: boolean,
   handleChange: (e: React.ChangeEvent) => void
-) => (label: string, errors: CardErrors) => ({
+) => (label: string, errors: CardErrors, value: string) => ({
   customInput: TextField,
   disabled,
   errors: compact(errors),
   label,
   onChange: handleChange,
+  value,
 });
 
 export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
@@ -29,6 +30,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   labelsText: { ccCsc: ccCscText, ccExp: ccExpText, ccNumber: ccNumberText },
   handleSubmit,
   handleChange,
+  values,
 }: PropsWithFormik) => {
   const basicInputProps = getInputProps(disabled, handleChange);
 
@@ -40,7 +42,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
           autoComplete="cc-number"
           format="#### #### #### ####"
           name="ccNumber"
-          {...basicInputProps(ccNumberText, [cardNumberError])}
+          {...basicInputProps(ccNumberText, [cardNumberError], values.ccNumber)}
         />
       </S.PaymentInput>
 
@@ -50,7 +52,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
             autoComplete="cc-csc"
             format="####"
             name="ccCsc"
-            {...basicInputProps(ccCscText, [ccCscError])}
+            {...basicInputProps(ccCscText, [ccCscError], values.ccCsc)}
           />
         </S.PaymentInput>
 
@@ -59,10 +61,11 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
             autoComplete="cc-exp"
             format="## / ##"
             name="ccExp"
-            {...basicInputProps(ccExpText, [
-              expirationMonthError,
-              expirationYearError,
-            ])}
+            {...basicInputProps(
+              ccExpText,
+              [expirationMonthError, expirationYearError],
+              values.ccExp
+            )}
           />
         </S.PaymentInput>
       </S.Grid>
