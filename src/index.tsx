@@ -1,3 +1,4 @@
+import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
@@ -25,13 +26,10 @@ import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
-import { apiUrl, serviceWorkerTimeout } from './constants';
+import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
 
-import {
-  OverlayProvider,
-  UserProvider
-} from "./components";
+import { OverlayProvider, UserProvider } from "./components";
 
 import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
@@ -89,7 +87,8 @@ const startApp = async () => {
         alert.show(
           {
             actionText: "Refresh",
-            content: "To update the application to the latest version, please refresh the page!",
+            content:
+              "To update the application to the latest version, please refresh the page!",
             title: "New version is available!",
           },
           {
@@ -106,53 +105,60 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <ShopProvider>
-            <OverlayProvider>
-              <UserProviderWithTokenHandler
-                apolloClient={apolloClient}
-                onUserLogin={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged in",
-                    },
-                    { type: "success" }
-                  )
-                }
-                onUserLogout={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged out",
-                    },
-                    { type: "success" }
-                  )
-                }
-                refreshUser
-              >
-                <UserContext.Consumer>
-                  {user => (
-                    <CheckoutProvider user={user}>
-                      <CheckoutContext.Consumer>
-                        {checkout => (
-                          <CartProvider
-                            checkout={checkout}
-                            apolloClient={apolloClient}
-                          >
-                            <Switch>
-                              <Route
-                                path={checkoutBaseUrl}
-                                component={CheckoutApp}
-                              />
-                              <Route component={App} />
-                            </Switch>
-                          </CartProvider>
-                        )}
-                      </CheckoutContext.Consumer>
-                    </CheckoutProvider>
-                  )}
-                </UserContext.Consumer>
-              </UserProviderWithTokenHandler>
-            </OverlayProvider>
-          </ShopProvider>
+          <I18nProvider language="en">
+            <ShopProvider>
+              <OverlayProvider>
+                <UserProviderWithTokenHandler
+                  apolloClient={apolloClient}
+                  onUserLogin={() =>
+                    alert.show(
+                      {
+                        title: "You are now logged in",
+                      },
+                      { type: "success" }
+                    )
+                  }
+                  onUserLogout={() =>
+                    alert.show(
+                      {
+                        title: "You are now logged out",
+                      },
+                      { type: "success" }
+                    )
+                  }
+                  refreshUser
+                >
+                  <UserContext.Consumer>
+                    {user => (
+                      <CheckoutProvider user={user}>
+                        <CheckoutContext.Consumer>
+                          {checkout => (
+                            <CartProvider
+                              checkout={checkout}
+                              apolloClient={apolloClient}
+                            >
+                              <ThemeProvider theme={defaultTheme}>
+                                <>
+                                  <Switch>
+                                    <Route
+                                      path={checkoutBaseUrl}
+                                      component={CheckoutApp}
+                                    />
+                                    <Route component={App} />
+                                  </Switch>
+                                  <GlobalStyle />
+                                </>
+                              </ThemeProvider>
+                            </CartProvider>
+                          )}
+                        </CheckoutContext.Consumer>
+                      </CheckoutProvider>
+                    )}
+                  </UserContext.Consumer>
+                </UserProviderWithTokenHandler>
+              </OverlayProvider>
+            </ShopProvider>
+          </I18nProvider>
         </ApolloProvider>
       </Router>
     );

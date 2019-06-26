@@ -1,0 +1,18 @@
+{
+  "My Account": {
+    "origin": [
+      [
+        "src/components/MainMenu/MainMenu.tsx",
+        55
+      ]
+    ]
+  },
+  "Order history": {
+    "origin": [
+      [
+        "src/components/MainMenu/MainMenu.tsx",
+        60
+      ]
+    ]
+  }
+}

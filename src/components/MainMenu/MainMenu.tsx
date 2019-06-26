@@ -4,6 +4,7 @@ import {
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
+import { Trans } from "@lingui/macro";
 import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
@@ -106,10 +107,14 @@ const MainMenu: React.FC = () => (
                           content={
                             <ul className="main-menu__dropdown">
                               <li>
-                                <Link to="/my-account">My Account</Link>
+                                <Link to="/my-account">
+                                  <Trans>My Account</Trans>
+                                </Link>
                               </li>
                               <li>
-                                <Link to="/order-history">Order history</Link>
+                                <Link to="/order-history">
+                                  <Trans>Order history</Trans>
+                                </Link>
                               </li>
                               <li>
                                 <Link to="/address-book">Address book</Link>
