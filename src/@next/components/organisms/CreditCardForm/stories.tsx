@@ -1,4 +1,5 @@
 import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CreditCardForm } from ".";
@@ -28,7 +29,8 @@ const PROPS_ERRORS = {
     number: { field: "number", message: "Wrong number" },
   },
 };
-createStory("CreditCardForm")
+
+storiesOf(`@components/molecules/CreditCardForm`, module)
   .add("default", () => <CreditCardForm {...PROPS} />)
   .add("error", () => <CreditCardForm {...PROPS_ERRORS} />)
   .add("disabled", () => <CreditCardForm {...PROPS} disabled={true} />);
