@@ -6,5 +6,6 @@
   },
   "viewportWidth": 1400,
   "viewportHeight": 660,
-  "projectId": "ftxg4w"
+  "projectId": "ftxg4w",
+  "requestTimeout": 9000
 }
