@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/atoms/Tile default 1`] = `
+exports[`Storyshots @components/atoms/Tile addNew tile style 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c5 {
+.c3 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -21,6 +21,68 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
   background-color: #f1f5f5;
   border: 1px transparent solid;
   padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  color: #21125e;
+}
+
+.c1:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #21125e;
+}
+
+.c1:hover svg path {
+  fill: #fff;
+}
+
+.c2 {
+  padding: 1rem 1.25rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Tile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
 }
 
 .c2 {
@@ -29,11 +91,6 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
 
 .c3 {
   padding: 1rem 1.25rem;
-}
-
-.c4 {
-  padding: 0 1rem;
-  margin-bottom: 1rem;
 }
 
 <div
@@ -60,12 +117,9 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
         This is body
       </div>
     </div>
-    <div
-      className="c4"
-    />
   </div>
   <div
-    className="c5"
+    className="c4"
   />
 </div>
 `;
@@ -91,6 +145,8 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
   background-color: #f1f5f5;
   border: 1px transparent solid;
   padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
 }
 
 .c1:hover {

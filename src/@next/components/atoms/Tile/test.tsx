@@ -25,7 +25,7 @@ describe("<Tile />", () => {
     expect(wrapper.text()).toContain(contentText);
     expect(wrapper.text()).toContain(footerText);
   });
-  it("changes style on hover", () => {
+  it("changes style for hover tile type", () => {
     const wrapper = mount(
       <Tile>
         <p>This is content</p>
@@ -33,7 +33,7 @@ describe("<Tile />", () => {
     );
 
     const wrapperWithHover = mount(
-      <Tile hover={true}>
+      <Tile tileType="hover">
         <p>This is content</p>
       </Tile>
     );
@@ -49,6 +49,40 @@ describe("<Tile />", () => {
     expect(wrapperWithHover).toHaveStyleRule(
       "border-color",
       defaultTheme.tile.hoverBorder,
+      {
+        modifier: ":hover",
+      }
+    );
+  });
+
+  it("changes style for addNew tile type", () => {
+    const wrapper = mount(
+      <Tile>
+        <p>This is content</p>
+      </Tile>
+    );
+
+    const wrapperWithAddNew = mount(
+      <Tile tileType="addNew">
+        <p>This is content</p>
+      </Tile>
+    );
+
+    expect(wrapper).toHaveStyleRule(
+      "background-color",
+      defaultTheme.tile.backgroundColor
+    );
+
+    expect(wrapperWithAddNew).toHaveStyleRule(
+      "background-color",
+      defaultTheme.colors.secondary,
+      {
+        modifier: ":hover",
+      }
+    );
+    expect(wrapperWithAddNew).toHaveStyleRule(
+      "color",
+      defaultTheme.colors.white,
       {
         modifier: ":hover",
       }

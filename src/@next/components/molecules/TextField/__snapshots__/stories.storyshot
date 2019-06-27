@@ -371,15 +371,6 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
-  color: #c22d74;
-  font-size: 0.75rem;
-}
-
-.c7 {
-  margin: 0;
-}
-
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -428,6 +419,15 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   -webkit-transition: all 0.3s ease,color 0s;
   transition: all 0.3s ease,color 0s;
   pointer-events: none;
+}
+
+.c6 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+.c7 {
+  margin: 0;
 }
 
 .c1 {

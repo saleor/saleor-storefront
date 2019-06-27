@@ -11,10 +11,15 @@ storiesOf("@components/atoms/Tile", module)
   ))
   .add("with hover", () => (
     <Tile
-      hover={true}
+      tileType="hover"
       header={<h3>This is header</h3>}
       footer={<p>And this is footer</p>}
     >
+      <div>This is body</div>
+    </Tile>
+  ))
+  .add("addNew tile style", () => (
+    <Tile tileType="addNew">
       <div>This is body</div>
     </Tile>
   ));
