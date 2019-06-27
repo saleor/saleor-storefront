@@ -1,17 +1,18 @@
 import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { NotificationTemplate } from ".";
-import { createStory } from "../baseStory";
 
 const onClick = action("onClick called");
 
-createStory("NotificationTemplate").add("default", () => (
-  <NotificationTemplate
-    close={onClick}
-    id="test"
-    message={{ title: "test" }}
-    options={{ type: "action" }}
-    style={{ margin: 1 }}
-  />
-));
+storiesOf("@components/atoms/NotificationTemplate", module)
+  .add("default", () => (
+    <NotificationTemplate
+      close={onClick}
+      id="test"
+      message={{ title: "test" }}
+      options={{ type: "success" }}
+      style={{ margin: 1 }}
+    />
+  ));

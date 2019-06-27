@@ -14,7 +14,7 @@ describe("<NotificationTemplate />", () => {
         close={jest.fn()}
         id="test"
         message={{ title }}
-        options={{ type: "action" }}
+        options={{ type: "success" }}
         style={{ margin: 10 }}
       />
     );

@@ -1,4 +1,4 @@
-type NotificationTypes = "neutral" | "success" | "error" | "action";
+type NotificationTypes = "neutral" | "success" | "error";
 
 interface IMessage {
   actionText?: string;

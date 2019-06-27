@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/NotificationTemplate default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 25rem;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0px 6px 15px 3px rgba(0,0,0,0.25);
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-left: 0.4rem solid;
+  border-color: #3ed256;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  text-transform: uppercase;
+  font-weight: 800;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  margin: 0 1.5rem 0 0;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c4:hover path {
+  fill: #3ee7cd;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <p
+        className="c3"
+      >
+        test
+      </p>
+      <button
+        className="c4"
+        onClick={[Function]}
+      >
+        <svg
+          height={15}
+          viewBox="0 0 32 32"
+          width={15}
+        >
+          <path
+            d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+            fill="#c4c4c4"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
