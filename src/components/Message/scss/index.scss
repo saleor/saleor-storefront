@@ -32,13 +32,6 @@
     margin: $message-content-margin;
   }
 
-  &__action-button {
-    color: $blue;
-    cursor: pointer;
-    margin: $message-content-margin;
-    text-decoration: underline;
-  }
-
   &__close-icon {
     position: absolute;
     top: 1.8rem;

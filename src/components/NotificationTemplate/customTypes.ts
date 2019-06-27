@@ -2,7 +2,6 @@ type NotificationTypes = "error" | "success";
 
 interface IMessage {
   title: string;
-  closeLabel?: string;
   content?: string;
 }
 
