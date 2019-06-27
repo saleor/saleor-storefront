@@ -93,9 +93,9 @@ const startApp = async () => {
   );
   // tslint:disable-next-line:no-console
   console.log("lang", lang);
-  export const loadCatalogs = (language: string = lang) =>
+  const loadCatalogs = (language: string = lang) =>
     import(`@lingui/loader!./locales/${language}/messages.po`);
-  
+
   const catalogs = loadCatalogs(lang) || {};
 
   const Root = hot(module)(() => {
