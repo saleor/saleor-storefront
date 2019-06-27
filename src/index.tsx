@@ -1,7 +1,6 @@
 import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
-// import catalogEn from "./locales/en/messages.po";
 
 import {
   NotificationTemplate,
@@ -29,6 +28,7 @@ import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
+import { loadCatalogs } from "./translations";
 
 import { OverlayProvider, UserProvider } from "./components";
 
@@ -62,21 +62,6 @@ const cache = new InMemoryCache({
   },
 });
 
-const catalogs = {};
-const fallbackLang = "en";
-const language = (
-  (navigator.languages && navigator.languages[0]) ||
-  navigator.language ||
-  fallbackLang
-).toLowerCase();
-
-const loadCatalog = async () => {
-  const catalog = await import(
-    /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
-    `@lingui/loader!./locales/${language}/messages.po`
-  );
-  return catalog;
-};
 const startApp = async () => {
   await persistCache({
     cache,
@@ -92,6 +77,8 @@ const startApp = async () => {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
   };
+
+  const catalogs = await loadCatalogs();
 
   const Root = hot(module)(() => {
     const alert = useAlert();
@@ -121,7 +108,7 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <I18nProvider language={language} catalogs={loadCatalog()}>
+          <I18nProvider catalogs={catalogs}>
             <ShopProvider>
               <OverlayProvider>
                 <UserProviderWithTokenHandler
