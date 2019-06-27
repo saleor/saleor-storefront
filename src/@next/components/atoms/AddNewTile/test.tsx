@@ -5,7 +5,7 @@ import React from "react";
 import { AddNewTile } from ".";
 
 describe("<AddNewTile />", () => {
-  it("AddNewTile component exists and proper text content is passed to Tile component", () => {
+  it("should display child component with text from passed props", () => {
     const wrapper = mount(<AddNewTile type="card" />);
 
     expect(wrapper.exists()).toEqual(true);
