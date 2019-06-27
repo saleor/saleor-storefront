@@ -23,8 +23,9 @@ import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from './constants';
 import { history } from "./history";
 
+import { NotificationTemplate } from "@components/atoms";
+
 import {
-  NotificationTemplate,
   OverlayProvider,
   UserProvider
 } from "./components";
@@ -86,7 +87,7 @@ const startApp = async () => {
       if (updateAvailable) {
         alert.show(
           {
-            closeLabel: "Refresh",
+            actionText: "Refresh",
             content: "To update the application to the latest version, please refresh the page!",
             title: "New version is available!",
           },
@@ -134,18 +135,13 @@ const startApp = async () => {
                             checkout={checkout}
                             apolloClient={apolloClient}
                           >
-                            <ThemeProvider theme={defaultTheme}>
-                              <>
-                                <Switch>
-                                  <Route
-                                    path={checkoutBaseUrl}
-                                    component={CheckoutApp}
-                                  />
-                                  <Route component={App} />
-                                </Switch>
-                                <GlobalStyle />
-                              </>
-                            </ThemeProvider>
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
                           </CartProvider>
                         )}
                       </CheckoutContext.Consumer>
@@ -161,11 +157,14 @@ const startApp = async () => {
   });
 
   render(
-    <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-      <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-        <Root />
-      </ServiceWorkerProvider>
-    </AlertProvider>,
+    <ThemeProvider theme={defaultTheme}>
+      <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+        <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+          <GlobalStyle />
+          <Root />
+        </ServiceWorkerProvider>
+      </AlertProvider>
+    </ThemeProvider>,
     document.getElementById("root")
   );
 
