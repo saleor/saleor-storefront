@@ -4,7 +4,7 @@ import {
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
-import { Trans } from "@lingui/macro";
+import { Trans } from "@lingui/react";
 import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
@@ -108,16 +108,16 @@ const MainMenu: React.FC = () => (
                             <ul className="main-menu__dropdown">
                               <li>
                                 <Link to="/my-account">
-                                  <Trans>My Account</Trans>
+                                  <Trans id="My Account" />
                                 </Link>
                               </li>
                               <li>
                                 <Link to="/order-history">
-                                  <Trans>Order history</Trans>
+                                  <Trans id="Order history" />
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/address-book">Address book</Link>
+                                <Link to="/address-book"><Trans id="Address book" /></Link>
                               </li>
                               <li>
                                 <Link to="/payment-options">

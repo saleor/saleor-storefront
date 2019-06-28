@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/MainMenu/MainMenu.tsx:64
+msgid "Address book"
+msgstr "Address book"
+
 #: src/components/MainMenu/MainMenu.tsx:55
 msgid "My Account"
 msgstr "My Account"
@@ -21,6 +25,6 @@ msgstr "My Account"
 msgid "Order history"
 msgstr "Order history"
 
-#: src/components/MainMenu/MainMenu.tsx:55
-#~ msgid "menu.acount"
-#~ msgstr "menu.acount"
+#: src/components/OverlayManager/Search/NothingFound.tsx:5
+msgid "Sorry, but we couldn’t match any search results for: “{search}”"
+msgstr "Sorry, but we couldn’t match any search results for: “{search}”"
