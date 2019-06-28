@@ -9,3 +9,4 @@ export * from "./RichTextContent";
 export * from "./IconButton";
 export * from "./Input";
 export * from "./ErrorMessage";
+export * from "./AddNewTile";

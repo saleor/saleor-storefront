@@ -2,5 +2,5 @@ export interface IProps {
   children: React.ReactElement;
   header?: React.ReactElement;
   footer?: React.ReactElement;
-  hover?: boolean;
+  tileType?: "hover" | "addNew";
 }

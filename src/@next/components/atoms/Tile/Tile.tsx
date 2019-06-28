@@ -11,11 +11,13 @@ export const Tile: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper {...props}>
-      <S.Header>
-        <S.Content>{header}</S.Content>
-      </S.Header>
+      {header && (
+        <S.Header>
+          <S.Content>{header}</S.Content>
+        </S.Header>
+      )}
       <S.Content>{children}</S.Content>
-      <S.Footer>{footer}</S.Footer>
+      {footer && <S.Footer>{footer}</S.Footer>}
     </S.Wrapper>
   );
 };

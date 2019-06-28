@@ -2,7 +2,7 @@ import { styled } from "@styles";
 import { css } from "styled-components";
 
 interface WrapperProps {
-  readonly hover?: boolean;
+  readonly tileType?: "hover" | "addNew";
 }
 
 export const Wrapper = styled.div<WrapperProps>`
@@ -11,14 +11,31 @@ export const Wrapper = styled.div<WrapperProps>`
 
   margin-bottom: ${props => `${props.theme.flexboxgrid.gutterWidth}rem`};
   padding: 0;
-  ${props =>
-    props.hover &&
-    css`
-      :hover {
-        cursor: pointer;
-        border-color: ${props.theme.tile.hoverBorder};
-      }
-    `}
+  transition: all 0.3s, color 0s, fill 0s;
+
+  ${props => {
+    if (props.tileType === "hover") {
+      return css`
+        :hover {
+          cursor: pointer;
+          border-color: ${props.theme.tile.hoverBorder};
+        }
+      `;
+    }
+    if (props.tileType === "addNew") {
+      return css`
+        color: ${props.theme.colors.secondary};
+        :hover {
+          cursor: pointer;
+          color: ${props.theme.colors.white};
+          background-color: ${props.theme.colors.secondary};
+          svg path {
+            fill: ${props.theme.colors.white};
+          }
+        }
+      `;
+    }
+  }}
 `;
 
 export const Header = styled.div`

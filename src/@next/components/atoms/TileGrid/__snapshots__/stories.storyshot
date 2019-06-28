@@ -22,6 +22,8 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   border: 1px transparent solid;
   margin-bottom: 2rem;
   padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
 }
 
 .c4 {
@@ -314,6 +316,8 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   border: 1px transparent solid;
   margin-bottom: 2rem;
   padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
 }
 
 .c4 {
