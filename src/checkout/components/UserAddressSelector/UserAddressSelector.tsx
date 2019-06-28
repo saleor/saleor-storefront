@@ -18,6 +18,9 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   update,
   user,
 }) => {
+  const [newAddress, addNewAddress] = React.useState<FormAddressType | null>(
+    null
+  );
   const [addressesList, addAddressToList] = React.useState<FormAddressType[]>(
     React.useMemo(() => getInitialAddresses({ type, checkout, user }), [
       checkout,
@@ -43,7 +46,6 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
     () => setModalVisibility(false),
     []
   );
-
   const unselectAddress = () => {
     if (selectedAddress && shippingAsBilling) {
       setSelectedAddress(null);
@@ -53,6 +55,12 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   React.useEffect(() => {
     unselectAddress();
   });
+
+  React.useEffect(() => {
+    if (!errors.length && !loading && newAddress) {
+      updateAddresses(newAddress);
+    }
+  }, [errors]);
 
   const uncheckShippingAsBilling = () => {
     if (shippingAsBilling) {
@@ -75,15 +83,13 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
       uncheckShippingAsBilling();
       setSelectedAddress(address);
     }
+    addNewAddress(null);
     hideAddModalForm();
   };
 
   const handleAddressAdd = async (address: FormAddressType) => {
     await onSubmit(address);
-
-    if (!errors.length) {
-      updateAddresses(address);
-    }
+    addNewAddress(address);
   };
 
   return (
