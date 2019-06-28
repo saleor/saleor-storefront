@@ -11,6 +11,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add rich-text content renderer - #361 by @AlicjaSzu
 - Add TextField and ErrorMessage components - #373 by @AlicjaSzu
 - Add CreditCardForm components - #369 by @AlicjaSzu
+- Display filters when no product was found - #319 by @aldomonteiro
 
 ## 0.6.0
 
