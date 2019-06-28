@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/CreditCardWithIcon default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c2 {
+  padding: 0 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div>
+    <div
+      className="c1"
+    >
+      <div />
+    </div>
+    <span
+      className="c2"
+    >
+      XXXX XXXX XXXX 
+      1234
+    </span>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;

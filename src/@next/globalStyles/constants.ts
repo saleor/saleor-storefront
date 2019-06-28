@@ -44,6 +44,7 @@ export const h1FontSize = "4rem"; // 64px
 export const h1LineHeight = 1;
 export const h3FontSize = "1.5rem"; // 24px
 export const h4FontSize = "1.125rem"; // 18px
+export const labelFontSize = "0.75rem"; // 12px
 export const smallFontSize = "0.875rem"; // 14px
 
 // spacing

@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Tile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c2 {
+  border-bottom: 2px solid #7d7d7d;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c4 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="c3"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="c4"
+    />
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Tile with hover 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  padding: 0;
+}
+
+.c1:hover {
+  cursor: pointer;
+  border-color: #190c4e;
+}
+
+.c2 {
+  border-bottom: 2px solid #7d7d7d;
+}
+
+.c3 {
+  padding: 1rem 1.25rem;
+}
+
+.c4 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <h3>
+          This is header
+        </h3>
+      </div>
+    </div>
+    <div
+      className="c3"
+    >
+      <div>
+        This is body
+      </div>
+    </div>
+    <div
+      className="c4"
+    >
+      <p>
+        And this is footer
+      </p>
+    </div>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;

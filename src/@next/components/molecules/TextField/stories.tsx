@@ -1,8 +1,8 @@
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { action } from "@storybook/addon-actions";
 import { TextField } from ".";
-import { createStory } from "../baseStory";
 
 const DEFAULT_PROPS = {
   errors: [],
@@ -14,7 +14,7 @@ const DEFAULT_PROPS = {
 const ContentLeft = () => <span>Content Left</span>;
 const ContentRight = () => <span>Content Right</span>;
 
-createStory("TextField")
+storiesOf("@components/molecules/TextField", module)
   .add("default", () => <TextField {...DEFAULT_PROPS} />)
   .add("with errors", () => (
     <TextField

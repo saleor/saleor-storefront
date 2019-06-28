@@ -1,8 +1,9 @@
+import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CreditCardNumberWithIcon } from ".";
-import { createStory } from "../baseStory";
 
-createStory("CreditCardNumberWithIcon").add("default", () => (
-  <CreditCardNumberWithIcon provider="visa" last4Digits={1234} />
-));
+storiesOf(`@components/molecules/CreditCardWithIcon`, module).add(
+  "default",
+  () => <CreditCardNumberWithIcon provider="visa" last4Digits={1234} />
+);

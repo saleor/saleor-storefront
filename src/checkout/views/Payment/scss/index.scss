@@ -1,10 +1,6 @@
 @import "../../../../globalStyles/scss/variables.scss";
 
 .checkout-payment {
-  form {
-    width: 100%;
-  }
-
   &__form {
     display: grid;
     grid-column-gap: 1.25rem;
@@ -19,31 +15,6 @@
       .c-option {
         background-color: $white;
       }
-    }
-  }
-
-  .input {
-    margin-bottom: $spacer / 2;
-  }
-
-  &__form-grid {
-    display: grid;
-    grid-gap: 0 $spacer;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  &__field-error {
-    .input {
-      margin-bottom: 0;
-    }
-  }
-
-  &__error {
-    margin-bottom: $spacer;
-    display: block;
-
-    & ~ & {
-      margin-top: -1rem;
     }
   }
 }

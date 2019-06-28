@@ -10,6 +10,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add cypress tests - #333 by @AlicjaSzu
 - Add rich-text content renderer - #361 by @AlicjaSzu
 - Add TextField and ErrorMessage components - #373 by @AlicjaSzu
+- Add CreditCardForm components - #369 by @AlicjaSzu
 
 ## 0.6.0
 

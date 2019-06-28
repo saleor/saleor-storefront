@@ -6,18 +6,19 @@ export interface PaymentData {
   token: string;
 }
 
-export type ICardName = "ccCsc" | "ccExp" | "ccNumber";
 export interface ICardInputs {
   ccCsc: string | null;
   ccExp: string | null;
   ccNumber: string | null;
 }
 
+export type CardError = { field?: string; message: string } | null;
+
 export interface ICardErrors {
-  cvv?: string;
-  expirationMonth?: string;
-  expirationYear?: string;
-  number?: string;
+  cvv: CardError;
+  expirationMonth: CardError;
+  expirationYear: CardError;
+  number: CardError;
 }
 
 export interface ErrorData {
