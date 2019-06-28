@@ -4,6 +4,7 @@
 !.babelrc
 !.plop
 !.jest
+!.linguirc
 dist
 node_modules
 
