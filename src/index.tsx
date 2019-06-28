@@ -1,6 +1,11 @@
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
+import {
+  NotificationTemplate,
+  ServiceWorkerContext,
+  ServiceWorkerProvider
+} from "@components/atoms";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -23,8 +28,6 @@ import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from './constants';
 import { history } from "./history";
 
-import { NotificationTemplate } from "@components/atoms";
-
 import {
   OverlayProvider,
   UserProvider
@@ -33,8 +36,6 @@ import {
 import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
 import { UserContext } from "./components/User/context";
-
-import ServiceWorkerProvider, { ServiceWorkerContext } from "./components/ServiceWorkerProvider";
 
 import {
   authLink,
@@ -96,6 +97,7 @@ const startApp = async () => {
               location.reload();
             },
             timeout: 0,
+            type: "success",
           }
         );
       }

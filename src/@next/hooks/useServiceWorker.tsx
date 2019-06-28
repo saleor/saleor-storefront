@@ -1,7 +1,7 @@
 import React from "react";
-import { register, unregister } from 'register-service-worker';
+import { register, unregister } from "register-service-worker";
 
-const useServiceWorker = ({ timeout = 1000 }) => {
+export const useServiceWorker = ({ timeout = 1000 }) => {
   const [ updateAvailable, setUpdateAvailable ] = React.useState<boolean>(false);
   const [ registration, setRegistration ] = React.useState<any>(null);
 
@@ -14,7 +14,7 @@ const useServiceWorker = ({ timeout = 1000 }) => {
     return () => clearInterval(interval);
   }, [registration]);
 
-  const registered = registration => setRegistration(registration);
+  const registered = (registration: any) => setRegistration(registration);
   const updated = () => setUpdateAvailable(true);
 
   React.useEffect(() => {
@@ -24,5 +24,3 @@ const useServiceWorker = ({ timeout = 1000 }) => {
 
   return { updateAvailable };
 };
-
-export default useServiceWorker;
