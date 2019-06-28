@@ -9,6 +9,6 @@ const lang = getLangCode(
     fallbackLang
   ).toLowerCase()
 );
-export const loadCatalogs = (language: string = lang) => ({
-  [lang]: import(`@lingui/loader!../locales/${language}/messages.po`),
+export const loadCatalogs = async (language: string = lang) => ({
+  [lang]: await import(`@lingui/loader!../locales/${language}/messages.po`),
 });
