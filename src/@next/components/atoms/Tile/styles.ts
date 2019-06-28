@@ -8,6 +8,8 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
   background-color: ${props => props.theme.tile.backgroundColor};
   border: 1px transparent solid;
+
+  margin-bottom: ${props => `${props.theme.flexboxgrid.gutterWidth}rem`};
   padding: 0;
   ${props =>
     props.hover &&

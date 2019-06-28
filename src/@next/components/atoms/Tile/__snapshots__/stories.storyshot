@@ -20,11 +20,12 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
 .c1 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
+  margin-bottom: 2rem;
   padding: 0;
 }
 
 .c2 {
-  border-bottom: 2px solid #7d7d7d;
+  border-bottom: 2px solid #c4c4c4;
 }
 
 .c3 {
@@ -90,6 +91,7 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
 .c1 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
+  margin-bottom: 2rem;
   padding: 0;
 }
 
@@ -99,7 +101,7 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
 }
 
 .c2 {
-  border-bottom: 2px solid #7d7d7d;
+  border-bottom: 2px solid #c4c4c4;
 }
 
 .c3 {
