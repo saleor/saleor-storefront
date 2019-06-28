@@ -3,7 +3,7 @@ import React from "react";
 
 const ApolloContext = React.createContext<null | ApolloClient<any>>(null);
 
-interface ApolloProviderProps<TCacheShape> {
+interface SaleorProviderProps<TCacheShape> {
   children?: React.ReactNode;
   apolloClient: ApolloClient<TCacheShape>;
 }
@@ -11,8 +11,8 @@ interface ApolloProviderProps<TCacheShape> {
 export function SaleorProvider<TCacheShape = any>({
   apolloClient,
   children,
-}: ApolloProviderProps<TCacheShape>): React.ReactElement<
-  ApolloProviderProps<TCacheShape>
+}: SaleorProviderProps<TCacheShape>): React.ReactElement<
+  SaleorProviderProps<TCacheShape>
 > {
   return (
     <ApolloContext.Provider value={apolloClient}>
