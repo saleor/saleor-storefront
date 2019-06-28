@@ -80,13 +80,14 @@ exports[`Storyshots @components/atoms/Tile default 1`] = `
 .c1 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
+  margin-bottom: 2rem;
   padding: 0;
   -webkit-transition: all 0.3s,color 0s,fill 0s;
   transition: all 0.3s,color 0s,fill 0s;
 }
 
 .c2 {
-  border-bottom: 2px solid #7d7d7d;
+  border-bottom: 2px solid #c4c4c4;
 }
 
 .c3 {
@@ -144,6 +145,7 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
 .c1 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
+  margin-bottom: 2rem;
   padding: 0;
   -webkit-transition: all 0.3s,color 0s,fill 0s;
   transition: all 0.3s,color 0s,fill 0s;
@@ -155,7 +157,7 @@ exports[`Storyshots @components/atoms/Tile with hover 1`] = `
 }
 
 .c2 {
-  border-bottom: 2px solid #7d7d7d;
+  border-bottom: 2px solid #c4c4c4;
 }
 
 .c3 {

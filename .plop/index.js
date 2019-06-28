@@ -16,6 +16,7 @@ module.exports = plop => {
   });
 
   plop.setPartial("p_componentName", "{{pascalCase componentName}}");
+  plop.setPartial("p_componentGroup", "{{componentGroup}}");
   plop.setPartial(
     "p_componentTagName",
     '{{#if componentHasStyles}}Wrapper{{else}}{{#ifEqual applicationType "mobile"}}View{{else}}React.Fragment{{/ifEqual}}{{/if}}'

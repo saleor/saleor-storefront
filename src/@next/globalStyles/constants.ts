@@ -7,6 +7,7 @@ export const blue = "#21125e";
 export const blueDark = "#190c4e";
 export const blueOverlay = `rgba(${blue}, 0.15)`;
 export const gray = "#7d7d7d";
+export const grayMedium = "#c4c4c4";
 export const grayDark = "#323232";
 export const grayLight = "#f1f5f5";
 export const green = "#3ed256";
@@ -22,6 +23,7 @@ export const theme = {
   baseFont: baseFontColor,
   dark: black,
   disabled: gray,
+  divider: grayMedium,
   error: rose,
   light: grayLight,
   primary: turquoise,

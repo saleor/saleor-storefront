@@ -124,7 +124,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
 
                   return (
                     <SearchPage onQueryChange={change} query={query}>
-                      {hasProducts && canDisplayFilters && (
+                      {canDisplayProducts && canDisplayFilters && (
                         <ProductFilters
                           attributes={data.attributes.edges.map(
                             edge => edge.node

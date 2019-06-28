@@ -37,6 +37,7 @@
     "react-media": "^1.8.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-styled-flexboxgrid": "^3.1.0",
     "react-svg": "^5.0.6",
     "reset-css": "^4.0.1",
     "styled-components": "^4.3.0",
