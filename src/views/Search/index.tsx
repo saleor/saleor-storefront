@@ -118,8 +118,8 @@ export const SearchView: React.FC<SearchViewProps> = ({
                     return isOnline ? (
                       <Error error={error.message} />
                     ) : (
-                        <OfflinePlaceholder />
-                      );
+                      <OfflinePlaceholder />
+                    );
                   }
 
                   return (
