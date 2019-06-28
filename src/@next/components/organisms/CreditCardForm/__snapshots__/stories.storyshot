@@ -489,6 +489,15 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   box-sizing: border-box;
 }
 
+.c8 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+.c9 {
+  margin: 0;
+}
+
 .c11 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -557,15 +566,6 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   -webkit-transition: all 0.3s ease,color 0s;
   transition: all 0.3s ease,color 0s;
   pointer-events: none;
-}
-
-.c8 {
-  color: #c22d74;
-  font-size: 0.75rem;
-}
-
-.c9 {
-  margin: 0;
 }
 
 .c3 {

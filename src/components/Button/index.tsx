@@ -9,6 +9,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  className = "",
   children,
   secondary,
   btnRef,
@@ -16,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   ...otherProps
 }) => (
   <button
-    className={secondary ? "secondary" : ""}
+    className={`button ${secondary ? "secondary" : ""} ${className}`}
     ref={btnRef}
     type={type as ButtonType}
     {...otherProps}
