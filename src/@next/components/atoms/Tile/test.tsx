@@ -56,7 +56,7 @@ describe("<Tile />", () => {
     );
   });
 
-  it("should display only element if no footer and header elements passed", () => {
+  it("should display only one element if no footer and header elements passed", () => {
     const wrapper = shallow(
       <Tile>
         <p>This is content</p>
