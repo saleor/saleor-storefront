@@ -4,7 +4,6 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
-const path = require("path");
 
 module.exports = ({ sourceDir, distDir }) => ({
   resolve: {
