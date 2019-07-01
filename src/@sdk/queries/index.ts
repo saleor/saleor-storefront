@@ -1,4 +1,8 @@
-import { ApolloClient, ApolloQueryResult, QueryOptions } from "apollo-client";
+import {
+  ApolloClient,
+  ApolloQueryResult,
+  QueryOptions as ApolloQueryOptions
+} from "apollo-client";
 import gql from "graphql-tag";
 
 import { Omit, RequireOnlyOne } from "../tsHelpers";
@@ -7,9 +11,9 @@ import * as Product from "./products";
 // TEST TYPES
 import { ProductDetails } from "../../views/Product/types/ProductDetails";
 
-export type SQueryOptions<T = {}> = T extends { [n: string]: never }
-  ? Omit<QueryOptions<{}>, "query">
-  : RequireOnlyOne<Omit<QueryOptions<T>, "query">, "variables">;
+export type QueryOptions<T = {}> = T extends { [n: string]: never }
+  ? Omit<ApolloQueryOptions<{}>, "query">
+  : RequireOnlyOne<Omit<ApolloQueryOptions<T>, "query">, "variables">;
 
 export type InferVariables<
   N extends keyof QUERIES,
@@ -24,7 +28,7 @@ export type InferVariables<
 export const QUERIES = {
   ProductDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
-    options: SQueryOptions<{ id: string }>
+    options: QueryOptions<{ id: string }>
   ): Promise<ApolloQueryResult<ProductDetails>> =>
     client.query({
       query: gql`

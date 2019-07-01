@@ -3,7 +3,7 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import urljoin from "url-join";
 
-import { QUERIES, SQueryOptions } from "./queries";
+import { QUERIES, QueryOptions } from "./queries";
 
 export const createSaleorClient = (url?: string) =>
   // TODO: Create boiletplate apollo client config
@@ -21,7 +21,7 @@ export class Saleor {
     this.client = client;
   }
 
-  getProductDetails = (options: SQueryOptions<{ id: string }>) =>
+  getProductDetails = (options: QueryOptions<{ id: string }>) =>
     QUERIES.ProductDetails(this.client, {
       ...options,
     });
