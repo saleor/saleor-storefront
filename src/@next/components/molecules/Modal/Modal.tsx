@@ -48,7 +48,7 @@ export const Modal: React.FC<IProps> = ({
                 )}
               </div>
             </S.Modal>
-          </S.L>
+          </S.Lightbox>
         </S.Overlay>,
         target
       )
