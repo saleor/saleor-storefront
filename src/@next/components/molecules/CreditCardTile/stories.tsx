@@ -11,12 +11,12 @@ const onRemove = action("onRemove called");
 const visa: CCProviders = "visa";
 
 const DEFAULT_PROPS = {
+  creditCardProvider: visa,
   expirationDate: "05/2019",
   last4Digits: 9876,
   nameOnCard: "John Doe",
   onEdit,
   onRemove,
-  provider: visa,
 };
 
 storiesOf(`@components/molecules/CreditCardTile`, module).add("default", () => (

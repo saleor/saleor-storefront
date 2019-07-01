@@ -10,3 +10,4 @@ export * from "./IconButton";
 export * from "./Input";
 export * from "./ErrorMessage";
 export * from "./AddNewTile";
+export * from "./TileGrid";

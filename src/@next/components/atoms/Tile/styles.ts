@@ -8,8 +8,9 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
   background-color: ${props => props.theme.tile.backgroundColor};
   border: 1px transparent solid;
-
+  height: 19rem;
   margin-bottom: ${props => `${props.theme.flexboxgrid.gutterWidth}rem`};
+  overflow: auto;
   padding: 0;
   transition: all 0.3s, color 0s, fill 0s;
 
@@ -24,6 +25,11 @@ export const Wrapper = styled.div<WrapperProps>`
     }
     if (props.tileType === "addNew") {
       return css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
         color: ${props.theme.colors.secondary};
         :hover {
           cursor: pointer;

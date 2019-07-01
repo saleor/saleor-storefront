@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IconButton, Tile } from "@components/atoms/";
-import { CreditCardNumberWithIcon } from "@components/molecules/";
+import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -11,9 +11,16 @@ export const CreditCardTile: React.FC<IProps> = ({
   expirationDate,
   onRemove,
   onEdit,
-  ...props
+  last4Digits,
+  creditCardProvider,
 }: IProps) => {
-  const header = <CreditCardNumberWithIcon {...props} />;
+  const header = (
+    <CreditCardNumberWithIcon
+      last4Digits={last4Digits}
+      creditCardProvider={creditCardProvider}
+    />
+  );
+  // const header = <p>asd</p>;
   const content = (
     <>
       <S.BoldTitle>Expires on</S.BoldTitle>
