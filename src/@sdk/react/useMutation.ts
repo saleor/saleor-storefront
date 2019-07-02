@@ -5,7 +5,7 @@ import { GraphQLError } from "graphql";
 
 import React from "react";
 
-import { MutationOptions, MUTATIONS } from "../mutations";
+import { MutationOptions } from "../mutations";
 import { Omit } from "../tsHelpers";
 import { useSaleorClient } from "./context";
 
@@ -64,7 +64,26 @@ const initialState: MutationResult<any> = {
   loading: false,
 };
 
-export function useMutation<TData, TVariables = OperationVariables>(
+// errors are nested in data as it currently stands in the API
+// this helper extracts all errors present
+const getErrorsFromData = data => {
+  try {
+    const error = Object.keys(data).reduce((acc, key) => {
+      return {
+        ...acc,
+        ...(data[key].errors &&
+          !!data[key].errors.length && { [key]: data[key].errors }),
+      };
+    }, {});
+
+    return !!Object.keys(error).length ? error : null;
+  } catch (e) {
+    // set global error when data is not an object
+    return { global: true };
+  }
+};
+
+function useMutation<TData, TVariables = OperationVariables>(
   mutation: any,
   baseOptions: BaseMutationHookOptions<TData, TVariables> = {}
 ): [MutationFn<TData, TVariables>, MutationResult<TData>] {
@@ -99,12 +118,12 @@ export function useMutation<TData, TVariables = OperationVariables>(
     response: ExecutionResult<TData>,
     mutationId: number
   ) => {
-    const { data, errors } = response;
-    if (errors && errors.length > 0) {
-      handleMutationError(
-        new ApolloError({ graphQLErrors: errors }),
-        mutationId
-      );
+    const { data } = response;
+    const errors = getErrorsFromData(data);
+
+    if (errors) {
+      // TODO: see if there is better place to put these errors
+      handleMutationError(new ApolloError({ extraInfo: errors }), mutationId);
       return;
     }
 
