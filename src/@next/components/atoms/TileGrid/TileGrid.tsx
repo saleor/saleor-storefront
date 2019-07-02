@@ -1,6 +1,6 @@
 import React from "react";
-import { Col, Row } from "react-styled-flexboxgrid";
 
+import * as S from "./styles";
 import { IProps } from "./types";
 
 export const TileGrid: React.FC<IProps> = ({
@@ -11,12 +11,10 @@ export const TileGrid: React.FC<IProps> = ({
   sm = 12,
 }: IProps) => {
   return (
-    <Row>
+    <S.Wrapper>
       {elements.map((element: React.ReactNode) => (
-        <Col xs={xs} sm={sm} md={md} lg={lg}>
-          {element}
-        </Col>
+        <S.Tile>{element}</S.Tile>
       ))}
-    </Row>
+    </S.Wrapper>
   );
 };

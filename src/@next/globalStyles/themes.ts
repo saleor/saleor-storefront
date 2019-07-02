@@ -46,8 +46,8 @@ export const defaultTheme = {
   },
   flexboxgrid: {
     breakpoints: {
-      lg: 33.75, // em
-      md: 33.75, // em
+      lg: 40.75, // em
+      md: 40.75, // em
       sm: 0, // em
       xs: 0, // em
     },

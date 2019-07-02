@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 import { css } from "styled-components";
 
 interface WrapperProps {
@@ -8,12 +8,14 @@ interface WrapperProps {
 export const Wrapper = styled.div<WrapperProps>`
   background-color: ${props => props.theme.tile.backgroundColor};
   border: 1px transparent solid;
-  height: 19rem;
-  margin-bottom: ${props => `${props.theme.flexboxgrid.gutterWidth}rem`};
   overflow: auto;
+  height: 100%;
   padding: 0;
   transition: all 0.3s, color 0s, fill 0s;
 
+  display: flex;
+  flex-direction: column;
+  align-items: left;
   ${props => {
     if (props.tileType === "hover") {
       return css`
@@ -25,12 +27,10 @@ export const Wrapper = styled.div<WrapperProps>`
     }
     if (props.tileType === "addNew") {
       return css`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
         color: ${props.theme.colors.secondary};
+        align-items: center;
+        justify-content: center;
+        /* height: 90%; */
         :hover {
           cursor: pointer;
           color: ${props.theme.colors.white};
@@ -41,8 +41,10 @@ export const Wrapper = styled.div<WrapperProps>`
         }
       `;
     }
-  }}
+  }};
 `;
+
+Wrapper.displayName = "Tile";
 
 export const Header = styled.div`
   border-bottom: 2px solid ${props => props.theme.tile.divisionLine};
