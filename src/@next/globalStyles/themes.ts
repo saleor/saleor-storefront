@@ -31,6 +31,7 @@ export const defaultTheme = {
       fontSize: "1.125rem",
       fontWeight: "600",
       lineHeight: "1.25rem",
+      smallFontSize: "1rem",
       textTransform: "uppercase",
     },
   },

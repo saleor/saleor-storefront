@@ -1,10 +1,10 @@
 export interface IButtonProps {
-  action?: (e: React.ReactEventHandler) => void;
+  action?: (e: any) => void;
   text: string;
 }
 
 export interface IProps {
-  formId: string;
+  formId?: string;
   cancelBtn?: IButtonProps;
   submitBtn: IButtonProps;
 }

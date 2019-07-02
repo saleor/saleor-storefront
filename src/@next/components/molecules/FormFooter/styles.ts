@@ -1,11 +1,9 @@
 import { styled } from "@styles";
 
-const horizontalPadding = "2rem";
-
 export const Footer = styled.div`
   position: relative;
   text-align: right;
-  padding: 1.8rem 0 1.4rem;
+  padding: 1.1rem 0.8rem 1.1rem 0;
   &:before {
     display: block;
     content: "";
@@ -15,7 +13,7 @@ export const Footer = styled.div`
     transform: translateX(-50%);
     background-color: ${props => props.theme.colors.light};
     height: 1px;
-    width: calc(100% + ${horizontalPadding} * 2);
+    width: ${props => `calc(100% + ${props.theme.spacing.spacer} * 4)`};
   }
   button {
     &:first-child {
