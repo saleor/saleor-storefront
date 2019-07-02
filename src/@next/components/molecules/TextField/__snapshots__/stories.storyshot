@@ -57,6 +57,7 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: #fff;
+  font-size: 0.875rem;
   top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -173,6 +174,7 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: #fff;
+  font-size: 0.875rem;
   top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -296,6 +298,7 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: #fff;
+  font-size: 0.875rem;
   top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -417,6 +420,7 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: #fff;
+  font-size: 0.875rem;
   top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);

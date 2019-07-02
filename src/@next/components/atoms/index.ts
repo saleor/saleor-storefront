@@ -12,3 +12,4 @@ export * from "./NotificationTemplate";
 export * from "./RichTextContent";
 export * from "./ServiceWorkerProvider";
 export * from "./SocialMediaIcon";
+export * from "./ButtonLink";
