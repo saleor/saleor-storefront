@@ -1,14 +1,13 @@
 import React from "react";
 
+import { Button, ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
 export const FormFooter: React.FC<IProps> = ({
-  // destructure props here if needed
+  cancelBtn,
+  formId,
+  submitBtn,
 }: IProps) => {
-  return (
-    <S.Wrapper>
-      {/* --- here --- */}
-    </S.Wrapper>
-  )
+  return <S.Footer></S.Footer>;
 };
