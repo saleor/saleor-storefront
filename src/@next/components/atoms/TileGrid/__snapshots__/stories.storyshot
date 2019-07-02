@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   margin: 20px;
 }
 
-.c5 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   box-sizing: border-box;
 }
 
-.c1 {
+.c3 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
   margin-bottom: 2rem;
@@ -26,194 +26,262 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   transition: all 0.3s,color 0s,fill 0s;
 }
 
-.c2 {
+.c4 {
   border-bottom: 2px solid #c4c4c4;
 }
 
-.c3 {
+.c5 {
   padding: 1rem 1.25rem;
 }
 
-.c4 {
+.c6 {
   padding: 0 1rem;
   margin-bottom: 1rem;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
+
+.c2 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media only screen and (min-width:0em) {
+  .c2 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c2 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:33.75em) {
+  .c2 {
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:33.75em) {
+  .c2 {
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    max-width: 50%;
+    display: block;
+  }
 }
 
 <div
   className="c0"
 >
   <div
-    className="FqmtD"
+    className="c1"
   >
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="iFXKmx"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
@@ -221,7 +289,7 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
     </div>
   </div>
   <div
-    className="c5"
+    className="c7"
   />
 </div>
 `;
@@ -232,7 +300,7 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   margin: 20px;
 }
 
-.c5 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -243,7 +311,7 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   box-sizing: border-box;
 }
 
-.c1 {
+.c3 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
   margin-bottom: 2rem;
@@ -252,194 +320,262 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   transition: all 0.3s,color 0s,fill 0s;
 }
 
-.c2 {
+.c4 {
   border-bottom: 2px solid #c4c4c4;
 }
 
-.c3 {
+.c5 {
   padding: 1rem 1.25rem;
 }
 
-.c4 {
+.c6 {
   padding: 0 1rem;
   margin-bottom: 1rem;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
+
+.c2 {
+  box-sizing: border-box;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media only screen and (min-width:0em) {
+  .c2 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:0em) {
+  .c2 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:33.75em) {
+  .c2 {
+    -webkit-flex-basis: 33.333333333333336%;
+    -ms-flex-preferred-size: 33.333333333333336%;
+    flex-basis: 33.333333333333336%;
+    max-width: 33.333333333333336%;
+    display: block;
+  }
+}
+
+@media only screen and (min-width:33.75em) {
+  .c2 {
+    -webkit-flex-basis: 33.333333333333336%;
+    -ms-flex-preferred-size: 33.333333333333336%;
+    flex-basis: 33.333333333333336%;
+    max-width: 33.333333333333336%;
+    display: block;
+  }
 }
 
 <div
   className="c0"
 >
   <div
-    className="FqmtD"
+    className="c1"
   >
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
       </div>
     </div>
     <div
-      className="dYnkQr"
+      className="c2"
     >
       <div
-        className="c1"
+        className="c3"
       >
         <div
-          className="c2"
+          className="c4"
         >
           <div
-            className="c3"
+            className="c5"
           >
             This is header
           </div>
         </div>
         <div
-          className="c3"
+          className="c5"
         >
           <p>
             Tile content
           </p>
         </div>
         <div
-          className="c4"
+          className="c6"
         >
           This is footer
         </div>
@@ -447,7 +583,7 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
     </div>
   </div>
   <div
-    className="c5"
+    className="c7"
   />
 </div>
 `;
