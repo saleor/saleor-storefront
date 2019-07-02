@@ -4,5 +4,5 @@ export type Color = "base" | "secondary";
 export interface IProps extends React.HTMLAttributes<HTMLButtonElement> {
   color?: Color;
   size?: Size;
-  text: string;
+  children: React.ReactNode;
 }

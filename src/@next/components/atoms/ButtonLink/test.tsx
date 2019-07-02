@@ -6,32 +6,30 @@ import { ButtonLink } from ".";
 import { IProps } from "./types";
 
 const TEXT = "Text";
-const DEFAULT_PROPS = {
-  text: TEXT,
-};
 
 describe("<ButtonLink />", () => {
-  const renderButtonLink = (props: IProps) =>
-    shallow(<ButtonLink {...props} />);
+  const renderButtonLink = (props?: IProps) =>
+    shallow(<ButtonLink {...props}>{TEXT}</ButtonLink>);
 
   it("exists", () => {
-    const buttonLink = renderButtonLink(DEFAULT_PROPS);
+    const buttonLink = renderButtonLink();
 
     expect(buttonLink.exists()).toEqual(true);
   });
 
   it("renders children", () => {
-    const buttonLink = renderButtonLink(DEFAULT_PROPS);
+    const buttonLink = renderButtonLink();
 
     expect(buttonLink.text()).toEqual(TEXT);
   });
 
   it("simulates click events", () => {
     const onButtonLinkClick = jest.fn();
-    const buttonLink = renderButtonLink({
-      ...DEFAULT_PROPS,
+    const PROPS = {
+      children: TEXT,
       onClick: onButtonLinkClick,
-    });
+    };
+    const buttonLink = renderButtonLink(PROPS);
 
     buttonLink.simulate("click");
     expect(onButtonLinkClick).toHaveBeenCalled();

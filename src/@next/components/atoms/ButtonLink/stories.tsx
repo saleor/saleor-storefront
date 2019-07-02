@@ -5,6 +5,6 @@ const TEXT = "Text";
 
 import { ButtonLink } from ".";
 storiesOf("@components/atoms/ButtonLink", module)
-  .add("Base", () => <ButtonLink text={TEXT} />)
-  .add("Secondary", () => <ButtonLink text={TEXT} color="secondary" />)
-  .add("Size sm", () => <ButtonLink text={TEXT} size="sm" />);
+  .add("Base", () => <ButtonLink>{TEXT}</ButtonLink>)
+  .add("Secondary", () => <ButtonLink color="secondary">{TEXT}</ButtonLink>)
+  .add("Size sm", () => <ButtonLink size="sm">{TEXT}</ButtonLink>);
