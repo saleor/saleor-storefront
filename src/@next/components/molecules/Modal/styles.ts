@@ -5,7 +5,7 @@ const horizontalPadding = "2rem";
 export const Overlay = styled.div`
   display: flex;
   overflow-y: auto;
-  background-color: rgba(199, 207, 207, 0.8);
+  background-color: ${props => props.theme.colors.overlay};
   height: 100%;
   min-height: 100vh;
   position: fixed;
@@ -34,20 +34,22 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: inherit;
-  padding: 1.8rem ${horizontalPadding} 0;
+  padding: 0 ${horizontalPadding} 0;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  padding: 4rem 0 1.8rem;
+`;
 
 export const Header = styled.div`
   position: relative;
-  padding-bottom: ${horizontalPadding};
-  align-items: center;
-  color: $base-font-color;
   display: flex;
-  font-weight: bold;
+  align-items: center;
+  color: ${props => props.theme.colors.baseFont};
+  font-weight: ${props => props.theme.typography.boldFontWeight};
   text-transform: uppercase;
+  padding: 1.8rem 0 1.4rem;
+  margin-bottom: 1px;
   p {
     margin-right: auto;
   }
@@ -58,15 +60,16 @@ export const Header = styled.div`
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: ${props => props.theme.colors.light};
+    background-color: ${props => props.theme.colors.light};
     width: calc(100% + ${horizontalPadding} * 2);
     height: 1px;
   }
 `;
 
 export const Footer = styled.div`
-  margin-top: ${horizontalPadding};
   position: relative;
+  text-align: right;
+  padding: 1.8rem 0 1.4rem;
   &:before {
     display: block;
     content: "";
@@ -74,15 +77,18 @@ export const Footer = styled.div`
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background: $gray;
+    background-color: ${props => props.theme.colors.light};
     height: 1px;
-    width: calc(100% + #{${horizontalPadding}} * 2);
+    width: calc(100% + ${horizontalPadding} * 2);
+  }
+  button {
+    &:first-child {
+      margin-right: 2rem;
+    }
   }
 `;
 
-export const CloseBtn = styled.button`
-  $height: 19px;
-`;
+export const CloseBtn = styled.button``;
 
 //     .modal {
 //       a,
