@@ -5,6 +5,7 @@ import {
 import gql from "graphql-tag";
 
 import * as Auth from "./auth";
+import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
@@ -15,8 +16,8 @@ export type MutationOptions<TData, TVariables> = Omit<
 export const MUTATIONS = {
   TokenAuth: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
-    options: MutationOptions<any, { name: string; password: string }>
-  ): Promise<any> =>
+    options: MutationOptions<TokenAuth, TokenAuthVariables>
+  ) =>
     client.mutate({
       mutation: gql`
         ${Auth.tokenAuthMutation}

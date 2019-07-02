@@ -3,6 +3,7 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import urljoin from "url-join";
 
+import { MutationOptions, MUTATIONS } from "./mutations";
 import { QUERIES, QueryOptions } from "./queries";
 
 export const createSaleorClient = (url?: string) =>
@@ -14,15 +15,18 @@ export const createSaleorClient = (url?: string) =>
     }),
   });
 
-export class Saleor {
+type InferOptions<T> = T extends (c, o: infer O) => any ? O : never;
+
+export class SaleorAPI {
   client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
   }
 
-  getProductDetails = (options: QueryOptions<{ id: string }>) =>
-    QUERIES.ProductDetails(this.client, {
-      ...options,
-    });
+  getProductDetails = (options: InferOptions<QUERIES["ProductDetails"]>) =>
+    QUERIES.ProductDetails(this.client, options);
+
+  setAuthToken = (options: InferOptions<MUTATIONS["TokenAuth"]>) =>
+    MUTATIONS.TokenAuth(this.client, options);
 }

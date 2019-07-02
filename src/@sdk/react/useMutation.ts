@@ -5,25 +5,41 @@ import { GraphQLError } from "graphql";
 
 import React from "react";
 
-import { MutationOptions } from "../mutations";
+import { MutationOptions, MUTATIONS } from "../mutations";
 import { Omit } from "../tsHelpers";
 import { useSaleorClient } from "./context";
 
-// types
-export type MutationUpdaterFn<TData = Record<string, any>> = (
+type MutationUpdaterFn<TData = Record<string, any>> = (
   proxy: DataProxy,
   mutationResult: FetchResult<TData>
 ) => void;
 
-export interface BaseMutationHookOptions<TData, TVariables>
+interface BaseMutationHookOptions<TData, TVariables>
   extends Omit<MutationOptions<TData, TVariables>, "update"> {
   update?: MutationUpdaterFn<TData>;
 }
 
-export type MutationFn<TData, TVariables> = (
+type MutationFn<TData, TVariables> = (
   options?: BaseMutationHookOptions<TData, TVariables>
 ) => Promise<FetchResult<TData>>;
-// ---
+
+type InferVariables<
+  N extends keyof MUTATIONS,
+  T extends MUTATIONS[N]
+> = T extends (c, o: infer O) => any ? O : {};
+
+interface MutationResult<TData> {
+  called: boolean;
+  data: TData | null;
+  error: ApolloError | null;
+  loading: boolean;
+}
+
+interface ExecutionResult<T = Record<string, any>> {
+  data?: T;
+  extensions?: Record<string, any>;
+  errors?: GraphQLError[];
+}
 
 // keep track of called mutation
 const useMutationTracking = (() => {
@@ -43,19 +59,6 @@ const useMutationTracking = (() => {
     isMostRecentMutation,
   });
 })();
-
-export interface MutationResult<TData> {
-  called: boolean;
-  data: TData | null;
-  error: ApolloError | null;
-  loading: boolean;
-}
-
-export interface ExecutionResult<T = Record<string, any>> {
-  data?: T;
-  extensions?: Record<string, any>;
-  errors?: GraphQLError[];
-}
 
 const initialState: MutationResult<any> = {
   called: false,
@@ -83,10 +86,10 @@ const getErrorsFromData = data => {
   }
 };
 
-function useMutation<TData, TVariables = OperationVariables>(
+const useMutation = <TData, TVariables = OperationVariables>(
   mutation: any,
   baseOptions: BaseMutationHookOptions<TData, TVariables> = {}
-): [MutationFn<TData, TVariables>, MutationResult<TData>] {
+): [MutationFn<TData, TVariables>, MutationResult<TData>] => {
   const client = useSaleorClient();
   const { generateNewMutationId, isMostRecentMutation } = useMutationTracking();
   const [result, setResult] = React.useState<MutationResult<TData>>(
@@ -165,8 +168,11 @@ function useMutation<TData, TVariables = OperationVariables>(
   );
 
   return [runMutation, result];
-}
+};
 
-export const mutationFactory = mutation => (
-  options: MutationOptions<any, any>
-) => useMutation(mutation, options);
+export const mutationFactory = <
+  N extends keyof MUTATIONS,
+  T extends MUTATIONS[N]
+>(
+  mutation: T
+) => (options?: InferVariables<N, T>) => useMutation(mutation, options);
