@@ -19,9 +19,9 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 
 .c1 {
   background-color: #3ee7cd;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
   padding: 0.9rem 3.7rem;
   border: none;
   box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
@@ -58,9 +58,9 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -77,9 +77,11 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   <button
     className="c1"
     color="primary"
+    size="md"
   >
     <span
       className="c2"
+      size="md"
     >
       Primary Button
     </span>
@@ -109,9 +111,9 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 
 .c1 {
   background-color: #fff;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
   padding: 0.9rem 3.7rem;
   border: none;
   box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
@@ -151,9 +153,9 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -170,9 +172,11 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   <button
     className="c1"
     color="secondary"
+    size="md"
   >
     <span
       className="c2"
+      size="md"
     >
       Secondary Button
     </span>
