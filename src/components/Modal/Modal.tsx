@@ -4,7 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import ReactSVG from "react-svg";
 
-import { Button } from "..";
+import { FormFooter } from "@components/molecules";
 import closeImg from "../../images/modal-close.svg";
 
 interface IModalProps {
@@ -44,23 +44,11 @@ const Modal: React.FC<IModalProps> = ({
                 />
               </div>
               <div className="modal__content">{children}</div>
-              <div className="modal__footer">
-                {cancelBtnText && (
-                  <button className="modal__cancelBtn" onClick={hide}>
-                    {cancelBtnText}
-                  </button>
-                )}
-                {submitBtnText && (
-                  <Button
-                    type="submit"
-                    form={formId}
-                    disabled={loading}
-                    className="modal__button"
-                  >
-                    {loading ? "Loading" : submitBtnText}
-                  </Button>
-                )}
-              </div>
+              <FormFooter
+                cancelBtn={{ action: hide, text: cancelBtnText }}
+                submitBtn={{ text: loading ? "Loading" : submitBtnText }}
+                formId={formId}
+              />
             </div>
           </div>
         </div>,
