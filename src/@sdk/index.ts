@@ -3,19 +3,19 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import urljoin from "url-join";
 
-import { MutationOptions, MUTATIONS } from "./mutations";
-import { QUERIES, QueryOptions } from "./queries";
+import { MUTATIONS } from "./mutations";
+import { QUERIES } from "./queries";
+
+type InferOptions<T> = T extends (c, o: infer O) => any ? O : never;
 
 export const createSaleorClient = (url?: string) =>
-  // TODO: Create boiletplate apollo client config
+  // TODO: Create default apollo client config for most users
   new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
       uri: urljoin(url || "/", "/graphql/"),
     }),
   });
-
-type InferOptions<T> = T extends (c, o: infer O) => any ? O : never;
 
 export class SaleorAPI {
   client: ApolloClient<any>;
