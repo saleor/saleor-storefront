@@ -24,4 +24,11 @@ storiesOf("@components/molecules/FormFooter", module)
       cancelBtn,
     };
     return <FormFooter {...PROPS} />;
+  })
+  .add("with top divider", () => {
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      divider: true,
+    };
+    return <FormFooter {...PROPS} />;
   });

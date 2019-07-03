@@ -97,6 +97,7 @@ export const defaultTheme = {
     productItemTitleTextTransform: "uppercase",
   },
   spacing: {
+    gutter: "1.875rem", // 30px
     spacer: `${C.spacer}rem`, // 16px
   },
   tile: {

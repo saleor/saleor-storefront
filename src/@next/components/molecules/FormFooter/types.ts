@@ -6,5 +6,6 @@ export interface IButtonProps {
 export interface IProps {
   formId?: string;
   cancelBtn?: IButtonProps;
+  divider?: boolean;
   submitBtn: IButtonProps;
 }
