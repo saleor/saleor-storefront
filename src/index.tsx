@@ -1,3 +1,4 @@
+import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
@@ -25,13 +26,11 @@ import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
-import { apiUrl, serviceWorkerTimeout } from './constants';
+import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
+import { lang, loadCatalogs } from "./translations";
 
-import {
-  OverlayProvider,
-  UserProvider
-} from "./components";
+import { OverlayProvider, UserProvider } from "./components";
 
 import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
@@ -79,6 +78,8 @@ const startApp = async () => {
     timeout: 2500,
   };
 
+  const catalogs = (await loadCatalogs(lang)) || {};
+
   const Root = hot(module)(() => {
     const alert = useAlert();
 
@@ -89,7 +90,8 @@ const startApp = async () => {
         alert.show(
           {
             actionText: "Refresh",
-            content: "To update the application to the latest version, please refresh the page!",
+            content:
+              "To update the application to the latest version, please refresh the page!",
             title: "New version is available!",
           },
           {
@@ -160,12 +162,14 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-        <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <GlobalStyle />
-          <Root />
-        </ServiceWorkerProvider>
-      </AlertProvider>
+      <I18nProvider language={lang} catalogs={catalogs}>
+        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <GlobalStyle />
+            <Root />
+          </ServiceWorkerProvider>
+        </AlertProvider>
+      </I18nProvider>
     </ThemeProvider>,
     document.getElementById("root")
   );

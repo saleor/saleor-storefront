@@ -104,9 +104,14 @@ module.exports = ({ sourceDir, distDir }) => ({
         theme_color: "#333"
       }
     }),
-    new webpack.EnvironmentPlugin(["npm_package_version", "BACKEND_URL", "SERVICE_WORKER_TIMEOUT"])
+    new webpack.EnvironmentPlugin([
+      "npm_package_version",
+      "BACKEND_URL",
+      "SERVICE_WORKER_TIMEOUT"
+    ])
   ],
   node: {
-    fs: "empty"
+    fs: "empty",
+    module: "empty"
   }
 });
