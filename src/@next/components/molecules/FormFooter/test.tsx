@@ -26,11 +26,27 @@ describe("<FormFooter />", () => {
     expect(formFooter.exists()).toEqual(true);
   });
 
-  it("should render < Button />", () => {
+  it("should render <Button />", () => {
     const button = renderFormFooter(DEFAULT_PROPS).find(Button);
 
     expect(button.exists()).toEqual(true);
     expect(button.prop("onClick")).toEqual(onSubmit);
+    expect(button.children().text()).toEqual(submitBtnText);
+  });
+
+  it("should render <Button /> with form attribute", () => {
+    const FORM_ID = "form-id";
+    const PROPS = {
+      formId: FORM_ID,
+      submitBtn: {
+        text: "Submit",
+      },
+    };
+    const button = renderFormFooter(PROPS).find(Button);
+
+    expect(button.exists()).toEqual(true);
+    expect(button.children().text()).toEqual("Submit");
+    expect(button.prop("form")).toEqual(FORM_ID);
   });
 
   it("should render <ButtonLink />", () => {
@@ -43,5 +59,6 @@ describe("<FormFooter />", () => {
 
     expect(button.exists()).toEqual(true);
     expect(button.prop("onClick")).toEqual(onCancel);
+    expect(button.children().text()).toEqual(cancelBtnText);
   });
 });
