@@ -13,9 +13,10 @@ export const lang = getLangCode(
 
 export const loadCatalogs = async (language: string = lang) => {
   const catalog = await import(
-     /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
-     `../locales/${language}/messages.js`)
+    /* webpackMode: "lazy", webpackChunkName: "i18n-[index]" */
+    `../locales/${language}/messages.js`
+  );
   return {
-    [language]: catalog
-  }
-}
+    [language]: catalog,
+  };
+};
