@@ -61,7 +61,7 @@ npm start
 
 Go to `http://localhost:3000` to access the storefront.
 
-### Translations
+### Translating
 
 Add locales:
 
