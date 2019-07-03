@@ -4,6 +4,6 @@
    "format": "po",
    "sourceLocale": "en",
    "extractBabelOptions": {
-      "plugins": ["@babel/plugin-syntax-dynamic-import", "macros"]
+      "plugins": ["@babel/plugin-syntax-dynamic-import"]
    }
 }
