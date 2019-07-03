@@ -68,6 +68,10 @@ export const defaultTheme = {
     labelFontSize: "0.75rem", // 12px
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
+  link: {
+    baseColor: C.gray,
+    secondaryColor: C.blue,
+  },
   message: {
     backgroundColor: C.white,
     contentMargin: `${C.spacer}rem 0 0`,

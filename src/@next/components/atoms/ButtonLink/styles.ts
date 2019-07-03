@@ -8,8 +8,8 @@ export const ButtonLink = styled.button<{
   font-size: ${({ size, theme: { typography } }) =>
     size === "md" ? typography.baseFontSize : typography.smallFontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};
-  color: ${({ color, theme: { colors } }) =>
-    color === "secondary" ? colors.secondary : colors.disabled};
+  color: ${({ color, theme: { link } }) =>
+    color === "secondary" ? link.secondaryColor : link.baseColor};
   text-decoration: underline;
   background: transparent;
   outline: none;
