@@ -1,5 +1,5 @@
 export interface IButtonProps {
-  action?: (e: any) => void;
+  action?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   text: string;
 }
 
