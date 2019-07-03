@@ -108,60 +108,53 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <I18nProvider language={lang} catalogs={catalogs}>
-            <ShopProvider>
-              <OverlayProvider>
-                <UserProviderWithTokenHandler
-                  apolloClient={apolloClient}
-                  onUserLogin={() =>
-                    alert.show(
-                      {
-                        title: "You are now logged in",
-                      },
-                      { type: "success" }
-                    )
-                  }
-                  onUserLogout={() =>
-                    alert.show(
-                      {
-                        title: "You are now logged out",
-                      },
-                      { type: "success" }
-                    )
-                  }
-                  refreshUser
-                >
-                  <UserContext.Consumer>
-                    {user => (
-                      <CheckoutProvider user={user}>
-                        <CheckoutContext.Consumer>
-                          {checkout => (
-                            <CartProvider
-                              checkout={checkout}
-                              apolloClient={apolloClient}
-                            >
-                              <ThemeProvider theme={defaultTheme}>
-                                <>
-                                  <Switch>
-                                    <Route
-                                      path={checkoutBaseUrl}
-                                      component={CheckoutApp}
-                                    />
-                                    <Route component={App} />
-                                  </Switch>
-                                  <GlobalStyle />
-                                </>
-                              </ThemeProvider>
-                            </CartProvider>
-                          )}
-                        </CheckoutContext.Consumer>
-                      </CheckoutProvider>
-                    )}
-                  </UserContext.Consumer>
-                </UserProviderWithTokenHandler>
-              </OverlayProvider>
-            </ShopProvider>
-          </I18nProvider>
+          <ShopProvider>
+            <OverlayProvider>
+              <UserProviderWithTokenHandler
+                apolloClient={apolloClient}
+                onUserLogin={() =>
+                  alert.show(
+                    {
+                      title: "You are now logged in",
+                    },
+                    { type: "success" }
+                  )
+                }
+                onUserLogout={() =>
+                  alert.show(
+                    {
+                      title: "You are now logged out",
+                    },
+                    { type: "success" }
+                  )
+                }
+                refreshUser
+              >
+                <UserContext.Consumer>
+                  {user => (
+                    <CheckoutProvider user={user}>
+                      <CheckoutContext.Consumer>
+                        {checkout => (
+                          <CartProvider
+                            checkout={checkout}
+                            apolloClient={apolloClient}
+                          >
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
+                          </CartProvider>
+                        )}
+                      </CheckoutContext.Consumer>
+                    </CheckoutProvider>
+                  )}
+                </UserContext.Consumer>
+              </UserProviderWithTokenHandler>
+            </OverlayProvider>
+          </ShopProvider>
         </ApolloProvider>
       </Router>
     );
@@ -169,12 +162,14 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-        <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <GlobalStyle />
-          <Root />
-        </ServiceWorkerProvider>
-      </AlertProvider>
+      <I18nProvider language={lang} catalogs={catalogs}>
+        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <GlobalStyle />
+            <Root />
+          </ServiceWorkerProvider>
+        </AlertProvider>
+      </I18nProvider>
     </ThemeProvider>,
     document.getElementById("root")
   );
