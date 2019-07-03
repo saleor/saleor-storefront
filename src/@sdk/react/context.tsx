@@ -5,19 +5,17 @@ const ApolloContext = React.createContext<null | ApolloClient<any>>(null);
 
 interface SaleorProviderProps<TCacheShape> {
   children?: React.ReactNode;
-  apolloClient: ApolloClient<TCacheShape>;
+  client: ApolloClient<TCacheShape>;
 }
 
 export function SaleorProvider<TCacheShape = any>({
-  apolloClient,
+  client,
   children,
 }: SaleorProviderProps<TCacheShape>): React.ReactElement<
   SaleorProviderProps<TCacheShape>
 > {
   return (
-    <ApolloContext.Provider value={apolloClient}>
-      {children}
-    </ApolloContext.Provider>
+    <ApolloContext.Provider value={client}>{children}</ApolloContext.Provider>
   );
 }
 

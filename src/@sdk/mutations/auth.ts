@@ -1,25 +1,6 @@
 import gql from "graphql-tag";
 
-// TODO: Add missing fragments
-const userFragment = gql`
-  # checkoutAddressFragment
-  fragment User on User {
-    id
-    email
-    firstName
-    lastName
-    isStaff
-    # defaultShippingAddress {
-    #   ...Address
-    # }
-    # defaultBillingAddress {
-    #   ...Address
-    # }
-    # addresses {
-    #   ...Address
-    # }
-  }
-`;
+import { userFragment } from "../fragments/auth";
 
 export const tokenAuthMutation = gql`
   ${userFragment}

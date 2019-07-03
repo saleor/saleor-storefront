@@ -2,7 +2,6 @@ import { DataProxy } from "apollo-cache";
 import { ApolloError, OperationVariables } from "apollo-client";
 import { FetchResult } from "apollo-link";
 import { GraphQLError } from "graphql";
-
 import React from "react";
 
 import { MutationOptions, MUTATIONS } from "../mutations";
@@ -39,6 +38,10 @@ interface ExecutionResult<T = Record<string, any>> {
   data?: T;
   extensions?: Record<string, any>;
   errors?: GraphQLError[];
+}
+
+interface Error extends ApolloError {
+  extraInfo: string;
 }
 
 // keep track of called mutation
@@ -125,7 +128,6 @@ const useMutation = <TData, TVariables = OperationVariables>(
     const errors = getErrorsFromData(data);
 
     if (errors) {
-      // TODO: see if there is better place to put these errors
       handleMutationError(new ApolloError({ extraInfo: errors }), mutationId);
       return;
     }

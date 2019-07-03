@@ -3,10 +3,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: VerifyToken
+// GraphQL fragment: User
 // ====================================================
 
-export interface VerifyToken_tokenVerify_user_defaultShippingAddress_country {
+export interface User_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -18,7 +18,7 @@ export interface VerifyToken_tokenVerify_user_defaultShippingAddress_country {
   country: string;
 }
 
-export interface VerifyToken_tokenVerify_user_defaultShippingAddress {
+export interface User_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -34,12 +34,12 @@ export interface VerifyToken_tokenVerify_user_defaultShippingAddress {
   /**
    * Default shop's country
    */
-  country: VerifyToken_tokenVerify_user_defaultShippingAddress_country;
+  country: User_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface VerifyToken_tokenVerify_user_defaultBillingAddress_country {
+export interface User_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -51,7 +51,7 @@ export interface VerifyToken_tokenVerify_user_defaultBillingAddress_country {
   country: string;
 }
 
-export interface VerifyToken_tokenVerify_user_defaultBillingAddress {
+export interface User_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -67,12 +67,12 @@ export interface VerifyToken_tokenVerify_user_defaultBillingAddress {
   /**
    * Default shop's country
    */
-  country: VerifyToken_tokenVerify_user_defaultBillingAddress_country;
+  country: User_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface VerifyToken_tokenVerify_user_addresses_country {
+export interface User_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -84,7 +84,7 @@ export interface VerifyToken_tokenVerify_user_addresses_country {
   country: string;
 }
 
-export interface VerifyToken_tokenVerify_user_addresses {
+export interface User_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -100,12 +100,12 @@ export interface VerifyToken_tokenVerify_user_addresses {
   /**
    * Default shop's country
    */
-  country: VerifyToken_tokenVerify_user_addresses_country;
+  country: User_addresses_country;
   countryArea: string;
   phone: string | null;
 }
 
-export interface VerifyToken_tokenVerify_user {
+export interface User {
   __typename: "User";
   /**
    * The ID of the object.
@@ -115,24 +115,10 @@ export interface VerifyToken_tokenVerify_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: VerifyToken_tokenVerify_user_defaultShippingAddress | null;
-  defaultBillingAddress: VerifyToken_tokenVerify_user_defaultBillingAddress | null;
+  defaultShippingAddress: User_defaultShippingAddress | null;
+  defaultBillingAddress: User_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (VerifyToken_tokenVerify_user_addresses | null)[] | null;
-}
-
-export interface VerifyToken_tokenVerify {
-  __typename: "VerifyToken";
-  payload: any | null;
-  user: VerifyToken_tokenVerify_user | null;
-}
-
-export interface VerifyToken {
-  tokenVerify: VerifyToken_tokenVerify | null;
-}
-
-export interface VerifyTokenVariables {
-  token: string;
+  addresses: (User_addresses | null)[] | null;
 }
