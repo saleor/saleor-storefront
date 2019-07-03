@@ -167,6 +167,6 @@
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
     "compile": "lingui compile",
-    "extract:trans": "npm run extract & npm run compile"
+    "extract:compile": "npm run extract & npm run compile"
   }
 }

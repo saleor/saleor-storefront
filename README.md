@@ -72,7 +72,7 @@ npm run add-locale <locale>
 Extract and compile messages:
 
 ```
-npm run translation
+npm run extract:compile
 ```
 
 ## License
