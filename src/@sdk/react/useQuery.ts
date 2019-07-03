@@ -35,7 +35,7 @@ const useQuery = <N extends keyof QUERIES, T extends QUERIES[N]>(
 
         setData(data.data as ResponseData<N, T>);
       } catch (e) {
-        setError(error);
+        setError(e);
       } finally {
         setLoading(false);
       }
