@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useNetworkStatus } from "@hooks";
+
 import { IProps } from "./types";
 
 export const CachedImage: React.FC<IProps> = ({
@@ -9,15 +11,9 @@ export const CachedImage: React.FC<IProps> = ({
   children,
 }: IProps) => {
   const [isUnavailable, setUnavailable] = React.useState(false);
-  const [online, setOnline] = React.useState(
-    "onLine" in navigator ? navigator.onLine : true
-  );
+  const { online } = useNetworkStatus(updateAvailability);
 
-  const updateOnlineStatus = () => {
-    setOnline(navigator.onLine);
-  };
-
-  const updateAvailability = async () => {
+  async function updateAvailability() {
     let _isUnavailable = false;
     if ("caches" in window) {
       if (online) {
@@ -32,9 +28,9 @@ export const CachedImage: React.FC<IProps> = ({
       }
     }
     if (isUnavailable !== _isUnavailable) {
-      setUnavailable(isUnavailable);
+      setUnavailable(_isUnavailable);
     }
-  };
+  }
 
   const addImagesToCache = () => {
     if ("caches" in window) {
@@ -45,19 +41,8 @@ export const CachedImage: React.FC<IProps> = ({
   };
 
   React.useEffect(() => {
-    addEventListener("offline", updateOnlineStatus);
-    addEventListener("online", updateOnlineStatus);
-
-    return () => {
-      removeEventListener("offline", updateOnlineStatus);
-      removeEventListener("online", updateOnlineStatus);
-    };
-  }, []);
-
-  React.useEffect(() => {
     addImagesToCache();
-    updateAvailability();
-  });
+  }, [url, url2x]);
 
   if (isUnavailable) {
     return children || null;

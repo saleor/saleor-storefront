@@ -3,11 +3,12 @@ import React from "react";
 
 import { CachedImage } from ".";
 
-describe("<CachedImage />", () => {
-  // Example test
-  it("exists", () => {
-    const wrapper = shallow(<CachedImage />);
+const sampleImage = "https://dummyimage.com/600x400/000/fff";
 
-    expect(wrapper.exists()).toEqual(true);
+describe("<CachedImage />", () => {
+  it("Renders img", () => {
+    const wrapper = shallow(<CachedImage url={sampleImage} />);
+
+    expect(wrapper.find("img").prop("src")).toEqual(sampleImage);
   });
 });
