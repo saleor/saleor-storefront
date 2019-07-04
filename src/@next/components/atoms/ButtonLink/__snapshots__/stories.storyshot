@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/ButtonLink Base 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #7d7d7d;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    color="base"
+    size="md"
+  >
+    Text
+  </button>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ButtonLink Secondary 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #21125e;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    color="secondary"
+    size="md"
+  >
+    Text
+  </button>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/ButtonLink Size sm 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7d7d7d;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    color="base"
+    size="sm"
+  >
+    Text
+  </button>
+  <div
+    className="c2"
+  />
+</div>
+`;

@@ -26,7 +26,7 @@ storiesOf("@components/atoms/Message", module)
   .add("action snackbar", () => (
     <Message
       title="Sample Message"
-      status="action"
+      status="error"
       onClick={onClick}
       actionText="Try again"
     />
@@ -34,7 +34,7 @@ storiesOf("@components/atoms/Message", module)
   .add("action card", () => (
     <Message
       title="Sample Message"
-      status="action"
+      status="success"
       onClick={onClick}
       actionText="Refresh"
     >

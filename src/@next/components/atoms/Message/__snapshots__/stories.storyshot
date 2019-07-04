@@ -26,7 +26,7 @@ exports[`Storyshots @components/atoms/Message action card 1`] = `
   bottom: 1rem;
   right: 1rem;
   border-left: 0.4rem solid;
-  border-color: #c22d74;
+  border-color: #3ed256;
 }
 
 .c2 {

@@ -51,14 +51,14 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
     loading: false,
   };
 
-  onSubmitHandler = async (formData: FormAddressType) => {
+  onSubmitHandler = (formData: FormAddressType) => {
     this.setState({ loading: true });
     const { saveBillingAddress, checkout, shippingAsBilling } = this.props;
 
-    await saveBillingAddress(
+    return saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
     ).then(response => {
-      const errors = findFormErrors(response);
+      const errors = findFormErrors(response) || [];
       const checkout = maybe(
         () => response && response.data.checkoutBillingAddressUpdate.checkout,
         null
@@ -68,8 +68,8 @@ class View extends React.Component<IBillingPageProps, IBillingPageState> {
         errors,
         loading: false,
       });
+      return errors;
     });
-    return;
   };
 
   proceedToPayment = () => {

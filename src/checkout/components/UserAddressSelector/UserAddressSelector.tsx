@@ -43,7 +43,6 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
     () => setModalVisibility(false),
     []
   );
-
   const unselectAddress = () => {
     if (selectedAddress && shippingAsBilling) {
       setSelectedAddress(null);
@@ -79,8 +78,7 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
   };
 
   const handleAddressAdd = async (address: FormAddressType) => {
-    await onSubmit(address);
-
+    const errors = await onSubmit(address);
     if (!errors.length) {
       updateAddresses(address);
     }
