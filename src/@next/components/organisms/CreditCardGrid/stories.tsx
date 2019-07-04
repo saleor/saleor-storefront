@@ -7,10 +7,10 @@ import { CreditCardGrid } from ".";
 const visa: CCProviders = "visa";
 
 const ccData = {
+  creditCardProvider: visa,
   expirationDate: "05/2019",
   last4Digits: 9876,
   nameOnCard: "John Doe",
-  creditCardProvider: visa,
 };
 
 const elements = [ccData, ccData, ccData];

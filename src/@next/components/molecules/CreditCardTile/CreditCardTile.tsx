@@ -32,9 +32,6 @@ export const CreditCardTile: React.FC<IProps> = ({
   const footer = (
     <S.FooterContent>
       <div>
-        <IconButton name="edit" onClick={onEdit} size={19} />
-      </div>
-      <div>
         <IconButton name="trash" onClick={onRemove} size={22} />
       </div>
     </S.FooterContent>
