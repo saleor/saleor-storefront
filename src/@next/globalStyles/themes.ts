@@ -44,16 +44,6 @@ export const defaultTheme = {
   container: {
     width: 1140,
   },
-  flexboxgrid: {
-    breakpoints: {
-      lg: 40.75, // em
-      md: 40.75, // em
-      sm: 0, // em
-      xs: 0, // em
-    },
-    gutterWidth: 2, // rem
-    mediaQuery: "only screen",
-  },
   grid: {
     containerWidth: 1140,
   },
@@ -92,6 +82,7 @@ export const defaultTheme = {
     productItemTitleTextTransform: "uppercase",
   },
   spacing: {
+    gutter: "1.875rem",
     spacer: `${C.spacer}rem`, // 16px
   },
   tile: {
