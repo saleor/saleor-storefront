@@ -33,6 +33,12 @@ exports[`Storyshots @components/atoms/ButtonLink Base 1`] = `
   -webkit-text-decoration: underline;
   text-decoration: underline;
   padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c1:hover {
+  color: #c4c4c4;
 }
 
 <div
@@ -84,6 +90,12 @@ exports[`Storyshots @components/atoms/ButtonLink Secondary 1`] = `
   -webkit-text-decoration: underline;
   text-decoration: underline;
   padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c1:hover {
+  color: #513CA3;
 }
 
 <div
@@ -135,6 +147,12 @@ exports[`Storyshots @components/atoms/ButtonLink Size sm 1`] = `
   -webkit-text-decoration: underline;
   text-decoration: underline;
   padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c1:hover {
+  color: #c4c4c4;
 }
 
 <div

@@ -70,8 +70,14 @@ export const defaultTheme = {
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
   link: {
-    baseColor: C.gray,
-    secondaryColor: C.blue,
+    base: {
+      color: C.gray,
+      hoverColor: C.grayMedium,
+    },
+    secondary: {
+      color: C.blue,
+      hoverColor: C.blueLight,
+    },
   },
   message: {
     backgroundColor: C.white,

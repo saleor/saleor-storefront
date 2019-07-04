@@ -79,6 +79,12 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
   -webkit-text-decoration: underline;
   text-decoration: underline;
   padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c2:hover {
+  color: #513CA3;
 }
 
 .c1 {
