@@ -277,9 +277,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
         >
           <div
             className="c10"
-          >
-            Expires on
-          </div>
+          />
           <div
             className="c11"
           >
@@ -287,9 +285,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c10"
-          >
-            Name on card
-          </div>
+          />
           <div
             className="c11"
           >
@@ -354,9 +350,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
         >
           <div
             className="c10"
-          >
-            Expires on
-          </div>
+          />
           <div
             className="c11"
           >
@@ -364,9 +358,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c10"
-          >
-            Name on card
-          </div>
+          />
           <div
             className="c11"
           >
@@ -431,9 +423,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
         >
           <div
             className="c10"
-          >
-            Expires on
-          </div>
+          />
           <div
             className="c11"
           >
@@ -441,9 +431,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c10"
-          >
-            Name on card
-          </div>
+          />
           <div
             className="c11"
           >
