@@ -6,6 +6,7 @@
     "@app/([^\\.]*)$": "<rootDir>/src/@next/$1",
     "@utils/([^\\.]*)$": "<rootDir>/src/@next/utils/$1",
     "images/([^\\.]*.*)$": "<rootDir>/src/images/$1",
+    "@hooks": "<rootDir>/src/@next/hooks/index.ts",
     "@components/atoms": "<rootDir>/src/@next/components/atoms/index.ts",
     "@components/molecules": "<rootDir>/src/@next/components/molecules/index.ts",
     "@components/organisms": "<rootDir>/src/@next/components/organisms/index.ts",
@@ -15,5 +16,8 @@
   "transform": {
     "^.+\\.(j|t)sx?$": "babel-jest",
     "^.+\\.svg$": "jest-svg-transformer"
-  }
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/(?!register-service-worker).+\\.js$"
+  ]
 }

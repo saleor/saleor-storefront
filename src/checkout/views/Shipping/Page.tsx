@@ -109,11 +109,11 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     });
   };
 
-  onSubmitHandler = async (address: FormAddressType) => {
+  onSubmitHandler = (address: FormAddressType) => {
     this.setState({ loading: true });
 
-    await this.onShippingSubmit(address).then(response => {
-      const errors = findFormErrors(response);
+    return this.onShippingSubmit(address).then(response => {
+      const errors = findFormErrors(response) || [];
       const checkout =
         maybe(() => response.data.checkoutEmailUpdate.checkout, null) ||
         maybe(
@@ -129,8 +129,8 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
         shippingUnavailable:
           (checkout && !checkout.availableShippingMethods.length) || false,
       });
+      return errors;
     });
-    return;
   };
 
   renderShippingUnavailableModal = () => (

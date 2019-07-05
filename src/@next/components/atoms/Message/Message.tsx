@@ -11,7 +11,7 @@ export const Message: React.FC<IProps> = ({
   onClick,
   actionText,
 }: IProps) => {
-  const isAction = status === "action";
+  const isAction = !!actionText;
 
   return (
     <S.Wrapper status={status}>

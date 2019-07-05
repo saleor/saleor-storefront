@@ -57,6 +57,9 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          name: Extract and Compile translations
+          command: npm run extract:compile
+      - run:
           name: Running E2E tests
           command: npm run test:e2e:run
       - store_artifacts:

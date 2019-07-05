@@ -71,7 +71,7 @@ export const Label = styled.label<{ active: boolean }>`
     props.active ? props.theme.colors.white : "transparent"};
   font-size: ${props =>
     props.active
-      ? props.theme.typography.smallFontSize
+      ? props.theme.input.labelFontSize
       : props.theme.typography.baseFontSize};
   top: ${props => (props.active ? 0 : "50%")};
   transform: translateY(-50%);
