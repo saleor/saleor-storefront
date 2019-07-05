@@ -61,15 +61,15 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: 0;
-  margin-top: -2rem;
-  margin-left: -2rem;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  padding-top: 2rem;
-  padding-left: 2rem;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
   width: calc(100% / 2);
 }
 
@@ -327,15 +327,15 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: 0;
-  margin-top: -2rem;
-  margin-left: -2rem;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
 }
 
 .c2 {
   margin: 0;
   padding: 0;
-  padding-top: 2rem;
-  padding-left: 2rem;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
   width: calc(100% / 3);
 }
 
