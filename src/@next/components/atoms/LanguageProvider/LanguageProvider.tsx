@@ -5,7 +5,9 @@ import { IProps } from "./types";
 
 export const LanguageProvider: React.FC<IProps> = ({ children }: IProps) => {
   const { language, catalogs } = React.useContext(I18nContext);
-  if (!catalogs[language]) return null;
+  if (!catalogs[language]) {
+    return null;
+  }
   return (
     <I18nProvider language={language} catalogs={catalogs}>
       {children}

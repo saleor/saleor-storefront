@@ -25,13 +25,13 @@ export const I18nLoader: React.FC<IProps> = ({ children }: IProps) => {
       );
       setCatalogs({
         ...catalogs,
-        [language]: catalog
+        [language]: catalog,
       });
     }
     if (!catalogs[language]) {
       loadCatalog(language);
     }
-  }, []);
+  }, [language]);
 
   return (
     <I18nContext.Provider value={{ language, setLanguage, catalogs }}>
