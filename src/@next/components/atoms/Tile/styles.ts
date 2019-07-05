@@ -1,4 +1,4 @@
-import { media, styled } from "@styles";
+import { styled } from "@styles";
 import { css } from "styled-components";
 
 interface WrapperProps {
@@ -30,7 +30,6 @@ export const Wrapper = styled.div<WrapperProps>`
         color: ${props.theme.colors.secondary};
         align-items: center;
         justify-content: center;
-        /* height: 90%; */
         :hover {
           cursor: pointer;
           color: ${props.theme.colors.white};

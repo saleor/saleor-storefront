@@ -19,7 +19,6 @@ export const CreditCardTile: React.FC<IProps> = ({
       creditCardProvider={creditCardProvider}
     />
   );
-  // const header = <p>asd</p>;
   const content = (
     <>
       <S.BoldTitle>Expires on</S.BoldTitle>
