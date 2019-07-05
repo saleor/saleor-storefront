@@ -8,5 +8,4 @@ export interface ICreditCardData {
 }
 export interface IProps extends ICreditCardData {
   onRemove?: () => void;
-  onEdit?: () => void;
 }

@@ -10,7 +10,6 @@ export const CreditCardTile: React.FC<IProps> = ({
   nameOnCard,
   expirationDate,
   onRemove,
-  onEdit,
   last4Digits,
   creditCardProvider,
 }: IProps) => {
