@@ -1,8 +1,9 @@
-import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
 import {
+  I18nLoader,
+  LanguageProvider,
   NotificationTemplate,
   ServiceWorkerContext,
   ServiceWorkerProvider
@@ -28,7 +29,6 @@ import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
-import { lang, loadCatalogs } from "./translations";
 
 import { OverlayProvider, UserProvider } from "./components";
 
@@ -77,8 +77,6 @@ const startApp = async () => {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
   };
-
-  const catalogs = (await loadCatalogs(lang)) || {};
 
   const Root = hot(module)(() => {
     const alert = useAlert();
@@ -162,14 +160,16 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <I18nProvider language={lang} catalogs={catalogs}>
-        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-            <GlobalStyle />
-            <Root />
-          </ServiceWorkerProvider>
-        </AlertProvider>
-      </I18nProvider>
+      <I18nLoader>
+        <LanguageProvider>
+          <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+            <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+              <GlobalStyle />
+              <Root />
+            </ServiceWorkerProvider>
+          </AlertProvider>
+        </LanguageProvider>
+      </I18nLoader>
     </ThemeProvider>,
     document.getElementById("root")
   );
