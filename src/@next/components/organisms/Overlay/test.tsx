@@ -30,7 +30,7 @@ describe("<Overlay />", () => {
   const renderOverlay = (props: IProps) =>
     shallow(
       <Overlay {...props}>
-        <Children />>
+        <Children />
       </Overlay>
     );
   const renderOverlayContent = (
@@ -84,7 +84,7 @@ describe("<Overlay />", () => {
     expect(overlayProps.state).toEqual(STATE);
   });
 
-  it("should render <S.Lihtbox> with [open, position, state, onClick] props", () => {
+  it("should render <S.Lightbox> with [open, position, state, onClick] props", () => {
     const SHOW = true;
     const STATE = "entered";
     const lightboxProps = renderOverlayContent(
