@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Icon } from "@components/atoms";
+
 import { CardHeader } from ".";
 import { TextStyle, TitleSize } from "./types";
 

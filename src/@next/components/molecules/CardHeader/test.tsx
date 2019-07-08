@@ -4,6 +4,7 @@ import "jest-styled-components";
 import React from "react";
 
 import { Icon } from "@components/atoms";
+
 import { CardHeader } from ".";
 import * as S from "./styles";
 import { IProps } from "./types";

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Icon } from "@components/atoms";
+
 import * as S from "./styles";
 import { IProps, TextStyle, TitleSize } from "./types";
 
