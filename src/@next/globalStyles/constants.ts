@@ -11,6 +11,7 @@ export const grayMedium = "#c4c4c4";
 export const grayDark = "#323232";
 export const grayLight = "#f1f5f5";
 export const green = "#3ed256";
+export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
 export const turquoise = "#3ee7cd";
 export const turquoiseDark = "#42beab";
@@ -26,6 +27,7 @@ export const theme = {
   divider: grayMedium,
   error: rose,
   light: grayLight,
+  overlay: overlayColor,
   primary: turquoise,
   primaryDark: turquoiseDark,
   secondary: blue,

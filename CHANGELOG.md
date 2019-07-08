@@ -15,6 +15,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add ServiceWorker provider - #352 by @bogdal
 - Add ButtonLink atom component - #392 by @AlicjaSzu
 - Add lingui - #382 by @AlicjaSzu
+- Add Overlay component - #402 by @AlicjaSzu
 
 ## 0.6.0
 
