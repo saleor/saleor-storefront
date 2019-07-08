@@ -16,6 +16,28 @@ export enum GatewaysEnum {
   STRIPE = "STRIPE",
 }
 
+/**
+ * An enumeration.
+ */
+export enum OrderStatus {
+  CANCELED = "CANCELED",
+  DRAFT = "DRAFT",
+  FULFILLED = "FULFILLED",
+  PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
+  UNFULFILLED = "UNFULFILLED",
+}
+
+/**
+ * An enumeration.
+ */
+export enum PaymentChargeStatusEnum {
+  FULLY_CHARGED = "FULLY_CHARGED",
+  FULLY_REFUNDED = "FULLY_REFUNDED",
+  NOT_CHARGED = "NOT_CHARGED",
+  PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
+  PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
+}
+
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
