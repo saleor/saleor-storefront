@@ -14,6 +14,7 @@ export const CardHeader: React.FC<IProps> = ({
   closeIcon = false,
   customIcon,
   divider = false,
+  onHide,
   text,
   textStyle = "title",
   titleSize = "md",
@@ -22,7 +23,9 @@ export const CardHeader: React.FC<IProps> = ({
   return (
     <S.Header divider={divider}>
       <Text {...getTitleProps(textStyle, titleSize)}>{text}</Text>
-      {closeIcon && <S.CloseBtn>{renderCloseIcon()}</S.CloseBtn>}
+      {closeIcon && (
+        <S.CloseBtn onClick={onHide}>{renderCloseIcon()}</S.CloseBtn>
+      )}
       {customIcon && <S.CloseBtn>{customIcon}</S.CloseBtn>}
     </S.Header>
   );

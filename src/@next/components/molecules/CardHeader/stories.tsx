@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -8,8 +9,10 @@ import { TextStyle, TitleSize } from "./types";
 const DEFAULT_PROPS = {
   closeIcon: false,
   divider: false,
+  onHide: action("onHide"),
   text: "Some Title",
 };
+
 storiesOf("@components/molecules/CardHeader", module)
   .add("default", () => <CardHeader {...DEFAULT_PROPS} />)
   .add("with divider", () => {

@@ -195,6 +195,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
     </h4>
     <button
       className="c3"
+      onClick={[Function]}
     >
       <svg
         height={19}
