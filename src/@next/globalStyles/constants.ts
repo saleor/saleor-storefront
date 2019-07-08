@@ -5,6 +5,7 @@ export const baseFontColor = "#323232";
 export const black = "#323232";
 export const blue = "#21125e";
 export const blueDark = "#190c4e";
+export const blueLight = "#513CA3";
 export const blueOverlay = `rgba(${blue}, 0.15)`;
 export const gray = "#7d7d7d";
 export const grayMedium = "#c4c4c4";
