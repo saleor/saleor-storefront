@@ -2,12 +2,14 @@ import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
 import {
+  NotificationTemplate,
+} from "@components/atoms";
+import {
   I18nLoader,
   LanguageProvider,
-  NotificationTemplate,
   ServiceWorkerContext,
   ServiceWorkerProvider
-} from "@components/atoms";
+} from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
