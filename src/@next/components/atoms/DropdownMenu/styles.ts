@@ -23,14 +23,18 @@ export const Content = styled.div`
     font-style: normal;
     font-weight: normal;
 
-    line-height: 2rem;
+    line-height: 1.25rem;
     align-items: flex-start;
 
     li {
       cursor: pointer;
-      padding-bottom: 1rem;
+      padding-bottom: 1.25rem;
       width: 80%;
       white-space: nowrap;
+    }
+
+    :last-child {
+      padding-bottom: 0;
     }
   }
 `;
