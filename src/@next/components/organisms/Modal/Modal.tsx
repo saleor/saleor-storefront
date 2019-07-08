@@ -22,10 +22,11 @@ export const Modal: React.FC<IProps> = ({
   formId = "modal-submit",
   submitBtnText,
   show,
+  target = null,
   title,
 }: IProps) => {
   return (
-    <Overlay position="center" show={show} hide={hide}>
+    <Overlay position="center" show={show} hide={hide} target={target}>
       <S.Modal>
         <CardHeader closeIcon divider onHide={hide}>
           {title}

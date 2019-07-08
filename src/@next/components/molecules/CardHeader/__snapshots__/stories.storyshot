@@ -38,6 +38,7 @@ exports[`Storyshots @components/molecules/CardHeader default 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  margin: 0;
 }
 
 <div
@@ -98,6 +99,7 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .c3 {
@@ -175,6 +177,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .c3 {
@@ -253,6 +256,7 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .c3 {
@@ -331,6 +335,7 @@ exports[`Storyshots @components/molecules/CardHeader with divider 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  margin: 0;
 }
 
 <div
@@ -388,6 +393,7 @@ exports[`Storyshots @components/molecules/CardHeader with paragraph text style 1
 .c2 {
   font-size: 0.875rem;
   color: #7d7d7d;
+  margin: 0;
 }
 
 <div

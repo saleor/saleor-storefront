@@ -5,6 +5,7 @@ const horizontalPadding = "2rem";
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
 `;
 

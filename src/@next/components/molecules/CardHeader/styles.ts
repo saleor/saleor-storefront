@@ -16,11 +16,13 @@ export const Title = styled.h4<{ size: TitleSize }>`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   color: ${props => props.theme.colors.baseFont};
   text-transform: uppercase;
+  margin: 0;
 `;
 
 export const Paragraph = styled.p`
   font-size: ${props => props.theme.typography.smallFontSize};
   color: ${props => props.theme.colors.lightFont};
+  margin: 0;
 `;
 
 export const CloseBtn = styled.button`
