@@ -4,7 +4,7 @@ import classNames from "classnames";
 import React from "react";
 import ReactSVG from "react-svg";
 
-import { Modal } from "../../../components";
+import { Modal } from "@components/molecules";
 import AddressSummary from "../../../components/AddressSummary";
 import { AddNewShippingAddressForm } from "../../../components/ShippingAddressForm";
 import { Option } from "../../components";

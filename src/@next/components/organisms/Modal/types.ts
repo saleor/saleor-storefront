@@ -2,9 +2,9 @@ export interface IProps {
   target?: HTMLElement | null;
   title: string;
   hide: () => void;
-  cancelBtnText?: string;
+  cancelBtnText: string;
   children: React.ReactElement;
-  submitBtnText?: string;
+  submitBtnText: string;
   loading: boolean;
   formId?: string;
   show: boolean;
