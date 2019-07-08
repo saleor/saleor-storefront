@@ -28,6 +28,7 @@ export const theme = {
   divider: grayMedium,
   error: rose,
   light: grayLight,
+  lightFont: gray,
   overlay: overlayColor,
   primary: turquoise,
   primaryDark: turquoiseDark,
