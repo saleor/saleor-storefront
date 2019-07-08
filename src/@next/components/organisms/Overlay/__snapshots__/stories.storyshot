@@ -107,9 +107,12 @@ exports[`Storyshots @components/organisms/Overlay Position left 1`] = `
   min-height: 455px;
   height: 100%;
   background-color: #fff;
-  left: -100rem;
-  -webkit-animation: kXrmja 0.4s both;
-  animation: kXrmja 0.4s both;
+  left: 0;
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-animation: jhEmMy 0.4s both;
+  animation: jhEmMy 0.4s both;
   -webkit-animation-delay: .5s;
   animation-delay: .5s;
 }
@@ -196,9 +199,12 @@ exports[`Storyshots @components/organisms/Overlay Position right 1`] = `
   min-height: 455px;
   height: 100%;
   background-color: #fff;
-  right: -100rem;
-  -webkit-animation: cyBhEG 0.4s both;
-  animation: cyBhEG 0.4s both;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-animation: brnJVY 0.4s both;
+  animation: brnJVY 0.4s both;
   -webkit-animation-delay: .5s;
   animation-delay: .5s;
 }

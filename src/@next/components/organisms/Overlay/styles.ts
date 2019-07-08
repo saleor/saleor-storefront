@@ -8,15 +8,18 @@ interface IStyleProps {
   state: TransitionState;
 }
 
+const getTranslate = (side: "left" | "right") =>
+  side === "left" ? "-100%" : "100%";
+
 const slideAnimation = (open: boolean, side: "left" | "right") => {
-  const initialValue = open ? "-100rem" : 0;
-  const endValue = open ? 0 : "-100rem";
+  const initialValue = open ? getTranslate(side) : 0;
+  const endValue = open ? 0 : getTranslate(side);
   return keyframes`
     from {
-      ${side}: ${initialValue};
+      transform: translateX(${initialValue});
     }
     to {
-      ${side}: ${endValue};
+      transform: translateX(${endValue});
     }`;
 };
 
@@ -55,7 +58,8 @@ export const Lightbox = styled.div<IStyleProps>`
   ${({ open, position }) => {
     if (position === "left" || position === "right") {
       return css`
-        ${position}: -100rem;
+        ${position}: 0;
+        transform: translateX(${getTranslate(position)});
         animation: ${slideAnimation(open, position)} 0.4s both;
         animation-delay: ${({ open }) => (open ? ".5s" : 0)};
       `;
