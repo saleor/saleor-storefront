@@ -41,6 +41,8 @@ import {
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
 
+import { languages } from "./languages";
+
 const {
   component: UserProviderWithTokenHandler,
   link: invalidTokenLink,
@@ -160,7 +162,7 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <I18nLoader>
+      <I18nLoader languages={languages}>
         <LanguageProvider>
           <AlertProvider template={NotificationTemplate} {...notificationOptions}>
             <ServiceWorkerProvider timeout={serviceWorkerTimeout}>

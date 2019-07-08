@@ -2,6 +2,8 @@ import React from "react";
 import { I18nContext } from ".";
 import { IProps } from "./types";
 
+const fallbackLanguage = "en";
+
 const getLangCode = (code: string) =>
   code.includes("-") ? code.split("-")[0] : code;
 
@@ -9,12 +11,14 @@ const defaultLanguage = getLangCode(
   (
     (navigator.languages && navigator.languages[0]) ||
     navigator.language ||
-    "en"
+    fallbackLanguage
   ).toLowerCase()
 );
 
-export const I18nLoader: React.FC<IProps> = ({ children }: IProps) => {
-  const [ language, setLanguage ] = React.useState<string>(defaultLanguage);
+export const I18nLoader: React.FC<IProps> = ({ children, languages }: IProps) => {
+  const [ language, setLanguage ] = React.useState<string>(() => {
+    return languages.hasOwnProperty(defaultLanguage) ? defaultLanguage : fallbackLanguage
+  });
   const [ catalogs, setCatalogs ] = React.useState<any>({});
 
   React.useEffect(() => {
@@ -34,7 +38,7 @@ export const I18nLoader: React.FC<IProps> = ({ children }: IProps) => {
   }, [language]);
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, catalogs }}>
+    <I18nContext.Provider value={{ language, languages, setLanguage, catalogs }}>
       {children}
     </I18nContext.Provider>
   )
