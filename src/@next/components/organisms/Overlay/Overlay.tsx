@@ -19,22 +19,23 @@ export const Overlay: React.FC<IProps> = ({
     open: show,
     position,
   };
-  return target
-    ? ReactDOM.createPortal(
-        <Transition in={show} timeout={duration} unmountOnExit>
-          {state => (
-            <S.Overlay {...animationProps} state={state} onClick={hide}>
-              <S.Lightbox
-                {...animationProps}
-                state={state}
-                onClick={e => e.stopPropagation()}
-              >
-                {children}
-              </S.Lightbox>
-            </S.Overlay>
-          )}
-        </Transition>,
-        target
-      )
-    : null;
+  return (
+    target &&
+    ReactDOM.createPortal(
+      <Transition in={show} timeout={duration} unmountOnExit>
+        {state => (
+          <S.Overlay {...animationProps} state={state} onClick={hide}>
+            <S.Lightbox
+              {...animationProps}
+              state={state}
+              onClick={e => e.stopPropagation()}
+            >
+              {children}
+            </S.Lightbox>
+          </S.Overlay>
+        )}
+      </Transition>,
+      target
+    )
+  );
 };
