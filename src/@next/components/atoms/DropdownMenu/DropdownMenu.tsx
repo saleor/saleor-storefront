@@ -29,6 +29,7 @@ export const DropdownMenu: React.FC<IProps> = ({
               <li
                 key={id}
                 onClick={() => {
+                  setVisible(false);
                   element.onClick();
                 }}
               >
