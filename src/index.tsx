@@ -6,7 +6,6 @@ import {
 } from "@components/atoms";
 import {
   I18nLoader,
-  LanguageProvider,
   ServiceWorkerContext,
   ServiceWorkerProvider
 } from "@components/containers";
@@ -165,14 +164,12 @@ const startApp = async () => {
   render(
     <ThemeProvider theme={defaultTheme}>
       <I18nLoader languages={languages}>
-        <LanguageProvider>
-          <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-            <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-              <GlobalStyle />
-              <Root />
-            </ServiceWorkerProvider>
-          </AlertProvider>
-        </LanguageProvider>
+        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <GlobalStyle />
+            <Root />
+          </ServiceWorkerProvider>
+        </AlertProvider>
       </I18nLoader>
     </ThemeProvider>,
     document.getElementById("root")

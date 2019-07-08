@@ -7,6 +7,5 @@ export interface IProps {
 export interface II18nContext {
   language: string,
   languages: any,
-  catalogs: any,
   setLanguage: React.Dispatch<any>
 }

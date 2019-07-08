@@ -1,3 +1,4 @@
+import { I18nProvider } from "@lingui/react";
 import React from "react";
 import { I18nContext } from ".";
 import { IProps } from "./types";
@@ -37,9 +38,15 @@ export const I18nLoader: React.FC<IProps> = ({ children, languages }: IProps) =>
     }
   }, [language]);
 
+  if (!catalogs[language]) {
+    return null;
+  }
+
   return (
-    <I18nContext.Provider value={{ language, languages, setLanguage, catalogs }}>
-      {children}
+    <I18nContext.Provider value={{ language, languages, setLanguage }}>
+      <I18nProvider language={language} catalogs={catalogs}>
+        {children}
+      </I18nProvider>
     </I18nContext.Provider>
   )
 };
