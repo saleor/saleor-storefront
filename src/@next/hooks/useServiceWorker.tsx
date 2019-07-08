@@ -18,7 +18,7 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
   const updated = () => setUpdateAvailable(true);
 
   React.useEffect(() => {
-    register('/service-worker.js', { registered, updated });
+    register("/service-worker.js", { registered, updated });
     return () => unregister();
   }, []);
 
