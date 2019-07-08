@@ -1,11 +1,18 @@
 import React from "react";
 
-import { Icon } from "@components/atoms";
-import { FormFooter } from "@components/molecules";
+import { CardHeader, FormFooter } from "@components/molecules";
 import { Overlay } from "@components/organisms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
+
+const getCancelBtnProps = (text: string, action: () => void) =>
+  text && {
+    cancelBtn: {
+      action,
+      text,
+    },
+  };
 
 export const Modal: React.FC<IProps> = ({
   cancelBtnText,
@@ -20,17 +27,14 @@ export const Modal: React.FC<IProps> = ({
   return (
     <Overlay position="center" show={show} hide={hide}>
       <S.Modal>
-        <S.Header>
-          <p>{title}</p>
-          <S.CloseBtn onClick={hide}>
-            <Icon name="x" size={19} />
-          </S.CloseBtn>
-        </S.Header>
+        <CardHeader closeIcon divider onHide={hide}>
+          {title}
+        </CardHeader>
         <S.Content>{children}</S.Content>
         <FormFooter
           divider
           submitBtn={{ text: loading ? "Loading" : submitBtnText }}
-          cancelBtn={{ action: hide, text: cancelBtnText }}
+          {...getCancelBtnProps(cancelBtnText, hide)}
           formId={formId}
         />
       </S.Modal>
