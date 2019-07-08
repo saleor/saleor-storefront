@@ -9,25 +9,27 @@ import { CardHeader } from ".";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const children = "Some Title";
 const DEFAULT_PROPS = {
+  children,
   closeIcon: false,
   divider: false,
-  text: "Some Title",
 };
 
 describe("<CardHeader />", () => {
-  const renderHeader = (props: IProps) => shallow(<CardHeader {...props} />);
+  const renderHeader = (props: IProps) =>
+    shallow(<CardHeader {...props}>{children}</CardHeader>);
   it("exists", () => {
     const header = renderHeader(DEFAULT_PROPS);
 
     expect(header.exists()).toEqual(true);
   });
 
-  it("should render text wrapped in <S.Title> by default", () => {
+  it("should render children wrapped in <S.Title> by default", () => {
     const title = renderHeader(DEFAULT_PROPS).find(S.Title);
 
     expect(title.exists()).toEqual(true);
-    expect(title.text()).toEqual(DEFAULT_PROPS.text);
+    expect(title.contains(children)).toBe(true);
   });
 
   it("should pass `titleSize` as `size` to  <S.Title>", () => {
@@ -41,14 +43,14 @@ describe("<CardHeader />", () => {
     );
   });
 
-  it("should render text wrapped in <S.Paragraph> when `textStyle` is set to `paragraph`", () => {
+  it("should render children wrapped in <S.Paragraph> when `textStyle` is set to `paragraph`", () => {
     const paragraph = renderHeader({
       ...DEFAULT_PROPS,
       textStyle: "paragraph",
     }).find(S.Paragraph);
 
     expect(paragraph.exists()).toEqual(true);
-    expect(paragraph.text()).toEqual(DEFAULT_PROPS.text);
+    expect(paragraph.contains(children)).toBe(true);
   });
 
   it("should render close icon when `closeIcon` prop is set to true", () => {
