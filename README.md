@@ -69,6 +69,8 @@ Add a new language pack file:
 npm run add-locale <locale>
 ```
 
+Update the list of available languages in the `./src/languages.ts` file.
+
 Extract messages from source files that need to be translated:
 
 ```
