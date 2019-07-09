@@ -1,0 +1,472 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c15 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  color: #21125e;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c3:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #21125e;
+}
+
+.c3:hover svg path {
+  fill: #fff;
+}
+
+.c6 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+.c7 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c4 {
+  padding: 1rem 1.25rem;
+}
+
+.c12 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.c5 {
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  text-align: center;
+  vertical-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.c8 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c14 svg {
+  display: block;
+}
+
+.c14 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c14:hover {
+  background-color: #21125e;
+}
+
+.c14:hover svg path {
+  fill: #fff;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
+}
+
+.c2 {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 3);
+}
+
+.c9 {
+  padding: 0 1rem;
+}
+
+.c10 {
+  font-weight: 600;
+}
+
+.c11 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.c13 > div {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-right: 0.6rem;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <svg
+              height={24}
+              viewBox="0 0 32 32"
+              width={24}
+            >
+              <path
+                d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                fill="#21125E"
+              />
+            </svg>
+            <p>
+              Add new 
+              card
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c4"
+          >
+            <div>
+              <div
+                className="c8"
+              >
+                <div />
+              </div>
+              <span
+                className="c9"
+              >
+                XXXX XXXX XXXX 
+                9876
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            05/2019
+          </div>
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            John Doe
+          </div>
+        </div>
+        <div
+          className="c12"
+        >
+          <div
+            className="c13"
+          >
+            <div>
+              <div
+                className="c14"
+              >
+                <svg
+                  height={22}
+                  viewBox="0 0 32 32"
+                  width={22}
+                >
+                  <path
+                    d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                    fill="#323232"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c4"
+          >
+            <div>
+              <div
+                className="c8"
+              >
+                <div />
+              </div>
+              <span
+                className="c9"
+              >
+                XXXX XXXX XXXX 
+                9876
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            05/2019
+          </div>
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            John Doe
+          </div>
+        </div>
+        <div
+          className="c12"
+        >
+          <div
+            className="c13"
+          >
+            <div>
+              <div
+                className="c14"
+              >
+                <svg
+                  height={22}
+                  viewBox="0 0 32 32"
+                  width={22}
+                >
+                  <path
+                    d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                    fill="#323232"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c6"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c4"
+          >
+            <div>
+              <div
+                className="c8"
+              >
+                <div />
+              </div>
+              <span
+                className="c9"
+              >
+                XXXX XXXX XXXX 
+                9876
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            05/2019
+          </div>
+          <div
+            className="c10"
+          />
+          <div
+            className="c11"
+          >
+            John Doe
+          </div>
+        </div>
+        <div
+          className="c12"
+        >
+          <div
+            className="c13"
+          >
+            <div>
+              <div
+                className="c14"
+              >
+                <svg
+                  height={22}
+                  viewBox="0 0 32 32"
+                  width={22}
+                >
+                  <path
+                    d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                    fill="#323232"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c15"
+  />
+</div>
+`;

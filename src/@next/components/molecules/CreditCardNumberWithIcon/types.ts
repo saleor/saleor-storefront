@@ -1,6 +1,6 @@
 import { CCProviders } from "@components/atoms";
 
 export interface IProps {
-  provider: CCProviders;
+  creditCardProvider: CCProviders;
   last4Digits: number;
 }

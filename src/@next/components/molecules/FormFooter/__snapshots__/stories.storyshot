@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/FormFooter with submit and cancel button 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c3:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c3:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c3:disabled {
+  background-color: $gray;
+}
+
+.c3:disabled,
+.c3:disabled:hover {
+  cursor: default;
+}
+
+.c4 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #21125e;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c2:hover {
+  color: #513CA3;
+}
+
+.c1 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+}
+
+.c1 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+@media (max-width:540px) {
+  .c3 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <button
+      className="c2"
+      color="secondary"
+      onClick={[Function]}
+      size="md"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      className="c3"
+      color="primary"
+      onClick={[Function]}
+      size="sm"
+      type="button"
+    >
+      <span
+        className="c4"
+        size="sm"
+      >
+        Save
+      </span>
+    </button>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c2:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c2:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c2:disabled {
+  background-color: $gray;
+}
+
+.c2:disabled,
+.c2:disabled:hover {
+  cursor: default;
+}
+
+.c3 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c1 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+}
+
+.c1 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <button
+      className="c2"
+      color="primary"
+      onClick={[Function]}
+      size="sm"
+      type="button"
+    >
+      <span
+        className="c3"
+        size="sm"
+      >
+        Save
+      </span>
+    </button>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c2:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c2:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c2:disabled {
+  background-color: $gray;
+}
+
+.c2:disabled,
+.c2:disabled:hover {
+  cursor: default;
+}
+
+.c3 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c1 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+  border-top: 1px solid #f1f5f5;
+}
+
+.c1 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <button
+      className="c2"
+      color="primary"
+      onClick={[Function]}
+      size="sm"
+      type="button"
+    >
+      <span
+        className="c3"
+        size="sm"
+      >
+        Save
+      </span>
+    </button>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;

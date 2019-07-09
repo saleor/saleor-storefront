@@ -13,4 +13,4 @@ const tile = (
 const tiles = [tile, tile, tile, tile, tile, tile];
 storiesOf("@components/atoms/TileGrid", module)
   .add("default", () => <TileGrid elements={tiles} />)
-  .add("custom grid size", () => <TileGrid elements={tiles} md={6} lg={6} />);
+  .add("custom grid size", () => <TileGrid elements={tiles} columns={2} />);

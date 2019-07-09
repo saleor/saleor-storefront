@@ -17,9 +17,17 @@ msgstr ""
 msgid "Address book"
 msgstr "Address book"
 
+#: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:10
+msgid "Expires on"
+msgstr "Expires on"
+
 #: src/components/MainMenu/MainMenu.tsx:55
 msgid "My Account"
 msgstr "My Account"
+
+#: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:14
+msgid "Name on card"
+msgstr "Name on card"
 
 #: src/components/MainMenu/MainMenu.tsx:60
 msgid "Order history"

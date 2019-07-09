@@ -31,6 +31,7 @@ export const defaultTheme = {
       fontSize: "1.125rem",
       fontWeight: "600",
       lineHeight: "1.25rem",
+      smallFontSize: "1rem",
       textTransform: "uppercase",
     },
   },
@@ -48,16 +49,6 @@ export const defaultTheme = {
     backgroundColor: C.theme.white,
     boxShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
-  flexboxgrid: {
-    breakpoints: {
-      lg: 33.75, // em
-      md: 33.75, // em
-      sm: 0, // em
-      xs: 0, // em
-    },
-    gutterWidth: 2, // rem
-    mediaQuery: "only screen",
-  },
   grid: {
     containerWidth: 1140,
   },
@@ -73,8 +64,14 @@ export const defaultTheme = {
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
   link: {
-    baseColor: C.gray,
-    secondaryColor: C.blue,
+    base: {
+      color: C.gray,
+      hoverColor: C.grayMedium,
+    },
+    secondary: {
+      color: C.blue,
+      hoverColor: C.blueLight,
+    },
   },
   message: {
     backgroundColor: C.white,
@@ -100,6 +97,7 @@ export const defaultTheme = {
     productItemTitleTextTransform: "uppercase",
   },
   spacing: {
+    gutter: "1.875rem", // 30px
     spacer: `${C.spacer}rem`, // 16px
   },
   tile: {

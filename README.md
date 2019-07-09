@@ -63,16 +63,24 @@ Go to `http://localhost:3000` to access the storefront.
 
 ### Translating
 
-Add locales:
+Add a new language pack file:
 
 ```
 npm run add-locale <locale>
 ```
 
-Extract and compile messages:
+Update the list of available languages in the `./src/languages.ts` file.
+
+Extract messages from source files that need to be translated:
 
 ```
-npm run extract:compile
+npm run extract
+```
+
+Compile messages:
+
+```
+npm run compile
 ```
 
 ## License

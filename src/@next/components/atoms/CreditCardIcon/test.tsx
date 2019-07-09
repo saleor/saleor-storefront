@@ -7,7 +7,7 @@ import { CreditCardIcon } from ".";
 
 describe("<CreditCardIcon />", () => {
   it("contains ReactSVG", () => {
-    const wrapper = shallow(<CreditCardIcon provider="visa" />);
+    const wrapper = shallow(<CreditCardIcon creditCardProvider="visa" />);
     expect(wrapper.exists(ReactSVG)).toBe(true);
   });
 });

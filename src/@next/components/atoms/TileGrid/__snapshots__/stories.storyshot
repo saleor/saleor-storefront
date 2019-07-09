@@ -20,10 +20,22 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
 .c3 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
-  margin-bottom: 2rem;
+  overflow: auto;
+  height: 100%;
   padding: 0;
   -webkit-transition: all 0.3s,color 0s,fill 0s;
   transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
 }
 
 .c4 {
@@ -45,65 +57,25 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -1rem;
-  margin-left: -1rem;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
 }
 
 .c2 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 2);
 }
 
-@media only screen and (min-width:0em) {
+@media (max-width:540px) {
   .c2 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    max-width: 100%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:0em) {
-  .c2 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    max-width: 100%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:33.75em) {
-  .c2 {
-    -webkit-flex-basis: 50%;
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
-    max-width: 50%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:33.75em) {
-  .c2 {
-    -webkit-flex-basis: 50%;
-    -ms-flex-preferred-size: 50%;
-    flex-basis: 50%;
-    max-width: 50%;
-    display: block;
+    width: 100%;
   }
 }
 
@@ -314,10 +286,22 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
 .c3 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
-  margin-bottom: 2rem;
+  overflow: auto;
+  height: 100%;
   padding: 0;
   -webkit-transition: all 0.3s,color 0s,fill 0s;
   transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
 }
 
 .c4 {
@@ -339,65 +323,25 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -1rem;
-  margin-left: -1rem;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
 }
 
 .c2 {
-  box-sizing: border-box;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 3);
 }
 
-@media only screen and (min-width:0em) {
+@media (max-width:540px) {
   .c2 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    max-width: 100%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:0em) {
-  .c2 {
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    max-width: 100%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:33.75em) {
-  .c2 {
-    -webkit-flex-basis: 33.333333333333336%;
-    -ms-flex-preferred-size: 33.333333333333336%;
-    flex-basis: 33.333333333333336%;
-    max-width: 33.333333333333336%;
-    display: block;
-  }
-}
-
-@media only screen and (min-width:33.75em) {
-  .c2 {
-    -webkit-flex-basis: 33.333333333333336%;
-    -ms-flex-preferred-size: 33.333333333333336%;
-    flex-basis: 33.333333333333336%;
-    max-width: 33.333333333333336%;
-    display: block;
+    width: 100%;
   }
 }
 
