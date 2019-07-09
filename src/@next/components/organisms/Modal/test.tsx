@@ -35,7 +35,9 @@ describe("<Modal />", () => {
   });
 
   it("render <Overlay /> component with [position, show, hide, target] props", () => {
-    const overlay = renderModal(DEFAULT_PROPS).find(Overlay);
+    const overlay = renderModal({ ...DEFAULT_PROPS, target: null }).find(
+      Overlay
+    );
     const overlayProps = overlay.props();
 
     expect(overlay.exists()).toEqual(true);
