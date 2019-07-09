@@ -3,7 +3,7 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { Icon } from "@components/atoms";
+import { IconButton } from "@components/atoms";
 
 import { CardHeader } from ".";
 import * as S from "./styles";
@@ -52,23 +52,25 @@ describe("<CardHeader />", () => {
     expect(paragraph.contains(children)).toBe(true);
   });
 
-  it("should render close icon when `onHide` prop is defined", () => {
+  it("should render close icon when `onHide` prop is defined and `customIcon` is not defined", () => {
     const onHide = jest.fn();
     const closeIcon = renderHeader({
       ...DEFAULT_PROPS,
       onHide,
-    }).find(S.CloseBtn);
+    }).find(IconButton);
 
     closeIcon.simulate("click");
 
     expect(closeIcon.exists()).toEqual(true);
-    expect(closeIcon.find(Icon).prop("name")).toEqual("x");
+    expect(closeIcon.prop("name")).toEqual("x");
     expect(onHide).toHaveBeenCalled();
   });
 
   it("should render custom icon when `customIcon` prop is defined", () => {
-    const customIcon = <Icon name="edit" />;
-    const icon = renderHeader({ ...DEFAULT_PROPS, customIcon }).find(Icon);
+    const customIcon = <IconButton name="edit" />;
+    const icon = renderHeader({ ...DEFAULT_PROPS, customIcon }).find(
+      IconButton
+    );
 
     expect(icon.exists()).toEqual(true);
     expect(icon.prop("name")).toEqual("edit");
