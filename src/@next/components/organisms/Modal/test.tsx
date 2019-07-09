@@ -34,7 +34,7 @@ describe("<Modal />", () => {
     expect(modal.exists()).toEqual(true);
   });
 
-  it("render <Overlay /> component with [position, show, hide, target] props", () => {
+  it("should render <Overlay /> component with [position, show, hide, target] props", () => {
     const overlay = renderModal({ ...DEFAULT_PROPS, target: null }).find(
       Overlay
     );
@@ -47,7 +47,7 @@ describe("<Modal />", () => {
     expect(overlayProps.target).toBeDefined();
   });
 
-  it("render <CardHeader /> with title", () => {
+  it("should render <CardHeader /> with title", () => {
     const header = renderModal(DEFAULT_PROPS).find("CardHeader");
 
     expect(header.exists()).toEqual(true);
@@ -56,14 +56,14 @@ describe("<Modal />", () => {
     expect(header.prop("onHide")).toEqual(DEFAULT_PROPS.hide);
   });
 
-  it("render children wrapped in <S.Content/>", () => {
+  it("should render children wrapped in <S.Content/>", () => {
     const content = renderModal(DEFAULT_PROPS).find(S.Content);
 
     expect(content.exists()).toEqual(true);
     expect(content.contains(<Children />)).toBe(true);
   });
 
-  it("render <FormFooter />", () => {
+  it("should render <FormFooter />", () => {
     const footer = renderModal(DEFAULT_PROPS).find("FormFooter");
 
     expect(footer.exists()).toEqual(true);
