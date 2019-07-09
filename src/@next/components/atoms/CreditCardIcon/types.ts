@@ -7,5 +7,5 @@ export type CCProviders =
   | "amex";
 
 export interface IProps {
-  provider: CCProviders;
+  creditCardProvider: CCProviders;
 }

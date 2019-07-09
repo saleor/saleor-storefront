@@ -1,11 +1,12 @@
 import { CCProviders } from "@components/atoms";
 
-export interface ICreditCardData {
+declare type ccData = {
   nameOnCard: string;
   expirationDate: string;
   last4Digits: number;
   creditCardProvider: CCProviders;
-}
-export interface IProps extends ICreditCardData {
-  onRemove?: () => void;
+};
+
+export interface IProps {
+  creditCards: ccData[];
 }

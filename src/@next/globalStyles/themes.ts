@@ -45,16 +45,6 @@ export const defaultTheme = {
   container: {
     width: 1140,
   },
-  flexboxgrid: {
-    breakpoints: {
-      lg: 33.75, // em
-      md: 33.75, // em
-      sm: 0, // em
-      xs: 0, // em
-    },
-    gutterWidth: 2, // rem
-    mediaQuery: "only screen",
-  },
   grid: {
     containerWidth: 1140,
   },
