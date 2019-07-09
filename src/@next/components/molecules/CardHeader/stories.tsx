@@ -12,7 +12,6 @@ const DEFAULT_PROPS = {
   children,
   closeIcon: false,
   divider: false,
-  onHide: action("onHide"),
 };
 
 const renderHeader = (props: IProps) => (
@@ -26,7 +25,11 @@ storiesOf("@components/molecules/CardHeader", module)
     return renderHeader(PROPS);
   })
   .add("with close icon", () => {
-    const PROPS = { ...DEFAULT_PROPS, closeIcon: true };
+    const PROPS = {
+      ...DEFAULT_PROPS,
+      closeIcon: true,
+      onHide: action("onHide"),
+    };
     return renderHeader(PROPS);
   })
   .add("with custom icon", () => {

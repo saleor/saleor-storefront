@@ -10,7 +10,7 @@ export const Header = styled.div<{ divider: boolean }>`
     divider && `border-bottom: 1px solid ${theme.colors.light};`}
 `;
 
-export const Title = styled.h4<{ size: TitleSize }>`
+export const Title = styled.h4<{ size?: TitleSize }>`
   font-size: ${({ size, theme: { typography } }) =>
     size === "lg" ? typography.h4FontSize : typography.baseFontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};

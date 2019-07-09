@@ -12,7 +12,6 @@ import { IProps } from "./types";
 const children = "Some Title";
 const DEFAULT_PROPS = {
   children,
-  closeIcon: false,
   divider: false,
 };
 
@@ -53,11 +52,10 @@ describe("<CardHeader />", () => {
     expect(paragraph.contains(children)).toBe(true);
   });
 
-  it("should render close icon when `closeIcon` prop is set to true", () => {
+  it("should render close icon when `onHide` prop is defined", () => {
     const onHide = jest.fn();
     const closeIcon = renderHeader({
       ...DEFAULT_PROPS,
-      closeIcon: true,
       onHide,
     }).find(S.CloseBtn);
 
