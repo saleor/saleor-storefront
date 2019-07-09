@@ -5,7 +5,6 @@ import React from "react";
 import { DropdownMenu } from ".";
 
 describe("<DropdownMenu />", () => {
-  // Example test
   const content = [
     {
       content: <span>This is test</span>,
