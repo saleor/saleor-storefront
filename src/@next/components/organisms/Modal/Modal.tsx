@@ -32,7 +32,7 @@ export const Modal: React.FC<IProps> = ({
   onSubmit,
   submitBtnText,
   show,
-  target = null,
+  target,
   title,
 }: IProps) => {
   return (
