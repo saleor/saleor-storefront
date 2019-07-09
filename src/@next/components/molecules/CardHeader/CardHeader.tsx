@@ -18,7 +18,7 @@ export const CardHeader: React.FC<IProps> = ({
   textStyle = "title",
   titleSize = "md",
 }: IProps) => {
-  const withCloseIcon = onHide && !customIcon;
+  const withCloseIcon = !!onHide && !customIcon;
   const Text = textStyle === "title" ? S.Title : S.Paragraph;
   return (
     <S.Header divider={divider}>

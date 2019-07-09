@@ -63,6 +63,30 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   transform: skew(45deg);
 }
 
+.c9 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #21125e;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c9:hover {
+  color: #513CA3;
+}
+
 .c6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -103,30 +127,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 
 .c6:hover svg path {
   fill: #fff;
-}
-
-.c9 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #21125e;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  background: transparent;
-  outline: none;
-  border: none;
-  box-shadow: none;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  padding: 0;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
-}
-
-.c9:hover {
-  color: #513CA3;
 }
 
 .c4 {
