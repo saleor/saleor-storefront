@@ -16,9 +16,8 @@ const Children = () => <div>Content</div>;
 
 const DEFAULT_PROPS = {
   children: Children,
-  formId: "form-id",
+  disabled: false,
   hide: action("hide"),
-  loading: false,
   show: true,
   submitBtnText: "Save",
   target: portalRoot,
@@ -32,8 +31,19 @@ const renderModal = (props: IProps) => (
 );
 storiesOf("@components/organisms/Modal", module)
   .add("Modal Form", () =>
-    renderModal({ ...DEFAULT_PROPS, cancelBtnText: "Cancel" })
+    renderModal({
+      ...DEFAULT_PROPS,
+      cancelBtnText: "Cancel",
+      formId: "form-id",
+    })
+  )
+  .add("Modal Form disabled", () =>
+    renderModal({ ...DEFAULT_PROPS, disabled: true })
   )
   .add("Modal Info", () =>
-    renderModal({ ...DEFAULT_PROPS, submitBtnText: "OK" })
+    renderModal({
+      ...DEFAULT_PROPS,
+      onSubmit: action("submit and hide"),
+      submitBtnText: "OK",
+    })
   );

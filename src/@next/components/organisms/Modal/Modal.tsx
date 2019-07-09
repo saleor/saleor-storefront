@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/react";
 import React from "react";
 
 import { CardHeader, FormFooter } from "@components/molecules";
@@ -7,7 +6,6 @@ import { Overlay } from "@components/organisms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const LoadingText = () => <Trans id="Loading" />;
 const getCancelBtnProps = (action: () => void, text?: string) =>
   text && {
     cancelBtn: {
@@ -16,10 +14,7 @@ const getCancelBtnProps = (action: () => void, text?: string) =>
     },
   };
 
-const getSubmitBtnProps = (
-  text: string | React.ReactElement,
-  action?: () => void
-) => ({
+const getSubmitBtnProps = (text: string, action?: () => void) => ({
   submitBtn: action
     ? {
         action,
@@ -31,8 +26,8 @@ const getSubmitBtnProps = (
 export const Modal: React.FC<IProps> = ({
   cancelBtnText,
   children,
+  disabled,
   hide,
-  loading,
   formId = "modal-submit",
   onSubmit,
   submitBtnText,
@@ -49,10 +44,8 @@ export const Modal: React.FC<IProps> = ({
         <S.Content>{children}</S.Content>
         <FormFooter
           divider
-          {...getSubmitBtnProps(
-            loading ? <LoadingText /> : submitBtnText,
-            onSubmit
-          )}
+          disabled={disabled}
+          {...getSubmitBtnProps(submitBtnText, onSubmit)}
           {...getCancelBtnProps(hide, cancelBtnText)}
           formId={formId}
         />
