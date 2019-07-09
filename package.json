@@ -165,7 +165,6 @@
     "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
-    "compile": "lingui compile",
-    "extract:compile": "npm run extract && npm run compile"
+    "compile": "lingui compile"
   }
 }

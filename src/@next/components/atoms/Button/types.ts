@@ -1,6 +1,8 @@
 import React from "react";
 
-export interface IProps extends React.HTMLAttributes<HTMLButtonElement> {
+export type Size = "md" | "sm";
+export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "primary" | "secondary";
   btnRef?: React.RefObject<HTMLButtonElement>;
+  size?: Size;
 }

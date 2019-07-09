@@ -1,10 +1,24 @@
 import { media, styled } from "@styles";
+import { Size } from "./types";
 
-export const Primary = styled.button<{ color: "primary" | "secondary" }>`
+const padding = {
+  md: "0.9rem 3.7rem",
+  sm: "0.1rem 2rem",
+};
+
+const fontSize = (fontSize: string, smallFontSize: string) => ({
+  md: fontSize,
+  sm: smallFontSize,
+});
+
+export const Primary = styled.button<{
+  color: "primary" | "secondary";
+  size: Size;
+}>`
   background-color: ${props =>
     props.theme.button.colors[props.color].background};
-  transform: skew(45deg);
-  padding: 0.9rem 3.7rem;
+  transform: skew(-45deg);
+  padding: ${props => padding[props.size]};
   border: none;
   box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -48,11 +62,16 @@ export const Secondary = styled(Primary)`
   border-right: 1px solid ${props => props.theme.button.colors.secondary.color};
 `;
 
-export const Text = styled.span`
+export const Text = styled.span<{ size: Size }>`
   display: inline-block;
-  font-size: 1.125rem;
+  font-size: ${({
+    size,
+    theme: {
+      button: { typography },
+    },
+  }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
-  transform: skew(-45deg);
+  transform: skew(45deg);
 `;

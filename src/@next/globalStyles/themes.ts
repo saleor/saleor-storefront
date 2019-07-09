@@ -31,6 +31,7 @@ export const defaultTheme = {
       fontSize: "1.125rem",
       fontWeight: "600",
       lineHeight: "1.25rem",
+      smallFontSize: "1rem",
       textTransform: "uppercase",
     },
   },
@@ -59,8 +60,14 @@ export const defaultTheme = {
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
   link: {
-    baseColor: C.gray,
-    secondaryColor: C.blue,
+    base: {
+      color: C.gray,
+      hoverColor: C.grayMedium,
+    },
+    secondary: {
+      color: C.blue,
+      hoverColor: C.blueLight,
+    },
   },
   message: {
     backgroundColor: C.white,
@@ -86,7 +93,7 @@ export const defaultTheme = {
     productItemTitleTextTransform: "uppercase",
   },
   spacing: {
-    gutter: "1.875rem",
+    gutter: "1.875rem", // 30px
     spacer: `${C.spacer}rem`, // 16px
   },
   tile: {
