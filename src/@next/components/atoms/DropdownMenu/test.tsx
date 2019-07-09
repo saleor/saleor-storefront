@@ -20,12 +20,6 @@ describe("<DropdownMenu />", () => {
       onClick: jest.fn(),
     },
   ];
-  const contentOne = [
-    {
-      content: <span>This is test</span>,
-      onClick: jest.fn(),
-    },
-  ];
   const header = <p>press me</p>;
 
   const DEFAULT_PROPS = {
@@ -65,7 +59,7 @@ describe("<DropdownMenu />", () => {
     expect(wrapperHoverable.find("li").length).toEqual(3);
   });
 
-  it("should close dropdown if clicked/hovered out header element", () => {
+  it("should close dropdown if clicked on/hovered out from header element", () => {
     const wrapperClickable = shallow(
       <DropdownMenu type="clickable" {...DEFAULT_PROPS} />
     );
