@@ -13,3 +13,4 @@ export * from "./RichTextContent";
 export * from "./ServiceWorkerProvider";
 export * from "./SocialMediaIcon";
 export * from "./ButtonLink";
+export * from "./DropdownMenu";
