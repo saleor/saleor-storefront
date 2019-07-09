@@ -1,5 +1,7 @@
-import { useServiceWorker } from "@hooks";
 import React from "react";
+
+import { useServiceWorker } from "@hooks";
+
 import { ServiceWorkerContext } from ".";
 import { IProps } from './types';
 

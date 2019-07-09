@@ -1,12 +1,14 @@
-import { I18nProvider } from "@lingui/react";
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
 import {
   NotificationTemplate,
+} from "@components/atoms";
+import {
+  I18nLoader,
   ServiceWorkerContext,
   ServiceWorkerProvider
-} from "@components/atoms";
+} from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -28,7 +30,6 @@ import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
-import { lang, loadCatalogs } from "./translations";
 
 import { OverlayProvider, UserProvider } from "./components";
 
@@ -40,6 +41,8 @@ import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
+
+import { languages } from "./languages";
 
 const {
   component: UserProviderWithTokenHandler,
@@ -77,8 +80,6 @@ const startApp = async () => {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
   };
-
-  const catalogs = (await loadCatalogs(lang)) || {};
 
   const Root = hot(module)(() => {
     const alert = useAlert();
@@ -162,14 +163,14 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <I18nProvider language={lang} catalogs={catalogs}>
+      <I18nLoader languages={languages}>
         <AlertProvider template={NotificationTemplate} {...notificationOptions}>
           <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
             <GlobalStyle />
             <Root />
           </ServiceWorkerProvider>
         </AlertProvider>
-      </I18nProvider>
+      </I18nLoader>
     </ThemeProvider>,
     document.getElementById("root")
   );

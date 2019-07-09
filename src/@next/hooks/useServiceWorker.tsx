@@ -8,7 +8,7 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
   React.useEffect(() => {
     const interval: number = setInterval(() => {
       if (registration) {
-        registration.update()
+        registration.update();
       }
     }, timeout);
     return () => clearInterval(interval);
@@ -19,8 +19,8 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
 
   React.useEffect(() => {
     register('/service-worker.js', { registered, updated });
-    return () => unregister()
-  }, [])
+    return () => unregister();
+  }, []);
 
   return { updateAvailable };
 };
