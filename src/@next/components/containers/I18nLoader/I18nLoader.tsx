@@ -1,5 +1,6 @@
 import { I18nProvider } from "@lingui/react";
 import React from "react";
+
 import { I18nContext } from ".";
 import { IProps } from "./types";
 
