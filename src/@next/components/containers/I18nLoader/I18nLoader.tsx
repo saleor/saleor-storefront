@@ -19,7 +19,7 @@ const defaultLanguage = getLangCode(
 
 export const I18nLoader: React.FC<IProps> = ({ children, languages }: IProps) => {
   const [ language, setLanguage ] = React.useState<string>(() => {
-    return languages.hasOwnProperty(defaultLanguage) ? defaultLanguage : fallbackLanguage
+    return languages.hasOwnProperty(defaultLanguage) ? defaultLanguage : fallbackLanguage;
   });
   const [ catalogs, setCatalogs ] = React.useState<any>({});
 
@@ -49,5 +49,5 @@ export const I18nLoader: React.FC<IProps> = ({ children, languages }: IProps) =>
         {children}
       </I18nProvider>
     </I18nContext.Provider>
-  )
+  );
 };

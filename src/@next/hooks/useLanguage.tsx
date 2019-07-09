@@ -10,7 +10,7 @@ export const useLanguage = () => {
       throw new Error(`Language "${language}" is not supported`);
     }
     setLanguage(language);
-  }
+  };
 
   return { language, setLanguage: handleSetLanguage };
 };
