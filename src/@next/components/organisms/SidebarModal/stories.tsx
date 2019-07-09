@@ -31,8 +31,8 @@ const renderSidebarModal = (props: IProps) => (
 );
 
 storiesOf("@components/organisms/SidebarModal", module)
-  .add("with header", () => renderSidebarModal(DEFAULT_PROPS))
-  .add("with left position", () => {
+  .add("default", () => renderSidebarModal(DEFAULT_PROPS))
+  .add("Left side position", () => {
     const position: Position = "left";
     return renderSidebarModal({ ...DEFAULT_PROPS, position });
   });

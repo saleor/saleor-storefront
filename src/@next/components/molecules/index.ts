@@ -3,3 +3,5 @@ export * from "./CreditCardTile";
 export * from "./TextField";
 export * from "./FormFooter";
 export * from "./CardHeader";
+export * from "./SearchTextField";
+export * from "./DebouncedTextField";
