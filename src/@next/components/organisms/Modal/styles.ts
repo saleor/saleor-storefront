@@ -1,7 +1,5 @@
 import { styled } from "@styles";
 
-const horizontalPadding = "2rem";
-
 export const Modal = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,17 +8,6 @@ export const Modal = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 4rem ${horizontalPadding} 1.8rem ${horizontalPadding};
+  padding: ${({ theme: { spacing } }) =>
+    `4rem ${spacing.gutter} 1.8rem ${spacing.gutter}`};
 `;
-
-export const CloseBtn = styled.button``;
-
-//     .modal {
-//         &__lead {
-//           color: rgba($base-font-color, 0.6);
-//           font-size: $h3-font-size;
-//           font-weight: 900;
-//           padding: $spacer 0;
-//           text-transform: uppercase;
-//         }
-//       }
