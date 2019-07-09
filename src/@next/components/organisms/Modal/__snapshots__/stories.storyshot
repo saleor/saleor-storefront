@@ -184,7 +184,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 }
 
 .c7 {
-  padding: 4rem 2rem 1.8rem 2rem;
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {
@@ -440,7 +440,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 }
 
 .c7 {
-  padding: 4rem 2rem 1.8rem 2rem;
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {
@@ -687,7 +687,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 }
 
 .c7 {
-  padding: 4rem 2rem 1.8rem 2rem;
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
 }
 
 @media (max-width:540px) {

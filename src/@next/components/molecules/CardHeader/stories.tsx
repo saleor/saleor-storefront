@@ -10,7 +10,6 @@ import { IProps, TextStyle, TitleSize } from "./types";
 const children = "Some Title";
 const DEFAULT_PROPS = {
   children,
-  closeIcon: false,
   divider: false,
 };
 
@@ -27,7 +26,6 @@ storiesOf("@components/molecules/CardHeader", module)
   .add("with close icon", () => {
     const PROPS = {
       ...DEFAULT_PROPS,
-      closeIcon: true,
       onHide: action("onHide"),
     };
     return renderHeader(PROPS);

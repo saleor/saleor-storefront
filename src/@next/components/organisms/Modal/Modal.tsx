@@ -38,7 +38,7 @@ export const Modal: React.FC<IProps> = ({
   return (
     <Overlay position="center" show={show} hide={hide} target={target}>
       <S.Modal>
-        <CardHeader closeIcon divider onHide={hide}>
+        <CardHeader divider onHide={hide}>
           {title}
         </CardHeader>
         <S.Content>{children}</S.Content>
