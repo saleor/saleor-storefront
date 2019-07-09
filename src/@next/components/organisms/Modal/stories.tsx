@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { Modal } from ".";
+import { IProps } from "./types";
 
 let portalRoot = document.getElementById("portal-root");
 if (!portalRoot) {
@@ -11,8 +12,10 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
-const PROPS = {
-  cancelBtnText: "Cancel",
+const Children = () => <div>Content</div>;
+
+const DEFAULT_PROPS = {
+  children: Children,
   formId: "form-id",
   hide: action("hide"),
   loading: false,
@@ -22,9 +25,15 @@ const PROPS = {
   title: "Modal title",
 };
 
-const Children = () => <div>Content</div>;
-storiesOf("@components/organisms/Modal", module).add("default", () => (
-  <Modal {...PROPS}>
+const renderModal = (props: IProps) => (
+  <Modal {...props}>
     <Children />
   </Modal>
-));
+);
+storiesOf("@components/organisms/Modal", module)
+  .add("Modal Form", () =>
+    renderModal({ ...DEFAULT_PROPS, cancelBtnText: "Cancel" })
+  )
+  .add("Modal Info", () =>
+    renderModal({ ...DEFAULT_PROPS, submitBtnText: "OK" })
+  );

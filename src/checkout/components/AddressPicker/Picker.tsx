@@ -50,7 +50,7 @@ const renderModalForm = ({
   <Modal
     show={isVisibleModalForm}
     title="Add New Address"
-    loading={loading}
+    disabled={loading}
     formId="new-address-form"
     hide={hideAddNewModalForm}
     submitBtnText="Save"

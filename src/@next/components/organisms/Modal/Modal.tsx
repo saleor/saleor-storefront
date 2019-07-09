@@ -1,3 +1,4 @@
+import { Trans } from "@lingui/react";
 import React from "react";
 
 import { CardHeader, FormFooter } from "@components/molecules";
@@ -6,7 +7,8 @@ import { Overlay } from "@components/organisms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const getCancelBtnProps = (text: string, action: () => void) =>
+const LoadingText = () => <Trans id="Loading" />;
+const getCancelBtnProps = (action: () => void, text?: string) =>
   text && {
     cancelBtn: {
       action,
@@ -14,12 +16,25 @@ const getCancelBtnProps = (text: string, action: () => void) =>
     },
   };
 
+const getSubmitBtnProps = (
+  text: string | React.ReactElement,
+  action?: () => void
+) => ({
+  submitBtn: action
+    ? {
+        action,
+        text,
+      }
+    : { text },
+});
+
 export const Modal: React.FC<IProps> = ({
   cancelBtnText,
   children,
   hide,
   loading,
   formId = "modal-submit",
+  onSubmit,
   submitBtnText,
   show,
   target = null,
@@ -34,8 +49,11 @@ export const Modal: React.FC<IProps> = ({
         <S.Content>{children}</S.Content>
         <FormFooter
           divider
-          submitBtn={{ text: loading ? "Loading" : submitBtnText }}
-          {...getCancelBtnProps(cancelBtnText, hide)}
+          {...getSubmitBtnProps(
+            loading ? <LoadingText /> : submitBtnText,
+            onSubmit
+          )}
+          {...getCancelBtnProps(hide, cancelBtnText)}
           formId={formId}
         />
       </S.Modal>

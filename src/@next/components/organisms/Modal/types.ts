@@ -3,9 +3,10 @@ export interface IProps {
   title: string;
   hide: () => void;
   cancelBtnText?: string;
-  children: React.ReactElement;
+  children: React.ReactNode;
   submitBtnText: string;
-  loading: boolean;
+  disabled: boolean;
   formId?: string;
   show: boolean;
+  onSubmit?: () => void;
 }
