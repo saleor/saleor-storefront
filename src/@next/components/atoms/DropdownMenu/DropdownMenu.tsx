@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
 import * as S from "./styles";
-import { IProps, MenuItem } from "./types";
+import { IProps } from "./types";
 
 export const DropdownMenu: React.FC<IProps> = ({
   header,
-  content,
+  items,
   type,
 }: IProps) => {
   const [visible, setVisible] = useState(false);
@@ -25,7 +25,7 @@ export const DropdownMenu: React.FC<IProps> = ({
       {visible && (
         <S.Content>
           <ul>
-            {content.map((element, id) => (
+            {items.map((element, id) => (
               <li
                 key={id}
                 onClick={() => {

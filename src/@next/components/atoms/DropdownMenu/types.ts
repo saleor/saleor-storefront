@@ -6,5 +6,5 @@ export interface MenuItem {
 export interface IProps {
   type: "hoverable" | "clickable";
   header: React.ReactNode;
-  content: MenuItem[];
+  items: MenuItem[];
 }

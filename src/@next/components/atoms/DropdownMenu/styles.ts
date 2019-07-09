@@ -23,7 +23,7 @@ export const Content = styled.div`
     font-style: normal;
     font-weight: normal;
 
-    line-height: 1.25rem;
+    line-height: ${props => props.theme.typography.baseLineHeight};
     align-items: flex-start;
 
     li {

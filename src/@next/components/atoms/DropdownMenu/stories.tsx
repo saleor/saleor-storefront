@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 const onClick = action("onClick");
 const header = <IconButton size={19} name="edit" onClick={onClick} />;
-const content = [
+const items = [
   { onClick, content: <span>MY ACCOUNT</span> },
   { onClick, content: <span>ORDER HISTORY</span> },
   { onClick, content: <span>LOG OUT</span> },
@@ -24,11 +24,11 @@ const content = [
 storiesOf("@components/atoms/DropdownMenu", module)
   .add("hoverable", () => (
     <Container>
-      <DropdownMenu type="hoverable" header={header} content={content} />
+      <DropdownMenu type="hoverable" header={header} items={items} />
     </Container>
   ))
   .add("clickable", () => (
     <Container>
-      <DropdownMenu type="clickable" header={header} content={content} />
+      <DropdownMenu type="clickable" header={header} items={items} />
     </Container>
   ));
