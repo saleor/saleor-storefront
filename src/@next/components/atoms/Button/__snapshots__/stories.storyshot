@@ -19,9 +19,9 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 
 .c1 {
   background-color: #3ee7cd;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
   padding: 0.9rem 3.7rem;
   border: none;
   box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
@@ -58,9 +58,9 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -77,9 +77,11 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   <button
     className="c1"
     color="primary"
+    size="md"
   >
     <span
       className="c2"
+      size="md"
     >
       Primary Button
     </span>
@@ -109,9 +111,9 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 
 .c1 {
   background-color: #fff;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
   padding: 0.9rem 3.7rem;
   border: none;
   box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
@@ -151,9 +153,9 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
 }
 
 @media (max-width:540px) {
@@ -170,11 +172,105 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   <button
     className="c1"
     color="secondary"
+    size="md"
   >
     <span
       className="c2"
+      size="md"
     >
       Secondary Button
+    </span>
+  </button>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/Button Size sm 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c1:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c1:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c1:disabled {
+  background-color: $gray;
+}
+
+.c1:disabled,
+.c1:disabled:hover {
+  cursor: default;
+}
+
+.c2 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+@media (max-width:540px) {
+  .c1 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    color="primary"
+    size="sm"
+  >
+    <span
+      className="c2"
+      size="sm"
+    >
+      Small Button
     </span>
   </button>
   <div

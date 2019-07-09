@@ -4,9 +4,9 @@ import React from "react";
 import { CreditCardIcon } from ".";
 
 storiesOf("@components/atoms/CreditCardIcon", module)
-  .add("VISA", () => <CreditCardIcon provider="visa" />)
-  .add("MASTERCARD", () => <CreditCardIcon provider="mastercard" />)
-  .add("DISCOVER", () => <CreditCardIcon provider="discover" />)
-  .add("JCB", () => <CreditCardIcon provider="jcb" />)
-  .add("MAESTRO", () => <CreditCardIcon provider="maestro" />)
-  .add("AMEX", () => <CreditCardIcon provider="amex" />);
+  .add("VISA", () => <CreditCardIcon creditCardProvider="visa" />)
+  .add("MASTERCARD", () => <CreditCardIcon creditCardProvider="mastercard" />)
+  .add("DISCOVER", () => <CreditCardIcon creditCardProvider="discover" />)
+  .add("JCB", () => <CreditCardIcon creditCardProvider="jcb" />)
+  .add("MAESTRO", () => <CreditCardIcon creditCardProvider="maestro" />)
+  .add("AMEX", () => <CreditCardIcon creditCardProvider="amex" />);

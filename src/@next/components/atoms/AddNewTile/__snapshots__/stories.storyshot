@@ -20,11 +20,31 @@ exports[`Storyshots @components/atoms/AddNewTile default 1`] = `
 .c1 {
   background-color: #f1f5f5;
   border: 1px transparent solid;
-  margin-bottom: 2rem;
+  overflow: auto;
+  height: 100%;
   padding: 0;
   -webkit-transition: all 0.3s,color 0s,fill 0s;
   transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
   color: #21125e;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c1:hover {
@@ -42,10 +62,21 @@ exports[`Storyshots @components/atoms/AddNewTile default 1`] = `
 }
 
 .c3 {
-  width: 100%;
-  text-align: center;
   text-transform: uppercase;
   font-size: 1.125rem;
+  text-align: center;
+  vertical-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c3 p {

@@ -1,8 +1,9 @@
 import React from "react";
 
 import { IconButton, Tile } from "@components/atoms/";
-import { CreditCardNumberWithIcon } from "@components/molecules/";
+import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
 
+import { Trans } from "@lingui/react";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -10,23 +11,29 @@ export const CreditCardTile: React.FC<IProps> = ({
   nameOnCard,
   expirationDate,
   onRemove,
-  onEdit,
-  ...props
+  last4Digits,
+  creditCardProvider,
 }: IProps) => {
-  const header = <CreditCardNumberWithIcon {...props} />;
+  const header = (
+    <CreditCardNumberWithIcon
+      last4Digits={last4Digits}
+      creditCardProvider={creditCardProvider}
+    />
+  );
   const content = (
     <>
-      <S.BoldTitle>Expires on</S.BoldTitle>
+      <S.BoldTitle>
+        <Trans>Expires on</Trans>
+      </S.BoldTitle>
       <S.TextContent>{expirationDate}</S.TextContent>
-      <S.BoldTitle>Name on card</S.BoldTitle>
+      <S.BoldTitle>
+        <Trans>Name on card</Trans>
+      </S.BoldTitle>
       <S.TextContent>{nameOnCard}</S.TextContent>
     </>
   );
   const footer = (
     <S.FooterContent>
-      <div>
-        <IconButton name="edit" onClick={onEdit} size={19} />
-      </div>
       <div>
         <IconButton name="trash" onClick={onRemove} size={22} />
       </div>

@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
   button {
     border: none;
-    background-color: none;
+    background-color: transparent;
     cursor: pointer;
     outline: none;
     padding: 0;

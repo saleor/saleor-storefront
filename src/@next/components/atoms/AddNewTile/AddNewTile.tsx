@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Icon, Tile } from "..";
+import { Icon } from "../Icon";
+import { Tile } from "../Tile";
 import * as S from "./styles";
 import { IProps } from "./types";
 

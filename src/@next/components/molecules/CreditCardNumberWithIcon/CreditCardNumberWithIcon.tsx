@@ -6,12 +6,12 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const CreditCardNumberWithIcon: React.FC<IProps> = ({
-  provider,
+  creditCardProvider,
   last4Digits,
 }) => {
   return (
     <div>
-      <CreditCardIcon provider={provider} />
+      <CreditCardIcon creditCardProvider={creditCardProvider} />
       <S.Wrapper>XXXX XXXX XXXX {last4Digits}</S.Wrapper>
     </div>
   );
