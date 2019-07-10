@@ -23,11 +23,11 @@ export const CreditCardTile: React.FC<IProps> = ({
   const content = (
     <>
       <S.BoldTitle>
-        <Trans>Expires on</Trans>
+        <Trans id="Expires on" />
       </S.BoldTitle>
       <S.TextContent>{expirationDate}</S.TextContent>
       <S.BoldTitle>
-        <Trans>Name on card</Trans>
+        <Trans id="Name on card" />
       </S.BoldTitle>
       <S.TextContent>{nameOnCard}</S.TextContent>
     </>

@@ -150,7 +150,9 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
     >
       <div
         className="c6"
-      />
+      >
+        Expires on
+      </div>
       <div
         className="c7"
       >
@@ -158,7 +160,9 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
       </div>
       <div
         className="c6"
-      />
+      >
+        Name on card
+      </div>
       <div
         className="c7"
       >
