@@ -45,6 +45,10 @@ export const defaultTheme = {
   container: {
     width: 1140,
   },
+  dropdown: {
+    backgroundColor: C.theme.white,
+    boxShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
+  },
   grid: {
     containerWidth: 1140,
   },

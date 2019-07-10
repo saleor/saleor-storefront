@@ -14,4 +14,6 @@ export * from "./Message";
 export * from "./NotificationTemplate";
 export * from "./RichTextContent";
 export * from "./SocialMediaIcon";
+export * from "./ButtonLink";
+export * from "./DropdownMenu";
 export * from "./Tile";
