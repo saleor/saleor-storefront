@@ -17,9 +17,17 @@ msgstr ""
 msgid "Address book"
 msgstr "Address book"
 
+#: src/languages.ts:3
+msgid "English"
+msgstr "English"
+
 #: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:10
 msgid "Expires on"
 msgstr "Expires on"
+
+#: src/@next/components/molecules/FormFooter/FormFooter.tsx:5
+msgid "Loading"
+msgstr "Loading"
 
 #: src/components/MainMenu/MainMenu.tsx:55
 msgid "My Account"
@@ -32,6 +40,10 @@ msgstr "Name on card"
 #: src/components/MainMenu/MainMenu.tsx:60
 msgid "Order history"
 msgstr "Order history"
+
+#: src/@next/components/atoms/Address/Address.tsx:20
+msgid "Phone number"
+msgstr "Phone number"
 
 #: src/components/OverlayManager/Search/NothingFound.tsx:5
 msgid "Sorry, but we couldn’t match any search results for: “{search}”"

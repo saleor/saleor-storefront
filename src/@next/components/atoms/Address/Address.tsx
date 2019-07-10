@@ -1,6 +1,6 @@
+import { Trans } from "@lingui/react";
 import React from "react";
 
-import * as S from "./styles";
 import { IProps } from "./types";
 
 export const Address: React.FC<IProps> = ({
@@ -14,38 +14,31 @@ export const Address: React.FC<IProps> = ({
   countryArea,
   country,
   phone,
-}: // destructure props here if needed
-IProps) => {
-  return (
-    <S.Wrapper>
-      <strong>{`${firstName} ${lastName}`}</strong>
-      <br />
-      {companyName && (
-        <>
-          {companyName} <br />
-        </>
-      )}
-      {streetAddress1}
-      <br />
-      {streetAddress2 && (
-        <>
-          {streetAddress2} <br />
-        </>
-      )}
-      {city}, {postalCode}
-      <br />
-      {countryArea && (
-        <>
-          {countryArea} <br />
-        </>
-      )}
-      {country}
-      <br />
-      {phone && (
-        <>
-          Phone number: {phone} <br />
-        </>
-      )}
-    </S.Wrapper>
-  );
-};
+}: IProps) => (
+  <div>
+    <strong>{`${firstName} ${lastName}`}</strong>
+    <br />
+    {companyName && (
+      <>
+        {companyName} <br />
+      </>
+    )}
+    {streetAddress1}
+    <br />
+    {streetAddress2 && (
+      <>
+        {streetAddress2} <br />
+      </>
+    )}
+    {postalCode}, {city}
+    <br />
+    {countryArea && <>{countryArea}, </>}
+    {country}
+    <br />
+    {phone && (
+      <>
+        <Trans id="Phone number" />: {phone} <br />
+      </>
+    )}
+  </div>
+);
