@@ -38,6 +38,8 @@ exports[`Storyshots @components/molecules/CardHeader default 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div
@@ -76,6 +78,48 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
   box-sizing: border-box;
 }
 
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg {
+  display: block;
+}
+
+.c3 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover {
+  background-color: #21125e;
+}
+
+.c3:hover svg path {
+  fill: #fff;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -98,10 +142,8 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
-}
-
-.c3 {
-  cursor: pointer;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div
@@ -116,8 +158,9 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
     >
       Some Title
     </h4>
-    <button
+    <div
       className="c3"
+      onClick={[Function]}
     >
       <svg
         height={30}
@@ -129,7 +172,7 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
           fill="#323232"
         />
       </svg>
-    </button>
+    </div>
   </div>
   <div
     className="c4"
@@ -154,6 +197,48 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
   box-sizing: border-box;
 }
 
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg {
+  display: block;
+}
+
+.c3 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover {
+  background-color: #21125e;
+}
+
+.c3:hover svg path {
+  fill: #fff;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -175,10 +260,8 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
-}
-
-.c3 {
-  cursor: pointer;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div
@@ -193,7 +276,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
     >
       Some Title
     </h4>
-    <button
+    <div
       className="c3"
       onClick={[Function]}
     >
@@ -207,7 +290,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
           fill="#c4c4c4"
         />
       </svg>
-    </button>
+    </div>
   </div>
   <div
     className="c4"
@@ -232,6 +315,48 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
   box-sizing: border-box;
 }
 
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3 svg {
+  display: block;
+}
+
+.c3 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c3:hover {
+  background-color: #21125e;
+}
+
+.c3:hover svg path {
+  fill: #fff;
+}
+
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -253,10 +378,8 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
-}
-
-.c3 {
-  cursor: pointer;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div
@@ -271,8 +394,9 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
     >
       Some Title
     </h4>
-    <button
+    <div
       className="c3"
+      onClick={[Function]}
     >
       <svg
         height={24}
@@ -284,7 +408,7 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
           fill="#323232"
         />
       </svg>
-    </button>
+    </div>
   </div>
   <div
     className="c4"
@@ -331,6 +455,8 @@ exports[`Storyshots @components/molecules/CardHeader with divider 1`] = `
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div
@@ -388,6 +514,8 @@ exports[`Storyshots @components/molecules/CardHeader with paragraph text style 1
 .c2 {
   font-size: 0.875rem;
   color: #7d7d7d;
+  padding-right: 0.6rem;
+  margin: 0;
 }
 
 <div

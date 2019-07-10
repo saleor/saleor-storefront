@@ -40,7 +40,7 @@ export const Primary = styled.button<{
   }
 
   &:disabled {
-    background-color: $gray;
+    background-color: ${props => props.theme.colors.disabled};
 
     &,
     &:hover {

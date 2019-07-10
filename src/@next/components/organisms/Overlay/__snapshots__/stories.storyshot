@@ -18,6 +18,10 @@ exports[`Storyshots @components/organisms/Overlay Position center 1`] = `
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   width: 555px;
   min-height: 455px;
@@ -102,6 +106,10 @@ exports[`Storyshots @components/organisms/Overlay Position left 1`] = `
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   width: auto;
   min-height: 455px;
@@ -194,6 +202,10 @@ exports[`Storyshots @components/organisms/Overlay Position right 1`] = `
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   width: auto;
   min-height: 455px;

@@ -17,6 +17,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add lingui - #382 by @AlicjaSzu
 - Add FormFooter molecule component - #393 by @AlicjaSzu
 - Add Overlay component - #402 by @AlicjaSzu
+- Add Modal component - #391 by @AlicjaSzu
 
 ## 0.6.0
 
