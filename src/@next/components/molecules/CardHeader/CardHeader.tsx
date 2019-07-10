@@ -1,11 +1,10 @@
 import React from "react";
 
-import { Icon } from "@components/atoms";
+import { IconButton } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps, TextStyle, TitleSize } from "./types";
 
-const renderCloseIcon = () => <Icon name="x" size={19} />;
 const getTitleProps = (style: TextStyle, size: TitleSize) =>
   style === "title" && {
     size,
@@ -13,21 +12,19 @@ const getTitleProps = (style: TextStyle, size: TitleSize) =>
 
 export const CardHeader: React.FC<IProps> = ({
   children,
-  closeIcon = false,
   customIcon,
   divider = false,
   onHide,
   textStyle = "title",
   titleSize = "md",
 }: IProps) => {
+  const withCloseIcon = !!onHide && !customIcon;
   const Text = textStyle === "title" ? S.Title : S.Paragraph;
   return (
     <S.Header divider={divider}>
       <Text {...getTitleProps(textStyle, titleSize)}>{children}</Text>
-      {closeIcon && (
-        <S.CloseBtn onClick={onHide}>{renderCloseIcon()}</S.CloseBtn>
-      )}
-      {customIcon && <S.CloseBtn>{customIcon}</S.CloseBtn>}
+      {withCloseIcon && <IconButton name="x" size={19} onClick={onHide} />}
+      {customIcon}
     </S.Header>
   );
 };

@@ -4,7 +4,8 @@ import classNames from "classnames";
 import React from "react";
 import ReactSVG from "react-svg";
 
-import { Modal } from "../../../components";
+import { Modal } from "@components/organisms";
+
 import AddressSummary from "../../../components/AddressSummary";
 import { AddNewShippingAddressForm } from "../../../components/ShippingAddressForm";
 import { Option } from "../../components";
@@ -50,7 +51,7 @@ const renderModalForm = ({
   <Modal
     show={isVisibleModalForm}
     title="Add New Address"
-    loading={loading}
+    disabled={loading}
     formId="new-address-form"
     hide={hideAddNewModalForm}
     submitBtnText="Save"

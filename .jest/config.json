@@ -10,7 +10,8 @@
     "@components/atoms": "<rootDir>/src/@next/components/atoms/index.ts",
     "@components/molecules": "<rootDir>/src/@next/components/molecules/index.ts",
     "@components/organisms": "<rootDir>/src/@next/components/organisms/index.ts",
-    "@components/views": "<rootDir>/src/@next/components/views/index.ts"
+    "@components/views": "<rootDir>/src/@next/components/views/index.ts",
+    "@components/containers": "<rootDir>/src/@next/components/containers/index.ts"
   },
   "setupFilesAfterEnv": ["<rootDir>/.jest/setupTests.js"],
   "transform": {

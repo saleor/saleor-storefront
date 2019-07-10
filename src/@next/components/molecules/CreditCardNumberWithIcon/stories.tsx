@@ -5,5 +5,7 @@ import { CreditCardNumberWithIcon } from ".";
 
 storiesOf(`@components/molecules/CreditCardWithIcon`, module).add(
   "default",
-  () => <CreditCardNumberWithIcon provider="visa" last4Digits={1234} />
+  () => (
+    <CreditCardNumberWithIcon creditCardProvider="visa" last4Digits={1234} />
+  )
 );

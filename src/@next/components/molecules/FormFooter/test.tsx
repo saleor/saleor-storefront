@@ -51,6 +51,16 @@ describe("<FormFooter />", () => {
     expect(button.children().text()).toEqual("Submit");
     expect(button.prop("form")).toEqual(FORM_ID);
     expect(button.prop("type")).toEqual("submit");
+    expect(button.prop("disabled")).toEqual(false);
+  });
+
+  it("should render <Button /> with <LoadingText /> component if `disabled` prop is set to true", () => {
+    const button = renderFormFooter({ ...DEFAULT_PROPS, disabled: true }).find(
+      Button
+    );
+    expect(button.exists()).toEqual(true);
+    expect(button.find("LoadingText").exists()).toBe(true);
+    expect(button.prop("disabled")).toEqual(true);
   });
 
   it("should render <ButtonLink />", () => {

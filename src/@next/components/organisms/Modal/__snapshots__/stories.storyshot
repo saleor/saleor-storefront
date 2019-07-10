@@ -1,0 +1,893 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c12 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c10 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c10:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c10:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c10:disabled {
+  background-color: #7d7d7d;
+}
+
+.c10:disabled,
+.c10:disabled:hover {
+  cursor: default;
+}
+
+.c11 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c9 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #21125e;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c9:hover {
+  color: #513CA3;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6 svg {
+  display: block;
+}
+
+.c6 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6:hover {
+  background-color: #21125e;
+}
+
+.c6:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c8 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+  border-top: 1px solid #f1f5f5;
+}
+
+.c8 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 555px;
+  min-height: 455px;
+  height: auto;
+  background-color: #fff;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.c7 {
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
+}
+
+@media (max-width:540px) {
+  .c10 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <h4
+            className="c5"
+            size="md"
+          >
+            Modal title
+          </h4>
+          <div
+            className="c6"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div>
+            Content
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <button
+            className="c9"
+            color="secondary"
+            onClick={[Function]}
+            size="md"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button
+            className="c10"
+            color="primary"
+            disabled={false}
+            form="form-id"
+            size="sm"
+            type="submit"
+          >
+            <span
+              className="c11"
+              size="sm"
+            >
+              Save
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c12"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c9 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c9:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c9:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c9:disabled {
+  background-color: #7d7d7d;
+}
+
+.c9:disabled,
+.c9:disabled:hover {
+  cursor: default;
+}
+
+.c10 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6 svg {
+  display: block;
+}
+
+.c6 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6:hover {
+  background-color: #21125e;
+}
+
+.c6:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c8 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+  border-top: 1px solid #f1f5f5;
+}
+
+.c8 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 555px;
+  min-height: 455px;
+  height: auto;
+  background-color: #fff;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.c7 {
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
+}
+
+@media (max-width:540px) {
+  .c9 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <h4
+            className="c5"
+            size="md"
+          >
+            Modal title
+          </h4>
+          <div
+            className="c6"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div>
+            Content
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <button
+            className="c9"
+            color="primary"
+            disabled={true}
+            form="modal-submit"
+            size="sm"
+            type="submit"
+          >
+            <span
+              className="c10"
+              size="sm"
+            >
+              Loading
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c11"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c9 {
+  background-color: #3ee7cd;
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+  padding: 0.1rem 2rem;
+  border: none;
+  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  font-family: montserrat;
+  cursor: pointer;
+  color: #fff;
+}
+
+.c9:hover {
+  background-color: #42beab;
+  color: #fff;
+}
+
+.c9:active {
+  background-color: #42beab;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c9:disabled {
+  background-color: #7d7d7d;
+}
+
+.c9:disabled,
+.c9:disabled:hover {
+  cursor: default;
+}
+
+.c10 {
+  display: inline-block;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  -webkit-transform: skew(45deg);
+  -ms-transform: skew(45deg);
+  transform: skew(45deg);
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6 svg {
+  display: block;
+}
+
+.c6 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c6:hover {
+  background-color: #21125e;
+}
+
+.c6:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c8 {
+  position: relative;
+  text-align: right;
+  padding: 1.1rem 1.875rem;
+  border-top: 1px solid #f1f5f5;
+}
+
+.c8 button:last-child {
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 555px;
+  min-height: 455px;
+  height: auto;
+  background-color: #fff;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.c7 {
+  padding: 4rem 1.875rem 1.8rem 1.875rem;
+}
+
+@media (max-width:540px) {
+  .c9 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <h4
+            className="c5"
+            size="md"
+          >
+            Modal title
+          </h4>
+          <div
+            className="c6"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div>
+            Content
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <button
+            className="c9"
+            color="primary"
+            disabled={false}
+            form="modal-submit"
+            onClick={[Function]}
+            size="sm"
+            type="submit"
+          >
+            <span
+              className="c10"
+              size="sm"
+            >
+              OK
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c11"
+  />
+</div>
+`;

@@ -44,7 +44,7 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 }
 
 .c1:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c1:disabled,
@@ -139,7 +139,7 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
 }
 
 .c1:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c1:disabled,
@@ -231,7 +231,7 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 }
 
 .c1:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c1:disabled,

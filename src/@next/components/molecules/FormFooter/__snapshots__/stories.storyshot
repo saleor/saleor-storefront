@@ -44,7 +44,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 }
 
 .c3:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c3:disabled,
@@ -124,6 +124,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
     <button
       className="c3"
       color="primary"
+      disabled={false}
       onClick={[Function]}
       size="sm"
       type="button"
@@ -186,7 +187,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
 }
 
 .c2:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c2:disabled,
@@ -233,6 +234,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
     <button
       className="c2"
       color="primary"
+      disabled={false}
       onClick={[Function]}
       size="sm"
       type="button"
@@ -295,7 +297,7 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
 }
 
 .c2:disabled {
-  background-color: $gray;
+  background-color: #7d7d7d;
 }
 
 .c2:disabled,
@@ -343,6 +345,7 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
     <button
       className="c2"
       color="primary"
+      disabled={false}
       onClick={[Function]}
       size="sm"
       type="button"

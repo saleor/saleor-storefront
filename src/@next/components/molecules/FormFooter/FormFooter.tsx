@@ -1,8 +1,11 @@
+import { Trans } from "@lingui/react";
 import React from "react";
 
 import { Button, ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 import { IButtonProps, IProps } from "./types";
+
+const LoadingText = () => <Trans id="Loading" />;
 
 const getBtnAction = (btn: IButtonProps) =>
   btn.action && { onClick: btn.action };
@@ -14,20 +17,26 @@ const renderCancelBtn = (cancelBtn?: IButtonProps) =>
     </ButtonLink>
   );
 
-const renderSubmitBtn = (submitBtn: IButtonProps, formId?: string) =>
+const renderSubmitBtn = (
+  submitBtn: IButtonProps,
+  disabled: boolean,
+  formId?: string
+) =>
   submitBtn && (
     <Button
       {...getBtnAction(submitBtn)}
       type={formId ? "submit" : "button"}
       form={formId}
+      disabled={disabled}
       size="sm"
     >
-      {submitBtn.text}
+      {disabled ? <LoadingText /> : submitBtn.text}
     </Button>
   );
 
 export const FormFooter: React.FC<IProps> = ({
   cancelBtn,
+  disabled = false,
   divider = false,
   formId,
   submitBtn,
@@ -35,7 +44,7 @@ export const FormFooter: React.FC<IProps> = ({
   return (
     <S.Footer divider={divider}>
       {renderCancelBtn(cancelBtn)}
-      {renderSubmitBtn(submitBtn, formId)}
+      {renderSubmitBtn(submitBtn, disabled, formId)}
     </S.Footer>
   );
 };

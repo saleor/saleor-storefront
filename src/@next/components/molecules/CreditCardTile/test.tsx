@@ -6,16 +6,14 @@ import { CreditCardIcon } from "@components/atoms";
 import { CreditCardTile } from "./CreditCardTile";
 
 describe("<CreditCardTile />", () => {
-  const onEditMock = jest.fn();
   const onRemoveMock = jest.fn();
   it("contains CreditCardIcon", () => {
     const wrapper = mount(
       <CreditCardTile
         nameOnCard="John Doe"
         expirationDate="10/2020"
-        provider="visa"
+        creditCardProvider="visa"
         last4Digits={1234}
-        onEdit={onEditMock}
         onRemove={onRemoveMock}
       />
     );
@@ -27,9 +25,8 @@ describe("<CreditCardTile />", () => {
       <CreditCardTile
         nameOnCard="John Doe"
         expirationDate="10/2020"
-        provider="visa"
+        creditCardProvider="visa"
         last4Digits={9876}
-        onEdit={onEditMock}
         onRemove={onRemoveMock}
       />
     );

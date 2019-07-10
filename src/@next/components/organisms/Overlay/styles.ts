@@ -49,6 +49,7 @@ const lightboxHeight = (width: number) => ({
 });
 
 export const Lightbox = styled.div<IStyleProps>`
+  display: flex;
   position: relative;
   width: ${({ position, theme: { modal } }) =>
     lightboxHeight(modal.modalWidth)[position]};
