@@ -29,18 +29,18 @@ export const AddressTile: React.FC<IProps> = ({
 
       <DropdownMenu
         type="clickable"
-        header={<IconButton name="edit" size={19} />}
+        header={<IconButton name="expand" size={24} />}
         items={[
           {
             content: defaultBillingAddress,
             onClick: () => {
-              setDefault();
+              setDefault("BILLING");
             },
           },
           {
             content: defaultShippingAddress,
             onClick: () => {
-              setDefault();
+              setDefault("SHIPPING");
             },
           },
         ]}
