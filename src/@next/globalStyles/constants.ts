@@ -16,6 +16,7 @@ export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
 export const turquoise = "#3ee7cd";
 export const turquoiseDark = "#42beab";
+export const turqoiseLight = `rgba(62, 231, 205, 0.2)`;
 export const white = "#fff";
 
 // theme colors
@@ -32,6 +33,7 @@ export const theme = {
   overlay: overlayColor,
   primary: turquoise,
   primaryDark: turquoiseDark,
+  primaryLight: turqoiseLight,
   secondary: blue,
   secondaryDark: blueDark,
   success: green,

@@ -6,8 +6,16 @@ import { Address, DropdownMenu, IconButton, Tile } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const defaultShippingAddress = <Trans id="Set as default shipping address" />;
-const defaultBillingAddress = <Trans id="Set as default billing address" />;
+const defaultShippingAddress = (
+  <S.MenuItem>
+    <Trans id="Set as default shipping address" />
+  </S.MenuItem>
+);
+const defaultBillingAddress = (
+  <S.MenuItem>
+    <Trans id="Set as default billing address" />
+  </S.MenuItem>
+);
 
 export const AddressTile: React.FC<IProps> = ({
   onEdit,

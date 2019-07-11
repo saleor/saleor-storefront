@@ -18,3 +18,11 @@ export const FooterContent = styled.div`
     margin-right: 0.6rem;
   }
 `;
+
+export const MenuItem = styled.div`
+  border-radius: 8px;
+  padding: 0.25rem;
+  :hover {
+    background-color: ${props => props.theme.colors.primaryLight};
+  }
+`;

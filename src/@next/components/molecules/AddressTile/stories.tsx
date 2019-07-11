@@ -1,8 +1,13 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
+import { styled } from "@styles";
 import React from "react";
 
 import { AddressTile } from ".";
+
+const Container = styled.div`
+  max-width: 400px;
+`;
 
 const onEdit = action("onEdit");
 const onRemove = action("onRemove");
@@ -29,5 +34,7 @@ const DEFAULT_PROPS = {
 };
 
 storiesOf("@components/molecules/AddressTile", module).add("default", () => (
-  <AddressTile {...DEFAULT_PROPS} />
+  <Container>
+    <AddressTile {...DEFAULT_PROPS} />
+  </Container>
 ));
