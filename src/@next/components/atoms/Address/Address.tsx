@@ -1,6 +1,7 @@
 import { Trans } from "@lingui/react";
 import React from "react";
 
+import * as S from "./styles";
 import { IProps } from "./types";
 
 export const Address: React.FC<IProps> = ({
@@ -16,8 +17,7 @@ export const Address: React.FC<IProps> = ({
   phone,
 }: IProps) => (
   <div>
-    <strong>{`${firstName} ${lastName}`}</strong>
-    <br />
+    <S.Name>{`${firstName} ${lastName}`}</S.Name>
     {companyName && (
       <>
         {companyName} <br />
