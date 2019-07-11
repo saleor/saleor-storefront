@@ -9,11 +9,6 @@ const onRemove = action("onRemove");
 const setDefault = action("setDefault");
 
 const DEFAULT_PROPS = {
-  isDefaultBillingAddress: false,
-  isDefaultShippingAddress: true,
-  onEdit,
-  onRemove,
-  setDefault,
   address: {
     city: "Wroclaw",
     companyName: "Mirumee",
@@ -26,6 +21,11 @@ const DEFAULT_PROPS = {
     streetAddress1: "St Street",
     streetAddress2: "Second",
   },
+  isDefaultBillingAddress: false,
+  isDefaultShippingAddress: true,
+  onEdit,
+  onRemove,
+  setDefault,
 };
 
 storiesOf("@components/molecules/AddressTile", module).add("default", () => (
