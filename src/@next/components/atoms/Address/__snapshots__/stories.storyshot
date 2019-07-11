@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/Address default 1`] = `
   margin: 20px;
 }
 
-.c1 {
+.c2 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,14 +17,21 @@ exports[`Storyshots @components/atoms/Address default 1`] = `
   box-sizing: border-box;
 }
 
+.c1 {
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+}
+
 <div
   className="c0"
 >
   <div>
-    <strong>
+    <span
+      className="c1"
+    >
       John Doe
-    </strong>
-    <br />
+    </span>
     Mirumee
      
     <br />
@@ -48,7 +55,7 @@ exports[`Storyshots @components/atoms/Address default 1`] = `
     <br />
   </div>
   <div
-    className="c1"
+    className="c2"
   />
 </div>
 `;
