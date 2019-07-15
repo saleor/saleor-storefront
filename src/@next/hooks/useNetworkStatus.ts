@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useNetworkStatus = (cb?: (online?: boolean) => void) => {
+export const useNetworkStatus = (callBack?: (online?: boolean) => void) => {
   const [online, setOnline] = React.useState(
     "onLine" in navigator ? navigator.onLine : true
   );
@@ -8,8 +8,8 @@ export const useNetworkStatus = (cb?: (online?: boolean) => void) => {
   const updateOnlineStatus = () => {
     const status = navigator.onLine;
 
-    if (cb) {
-      cb(status);
+    if (callBack) {
+      callBack(status);
     }
     setOnline(navigator.onLine);
   };
