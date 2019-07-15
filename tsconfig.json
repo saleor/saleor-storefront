@@ -23,6 +23,7 @@
       "@utils/*": ["./src/@next/utils/*"],
       "@hooks": ["./src/@next/hooks/index.ts"],
       "@hooks/*": ["./src/@next/hooks/*"],
+      "@types/*": ["./src/@next/types/*"]
     },
     "skipLibCheck": true
   },
