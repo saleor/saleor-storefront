@@ -1,7 +1,6 @@
 import { DataProxy } from "apollo-cache";
 import { ApolloError, OperationVariables } from "apollo-client";
 import { FetchResult } from "apollo-link";
-import { GraphQLError } from "graphql";
 import React from "react";
 
 import { SaleorAPI } from "../index";
@@ -27,18 +26,14 @@ export type MutationFn<TData, TVariables> = (
 export interface MutationResult<TData> {
   called: boolean;
   data: NestedData<TData> | null;
-  error: ApolloError | null;
+  error: ApolloErrorWithUserInput | null;
   loading: boolean;
 }
 
-interface ExecutionResult<T = Record<string, any>> {
-  data?: T;
-  extensions?: Record<string, any>;
-  errors?: GraphQLError[];
-}
-
-interface Error extends ApolloError {
-  extraInfo: string;
+interface ApolloErrorWithUserInput extends ApolloError {
+  extraInfo: {
+    userInputErrors?: any[];
+  };
 }
 
 // keep track of called mutation
@@ -93,7 +88,10 @@ const useMutation = <
     }
   };
 
-  const handleMutationError = (error: ApolloError, mutationId: number) => {
+  const handleMutationError = (
+    error: ApolloErrorWithUserInput,
+    mutationId: number
+  ) => {
     if (isMostRecentMutation(mutationId)) {
       setResult(prevState => ({
         ...prevState,

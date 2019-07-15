@@ -31,7 +31,7 @@ export class SaleorAPI {
   static fireQuery<
     T extends { [key: string]: (...args: any) => any },
     N extends keyof T
-  >(client, query: T[N]) {
+  >(client: ApolloClient<any>, query: T[N]) {
     return (
       variables: InferOptions<T[N]>["variables"],
       options?: Omit<InferOptions<T[N]>, "variables">
