@@ -28,7 +28,7 @@ export const CredentialsProvider: React.FC<IProps> = ({ children }) => {
     if (!authenticated) {
       autoSignIn(false);
     }
-  });
+  }, [authenticated]);
 
   return (
     <>
