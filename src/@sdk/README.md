@@ -3,11 +3,13 @@
 This package contains all queries and mutations that are used in our sample storefront. It can be used for semi-custom or fully-custom (with ability to extend existing queries) storefront solutions.
 
 ## Setup (PACKAGE CURRENTLY NOT RELEASED TO NPM)
+
 ```
 npm install saleor-sdk
 ```
 
 Create new saleor client by using our built-in pre-configured apollo client:
+
 ```
 import { createSaleorClient } from 'saleor-sdk'
 
@@ -17,10 +19,13 @@ const client = createSaleorClient(API_URL)
 **or provide your own apollo client**
 
 ## Usage
+
 ### React
+
 We provide a custom hook per each query that have near identical API to `react-apollo` but are dynamically typed, with built-in error handling.
 
 In your root file:
+
 ```
 import { SaleorProvider } from 'saleor-sdk'
 import { client } from './saleor'
@@ -39,11 +44,13 @@ ReactDOM.render(
 There are 2 types of api calls - queries and mutations.
 
 Query (gets data):
+
 ```
 const { data: TData, loading: boolean, error: ApolloError } = useProductDetails(options?)
 ```
 
 Mutation (sets data):
+
 ```
 const [
   signIn: (options?) => Promise,
@@ -52,14 +59,16 @@ const [
 ```
 
 For `options` and full api reference, navigate to [official docs](https://www.apollographql.com/docs/)
+
 ### Other frameworks
 
-Create new SaleorSDK instance and use methods available on it
+Create new SaleorAPI instance and use methods available on it
+
 ```
-import { SaleorSDK } from 'saleor-sdk'
+import { SaleorAPI } from 'saleor-sdk'
 import { client } from './saleor'
 
-export const saleorAPI = new SaleorSDK(client)
+export const saleorAPI = new SaleorAPI(client)
 ```
 
 ```
