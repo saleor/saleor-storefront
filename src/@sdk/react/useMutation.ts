@@ -1,5 +1,5 @@
 import { DataProxy } from "apollo-cache";
-import { ApolloError, OperationVariables } from "apollo-client";
+import { OperationVariables } from "apollo-client";
 import { FetchResult } from "apollo-link";
 import React from "react";
 
@@ -7,6 +7,7 @@ import { SaleorAPI } from "../index";
 import { MutationOptions, MUTATIONS } from "../mutations";
 import { InferOptions, NestedData, Omit, QueryData } from "../tsHelpers";
 import { useSaleorClient } from "./context";
+import { ApolloErrorWithUserInput } from "./types";
 
 type MutationUpdaterFn<TData = Record<string, any>> = (
   proxy: DataProxy,
@@ -28,12 +29,6 @@ export interface MutationResult<TData> {
   data: NestedData<TData> | null;
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
-}
-
-interface ApolloErrorWithUserInput extends ApolloError {
-  extraInfo: {
-    userInputErrors?: any[];
-  };
 }
 
 // keep track of called mutation

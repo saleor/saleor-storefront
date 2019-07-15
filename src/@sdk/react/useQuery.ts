@@ -1,39 +1,38 @@
-import { ApolloError, ApolloQueryResult } from "apollo-client";
+import { ApolloQueryResult } from "apollo-client";
 import React from "react";
 
-import { QUERIES, QueryOptions } from "../queries";
+import { SaleorAPI } from "../index";
+import { QUERIES } from "../queries";
+import { InferOptions, NestedData } from "../tsHelpers";
 import { useSaleorClient } from "./context";
+import { ApolloErrorWithUserInput } from "./types";
 
-type InferData<T> = T extends Promise<ApolloQueryResult<infer D>> ? D : T;
+type InferData<T> = T extends Promise<ApolloQueryResult<infer D>>
+  ? NestedData<D>
+  : T;
 type ResponseData<N extends keyof QUERIES, T extends QUERIES[N]> = InferData<
   ReturnType<T>
 >;
 
-type InferVariables<N extends keyof QUERIES, T extends QUERIES[N]> = T extends (
-  c,
-  o: infer O
-) => any
-  ? O extends { variables }
-    ? O
-    : never
-  : {};
-
 const useQuery = <N extends keyof QUERIES, T extends QUERIES[N]>(
   query: T,
-  options
+  variables: InferOptions<T>["variables"],
+  options?: Omit<InferOptions<T>, "variables">
 ) => {
   const client = useSaleorClient();
 
   const [data, setData] = React.useState<ResponseData<N, T>>(null);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<ApolloError>(null);
+  const [error, setError] = React.useState<ApolloErrorWithUserInput>(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await (query as any)(client, options);
-
-        setData(data.data as ResponseData<N, T>);
+        const data = await SaleorAPI.fireQuery<QUERIES, N>(client, query)(
+          variables,
+          options
+        );
+        setData(data);
       } catch (e) {
         setError(e);
       } finally {
@@ -42,7 +41,7 @@ const useQuery = <N extends keyof QUERIES, T extends QUERIES[N]>(
     };
 
     fetchData();
-  }, [query, options]);
+  }, [query, JSON.stringify(variables), JSON.stringify(options)]);
 
   return {
     data,
@@ -56,8 +55,12 @@ export const queryWithVariablesFactory = <
   T extends QUERIES[N]
 >(
   query: T
-) => (options: InferVariables<N, T>) => useQuery(query, options);
+) => (
+  variables: InferOptions<T>["variables"],
+  options?: Omit<InferOptions<T>, "variables">
+) => useQuery(query, variables, options);
 
 export const queryFactory = <N extends keyof QUERIES, T extends QUERIES[N]>(
   query: T
-) => (options: QueryOptions = {}) => useQuery(query, options);
+) => (options?: Omit<InferOptions<T>, "variables">) =>
+  useQuery(query, undefined, options);
