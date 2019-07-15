@@ -5,10 +5,12 @@ import {
   NotificationTemplate,
 } from "@components/atoms";
 import {
+  CredentialsProvider,
   I18nLoader,
   ServiceWorkerContext,
   ServiceWorkerProvider
 } from "@components/containers";
+import { SaleorProvider } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -109,53 +111,57 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <ShopProvider>
-            <OverlayProvider>
-              <UserProviderWithTokenHandler
-                apolloClient={apolloClient}
-                onUserLogin={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged in",
-                    },
-                    { type: "success" }
-                  )
-                }
-                onUserLogout={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged out",
-                    },
-                    { type: "success" }
-                  )
-                }
-                refreshUser
-              >
-                <UserContext.Consumer>
-                  {user => (
-                    <CheckoutProvider user={user}>
-                      <CheckoutContext.Consumer>
-                        {checkout => (
-                          <CartProvider
-                            checkout={checkout}
-                            apolloClient={apolloClient}
-                          >
-                            <Switch>
-                              <Route
-                                path={checkoutBaseUrl}
-                                component={CheckoutApp}
-                              />
-                              <Route component={App} />
-                            </Switch>
-                          </CartProvider>
-                        )}
-                      </CheckoutContext.Consumer>
-                    </CheckoutProvider>
-                  )}
-                </UserContext.Consumer>
-              </UserProviderWithTokenHandler>
-            </OverlayProvider>
-          </ShopProvider>
+          <SaleorProvider client={apolloClient}>
+            <ShopProvider>
+              <OverlayProvider>
+                <UserProviderWithTokenHandler
+                  apolloClient={apolloClient}
+                  onUserLogin={() =>
+                    alert.show(
+                      {
+                        title: "You are now logged in",
+                      },
+                      { type: "success" }
+                    )
+                  }
+                  onUserLogout={() =>
+                    alert.show(
+                      {
+                        title: "You are now logged out",
+                      },
+                      { type: "success" }
+                    )
+                  }
+                  refreshUser
+                >
+                  <CredentialsProvider>
+                    <UserContext.Consumer>
+                      {user => (
+                        <CheckoutProvider user={user}>
+                          <CheckoutContext.Consumer>
+                            {checkout => (
+                              <CartProvider
+                                checkout={checkout}
+                                apolloClient={apolloClient}
+                              >
+                                <Switch>
+                                  <Route
+                                    path={checkoutBaseUrl}
+                                    component={CheckoutApp}
+                                  />
+                                  <Route component={App} />
+                                </Switch>
+                              </CartProvider>
+                            )}
+                          </CheckoutContext.Consumer>
+                        </CheckoutProvider>
+                      )}
+                    </UserContext.Consumer>
+                  </CredentialsProvider>
+                </UserProviderWithTokenHandler>
+              </OverlayProvider>
+            </ShopProvider>
+          </SaleorProvider>
         </ApolloProvider>
       </Router>
     );
