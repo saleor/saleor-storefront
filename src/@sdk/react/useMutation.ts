@@ -4,8 +4,9 @@ import { FetchResult } from "apollo-link";
 import { GraphQLError } from "graphql";
 import React from "react";
 
+import { SaleorAPI } from "../index";
 import { MutationOptions, MUTATIONS } from "../mutations";
-import { Omit } from "../tsHelpers";
+import { InferOptions, NestedData, Omit, QueryData } from "../tsHelpers";
 import { useSaleorClient } from "./context";
 
 type MutationUpdaterFn<TData = Record<string, any>> = (
@@ -13,23 +14,19 @@ type MutationUpdaterFn<TData = Record<string, any>> = (
   mutationResult: FetchResult<TData>
 ) => void;
 
-interface BaseMutationHookOptions<TData, TVariables>
+export interface BaseMutationHookOptions<TData, TVariables>
   extends Omit<MutationOptions<TData, TVariables>, "update"> {
   update?: MutationUpdaterFn<TData>;
 }
 
-type MutationFn<TData, TVariables> = (
-  options?: BaseMutationHookOptions<TData, TVariables>
-) => Promise<FetchResult<TData>>;
+export type MutationFn<TData, TVariables> = (
+  variables?: TVariables,
+  options?: BaseMutationHookOptions<TData, never>
+) => Promise<NestedData<TData>>;
 
-type InferVariables<
-  N extends keyof MUTATIONS,
-  T extends MUTATIONS[N]
-> = T extends (c, o: infer O) => any ? O : {};
-
-interface MutationResult<TData> {
+export interface MutationResult<TData> {
   called: boolean;
-  data: TData | null;
+  data: NestedData<TData> | null;
   error: ApolloError | null;
   loading: boolean;
 }
@@ -70,28 +67,14 @@ const initialState: MutationResult<any> = {
   loading: false,
 };
 
-// errors are nested in data as it currently stands in the API
-// this helper extracts all errors present
-const getErrorsFromData = data => {
-  try {
-    const error = Object.keys(data).reduce((acc, key) => {
-      return {
-        ...acc,
-        ...(data[key].errors &&
-          !!data[key].errors.length && { [key]: data[key].errors }),
-      };
-    }, {});
-
-    return !!Object.keys(error).length ? error : null;
-  } catch (e) {
-    // set global error when data is not an object
-    return { global: true };
-  }
-};
-
-const useMutation = <TData, TVariables = OperationVariables>(
+const useMutation = <
+  TType extends keyof MUTATIONS,
+  TData,
+  TVariables = OperationVariables
+>(
   mutation: any,
-  baseOptions: BaseMutationHookOptions<TData, TVariables> = {}
+  baseVariables: TVariables,
+  baseOptions: BaseMutationHookOptions<TData, never> = {}
 ): [MutationFn<TData, TVariables>, MutationResult<TData>] => {
   const client = useSaleorClient();
   const { generateNewMutationId, isMostRecentMutation } = useMutationTracking();
@@ -121,17 +104,9 @@ const useMutation = <TData, TVariables = OperationVariables>(
   };
 
   const handleMutationComplete = (
-    response: ExecutionResult<TData>,
+    data: NestedData<TData>,
     mutationId: number
   ) => {
-    const { data } = response;
-    const errors = getErrorsFromData(data);
-
-    if (errors) {
-      handleMutationError(new ApolloError({ extraInfo: errors }), mutationId);
-      return;
-    }
-
     if (isMostRecentMutation(mutationId)) {
       setResult(prevState => ({
         ...prevState,
@@ -142,39 +117,50 @@ const useMutation = <TData, TVariables = OperationVariables>(
   };
 
   const runMutation = React.useCallback(
-    (options: MutationOptions<TData, TVariables> = {}) => {
+    (
+      variables: TVariables,
+      options: MutationOptions<TData, TVariables> = {}
+    ) => {
       return new Promise(resolve => {
         handleMutationStart();
 
         const mutationId = generateNewMutationId();
-        const variables = baseOptions.variables
-          ? { ...options.variables, ...baseOptions.variables }
-          : options.variables;
+        const apolloVariables = { ...baseVariables, ...variables };
 
-        mutation(client, {
-          ...baseOptions,
-          ...options,
-          variables,
-        })
-          .then(response => {
-            handleMutationComplete(response, mutationId);
-            resolve(response as ExecutionResult<TData>);
+        const apolloOptions = { ...baseOptions, ...options };
+
+        SaleorAPI.fireQuery<MUTATIONS, TType>(client, mutation)(
+          apolloVariables as any,
+          apolloOptions as any
+        )
+          .then(data => {
+            handleMutationComplete(data, mutationId);
+            resolve(data);
           })
           .catch(err => {
             handleMutationError(err, mutationId);
-            resolve({});
+            resolve(null);
           });
       });
     },
     [mutation, baseOptions]
-  );
+  ) as MutationFn<TData, TVariables>;
 
   return [runMutation, result];
 };
 
 export const mutationFactory = <
   N extends keyof MUTATIONS,
-  T extends MUTATIONS[N]
+  T extends MUTATIONS[N],
+  TData extends QueryData<T>
 >(
   mutation: T
-) => (options?: InferVariables<N, T>) => useMutation(mutation, options);
+) => (
+  variables: InferOptions<T>["variables"],
+  options?: BaseMutationHookOptions<TData, never>
+) =>
+  useMutation<N, TData, InferOptions<T>["variables"]>(
+    mutation,
+    variables,
+    options
+  );

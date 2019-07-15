@@ -17,7 +17,15 @@ export type KeysMatching<T, V> = T[{
 // sdk specific
 export type InferOptions<T> = T extends (c, o: infer O) => any ? O : never;
 
-type NestedData<T> = KeysMatching<T, { [key: string]: any }>;
+export type NestedData<T> = KeysMatching<T, { [key: string]: any }>;
+
+export type QueryData<T extends (...args: any) => any> = ReturnType<
+  T
+> extends Promise<infer R>
+  ? R extends { [key: string]: any }
+    ? R["data"]
+    : {}
+  : never;
 
 export type ReturnData<
   T extends { [key: string]: (...args: any) => any },

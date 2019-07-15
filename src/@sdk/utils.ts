@@ -15,3 +15,12 @@ export const getErrorsFromData = data => {
     return null;
   }
 };
+
+export const getNestedData = <T extends { [key: string]: any }>(data: T) =>
+  Object.keys(data).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...data[key],
+    }),
+    {}
+  );
