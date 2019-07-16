@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { useAuth, useSignIn } from "../../@sdk/react";
+import { useSignIn } from "../../@sdk/react";
 
 import { Button, Form, TextField } from "..";
 
@@ -11,19 +11,15 @@ interface ILoginForm {
 }
 
 const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
-  const { authenticated } = useAuth();
   const [signIn, { loading, error }] = useSignIn();
 
   const handleOnSubmit = async (evt, { email, password }) => {
     evt.preventDefault();
-    signIn({ email, password });
-  };
-
-  React.useEffect(() => {
+    const authenticated = await signIn({ email, password });
     if (authenticated) {
       hide();
     }
-  }, [authenticated]);
+  };
 
   return (
     <div className="login-form">
