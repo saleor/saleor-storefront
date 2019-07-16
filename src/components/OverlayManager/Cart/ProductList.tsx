@@ -2,9 +2,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail } from "../..";
-import { generateProductUrl } from "../../../core/utils";
+import { Thumbnail } from "@components/molecules";
 
+import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
 import { LineI } from "../../CartTable/ProductRow";
 
@@ -18,7 +18,7 @@ const ProductList: React.SFC<{
       return (
         <li key={line.id} className="cart__list__item">
           <Link to={productUrl}>
-            <CachedThumbnail source={line.product} />
+            <Thumbnail source={line.product} />
           </Link>
           <div className="cart__list__item__details">
             <p>{line.price.localized}</p>

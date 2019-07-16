@@ -5,12 +5,9 @@ import * as React from "react";
 import Media from "react-media";
 
 import { RichTextContent } from "@components/atoms";
-import {
-  Breadcrumbs,
-  CachedImage,
-  CachedThumbnail,
-  ProductDescription
-} from "../../components";
+import { CachedImage, Thumbnail } from "@components/molecules";
+
+import { Breadcrumbs, ProductDescription } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
@@ -122,13 +119,8 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       ref={this.productGallery}
                     >
                       {product.images.map((image, index) => (
-                        <CachedImage
-                          url={image.url || noPhotoImg}
-                          key={image.id}
-                        >
-                          <CachedThumbnail source={product}>
-                            {!index && <img src={noPhotoImg} />}
-                          </CachedThumbnail>
+                        <CachedImage url={image.url} key={image.id}>
+                          <Thumbnail source={product} />
                         </CachedImage>
                       ))}
                     </div>

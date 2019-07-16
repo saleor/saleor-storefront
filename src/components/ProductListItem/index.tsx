@@ -2,7 +2,8 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { CachedThumbnail } from "..";
+import { Thumbnail } from "@components/molecules";
+
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
 import noPhotoImg from "../../images/no-photo.svg";
@@ -26,9 +27,9 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
-        <CachedThumbnail source={product}>
+        <Thumbnail source={product}>
           <img src={noPhotoImg} alt={product.thumbnail.alt} />
-        </CachedThumbnail>
+        </Thumbnail>
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category.name}</p>
