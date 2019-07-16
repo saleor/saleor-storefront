@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getAuthToken } from "../auth";
+import { getAuthToken, removeAuthToken } from "../auth";
 
 export const useAuth = (
   stateChangeCallback?: (authenticated?: boolean) => void
@@ -26,3 +26,8 @@ export const useAuth = (
 
   return { authenticated };
 };
+
+
+export const useSignOut = () => ([
+  removeAuthToken,
+]);

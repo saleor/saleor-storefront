@@ -6,9 +6,9 @@ import { IProps } from "./types";
 
 export const CredentialsProvider: React.FC<IProps> = ({ children }) => {
   const { authenticated } = useAuth();
-  const [ signIn ] = useSignIn();
+  const [signIn] = useSignIn();
 
-  const autoSignIn = async (silent: boolean|null) => {
+  const autoSignIn = async (silent: boolean | null) => {
     if (window.PasswordCredential) {
       const credentials = await navigator.credentials.get({
         mediation: silent ? "silent" : "optional",
@@ -30,9 +30,5 @@ export const CredentialsProvider: React.FC<IProps> = ({ children }) => {
     }
   }, [authenticated]);
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
