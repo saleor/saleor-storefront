@@ -1,16 +1,13 @@
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
+import { NotificationTemplate } from "@components/atoms";
 import {
-  NotificationTemplate,
-} from "@components/atoms";
-import {
-  CredentialsProvider,
   I18nLoader,
   ServiceWorkerContext,
   ServiceWorkerProvider
 } from "@components/containers";
-import { SaleorProvider } from "@sdk/react";
+import { SaleorProvider, useAuth } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -108,57 +105,52 @@ const startApp = async () => {
       }
     }, [updateAvailable]);
 
+    useAuth((authenticated: boolean) => {
+      if (authenticated) {
+        alert.show(
+          {
+            title: "You are now logged in",
+          },
+          { type: "success" }
+        );
+      } else {
+        alert.show(
+          {
+            title: "You are now logged out",
+          },
+          { type: "success" }
+        );
+      }
+    });
+
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
           <SaleorProvider client={apolloClient}>
             <ShopProvider>
               <OverlayProvider>
-                <UserProviderWithTokenHandler
-                  apolloClient={apolloClient}
-                  onUserLogin={() =>
-                    alert.show(
-                      {
-                        title: "You are now logged in",
-                      },
-                      { type: "success" }
-                    )
-                  }
-                  onUserLogout={() =>
-                    alert.show(
-                      {
-                        title: "You are now logged out",
-                      },
-                      { type: "success" }
-                    )
-                  }
-                  refreshUser
-                >
-                  <CredentialsProvider>
-                    <UserContext.Consumer>
-                      {user => (
-                        <CheckoutProvider user={user}>
-                          <CheckoutContext.Consumer>
-                            {checkout => (
-                              <CartProvider
-                                checkout={checkout}
-                                apolloClient={apolloClient}
-                              >
-                                <Switch>
-                                  <Route
-                                    path={checkoutBaseUrl}
-                                    component={CheckoutApp}
-                                  />
-                                  <Route component={App} />
-                                </Switch>
-                              </CartProvider>
-                            )}
-                          </CheckoutContext.Consumer>
-                        </CheckoutProvider>
-                      )}
-                    </UserContext.Consumer>
-                  </CredentialsProvider>
-                </UserProviderWithTokenHandler>
+                <UserContext.Consumer>
+                  {user => (
+                    <CheckoutProvider user={user}>
+                      <CheckoutContext.Consumer>
+                        {checkout => (
+                          <CartProvider
+                            checkout={checkout}
+                            apolloClient={apolloClient}
+                          >
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
+                          </CartProvider>
+                        )}
+                      </CheckoutContext.Consumer>
+                    </CheckoutProvider>
+                  )}
+                </UserContext.Consumer>
               </OverlayProvider>
             </ShopProvider>
           </SaleorProvider>

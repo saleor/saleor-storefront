@@ -35,7 +35,7 @@ import userImg from "../../images/user.svg";
 
 const MainMenu: React.FC = () => {
   const { authenticated } = useAuth();
-  const [ signOut ] = useSignOut();
+  const [signOut] = useSignOut();
 
   return (
     <OverlayContext.Consumer>
@@ -121,7 +121,9 @@ const MainMenu: React.FC = () => {
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/address-book"><Trans id="Address book" /></Link>
+                                <Link to="/address-book">
+                                  <Trans id="Address book" />
+                                </Link>
                               </li>
                               <li>
                                 <Link to="/payment-options">
@@ -156,7 +158,10 @@ const MainMenu: React.FC = () => {
                     <li
                       className="main-menu__icon main-menu__cart"
                       onClick={() => {
-                        overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                        overlayContext.show(
+                          OverlayType.cart,
+                          OverlayTheme.right
+                        );
                       }}
                     >
                       <ReactSVG path={cartImg} />
@@ -195,6 +200,6 @@ const MainMenu: React.FC = () => {
       )}
     </OverlayContext.Consumer>
   );
-}
+};
 
 export default MainMenu;
