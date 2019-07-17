@@ -2,10 +2,12 @@ import { Formik } from "formik";
 import { merge } from "lodash";
 import React from "react";
 
+import { IAddress } from "@types";
+
 import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";
 
-const INITIAL_ADDRESS_VALUES_STATE = {
+const INITIAL_ADDRESS_VALUES_STATE: IAddress = {
   city: "",
   companyName: "",
   country: "",
