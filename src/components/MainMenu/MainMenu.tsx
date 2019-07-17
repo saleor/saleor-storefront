@@ -21,7 +21,13 @@ import {
   OverlayType
 } from "..";
 import { maybe } from "../../core/utils";
-import { baseUrl } from "../../routes";
+import {
+  accountUrl,
+  addressBookUrl,
+  baseUrl,
+  orderHistoryUrl,
+  paymentOptionsUrl
+} from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -111,22 +117,22 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li>
-                                <Link to="/my-account">
+                                <Link to={accountUrl}>
                                   <Trans id="My Account" />
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/order-history">
+                                <Link to={orderHistoryUrl}>
                                   <Trans id="Order history" />
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/address-book">
+                                <Link to={addressBookUrl}>
                                   <Trans id="Address book" />
                                 </Link>
                               </li>
                               <li>
-                                <Link to="/payment-options">
+                                <Link to={paymentOptionsUrl}>
                                   Payment options
                                 </Link>
                               </li>
