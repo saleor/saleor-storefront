@@ -4,7 +4,7 @@ import React from "react";
 import { SaleorAPI } from "../index";
 import { QUERIES } from "../queries";
 import { InferOptions, NestedData } from "../tsHelpers";
-import { useSaleorClient } from "./context";
+import { useSaleorClient } from "./helpers";
 import { ApolloErrorWithUserInput } from "./types";
 
 type InferData<T> = T extends Promise<ApolloQueryResult<infer D>>
