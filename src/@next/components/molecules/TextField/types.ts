@@ -4,7 +4,7 @@ interface IFormError {
 }
 
 export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  errors?: IFormError[];
+  errors?: IFormError[] | undefined;
   helpText?: string;
   label?: string;
   contentLeft?: React.ReactNode;

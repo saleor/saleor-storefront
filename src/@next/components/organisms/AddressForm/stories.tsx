@@ -4,19 +4,23 @@ import React from "react";
 
 import { AddressForm } from ".";
 
+const NO_ERRORS = {
+  firstName: null,
+};
 const PROPS = {
-  handleSubmit: action("onSubmit"),
+  errors: NO_ERRORS,
+  handleSubmit: action("handleSubmit"),
 };
 
-const PROPS_WITH_ADDRESS = {
-  ...PROPS,
-  address: {
-    city: "New York",
-    firstName: "John",
-    lastName: "Doe",
+const ERRORS = {
+  errors: {
+    firstName: {
+      field: "firstName",
+      message: "This is error",
+    },
   },
 };
 
 storiesOf("@components/organisms/AddressForm", module)
   .add("default", () => <AddressForm {...PROPS} />)
-  .add("with partial address", () => <AddressForm {...PROPS_WITH_ADDRESS} />);
+  .add("with errors", () => <AddressForm {...PROPS} {...ERRORS} />);

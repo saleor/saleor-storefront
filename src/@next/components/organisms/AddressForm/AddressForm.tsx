@@ -1,9 +1,12 @@
-import React from "react";
-
 import { Formik } from "formik";
 import { merge } from "lodash";
+import React from "react";
 
+import { TextField } from "@components/molecules";
+import { maybe } from "@utils/tsUtils";
 import * as S from "./styles";
+
+import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";
 
 const INITIAL_ADDRESS_VALUES_STATE = {
@@ -25,14 +28,23 @@ export const AddressForm: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.Wrapper>
-      <Formik
-        initialValues={merge(INITIAL_ADDRESS_VALUES_STATE, address)}
-        onSubmit={(values, { setSubmitting }) => {
-          handleSubmit(values);
-          setSubmitting(false);
-        }}
-      ></Formik>
-    </S.Wrapper>
+    <Formik
+      initialValues={merge(INITIAL_ADDRESS_VALUES_STATE, address)}
+      onSubmit={(values, { setSubmitting }) => {
+        handleSubmit(values);
+        setSubmitting(false);
+      }}
+    >
+      {({ handleChange, handleSubmit, handleBlur, values, touched }) => (
+        <AddressFormContent
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleBlur={handleBlur}
+          values={values}
+          touched={touched}
+          {...props}
+        />
+      )}
+    </Formik>
   );
 };

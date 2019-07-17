@@ -7,7 +7,9 @@ import { TextField } from ".";
 const DEFAULT_PROPS = {
   errors: [],
   label: "Label",
-  onChange: action("onChange"),
+  onChange: evt => {
+    action("onChange");
+  },
   value: "Value",
 };
 
