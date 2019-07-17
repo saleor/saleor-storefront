@@ -35,7 +35,6 @@ export {
   extractBreadcrumbs
 } from "./Breadcrumbs";
 export { DebounceChange, DebouncedTextField } from "./Debounce";
-export { CachedImage, CachedThumbnail } from "./CachedImage";
 export { Footer } from "./Footer";
 export { MainMenu } from "./MainMenu";
 export { MobileNavList, INavItem } from "./MobileNav";

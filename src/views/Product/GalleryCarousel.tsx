@@ -1,6 +1,8 @@
 import * as React from "react";
 
-import { CachedImage, Carousel } from "../../components/";
+import { CachedImage } from "@components/molecules";
+
+import { Carousel } from "../../components/";
 import { ProductDetails_product_images } from "./types/ProductDetails";
 
 import noPhotoImg from "../../images/no-photo.svg";
