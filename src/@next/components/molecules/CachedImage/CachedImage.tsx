@@ -50,6 +50,8 @@ export const CachedImage: React.FC<IProps> = ({
       src={url}
       srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`}
       alt={alt}
+      // navigator.onLine is not always accurate
+      onError={() => setUnavailable(true)}
     />
   );
 };
