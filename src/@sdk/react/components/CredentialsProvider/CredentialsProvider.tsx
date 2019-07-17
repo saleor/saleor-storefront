@@ -29,5 +29,5 @@ export function CredentialsProvider({
     }
   }, [authenticated]);
 
-  return <>{children}</>;
+  return children;
 }
