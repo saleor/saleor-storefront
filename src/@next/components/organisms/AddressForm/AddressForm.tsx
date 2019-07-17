@@ -2,10 +2,6 @@ import { Formik } from "formik";
 import { merge } from "lodash";
 import React from "react";
 
-import { TextField } from "@components/molecules";
-import { maybe } from "@utils/tsUtils";
-import * as S from "./styles";
-
 import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";
 
