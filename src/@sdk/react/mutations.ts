@@ -17,15 +17,13 @@ export const useSignIn = (
     update: (proxy, data) => {
       if (data.data.tokenCreate.token) {
         setAuthToken(data.data.tokenCreate.token);
-        if (navigator.credentials && navigator.credentials.store) {
-          if (window.PasswordCredential && variables) {
-            navigator.credentials.store(
-              new window.PasswordCredential({
-                id: variables.email,
-                password: variables.password,
-              })
-            );
-          }
+        if (window.PasswordCredential && variables) {
+          navigator.credentials.store(
+            new window.PasswordCredential({
+              id: variables.email,
+              password: variables.password,
+            })
+          );
         }
       }
       if (options && options.update) {
