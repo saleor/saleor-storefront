@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 
+import { userFragment } from "../fragments/auth";
 import { orderDetailFragment } from "../fragments/user";
 
 // TODO: why are there 2?
@@ -17,6 +18,15 @@ export const orderDetailsByTokenQuery = gql`
   query OrderByToken($token: String!) {
     orderByToken(token: $token) {
       ...OrderDetail
+    }
+  }
+`;
+
+export const getUserDetailsQuery = gql`
+  ${userFragment}
+  query UserDetails {
+    me {
+      ...User
     }
   }
 `;

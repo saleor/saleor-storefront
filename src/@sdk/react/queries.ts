@@ -5,3 +5,5 @@ import { queryWithVariablesFactory } from "./useQuery";
 export const useProductDetails = queryWithVariablesFactory(
   QUERIES.ProductDetails
 );
+
+export const useUserDetails = queryWithVariablesFactory(QUERIES.UserDetails);

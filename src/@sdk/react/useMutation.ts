@@ -6,7 +6,7 @@ import React from "react";
 import { SaleorAPI } from "../index";
 import { MutationOptions, MUTATIONS } from "../mutations";
 import { InferOptions, NestedData, Omit, QueryData } from "../tsHelpers";
-import { useSaleorClient } from "./context";
+import { useSaleorClient } from "./helpers";
 import { ApolloErrorWithUserInput } from "./types";
 
 type MutationUpdaterFn<TData = Record<string, any>> = (

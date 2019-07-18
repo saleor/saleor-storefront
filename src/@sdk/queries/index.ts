@@ -12,6 +12,7 @@ import {
   ProductDetails,
   ProductDetailsVariables
 } from "./types/ProductDetails";
+import { UserDetails } from "./types/UserDetails";
 import * as User from "./user";
 
 export type QueryOptions<T = {}> = T extends { [n: string]: never }
@@ -36,6 +37,16 @@ export const QUERIES = {
     client.query({
       query: gql`
         ${Product.productDetails}
+      `,
+      ...options,
+    }),
+  UserDetails: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<null>
+  ): Promise<ApolloQueryResult<UserDetails>> =>
+    client.query({
+      query: gql`
+        ${User.getUserDetailsQuery}
       `,
       ...options,
     }),

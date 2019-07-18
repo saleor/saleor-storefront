@@ -1,11 +1,33 @@
+import ApolloClient from "apollo-client";
 import React from "react";
 
-import { getAuthToken } from "../auth";
+import { getAuthToken, removeAuthToken } from "../auth";
+import { ApolloContext } from "./context";
 
-export const useAuth = () => {
+export function useSaleorClient<TCache = object>(): ApolloClient<TCache> {
+  const client = React.useContext(ApolloContext);
+
+  if (!client) {
+    throw new Error(
+      "Could not find Saleor's apollo client in the context. " +
+        "Did you forget to wrap the root component in a <SaleorProvider>?"
+    );
+  }
+  return client;
+}
+
+export const useAuth = (
+  stateChangeCallback?: (authenticated?: boolean) => void
+) => {
   const [authenticated, setAuthenticated] = React.useState(!!getAuthToken());
   const eventHandler = () => {
-    setAuthenticated(!!getAuthToken());
+    const newState = !!getAuthToken();
+
+    if (stateChangeCallback && authenticated !== newState) {
+      stateChangeCallback(newState);
+    }
+
+    setAuthenticated(newState);
   };
 
   React.useEffect(() => {
@@ -18,3 +40,12 @@ export const useAuth = () => {
 
   return { authenticated };
 };
+
+export const useSignOut = () => [
+  () => {
+    removeAuthToken();
+    if (navigator.credentials && navigator.credentials.preventSilentAccess) {
+      navigator.credentials.preventSilentAccess();
+    }
+  },
+];
