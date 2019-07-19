@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const AddressForm = styled.form`
   width: 100%;
@@ -9,10 +9,19 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export const HalfRow = styled.div`
-  flex-basis: 40%;
+export const RowWithTwoCells = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & > div {
+    width: calc(50% - ${props => props.theme.spacing.spacer} / 2);
+    ${media.smallScreen`
+      width: 100%;
+    `}
+  }
 `;
 
-export const FullRow = styled.div`
-  flex-basis: 100%;
+export const RowWithOneCell = styled.div`
+  width: 100%;
 `;
