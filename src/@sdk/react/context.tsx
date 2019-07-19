@@ -1,6 +1,5 @@
-import ApolloClient from "apollo-client";
 import React from "react";
 
-export const ApolloContext = React.createContext<null | ApolloClient<any>>(
-  null
-);
+import { SaleorAPI } from "../index";
+
+export const SaleorContext = React.createContext<null | SaleorAPI>(null);

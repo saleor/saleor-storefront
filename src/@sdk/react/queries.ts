@@ -1,9 +1,5 @@
-import { QUERIES } from "../queries";
-import { queryWithVariablesFactory } from "./useQuery";
+import { queryFactory, queryWithVariablesFactory } from "./useQuery";
 
-// query hooks
-export const useProductDetails = queryWithVariablesFactory(
-  QUERIES.ProductDetails
-);
+export const useProductDetails = queryWithVariablesFactory("getProductDetails");
 
-export const useUserDetails = queryWithVariablesFactory(QUERIES.UserDetails);
+export const useUserDetails = queryFactory("getUserDetails");

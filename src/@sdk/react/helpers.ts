@@ -1,19 +1,19 @@
-import ApolloClient from "apollo-client";
 import React from "react";
 
+import { SaleorAPI } from "../";
 import { getAuthToken, removeAuthToken } from "../auth";
-import { ApolloContext } from "./context";
+import { SaleorContext } from "./context";
 
-export function useSaleorClient<TCache = object>(): ApolloClient<TCache> {
-  const client = React.useContext(ApolloContext);
+export function useSaleorClient(): SaleorAPI {
+  const saleor = React.useContext(SaleorContext);
 
-  if (!client) {
+  if (!saleor) {
     throw new Error(
-      "Could not find Saleor's apollo client in the context. " +
+      "Could not find saleor's apollo client in the context. " +
         "Did you forget to wrap the root component in a <SaleorProvider>?"
     );
   }
-  return client;
+  return saleor;
 }
 
 export const useAuth = (

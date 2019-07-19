@@ -5,11 +5,12 @@ import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
 import urljoin from "url-join";
 
+import { TokenAuth } from "../components/User/types/TokenAuth";
 import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
-import { InferOptions, ReturnData } from "./tsHelpers";
-import { getErrorsFromData } from "./utils";
+import { InferOptions, MapFn, QueryShape } from "./types";
+import { flatten, getErrorsFromData } from "./utils";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = url =>
@@ -27,58 +28,13 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorAPI {
-  // Query and mutation wrapper to catch errors
-  static fireQuery<
-    T extends { [key: string]: (...args: any) => any },
-    N extends keyof T
-  >(client: ApolloClient<any>, query: T[N]) {
-    return (
-      variables: InferOptions<T[N]>["variables"],
-      options?: Omit<InferOptions<T[N]>, "variables">
-    ): Promise<ReturnData<T, N>> =>
-      new Promise(async (resolve, reject) => {
-        try {
-          const { data, errors: apolloErrors } = await query(client, {
-            ...options,
-            variables,
-          });
+  getProductDetails = this.fireQuery(QUERIES.ProductDetails, flatten);
 
-          const userInputErrors = getErrorsFromData(data);
-          const errors =
-            apolloErrors ||
-            (userInputErrors
-              ? new ApolloError({ extraInfo: userInputErrors })
-              : null);
+  getUserDetails = this.fireQuery(QUERIES.UserDetails, flatten);
 
-          if (errors) {
-            reject(errors);
-          }
+  getUserOrderDetails = this.fireQuery(QUERIES.UserOrders, flatten);
 
-          // IMPORTANT: this function relies on unique nested key names
-          const nestedData = Object.keys(data).reduce(
-            (acc, key) => ({
-              ...acc,
-              ...data[key],
-            }),
-            {}
-          );
-          const result = !!Object.keys(nestedData).length ? nestedData : null;
-
-          resolve(result);
-        } catch (error) {
-          reject(error);
-        }
-      });
-  }
-  client: ApolloClient<any>;
-
-  getProductDetails = this.fireQueryWithClient<QUERIES, "ProductDetails">(
-    QUERIES.ProductDetails
-  );
-
-  getUserOrderDetails = this.fireQueryWithClient<QUERIES, "UserOrders">(
-    QUERIES.UserOrders
-  );
+  private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
@@ -87,16 +43,25 @@ export class SaleorAPI {
   signIn = (
     variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
     options?: Omit<InferOptions<MUTATIONS["TokenAuth"]>, "variables">
-  ): Promise<ReturnData<MUTATIONS, "TokenAuth">> =>
-    new Promise(async (resolve, reject) => {
+  ) =>
+    new Promise<TokenAuth["tokenCreate"]>(async (resolve, reject) => {
       try {
-        const data = await this.fireQueryWithClient<MUTATIONS, "TokenAuth">(
-          MUTATIONS.TokenAuth
+        const data = await this.fireQuery(
+          MUTATIONS.TokenAuth,
+          data => data.tokenCreate
         )(variables, {
           ...options,
           update: (proxy, data) => {
             if (data.data.tokenCreate.token) {
               setAuthToken(data.data.tokenCreate.token);
+              if (window.PasswordCredential && variables) {
+                navigator.credentials.store(
+                  new window.PasswordCredential({
+                    id: variables.email,
+                    password: variables.password,
+                  })
+                );
+              }
             }
             if (options && options.update) {
               options.update(proxy, data);
@@ -125,11 +90,41 @@ export class SaleorAPI {
   isLoggedIn = () => {
     return !!getAuthToken();
   };
+  // Query and mutation wrapper to catch errors
+  private fireQuery<T extends QueryShape, TResult>(
+    query: T,
+    mapFn: MapFn<T, TResult>
+  ) {
+    return (
+      variables: InferOptions<T>["variables"],
+      options?: Omit<InferOptions<T>, "variables">
+    ) =>
+      new Promise<ReturnType<typeof mapFn>>(async (resolve, reject) => {
+        try {
+          const { data, errors: apolloErrors } = await query(this.client, {
+            ...options,
+            variables,
+          });
 
-  private fireQueryWithClient<
-    T extends { [key: string]: (...args: any) => any },
-    N extends keyof T
-  >(query: T[N]) {
-    return SaleorAPI.fireQuery(this.client, query);
+          // INFO: user input errors will be moved to graphql errors
+          const userInputErrors = getErrorsFromData(data);
+          const errors =
+            apolloErrors ||
+            (userInputErrors
+              ? new ApolloError({ extraInfo: userInputErrors })
+              : null);
+
+          if (errors) {
+            reject(errors);
+          }
+
+          const mappedData = mapFn(data);
+          const result = !!Object.keys(mappedData).length ? mappedData : null;
+
+          resolve(result);
+        } catch (error) {
+          reject(error);
+        }
+      });
   }
 }

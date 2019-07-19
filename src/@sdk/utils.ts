@@ -1,3 +1,5 @@
+import { KeysMatching } from "./tsHelpers";
+
 // errors are nested in data as it currently stands in the API
 // this helper extracts all errors present
 export const getErrorsFromData = data => {
@@ -16,7 +18,12 @@ export const getErrorsFromData = data => {
   }
 };
 
-export const getNestedData = <T extends { [key: string]: any }>(data: T) =>
+export const isDataEmpty = data =>
+  Object.keys(data).reduce((_, key) => !!data[key], true);
+
+type Flatten = <T>(data: T) => KeysMatching<T, { [key: string]: any }>;
+
+export const flatten: Flatten = data =>
   Object.keys(data).reduce(
     (acc, key) => ({
       ...acc,
@@ -24,3 +31,7 @@ export const getNestedData = <T extends { [key: string]: any }>(data: T) =>
     }),
     {}
   );
+
+const obj = { data: { id: 123, name: "wew" } };
+
+const data = flatten<typeof obj>(obj);
