@@ -1,20 +1,21 @@
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, withRouter } from "react-router";
 
 import { useAuth, useUserDetails } from "@sdk/react";
 
 import {
   accountUrl,
   addressBookUrl,
+  baseUrl,
   orderHistoryUrl,
   paymentOptionsUrl
 } from "../../routes";
 
 import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
-import { Loader, NotFound } from "../../components";
+import { Loader } from "../../components";
 
-const Account: React.FC<RouteComponentProps> = ({ match }) => {
+const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { authenticated } = useAuth();
   const { data, loading } = useUserDetails();
 
@@ -26,7 +27,7 @@ const Account: React.FC<RouteComponentProps> = ({ match }) => {
   ];
 
   if (!authenticated) {
-    return <NotFound />;
+    history.push(baseUrl);
   }
 
   if (loading) {
@@ -40,4 +41,4 @@ const Account: React.FC<RouteComponentProps> = ({ match }) => {
   );
 };
 
-export default Account;
+export default withRouter(Account);
