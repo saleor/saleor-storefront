@@ -27,7 +27,7 @@ export function CredentialsProvider({
     if (!authenticated && window.PasswordCredential) {
       autoSignIn();
     }
-  }, [authenticated]);
+  }, []);
 
   return children;
 }
