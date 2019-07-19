@@ -1,4 +1,4 @@
-import { mediumScreen } from "@styles/constants";
+import { mediumScreen, smallScreen } from "@styles/constants";
 import React from "react";
 import Media from "react-responsive";
 
@@ -46,17 +46,21 @@ export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
         <S.LogoWrapper path={Logo} />
       </S.Center>
       <S.Actions>
-        <S.IconWrapper>
-          <Icon name="profile" size={24} />
-        </S.IconWrapper>
-        <S.IconWrapper>
-          <Icon name="heart" size={24} />
-        </S.IconWrapper>
+        <Media minWidth={mediumScreen}>
+          <S.IconWrapper>
+            <Icon name="profile" size={24} />
+          </S.IconWrapper>
+          <S.IconWrapper>
+            <Icon name="heart" size={24} />
+          </S.IconWrapper>
+        </Media>
         <S.IconWrapper>
           <Icon name="cart" size={24} />
         </S.IconWrapper>
         <S.SearchButton>
-          <S.Text>SEARCH</S.Text>
+          <Media minWidth={smallScreen}>
+            <S.Text>SEARCH</S.Text>
+          </Media>
           <Icon name="search" size={24} />
         </S.SearchButton>
       </S.Actions>
