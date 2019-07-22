@@ -4,6 +4,7 @@
   "moduleNameMapper": {
     "^@styles": "<rootDir>/src/@next/globalStyles/index.ts",
     "@app/([^\\.]*)$": "<rootDir>/src/@next/$1",
+    "@sdk/([^\\.]*)$": "<rootDir>/src/@sdk/$1",
     "@utils/([^\\.]*)$": "<rootDir>/src/@next/utils/$1",
     "images/([^\\.]*.*)$": "<rootDir>/src/images/$1",
     "@hooks": "<rootDir>/src/@next/hooks/index.ts",

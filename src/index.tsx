@@ -1,14 +1,13 @@
 import { hot } from "react-hot-loader";
 import { ThemeProvider } from "styled-components";
 
-import {
-  NotificationTemplate,
-} from "@components/atoms";
+import { NotificationTemplate } from "@components/atoms";
 import {
   I18nLoader,
   ServiceWorkerContext,
   ServiceWorkerProvider
 } from "@components/containers";
+import { SaleorProvider, useAuth } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -106,31 +105,30 @@ const startApp = async () => {
       }
     }, [updateAvailable]);
 
+    useAuth((authenticated: boolean) => {
+      if (authenticated) {
+        alert.show(
+          {
+            title: "You are now logged in",
+          },
+          { type: "success" }
+        );
+      } else {
+        alert.show(
+          {
+            title: "You are now logged out",
+          },
+          { type: "success" }
+        );
+      }
+    });
+
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <ShopProvider>
-            <OverlayProvider>
-              <UserProviderWithTokenHandler
-                apolloClient={apolloClient}
-                onUserLogin={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged in",
-                    },
-                    { type: "success" }
-                  )
-                }
-                onUserLogout={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged out",
-                    },
-                    { type: "success" }
-                  )
-                }
-                refreshUser
-              >
+          <SaleorProvider client={apolloClient}>
+            <ShopProvider>
+              <OverlayProvider>
                 <UserContext.Consumer>
                   {user => (
                     <CheckoutProvider user={user}>
@@ -153,9 +151,9 @@ const startApp = async () => {
                     </CheckoutProvider>
                   )}
                 </UserContext.Consumer>
-              </UserProviderWithTokenHandler>
-            </OverlayProvider>
-          </ShopProvider>
+              </OverlayProvider>
+            </ShopProvider>
+          </SaleorProvider>
         </ApolloProvider>
       </Router>
     );

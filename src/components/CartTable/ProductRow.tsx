@@ -3,7 +3,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail, DebouncedTextField } from "..";
+import { Thumbnail } from "@components/molecules";
+
+import { DebouncedTextField } from "..";
 import { generateProductUrl } from "../../core/utils";
 import { CartLine } from "../CartProvider/context";
 
@@ -82,7 +84,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         <div>
           {mediumScreen && (
             <Link to={productUrl}>
-              <CachedThumbnail source={line.product} />
+              <Thumbnail source={line.product} />
             </Link>
           )}
           <Link to={productUrl}>{line.product.name}</Link>

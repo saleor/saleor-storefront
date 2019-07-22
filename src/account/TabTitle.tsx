@@ -11,7 +11,10 @@ export interface ITabTitle {
 const TabTitle: React.FC<ITabTitle> = ({ element, active }) => (
   <div className="tab-title">
     <Link to={element} className="tab-title__link">
-      {element.replace("-", " ").toUpperCase()}
+      {element
+        .replace(/\//g, "")
+        .replace("-", " ")
+        .toUpperCase()}
     </Link>
     {active === element ? <div className="tab-title__link__underline" /> : ""}
   </div>
