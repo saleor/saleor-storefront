@@ -22,5 +22,7 @@ export type Options<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
 export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
   ...args: any
 ) => Promise<infer V>
-  ? V
-  : null;
+  ? V extends { data }
+    ? V
+    : never
+  : never;

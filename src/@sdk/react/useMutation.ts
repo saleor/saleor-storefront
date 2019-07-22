@@ -28,9 +28,9 @@ export type MutationFn<TData, TVariables> = (
   options?: BaseMutationHookOptions<TData, never>
 ) => Promise<TData>;
 
-export interface MutationResult<TData> {
+export interface MutationResult<TData extends { data }> {
   called: boolean;
-  data: TData | null;
+  data: TData["data"] | null;
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
 }
@@ -126,7 +126,7 @@ const useMutation = <
           apolloOptions
         )
           .then(data => {
-            handleMutationComplete(data, mutationId);
+            handleMutationComplete(data.data, mutationId);
             resolve(data);
           })
           .catch(err => {

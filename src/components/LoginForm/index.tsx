@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { useSignIn } from "@sdk/react";
+import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
 
@@ -24,7 +25,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form
-        errors={error ? error.extraInfo.userInputErrors : []}
+        errors={maybe(() => error.extraInfo.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >
         <TextField

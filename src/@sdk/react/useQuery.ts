@@ -21,7 +21,7 @@ const useQuery = <
 ) => {
   const saleor = useSaleorClient();
 
-  const [data, setData] = React.useState<TData>(null);
+  const [data, setData] = React.useState<TData["data"]>(null);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<ApolloErrorWithUserInput>(null);
 
@@ -29,7 +29,7 @@ const useQuery = <
     const fetchData = async () => {
       try {
         const data = await saleor[query](variables as any, options as any);
-        setData(data as TData);
+        setData((data as any).data);
       } catch (e) {
         setError(e);
       } finally {

@@ -10,7 +10,7 @@ import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
 import { InferOptions, MapFn, QueryShape } from "./types";
-import { flatten, getErrorsFromData } from "./utils";
+import { getErrorsFromData, isDataEmpty } from "./utils";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = url =>
@@ -28,11 +28,17 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorAPI {
-  getProductDetails = this.fireQuery(QUERIES.ProductDetails, flatten);
+  getProductDetails = this.fireQuery(
+    QUERIES.ProductDetails,
+    data => data.product
+  );
 
-  getUserDetails = this.fireQuery(QUERIES.UserDetails, flatten);
+  getUserDetails = this.fireQuery(QUERIES.UserDetails, data => data.me);
 
-  getUserOrderDetails = this.fireQuery(QUERIES.UserOrders, flatten);
+  getUserOrderDetails = this.fireQuery(
+    QUERIES.UserOrders,
+    data => data.orderByToken
+  );
 
   private client: ApolloClient<any>;
 
@@ -44,7 +50,7 @@ export class SaleorAPI {
     variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
     options?: Omit<InferOptions<MUTATIONS["TokenAuth"]>, "variables">
   ) =>
-    new Promise<TokenAuth["tokenCreate"]>(async (resolve, reject) => {
+    new Promise<{ data: TokenAuth["tokenCreate"] }>(async (resolve, reject) => {
       try {
         const data = await this.fireQuery(
           MUTATIONS.TokenAuth,
@@ -90,6 +96,7 @@ export class SaleorAPI {
   isLoggedIn = () => {
     return !!getAuthToken();
   };
+
   // Query and mutation wrapper to catch errors
   private fireQuery<T extends QueryShape, TResult>(
     query: T,
@@ -99,32 +106,34 @@ export class SaleorAPI {
       variables: InferOptions<T>["variables"],
       options?: Omit<InferOptions<T>, "variables">
     ) =>
-      new Promise<ReturnType<typeof mapFn>>(async (resolve, reject) => {
-        try {
-          const { data, errors: apolloErrors } = await query(this.client, {
-            ...options,
-            variables,
-          });
+      new Promise<{ data: ReturnType<typeof mapFn> }>(
+        async (resolve, reject) => {
+          try {
+            const { data, errors: apolloErrors } = await query(this.client, {
+              ...options,
+              variables,
+            });
 
-          // INFO: user input errors will be moved to graphql errors
-          const userInputErrors = getErrorsFromData(data);
-          const errors =
-            apolloErrors ||
-            (userInputErrors
-              ? new ApolloError({ extraInfo: userInputErrors })
-              : null);
+            // INFO: user input errors will be moved to graphql errors
+            const userInputErrors = getErrorsFromData(data);
+            const errors =
+              apolloErrors ||
+              (userInputErrors
+                ? new ApolloError({ extraInfo: userInputErrors })
+                : null);
 
-          if (errors) {
-            reject(errors);
+            if (errors && isDataEmpty(data)) {
+              reject(errors);
+            }
+
+            const mappedData = mapFn(data);
+            const result = !!Object.keys(mappedData).length ? mappedData : null;
+
+            resolve({ data: result });
+          } catch (error) {
+            reject(error);
           }
-
-          const mappedData = mapFn(data);
-          const result = !!Object.keys(mappedData).length ? mappedData : null;
-
-          resolve(result);
-        } catch (error) {
-          reject(error);
         }
-      });
+      );
   }
 }
