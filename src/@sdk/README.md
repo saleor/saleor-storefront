@@ -16,8 +16,6 @@ import { createSaleorClient } from 'saleor-sdk'
 const client = createSaleorClient(API_URL)
 ```
 
-**or provide your own apollo client**
-
 ## Usage
 
 ### React
@@ -46,15 +44,15 @@ There are 2 types of api calls - queries and mutations.
 Query (gets data):
 
 ```
-const { data: TData, loading: boolean, error: ApolloError } = useProductDetails(options?)
+const { data: TData["data"], loading: boolean, error: ApolloError } = useProductDetails(variables, options?)
 ```
 
 Mutation (sets data):
 
 ```
 const [
-  signIn: (options?) => Promise,
-  { data: TData, loading: boolean, error: ApolloError, called: boolean }
+  signIn: (options?) => Promise<TData>,
+  { data: TData["data"], loading: boolean, error: ApolloError, called: boolean }
 ] = useSignIn(options?)
 ```
 
@@ -72,5 +70,5 @@ export const saleorAPI = new SaleorAPI(client)
 ```
 
 ```
-const result = await saleorAPI.getProductDetails(options?)
+const { data } = await saleorAPI.getProductDetails(variables, options?)
 ```

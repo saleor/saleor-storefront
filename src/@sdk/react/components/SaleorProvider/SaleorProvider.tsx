@@ -1,7 +1,8 @@
 import React from "react";
 
 import { CredentialsProvider } from "../";
-import { ApolloContext } from "../../context";
+import { SaleorAPI } from "../../../";
+import { SaleorContext } from "../../context";
 import { IProps } from "./types";
 
 export function SaleorProvider<TCacheShape = any>({
@@ -9,8 +10,8 @@ export function SaleorProvider<TCacheShape = any>({
   children,
 }: IProps<TCacheShape>): React.ReactElement<IProps<TCacheShape>> {
   return (
-    <ApolloContext.Provider value={client}>
+    <SaleorContext.Provider value={new SaleorAPI(client)}>
       <CredentialsProvider>{children}</CredentialsProvider>
-    </ApolloContext.Provider>
+    </SaleorContext.Provider>
   );
 }

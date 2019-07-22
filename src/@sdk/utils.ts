@@ -16,11 +16,5 @@ export const getErrorsFromData = data => {
   }
 };
 
-export const getNestedData = <T extends { [key: string]: any }>(data: T) =>
-  Object.keys(data).reduce(
-    (acc, key) => ({
-      ...acc,
-      ...data[key],
-    }),
-    {}
-  );
+export const isDataEmpty = <T extends { [key: string]: any }>(data: T) =>
+  Object.keys(data).reduce((_, key) => !!data[key], true);
