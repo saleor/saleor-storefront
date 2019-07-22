@@ -33,13 +33,12 @@ export const AddressForm: React.FC<IProps> = ({
         setSubmitting(false);
       }}
     >
-      {({ handleChange, handleSubmit, handleBlur, values, touched }) => (
+      {({ handleChange, handleSubmit, handleBlur, values }) => (
         <AddressFormContent
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           handleBlur={handleBlur}
           values={values}
-          touched={touched}
           {...props}
         />
       )}

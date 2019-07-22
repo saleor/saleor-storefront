@@ -1,5 +1,3 @@
-import { FormikTouched } from "formik";
-
 import { IAddress } from "@types";
 
 export interface IFormikProps {
@@ -12,7 +10,16 @@ export interface IFormikProps {
 export type AddressError = { field?: string; message: string };
 
 export type AddressErrors = {
-  firstName: AddressError;
+  firstName?: AddressError[];
+  lastName?: AddressError[];
+  companyName?: AddressError[];
+  streetAddress1?: AddressError[];
+  streetAddress2?: AddressError[];
+  city?: AddressError[];
+  postalCode?: AddressError[];
+  countryArea?: AddressError[];
+  phone?: AddressError[];
+  country?: AddressError[];
 };
 
 export interface IProps {
@@ -20,9 +27,8 @@ export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
   errors?: AddressErrors;
   handleSubmit: (formData: IAddress) => void;
-  handleChange?: () => void;
-  handleBlur?: () => void;
-  touched?: FormikTouched<any> | undefined;
+  handleChange?: (e: React.ChangeEvent) => void;
+  handleBlur?: (e: React.FocusEvent) => void;
 }
 
 export type PropsWithFormik = Exclude<IProps, "handleSubmit"> & IFormikProps;

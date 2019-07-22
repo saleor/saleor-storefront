@@ -1,52 +1,10 @@
 import React, { useCallback } from "react";
 
 import { TextField } from "@components/molecules";
-
 import { maybe } from "@utils/tsUtils";
-import { FormikTouched } from "formik";
+
 import * as S from "./styles";
-import { AddressError, AddressErrors, PropsWithFormik } from "./types";
-
-const REQUIRED = true;
-
-const getInputProps = (
-  handleChange: (e: React.ChangeEvent) => void,
-  handleBlur: (e: React.FocusEvent) => void
-) => (
-  name: string,
-  label: string,
-  errors: AddressErrors | undefined,
-  value: string,
-  touched: FormikTouched<any> | undefined,
-  autocomplete: string,
-  required: boolean = false
-) => {
-  const key = name;
-  let addressError: AddressError[] | undefined = maybe(
-    () =>
-      errors![key as keyof AddressErrors] && [
-        errors![key as keyof AddressErrors],
-      ],
-    []
-  );
-  if (required && touched![name] && !value) {
-    addressError = [
-      {
-        field: name,
-        message: "Required field!",
-      },
-    ];
-  }
-  return {
-    autocomplete,
-    errors: addressError,
-    label,
-    name,
-    onBlur: handleBlur,
-    onChange: handleChange,
-    value,
-  };
-};
+import { PropsWithFormik } from "./types";
 
 export const AddressFormContent: React.FC<PropsWithFormik> = ({
   formRef,
@@ -55,129 +13,117 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   errors,
   handleSubmit,
   values,
-  touched,
 }) => {
-  const basicInputProps = useCallback(getInputProps(handleChange, handleBlur), [
-    handleChange,
-    handleBlur,
-  ]);
+  const basicInputProps = useCallback(
+    () => ({ onBlur: handleBlur, onChange: handleChange }),
+    [handleChange, handleBlur]
+  );
 
   return (
     <S.AddressForm ref={formRef} onSubmit={handleSubmit}>
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField
-            {...basicInputProps(
-              "firstName",
-              "First Name",
-              errors,
-              values.firstName,
-              touched,
-              "given-name",
-              REQUIRED
-            )}
+            name="firstName"
+            label="First Name"
+            value={values.firstName}
+            autoComplete="given-name"
+            required={true}
+            errors={maybe(() => errors!.firstName)}
+            {...basicInputProps()}
           />
           <TextField
-            {...basicInputProps(
-              "lastName",
-              "Last Name",
-              errors,
-              values.lastName,
-              touched,
-              "family-name"
-            )}
+            name="lastName"
+            label="Last Name"
+            value={values.lastName}
+            autoComplete="family-name"
+            required={true}
+            errors={maybe(() => errors!.lastName)}
+            {...basicInputProps()}
           />
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <TextField
-            {...basicInputProps(
-              "companyName",
-              "Company Name (Optional)",
-              errors,
-              values.companyName,
-              touched,
-              "organization"
-            )}
+            name="companyName"
+            label="Company Name (Optional)"
+            value={values.companyName}
+            autoComplete="organization"
+            required={true}
+            errors={maybe(() => errors!.companyName)}
+            {...basicInputProps()}
           />
           <TextField
-            {...basicInputProps(
-              "phone",
-              "Phone",
-              errors,
-              values.phone,
-              touched,
-              "tel"
-            )}
+            name="phone"
+            label="Phone"
+            value={values.phone}
+            autoComplete="tel"
+            required={true}
+            errors={maybe(() => errors!.phone)}
+            {...basicInputProps()}
           />
         </S.RowWithTwoCells>
         <S.RowWithOneCell>
           <TextField
-            {...basicInputProps(
-              "streetAddress1",
-              "Address line 1",
-              errors,
-              values.streetAddress1,
-              touched,
-              "address-line1"
-            )}
+            name="streetAddress1"
+            label="Address line 1"
+            value={values.streetAddress1}
+            autoComplete="address-line1"
+            required={true}
+            errors={maybe(() => errors!.streetAddress1)}
+            {...basicInputProps()}
           />
         </S.RowWithOneCell>
         <S.RowWithOneCell>
           <TextField
-            {...basicInputProps(
-              "streetAddress2",
-              "Address line 2",
-              errors,
-              values.streetAddress2,
-              touched,
-              "address-line2"
-            )}
+            name="streetAddress2"
+            label="Address line 2"
+            value={values.streetAddress2}
+            autoComplete="address-line2"
+            required={true}
+            errors={maybe(() => errors!.streetAddress2)}
+            {...basicInputProps()}
           />
         </S.RowWithOneCell>
         <S.RowWithTwoCells>
           <TextField
-            {...basicInputProps(
-              "city",
-              "City",
-              errors,
-              values.city,
-              touched,
-              "address-level1"
-            )}
+            name="city"
+            label="City"
+            value={values.city}
+            autoComplete="address-level1"
+            required={true}
+            errors={maybe(() => errors!.city)}
+            {...basicInputProps()}
           />
           <TextField
-            {...basicInputProps(
-              "postalCode",
-              "ZIP Code",
-              errors,
-              values.postalCode,
-              touched,
-              "postal-code"
-            )}
+            name="postalCode"
+            label="ZIP/Postal Code"
+            value={values.postalCode}
+            autoComplete="postal-code"
+            required={true}
+            errors={maybe(() => errors!.postalCode)}
+            {...basicInputProps()}
           />
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <TextField
-            {...basicInputProps(
-              "country",
-              "Country",
-              errors,
-              values.country,
-              touched,
-              "country"
-            )}
+            name="country"
+            label="Country"
+            value={values.country}
+            autoComplete="country"
+            required={true}
+            errors={maybe(() => errors!.country)}
+            {...basicInputProps()}
           />
           <TextField
-            {...basicInputProps(
-              "countryArea",
-              "State/province",
-              errors,
-              values.countryArea,
-              touched,
-              "address-level2"
-            )}
+            name="countryArea"
+            label="State/province"
+            value={values.countryArea}
+            autoComplete="address-level2"
+            required={true}
+            errors={maybe(() => errors!.countryArea)}
+            {...basicInputProps()}
           />
-        </S.RowWithTwoCells>
+        </S.RowWithTwoCells>{" "}
       </S.Wrapper>
     </S.AddressForm>
   );

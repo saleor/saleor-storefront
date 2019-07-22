@@ -2,14 +2,38 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { TextField } from "@components/molecules";
-
+import { Input } from "@components/atoms";
 import { AddressForm } from ".";
-import { ErrorMessage } from "../../atoms";
-import { AddressErrors } from "./types";
 
 const PROPS = {
   handleSubmit: jest.fn(),
+};
+
+const errorMessage = "This is an error";
+const ERRORS = {
+  errors: {
+    firstName: [
+      {
+        field: "firstName",
+        message: errorMessage,
+      },
+    ],
+  },
+};
+
+const INITIAL_DATA = {
+  address: {
+    city: "New York",
+    companyName: "Mirumee",
+    country: "US",
+    countryArea: "NY",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "555-55555",
+    postalCode: "90210",
+    streetAddress1: "Street line 1",
+    streetAddress2: "Street line 2",
+  },
 };
 
 describe("<AddressForm />", () => {
@@ -19,35 +43,28 @@ describe("<AddressForm />", () => {
   });
 
   it("should contain error provided as prop", () => {
-    const errorMessage = "This is an error";
-    const errors: AddressErrors = {
-      firstName: {
-        field: "firstName",
-        message: errorMessage,
-      },
-    };
-    const wrapper = mount(<AddressForm {...PROPS} errors={errors} />);
+    const wrapper = mount(<AddressForm {...PROPS} {...ERRORS} />);
 
     expect(wrapper.text()).toContain(errorMessage);
   });
 
-  it("should contain error for required field after focus and blur", () => {
-    const wrapper = mount(<AddressForm {...PROPS} />);
-
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("focus");
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("blur");
-
-    expect(
+  it("should contain partial data if provided", () => {
+    const getValue = (n: number) =>
       wrapper
-        .find(ErrorMessage)
-        .at(0)
-        .props().errors
-    ).toEqual([{ field: "firstName", message: "Required field!" }]);
+        .find(Input)
+        .at(n)
+        .prop("value");
+    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />);
+
+    expect(getValue(0)).toEqual(INITIAL_DATA.address.firstName);
+    expect(getValue(1)).toEqual(INITIAL_DATA.address.lastName);
+    expect(getValue(2)).toEqual(INITIAL_DATA.address.companyName);
+    expect(getValue(3)).toEqual(INITIAL_DATA.address.phone);
+    expect(getValue(4)).toEqual(INITIAL_DATA.address.streetAddress1);
+    expect(getValue(5)).toEqual(INITIAL_DATA.address.streetAddress2);
+    expect(getValue(6)).toEqual(INITIAL_DATA.address.city);
+    expect(getValue(7)).toEqual(INITIAL_DATA.address.postalCode);
+    expect(getValue(8)).toEqual(INITIAL_DATA.address.country);
+    expect(getValue(9)).toEqual(INITIAL_DATA.address.countryArea);
   });
 });
