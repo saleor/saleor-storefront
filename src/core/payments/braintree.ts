@@ -7,9 +7,9 @@ export interface PaymentData {
 }
 
 export interface ICardInputs {
-  ccCsc: string | null;
-  ccExp: string | null;
-  ccNumber: string | null;
+  ccCsc: string;
+  ccExp: string;
+  ccNumber: string;
 }
 
 export type CardError = { field?: string; message: string } | null;
@@ -44,10 +44,10 @@ export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
             endpoint: "payment_methods/credit_cards",
             method: "post",
           },
-          (error, response) => {
+          (error: any, response: any) => {
             if (error) {
               if (error.details.originalError.fieldErrors.length > 0) {
-                error.details.originalError.fieldErrors.map(error => {
+                error.details.originalError.fieldErrors.map((error: any) => {
                   if (error.field === "creditCard") {
                     reject(error.fieldErrors);
                   }

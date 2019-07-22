@@ -28,6 +28,7 @@ const opacity = {
   entering: 0,
   exited: 0,
   exiting: 0,
+  unmounted: 0,
 };
 
 const justify = {
@@ -62,7 +63,7 @@ export const Lightbox = styled.div<IStyleProps>`
         ${position}: 0;
         transform: translateX(${getTranslate(position)});
         animation: ${slideAnimation(open, position)} 0.4s both;
-        animation-delay: ${({ open }) => (open ? ".5s" : 0)};
+        animation-delay: ${open ? ".5s" : 0};
       `;
     }
   }}

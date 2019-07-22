@@ -16,8 +16,6 @@ import { ProductDetails_product } from "./types/ProductDetails";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
-import noPhotoImg from "../../images/no-photo.svg";
-
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();

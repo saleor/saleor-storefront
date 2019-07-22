@@ -9,4 +9,9 @@ export interface IProps {
   target?: HTMLElement | null;
 }
 
-export type TransitionState = "entering" | "entered" | "exiting" | "exited";
+export type TransitionState =
+  | "unmounted"
+  | "entering"
+  | "entered"
+  | "exiting"
+  | "exited";

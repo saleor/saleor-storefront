@@ -4,7 +4,6 @@ import React from "react";
 
 import { SaleorAPI } from "../index";
 import { MutationOptions } from "../mutations";
-import { Omit } from "../tsHelpers";
 import { useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
@@ -26,9 +25,9 @@ export interface BaseMutationHookOptions<TData, TVariables>
 export type MutationFn<TData, TVariables> = (
   variables?: TVariables,
   options?: BaseMutationHookOptions<TData, never>
-) => Promise<TData>;
+) => Promise<TData | null>;
 
-export interface MutationResult<TData extends { data }> {
+export interface MutationResult<TData extends { data: any }> {
   called: boolean;
   data: TData["data"] | null;
   error: ApolloErrorWithUserInput | null;
@@ -68,8 +67,8 @@ const useMutation = <
   TData extends ReturnData<T>
 >(
   mutation: T,
-  baseVariables: TVariables,
-  baseOptions: TOptions
+  baseVariables: TVariables = {} as any,
+  baseOptions: TOptions = {} as any
 ): [MutationFn<TData, TVariables>, MutationResult<TData>] => {
   const saleor = useSaleorClient();
   const { generateNewMutationId, isMostRecentMutation } = useMutationTracking();
@@ -121,7 +120,7 @@ const useMutation = <
 
         const apolloOptions = { ...baseOptions, ...options };
 
-        (saleor[mutation] as (variables, options) => Promise<any>)(
+        (saleor[mutation] as (variables: any, options: any) => Promise<any>)(
           apolloVariables,
           apolloOptions
         )
