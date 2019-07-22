@@ -1,4 +1,3 @@
-import { Omit } from "../core/tsUtils";
 import { Address } from "./types/Address";
 
 import { MutationFn } from "react-apollo";

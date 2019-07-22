@@ -1,6 +1,8 @@
 // errors are nested in data as it currently stands in the API
 // this helper extracts all errors present
-export const getErrorsFromData = data => {
+export const getErrorsFromData = <T extends { [key: string]: any }>(
+  data: T
+) => {
   try {
     const error = Object.keys(data).reduce((acc, key) => {
       return {

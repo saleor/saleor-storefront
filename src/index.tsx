@@ -43,10 +43,9 @@ import {
 
 import { languages } from "./languages";
 
-const {
-  component: UserProviderWithTokenHandler,
-  link: invalidTokenLink,
-} = invalidTokenLinkWithTokenHandlerComponent(UserProvider);
+const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
+  UserProvider
+);
 
 const link = ApolloLink.from([
   invalidTokenLink,
@@ -162,7 +161,10 @@ const startApp = async () => {
   render(
     <ThemeProvider theme={defaultTheme}>
       <I18nLoader languages={languages}>
-        <AlertProvider template={NotificationTemplate} {...notificationOptions}>
+        <AlertProvider
+          template={NotificationTemplate as any}
+          {...notificationOptions}
+        >
           <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
             <GlobalStyle />
             <Root />

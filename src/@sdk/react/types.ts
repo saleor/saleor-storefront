@@ -14,7 +14,7 @@ export type Variables<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
   ? V
   : never;
 export type Options<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
-  _,
+  _: any,
   options: infer V
 ) => any
   ? V
@@ -22,7 +22,7 @@ export type Options<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
 export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
   ...args: any
 ) => Promise<infer V>
-  ? V extends { data }
+  ? V extends { data: any }
     ? V
     : never
   : never;

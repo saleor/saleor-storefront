@@ -23,10 +23,9 @@
       "images/*": ["./src/images/*"],
       "@utils/*": ["./src/@next/utils/*"],
       "@hooks": ["./src/@next/hooks/index.ts"],
-      "@hooks/*": ["./src/@next/hooks/*"],
+      "@hooks/*": ["./src/@next/hooks/*"]
     },
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
-  "include": ["webpack.d.ts", "src/images/*"]
+  "exclude": ["node_modules"]
 }
