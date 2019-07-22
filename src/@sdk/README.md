@@ -70,5 +70,5 @@ export const saleorAPI = new SaleorAPI(client)
 ```
 
 ```
-const { data } = await saleorAPI.getProductDetails(options?)
+const { data } = await saleorAPI.getProductDetails(variables, options?)
 ```
