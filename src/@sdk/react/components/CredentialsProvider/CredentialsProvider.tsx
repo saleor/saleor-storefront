@@ -1,12 +1,12 @@
 import React from "react";
 
-import { useAuth, useSignIn } from "../..";
+import { useSaleorClient, useSignIn } from "../..";
 import { IProps } from "./types";
 
 export function CredentialsProvider({
   children,
 }: IProps): React.ReactElement<IProps> {
-  const { authenticated } = useAuth();
+  const saleor = useSaleorClient();
   const [signIn] = useSignIn();
 
   const autoSignIn = async () => {
@@ -24,7 +24,7 @@ export function CredentialsProvider({
   };
 
   React.useEffect(() => {
-    if (!authenticated && window.PasswordCredential) {
+    if (!saleor.isLoggedIn && window.PasswordCredential) {
       autoSignIn();
     }
   }, []);
