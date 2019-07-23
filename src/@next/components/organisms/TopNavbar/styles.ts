@@ -97,6 +97,7 @@ export const Mobile = styled.ul`
 export const Desktop = styled.ul`
   display: flex;
   padding: 0;
+  white-space: nowrap;
 
   li {
     margin-left: 2rem;
