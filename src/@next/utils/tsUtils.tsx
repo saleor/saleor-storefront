@@ -21,3 +21,5 @@ export const maybe = <T,>(exp: () => T, d?: T) => {
     return d;
   }
 };
+
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
