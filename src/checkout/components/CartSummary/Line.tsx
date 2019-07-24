@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { LineI } from "../../../components/CartTable/ProductRow";
-import { Omit } from "../../../core/tsUtils";
 import { maybe } from "../../../core/utils";
 
 import noPhotoImg from "../../../images/no-photo.svg";

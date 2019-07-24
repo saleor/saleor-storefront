@@ -28,6 +28,5 @@
     },
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
-  "include": ["webpack.d.ts", "src/images/*"]
+  "exclude": ["node_modules"]
 }

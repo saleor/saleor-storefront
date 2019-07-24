@@ -1,4 +1,3 @@
-import { Omit } from "@utils/tsUtils";
 import {
   CardError,
   ICardErrors,
@@ -15,6 +14,7 @@ export interface IFormikProps {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   values: ICardInputs;
 }
+
 export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
   cardErrors: ICardErrors;

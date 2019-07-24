@@ -72,7 +72,7 @@ describe("<Tile />", () => {
     const footer = <p>This is footer</p>;
     const wrapper = shallow(
       <Tile header={header} footer={footer}>
-        footer={<p>This is footer</p>}><p>This is content</p>
+        <p>This is content</p>
       </Tile>
     );
     expect(wrapper.find(S.Header).length).toEqual(1);

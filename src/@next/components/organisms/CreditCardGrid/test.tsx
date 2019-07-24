@@ -15,9 +15,7 @@ describe("<CreditCardGrid/>", () => {
     const creditCardGrid = mount(<CreditCardGrid creditCards={[]} />);
     expect(creditCardGrid.find(TileGrid).props().elements.length).toBe(1);
     const firstTile = creditCardGrid.find(TileGrid).props().elements[0];
-    if (firstTile) {
-      expect(firstTile.type).toBe(AddNewTile);
-    }
+    expect((firstTile as any).type).toBe(AddNewTile);
   });
   it("should contain AddNewTile and 3 credit cards tiles for provided array with credit card details", () => {
     const visa: CCProviders = "visa";

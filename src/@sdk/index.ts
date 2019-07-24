@@ -13,7 +13,7 @@ import { InferOptions, MapFn, QueryShape } from "./types";
 import { getErrorsFromData, isDataEmpty } from "./utils";
 
 const { invalidLink } = invalidTokenLink();
-const getLink = url =>
+const getLink = (url?: string) =>
   ApolloLink.from([
     invalidLink,
     authLink,
@@ -54,12 +54,12 @@ export class SaleorAPI {
       try {
         const data = await this.fireQuery(
           MUTATIONS.TokenAuth,
-          data => data.tokenCreate
+          data => data!.tokenCreate
         )(variables, {
           ...options,
           update: (proxy, data) => {
-            if (data.data.tokenCreate.token) {
-              setAuthToken(data.data.tokenCreate.token);
+            if (data.data && data.data.tokenCreate) {
+              setAuthToken(data.data.tokenCreate!.token!);
               if (window.PasswordCredential && variables) {
                 navigator.credentials.store(
                   new window.PasswordCredential({
@@ -106,7 +106,7 @@ export class SaleorAPI {
       variables: InferOptions<T>["variables"],
       options?: Omit<InferOptions<T>, "variables">
     ) =>
-      new Promise<{ data: ReturnType<typeof mapFn> }>(
+      new Promise<{ data: ReturnType<typeof mapFn> | null }>(
         async (resolve, reject) => {
           try {
             const { data, errors: apolloErrors } = await query(this.client, {

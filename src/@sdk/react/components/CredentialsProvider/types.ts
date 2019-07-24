@@ -1,3 +1,3 @@
 export interface IProps {
-  children?: React.ReactElement;
+  children: React.ReactElement;
 }
