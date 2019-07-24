@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   body {
+    margin: 0;
     min-width: 320px;
     font-family: ${props => props.theme.typography.baseFontFamily};
     font-size: ${props => props.theme.typography.baseFontSize};

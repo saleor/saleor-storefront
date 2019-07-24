@@ -26,7 +26,7 @@ export const theme = {
   baseFont: baseFontColor,
   dark: black,
   disabled: gray,
-  divider: grayMedium,
+  divider: grayLight,
   error: rose,
   light: grayLight,
   lightFont: gray,
