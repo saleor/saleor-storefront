@@ -5,3 +5,4 @@ export * from "./Modal";
 export * from "./AddressGrid";
 export * from "./AddressForm";
 export * from "./TopNavbar";
+export * from "./SideNavbar";

@@ -1,12 +1,14 @@
 import { media, styled } from "@styles";
 import ReactSVG from "react-svg";
 
+export const NAVBAR_HEIGHT = "3.55rem";
+
 export const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.white};
   border-bottom: 1px solid ${props => props.theme.colors.light};
   display: flex;
   justify-content: space-between;
-  height: 3.55rem;
+  height: ${NAVBAR_HEIGHT};
   position: relative;
 `;
 
