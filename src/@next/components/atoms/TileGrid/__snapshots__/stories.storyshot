@@ -47,6 +47,7 @@ exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
 }
 
 .c6 {
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 }
@@ -313,6 +314,7 @@ exports[`Storyshots @components/atoms/TileGrid default 1`] = `
 }
 
 .c6 {
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 }

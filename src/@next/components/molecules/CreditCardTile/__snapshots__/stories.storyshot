@@ -47,6 +47,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
 }
 
 .c8 {
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 }

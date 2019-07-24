@@ -87,6 +87,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
 }
 
 .c12 {
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 }

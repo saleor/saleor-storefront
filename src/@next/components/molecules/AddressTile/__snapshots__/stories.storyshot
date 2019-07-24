@@ -47,6 +47,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
 }
 
 .c10 {
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 }
@@ -105,6 +106,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
 }
 
 .c2 {
+  height: 100%;
   font-size: 0.875rem;
 }
 
