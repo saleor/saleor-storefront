@@ -2,7 +2,9 @@ import { styled } from "@styles";
 import { NavLink } from "react-router-dom";
 import { css } from "styled-components";
 
-const activeStyle = css`
+import { LinkType } from "./types";
+
+const strikethrough = css`
   &:before {
     background-color: ${props => props.theme.colors.primary};
     content: "";
@@ -16,19 +18,29 @@ const activeStyle = css`
   }
 `;
 
-export const Link = styled(NavLink)`
+export const Link = styled(NavLink)<{ fullWidth: boolean; type: LinkType }>`
   position: relative;
-  font-weight: ${props => props.theme.typography.boldFontWeight};
+  font-weight: ${({ theme }) => theme.typography.boldFontWeight};
   text-transform: uppercase;
+  transition: 300ms;
   z-index: 0;
 
-  &:hover {
-    ${activeStyle};
-  }
+  ${({ fullWidth }) =>
+    fullWidth &&
+    `
+    display: block;
+    width: 100%;
+  `}
+
+  &:hover, &:focus {
+    outline: none;
+    ${({ type, theme }) =>
+      type === "main" ? strikethrough : `color: ${theme.colors.primary}`};
+  }       
 
   /* Active URL styles
   &.${props => props.activeClassName} {
-    ${activeStyle}
+    ${strikethrough}
   } 
   */
 `;

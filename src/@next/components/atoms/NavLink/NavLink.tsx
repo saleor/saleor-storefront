@@ -26,7 +26,12 @@ const getLinkUrl = ({ category, collection, page }: IProps["item"]) => {
   }
 };
 
-export const NavLink: React.FC<IProps> = ({ item, ...props }) => {
+export const NavLink: React.FC<IProps> = ({
+  item,
+  fullWidth = false,
+  type = "main",
+  ...props
+}) => {
   const { name, url, category, collection, page } = item;
 
   if (url) {
@@ -40,7 +45,13 @@ export const NavLink: React.FC<IProps> = ({ item, ...props }) => {
   const linkUrl = getLinkUrl({ category, collection, page });
 
   return linkUrl ? (
-    <S.Link to={linkUrl} activeClassName="navlink-active" {...props}>
+    <S.Link
+      to={linkUrl}
+      activeClassName="navlink-active"
+      type={type}
+      fullWidth={fullWidth}
+      {...props}
+    >
       {name}
     </S.Link>
   ) : null;
