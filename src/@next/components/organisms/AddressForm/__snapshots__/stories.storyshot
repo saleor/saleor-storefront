@@ -428,7 +428,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
           </div>
         </div>
       </div>
-       
     </div>
   </form>
   <div
@@ -912,7 +911,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
           </div>
         </div>
       </div>
-       
     </div>
   </form>
   <div
@@ -1349,7 +1347,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
           </div>
         </div>
       </div>
-       
     </div>
   </form>
   <div

@@ -31,4 +31,4 @@ export interface IProps {
   handleBlur?: (e: React.FocusEvent) => void;
 }
 
-export type PropsWithFormik = Exclude<IProps, "handleSubmit"> & IFormikProps;
+export type PropsWithFormik = Omit<IProps, "handleSubmit"> & IFormikProps;
