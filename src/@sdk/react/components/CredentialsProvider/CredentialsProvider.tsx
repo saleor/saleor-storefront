@@ -24,7 +24,7 @@ export function CredentialsProvider({
   };
 
   React.useEffect(() => {
-    if (!saleor.isLoggedIn && window.PasswordCredential) {
+    if (!saleor.isLoggedIn() && window.PasswordCredential) {
       autoSignIn();
     }
   }, []);
