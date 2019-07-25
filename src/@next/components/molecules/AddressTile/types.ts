@@ -1,7 +1,7 @@
 export interface IProps {
   onEdit: () => void;
   onRemove: () => void;
-  setDefault: () => void;
+  setDefault: (arg0: string) => void;
   isDefaultShippingAddress: boolean;
   isDefaultBillingAddress: boolean;
   address: {

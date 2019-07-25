@@ -26,7 +26,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="firstName"
             label="First Name"
-            value={values.firstName}
+            value={values!.firstName || ""}
             autoComplete="given-name"
             required={true}
             errors={maybe(() => errors!.firstName)}
@@ -35,7 +35,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="lastName"
             label="Last Name"
-            value={values.lastName}
+            value={values!.lastName || ""}
             autoComplete="family-name"
             required={true}
             errors={maybe(() => errors!.lastName)}
@@ -46,7 +46,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="companyName"
             label="Company Name (Optional)"
-            value={values.companyName}
+            value={values!.companyName || ""}
             autoComplete="organization"
             required={true}
             errors={maybe(() => errors!.companyName)}
@@ -55,7 +55,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="phone"
             label="Phone"
-            value={values.phone}
+            value={values!.phone || ""}
             autoComplete="tel"
             required={true}
             errors={maybe(() => errors!.phone)}
@@ -66,7 +66,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="streetAddress1"
             label="Address line 1"
-            value={values.streetAddress1}
+            value={values!.streetAddress1 || ""}
             autoComplete="address-line1"
             required={true}
             errors={maybe(() => errors!.streetAddress1)}
@@ -77,7 +77,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="streetAddress2"
             label="Address line 2"
-            value={values.streetAddress2}
+            value={values!.streetAddress2 || ""}
             autoComplete="address-line2"
             required={true}
             errors={maybe(() => errors!.streetAddress2)}
@@ -88,7 +88,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="city"
             label="City"
-            value={values.city}
+            value={values!.city || ""}
             autoComplete="address-level1"
             required={true}
             errors={maybe(() => errors!.city)}
@@ -97,7 +97,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="postalCode"
             label="ZIP/Postal Code"
-            value={values.postalCode}
+            value={values!.postalCode || ""}
             autoComplete="postal-code"
             required={true}
             errors={maybe(() => errors!.postalCode)}
@@ -108,7 +108,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="country"
             label="Country"
-            value={values.country}
+            value={values!.country || ""}
             autoComplete="country"
             required={true}
             errors={maybe(() => errors!.country)}
@@ -117,7 +117,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="countryArea"
             label="State/province"
-            value={values.countryArea}
+            value={values!.countryArea || ""}
             autoComplete="address-level2"
             required={true}
             errors={maybe(() => errors!.countryArea)}
