@@ -158,6 +158,7 @@
     "codegen": "apollo codegen:generate --target=typescript types",
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
+    "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@sdk & npx tsc --noEmit -p src/@next",
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
     "generate": "npx plop --plopfile ./.plop/index.js",
