@@ -18,10 +18,18 @@ const DEFAULT_PROPS = {
 };
 
 describe("<Address />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<Address {...DEFAULT_PROPS} />);
 
     expect(wrapper.exists()).toEqual(true);
+  });
+
+  it("contains provided data", () => {
+    const wrapper = shallow(<Address {...DEFAULT_PROPS} />);
+    const keys = Object.keys(DEFAULT_PROPS);
+
+    keys.map(value => {
+      expect(wrapper.text()).toContain((DEFAULT_PROPS as any)[value]);
+    });
   });
 });
