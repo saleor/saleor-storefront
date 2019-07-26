@@ -7,7 +7,7 @@ import { IMyData } from "./MyData";
 const MyDataContent: React.FC<IMyData> = ({
   firstName = "",
   lastName = "",
-  email
+  email,
 }) => (
   <div className="myData-container">
     <p>First Name</p>

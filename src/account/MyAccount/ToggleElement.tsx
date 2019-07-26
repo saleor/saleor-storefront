@@ -28,7 +28,7 @@ const toggleTheme = {
 
   knobColor: "#F1F5F5",
   leftKnobColor: "#F1F5F5",
-  rightKnobColor: "#F1F5F5"
+  rightKnobColor: "#F1F5F5",
 };
 
 const ToggleElement: React.FC<IToggleElement> = ({ message, toggleName }) => {

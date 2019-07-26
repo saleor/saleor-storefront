@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../components/User/context";
+import React, { useState } from "react";
 import Card from "../Card";
 import CardHeader from "../CardHeader";
 import MyDataContent from "./MyDataContent";
@@ -11,9 +10,14 @@ export interface IMyData {
   email: string;
 }
 
-const MyData: React.FC = () => {
+const MyData: React.FC<{
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+}> = ({ user }) => {
   const [isEditing, setEditing] = useState(false);
-  const { user } = useContext(UserContext);
   const onClick = () => {
     setEditing(!isEditing);
   };

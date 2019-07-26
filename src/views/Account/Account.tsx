@@ -16,11 +16,11 @@ import HelloPrompt from "../../account/HelloPrompts";
 import MyAccount from "../../account/MyAccount/MyAccount";
 import { Loader } from "../../components";
 
-const returnTab: any = (path: string) => {
+const returnTab: any = (path: string, userDetails) => {
   let tabContent = <></>;
   switch (path) {
     case "/account/": {
-      tabContent = <MyAccount />;
+      tabContent = <MyAccount user={userDetails} />;
     }
   }
   return tabContent;
@@ -48,7 +48,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
     <div className="container">
       <HelloPrompt name={data.firstName} />
       <AccountNavigation links={links} active={match.path} />
-      {returnTab(match.path)}
+      {returnTab(match.path, data)}
     </div>
   );
 };

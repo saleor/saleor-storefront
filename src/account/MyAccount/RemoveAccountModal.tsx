@@ -8,7 +8,7 @@ export interface IRemoveAccountModal {
 
 const RemoveAccountModal: React.FC<IRemoveAccountModal> = ({
   isVisibleModal,
-  hide
+  hide,
 }) => {
   return (
     <Modal
