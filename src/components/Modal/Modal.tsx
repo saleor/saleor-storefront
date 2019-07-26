@@ -32,7 +32,7 @@ const Modal: React.FC<IModalProps> = ({
   type = "submit",
   onClick,
   show,
-  title
+  title,
 }) =>
   target && show
     ? ReactDOM.createPortal(

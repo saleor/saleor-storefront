@@ -7,6 +7,7 @@ _**Note:** This project is beta quality. We don't advise using it in production.
 A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://github.com/mirumee/saleor/).
 
 ## Features
+
 - Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/)
 - Offline mode (beta)
 - Saleor GraphQL API integration
@@ -27,10 +28,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Node.js 10.0+ 
+- Node.js 10.0+
 - A running instance of Saleor.
 
-    To run the storefront, you have to set the `BACKEND_URL` environment to point to the Saleor instance. If you are running Saleor locally with the default settings, set `BACKEND_URL` to: `http://localhost:8000/`.
+  To run the storefront, you have to set the `BACKEND_URL` environment to point to the Saleor instance. If you are running Saleor locally with the default settings, set `BACKEND_URL` to: `http://localhost:8000/`.
 
 ### Installing
 
@@ -60,14 +61,32 @@ npm start
 
 Go to `http://localhost:3000` to access the storefront.
 
+### Translating
 
-**Note:** Offline mode doesn't currently work on the development server (run with `npm start`), which is a known issue in [sw-precache-webpack-plugin](https://github.com/goldhand/sw-precache-webpack-plugin#webpack-dev-server-support) and will be fixed in future releases.
+Add a new language pack file:
 
+```
+npm run add-locale <locale>
+```
+
+Update the list of available languages in the `./src/languages.ts` file.
+
+Extract messages from source files that need to be translated:
+
+```
+npm run extract
+```
+
+Compile messages:
+
+```
+npm run compile
+```
 
 ## License
 
-This project is licensed under the BSD-3-Clause License - see the [LICENSE.md](LICENSE.md) file for details
-
+This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/master/LICENSE) file for details
 
 #### Crafted with ❤️ by [Mirumee Software](http://mirumee.com)
+
 hello@mirumee.com

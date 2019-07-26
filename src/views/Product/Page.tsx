@@ -4,7 +4,10 @@ import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
 
-import { Breadcrumbs, CachedImage, ProductDescription } from "../../components";
+import { RichTextContent } from "@components/atoms";
+import { CachedImage, Thumbnail } from "@components/molecules";
+
+import { Breadcrumbs, ProductDescription } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
@@ -12,8 +15,6 @@ import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
-
-import noPhotoImg from "../../images/no-photo.svg";
 
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -26,18 +27,18 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   populateBreadcrumbs = product => [
     {
       link: generateCategoryUrl(product.category.id, product.category.name),
-      value: product.category.name
+      value: product.category.name,
     },
     {
       link: generateProductUrl(product.id, product.name),
-      value: product.name
-    }
+      value: product.name,
+    },
   ];
 
   componentDidMount() {
     if (this.showCarousel) {
       window.addEventListener("scroll", this.handleScroll, {
-        passive: true
+        passive: true,
       });
     }
   }
@@ -82,11 +83,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             productVariants={product.variants}
             addToCart={cart.add}
           >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: product.description
-              }}
-            />
+            <RichTextContent descriptionJson={product.descriptionJson} />
           </ProductDescription>
         )}
       </CartContext.Consumer>
@@ -119,12 +116,9 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {product.images.map(image => (
-                        <CachedImage
-                          url={image.url || noPhotoImg}
-                          key={image.id}
-                        >
-                          <img src={noPhotoImg} />
+                      {product.images.map((image, index) => (
+                        <CachedImage url={image.url} key={image.id}>
+                          <Thumbnail source={product} />
                         </CachedImage>
                       ))}
                     </div>
@@ -132,7 +126,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       <div
                         className={classNames({
                           ["product-page__product__info--fixed"]: this
-                            .showCarousel
+                            .showCarousel,
                         })}
                         ref={this.fixedElement}
                       >

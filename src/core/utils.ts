@@ -44,7 +44,7 @@ export const priceToString = (
   if (locale) {
     return amount.toLocaleString(locale, {
       currency: price.currency,
-      style: "currency"
+      style: "currency",
     });
   } else {
     return `${price.currency} ${amount.toFixed(2)}`;
@@ -114,7 +114,7 @@ export const convertSortByFromString = (sortBy: string) => {
   return { field, direction };
 };
 
-export function maybe<T>(exp: () => T, d?: T) {
+export const maybe = <T>(exp: () => T, d?: T) => {
   try {
     const result = exp();
     return result === undefined ? d : result;
@@ -127,7 +127,7 @@ export const parseQueryString = (
   location: LocationState
 ): { [key: string]: string } => {
   const query = {
-    ...parseQs(location.search.substr(1))
+    ...parseQs(location.search.substr(1)),
   };
   each(query, (value, key) => {
     if (Array.isArray(value)) {
@@ -168,3 +168,5 @@ export const findFormErrors = (result: void | FetchResult): FormError[] => {
   }
   return [];
 };
+
+export const removeEmptySpaces = (text: string) => text.replace(/\s+/g, "");

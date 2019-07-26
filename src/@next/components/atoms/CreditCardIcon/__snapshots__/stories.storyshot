@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/CreditCardIcon AMEX 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon DISCOVER 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon JCB 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MAESTRO 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon MASTERCARD 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/CreditCardIcon VISA 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;

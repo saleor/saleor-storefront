@@ -30,13 +30,13 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
     pageSize: PRODUCTS_PER_PAGE,
     priceGte: parseInt(querystring.priceGte, 0) || null,
     priceLte: parseInt(querystring.priceLte, 0) || null,
-    sortBy: querystring.sortBy || null
+    sortBy: querystring.sortBy || null,
   };
   const variables = {
     ...filters,
     attributes: convertToAttributeScalar(filters.attributes),
     id: getGraphqlIdFromDBId(match.params.id, "Collection"),
-    sortBy: convertSortByFromString(filters.sortBy)
+    sortBy: convertSortByFromString(filters.sortBy),
   };
 
   return (
@@ -61,8 +61,8 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
                     products: {
                       ...prev.products,
                       edges: [...prev.products.edges, ...next.products.edges],
-                      pageInfo: next.products.pageInfo
-                    }
+                      pageInfo: next.products.pageInfo,
+                    },
                   }),
                   { after: data.products.pageInfo.endCursor }
                 );
@@ -72,7 +72,7 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
                   meta={{
                     description: data.collection.seoDescription,
                     title: data.collection.seoTitle,
-                    type: "product.collection"
+                    type: "product.collection",
                   }}
                 >
                   <Page

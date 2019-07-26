@@ -36,7 +36,7 @@ export const CartContext = createContext<CartInterface>({
   lines: [],
   loading: false,
   remove: variantId => {},
-  subtract: (variantId, quantity = 1) => {}
+  subtract: (variantId, quantity = 1) => {},
 });
 /* tslint:enable:no-empty */
 

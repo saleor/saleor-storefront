@@ -1,11 +1,31 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "react",
     "lib": ["es2017", "dom", "esnext"],
     "sourceMap": true,
     "target": "es6",
-    "noUnusedLocals": true
-  }
+    "noUnusedLocals": true,
+    "paths": {
+      "@temp/*": ["./src/*"],
+      "@app/*": ["./src/@next/*"],
+      "@sdk/*": ["./src/@sdk/*"],
+      "@components/*": ["./src/@next/components/*"],
+      "@components/atoms": ["./src/@next/components/atoms/index.ts"],
+      "@components/molecules": ["./src/@next/components/molecules/index.ts"],
+      "@components/organisms": ["./src/@next/components/organisms/index.ts"],
+      "@components/views": ["./src/@next/components/views/index.ts"],
+      "@components/containers": ["./src/@next/components/containers/index.ts"],
+      "@styles": ["./src/@next/globalStyles/index.ts"],
+      "@styles/*": ["./src/@next/globalStyles/*"],
+      "images/*": ["./src/images/*"],
+      "@utils/*": ["./src/@next/utils/*"],
+      "@hooks": ["./src/@next/hooks/index.ts"],
+      "@hooks/*": ["./src/@next/hooks/*"]
+    },
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"]
 }

@@ -38,10 +38,10 @@ export const extractCartLines = (
         totalPrice: priceToString(
           {
             amount: quantity * node.price.amount,
-            currency: node.price.currency
+            currency: node.price.currency,
           },
           locale
-        )
+        ),
       };
     })
     .filter(line => line)
@@ -52,7 +52,7 @@ export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
     .map(line => ({
       quantity: line.quantity,
       totalPrice: line.totalPrice.gross.localized,
-      ...line.variant
+      ...line.variant,
     }))
     .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
 };

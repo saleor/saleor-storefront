@@ -7,7 +7,7 @@ import { INotificationTemplate } from "./customTypes";
 export const NotificationTemplate: React.FC<INotificationTemplate> = ({
   message,
   options,
-  close
+  close,
 }) => {
   return (
     <div className="notification">

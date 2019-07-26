@@ -14,7 +14,7 @@ class NetworkStatus extends React.Component<
   NetworkStatusState
 > {
   state: NetworkStatusState = {
-    online: "onLine" in navigator ? navigator.onLine : true
+    online: "onLine" in navigator ? navigator.onLine : true,
   };
 
   updateOnlineStatus = () => {

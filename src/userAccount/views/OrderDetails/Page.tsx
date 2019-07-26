@@ -20,10 +20,10 @@ const extractOrderLines = (
       quantity: line.quantity,
       totalPrice: priceToString({
         amount: line.quantity * line.unitPrice.gross.amount,
-        currency: line.unitPrice.currency
+        currency: line.unitPrice.currency,
       }),
       ...line.variant,
-      name: line.productName
+      name: line.productName,
     }))
     .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
 };

@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/RichTextContent custom 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+<div
+  className="c0"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p><strong>bold</strong></p>
+<p><em>italic</em></p>
+<p><del>strikethrough</del></p>
+<h1>h1</h1>
+<h2>h2</h2>
+<h3>h3</h3>
+<blockquote>blockquote</blockquote>
+<ul>
+<li>ul</li>
+</ul>
+<ol>
+<li>ol</li>
+</ol>
+<p><a href=\\"#\\">link</a></p>
+",
+      }
+    }
+  />
+  <div
+    className="c1"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+<div
+  className="c0"
+>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>They say polo is the sport of kings.Or was that stamp collecting ? Either way, this shirt is fit for a king of Saturday night.</p>
+",
+      }
+    }
+  />
+  <div
+    className="c1"
+  />
+</div>
+`;

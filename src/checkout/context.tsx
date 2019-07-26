@@ -7,7 +7,7 @@ export enum CheckoutStep {
   ShippingOption,
   BillingAddress,
   Payment,
-  Review
+  Review,
 }
 
 export interface CardData {
@@ -39,7 +39,7 @@ export const defaultContext = {
   step: CheckoutStep.ShippingAddress,
   syncUserCheckout: false,
   syncWithCart: false,
-  update: (checkoutData: {}) => null
+  update: (checkoutData: {}) => null,
 };
 
 export const CheckoutContext = createContext<CheckoutContextInterface>(

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Loader default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0;
+}
+
+.c2 {
+  position: relative;
+  width: 5rem;
+  height: 1rem;
+  margin: 0 auto;
+}
+
+.c2 span {
+  background-color: #21125e;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  position: absolute;
+}
+
+.c2 span:nth-child(1) {
+  left: 0;
+  -webkit-animation: hKcKTr 2s infinite;
+  animation: hKcKTr 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.c2 span:nth-child(2) {
+  left: 2rem;
+  -webkit-animation: jcXNMq 2s infinite;
+  animation: jcXNMq 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.c2 span:nth-child(3) {
+  right: 0;
+  -webkit-animation: ggvZqn 2s infinite;
+  animation: ggvZqn 2s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <span />
+      <span />
+      <span />
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;

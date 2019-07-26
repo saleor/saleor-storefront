@@ -37,8 +37,8 @@ const getRedirectUrl = (token: string, step: CheckoutStep): string => {
 
 const CheckoutDispatcher: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
-    params: { token }
-  }
+    params: { token },
+  },
 }) => (
   <CheckoutContext.Consumer>
     {({ step }) => <Redirect to={getRedirectUrl(token, step)} />}

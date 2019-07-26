@@ -30,7 +30,7 @@ export default class UserProvider extends React.Component<
       login: this.login,
       logout: this.logout,
       token,
-      user: null
+      user: null,
     };
   }
 
@@ -46,7 +46,7 @@ export default class UserProvider extends React.Component<
       errors: null,
       loading: false,
       token,
-      user
+      user,
     });
     this.props.onUserLogin();
   };
@@ -64,11 +64,11 @@ export default class UserProvider extends React.Component<
     try {
       const {
         data: {
-          tokenVerify: { user }
-        }
+          tokenVerify: { user },
+        },
       } = await apolloClient.mutate<VerifyToken>({
         mutation: tokenVeryficationMutation,
-        variables: { token }
+        variables: { token },
       });
       state = { ...state, user, token };
     } catch ({ message }) {

@@ -17,7 +17,7 @@ import {
 } from "./context";
 
 enum LocalStorageKeys {
-  Cart = "cart"
+  Cart = "cart",
 }
 
 interface CartProviderProps {
@@ -50,13 +50,13 @@ export default class CartProvider extends React.Component<
       lines,
       loading: false,
       remove: this.remove,
-      subtract: this.subtract
+      subtract: this.subtract,
     };
   }
 
   componentDidUpdate() {
     const {
-      checkout: { syncWithCart, update }
+      checkout: { syncWithCart, update },
     } = this.props;
 
     if (syncWithCart) {
@@ -77,7 +77,7 @@ export default class CartProvider extends React.Component<
         const linestoRemove = pullAllBy(checkoutLines, lines, "variantId").map(
           ({ variantId }) => ({
             quantity: 0,
-            variantId
+            variantId,
           })
         );
         this.changeQuantity([...linestoRemove, ...lines]);
@@ -101,8 +101,8 @@ export default class CartProvider extends React.Component<
       const { apolloClient } = this.props;
       const {
         data: {
-          checkoutLinesUpdate: { errors, checkout: updatedCheckout }
-        }
+          checkoutLinesUpdate: { errors, checkout: updatedCheckout },
+        },
       } = await apolloClient.mutate<
         updateCheckoutLine,
         updateCheckoutLineVariables
@@ -110,22 +110,22 @@ export default class CartProvider extends React.Component<
         mutation: updateCheckoutLineQuery,
         variables: {
           checkoutId: checkoutID,
-          lines
-        }
+          lines,
+        },
       });
       apiError = !!errors.length;
       if (apiError) {
         this.setState({
           errors: [...errors],
-          loading: false
+          loading: false,
         });
       } else {
         checkout.update({
           checkout: {
             ...checkout.checkout,
             lines: updatedCheckout.lines,
-            subtotalPrice: updatedCheckout.subtotalPrice
-          }
+            subtotalPrice: updatedCheckout.subtotalPrice,
+          },
         });
       }
     }
@@ -134,7 +134,7 @@ export default class CartProvider extends React.Component<
       this.setState(prevState => {
         const updatedLines = [
           ...pullAllBy(prevState.lines, lines, "variantId"),
-          ...lines
+          ...lines,
         ].filter(({ quantity }) => !!quantity);
         localStorage.setItem("cart", JSON.stringify(updatedLines));
         return { lines: updatedLines, loading: false };

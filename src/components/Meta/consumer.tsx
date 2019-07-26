@@ -14,7 +14,7 @@ const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
             { property: "og:url", content: url },
             { property: "og:type", content: type },
             { property: "og:image", content: image },
-            ...custom
+            ...custom,
           ]}
         />
         {children}

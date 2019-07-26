@@ -4,7 +4,8 @@ import classNames from "classnames";
 import React from "react";
 import ReactSVG from "react-svg";
 
-import { Modal } from "../../../components";
+import { Modal } from "@components/organisms";
+
 import AddressSummary from "../../../components/AddressSummary";
 import { AddNewShippingAddressForm } from "../../../components/ShippingAddressForm";
 import { Option } from "../../components";
@@ -15,7 +16,7 @@ import plusSvg from "../../../images/plus.svg";
 const renderAddressesList = ({
   addresses,
   onAddressSelect,
-  selectedAddress
+  selectedAddress,
 }: IAddressPickerProps) =>
   addresses.map((address, id) => {
     const isSelected = selectedAddress === address;
@@ -26,7 +27,7 @@ const renderAddressesList = ({
           onAddressSelect(address);
         }}
         className={classNames("address-picker__address", {
-          "address-picker__address--selected": isSelected
+          "address-picker__address--selected": isSelected,
         })}
       >
         <AddressSummary address={address} email={address.email} />
@@ -45,12 +46,12 @@ const renderModalForm = ({
   hideAddNewModalForm,
   isVisibleModalForm,
   loading,
-  type
+  type,
 }: IAddressPickerProps) => (
   <Modal
     show={isVisibleModalForm}
     title="Add New Address"
-    loading={loading}
+    disabled={loading}
     formId="new-address-form"
     hide={hideAddNewModalForm}
     submitBtnText="Save"

@@ -1,4 +1,3 @@
-import { Omit } from "../core/tsUtils";
 import { Address } from "./types/Address";
 
 import { MutationFn } from "react-apollo";
@@ -48,7 +47,7 @@ export interface UserAddressSelectorProps {
   proceedToNextStep: (formData: FormAddressType) => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
-  onSubmit: (selectedAddress: FormAddressType) => void;
+  onSubmit: (selectedAddress: FormAddressType) => Promise<FormError[]>;
   update?: (checkoutData: CheckoutContextInterface) => void;
 }
 

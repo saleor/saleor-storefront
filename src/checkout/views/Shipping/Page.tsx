@@ -37,14 +37,14 @@ const computeCheckoutData = (
     phone: data.phone,
     postalCode: data.postalCode,
     streetAddress1: data.streetAddress1,
-    streetAddress2: data.streetAddress2
+    streetAddress2: data.streetAddress2,
   },
   ...(lines && {
     lines: lines.map(({ quantity, variantId }) => ({
       quantity,
-      variantId
-    }))
-  })
+      variantId,
+    })),
+  }),
 });
 
 class Page extends React.Component<IShippingPageProps, IShippingPageState> {
@@ -52,7 +52,7 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     checkout: null,
     errors: [],
     loading: false,
-    shippingUnavailable: false
+    shippingUnavailable: false,
   };
 
   proceedToShippingOptions = () => {
@@ -65,11 +65,11 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
         return this.renderShippingUnavailableModal();
       }
       update({
-        checkout: this.state.checkout || this.props.checkout
+        checkout: this.state.checkout || this.props.checkout,
       });
       history.push(
         generatePath(shippingOptionsUrl, {
-          token
+          token,
         })
       );
     }
@@ -87,33 +87,33 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
       user,
       lines,
       update,
-      updateCheckout
+      updateCheckout,
     } = this.props;
     const email = maybe(() => user.email, null);
     update({
-      shippingAsBilling: maybe(() => address.asBilling, false)
+      shippingAsBilling: maybe(() => address.asBilling, false),
     });
 
     if (!checkoutId) {
       return createCheckout({
         variables: {
-          checkoutInput: computeCheckoutData(address, lines)
-        }
+          checkoutInput: computeCheckoutData(address, lines),
+        },
       });
     }
     return updateCheckout({
       variables: {
         checkoutId,
-        ...computeCheckoutData(address, null, email)
-      }
+        ...computeCheckoutData(address, null, email),
+      },
     });
   };
 
-  onSubmitHandler = async (address: FormAddressType) => {
+  onSubmitHandler = (address: FormAddressType) => {
     this.setState({ loading: true });
 
-    await this.onShippingSubmit(address).then(response => {
-      const errors = findFormErrors(response);
+    return this.onShippingSubmit(address).then(response => {
+      const errors = findFormErrors(response) || [];
       const checkout =
         maybe(() => response.data.checkoutEmailUpdate.checkout, null) ||
         maybe(
@@ -127,10 +127,10 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
         errors,
         loading: false,
         shippingUnavailable:
-          (checkout && !checkout.availableShippingMethods.length) || false
+          (checkout && !checkout.availableShippingMethods.length) || false,
       });
+      return errors;
     });
-    return;
   };
 
   renderShippingUnavailableModal = () => (
@@ -138,7 +138,7 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
       {overlay => (
         <>
           {overlay.show(OverlayType.modal, OverlayTheme.modal, {
-            content: <ShippingUnavailableModal hide={overlay.hide} />
+            content: <ShippingUnavailableModal hide={overlay.hide} />,
           })}
           ;
         </>
@@ -151,14 +151,14 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
     errors: this.state.errors,
     loading: this.state.loading,
     proceedToNextStep: this.onProceedToShippingSubmit,
-    ...userCheckoutData
+    ...userCheckoutData,
   });
 
   render() {
     const { checkout, proceedToNextStepData, shop, user, update } = this.props;
     const shippingProps = this.getShippingProps({
       checkout,
-      user
+      user,
     });
 
     return (

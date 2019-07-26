@@ -6,6 +6,19 @@ All notable, unreleased changes to this project will be documented in this file.
 
 - Fix login and registration overlay not showing - #322 by @mateuszkula
 - Add new design for 404 page - #183 by @mateuszkula
+- Add Sitemap generator - #342 by @bogdal
+- Add cypress tests - #333 by @AlicjaSzu
+- Add rich-text content renderer - #361 by @AlicjaSzu
+- Add TextField and ErrorMessage components - #373 by @AlicjaSzu
+- Add CreditCardForm component - #369 by @AlicjaSzu
+- Display filters when no product was found - #319 by @aldomonteiro
+- Add ServiceWorker provider - #352 by @bogdal
+- Add ButtonLink atom component - #392 by @AlicjaSzu
+- Add lingui - #382 by @AlicjaSzu
+- Add FormFooter molecule component - #393 by @AlicjaSzu
+- Add Overlay component - #402 by @AlicjaSzu
+- Add Modal component - #391 by @AlicjaSzu
+- Add the Credential Management API support - #409 by @bogdal
 
 ## 0.6.0
 
@@ -15,6 +28,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add schema.org data to homepage and product detail page - #316 by @koradon
 - Add link for creating account for anonymous users - #317 by @mateuszkula
 - Add react-alert library = #320 by @AlicjaSzu
+- CreditCard component refactor = #323 by @AlicjaSzu
 - Move App component to seperate module = #327 by @AlicjaSzu
 - Update Footer, Breadcrumbs and Table styles = #332 by @AlicjaSzu
 

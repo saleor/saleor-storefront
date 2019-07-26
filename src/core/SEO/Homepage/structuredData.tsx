@@ -11,8 +11,8 @@ export const structuredData = shop => {
     potentialAction: {
       "@type": "SearchAction",
       "query-input": "required name=q",
-      target: urljoin(location.href, searchUrl, "?q={q}")
+      target: urljoin(location.href, searchUrl, "?q={q}"),
     },
-    url: location.href
+    url: location.href,
   });
 };

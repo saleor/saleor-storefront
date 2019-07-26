@@ -3,7 +3,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { CachedThumbnail, DebouncedTextField } from "..";
+import { Thumbnail } from "@components/molecules";
+
+import { DebouncedTextField } from "..";
 import { generateProductUrl } from "../../core/utils";
 import { CartLine } from "../CartProvider/context";
 
@@ -41,7 +43,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   processing,
   remove,
   subtract,
-  line
+  line,
 }) => {
   const productUrl = generateProductUrl(line.product.id, line.product.name);
   const editable = !!(add && subtract && remove && changeQuantity);
@@ -64,7 +66,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       value={line.quantity}
       onChange={evt =>
         changeQuantity([
-          { variantId: line.id, quantity: parseInt(evt.target.value, 10) }
+          { variantId: line.id, quantity: parseInt(evt.target.value, 10) },
         ])
       }
       resetValue={invalid}
@@ -75,14 +77,14 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   return (
     <tr
       className={classNames({
-        "cart-table-row--processing": processing
+        "cart-table-row--processing": processing,
       })}
     >
       <td className="cart-table__thumbnail">
         <div>
           {mediumScreen && (
             <Link to={productUrl}>
-              <CachedThumbnail source={line.product} />
+              <Thumbnail source={line.product} />
             </Link>
           )}
           <Link to={productUrl}>{line.product.name}</Link>

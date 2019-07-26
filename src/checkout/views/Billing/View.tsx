@@ -23,8 +23,8 @@ class View extends React.Component<
       history,
       match: {
         path,
-        params: { token }
-      }
+        params: { token },
+      },
     } = this.props;
 
     return (
@@ -49,7 +49,7 @@ class View extends React.Component<
                         proceedToNextStepData={{
                           history,
                           token,
-                          update
+                          update,
                         }}
                         validateStep={this.state.validateStep}
                       />

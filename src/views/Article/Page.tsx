@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { sanitize } from "dompurify";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
@@ -23,7 +24,7 @@ export const Page: React.FC<PageProps> = ({
   breadcrumbs,
   headerImage,
   navigation,
-  page
+  page,
 }) => (
   <div className="article-page">
     <div
@@ -44,7 +45,7 @@ export const Page: React.FC<PageProps> = ({
                 className={classNames({
                   ["article-page__navigation-element"]: true,
                   ["article-page__navigation-element--active"]:
-                    menuElement.active
+                    menuElement.active,
                 })}
                 key={menuElement.url}
               >
@@ -55,7 +56,7 @@ export const Page: React.FC<PageProps> = ({
         </div>
         <div
           className="article-page__content"
-          dangerouslySetInnerHTML={{ __html: page.content }}
+          dangerouslySetInnerHTML={{ __html: sanitize(page.content) }}
         />
       </div>
     </div>

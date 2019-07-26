@@ -1,5 +1,13 @@
 .*
+!.storybook
 !.gitignore
+!.babelrc
+!.plop
+!.jest
+!.linguirc
 dist
-
 node_modules
+src/locales/_build
+
+cypress/videos
+cypress/screenshots

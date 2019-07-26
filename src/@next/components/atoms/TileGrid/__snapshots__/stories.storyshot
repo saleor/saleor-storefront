@@ -1,0 +1,533 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/TileGrid custom grid size 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+.c4 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c5 {
+  padding: 1rem 1.25rem;
+}
+
+.c6 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
+}
+
+.c2 {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 2);
+}
+
+@media (max-width:540px) {
+  .c2 {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/TileGrid default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+}
+
+.c4 {
+  border-bottom: 2px solid #c4c4c4;
+}
+
+.c5 {
+  padding: 1rem 1.25rem;
+}
+
+.c6 {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
+}
+
+.c2 {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 3);
+}
+
+@media (max-width:540px) {
+  .c2 {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            This is header
+          </div>
+        </div>
+        <div
+          className="c5"
+        >
+          <p>
+            Tile content
+          </p>
+        </div>
+        <div
+          className="c6"
+        >
+          This is footer
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;

@@ -43,7 +43,7 @@ class ProductDescription extends React.Component<
       price: this.props.productVariants[0].price,
       quantity: 1,
       variant: "",
-      variantStock: null
+      variantStock: null,
     };
   }
 
@@ -55,7 +55,7 @@ class ProductDescription extends React.Component<
     const primaryPicker = {
       label: this.props.productVariants[0].attributes[0].attribute.name,
       selected: "",
-      values: []
+      values: [],
     };
 
     let secondaryPicker;
@@ -67,7 +67,7 @@ class ProductDescription extends React.Component<
           .map(attribute => attribute.attribute.name)
           .join(" / "),
         selected: "",
-        values: []
+        values: [],
       };
     }
 
@@ -91,7 +91,7 @@ class ProductDescription extends React.Component<
         if (variants[variant.attributes[0].value.value]) {
           variants[variant.attributes[0].value.value] = [
             ...variants[variant.attributes[0].value.value],
-            combinedValues
+            combinedValues,
           ];
         } else {
           variants[variant.attributes[0].value.value] = [combinedValues];
@@ -107,7 +107,7 @@ class ProductDescription extends React.Component<
     return {
       primaryPicker,
       secondaryPicker,
-      variants
+      variants,
     };
   };
 
@@ -184,7 +184,7 @@ class ProductDescription extends React.Component<
       primaryPicker,
       quantity,
       secondaryPicker,
-      variants
+      variants,
     } = this.state;
 
     return (
@@ -199,12 +199,12 @@ class ProductDescription extends React.Component<
               key={primaryPicker.label}
               value={{
                 label: primaryPicker.selected,
-                value: primaryPicker.selected
+                value: primaryPicker.selected,
               }}
               styleType="grey"
               options={primaryPicker.values.map(value => ({
                 label: value,
-                value
+                value,
               }))}
             />
           )}
@@ -218,24 +218,26 @@ class ProductDescription extends React.Component<
               value={
                 secondaryPicker.selected && {
                   label: secondaryPicker.selected,
-                  value: secondaryPicker.selected
+                  value: secondaryPicker.selected,
                 }
               }
               styleType="grey"
               options={secondaryPicker.values.map(value => ({
                 isDisabled: !variants[primaryPicker.selected].includes(value),
                 label: value,
-                value
+                value,
               }))}
             />
           )}
           <TextField
             type="number"
             label="Quantity"
-            min = "1"
+            min="1"
             value={quantity || ""}
             styleType="grey"
-            onChange={e => this.setState({ quantity: Number(e.target.value) })}
+            onChange={e =>
+              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
+            }
           />
         </div>
         <div className="product-description__about">

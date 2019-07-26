@@ -1,36 +1,53 @@
 import * as braintree from "braintree-web";
 
-interface PaymentData {
+export interface PaymentData {
   lastDigits: string;
   ccType: string;
   token: string;
 }
 
+export interface ICardInputs {
+  ccCsc: string;
+  ccExp: string;
+  ccNumber: string;
+}
+
+export type CardError = { field?: string; message: string } | null;
+
+export interface ICardErrors {
+  cvv: CardError;
+  expirationMonth: CardError;
+  expirationYear: CardError;
+  number: CardError;
+}
+
 export interface ErrorData {
-  cvv?: string;
-  expirationMonth?: string;
-  expirationYear?: string;
+  fieldErrors: ICardErrors;
   nonFieldError?: string;
-  number?: string;
+}
+export interface IPaymentCardError {
+  code: string;
+  field: string;
+  message: string;
 }
 
 export const braintreePayment = (paymentClientToken: string, creditCard: any) =>
   new Promise<PaymentData | ErrorData[]>((resolve, reject) => {
     braintree.client.create(
       {
-        authorization: paymentClientToken
+        authorization: paymentClientToken,
       },
-      (err, client) => {
+      (_err, client) => {
         client.request(
           {
             data: { creditCard },
             endpoint: "payment_methods/credit_cards",
-            method: "post"
+            method: "post",
           },
-          (error, response) => {
+          (error: any, response: any) => {
             if (error) {
               if (error.details.originalError.fieldErrors.length > 0) {
-                error.details.originalError.fieldErrors.map(error => {
+                error.details.originalError.fieldErrors.map((error: any) => {
                   if (error.field === "creditCard") {
                     reject(error.fieldErrors);
                   }

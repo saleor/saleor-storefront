@@ -1,3 +1,15 @@
+import { hot } from "react-hot-loader";
+import { ThemeProvider } from "styled-components";
+
+import { NotificationTemplate } from "@components/atoms";
+import {
+  I18nLoader,
+  ServiceWorkerContext,
+  ServiceWorkerProvider
+} from "@components/containers";
+import { SaleorProvider, useAuth } from "@sdk/react";
+import { defaultTheme, GlobalStyle } from "@styles";
+
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
@@ -9,21 +21,16 @@ import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
-import urljoin from "url-join";
-
-import { createBrowserHistory } from "history";
 
 import { App } from "./app";
 import CheckoutApp from "./checkout";
 import { CheckoutContext } from "./checkout/context";
 import CheckoutProvider from "./checkout/provider";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
+import { apiUrl, serviceWorkerTimeout } from "./constants";
+import { history } from "./history";
 
-import {
-  NotificationTemplate,
-  OverlayProvider,
-  UserProvider
-} from "./components";
+import { OverlayProvider, UserProvider } from "./components";
 
 import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
@@ -34,17 +41,17 @@ import {
   invalidTokenLinkWithTokenHandlerComponent
 } from "./core/auth";
 
-const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
-const {
-  component: UserProviderWithTokenHandler,
-  link: invalidTokenLink
-} = invalidTokenLinkWithTokenHandlerComponent(UserProvider);
+import { languages } from "./languages";
+
+const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
+  UserProvider
+);
 
 const link = ApolloLink.from([
   invalidTokenLink,
   authLink,
   new RetryLink(),
-  new BatchHttpLink({ uri: API_URL })
+  new BatchHttpLink({ uri: apiUrl }),
 ]);
 
 const cache = new InMemoryCache({
@@ -53,63 +60,74 @@ const cache = new InMemoryCache({
       return "shop";
     }
     return defaultDataIdFromObject(obj);
-  }
-});
-
-const history = createBrowserHistory();
-history.listen((location, action) => {
-  if (["PUSH"].includes(action)) {
-    window.scroll({
-      behavior: "smooth",
-      top: 0
-    });
-  }
+  },
 });
 
 const startApp = async () => {
   await persistCache({
     cache,
-    storage: window.localStorage
+    storage: window.localStorage,
   });
 
   const apolloClient = new ApolloClient({
     cache,
-    link
+    link,
   });
 
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
-    timeout: 2500
+    timeout: 2500,
   };
 
-  const Root = () => {
+  const Root = hot(module)(() => {
     const alert = useAlert();
+
+    const { updateAvailable } = React.useContext(ServiceWorkerContext);
+
+    React.useEffect(() => {
+      if (updateAvailable) {
+        alert.show(
+          {
+            actionText: "Refresh",
+            content:
+              "To update the application to the latest version, please refresh the page!",
+            title: "New version is available!",
+          },
+          {
+            onClose: () => {
+              location.reload();
+            },
+            timeout: 0,
+            type: "success",
+          }
+        );
+      }
+    }, [updateAvailable]);
+
+    useAuth((authenticated: boolean) => {
+      if (authenticated) {
+        alert.show(
+          {
+            title: "You are now logged in",
+          },
+          { type: "success" }
+        );
+      } else {
+        alert.show(
+          {
+            title: "You are now logged out",
+          },
+          { type: "success" }
+        );
+      }
+    });
 
     return (
       <Router history={history}>
         <ApolloProvider client={apolloClient}>
-          <ShopProvider>
-            <OverlayProvider>
-              <UserProviderWithTokenHandler
-                apolloClient={apolloClient}
-                onUserLogin={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged in"
-                    },
-                    { type: "success" }
-                  )
-                }
-                onUserLogout={() =>
-                  alert.show(
-                    {
-                      title: "You are now logged out"
-                    },
-                    { type: "success" }
-                  )
-                }
-                refreshUser
-              >
+          <SaleorProvider client={apolloClient}>
+            <ShopProvider>
+              <OverlayProvider>
                 <UserContext.Consumer>
                   {user => (
                     <CheckoutProvider user={user}>
@@ -132,24 +150,35 @@ const startApp = async () => {
                     </CheckoutProvider>
                   )}
                 </UserContext.Consumer>
-              </UserProviderWithTokenHandler>
-            </OverlayProvider>
-          </ShopProvider>
+              </OverlayProvider>
+            </ShopProvider>
+          </SaleorProvider>
         </ApolloProvider>
       </Router>
     );
-  };
+  });
 
   render(
-    <AlertProvider template={NotificationTemplate} {...notificationOptions}>
-      <Root />
-    </AlertProvider>,
+    <ThemeProvider theme={defaultTheme}>
+      <I18nLoader languages={languages}>
+        <AlertProvider
+          template={NotificationTemplate as any}
+          {...notificationOptions}
+        >
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <GlobalStyle />
+            <Root />
+          </ServiceWorkerProvider>
+        </AlertProvider>
+      </I18nLoader>
+    </ThemeProvider>,
     document.getElementById("root")
   );
-};
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.js");
-}
+  // Hot Module Replacement API
+  if (module.hot) {
+    module.hot.accept();
+  }
+};
 
 startApp();

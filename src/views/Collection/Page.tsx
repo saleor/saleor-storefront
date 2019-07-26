@@ -39,7 +39,7 @@ export const Page: React.FC<PageProps> = ({
   products,
   onAttributeFiltersChange,
   onPriceChange,
-  onOrder
+  onOrder,
 }) => {
   const canDisplayProducts = maybe(
     () => products.edges && products.totalCount !== undefined,
@@ -51,10 +51,10 @@ export const Page: React.FC<PageProps> = ({
       link: [
         `/collection`,
         `/${collection.slug}`,
-        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`
+        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`,
       ].join(""),
-      value: collection.name
-    }
+      value: collection.name,
+    },
   ];
 
   return (
