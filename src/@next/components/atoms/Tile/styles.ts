@@ -54,6 +54,7 @@ export const Content = styled.div`
 `;
 
 export const Footer = styled.div`
+  margin-top: auto;
   padding: 0 1rem;
   margin-bottom: 1rem;
 `;

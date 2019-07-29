@@ -13,15 +13,63 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/MainMenu/MainMenu.tsx:64
+#: src/components/MainMenu/MainMenu.tsx:68
 msgid "Address book"
 msgstr "Address book"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:20
+msgid "Address line 1"
+msgstr "Address line 1"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:23
+msgid "Address line 2"
+msgstr "Address line 2"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:26
+msgid "City"
+msgstr "City"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:16
+msgid "Company Name (Optional)"
+msgstr "Company Name (Optional)"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:30
+msgid "Country"
+msgstr "Country"
+
+#: src/@next/components/molecules/AddressTile/AddressTile.tsx:13
+msgid "Default Address"
+msgstr "Default Address"
+
+#: src/@next/components/molecules/AddressTile/AddressTile.tsx:13
+msgid "Default Billing Address"
+msgstr "Default Billing Address"
+
+#: src/@next/components/molecules/AddressTile/AddressTile.tsx:13
+msgid "Default Shipping Address"
+msgstr "Default Shipping Address"
+
+#: src/languages.ts:3
+msgid "English"
+msgstr "English"
 
 #: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:10
 msgid "Expires on"
 msgstr "Expires on"
 
-#: src/components/MainMenu/MainMenu.tsx:55
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:12
+msgid "First Name"
+msgstr "First Name"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:13
+msgid "Last Name"
+msgstr "Last Name"
+
+#: src/@next/components/molecules/FormFooter/FormFooter.tsx:5
+msgid "Loading"
+msgstr "Loading"
+
+#: src/components/MainMenu/MainMenu.tsx:58
 msgid "My Account"
 msgstr "My Account"
 
@@ -29,10 +77,34 @@ msgstr "My Account"
 msgid "Name on card"
 msgstr "Name on card"
 
-#: src/components/MainMenu/MainMenu.tsx:60
+#: src/components/MainMenu/MainMenu.tsx:63
 msgid "Order history"
 msgstr "Order history"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:17
+msgid "Phone"
+msgstr "Phone"
+
+#: src/@next/components/atoms/Address/Address.tsx:20
+msgid "Phone number"
+msgstr "Phone number"
+
+#: src/@next/components/molecules/AddressTile/AddressTile.tsx:9
+msgid "Set as default billing address"
+msgstr "Set as default billing address"
+
+#: src/@next/components/molecules/AddressTile/AddressTile.tsx:6
+msgid "Set as default shipping address"
+msgstr "Set as default shipping address"
 
 #: src/components/OverlayManager/Search/NothingFound.tsx:5
 msgid "Sorry, but we couldn’t match any search results for: “{search}”"
 msgstr "Sorry, but we couldn’t match any search results for: “{search}”"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:31
+msgid "State/province"
+msgstr "State/province"
+
+#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:27
+msgid "ZIP/Postal Code"
+msgstr "ZIP/Postal Code"

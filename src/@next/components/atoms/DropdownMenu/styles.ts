@@ -28,7 +28,6 @@ export const Content = styled.div`
     li {
       cursor: pointer;
       padding-bottom: 1.25rem;
-      width: 80%;
       white-space: nowrap;
     }
 

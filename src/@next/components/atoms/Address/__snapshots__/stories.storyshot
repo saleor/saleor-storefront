@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Address default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+}
+
+<div
+  className="c0"
+>
+  <div>
+    <span
+      className="c1"
+    >
+      John Doe
+    </span>
+    Mirumee
+     
+    <br />
+    St Street
+    <br />
+    Second
+     
+    <br />
+    55-555
+    , 
+    Wroclaw
+    <br />
+    dolnyslask
+    , 
+    Poland
+    <br />
+    Phone number
+    : 
+    555-5555
+     
+    <br />
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;

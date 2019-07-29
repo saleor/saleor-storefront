@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
@@ -68,5 +68,18 @@ describe("<TextField />", () => {
 
     expect(help.exists()).toBe(true);
     expect(help.text()).toEqual(HELP_TEXT);
+  });
+
+  it("should show error if field is required and field has lost focus with no values entered", () => {
+    const wrapper = mount(
+      <TextField {...DEFAULT_PROPS} required={true} value={""} />
+    );
+
+    const input = wrapper.find("input");
+
+    input.simulate("focus");
+    input.simulate("blur");
+
+    expect(wrapper.find(Input).prop("error")).toEqual(true);
   });
 });

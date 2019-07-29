@@ -12,7 +12,8 @@
     "@components/molecules": "<rootDir>/src/@next/components/molecules/index.ts",
     "@components/organisms": "<rootDir>/src/@next/components/organisms/index.ts",
     "@components/views": "<rootDir>/src/@next/components/views/index.ts",
-    "@components/containers": "<rootDir>/src/@next/components/containers/index.ts"
+    "@components/containers": "<rootDir>/src/@next/components/containers/index.ts",
+    "@types": "<rootDir>/src/@next/types/index.ts"
   },
   "setupFilesAfterEnv": ["<rootDir>/.jest/setupTests.js"],
   "transform": {

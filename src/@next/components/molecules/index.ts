@@ -5,3 +5,4 @@ export * from "./CreditCardTile";
 export * from "./FormFooter";
 export * from "./TextField";
 export * from "./Thumbnail";
+export * from "./AddressTile";

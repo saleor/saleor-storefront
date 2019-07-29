@@ -1,0 +1,1356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/AddressForm default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c10 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c5:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c6 {
+  position: relative;
+  width: 100%;
+}
+
+.c7 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c8 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c4 {
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  width: 100%;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 > div {
+  width: calc(50% - 1rem / 2);
+}
+
+.c9 {
+  width: 100%;
+}
+
+@media (max-width:540px) {
+  .c3 > div {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <form
+    className="c1"
+    onSubmit={[Function]}
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="given-name"
+                className="c7"
+                disabled={false}
+                name="firstName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                First Name
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="family-name"
+                className="c7"
+                disabled={false}
+                name="lastName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Last Name
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="organization"
+                className="c7"
+                disabled={false}
+                name="companyName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Company Name (Optional)
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="tel"
+                className="c7"
+                disabled={false}
+                name="phone"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Phone
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line1"
+                className="c7"
+                disabled={false}
+                name="streetAddress1"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Address line 1
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line2"
+                className="c7"
+                disabled={false}
+                name="streetAddress2"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Address line 2
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level1"
+                className="c7"
+                disabled={false}
+                name="city"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                City
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="postal-code"
+                className="c7"
+                disabled={false}
+                name="postalCode"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                ZIP/Postal Code
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="country"
+                className="c7"
+                disabled={false}
+                name="country"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Country
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level2"
+                className="c7"
+                disabled={false}
+                name="countryArea"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                State/province
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c10"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c13 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c9 {
+  color: #c22d74;
+  font-size: 0.75rem;
+}
+
+.c10 {
+  margin: 0;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c11:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #c22d74;
+  color: #c22d74;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c5:hover {
+  color: #c22d74;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #c22d74;
+  outline-color: #c22d74;
+}
+
+.c6 {
+  position: relative;
+  width: 100%;
+}
+
+.c7 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c8 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c4 {
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  width: 100%;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 > div {
+  width: calc(50% - 1rem / 2);
+}
+
+.c12 {
+  width: 100%;
+}
+
+@media (max-width:540px) {
+  .c3 > div {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <form
+    className="c1"
+    onSubmit={[Function]}
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="given-name"
+                className="c7"
+                disabled={false}
+                name="firstName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                First Name
+              </label>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="c10"
+            >
+              This is error
+            </p>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="family-name"
+                className="c7"
+                disabled={false}
+                name="lastName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Last Name
+              </label>
+            </div>
+          </div>
+          <div
+            className="c9"
+          >
+            <p
+              className="c10"
+            >
+              This is error
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="organization"
+                className="c7"
+                disabled={false}
+                name="companyName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Company Name (Optional)
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="tel"
+                className="c7"
+                disabled={false}
+                name="phone"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Phone
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c12"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line1"
+                className="c7"
+                disabled={false}
+                name="streetAddress1"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Address line 1
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c12"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line2"
+                className="c7"
+                disabled={false}
+                name="streetAddress2"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Address line 2
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level1"
+                className="c7"
+                disabled={false}
+                name="city"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                City
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="postal-code"
+                className="c7"
+                disabled={false}
+                name="postalCode"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                ZIP/Postal Code
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="country"
+                className="c7"
+                disabled={false}
+                name="country"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                Country
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c11"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level2"
+                className="c7"
+                disabled={false}
+                name="countryArea"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value=""
+              />
+              <label
+                className="c8"
+              >
+                State/province
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c13"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c10 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c5:hover {
+  color: #21125e;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #21125e;
+  outline-color: #21125e;
+}
+
+.c6 {
+  position: relative;
+  width: 100%;
+}
+
+.c7 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c8 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #fff;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c4 {
+  margin-bottom: 1rem;
+}
+
+.c1 {
+  width: 100%;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 > div {
+  width: calc(50% - 1rem / 2);
+}
+
+.c9 {
+  width: 100%;
+}
+
+@media (max-width:540px) {
+  .c3 > div {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <form
+    className="c1"
+    onSubmit={[Function]}
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="given-name"
+                className="c7"
+                disabled={false}
+                name="firstName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="John"
+              />
+              <label
+                className="c8"
+              >
+                First Name
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="family-name"
+                className="c7"
+                disabled={false}
+                name="lastName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="Doe"
+              />
+              <label
+                className="c8"
+              >
+                Last Name
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="organization"
+                className="c7"
+                disabled={false}
+                name="companyName"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="Mirumee"
+              />
+              <label
+                className="c8"
+              >
+                Company Name (Optional)
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="tel"
+                className="c7"
+                disabled={false}
+                name="phone"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="555-55555"
+              />
+              <label
+                className="c8"
+              >
+                Phone
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line1"
+                className="c7"
+                disabled={false}
+                name="streetAddress1"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="Street line 1"
+              />
+              <label
+                className="c8"
+              >
+                Address line 1
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-line2"
+                className="c7"
+                disabled={false}
+                name="streetAddress2"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="Street line 2"
+              />
+              <label
+                className="c8"
+              >
+                Address line 2
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level1"
+                className="c7"
+                disabled={false}
+                name="city"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="New York"
+              />
+              <label
+                className="c8"
+              >
+                City
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="postal-code"
+                className="c7"
+                disabled={false}
+                name="postalCode"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="90210"
+              />
+              <label
+                className="c8"
+              >
+                ZIP/Postal Code
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="country"
+                className="c7"
+                disabled={false}
+                name="country"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="US"
+              />
+              <label
+                className="c8"
+              >
+                Country
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+            disabled={false}
+          >
+            <div
+              className="c6"
+            >
+              <input
+                autoComplete="address-level2"
+                className="c7"
+                disabled={false}
+                name="countryArea"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                value="NY"
+              />
+              <label
+                className="c8"
+              >
+                State/province
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c10"
+  />
+</div>
+`;

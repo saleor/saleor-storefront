@@ -8,6 +8,7 @@ const DEFAULT_PROPS = {
   errors: [],
   label: "Label",
   onChange: action("onChange"),
+  required: false,
   value: "Value",
 };
 
@@ -27,4 +28,7 @@ storiesOf("@components/molecules/TextField", module)
   ))
   .add("with content right", () => (
     <TextField {...DEFAULT_PROPS} contentRight={<ContentRight />} />
+  ))
+  .add("with required set to true", () => (
+    <TextField {...DEFAULT_PROPS} required={true} value="" />
   ));

@@ -23,7 +23,8 @@
       "images/*": ["./src/images/*"],
       "@utils/*": ["./src/@next/utils/*"],
       "@hooks": ["./src/@next/hooks/index.ts"],
-      "@hooks/*": ["./src/@next/hooks/*"]
+      "@hooks/*": ["./src/@next/hooks/*"],
+      "@types": ["./src/@next/types/index.ts"]
     },
     "skipLibCheck": true
   },
