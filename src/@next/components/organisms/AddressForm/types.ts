@@ -4,7 +4,7 @@ export interface IFormikProps {
   handleChange: (e: React.ChangeEvent) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleBlur: (e: React.FocusEvent) => void;
-  values: IAddress | undefined;
+  values: IAddress;
 }
 
 export type AddressError = { field?: string; message: string };

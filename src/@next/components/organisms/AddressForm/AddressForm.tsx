@@ -1,10 +1,22 @@
 import { Formik } from "formik";
+import { merge } from "lodash";
 import React from "react";
-
-// import { IAddress } from "@types";
 
 import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";
+
+const INITIAL_VALUES = {
+  city: "",
+  companyName: "",
+  country: "",
+  countryArea: "",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  postalCode: "",
+  streetAddress1: "",
+  streetAddress2: "",
+};
 
 export const AddressForm: React.FC<IProps> = ({
   handleSubmit,
@@ -13,7 +25,7 @@ export const AddressForm: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <Formik
-      initialValues={address}
+      initialValues={merge(INITIAL_VALUES, address)}
       onSubmit={(values, { setSubmitting }) => {
         handleSubmit(values);
         setSubmitting(false);
