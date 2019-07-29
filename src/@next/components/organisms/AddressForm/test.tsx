@@ -6,6 +6,7 @@ import { Input } from "@components/atoms";
 import { AddressForm } from ".";
 
 const PROPS = {
+  errors: {},
   handleSubmit: jest.fn(),
 };
 
@@ -49,13 +50,12 @@ describe("<AddressForm />", () => {
   });
 
   it("should contain partial data if provided", () => {
+    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />);
     const getValue = (n: number) =>
       wrapper
         .find(Input)
         .at(n)
         .prop("value");
-    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />);
-
     expect(getValue(0)).toEqual(INITIAL_DATA.address.firstName);
     expect(getValue(1)).toEqual(INITIAL_DATA.address.lastName);
     expect(getValue(2)).toEqual(INITIAL_DATA.address.companyName);

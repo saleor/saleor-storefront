@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 
 import { TextField } from "@components/molecules";
-import { maybe } from "@utils/tsUtils";
 
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
@@ -29,7 +28,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.firstName || ""}
             autoComplete="given-name"
             required={true}
-            errors={maybe(() => errors!.firstName)}
+            errors={errors.firstName}
             {...basicInputProps()}
           />
           <TextField
@@ -38,7 +37,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.lastName || ""}
             autoComplete="family-name"
             required={true}
-            errors={maybe(() => errors!.lastName)}
+            errors={errors.lastName}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
@@ -49,7 +48,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.companyName || ""}
             autoComplete="organization"
             required={true}
-            errors={maybe(() => errors!.companyName)}
+            errors={errors.companyName}
             {...basicInputProps()}
           />
           <TextField
@@ -58,7 +57,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.phone || ""}
             autoComplete="tel"
             required={true}
-            errors={maybe(() => errors!.phone)}
+            errors={errors.phone}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
@@ -69,7 +68,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.streetAddress1 || ""}
             autoComplete="address-line1"
             required={true}
-            errors={maybe(() => errors!.streetAddress1)}
+            errors={errors.streetAddress1}
             {...basicInputProps()}
           />
         </S.RowWithOneCell>
@@ -80,7 +79,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.streetAddress2 || ""}
             autoComplete="address-line2"
             required={true}
-            errors={maybe(() => errors!.streetAddress2)}
+            errors={errors.streetAddress2}
             {...basicInputProps()}
           />
         </S.RowWithOneCell>
@@ -91,7 +90,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.city || ""}
             autoComplete="address-level1"
             required={true}
-            errors={maybe(() => errors!.city)}
+            errors={errors.city}
             {...basicInputProps()}
           />
           <TextField
@@ -100,7 +99,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.postalCode || ""}
             autoComplete="postal-code"
             required={true}
-            errors={maybe(() => errors!.postalCode)}
+            errors={errors.postalCode}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
@@ -111,7 +110,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.country || ""}
             autoComplete="country"
             required={true}
-            errors={maybe(() => errors!.country)}
+            errors={errors.country}
             {...basicInputProps()}
           />
           <TextField
@@ -120,7 +119,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             value={values!.countryArea || ""}
             autoComplete="address-level2"
             required={true}
-            errors={maybe(() => errors!.countryArea)}
+            errors={errors.countryArea}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>

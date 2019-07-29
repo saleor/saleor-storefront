@@ -25,7 +25,7 @@ export type AddressErrors = {
 export interface IProps {
   address?: IAddress;
   formRef?: React.RefObject<HTMLFormElement>;
-  errors?: AddressErrors;
+  errors: AddressErrors;
   handleSubmit: (formData: IAddress | undefined) => void;
   handleChange?: (e: React.ChangeEvent) => void;
   handleBlur?: (e: React.FocusEvent) => void;
