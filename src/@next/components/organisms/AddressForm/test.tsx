@@ -3,6 +3,7 @@ import "jest-styled-components";
 import React from "react";
 
 import { Input } from "@components/atoms";
+
 import { AddressForm } from ".";
 
 const PROPS = {
