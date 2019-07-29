@@ -37,13 +37,15 @@ const DEFAULT_PROPS = {
 describe("<AddressGrid />", () => {
   it("exists", () => {
     const wrapper = shallow(<AddressGrid {...DEFAULT_PROPS} />);
+
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should contain only AddNewTile if no addresses provided", () => {
     const wrapper = shallow(<AddressGrid addresses={[]} />);
-    expect(wrapper.find(TileGrid).props().elements.length).toBe(1);
     const firstTile = wrapper.find(TileGrid).props().elements[0];
+
+    expect(wrapper.find(TileGrid).props().elements.length).toBe(1);
     expect((firstTile as any).type).toBe(AddNewTile);
   });
 
