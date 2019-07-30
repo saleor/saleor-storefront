@@ -6,4 +6,5 @@ import { Button } from ".";
 storiesOf("@components/atoms/Button", module)
   .add("Primary", () => <Button>Primary Button</Button>)
   .add("Secondary", () => <Button color="secondary">Secondary Button</Button>)
+  .add("Fullwidth", () => <Button full>Fullwidth Button</Button>)
   .add("Size sm", () => <Button size="sm">Small Button</Button>);

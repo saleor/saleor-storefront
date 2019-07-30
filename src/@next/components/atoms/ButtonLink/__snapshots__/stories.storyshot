@@ -21,8 +21,6 @@ exports[`Storyshots @components/atoms/ButtonLink Base 1`] = `
   font-size: 1rem;
   font-weight: 600;
   color: #7d7d7d;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
@@ -30,8 +28,9 @@ exports[`Storyshots @components/atoms/ButtonLink Base 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
@@ -78,8 +77,6 @@ exports[`Storyshots @components/atoms/ButtonLink Secondary 1`] = `
   font-size: 1rem;
   font-weight: 600;
   color: #21125e;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
@@ -87,8 +84,9 @@ exports[`Storyshots @components/atoms/ButtonLink Secondary 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
@@ -135,8 +133,6 @@ exports[`Storyshots @components/atoms/ButtonLink Size sm 1`] = `
   font-size: 0.875rem;
   font-weight: 600;
   color: #7d7d7d;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
@@ -144,8 +140,9 @@ exports[`Storyshots @components/atoms/ButtonLink Size sm 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;

@@ -60,7 +60,7 @@ exports[`Storyshots @components/atoms/NotificationTemplate default 1`] = `
 }
 
 .c4:hover path {
-  fill: #3ee7cd;
+  fill: #13bebb;
 }
 
 <div
