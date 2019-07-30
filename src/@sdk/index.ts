@@ -40,6 +40,16 @@ export class SaleorAPI {
     data => data.orderByToken
   );
 
+  setUserDefaultAddress = this.fireQuery(
+    MUTATIONS.AddressTypeUpdate,
+    data => data!.addressSetDefault
+  );
+
+  setDeleteUserAddress = this.fireQuery(
+    MUTATIONS.DeleteUserAddress,
+    data => data!.addressDelete
+  );
+
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {

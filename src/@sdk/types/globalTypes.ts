@@ -9,6 +9,14 @@
 /**
  * An enumeration.
  */
+export enum AddressTypeEnum {
+  BILLING = "BILLING",
+  SHIPPING = "SHIPPING",
+}
+
+/**
+ * An enumeration.
+ */
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
   DUMMY = "DUMMY",

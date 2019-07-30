@@ -39,6 +39,14 @@ export interface OrderDetail_shippingAddress {
   country: OrderDetail_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface OrderDetail_lines_variant_price {
