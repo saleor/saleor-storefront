@@ -92,6 +92,14 @@ export interface getUserCheckout_me_checkout_billingAddress {
   country: getUserCheckout_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface getUserCheckout_me_checkout_shippingAddress_country {
@@ -125,6 +133,14 @@ export interface getUserCheckout_me_checkout_shippingAddress {
   country: getUserCheckout_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface getUserCheckout_me_checkout_availableShippingMethods_price {

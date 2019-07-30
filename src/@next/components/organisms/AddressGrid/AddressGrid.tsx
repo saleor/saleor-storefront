@@ -6,8 +6,15 @@ import { AddressTile } from "@components/molecules";
 import { IProps } from "./types";
 
 export const AddressGrid: React.FC<IProps> = ({ addresses }: IProps) => {
-  const addNewTile = [<AddNewTile type="address" />];
-  const addressTiles = addresses.map(address => <AddressTile {...address} />);
+  const addNewTile = <AddNewTile key="0" type="address" />;
 
-  return <TileGrid elements={addNewTile.concat(addressTiles)} />;
+  const addressTiles = addresses.reduce(
+    (elements, address) => {
+      elements.push(<AddressTile key={address.id} {...address} />);
+      return elements;
+    },
+    [addNewTile]
+  );
+
+  return <TileGrid elements={addressTiles} />;
 };

@@ -13,14 +13,15 @@ const address = {
     country: "Poland",
     countryArea: "dolnyslask",
     firstName: "John",
+    isDefaultBillingAddress: false,
+    isDefaultShippingAddress: true,
     lastName: "Doe",
     phone: "555-5555",
     postalCode: "55-555",
     streetAddress1: "St Street",
     streetAddress2: "Second",
   },
-  isDefaultBillingAddress: false,
-  isDefaultShippingAddress: true,
+  id: "12345",
   onEdit: jest.fn(),
   onRemove: jest.fn(),
   setDefault: jest.fn(),
@@ -51,6 +52,9 @@ describe("<AddressGrid />", () => {
 
   it("should contain AddNewTile and 3 address tiles for provided array of addresses", () => {
     const addressArray = [address, address, address];
+    addressArray[0].id = "0";
+    addressArray[1].id = "1";
+    addressArray[2].id = "2";
     const wrapper = shallow(<AddressGrid addresses={addressArray} />);
 
     expect(wrapper.find(TileGrid).props().elements.length).toBe(4);

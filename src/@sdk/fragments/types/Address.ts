@@ -37,4 +37,12 @@ export interface Address {
   country: Address_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }

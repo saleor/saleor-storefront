@@ -11,6 +11,7 @@ export const Content = styled.div`
 
   p {
     margin: 0;
+    margin-bottom: calc(${props => props.theme.spacing.spacer} / 3);
     font-weight: ${props => props.theme.typography.boldFontWeight};
   }
 `;

@@ -39,6 +39,14 @@ export interface OrderByToken_orderByToken_shippingAddress {
   country: OrderByToken_orderByToken_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_price {

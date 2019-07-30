@@ -3,10 +3,24 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: User
+// GraphQL mutation operation: DeleteUserAddress
 // ====================================================
 
-export interface User_defaultShippingAddress_country {
+export interface DeleteUserAddress_addressDelete_errors {
+  __typename: "Error";
+  /**
+   * Name of a field that caused the error. A value of
+   *         `null` indicates that the error isn't associated with a particular
+   *         field.
+   */
+  field: string | null;
+  /**
+   * The error message.
+   */
+  message: string | null;
+}
+
+export interface DeleteUserAddress_addressDelete_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -18,7 +32,7 @@ export interface User_defaultShippingAddress_country {
   country: string;
 }
 
-export interface User_defaultShippingAddress {
+export interface DeleteUserAddress_addressDelete_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -34,7 +48,7 @@ export interface User_defaultShippingAddress {
   /**
    * Default shop's country
    */
-  country: User_defaultShippingAddress_country;
+  country: DeleteUserAddress_addressDelete_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -47,7 +61,7 @@ export interface User_defaultShippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface User_defaultBillingAddress_country {
+export interface DeleteUserAddress_addressDelete_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -59,7 +73,7 @@ export interface User_defaultBillingAddress_country {
   country: string;
 }
 
-export interface User_defaultBillingAddress {
+export interface DeleteUserAddress_addressDelete_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -75,7 +89,7 @@ export interface User_defaultBillingAddress {
   /**
    * Default shop's country
    */
-  country: User_defaultBillingAddress_country;
+  country: DeleteUserAddress_addressDelete_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -88,7 +102,7 @@ export interface User_defaultBillingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface User_addresses_country {
+export interface DeleteUserAddress_addressDelete_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -100,7 +114,7 @@ export interface User_addresses_country {
   country: string;
 }
 
-export interface User_addresses {
+export interface DeleteUserAddress_addressDelete_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -116,7 +130,7 @@ export interface User_addresses {
   /**
    * Default shop's country
    */
-  country: User_addresses_country;
+  country: DeleteUserAddress_addressDelete_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -129,7 +143,7 @@ export interface User_addresses {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface User {
+export interface DeleteUserAddress_addressDelete_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -139,10 +153,30 @@ export interface User {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: User_defaultShippingAddress | null;
-  defaultBillingAddress: User_defaultBillingAddress | null;
+  defaultShippingAddress: DeleteUserAddress_addressDelete_user_defaultShippingAddress | null;
+  defaultBillingAddress: DeleteUserAddress_addressDelete_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (User_addresses | null)[] | null;
+  addresses: (DeleteUserAddress_addressDelete_user_addresses | null)[] | null;
+}
+
+export interface DeleteUserAddress_addressDelete {
+  __typename: "AddressDelete";
+  /**
+   * List of errors that occurred executing the mutation.
+   */
+  errors: DeleteUserAddress_addressDelete_errors[] | null;
+  /**
+   * A user instance for which the address was deleted.
+   */
+  user: DeleteUserAddress_addressDelete_user | null;
+}
+
+export interface DeleteUserAddress {
+  addressDelete: DeleteUserAddress_addressDelete | null;
+}
+
+export interface DeleteUserAddressVariables {
+  addressId: string;
 }

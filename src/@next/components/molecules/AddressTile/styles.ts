@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 export const HeaderContent = styled.div`
   color: ${props => props.theme.colors.lightFont};
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
 `;

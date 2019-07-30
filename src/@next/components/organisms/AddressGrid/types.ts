@@ -1,9 +1,8 @@
 declare type Address = {
+  id: string;
   onEdit: () => void;
   onRemove: () => void;
   setDefault: () => void;
-  isDefaultShippingAddress: boolean;
-  isDefaultBillingAddress: boolean;
   address: {
     firstName: string;
     lastName: string;
@@ -15,6 +14,8 @@ declare type Address = {
     countryArea: string;
     phone: string;
     country: string;
+    isDefaultShippingAddress: boolean;
+    isDefaultBillingAddress: boolean;
   };
 };
 export interface IProps {
