@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     color: ${props => props.theme.colors.baseFont};
   }
 
+  input, textarea, button {
+    font-family: inherit;
+  }
+
   h1 {
     font-size: ${props => props.theme.typography.h1FontSize};
     line-height: ${props => props.theme.typography.h1LineHeight};

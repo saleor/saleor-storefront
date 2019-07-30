@@ -41,7 +41,7 @@ export const theme = {
 };
 
 // typography
-export const baseFontFamily = "montserrat";
+export const baseFontFamily = "'Inter', sans-serif";
 export const baseFontSize = "1rem"; // 16px
 export const baseLineHeight = "1.25rem"; // 20px
 export const boldFontWeight = 600;
