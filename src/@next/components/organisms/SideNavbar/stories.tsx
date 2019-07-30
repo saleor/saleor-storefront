@@ -10,6 +10,7 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
+// tslint:disable:object-literal-sort-keys
 const items = [
   {
     id: "TWVudUl0ZW06Mjcx",
@@ -24,7 +25,48 @@ const items = [
     page: null,
     parent: null,
     __typename: "MenuItem",
-    children: [],
+    children: [
+      {
+        id: "123",
+        name: "Subcategory I",
+        category: {
+          id: "Q2F0ZWdvcnk6Nw==",
+          name: "Accessories",
+          __typename: "Category",
+        },
+        url: null,
+        collection: null,
+        page: null,
+        parent: null,
+        __typename: "MenuItem",
+        children: [
+          {
+            id: "TWVudUl0ZW01Mjcx",
+            name: "Subsubcategory I",
+            category: {
+              id: "Q2F0ZWdvcnk6Nw==",
+              name: "Accessories",
+              __typename: "Category",
+            },
+          },
+        ],
+      },
+      {
+        id: "TWVudUl0ZW01Mjcx",
+        name: "Subcategory II",
+        category: {
+          id: "Q2F0ZWdvcnk6Nw==",
+          name: "Accessories",
+          __typename: "Category",
+        },
+        url: null,
+        collection: null,
+        page: null,
+        parent: null,
+        __typename: "MenuItem",
+        children: [],
+      },
+    ],
   },
   {
     id: "TWVudUl0ZW06Mjcy",

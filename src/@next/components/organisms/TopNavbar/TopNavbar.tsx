@@ -1,12 +1,17 @@
-import { mediumScreen, smallScreen } from "@styles/constants";
+// This component relies on parts of the application that are
+// are not yet implemented (ie wishlist)
+// Replace it with MainMenu component once all the blocks are finished
+
 import React from "react";
 import Media from "react-responsive";
 
 import { Icon, NavLink } from "@components/atoms";
+import { mediumScreen, smallScreen } from "@styles/constants";
 import { maybe } from "@utils/misc";
 
+import LogoSmall from "images/logo-small.svg";
 import Logo from "images/logo.svg";
-import { SideNavbar } from "../";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -85,7 +90,6 @@ const useElementWidthChanged = (
 
 export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
   const [navVisible, setNavVisible] = React.useState(false);
-  const [sideMenuVisible, setSideMenuVisible] = React.useState(false);
   const [setRef, { width, node }] = useElementWidthChanged();
 
   React.useEffect(() => {
@@ -96,11 +100,6 @@ export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
 
   return (
     <>
-      <SideNavbar
-        show={sideMenuVisible}
-        onHide={setSideMenuVisible}
-        items={items}
-      />
       <S.Wrapper>
         <S.Navigation ref={setRef}>
           {!navVisible && (
@@ -119,7 +118,12 @@ export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
           </S.Desktop>
         </S.Navigation>
         <S.Center>
-          <S.LogoWrapper path={Logo} />
+          <Media maxWidth={smallScreen}>
+            <S.LogoWrapper path={LogoSmall} />
+          </Media>
+          <Media minWidth={smallScreen}>
+            <S.LogoWrapper path={Logo} />
+          </Media>
         </S.Center>
         <S.Actions>
           <Media minWidth={mediumScreen}>
