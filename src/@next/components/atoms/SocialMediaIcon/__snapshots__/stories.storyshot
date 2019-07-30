@@ -27,7 +27,7 @@ exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
 }
 
 .c2:hover path {
-  fill: #3ee7cd;
+  fill: #13bebb;
 }
 
 <div

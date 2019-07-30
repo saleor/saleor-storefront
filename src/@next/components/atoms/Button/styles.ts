@@ -13,19 +13,19 @@ const fontSize = (fontSize: string, smallFontSize: string) => ({
 
 export const Primary = styled.button<{
   color: "primary" | "secondary";
+  fullWidth?: boolean;
   size: Size;
 }>`
   background-color: ${props =>
     props.theme.button.colors[props.color].background};
-  transform: skew(-45deg);
   padding: ${props => padding[props.size]};
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   outline: none;
   font-family: ${props => props.theme.typography.baseFontFamily};
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
+  width: ${props => (props.fullWidth ? "100%" : "auto")}
 
   &:hover {
     background-color: ${props =>
@@ -73,5 +73,4 @@ export const Text = styled.span<{ size: Size }>`
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
-  transform: skew(45deg);
 `;

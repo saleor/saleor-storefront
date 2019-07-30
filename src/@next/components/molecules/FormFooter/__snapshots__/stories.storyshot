@@ -18,28 +18,25 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 }
 
 .c3 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c3:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c3:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -58,17 +55,12 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c2 {
   font-size: 1rem;
   font-weight: 600;
   color: #21125e;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
@@ -76,8 +68,9 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
@@ -161,28 +154,25 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
 }
 
 .c2 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c2:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c2:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -201,9 +191,6 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c1 {
@@ -271,28 +258,25 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
 }
 
 .c2 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c2:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c2:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -311,9 +295,6 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c1 {

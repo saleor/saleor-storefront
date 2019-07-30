@@ -18,28 +18,25 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 }
 
 .c10 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c10:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c10:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -58,17 +55,12 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c9 {
   font-size: 1rem;
   font-weight: 600;
   color: #21125e;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
@@ -76,8 +68,9 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
@@ -337,28 +330,25 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 }
 
 .c9 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c9:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c9:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -377,9 +367,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c6 {
@@ -623,28 +610,25 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 }
 
 .c9 {
-  background-color: #3ee7cd;
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
+  background-color: #13bebb;
   padding: 0.1rem 2rem;
   border: none;
-  box-shadow: -5px 5px 14px 0px rgba(0,0,0,0.2);
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
   font-family: montserrat;
   cursor: pointer;
   color: #fff;
+  width: auto;
 }
 
 .c9:hover {
-  background-color: #42beab;
+  background-color: #10a2a0;
   color: #fff;
 }
 
 .c9:active {
-  background-color: #42beab;
+  background-color: #10a2a0;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -663,9 +647,6 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.25rem;
-  -webkit-transform: skew(45deg);
-  -ms-transform: skew(45deg);
-  transform: skew(45deg);
 }
 
 .c6 {
