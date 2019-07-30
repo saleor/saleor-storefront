@@ -81,7 +81,7 @@ exports[`Storyshots @components/atoms/AddNewTile default 1`] = `
 
 .c3 p {
   margin: 0;
-  margin-bottom: calc (1rem) / 2;
+  margin-bottom: calc(1rem / 3);
   font-weight: 600;
 }
 

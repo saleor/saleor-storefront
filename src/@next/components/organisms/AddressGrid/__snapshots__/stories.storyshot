@@ -112,7 +112,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
 
 .c5 p {
   margin: 0;
-  margin-bottom: calc (1rem) / 2;
+  margin-bottom: calc(1rem / 3);
   font-weight: 600;
 }
 
