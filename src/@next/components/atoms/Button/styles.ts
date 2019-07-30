@@ -22,7 +22,6 @@ export const Primary = styled.button<{
   border: none;
   transition: 0.3s;
   outline: none;
-  font-family: ${props => props.theme.typography.baseFontFamily};
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
   width: ${props => (props.fullWidth ? "100%" : "auto")}
