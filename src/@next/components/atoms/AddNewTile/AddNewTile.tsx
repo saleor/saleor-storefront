@@ -9,7 +9,9 @@ export const AddNewTile: React.FC<IProps> = ({ type }: IProps) => {
   return (
     <Tile tileType="addNew">
       <S.Content>
-        <Icon size={24} name="plus" />
+        <p>
+          <Icon size={24} name="plus" />
+        </p>
         <p>Add new {type}</p>
       </S.Content>
     </Tile>
