@@ -7,7 +7,7 @@ export const Button: React.FC<IProps> = ({
   color = "primary",
   btnRef,
   children,
-  full = false,
+  fullWidth = false,
   size = "md",
   ...props
 }: IProps) => {
@@ -16,7 +16,7 @@ export const Button: React.FC<IProps> = ({
   return (
     <ButtonWithTheme
       color={color}
-      full={full}
+      fullWidth={fullWidth}
       size={size}
       ref={btnRef}
       {...props}

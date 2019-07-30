@@ -13,7 +13,7 @@ const fontSize = (fontSize: string, smallFontSize: string) => ({
 
 export const Primary = styled.button<{
   color: "primary" | "secondary";
-  full?: boolean;
+  fullWidth?: boolean;
   size: Size;
 }>`
   background-color: ${props =>
@@ -25,7 +25,7 @@ export const Primary = styled.button<{
   font-family: ${props => props.theme.typography.baseFontFamily};
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
-  width: ${props => (props.full ? "100%" : "auto")}
+  width: ${props => (props.fullWidth ? "100%" : "auto")}
 
   &:hover {
     background-color: ${props =>
