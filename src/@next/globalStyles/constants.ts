@@ -14,8 +14,8 @@ export const grayLight = "#f1f5f5";
 export const green = "#3ed256";
 export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
-export const turquoise = "#3ee7cd";
-export const turquoiseDark = "#42beab";
+export const turquoise = "#13bebb";
+export const turquoiseDark = "#10a2a0";
 export const turqoiseLight = `rgba(62, 231, 205, 0.2)`;
 export const white = "#fff";
 

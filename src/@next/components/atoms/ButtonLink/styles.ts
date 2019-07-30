@@ -10,13 +10,13 @@ export const ButtonLink = styled.button<{
   font-weight: ${props => props.theme.typography.boldFontWeight};
   color: ${({ color, theme: { link } }) =>
     color === "secondary" ? link.secondary.color : link.base.color};
-  text-decoration: underline;
   background: transparent;
   outline: none;
   border: none;
   box-shadow: none;
   transform: none;
-  text-decoration: underline;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 0;
   transition: color 0.3s ease;
   &:hover {
