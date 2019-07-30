@@ -16,6 +16,8 @@ const DEFAULT_PROPS = {
     country: "Poland",
     countryArea: "dolnyslask",
     firstName: "John",
+    isDefaultBillingAddress: true,
+    isDefaultShippingAddress: true,
     lastName: "Doe",
     phone: "555-5555",
     postalCode: "55-555",
@@ -27,24 +29,15 @@ const DEFAULT_PROPS = {
   setDefault,
 };
 
-const DEFAULT_ADDRESSES = {
-  isDefaultBillingAddress: true,
-  isDefaultShippingAddress: true,
-};
-
 describe("<AddressTile />", () => {
   it("exists", () => {
-    const wrapper = shallow(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = shallow(<AddressTile {...DEFAULT_PROPS} />);
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should run onRemove function for clicking on trash button", () => {
-    const wrapper = mount(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
     wrapper
       .find(IconButton)
@@ -55,9 +48,7 @@ describe("<AddressTile />", () => {
   });
 
   it("should run onEdit function for clicking on edit button", () => {
-    const wrapper = mount(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
     wrapper
       .find(IconButton)
@@ -68,9 +59,7 @@ describe("<AddressTile />", () => {
   });
 
   it("should run setDefault method for clicking on Set default billing address", () => {
-    const wrapper = mount(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
     wrapper
       .find(IconButton)
@@ -85,9 +74,7 @@ describe("<AddressTile />", () => {
   });
 
   it("should run setDefault method for clicking on Set default shipping address", () => {
-    const wrapper = mount(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
     wrapper
       .find(IconButton)
@@ -102,33 +89,27 @@ describe("<AddressTile />", () => {
   });
 
   it("should present Default address if address is default shipping and billing", () => {
-    const wrapper = mount(
-      <AddressTile {...DEFAULT_PROPS} {...DEFAULT_ADDRESSES} />
-    );
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
     expect(wrapper.text()).toContain("Default Address");
   });
 
   it("should present Default Shipping Address if address is set as default shipping and is different from default billing address", () => {
-    const wrapper = mount(
-      <AddressTile
-        {...DEFAULT_PROPS}
-        isDefaultShippingAddress={true}
-        isDefaultBillingAddress={false}
-      />
-    );
+    const CUSTOM_PROPS = { ...DEFAULT_PROPS };
+    CUSTOM_PROPS.address.isDefaultBillingAddress = false;
+    CUSTOM_PROPS.address.isDefaultShippingAddress = true;
+
+    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />);
 
     expect(wrapper.text()).toContain("Default Shipping Address");
   });
 
   it("should present Default Billing Address if address is set as default billing and is different from default shipping address", () => {
-    const wrapper = mount(
-      <AddressTile
-        {...DEFAULT_PROPS}
-        isDefaultShippingAddress={false}
-        isDefaultBillingAddress={true}
-      />
-    );
+    const CUSTOM_PROPS = { ...DEFAULT_PROPS };
+    CUSTOM_PROPS.address.isDefaultBillingAddress = true;
+    CUSTOM_PROPS.address.isDefaultShippingAddress = false;
+
+    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />);
 
     expect(wrapper.text()).toContain("Default Billing Address");
   });

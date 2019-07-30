@@ -20,21 +20,32 @@ const DEFAULT_PROPS = {
     country: "Poland",
     countryArea: "dolnyslask",
     firstName: "John",
+    isDefaultBillingAddress: false,
+    isDefaultShippingAddress: true,
     lastName: "Doe",
     phone: "555-5555",
     postalCode: "55-555",
     streetAddress1: "St Street",
     streetAddress2: "Second",
   },
-  isDefaultBillingAddress: false,
-  isDefaultShippingAddress: true,
   onEdit,
   onRemove,
   setDefault,
 };
 
-storiesOf("@components/molecules/AddressTile", module).add("default", () => (
-  <Container>
-    <AddressTile {...DEFAULT_PROPS} />
-  </Container>
-));
+storiesOf("@components/molecules/AddressTile", module)
+  .add("default", () => (
+    <Container>
+      <AddressTile {...DEFAULT_PROPS} />
+    </Container>
+  ))
+  .add("with default shipping and billing as false", () => {
+    const CHANGED_DEFAULT_ADDRESSES = { ...DEFAULT_PROPS };
+    CHANGED_DEFAULT_ADDRESSES.address.isDefaultBillingAddress = false;
+    CHANGED_DEFAULT_ADDRESSES.address.isDefaultShippingAddress = false;
+    return (
+      <Container>
+        <AddressTile {...CHANGED_DEFAULT_ADDRESSES} />
+      </Container>
+    );
+  });

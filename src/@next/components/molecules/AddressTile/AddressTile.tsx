@@ -21,20 +21,10 @@ export const AddressTile: React.FC<IProps> = ({
   onEdit,
   onRemove,
   setDefault,
-  isDefaultBillingAddress,
-  isDefaultShippingAddress,
   address,
 }: IProps) => {
   const header = (
     <S.HeaderContent>
-      {isDefaultBillingAddress && isDefaultShippingAddress ? (
-        <Trans id="Default Address" />
-      ) : isDefaultShippingAddress ? (
-        <Trans id="Default Shipping Address" />
-      ) : isDefaultBillingAddress ? (
-        <Trans id="Default Billing Address" />
-      ) : null}
-
       <DropdownMenu
         type="clickable"
         header={<IconButton name="expand" size={24} />}
@@ -53,6 +43,14 @@ export const AddressTile: React.FC<IProps> = ({
           },
         ]}
       />
+
+      {address.isDefaultBillingAddress && address.isDefaultShippingAddress ? (
+        <Trans id="Default Address" />
+      ) : address.isDefaultShippingAddress ? (
+        <Trans id="Default Shipping Address" />
+      ) : address.isDefaultBillingAddress ? (
+        <Trans id="Default Billing Address" />
+      ) : null}
     </S.HeaderContent>
   );
   const footer = (

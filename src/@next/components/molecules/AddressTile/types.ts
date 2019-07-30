@@ -2,8 +2,6 @@ export interface IProps {
   onEdit: () => void;
   onRemove: () => void;
   setDefault: (arg0: string) => void;
-  isDefaultShippingAddress: boolean;
-  isDefaultBillingAddress: boolean;
   address: {
     firstName: string;
     lastName: string;
@@ -15,5 +13,7 @@ export interface IProps {
     countryArea: string;
     phone: string;
     country: string;
+    isDefaultShippingAddress: boolean;
+    isDefaultBillingAddress: boolean;
   };
 }
