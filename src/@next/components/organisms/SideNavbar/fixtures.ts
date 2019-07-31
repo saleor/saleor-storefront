@@ -1,11 +1,5 @@
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-
-import { TopNavbar } from ".";
-
 // tslint:disable:object-literal-sort-keys
-const items = [
+export const items = [
   {
     id: "TWVudUl0ZW06Mjcx",
     name: "Accessories",
@@ -93,9 +87,3 @@ const items = [
     children: [],
   },
 ];
-
-storiesOf("@components/organisms/TopNavbar", module).add("default", () => (
-  <BrowserRouter>
-    <TopNavbar items={items} />
-  </BrowserRouter>
-));

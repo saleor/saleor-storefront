@@ -109,3 +109,15 @@ export const Desktop = styled.ul`
     margin-left: 2rem;
   }
 `;
+
+export const Button = styled.button`
+  font-size: ${({ theme }) => theme.typography.baseFontSize};
+  font-weight: ${({ theme }) => theme.typography.boldFontWeight};
+  text-transform: uppercase;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const NestedLink = styled.button``;

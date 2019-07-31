@@ -1,3 +1,3 @@
 export interface IProps {
-  test?: string;
+  items: any;
 }

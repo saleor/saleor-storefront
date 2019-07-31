@@ -5,9 +5,8 @@ import React from "react";
 import { TopNavbar } from ".";
 
 describe("<TopNavbar />", () => {
-  // Example test
   it("exists", () => {
-    const wrapper = shallow(<TopNavbar />);
+    const wrapper = shallow(<TopNavbar items={[]} />);
 
     expect(wrapper.exists()).toEqual(true);
   });

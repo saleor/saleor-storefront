@@ -15,8 +15,8 @@ export const green = "#3ed256";
 export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
 export const turquoise = "#13bebb";
-export const turquoiseDark = "#10a2a0";
-export const turqoiseLight = "rgba(62, 231, 205, 0.2)";
+export const turquoiseDark = "#06a09e";
+export const turquoiseLight = "rgba(19, 190, 187, 0.05)";
 export const white = "#fff";
 
 // theme colors
@@ -28,12 +28,13 @@ export const theme = {
   disabled: gray,
   divider: grayLight,
   error: rose,
+  hoverLightBackground: turquoiseLight,
   light: grayLight,
   lightFont: gray,
   overlay: overlayColor,
   primary: turquoise,
   primaryDark: turquoiseDark,
-  primaryLight: turqoiseLight,
+  primaryLight: turquoiseLight,
   secondary: blue,
   secondaryDark: blueDark,
   success: green,

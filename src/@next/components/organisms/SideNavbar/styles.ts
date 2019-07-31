@@ -29,7 +29,10 @@ const MenuItemStyles = css`
 
   &:hover,
   &:focus {
-    color: ${({ theme }) => theme.colors.primary};
+    ${({ theme }) => `
+      color: ${theme.colors.primary};
+      background-color: ${theme.colors.hoverLightBackground};
+    `}
 
     path {
       fill: ${({ theme }) => theme.colors.primary};
@@ -72,7 +75,6 @@ export const NavButton = styled.button`
 
 export const NavLink = styled(_NavLink).attrs({
   fullWidth: true,
-  type: "side",
 })`
   ${MenuItemStyles};
 `;
@@ -102,6 +104,10 @@ export const SubcategoryIcon = styled.div`
 export const BackButton = styled(NavButton)`
   color: #7d7d7d;
   padding: 0;
+
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 export const CloseIconWrapper = styled.button`

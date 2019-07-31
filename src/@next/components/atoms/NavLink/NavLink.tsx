@@ -29,7 +29,6 @@ const getLinkUrl = ({ category, collection, page }: IProps["item"]) => {
 export const NavLink: React.FC<IProps> = ({
   item,
   fullWidth = false,
-  type = "main",
   ...props
 }) => {
   const { name, url, category, collection, page } = item;
@@ -48,7 +47,6 @@ export const NavLink: React.FC<IProps> = ({
     <S.Link
       to={linkUrl}
       activeClassName="navlink-active"
-      type={type}
       fullWidth={fullWidth}
       {...props}
     >

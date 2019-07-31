@@ -61,13 +61,13 @@ export const SideNavbar: React.FC<IProps> = ({
     index: null,
   });
 
-  const setView = (state: Partial<IState>) => {
+  const setView = React.useCallback((state: Partial<IState>) => {
     _setView(view => ({
       ...view,
       ...state,
       buffer: { ...view.buffer, ...state },
     }));
-  };
+  }, []);
 
   const handleHide = () => onHide(false);
 

@@ -4,7 +4,8 @@ import styleSheetSerializer from "jest-styled-components/src/styleSheetSerialize
 import { addSerializer } from "jest-specific-snapshot";
 
 jest.mock("react-dom", () => ({
-  createPortal: node => node
+  createPortal: node => node,
+  findDOMNode: () => {}
 }));
 
 addSerializer(styleSheetSerializer);

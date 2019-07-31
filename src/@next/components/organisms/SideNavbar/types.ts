@@ -1,10 +1,11 @@
-import { items } from "./stories";
+import { items } from "./fixtures";
 
 export interface IProps {
   onHide: (show: boolean) => void;
   show: boolean;
   target?: HTMLElement | null;
-  items: items;
+  // TODO: use codegen types
+  items: typeof items;
 }
 
 export interface IState {

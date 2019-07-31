@@ -105,24 +105,37 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 
 .c1 {
   background-color: #13bebb;
+<<<<<<< HEAD
+=======
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+>>>>>>> Update snapshots, design changes tweaks
   padding: 0.9rem 3.7rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #fff;
   width: auto;
 }
 
 .c1:hover {
+<<<<<<< HEAD
   background-color: #10a2a0;
+=======
+  background-color: #06a09e;
+>>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c1:active {
+<<<<<<< HEAD
   background-color: #10a2a0;
+=======
+  background-color: #06a09e;
+>>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -196,7 +209,6 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #21125e;
   width: auto;
@@ -280,24 +292,37 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 
 .c1 {
   background-color: #13bebb;
+<<<<<<< HEAD
+=======
+  -webkit-transform: skew(-45deg);
+  -ms-transform: skew(-45deg);
+  transform: skew(-45deg);
+>>>>>>> Update snapshots, design changes tweaks
   padding: 0.1rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  font-family: montserrat;
   cursor: pointer;
   color: #fff;
   width: auto;
 }
 
 .c1:hover {
+<<<<<<< HEAD
   background-color: #10a2a0;
+=======
+  background-color: #06a09e;
+>>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c1:active {
+<<<<<<< HEAD
   background-color: #10a2a0;
+=======
+  background-color: #06a09e;
+>>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 

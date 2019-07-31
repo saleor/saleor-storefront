@@ -16,3 +16,4 @@ export * from "./DropdownMenu";
 export * from "./Address";
 export * from "./Tile";
 export * from "./NavLink";
+export * from "./ShadowBox";

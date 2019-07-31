@@ -12,26 +12,9 @@ import { maybe } from "@utils/misc";
 import LogoSmall from "images/logo-small.svg";
 import Logo from "images/logo.svg";
 
+import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
 import { IProps } from "./types";
-
-const items = [
-  {
-    id: 123,
-    name: "Element I",
-    page: "/",
-  },
-  {
-    id: 312,
-    name: "Element II",
-    page: "/wew",
-  },
-  {
-    id: 412,
-    name: "Element III",
-    page: "/wew",
-  },
-];
 
 const menuVisibleRatio = 0.8;
 const getElementWidth = (node: Element) => node.scrollWidth;
@@ -88,9 +71,12 @@ const useElementWidthChanged = (
   return [setRef, { width, node: nodeRef.current }];
 };
 
-export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
+export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
   const [navVisible, setNavVisible] = React.useState(false);
   const [setRef, { width, node }] = useElementWidthChanged();
+  const [currentElement, setCurrentElement] = React.useState<number | null>(
+    null
+  );
 
   React.useEffect(() => {
     if (node) {
@@ -110,9 +96,15 @@ export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
             </S.Mobile>
           )}
           <S.Desktop style={{ visibility: navVisible ? "visible" : "hidden" }}>
-            {items.map(item => (
+            {items.map((item, index) => (
               <li key={item.id}>
-                <NavLink item={item} />
+                {item.children.length > 0 ? (
+                  <S.Button onClick={() => setCurrentElement(index)}>
+                    {item.name}
+                  </S.Button>
+                ) : (
+                  <NavLink item={item} />
+                )}
               </li>
             ))}
           </S.Desktop>
@@ -145,6 +137,12 @@ export const TopNavbar: React.FC<IProps> = ({  }: IProps) => {
           </S.SearchButton>
         </S.Actions>
       </S.Wrapper>
+      {currentElement !== null && (
+        <Dropdown
+          item={items[currentElement]}
+          onHide={() => setCurrentElement(null)}
+        />
+      )}
     </>
   );
 };
