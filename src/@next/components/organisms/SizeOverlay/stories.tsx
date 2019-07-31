@@ -13,6 +13,17 @@ const DEFAULT_PROPS = {
   hide: action("hide"),
   show: true,
   target: portalRoot,
+  values: [
+    "7",
+    "7 1/8",
+    "7 1/4",
+    "7 3/8",
+    "7 1/2",
+    "7 5/8",
+    "7 3/4",
+    "7 7/8",
+    "8",
+  ],
 };
 
 import { SizeOverlay } from ".";

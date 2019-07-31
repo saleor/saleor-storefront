@@ -1,7 +1,7 @@
 import { Trans } from "@lingui/react";
 import React from "react";
 
-import { ButtonLink } from "@components/atoms";
+import { ButtonLink, OverlayItem } from "@components/atoms";
 import { CardHeader } from "@components/molecules";
 import { Overlay } from "@components/organisms";
 
@@ -10,8 +10,10 @@ import { IProps } from "./types";
 
 export const SizeOverlay: React.FC<IProps> = ({
   hide,
+  selected,
   show,
   target,
+  values,
 }: IProps) => {
   return (
     <Overlay hide={hide} position="right" show={show} target={target}>
@@ -19,6 +21,15 @@ export const SizeOverlay: React.FC<IProps> = ({
         <CardHeader divider onHide={hide}>
           <Trans id="Please select size" />
         </CardHeader>
+        <S.Content>
+          {values.map(value => (
+            <OverlayItem
+              key={value}
+              label={value}
+              selected={selected === value}
+            />
+          ))}
+        </S.Content>
         <S.Footer>
           <ButtonLink color="secondary">
             <Trans id="Show size table" />
