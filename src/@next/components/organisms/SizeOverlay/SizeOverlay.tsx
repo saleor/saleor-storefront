@@ -1,8 +1,8 @@
 import { Trans } from "@lingui/react";
 import React from "react";
 
-import { ButtonLink, OverlayItem } from "@components/atoms";
-import { CardHeader } from "@components/molecules";
+import { ButtonLink } from "@components/atoms";
+import { CardHeader, OverlayItem } from "@components/molecules";
 import { Overlay } from "@components/organisms";
 
 import * as S from "./styles";

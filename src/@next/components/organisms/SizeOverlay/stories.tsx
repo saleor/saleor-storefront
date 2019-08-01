@@ -11,6 +11,7 @@ if (!portalRoot) {
 
 const DEFAULT_PROPS = {
   hide: action("hide"),
+  selected: "7 3/8",
   show: true,
   target: portalRoot,
   values: [
