@@ -19,12 +19,6 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 
 .c3 {
   background-color: #13bebb;
-<<<<<<< HEAD
-=======
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
->>>>>>> Update snapshots, design changes tweaks
   padding: 0.1rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
@@ -36,20 +30,12 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 }
 
 .c3:hover {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c3:active {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -168,12 +154,6 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
 
 .c2 {
   background-color: #13bebb;
-<<<<<<< HEAD
-=======
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
->>>>>>> Update snapshots, design changes tweaks
   padding: 0.1rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
@@ -185,20 +165,12 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
 }
 
 .c2:hover {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c2:active {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -285,12 +257,6 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
 
 .c2 {
   background-color: #13bebb;
-<<<<<<< HEAD
-=======
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
->>>>>>> Update snapshots, design changes tweaks
   padding: 0.1rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
@@ -302,20 +268,12 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
 }
 
 .c2:hover {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c2:active {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 

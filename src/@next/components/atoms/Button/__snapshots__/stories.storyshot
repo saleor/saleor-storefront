@@ -1,91 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/atoms/Button Fullwidth 1`] = `
-.c0 {
-  position: relative;
-  margin: 20px;
-}
-
-.c3 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 3px solid rgba(0,0,0,0.2);
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  box-sizing: border-box;
-}
-
-.c1 {
-  background-color: #13bebb;
-  padding: 0.9rem 3.7rem;
-  border: none;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  outline: none;
-  font-family: montserrat;
-  cursor: pointer;
-  color: #fff;
-  width: 100%;
-}
-
-.c1:hover {
-  background-color: #10a2a0;
-  color: #fff;
-}
-
-.c1:active {
-  background-color: #10a2a0;
-  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
-}
-
-.c1:disabled {
-  background-color: #7d7d7d;
-}
-
-.c1:disabled,
-.c1:disabled:hover {
-  cursor: default;
-}
-
-.c2 {
-  display: inline-block;
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  line-height: 1.25rem;
-}
-
-@media (max-width:540px) {
-  .c1 {
-    padding: 0.9rem 1rem;
-    width: 88%;
-    max-width: 88%;
-  }
-}
-
-<div
-  className="c0"
->
-  <button
-    className="c1"
-    color="primary"
-    size="md"
-  >
-    <span
-      className="c2"
-      size="md"
-    >
-      Fullwidth Button
-    </span>
-  </button>
-  <div
-    className="c3"
-  />
-</div>
-`;
-
 exports[`Storyshots @components/atoms/Button Primary 1`] = `
 .c0 {
   position: relative;
@@ -105,12 +19,6 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 
 .c1 {
   background-color: #13bebb;
-<<<<<<< HEAD
-=======
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
->>>>>>> Update snapshots, design changes tweaks
   padding: 0.9rem 3.7rem;
   border: none;
   -webkit-transition: 0.3s;
@@ -122,20 +30,12 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
 }
 
 .c1:hover {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c1:active {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
@@ -292,12 +192,6 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 
 .c1 {
   background-color: #13bebb;
-<<<<<<< HEAD
-=======
-  -webkit-transform: skew(-45deg);
-  -ms-transform: skew(-45deg);
-  transform: skew(-45deg);
->>>>>>> Update snapshots, design changes tweaks
   padding: 0.1rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
@@ -309,20 +203,12 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 }
 
 .c1:hover {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   color: #fff;
 }
 
 .c1:active {
-<<<<<<< HEAD
-  background-color: #10a2a0;
-=======
   background-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 

@@ -321,11 +321,7 @@ exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
   bottom: 1rem;
   right: 1rem;
   border-left: 0.4rem solid;
-<<<<<<< HEAD
-  border-color: #10a2a0;
-=======
   border-color: #06a09e;
->>>>>>> Update snapshots, design changes tweaks
 }
 
 .c2 {
