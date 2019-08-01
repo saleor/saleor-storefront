@@ -9,7 +9,7 @@ export const OverlayItem: React.FC<IProps> = ({ label, selected }: IProps) => {
   return (
     <S.Wrapper selected={!!selected}>
       {label}
-      {selected && <Icon name="plus" size={16} />}
+      {selected && <Icon name="tick" size={16} />}
     </S.Wrapper>
   );
 };
