@@ -18,4 +18,3 @@ export * from "./ButtonLink";
 export * from "./DropdownMenu";
 export * from "./Address";
 export * from "./Tile";
-export * from "./OverlayItem";
