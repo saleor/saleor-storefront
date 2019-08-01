@@ -6,14 +6,13 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const OverlayItem: React.FC<IProps> = ({
-  label,
+  children,
   selected,
   onClick,
 }: IProps) => {
-  const handleClick = () => onClick(label);
   return (
-    <S.Wrapper selected={!!selected} onClick={handleClick}>
-      {label}
+    <S.Wrapper selected={!!selected} onClick={onClick}>
+      {children}
       {selected && <Icon name="tick" size={16} />}
     </S.Wrapper>
   );

@@ -1,6 +1,6 @@
 export interface IProps {
   hide: () => void;
-  onClick: (label: string) => void;
+  onClick: (value: string) => void;
   selected?: string;
   show: boolean;
   target?: HTMLElement | null;

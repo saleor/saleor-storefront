@@ -23,14 +23,19 @@ export const SizeOverlay: React.FC<IProps> = ({
           <Trans id="Please select size" />
         </CardHeader>
         <S.Content>
-          {values.map(value => (
-            <OverlayItem
-              key={value}
-              label={value}
-              selected={selected === value}
-              onClick={onClick}
-            />
-          ))}
+          {values.map(value => {
+            const isSelected = selected === value;
+            const onSelected = () => onClick(value);
+            return (
+              <OverlayItem
+                key={value}
+                selected={isSelected}
+                onClick={onSelected}
+              >
+                {value}
+              </OverlayItem>
+            );
+          })}
         </S.Content>
         <S.Footer>
           <ButtonLink color="secondary">

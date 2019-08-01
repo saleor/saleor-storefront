@@ -1,5 +1,5 @@
 export interface IProps {
-  label: string;
+  children: React.ReactNode;
   selected?: boolean;
-  onClick: (label: string) => void;
+  onClick: () => void;
 }
