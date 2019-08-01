@@ -10,6 +10,7 @@ import { IProps } from "./types";
 
 export const SizeOverlay: React.FC<IProps> = ({
   hide,
+  onClick,
   selected,
   show,
   target,
@@ -27,6 +28,7 @@ export const SizeOverlay: React.FC<IProps> = ({
               key={value}
               label={value}
               selected={selected === value}
+              onClick={onClick}
             />
           ))}
         </S.Content>
