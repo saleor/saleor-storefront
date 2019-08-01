@@ -96,7 +96,8 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
             </S.Mobile>
           )}
           <S.Desktop style={{ visibility: navVisible ? "visible" : "hidden" }}>
-            {items.map((item, index) => (
+            {/* get rid off any types when items is typed */}
+            {items.map((item: any, index: any) => (
               <li key={item.id}>
                 {item.children.length > 0 ? (
                   <S.Button onClick={() => setCurrentElement(index)}>

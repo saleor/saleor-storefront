@@ -10,7 +10,7 @@ import {
   generateCategoryUrl,
   generateCollectionUrl,
   generatePageUrl
-} from "../../../../core/utils";
+} from "@utils/core";
 import * as S from "./styles";
 import { IProps } from "./types";
 
