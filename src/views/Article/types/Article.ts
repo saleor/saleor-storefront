@@ -7,7 +7,7 @@
 
 export interface Article_page {
   __typename: "Page";
-  content: string;
+  contentJson: any;
   /**
    * The ID of the object.
    */
