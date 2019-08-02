@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/TopNavbar default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c6 {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  z-index: 0;
+}
+
+.c6:hover,
+.c6:focus {
+  outline: none;
+  color: #13bebb;
+}
+
+.c1 {
+  background-color: #fff;
+  border-bottom: 1px solid #f1f5f5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  height: 3.55rem;
+  position: relative;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-basis: calc(50% - 3rem);
+  -ms-flex-preferred-size: calc(50% - 3rem);
+  flex-basis: calc(50% - 3rem);
+  overflow: hidden;
+}
+
+.c7 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-basis: calc(50% - 3rem);
+  -ms-flex-preferred-size: calc(50% - 3rem);
+  flex-basis: calc(50% - 3rem);
+  overflow: hidden;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.c9 {
+  margin: 0 1rem;
+}
+
+.c9 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c9:hover path {
+  fill: #13bebb;
+}
+
+.c10 {
+  border-left: 1px solid #f1f5f5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.c10 path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c10:hover {
+  color: #13bebb;
+}
+
+.c10:hover path {
+  fill: #13bebb;
+}
+
+.c3 {
+  padding-left: 1rem;
+}
+
+.c3 li {
+  line-height: 0;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.c4 li {
+  margin-left: 2rem;
+}
+
+.c5 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.c5:hover {
+  color: #13bebb;
+}
+
+@media (max-width:992px) {
+  .c2 {
+    -webkit-flex-basis: calc(50% - 2rem);
+    -ms-flex-preferred-size: calc(50% - 2rem);
+    flex-basis: calc(50% - 2rem);
+  }
+}
+
+@media (max-width:992px) {
+  .c8 {
+    -webkit-flex-basis: calc(50% - 2rem);
+    -ms-flex-preferred-size: calc(50% - 2rem);
+    flex-basis: calc(50% - 2rem);
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <ul
+        className="c3"
+      >
+        <li>
+          <svg
+            height={32}
+            viewBox="0 0 32 32"
+            width={32}
+          >
+            <path
+              d="M2 5h28c1.104 0 2 0.896 2 2s-0.896 2-2 2h-28c-1.104 0-2-0.896-2-2s0.896-2 2-2z"
+              fill="#323232"
+            />
+            <path
+              d="M2 14h28c1.104 0 2 0.896 2 2s-0.896 2-2 2h-28c-1.104 0-2-0.896-2-2s0.896-2 2-2z"
+              fill="#323232"
+            />
+            <path
+              d="M2 23h28c1.104 0 2 0.896 2 2s-0.896 2-2 2h-28c-1.104 0-2-0.896-2-2s0.896-2 2-2z"
+              fill="#323232"
+            />
+          </svg>
+        </li>
+      </ul>
+      <ul
+        className="c4"
+        style={
+          Object {
+            "visibility": "hidden",
+          }
+        }
+      >
+        <li>
+          <button
+            className="c5"
+            onClick={[Function]}
+          >
+            Accessories
+          </button>
+        </li>
+        <li>
+          <a
+            aria-current={null}
+            className="c6"
+            fullWidth={false}
+            href="/category/groceries/8/"
+            onClick={[Function]}
+          >
+            Groceries
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current={null}
+            className="c6"
+            fullWidth={false}
+            href="/category/apparel/9/"
+            onClick={[Function]}
+          >
+            Apparel
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="c7"
+    />
+    <div
+      className="c8"
+    >
+      <button
+        className="c9"
+      >
+        <svg
+          height={24}
+          viewBox="0 0 32 32"
+          width={24}
+        >
+          <path
+            d="M23 9h1.992c0.125 0 0.248 0.015 0.368 0.043 0.172 0.037 0.34 0.090 0.502 0.155 0.393 0.158 0.758 0.373 1.090 0.633 0.31 0.238 0.583 0.52 0.808 0.84 0.077 0.113 0.142 0.232 0.195 0.357 0.025 0.060 0.043 0.12 0.055 0.182l0.995 16.907c0 0.033 0.005 0.067 0.007 0.103 0.003 0.015 0.003 0.033 0.003 0.050-0.003 0.163-0.045 0.323-0.123 0.467-0.122 0.243-0.287 0.457-0.487 0.64-0.215 0.2-0.46 0.363-0.727 0.48-0.197 0.090-0.41 0.137-0.627 0.143h-22.035c-0.223-0.005-0.442-0.055-0.645-0.145-0.28-0.117-0.535-0.28-0.76-0.482-0.205-0.18-0.375-0.395-0.502-0.635-0.078-0.143-0.12-0.297-0.123-0.457 0-0.017 0-0.035 0.002-0.053 0.005-0.037 0.007-0.073 0.010-0.11l0.995-16.92c0.040-0.26 0.123-0.512 0.243-0.748 0.147-0.29 0.338-0.557 0.565-0.79 0.2-0.21 0.435-0.383 0.692-0.512 0.17-0.088 0.357-0.137 0.548-0.148h2.96c0 0.274 0 0.697 0 1.268-0.598 0.346-1 0.992-1 1.732 0 1.104 0.896 2 2 2s2-0.896 2-2c0-0.74-0.402-1.386-1-1.732v-1.268h10v1.268c-0.598 0.346-1 0.992-1 1.732 0 1.104 0.896 2 2 2s2-0.896 2-2c0-0.74-0.403-1.386-1-1.732 0-0.254 0-0.677 0-1.268zM23 7c0-0.602 0-1.602 0-3 0-2.593-1.132-4-3.449-4s-4.728 0-7.086 0c-2.358 0-3.465 1.576-3.465 4.128 0 0.62 0 1.578 0 2.872h-2.999c-1.945 0.042-3.759 2.014-4 4l-1 17c-0.233 2.027 2.009 4 4 4h22c2.046 0.037 4.221-2.006 4-4l-1-17c-0.25-2-2.945-4-5-4h-2zM11 7v-2.872c0-0.003 0-0.005 0-0.005 0-0.225 0.012-0.447 0.037-0.67 0.023-0.18 0.057-0.357 0.105-0.532 0.053-0.208 0.145-0.402 0.275-0.572 0.080-0.098 0.182-0.172 0.297-0.223 0.090-0.038 0.185-0.067 0.283-0.085 0.152-0.027 0.305-0.040 0.457-0.040 0.002 0 0.005 0 0.010 0h7.085c0.005 0 0.007 0 0.010 0 0.16 0 0.317 0.013 0.475 0.038 0.103 0.018 0.203 0.045 0.3 0.085 0.105 0.040 0.2 0.105 0.277 0.19 0.115 0.147 0.198 0.315 0.245 0.498 0.047 0.167 0.083 0.337 0.103 0.51 0.027 0.225 0.040 0.447 0.040 0.672 0 0.002 0 0.005 0 0.007v3h-10z"
+            fill="#323232"
+          />
+        </svg>
+      </button>
+      <button
+        className="c10"
+      >
+        <svg
+          height={24}
+          viewBox="0 0 32 32"
+          width={24}
+        >
+          <path
+            d="M25.992 24.578l5.712 5.712c0.187 0.187 0.293 0.443 0.293 0.707s-0.105 0.517-0.293 0.705c-0.187 0.187-0.443 0.295-0.707 0.295s-0.52-0.107-0.707-0.295l-5.712-5.71c-2.607 2.279-6.019 3.66-9.75 3.66-8.183 0-14.827-6.643-14.827-14.826s6.644-14.827 14.827-14.827c8.183 0 14.826 6.644 14.826 14.827 0 3.732-1.382 7.144-3.661 9.751zM24.113 23.673c1.068-1.123 1.927-2.429 2.534-3.855 0.665-1.58 1.007-3.275 1.007-4.99 0-0.002 0-0.003 0-0.003 0-1.712-0.343-3.41-1.007-4.987-0.647-1.525-1.583-2.91-2.753-4.077-1.17-1.173-2.555-2.105-4.077-2.752-1.58-0.667-3.275-1.010-4.99-1.008-1.715-0.002-3.41 0.34-4.99 1.008-1.523 0.647-2.908 1.58-4.077 2.752-1.17 1.167-2.105 2.553-2.75 4.075-0.667 1.58-1.010 3.277-1.010 4.992 0 1.713 0.343 3.41 1.010 4.99 0.645 1.523 1.58 2.908 2.75 4.078s2.555 2.105 4.077 2.75c1.58 0.667 3.275 1.010 4.988 1.007h0.003c0 0 0 0 0.002 0 1.713 0.003 3.41-0.34 4.988-1.007 1.427-0.605 2.733-1.464 3.855-2.531 0.047-0.094 0.109-0.181 0.185-0.256s0.163-0.138 0.256-0.185z"
+            fill="#323232"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c11"
+  />
+</div>
+`;
