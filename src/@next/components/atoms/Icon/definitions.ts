@@ -1,6 +1,4 @@
-import { IconName, IIconDefinition } from "./types";
-
-export const icons: Record<IconName, IIconDefinition[]> = {
+export const icons = {
   arrow_back: [
     {
       d:
@@ -64,12 +62,9 @@ export const icons: Record<IconName, IIconDefinition[]> = {
   ],
   tick: [
     {
-      d: "M1 9.66667L6 15L15 1",
-      fill: "none",
-      stroke: "#13BEBB",
-      strokeLinejoin: "round",
-      strokeWidth: "2",
-      viewBox: "0 0 16 16",
+      d:
+        "M31.416 2.142l-19.195 29.858-11.638-12.414 2.889-2.709 8.164 8.708 16.448-25.586 3.331 2.142z",
+      fill: "#13BEBB",
     },
   ],
   trash: [

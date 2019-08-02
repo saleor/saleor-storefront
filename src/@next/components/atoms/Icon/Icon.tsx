@@ -13,18 +13,14 @@ const getPathColor = (color: string | string[], index: number) => {
 
 export const Icon: React.FC<IProps> = ({ size = 32, color, name }: IProps) => {
   const icon = icons[name];
-  const viewBox = icon[0].viewBox;
   return (
-    <svg height={size} viewBox={viewBox || "0 0 32 32"} width={size}>
+    <svg height={size} viewBox="0 0 32 32" width={size}>
       {icon &&
-        icon.map((path, index: number) => (
+        icon.map((path, index) => (
           <path
             d={path.d}
             fill={color ? getPathColor(color, index) : path.fill}
             key={index}
-            stroke={path.stroke}
-            strokeLinejoin={path.strokeLinejoin}
-            strokeWidth={path.strokeWidth}
           />
         ))}
     </svg>
