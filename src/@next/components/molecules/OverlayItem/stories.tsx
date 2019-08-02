@@ -1,16 +1,23 @@
 import { action } from "@storybook/addon-actions";
+import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-const DEFAULT_PROPS = {
-  onClick: action("onClick"),
-};
-
 import { OverlayItem } from ".";
+
 storiesOf("@components/molecules/OverlayItem", module)
-  .add("default", () => <OverlayItem {...DEFAULT_PROPS}>Item</OverlayItem>)
+  .add("default", () => (
+    <OverlayItem
+      {...(boolean("Clickable", false) && { onClick: action("onClick") })}
+    >
+      Item
+    </OverlayItem>
+  ))
   .add("selected", () => (
-    <OverlayItem selected {...DEFAULT_PROPS}>
+    <OverlayItem
+      selected
+      {...(boolean("Clickable", false) && { onClick: action("onClick") })}
+    >
       Item
     </OverlayItem>
   ));

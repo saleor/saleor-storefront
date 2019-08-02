@@ -11,7 +11,6 @@ describe("<OverlayItem />", () => {
   const children = "Item";
   const DEFAULT_PROPS = {
     children,
-    onClick: jest.fn(),
   };
 
   const renderOverlayItem = (props: IProps) =>
@@ -30,5 +29,13 @@ describe("<OverlayItem />", () => {
 
     expect(icon.exists()).toEqual(true);
     expect(icon.prop("name")).toEqual("tick");
+  });
+
+  it("simulates click events", () => {
+    const onClick = jest.fn();
+    const item = renderOverlayItem({ ...DEFAULT_PROPS, onClick });
+
+    item.simulate("click");
+    expect(onClick).toHaveBeenCalled();
   });
 });

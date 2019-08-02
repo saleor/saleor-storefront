@@ -34,18 +34,11 @@ exports[`Storyshots @components/molecules/OverlayItem default 1`] = `
   border-bottom: 1px solid #f1f5f5;
 }
 
-.c1:hover {
-  background-color: rgba(62,231,205,0.2);
-  color: #10a2a0;
-  font-weight: 600;
-}
-
 <div
   className="c0"
 >
   <div
     className="c1"
-    onClick={[Function]}
     selected={false}
   >
     Item
@@ -91,18 +84,11 @@ exports[`Storyshots @components/molecules/OverlayItem selected 1`] = `
   font-weight: 600;
 }
 
-.c1:hover {
-  background-color: rgba(62,231,205,0.2);
-  color: #10a2a0;
-  font-weight: 600;
-}
-
 <div
   className="c0"
 >
   <div
     className="c1"
-    onClick={[Function]}
     selected={true}
   >
     Item
