@@ -11,11 +11,16 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   body {
+    margin: 0;
     min-width: 320px;
     font-family: ${props => props.theme.typography.baseFontFamily};
     font-size: ${props => props.theme.typography.baseFontSize};
     line-height: ${props => props.theme.typography.baseLineHeight};
     color: ${props => props.theme.colors.baseFont};
+  }
+
+  input, textarea, button {
+    font-family: inherit;
   }
 
   h1 {
@@ -48,6 +53,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     cursor: pointer;
     outline: none;
     padding: 0;
+  }
+
+  ul {
+    list-style: none;
   }
 
   #root {

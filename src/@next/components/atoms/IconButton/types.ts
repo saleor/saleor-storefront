@@ -1,5 +1,5 @@
-import { IIcon } from "../Icon";
+import { IIconProps } from "../Icon";
 
-export interface IProps extends IIcon {
+export interface IProps extends IIconProps {
   onClick?: () => void;
 }

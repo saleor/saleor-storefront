@@ -121,7 +121,7 @@ export const maybe = <T>(exp: () => T, d?: T) => {
   } catch {
     return d;
   }
-}
+};
 
 export const parseQueryString = (
   location: LocationState

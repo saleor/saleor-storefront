@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/NavLink default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  z-index: 0;
+}
+
+.c1:hover,
+.c1:focus {
+  outline: none;
+  color: #13bebb;
+}
+
+<div
+  className="c0"
+>
+  <a
+    aria-current={null}
+    className="c1"
+    fullWidth={false}
+    href="/page/undefined/"
+    onClick={[Function]}
+  >
+    Route
+  </a>
+  <div
+    className="c2"
+  />
+</div>
+`;

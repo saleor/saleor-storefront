@@ -18,7 +18,7 @@ exports[`Storyshots @components/atoms/SocialMediaIcon sample medium 1`] = `
 }
 
 .c1 {
-  padding: 1rem NaNrem;
+  padding: 1rem 0.5rem;
 }
 
 .c2 path {
