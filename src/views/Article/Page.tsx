@@ -57,7 +57,7 @@ export const Page: React.FC<PageProps> = ({
         <div className="article-page__content">
         <RichTextContent
           descriptionJson={page.contentJson}
-          />
+        />
         </div>
       </div>
     </div>
