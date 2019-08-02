@@ -11,7 +11,6 @@ export function CredentialsProvider({
 
   const autoSignIn = async () => {
     const credentials = await navigator.credentials.get({
-      mediation: "optional",
       password: true,
     });
 
