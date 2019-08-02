@@ -35,8 +35,8 @@ exports[`Storyshots @components/molecules/OverlayItem default 1`] = `
 }
 
 .c1:hover {
-  background-color: rgba(62,231,205,0.2);
-  color: #10a2a0;
+  background-color: rgba(19,190,187,0.05);
+  color: #06a09e;
   font-weight: 600;
 }
 
@@ -91,8 +91,8 @@ exports[`Storyshots @components/molecules/OverlayItem selected 1`] = `
 }
 
 .c1:hover {
-  background-color: rgba(62,231,205,0.2);
-  color: #10a2a0;
+  background-color: rgba(19,190,187,0.05);
+  color: #06a09e;
   font-weight: 600;
 }
 
