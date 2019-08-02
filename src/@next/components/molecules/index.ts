@@ -6,3 +6,4 @@ export * from "./FormFooter";
 export * from "./TextField";
 export * from "./Thumbnail";
 export * from "./AddressTile";
+export * from "./OverlayItem";
