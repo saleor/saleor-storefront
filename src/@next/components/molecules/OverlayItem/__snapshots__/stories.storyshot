@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/OverlayItem default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c1:hover {
+  background-color: rgba(62,231,205,0.2);
+  color: #10a2a0;
+  font-weight: 600;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    selected={false}
+  >
+    Item
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/OverlayItem selected 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+  font-weight: 600;
+}
+
+.c1:hover {
+  background-color: rgba(62,231,205,0.2);
+  color: #10a2a0;
+  font-weight: 600;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    selected={true}
+  >
+    Item
+    <svg
+      height={16}
+      viewBox="0 0 32 32"
+      width={16}
+    >
+      <path
+        d="M31.416 2.142l-19.195 29.858-11.638-12.414 2.889-2.709 8.164 8.708 16.448-25.586 3.331 2.142z"
+        fill="#13BEBB"
+      />
+    </svg>
+  </div>
+  <div
+    className="c2"
+  />
+</div>
+`;

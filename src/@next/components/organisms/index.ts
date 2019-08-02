@@ -6,3 +6,4 @@ export * from "./AddressGrid";
 export * from "./AddressForm";
 export * from "./TopNavbar";
 export * from "./SideNavbar";
+export * from "./SizeOverlay";
