@@ -6,11 +6,12 @@ import { AlertManager, useAlert } from "react-alert";
 import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
+import { useUserDetails } from "@sdk/react";
+
 import { Button, CartTable } from "../../../components";
 
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
-import { UserContext } from "../../../components/User/context";
 import { orderConfirmationUrl } from "../../../routes";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
@@ -71,7 +72,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     step,
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
-  const user = React.useContext(UserContext);
+  const { data: user } = useUserDetails();
 
   const stepCheck = (
     <StepCheck checkout={checkout} step={step} path={path} token={token} />

@@ -6,7 +6,10 @@ import {
 import gql from "graphql-tag";
 
 import { RequireOnlyOne } from "../tsHelpers";
+import * as Checkout from "./checkout";
 import * as Product from "./products";
+import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
+import { getUserCheckout } from "./types/getUserCheckout";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 import {
   ProductDetails,
@@ -21,6 +24,16 @@ type QueryOptions<T = {}> = T extends { [n: string]: never }
 
 // TODO: Add ability to pass custom fragments to queries
 export const QUERIES = {
+  CheckoutDetails: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<getCheckoutVariables>
+  ): ObservableQuery<getCheckout, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Checkout.getCheckoutQuery}
+      `,
+      ...options,
+    }),
   ProductDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<ProductDetailsVariables>
@@ -28,6 +41,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Product.productDetails}
+      `,
+      ...options,
+    }),
+  UserCheckout: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<null>
+  ): ObservableQuery<getUserCheckout, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Checkout.getUserCheckoutQuery}
       `,
       ...options,
     }),

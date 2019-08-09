@@ -18,7 +18,7 @@ export type Options<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
   _: any,
   options: infer V
 ) => any
-  ? V
+  ? V & { skip?: boolean }
   : never;
 
 export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (

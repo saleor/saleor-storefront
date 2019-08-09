@@ -19,6 +19,8 @@ import {
 } from "./types";
 import { getErrorsFromData, getMappedData, isDataEmpty } from "./utils";
 
+import { UserDetails } from "./queries/types/UserDetails";
+
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
   ApolloLink.from([
@@ -48,16 +50,23 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorAPI {
+  getCheckoutDetails = this.watchQuery(
+    QUERIES.CheckoutDetails,
+    data => data.checkout
+  );
+
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
     data => data.product
   );
 
-  getUserDetails = this.watchQuery(QUERIES.UserDetails, data => data.me);
-
   getUserOrderDetails = this.watchQuery(
     QUERIES.UserOrders,
     data => data.orderByToken
+  );
+
+  getUserCheckout = this.watchQuery(QUERIES.UserCheckout, data =>
+    data.me ? data.me.checkout : null
   );
 
   setUserDefaultAddress = this.fireQuery(
@@ -70,11 +79,27 @@ export class SaleorAPI {
     data => data!.addressDelete
   );
 
+  getUserDetails = this.watchQuery(QUERIES.UserDetails, data => data.me);
+
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
   }
+
+  // getUserDetails = (
+  //   options?: Omit<InferOptions<QUERIES["UserDetails"]>, "variables">
+  // ) => {
+  //   if (this.isLoggedIn()) {
+  //     return this.watchQuery(QUERIES.UserDetails, data => data.me)(
+  //       null,
+  //       options
+  //     );
+  //   }
+  //   return new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+  //     resolve({ data: null });
+  //   });
+  // };
 
   signIn = (
     variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
