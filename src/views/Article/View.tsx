@@ -11,7 +11,7 @@ import { TypedArticleQuery } from "./query";
 import { Article_shop } from "./types/Article";
 
 const canDisplay = page =>
-  maybe(() => !!page && !!page.title && !!page.content);
+  maybe(() => !!page && !!page.title && !!page.contentJson);
 const getHeaderImage = (shop: Article_shop) =>
   maybe(() => shop.homepageCollection.backgroundImage.url);
 

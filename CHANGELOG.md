@@ -9,6 +9,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add Sitemap generator - #342 by @bogdal
 - Add cypress tests - #333 by @AlicjaSzu
 - Add rich-text content renderer - #361 by @AlicjaSzu
+- Add rich-text content renderer for pages - #426 @ChanceLeachman
 - Add TextField and ErrorMessage components - #373 by @AlicjaSzu
 - Add CreditCardForm component - #369 by @AlicjaSzu
 - Display filters when no product was found - #319 by @aldomonteiro
