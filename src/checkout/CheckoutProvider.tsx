@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { useLocalStorage } from "@hooks";
 import { useCheckoutDetails, useUserCheckout } from "@sdk/react";
 
 import {
@@ -8,10 +9,6 @@ import {
   CheckoutStep
 } from "./context";
 
-enum LocalStorageKeys {
-  Token = "checkoutToken",
-}
-
 interface ProviderProps {
   children: React.ReactNode;
   user: {
@@ -19,17 +16,6 @@ interface ProviderProps {
     loading: boolean;
   };
 }
-
-const getStoredToken = (): null | string =>
-  localStorage.getItem(LocalStorageKeys.Token);
-
-const setCheckoutToken = (token: null | string) => {
-  if (token) {
-    localStorage.setItem(LocalStorageKeys.Token, token);
-  } else {
-    localStorage.removeItem(LocalStorageKeys.Token);
-  }
-};
 
 export const CheckoutProvider: React.FC<ProviderProps> = ({
   children,
@@ -50,6 +36,9 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
    * lines - happens after user logs in
    */
   const [syncWithCart, setSyncWithCart] = React.useState(false);
+  const { storedValue: token, setValue: setCheckoutToken } = useLocalStorage(
+    "checkoutToken"
+  );
 
   React.useEffect(() => {
     if (user.data && !syncUserCheckout) {
@@ -132,17 +121,17 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
     skip: skipUserCheckoutFetch,
   });
 
-  if (userCheckout && syncUserCheckout) {
-    setCheckout(userCheckout);
-    setLoading(false);
-    setSyncUserCheckout(false);
-    setSyncWithCart(true);
-    setCheckoutToken(userCheckout.token);
-  } else if (!userCheckout && syncUserCheckout) {
-    setSyncUserCheckout(false);
+  if (!userCheckoutLoading && !skipUserCheckoutFetch) {
+    if (userCheckout && syncUserCheckout) {
+      setCheckout(userCheckout);
+      setLoading(false);
+      setSyncUserCheckout(false);
+      setSyncWithCart(true);
+      setCheckoutToken(userCheckout.token);
+    } else if (!userCheckout && syncUserCheckout) {
+      setSyncUserCheckout(false);
+    }
   }
-
-  const token = getStoredToken();
 
   const skipLocalStorageCheckoutFetch = !!(
     userCheckoutLoading ||

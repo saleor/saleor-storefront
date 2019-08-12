@@ -67,12 +67,12 @@ const View: React.FC<IBillingPageProps> = ({
       computeMutationVariables(formData, checkout, shippingAsBilling)
     ).then(response => {
       const errors = findFormErrors(response) || [];
-      const checkout1 = maybe(
+      const checkout = maybe(
         () => response && response.data.checkoutBillingAddressUpdate.checkout,
         null
       );
 
-      setStateCheckout(checkout1);
+      setStateCheckout(checkout);
       setErrors(errors);
       setLoading(false);
       return errors;
