@@ -3,7 +3,6 @@ import { ApolloClient, ApolloError, ObservableQuery } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
-import { isEqual } from "apollo-utilities";
 import { GraphQLError } from "graphql";
 import urljoin from "url-join";
 
@@ -11,7 +10,13 @@ import { TokenAuth } from "../components/User/types/TokenAuth";
 import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
-import { InferOptions, MapFn, QueryShape, WatchMapFn } from "./types";
+import {
+  InferOptions,
+  MapFn,
+  QueryShape,
+  WatchMapFn,
+  WatchQueryData
+} from "./types";
 import { getErrorsFromData, getMappedData, isDataEmpty } from "./utils";
 
 const { invalidLink } = invalidTokenLink();
@@ -26,6 +31,19 @@ const getLink = (url?: string) =>
 export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   new ApolloClient({
     cache,
+    defaultOptions: {
+      mutate: {
+        errorPolicy: "all",
+      },
+      query: {
+        errorPolicy: "all",
+        fetchPolicy: "network-only",
+      },
+      watchQuery: {
+        errorPolicy: "all",
+        fetchPolicy: "cache-and-network",
+      },
+    },
     link: getLink(url),
   });
 
@@ -70,8 +88,13 @@ export class SaleorAPI {
         )(variables, {
           ...options,
           update: (proxy, data) => {
-            if (data.data && data.data.tokenCreate) {
-              setAuthToken(data.data.tokenCreate!.token!);
+            const handledData = handleDataErrors(
+              data => data.tokenCreate,
+              data.data,
+              data.errors
+            );
+            if (!handledData.errors && handledData.data) {
+              setAuthToken(handledData.data.token);
               if (window.PasswordCredential && variables) {
                 navigator.credentials.store(
                   new window.PasswordCredential({
@@ -123,38 +146,33 @@ export class SaleorAPI {
       }
     ) => {
       const { onComplete, onError, onUpdate, ...apolloClientOptions } = options;
+
       const observable: ObservableQuery<
-        TResult,
+        WatchQueryData<T>,
         InferOptions<T>["variables"]
       > = query(this.client, {
         ...apolloClientOptions,
         variables,
       });
 
-      const cachedResult = observable.currentResult();
-      const errorHandledData = ErrorHandler(mapFn, cachedResult.data);
-      if (errorHandledData.data) {
-        // onUpdate(errorHandledData.data as TResult);
-      }
-
       observable.subscribe(
         result => {
           const { data, errors: apolloErrors } = result;
-          const errorHandledData = ErrorHandler(mapFn, data, apolloErrors);
-          // TODO: debug why this fires more than once
-          console.log("inside subscribe", data);
-          if (
-            (cachedResult.error ||
-              cachedResult.errors ||
-              !isEqual(cachedResult.data, data)) &&
-            onUpdate
-          ) {
+          const errorHandledData = handleDataErrors(
+            mapFn,
+            data as any,
+            apolloErrors
+          );
+          if (onUpdate) {
             if (errorHandledData.errors) {
               if (onError) {
                 onError(errorHandledData.errors);
               }
             } else {
               onUpdate(errorHandledData.data as TResult);
+              if (onComplete) {
+                onComplete();
+              }
             }
           }
         },
@@ -162,23 +180,20 @@ export class SaleorAPI {
           if (onError) {
             onError(error);
           }
-        },
-        () => {
-          if (onComplete) {
-            onComplete();
-          }
         }
       );
 
       return {
-        refetch: observable.refetch.bind(observable),
-        startPolling: observable.startPolling.bind(observable),
-        stopPolling: observable.stopPolling.bind(observable),
+        refetch: (variables?: InferOptions<T>["variables"]) =>
+          this.firePromise(() => observable.refetch(variables), mapFn),
+        setOptions: (options?: Omit<InferOptions<T>, "variables">) =>
+          this.firePromise(() => observable.setOptions(options), mapFn),
+        setVariables: (variables: Omit<InferOptions<T>, "variables">) =>
+          this.firePromise(() => observable.setVariables(variables), mapFn),
       };
     };
   }
 
-  // Query and mutation wrapper to catch errors
   private fireQuery<T extends QueryShape, TResult>(
     query: T,
     mapFn: MapFn<T, TResult>
@@ -187,31 +202,42 @@ export class SaleorAPI {
       variables: InferOptions<T>["variables"],
       options?: Omit<InferOptions<T>, "variables">
     ) =>
-      new Promise<{ data: ReturnType<typeof mapFn> | null }>(
-        async (resolve, reject) => {
-          try {
-            const { data, errors: apolloErrors } = await query(this.client, {
-              ...options,
-              variables,
-            });
-            const errorHandledData = ErrorHandler(mapFn, data, apolloErrors);
-
-            if (errorHandledData.errors) {
-              reject(errorHandledData.errors);
-            }
-
-            resolve(errorHandledData.data as PromiseLike<{
-              data: TResult | null;
-            }>);
-          } catch (error) {
-            reject(error);
-          }
-        }
+      this.firePromise(
+        () =>
+          query(this.client, {
+            ...options,
+            variables,
+          }),
+        mapFn
       );
+  }
+
+  // Promise wrapper to catch errors
+  private firePromise<T extends () => Promise<any>, TResult>(
+    promise: T,
+    mapFn: MapFn<T, TResult>
+  ) {
+    return new Promise<{ data: ReturnType<typeof mapFn> | null }>(
+      async (resolve, reject) => {
+        try {
+          const { data, errors: apolloErrors } = await promise();
+          const errorHandledData = handleDataErrors(mapFn, data, apolloErrors);
+
+          if (errorHandledData.errors) {
+            reject(errorHandledData.errors);
+          }
+
+          resolve({ data: errorHandledData.data });
+        } catch (error) {
+          reject(error);
+        }
+      }
+    );
   }
 }
 
-const ErrorHandler = <T extends QueryShape, TData>(
+// error handler
+const handleDataErrors = <T extends QueryShape, TData>(
   mapFn: MapFn<T, TData> | WatchMapFn<T, TData>,
   data: TData,
   apolloErrors?: readonly GraphQLError[]

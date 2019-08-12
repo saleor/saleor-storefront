@@ -27,6 +27,10 @@ export function getMappedData<T extends QueryShape, TResult>(
   mapFn: MapFn<T, TResult> | WatchMapFn<T, TResult>,
   data: any
 ) {
+  if (!data) {
+    return null;
+  }
+
   const mappedData = mapFn(data);
   const result =
     mappedData && !!Object.keys(mappedData).length ? mappedData : null;
