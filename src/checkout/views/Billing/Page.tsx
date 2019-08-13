@@ -4,7 +4,7 @@ import { generatePath } from "react-router";
 import { useUserDetails } from "@sdk/react";
 
 import { FormAddressType } from "../../../components";
-import { findFormErrors, maybe } from "../../../core/utils";
+import { maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
@@ -29,19 +29,17 @@ const computeMutationVariables = (
     : formData;
 
   return {
-    variables: {
-      billingAddress: {
-        city: data.city,
-        country: maybe(() => data.country.value, data.country.code),
-        countryArea: data.countryArea,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        postalCode: data.postalCode,
-        streetAddress1: data.streetAddress1,
-        streetAddress2: data.streetAddress2,
-      },
-      checkoutId: checkout.id,
+    billingAddress: {
+      city: data.city,
+      country: maybe(() => data.country.value, data.country.code),
+      countryArea: data.countryArea,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      postalCode: data.postalCode,
+      streetAddress1: data.streetAddress1,
+      streetAddress2: data.streetAddress2,
     },
+    checkoutId: checkout.id,
   };
 };
 
@@ -60,23 +58,17 @@ const View: React.FC<IBillingPageProps> = ({
   const [errors, setErrors] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const onSubmitHandler = (formData: FormAddressType) => {
-    setLoading(true);
+  const onSubmitHandler = async (formData: FormAddressType) => {
+    await setLoading(true);
 
-    return saveBillingAddress(
+    const { data, errors } = await saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
-    ).then(response => {
-      const errors = findFormErrors(response) || [];
-      const checkout = maybe(
-        () => response && response.data.checkoutBillingAddressUpdate.checkout,
-        null
-      );
-
-      setStateCheckout(checkout);
-      setErrors(errors);
-      setLoading(false);
-      return errors;
-    });
+    );
+    if (!errors) {
+      setStateCheckout(data.checkout);
+    }
+    setErrors(errors);
+    setLoading(false);
   };
 
   const proceedToPayment = () => {

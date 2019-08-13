@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 
 import * as Address from "./address";
 import * as Auth from "./auth";
+import * as Checkout from "./checkout";
 import {
   DeleteUserAddress,
   DeleteUserAddressVariables
@@ -14,6 +15,10 @@ import {
   SetCustomerDefaultAddress,
   SetCustomerDefaultAddressVariables
 } from "./types/SetCustomerDefaultAddress";
+import {
+  updateCheckoutBillingAddress,
+  updateCheckoutBillingAddressVariables
+} from "./types/updateCheckoutBillingAddress";
 
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 
@@ -54,6 +59,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Auth.tokenAuthMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutBillingAddress: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      updateCheckoutBillingAddress,
+      updateCheckoutBillingAddressVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutBillingAddressMutation}
       `,
       ...options,
     }),

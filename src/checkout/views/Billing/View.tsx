@@ -1,7 +1,7 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { useUserDetails } from "@sdk/react";
+import { useUpdateCheckoutBillingAddress, useUserDetails } from "@sdk/react";
 
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { maybe } from "../../../core/utils";
@@ -17,6 +17,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const [validateStep, setValidateStep] = React.useState(true);
+  const [saveBillingAddress] = useUpdateCheckoutBillingAddress();
 
   React.useEffect(() => {
     setValidateStep(false);
@@ -29,27 +30,27 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
       {({ update, checkout, shippingAsBilling, step }) => (
         <ShopContext.Consumer>
           {shop => (
-            <TypedUpdateCheckoutBillingAddressMutation>
-              {saveBillingAddress => (
-                <Page
-                  shippingAsBilling={shippingAsBilling}
-                  checkoutId={maybe(() => checkout.id, null)}
-                  checkout={checkout}
-                  shop={shop}
-                  path={path}
-                  update={update}
-                  saveBillingAddress={saveBillingAddress}
-                  step={step}
-                  user={user}
-                  proceedToNextStepData={{
-                    history,
-                    token,
-                    update,
-                  }}
-                  validateStep={validateStep}
-                />
-              )}
-            </TypedUpdateCheckoutBillingAddressMutation>
+            // <TypedUpdateCheckoutBillingAddressMutation>
+            //   {saveBillingAddress => (
+            <Page
+              shippingAsBilling={shippingAsBilling}
+              checkoutId={maybe(() => checkout.id, null)}
+              checkout={checkout}
+              shop={shop}
+              path={path}
+              update={update}
+              saveBillingAddress={saveBillingAddress}
+              step={step}
+              user={user}
+              proceedToNextStepData={{
+                history,
+                token,
+                update,
+              }}
+              validateStep={validateStep}
+            />
+            //   )}
+            // </TypedUpdateCheckoutBillingAddressMutation>
           )}
         </ShopContext.Consumer>
       )}

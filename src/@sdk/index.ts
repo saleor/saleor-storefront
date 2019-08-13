@@ -79,6 +79,11 @@ export class SaleorAPI {
     data => data!.addressDelete
   );
 
+  setCheckoutBillingAddress = this.fireQuery(
+    MUTATIONS.UpdateCheckoutBillingAddress,
+    data => data!.checkoutBillingAddressUpdate
+  );
+
   getUserDetails = this.watchQuery(QUERIES.UserDetails, data => data.me);
 
   private client: ApolloClient<any>;
