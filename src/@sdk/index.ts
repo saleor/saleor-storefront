@@ -89,7 +89,7 @@ export class SaleorAPI {
           ...options,
           update: (proxy, data) => {
             const handledData = handleDataErrors(
-              data => data.tokenCreate,
+              (data: any) => data.tokenCreate,
               data.data,
               data.errors
             );
@@ -137,9 +137,12 @@ export class SaleorAPI {
     query: T,
     mapFn: WatchMapFn<T, TResult>
   ) {
-    return (
-      variables: InferOptions<T>["variables"],
-      options: Omit<InferOptions<T>, "variables"> & {
+    return <
+      TVariables extends InferOptions<T>["variables"],
+      TOptions extends Omit<InferOptions<T>, "variables">
+    >(
+      variables: TVariables,
+      options: TOptions & {
         onComplete?: () => void;
         onError?: (error: ApolloError) => void;
         onUpdate: (data: ReturnType<typeof mapFn> | null) => void;
@@ -147,13 +150,13 @@ export class SaleorAPI {
     ) => {
       const { onComplete, onError, onUpdate, ...apolloClientOptions } = options;
 
-      const observable: ObservableQuery<
-        WatchQueryData<T>,
-        InferOptions<T>["variables"]
-      > = query(this.client, {
-        ...apolloClientOptions,
-        variables,
-      });
+      const observable: ObservableQuery<WatchQueryData<T>, TVariables> = query(
+        this.client,
+        {
+          ...apolloClientOptions,
+          variables,
+        }
+      );
 
       observable.subscribe(
         result => {
@@ -184,7 +187,7 @@ export class SaleorAPI {
       );
 
       return {
-        refetch: (variables?: InferOptions<T>["variables"]) => {
+        refetch: (variables?: TVariables) => {
           if (variables) {
             observable.setVariables(variables);
             const cachedResult = observable.currentResult();
@@ -196,7 +199,7 @@ export class SaleorAPI {
 
           return this.firePromise(() => observable.refetch(variables), mapFn);
         },
-        setOptions: (options?: Omit<InferOptions<T>, "variables">) =>
+        setOptions: (options: TOptions) =>
           this.firePromise(() => observable.setOptions(options), mapFn),
       };
     };
@@ -221,9 +224,9 @@ export class SaleorAPI {
   }
 
   // Promise wrapper to catch errors
-  private firePromise<T extends () => Promise<any>, TResult>(
-    promise: T,
-    mapFn: MapFn<T, TResult>
+  private firePromise<T extends QueryShape, TResult>(
+    promise: () => Promise<any>,
+    mapFn: MapFn<T, TResult> | WatchMapFn<T, TResult>
   ) {
     return new Promise<{ data: ReturnType<typeof mapFn> | null }>(
       async (resolve, reject) => {

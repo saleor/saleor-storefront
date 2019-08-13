@@ -10,6 +10,10 @@ import {
   WatchQueryReturnData
 } from "./types";
 
+type OmittedOptions<T extends keyof SaleorAPI> = Omit<
+  Options<T>,
+  "onUpdate" | "onComplete" | "onError"
+>;
 type AdditionalAPI = ReturnType<SaleorAPI["watchQuery"]>;
 type Result<TData> = {
   data: TData | null;
@@ -20,7 +24,7 @@ type Result<TData> = {
 const useQuery = <
   T extends keyof SaleorAPI,
   TVariables extends Variables<T>,
-  TOptions extends Options<T>,
+  TOptions extends OmittedOptions<T>,
   TData extends WatchQueryReturnData<T>
 >(
   query: T,
@@ -47,7 +51,7 @@ const useQuery = <
   const { setOptions, refetch: _refetch } = React.useMemo(
     () =>
       (saleor[query] as AdditionalAPI)(variables, {
-        ...options,
+        ...(options as any),
         onError: (error: ApolloErrorWithUserInput) =>
           setResult(result => ({ ...result, error })),
         onUpdate: (data: TData) => {
@@ -83,9 +87,9 @@ const useQuery = <
 
 export const queryWithVariablesFactory = <T extends keyof SaleorAPI>(
   query: T
-) => (variables: Variables<T>, options?: Options<T>) =>
+) => (variables: Variables<T>, options?: OmittedOptions<T>) =>
   useQuery(query, variables, options);
 
 export const queryFactory = <T extends keyof SaleorAPI>(query: T) => (
-  options?: Options<T>
+  options?: OmittedOptions<T>
 ) => useQuery(query, undefined, options);

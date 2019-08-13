@@ -31,7 +31,7 @@ export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
 
 export type WatchQueryReturnData<
   T extends keyof SaleorAPI
-> = SaleorAPI[T] extends (variables, options: infer O) => any
+> = SaleorAPI[T] extends (_: any, options: infer O) => any
   ? O extends { onUpdate: (data: infer V) => any }
     ? V
     : never

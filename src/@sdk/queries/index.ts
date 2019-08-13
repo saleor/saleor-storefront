@@ -1,6 +1,5 @@
 import {
   ApolloClient,
-  ApolloQueryResult,
   ObservableQuery,
   QueryOptions as ApolloQueryOptions
 } from "apollo-client";
@@ -25,7 +24,7 @@ export const QUERIES = {
   ProductDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<ProductDetailsVariables>
-  ): ObservableQuery<ProductDetails> =>
+  ): ObservableQuery<ProductDetails, any> =>
     client.watchQuery({
       query: gql`
         ${Product.productDetails}
@@ -35,7 +34,7 @@ export const QUERIES = {
   UserDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<null>
-  ): ObservableQuery<UserDetails> =>
+  ): ObservableQuery<UserDetails, any> =>
     client.watchQuery({
       query: gql`
         ${User.getUserDetailsQuery}
@@ -45,7 +44,7 @@ export const QUERIES = {
   UserOrders: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<OrderByTokenVariables>
-  ): ObservableQuery<OrderByToken> =>
+  ): ObservableQuery<OrderByToken, any> =>
     client.watchQuery({
       query: gql`
         ${User.orderDetailsByTokenQuery}
