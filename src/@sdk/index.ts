@@ -184,12 +184,20 @@ export class SaleorAPI {
       );
 
       return {
-        refetch: (variables?: InferOptions<T>["variables"]) =>
-          this.firePromise(() => observable.refetch(variables), mapFn),
+        refetch: (variables?: InferOptions<T>["variables"]) => {
+          if (variables) {
+            observable.setVariables(variables);
+            const cachedResult = observable.currentResult();
+            const errorHandledData = handleDataErrors(mapFn, cachedResult.data);
+            if (errorHandledData.data) {
+              onUpdate(errorHandledData.data as TResult);
+            }
+          }
+
+          return this.firePromise(() => observable.refetch(variables), mapFn);
+        },
         setOptions: (options?: Omit<InferOptions<T>, "variables">) =>
           this.firePromise(() => observable.setOptions(options), mapFn),
-        setVariables: (variables: Omit<InferOptions<T>, "variables">) =>
-          this.firePromise(() => observable.setVariables(variables), mapFn),
       };
     };
   }

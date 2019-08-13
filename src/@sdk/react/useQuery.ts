@@ -1,51 +1,83 @@
 import React from "react";
 
+import { isEqual } from "apollo-utilities";
 import { SaleorAPI } from "../index";
 import { useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
   Options,
-  ReturnData,
-  Variables
+  Variables,
+  WatchQueryReturnData
 } from "./types";
+
+type AdditionalAPI = ReturnType<SaleorAPI["watchQuery"]>;
+type Result<TData> = {
+  data: TData | null;
+  loading: boolean;
+  error: ApolloErrorWithUserInput | null;
+};
 
 const useQuery = <
   T extends keyof SaleorAPI,
   TVariables extends Variables<T>,
   TOptions extends Options<T>,
-  TData extends ReturnData<T>
+  TData extends WatchQueryReturnData<T>
 >(
   query: T,
   variables: TVariables = {} as any,
   options: TOptions = {} as any
 ) => {
   const saleor = useSaleorClient();
+  const didMountRef = React.useRef(false);
+  const prevDataRef = React.useRef<TData | null>(null);
 
-  const [data, setData] = React.useState<TData["data"] | null>(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<ApolloErrorWithUserInput | null>(
-    null
+  const [result, setResult] = React.useState<Result<TData>>({
+    data: null,
+    error: null,
+    loading: true,
+  });
+
+  const setData = React.useCallback((data: TData) => {
+    if (!isEqual(data, prevDataRef.current)) {
+      prevDataRef.current = data;
+      setResult({ data, loading: false, error: null });
+    }
+  }, []);
+
+  const { setOptions, refetch: _refetch } = React.useMemo(
+    () =>
+      (saleor[query] as AdditionalAPI)(variables, {
+        ...options,
+        onError: (error: ApolloErrorWithUserInput) =>
+          setResult(result => ({ ...result, error })),
+        onUpdate: (data: TData) => {
+          setData(data);
+        },
+      }),
+    [query]
+  );
+
+  const refetch = React.useCallback(
+    (variables?: TVariables) => {
+      setResult({ data: null, error: null, loading: true });
+      _refetch(variables);
+    },
+    [query]
   );
 
   React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await (saleor[query] as any)(variables, options);
-        setData((data as any).data);
-      } catch (e) {
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [query, JSON.stringify(variables), JSON.stringify(options)]);
+    // skip on initial mount
+    if (didMountRef.current) {
+      refetch(variables);
+    } else {
+      didMountRef.current = true;
+    }
+  }, [JSON.stringify(variables)]);
 
   return {
-    data,
-    error,
-    loading,
+    ...result,
+    refetch,
+    setOptions,
   };
 };
 
