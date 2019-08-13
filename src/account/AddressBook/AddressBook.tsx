@@ -1,28 +1,38 @@
 import React from "react";
 import "./scss/index.scss";
 
-import { AddressGrid } from "@components/organisms";
+import { AddressFormModal, AddressGrid } from "@components/organisms";
 import { useDefaultUserAddress, useDeleteUserAddresss } from "@sdk/react";
-import { AddressTypeEnum } from "../../@sdk/types/globalTypes";
+import { AddressTypeEnum } from "@sdk/types/globalTypes";
+import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{
   user: any;
 }> = ({ user }) => {
+  const { defaultCountry, countries } = React.useContext(ShopContext);
+  const [displayNewModal, setDisplayNewModal] = React.useState(false);
+  const [displayEditModal, setDisplayEditModal] = React.useState(false);
+  const [addressData, setAddressData] = React.useState(null);
   const [setDefaultUserAddress] = useDefaultUserAddress();
   const [setDeleteUserAddress] = useDeleteUserAddresss();
 
   const userAddresses = user.addresses.map(address => {
-    const newAddress: any = { address: { ...address } };
-    // TODO this will be changed after Select element will be used in Address edit/add modal
-    newAddress.address.country = newAddress.address.country.country;
+    const addressToDisplay: any = { address: { ...address } };
 
-    newAddress.onEdit = () => undefined;
-    newAddress.onRemove = () =>
+    addressToDisplay.onEdit = () => {
+      setDisplayEditModal(true);
+      setAddressData({
+        address,
+        id: address.id,
+      });
+    };
+
+    addressToDisplay.onRemove = () =>
       setDeleteUserAddress({
         addressId: address.id,
       });
 
-    newAddress.setDefault = (type: string) => {
+    addressToDisplay.setDefault = (type: string) => {
       setDefaultUserAddress({
         addressId: address.id,
         type:
@@ -32,11 +42,42 @@ const AddressBook: React.FC<{
         userId: user.id,
       });
     };
-    return newAddress;
+    return addressToDisplay;
   });
+
   return (
     <div className="address-book-container">
-      <AddressGrid addresses={userAddresses} />
+      <AddressGrid
+        addresses={userAddresses}
+        addNewAddress={() => {
+          setDisplayNewModal(true);
+        }}
+      />
+      {displayNewModal && (
+        <AddressFormModal
+          hideModal={() => {
+            setDisplayNewModal(false);
+          }}
+          userId={user.id}
+          {...{ defaultValue: defaultCountry ? defaultCountry : {} }}
+          submitBtnText={"Add"}
+          title={"Add new address"}
+          {...{ options: countries }}
+          formId="address-form"
+        />
+      )}
+      {displayEditModal && (
+        <AddressFormModal
+          hideModal={() => {
+            setDisplayEditModal(false);
+          }}
+          address={addressData}
+          submitBtnText={"Save"}
+          title={"Edit address"}
+          {...{ options: countries }}
+          formId="address-form"
+        />
+      )}
     </div>
   );
 };

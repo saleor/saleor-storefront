@@ -35,3 +35,33 @@ export const deleteUserAddress = gql`
     }
   }
 `;
+
+export const createUserAddress = gql`
+  ${userFragment}
+  mutation CreateUserAddress($input: AddressInput!, $userId: ID!) {
+    addressCreate(input: $input, userId: $userId) {
+      errors {
+        field
+        message
+      }
+      user {
+        ...User
+      }
+    }
+  }
+`;
+
+export const updateUserAddress = gql`
+  ${userFragment}
+  mutation UpdateUserAddress($input: AddressInput!, $id: ID!) {
+    addressUpdate(input: $input, id: $id) {
+      errors {
+        field
+        message
+      }
+      user {
+        ...User
+      }
+    }
+  }
+`;

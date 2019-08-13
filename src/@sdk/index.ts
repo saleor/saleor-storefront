@@ -70,6 +70,16 @@ export class SaleorAPI {
     data => data!.addressDelete
   );
 
+  setCreateUserAddress = this.fireQuery(
+    MUTATIONS.CreateUserAddress,
+    data => data!.addressCreate
+  );
+
+  setUpdateuserAddress = this.fireQuery(
+    MUTATIONS.UpdateUserAddress,
+    data => data!.addressUpdate
+  );
+
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {

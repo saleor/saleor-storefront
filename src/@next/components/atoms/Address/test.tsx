@@ -7,7 +7,10 @@ import { Address } from ".";
 const DEFAULT_PROPS = {
   city: "Wroclaw",
   companyName: "Mirumee",
-  country: "Poland",
+  country: {
+    code: "PL",
+    country: "Poland",
+  },
   countryArea: "dolnyslask",
   firstName: "John",
   lastName: "Doe",
@@ -29,7 +32,10 @@ describe("<Address />", () => {
     const keys = Object.keys(DEFAULT_PROPS);
 
     keys.map(value => {
-      expect(wrapper.text()).toContain((DEFAULT_PROPS as any)[value]);
+      if (value !== "country") {
+        expect(wrapper.text()).toContain((DEFAULT_PROPS as any)[value]);
+      }
     });
+    expect(wrapper.text()).toContain(DEFAULT_PROPS.country.country);
   });
 });

@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 
 import { TextField } from "@components/molecules";
+import { Select } from "../../atoms/Select/";
 
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
@@ -9,35 +10,47 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   formRef,
   handleChange,
   handleBlur,
+  formId,
   errors,
   handleSubmit,
   values,
+  options,
+  defaultValue,
+  setFieldValue,
 }) => {
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
     [handleChange, handleBlur]
   );
 
+  const fieldErrors: any = {};
+
+  if (errors) {
+    errors.map(({ field, message }: { field: string; message: string }) => {
+      fieldErrors[field] = fieldErrors[field]
+        ? [...fieldErrors[field], { message }]
+        : [{ message }];
+    });
+  }
+
   return (
-    <S.AddressForm ref={formRef} onSubmit={handleSubmit}>
+    <S.AddressForm id={formId} ref={formRef} onSubmit={handleSubmit}>
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField
             name="firstName"
             label="First Name"
-            value={values.firstName}
+            value={values!.firstName}
             autoComplete="given-name"
-            required={true}
-            errors={errors.firstName}
+            errors={fieldErrors!.firstName}
             {...basicInputProps()}
           />
           <TextField
             name="lastName"
             label="Last Name"
-            value={values.lastName}
+            value={values!.lastName}
             autoComplete="family-name"
-            required={true}
-            errors={errors.lastName}
+            errors={fieldErrors!.lastName}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
@@ -45,19 +58,17 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="companyName"
             label="Company Name (Optional)"
-            value={values.companyName}
+            value={values!.companyName}
             autoComplete="organization"
-            required={true}
-            errors={errors.companyName}
+            errors={fieldErrors!.companyName}
             {...basicInputProps()}
           />
           <TextField
             name="phone"
             label="Phone"
-            value={values.phone}
+            value={values!.phone}
             autoComplete="tel"
-            required={true}
-            errors={errors.phone}
+            errors={fieldErrors!.phone}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
@@ -65,10 +76,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="streetAddress1"
             label="Address line 1"
-            value={values.streetAddress1}
+            value={values!.streetAddress1}
             autoComplete="address-line1"
-            required={true}
-            errors={errors.streetAddress1}
+            errors={fieldErrors!.streetAddress1}
             {...basicInputProps()}
           />
         </S.RowWithOneCell>
@@ -76,10 +86,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="streetAddress2"
             label="Address line 2"
-            value={values.streetAddress2}
+            value={values!.streetAddress2}
             autoComplete="address-line2"
-            required={true}
-            errors={errors.streetAddress2}
+            errors={fieldErrors!.streetAddress2}
             {...basicInputProps()}
           />
         </S.RowWithOneCell>
@@ -87,39 +96,36 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="city"
             label="City"
-            value={values.city}
+            value={values!.city}
             autoComplete="address-level1"
-            required={true}
-            errors={errors.city}
+            errors={fieldErrors!.city}
             {...basicInputProps()}
           />
           <TextField
             name="postalCode"
             label="ZIP/Postal Code"
-            value={values.postalCode}
+            value={values!.postalCode}
             autoComplete="postal-code"
-            required={true}
-            errors={errors.postalCode}
+            errors={fieldErrors!.postalCode}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
-          <TextField
-            name="country"
+          <Select
+            defaultValue={defaultValue}
             label="Country"
-            value={values.country}
+            name="country"
             autoComplete="country"
-            required={true}
-            errors={errors.country}
-            {...basicInputProps()}
+            options={options}
+            value={values!.country}
+            onChange={setFieldValue}
           />
           <TextField
             name="countryArea"
             label="State/province"
-            value={values.countryArea}
+            value={values!.countryArea}
             autoComplete="address-level2"
-            required={true}
-            errors={errors.countryArea}
+            errors={fieldErrors!.countryArea}
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
