@@ -158,7 +158,7 @@ export class SaleorAPI {
         }
       );
 
-      observable.subscribe(
+      const subscription = observable.subscribe(
         result => {
           const { data, errors: apolloErrors } = result;
           const errorHandledData = handleDataErrors(
@@ -201,6 +201,7 @@ export class SaleorAPI {
         },
         setOptions: (options: TOptions) =>
           this.firePromise(() => observable.setOptions(options), mapFn),
+        unsubscribe: subscription.unsubscribe.bind(subscription),
       };
     };
   }

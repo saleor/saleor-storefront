@@ -48,7 +48,7 @@ const useQuery = <
     }
   }, []);
 
-  const { setOptions, refetch: _refetch } = React.useMemo(
+  const { unsubscribe, setOptions, refetch: _refetch } = React.useMemo(
     () =>
       (saleor[query] as AdditionalAPI)(variables, {
         ...(options as any),
@@ -77,6 +77,13 @@ const useQuery = <
       didMountRef.current = true;
     }
   }, [JSON.stringify(variables)]);
+
+  // unsubscribe from watcher on dismount
+  React.useEffect(() => {
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return {
     ...result,
