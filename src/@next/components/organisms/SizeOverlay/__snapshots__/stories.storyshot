@@ -126,7 +126,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 }
 
 .c8:hover {
-  background-color: rgba(19,190,187,0.05);
+  background-color: rgba(19,190,187,0.1);
   color: #06a09e;
   font-weight: 600;
 }
@@ -150,7 +150,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 }
 
 .c9:hover {
-  background-color: rgba(19,190,187,0.05);
+  background-color: rgba(19,190,187,0.1);
   color: #06a09e;
   font-weight: 600;
 }
