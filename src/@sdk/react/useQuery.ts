@@ -78,23 +78,12 @@ const useQuery = <
     }
   }, [JSON.stringify(variables)]);
 
-  // const fetchData = async () => {
-  //   try {
-  //     if (!options.skip) {
-  //       const data = await (saleor[query] as any)(variables, options);
-  //       setData((data as any).data);
-  //     }
-  //   } catch (e) {
-  //     setError(e);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
     return () => {
-      unsubscribe();
+      if (unsubscribe) {
+        unsubscribe();
+      }
     };
   }, []);
 

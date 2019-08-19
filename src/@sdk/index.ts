@@ -188,33 +188,38 @@ export class SaleorAPI {
         }
       );
 
-      const subscription = observable.subscribe(
-        result => {
-          const { data, errors: apolloErrors } = result;
-          const errorHandledData = handleDataErrors(
-            mapFn,
-            data as any,
-            apolloErrors
-          );
-          if (onUpdate) {
-            if (errorHandledData.errors) {
-              if (onError) {
-                onError(errorHandledData.errors);
-              }
-            } else {
-              onUpdate(errorHandledData.data as TResult);
-              if (onComplete) {
-                onComplete();
+      let unsubscribe = null;
+
+      if (!options.skip) {
+        const subscription = observable.subscribe(
+          result => {
+            const { data, errors: apolloErrors } = result;
+            const errorHandledData = handleDataErrors(
+              mapFn,
+              data as any,
+              apolloErrors
+            );
+            if (onUpdate) {
+              if (errorHandledData.errors) {
+                if (onError) {
+                  onError(errorHandledData.errors);
+                }
+              } else {
+                onUpdate(errorHandledData.data as TResult);
+                if (onComplete) {
+                  onComplete();
+                }
               }
             }
+          },
+          error => {
+            if (onError) {
+              onError(error);
+            }
           }
-        },
-        error => {
-          if (onError) {
-            onError(error);
-          }
-        }
-      );
+        );
+        unsubscribe = subscription.unsubscribe.bind(subscription);
+      }
 
       return {
         refetch: (variables?: TVariables) => {
@@ -231,7 +236,7 @@ export class SaleorAPI {
         },
         setOptions: (options: TOptions) =>
           this.firePromise(() => observable.setOptions(options), mapFn),
-        unsubscribe: subscription.unsubscribe.bind(subscription),
+        unsubscribe,
       };
     };
   }
