@@ -48,43 +48,37 @@ const View: React.FC<IBillingPageProps> = ({
   validateStep,
   proceedToNextStepData,
   path,
-  saveBillingAddress,
   shippingAsBilling,
   shop,
   step,
   update,
+  updateCheckoutBillingAddress,
 }) => {
-  const [errors, setErrors] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [saveBillingAddress, { loading, error }] = updateCheckoutBillingAddress;
+  const errors = maybe(() => error.extraInfo.userInputErrors, []);
 
   const onSaveBillingAddressHandler = async (formData: FormAddressType) => {
-    setLoading(true);
-    const { data, errors } = await saveBillingAddress(
+    return saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
     );
-    setLoading(false);
-    return { data, errors };
   };
 
   const onSubmitHandler = async (formData: FormAddressType) => {
-    const { errors } = await onSaveBillingAddressHandler(formData);
-    setErrors(errors);
+    await onSaveBillingAddressHandler(formData);
     return errors;
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { history, token, update } = proceedToNextStepData;
 
-    const { data, errors } = await onSaveBillingAddressHandler(formData);
-    const canProceed = !errors.length;
+    const result = await onSaveBillingAddressHandler(formData);
+    const canProceed = !!result;
 
     if (canProceed) {
       update({
-        checkout: data.checkout || checkout,
+        checkout: result.data.checkout || checkout,
       });
       history.push(generatePath(paymentUrl, { token }));
-    } else {
-      setErrors(errors);
     }
   };
 

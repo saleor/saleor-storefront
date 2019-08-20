@@ -7,7 +7,6 @@ import { ShopContext } from "../../../components/ShopProvider/context";
 import { maybe } from "../../../core/utils";
 import { CheckoutContext } from "../../context";
 import Page from "./Page";
-import { TypedUpdateCheckoutBillingAddressMutation } from "./queries";
 
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
@@ -17,7 +16,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const [validateStep, setValidateStep] = React.useState(true);
-  const [saveBillingAddress] = useUpdateCheckoutBillingAddress();
+  const updateCheckoutBillingAddress = useUpdateCheckoutBillingAddress();
 
   React.useEffect(() => {
     setValidateStep(false);
@@ -30,8 +29,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
       {({ update, checkout, shippingAsBilling, step }) => (
         <ShopContext.Consumer>
           {shop => (
-            // <TypedUpdateCheckoutBillingAddressMutation>
-            //   {saveBillingAddress => (
             <Page
               shippingAsBilling={shippingAsBilling}
               checkoutId={maybe(() => checkout.id, null)}
@@ -39,9 +36,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               shop={shop}
               path={path}
               update={update}
-              saveBillingAddress={saveBillingAddress}
               step={step}
               user={user}
+              updateCheckoutBillingAddress={updateCheckoutBillingAddress}
               proceedToNextStepData={{
                 history,
                 token,
@@ -49,8 +46,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               }}
               validateStep={validateStep}
             />
-            //   )}
-            // </TypedUpdateCheckoutBillingAddressMutation>
           )}
         </ShopContext.Consumer>
       )}
