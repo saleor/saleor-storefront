@@ -54,39 +54,38 @@ const View: React.FC<IBillingPageProps> = ({
   step,
   update,
 }) => {
-  const [stateCheckout, setStateCheckout] = React.useState(null);
   const [errors, setErrors] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const onSubmitHandler = async (formData: FormAddressType) => {
-    await setLoading(true);
-
+  const onSaveBillingAddressHandler = async (formData: FormAddressType) => {
+    setLoading(true);
     const { data, errors } = await saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
     );
-    if (!errors) {
-      setStateCheckout(data.checkout);
-    }
-    setErrors(errors);
     setLoading(false);
+    return { data, errors };
   };
 
-  const proceedToPayment = () => {
+  const onSubmitHandler = async (formData: FormAddressType) => {
+    const { errors } = await onSaveBillingAddressHandler(formData);
+    setErrors(errors);
+    return errors;
+  };
+
+  const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { history, token, update } = proceedToNextStepData;
 
+    const { data, errors } = await onSaveBillingAddressHandler(formData);
     const canProceed = !errors.length;
 
     if (canProceed) {
       update({
-        checkout: stateCheckout || checkout,
+        checkout: data.checkout || checkout,
       });
       history.push(generatePath(paymentUrl, { token }));
+    } else {
+      setErrors(errors);
     }
-  };
-
-  const onProceedToShippingSubmit = async (formData: FormAddressType) => {
-    await onSubmitHandler(formData);
-    proceedToPayment();
   };
 
   const billingProps = {
