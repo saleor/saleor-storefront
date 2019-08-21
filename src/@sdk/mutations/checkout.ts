@@ -63,3 +63,34 @@ export const updateCheckoutBillingAddressMutation = gql`
     }
   }
 `;
+
+export const updateCheckoutShippingAddressMutation = gql`
+  ${checkoutFragment}
+  mutation updateCheckoutShippingAddress(
+    $checkoutId: ID!
+    $shippingAddress: AddressInput!
+    $email: String!
+  ) {
+    checkoutShippingAddressUpdate(
+      checkoutId: $checkoutId
+      shippingAddress: $shippingAddress
+    ) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+    }
+    checkoutEmailUpdate(checkoutId: $checkoutId, email: $email) {
+      checkout {
+        ...Checkout
+      }
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;

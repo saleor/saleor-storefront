@@ -396,6 +396,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
 }
 
 export interface updateCheckoutBillingAddress {
+  /**
+   * Update billing address in the existing Checkout.
+   */
   checkoutBillingAddressUpdate: updateCheckoutBillingAddress_checkoutBillingAddressUpdate | null;
 }
 

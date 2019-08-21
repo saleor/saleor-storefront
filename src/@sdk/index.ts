@@ -74,6 +74,16 @@ export class SaleorAPI {
     data => data!.addressSetDefault
   );
 
+  setCreateCheckout = this.fireQuery(
+    MUTATIONS.CreateCheckout,
+    data => data!.checkoutCreate
+  );
+
+  setCheckoutShippingAddress = this.fireQuery(
+    MUTATIONS.UpdateCheckoutShippingAddress,
+    data => data!.checkoutShippingAddressUpdate
+  );
+
   setDeleteUserAddress = this.fireQuery(
     MUTATIONS.DeleteUserAddress,
     data => data!.addressDelete
