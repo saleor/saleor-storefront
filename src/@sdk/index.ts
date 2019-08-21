@@ -94,27 +94,30 @@ export class SaleorAPI {
     data => data!.checkoutBillingAddressUpdate
   );
 
-  getUserDetails = this.watchQuery(QUERIES.UserDetails, data => data.me);
-
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
   }
 
-  // getUserDetails = (
-  //   options?: Omit<InferOptions<QUERIES["UserDetails"]>, "variables">
-  // ) => {
-  //   if (this.isLoggedIn()) {
-  //     return this.watchQuery(QUERIES.UserDetails, data => data.me)(
-  //       null,
-  //       options
-  //     );
-  //   }
-  //   return new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
-  //     resolve({ data: null });
-  //   });
-  // };
+  getUserDetails = (
+    options?: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
+      onUpdate: (data: UserDetails["me"]) => void;
+    }
+  ) => {
+    if (this.isLoggedIn()) {
+      return this.watchQuery(QUERIES.UserDetails, data => data.me)(
+        null,
+        options
+      );
+    }
+    return {
+      refetch: new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+        resolve({ data: null });
+      }),
+      unsubscribe: () => undefined,
+    };
+  };
 
   signIn = (
     variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
