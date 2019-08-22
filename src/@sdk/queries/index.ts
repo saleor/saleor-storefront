@@ -10,6 +10,7 @@ import * as Checkout from "./checkout";
 import * as Product from "./products";
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 import { getUserCheckout } from "./types/getUserCheckout";
+import { OrderById, OrderByIdVariables } from "./types/OrderById";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 import {
   ProductDetails,
@@ -31,6 +32,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Checkout.getCheckoutQuery}
+      `,
+      ...options,
+    }),
+  OrderDetailsById: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<OrderByIdVariables>
+  ): ObservableQuery<OrderById, any> =>
+    client.watchQuery({
+      query: gql`
+        ${User.orderDetailsByIdQuery}
       `,
       ...options,
     }),

@@ -9,3 +9,7 @@ export const useUserCheckout = queryFactory("getUserCheckout");
 export const useCheckoutDetails = queryWithVariablesFactory(
   "getCheckoutDetails"
 );
+
+export const useOrderDetailsById = queryWithVariablesFactory(
+  "getOrderDetailsById"
+);

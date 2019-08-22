@@ -55,6 +55,11 @@ export class SaleorAPI {
     data => data.checkout
   );
 
+  getOrderDetailsById = this.watchQuery(
+    QUERIES.OrderDetailsById,
+    data => data.order
+  );
+
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
     data => data.product

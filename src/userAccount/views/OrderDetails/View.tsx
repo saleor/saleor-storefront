@@ -3,12 +3,11 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import { useOrderDetailsById } from "@sdk/react";
+
 import { Authenticated } from "../../components";
 import Page from "./Page";
-import {
-  TypedOrderDetailsByIdQuery,
-  TypedOrderDetailsByTokenQuery
-} from "./queries";
+import { TypedOrderDetailsByTokenQuery } from "./queries";
 
 const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
   match: {
@@ -17,6 +16,8 @@ const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
 }) => {
   const guest = !id;
 
+  const { data: order } = useOrderDetailsById({ id }, { skip: !guest });
+
   return (
     <div className="order-details container">
       {guest ? (
@@ -24,13 +25,9 @@ const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
           {({ data: { orderByToken } }) => <Page guest order={orderByToken} />}
         </TypedOrderDetailsByTokenQuery>
       ) : (
-        <TypedOrderDetailsByIdQuery variables={{ id }}>
-          {({ data: { order } }) => (
-            <Authenticated>
-              <Page guest={false} order={order} />
-            </Authenticated>
-          )}
-        </TypedOrderDetailsByIdQuery>
+        <Authenticated>
+          <Page guest={false} order={order} />
+        </Authenticated>
       )}
     </div>
   );
