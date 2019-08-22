@@ -101,13 +101,14 @@ export class SaleorAPI {
   }
 
   getUserDetails = (
+    variables?: InferOptions<QUERIES["UserDetails"]>["variables"],
     options?: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
-      onUpdate: (data: UserDetails["me"]) => void;
+      onUpdate: (data: UserDetails["me"] | null) => void;
     }
   ) => {
     if (this.isLoggedIn()) {
       return this.watchQuery(QUERIES.UserDetails, data => data.me)(
-        null,
+        variables,
         options
       );
     }
