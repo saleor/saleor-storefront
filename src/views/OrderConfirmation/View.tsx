@@ -6,7 +6,6 @@ import { generatePath, Link, RouteComponentProps } from "react-router-dom";
 import { Button, NotFound } from "../../components";
 import { BASE_URL } from "../../core/config";
 import { guestOrderDetailsUrl } from "../../routes";
-import { userOrderDetailsUrl } from "../../userAccount/routes";
 
 const View: React.FC<RouteComponentProps> = ({
   history: {
