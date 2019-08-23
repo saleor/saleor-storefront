@@ -34,11 +34,8 @@ const View: React.FC<RouteComponentProps> = ({
     return <NotFound />;
   }
 
-  const { token, id } = state;
-  const guest = !id;
-  const orderDetailsRef = guest
-    ? generatePath(guestOrderDetailsUrl, { token })
-    : generatePath(userOrderDetailsUrl, { id });
+  const { token } = state;
+  const orderDetailsRef = generatePath(guestOrderDetailsUrl, { token });
 
   return (
     <div className="order-confirmation">

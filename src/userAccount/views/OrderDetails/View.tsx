@@ -3,32 +3,22 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { useOrderDetailsById } from "@sdk/react";
+import { useOrderDetails, useUserDetails } from "@sdk/react";
 
-import { Authenticated } from "../../components";
 import Page from "./Page";
-import { TypedOrderDetailsByTokenQuery } from "./queries";
 
-const View: React.FC<RouteComponentProps<{ id?: string; token?: string }>> = ({
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
-    params: { id, token },
+    params: { token },
   },
 }) => {
-  const guest = !id;
-
-  const { data: order } = useOrderDetailsById({ id }, { skip: !guest });
+  const { data: order } = useOrderDetails({ token });
+  const { data: user } = useUserDetails();
+  const guest = !user;
 
   return (
     <div className="order-details container">
-      {guest ? (
-        <TypedOrderDetailsByTokenQuery variables={{ token }}>
-          {({ data: { orderByToken } }) => <Page guest order={orderByToken} />}
-        </TypedOrderDetailsByTokenQuery>
-      ) : (
-        <Authenticated>
-          <Page guest={false} order={order} />
-        </Authenticated>
-      )}
+      <Page guest={guest} order={order} />
     </div>
   );
 };

@@ -10,6 +10,4 @@ export const useCheckoutDetails = queryWithVariablesFactory(
   "getCheckoutDetails"
 );
 
-export const useOrderDetailsById = queryWithVariablesFactory(
-  "getOrderDetailsById"
-);
+export const useOrderDetails = queryWithVariablesFactory("getOrderDetails");

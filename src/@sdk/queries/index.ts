@@ -35,13 +35,13 @@ export const QUERIES = {
       `,
       ...options,
     }),
-  OrderDetailsById: <TCacheShape>(
+  OrderDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
-    options: QueryOptions<OrderByIdVariables>
-  ): ObservableQuery<OrderById, any> =>
+    options: QueryOptions<OrderByTokenVariables>
+  ): ObservableQuery<OrderByToken, any> =>
     client.watchQuery({
       query: gql`
-        ${User.orderDetailsByIdQuery}
+        ${User.orderDetailsByTokenQuery}
       `,
       ...options,
     }),
@@ -72,16 +72,6 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${User.getUserDetailsQuery}
-      `,
-      ...options,
-    }),
-  UserOrders: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<OrderByTokenVariables>
-  ): ObservableQuery<OrderByToken, any> =>
-    client.watchQuery({
-      query: gql`
-        ${User.orderDetailsByTokenQuery}
       `,
       ...options,
     }),

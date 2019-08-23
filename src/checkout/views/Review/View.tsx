@@ -6,8 +6,6 @@ import { AlertManager, useAlert } from "react-alert";
 import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { useUserDetails } from "@sdk/react";
-
 import { Button, CartTable } from "../../../components";
 
 import { CartContext } from "../../../components/CartProvider/context";
@@ -23,7 +21,6 @@ import { completeCheckout } from "./types/completeCheckout";
 const completeCheckout = (
   data: completeCheckout,
   history: History,
-  guest: boolean,
   clearCheckout: () => void,
   clearCart: () => void,
   alert: AlertManager
@@ -31,10 +28,10 @@ const completeCheckout = (
   const canProceed = !data.checkoutComplete.errors.length;
 
   if (canProceed) {
-    const { id, token } = data.checkoutComplete.order;
+    const { token } = data.checkoutComplete.order;
     history.push({
       pathname: orderConfirmationUrl,
-      state: guest ? { token } : { id },
+      state: { token },
     });
     clearCheckout();
     clearCart();
@@ -72,7 +69,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     step,
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
-  const { data: user } = useUserDetails();
 
   const stepCheck = (
     <StepCheck checkout={checkout} step={step} path={path} token={token} />
@@ -117,7 +113,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                   completeCheckout(
                     data,
                     history,
-                    !user,
                     clearCheckout,
                     clearCart,
                     alert
