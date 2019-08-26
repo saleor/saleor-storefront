@@ -35,12 +35,6 @@ const completeCheckout = (
     });
     clearCheckout();
     clearCart();
-    alert.show(
-      { title: "Your order was placed" },
-      {
-        type: "success",
-      }
-    );
   } else {
     data.checkoutComplete.errors.map(error => {
       alert.show(
