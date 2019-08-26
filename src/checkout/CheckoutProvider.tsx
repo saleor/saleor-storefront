@@ -148,7 +148,7 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
     { skip: skipLocalStorageCheckoutFetch }
   );
 
-  if (checkoutDetails && !checkout) {
+  if (checkoutDetails && !checkout && !skipLocalStorageCheckoutFetch) {
     setCheckout(checkoutDetails);
     setLoading(false);
     setCheckoutToken(checkoutDetails.token);
