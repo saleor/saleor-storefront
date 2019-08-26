@@ -8,9 +8,9 @@ import * as Address from "./address";
 import * as Auth from "./auth";
 import * as Checkout from "./checkout";
 import {
-  createCheckout,
-  createCheckoutVariables
-} from "./types/createCheckout";
+  CreateCheckout,
+  CreateCheckoutVariables
+} from "./types/CreateCheckout";
 import {
   DeleteUserAddress,
   DeleteUserAddressVariables
@@ -21,13 +21,13 @@ import {
 } from "./types/SetCustomerDefaultAddress";
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 import {
-  updateCheckoutBillingAddress,
-  updateCheckoutBillingAddressVariables
-} from "./types/updateCheckoutBillingAddress";
+  UpdateCheckoutBillingAddress,
+  UpdateCheckoutBillingAddressVariables
+} from "./types/UpdateCheckoutBillingAddress";
 import {
-  updateCheckoutShippingAddress,
-  updateCheckoutShippingAddressVariables
-} from "./types/updateCheckoutShippingAddress";
+  UpdateCheckoutShippingAddress,
+  UpdateCheckoutShippingAddressVariables
+} from "./types/UpdateCheckoutShippingAddress";
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
@@ -51,7 +51,7 @@ export const MUTATIONS = {
     }),
   CreateCheckout: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
-    options: MutationOptions<createCheckout, createCheckoutVariables>
+    options: MutationOptions<CreateCheckout, CreateCheckoutVariables>
   ) =>
     client.mutate({
       mutation: gql`
@@ -82,8 +82,8 @@ export const MUTATIONS = {
   UpdateCheckoutBillingAddress: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<
-      updateCheckoutBillingAddress,
-      updateCheckoutBillingAddressVariables
+      UpdateCheckoutBillingAddress,
+      UpdateCheckoutBillingAddressVariables
     >
   ) =>
     client.mutate({
@@ -95,8 +95,8 @@ export const MUTATIONS = {
   UpdateCheckoutShippingAddress: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<
-      updateCheckoutShippingAddress,
-      updateCheckoutShippingAddressVariables
+      UpdateCheckoutShippingAddress,
+      UpdateCheckoutShippingAddressVariables
     >
   ) =>
     client.mutate({

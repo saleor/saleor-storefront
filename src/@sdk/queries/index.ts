@@ -8,13 +8,16 @@ import gql from "graphql-tag";
 import { RequireOnlyOne } from "../tsHelpers";
 import * as Checkout from "./checkout";
 import * as Product from "./products";
-import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
-import { getUserCheckout } from "./types/getUserCheckout";
+import {
+  CheckoutDetails,
+  CheckoutDetailsVariables
+} from "./types/CheckoutDetails";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 import {
   ProductDetails,
   ProductDetailsVariables
 } from "./types/ProductDetails";
+import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
 import * as User from "./user";
 
@@ -26,11 +29,11 @@ type QueryOptions<T = {}> = T extends { [n: string]: never }
 export const QUERIES = {
   CheckoutDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
-    options: QueryOptions<getCheckoutVariables>
-  ): ObservableQuery<getCheckout, any> =>
+    options: QueryOptions<CheckoutDetailsVariables>
+  ): ObservableQuery<CheckoutDetails, any> =>
     client.watchQuery({
       query: gql`
-        ${Checkout.getCheckoutQuery}
+        ${Checkout.checkoutDetails}
       `,
       ...options,
     }),
@@ -54,13 +57,13 @@ export const QUERIES = {
       `,
       ...options,
     }),
-  UserCheckout: <TCacheShape>(
+  UserCheckoutDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<null>
-  ): ObservableQuery<getUserCheckout, any> =>
+  ): ObservableQuery<UserCheckoutDetails, any> =>
     client.watchQuery({
       query: gql`
-        ${Checkout.getUserCheckoutQuery}
+        ${Checkout.userCheckoutDetails}
       `,
       ...options,
     }),

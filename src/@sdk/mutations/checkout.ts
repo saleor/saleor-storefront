@@ -9,7 +9,7 @@ import {
 export const updateCheckoutLineQuery = gql`
   ${checkoutLineFragment}
   ${checkoutPriceFragment}
-  mutation updateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
+  mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
         id
@@ -30,7 +30,7 @@ export const updateCheckoutLineQuery = gql`
 
 export const createCheckoutMutation = gql`
   ${checkoutFragment}
-  mutation createCheckout($checkoutInput: CheckoutCreateInput!) {
+  mutation CreateCheckout($checkoutInput: CheckoutCreateInput!) {
     checkoutCreate(input: $checkoutInput) {
       errors {
         field
@@ -45,7 +45,7 @@ export const createCheckoutMutation = gql`
 
 export const updateCheckoutBillingAddressMutation = gql`
   ${checkoutFragment}
-  mutation updateCheckoutBillingAddress(
+  mutation UpdateCheckoutBillingAddress(
     $checkoutId: ID!
     $billingAddress: AddressInput!
   ) {
@@ -66,7 +66,7 @@ export const updateCheckoutBillingAddressMutation = gql`
 
 export const updateCheckoutShippingAddressMutation = gql`
   ${checkoutFragment}
-  mutation updateCheckoutShippingAddress(
+  mutation UpdateCheckoutShippingAddress(
     $checkoutId: ID!
     $shippingAddress: AddressInput!
     $email: String!

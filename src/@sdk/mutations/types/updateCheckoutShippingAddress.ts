@@ -5,10 +5,10 @@
 import { AddressInput, GatewaysEnum } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: updateCheckoutShippingAddress
+// GraphQL mutation operation: UpdateCheckoutShippingAddress
 // ====================================================
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -22,12 +22,12 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
   message: string | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user {
   __typename: "User";
   email: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -39,19 +39,19 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -63,19 +63,19 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -87,7 +87,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -103,7 +103,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * Default shop's country
    */
-  country: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country;
+  country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -116,7 +116,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -128,7 +128,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -144,7 +144,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * Default shop's country
    */
-  country: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country;
+  country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -157,7 +157,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -173,17 +173,17 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price | null;
+  price: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod_price {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -199,17 +199,17 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod_price | null;
+  price: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod_price | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -221,19 +221,19 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -245,19 +245,19 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price {
   __typename: "Money";
   /**
    * Amount of money.
@@ -273,7 +273,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -285,7 +285,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   alt: string | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -293,7 +293,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   url: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -303,14 +303,14 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  thumbnail2x: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
    * Quantity of a product available for sale.
@@ -324,11 +324,11 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * Price of the product variant.
    */
-  price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price | null;
-  product: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product;
+  price: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price | null;
+  product: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines {
   __typename: "CheckoutLine";
   /**
    * The ID of the object.
@@ -338,11 +338,11 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * The sum of the checkout line price, taxes and discounts.
    */
-  totalPrice: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice | null;
-  variant: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant;
+  totalPrice: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice | null;
+  variant: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
    * List of available payment gateways.
@@ -353,17 +353,17 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * The ID of the object.
    */
   id: string;
-  user: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user | null;
+  user: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
-  totalPrice: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice | null;
+  totalPrice: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice | null;
   /**
    * The price of the checkout before shipping, with taxes included.
    */
-  subtotalPrice: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice | null;
-  billingAddress: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress | null;
-  shippingAddress: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress | null;
+  subtotalPrice: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice | null;
+  billingAddress: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress | null;
+  shippingAddress: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress | null;
   /**
    * Email of a customer
    */
@@ -371,36 +371,36 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * Shipping methods that can be used with this order.
    */
-  availableShippingMethods: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods | null)[];
-  shippingMethod: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod | null;
+  availableShippingMethods: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods | null)[];
+  shippingMethod: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod | null;
   /**
    * The price of the shipping, with all the taxes included.
    */
-  shippingPrice: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice | null;
+  shippingPrice: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice | null;
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[] | null;
+  lines: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[] | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
   __typename: "CheckoutShippingAddressUpdate";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[] | null;
   /**
    * An updated checkout
    */
-  checkout: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout | null;
+  checkout: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user {
   __typename: "User";
   email: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -412,19 +412,19 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -436,19 +436,19 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -460,7 +460,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_bill
   country: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -476,7 +476,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_bill
   /**
    * Default shop's country
    */
-  country: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country;
+  country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -489,7 +489,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_bill
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -501,7 +501,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   country: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -517,7 +517,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   /**
    * Default shop's country
    */
-  country: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country;
+  country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -530,7 +530,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -546,17 +546,17 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price | null;
+  price: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod_price {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -572,17 +572,17 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod_price | null;
+  price: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod_price | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -594,19 +594,19 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -618,19 +618,19 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross;
+  gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {
   __typename: "Money";
   /**
    * Amount of money.
@@ -646,7 +646,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   localized: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -658,7 +658,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   alt: string | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -666,7 +666,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   url: string;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -676,14 +676,14 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  thumbnail2x: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
    * Quantity of a product available for sale.
@@ -697,11 +697,11 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   /**
    * Price of the product variant.
    */
-  price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price | null;
-  product: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product;
+  price: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price | null;
+  product: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines {
   __typename: "CheckoutLine";
   /**
    * The ID of the object.
@@ -711,11 +711,11 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   /**
    * The sum of the checkout line price, taxes and discounts.
    */
-  totalPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice | null;
-  variant: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant;
+  totalPrice: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice | null;
+  variant: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
    * List of available payment gateways.
@@ -726,17 +726,17 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * The ID of the object.
    */
   id: string;
-  user: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user | null;
+  user: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
-  totalPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice | null;
+  totalPrice: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice | null;
   /**
    * The price of the checkout before shipping, with taxes included.
    */
-  subtotalPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice | null;
-  billingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
-  shippingAddress: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
+  subtotalPrice: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice | null;
+  billingAddress: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress | null;
+  shippingAddress: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress | null;
   /**
    * Email of a customer
    */
@@ -744,19 +744,19 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   /**
    * Shipping methods that can be used with this order.
    */
-  availableShippingMethods: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[];
-  shippingMethod: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod | null;
+  availableShippingMethods: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods | null)[];
+  shippingMethod: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod | null;
   /**
    * The price of the shipping, with all the taxes included.
    */
-  shippingPrice: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice | null;
+  shippingPrice: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice | null;
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
+  lines: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -770,30 +770,30 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
   message: string | null;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate {
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
   __typename: "CheckoutEmailUpdate";
   /**
    * An updated checkout
    */
-  checkout: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
+  checkout: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: updateCheckoutShippingAddress_checkoutEmailUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[] | null;
 }
 
-export interface updateCheckoutShippingAddress {
+export interface UpdateCheckoutShippingAddress {
   /**
    * Update shipping address in the existing Checkout.
    */
-  checkoutShippingAddressUpdate: updateCheckoutShippingAddress_checkoutShippingAddressUpdate | null;
+  checkoutShippingAddressUpdate: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate | null;
   /**
    * Updates email address in the existing Checkout object.
    */
-  checkoutEmailUpdate: updateCheckoutShippingAddress_checkoutEmailUpdate | null;
+  checkoutEmailUpdate: UpdateCheckoutShippingAddress_checkoutEmailUpdate | null;
 }
 
-export interface updateCheckoutShippingAddressVariables {
+export interface UpdateCheckoutShippingAddressVariables {
   checkoutId: string;
   shippingAddress: AddressInput;
   email: string;
