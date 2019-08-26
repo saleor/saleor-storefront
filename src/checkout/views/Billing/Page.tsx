@@ -57,7 +57,7 @@ const View: React.FC<IBillingPageProps> = ({
   const [saveBillingAddress, { loading, error }] = updateCheckoutBillingAddress;
   const errors = maybe(() => error.extraInfo.userInputErrors, []);
 
-  const onSaveBillingAddressHandler = async (formData: FormAddressType) => {
+  const onSaveBillingAddressHandler = (formData: FormAddressType) => {
     return saveBillingAddress(
       computeMutationVariables(formData, checkout, shippingAsBilling)
     );

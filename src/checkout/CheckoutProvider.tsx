@@ -69,27 +69,27 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
     return CheckoutStep.ShippingAddress;
   };
 
-  const update = async (checkoutData: CheckoutContextInterface) => {
+  const update = (checkoutData: CheckoutContextInterface) => {
     if ("cardData" in checkoutData) {
-      await setCardData(checkoutData.cardData);
+      setCardData(checkoutData.cardData);
     }
     if ("dummyStatus" in checkoutData) {
-      await setDummyStatus(checkoutData.dummyStatus);
+      setDummyStatus(checkoutData.dummyStatus);
     }
     if ("loading" in checkoutData) {
-      await setLoading(checkoutData.loading);
+      setLoading(checkoutData.loading);
     }
     if ("shippingAsBilling" in checkoutData) {
-      await setShippingAsBilling(checkoutData.shippingAsBilling);
+      setShippingAsBilling(checkoutData.shippingAsBilling);
     }
     if ("syncUserCheckout" in checkoutData) {
-      await setSyncUserCheckout(checkoutData.syncUserCheckout);
+      setSyncUserCheckout(checkoutData.syncUserCheckout);
     }
     if ("syncWithCart" in checkoutData) {
-      await setSyncWithCart(checkoutData.syncWithCart);
+      setSyncWithCart(checkoutData.syncWithCart);
     }
     if ("checkout" in checkoutData) {
-      await setCheckout(checkoutData.checkout);
+      setCheckout(checkoutData.checkout);
       setCheckoutToken(checkoutData.checkout.token);
     }
   };
