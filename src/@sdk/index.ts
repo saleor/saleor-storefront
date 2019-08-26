@@ -65,7 +65,7 @@ export class SaleorAPI {
     data => data.orderByToken
   );
 
-  getUserCheckout = this.watchQuery(QUERIES.UserCheckout, data =>
+  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
     data.me ? data.me.checkout : null
   );
 
