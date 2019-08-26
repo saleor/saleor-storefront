@@ -1,13 +1,13 @@
 import { History } from "history";
 
 import {
-  updateCheckoutShippingAddress_checkoutShippingAddressUpdate,
-  updateCheckoutShippingAddressVariables
-} from "@sdk/mutations/types//updateCheckoutShippingAddress";
+  CreateCheckout_checkoutCreate,
+  CreateCheckoutVariables
+} from "@sdk/mutations/types/CreateCheckout";
 import {
-  createCheckout_checkoutCreate,
-  createCheckoutVariables
-} from "@sdk/mutations/types/createCheckout";
+  UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate,
+  UpdateCheckoutShippingAddressVariables
+} from "@sdk/mutations/types/UpdateCheckoutShippingAddress";
 import { MutationFn, MutationResult } from "@sdk/react/useMutation";
 
 import { AddressInput } from "../../../../types/globalTypes";
@@ -31,23 +31,23 @@ export interface IShippingPageProps {
   createCheckout: [
     MutationFn<
       {
-        data: createCheckout_checkoutCreate;
+        data: CreateCheckout_checkoutCreate;
       },
-      createCheckoutVariables
+      CreateCheckoutVariables
     >,
     MutationResult<{
-      data: createCheckout_checkoutCreate;
+      data: CreateCheckout_checkoutCreate;
     }>
   ];
   updateShippingAddress: [
     MutationFn<
       {
-        data: updateCheckoutShippingAddress_checkoutShippingAddressUpdate;
+        data: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate;
       },
-      updateCheckoutShippingAddressVariables
+      UpdateCheckoutShippingAddressVariables
     >,
     MutationResult<{
-      data: updateCheckoutShippingAddress_checkoutShippingAddressUpdate;
+      data: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate;
     }>
   ];
   user: User;
