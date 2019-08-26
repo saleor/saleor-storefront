@@ -101,8 +101,8 @@ export class SaleorAPI {
   }
 
   getUserDetails = (
-    variables?: InferOptions<QUERIES["UserDetails"]>["variables"],
-    options?: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
+    variables: InferOptions<QUERIES["UserDetails"]>["variables"],
+    options: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
       onUpdate: (data: UserDetails["me"] | null) => void;
     }
   ) => {
@@ -187,6 +187,7 @@ export class SaleorAPI {
     >(
       variables: TVariables,
       options: TOptions & {
+        skip?: boolean;
         onComplete?: () => void;
         onError?: (error: ApolloError) => void;
         onUpdate: (data: ReturnType<typeof mapFn> | null) => void;
