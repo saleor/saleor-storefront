@@ -8,7 +8,7 @@ import {
   OverlayType
 } from "../../../components";
 import { CartLineInterface } from "../../../components/CartProvider/context";
-import { findFormErrors, maybe } from "../../../core/utils";
+import { maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
@@ -23,7 +23,7 @@ import { IShippingPageProps, IShippingPageState } from "./types";
 
 const computeCheckoutData = (
   data: FormAddressType,
-  lines?: CartLineInterface[],
+  lines: CartLineInterface[],
   email?: string
 ): ICheckoutData => ({
   email: data.email || email,
@@ -50,7 +50,6 @@ const computeCheckoutData = (
 class Page extends React.Component<IShippingPageProps, IShippingPageState> {
   readonly state = {
     checkout: null,
-    errors: [],
     loading: false,
     shippingUnavailable: false,
   };
@@ -58,12 +57,13 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
   proceedToShippingOptions = () => {
     const { update, history, token } = this.props.proceedToNextStepData;
     const canProceed =
-      !this.state.errors.length && !this.state.shippingUnavailable;
+      !this.getErrors().length && !this.state.shippingUnavailable;
+
+    if (this.state.shippingUnavailable) {
+      return this.renderShippingUnavailableModal();
+    }
 
     if (canProceed) {
-      if (this.state.shippingUnavailable) {
-        return this.renderShippingUnavailableModal();
-      }
       update({
         checkout: this.state.checkout || this.props.checkout,
       });
@@ -87,50 +87,59 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
       user,
       lines,
       update,
-      updateCheckout,
+      updateShippingAddress,
     } = this.props;
     const email = maybe(() => user.email, null);
     update({
       shippingAsBilling: maybe(() => address.asBilling, false),
     });
 
+    const [create] = createCheckout;
+    const [updateAddress] = updateShippingAddress;
+
     if (!checkoutId) {
-      return createCheckout({
-        variables: {
-          checkoutInput: computeCheckoutData(address, lines),
+      const data = computeCheckoutData(address, lines);
+      return create({
+        checkoutInput: {
+          email: data.email,
+          lines: data.lines,
+          shippingAddress: data.shippingAddress,
         },
       });
     }
-    return updateCheckout({
-      variables: {
-        checkoutId,
-        ...computeCheckoutData(address, null, email),
-      },
+    const data = computeCheckoutData(address, null, email);
+    return updateAddress({
+      checkoutId,
+      email: data.email,
+      shippingAddress: data.shippingAddress,
     });
   };
 
-  onSubmitHandler = (address: FormAddressType) => {
+  getErrors = () => {
+    const {
+      createCheckout: [, { error: createCheckoutError }],
+      updateShippingAddress: [, { error: updateAddressError }],
+    } = this.props;
+    return (
+      maybe(() => createCheckoutError.extraInfo.userInputErrors, []) ||
+      maybe(() => updateAddressError.extraInfo.userInputErrors, [])
+    );
+  };
+
+  onSubmitHandler = async (address: FormAddressType) => {
     this.setState({ loading: true });
+    const { checkout } = this.props;
 
-    return this.onShippingSubmit(address).then(response => {
-      const errors = findFormErrors(response) || [];
-      const checkout =
-        maybe(() => response.data.checkoutEmailUpdate.checkout, null) ||
-        maybe(
-          () => response.data.checkoutShippingAddressUpdate.checkout,
-          null
-        ) ||
-        maybe(() => response.data.checkoutCreate.checkout, null);
+    const result = await this.onShippingSubmit(address);
+    const updatedCheckout = maybe(() => result.data.checkout, null);
 
-      this.setState({
-        checkout,
-        errors,
-        loading: false,
-        shippingUnavailable:
-          (checkout && !checkout.availableShippingMethods.length) || false,
-      });
-      return errors;
+    this.setState({
+      checkout: updatedCheckout || checkout,
+      loading: false,
+      shippingUnavailable:
+        (checkout && !checkout.availableShippingMethods.length) || false,
     });
+    return this.getErrors();
   };
 
   renderShippingUnavailableModal = () => (
@@ -148,7 +157,7 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
 
   getShippingProps = (userCheckoutData: ICheckoutUserArgs) => ({
     buttonText: "Continue to Shipping",
-    errors: this.state.errors,
+    errors: this.getErrors(),
     loading: this.state.loading,
     proceedToNextStep: this.onProceedToShippingSubmit,
     ...userCheckoutData,
@@ -156,6 +165,7 @@ class Page extends React.Component<IShippingPageProps, IShippingPageState> {
 
   render() {
     const { checkout, proceedToNextStepData, shop, user, update } = this.props;
+
     const shippingProps = this.getShippingProps({
       checkout,
       user,

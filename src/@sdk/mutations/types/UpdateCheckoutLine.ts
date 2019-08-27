@@ -5,10 +5,10 @@
 import { CheckoutLineInput } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: updateCheckoutLine
+// GraphQL mutation operation: UpdateCheckoutLine
 // ====================================================
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -20,19 +20,19 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
   localized: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross;
+  gross: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price {
   __typename: "Money";
   /**
    * Amount of money.
@@ -48,7 +48,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
   localized: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -60,7 +60,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
   alt: string | null;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail2x {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -68,7 +68,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
   url: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -78,14 +78,14 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail | null;
+  thumbnail: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  thumbnail2x: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail2x | null;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
    * Quantity of a product available for sale.
@@ -99,11 +99,11 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
   /**
    * Price of the product variant.
    */
-  price: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price | null;
-  product: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product;
+  price: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price | null;
+  product: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines {
   __typename: "CheckoutLine";
   /**
    * The ID of the object.
@@ -113,11 +113,11 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines {
   /**
    * The sum of the checkout line price, taxes and discounts.
    */
-  totalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice | null;
-  variant: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
+  totalPrice: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice | null;
+  variant: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -129,19 +129,19 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_g
   localized: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
+  gross: UpdateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
   __typename: "Checkout";
   /**
    * The ID of the object.
@@ -150,14 +150,14 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
+  lines: (UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
   /**
    * The price of the checkout before shipping, with taxes included.
    */
-  subtotalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
+  subtotalPrice: UpdateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_errors {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -171,23 +171,26 @@ export interface updateCheckoutLine_checkoutLinesUpdate_errors {
   message: string | null;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate {
+export interface UpdateCheckoutLine_checkoutLinesUpdate {
   __typename: "CheckoutLinesUpdate";
   /**
    * An updated Checkout.
    */
-  checkout: updateCheckoutLine_checkoutLinesUpdate_checkout | null;
+  checkout: UpdateCheckoutLine_checkoutLinesUpdate_checkout | null;
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: updateCheckoutLine_checkoutLinesUpdate_errors[] | null;
+  errors: UpdateCheckoutLine_checkoutLinesUpdate_errors[] | null;
 }
 
-export interface updateCheckoutLine {
-  checkoutLinesUpdate: updateCheckoutLine_checkoutLinesUpdate | null;
+export interface UpdateCheckoutLine {
+  /**
+   * Updates CheckoutLine in the existing Checkout.
+   */
+  checkoutLinesUpdate: UpdateCheckoutLine_checkoutLinesUpdate | null;
 }
 
-export interface updateCheckoutLineVariables {
+export interface UpdateCheckoutLineVariables {
   checkoutId: string;
   lines: (CheckoutLineInput | null)[];
 }

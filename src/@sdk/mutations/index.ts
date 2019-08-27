@@ -6,6 +6,11 @@ import gql from "graphql-tag";
 
 import * as Address from "./address";
 import * as Auth from "./auth";
+import * as Checkout from "./checkout";
+import {
+  CreateCheckout,
+  CreateCheckoutVariables
+} from "./types/CreateCheckout";
 import {
   DeleteUserAddress,
   DeleteUserAddressVariables
@@ -14,8 +19,15 @@ import {
   SetCustomerDefaultAddress,
   SetCustomerDefaultAddressVariables
 } from "./types/SetCustomerDefaultAddress";
-
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
+import {
+  UpdateCheckoutBillingAddress,
+  UpdateCheckoutBillingAddressVariables
+} from "./types/UpdateCheckoutBillingAddress";
+import {
+  UpdateCheckoutShippingAddress,
+  UpdateCheckoutShippingAddressVariables
+} from "./types/UpdateCheckoutShippingAddress";
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
@@ -37,6 +49,16 @@ export const MUTATIONS = {
       `,
       ...options,
     }),
+  CreateCheckout: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<CreateCheckout, CreateCheckoutVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.createCheckoutMutation}
+      `,
+      ...options,
+    }),
   DeleteUserAddress: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<DeleteUserAddress, DeleteUserAddressVariables>
@@ -54,6 +76,32 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Auth.tokenAuthMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutBillingAddress: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      UpdateCheckoutBillingAddress,
+      UpdateCheckoutBillingAddressVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutBillingAddressMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutShippingAddress: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      UpdateCheckoutShippingAddress,
+      UpdateCheckoutShippingAddressVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutShippingAddressMutation}
       `,
       ...options,
     }),

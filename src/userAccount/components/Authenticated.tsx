@@ -1,12 +1,15 @@
 import React from "react";
 
-import { NotFound } from "../../components";
-import { UserContext } from "../../components/User/context";
+import { useUserDetails } from "@sdk/react";
 
-const Authenticated: React.FC = ({ children }) => (
-  <UserContext.Consumer>
-    {({ user }) => (user ? children : <NotFound />)}
-  </UserContext.Consumer>
-);
+import { NotFound } from "../../components";
+
+const Authenticated: React.FC<{ children: React.ReactElement }> = ({
+  children,
+}) => {
+  const { data: user } = useUserDetails();
+
+  return user ? children : <NotFound />;
+};
 
 export default Authenticated;

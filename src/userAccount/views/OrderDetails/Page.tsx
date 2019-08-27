@@ -10,7 +10,7 @@ import {
   OrderByToken_orderByToken_lines
 } from "./types/OrderByToken";
 
-import { orderHistoryUrl } from "../../routes";
+import { orderHistoryUrl } from "../../../routes";
 
 const extractOrderLines = (
   lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>

@@ -3,7 +3,8 @@ import { Route, Switch } from "react-router-dom";
 
 import { CheckoutLogin, NotFound } from "../components";
 import UserAccount, {
-  baseUrl as userAccountBaseUrl
+  baseUrl as userAccountBaseUrl,
+  userOrderDetailsUrl
 } from "../userAccount/routes";
 import { OrderDetails } from "../userAccount/views";
 import { Account } from "../views/Account";
@@ -43,6 +44,7 @@ export const Routes: React.FC = () => (
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={pageUrl} component={ArticlePage} />
     <Route path={userAccountBaseUrl} component={UserAccount} />
+    <Route path={userOrderDetailsUrl} component={OrderDetails} />
     <Route path={guestOrderDetailsUrl} component={OrderDetails} />
     <Route path={orderConfirmationUrl} component={OrderConfirmation} />
     <Route path={accountUrl} component={Account} />

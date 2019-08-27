@@ -5,15 +5,15 @@
 import { GatewaysEnum } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: getCheckout
+// GraphQL query operation: CheckoutDetails
 // ====================================================
 
-export interface getCheckout_checkout_user {
+export interface CheckoutDetails_checkout_user {
   __typename: "User";
   email: string;
 }
 
-export interface getCheckout_checkout_totalPrice_gross {
+export interface CheckoutDetails_checkout_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -25,19 +25,19 @@ export interface getCheckout_checkout_totalPrice_gross {
   localized: string;
 }
 
-export interface getCheckout_checkout_totalPrice {
+export interface CheckoutDetails_checkout_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: getCheckout_checkout_totalPrice_gross;
+  gross: CheckoutDetails_checkout_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface getCheckout_checkout_subtotalPrice_gross {
+export interface CheckoutDetails_checkout_subtotalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -49,19 +49,19 @@ export interface getCheckout_checkout_subtotalPrice_gross {
   localized: string;
 }
 
-export interface getCheckout_checkout_subtotalPrice {
+export interface CheckoutDetails_checkout_subtotalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: getCheckout_checkout_subtotalPrice_gross;
+  gross: CheckoutDetails_checkout_subtotalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface getCheckout_checkout_billingAddress_country {
+export interface CheckoutDetails_checkout_billingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -73,7 +73,7 @@ export interface getCheckout_checkout_billingAddress_country {
   country: string;
 }
 
-export interface getCheckout_checkout_billingAddress {
+export interface CheckoutDetails_checkout_billingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -89,7 +89,7 @@ export interface getCheckout_checkout_billingAddress {
   /**
    * Default shop's country
    */
-  country: getCheckout_checkout_billingAddress_country;
+  country: CheckoutDetails_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -102,7 +102,7 @@ export interface getCheckout_checkout_billingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface getCheckout_checkout_shippingAddress_country {
+export interface CheckoutDetails_checkout_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -114,7 +114,7 @@ export interface getCheckout_checkout_shippingAddress_country {
   country: string;
 }
 
-export interface getCheckout_checkout_shippingAddress {
+export interface CheckoutDetails_checkout_shippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -130,7 +130,7 @@ export interface getCheckout_checkout_shippingAddress {
   /**
    * Default shop's country
    */
-  country: getCheckout_checkout_shippingAddress_country;
+  country: CheckoutDetails_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -143,7 +143,7 @@ export interface getCheckout_checkout_shippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface getCheckout_checkout_availableShippingMethods_price {
+export interface CheckoutDetails_checkout_availableShippingMethods_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -159,17 +159,17 @@ export interface getCheckout_checkout_availableShippingMethods_price {
   localized: string;
 }
 
-export interface getCheckout_checkout_availableShippingMethods {
+export interface CheckoutDetails_checkout_availableShippingMethods {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: getCheckout_checkout_availableShippingMethods_price | null;
+  price: CheckoutDetails_checkout_availableShippingMethods_price | null;
 }
 
-export interface getCheckout_checkout_shippingMethod_price {
+export interface CheckoutDetails_checkout_shippingMethod_price {
   __typename: "Money";
   /**
    * Currency code.
@@ -185,17 +185,17 @@ export interface getCheckout_checkout_shippingMethod_price {
   localized: string;
 }
 
-export interface getCheckout_checkout_shippingMethod {
+export interface CheckoutDetails_checkout_shippingMethod {
   __typename: "ShippingMethod";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  price: getCheckout_checkout_shippingMethod_price | null;
+  price: CheckoutDetails_checkout_shippingMethod_price | null;
 }
 
-export interface getCheckout_checkout_shippingPrice_gross {
+export interface CheckoutDetails_checkout_shippingPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -207,19 +207,19 @@ export interface getCheckout_checkout_shippingPrice_gross {
   localized: string;
 }
 
-export interface getCheckout_checkout_shippingPrice {
+export interface CheckoutDetails_checkout_shippingPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: getCheckout_checkout_shippingPrice_gross;
+  gross: CheckoutDetails_checkout_shippingPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface getCheckout_checkout_lines_totalPrice_gross {
+export interface CheckoutDetails_checkout_lines_totalPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -231,19 +231,19 @@ export interface getCheckout_checkout_lines_totalPrice_gross {
   localized: string;
 }
 
-export interface getCheckout_checkout_lines_totalPrice {
+export interface CheckoutDetails_checkout_lines_totalPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: getCheckout_checkout_lines_totalPrice_gross;
+  gross: CheckoutDetails_checkout_lines_totalPrice_gross;
   /**
    * Currency code.
    */
   currency: string;
 }
 
-export interface getCheckout_checkout_lines_variant_price {
+export interface CheckoutDetails_checkout_lines_variant_price {
   __typename: "Money";
   /**
    * Amount of money.
@@ -259,7 +259,7 @@ export interface getCheckout_checkout_lines_variant_price {
   localized: string;
 }
 
-export interface getCheckout_checkout_lines_variant_product_thumbnail {
+export interface CheckoutDetails_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -271,7 +271,7 @@ export interface getCheckout_checkout_lines_variant_product_thumbnail {
   alt: string | null;
 }
 
-export interface getCheckout_checkout_lines_variant_product_thumbnail2x {
+export interface CheckoutDetails_checkout_lines_variant_product_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -279,7 +279,7 @@ export interface getCheckout_checkout_lines_variant_product_thumbnail2x {
   url: string;
 }
 
-export interface getCheckout_checkout_lines_variant_product {
+export interface CheckoutDetails_checkout_lines_variant_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -289,14 +289,14 @@ export interface getCheckout_checkout_lines_variant_product {
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: getCheckout_checkout_lines_variant_product_thumbnail | null;
+  thumbnail: CheckoutDetails_checkout_lines_variant_product_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: getCheckout_checkout_lines_variant_product_thumbnail2x | null;
+  thumbnail2x: CheckoutDetails_checkout_lines_variant_product_thumbnail2x | null;
 }
 
-export interface getCheckout_checkout_lines_variant {
+export interface CheckoutDetails_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
    * Quantity of a product available for sale.
@@ -310,11 +310,11 @@ export interface getCheckout_checkout_lines_variant {
   /**
    * Price of the product variant.
    */
-  price: getCheckout_checkout_lines_variant_price | null;
-  product: getCheckout_checkout_lines_variant_product;
+  price: CheckoutDetails_checkout_lines_variant_price | null;
+  product: CheckoutDetails_checkout_lines_variant_product;
 }
 
-export interface getCheckout_checkout_lines {
+export interface CheckoutDetails_checkout_lines {
   __typename: "CheckoutLine";
   /**
    * The ID of the object.
@@ -324,11 +324,11 @@ export interface getCheckout_checkout_lines {
   /**
    * The sum of the checkout line price, taxes and discounts.
    */
-  totalPrice: getCheckout_checkout_lines_totalPrice | null;
-  variant: getCheckout_checkout_lines_variant;
+  totalPrice: CheckoutDetails_checkout_lines_totalPrice | null;
+  variant: CheckoutDetails_checkout_lines_variant;
 }
 
-export interface getCheckout_checkout {
+export interface CheckoutDetails_checkout {
   __typename: "Checkout";
   /**
    * List of available payment gateways.
@@ -339,17 +339,17 @@ export interface getCheckout_checkout {
    * The ID of the object.
    */
   id: string;
-  user: getCheckout_checkout_user | null;
+  user: CheckoutDetails_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
-  totalPrice: getCheckout_checkout_totalPrice | null;
+  totalPrice: CheckoutDetails_checkout_totalPrice | null;
   /**
    * The price of the checkout before shipping, with taxes included.
    */
-  subtotalPrice: getCheckout_checkout_subtotalPrice | null;
-  billingAddress: getCheckout_checkout_billingAddress | null;
-  shippingAddress: getCheckout_checkout_shippingAddress | null;
+  subtotalPrice: CheckoutDetails_checkout_subtotalPrice | null;
+  billingAddress: CheckoutDetails_checkout_billingAddress | null;
+  shippingAddress: CheckoutDetails_checkout_shippingAddress | null;
   /**
    * Email of a customer
    */
@@ -357,25 +357,25 @@ export interface getCheckout_checkout {
   /**
    * Shipping methods that can be used with this order.
    */
-  availableShippingMethods: (getCheckout_checkout_availableShippingMethods | null)[];
-  shippingMethod: getCheckout_checkout_shippingMethod | null;
+  availableShippingMethods: (CheckoutDetails_checkout_availableShippingMethods | null)[];
+  shippingMethod: CheckoutDetails_checkout_shippingMethod | null;
   /**
    * The price of the shipping, with all the taxes included.
    */
-  shippingPrice: getCheckout_checkout_shippingPrice | null;
+  shippingPrice: CheckoutDetails_checkout_shippingPrice | null;
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (getCheckout_checkout_lines | null)[] | null;
+  lines: (CheckoutDetails_checkout_lines | null)[] | null;
 }
 
-export interface getCheckout {
+export interface CheckoutDetails {
   /**
    * Single checkout.
    */
-  checkout: getCheckout_checkout | null;
+  checkout: CheckoutDetails_checkout | null;
 }
 
-export interface getCheckoutVariables {
+export interface CheckoutDetailsVariables {
   token: any;
 }

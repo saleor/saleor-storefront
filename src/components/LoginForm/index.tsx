@@ -17,7 +17,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   const handleOnSubmit = async (evt, { email, password }) => {
     evt.preventDefault();
     const authenticated = await signIn({ email, password });
-    if (authenticated) {
+    if (authenticated && hide) {
       hide();
     }
   };
