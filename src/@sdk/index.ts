@@ -203,38 +203,44 @@ export class SaleorAPI {
         }
       );
 
-      let unsubscribe = null;
+      if (options.skip) {
+        return {
+          refetch: (_variables?: TVariables) => {
+            return new Promise((resolve, _reject) => {
+              resolve({ data: null });
+            });
+          },
+          unsubscribe: null,
+        };
+      }
 
-      if (!options.skip) {
-        const subscription = observable.subscribe(
-          result => {
-            const { data, errors: apolloErrors } = result;
-            const errorHandledData = handleDataErrors(
-              mapFn,
-              data as any,
-              apolloErrors
-            );
-            if (onUpdate) {
-              if (errorHandledData.errors) {
-                if (onError) {
-                  onError(errorHandledData.errors);
-                }
-              } else {
-                onUpdate(errorHandledData.data as TResult);
-                if (onComplete) {
-                  onComplete();
-                }
+      const subscription = observable.subscribe(
+        result => {
+          const { data, errors: apolloErrors } = result;
+          const errorHandledData = handleDataErrors(
+            mapFn,
+            data as any,
+            apolloErrors
+          );
+          if (onUpdate) {
+            if (errorHandledData.errors) {
+              if (onError) {
+                onError(errorHandledData.errors);
+              }
+            } else {
+              onUpdate(errorHandledData.data as TResult);
+              if (onComplete) {
+                onComplete();
               }
             }
-          },
-          error => {
-            if (onError) {
-              onError(error);
-            }
           }
-        );
-        unsubscribe = subscription.unsubscribe.bind(subscription);
-      }
+        },
+        error => {
+          if (onError) {
+            onError(error);
+          }
+        }
+      );
 
       return {
         refetch: (variables?: TVariables) => {
@@ -251,7 +257,7 @@ export class SaleorAPI {
         },
         setOptions: (options: TOptions) =>
           this.firePromise(() => observable.setOptions(options), mapFn),
-        unsubscribe,
+        unsubscribe: subscription.unsubscribe.bind(subscription),
       };
     };
   }
