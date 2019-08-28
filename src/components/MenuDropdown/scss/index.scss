@@ -15,6 +15,7 @@
 
     &--visible {
       display: block;
+      z-index: 2;
     }
 
     ul {
