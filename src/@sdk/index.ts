@@ -19,6 +19,8 @@ import {
 } from "./types";
 import { getErrorsFromData, getMappedData, isDataEmpty } from "./utils";
 
+import { UserDetails } from "./queries/types/UserDetails";
+
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
   ApolloLink.from([
@@ -48,21 +50,38 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorAPI {
+  getCheckoutDetails = this.watchQuery(
+    QUERIES.CheckoutDetails,
+    data => data.checkout
+  );
+
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
     data => data.product
   );
 
-  getUserDetails = this.watchQuery(QUERIES.UserDetails, data => data.me);
-
-  getUserOrderDetails = this.watchQuery(
-    QUERIES.UserOrders,
+  getOrderDetails = this.watchQuery(
+    QUERIES.OrderDetails,
     data => data.orderByToken
+  );
+
+  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
+    data.me ? data.me.checkout : null
   );
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.addressSetDefault
+  );
+
+  setCreateCheckout = this.fireQuery(
+    MUTATIONS.CreateCheckout,
+    data => data!.checkoutCreate
+  );
+
+  setCheckoutShippingAddress = this.fireQuery(
+    MUTATIONS.UpdateCheckoutShippingAddress,
+    data => data!.checkoutShippingAddressUpdate
   );
 
   setDeleteUserAddress = this.fireQuery(
@@ -80,11 +99,36 @@ export class SaleorAPI {
     data => data!.addressUpdate
   );
 
+  setCheckoutBillingAddress = this.fireQuery(
+    MUTATIONS.UpdateCheckoutBillingAddress,
+    data => data!.checkoutBillingAddressUpdate
+  );
+
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
   }
+
+  getUserDetails = (
+    variables: InferOptions<QUERIES["UserDetails"]>["variables"],
+    options: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
+      onUpdate: (data: UserDetails["me"] | null) => void;
+    }
+  ) => {
+    if (this.isLoggedIn()) {
+      return this.watchQuery(QUERIES.UserDetails, data => data.me)(
+        variables,
+        options
+      );
+    }
+    return {
+      refetch: new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+        resolve({ data: null });
+      }),
+      unsubscribe: () => undefined,
+    };
+  };
 
   signIn = (
     variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
@@ -153,6 +197,7 @@ export class SaleorAPI {
     >(
       variables: TVariables,
       options: TOptions & {
+        skip?: boolean;
         onComplete?: () => void;
         onError?: (error: ApolloError) => void;
         onUpdate: (data: ReturnType<typeof mapFn> | null) => void;
@@ -167,6 +212,17 @@ export class SaleorAPI {
           variables,
         }
       );
+
+      if (options.skip) {
+        return {
+          refetch: (_variables?: TVariables) => {
+            return new Promise((resolve, _reject) => {
+              resolve({ data: null });
+            });
+          },
+          unsubscribe: null,
+        };
+      }
 
       const subscription = observable.subscribe(
         result => {

@@ -1,11 +1,19 @@
 import { History } from "history";
-import { MutationFn } from "react-apollo";
+
+import {
+  CreateCheckout_checkoutCreate,
+  CreateCheckoutVariables
+} from "@sdk/mutations/types/CreateCheckout";
+import {
+  UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate,
+  UpdateCheckoutShippingAddressVariables
+} from "@sdk/mutations/types/UpdateCheckoutShippingAddress";
+import { MutationFn, MutationResult } from "@sdk/react/useMutation";
 
 import { AddressInput } from "../../../../types/globalTypes";
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { getShop_shop } from "../../../components/ShopProvider/types/getShop";
 import { User } from "../../../components/User/types/User";
-import { FormError } from "../../../core/types";
 import { CheckoutContextInterface } from "../../context";
 import { Checkout } from "../../types/Checkout";
 
@@ -20,8 +28,28 @@ export interface IShippingPageProps {
   checkout?: Checkout;
   update: (checkoutData: CheckoutContextInterface) => void;
   lines?: CartLineInterface[];
-  createCheckout: MutationFn;
-  updateCheckout: MutationFn;
+  createCheckout: [
+    MutationFn<
+      {
+        data: CreateCheckout_checkoutCreate;
+      },
+      CreateCheckoutVariables
+    >,
+    MutationResult<{
+      data: CreateCheckout_checkoutCreate;
+    }>
+  ];
+  updateShippingAddress: [
+    MutationFn<
+      {
+        data: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate;
+      },
+      UpdateCheckoutShippingAddressVariables
+    >,
+    MutationResult<{
+      data: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate;
+    }>
+  ];
   user: User;
   shop: getShop_shop;
   proceedToNextStepData: {
@@ -33,7 +61,6 @@ export interface IShippingPageProps {
 
 export interface IShippingPageState {
   checkout: Checkout;
-  errors: FormError[];
   loading: boolean;
   shippingUnavailable: boolean;
 }

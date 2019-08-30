@@ -25,7 +25,7 @@ export interface CheckoutContextInterface {
   loading?: boolean;
   shippingAsBilling?: boolean;
   step?: CheckoutStep;
-  update?(checkoutData: CheckoutContextInterface): Promise<void>;
+  update?(checkoutData: CheckoutContextInterface): void;
   clear?(): void;
 }
 

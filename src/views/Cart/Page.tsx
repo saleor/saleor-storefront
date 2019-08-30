@@ -4,6 +4,8 @@ import * as React from "react";
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 
+import { useUserDetails } from "@sdk/react";
+
 import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { Button, CartTable, EmptyCart, Loader } from "../../components";
@@ -15,7 +17,6 @@ import {
 } from "../../components/CartProvider/uitls";
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
-import { UserContext } from "../../components/User/context";
 import { maybe } from "../../core/utils";
 import { checkoutLoginUrl } from "../../routes";
 import { TypedProductVariantsQuery } from "../Product/queries";
@@ -47,7 +48,7 @@ const Page: React.FC<PageProps> = ({
   },
 }) => {
   const alert = useAlert();
-  const user = React.useContext(UserContext);
+  const { data: user } = useUserDetails();
   const hasErrors: boolean | null = maybe(() => !!errors.length);
   const isLoading =
     (!checkout && checkoutLoading) || syncWithCart || syncUserCheckout;

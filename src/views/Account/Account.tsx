@@ -1,7 +1,6 @@
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 
-// import { useAuth, useDefaultUserAddress, useUserDetails } from "@sdk/react";
 import { useAuth, useUserDetails } from "@sdk/react";
 import AddressBook from "../../account/AddressBook/AddressBook";
 
@@ -29,7 +28,7 @@ const returnTab: any = (path: string, userDetails) => {
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { authenticated } = useAuth();
-  const { data, loading } = useUserDetails();
+  const { data: user, loading } = useUserDetails();
 
   const links = [
     accountUrl,
@@ -48,9 +47,9 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <HelloPrompt name={data.firstName} />
+      <HelloPrompt name={user.firstName} />
       <AccountNavigation links={links} active={match.path} />
-      {returnTab(match.path, data)}
+      {returnTab(match.path, user)}
     </div>
   );
 };

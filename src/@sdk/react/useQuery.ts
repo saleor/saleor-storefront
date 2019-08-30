@@ -13,7 +13,7 @@ import {
 type OmittedOptions<T extends keyof SaleorAPI> = Omit<
   Options<T>,
   "onUpdate" | "onComplete" | "onError"
->;
+> & { skip?: boolean };
 type AdditionalAPI = ReturnType<SaleorAPI["watchQuery"]>;
 type Result<TData> = {
   data: TData | null;
@@ -81,7 +81,9 @@ const useQuery = <
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
     return () => {
-      unsubscribe();
+      if (unsubscribe) {
+        unsubscribe();
+      }
     };
   }, []);
 
