@@ -44,8 +44,6 @@ export const AddressForm: React.FC<IProps> = ({
       }}
     >
       {({
-        setFieldValue,
-        setFieldTouched,
         handleChange,
         handleSubmit,
         handleBlur,

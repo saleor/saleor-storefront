@@ -5,12 +5,12 @@ import React from "react";
 import { Select } from "..";
 
 const DEFAULT_PROPS = {
-  value: {
-    code: "PL",
-    country: "Poland",
-  },
-  name: "name",
+  defaultValue: { code: "PL", country: "Poland" },
   label: "label",
+  name: "name",
+  onChange: (arg0 = "", arg1 = "") => {
+    return [arg0, arg1];
+  },
   options: [
     {
       code: "PL",
@@ -21,16 +21,15 @@ const DEFAULT_PROPS = {
       country: "United States of America",
     },
   ],
-  defaultValue: { code: "PL", country: "Poland" },
-  onChange: (arg0 = "", arg1 = "") => {
-    return [arg0, arg1];
+  value: {
+    code: "PL",
+    country: "Poland",
   },
 };
 
 describe("<Select />", () => {
-  // Example test
   it("exists", () => {
-    const wrapper = mount(<Select {...DEFAULT_PROPS} />);
+    const wrapper = shallow(<Select {...DEFAULT_PROPS} />);
 
     expect(wrapper.exists()).toEqual(true);
   });

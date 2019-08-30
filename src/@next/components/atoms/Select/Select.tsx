@@ -83,12 +83,12 @@ const customStyles = {
 
 export const Select: React.FC<{
   value: any;
-  name: string;
-  label: string;
+  name?: string;
+  label?: string;
   options?: any[];
   autoComplete?: string;
-  defaultValue: { arg0: any; arg1: any };
-  onChange?: (arg0: string, arg1: string) => void;
+  defaultValue?: any;
+  onChange?: (name?: string, value?: any) => void;
 }> = ({ value, onChange, name, options, label, defaultValue }) => {
   const handleChange = (value: any) => {
     if (onChange) {
