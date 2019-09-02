@@ -42,7 +42,7 @@ const useQuery = <
   });
 
   const setData = React.useCallback((data: TData) => {
-    if (!isEqual(data, prevDataRef.current)) {
+    if (!data || !isEqual(data, prevDataRef.current)) {
       prevDataRef.current = data;
       setResult({ data, loading: false, error: null });
     }

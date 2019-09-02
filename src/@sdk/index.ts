@@ -208,6 +208,9 @@ export class SaleorAPI {
       );
 
       if (options.skip) {
+        if (onUpdate) {
+          onUpdate(null);
+        }
         return {
           refetch: (_variables?: TVariables) => {
             return new Promise((resolve, _reject) => {
