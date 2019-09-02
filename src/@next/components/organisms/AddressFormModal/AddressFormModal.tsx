@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useCreateUserAddress, useUpdateUserAddress } from "@sdk/react";
 
@@ -16,7 +16,7 @@ export const AddressFormModal: React.FC<IProps> = ({
   formId,
   ...props
 }: IProps) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = React.useState(true);
   let errors: any[] | undefined = [];
 
   const [

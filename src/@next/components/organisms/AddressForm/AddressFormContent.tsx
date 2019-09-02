@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
+import { Select } from "@components/atoms";
 import { TextField } from "@components/molecules";
-import { Select } from "../../atoms/Select/";
 
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
