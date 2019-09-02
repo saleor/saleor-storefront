@@ -16,4 +16,3 @@ export const useUpdateCheckoutBillingAddress = mutationFactory(
 export const useUpdateCheckoutShippingAddress = mutationFactory(
   "setCheckoutShippingAddress"
 );
->>>>>>> master
