@@ -28,7 +28,6 @@ const DEFAULT_PROPS = {
 };
 
 describe("<AddressFormModal />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<AddressFormModal {...DEFAULT_PROPS} />);
     expect(wrapper.exists()).toEqual(true);
