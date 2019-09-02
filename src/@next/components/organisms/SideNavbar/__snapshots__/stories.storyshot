@@ -148,7 +148,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c9:hover,
 .c9:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.1);
+  background-color: rgba(19,190,187,0.25);
 }
 
 .c9:hover path,
@@ -186,7 +186,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c11:hover,
 .c11:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.1);
+  background-color: rgba(19,190,187,0.25);
 }
 
 .c11:hover path,
@@ -224,7 +224,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c8:hover,
 .c8:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.1);
+  background-color: rgba(19,190,187,0.25);
 }
 
 .c8:hover path,

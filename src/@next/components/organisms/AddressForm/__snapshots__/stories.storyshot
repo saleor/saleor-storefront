@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   margin: 20px;
 }
 
-.c14 {
+.c13 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -35,17 +35,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   outline-style: solid;
   border-color: #21125e;
   outline-color: #21125e;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
 .c7 {
@@ -79,14 +68,25 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c11 {
-  position: relative;
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
-.c13 {
-  margin-right: 1rem;
-  -webkit-transition: -webkit-transform 300ms ease;
-  -webkit-transition: transform 300ms ease;
-  transition: transform 300ms ease;
+.c12 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
 }
 
 .c5 {
@@ -175,7 +175,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -203,7 +202,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -235,7 +233,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -263,7 +260,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -295,7 +291,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -327,7 +322,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -359,7 +353,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -387,7 +380,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -402,36 +394,86 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
           className="c4"
         >
           <div
-            className="c11"
-            onClick={[Function]}
+            className=""
           >
             <div
-              className="c6"
-              disabled={false}
+              className="css-1pcexqc-container"
+              onKeyDown={[Function]}
             >
               <div
-                className="c7"
-              >
-                <input
-                  className="c8"
-                  disabled={false}
-                  name="country"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value=""
-                />
-                <label
-                  className="c9"
-                >
-                  Country
-                </label>
-              </div>
-              <span
-                className="c12"
+                className="css-cyjfui-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
               >
                 <div
-                  className="c13"
+                  className="css-tntsk8"
+                >
+                  <div
+                    className="css-151xaom-placeholder"
+                  >
+                    
+                  </div>
+                  <div
+                    className="css-1g6gooi"
+                  >
+                    <div
+                      className=""
+                      style={
+                        Object {
+                          "display": "inline-block",
+                        }
+                      }
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        disabled={false}
+                        id="react-select-3-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "boxSizing": "content-box",
+                            "color": "inherit",
+                            "fontSize": "inherit",
+                            "label": "input",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex="0"
+                        type="text"
+                        value=""
+                      />
+                      <div
+                        style={
+                          Object {
+                            "height": 0,
+                            "left": 0,
+                            "overflow": "scroll",
+                            "position": "absolute",
+                            "top": 0,
+                            "visibility": "hidden",
+                            "whiteSpace": "pre",
+                          }
+                        }
+                      >
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="c11"
+                  rotate={false}
                 >
                   <svg
                     height={10}
@@ -444,7 +486,12 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                     />
                   </svg>
                 </div>
-              </span>
+              </div>
+              <label
+                className="c12"
+              >
+                Country
+              </label>
             </div>
           </div>
           <div
@@ -465,7 +512,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -480,7 +526,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
     </form>
   </div>
   <div
-    className="c14"
+    className="c13"
   />
 </div>
 `;
@@ -491,7 +537,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 20px;
 }
 
-.c17 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -551,17 +597,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   outline-color: #c22d74;
 }
 
-.c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c7 {
   position: relative;
   width: 100%;
@@ -593,14 +628,25 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c14 {
-  position: relative;
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
-.c16 {
-  margin-right: 1rem;
-  -webkit-transition: -webkit-transform 300ms ease;
-  -webkit-transition: transform 300ms ease;
-  transition: transform 300ms ease;
+.c15 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
 }
 
 .c5 {
@@ -689,7 +735,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -726,7 +771,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -767,7 +811,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -795,7 +838,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -827,7 +869,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -859,7 +900,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -891,7 +931,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -919,7 +958,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -934,36 +972,86 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
           className="c4"
         >
           <div
-            className="c14"
-            onClick={[Function]}
+            className=""
           >
             <div
-              className="c12"
-              disabled={false}
+              className="css-1pcexqc-container"
+              onKeyDown={[Function]}
             >
               <div
-                className="c7"
-              >
-                <input
-                  className="c8"
-                  disabled={false}
-                  name="country"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value=""
-                />
-                <label
-                  className="c9"
-                >
-                  Country
-                </label>
-              </div>
-              <span
-                className="c15"
+                className="css-cyjfui-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
               >
                 <div
-                  className="c16"
+                  className="css-tntsk8"
+                >
+                  <div
+                    className="css-151xaom-placeholder"
+                  >
+                    
+                  </div>
+                  <div
+                    className="css-1g6gooi"
+                  >
+                    <div
+                      className=""
+                      style={
+                        Object {
+                          "display": "inline-block",
+                        }
+                      }
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        disabled={false}
+                        id="react-select-4-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "boxSizing": "content-box",
+                            "color": "inherit",
+                            "fontSize": "inherit",
+                            "label": "input",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex="0"
+                        type="text"
+                        value=""
+                      />
+                      <div
+                        style={
+                          Object {
+                            "height": 0,
+                            "left": 0,
+                            "overflow": "scroll",
+                            "position": "absolute",
+                            "top": 0,
+                            "visibility": "hidden",
+                            "whiteSpace": "pre",
+                          }
+                        }
+                      >
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="c14"
+                  rotate={false}
                 >
                   <svg
                     height={10}
@@ -976,7 +1064,12 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                     />
                   </svg>
                 </div>
-              </span>
+              </div>
+              <label
+                className="c15"
+              >
+                Country
+              </label>
             </div>
           </div>
           <div
@@ -997,7 +1090,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
-                  value=""
                 />
                 <label
                   className="c9"
@@ -1012,7 +1104,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
     </form>
   </div>
   <div
-    className="c17"
+    className="c16"
   />
 </div>
 `;
@@ -1023,7 +1115,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   margin: 20px;
 }
 
-.c14 {
+.c13 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1052,17 +1144,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   outline-style: solid;
   border-color: #21125e;
   outline-color: #21125e;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
 .c7 {
@@ -1096,14 +1177,25 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c11 {
-  position: relative;
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
 }
 
-.c13 {
-  margin-right: 1rem;
-  -webkit-transition: -webkit-transform 300ms ease;
-  -webkit-transition: transform 300ms ease;
-  transition: transform 300ms ease;
+.c12 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #FFF;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
 }
 
 .c5 {
@@ -1419,36 +1511,86 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
           className="c4"
         >
           <div
-            className="c11"
-            onClick={[Function]}
+            className=""
           >
             <div
-              className="c6"
-              disabled={false}
+              className="css-1pcexqc-container"
+              onKeyDown={[Function]}
             >
               <div
-                className="c7"
-              >
-                <input
-                  className="c8"
-                  disabled={false}
-                  name="country"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="United States of America"
-                />
-                <label
-                  className="c9"
-                >
-                  Country
-                </label>
-              </div>
-              <span
-                className="c12"
+                className="css-cyjfui-control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
               >
                 <div
-                  className="c13"
+                  className="css-tntsk8"
+                >
+                  <div
+                    className="css-dvua67-singleValue"
+                  >
+                    United States of America
+                  </div>
+                  <div
+                    className="css-1g6gooi"
+                  >
+                    <div
+                      className=""
+                      style={
+                        Object {
+                          "display": "inline-block",
+                        }
+                      }
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        disabled={false}
+                        id="react-select-5-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "boxSizing": "content-box",
+                            "color": "inherit",
+                            "fontSize": "inherit",
+                            "label": "input",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex="0"
+                        type="text"
+                        value=""
+                      />
+                      <div
+                        style={
+                          Object {
+                            "height": 0,
+                            "left": 0,
+                            "overflow": "scroll",
+                            "position": "absolute",
+                            "top": 0,
+                            "visibility": "hidden",
+                            "whiteSpace": "pre",
+                          }
+                        }
+                      >
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="c11"
+                  rotate={false}
                 >
                   <svg
                     height={10}
@@ -1461,7 +1603,12 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                     />
                   </svg>
                 </div>
-              </span>
+              </div>
+              <label
+                className="c12"
+              >
+                Country
+              </label>
             </div>
           </div>
           <div
@@ -1497,7 +1644,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
     </form>
   </div>
   <div
-    className="c14"
+    className="c13"
   />
 </div>
 `;

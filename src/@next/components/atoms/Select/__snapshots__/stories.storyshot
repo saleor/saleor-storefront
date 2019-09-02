@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/atoms/Select default 1`] = `
+exports[`Storyshots @components/atoms/Select sample select 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
 }
 
-.c9 {
+.c4 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,57 +17,18 @@ exports[`Storyshots @components/atoms/Select default 1`] = `
   box-sizing: border-box;
 }
 
+.c2 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
 .c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #323232;
-  color: #323232;
-  outline: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c3:hover {
-  color: #21125e;
-  outline-width: 1px;
-  outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
-}
-
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c4 {
-  position: relative;
-  width: 100%;
-}
-
-.c5 {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  outline: none;
-  background-color: transparent;
-}
-
-.c6 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
-  background-color: transparent;
+  background-color: #FFF;
   font-size: 0.75rem;
   top: 0;
   -webkit-transform: translateY(-50%);
@@ -78,20 +39,9 @@ exports[`Storyshots @components/atoms/Select default 1`] = `
   pointer-events: none;
 }
 
-.c2 {
-  position: relative;
-}
-
-.c8 {
-  margin-right: 1rem;
-  -webkit-transition: -webkit-transform 300ms ease;
-  -webkit-transition: transform 300ms ease;
-  transition: transform 300ms ease;
-}
-
 .c1 {
-  width: 300px;
-  margin: 1rem;
+  padding: 2rem;
+  width: 350px;
 }
 
 <div
@@ -101,36 +51,84 @@ exports[`Storyshots @components/atoms/Select default 1`] = `
     className="c1"
   >
     <div
-      className="c2"
-      onClick={[Function]}
+      className=""
     >
       <div
-        className="c3"
-        disabled={false}
+        className="css-1pcexqc-container"
+        onKeyDown={[Function]}
       >
         <div
-          className="c4"
-        >
-          <input
-            className="c5"
-            disabled={false}
-            name="country"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            value="Canada"
-          />
-          <label
-            className="c6"
-          >
-            Country
-          </label>
-        </div>
-        <span
-          className="c7"
+          className="css-cyjfui-control"
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
         >
           <div
-            className="c8"
+            className="css-tntsk8"
+          >
+            <div
+              className="css-dvua67-singleValue"
+            />
+            <div
+              className="css-1g6gooi"
+            >
+              <div
+                className=""
+                style={
+                  Object {
+                    "display": "inline-block",
+                  }
+                }
+              >
+                <input
+                  aria-autocomplete="list"
+                  autoCapitalize="none"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  disabled={false}
+                  id="react-select-2-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  spellCheck="false"
+                  style={
+                    Object {
+                      "background": 0,
+                      "border": 0,
+                      "boxSizing": "content-box",
+                      "color": "inherit",
+                      "fontSize": "inherit",
+                      "label": "input",
+                      "opacity": 1,
+                      "outline": 0,
+                      "padding": 0,
+                      "width": "1px",
+                    }
+                  }
+                  tabIndex="0"
+                  type="text"
+                  value=""
+                />
+                <div
+                  style={
+                    Object {
+                      "height": 0,
+                      "left": 0,
+                      "overflow": "scroll",
+                      "position": "absolute",
+                      "top": 0,
+                      "visibility": "hidden",
+                      "whiteSpace": "pre",
+                    }
+                  }
+                >
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c2"
+            rotate={false}
           >
             <svg
               height={10}
@@ -143,12 +141,17 @@ exports[`Storyshots @components/atoms/Select default 1`] = `
               />
             </svg>
           </div>
-        </span>
+        </div>
+        <label
+          className="c3"
+        >
+          Country
+        </label>
       </div>
     </div>
   </div>
   <div
-    className="c9"
+    className="c4"
   />
 </div>
 `;
