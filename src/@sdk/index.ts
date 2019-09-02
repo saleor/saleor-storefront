@@ -112,10 +112,14 @@ export class SaleorAPI {
         options
       );
     }
+    if (options.onUpdate) {
+      options.onUpdate(null);
+    }
     return {
-      refetch: new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
-        resolve({ data: null });
-      }),
+      refetch: () =>
+        new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+          resolve({ data: null });
+        }),
       unsubscribe: () => undefined,
     };
   };
