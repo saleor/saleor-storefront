@@ -18,11 +18,12 @@ export const categoryProductsQuery = gql`
     products(
       after: $after
       attributes: $attributes
-      categories: [$id]
       first: $pageSize
       sortBy: $sortBy
-      priceLte: $priceLte
-      priceGte: $priceGte
+      filter: {
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
     ) {
       totalCount
       edges {
