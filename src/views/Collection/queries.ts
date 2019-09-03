@@ -26,13 +26,14 @@ export const collectionProductsQuery = gql`
       }
     }
     products(
-      collections: [$id]
       after: $after
       attributes: $attributes
       first: $pageSize
       sortBy: $sortBy
-      priceLte: $priceLte
-      priceGte: $priceGte
+      filter: {
+        collections: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
     ) {
       totalCount
       edges {
