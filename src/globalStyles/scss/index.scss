@@ -133,6 +133,14 @@ body {
   }
 }
 
+body.checkout-btn-variant_B .product-description__action {
+  background-color: red;
+
+  &:hover {
+    background-color: darkred;
+  }
+}
+
 .form-error {
   color: $rose;
 }

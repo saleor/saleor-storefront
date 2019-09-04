@@ -36,6 +36,9 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   ];
 
   componentDidMount() {
+    // SDK-experiments
+    sdk.trackSite("product_details");
+    // ---
     if (this.showCarousel) {
       window.addEventListener("scroll", this.handleScroll, {
         passive: true,

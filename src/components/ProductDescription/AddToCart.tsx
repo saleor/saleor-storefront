@@ -37,6 +37,7 @@ const AddToCart: React.FC<{
                 } else {
                   onSubmit();
                 }
+                sdk.emitEvent("checkout-btn", "add_to_cart");
               }}
               disabled={disabled || mutationLoading || checkoutLoading}
             >

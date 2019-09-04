@@ -43,6 +43,21 @@ import {
 
 import { languages } from "./languages";
 
+// init experiments sdk
+if (window.ExpSDK) {
+  const sdk = new window.ExpSDK({
+    experiments: {
+      "checkout-btn": {
+        runId: "r4qnkZJ",
+        variants: ["variant_B", "baseline"],
+      },
+    },
+    storeId: "6ArLBo1",
+  });
+
+  window.sdk = sdk;
+}
+
 const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
   UserProvider
 );

@@ -14,6 +14,7 @@ const View: React.FC<RouteComponentProps> = ({
   },
 }) => {
   React.useEffect(() => {
+    sdk.trackSite("user_checkout_finished");
     /**
      * Clear router state on leaving the page to ensure view becames unavailable
      * after leaving.
@@ -38,8 +39,11 @@ const View: React.FC<RouteComponentProps> = ({
 
   return (
     <div className="order-confirmation">
-      <h3>
-        Thank you for <br /> your order!
+      <h3 className="checkout-btn baseline">
+        Thank you for <br /> your order! [BASELINE]
+      </h3>
+      <h3 className="checkout-btn variant_B">
+        Thank you for <br /> your order! [VARIANT B]
       </h3>
       <p className="order-confirmation__info">
         We’ve emailed you an order confirmation.
