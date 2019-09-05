@@ -34,6 +34,7 @@ const useQuery = <
   const saleor = useSaleorClient();
   const didMountRef = React.useRef(false);
   const prevDataRef = React.useRef<TData | null>(null);
+  const prevUnsubRef = React.useRef(null);
 
   const [result, setResult] = React.useState<Result<TData>>({
     data: null,
@@ -53,12 +54,12 @@ const useQuery = <
       (saleor[query] as AdditionalAPI)(variables, {
         ...(options as any),
         onError: (error: ApolloErrorWithUserInput) =>
-          setResult(result => ({ ...result, error })),
+          setResult(result => ({ ...result, loading: false, error })),
         onUpdate: (data: TData) => {
           setData(data);
         },
       }),
-    [query]
+    [query, options.skip]
   );
 
   const refetch = React.useCallback(
@@ -81,11 +82,13 @@ const useQuery = <
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
     return () => {
-      if (unsubscribe) {
-        unsubscribe();
+      if (prevUnsubRef.current) {
+        prevUnsubRef.current();
       }
+
+      prevUnsubRef.current = unsubscribe;
     };
-  }, []);
+  }, [options.skip]);
 
   return {
     ...result,
