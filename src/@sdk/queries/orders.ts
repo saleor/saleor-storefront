@@ -1,0 +1,44 @@
+import gql from "graphql-tag";
+
+export const ordersByUser = gql`
+  query OrdersByUser($perPage: Int!, $after: String) {
+    me {
+      orders(first: $perPage, after: $after) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        edges {
+          node {
+            id
+            number
+            statusDisplay
+            created
+            total {
+              gross {
+                localized
+              }
+            }
+            lines {
+              id
+              variant {
+                id
+                product {
+                  name
+                  id
+                }
+              }
+              thumbnail {
+                alt
+                url
+              }
+              thumbnail2x: thumbnail(size: 510) {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
