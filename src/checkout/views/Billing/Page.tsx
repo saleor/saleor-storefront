@@ -63,9 +63,11 @@ const View: React.FC<IBillingPageProps> = ({
     );
   };
 
-  const onSubmitHandler = async (formData: FormAddressType) => {
-    await onSaveBillingAddressHandler(formData);
-    return errors;
+  const onSubmitHandler = (formData: FormAddressType) => {
+    return new Promise<boolean>(async resolve => {
+      const result = await onSaveBillingAddressHandler(formData);
+      resolve(!result);
+    });
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {

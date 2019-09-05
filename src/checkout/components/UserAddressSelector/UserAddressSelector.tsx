@@ -79,7 +79,7 @@ const UserAddressSelector: React.FC<UserAddressSelectorProps> = ({
 
   const handleAddressAdd = async (address: FormAddressType) => {
     const errors = await onSubmit(address);
-    if (!errors.length) {
+    if (!errors) {
       updateAddresses(address);
     }
   };
