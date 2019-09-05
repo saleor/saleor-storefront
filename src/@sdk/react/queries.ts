@@ -11,3 +11,4 @@ export const useCheckoutDetails = queryWithVariablesFactory(
 );
 
 export const useOrderDetails = queryWithVariablesFactory("getOrderDetails");
+export const userOrdersByUser = queryWithVariablesFactory("getOrdersByUser");

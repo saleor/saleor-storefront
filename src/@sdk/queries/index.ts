@@ -7,7 +7,9 @@ import gql from "graphql-tag";
 
 import { RequireOnlyOne } from "../tsHelpers";
 import * as Checkout from "./checkout";
+import * as Orders from "./orders";
 import * as Product from "./products";
+
 import {
   CheckoutDetails,
   CheckoutDetailsVariables
@@ -17,6 +19,8 @@ import {
   ProductDetails,
   ProductDetailsVariables
 } from "./types/ProductDetails";
+
+import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
 import * as User from "./user";
@@ -44,6 +48,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${User.orderDetailsByTokenQuery}
+      `,
+      ...options,
+    }),
+  OrdersByUser: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<OrdersByUserVariables>
+  ): ObservableQuery<OrdersByUser, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Orders.ordersByUser}
       `,
       ...options,
     }),
