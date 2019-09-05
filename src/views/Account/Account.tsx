@@ -12,6 +12,7 @@ import {
   paymentOptionsUrl
 } from "../../routes";
 
+import { OrdersHistory } from "../../@next/components/views";
 import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
 import { Loader } from "../../components";
@@ -21,6 +22,11 @@ const returnTab: any = (path: string, userDetails) => {
   switch (path) {
     case "/address-book/": {
       tabContent = <AddressBook user={userDetails} />;
+      break;
+    }
+    case "/order-history/": {
+      tabContent = <OrdersHistory />;
+      break;
     }
   }
   return tabContent;
