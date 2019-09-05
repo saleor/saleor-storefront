@@ -60,9 +60,8 @@ export class SaleorAPI {
     data => data.product
   );
 
-  getOrdersByUser = this.watchQuery(
-    QUERIES.OrdersByUser,
-    data => data!.me!.orders
+  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>
+    data.me ? data.me.orders : null
   );
 
   getOrderDetails = this.watchQuery(

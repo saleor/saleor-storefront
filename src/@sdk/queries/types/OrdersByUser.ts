@@ -99,6 +99,7 @@ export interface OrdersByUser_me_orders_edges_node {
    * The ID of the object.
    */
   id: string;
+  token: string;
   /**
    * User-friendly number of an order.
    */
@@ -134,6 +135,10 @@ export interface OrdersByUser_me_orders {
 
 export interface OrdersByUser_me {
   __typename: "User";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   /**
    * List of user's orders.
    */

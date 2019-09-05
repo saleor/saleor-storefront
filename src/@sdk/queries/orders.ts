@@ -12,6 +12,7 @@ export const ordersByUser = gql`
         edges {
           node {
             id
+            token
             number
             statusDisplay
             created

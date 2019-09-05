@@ -18,6 +18,7 @@ export const turquoise = "#13bebb";
 export const turquoiseDark = "#06a09e";
 export const turquoiseLight = "rgba(19, 190, 187, 0.05)";
 export const white = "#fff";
+export const tabelGray = "#eaeaea";
 
 // theme colors
 export const theme = {
@@ -38,6 +39,7 @@ export const theme = {
   secondary: blue,
   secondaryDark: blueDark,
   success: green,
+  tableDivider: tabelGray,
   white,
 };
 

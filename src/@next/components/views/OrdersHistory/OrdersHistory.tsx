@@ -1,18 +1,19 @@
+import { useOrdersByUser } from "@sdk/react/";
 import React from "react";
 
-import { useOrdersByUser } from "@sdk/react";
+import { Loader } from "@components/atoms";
+import { OrderTabel } from "@components/molecules";
+
 import { IProps } from "./types";
 
-export const OrdersHistory: React.FC<IProps> = ({
+export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
+  const { data, loading } = useOrdersByUser({
+    perPage: 20,
+  });
 
-}: // destructure props here if needed
-IProps) => {
-  const { data, loading } = useOrdersByUser({ perPage: 20 });
-  return (
-    <>
-      {data ? JSON.stringify(data) : ""}
-      {loading ? "true" : "false"}
-      ppppp
-    </>
+  return loading || !data ? (
+    <Loader />
+  ) : (
+    <OrderTabel orders={data.edges} history={history} />
   );
 };

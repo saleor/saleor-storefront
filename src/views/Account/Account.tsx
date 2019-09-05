@@ -17,7 +17,7 @@ import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
 import { Loader } from "../../components";
 
-const returnTab: any = (path: string, userDetails) => {
+const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
   switch (path) {
     case "/address-book/": {
@@ -25,7 +25,7 @@ const returnTab: any = (path: string, userDetails) => {
       break;
     }
     case "/order-history/": {
-      tabContent = <OrdersHistory />;
+      tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
   }
@@ -55,7 +55,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
     <div className="container">
       <HelloPrompt name={user.firstName} />
       <AccountNavigation links={links} active={match.path} />
-      {returnTab(match.path, user)}
+      {returnTab(match.path, user, history)}
     </div>
   );
 };
