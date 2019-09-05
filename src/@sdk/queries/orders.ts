@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const ordersByUser = gql`
   query OrdersByUser($perPage: Int!, $after: String) {
     me {
+      id
       orders(first: $perPage, after: $after) {
         pageInfo {
           hasNextPage

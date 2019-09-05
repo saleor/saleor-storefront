@@ -53,7 +53,7 @@ const useQuery = <
       (saleor[query] as AdditionalAPI)(variables, {
         ...(options as any),
         onError: (error: ApolloErrorWithUserInput) =>
-          setResult(result => ({ ...result, error })),
+          setResult(result => ({ ...result, loading: false, error })),
         onUpdate: (data: TData) => {
           setData(data);
         },
