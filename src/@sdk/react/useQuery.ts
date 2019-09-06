@@ -34,7 +34,7 @@ const useQuery = <
   const saleor = useSaleorClient();
   const didMountRef = React.useRef(false);
   const prevDataRef = React.useRef<TData | null>(null);
-  const prevUnsubRef = React.useRef(null);
+  const prevUnsubRef = React.useRef<any>(null);
 
   const [result, setResult] = React.useState<Result<TData>>({
     data: null,
@@ -81,12 +81,15 @@ const useQuery = <
 
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
-    return () => {
-      if (prevUnsubRef.current) {
-        prevUnsubRef.current();
-      }
+    if (prevUnsubRef.current) {
+      prevUnsubRef.current();
+    }
+    prevUnsubRef.current = unsubscribe;
 
-      prevUnsubRef.current = unsubscribe;
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
     };
   }, [options.skip]);
 
