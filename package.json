@@ -7,6 +7,7 @@
   "main": "dist/index.js",
   "browserslist": "last 2 versions",
   "dependencies": {
+    "@babel/runtime": "^7.5.5",
     "@lingui/react": "^2.8.3",
     "apollo": "^2.6.2",
     "apollo-cache-inmemory": "^1.5.1",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",

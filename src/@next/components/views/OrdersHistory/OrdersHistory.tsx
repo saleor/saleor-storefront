@@ -7,9 +7,14 @@ import { OrderTabel } from "@components/molecules";
 import { IProps } from "./types";
 
 export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
-  const { data, loading } = useOrdersByUser({
-    perPage: 20,
-  });
+  const { data, loading } = useOrdersByUser(
+    {
+      perPage: 20,
+    },
+    {
+      fetchPolicy: "network-only",
+    }
+  );
 
   return loading || !data ? (
     <Loader />

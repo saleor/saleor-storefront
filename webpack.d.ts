@@ -6,3 +6,14 @@ declare module "*.svg" {
 }
 
 declare module "draftjs-to-html";
+declare module "react-media";
+declare module "js-base64";
+declare module "query-string";
+
+declare interface Window {
+  PasswordCredential: any;
+}
+
+declare interface Navigator {
+  credentials: any;
+}
