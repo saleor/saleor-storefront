@@ -66,7 +66,7 @@ const View: React.FC<IBillingPageProps> = ({
   const onSubmitHandler = (formData: FormAddressType) => {
     return new Promise<boolean>(async resolve => {
       const result = await onSaveBillingAddressHandler(formData);
-      resolve(!result);
+      resolve(!!result);
     });
   };
 

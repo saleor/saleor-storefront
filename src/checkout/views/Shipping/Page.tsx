@@ -71,7 +71,7 @@ const Page: React.FC<IShippingPageProps> = ({
   const loading = createCheckoutLoading || updateAddressLoading;
   const email = maybe(() => user.email, null);
 
-  const onSaveShippingAddressHandler = (formData: FormAddressType) => {
+  const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
     if (!checkoutId) {
       const data = computeCheckoutData(formData, lines);
       return create({
@@ -118,7 +118,7 @@ const Page: React.FC<IShippingPageProps> = ({
   const onSubmitHandler = (address: FormAddressType) => {
     return new Promise<boolean>(async resolve => {
       const result = await onSaveShippingAddressHandler(address);
-      resolve(!result);
+      resolve(!!result);
     });
   };
 
