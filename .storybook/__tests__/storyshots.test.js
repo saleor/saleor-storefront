@@ -8,6 +8,12 @@ jest.mock("react-dom", () => ({
   findDOMNode: () => {}
 }));
 
+global.matchMedia = media => ({
+  addListener: jest.fn(),
+  matches: true,
+  removeListener: jest.fn()
+});
+
 addSerializer(styleSheetSerializer);
 
 initStoryshots({
