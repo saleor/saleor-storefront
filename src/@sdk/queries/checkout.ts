@@ -15,6 +15,7 @@ export const userCheckoutDetails = gql`
   ${checkoutFragment}
   query UserCheckoutDetails {
     me {
+      id
       checkout {
         ...Checkout
       }
