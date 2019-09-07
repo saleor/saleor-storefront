@@ -81,7 +81,7 @@ const useQuery = <
 
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
-    if (prevUnsubRef.current) {
+    if (prevUnsubRef.current && options.skip) {
       prevUnsubRef.current();
     }
     prevUnsubRef.current = unsubscribe;
