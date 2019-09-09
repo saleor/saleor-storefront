@@ -3,6 +3,10 @@ import baseStyled, { ThemedStyledInterface } from "styled-components";
 import * as C from "./constants";
 
 export const defaultTheme = {
+  breakpoints: {
+    mediumScreen: "992px",
+    smallScreen: "540px",
+  },
   button: {
     animation: {
       transition: "0.3s",

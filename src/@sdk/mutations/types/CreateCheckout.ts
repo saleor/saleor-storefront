@@ -393,9 +393,6 @@ export interface CreateCheckout_checkoutCreate {
 }
 
 export interface CreateCheckout {
-  /**
-   * Create a new checkout.
-   */
   checkoutCreate: CreateCheckout_checkoutCreate | null;
 }
 
