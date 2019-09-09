@@ -1,1 +1,4 @@
-export interface IProps {}
+export interface IProps {
+  links: string[];
+  active: string;
+}

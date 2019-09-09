@@ -1,0 +1,16 @@
+.account {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  margin-bottom: 2rem;
+
+  &__menu {
+    width: 360px;
+    margin-right: 2rem;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}
