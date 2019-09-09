@@ -20,11 +20,11 @@ import { Loader } from "../../components";
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
   switch (path) {
-    case "/address-book/": {
+    case addressBookUrl: {
       tabContent = <AddressBook user={userDetails} />;
       break;
     }
-    case "/order-history/": {
+    case orderHistoryUrl: {
       tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
