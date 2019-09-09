@@ -12,6 +12,7 @@ import {
   paymentOptionsUrl
 } from "../../routes";
 
+import { AccountMenu } from "@components/molecules";
 import { OrdersHistory } from "@components/views";
 import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
@@ -54,6 +55,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   return (
     <div className="container">
       <HelloPrompt name={user.firstName} />
+      <AccountMenu links={links} active={match.path} />
       <AccountNavigation links={links} active={match.path} />
       {returnTab(match.path, user, history)}
     </div>
