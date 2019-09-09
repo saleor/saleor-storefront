@@ -12,7 +12,7 @@ import {
   paymentOptionsUrl
 } from "../../routes";
 
-import { OrdersHistory } from "../../@next/components/views";
+import { OrdersHistory } from "@components/views";
 import AccountNavigation from "../../account/AccountNavigation";
 import HelloPrompt from "../../account/HelloPrompts";
 import { Loader } from "../../components";
