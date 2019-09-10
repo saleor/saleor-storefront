@@ -38,8 +38,8 @@ export const deleteUserAddress = gql`
 
 export const createUserAddress = gql`
   ${userFragment}
-  mutation CreateUserAddress($input: AddressInput!, $userId: ID!) {
-    addressCreate(input: $input, userId: $userId) {
+  mutation CreateUserAddress($input: AddressInput!) {
+    accountAddressCreate(input: $input) {
       errors {
         field
         message

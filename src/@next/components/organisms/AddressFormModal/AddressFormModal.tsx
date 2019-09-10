@@ -71,7 +71,6 @@ export const AddressFormModal: React.FC<IProps> = ({
                 ...data,
                 country: data!.country!.code,
               },
-              userId,
             });
           } else {
             setUpdateUserAddress({

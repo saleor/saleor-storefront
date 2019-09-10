@@ -95,7 +95,7 @@ export class SaleorAPI {
 
   setCreateUserAddress = this.fireQuery(
     MUTATIONS.CreateUserAddress,
-    data => data!.addressCreate
+    data => data!.accountAddressCreate
   );
 
   setUpdateuserAddress = this.fireQuery(

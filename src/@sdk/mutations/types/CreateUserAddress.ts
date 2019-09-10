@@ -8,7 +8,7 @@ import { AddressInput } from "./../../types/globalTypes";
 // GraphQL mutation operation: CreateUserAddress
 // ====================================================
 
-export interface CreateUserAddress_addressCreate_errors {
+export interface CreateUserAddress_accountAddressCreate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -22,7 +22,7 @@ export interface CreateUserAddress_addressCreate_errors {
   message: string | null;
 }
 
-export interface CreateUserAddress_addressCreate_user_defaultShippingAddress_country {
+export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -34,7 +34,7 @@ export interface CreateUserAddress_addressCreate_user_defaultShippingAddress_cou
   country: string;
 }
 
-export interface CreateUserAddress_addressCreate_user_defaultShippingAddress {
+export interface CreateUserAddress_accountAddressCreate_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -50,7 +50,7 @@ export interface CreateUserAddress_addressCreate_user_defaultShippingAddress {
   /**
    * Default shop's country
    */
-  country: CreateUserAddress_addressCreate_user_defaultShippingAddress_country;
+  country: CreateUserAddress_accountAddressCreate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -63,7 +63,7 @@ export interface CreateUserAddress_addressCreate_user_defaultShippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface CreateUserAddress_addressCreate_user_defaultBillingAddress_country {
+export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -75,7 +75,7 @@ export interface CreateUserAddress_addressCreate_user_defaultBillingAddress_coun
   country: string;
 }
 
-export interface CreateUserAddress_addressCreate_user_defaultBillingAddress {
+export interface CreateUserAddress_accountAddressCreate_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -91,7 +91,7 @@ export interface CreateUserAddress_addressCreate_user_defaultBillingAddress {
   /**
    * Default shop's country
    */
-  country: CreateUserAddress_addressCreate_user_defaultBillingAddress_country;
+  country: CreateUserAddress_accountAddressCreate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -104,7 +104,7 @@ export interface CreateUserAddress_addressCreate_user_defaultBillingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface CreateUserAddress_addressCreate_user_addresses_country {
+export interface CreateUserAddress_accountAddressCreate_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -116,7 +116,7 @@ export interface CreateUserAddress_addressCreate_user_addresses_country {
   country: string;
 }
 
-export interface CreateUserAddress_addressCreate_user_addresses {
+export interface CreateUserAddress_accountAddressCreate_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -132,7 +132,7 @@ export interface CreateUserAddress_addressCreate_user_addresses {
   /**
    * Default shop's country
    */
-  country: CreateUserAddress_addressCreate_user_addresses_country;
+  country: CreateUserAddress_accountAddressCreate_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -145,7 +145,7 @@ export interface CreateUserAddress_addressCreate_user_addresses {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface CreateUserAddress_addressCreate_user {
+export interface CreateUserAddress_accountAddressCreate_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -155,34 +155,33 @@ export interface CreateUserAddress_addressCreate_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: CreateUserAddress_addressCreate_user_defaultShippingAddress | null;
-  defaultBillingAddress: CreateUserAddress_addressCreate_user_defaultBillingAddress | null;
+  defaultShippingAddress: CreateUserAddress_accountAddressCreate_user_defaultShippingAddress | null;
+  defaultBillingAddress: CreateUserAddress_accountAddressCreate_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (CreateUserAddress_addressCreate_user_addresses | null)[] | null;
+  addresses: (CreateUserAddress_accountAddressCreate_user_addresses | null)[] | null;
 }
 
-export interface CreateUserAddress_addressCreate {
-  __typename: "AddressCreate";
+export interface CreateUserAddress_accountAddressCreate {
+  __typename: "AccountAddressCreate";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: CreateUserAddress_addressCreate_errors[] | null;
+  errors: CreateUserAddress_accountAddressCreate_errors[] | null;
   /**
    * A user instance for which the address was created.
    */
-  user: CreateUserAddress_addressCreate_user | null;
+  user: CreateUserAddress_accountAddressCreate_user | null;
 }
 
 export interface CreateUserAddress {
   /**
-   * Creates user address
+   * Create a new address for the customer.
    */
-  addressCreate: CreateUserAddress_addressCreate | null;
+  accountAddressCreate: CreateUserAddress_accountAddressCreate | null;
 }
 
 export interface CreateUserAddressVariables {
   input: AddressInput;
-  userId: string;
 }
