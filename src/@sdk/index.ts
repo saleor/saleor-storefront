@@ -60,6 +60,10 @@ export class SaleorAPI {
     data => data.product
   );
 
+  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>
+    data.me ? data.me.orders : null
+  );
+
   getOrderDetails = this.watchQuery(
     QUERIES.OrderDetails,
     data => data.orderByToken
@@ -123,9 +127,10 @@ export class SaleorAPI {
       );
     }
     return {
-      refetch: new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
-        resolve({ data: null });
-      }),
+      refetch: () =>
+        new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+          resolve({ data: null });
+        }),
       unsubscribe: () => undefined,
     };
   };
