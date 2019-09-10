@@ -34,12 +34,11 @@ const AddressBook: React.FC<{
 
     addressToDisplay.setDefault = (type: string) => {
       setDefaultUserAddress({
-        addressId: address.id,
+        id: address.id,
         type:
           type === "BILLING"
             ? AddressTypeEnum.BILLING
             : AddressTypeEnum.SHIPPING,
-        userId: user.id,
       });
     };
     return addressToDisplay;

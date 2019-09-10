@@ -8,7 +8,7 @@ import { AddressTypeEnum } from "./../../types/globalTypes";
 // GraphQL mutation operation: SetCustomerDefaultAddress
 // ====================================================
 
-export interface SetCustomerDefaultAddress_addressSetDefault_errors {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -22,7 +22,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_errors {
   message: string | null;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultShippingAddress_country {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -34,7 +34,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultShippin
   country: string;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultShippingAddress {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -50,7 +50,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultShippin
   /**
    * Default shop's country
    */
-  country: SetCustomerDefaultAddress_addressSetDefault_user_defaultShippingAddress_country;
+  country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -63,7 +63,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultShippin
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultBillingAddress_country {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -75,7 +75,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultBilling
   country: string;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultBillingAddress {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -91,7 +91,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultBilling
   /**
    * Default shop's country
    */
-  country: SetCustomerDefaultAddress_addressSetDefault_user_defaultBillingAddress_country;
+  country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -104,7 +104,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_defaultBilling
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_addresses_country {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -116,7 +116,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_addresses_coun
   country: string;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user_addresses {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -132,7 +132,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_addresses {
   /**
    * Default shop's country
    */
-  country: SetCustomerDefaultAddress_addressSetDefault_user_addresses_country;
+  country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -145,7 +145,7 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user_addresses {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault_user {
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -155,35 +155,34 @@ export interface SetCustomerDefaultAddress_addressSetDefault_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: SetCustomerDefaultAddress_addressSetDefault_user_defaultShippingAddress | null;
-  defaultBillingAddress: SetCustomerDefaultAddress_addressSetDefault_user_defaultBillingAddress | null;
+  defaultShippingAddress: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress | null;
+  defaultBillingAddress: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (SetCustomerDefaultAddress_addressSetDefault_user_addresses | null)[] | null;
+  addresses: (SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses | null)[] | null;
 }
 
-export interface SetCustomerDefaultAddress_addressSetDefault {
-  __typename: "AddressSetDefault";
+export interface SetCustomerDefaultAddress_accountSetDefaultAddress {
+  __typename: "AccountSetDefaultAddress";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: SetCustomerDefaultAddress_addressSetDefault_errors[] | null;
+  errors: SetCustomerDefaultAddress_accountSetDefaultAddress_errors[] | null;
   /**
    * An updated user instance.
    */
-  user: SetCustomerDefaultAddress_addressSetDefault_user | null;
+  user: SetCustomerDefaultAddress_accountSetDefaultAddress_user | null;
 }
 
 export interface SetCustomerDefaultAddress {
   /**
-   * Sets a default address for the given user.
+   * Sets a default address for the authenticated user.
    */
-  addressSetDefault: SetCustomerDefaultAddress_addressSetDefault | null;
+  accountSetDefaultAddress: SetCustomerDefaultAddress_accountSetDefaultAddress | null;
 }
 
 export interface SetCustomerDefaultAddressVariables {
-  addressId: string;
-  userId: string;
+  id: string;
   type: AddressTypeEnum;
 }
