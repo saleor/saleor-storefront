@@ -170,12 +170,15 @@ export interface UpdateUserAddress_addressUpdate {
    */
   errors: UpdateUserAddress_addressUpdate_errors[] | null;
   /**
-   * A user instance for which the address was edited.
+   * A user object for which the address was edited.
    */
   user: UpdateUserAddress_addressUpdate_user | null;
 }
 
 export interface UpdateUserAddress {
+  /**
+   * Updates an address
+   */
   addressUpdate: UpdateUserAddress_addressUpdate | null;
 }
 

@@ -176,6 +176,9 @@ export interface SetCustomerDefaultAddress_addressSetDefault {
 }
 
 export interface SetCustomerDefaultAddress {
+  /**
+   * Sets a default address for the given user.
+   */
   addressSetDefault: SetCustomerDefaultAddress_addressSetDefault | null;
 }
 

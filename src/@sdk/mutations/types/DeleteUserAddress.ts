@@ -174,6 +174,9 @@ export interface DeleteUserAddress_addressDelete {
 }
 
 export interface DeleteUserAddress {
+  /**
+   * Deletes an address
+   */
   addressDelete: DeleteUserAddress_addressDelete | null;
 }
 

@@ -37,6 +37,9 @@ export interface GetCategories_categories_edges {
 
 export interface GetCategories_categories {
   __typename: "CategoryCountableConnection";
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: GetCategories_categories_pageInfo;
   edges: GetCategories_categories_edges[];
 }

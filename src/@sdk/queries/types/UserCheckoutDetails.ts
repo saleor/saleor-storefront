@@ -372,6 +372,10 @@ export interface UserCheckoutDetails_me_checkout {
 export interface UserCheckoutDetails_me {
   __typename: "User";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * Returns the last open checkout of this user.
    */
   checkout: UserCheckoutDetails_me_checkout | null;

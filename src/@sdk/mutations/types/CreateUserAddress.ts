@@ -176,6 +176,9 @@ export interface CreateUserAddress_addressCreate {
 }
 
 export interface CreateUserAddress {
+  /**
+   * Creates user address
+   */
   addressCreate: CreateUserAddress_addressCreate | null;
 }
 
