@@ -100,7 +100,7 @@ export class SaleorAPI {
 
   setUpdateuserAddress = this.fireQuery(
     MUTATIONS.UpdateUserAddress,
-    data => data!.addressUpdate
+    data => data!.accountAddressUpdate
   );
 
   setCheckoutBillingAddress = this.fireQuery(

@@ -54,7 +54,7 @@ export const createUserAddress = gql`
 export const updateUserAddress = gql`
   ${userFragment}
   mutation UpdateUserAddress($input: AddressInput!, $id: ID!) {
-    addressUpdate(input: $input, id: $id) {
+    accountAddressUpdate(input: $input, id: $id) {
       errors {
         field
         message

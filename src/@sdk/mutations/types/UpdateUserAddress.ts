@@ -8,7 +8,7 @@ import { AddressInput } from "./../../types/globalTypes";
 // GraphQL mutation operation: UpdateUserAddress
 // ====================================================
 
-export interface UpdateUserAddress_addressUpdate_errors {
+export interface UpdateUserAddress_accountAddressUpdate_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of
@@ -22,7 +22,7 @@ export interface UpdateUserAddress_addressUpdate_errors {
   message: string | null;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_defaultShippingAddress_country {
+export interface UpdateUserAddress_accountAddressUpdate_user_defaultShippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -34,7 +34,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultShippingAddress_cou
   country: string;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_defaultShippingAddress {
+export interface UpdateUserAddress_accountAddressUpdate_user_defaultShippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -50,7 +50,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultShippingAddress {
   /**
    * Default shop's country
    */
-  country: UpdateUserAddress_addressUpdate_user_defaultShippingAddress_country;
+  country: UpdateUserAddress_accountAddressUpdate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -63,7 +63,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultShippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_defaultBillingAddress_country {
+export interface UpdateUserAddress_accountAddressUpdate_user_defaultBillingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -75,7 +75,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultBillingAddress_coun
   country: string;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_defaultBillingAddress {
+export interface UpdateUserAddress_accountAddressUpdate_user_defaultBillingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -91,7 +91,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultBillingAddress {
   /**
    * Default shop's country
    */
-  country: UpdateUserAddress_addressUpdate_user_defaultBillingAddress_country;
+  country: UpdateUserAddress_accountAddressUpdate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -104,7 +104,7 @@ export interface UpdateUserAddress_addressUpdate_user_defaultBillingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_addresses_country {
+export interface UpdateUserAddress_accountAddressUpdate_user_addresses_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -116,7 +116,7 @@ export interface UpdateUserAddress_addressUpdate_user_addresses_country {
   country: string;
 }
 
-export interface UpdateUserAddress_addressUpdate_user_addresses {
+export interface UpdateUserAddress_accountAddressUpdate_user_addresses {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -132,7 +132,7 @@ export interface UpdateUserAddress_addressUpdate_user_addresses {
   /**
    * Default shop's country
    */
-  country: UpdateUserAddress_addressUpdate_user_addresses_country;
+  country: UpdateUserAddress_accountAddressUpdate_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -145,7 +145,7 @@ export interface UpdateUserAddress_addressUpdate_user_addresses {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface UpdateUserAddress_addressUpdate_user {
+export interface UpdateUserAddress_accountAddressUpdate_user {
   __typename: "User";
   /**
    * The ID of the object.
@@ -155,31 +155,31 @@ export interface UpdateUserAddress_addressUpdate_user {
   firstName: string;
   lastName: string;
   isStaff: boolean;
-  defaultShippingAddress: UpdateUserAddress_addressUpdate_user_defaultShippingAddress | null;
-  defaultBillingAddress: UpdateUserAddress_addressUpdate_user_defaultBillingAddress | null;
+  defaultShippingAddress: UpdateUserAddress_accountAddressUpdate_user_defaultShippingAddress | null;
+  defaultBillingAddress: UpdateUserAddress_accountAddressUpdate_user_defaultBillingAddress | null;
   /**
    * List of all user's addresses.
    */
-  addresses: (UpdateUserAddress_addressUpdate_user_addresses | null)[] | null;
+  addresses: (UpdateUserAddress_accountAddressUpdate_user_addresses | null)[] | null;
 }
 
-export interface UpdateUserAddress_addressUpdate {
-  __typename: "AddressUpdate";
+export interface UpdateUserAddress_accountAddressUpdate {
+  __typename: "AccountAddressUpdate";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateUserAddress_addressUpdate_errors[] | null;
+  errors: UpdateUserAddress_accountAddressUpdate_errors[] | null;
   /**
    * A user object for which the address was edited.
    */
-  user: UpdateUserAddress_addressUpdate_user | null;
+  user: UpdateUserAddress_accountAddressUpdate_user | null;
 }
 
 export interface UpdateUserAddress {
   /**
-   * Updates an address
+   * Updates an address of the logged-in user.
    */
-  addressUpdate: UpdateUserAddress_addressUpdate | null;
+  accountAddressUpdate: UpdateUserAddress_accountAddressUpdate | null;
 }
 
 export interface UpdateUserAddressVariables {
