@@ -9,20 +9,24 @@ import { generateProductUrl } from "../../../../core/utils";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const Header = (
+const header = (matches: boolean) => (
   <S.HeaderRow>
     <S.IndexNumber>
       <Trans id="Index Number" />
     </S.IndexNumber>
-    <S.ProductsOrdered>
-      <Trans id="Products Ordered" />
-    </S.ProductsOrdered>
-    <S.DateOfOrder>
-      <Trans id="Date of Order" />
-    </S.DateOfOrder>
-    <S.Value>
-      <Trans id="Value" />
-    </S.Value>
+    {matches && (
+      <>
+        <S.ProductsOrdered>
+          <Trans id="Products Ordered" />
+        </S.ProductsOrdered>
+        <S.DateOfOrder>
+          <Trans id="Date of Order" />
+        </S.DateOfOrder>
+        <S.Value>
+          <Trans id="Value" />
+        </S.Value>
+      </>
+    )}
     <S.Status>
       <Trans id="Status" />
     </S.Status>
@@ -41,7 +45,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
         {(matches: boolean) => {
           return (
             <>
-              <S.Row>{Header}</S.Row>
+              <S.Row>{header(matches)}</S.Row>
               {orders &&
                 orders.map(order => {
                   const date = new Date(order.node.created);

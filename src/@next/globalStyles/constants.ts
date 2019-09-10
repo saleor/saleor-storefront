@@ -19,9 +19,11 @@ export const turquoiseDark = "#06a09e";
 export const turquoiseLight = "rgba(19, 190, 187, 0.05)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
+export const darkGreen = "#06847B";
 
 // theme colors
 export const theme = {
+  activeMenuOption: darkGreen,
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
   baseFont: baseFontColor,

@@ -1,8 +1,12 @@
 import * as React from "react";
+import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
 
 import { useAuth, useUserDetails } from "@sdk/react";
+import { smallScreen } from "@styles/constants";
 import AddressBook from "../../account/AddressBook/AddressBook";
+
+import "./scss/index.scss";
 
 import {
   accountUrl,
@@ -12,10 +16,9 @@ import {
   paymentOptionsUrl
 } from "../../routes";
 
+import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { OrdersHistory } from "@components/views";
-import AccountNavigation from "../../account/AccountNavigation";
-import HelloPrompt from "../../account/HelloPrompts";
-import { Loader } from "../../components";
+import { Breadcrumbs, Loader } from "../../components";
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
@@ -53,9 +56,22 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <HelloPrompt name={user.firstName} />
-      <AccountNavigation links={links} active={match.path} />
-      {returnTab(match.path, user, history)}
+      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "My Account" }]} />
+      <div className="account">
+        <Media minWidth={smallScreen}>
+          <div className="account__menu">
+            <AccountMenu links={links} active={match.path} />
+          </div>
+        </Media>
+        <Media maxWidth={smallScreen - 1}>
+          <div className="account__menu_mobile">
+            <AccountMenuMobile links={links} active={match.path} />
+          </div>
+        </Media>
+        <div className="account__content">
+          {returnTab(match.path, user, history)}
+        </div>
+      </div>
     </div>
   );
 };

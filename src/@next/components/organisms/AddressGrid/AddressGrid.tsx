@@ -16,5 +16,5 @@ export const AddressGrid: React.FC<IProps> = ({ addresses }: IProps) => {
     [addNewTile]
   );
 
-  return <TileGrid elements={addressTiles} />;
+  return <TileGrid columns={2} elements={addressTiles} />;
 };
