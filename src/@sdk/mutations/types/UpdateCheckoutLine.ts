@@ -184,6 +184,9 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
 }
 
 export interface UpdateCheckoutLine {
+  /**
+   * Updates CheckoutLine in the existing Checkout.
+   */
   checkoutLinesUpdate: UpdateCheckoutLine_checkoutLinesUpdate | null;
 }
 

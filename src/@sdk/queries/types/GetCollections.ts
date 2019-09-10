@@ -37,6 +37,9 @@ export interface GetCollections_collections_edges {
 
 export interface GetCollections_collections {
   __typename: "CollectionCountableConnection";
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: GetCollections_collections_pageInfo;
   edges: GetCollections_collections_edges[];
 }

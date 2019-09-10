@@ -40,8 +40,8 @@ exports[`Storyshots @components/atoms/Address default 1`] = `
     Second
      
     <br />
-    55-555
-    , 
+    55-555,
+     
     Wroclaw
     <br />
     dolnyslask

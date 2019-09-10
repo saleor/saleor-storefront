@@ -783,7 +783,13 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
 }
 
 export interface UpdateCheckoutShippingAddress {
+  /**
+   * Update shipping address in the existing Checkout.
+   */
   checkoutShippingAddressUpdate: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate | null;
+  /**
+   * Updates email address in the existing Checkout object.
+   */
   checkoutEmailUpdate: UpdateCheckoutShippingAddress_checkoutEmailUpdate | null;
 }
 

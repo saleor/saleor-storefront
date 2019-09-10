@@ -239,6 +239,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
     >
       <div
         className="c3"
+        onClick={[Function]}
       >
         <div
           className="c4"
@@ -326,8 +327,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               Second
                
               <br />
-              55-555
-              , 
+              55-555,
+               
               Wroclaw
               <br />
               dolnyslask
@@ -447,7 +448,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
                
               <br />
               
-              , 
+               
               Wroclaw
               <br />
               
@@ -561,8 +562,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               Second
                
               <br />
-              55-555
-              , 
+              55-555,
+               
               Wroclaw
               <br />
               dolnyslask
@@ -681,8 +682,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               Second
                
               <br />
-              55-555
-              , 
+              55-555,
+               
               Wroclaw
               <br />
               dolnyslask

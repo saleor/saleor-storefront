@@ -17,7 +17,10 @@ const DEFAULT_PROPS = {
   address: {
     city: "Wroclaw",
     companyName: "Mirumee",
-    country: "Poland",
+    country: {
+      code: "PL",
+      country: "Poland",
+    },
     countryArea: "dolnyslask",
     firstName: "John",
     isDefaultBillingAddress: false,

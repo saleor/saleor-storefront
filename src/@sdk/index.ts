@@ -75,7 +75,7 @@ export class SaleorAPI {
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
-    data => data!.addressSetDefault
+    data => data!.accountSetDefaultAddress
   );
 
   setCreateCheckout = this.fireQuery(
@@ -90,7 +90,17 @@ export class SaleorAPI {
 
   setDeleteUserAddress = this.fireQuery(
     MUTATIONS.DeleteUserAddress,
-    data => data!.addressDelete
+    data => data!.accountAddressDelete
+  );
+
+  setCreateUserAddress = this.fireQuery(
+    MUTATIONS.CreateUserAddress,
+    data => data!.accountAddressCreate
+  );
+
+  setUpdateuserAddress = this.fireQuery(
+    MUTATIONS.UpdateUserAddress,
+    data => data!.accountAddressUpdate
   );
 
   setCheckoutBillingAddress = this.fireQuery(

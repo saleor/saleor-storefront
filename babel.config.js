@@ -4,5 +4,9 @@ module.exports = {
     "@babel/preset-react",
     "@babel/preset-typescript"
   ],
-  plugins: ["@babel/plugin-syntax-dynamic-import", "@babel/transform-runtime"]
+  plugins: [
+    "@babel/plugin-syntax-dynamic-import",
+    "transform-class-properties",
+    "@babel/transform-runtime"
+  ]
 };

@@ -7,27 +7,28 @@ import { Input } from "@components/atoms";
 import { AddressForm } from ".";
 
 const PROPS = {
-  errors: {},
+  errors: [],
   handleSubmit: jest.fn(),
 };
 
 const errorMessage = "This is an error";
 const ERRORS = {
-  errors: {
-    firstName: [
-      {
-        field: "firstName",
-        message: errorMessage,
-      },
-    ],
-  },
+  errors: [
+    {
+      field: "firstName",
+      message: errorMessage,
+    },
+  ],
 };
 
 const INITIAL_DATA = {
   address: {
     city: "New York",
     companyName: "Mirumee",
-    country: "US",
+    country: {
+      code: "US",
+      country: "United States of America",
+    },
     countryArea: "NY",
     firstName: "John",
     lastName: "Doe",
@@ -52,6 +53,7 @@ describe("<AddressForm />", () => {
 
   it("should contain partial data if provided", () => {
     const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />);
+
     const getValue = (n: number) =>
       wrapper
         .find(Input)
@@ -65,7 +67,7 @@ describe("<AddressForm />", () => {
     expect(getValue(5)).toEqual(INITIAL_DATA.address.streetAddress2);
     expect(getValue(6)).toEqual(INITIAL_DATA.address.city);
     expect(getValue(7)).toEqual(INITIAL_DATA.address.postalCode);
-    expect(getValue(8)).toEqual(INITIAL_DATA.address.country);
-    expect(getValue(9)).toEqual(INITIAL_DATA.address.countryArea);
+    expect(wrapper.text()).toContain(INITIAL_DATA.address.country.country);
+    expect(getValue(8)).toEqual(INITIAL_DATA.address.countryArea);
   });
 });

@@ -37,6 +37,9 @@ export interface GetProducts_products_edges {
 
 export interface GetProducts_products {
   __typename: "ProductCountableConnection";
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: GetProducts_products_pageInfo;
   edges: GetProducts_products_edges[];
 }

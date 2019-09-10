@@ -198,9 +198,9 @@ export interface ProductDetails_product_variants_attributes {
    */
   attribute: ProductDetails_product_variants_attributes_attribute;
   /**
-   * Value of an attribute.
+   * The value or the first value of an attribute.
    */
-  value: ProductDetails_product_variants_attributes_value;
+  value: ProductDetails_product_variants_attributes_value | null;
 }
 
 export interface ProductDetails_product_variants {

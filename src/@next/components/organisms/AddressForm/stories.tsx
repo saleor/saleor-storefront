@@ -1,37 +1,45 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { ReactNode } from "react";
+import styled from "styled-components";
 
 import { AddressForm } from ".";
 
-const NO_ERRORS = {};
+const Container = styled.div`
+  width: 600px;
+`;
+
+const withContainer = (children: ReactNode) => (
+  <Container> {children}</Container>
+);
+
+const NO_ERRORS: any = [];
 const PROPS = {
   errors: NO_ERRORS,
   handleSubmit: action("handleSubmit"),
 };
 
 const ERRORS = {
-  errors: {
-    firstName: [
-      {
-        field: "firstName",
-        message: "This is error",
-      },
-    ],
-    lastName: [
-      {
-        field: "lastName",
-        message: "This is error",
-      },
-    ],
-  },
+  errors: [
+    {
+      field: "firstName",
+      message: "This is error",
+    },
+    {
+      field: "lastName",
+      message: "This is error",
+    },
+  ],
 };
 
 const INITIAL_DATA = {
   address: {
     city: "New York",
     companyName: "Mirumee",
-    country: "US",
+    country: {
+      code: "US",
+      country: "United States of America",
+    },
     countryArea: "NY",
     firstName: "John",
     lastName: "Doe",
@@ -43,6 +51,10 @@ const INITIAL_DATA = {
 };
 
 storiesOf("@components/organisms/AddressForm", module)
-  .add("default", () => <AddressForm {...PROPS} />)
-  .add("with errors", () => <AddressForm {...PROPS} {...ERRORS} />)
-  .add("with partial data", () => <AddressForm {...PROPS} {...INITIAL_DATA} />);
+  .add("default", () => withContainer(<AddressForm {...PROPS} />))
+  .add("with errors", () =>
+    withContainer(<AddressForm {...PROPS} {...ERRORS} />)
+  )
+  .add("with partial data", () =>
+    withContainer(<AddressForm {...PROPS} {...INITIAL_DATA} />)
+  );

@@ -129,6 +129,9 @@ export interface OrdersByUser_me_orders_edges {
 
 export interface OrdersByUser_me_orders {
   __typename: "OrderCountableConnection";
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: OrdersByUser_me_orders_pageInfo;
   edges: OrdersByUser_me_orders_edges[];
 }

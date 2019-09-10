@@ -1,45 +1,72 @@
 import { Formik } from "formik";
-import { merge } from "lodash";
+import { pick } from "lodash";
 import React from "react";
 
+import { IAddress } from "@types";
 import { AddressFormContent } from "./AddressFormContent";
 import { IProps } from "./types";
 
-const INITIAL_VALUES = {
-  city: "",
-  companyName: "",
-  country: "",
-  countryArea: "",
-  firstName: "",
-  lastName: "",
-  phone: "",
-  postalCode: "",
-  streetAddress1: "",
-  streetAddress2: "",
-};
+const ADDRESS_FIELDS = [
+  "city",
+  "companyName",
+  "countryArea",
+  "firstName",
+  "lastName",
+  "country",
+  "phone",
+  "postalCode",
+  "streetAddress1",
+  "streetAddress2",
+];
 
 export const AddressForm: React.FC<IProps> = ({
-  handleSubmit,
   address,
+  handleSubmit,
+  formId,
+  defaultValue,
   ...props
 }: IProps) => {
+  let addressWithPickedFields: Partial<IAddress> = {};
+  if (address) {
+    addressWithPickedFields = pick(address, ADDRESS_FIELDS);
+  }
+  if (defaultValue) {
+    addressWithPickedFields.country = defaultValue;
+  }
   return (
     <Formik
-      initialValues={merge(INITIAL_VALUES, address)}
+      initialValues={addressWithPickedFields}
       onSubmit={(values, { setSubmitting }) => {
-        handleSubmit(values);
+        if (handleSubmit) {
+          handleSubmit(values);
+        }
         setSubmitting(false);
       }}
     >
-      {({ handleChange, handleSubmit, handleBlur, values }) => (
-        <AddressFormContent
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          handleBlur={handleBlur}
-          values={values}
-          {...props}
-        />
-      )}
+      {({
+        handleChange,
+        handleSubmit,
+        handleBlur,
+        values,
+        setFieldValue,
+        setFieldTouched,
+      }) => {
+        return (
+          <AddressFormContent
+            {...{
+              defaultValue,
+              formId,
+              handleBlur,
+              handleChange,
+              handleSubmit,
+              setFieldTouched,
+              setFieldValue,
+              values,
+            }}
+            {...props}
+          />
+        );
+      }}
     </Formik>
   );
 };

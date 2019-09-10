@@ -16,7 +16,8 @@ export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
 export const turquoise = "#13bebb";
 export const turquoiseDark = "#06a09e";
-export const turquoiseLight = "rgba(19, 190, 187, 0.05)";
+export const turquoiseLight = "rgba(19, 190, 187, 0.25)";
+export const turquoiseTransparent = "rgba(19, 190, 187, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
@@ -38,6 +39,7 @@ export const theme = {
   primary: turquoise,
   primaryDark: turquoiseDark,
   primaryLight: turquoiseLight,
+  primaryTransparent: turquoiseTransparent,
   secondary: blue,
   secondaryDark: blueDark,
   success: green,
