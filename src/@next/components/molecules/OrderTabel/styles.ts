@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const Wrapper = styled.div``;
 
@@ -22,6 +22,9 @@ export const HeaderRow = styled(Row)`
 
 export const IndexNumber = styled.div`
   width: 15%;
+  ${media.smallScreen`
+     width: 50%;
+  `}
 `;
 export const ProductsOrdered = styled.div`
   width: 25%;
@@ -39,4 +42,7 @@ export const Value = styled.div`
 `;
 export const Status = styled.div`
   width: 25%;
+  ${media.smallScreen`
+     width: 50%;
+  `}
 `;

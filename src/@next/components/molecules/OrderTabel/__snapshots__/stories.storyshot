@@ -90,6 +90,18 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
   width: 25%;
 }
 
+@media (max-width:540px) {
+  .c3 {
+    width: 50%;
+  }
+}
+
+@media (max-width:540px) {
+  .c7 {
+    width: 50%;
+  }
+}
+
 <div
   className="c0"
 >

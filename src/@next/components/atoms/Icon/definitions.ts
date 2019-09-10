@@ -78,6 +78,12 @@ export const icons = {
       fill: "#323232",
     },
   ],
+  select_arrow: [
+    {
+      d: "M16 29.856l-15.999-27.712h31.999l-15.999 27.712z",
+      fill: "#21125E",
+    },
+  ],
   social_facebook: [
     {
       d:
