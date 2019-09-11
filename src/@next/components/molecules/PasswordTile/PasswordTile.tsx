@@ -1,7 +1,8 @@
 import React from "react";
 
-import { IconButton, Tile } from "@components/atoms";
+import { Attribute, IconButton, Tile } from "@components/atoms";
 
+import { PasswordChangeForm } from "./PasswordChangeForm";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -15,9 +16,18 @@ export const PasswordTile: React.FC<IProps> = ({  }: IProps) => {
           <IconButton
             name="edit"
             size={22}
-            onClick={() => setIsEditing(true)}
+            onClick={() => setIsEditing(isEditing => !isEditing)}
           />
         </S.Header>
+        <S.Content>
+          {isEditing ? (
+            <S.ContentEdit>
+              <PasswordChangeForm />
+            </S.ContentEdit>
+          ) : (
+            <Attribute description="Password" attributeValue="**************" />
+          )}
+        </S.Content>
       </S.Wrapper>
     </Tile>
   );
