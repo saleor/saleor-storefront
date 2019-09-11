@@ -31,6 +31,7 @@ export const theme = {
   dark: black,
   disabled: gray,
   divider: grayLight,
+  dividerDark: grayMedium,
   error: rose,
   hoverLightBackground: turquoiseLight,
   light: grayLight,
