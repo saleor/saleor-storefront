@@ -14,8 +14,8 @@ export const TextField: React.FC<IProps> = ({
 
   return (
     <>
-      <Input {...rest} error={hasErrors} />
       <S.TextField>
+        <Input {...rest} error={hasErrors} />
         <ErrorMessage errors={errors} />
         {helpText && <S.HelpText>{helpText}</S.HelpText>}
       </S.TextField>

@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -17,6 +17,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 4rem;
 `;
 
 export const Content = styled.div`
@@ -25,9 +26,23 @@ export const Content = styled.div`
 `;
 
 export const ContentEdit = styled.div`
-  width: 40%;
+  width: 50%;
+  ${media.smallScreen`
+     width: 100%;
+  `}
 `;
 
 export const Form = styled.form`
   background-color: ${props => props.theme.tile.backgroundColor};
+`;
+
+export const FormButtons = styled.div`
+  height: 5rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  button {
+    margin-left: 2rem;
+  }
 `;
