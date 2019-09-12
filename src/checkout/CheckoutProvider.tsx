@@ -118,6 +118,7 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
   const skipUserCheckoutFetch = !syncUserCheckout;
 
   const { data: userCheckout, loading: userCheckoutLoading } = useUserCheckout({
+    fetchPolicy: "network-only",
     skip: skipUserCheckoutFetch,
   });
 
