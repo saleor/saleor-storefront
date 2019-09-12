@@ -46,6 +46,8 @@ const useQuery = <
     if (!isEqual(data, prevDataRef.current)) {
       prevDataRef.current = data;
       setResult({ data, loading: false, error: null });
+    } else {
+      setResult(result => ({ ...result, loading: false }));
     }
   }, []);
 
