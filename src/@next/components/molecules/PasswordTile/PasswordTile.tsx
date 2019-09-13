@@ -2,7 +2,7 @@ import React from "react";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
 
-import { usePasswordChange } from "../../../../@sdk/react";
+import { usePasswordChange } from "@sdk/react";
 import { PasswordChangeForm } from "./PasswordChangeForm";
 import * as S from "./styles";
 
