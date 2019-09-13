@@ -19,7 +19,7 @@ export const PasswordTile: React.FC = () => {
     <Tile>
       <S.Wrapper>
         <S.Header>
-          MY PASSWORD{" "}
+          MY PASSWORD
           {!isEditing && (
             <IconButton
               name="edit"
