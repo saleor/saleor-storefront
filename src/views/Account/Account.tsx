@@ -17,12 +17,16 @@ import {
 } from "../../routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { OrdersHistory } from "@components/views";
+import { AccountTab, OrdersHistory } from "@components/views";
 import { Breadcrumbs, Loader } from "../../components";
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
   switch (path) {
+    case accountUrl: {
+      tabContent = <AccountTab />;
+      break;
+    }
     case addressBookUrl: {
       tabContent = <AddressBook user={userDetails} />;
       break;

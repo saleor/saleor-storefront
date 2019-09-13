@@ -7,7 +7,7 @@ import { IProps } from "./types";
 // if no background color is provided then the default is rgba(0, 0, 0, 0)
 // in this case the default color to cover is white (#fff)
 const DEFAULT_COLOR = "#fff";
-const getBackgroundColor = (ref: any) => {
+const getBackgroundColor = (ref: any): string => {
   const el = ReactDOM.findDOMNode(ref);
   if (el && el.parentElement) {
     if (el.nodeName === "BODY") {
@@ -20,7 +20,7 @@ const getBackgroundColor = (ref: any) => {
       return bgColor;
     }
 
-    getBackgroundColor(el.parentNode);
+    return getBackgroundColor(el.parentNode);
   }
   return DEFAULT_COLOR;
 };

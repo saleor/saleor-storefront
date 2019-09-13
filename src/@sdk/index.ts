@@ -108,6 +108,8 @@ export class SaleorAPI {
     data => data!.checkoutBillingAddressUpdate
   );
 
+  setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
+
   private client: ApolloClient<any>;
 
   constructor(client: ApolloClient<any>) {

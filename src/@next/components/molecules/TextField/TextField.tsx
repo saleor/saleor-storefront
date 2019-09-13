@@ -13,10 +13,12 @@ export const TextField: React.FC<IProps> = ({
   const hasErrors = !!(errors && errors.length);
 
   return (
-    <S.TextField>
-      <Input {...rest} error={hasErrors} />
-      <ErrorMessage errors={errors} />
-      {helpText && <S.HelpText>{helpText}</S.HelpText>}
-    </S.TextField>
+    <>
+      <S.TextField>
+        <Input {...rest} error={hasErrors} />
+        <ErrorMessage errors={errors} />
+        {helpText && <S.HelpText>{helpText}</S.HelpText>}
+      </S.TextField>
+    </>
   );
 };

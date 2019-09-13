@@ -47,6 +47,7 @@ export const AccountMenuMobile: React.FC<IProps> = ({
                   evt.stopPropagation();
                   setShowMenu(false);
                 }}
+                key={link}
               >
                 <Link to={link}>
                   <S.MenuItem active={active === link}>
