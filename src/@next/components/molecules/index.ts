@@ -11,3 +11,4 @@ export * from "./OrderTabel";
 export * from "./AccountMenu";
 export * from "./AccountMenuMobile";
 export * from "./PasswordTile";
+export * from "./AccountTile";
