@@ -1,7 +1,8 @@
+import { isEqual } from "apollo-utilities";
 import React from "react";
 
-import { isEqual } from "apollo-utilities";
 import { SaleorAPI } from "../index";
+import { RequireAtLeastOne } from "../tsHelpers";
 import { useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
@@ -51,7 +52,12 @@ const useQuery = <
     }
   }, []);
 
-  const { unsubscribe, setOptions, refetch: _refetch } = React.useMemo(
+  const {
+    unsubscribe,
+    setOptions,
+    refetch: _refetch,
+    loadMore: _loadMore,
+  } = React.useMemo(
     () =>
       (saleor[query] as AdditionalAPI)(variables, {
         ...(options as any),
@@ -68,6 +74,19 @@ const useQuery = <
     (variables?: TVariables) => {
       setResult({ data: null, error: null, loading: true });
       _refetch(variables);
+    },
+    [query]
+  );
+
+  const loadMore = React.useCallback(
+    (
+      variables: RequireAtLeastOne<TVariables>,
+      mergeResults: boolean = true
+    ) => {
+      if (_loadMore) {
+        setResult(result => ({ ...result, error: null, loading: true }));
+        _loadMore(variables, mergeResults);
+      }
     },
     [query]
   );
@@ -97,6 +116,7 @@ const useQuery = <
 
   return {
     ...result,
+    loadMore,
     refetch,
     setOptions,
   };
