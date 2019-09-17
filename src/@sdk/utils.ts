@@ -37,3 +37,8 @@ export function getMappedData<T extends QueryShape, TResult>(
 
   return result;
 }
+
+export const mergeEdges = (prevEdges: any[], newEdges: any[]) => [
+  ...prevEdges,
+  ...newEdges.filter(edge => !prevEdges.some(e => e.node.id === edge.node.id)),
+];
