@@ -48,6 +48,8 @@ import {
   PasswordChangeVariables
 } from "./types/PasswordChange";
 
+import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
+
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
   "mutation"
@@ -55,6 +57,16 @@ export type MutationOptions<TData, TVariables> = Omit<
 
 // TODO: Add ability to pass custom fragments to mutations
 export const MUTATIONS = {
+  AccountUpdate: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<AccountUpdate, AccountUpdateVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${User.accountUpdate}
+      `,
+      ...options,
+    }),
   AddressTypeUpdate: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<

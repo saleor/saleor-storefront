@@ -46,6 +46,13 @@ export enum PaymentChargeStatusEnum {
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
 }
 
+export interface AccountInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  defaultBillingAddress?: AddressInput | null;
+  defaultShippingAddress?: AddressInput | null;
+}
+
 export interface AddressInput {
   firstName?: string | null;
   lastName?: string | null;
