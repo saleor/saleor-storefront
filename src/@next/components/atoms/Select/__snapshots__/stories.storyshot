@@ -22,6 +22,9 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c3 {
@@ -128,7 +131,7 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
           </div>
           <div
             className="c2"
-            rotate={false}
+            rotate="false"
           >
             <svg
               height={10}
