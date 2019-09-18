@@ -115,7 +115,9 @@ export const Select: React.FC<{
           IndicatorSeparator: () => null,
           IndicatorsContainer: ({ selectProps }) => {
             return (
-              <S.Indicator rotate={selectProps.menuIsOpen as boolean}>
+              // Boolean to string conversion done due to
+              // https://github.com/styled-components/styled-components/issues/1198
+              <S.Indicator rotate={String(selectProps.menuIsOpen)}>
                 <Icon name="select_arrow" size={10} />
               </S.Indicator>
             );
