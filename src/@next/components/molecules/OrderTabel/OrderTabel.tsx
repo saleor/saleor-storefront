@@ -51,6 +51,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                   const date = new Date(order.node.created);
                   return (
                     <S.Row
+                      key={order.node.number}
                       onClick={evt => {
                         evt.stopPropagation();
                         history.push(`/order/${order.node.token}`);
@@ -64,6 +65,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                               .slice(0, 5)
                               .map((product: any) => (
                                 <span
+                                  key={product.variant.product.id}
                                   onClick={evt => {
                                     evt.stopPropagation();
                                     history.push(

@@ -71,10 +71,21 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
 
 .c4 {
   width: 25%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c4 img {
-  width: 50px;
+  max-width: 50px;
   height: auto;
 }
 

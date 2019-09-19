@@ -72,6 +72,9 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c12 {
@@ -473,7 +476,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 </div>
                 <div
                   className="c11"
-                  rotate={false}
+                  rotate="false"
                 >
                   <svg
                     height={10}
@@ -632,6 +635,9 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c15 {
@@ -1051,7 +1057,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 </div>
                 <div
                   className="c14"
-                  rotate={false}
+                  rotate="false"
                 >
                   <svg
                     height={10}
@@ -1181,6 +1187,9 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c12 {
@@ -1590,7 +1599,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 </div>
                 <div
                   className="c11"
-                  rotate={false}
+                  rotate="false"
                 >
                   <svg
                     height={10}

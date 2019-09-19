@@ -28,9 +28,12 @@ export const IndexNumber = styled.div`
 `;
 export const ProductsOrdered = styled.div`
   width: 25%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 
   img {
-    width: 50px;
+    max-width: 50px;
     height: auto;
   }
 `;
