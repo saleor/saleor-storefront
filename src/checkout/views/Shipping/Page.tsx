@@ -99,7 +99,7 @@ const Page: React.FC<IShippingPageProps> = ({
     const canProceed = !!result;
 
     if (shippingUnavailable) {
-      return renderShippingUnavailableModal();
+      // return renderShippingUnavailableModal();
     }
 
     if (canProceed) {
