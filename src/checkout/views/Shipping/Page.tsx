@@ -1,18 +1,12 @@
 import * as React from "react";
 import { generatePath } from "react-router";
 
-import {
-  FormAddressType,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType
-} from "../../../components";
+import { FormAddressType } from "../../../components";
 import { CartLineInterface } from "../../../components/CartProvider/context";
 import { maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
-  ShippingUnavailableModal,
   Steps,
   UserAddressSelector
 } from "../../components";
@@ -94,13 +88,7 @@ const Page: React.FC<IShippingPageProps> = ({
     const { update, history, token } = proceedToNextStepData;
 
     const result = await onSaveShippingAddressHandler(formData);
-    const shippingUnavailable =
-      (checkout && !checkout.availableShippingMethods.length) || false;
     const canProceed = !!result;
-
-    if (shippingUnavailable) {
-      // return renderShippingUnavailableModal();
-    }
 
     if (canProceed) {
       update({
@@ -121,19 +109,6 @@ const Page: React.FC<IShippingPageProps> = ({
       resolve(!!result);
     });
   };
-
-  const renderShippingUnavailableModal = () => (
-    <OverlayContext.Consumer>
-      {overlay => (
-        <>
-          {overlay.show(OverlayType.modal, OverlayTheme.modal, {
-            content: <ShippingUnavailableModal hide={overlay.hide} />,
-          })}
-          ;
-        </>
-      )}
-    </OverlayContext.Consumer>
-  );
 
   const getShippingProps = (userCheckoutData: ICheckoutUserArgs) => ({
     buttonText: "Continue to Shipping",
