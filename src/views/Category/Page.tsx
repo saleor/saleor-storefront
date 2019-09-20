@@ -8,7 +8,7 @@ import {
   ProductsFeatured,
   ProductsList
 } from "../../components";
-import { Filters, ProductFilters } from "../../components/ProductFilters";
+import { Filters } from "../../components/ProductFilters";
 
 import { maybe } from "../../core/utils";
 import {
@@ -49,31 +49,12 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <div className="category">
-      <div
-        className="category__header"
-        style={
-          category.backgroundImage
-            ? { backgroundImage: `url(${category.backgroundImage.url})` }
-            : undefined
-        }
-      >
-        <span className="category__header__title">
-          <h1>{category.name}</h1>
-        </span>
-      </div>
-
       <div className="container">
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
       </div>
 
       {canDisplayProducts && (
         <>
-          <ProductFilters
-            filters={filters}
-            attributes={attributes}
-            onAttributeFiltersChange={onAttributeFiltersChange}
-            onPriceChange={onPriceChange}
-          />
           <ProductsList
             displayLoader={displayLoader}
             filters={filters}
