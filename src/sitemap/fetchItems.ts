@@ -2,7 +2,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from 'apollo-link-http';
 import fetch from 'node-fetch';
-import urljoin from "url-join";
 
 import { generateCategoryUrl, generateCollectionUrl, generateProductUrl } from '../core/utils';
 import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from './queries';
