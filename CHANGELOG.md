@@ -21,6 +21,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add Modal component - #391 by @AlicjaSzu
 - Add the Credential Management API support - #409 by @bogdal
 - Add size picker component - #425 by @bogdal
+- Replace BACKEND_URL in favor of API_URI - #474 by @bogdal
 
 ## 0.6.0
 
