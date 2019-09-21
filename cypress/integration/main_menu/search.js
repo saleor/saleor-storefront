@@ -13,10 +13,7 @@ describe.only("Search", () => {
 
   beforeEach(() => {
     cy.server();
-    cy.route(
-      "POST",
-      `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
-    ).as("graphqlQuery");
+    cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
     cy.setup(polyfill);
     cy.wait("@graphqlQuery");

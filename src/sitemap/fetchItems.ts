@@ -7,7 +7,7 @@ import urljoin from "url-join";
 import { generateCategoryUrl, generateCollectionUrl, generateProductUrl } from '../core/utils';
 import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from './queries';
 
-const API_URL = urljoin(process.env.BACKEND_URL || "", "/graphql/");
+const API_URL = process.env.API_URI || "/graphql/";
 
 const fetchItems = async ({ query, perPage=100 }, callback: any) => {
   const client = new ApolloClient({
