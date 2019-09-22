@@ -18,7 +18,7 @@ A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://
 
 See the [public demo](http://pwa.getsaleor.com) of Saleor Storefront!
 
-Or launch the demo on a free Heroku instance. Note that you have to set the `API_URI` environment variable to point to the Saleor GraphQL API.
+Or launch the demo on a free Heroku instance.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
