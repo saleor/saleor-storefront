@@ -6,7 +6,7 @@ const createUser = () => {
     .request({
       body: user,
       method: "POST",
-      url: `${Cypress.env("BACKEND_URL")}/${Cypress.env("GRAPHQL_ID")}/`
+      url: `${Cypress.env("API_URI")}`
     })
     .then(response => response.body.user);
 };
