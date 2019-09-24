@@ -36,7 +36,7 @@ export const useAuth = (
     return () => {
       removeEventListener("auth", eventHandler);
     };
-  }, []);
+  }, [authenticated]);
 
   return { authenticated };
 };
