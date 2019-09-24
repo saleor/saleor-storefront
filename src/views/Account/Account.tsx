@@ -2,7 +2,7 @@ import * as React from "react";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
 
-import { useAuth, useUserDetails } from "@sdk/react";
+import { useUserDetails } from "@sdk/react";
 import { smallScreen } from "@styles/constants";
 import AddressBook from "../../account/AddressBook/AddressBook";
 
@@ -40,7 +40,6 @@ const returnTab: any = (path: string, userDetails, history) => {
 };
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
-  const { authenticated } = useAuth();
   const { data: user, loading } = useUserDetails();
 
   const links = [
@@ -50,12 +49,12 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
     paymentOptionsUrl,
   ];
 
-  if (!authenticated) {
-    history.push(baseUrl);
-  }
-
   if (loading) {
     return <Loader />;
+  }
+
+  if (!user) {
+    history.push(baseUrl);
   }
 
   return (
