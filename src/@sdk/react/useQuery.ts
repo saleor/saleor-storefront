@@ -3,7 +3,7 @@ import React from "react";
 
 import { SaleorAPI } from "../index";
 import { RequireAtLeastOne } from "../tsHelpers";
-import { useSaleorClient } from "./helpers";
+import { useAuth, useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
   Options,
@@ -36,7 +36,7 @@ const useQuery = <
   const didMountRef = React.useRef(false);
   const prevDataRef = React.useRef<TData | null>(null);
   const prevUnsubRef = React.useRef<any>(null);
-
+  const { authenticated } = useAuth();
   const [result, setResult] = React.useState<Result<TData>>({
     data: null,
     error: null,
@@ -67,7 +67,7 @@ const useQuery = <
           setData(data);
         },
       }),
-    [query, options.skip]
+    [query, options.skip, authenticated]
   );
 
   const refetch = React.useCallback(
@@ -112,7 +112,7 @@ const useQuery = <
         unsubscribe();
       }
     };
-  }, [options.skip]);
+  }, [options.skip, authenticated]);
 
   return {
     ...result,
