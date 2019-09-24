@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { useLocalStorage } from "@hooks";
-import { useCheckoutDetails, useUserCheckout } from "@sdk/react";
+import { useAuth, useCheckoutDetails, useUserCheckout } from "@sdk/react";
 
 import {
   CheckoutContext,
@@ -40,6 +40,12 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
      * lines - happens after user logs in
      */
     syncWithCart: false,
+  });
+
+  useAuth((authenticated: boolean) => {
+    if (!authenticated) {
+      clear();
+    }
   });
 
   React.useEffect(() => {
