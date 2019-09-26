@@ -1,7 +1,8 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput, GatewaysEnum } from "./../../../types/globalTypes";
+import { CheckoutCreateInput } from "./../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: createCheckout
@@ -330,7 +331,7 @@ export interface createCheckout_checkoutCreate_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -376,6 +377,9 @@ export interface createCheckout_checkoutCreate {
 }
 
 export interface createCheckout {
+  /**
+   * Create a new checkout.
+   */
   checkoutCreate: createCheckout_checkoutCreate | null;
 }
 

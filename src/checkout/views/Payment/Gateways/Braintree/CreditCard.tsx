@@ -1,8 +1,8 @@
 import React from "react";
 
 import { CreditCardForm } from "@components/organisms";
-import { GatewaysEnum } from "../../../../../../types/globalTypes";
 
+import { PROVIDERS } from "../../../../../core/config";
 import {
   braintreePayment,
   ErrorData,
@@ -74,7 +74,7 @@ const CreditCard = ({
         number: removeEmptySpaces(maybe(() => formData.ccNumber, "")),
       };
       const token = await tokenizeCcCard(creditCard);
-      processPayment(token, GatewaysEnum.BRAINTREE);
+      processPayment(token, PROVIDERS.BRAINTREE);
       setLoadingState(false);
     };
 

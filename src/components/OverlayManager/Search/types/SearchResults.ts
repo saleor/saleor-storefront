@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -87,6 +88,9 @@ export interface SearchResults_products_pageInfo {
 export interface SearchResults_products {
   __typename: "ProductCountableConnection";
   edges: SearchResults_products_edges[];
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: SearchResults_products_pageInfo;
 }
 

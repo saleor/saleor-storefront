@@ -1,7 +1,6 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
-
-import { GatewaysEnum } from "./../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: getCheckout
@@ -316,7 +315,7 @@ export interface getCheckout_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -354,7 +353,7 @@ export interface getCheckout_checkout {
 
 export interface getCheckout {
   /**
-   * Single checkout.
+   * Lookup a checkout by token.
    */
   checkout: getCheckout_checkout | null;
 }

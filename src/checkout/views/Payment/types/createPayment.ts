@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { PaymentInput } from "./../../../../../types/globalTypes";
@@ -30,6 +31,9 @@ export interface createPayment_checkoutPaymentCreate {
 }
 
 export interface createPayment {
+  /**
+   * Create a new payment for given checkout.
+   */
   checkoutPaymentCreate: createPayment_checkoutPaymentCreate | null;
 }
 

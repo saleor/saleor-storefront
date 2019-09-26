@@ -1,7 +1,6 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
-
-import { GatewaysEnum } from "./../../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: updateCheckoutShippingOptions
@@ -330,7 +329,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -379,6 +378,9 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
 }
 
 export interface updateCheckoutShippingOptions {
+  /**
+   * Updates the shipping address of the checkout.
+   */
   checkoutShippingMethodUpdate: updateCheckoutShippingOptions_checkoutShippingMethodUpdate | null;
 }
 

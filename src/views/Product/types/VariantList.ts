@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -56,9 +57,9 @@ export interface VariantList_productVariants_edges_node_attributes {
    */
   attribute: VariantList_productVariants_edges_node_attributes_attribute;
   /**
-   * Value of an attribute.
+   * The value or the first value of an attribute.
    */
-  value: VariantList_productVariants_edges_node_attributes_value;
+  value: VariantList_productVariants_edges_node_attributes_value | null;
 }
 
 export interface VariantList_productVariants_edges_node_product_thumbnail {
@@ -140,7 +141,7 @@ export interface VariantList_productVariants {
 
 export interface VariantList {
   /**
-   * Lookup multiple variants by ID
+   * List of product variants.
    */
   productVariants: VariantList_productVariants | null;
 }

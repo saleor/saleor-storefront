@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { PaymentChargeStatusEnum, OrderStatus } from "./../../../../../types/globalTypes";
@@ -244,5 +245,5 @@ export interface OrderByToken {
 }
 
 export interface OrderByTokenVariables {
-  token: string;
+  token: any;
 }

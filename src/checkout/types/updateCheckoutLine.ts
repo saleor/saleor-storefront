@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { CheckoutLineInput } from "./../../../types/globalTypes";
@@ -183,6 +184,9 @@ export interface updateCheckoutLine_checkoutLinesUpdate {
 }
 
 export interface updateCheckoutLine {
+  /**
+   * Updates CheckoutLine in the existing Checkout.
+   */
   checkoutLinesUpdate: updateCheckoutLine_checkoutLinesUpdate | null;
 }
 

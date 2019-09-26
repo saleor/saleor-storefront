@@ -67,7 +67,7 @@ const orderDetailsByIdQuery = gql`
 
 const orderDetailsByTokenQuery = gql`
   ${orderDetailFragment}
-  query OrderByToken($token: String!) {
+  query OrderByToken($token: UUID!) {
     orderByToken(token: $token) {
       ...OrderDetail
     }

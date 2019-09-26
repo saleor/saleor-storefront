@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -67,7 +68,7 @@ export interface getShop_shop {
 
 export interface getShop {
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: getShop_shop | null;
 }
