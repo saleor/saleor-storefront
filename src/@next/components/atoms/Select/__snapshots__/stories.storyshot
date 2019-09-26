@@ -70,7 +70,9 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
           >
             <div
               className="css-dvua67-singleValue"
-            />
+            >
+              Poland
+            </div>
             <div
               className="css-1g6gooi"
             >
