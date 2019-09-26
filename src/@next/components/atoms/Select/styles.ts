@@ -24,14 +24,3 @@ export const Label = styled.label<{ active: boolean; bgColor: string | null }>`
   transition: all 0.3s ease, color 0s;
   pointer-events: none;
 `;
-
-export const Option = styled.div`
-  background-color: black;
-  bottom: "0";
-  content: " ";
-  height: 1px;
-  left: 1rem;
-  position: "absolute";
-  margin: 0 auto;
-  width: 80%;
-`;

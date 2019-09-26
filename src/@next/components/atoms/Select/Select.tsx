@@ -62,16 +62,14 @@ const customStyles = {
         : state.isFocused
         ? state.customTheme.colors.primaryTransparent
         : "white",
-      borderRadius: "8px",
       color: state.customTheme.colors.dark,
       display: "flex",
       fontWeight:
         state.isSelected && state.customTheme.typography.boldFontWeight,
-      margin: "0.5rem auto",
+      margin: "0 auto",
       minHeight: "34px",
-      padding: "0.25rem",
       verticalAlign: "middle",
-      width: "90%",
+      width: "95%",
     };
   },
   valueContainer: (provided: any) => {
