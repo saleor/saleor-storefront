@@ -119,6 +119,8 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             options={options}
             value={values!.country}
             onChange={setFieldValue}
+            optionLabelKey="country"
+            optionValueKey="code"
           />
           <TextField
             name="countryArea"
