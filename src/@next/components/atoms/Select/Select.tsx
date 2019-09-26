@@ -3,6 +3,7 @@ import ReactSelect, { components } from "react-select";
 
 import { ThemeContext } from "styled-components";
 import { Icon } from "../Icon";
+import { InputLabel } from "../InputLabel";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -18,12 +19,12 @@ const ControlWrapper = (props: any) => {
     <>
       <components.Control {...{ customTheme, ...props }} />
       {props.label && (
-        <S.Label
-          bgColor="#FFF"
+        <InputLabel
+          labelBackground="#FFF"
           active={props.selectProps.menuIsOpen || props.hasValue}
         >
           {props.label}
-        </S.Label>
+        </InputLabel>
       )}
     </>
   );

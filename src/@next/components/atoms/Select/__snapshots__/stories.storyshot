@@ -17,16 +17,6 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
   box-sizing: border-box;
 }
 
-.c2 {
-  position: absolute;
-  right: 1rem;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
 .c3 {
   position: absolute;
   left: 0.5rem;
@@ -40,6 +30,16 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
   -webkit-transition: all 0.3s ease,color 0s;
   transition: all 0.3s ease,color 0s;
   pointer-events: none;
+}
+
+.c2 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c1 {
