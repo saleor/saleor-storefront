@@ -1,7 +1,11 @@
 export interface IProps {
-  options: string[];
-  label?: string;
-  defaultValue?: string;
+  value: any;
   name: string;
-  setFieldValue: (field: string, value: string) => void;
+  label?: string;
+  options?: any[];
+  autoComplete?: string;
+  defaultValue?: any;
+  optionLabelKey?: string;
+  optionValueKey?: string;
+  onChange?: (name: string, value: string) => void;
 }

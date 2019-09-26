@@ -5,6 +5,7 @@ import { ThemeContext } from "styled-components";
 import { Icon } from "../Icon";
 
 import * as S from "./styles";
+import { IProps } from "./types";
 
 const Option = (props: any) => {
   const customTheme = React.useContext(ThemeContext);
@@ -81,15 +82,16 @@ const customStyles = {
   },
 };
 
-export const Select: React.FC<{
-  value: any;
-  name: string;
-  label?: string;
-  options?: any[];
-  autoComplete?: string;
-  defaultValue?: any;
-  onChange?: (name: string, value: string) => void;
-}> = ({ value, onChange, name, options, label, defaultValue }) => {
+export const Select: React.FC<IProps> = ({
+  value,
+  onChange,
+  name,
+  options,
+  label,
+  defaultValue,
+  optionLabelKey = "label",
+  optionValueKey = "value",
+}: IProps) => {
   const handleChange = (value: any) => {
     if (onChange) {
       onChange(name, value);
@@ -104,8 +106,8 @@ export const Select: React.FC<{
         isClearable={false}
         menuShouldScrollIntoView={true}
         tabSelectsValue={false}
-        getOptionLabel={option => option.country}
-        getOptionValue={option => option.code}
+        getOptionLabel={option => option[optionLabelKey]}
+        getOptionValue={option => option[optionValueKey]}
         openMenuOnFocus={true}
         styles={customStyles}
         options={options}

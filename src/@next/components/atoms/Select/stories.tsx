@@ -9,7 +9,7 @@ const Container = styled.div`
   width: 350px;
 `;
 
-const country = { label: "Poland", value: "PL" };
+const country = { country: "Poland", code: "PL" };
 const DEFAULT_PROPS = {
   label: "Country",
   name: "country",
@@ -17,17 +17,17 @@ const DEFAULT_PROPS = {
     return value;
   },
   onChange: (name: any, inputValue: any) => {
-    DEFAULT_PROPS.value.label = inputValue.label;
-    DEFAULT_PROPS.value.value = inputValue.value;
+    DEFAULT_PROPS.value.country = inputValue.label;
+    DEFAULT_PROPS.value.code = inputValue.value;
   },
   options: [
-    { value: "PL", label: "Poland" },
-    { value: "PT", label: "Portugal" },
-    { value: "US", label: "United States of America" },
-    { value: "DE", label: "Germany" },
-    { value: "BE", label: "Belarus" },
-    { value: "SE", label: "Sweden" },
-    { value: "FR", label: "France" },
+    { code: "PL", country: "Poland" },
+    { code: "PT", country: "Portugal" },
+    { code: "US", country: "United States of America" },
+    { code: "DE", country: "Germany" },
+    { code: "BE", country: "Belarus" },
+    { code: "SE", country: "Sweden" },
+    { code: "FR", country: "France" },
   ],
   value: country,
 };
