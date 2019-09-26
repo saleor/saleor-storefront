@@ -20,6 +20,8 @@ const DEFAULT_PROPS = {
     DEFAULT_PROPS.value.country = inputValue.label;
     DEFAULT_PROPS.value.code = inputValue.value;
   },
+  optionLabelKey: "country",
+  optionValueKey: "code",
   options: [
     { code: "PL", country: "Poland" },
     { code: "PT", country: "Portugal" },
