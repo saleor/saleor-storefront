@@ -22,6 +22,94 @@ export interface VariantList_productVariants_edges_node_price {
   localized: string;
 }
 
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: VariantList_productVariants_edges_node_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: VariantList_productVariants_edges_node_pricing_priceUndiscounted_net;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: VariantList_productVariants_edges_node_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: VariantList_productVariants_edges_node_pricing_price_net;
+}
+
+export interface VariantList_productVariants_edges_node_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: VariantList_productVariants_edges_node_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: VariantList_productVariants_edges_node_pricing_price | null;
+}
+
 export interface VariantList_productVariants_edges_node_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -119,6 +207,11 @@ export interface VariantList_productVariants_edges_node {
    * Price of the product variant.
    */
   price: VariantList_productVariants_edges_node_price | null;
+  /**
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
+   */
+  pricing: VariantList_productVariants_edges_node_pricing | null;
   /**
    * List of attributes assigned to this variant.
    */

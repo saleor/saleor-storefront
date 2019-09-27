@@ -34,9 +34,21 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
@@ -46,9 +58,9 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   gross: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross {
@@ -58,9 +70,21 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
@@ -70,9 +94,9 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   gross: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress_country {
@@ -200,9 +224,21 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
@@ -212,9 +248,9 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   gross: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross {
@@ -224,9 +260,21 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
@@ -236,9 +284,9 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   gross: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_price {

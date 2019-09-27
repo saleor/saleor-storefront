@@ -13,9 +13,21 @@ export interface CheckoutLine_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface CheckoutLine_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface CheckoutLine_totalPrice {
@@ -25,9 +37,9 @@ export interface CheckoutLine_totalPrice {
    */
   gross: CheckoutLine_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CheckoutLine_totalPrice_net;
 }
 
 export interface CheckoutLine_variant_price {

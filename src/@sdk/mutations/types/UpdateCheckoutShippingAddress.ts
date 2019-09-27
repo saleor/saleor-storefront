@@ -34,9 +34,21 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice {
@@ -46,9 +58,9 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross {
@@ -58,9 +70,21 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice {
@@ -70,9 +94,9 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country {
@@ -200,9 +224,21 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice {
@@ -212,9 +248,9 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross {
@@ -224,9 +260,21 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice {
@@ -236,9 +284,9 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   gross: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price {
@@ -391,9 +439,21 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice {
@@ -403,9 +463,9 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
    */
   gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross {
@@ -415,9 +475,21 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice {
@@ -427,9 +499,9 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
    */
   gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country {
@@ -557,9 +629,21 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice {
@@ -569,9 +653,9 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    */
   gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross {
@@ -581,9 +665,21 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice {
@@ -593,9 +689,9 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   gross: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_net;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {

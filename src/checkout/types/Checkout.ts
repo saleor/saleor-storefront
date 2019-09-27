@@ -18,9 +18,21 @@ export interface Checkout_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_totalPrice {
@@ -30,9 +42,9 @@ export interface Checkout_totalPrice {
    */
   gross: Checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_totalPrice_net;
 }
 
 export interface Checkout_subtotalPrice_gross {
@@ -42,9 +54,21 @@ export interface Checkout_subtotalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_subtotalPrice {
@@ -54,9 +78,9 @@ export interface Checkout_subtotalPrice {
    */
   gross: Checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_subtotalPrice_net;
 }
 
 export interface Checkout_billingAddress_country {
@@ -184,9 +208,21 @@ export interface Checkout_shippingPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_shippingPrice {
@@ -196,9 +232,9 @@ export interface Checkout_shippingPrice {
    */
   gross: Checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_shippingPrice_net;
 }
 
 export interface Checkout_lines_totalPrice_gross {
@@ -208,9 +244,21 @@ export interface Checkout_lines_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_lines_totalPrice {
@@ -220,9 +268,9 @@ export interface Checkout_lines_totalPrice {
    */
   gross: Checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_lines_totalPrice_net;
 }
 
 export interface Checkout_lines_variant_price {

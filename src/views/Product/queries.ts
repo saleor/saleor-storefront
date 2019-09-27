@@ -7,6 +7,19 @@ import {
 } from "./types/ProductDetails";
 import { VariantList, VariantListVariables } from "./types/VariantList";
 
+export const priceFragment = gql`
+  fragment Price on TaxedMoney {
+    gross {
+      amount
+      currency
+    }
+    net {
+      amount
+      currency
+    }
+  }
+`;
+
 export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
@@ -21,7 +34,32 @@ export const basicProductFragment = gql`
   }
 `;
 
+export const productPricingFragment = gql`
+  fragment ProductPricingField on Product {
+    pricing {
+      onSale
+      priceRangeUndiscounted {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+      priceRange {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+    }
+  }
+`;
+
 export const productVariantFragment = gql`
+  ${priceFragment}
   fragment ProductVariantFields on ProductVariant {
     id
     sku
@@ -32,6 +70,15 @@ export const productVariantFragment = gql`
       currency
       amount
       localized
+    }
+    pricing {
+      onSale
+      priceUndiscounted {
+        ...Price
+      }
+      price {
+        ...Price
+      }
     }
     attributes {
       attribute {
@@ -50,9 +97,11 @@ export const productVariantFragment = gql`
 export const productDetailsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
+  ${productPricingFragment}
   query ProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
+      ...ProductPricingField
       descriptionJson
       category {
         id
@@ -61,6 +110,7 @@ export const productDetailsQuery = gql`
           edges {
             node {
               ...BasicProductFields
+              ...ProductPricingField
               category {
                 id
                 name
