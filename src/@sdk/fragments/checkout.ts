@@ -48,6 +48,7 @@ export const checkoutPriceFragment = gql`
   fragment Price on TaxedMoney {
     gross {
       amount
+      currency
       localized
     }
     currency

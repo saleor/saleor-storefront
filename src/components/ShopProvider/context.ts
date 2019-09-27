@@ -12,6 +12,7 @@ export const defaultContext: getShop_shop = {
   __typename: "Shop",
   countries: [],
   defaultCountry,
+  displayGrossPrices: true,
   geolocalization: { __typename: "Geolocalization", country: defaultCountry },
 };
 
