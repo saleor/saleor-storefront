@@ -2,8 +2,6 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { GatewaysEnum } from "./../../types/globalTypes";
-
 // ====================================================
 // GraphQL query operation: CheckoutDetails
 // ====================================================
@@ -92,14 +90,6 @@ export interface CheckoutDetails_checkout_billingAddress {
   country: CheckoutDetails_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CheckoutDetails_checkout_shippingAddress_country {
@@ -133,14 +123,6 @@ export interface CheckoutDetails_checkout_shippingAddress {
   country: CheckoutDetails_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CheckoutDetails_checkout_availableShippingMethods_price {
@@ -333,7 +315,7 @@ export interface CheckoutDetails_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -371,7 +353,7 @@ export interface CheckoutDetails_checkout {
 
 export interface CheckoutDetails {
   /**
-   * Single checkout.
+   * Lookup a checkout by token.
    */
   checkout: CheckoutDetails_checkout | null;
 }

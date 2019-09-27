@@ -2,8 +2,6 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { GatewaysEnum } from "./../../types/globalTypes";
-
 // ====================================================
 // GraphQL query operation: UserCheckoutDetails
 // ====================================================
@@ -92,14 +90,6 @@ export interface UserCheckoutDetails_me_checkout_billingAddress {
   country: UserCheckoutDetails_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_shippingAddress_country {
@@ -133,14 +123,6 @@ export interface UserCheckoutDetails_me_checkout_shippingAddress {
   country: UserCheckoutDetails_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_availableShippingMethods_price {
@@ -333,7 +315,7 @@ export interface UserCheckoutDetails_me_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -383,7 +365,7 @@ export interface UserCheckoutDetails_me {
 
 export interface UserCheckoutDetails {
   /**
-   * Logged in user data.
+   * Return the currently authenticated user.
    */
   me: UserCheckoutDetails_me | null;
 }

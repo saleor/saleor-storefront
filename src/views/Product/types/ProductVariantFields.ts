@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -56,9 +57,9 @@ export interface ProductVariantFields_attributes {
    */
   attribute: ProductVariantFields_attributes_attribute;
   /**
-   * Value of an attribute.
+   * The value or the first value of an attribute.
    */
-  value: ProductVariantFields_attributes_value;
+  value: ProductVariantFields_attributes_value | null;
 }
 
 export interface ProductVariantFields {

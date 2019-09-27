@@ -150,7 +150,7 @@ export interface OrdersByUser_me {
 
 export interface OrdersByUser {
   /**
-   * Logged in user data.
+   * Return the currently authenticated user.
    */
   me: OrdersByUser_me | null;
 }

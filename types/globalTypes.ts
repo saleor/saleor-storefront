@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 //==============================================================
@@ -8,11 +9,9 @@
 /**
  * An enumeration.
  */
-export enum GatewaysEnum {
-  BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY",
-  RAZORPAY = "RAZORPAY",
-  STRIPE = "STRIPE",
+export enum AddressTypeEnum {
+  BILLING = "BILLING",
+  SHIPPING = "SHIPPING",
 }
 
 export enum OrderDirection {
@@ -44,8 +43,18 @@ export enum PaymentChargeStatusEnum {
 
 export enum ProductOrderField {
   DATE = "DATE",
+  MINIMAL_PRICE = "MINIMAL_PRICE",
   NAME = "NAME",
   PRICE = "PRICE",
+  PUBLISHED = "PUBLISHED",
+  TYPE = "TYPE",
+}
+
+export interface AccountInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  defaultBillingAddress?: AddressInput | null;
+  defaultShippingAddress?: AddressInput | null;
 }
 
 export interface AddressInput {
@@ -75,14 +84,15 @@ export interface CheckoutLineInput {
 }
 
 export interface PaymentInput {
-  gateway: GatewaysEnum;
+  gateway: string;
   token: string;
   amount?: any | null;
   billingAddress?: AddressInput | null;
 }
 
 export interface ProductOrder {
-  field: ProductOrderField;
+  field?: ProductOrderField | null;
+  attributeId?: string | null;
   direction: OrderDirection;
 }
 

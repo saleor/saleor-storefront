@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressTypeEnum } from "./../../types/globalTypes";
+import { AddressTypeEnum } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: SetCustomerDefaultAddress
@@ -53,14 +53,6 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_default
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress_country {
@@ -94,14 +86,6 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_default
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses_country {
@@ -135,14 +119,6 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_address
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user {

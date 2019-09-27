@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 
-import { GatewaysEnum } from "../../../../../types/globalTypes";
+import { PROVIDERS } from "../../../../core/config";
 import { ProviderProps } from "../View";
 
 class Dummy extends React.PureComponent<
@@ -30,7 +30,7 @@ class Dummy extends React.PureComponent<
         onSubmit={async evt => {
           evt.preventDefault();
           await update({ dummyStatus: selectedStatus.label });
-          processPayment(selectedStatus.token, GatewaysEnum.DUMMY);
+          processPayment(selectedStatus.token, PROVIDERS.DUMMY);
         }}
         className="c-option__content"
       >

@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -107,7 +108,7 @@ export interface SecondaryMenu_shop {
 
 export interface SecondaryMenu {
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: SecondaryMenu_shop | null;
 }

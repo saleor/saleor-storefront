@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -28,6 +29,9 @@ export interface RegisterCutomer_customerRegister {
 }
 
 export interface RegisterCutomer {
+  /**
+   * DEPRECATED: Will be removed in Saleor 2.10, use AccountRegister instead. Register a new user.
+   */
   customerRegister: RegisterCutomer_customerRegister | null;
 }
 

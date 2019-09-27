@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -178,7 +179,7 @@ export interface MainMenu_shop {
 
 export interface MainMenu {
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: MainMenu_shop | null;
 }

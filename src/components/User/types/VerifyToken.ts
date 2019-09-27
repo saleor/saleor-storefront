@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -129,6 +130,9 @@ export interface VerifyToken_tokenVerify {
 }
 
 export interface VerifyToken {
+  /**
+   * Mutation that confirm if token is valid and also return user data.
+   */
   tokenVerify: VerifyToken_tokenVerify | null;
 }
 

@@ -4,7 +4,6 @@ import * as React from "react";
 import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
 
-import { GatewaysEnum } from "../../../../types/globalTypes";
 import { Button } from "../../../components";
 import { PROVIDERS } from "../../../core/config";
 import { maybe } from "../../../core/utils";
@@ -28,7 +27,7 @@ export interface ProviderProps {
   formRef: React.RefObject<HTMLFormElement>;
   paymentClientToken: string;
   checkout: CheckoutContextInterface;
-  processPayment(token: string, gateway: GatewaysEnum): Promise<void>;
+  processPayment(token: string, gateway: string): Promise<void>;
   setLoadingState(loading: boolean): void;
 }
 
@@ -37,7 +36,7 @@ class View extends React.Component<
   {
     loading: boolean;
     validateStep: boolean;
-    selectedGeteway: GatewaysEnum;
+    selectedGeteway: string;
   }
 > {
   state = {
@@ -71,7 +70,7 @@ class View extends React.Component<
   processPayment = (
     createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
     checkout: CheckoutContextInterface
-  ) => async (token: string, gateway: GatewaysEnum) => {
+  ) => async (token: string, gateway: string) => {
     const {
       checkout: { billingAddress, totalPrice, id },
     } = checkout;

@@ -1,7 +1,8 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput, GatewaysEnum } from "./../../../../../types/globalTypes";
+import { AddressInput } from "./../../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: updateCheckoutBillingAddress
@@ -330,7 +331,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -379,6 +380,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
 }
 
 export interface updateCheckoutBillingAddress {
+  /**
+   * Update billing address in the existing Checkout.
+   */
   checkoutBillingAddressUpdate: updateCheckoutBillingAddress_checkoutBillingAddressUpdate | null;
 }
 

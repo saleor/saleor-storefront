@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput, GatewaysEnum } from "./../../types/globalTypes";
+import { CheckoutCreateInput } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
@@ -106,14 +106,6 @@ export interface CreateCheckout_checkoutCreate_checkout_billingAddress {
   country: CreateCheckout_checkoutCreate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingAddress_country {
@@ -147,14 +139,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
   country: CreateCheckout_checkoutCreate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods_price {
@@ -347,7 +331,7 @@ export interface CreateCheckout_checkoutCreate_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.

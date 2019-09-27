@@ -9,7 +9,7 @@ import {
 } from "./types/getPaymentToken";
 
 const getPaymentTokenQuery = gql`
-  query getPaymentToken($gateway: GatewaysEnum!) {
+  query getPaymentToken($gateway: String!) {
     paymentClientToken(gateway: $gateway)
   }
 `;

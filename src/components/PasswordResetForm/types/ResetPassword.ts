@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -28,6 +29,9 @@ export interface ResetPassword_customerPasswordReset {
 }
 
 export interface ResetPassword {
+  /**
+   * DEPRECATED: Will be removed in Saleor 2.10, use RequestPasswordReset instead. Resets the customer's password.
+   */
   customerPasswordReset: ResetPassword_customerPasswordReset | null;
 }
 

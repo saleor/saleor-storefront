@@ -37,14 +37,6 @@ export interface UserDetails_me_defaultShippingAddress {
   country: UserDetails_me_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserDetails_me_defaultBillingAddress_country {
@@ -78,14 +70,6 @@ export interface UserDetails_me_defaultBillingAddress {
   country: UserDetails_me_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserDetails_me_addresses_country {
@@ -119,14 +103,6 @@ export interface UserDetails_me_addresses {
   country: UserDetails_me_addresses_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserDetails_me {
@@ -149,7 +125,7 @@ export interface UserDetails_me {
 
 export interface UserDetails {
   /**
-   * Logged in user data.
+   * Return the currently authenticated user.
    */
   me: UserDetails_me | null;
 }

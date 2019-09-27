@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { ProductOrder } from "./../../../../types/globalTypes";
@@ -109,6 +110,9 @@ export interface Category_products {
    */
   totalCount: number | null;
   edges: Category_products_edges[];
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: Category_products_pageInfo;
 }
 
