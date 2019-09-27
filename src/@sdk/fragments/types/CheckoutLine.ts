@@ -13,9 +13,21 @@ export interface CheckoutLine_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface CheckoutLine_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface CheckoutLine_totalPrice {
@@ -25,9 +37,9 @@ export interface CheckoutLine_totalPrice {
    */
   gross: CheckoutLine_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CheckoutLine_totalPrice_net;
 }
 
 export interface CheckoutLine_variant_price {
@@ -44,6 +56,94 @@ export interface CheckoutLine_variant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface CheckoutLine_variant_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface CheckoutLine_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface CheckoutLine_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: CheckoutLine_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: CheckoutLine_variant_pricing_priceUndiscounted_net;
+}
+
+export interface CheckoutLine_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface CheckoutLine_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface CheckoutLine_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: CheckoutLine_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: CheckoutLine_variant_pricing_price_net;
+}
+
+export interface CheckoutLine_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: CheckoutLine_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: CheckoutLine_variant_pricing_price | null;
 }
 
 export interface CheckoutLine_variant_product_thumbnail {
@@ -98,6 +198,11 @@ export interface CheckoutLine_variant {
    * Price of the product variant.
    */
   price: CheckoutLine_variant_price | null;
+  /**
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
+   */
+  pricing: CheckoutLine_variant_pricing | null;
   product: CheckoutLine_variant_product;
 }
 

@@ -65,6 +65,94 @@ export interface OrderByToken_orderByToken_lines_variant_price {
   localized: string;
 }
 
+export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderByToken_orderByToken_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_lines_variant_pricing_price_net;
+}
+
+export interface OrderByToken_orderByToken_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: OrderByToken_orderByToken_lines_variant_pricing_price | null;
+}
+
 export interface OrderByToken_orderByToken_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -113,6 +201,11 @@ export interface OrderByToken_orderByToken_lines_variant {
    * Price of the product variant.
    */
   price: OrderByToken_orderByToken_lines_variant_price | null;
+  /**
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
+   */
+  pricing: OrderByToken_orderByToken_lines_variant_pricing | null;
   product: OrderByToken_orderByToken_lines_variant_product;
 }
 
@@ -253,5 +346,5 @@ export interface OrderByToken {
 }
 
 export interface OrderByTokenVariables {
-  token: string;
+  token: any;
 }

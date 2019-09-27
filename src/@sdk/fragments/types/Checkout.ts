@@ -2,8 +2,6 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { GatewaysEnum } from "./../../types/globalTypes";
-
 // ====================================================
 // GraphQL fragment: Checkout
 // ====================================================
@@ -20,9 +18,21 @@ export interface Checkout_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_totalPrice {
@@ -32,9 +42,9 @@ export interface Checkout_totalPrice {
    */
   gross: Checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_totalPrice_net;
 }
 
 export interface Checkout_subtotalPrice_gross {
@@ -44,9 +54,21 @@ export interface Checkout_subtotalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_subtotalPrice {
@@ -56,9 +78,9 @@ export interface Checkout_subtotalPrice {
    */
   gross: Checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_subtotalPrice_net;
 }
 
 export interface Checkout_billingAddress_country {
@@ -202,9 +224,21 @@ export interface Checkout_shippingPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_shippingPrice {
@@ -214,9 +248,9 @@ export interface Checkout_shippingPrice {
    */
   gross: Checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_shippingPrice_net;
 }
 
 export interface Checkout_lines_totalPrice_gross {
@@ -226,9 +260,21 @@ export interface Checkout_lines_totalPrice_gross {
    */
   amount: number;
   /**
-   * Money formatted according to the current locale.
+   * Currency code.
    */
-  localized: string;
+  currency: string;
+}
+
+export interface Checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface Checkout_lines_totalPrice {
@@ -238,9 +284,9 @@ export interface Checkout_lines_totalPrice {
    */
   gross: Checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: Checkout_lines_totalPrice_net;
 }
 
 export interface Checkout_lines_variant_price {
@@ -257,6 +303,94 @@ export interface Checkout_lines_variant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface Checkout_lines_variant_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface Checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface Checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface Checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface Checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface Checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Checkout_lines_variant_pricing_price_net;
+}
+
+export interface Checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: Checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: Checkout_lines_variant_pricing_price | null;
 }
 
 export interface Checkout_lines_variant_product_thumbnail {
@@ -311,6 +445,11 @@ export interface Checkout_lines_variant {
    * Price of the product variant.
    */
   price: Checkout_lines_variant_price | null;
+  /**
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
+   */
+  pricing: Checkout_lines_variant_pricing | null;
   product: Checkout_lines_variant_product;
 }
 
@@ -333,7 +472,7 @@ export interface Checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (GatewaysEnum | null)[];
+  availablePaymentGateways: (string | null)[];
   token: any;
   /**
    * The ID of the object.
