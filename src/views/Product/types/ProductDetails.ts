@@ -487,22 +487,6 @@ export interface ProductDetails_product_category_products_edges_node_category {
   name: string;
 }
 
-export interface ProductDetails_product_category_products_edges_node_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface ProductDetails_product_category_products_edges_node {
   __typename: "Product";
   /**
@@ -524,10 +508,6 @@ export interface ProductDetails_product_category_products_edges_node {
    */
   pricing: ProductDetails_product_category_products_edges_node_pricing | null;
   category: ProductDetails_product_category_products_edges_node_category;
-  /**
-   * The product's default base price.
-   */
-  price: ProductDetails_product_category_products_edges_node_price | null;
 }
 
 export interface ProductDetails_product_category_products_edges {
@@ -556,22 +536,6 @@ export interface ProductDetails_product_category {
   products: ProductDetails_product_category_products | null;
 }
 
-export interface ProductDetails_product_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface ProductDetails_product_images {
   __typename: "ProductImage";
   /**
@@ -582,22 +546,6 @@ export interface ProductDetails_product_images {
    * The URL of the image.
    */
   url: string;
-}
-
-export interface ProductDetails_product_variants_price {
-  __typename: "Money";
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface ProductDetails_product_variants_pricing_priceUndiscounted_gross {
@@ -761,10 +709,6 @@ export interface ProductDetails_product_variants {
    */
   isAvailable: boolean | null;
   /**
-   * Price of the product variant.
-   */
-  price: ProductDetails_product_variants_price | null;
-  /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying
    */
@@ -805,10 +749,6 @@ export interface ProductDetails_product {
   pricing: ProductDetails_product_pricing | null;
   descriptionJson: any;
   category: ProductDetails_product_category;
-  /**
-   * The product's default base price.
-   */
-  price: ProductDetails_product_price | null;
   /**
    * List of images for the product
    */

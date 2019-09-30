@@ -68,11 +68,6 @@ export const productVariantFragment = gql`
     name
     stockQuantity
     isAvailable
-    price {
-      currency
-      amount
-      localized
-    }
     pricing {
       onSale
       priceUndiscounted {
@@ -117,19 +112,9 @@ export const productDetailsQuery = gql`
                 id
                 name
               }
-              price {
-                amount
-                currency
-                localized
-              }
             }
           }
         }
-      }
-      price {
-        amount
-        currency
-        localized
       }
       images {
         id
