@@ -190,9 +190,7 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines:
-    | (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
   /**
    * The price of the checkout before shipping, with taxes included.
    */

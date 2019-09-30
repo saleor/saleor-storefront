@@ -146,6 +146,30 @@ export interface OrderByToken_orderByToken_lines {
 export interface OrderByToken_orderByToken_subtotal_gross {
   __typename: "Money";
   /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderByToken_orderByToken_subtotal_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -157,10 +181,38 @@ export interface OrderByToken_orderByToken_subtotal {
    * Amount of money including taxes.
    */
   gross: OrderByToken_orderByToken_subtotal_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_subtotal_net;
 }
 
 export interface OrderByToken_orderByToken_total_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderByToken_orderByToken_total_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -173,10 +225,38 @@ export interface OrderByToken_orderByToken_total {
    * Amount of money including taxes.
    */
   gross: OrderByToken_orderByToken_total_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_total_net;
 }
 
 export interface OrderByToken_orderByToken_shippingPrice_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderByToken_orderByToken_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -189,6 +269,10 @@ export interface OrderByToken_orderByToken_shippingPrice {
    * Amount of money including taxes.
    */
   gross: OrderByToken_orderByToken_shippingPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_shippingPrice_net;
 }
 
 export interface OrderByToken_orderByToken {

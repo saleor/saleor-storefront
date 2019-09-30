@@ -130,14 +130,6 @@ export interface UserCheckoutDetails_me_checkout_billingAddress {
   country: UserCheckoutDetails_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_shippingAddress_country {
@@ -171,14 +163,6 @@ export interface UserCheckoutDetails_me_checkout_shippingAddress {
   country: UserCheckoutDetails_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_availableShippingMethods_price {
@@ -337,110 +321,6 @@ export interface UserCheckoutDetails_me_checkout_lines_variant_price {
   localized: string;
 }
 
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted_gross {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted_net {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted {
-  __typename: "TaxedMoney";
-  /**
-   * Amount of money including taxes.
-   */
-  gross: UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted_gross;
-  /**
-   * Amount of money without taxes.
-   */
-  net: UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted_net;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_price_gross {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_price_net {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing_price {
-  __typename: "TaxedMoney";
-  /**
-   * Amount of money including taxes.
-   */
-  gross: UserCheckoutDetails_me_checkout_lines_variant_pricing_price_gross;
-  /**
-   * Amount of money without taxes.
-   */
-  net: UserCheckoutDetails_me_checkout_lines_variant_pricing_price_net;
-}
-
-export interface UserCheckoutDetails_me_checkout_lines_variant_pricing {
-  __typename: "VariantPricingInfo";
-  /**
-   * Whether it is in sale or not.
-   */
-  onSale: boolean | null;
-  /**
-   * The price without any discount.
-   */
-  priceUndiscounted: UserCheckoutDetails_me_checkout_lines_variant_pricing_priceUndiscounted | null;
-  /**
-   * The price, with any discount subtracted.
-   */
-  price: UserCheckoutDetails_me_checkout_lines_variant_pricing_price | null;
-}
-
 export interface UserCheckoutDetails_me_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -493,11 +373,6 @@ export interface UserCheckoutDetails_me_checkout_lines_variant {
    * Price of the product variant.
    */
   price: UserCheckoutDetails_me_checkout_lines_variant_price | null;
-  /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
-   */
-  pricing: UserCheckoutDetails_me_checkout_lines_variant_pricing | null;
   product: UserCheckoutDetails_me_checkout_lines_variant_product;
 }
 

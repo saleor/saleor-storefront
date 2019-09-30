@@ -36,6 +36,10 @@ export interface ProductDetails_product_pricing_priceRangeUndiscounted_start_gro
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_start_net {
@@ -48,6 +52,10 @@ export interface ProductDetails_product_pricing_priceRangeUndiscounted_start_net
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_start {
@@ -72,6 +80,10 @@ export interface ProductDetails_product_pricing_priceRangeUndiscounted_stop_gros
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_stop_net {
@@ -84,6 +96,10 @@ export interface ProductDetails_product_pricing_priceRangeUndiscounted_stop_net 
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRangeUndiscounted_stop {
@@ -120,6 +136,10 @@ export interface ProductDetails_product_pricing_priceRange_start_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRange_start_net {
@@ -132,6 +152,10 @@ export interface ProductDetails_product_pricing_priceRange_start_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRange_start {
@@ -156,6 +180,10 @@ export interface ProductDetails_product_pricing_priceRange_stop_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRange_stop_net {
@@ -168,6 +196,10 @@ export interface ProductDetails_product_pricing_priceRange_stop_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_pricing_priceRange_stop {
@@ -240,6 +272,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRangeUndiscounted_start_net {
@@ -252,6 +288,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRangeUndiscounted_start {
@@ -276,6 +316,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
@@ -288,6 +332,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRangeUndiscounted_stop {
@@ -324,6 +372,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRange_start_net {
@@ -336,6 +388,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRange_start {
@@ -360,6 +416,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRange_stop_net {
@@ -372,6 +432,10 @@ export interface ProductDetails_product_category_products_edges_node_pricing_pri
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_category_products_edges_node_pricing_priceRange_stop {
@@ -546,6 +610,10 @@ export interface ProductDetails_product_variants_pricing_priceUndiscounted_gross
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_variants_pricing_priceUndiscounted_net {
@@ -558,6 +626,10 @@ export interface ProductDetails_product_variants_pricing_priceUndiscounted_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_variants_pricing_priceUndiscounted {
@@ -582,6 +654,10 @@ export interface ProductDetails_product_variants_pricing_price_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_variants_pricing_price_net {
@@ -594,6 +670,10 @@ export interface ProductDetails_product_variants_pricing_price_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface ProductDetails_product_variants_pricing_price {

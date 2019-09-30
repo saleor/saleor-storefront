@@ -146,6 +146,30 @@ export interface OrderById_order_lines {
 export interface OrderById_order_subtotal_gross {
   __typename: "Money";
   /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderById_order_subtotal_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -157,10 +181,38 @@ export interface OrderById_order_subtotal {
    * Amount of money including taxes.
    */
   gross: OrderById_order_subtotal_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderById_order_subtotal_net;
 }
 
 export interface OrderById_order_total_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderById_order_total_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -173,10 +225,38 @@ export interface OrderById_order_total {
    * Amount of money including taxes.
    */
   gross: OrderById_order_total_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderById_order_total_net;
 }
 
 export interface OrderById_order_shippingPrice_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderById_order_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -189,6 +269,10 @@ export interface OrderById_order_shippingPrice {
    * Amount of money including taxes.
    */
   gross: OrderById_order_shippingPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderById_order_shippingPrice_net;
 }
 
 export interface OrderById_order {

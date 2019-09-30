@@ -442,9 +442,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines:
-    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[]
-    | null;
+  lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
@@ -452,9 +450,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors:
-    | updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[]
-    | null;
+  errors: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[] | null;
   /**
    * An updated checkout
    */

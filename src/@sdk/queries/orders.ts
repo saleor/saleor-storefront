@@ -18,6 +18,13 @@ export const ordersByUser = gql`
             created
             total {
               gross {
+                amount
+                currency
+                localized
+              }
+              net {
+                amount
+                currency
                 localized
               }
             }

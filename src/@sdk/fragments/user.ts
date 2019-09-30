@@ -8,6 +8,13 @@ import {
 export const orderPriceFragment = gql`
   fragment OrderPrice on TaxedMoney {
     gross {
+      amount
+      currency
+      localized
+    }
+    net {
+      amount
+      currency
       localized
     }
   }

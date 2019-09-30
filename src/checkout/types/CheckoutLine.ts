@@ -16,6 +16,10 @@ export interface CheckoutLine_totalPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_totalPrice_net {
@@ -28,6 +32,10 @@ export interface CheckoutLine_totalPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_totalPrice {
