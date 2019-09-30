@@ -75,6 +75,10 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net {
@@ -87,6 +91,10 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted {
@@ -111,6 +119,10 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
@@ -123,6 +135,10 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_price {

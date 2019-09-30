@@ -16,6 +16,10 @@ export interface CheckoutLine_totalPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_totalPrice_net {
@@ -28,6 +32,10 @@ export interface CheckoutLine_totalPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_totalPrice {
@@ -68,6 +76,10 @@ export interface CheckoutLine_variant_pricing_priceUndiscounted_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_variant_pricing_priceUndiscounted_net {
@@ -80,6 +92,10 @@ export interface CheckoutLine_variant_pricing_priceUndiscounted_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_variant_pricing_priceUndiscounted {
@@ -104,6 +120,10 @@ export interface CheckoutLine_variant_pricing_price_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_variant_pricing_price_net {
@@ -116,6 +136,10 @@ export interface CheckoutLine_variant_pricing_price_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface CheckoutLine_variant_pricing_price {
