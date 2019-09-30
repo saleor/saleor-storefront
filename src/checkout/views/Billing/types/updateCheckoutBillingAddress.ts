@@ -37,6 +37,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net {
@@ -49,6 +53,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
@@ -73,6 +81,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net {
@@ -85,6 +97,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
@@ -227,6 +243,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net {
@@ -239,6 +259,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
@@ -263,6 +287,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net {
@@ -275,6 +303,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
@@ -412,7 +444,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
@@ -420,7 +454,9 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[] | null;
+  errors:
+    | updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[]
+    | null;
   /**
    * An updated checkout
    */

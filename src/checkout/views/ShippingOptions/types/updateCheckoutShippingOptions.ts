@@ -35,6 +35,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_net {
@@ -47,6 +51,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice {
@@ -71,6 +79,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_net {
@@ -83,6 +95,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice {
@@ -225,6 +241,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_net {
@@ -237,6 +257,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice {
@@ -261,6 +285,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_net {
@@ -273,6 +301,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice {
@@ -410,7 +442,9 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[]
+    | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
@@ -418,7 +452,9 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[] | null;
+  errors:
+    | updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[]
+    | null;
   /**
    * An updated checkout
    */

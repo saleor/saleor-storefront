@@ -55,9 +55,14 @@ const checkoutPriceFragment = gql`
   fragment Price on TaxedMoney {
     gross {
       amount
+      currency
       localized
     }
-    currency
+    net {
+      amount
+      currency
+      localized
+    }
   }
 `;
 

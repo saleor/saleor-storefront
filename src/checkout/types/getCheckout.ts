@@ -21,6 +21,10 @@ export interface getCheckout_checkout_totalPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_totalPrice_net {
@@ -33,6 +37,10 @@ export interface getCheckout_checkout_totalPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_totalPrice {
@@ -57,6 +65,10 @@ export interface getCheckout_checkout_subtotalPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_subtotalPrice_net {
@@ -69,6 +81,10 @@ export interface getCheckout_checkout_subtotalPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_subtotalPrice {
@@ -211,6 +227,10 @@ export interface getCheckout_checkout_shippingPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_shippingPrice_net {
@@ -223,6 +243,10 @@ export interface getCheckout_checkout_shippingPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_shippingPrice {
@@ -247,6 +271,10 @@ export interface getCheckout_checkout_lines_totalPrice_gross {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_lines_totalPrice_net {
@@ -259,6 +287,10 @@ export interface getCheckout_checkout_lines_totalPrice_net {
    * Currency code.
    */
   currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface getCheckout_checkout_lines_totalPrice {
