@@ -41,11 +41,6 @@ export const checkoutProductVariantFragment = gql`
   fragment ProductVariant on ProductVariant {
     id
     name
-    price {
-      amount
-      currency
-      localized
-    }
     pricing {
       onSale
       priceUndiscounted {

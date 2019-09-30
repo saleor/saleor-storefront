@@ -337,22 +337,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   net: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net;
 }
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -505,10 +489,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying

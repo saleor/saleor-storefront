@@ -28,29 +28,6 @@ export const checkoutAddressFragment = gql`
   }
 `;
 
-export const checkoutProductVariantFragment = gql`
-  fragment ProductVariant on ProductVariant {
-    id
-    name
-    price {
-      amount
-      currency
-      localized
-    }
-    product {
-      id
-      name
-      thumbnail {
-        url
-        alt
-      }
-      thumbnail2x: thumbnail(size: 510) {
-        url
-      }
-    }
-  }
-`;
-
 const checkoutPriceFragment = gql`
   fragment Price on TaxedMoney {
     gross {
@@ -62,6 +39,34 @@ const checkoutPriceFragment = gql`
       amount
       currency
       localized
+    }
+  }
+`;
+
+export const checkoutProductVariantFragment = gql`
+  ${checkoutPriceFragment}
+  fragment ProductVariant on ProductVariant {
+    id
+    name
+    pricing {
+      onSale
+      priceUndiscounted {
+        ...Price
+      }
+      price {
+        ...Price
+      }
+    }
+    product {
+      id
+      name
+      thumbnail {
+        url
+        alt
+      }
+      thumbnail2x: thumbnail(size: 510) {
+        url
+      }
     }
   }
 `;

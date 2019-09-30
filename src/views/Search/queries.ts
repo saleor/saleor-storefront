@@ -1,12 +1,14 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
+import { productPricingFragment } from "../Product/queries";
 import {
   SearchProducts,
   SearchProductsVariables
 } from "./types/SearchProducts";
 
 export const searchProductsQuery = gql`
+  ${productPricingFragment}
   query SearchProducts(
     $query: String!
     $attributes: [AttributeScalar]
@@ -24,6 +26,7 @@ export const searchProductsQuery = gql`
       totalCount
       edges {
         node {
+          ...ProductPricingField
           id
           name
           thumbnail {
@@ -36,11 +39,6 @@ export const searchProductsQuery = gql`
           category {
             id
             name
-          }
-          price {
-            amount
-            currency
-            localized
           }
         }
       }

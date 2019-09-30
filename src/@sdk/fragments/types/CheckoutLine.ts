@@ -50,22 +50,6 @@ export interface CheckoutLine_totalPrice {
   net: CheckoutLine_totalPrice_net;
 }
 
-export interface CheckoutLine_variant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface CheckoutLine_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -218,10 +202,6 @@ export interface CheckoutLine_variant {
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: CheckoutLine_variant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying

@@ -321,7 +321,7 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   net: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_net;
 }
 
-export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price {
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -335,6 +335,94 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price_net;
+}
+
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail {
@@ -386,9 +474,10 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price | null;
+  pricing: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing | null;
   product: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product;
 }
 
@@ -758,7 +847,7 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   net: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_net;
 }
 
-export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -772,6 +861,94 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price_net;
+}
+
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
@@ -823,9 +1000,10 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price | null;
+  pricing: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing | null;
   product: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product;
 }
 

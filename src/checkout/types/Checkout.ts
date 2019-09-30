@@ -305,7 +305,7 @@ export interface Checkout_lines_totalPrice {
   net: Checkout_lines_totalPrice_net;
 }
 
-export interface Checkout_lines_variant_price {
+export interface Checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -319,6 +319,94 @@ export interface Checkout_lines_variant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface Checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface Checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface Checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface Checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface Checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Checkout_lines_variant_pricing_price_net;
+}
+
+export interface Checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: Checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: Checkout_lines_variant_pricing_price | null;
 }
 
 export interface Checkout_lines_variant_product_thumbnail {
@@ -370,9 +458,10 @@ export interface Checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: Checkout_lines_variant_price | null;
+  pricing: Checkout_lines_variant_pricing | null;
   product: Checkout_lines_variant_product;
 }
 

@@ -337,22 +337,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   net: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_net;
 }
 
-export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -505,10 +489,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying
@@ -899,22 +879,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   net: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_net;
 }
 
-export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -1067,10 +1031,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying

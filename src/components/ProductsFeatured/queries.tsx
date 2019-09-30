@@ -1,11 +1,15 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { basicProductFragment } from "../../views/Product/queries";
+import {
+  basicProductFragment,
+  productPricingFragment
+} from "../../views/Product/queries";
 import { ProductsList } from "./types/ProductsList";
 
 export const featuredProducts = gql`
   ${basicProductFragment}
+  ${productPricingFragment}
   query ProductsList {
     shop {
       homepageCollection {
@@ -14,11 +18,7 @@ export const featuredProducts = gql`
           edges {
             node {
               ...BasicProductFields
-              price {
-                amount
-                currency
-                localized
-              }
+              ...ProductPricingField
               category {
                 id
                 name

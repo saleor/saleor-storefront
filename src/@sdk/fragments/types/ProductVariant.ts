@@ -6,22 +6,6 @@
 // GraphQL fragment: ProductVariant
 // ====================================================
 
-export interface ProductVariant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface ProductVariant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -170,10 +154,6 @@ export interface ProductVariant {
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: ProductVariant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying

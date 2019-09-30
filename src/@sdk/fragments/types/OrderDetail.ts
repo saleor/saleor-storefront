@@ -49,22 +49,6 @@ export interface OrderDetail_shippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface OrderDetail_lines_variant_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface OrderDetail_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -213,10 +197,6 @@ export interface OrderDetail_lines_variant {
    */
   id: string;
   name: string;
-  /**
-   * Price of the product variant.
-   */
-  price: OrderDetail_lines_variant_price | null;
   /**
    * Lists the storefront variant's pricing,
    *             the current price and discounts, only meant for displaying
