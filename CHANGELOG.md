@@ -22,6 +22,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add the Credential Management API support - #409 by @bogdal
 - Add size picker component - #425 by @bogdal
 - Replace BACKEND_URL in favor of API_URI - #474 by @bogdal
+- Adapt `checkout.availablePaymentGateways` structure to the new schema - #483 by @bogdal
+- Replace product/variant `price` fields with appropriate `pricing` fields - #483 by @bogdal
 
 ## 0.6.0
 
