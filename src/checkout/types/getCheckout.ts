@@ -6,6 +6,30 @@
 // GraphQL query operation: getCheckout
 // ====================================================
 
+export interface getCheckout_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface getCheckout_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: getCheckout_checkout_availablePaymentGateways_config[];
+}
+
 export interface getCheckout_checkout_user {
   __typename: "User";
   email: string;
@@ -484,7 +508,7 @@ export interface getCheckout_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (getCheckout_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

@@ -13,8 +13,14 @@ export interface Product extends BasicProductFields {
     id: string;
     name: string;
   };
-  price: {
-    localized: string;
+  pricing: {
+    priceRange: {
+      start: {
+        gross: {
+          localized: string;
+        };
+      };
+    };
   };
 }
 
@@ -23,7 +29,16 @@ interface ProductListItemProps {
 }
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
-  const { price, category } = product;
+  const {
+    pricing: {
+      priceRange: {
+        start: {
+          gross: { localized },
+        },
+      },
+    },
+    category,
+  } = product;
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
@@ -33,7 +48,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category.name}</p>
-      <p className="product-list-item__price">{price.localized}</p>
+      <p className="product-list-item__price">{localized}</p>
     </div>
   );
 };

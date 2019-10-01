@@ -22,6 +22,30 @@ export interface createCheckout_checkoutCreate_errors {
   message: string | null;
 }
 
+export interface createCheckout_checkoutCreate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface createCheckout_checkoutCreate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: createCheckout_checkoutCreate_checkout_availablePaymentGateways_config[];
+}
+
 export interface createCheckout_checkoutCreate_checkout_user {
   __typename: "User";
   email: string;
@@ -500,7 +524,7 @@ export interface createCheckout_checkoutCreate_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (createCheckout_checkoutCreate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

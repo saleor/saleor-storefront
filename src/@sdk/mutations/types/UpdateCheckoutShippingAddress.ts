@@ -22,6 +22,30 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
   message: string | null;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways_config[];
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user {
   __typename: "User";
   email: string;
@@ -516,7 +540,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -562,6 +586,30 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
    * An updated checkout
    */
   checkout: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways_config[];
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user {
@@ -1058,7 +1106,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

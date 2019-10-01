@@ -22,6 +22,30 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_error
   message: string | null;
 }
 
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availablePaymentGateways_config[];
+}
+
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_user {
   __typename: "User";
   email: string;
@@ -516,7 +540,7 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

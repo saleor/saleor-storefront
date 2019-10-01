@@ -6,6 +6,30 @@
 // GraphQL fragment: Checkout
 // ====================================================
 
+export interface Checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface Checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: Checkout_availablePaymentGateways_config[];
+}
+
 export interface Checkout_user {
   __typename: "User";
   email: string;
@@ -484,7 +508,7 @@ export interface Checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (Checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

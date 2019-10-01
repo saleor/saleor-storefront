@@ -37,6 +37,7 @@ export const basicProductFragment = gql`
 `;
 
 export const productPricingFragment = gql`
+  ${priceFragment}
   fragment ProductPricingField on Product {
     pricing {
       onSale

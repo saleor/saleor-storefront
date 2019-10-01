@@ -20,6 +20,30 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_erro
   message: string | null;
 }
 
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availablePaymentGateways_config[];
+}
+
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_user {
   __typename: "User";
   email: string;
@@ -498,7 +522,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.
