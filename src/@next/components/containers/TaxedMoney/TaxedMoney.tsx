@@ -5,10 +5,10 @@ import { IProps } from "./types";
 
 import { ShopContext } from "../../../../components/ShopProvider/context";
 
-export const TaxedMoney: React.StatelessComponent<IProps> = ({
+export const TaxedMoney: React.FC<IProps> = ({
   taxedMoney,
   defaultValue,
-}) => {
+}: IProps) => {
   const { displayGrossPrices } = React.useContext(ShopContext);
   const money = taxedMoney
     ? displayGrossPrices
