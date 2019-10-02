@@ -51,6 +51,14 @@ export interface DeleteUserAddress_accountAddressDelete_user_defaultShippingAddr
   country: DeleteUserAddress_accountAddressDelete_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface DeleteUserAddress_accountAddressDelete_user_defaultBillingAddress_country {
@@ -84,6 +92,14 @@ export interface DeleteUserAddress_accountAddressDelete_user_defaultBillingAddre
   country: DeleteUserAddress_accountAddressDelete_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface DeleteUserAddress_accountAddressDelete_user_addresses_country {
@@ -117,6 +133,14 @@ export interface DeleteUserAddress_accountAddressDelete_user_addresses {
   country: DeleteUserAddress_accountAddressDelete_user_addresses_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface DeleteUserAddress_accountAddressDelete_user {

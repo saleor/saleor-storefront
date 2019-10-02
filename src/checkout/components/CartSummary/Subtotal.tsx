@@ -1,8 +1,10 @@
 import * as React from "react";
 
+import { Money } from "@components/containers";
+
 import { Checkout } from "../../../checkout/types/Checkout";
 import { CartLineInterface } from "../../../components/CartProvider/context";
-import { getTotal } from "../../../components/CartProvider/uitls";
+import { getTotal } from "../../../components/CartProvider/utils";
 import { ShopContext } from "../../../components/ShopProvider/context";
 import { maybe } from "../../../core/utils";
 import { VariantList } from "../../../views/Product/types/VariantList";
@@ -22,9 +24,11 @@ const Subtotal: React.FC<{
         <div className="cart-summary__totals">
           <h4>Subtotal</h4>
           <h4>
-            {checkout
-              ? checkout.subtotalPrice.gross.localized
-              : getTotal(variants, lines, locale)}
+            {checkout ? (
+              <Money money={checkout.subtotalPrice.gross} />
+            ) : (
+              getTotal(variants, lines, locale)
+            )}
           </h4>
         </div>
       );

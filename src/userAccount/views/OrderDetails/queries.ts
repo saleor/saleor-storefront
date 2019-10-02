@@ -11,6 +11,13 @@ import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 const orderPriceFragment = gql`
   fragment OrderPrice on TaxedMoney {
     gross {
+      amount
+      currency
+      localized
+    }
+    net {
+      amount
+      currency
       localized
     }
   }

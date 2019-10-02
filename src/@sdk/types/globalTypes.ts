@@ -17,16 +17,6 @@ export enum AddressTypeEnum {
 /**
  * An enumeration.
  */
-export enum GatewaysEnum {
-  BRAINTREE = "BRAINTREE",
-  DUMMY = "DUMMY",
-  RAZORPAY = "RAZORPAY",
-  STRIPE = "STRIPE",
-}
-
-/**
- * An enumeration.
- */
 export enum OrderStatus {
   CANCELED = "CANCELED",
   DRAFT = "DRAFT",

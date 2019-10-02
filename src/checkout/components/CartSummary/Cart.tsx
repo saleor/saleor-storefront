@@ -1,7 +1,8 @@
 import * as React from "react";
 
+import { Money } from "@components/containers";
+
 import { CartInterface } from "../../../components/CartProvider/context";
-import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { Checkout } from "../../types/Checkout";
 import Line from "./Line";
@@ -11,9 +12,6 @@ const Cart: React.FC<{
   cart: CartInterface;
   checkout: Checkout | null;
 }> = ({ cart: { lines }, checkout }) => {
-  const delivery = maybe(() => checkout.shippingPrice.gross.localized, "-");
-  const grandTotal = maybe(() => checkout.totalPrice.gross.localized, "-");
-
   return (
     <div className="cart-summary">
       <p className="cart-summary__header">Cart summary</p>
@@ -45,11 +43,15 @@ const Cart: React.FC<{
           <Subtotal checkout={checkout} lines={lines} />
           <div className="cart-summary__totals">
             <h4>Delivery</h4>
-            <h4>{delivery}</h4>
+            <h4>
+              <Money defaultValue="-" money={checkout.shippingPrice.gross} />
+            </h4>
           </div>
           <div className="cart-summary__totals last">
             <h4>Grand total</h4>
-            <h4>{grandTotal}</h4>
+            <h4>
+              <Money defaultValue="-" money={checkout.totalPrice.gross} />
+            </h4>
           </div>
         </>
       )}

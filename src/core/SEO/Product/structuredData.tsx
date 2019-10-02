@@ -5,8 +5,8 @@ const getVariantsStructuredData = variants => {
     "@type": "Offer",
     availability: variant.isAvailable ? inStock : outOfStock,
     itemCondition: "https://schema.org/NewCondition",
-    price: variant.price.amount.toFixed(2),
-    priceCurrency: variant.price.currency,
+    price: variant.pricing.price.gross.amount.toFixed(2),
+    priceCurrency: variant.pricing.price.gross.currency,
     sku: variant.sku,
   }));
 };

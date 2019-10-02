@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { checkoutPriceFragment } from "./checkout";
 
 export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
@@ -15,16 +16,21 @@ export const basicProductFragment = gql`
 `;
 
 export const productVariantFragment = gql`
+  ${checkoutPriceFragment}
   fragment ProductVariantFields on ProductVariant {
     id
     sku
     name
     stockQuantity
     isAvailable
-    price {
-      currency
-      amount
-      localized
+    pricing {
+      onSale
+      priceUndiscounted {
+        ...Price
+      }
+      price {
+        ...Price
+      }
     }
     attributes {
       attribute {

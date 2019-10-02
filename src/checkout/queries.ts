@@ -28,14 +28,34 @@ export const checkoutAddressFragment = gql`
   }
 `;
 
-export const checkoutProductVariantFragment = gql`
-  fragment ProductVariant on ProductVariant {
-    id
-    name
-    price {
+const checkoutPriceFragment = gql`
+  fragment Price on TaxedMoney {
+    gross {
       amount
       currency
       localized
+    }
+    net {
+      amount
+      currency
+      localized
+    }
+  }
+`;
+
+export const checkoutProductVariantFragment = gql`
+  ${checkoutPriceFragment}
+  fragment ProductVariant on ProductVariant {
+    id
+    name
+    pricing {
+      onSale
+      priceUndiscounted {
+        ...Price
+      }
+      price {
+        ...Price
+      }
     }
     product {
       id
@@ -48,16 +68,6 @@ export const checkoutProductVariantFragment = gql`
         url
       }
     }
-  }
-`;
-
-const checkoutPriceFragment = gql`
-  fragment Price on TaxedMoney {
-    gross {
-      amount
-      localized
-    }
-    currency
   }
 `;
 
@@ -86,7 +96,6 @@ const checkoutLineFragment = gql`
       stockQuantity
       ...ProductVariant
     }
-    quantity
   }
 `;
 
@@ -96,7 +105,13 @@ export const checkoutFragment = gql`
   ${checkoutPriceFragment}
   ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
-    availablePaymentGateways
+    availablePaymentGateways {
+      name
+      config {
+        field
+        value
+      }
+    }
     token
     id
     user {

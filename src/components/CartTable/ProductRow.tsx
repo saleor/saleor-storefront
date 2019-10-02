@@ -91,7 +91,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         </div>
       </td>
 
-      {mediumScreen && <td>{line.price.localized}</td>}
+      {mediumScreen && <td>{line.pricing.price.gross.localized}</td>}
 
       <td>{line.name}</td>
 

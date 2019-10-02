@@ -49,7 +49,7 @@ export interface OrderDetail_shippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface OrderDetail_lines_variant_price {
+export interface OrderDetail_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -63,6 +63,94 @@ export interface OrderDetail_lines_variant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface OrderDetail_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderDetail_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface OrderDetail_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: OrderDetail_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_lines_variant_pricing_price_net;
+}
+
+export interface OrderDetail_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: OrderDetail_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: OrderDetail_lines_variant_pricing_price | null;
 }
 
 export interface OrderDetail_lines_variant_product_thumbnail {
@@ -110,9 +198,10 @@ export interface OrderDetail_lines_variant {
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: OrderDetail_lines_variant_price | null;
+  pricing: OrderDetail_lines_variant_pricing | null;
   product: OrderDetail_lines_variant_product;
 }
 
@@ -154,6 +243,30 @@ export interface OrderDetail_lines {
 export interface OrderDetail_subtotal_gross {
   __typename: "Money";
   /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_subtotal_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -165,10 +278,38 @@ export interface OrderDetail_subtotal {
    * Amount of money including taxes.
    */
   gross: OrderDetail_subtotal_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_subtotal_net;
 }
 
 export interface OrderDetail_total_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_total_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -181,10 +322,38 @@ export interface OrderDetail_total {
    * Amount of money including taxes.
    */
   gross: OrderDetail_total_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_total_net;
 }
 
 export interface OrderDetail_shippingPrice_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -197,6 +366,10 @@ export interface OrderDetail_shippingPrice {
    * Amount of money including taxes.
    */
   gross: OrderDetail_shippingPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_shippingPrice_net;
 }
 
 export interface OrderDetail {

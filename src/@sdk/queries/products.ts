@@ -5,12 +5,38 @@ import {
   productVariantFragment
 } from "../fragments/products";
 
+export const productPricingFragment = gql`
+  fragment ProductPricingField on Product {
+    pricing {
+      onSale
+      priceRangeUndiscounted {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+      priceRange {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+    }
+  }
+`;
+
 export const productDetails = gql`
   ${basicProductFragment}
   ${productVariantFragment}
+  ${productPricingFragment}
   query ProductDetails($id: ID!) {
     product(id: $id) {
       ...BasicProductFields
+      ...ProductPricingField
       descriptionJson
       category {
         id
@@ -19,23 +45,14 @@ export const productDetails = gql`
           edges {
             node {
               ...BasicProductFields
+              ...ProductPricingField
               category {
                 id
                 name
               }
-              price {
-                amount
-                currency
-                localized
-              }
             }
           }
         }
-      }
-      price {
-        amount
-        currency
-        localized
       }
       images {
         id

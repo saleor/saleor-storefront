@@ -32,7 +32,7 @@ const CreditCard = ({
   formRef,
   loading,
   setLoadingState,
-  paymentClientToken,
+  paymentGatewayConfig,
   processPayment,
 }: ProviderProps) => {
   {
@@ -54,7 +54,8 @@ const CreditCard = ({
       setCardErrors(INITIAL_CARD_ERROR_STATE);
       try {
         const cardData = (await braintreePayment(
-          paymentClientToken,
+          paymentGatewayConfig.find(({ field }) => field === "client_token")
+            .value,
           creditCard
         )) as PaymentData;
         await update({ cardData });

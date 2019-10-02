@@ -6,6 +6,7 @@ import { getShop } from "./types/getShop";
 const getShopQuery = gql`
   query getShop {
     shop {
+      displayGrossPrices
       defaultCountry {
         code
         country

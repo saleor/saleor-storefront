@@ -2,18 +2,19 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { SelectField, TextField } from "..";
 import {
-  ProductPriceInterface,
-  ProductVariantInterface
-} from "../../core/types";
+  ProductDetails_product_variants,
+  ProductDetails_product_variants_pricing
+} from "@sdk/queries/types/ProductDetails";
+
+import { SelectField, TextField } from "..";
 import { maybe } from "../../core/utils";
 import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
 
 interface ProductDescriptionProps {
-  productVariants: ProductVariantInterface[];
+  productVariants: ProductDetails_product_variants[];
   name: string;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
@@ -26,7 +27,7 @@ interface ProductDescriptionState {
   variants: { [x: string]: string[] };
   variant: string;
   variantStock: number;
-  price: ProductPriceInterface;
+  pricing: ProductDetails_product_variants_pricing;
 }
 
 class ProductDescription extends React.Component<
@@ -40,7 +41,7 @@ class ProductDescription extends React.Component<
       this.createPickers();
     this.state = {
       ...pickers,
-      price: this.props.productVariants[0].price,
+      pricing: this.props.productVariants[0].pricing,
       quantity: 1,
       variant: "",
       variantStock: null,
@@ -158,8 +159,8 @@ class ProductDescription extends React.Component<
     }
 
     const variantStock = variant.stockQuantity;
-    const price = variant.price;
-    this.setState({ variant: variant.id, variantStock, price });
+    const pricing = variant.pricing;
+    this.setState({ variant: variant.id, variantStock, pricing });
   };
 
   handleSubmit = () => {
@@ -180,7 +181,7 @@ class ProductDescription extends React.Component<
   render() {
     const { children, name } = this.props;
     const {
-      price,
+      pricing,
       primaryPicker,
       quantity,
       secondaryPicker,
@@ -190,7 +191,7 @@ class ProductDescription extends React.Component<
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>{price.localized}</h4>
+        <h4>{pricing.price.gross.localized}</h4>
         <div className="product-description__variant-picker">
           {primaryPicker && (
             <SelectField

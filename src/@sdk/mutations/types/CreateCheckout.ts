@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput } from "./../../../../types/globalTypes";
+import { CheckoutCreateInput } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
@@ -22,6 +22,30 @@ export interface CreateCheckout_checkoutCreate_errors {
   message: string | null;
 }
 
+export interface CreateCheckout_checkoutCreate_checkout_availablePaymentGateways_config {
+  __typename: "GatewayConfigLine";
+  /**
+   * Gateway config key.
+   */
+  field: string;
+  /**
+   * Gateway config value for key.
+   */
+  value: string | null;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_availablePaymentGateways {
+  __typename: "PaymentGateway";
+  /**
+   * Payment gateway name.
+   */
+  name: string;
+  /**
+   * Payment gateway client configuration.
+   */
+  config: CreateCheckout_checkoutCreate_checkout_availablePaymentGateways_config[];
+}
+
 export interface CreateCheckout_checkoutCreate_checkout_user {
   __typename: "User";
   email: string;
@@ -33,6 +57,26 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice_gross {
    * Amount of money.
    */
   amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -46,9 +90,9 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice {
    */
   gross: CreateCheckout_checkoutCreate_checkout_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CreateCheckout_checkoutCreate_checkout_totalPrice_net;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_gross {
@@ -57,6 +101,26 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_gross {
    * Amount of money.
    */
   amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -70,9 +134,9 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice {
    */
   gross: CreateCheckout_checkoutCreate_checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CreateCheckout_checkoutCreate_checkout_subtotalPrice_net;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_billingAddress_country {
@@ -106,6 +170,14 @@ export interface CreateCheckout_checkoutCreate_checkout_billingAddress {
   country: CreateCheckout_checkoutCreate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingAddress_country {
@@ -139,6 +211,14 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
   country: CreateCheckout_checkoutCreate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods_price {
@@ -200,6 +280,26 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_gross {
    */
   amount: number;
   /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -212,9 +312,9 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice {
    */
   gross: CreateCheckout_checkoutCreate_checkout_shippingPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CreateCheckout_checkoutCreate_checkout_shippingPrice_net;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
@@ -223,6 +323,26 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
    * Amount of money.
    */
   amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -236,12 +356,12 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice {
    */
   gross: CreateCheckout_checkoutCreate_checkout_lines_totalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net;
 }
 
-export interface CreateCheckout_checkoutCreate_checkout_lines_variant_price {
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -255,6 +375,94 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_net;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail {
@@ -306,9 +514,10 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: CreateCheckout_checkoutCreate_checkout_lines_variant_price | null;
+  pricing: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing | null;
   product: CreateCheckout_checkoutCreate_checkout_lines_variant_product;
 }
 
@@ -331,7 +540,7 @@ export interface CreateCheckout_checkoutCreate_checkout {
   /**
    * List of available payment gateways.
    */
-  availablePaymentGateways: (string | null)[];
+  availablePaymentGateways: (CreateCheckout_checkoutCreate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

@@ -21,6 +21,30 @@ export interface OrdersByUser_me_orders_pageInfo {
 export interface OrdersByUser_me_orders_edges_node_total_gross {
   __typename: "Money";
   /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrdersByUser_me_orders_edges_node_total_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -32,6 +56,10 @@ export interface OrdersByUser_me_orders_edges_node_total {
    * Amount of money including taxes.
    */
   gross: OrdersByUser_me_orders_edges_node_total_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrdersByUser_me_orders_edges_node_total_net;
 }
 
 export interface OrdersByUser_me_orders_edges_node_lines_variant_product {

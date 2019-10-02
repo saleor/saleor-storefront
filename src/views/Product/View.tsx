@@ -15,17 +15,17 @@ const canDisplay = (product: ProductDetails_product) =>
     () =>
       !!product.descriptionJson &&
       !!product.name &&
-      !!product.price &&
+      !!product.pricing &&
       !!product.variants
   );
 const extractMeta = (product: ProductDetails_product) => ({
   custom: [
     {
-      content: product.price.amount.toString(),
+      content: product.pricing.priceRange.start.gross.amount.toString(),
       property: "product:price:amount",
     },
     {
-      content: product.price.currency,
+      content: product.pricing.priceRange.start.gross.currency,
       property: "product:price:currency",
     },
     {
