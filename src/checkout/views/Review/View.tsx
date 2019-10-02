@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { Button, CartTable } from "../../../components";
 
 import { CartContext } from "../../../components/CartProvider/context";
-import { extractCheckoutLines } from "../../../components/CartProvider/uitls";
+import { extractCheckoutLines } from "../../../components/CartProvider/utils";
 import { orderConfirmationUrl } from "../../../routes";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
