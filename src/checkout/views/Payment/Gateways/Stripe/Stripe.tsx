@@ -10,12 +10,10 @@ export const Stripe = (props: ProviderProps) => {
     ({ field }) => field === "api_key"
   ).value;
   return (
-    <div>
-      <StripeProvider apiKey={apiKey}>
-        <Elements>
-          <CardForm {...props} />
-        </Elements>
-      </StripeProvider>
-    </div>
+    <StripeProvider apiKey={apiKey}>
+      <Elements>
+        <CardForm {...props} />
+      </Elements>
+    </StripeProvider>
   );
 };
