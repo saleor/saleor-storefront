@@ -13,9 +13,11 @@ export const getTotal = (
     const { node } = variantList.productVariants.edges.find(
       ({ node: { id } }) => id === variantId
     );
-    return sum + node.price.amount * quantity;
+    return sum + node.pricing.price.gross.amount * quantity;
   }, 0);
-  const { currency } = variantList.productVariants.edges[0].node.price;
+  const {
+    currency,
+  } = variantList.productVariants.edges[0].node.pricing.price.gross;
 
   return priceToString({ amount, currency }, locale);
 };
@@ -37,8 +39,8 @@ export const extractCartLines = (
         quantity,
         totalPrice: priceToString(
           {
-            amount: quantity * node.price.amount,
-            currency: node.price.currency,
+            amount: quantity * node.pricing.price.gross.amount,
+            currency: node.pricing.price.gross.currency,
           },
           locale
         ),

@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -72,7 +73,7 @@ export interface ProductsList_categories {
 
 export interface ProductsList {
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: ProductsList_shop | null;
   /**

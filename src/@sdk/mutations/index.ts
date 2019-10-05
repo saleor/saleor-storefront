@@ -7,6 +7,8 @@ import gql from "graphql-tag";
 import * as Address from "./address";
 import * as Auth from "./auth";
 import * as Checkout from "./checkout";
+import * as User from "./user";
+
 import {
   CreateCheckout,
   CreateCheckoutVariables
@@ -15,10 +17,22 @@ import {
   DeleteUserAddress,
   DeleteUserAddressVariables
 } from "./types/DeleteUserAddress";
+
+import {
+  CreateUserAddress,
+  CreateUserAddressVariables
+} from "./types/CreateUserAddress";
+
 import {
   SetCustomerDefaultAddress,
   SetCustomerDefaultAddressVariables
 } from "./types/SetCustomerDefaultAddress";
+
+import {
+  UpdateUserAddress,
+  UpdateUserAddressVariables
+} from "./types/UpdateUserAddress";
+
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 import {
   UpdateCheckoutBillingAddress,
@@ -29,6 +43,13 @@ import {
   UpdateCheckoutShippingAddressVariables
 } from "./types/UpdateCheckoutShippingAddress";
 
+import {
+  PasswordChange,
+  PasswordChangeVariables
+} from "./types/PasswordChange";
+
+import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
+
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
   "mutation"
@@ -36,6 +57,16 @@ export type MutationOptions<TData, TVariables> = Omit<
 
 // TODO: Add ability to pass custom fragments to mutations
 export const MUTATIONS = {
+  AccountUpdate: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<AccountUpdate, AccountUpdateVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${User.accountUpdate}
+      `,
+      ...options,
+    }),
   AddressTypeUpdate: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<
@@ -59,6 +90,16 @@ export const MUTATIONS = {
       `,
       ...options,
     }),
+  CreateUserAddress: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<CreateUserAddress, CreateUserAddressVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Address.createUserAddress}
+      `,
+      ...options,
+    }),
   DeleteUserAddress: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<DeleteUserAddress, DeleteUserAddressVariables>
@@ -66,6 +107,16 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Address.deleteUserAddress}
+      `,
+      ...options,
+    }),
+  PasswordChange: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<PasswordChange, PasswordChangeVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${User.changeUserPassword}
       `,
       ...options,
     }),
@@ -102,6 +153,16 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.updateCheckoutShippingAddressMutation}
+      `,
+      ...options,
+    }),
+  UpdateUserAddress: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<UpdateUserAddress, UpdateUserAddressVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Address.updateUserAddress}
       `,
       ...options,
     }),

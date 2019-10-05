@@ -1,8 +1,8 @@
 import React from "react";
 
 import { CreditCardForm } from "@components/organisms";
-import { GatewaysEnum } from "../../../../../../types/globalTypes";
 
+import { PROVIDERS } from "../../../../../core/config";
 import {
   braintreePayment,
   ErrorData,
@@ -32,7 +32,7 @@ const CreditCard = ({
   formRef,
   loading,
   setLoadingState,
-  paymentClientToken,
+  paymentGatewayConfig,
   processPayment,
 }: ProviderProps) => {
   {
@@ -54,7 +54,8 @@ const CreditCard = ({
       setCardErrors(INITIAL_CARD_ERROR_STATE);
       try {
         const cardData = (await braintreePayment(
-          paymentClientToken,
+          paymentGatewayConfig.find(({ field }) => field === "client_token")
+            .value,
           creditCard
         )) as PaymentData;
         await update({ cardData });
@@ -74,7 +75,7 @@ const CreditCard = ({
         number: removeEmptySpaces(maybe(() => formData.ccNumber, "")),
       };
       const token = await tokenizeCcCard(creditCard);
-      processPayment(token, GatewaysEnum.BRAINTREE);
+      processPayment(token, PROVIDERS.BRAINTREE);
       setLoadingState(false);
     };
 

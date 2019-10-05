@@ -1,1 +1,2 @@
-// export * from "./<component>"
+export * from "./OrdersHistory";
+export * from "./AccountTab";

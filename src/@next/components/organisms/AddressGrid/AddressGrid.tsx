@@ -5,8 +5,13 @@ import { AddressTile } from "@components/molecules";
 
 import { IProps } from "./types";
 
-export const AddressGrid: React.FC<IProps> = ({ addresses }: IProps) => {
-  const addNewTile = <AddNewTile key="0" type="address" />;
+export const AddressGrid: React.FC<IProps> = ({
+  addresses,
+  addNewAddress,
+}: IProps) => {
+  const addNewTile = (
+    <AddNewTile key="0" type="address" onClick={addNewAddress} />
+  );
 
   const addressTiles = addresses.reduce(
     (elements, address) => {
@@ -16,5 +21,5 @@ export const AddressGrid: React.FC<IProps> = ({ addresses }: IProps) => {
     [addNewTile]
   );
 
-  return <TileGrid elements={addressTiles} />;
+  return <TileGrid columns={2} elements={addressTiles} />;
 };

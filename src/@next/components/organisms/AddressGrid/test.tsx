@@ -10,7 +10,10 @@ const address = {
   address: {
     city: "Wroclaw",
     companyName: "Mirumee",
-    country: "Poland",
+    country: {
+      code: "PL",
+      country: "Poland",
+    },
     countryArea: "dolnyslask",
     firstName: "John",
     isDefaultBillingAddress: false,
@@ -28,6 +31,8 @@ const address = {
 };
 
 const DEFAULT_PROPS = {
+  // tslint:disable-next-line: no-empty
+  addNewAddress: () => {},
   addresses: [
     {
       ...address,
@@ -43,7 +48,9 @@ describe("<AddressGrid />", () => {
   });
 
   it("should contain only AddNewTile if no addresses provided", () => {
-    const wrapper = shallow(<AddressGrid addresses={[]} />);
+    const wrapper = shallow(
+      <AddressGrid addNewAddress={jest.fn()} addresses={[]} />
+    );
     const firstTile = wrapper.find(TileGrid).props().elements[0];
 
     expect(wrapper.find(TileGrid).props().elements.length).toBe(1);
@@ -55,7 +62,9 @@ describe("<AddressGrid />", () => {
     addressArray[0].id = "0";
     addressArray[1].id = "1";
     addressArray[2].id = "2";
-    const wrapper = shallow(<AddressGrid addresses={addressArray} />);
+    const wrapper = shallow(
+      <AddressGrid addNewAddress={jest.fn()} addresses={addressArray} />
+    );
 
     expect(wrapper.find(TileGrid).props().elements.length).toBe(4);
   });

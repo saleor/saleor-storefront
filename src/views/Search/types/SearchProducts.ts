@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { ProductOrder } from "./../../../../types/globalTypes";
@@ -6,6 +7,222 @@ import { ProductOrder } from "./../../../../types/globalTypes";
 // ====================================================
 // GraphQL query operation: SearchProducts
 // ====================================================
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_net;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_net;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted {
+  __typename: "TaxedMoneyRange";
+  /**
+   * Lower bound of a price range.
+   */
+  start: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start | null;
+  /**
+   * Upper bound of a price range.
+   */
+  stop: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop | null;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_start_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_start_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_start {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: SearchProducts_products_edges_node_pricing_priceRange_start_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: SearchProducts_products_edges_node_pricing_priceRange_start_net;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_stop_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_stop_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange_stop {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: SearchProducts_products_edges_node_pricing_priceRange_stop_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: SearchProducts_products_edges_node_pricing_priceRange_stop_net;
+}
+
+export interface SearchProducts_products_edges_node_pricing_priceRange {
+  __typename: "TaxedMoneyRange";
+  /**
+   * Lower bound of a price range.
+   */
+  start: SearchProducts_products_edges_node_pricing_priceRange_start | null;
+  /**
+   * Upper bound of a price range.
+   */
+  stop: SearchProducts_products_edges_node_pricing_priceRange_stop | null;
+}
+
+export interface SearchProducts_products_edges_node_pricing {
+  __typename: "ProductPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The undiscounted price range of the product variants.
+   */
+  priceRangeUndiscounted: SearchProducts_products_edges_node_pricing_priceRangeUndiscounted | null;
+  /**
+   * The discounted price range of the product variants.
+   */
+  priceRange: SearchProducts_products_edges_node_pricing_priceRange | null;
+}
 
 export interface SearchProducts_products_edges_node_thumbnail {
   __typename: "Image";
@@ -36,24 +253,13 @@ export interface SearchProducts_products_edges_node_category {
   name: string;
 }
 
-export interface SearchProducts_products_edges_node_price {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface SearchProducts_products_edges_node {
   __typename: "Product";
+  /**
+   * Lists the storefront product's pricing,
+   *             the current price and discounts, only meant for displaying.
+   */
+  pricing: SearchProducts_products_edges_node_pricing | null;
   /**
    * The ID of the object.
    */
@@ -68,10 +274,6 @@ export interface SearchProducts_products_edges_node {
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
   category: SearchProducts_products_edges_node_category;
-  /**
-   * The product's default base price.
-   */
-  price: SearchProducts_products_edges_node_price | null;
 }
 
 export interface SearchProducts_products_edges {
@@ -101,6 +303,9 @@ export interface SearchProducts_products {
    */
   totalCount: number | null;
   edges: SearchProducts_products_edges[];
+  /**
+   * Pagination data for this connection.
+   */
   pageInfo: SearchProducts_products_pageInfo;
 }
 

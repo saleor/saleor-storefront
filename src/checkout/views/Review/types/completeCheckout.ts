@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -41,6 +42,10 @@ export interface completeCheckout_checkoutComplete {
 }
 
 export interface completeCheckout {
+  /**
+   * Completes the checkout. As a result a new order is created and a payment
+   * charge is made. This action requires a successful payment before it can be performed.
+   */
   checkoutComplete: completeCheckout_checkoutComplete | null;
 }
 

@@ -4,7 +4,7 @@ import {
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
-import { useAuth, useSignOut } from "@sdk/react";
+import { useSignOut, useUserDetails } from "@sdk/react";
 
 import { Trans } from "@lingui/react";
 import * as React from "react";
@@ -40,7 +40,7 @@ import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
 const MainMenu: React.FC = () => {
-  const { authenticated } = useAuth();
+  const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
 
   return (
@@ -107,7 +107,7 @@ const MainMenu: React.FC = () => {
                   query={{ minWidth: smallScreen }}
                   render={() => (
                     <>
-                      {authenticated ? (
+                      {user ? (
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">

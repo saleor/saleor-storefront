@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -7,6 +8,30 @@
 
 export interface OrderPrice_gross {
   __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
   /**
    * Money formatted according to the current locale.
    */
@@ -19,4 +44,8 @@ export interface OrderPrice {
    * Amount of money including taxes.
    */
   gross: OrderPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderPrice_net;
 }

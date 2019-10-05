@@ -149,7 +149,7 @@ export interface UserDetails_me {
 
 export interface UserDetails {
   /**
-   * Logged in user data.
+   * Return the currently authenticated user.
    */
   me: UserDetails_me | null;
 }

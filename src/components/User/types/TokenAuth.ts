@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -144,6 +145,13 @@ export interface TokenAuth_tokenCreate {
 }
 
 export interface TokenAuth {
+  /**
+   * Mutation that authenticates a user and returns token and user data.
+   * 
+   * It overrides the default graphql_jwt.ObtainJSONWebToken to wrap potential
+   * authentication errors in our Error type, which is consistent to how rest of
+   * the mutation works.
+   */
   tokenCreate: TokenAuth_tokenCreate | null;
 }
 

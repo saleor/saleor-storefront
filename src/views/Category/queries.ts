@@ -1,11 +1,15 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { basicProductFragment } from "../Product/queries";
+import {
+  basicProductFragment,
+  productPricingFragment
+} from "../Product/queries";
 import { Category, CategoryVariables } from "./types/Category";
 
 export const categoryProductsQuery = gql`
   ${basicProductFragment}
+  ${productPricingFragment}
   query Category(
     $id: ID!
     $attributes: [AttributeScalar]
@@ -18,21 +22,18 @@ export const categoryProductsQuery = gql`
     products(
       after: $after
       attributes: $attributes
-      categories: [$id]
       first: $pageSize
       sortBy: $sortBy
-      priceLte: $priceLte
-      priceGte: $priceGte
+      filter: {
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
     ) {
       totalCount
       edges {
         node {
           ...BasicProductFields
-          price {
-            amount
-            currency
-            localized
-          }
+          ...ProductPricingField
           category {
             id
             name

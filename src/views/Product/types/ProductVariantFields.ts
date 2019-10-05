@@ -1,24 +1,113 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ProductVariantFields
 // ====================================================
 
-export interface ProductVariantFields_price {
+export interface ProductVariantFields_pricing_priceUndiscounted_gross {
   __typename: "Money";
-  /**
-   * Currency code.
-   */
-  currency: string;
   /**
    * Amount of money.
    */
   amount: number;
   /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface ProductVariantFields_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariantFields_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductVariantFields_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductVariantFields_pricing_priceUndiscounted_net;
+}
+
+export interface ProductVariantFields_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariantFields_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariantFields_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductVariantFields_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductVariantFields_pricing_price_net;
+}
+
+export interface ProductVariantFields_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: ProductVariantFields_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: ProductVariantFields_pricing_price | null;
 }
 
 export interface ProductVariantFields_attributes_attribute {
@@ -56,9 +145,9 @@ export interface ProductVariantFields_attributes {
    */
   attribute: ProductVariantFields_attributes_attribute;
   /**
-   * Value of an attribute.
+   * The value or the first value of an attribute.
    */
-  value: ProductVariantFields_attributes_value;
+  value: ProductVariantFields_attributes_value | null;
 }
 
 export interface ProductVariantFields {
@@ -78,9 +167,10 @@ export interface ProductVariantFields {
    */
   isAvailable: boolean | null;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: ProductVariantFields_price | null;
+  pricing: ProductVariantFields_pricing | null;
   /**
    * List of attributes assigned to this variant.
    */

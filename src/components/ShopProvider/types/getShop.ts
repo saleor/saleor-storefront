@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -52,6 +53,10 @@ export interface getShop_shop_geolocalization {
 export interface getShop_shop {
   __typename: "Shop";
   /**
+   * Display prices with tax in store
+   */
+  displayGrossPrices: boolean;
+  /**
    * Default shop's country
    */
   defaultCountry: getShop_shop_defaultCountry | null;
@@ -67,7 +72,7 @@ export interface getShop_shop {
 
 export interface getShop {
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: getShop_shop | null;
 }

@@ -11,6 +11,13 @@ import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 const orderPriceFragment = gql`
   fragment OrderPrice on TaxedMoney {
     gross {
+      amount
+      currency
+      localized
+    }
+    net {
+      amount
+      currency
       localized
     }
   }
@@ -67,7 +74,7 @@ const orderDetailsByIdQuery = gql`
 
 const orderDetailsByTokenQuery = gql`
   ${orderDetailFragment}
-  query OrderByToken($token: String!) {
+  query OrderByToken($token: UUID!) {
     orderByToken(token: $token) {
       ...OrderDetail
     }

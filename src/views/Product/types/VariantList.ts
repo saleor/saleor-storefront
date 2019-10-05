@@ -1,24 +1,113 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: VariantList
 // ====================================================
 
-export interface VariantList_productVariants_edges_node_price {
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted_gross {
   __typename: "Money";
-  /**
-   * Currency code.
-   */
-  currency: string;
   /**
    * Amount of money.
    */
   amount: number;
   /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: VariantList_productVariants_edges_node_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: VariantList_productVariants_edges_node_pricing_priceUndiscounted_net;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface VariantList_productVariants_edges_node_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: VariantList_productVariants_edges_node_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: VariantList_productVariants_edges_node_pricing_price_net;
+}
+
+export interface VariantList_productVariants_edges_node_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: VariantList_productVariants_edges_node_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: VariantList_productVariants_edges_node_pricing_price | null;
 }
 
 export interface VariantList_productVariants_edges_node_attributes_attribute {
@@ -56,9 +145,9 @@ export interface VariantList_productVariants_edges_node_attributes {
    */
   attribute: VariantList_productVariants_edges_node_attributes_attribute;
   /**
-   * Value of an attribute.
+   * The value or the first value of an attribute.
    */
-  value: VariantList_productVariants_edges_node_attributes_value;
+  value: VariantList_productVariants_edges_node_attributes_value | null;
 }
 
 export interface VariantList_productVariants_edges_node_product_thumbnail {
@@ -115,9 +204,10 @@ export interface VariantList_productVariants_edges_node {
    */
   isAvailable: boolean | null;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: VariantList_productVariants_edges_node_price | null;
+  pricing: VariantList_productVariants_edges_node_pricing | null;
   /**
    * List of attributes assigned to this variant.
    */
@@ -140,7 +230,7 @@ export interface VariantList_productVariants {
 
 export interface VariantList {
   /**
-   * Lookup multiple variants by ID
+   * List of product variants.
    */
   productVariants: VariantList_productVariants | null;
 }

@@ -25,11 +25,11 @@ export const getDBIdFromGraphqlId = (
   // This is temporary solution, we will use slugs in the future
   const rawId = Base64.decode(graphqlId);
   const regexp = /(\w+):(\d+)/;
-  const [, expectedSchema, id] = regexp.exec(rawId);
-  if (schema && schema !== expectedSchema) {
+  const arr = regexp.exec(rawId);
+  if (schema && schema !== arr![1]) {
     throw new Error("Schema is not correct");
   }
-  return parseInt(id, 10);
+  return parseInt(arr![2], 10);
 };
 
 export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
@@ -78,7 +78,7 @@ export const getAttributesFromQs = (qs: QueryString) =>
     .filter(
       key => !["pageSize", "priceGte", "priceLte", "sortBy", "q"].includes(key)
     )
-    .reduce((prev, curr) => {
+    .reduce((prev: any, curr: any) => {
       prev[curr] = typeof qs[curr] === "string" ? [qs[curr]] : qs[curr];
       return prev;
     }, {});
@@ -143,7 +143,7 @@ export const updateQueryString = (
 ) => {
   const querystring = parseQueryString(location);
 
-  return (key: string, value?) => {
+  return (key: string, value?: any) => {
     if (value === "") {
       delete querystring[key];
     } else {
@@ -154,13 +154,13 @@ export const updateQueryString = (
 };
 
 export const isPath = (pathname: string, url: string) =>
-  pathname.indexOf(generatePath(url, { token: undefined })) !== -1;
+  pathname.indexOf(generatePath(url, { token: "" })) !== -1;
 
 export const findFormErrors = (result: void | FetchResult): FormError[] => {
   if (result) {
-    const data = Object.values(maybe(() => result.data, []));
+    const data = Object.values(maybe(() => result.data) as object);
 
-    return data.reduce((prevVal, currVal) => {
+    return data.reduce((prevVal: any, currVal: any) => {
       const errors = currVal.errors || [];
 
       return [...prevVal, ...errors];

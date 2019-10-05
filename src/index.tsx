@@ -79,51 +79,58 @@ const startApp = async () => {
   };
 
   const Root = hot(module)(() => {
-    const alert = useAlert();
+    const Notifications = () => {
+      const alert = useAlert();
 
-    const { updateAvailable } = React.useContext(ServiceWorkerContext);
+      const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
-    React.useEffect(() => {
-      if (updateAvailable) {
-        alert.show(
-          {
-            actionText: "Refresh",
-            content:
-              "To update the application to the latest version, please refresh the page!",
-            title: "New version is available!",
-          },
-          {
-            onClose: () => {
-              location.reload();
+      React.useEffect(() => {
+        if (updateAvailable) {
+          alert.show(
+            {
+              actionText: "Refresh",
+              content:
+                "To update the application to the latest version, please refresh the page!",
+              title: "New version is available!",
             },
-            timeout: 0,
-            type: "success",
-          }
-        );
-      }
-    }, [updateAvailable]);
+            {
+              onClose: () => {
+                location.reload();
+              },
+              timeout: 0,
+              type: "success",
+            }
+          );
+        }
+      }, [updateAvailable]);
 
-    useAuth((authenticated: boolean) => {
-      if (authenticated) {
-        alert.show(
-          {
-            title: "You are now logged in",
-          },
-          { type: "success" }
-        );
-      } else {
-        alert.show(
-          {
-            title: "You are now logged out",
-          },
-          { type: "success" }
-        );
-      }
-    });
+      useAuth((authenticated: boolean) => {
+        if (authenticated) {
+          alert.show(
+            {
+              title: "You are now logged in",
+            },
+            { type: "success" }
+          );
+        } else {
+          alert.show(
+            {
+              title: "You are now logged out",
+            },
+            { type: "success" }
+          );
+        }
+      });
+      return null;
+    };
 
     const Checkout = ({ children }) => {
       const user = useUserDetails();
-      return <CheckoutProvider user={user}>{children}</CheckoutProvider>;
+      return (
+        <>
+          <CheckoutProvider user={user}>{children}</CheckoutProvider>
+        </>
+      );
     };
 
     return (
@@ -146,6 +153,7 @@ const startApp = async () => {
                           />
                           <Route component={App} />
                         </Switch>
+                        <Notifications />
                       </CartProvider>
                     )}
                   </CheckoutContext.Consumer>

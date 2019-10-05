@@ -4,10 +4,9 @@ import * as React from "react";
 import { MutationFn } from "react-apollo";
 import { generatePath, RouteComponentProps } from "react-router";
 
-import { GatewaysEnum } from "../../../../types/globalTypes";
+import { Checkout_availablePaymentGateways_config } from "../../../checkout/types/Checkout";
 import { Button } from "../../../components";
 import { PROVIDERS } from "../../../core/config";
-import { maybe } from "../../../core/utils";
 import { CartSummary, Option, StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
@@ -17,18 +16,15 @@ import {
 import { reviewUrl } from "../../routes";
 import CreditCard from "./Gateways/Braintree/CreditCard";
 import Dummy from "./Gateways/Dummy";
-import {
-  TypedGetPaymentTokenQuery,
-  TypedPaymentMethodCreateMutation
-} from "./queries";
+import { TypedPaymentMethodCreateMutation } from "./queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
 export interface ProviderProps {
   loading: boolean;
   formRef: React.RefObject<HTMLFormElement>;
-  paymentClientToken: string;
   checkout: CheckoutContextInterface;
-  processPayment(token: string, gateway: GatewaysEnum): Promise<void>;
+  paymentGatewayConfig: Checkout_availablePaymentGateways_config[];
+  processPayment(token: string, gateway: string): Promise<void>;
   setLoadingState(loading: boolean): void;
 }
 
@@ -37,7 +33,7 @@ class View extends React.Component<
   {
     loading: boolean;
     validateStep: boolean;
-    selectedGeteway: GatewaysEnum;
+    selectedGeteway: string;
   }
 > {
   state = {
@@ -71,7 +67,7 @@ class View extends React.Component<
   processPayment = (
     createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
     checkout: CheckoutContextInterface
-  ) => async (token: string, gateway: GatewaysEnum) => {
+  ) => async (token: string, gateway: string) => {
     const {
       checkout: { billingAddress, totalPrice, id },
     } = checkout;
@@ -131,88 +127,75 @@ class View extends React.Component<
                     {(
                       createPaymentMethod,
                       { loading: paymentCreateLoading }
-                    ) => (
-                      <TypedGetPaymentTokenQuery
-                        alwaysRender
-                        skip={!selectedGeteway}
-                        variables={{ gateway: selectedGeteway }}
-                      >
-                        {({ data, loading: getTokenLoading }) => {
-                          const paymentClientToken = maybe(
-                            () => data.paymentClientToken,
-                            null
-                          );
-                          const {
-                            availablePaymentGateways,
-                          } = checkout.checkout;
-                          const processPayment = this.processPayment(
-                            createPaymentMethod,
-                            checkout
-                          );
-                          const loading =
-                            stateLoding ||
-                            getTokenLoading ||
-                            paymentCreateLoading;
-                          const optionProps = provider => ({
-                            key: provider,
-                            onSelect: () =>
-                              this.setState({ selectedGeteway: provider }),
-                            selected: selectedGeteway === provider,
-                            value: provider,
-                          });
-                          const providerProps = {
-                            checkout,
-                            formRef: this.formRef,
-                            loading,
-                            paymentClientToken,
-                            processPayment,
-                            setLoadingState: this.setLoadingState,
-                          };
+                    ) => {
+                      const { availablePaymentGateways } = checkout.checkout;
+                      const processPayment = this.processPayment(
+                        createPaymentMethod,
+                        checkout
+                      );
+                      const loading = stateLoding || paymentCreateLoading;
+                      const optionProps = providerName => ({
+                        key: providerName,
+                        onSelect: () =>
+                          this.setState({ selectedGeteway: providerName }),
+                        selected: selectedGeteway === providerName,
+                        value: providerName,
+                      });
+                      const providerProps = {
+                        checkout,
+                        formRef: this.formRef,
+                        loading,
+                        processPayment,
+                        setLoadingState: this.setLoadingState,
+                      };
 
-                          return (
-                            <div className="checkout-payment__form">
-                              {availablePaymentGateways.map(provider => {
-                                switch (provider) {
-                                  case PROVIDERS.BRAINTREE:
-                                    return (
-                                      <Option
-                                        label="Credit Card"
-                                        {...optionProps(provider)}
-                                      >
-                                        <CreditCard {...providerProps} />
-                                      </Option>
-                                    );
+                      return (
+                        <div className="checkout-payment__form">
+                          {availablePaymentGateways.map(provider => {
+                            const providerName = provider.name;
+                            const paymentGatewayProps = {
+                              ...providerProps,
+                              paymentGatewayConfig: provider.config,
+                            };
+                            switch (providerName) {
+                              case PROVIDERS.BRAINTREE:
+                                return (
+                                  <Option
+                                    label="Credit Card"
+                                    {...optionProps(providerName)}
+                                  >
+                                    <CreditCard {...paymentGatewayProps} />
+                                  </Option>
+                                );
 
-                                  case PROVIDERS.DUMMY:
-                                    return (
-                                      <Option
-                                        label="Dummy"
-                                        {...optionProps(provider)}
-                                      >
-                                        <Dummy {...providerProps} />
-                                      </Option>
-                                    );
-                                }
-                              })}
+                              case PROVIDERS.DUMMY:
+                                return (
+                                  <Option
+                                    label="Dummy"
+                                    {...optionProps(providerName)}
+                                  >
+                                    <Dummy {...paymentGatewayProps} />
+                                  </Option>
+                                );
+                            }
+                          })}
 
-                              <div>
-                                <Button
-                                  type="submit"
-                                  disabled={loading || !paymentClientToken}
-                                  onClick={() => {
-                                    this.formRef.current.dispatchEvent(
-                                      new Event("submit")
-                                    );
-                                  }}
-                                >
-                                  Continue to Review Your Order
-                                </Button>
-                              </div>
-                            </div>
-                          );
-                        }}
-                      </TypedGetPaymentTokenQuery>
-                    )}
+                          <div>
+                            <Button
+                              type="submit"
+                              disabled={loading}
+                              onClick={() => {
+                                this.formRef.current.dispatchEvent(
+                                  new Event("submit")
+                                );
+                              }}
+                            >
+                              Continue to Review Your Order
+                            </Button>
+                          </div>
+                        </div>
+                      );
+                    }}
                   </TypedPaymentMethodCreateMutation>
                 </Steps>
               </div>

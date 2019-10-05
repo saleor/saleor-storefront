@@ -1,10 +1,22 @@
 {
-    "buildpacks": [
-        {
-          "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
-        },
-        {
-          "url": "https://github.com/heroku/heroku-buildpack-static.git"
-        }
-    ]
+  "name": "saleor-storefront",
+  "description": "A GraphQL-powered, PWA, single-page storefront application for Saleor",
+  "repository": "https://github.com/mirumee/saleor-storefront",
+  "website": "http://getsaleor.com/",
+  "logo": "https://mirumee.com/img/opensource_saleor.jpg",
+  "keywords": ["saleor", "e-commerce", "storefront"],
+  "env": {
+    "API_URI": {
+      "description": "URI of a running instance of Saleor GraphQL API",
+      "value": "https://demo.getsaleor.com/graphql/"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-static.git"
+    }
+  ]
 }

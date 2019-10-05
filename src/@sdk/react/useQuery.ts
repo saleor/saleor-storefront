@@ -1,8 +1,9 @@
+import { isEqual } from "apollo-utilities";
 import React from "react";
 
-import { isEqual } from "apollo-utilities";
 import { SaleorAPI } from "../index";
-import { useSaleorClient } from "./helpers";
+import { RequireAtLeastOne } from "../tsHelpers";
+import { useAuth, useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
   Options,
@@ -34,7 +35,8 @@ const useQuery = <
   const saleor = useSaleorClient();
   const didMountRef = React.useRef(false);
   const prevDataRef = React.useRef<TData | null>(null);
-
+  const prevUnsubRef = React.useRef<any>(null);
+  const { authenticated } = useAuth();
   const [result, setResult] = React.useState<Result<TData>>({
     data: null,
     error: null,
@@ -45,26 +47,46 @@ const useQuery = <
     if (!isEqual(data, prevDataRef.current)) {
       prevDataRef.current = data;
       setResult({ data, loading: false, error: null });
+    } else {
+      setResult(result => ({ ...result, loading: false }));
     }
   }, []);
 
-  const { unsubscribe, setOptions, refetch: _refetch } = React.useMemo(
+  const {
+    unsubscribe,
+    setOptions,
+    refetch: _refetch,
+    loadMore: _loadMore,
+  } = React.useMemo(
     () =>
       (saleor[query] as AdditionalAPI)(variables, {
         ...(options as any),
         onError: (error: ApolloErrorWithUserInput) =>
-          setResult(result => ({ ...result, error })),
+          setResult(result => ({ ...result, loading: false, error })),
         onUpdate: (data: TData) => {
           setData(data);
         },
       }),
-    [query]
+    [query, options.skip, authenticated]
   );
 
   const refetch = React.useCallback(
     (variables?: TVariables) => {
       setResult({ data: null, error: null, loading: true });
       _refetch(variables);
+    },
+    [query]
+  );
+
+  const loadMore = React.useCallback(
+    (
+      variables: RequireAtLeastOne<TVariables>,
+      mergeResults: boolean = true
+    ) => {
+      if (_loadMore) {
+        setResult(result => ({ ...result, error: null, loading: true }));
+        _loadMore(variables, mergeResults);
+      }
     },
     [query]
   );
@@ -80,15 +102,21 @@ const useQuery = <
 
   // unsubscribe from watcher on dismount
   React.useEffect(() => {
+    if (prevUnsubRef.current) {
+      prevUnsubRef.current();
+    }
+    prevUnsubRef.current = unsubscribe;
+
     return () => {
       if (unsubscribe) {
         unsubscribe();
       }
     };
-  }, []);
+  }, [options.skip, authenticated]);
 
   return {
     ...result,
+    loadMore,
     refetch,
     setOptions,
   };

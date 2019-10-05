@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 import { CheckoutLineInput } from "./../../../types/globalTypes";
@@ -14,24 +15,16 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
    */
   amount: number;
   /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
 }
 
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
-  __typename: "TaxedMoney";
-  /**
-   * Amount of money including taxes.
-   */
-  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross;
-  /**
-   * Currency code.
-   */
-  currency: string;
-}
-
-export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price {
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -45,6 +38,122 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_net;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price | null;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product_thumbnail {
@@ -96,9 +205,10 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_price | null;
+  pricing: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing | null;
   product: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product;
 }
 
@@ -123,6 +233,26 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_g
    */
   amount: number;
   /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
    * Money formatted according to the current locale.
    */
   localized: string;
@@ -135,9 +265,9 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
    */
   gross: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross;
   /**
-   * Currency code.
+   * Amount of money without taxes.
    */
-  currency: string;
+  net: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
@@ -183,6 +313,9 @@ export interface updateCheckoutLine_checkoutLinesUpdate {
 }
 
 export interface updateCheckoutLine {
+  /**
+   * Updates CheckoutLine in the existing Checkout.
+   */
   checkoutLinesUpdate: updateCheckoutLine_checkoutLinesUpdate | null;
 }
 

@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -45,11 +46,11 @@ export interface Article_shop {
 
 export interface Article {
   /**
-   * Lookup a page by ID or by slug.
+   * Lookup a page by ID or slug.
    */
   page: Article_page | null;
   /**
-   * Represents a shop resources.
+   * Return information about the shop.
    */
   shop: Article_shop | null;
 }

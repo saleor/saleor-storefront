@@ -1,6 +1,6 @@
 export interface IProps {
-  children: React.ReactElement;
-  header?: React.ReactElement;
-  footer?: React.ReactElement;
+  children: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
   tileType?: "hover" | "addNew";
 }

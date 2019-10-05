@@ -10,6 +10,7 @@ import { TokenAuth } from "../components/User/types/TokenAuth";
 import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
+import { RequireAtLeastOne } from "./tsHelpers";
 import {
   InferOptions,
   MapFn,
@@ -17,7 +18,12 @@ import {
   WatchMapFn,
   WatchQueryData
 } from "./types";
-import { getErrorsFromData, getMappedData, isDataEmpty } from "./utils";
+import {
+  getErrorsFromData,
+  getMappedData,
+  isDataEmpty,
+  mergeEdges
+} from "./utils";
 
 import { UserDetails } from "./queries/types/UserDetails";
 
@@ -60,6 +66,10 @@ export class SaleorAPI {
     data => data.product
   );
 
+  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>
+    data.me ? data.me.orders : null
+  );
+
   getOrderDetails = this.watchQuery(
     QUERIES.OrderDetails,
     data => data.orderByToken
@@ -71,7 +81,7 @@ export class SaleorAPI {
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
-    data => data!.addressSetDefault
+    data => data!.accountSetDefaultAddress
   );
 
   setCreateCheckout = this.fireQuery(
@@ -86,13 +96,30 @@ export class SaleorAPI {
 
   setDeleteUserAddress = this.fireQuery(
     MUTATIONS.DeleteUserAddress,
-    data => data!.addressDelete
+    data => data!.accountAddressDelete
+  );
+
+  setCreateUserAddress = this.fireQuery(
+    MUTATIONS.CreateUserAddress,
+    data => data!.accountAddressCreate
+  );
+
+  setUpdateuserAddress = this.fireQuery(
+    MUTATIONS.UpdateUserAddress,
+    data => data!.accountAddressUpdate
   );
 
   setCheckoutBillingAddress = this.fireQuery(
     MUTATIONS.UpdateCheckoutBillingAddress,
     data => data!.checkoutBillingAddressUpdate
   );
+
+  setAccountUpdate = this.fireQuery(
+    MUTATIONS.AccountUpdate,
+    data => data!.accountUpdate
+  );
+
+  setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
 
   private client: ApolloClient<any>;
 
@@ -112,10 +139,14 @@ export class SaleorAPI {
         options
       );
     }
+    if (options.onUpdate) {
+      options.onUpdate(null);
+    }
     return {
-      refetch: new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
-        resolve({ data: null });
-      }),
+      refetch: () =>
+        new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+          resolve({ data: null });
+        }),
       unsubscribe: () => undefined,
     };
   };
@@ -176,7 +207,6 @@ export class SaleorAPI {
     return !!getAuthToken();
   };
 
-  // Query and mutation wrapper to catch errors
   private watchQuery<T extends QueryShape, TResult>(
     query: T,
     mapFn: WatchMapFn<T, TResult>
@@ -243,6 +273,46 @@ export class SaleorAPI {
       );
 
       return {
+        loadMore: (
+          extraVariables: RequireAtLeastOne<TVariables>,
+          mergeResults: boolean = true
+        ) => {
+          observable.fetchMore({
+            updateQuery: (previousResult, { fetchMoreResult }) => {
+              if (!fetchMoreResult) {
+                // returning previousResult doesn't trigger observable `next`
+                onUpdate(mapFn(previousResult));
+                return previousResult;
+              }
+
+              if (mergeResults) {
+                const prevResultRef = mapFn(previousResult) as any;
+                const newResultRef = mapFn(fetchMoreResult) as any;
+
+                if (!prevResultRef || !newResultRef) {
+                  onUpdate(prevResultRef);
+                  return previousResult;
+                }
+
+                const mergedEdges = mergeEdges(
+                  prevResultRef.edges,
+                  newResultRef.edges
+                );
+
+                // use new result for metadata and mutate existing data
+                Object.keys(prevResultRef).forEach(key => {
+                  prevResultRef[key] = newResultRef[key];
+                });
+                prevResultRef.edges = mergedEdges;
+
+                return previousResult;
+              }
+
+              return fetchMoreResult;
+            },
+            variables: { ...variables, ...extraVariables },
+          });
+        },
         refetch: (variables?: TVariables) => {
           if (variables) {
             observable.setVariables(variables);

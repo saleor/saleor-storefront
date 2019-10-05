@@ -4,7 +4,10 @@ import React from "react";
 const DEFAULT_PROPS = {
   city: "Wroclaw",
   companyName: "Mirumee",
-  country: "Poland",
+  country: {
+    code: "PL",
+    country: "Poland",
+  },
   countryArea: "dolnyslask",
   firstName: "John",
   lastName: "Doe",

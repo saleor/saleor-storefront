@@ -47,7 +47,7 @@ export interface UserAddressSelectorProps {
   proceedToNextStep: (formData: FormAddressType) => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
-  onSubmit: (selectedAddress: FormAddressType) => Promise<FormError[]>;
+  onSubmit: (selectedAddress: FormAddressType) => Promise<boolean>;
   update?: (checkoutData: CheckoutContextInterface) => void;
 }
 

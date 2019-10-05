@@ -1,11 +1,12 @@
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ProductVariant
 // ====================================================
 
-export interface ProductVariant_price {
+export interface ProductVariant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -19,6 +20,94 @@ export interface ProductVariant_price {
    * Money formatted according to the current locale.
    */
   localized: string;
+}
+
+export interface ProductVariant_pricing_priceUndiscounted_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductVariant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductVariant_pricing_priceUndiscounted_net;
+}
+
+export interface ProductVariant_pricing_price_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariant_pricing_price_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface ProductVariant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: ProductVariant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: ProductVariant_pricing_price_net;
+}
+
+export interface ProductVariant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: ProductVariant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: ProductVariant_pricing_price | null;
 }
 
 export interface ProductVariant_product_thumbnail {
@@ -66,8 +155,9 @@ export interface ProductVariant {
   id: string;
   name: string;
   /**
-   * Price of the product variant.
+   * Lists the storefront variant's pricing,
+   *             the current price and discounts, only meant for displaying
    */
-  price: ProductVariant_price | null;
+  pricing: ProductVariant_pricing | null;
   product: ProductVariant_product;
 }
