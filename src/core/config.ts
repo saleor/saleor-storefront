@@ -6,6 +6,7 @@ export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
   BRAINTREE: "Braintree",
   DUMMY: "Dummy",
+  STRIPE: "Stripe",
 };
 export const STATIC_PAGES = [
   {
