@@ -16,6 +16,7 @@ import {
 import { reviewUrl } from "../../routes";
 import CreditCard from "./Gateways/Braintree/CreditCard";
 import Dummy from "./Gateways/Dummy";
+import { Stripe } from "./Gateways/Stripe";
 import { TypedPaymentMethodCreateMutation } from "./queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
@@ -175,6 +176,16 @@ class View extends React.Component<
                                     {...optionProps(providerName)}
                                   >
                                     <Dummy {...paymentGatewayProps} />
+                                  </Option>
+                                );
+
+                              case PROVIDERS.STRIPE:
+                                return (
+                                  <Option
+                                    label="Stripe"
+                                    {...optionProps(providerName)}
+                                  >
+                                    <Stripe {...paymentGatewayProps} />
                                   </Option>
                                 );
                             }
