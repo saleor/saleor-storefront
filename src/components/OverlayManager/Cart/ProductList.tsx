@@ -21,7 +21,7 @@ const ProductList: React.SFC<{
             <Thumbnail source={line.product} />
           </Link>
           <div className="cart__list__item__details">
-            <p>{line.pricing.price.gross.localized}</p>
+            <p>${line.pricing.price.gross.amount}</p>
             <Link to={productUrl}>
               <p>{line.product.name}</p>
             </Link>

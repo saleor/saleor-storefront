@@ -42,10 +42,10 @@
     align-self: center;
 
     svg {
-      width: 4rem;
+      width: 6rem;
 
       @media (min-width: $small-screen) {
-        width: 6rem;
+        width: 9rem;
       }
     }
   }

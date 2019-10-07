@@ -7,18 +7,18 @@
     text-transform: $product-item-title-text-transform;
     font-weight: $product-item-title-font-weight;
     margin-top: $spacer;
-    text-align: left;
+    text-align: center;
   }
 
   &__category {
     color: $product-item-category-color;
-    text-align: left;
+    text-align: center;
   }
 
   &__price {
     font-weight: $product-item-price-font-weight;
     margin: $product-item-price-margin;
-    text-align: left;
+    text-align: center;
   }
 
   &__image {
