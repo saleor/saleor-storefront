@@ -33,9 +33,7 @@
     }
 
     &__title {
-      background-color: $white;
       display: inline-block;
-      transform: skew(45deg);
       padding: $spacer $spacer * 3;
       margin-bottom: $spacer / 2;
 
@@ -46,19 +44,19 @@
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
-        font-weight: $bold-font-weight;
-        text-transform: uppercase;
-        color: $blue;
+        font-weight: 0;
+        text-transform: none;
+        color: $white;
         font-size: $h1-font-size;
-        font-weight: 900;
+        font-weight: 0;
+        font-family: Miller Display Light,Georgia,"serif";
 
         @media (max-width: $small-screen) {
           font-size: $h4-font-size;
         }
 
         @media (min-width: $small-screen) and (max-width: $medium-screen) {
-          font-size: 48px;
+          font-size: 38px;
         }
       }
     }
@@ -68,8 +66,8 @@
     margin-bottom: 2rem;
 
     h3 {
-      text-transform: uppercase;
-      font-weight: $bold-font-weight;
+      text-transform: none;
+      font-weight: 0;
       margin-bottom: 1rem;
     }
 
@@ -97,8 +95,8 @@
         color: $base-font-color;
 
         h3 {
-          text-transform: uppercase;
-          font-weight: $bold-font-weight;
+          text-transform: none;
+          font-weight: 0;
 
           &:after {
             content: url("../../../images/carousel-arrow.svg");

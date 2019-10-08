@@ -10,9 +10,9 @@ const OtherProducts: React.FC<{
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">
-      <h4 className="product-page__other-products__title">
-        Other products in this category
-      </h4>
+      <h3 className="product-page__other-products__title">
+        You may also like
+      </h3>
       <div className="product-page__other-products__grid">
         {products.map(({ node: product }) => (
           <Link

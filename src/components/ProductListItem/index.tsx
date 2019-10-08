@@ -18,6 +18,7 @@ export interface Product extends BasicProductFields {
       start: {
         gross: {
           localized: string;
+          amount: number;
         };
       };
     };
@@ -33,7 +34,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
     pricing: {
       priceRange: {
         start: {
-          gross: { localized },
+          gross: { amount },
         },
       },
     },
@@ -48,7 +49,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category.name}</p>
-      <p className="product-list-item__price">{localized}</p>
+      <p className="product-list-item__price">${amount}</p>
     </div>
   );
 };

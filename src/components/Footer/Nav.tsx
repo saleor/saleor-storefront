@@ -27,6 +27,9 @@ class Nav extends React.PureComponent {
             }}
           </TypedSecondaryMenuQuery>
         </div>
+        <div>
+          <h6>storitalia© | all rights reserved</h6>
+        </div>
       </footer>
     );
   }

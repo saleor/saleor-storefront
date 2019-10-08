@@ -113,9 +113,11 @@
     padding: $spacer * 4 0;
 
     &__title {
-      text-transform: uppercase;
-      font-weight: $bold-font-weight;
+      text-transform: none;
+      font-weight: 0;
+      font-family: Miller Display Light,Georgia,"serif";
       margin-bottom: $spacer * 2;
+      text-align: center;
     }
 
     &__grid {

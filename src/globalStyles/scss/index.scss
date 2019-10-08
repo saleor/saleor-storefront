@@ -23,10 +23,21 @@ body {
   h3 {
     font-size: $h3-font-size;
     line-height: 1.7rem;
+    text-align: center;
+    font-family: Miller Display Light,Georgia,"serif";
+    text-transform: none;
   }
 
   h4 {
     font-size: $h4-font-size;
+  }
+
+  h6 {
+    color: #fff;
+    text-align: center;
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: .6rem;  
   }
 
   a {
