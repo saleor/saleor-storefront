@@ -5,7 +5,7 @@ import { Checkout_shippingMethod } from "../types/Checkout";
 const ShippingOptionSummary: React.FC<{
   shippingMethod: Checkout_shippingMethod;
 }> = ({ shippingMethod: { name, price } }) => (
-  <p>{`${name} | +${price.amount}`}</p>
+  <p>{`${name} | +${price.localized}`}</p>
 );
 
 export default ShippingOptionSummary;

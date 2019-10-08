@@ -80,7 +80,7 @@ class View extends React.Component<
                                 }
                                 value={method.id}
                                 label={`${method.name} | +${
-                                  method.price.amount
+                                  method.price.localized
                                 }`}
                               />
                             ))}
