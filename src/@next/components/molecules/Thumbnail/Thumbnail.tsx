@@ -12,7 +12,7 @@ export const Thumbnail: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   if (!source.thumbnail && !source.thumbnail2x) {
-    return <PlaceholderImage/>;
+    return <PlaceholderImage />;
   }
   return (
     <CachedImage

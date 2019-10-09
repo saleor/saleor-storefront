@@ -6,8 +6,6 @@ import { Thumbnail } from "@components/molecules";
 
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
-import noPhotoImg from "../../images/no-photo.svg";
-
 export interface Product extends BasicProductFields {
   category?: {
     id: string;
@@ -42,9 +40,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
-        <Thumbnail source={product}>
-          <img src={noPhotoImg} alt={product.thumbnail.alt} />
-        </Thumbnail>
+        <Thumbnail source={product} />
       </div>
       <h4 className="product-list-item__title">{product.name}</h4>
       <p className="product-list-item__category">{category.name}</p>
