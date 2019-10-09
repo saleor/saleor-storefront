@@ -4,7 +4,7 @@ export interface IFormikProps {
   handleChange?: (e: React.ChangeEvent) => void;
   handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   handleBlur?: (e: React.FocusEvent) => void;
-  setFieldValue?: (field: string, value: string) => void;
+  setFieldValue: (field: string, value: string) => void;
   values?: IAddress;
   options?: Array<{
     code: string;

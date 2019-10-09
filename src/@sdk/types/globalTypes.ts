@@ -14,6 +14,11 @@ export enum AddressTypeEnum {
   SHIPPING = "SHIPPING",
 }
 
+export enum OrderDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 /**
  * An enumeration.
  */
@@ -34,6 +39,15 @@ export enum PaymentChargeStatusEnum {
   NOT_CHARGED = "NOT_CHARGED",
   PARTIALLY_CHARGED = "PARTIALLY_CHARGED",
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
+}
+
+export enum ProductOrderField {
+  DATE = "DATE",
+  MINIMAL_PRICE = "MINIMAL_PRICE",
+  NAME = "NAME",
+  PRICE = "PRICE",
+  PUBLISHED = "PUBLISHED",
+  TYPE = "TYPE",
 }
 
 export interface AccountInput {
@@ -57,6 +71,11 @@ export interface AddressInput {
   phone?: string | null;
 }
 
+export interface AttributeInput {
+  slug: string;
+  value: string;
+}
+
 export interface CheckoutCreateInput {
   lines: (CheckoutLineInput | null)[];
   email?: string | null;
@@ -67,6 +86,12 @@ export interface CheckoutCreateInput {
 export interface CheckoutLineInput {
   quantity: number;
   variantId: string;
+}
+
+export interface ProductOrder {
+  field?: ProductOrderField | null;
+  attributeId?: string | null;
+  direction: OrderDirection;
 }
 
 //==============================================================

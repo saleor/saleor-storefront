@@ -21,6 +21,7 @@ import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
 
 import { App } from "./app";
 import CheckoutApp from "./checkout";
@@ -135,33 +136,35 @@ const startApp = async () => {
 
     return (
       <Router history={history}>
-        <ApolloProvider client={apolloClient}>
-          <SaleorProvider client={apolloClient}>
-            <ShopProvider>
-              <OverlayProvider>
-                <Checkout>
-                  <CheckoutContext.Consumer>
-                    {checkout => (
-                      <CartProvider
-                        checkout={checkout}
-                        apolloClient={apolloClient}
-                      >
-                        <Switch>
-                          <Route
-                            path={checkoutBaseUrl}
-                            component={CheckoutApp}
-                          />
-                          <Route component={App} />
-                        </Switch>
-                        <Notifications />
-                      </CartProvider>
-                    )}
-                  </CheckoutContext.Consumer>
-                </Checkout>
-              </OverlayProvider>
-            </ShopProvider>
-          </SaleorProvider>
-        </ApolloProvider>
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <ApolloProvider client={apolloClient}>
+            <SaleorProvider client={apolloClient}>
+              <ShopProvider>
+                <OverlayProvider>
+                  <Checkout>
+                    <CheckoutContext.Consumer>
+                      {checkout => (
+                        <CartProvider
+                          checkout={checkout}
+                          apolloClient={apolloClient}
+                        >
+                          <Switch>
+                            <Route
+                              path={checkoutBaseUrl}
+                              component={CheckoutApp}
+                            />
+                            <Route component={App} />
+                          </Switch>
+                          <Notifications />
+                        </CartProvider>
+                      )}
+                    </CheckoutContext.Consumer>
+                  </Checkout>
+                </OverlayProvider>
+              </ShopProvider>
+            </SaleorProvider>
+          </ApolloProvider>
+        </QueryParamProvider>
       </Router>
     );
   });

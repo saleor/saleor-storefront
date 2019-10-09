@@ -1,18 +1,16 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import { StringParam, useQueryParam } from "use-query-params";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { AttributeList, Filters } from "../../components/ProductFilters";
+import { Filters } from "../../components/ProductFilters";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  getAttributesFromQs,
   getGraphqlIdFromDBId,
-  maybe,
-  parseQueryString,
-  updateQueryString
+  maybe
 } from "../../core/utils";
 import Page from "./Page";
 import { TypedCategoryProductsQuery } from "./queries";
@@ -21,24 +19,109 @@ type ViewProps = RouteComponentProps<{
   id: string;
 }>;
 
+export const FilterQuerySet = {
+  encode(valueObj) {
+    const str = [];
+    Object.keys(valueObj).forEach(value => {
+      str.push(value + "_" + valueObj[value].join("_"));
+    });
+    return str.join(".");
+  },
+
+  decode(strValue) {
+    const obj = {};
+    const propsWithValues = strValue.split(".");
+    propsWithValues.map(value => {
+      const propWithValues = value.split("_");
+      obj[propWithValues[0]] = propWithValues.slice(1);
+    });
+    return obj;
+  },
+};
+
 export const View: React.FC<ViewProps> = ({ match, location, history }) => {
-  const querystring = parseQueryString(location);
-  const updateQs = updateQueryString(location, history);
-  const attributes: AttributeList = getAttributesFromQs(querystring);
+  const [sort, setSort] = useQueryParam("sortBy", StringParam);
+  const [attributeFilters, setAttributeFilters] = useQueryParam(
+    "filters",
+    FilterQuerySet
+  );
+
+  const clearFilters = () => {
+    setAttributeFilters({});
+  };
+
+  const onFiltersChange = (name, value) => {
+    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
+      if (attributeFilters[name].includes(value)) {
+        if (filters.attributes[`${name}`].length === 1) {
+          const att = { ...attributeFilters };
+          delete att[`${name}`];
+          setAttributeFilters({
+            ...att,
+          });
+        } else {
+          setAttributeFilters({
+            ...attributeFilters,
+            [`${name}`]: attributeFilters[`${name}`].filter(
+              item => item !== value
+            ),
+          });
+        }
+      } else {
+        setAttributeFilters({
+          ...attributeFilters,
+          [`${name}`]: [...attributeFilters[`${name}`], value],
+        });
+      }
+    } else {
+      setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
+    }
+  };
 
   const filters: Filters = {
-    attributes,
+    attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
-    priceGte: parseInt(querystring.priceGte, 0) || null,
-    priceLte: parseInt(querystring.priceLte, 0) || null,
-    sortBy: querystring.sortBy || null,
+    sortBy: sort || null,
   };
   const variables = {
     ...filters,
-    attributes: convertToAttributeScalar(filters.attributes),
+    attributes: convertToAttributeScalar(
+      filters.attributes ? filters.attributes : []
+    ),
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
     sortBy: convertSortByFromString(filters.sortBy),
   };
+
+  const sortOptions = [
+    {
+      label: "Clear...",
+      value: null,
+    },
+    {
+      label: "Price Low-High",
+      value: "price",
+    },
+    {
+      label: "Price High-Low",
+      value: "-price",
+    },
+    {
+      label: "Name Increasing",
+      value: "name",
+    },
+    {
+      label: "Name Decreasing",
+      value: "-name",
+    },
+    {
+      label: "Last updated Ascending",
+      value: "updated_at",
+    },
+    {
+      label: "Last updated Descending",
+      value: "-updated_at",
+    },
+  ];
 
   return (
     <NetworkStatus>
@@ -77,6 +160,7 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
                   }}
                 >
                   <Page
+                    clearFilters={clearFilters}
                     attributes={data.attributes.edges.map(edge => edge.node)}
                     category={data.category}
                     displayLoader={loading}
@@ -84,12 +168,16 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
                       () => data.products.pageInfo.hasNextPage,
                       false
                     )}
+                    sortOptions={sortOptions}
                     filters={filters}
                     products={data.products}
-                    onAttributeFiltersChange={updateQs}
+                    onAttributeFiltersChange={onFiltersChange}
                     onLoadMore={handleLoadMore}
-                    onOrder={value => updateQs("sortBy", value)}
-                    onPriceChange={updateQs}
+                    onOrder={value => {
+                      setSort(value.value);
+                    }}
+                    // onOrder={value => updateQs("sortBy", value.value)}
+                    onPriceChange={() => {}}
                   />
                 </MetaWrapper>
               );

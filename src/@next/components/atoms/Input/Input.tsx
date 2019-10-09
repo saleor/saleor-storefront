@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { InputLabel } from "../InputLabel";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -86,9 +88,12 @@ export const Input: React.FC<IProps> = ({
           onChange={onChange}
         />
         {label && (
-          <S.Label bgColor={labelBackground} active={active || !!value}>
+          <InputLabel
+            labelBackground={labelBackground}
+            active={active || !!value}
+          >
             {label}
-          </S.Label>
+          </InputLabel>
         )}
       </S.InputWrapper>
       {contentRight && <S.Content>{contentRight}</S.Content>}

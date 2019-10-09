@@ -12,6 +12,18 @@ module.exports = ({ config }) => {
   });
 
   config.module.rules.push({
+    test: /\.(scss|css)$/,
+    use: [
+      "style-loader",
+      {
+        loader: "css-loader",
+        options: { sourceMap: true }
+      },
+      { loader: "sass-loader" }
+    ]
+  });
+
+  config.module.rules.push({
     test: /stories\.tsx?$/,
     loaders: [require.resolve("@storybook/addon-storysource/loader")],
     enforce: "pre"
