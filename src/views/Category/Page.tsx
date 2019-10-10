@@ -1,6 +1,8 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { Toggle } from "react-powerplug";
+import { Plus, Minus } from 'react-feather';
 
 import {
   Breadcrumbs,
@@ -67,13 +69,32 @@ const Page: React.FC<PageProps> = ({
       </div>
 
       {canDisplayProducts && (
-        <>
-          <ProductFilters
+        
+        
+   
+            <>
+<div className="filter-container">
+<div className="filter-toggle">
+<Toggle initial={false}>
+          {({ on, toggle }) => (
+            <>
+              <div className="toggle" onClick={toggle}><span>Custom Filters {" "}
+							{on ? <Minus size="12" /> : <Plus size="12" />} 
+            </span>
+            </div>
+              
+
+              {on && <ProductFilters
             filters={filters}
             attributes={attributes}
             onAttributeFiltersChange={onAttributeFiltersChange}
             onPriceChange={onPriceChange}
-          />
+          />}
+            </>
+          )}
+        </Toggle>
+        </div>
+        </div>
           <ProductsList
             displayLoader={displayLoader}
             filters={filters}

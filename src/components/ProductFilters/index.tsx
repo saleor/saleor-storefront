@@ -8,6 +8,8 @@ import { SearchProducts_attributes_edges_node } from "../../views/Search/types/S
 import PriceRangeFilter from "../PriceRangeFilter";
 import SelectField, { SelectValue } from "../SelectField";
 
+
+
 export interface AttributeList {
   [attributeSlug: string]: string[];
 }
@@ -36,6 +38,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
   onAttributeFiltersChange,
   onPriceChange,
 }) => (
+
   <div className="product-filters">
     <div className="container">
       <div className="product-filters__grid">
