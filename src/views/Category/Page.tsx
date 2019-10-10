@@ -2,7 +2,8 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { Toggle } from "react-powerplug";
-import { Plus, Minus } from 'react-feather';
+import { Plus, Minus } from "react-feather";
+
 
 import {
   Breadcrumbs,

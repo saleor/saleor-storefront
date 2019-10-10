@@ -5,6 +5,8 @@
     "tslint-plugin-cypress"
   ],
   "rules": {
+    "ordered-imports": [false],
+    "object-literal-sort-keys": [false],
     "interface-name": false,
     "member-access": [true, "no-public"],
     "no-console": [true, "log"],

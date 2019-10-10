@@ -2,7 +2,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { RichTextContent } from "@components/atoms";
+import ReactHtmlParser from 'react-html-parser';
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
@@ -16,7 +16,7 @@ interface PageProps {
   headerImage: string | null;
   navigation: PageNavigationElement[];
   page: {
-    contentJson: any;
+    content: any;
     title: string;
   };
 }
@@ -55,9 +55,7 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-        <RichTextContent
-          descriptionJson={page.contentJson}
-        />
+       { ReactHtmlParser(page.content) }
         </div>
       </div>
     </div>
