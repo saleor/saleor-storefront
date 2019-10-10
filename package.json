@@ -8,6 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "@contentful/rich-text-react-renderer": "^13.4.0",
     "@lingui/react": "^2.8.3",
     "apollo": "^2.6.2",
     "apollo-cache-inmemory": "^1.5.1",
@@ -39,6 +40,7 @@
     "react-dom": "^16.8.3",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.0",
+    "react-html-parser": "^2.0.2",
     "react-media": "^1.8.0",
     "react-powerplug": "^1.0.0",
     "react-responsive": "^7.0.0",
