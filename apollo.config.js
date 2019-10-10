@@ -1,7 +1,7 @@
 module.exports = {
   client: {
     service: {
-      name: "saleor",
+      name: "STORITALIA",
       url: "https://saleor-storitalia.herokuapp.com/graphql/"
     }
   }
