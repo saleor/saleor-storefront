@@ -5,6 +5,8 @@
     text-transform: uppercase;
     font-weight: $bold-font-weight;
     margin-bottom: $spacer;
+    text-align: left;
+    font-size: 1.2rem!important;
   }
 
   h4 {
@@ -63,7 +65,7 @@
   }
 
   &__variant-picker {
-    display: grid;
+    display: none;
 
     .react-select-wrapper,
     .input {

@@ -139,6 +139,9 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             </Media>
           </div>
         </div>
+        <div className="product-page__product__video">
+          <iframe src="https://player.vimeo.com/video/204870423?title=0&byline=0&portrait=0" allow="autoplay; fullscreen"></iframe>
+        </div>
         <OtherProducts products={product.category.products.edges} />
       </div>
     );

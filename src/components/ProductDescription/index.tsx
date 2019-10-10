@@ -242,7 +242,7 @@ class ProductDescription extends React.Component<
           />
         </div>
         <div className="product-description__about">
-          <h4>Description</h4>
+          <h4>Description & Details</h4>
           {children}
         </div>
         <CartContext.Consumer>

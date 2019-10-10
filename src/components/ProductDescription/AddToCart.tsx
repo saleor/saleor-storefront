@@ -40,7 +40,7 @@ const AddToCart: React.FC<{
               }}
               disabled={disabled || mutationLoading || checkoutLoading}
             >
-              Add to basket
+              Add to Bag
             </AddToCartButton>
           )}
         </TypedCreateCheckoutMutation>

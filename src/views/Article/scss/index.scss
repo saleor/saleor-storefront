@@ -21,7 +21,7 @@
     background-blend-mode: multiply;
 
     &__title {
-      background-color: $white;
+      background-color: none;
       display: inline-block;
       transform: skew(45deg);
       padding: 1.5vw 9vw;
@@ -30,10 +30,11 @@
         display: inline-block;
         transform: skew(-45deg);
         font-weight: $bold-font-weight;
-        text-transform: uppercase;
-        color: $blue;
+        text-transform: none;
+        color: $white;
         font-size: 8vw;
-        font-weight: 900;
+        font-weight: 300;
+        font-family: Miller Display Light,Georgia,"serif";
 
         @media (min-width: $small-screen) {
           font-size: 4vw;
