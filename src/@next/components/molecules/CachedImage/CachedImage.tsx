@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PlaceholderImage } from "@components/atoms/PlaceholderImage";
+import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
 import NoPhoto from "images/no-photo.svg";
 
