@@ -19,3 +19,4 @@ export * from "./NavLink";
 export * from "./ShadowBox";
 export * from "./Select";
 export * from "./Attribute";
+export * from "./PlaceholderImage";
