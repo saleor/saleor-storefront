@@ -8,7 +8,7 @@ const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
     {({ title, description, image, type, url, custom }) => (
       <>
         <Helmet
-          title={title}
+          title={"Lounshop"}
           meta={[
             { name: "description", content: description },
             { property: "og:url", content: url },

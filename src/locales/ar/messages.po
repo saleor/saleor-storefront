@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2019-06-26 15:29+0200\n"
+"POT-Creation-Date: 2019-10-11 07:41+0530\n"
 "Mime-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: en\n"
+"Language: ar\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,132 +15,88 @@ msgstr ""
 
 #: src/components/MainMenu/MainMenu.tsx:68
 msgid "Address book"
-msgstr "Address book"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:20
-#~ msgid "Address line 1"
-#~ msgstr "Address line 1"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:23
-#~ msgid "Address line 2"
-#~ msgstr "Address line 2"
+msgstr ""
 
 #: src/languages.ts:4
 msgid "Arabic"
-msgstr "Arabic"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:26
-#~ msgid "City"
-#~ msgstr "City"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:16
-#~ msgid "Company Name (Optional)"
-#~ msgstr "Company Name (Optional)"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:30
-#~ msgid "Country"
-#~ msgstr "Country"
+msgstr ""
 
 #: src/@next/components/molecules/OrderTabel/OrderTabel.tsx:17
 msgid "Date of Order"
-msgstr "Date of Order"
+msgstr ""
 
 #: src/@next/components/molecules/AddressTile/AddressTile.tsx:28
 msgid "Default Address"
-msgstr "Default Address"
+msgstr ""
 
 #: src/@next/components/molecules/AddressTile/AddressTile.tsx:28
 msgid "Default Billing Address"
-msgstr "Default Billing Address"
+msgstr ""
 
 #: src/@next/components/molecules/AddressTile/AddressTile.tsx:28
 msgid "Default Shipping Address"
-msgstr "Default Shipping Address"
+msgstr ""
 
 #: src/languages.ts:3
 msgid "English"
-msgstr "English"
+msgstr ""
 
 #: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:10
 msgid "Expires on"
-msgstr "Expires on"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:12
-#~ msgid "First Name"
-#~ msgstr "First Name"
+msgstr ""
 
 #: src/@next/components/molecules/OrderTabel/OrderTabel.tsx:10
 msgid "Index Number"
-msgstr "Index Number"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:13
-#~ msgid "Last Name"
-#~ msgstr "Last Name"
+msgstr ""
 
 #: src/@next/components/molecules/FormFooter/FormFooter.tsx:5
 msgid "Loading"
-msgstr "Loading"
+msgstr ""
 
 #: src/components/MainMenu/MainMenu.tsx:58
 msgid "My Account"
-msgstr "My Account"
+msgstr ""
 
 #: src/@next/components/molecules/CreditCardTile/CreditCardTile.tsx:14
 msgid "Name on card"
-msgstr "Name on card"
-
-#: src/@next/components/atoms/Select/SelectOptionsList.tsx:15
-#~ msgid "No Options"
-#~ msgstr "No Options"
+msgstr ""
 
 #: src/components/MainMenu/MainMenu.tsx:63
 msgid "Order history"
-msgstr "Order history"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:17
-#~ msgid "Phone"
-#~ msgstr "Phone"
+msgstr ""
 
 #: src/@next/components/atoms/Address/Address.tsx:20
 msgid "Phone number"
-msgstr "Phone number"
+msgstr ""
 
 #: src/@next/components/organisms/SizeOverlay/SizeOverlay.tsx:11
 msgid "Please select size"
-msgstr "Please select size"
+msgstr ""
 
 #: src/@next/components/molecules/OrderTabel/OrderTabel.tsx:14
 msgid "Products Ordered"
-msgstr "Products Ordered"
+msgstr ""
 
 #: src/@next/components/molecules/AddressTile/AddressTile.tsx:9
 msgid "Set as default billing address"
-msgstr "Set as default billing address"
+msgstr ""
 
 #: src/@next/components/molecules/AddressTile/AddressTile.tsx:6
 msgid "Set as default shipping address"
-msgstr "Set as default shipping address"
+msgstr ""
 
 #: src/@next/components/organisms/SizeOverlay/SizeOverlay.tsx:25
 msgid "Show size table"
-msgstr "Show size table"
+msgstr ""
 
 #: src/components/OverlayManager/Search/NothingFound.tsx:5
 msgid "Sorry, but we couldn’t match any search results for: “{search}”"
-msgstr "Sorry, but we couldn’t match any search results for: “{search}”"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:31
-#~ msgid "State/province"
-#~ msgstr "State/province"
+msgstr ""
 
 #: src/@next/components/molecules/OrderTabel/OrderTabel.tsx:24
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #: src/@next/components/molecules/OrderTabel/OrderTabel.tsx:20
 msgid "Value"
-msgstr "Value"
-
-#: src/@next/components/organisms/AddressForm/AddressFormContent.tsx:27
-#~ msgid "ZIP/Postal Code"
-#~ msgstr "ZIP/Postal Code"
+msgstr ""

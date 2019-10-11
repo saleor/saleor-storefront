@@ -16,23 +16,13 @@ export const STATIC_PAGES = [
 export const SOCIAL_MEDIA = [
   {
     ariaLabel: "facebook",
-    href: "https://www.facebook.com/mirumeelabs/",
+    href: "http://facebook.com/collaboapp",
     path: require("../images/facebook-icon.svg"),
   },
   {
-    ariaLabel: "instagram",
-    href: "https://www.instagram.com/mirumeelabs/",
-    path: require("../images/instagram-icon.svg"),
-  },
-  {
     ariaLabel: "twitter",
-    href: "https://twitter.com/getsaleor",
+    href: "https://twitter.com/collabohq",
     path: require("../images/twitter-icon.svg"),
-  },
-  {
-    ariaLabel: "youtube",
-    href: "https://www.youtube.com/channel/UCg_ptb-U75e7BprLCGS4s1g/videos",
-    path: require("../images/youtube-icon.svg"),
   },
 ];
 export const META_DEFAULTS = {

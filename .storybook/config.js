@@ -13,7 +13,7 @@ const themes = {
 };
 
 withOptions({
-  name: "Saleor",
+  name: "lounShop",
   url: "https://github.com/mirumee/saleor-storefront",
   goFullScreen: false,
   sidebarAnimations: true
