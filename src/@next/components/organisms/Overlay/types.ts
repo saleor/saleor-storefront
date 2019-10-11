@@ -7,7 +7,7 @@ export interface IProps {
   position: Position;
   show: boolean;
   target?: HTMLElement | null;
-  transparent: boolean;
+  transparent?: boolean;
 }
 
 export type TransitionState =

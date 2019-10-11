@@ -29,7 +29,7 @@ export const Overlay: React.FC<IProps> = ({
             {...animationProps}
             state={state}
             onClick={hide}
-            transparent
+            transparent={transparent}
           >
             <S.Lightbox
               {...animationProps}

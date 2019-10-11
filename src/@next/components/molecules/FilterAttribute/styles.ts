@@ -23,6 +23,10 @@ export const BottomBorder = styled.div`
   width: 95%;
 `;
 
+export const ViewMoreButton = styled.div`
+  padding-bottom: 1.25rem;
+`;
+
 export const Label = styled.label`
   width: 95%;
   display: flex;

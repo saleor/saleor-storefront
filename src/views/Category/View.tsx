@@ -30,16 +30,16 @@ export const FilterQuerySet = {
 
   decode(strValue) {
     const obj = {};
-    const propsWithValues = strValue.split(".");
+    const propsWithValues = strValue.split(".").filter(n => n);
     propsWithValues.map(value => {
-      const propWithValues = value.split("_");
+      const propWithValues = value.split("_").filter(n => n);
       obj[propWithValues[0]] = propWithValues.slice(1);
     });
     return obj;
   },
 };
 
-export const View: React.FC<ViewProps> = ({ match, location, history }) => {
+export const View: React.FC<ViewProps> = ({ match }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
@@ -81,12 +81,14 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
   const filters: Filters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
+    priceGte: null,
+    priceLte: null,
     sortBy: sort || null,
   };
   const variables = {
     ...filters,
     attributes: convertToAttributeScalar(
-      filters.attributes ? filters.attributes : []
+      filters.attributes ? filters.attributes : {}
     ),
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
     sortBy: convertSortByFromString(filters.sortBy),
@@ -169,15 +171,19 @@ export const View: React.FC<ViewProps> = ({ match, location, history }) => {
                       false
                     )}
                     sortOptions={sortOptions}
+                    activeSortOption={filters.sortBy}
                     filters={filters}
                     products={data.products}
                     onAttributeFiltersChange={onFiltersChange}
                     onLoadMore={handleLoadMore}
+                    activeFilters={
+                      filters!.attributes
+                        ? Object.keys(filters!.attributes).length
+                        : 0
+                    }
                     onOrder={value => {
                       setSort(value.value);
                     }}
-                    // onOrder={value => updateQs("sortBy", value.value)}
-                    onPriceChange={() => {}}
                   />
                 </MetaWrapper>
               );

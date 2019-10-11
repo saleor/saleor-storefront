@@ -6,7 +6,7 @@ interface IStyleProps {
   open: boolean;
   position: Position;
   state: TransitionState;
-  transparent: boolean;
+  transparent?: boolean;
 }
 
 const getTranslate = (side: "left" | "right") =>

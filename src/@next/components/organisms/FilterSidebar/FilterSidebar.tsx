@@ -9,25 +9,17 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const FilterSidebar: React.FC<IProps> = ({
-  target,
   hide,
+  filters,
   show,
   attributes,
-  filters,
-  onAttributeFiltersChange,
+  ...props
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
   return (
-    <Overlay
-      duration={0}
-      position="left"
-      show={show}
-      hide={hide}
-      target={target}
-      transparent
-    >
+    <Overlay duration={0} position="left" show={show} hide={hide} transparent>
       <S.Wrapper ref={setElementRef()}>
         <S.Header>
           <span>FILTERS</span>
@@ -36,11 +28,11 @@ export const FilterSidebar: React.FC<IProps> = ({
         {attributes.map(attribute => {
           return (
             <FilterAttribute
-              filters={filters}
-              onAttributeFiltersChange={onAttributeFiltersChange}
-              slug={attribute.slug}
-              name={attribute.name}
-              values={attribute.values}
+              {...{
+                attribute,
+                filters,
+                ...props,
+              }}
             />
           );
         })}

@@ -1,6 +1,13 @@
+interface SortOptions {
+  value?: string;
+  label: string;
+}
 export interface IProps {
+  activeSortOption?: string;
   activeFilters: number;
-  clearFilters: () => void;
   numberOfProducts: number;
+  sortOptions: SortOptions[];
+  onChange: (order: { value?: string; label: string }) => void;
   openFiltersMenu: () => void;
+  clearFilters: () => void;
 }

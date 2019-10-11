@@ -5,9 +5,9 @@ import { ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const checkIfAttributeIsChecked = (filters, attribute, slug) => {
-  if (filters.attributes && filters.attributes.hasOwnProperty(slug)) {
-    if (filters.attributes[slug].find(filter => filter === attribute.slug)) {
+const checkIfAttributeIsChecked = (filters, value, slug) => {
+  if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
+    if (filters.attributes[slug].find(filter => filter === value.slug)) {
       return true;
     } else {
       return false;
@@ -18,11 +18,9 @@ const checkIfAttributeIsChecked = (filters, attribute, slug) => {
 };
 
 export const FilterAttribute: React.FC<IProps> = ({
-  name,
-  slug,
-  values,
-  onAttributeFiltersChange,
+  attribute: { name, slug, values },
   filters,
+  onAttributeFiltersChange,
 }: IProps) => {
   const [viewAllOptions, setViewAllOptions] = React.useState(false);
   return (
@@ -31,9 +29,8 @@ export const FilterAttribute: React.FC<IProps> = ({
       {values.map((value, index) => {
         const ref = React.useRef<HTMLDivElement>(null);
 
-        const isChecked = checkIfAttributeIsChecked(filters, value, slug);
         if (!viewAllOptions && index > 4) {
-          <></>;
+          return <></>;
         } else {
           return (
             <S.Checkbox>
@@ -42,19 +39,16 @@ export const FilterAttribute: React.FC<IProps> = ({
                 <input
                   tabIndex={-1}
                   type="checkbox"
-                  name={value.slug}
-                  checked={isChecked}
-                  onChange={evt => {
-                    evt;
-                  }}
+                  name={slug}
+                  checked={checkIfAttributeIsChecked(filters, value, slug)}
                 />
                 <div
                   ref={ref}
                   tabIndex={0}
                   onKeyDown={evt => {
                     if (evt.which === 32 || evt.which === 13) {
+                      onAttributeFiltersChange(slug, value.slug);
                       evt.preventDefault();
-                      onAttributeFiltersChange(slug, value.value);
                     }
                   }}
                   onClick={evt => {
@@ -73,13 +67,15 @@ export const FilterAttribute: React.FC<IProps> = ({
         }
       })}
       {!viewAllOptions && values.length > 5 && (
-        <ButtonLink
-          size="sm"
-          color="secondary"
-          onClick={() => setViewAllOptions(true)}
-        >
-          VIEW ALL OPTIONS
-        </ButtonLink>
+        <S.ViewMoreButton>
+          <ButtonLink
+            size="sm"
+            color="secondary"
+            onClick={() => setViewAllOptions(true)}
+          >
+            VIEW ALL OPTIONS
+          </ButtonLink>
+        </S.ViewMoreButton>
       )}
       <S.BottomBorder />
     </S.Wrapper>

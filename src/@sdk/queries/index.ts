@@ -31,7 +31,6 @@ import {
   CategoryDetailsVariables
 } from "./types/CategoryDetails";
 
-import { ProductVariant } from "../fragments/types/ProductVariant";
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";

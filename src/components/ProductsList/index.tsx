@@ -16,7 +16,7 @@ interface ProductsListProps {
   hasNextPage: boolean;
   notFound?: string | React.ReactNode;
   onLoadMore: () => void;
-  onOrder: (order: string) => void;
+  onOrder: (order: { value?: string; label: string } | string) => void;
   products: Product[];
   totalCount: number;
 }
