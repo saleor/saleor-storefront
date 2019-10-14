@@ -1,4 +1,4 @@
-import "./scss/index.scss";
+import "../Category/scss/index.scss";
 
 import * as React from "react";
 

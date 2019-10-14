@@ -1,4 +1,4 @@
-import "../Category/scss/index.scss";
+import "../Collection/scss/custom_index.scss";
 
 import * as React from "react";
 
