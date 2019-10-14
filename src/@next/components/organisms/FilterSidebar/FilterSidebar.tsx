@@ -13,13 +13,21 @@ export const FilterSidebar: React.FC<IProps> = ({
   filters,
   show,
   attributes,
+  target,
   ...props
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
   return (
-    <Overlay duration={0} position="left" show={show} hide={hide} transparent>
+    <Overlay
+      duration={0}
+      position="left"
+      show={show}
+      hide={hide}
+      transparent
+      target={target}
+    >
       <S.Wrapper ref={setElementRef()}>
         <S.Header>
           <span>FILTERS</span>

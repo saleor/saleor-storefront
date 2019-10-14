@@ -50,8 +50,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   transform: translateX(-100%);
   -webkit-animation: jhEmMy 0.4s both;
   animation: jhEmMy 0.4s both;
-  -webkit-animation-delay: .5s;
-  animation-delay: .5s;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
 }
 
 .c1 {

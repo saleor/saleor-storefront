@@ -19,6 +19,8 @@ exports[`Storyshots @components/atoms/Label default 1`] = `
 
 .c1 {
   color: #7d7d7d;
+  display: inline-block;
+  white-space: pre;
 }
 
 <div

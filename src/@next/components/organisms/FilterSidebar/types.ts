@@ -1,19 +1,9 @@
-import { Filters } from "../../../../components/ProductFilters/";
-export interface Attribute {
-  id: string;
-  name: string | null;
-  slug: string | null;
-}
-export interface AttributeList {
-  id: string;
-  name: string | null;
-  slug: string | null;
-  values: Array<Attribute | null> | null;
-}
+import { IFilterAttributes, IFilters } from "@types";
 export interface IProps {
-  attributes: AttributeList[];
-  filters: Filters;
+  attributes: IFilterAttributes[];
+  filters: IFilters;
   hide: () => void;
   onAttributeFiltersChange: (attributeSlug: string, values: string) => void;
   show: boolean;
+  target?: HTMLElement | null;
 }

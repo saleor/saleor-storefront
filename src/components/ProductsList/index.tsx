@@ -6,28 +6,23 @@ import { Link } from "react-router-dom";
 import { Button, ProductListItem } from "..";
 import { generateProductUrl } from "../../core/utils";
 import Loader from "../Loader";
-import { Filters } from "../ProductFilters";
 
 import { Product } from "../ProductListItem";
 
 interface ProductsListProps {
   displayLoader: boolean;
-  filters: Filters;
   hasNextPage: boolean;
   notFound?: string | React.ReactNode;
   onLoadMore: () => void;
-  onOrder: (order: { value?: string; label: string } | string) => void;
   products: Product[];
   totalCount: number;
 }
 
 export const ProductList: React.FC<ProductsListProps> = ({
   displayLoader,
-  filters,
   hasNextPage,
   notFound,
   onLoadMore,
-  onOrder,
   products,
   totalCount,
 }) => {

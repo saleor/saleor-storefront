@@ -17,7 +17,7 @@ export const ProductListHeader: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <S.LeftSide>
-        <S.FiltersSection onClick={openFiltersMenu}>
+        <S.FiltersButton onClick={openFiltersMenu}>
           <Icon name="filter" size={24} />
           <S.Filters>
             FILTERS{" "}
@@ -27,7 +27,7 @@ export const ProductListHeader: React.FC<IProps> = ({
               </>
             )}
           </S.Filters>
-        </S.FiltersSection>
+        </S.FiltersButton>
         {activeFilters > 0 && (
           <S.Clear onClick={clearFilters}>CLEAR FILTERS</S.Clear>
         )}

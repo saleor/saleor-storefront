@@ -45,11 +45,11 @@ exports[`Storyshots @components/atoms/Input default 1`] = `
 }
 
 .c1:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c2 {
@@ -336,11 +336,11 @@ exports[`Storyshots @components/atoms/Input with value 1`] = `
 }
 
 .c1:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c5 {

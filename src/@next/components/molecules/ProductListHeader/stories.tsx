@@ -8,7 +8,18 @@ const DEFAULT_PROPS = {
   activeFilters: 0,
   clearFilters: action("clearFilters"),
   numberOfProducts: 255,
+  onChange: action("onChange"),
   openFiltersMenu: action("openFiltersMenu"),
+  sortOptions: [
+    {
+      label: "Price ASC",
+      value: "PRICE",
+    },
+    {
+      label: "Price DESC",
+      value: "-PRICE",
+    },
+  ],
 };
 
 storiesOf("@components/molecules/ProductListHeader", module)

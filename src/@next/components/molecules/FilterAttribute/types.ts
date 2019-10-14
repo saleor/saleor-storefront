@@ -1,14 +1,6 @@
-import { Filters } from "../../../../components/ProductFilters";
-interface Attribute {
-  slug: string;
-  name: string;
-}
+import { IFilterAttributes, IFilters } from "@types";
 export interface IProps {
-  filters: Filters;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
-  attribute: {
-    slug: string;
-    name: string;
-    values: Attribute[];
-  };
+  filters: IFilters;
+  attribute: IFilterAttributes;
 }

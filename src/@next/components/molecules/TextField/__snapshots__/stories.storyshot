@@ -45,11 +45,11 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c3 {
@@ -151,11 +151,11 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c3 {
@@ -275,11 +275,11 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c6 {

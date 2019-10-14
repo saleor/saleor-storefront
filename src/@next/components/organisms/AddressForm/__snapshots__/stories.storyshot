@@ -45,11 +45,11 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c6:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c7 {
@@ -389,7 +389,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cv9er4-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -418,7 +418,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-5-input"
+                        id="react-select-7-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -573,11 +573,11 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c12:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c6 {
@@ -955,7 +955,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cv9er4-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -984,7 +984,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-6-input"
+                        id="react-select-8-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1145,11 +1145,11 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c6:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c7 {
@@ -1497,7 +1497,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cv9er4-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -1526,7 +1526,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-7-input"
+                        id="react-select-9-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}

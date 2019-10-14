@@ -2,10 +2,15 @@ import React from "react";
 
 import { ButtonLink } from "@components/atoms";
 
+import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const checkIfAttributeIsChecked = (filters, value, slug) => {
+const checkIfAttributeIsChecked = (
+  filters: IFilters,
+  value: ISingleFilterAttribute,
+  slug: string
+) => {
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
     if (filters.attributes[slug].find(filter => filter === value.slug)) {
       return true;
@@ -26,46 +31,48 @@ export const FilterAttribute: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <S.Header>{name}</S.Header>
-      {values.map((value, index) => {
-        const ref = React.useRef<HTMLDivElement>(null);
+      {values &&
+        values.map((value, index) => {
+          const ref = React.useRef<HTMLDivElement>(null);
 
-        if (!viewAllOptions && index > 4) {
-          return <></>;
-        } else {
-          return (
-            <S.Checkbox>
-              {value.name}
-              <S.Label>
-                <input
-                  tabIndex={-1}
-                  type="checkbox"
-                  name={slug}
-                  checked={checkIfAttributeIsChecked(filters, value, slug)}
-                />
-                <div
-                  ref={ref}
-                  tabIndex={0}
-                  onKeyDown={evt => {
-                    if (evt.which === 32 || evt.which === 13) {
-                      onAttributeFiltersChange(slug, value.slug);
+          if (!viewAllOptions && index > 4) {
+            return <></>;
+          } else {
+            return (
+              <S.Checkbox>
+                {value && value.name}
+                <S.Label>
+                  <input
+                    tabIndex={-1}
+                    type="checkbox"
+                    name={slug}
+                    checked={checkIfAttributeIsChecked(filters, value, slug)}
+                    readOnly
+                  />
+                  <div
+                    ref={ref}
+                    tabIndex={0}
+                    onKeyDown={evt => {
+                      if (evt.which === 32 || evt.which === 13) {
+                        onAttributeFiltersChange(slug, value.slug);
+                        evt.preventDefault();
+                      }
+                    }}
+                    onClick={evt => {
                       evt.preventDefault();
-                    }
-                  }}
-                  onClick={evt => {
-                    evt.preventDefault();
-                    onAttributeFiltersChange(slug, value.slug);
-                    if (ref.current) {
-                      ref.current.blur();
-                    }
-                  }}
-                >
-                  <span></span>
-                </div>
-              </S.Label>
-            </S.Checkbox>
-          );
-        }
-      })}
+                      onAttributeFiltersChange(slug, value.slug);
+                      if (ref.current) {
+                        ref.current.blur();
+                      }
+                    }}
+                  >
+                    <span></span>
+                  </div>
+                </S.Label>
+              </S.Checkbox>
+            );
+          }
+        })}
       {!viewAllOptions && values.length > 5 && (
         <S.ViewMoreButton>
           <ButtonLink

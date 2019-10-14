@@ -2,13 +2,13 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { IFilterAttributes, IFilters } from "@types";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
   ProductsFeatured,
   ProductsList
 } from "../../components";
-import { Filters } from "../../components/ProductFilters";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
@@ -22,25 +22,13 @@ interface SortItem {
 
 interface SortOptions extends Array<SortItem> {}
 
-export interface Attribute {
-  id: string;
-  name: string | null;
-  slug: string | null;
-}
-export interface AttributeList {
-  id: string;
-  name: string | null;
-  slug: string | null;
-  values: Array<Attribute | null> | null;
-}
-
 interface PageProps {
   activeFilters: number;
-  attributes: AttributeList[];
+  attributes: IFilterAttributes[];
   activeSortOption: string;
   category: Category_category;
   displayLoader: boolean;
-  filters: Filters;
+  filters: IFilters;
   hasNextPage: boolean;
   products: Category_products;
   sortOptions: SortOptions;
@@ -99,10 +87,8 @@ const Page: React.FC<PageProps> = ({
             displayLoader={displayLoader}
             hasNextPage={hasNextPage}
             onLoadMore={onLoadMore}
-            onOrder={onOrder}
             products={products.edges.map(edge => edge.node)}
             totalCount={products.totalCount}
-            filters={filters}
           />
         </>
       )}

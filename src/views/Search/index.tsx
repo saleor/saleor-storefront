@@ -137,11 +137,9 @@ export const SearchView: React.FC<SearchViewProps> = ({
                       {canDisplayProducts && (
                         <ProductsList
                           displayLoader={loading}
-                          filters={filters}
                           hasNextPage={data.products.pageInfo.hasNextPage}
                           notFound={notFound(query)}
                           onLoadMore={handleLoadMore}
-                          onOrder={updateQs}
                           products={data.products.edges.map(edge => edge.node)}
                           totalCount={data.products.totalCount}
                         />

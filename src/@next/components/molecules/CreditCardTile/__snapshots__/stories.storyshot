@@ -92,7 +92,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
 }
 
 .c10:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c10:hover svg path {

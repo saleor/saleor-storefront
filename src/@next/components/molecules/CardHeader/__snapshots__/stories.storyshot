@@ -113,7 +113,7 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
 }
 
 .c3:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c3:hover svg path {
@@ -232,7 +232,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
 }
 
 .c3:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c3:hover svg path {
@@ -350,7 +350,7 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
 }
 
 .c3:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c3:hover svg path {

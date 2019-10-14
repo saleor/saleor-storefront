@@ -1,10 +1,10 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { Filters } from "../../components/ProductFilters";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
@@ -78,7 +78,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     }
   };
 
-  const filters: Filters = {
+  const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
     priceGte: null,
@@ -87,9 +87,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   };
   const variables = {
     ...filters,
-    attributes: convertToAttributeScalar(
-      filters.attributes ? filters.attributes : {}
-    ),
+    attributes: filters.attributes
+      ? convertToAttributeScalar(filters.attributes)
+      : {},
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
     sortBy: convertSortByFromString(filters.sortBy),
   };

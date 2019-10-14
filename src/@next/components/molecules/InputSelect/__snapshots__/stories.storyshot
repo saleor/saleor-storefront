@@ -60,7 +60,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
         onKeyDown={[Function]}
       >
         <div
-          className="css-cv9er4-control"
+          className="css-1f50ceg-control"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
