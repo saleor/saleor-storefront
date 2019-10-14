@@ -19,7 +19,7 @@ import { maybe } from "../../../core/utils";
 import { cartUrl, checkoutLoginUrl } from "../../../routes";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { CartContext } from "../../CartProvider/context";
-import { extractCartLines, getTotal } from "../../CartProvider/uitls";
+import { extractCartLines, getTotal } from "../../CartProvider/utils";
 import { Error } from "../../Error";
 import Loader from "../../Loader";
 import { ShopContext } from "../../ShopProvider/context";

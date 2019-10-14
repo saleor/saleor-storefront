@@ -14,7 +14,7 @@ import {
   extractCartLines,
   extractCheckoutLines,
   getTotal
-} from "../../components/CartProvider/uitls";
+} from "../../components/CartProvider/utils";
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";

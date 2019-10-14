@@ -24,6 +24,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Replace BACKEND_URL in favor of API_URI - #474 by @bogdal
 - Adapt `checkout.availablePaymentGateways` structure to the new schema - #483 by @bogdal
 - Replace product/variant `price` fields with appropriate `pricing` fields - #483 by @bogdal
+- Add Stripe integration - #486 by @bogdal
+- Add PlaceholderImage component and show it in case of missing thumbnail - #489 by @xit4
 
 ## 0.6.0
 
