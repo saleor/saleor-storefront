@@ -105,7 +105,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       }
     }),
     new webpack.EnvironmentPlugin({
-      API_URI: "https://loun-shop.herokuapp.com/graphql/",
+      API_URI: "https://zecommerce.herokuapp.com/graphql/",
       SERVICE_WORKER_TIMEOUT: "60000"
     })
   ],
