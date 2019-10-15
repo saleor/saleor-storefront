@@ -28,6 +28,7 @@ const checkIfAttributeIsChecked = (
 export const FilterAttribute: React.FC<IProps> = ({
   attribute: { name, slug, values },
   filters,
+  filtersLimit = 5,
   onAttributeFiltersChange,
 }: IProps) => {
   const [viewAllOptions, setViewAllOptions] = React.useState(false);
@@ -38,7 +39,7 @@ export const FilterAttribute: React.FC<IProps> = ({
         values.map((value, index) => {
           const ref = React.useRef<HTMLDivElement>(null);
 
-          if (!viewAllOptions && index > 4) {
+          if (!viewAllOptions && index > filtersLimit - 1) {
             return <></>;
           } else {
             return (
@@ -76,7 +77,7 @@ export const FilterAttribute: React.FC<IProps> = ({
             );
           }
         })}
-      {!viewAllOptions && values.length > 5 && (
+      {!viewAllOptions && values.length > filtersLimit && (
         <S.ViewMoreButton>
           <ButtonLink
             size="sm"
