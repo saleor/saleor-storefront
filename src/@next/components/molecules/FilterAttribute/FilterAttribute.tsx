@@ -6,6 +6,9 @@ import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const ENTER_KEY: number = 13;
+const SPACE_KEY: number = 32;
+
 const checkIfAttributeIsChecked = (
   filters: IFilters,
   value: ISingleFilterAttribute,
@@ -53,7 +56,7 @@ export const FilterAttribute: React.FC<IProps> = ({
                     ref={ref}
                     tabIndex={0}
                     onKeyDown={evt => {
-                      if (evt.which === 32 || evt.which === 13) {
+                      if (evt.which === SPACE_KEY || evt.which === ENTER_KEY) {
                         onAttributeFiltersChange(slug, value.slug);
                         evt.preventDefault();
                       }
