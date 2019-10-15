@@ -19,4 +19,7 @@ export * from "./NavLink";
 export * from "./ShadowBox";
 export * from "./Select";
 export * from "./Attribute";
+export * from "./Label";
+export * from "./InputLabel";
+export * from "./DropdownSelect";
 export * from "./PlaceholderImage";

@@ -52,7 +52,7 @@ exports[`Storyshots @components/atoms/IconButton edit icon button 1`] = `
 }
 
 .c1:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c1:hover svg path {
@@ -134,7 +134,7 @@ exports[`Storyshots @components/atoms/IconButton trash icon button 1`] = `
 }
 
 .c1:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c1:hover svg path {

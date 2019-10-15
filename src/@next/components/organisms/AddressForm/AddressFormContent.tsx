@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 
-import { Select } from "@components/atoms";
-import { TextField } from "@components/molecules";
+import { InputSelect, TextField } from "@components/molecules";
 
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
@@ -111,14 +110,19 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           />
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
-          <Select
+          <InputSelect
             defaultValue={defaultValue}
             label="Country"
             name="country"
-            autoComplete="country"
             options={options}
-            value={values!.country}
-            onChange={setFieldValue}
+            value={
+              values!.country &&
+              options &&
+              options!.find(option => option.code === values!.country!.code)
+            }
+            onChange={(value: any, name: any) => setFieldValue(name, value)}
+            optionLabelKey="country"
+            optionValueKey="code"
           />
           <TextField
             name="countryArea"

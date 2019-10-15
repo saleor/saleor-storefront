@@ -39,7 +39,7 @@ exports[`Storyshots @components/atoms/Loader default 1`] = `
 }
 
 .c2 span {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
   width: 1rem;
   height: 1rem;
   border-radius: 1rem;

@@ -17,6 +17,21 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
   box-sizing: border-box;
 }
 
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -30,11 +45,11 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c3 {
@@ -50,21 +65,6 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
-}
-
-.c5 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c1 {
@@ -123,6 +123,21 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
   box-sizing: border-box;
 }
 
+.c6 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -136,11 +151,11 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c3 {
@@ -167,21 +182,6 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
-}
-
-.c6 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c1 {
@@ -247,6 +247,21 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
   box-sizing: border-box;
 }
 
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -260,11 +275,11 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
 }
 
 .c2:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c6 {
@@ -291,21 +306,6 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
-}
-
-.c5 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c1 {
@@ -380,6 +380,21 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   margin: 0;
 }
 
+.c5 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -413,21 +428,6 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
-}
-
-.c5 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c1 {

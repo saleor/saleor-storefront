@@ -6,6 +6,7 @@ import { FetchResult } from "react-apollo";
 import { generatePath } from "react-router";
 
 import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
+import { IFilterAttributes } from "../@next/types";
 import { FormError } from "./types";
 
 export const slugify = (text: string | number): string =>
@@ -65,9 +66,11 @@ export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 interface AttributeDict {
   [attributeSlug: string]: string[];
 }
-export const convertToAttributeScalar = (attributes: AttributeDict) =>
+export const convertToAttributeScalar = (
+  attributes: AttributeDict | IFilterAttributes
+) =>
   Object.entries(attributes)
-    .map(([key, value]) => value.map(attribute => `${key}:${attribute}`))
+    .map(([key, value]) => value.map((attribute: any) => `${key}:${attribute}`))
     .reduce((prev, curr) => [...prev, ...curr], []);
 
 interface QueryString {
@@ -101,7 +104,7 @@ export const convertSortByFromString = (sortBy: string) => {
       break;
 
     case "price":
-      field = ProductOrderField.PRICE;
+      field = ProductOrderField.MINIMAL_PRICE;
       break;
 
     case "updated_at":

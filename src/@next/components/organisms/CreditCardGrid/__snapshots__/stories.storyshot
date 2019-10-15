@@ -36,7 +36,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
   -webkit-box-align: left;
   -ms-flex-align: left;
   align-items: left;
-  color: #21125e;
+  color: rgb(33,18,94);
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -50,7 +50,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
 .c3:hover {
   cursor: pointer;
   color: #fff;
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c3:hover svg path {
@@ -156,7 +156,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
 }
 
 .c14:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c14:hover svg path {

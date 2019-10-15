@@ -55,7 +55,7 @@ exports[`Storyshots @components/atoms/Message action card 1`] = `
 }
 
 .c5 {
-  color: #21125e;
+  color: rgb(33,18,94);
   cursor: pointer;
   font-size: 1rem;
   -webkit-text-decoration: underline;
@@ -151,7 +151,7 @@ exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
 }
 
 .c4 {
-  color: #21125e;
+  color: rgb(33,18,94);
   cursor: pointer;
   font-size: 1rem;
   -webkit-text-decoration: underline;

@@ -88,10 +88,8 @@ export const Page: React.FC<PageProps> = ({
       {canDisplayProducts && (
         <ProductsList
           displayLoader={displayLoader}
-          filters={filters}
           hasNextPage={hasNextPage}
           onLoadMore={onLoadMore}
-          onOrder={onOrder}
           products={products.edges.map(edge => edge.node)}
           totalCount={products.totalCount}
         />

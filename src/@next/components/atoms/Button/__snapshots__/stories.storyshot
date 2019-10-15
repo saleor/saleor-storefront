@@ -110,15 +110,15 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   transition: 0.3s;
   outline: none;
   cursor: pointer;
-  color: #21125e;
+  color: rgb(33,18,94);
   width: auto;
-  box-shadow: inset 0px 0px 0px 3px #21125e;
-  border-left: 1px solid #21125e;
-  border-right: 1px solid #21125e;
+  box-shadow: inset 0px 0px 0px 3px rgb(33,18,94);
+  border-left: 1px solid rgb(33,18,94);
+  border-right: 1px solid rgb(33,18,94);
 }
 
 .c1:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
   color: #fff;
 }
 

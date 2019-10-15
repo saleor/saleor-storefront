@@ -6,6 +6,8 @@ import {
 import gql from "graphql-tag";
 
 import { RequireOnlyOne } from "../tsHelpers";
+import * as AttributesList from "./attributes";
+import * as Category from "./category";
 import * as Checkout from "./checkout";
 import * as Orders from "./orders";
 import * as Product from "./products";
@@ -15,10 +17,19 @@ import {
   CheckoutDetailsVariables
 } from "./types/CheckoutDetails";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
+
+import { Attributes, AttributesVariables } from "./types/Attributes";
 import {
   ProductDetails,
   ProductDetailsVariables
 } from "./types/ProductDetails";
+
+import { ProductList, ProductListVariables } from "./types/ProductList";
+
+import {
+  CategoryDetails,
+  CategoryDetailsVariables
+} from "./types/CategoryDetails";
 
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
@@ -31,6 +42,26 @@ type QueryOptions<T = {}> = T extends { [n: string]: never }
 
 // TODO: Add ability to pass custom fragments to queries
 export const QUERIES = {
+  Attributes: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<AttributesVariables>
+  ): ObservableQuery<Attributes, any> =>
+    client.watchQuery({
+      query: gql`
+        ${AttributesList.attributes}
+      `,
+      ...options,
+    }),
+  CategoryDetails: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<CategoryDetailsVariables>
+  ): ObservableQuery<CategoryDetails, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Category.categoryQuery}
+      `,
+      ...options,
+    }),
   CheckoutDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<CheckoutDetailsVariables>
@@ -68,6 +99,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Product.productDetails}
+      `,
+      ...options,
+    }),
+  ProductList: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<ProductListVariables>
+  ): ObservableQuery<ProductList, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Product.productListDetails}
       `,
       ...options,
     }),

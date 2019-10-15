@@ -50,8 +50,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   transform: translateX(-100%);
   -webkit-animation: jhEmMy 0.4s both;
   animation: jhEmMy 0.4s both;
-  -webkit-animation-delay: .5s;
-  animation-delay: .5s;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
 }
 
 .c1 {
@@ -148,7 +148,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c9:hover,
 .c9:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.25);
+  background-color: rgba(6,132,123,0.25);
 }
 
 .c9:hover path,
@@ -186,7 +186,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c11:hover,
 .c11:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.25);
+  background-color: rgba(6,132,123,0.25);
 }
 
 .c11:hover path,
@@ -224,7 +224,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 .c8:hover,
 .c8:focus {
   color: #13bebb;
-  background-color: rgba(19,190,187,0.25);
+  background-color: rgba(6,132,123,0.25);
 }
 
 .c8:hover path,

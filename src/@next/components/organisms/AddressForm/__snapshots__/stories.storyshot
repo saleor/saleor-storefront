@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   margin: 20px;
 }
 
-.c13 {
+.c12 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -15,41 +15,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   left: 0;
   pointer-events: none;
   box-sizing: border-box;
-}
-
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #323232;
-  color: #323232;
-  outline: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c6:hover {
-  color: #21125e;
-  outline-width: 1px;
-  outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
-}
-
-.c7 {
-  position: relative;
-  width: 100%;
-}
-
-.c8 {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  outline: none;
-  background-color: transparent;
 }
 
 .c9 {
@@ -67,6 +32,41 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   pointer-events: none;
 }
 
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c6:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c7 {
+  position: relative;
+  width: 100%;
+}
+
+.c8 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
 .c11 {
   position: absolute;
   right: 1rem;
@@ -75,21 +75,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-}
-
-.c12 {
-  position: absolute;
-  left: 1rem;
-  padding: 0 0rem;
-  background-color: transparent;
-  font-size: 1rem;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c5 {
@@ -404,7 +389,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cyjfui-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -433,7 +418,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-3-input"
+                        id="react-select-7-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -491,7 +476,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 </div>
               </div>
               <label
-                className="c12"
+                className="c9"
               >
                 Country
               </label>
@@ -529,7 +514,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
     </form>
   </div>
   <div
-    className="c13"
+    className="c12"
   />
 </div>
 `;
@@ -540,7 +525,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 20px;
 }
 
-.c16 {
+.c15 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -560,6 +545,21 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 0;
 }
 
+.c9 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
 .c12 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -573,11 +573,11 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c12:hover {
-  color: #21125e;
+  color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
 }
 
 .c6 {
@@ -615,21 +615,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   background-color: transparent;
 }
 
-.c9 {
-  position: absolute;
-  left: 1rem;
-  padding: 0 0rem;
-  background-color: transparent;
-  font-size: 1rem;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
-}
-
 .c14 {
   position: absolute;
   right: 1rem;
@@ -638,21 +623,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-}
-
-.c15 {
-  position: absolute;
-  left: 1rem;
-  padding: 0 0rem;
-  background-color: transparent;
-  font-size: 1rem;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c5 {
@@ -985,7 +955,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cyjfui-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -1014,7 +984,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-4-input"
+                        id="react-select-8-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -1072,7 +1042,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 </div>
               </div>
               <label
-                className="c15"
+                className="c9"
               >
                 Country
               </label>
@@ -1110,7 +1080,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
     </form>
   </div>
   <div
-    className="c16"
+    className="c15"
   />
 </div>
 `;
@@ -1132,39 +1102,19 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #323232;
-  color: #323232;
-  outline: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c6:hover {
-  color: #21125e;
-  outline-width: 1px;
-  outline-style: solid;
-  border-color: #21125e;
-  outline-color: #21125e;
-}
-
-.c7 {
-  position: relative;
-  width: 100%;
-}
-
-.c8 {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  outline: none;
+.c12 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
   background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
 }
 
 .c9 {
@@ -1182,6 +1132,41 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   pointer-events: none;
 }
 
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c6:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c7 {
+  position: relative;
+  width: 100%;
+}
+
+.c8 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
 .c11 {
   position: absolute;
   right: 1rem;
@@ -1190,21 +1175,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-}
-
-.c12 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: #FFF;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
 }
 
 .c5 {
@@ -1527,7 +1497,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-cyjfui-control"
+                className="css-1f50ceg-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -1535,9 +1505,9 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                   className="css-tntsk8"
                 >
                   <div
-                    className="css-dvua67-singleValue"
+                    className="css-151xaom-placeholder"
                   >
-                    United States of America
+                    
                   </div>
                   <div
                     className="css-1g6gooi"
@@ -1556,7 +1526,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-5-input"
+                        id="react-select-9-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
