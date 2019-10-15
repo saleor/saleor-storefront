@@ -12,10 +12,14 @@ export const Header = styled.div`
 `;
 
 export const Checkbox = styled.div`
-  width: 95%;
-  padding-bottom: 1.25rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
 `;
 
 export const BottomBorder = styled.div`
@@ -28,13 +32,15 @@ export const ViewMoreButton = styled.div`
 `;
 
 export const Label = styled.label`
-  width: 95%;
   display: flex;
-  justify-content: space-between;
+  cursor: pointer;
+  justify-content: flex-start;
   align-items: center;
+  padding-right: 1.25rem;
   input[type="checkbox"] {
+    display: none;
     position: relative;
-    left: -999em;
+    right: -999em;
   }
   div {
     display: flex;
@@ -51,7 +57,7 @@ export const Label = styled.label`
       z-index: 10;
     }
 
-    :hover {
+    ${Checkbox}:hover & {
       border-radius: 50%;
       border: 1px solid;
       border-color: ${props => props.theme.colors.secondaryOverlay};

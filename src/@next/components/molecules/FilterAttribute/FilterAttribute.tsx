@@ -43,8 +43,16 @@ export const FilterAttribute: React.FC<IProps> = ({
             return <></>;
           } else {
             return (
-              <S.Checkbox>
-                {value && value.name}
+              <S.Checkbox
+                ref={ref}
+                onClick={evt => {
+                  evt.preventDefault();
+                  onAttributeFiltersChange(slug, value.slug);
+                  if (ref.current) {
+                    ref.current.blur();
+                  }
+                }}
+              >
                 <S.Label>
                   <input
                     tabIndex={-1}
@@ -62,17 +70,11 @@ export const FilterAttribute: React.FC<IProps> = ({
                         evt.preventDefault();
                       }
                     }}
-                    onClick={evt => {
-                      evt.preventDefault();
-                      onAttributeFiltersChange(slug, value.slug);
-                      if (ref.current) {
-                        ref.current.blur();
-                      }
-                    }}
                   >
                     <span></span>
                   </div>
                 </S.Label>
+                {value && value.name}
               </S.Checkbox>
             );
           }
