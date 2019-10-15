@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   margin: 20px;
 }
 
-.c9 {
+.c10 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   box-sizing: border-box;
 }
 
-.c7 {
+.c8 {
   font-size: 0.875rem;
   font-weight: 600;
   color: rgb(33,18,94);
@@ -36,7 +36,7 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   transition: color 0.3s ease;
 }
 
-.c7:hover {
+.c8:hover {
   color: #513CA3;
 }
 
@@ -51,50 +51,59 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   padding-bottom: 1.5rem;
 }
 
-.c4 {
-  width: 95%;
-  padding-bottom: 1.25rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c8 {
-  border-bottom: 1px solid #f1f5f5;
-  width: 95%;
-}
-
-.c6 {
-  padding-bottom: 1.25rem;
-}
-
 .c5 {
-  width: 95%;
+  width: 100%;
+  margin-bottom: 1.25rem;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c5 input[type="checkbox"] {
+  cursor: pointer;
   position: relative;
-  left: -999em;
+  margin-left: -4px;
 }
 
-.c5 div {
+.c9 {
+  border-bottom: 1px solid #f1f5f5;
+  width: 95%;
+}
+
+.c7 {
+  padding-bottom: 1.25rem;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c6 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c6 div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,7 +120,7 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   width: 26px;
 }
 
-.c5 div span {
+.c6 div span {
   border: 1px solid rgb(33,18,94);
   width: 14px;
   height: 14px;
@@ -119,14 +128,14 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   z-index: 10;
 }
 
-.c5 div:hover {
+.c4:hover .c6 div {
   border-radius: 50%;
   border: 1px solid;
   border-color: rgba(33,18,94,0.1);
   background-color: rgba(33,18,94,0.1);
 }
 
-.c5 div:focus {
+.c6 div:focus {
   border-radius: 50%;
   border: 1px solid;
   outline: none;
@@ -134,7 +143,7 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   background-color: rgba(33,18,94,0.2);
 }
 
-.c5 input:checked + div span {
+.c6 input:checked + div span {
   background-clip: content-box;
   padding: 2px;
   background-color: rgb(33,18,94);
@@ -159,11 +168,11 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
         Size
       </div>
       <div
-        className="c4"
+        className="c4 c5"
+        onClick={[Function]}
       >
-        41
         <label
-          className="c5"
+          className="c6"
         >
           <input
             checked={true}
@@ -173,20 +182,43 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
             type="checkbox"
           />
           <div
-            onClick={[Function]}
             onKeyDown={[Function]}
             tabIndex={0}
           >
             <span />
           </div>
         </label>
+        41
       </div>
       <div
-        className="c4"
+        className="c4 c5"
+        onClick={[Function]}
       >
+        <label
+          className="c6"
+        >
+          <input
+            checked={false}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
         42
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
         <label
-          className="c5"
+          className="c6"
         >
           <input
             checked={false}
@@ -196,20 +228,20 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
             type="checkbox"
           />
           <div
-            onClick={[Function]}
             onKeyDown={[Function]}
             tabIndex={0}
           >
             <span />
           </div>
         </label>
-      </div>
-      <div
-        className="c4"
-      >
         43
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
         <label
-          className="c5"
+          className="c6"
         >
           <input
             checked={false}
@@ -219,43 +251,20 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
             type="checkbox"
           />
           <div
-            onClick={[Function]}
             onKeyDown={[Function]}
             tabIndex={0}
           >
             <span />
           </div>
         </label>
-      </div>
-      <div
-        className="c4"
-      >
         44
-        <label
-          className="c5"
-        >
-          <input
-            checked={false}
-            name="size"
-            readOnly={true}
-            tabIndex={-1}
-            type="checkbox"
-          />
-          <div
-            onClick={[Function]}
-            onKeyDown={[Function]}
-            tabIndex={0}
-          >
-            <span />
-          </div>
-        </label>
       </div>
       <div
-        className="c4"
+        className="c4 c5"
+        onClick={[Function]}
       >
-        45
         <label
-          className="c5"
+          className="c6"
         >
           <input
             checked={false}
@@ -265,19 +274,19 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
             type="checkbox"
           />
           <div
-            onClick={[Function]}
             onKeyDown={[Function]}
             tabIndex={0}
           >
             <span />
           </div>
         </label>
+        45
       </div>
       <div
-        className="c6"
+        className="c7"
       >
         <button
-          className="c7"
+          className="c8"
           color="secondary"
           onClick={[Function]}
           size="sm"
@@ -286,12 +295,12 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
         </button>
       </div>
       <div
-        className="c8"
+        className="c9"
       />
     </div>
   </div>
   <div
-    className="c9"
+    className="c10"
   />
 </div>
 `;
