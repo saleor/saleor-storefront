@@ -2,6 +2,7 @@ import React from "react";
 
 import { maybe } from "@utils/misc";
 
+import { PlaceholderImage } from "@components/atoms";
 import { CachedImage } from "../";
 import { IProps } from "./types";
 
@@ -10,6 +11,9 @@ export const Thumbnail: React.FC<IProps> = ({
   children,
   ...props
 }: IProps) => {
+  if (!source.thumbnail && !source.thumbnail2x) {
+    return <PlaceholderImage />;
+  }
   return (
     <CachedImage
       {...props}

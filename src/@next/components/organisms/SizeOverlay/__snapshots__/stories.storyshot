@@ -20,7 +20,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 .c11 {
   font-size: 1rem;
   font-weight: 600;
-  color: #21125e;
+  color: rgb(33,18,94);
   background: transparent;
   outline: none;
   border: none;
@@ -75,7 +75,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 }
 
 .c6:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c6:hover svg path {
@@ -126,7 +126,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 }
 
 .c8:hover {
-  background-color: rgba(19,190,187,0.25);
+  background-color: rgba(6,132,123,0.25);
   color: #06a09e;
   font-weight: 600;
 }
@@ -150,7 +150,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
 }
 
 .c9:hover {
-  background-color: rgba(19,190,187,0.25);
+  background-color: rgba(6,132,123,0.25);
   color: #06a09e;
   font-weight: 600;
 }
@@ -171,8 +171,8 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
   transform: translateX(100%);
   -webkit-animation: brnJVY 0.4s both;
   animation: brnJVY 0.4s both;
-  -webkit-animation-delay: .5s;
-  animation-delay: .5s;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
 }
 
 .c1 {

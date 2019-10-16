@@ -56,6 +56,8 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorAPI {
+  getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
+
   getCheckoutDetails = this.watchQuery(
     QUERIES.CheckoutDetails,
     data => data.checkout
@@ -64,6 +66,13 @@ export class SaleorAPI {
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
     data => data.product
+  );
+
+  getProductList = this.watchQuery(QUERIES.ProductList, data => data.products);
+
+  getCategoryDetails = this.watchQuery(
+    QUERIES.CategoryDetails,
+    data => data.category
   );
 
   getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>

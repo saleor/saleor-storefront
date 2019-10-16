@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Label default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  color: #7d7d7d;
+  display: inline-block;
+  white-space: pre;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    This is sample text inside label
+  </span>
+  <div
+    className="c2"
+  />
+</div>
+`;

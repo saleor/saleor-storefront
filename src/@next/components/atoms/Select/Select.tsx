@@ -1,50 +1,11 @@
 import React from "react";
-import ReactSelect, { components } from "react-select";
+import ReactSelect from "react-select";
 
 import { ThemeContext } from "styled-components";
-import { Icon } from "../Icon";
-
 import * as S from "./styles";
+import { IProps } from "./types";
 
-const Option = (props: any) => {
-  const customTheme = React.useContext(ThemeContext);
-  return <components.Option {...{ customTheme, ...props }} />;
-};
-
-const ControlWrapper = (props: any) => {
-  const customTheme = React.useContext(ThemeContext);
-  return (
-    <>
-      <components.Control {...{ customTheme, ...props }} />
-      {props.label && (
-        <S.Label
-          bgColor="#FFF"
-          active={props.selectProps.menuIsOpen || props.hasValue}
-        >
-          {props.label}
-        </S.Label>
-      )}
-    </>
-  );
-};
-
-const customStyles = {
-  control: (provided: any, state: { menuIsOpen: any }) => ({
-    ...provided,
-    ":hover": {
-      border: "1px solid #21125E",
-      outlineColor: "#21125e",
-      outlineStyle: "solid",
-      outlineWidth: "1px",
-    },
-    border: state.menuIsOpen ? "1px solid #21125e" : "1px solid #323232",
-    borderRadius: 0,
-    boxShadow: 0,
-    boxSizing: "border-box",
-    margin: 0,
-    outline: state.menuIsOpen ? "1px solid #21125e" : "",
-    padding: "0.55rem 1rem",
-  }),
+const optionStyle = (customTheme: any) => ({
   option: (
     provided: any,
     state: {
@@ -57,73 +18,56 @@ const customStyles = {
       ...provided,
       alignItems: "center",
       backgroundColor: state.isSelected
-        ? state.customTheme.colors.primaryLight
+        ? customTheme.colors.primaryLight
         : state.isFocused
-        ? state.customTheme.colors.primaryTransparent
+        ? customTheme.colors.primaryTransparent
         : "white",
-      borderRadius: "8px",
-      color: state.customTheme.colors.dark,
+      color: customTheme.colors.dark,
       display: "flex",
-      fontWeight:
-        state.isSelected && state.customTheme.typography.boldFontWeight,
-      margin: "0.5rem auto",
+      fontWeight: state.isSelected && customTheme.typography.boldFontWeight,
+      margin: "0 auto",
       minHeight: "34px",
-      padding: "0.25rem",
       verticalAlign: "middle",
-      width: "90%",
+      width: "95%",
     };
   },
-  valueContainer: (provided: any) => {
-    return {
-      ...provided,
-      padding: 0,
-    };
-  },
-};
+});
 
-export const Select: React.FC<{
-  value: any;
-  name: string;
-  label?: string;
-  options?: any[];
-  autoComplete?: string;
-  defaultValue?: any;
-  onChange?: (name: string, value: string) => void;
-}> = ({ value, onChange, name, options, label, defaultValue }) => {
+export const Select: React.FC<IProps> = ({
+  value,
+  onChange,
+  name,
+  options,
+  customComponents,
+  defaultValue,
+  menuIsOpen,
+  customStyles,
+  optionLabelKey = "label",
+  optionValueKey = "value",
+}: IProps) => {
+  const customTheme = React.useContext(ThemeContext);
   const handleChange = (value: any) => {
     if (onChange) {
-      onChange(name, value);
+      name ? onChange(value, name) : onChange(value);
     }
   };
+
   return (
     <S.Wrapper>
       <ReactSelect
         defaultValue={defaultValue}
         onChange={handleChange}
         value={value}
-        isClearable={false}
+        menuIsOpen={menuIsOpen}
         menuShouldScrollIntoView={true}
         tabSelectsValue={false}
-        getOptionLabel={option => option.country}
-        getOptionValue={option => option.code}
+        getOptionLabel={option => option[optionLabelKey]}
+        getOptionValue={option => option[optionValueKey]}
         openMenuOnFocus={true}
-        styles={customStyles}
+        styles={{ ...optionStyle(customTheme), ...customStyles }}
         options={options}
         placeholder={""}
-        components={{
-          Control: props => <ControlWrapper {...{ label, ...props }} />,
-          IndicatorSeparator: () => null,
-          IndicatorsContainer: ({ selectProps }) => {
-            return (
-              // Boolean to string conversion done due to
-              // https://github.com/styled-components/styled-components/issues/1198
-              <S.Indicator rotate={String(selectProps.menuIsOpen)}>
-                <Icon name="select_arrow" size={10} />
-              </S.Indicator>
-            );
-          },
-          Option: props => <Option {...props} />,
-        }}
+        components={customComponents}
       ></ReactSelect>
     </S.Wrapper>
   );

@@ -1,0 +1,489 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c13 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c10 {
+  color: #7d7d7d;
+  display: inline-block;
+  white-space: pre;
+}
+
+.c8 {
+  width: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.c9 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.c11 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c12 {
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c1 {
+  height: 5rem;
+  background-color: #f1f5f5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 2rem;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c5 {
+  padding-left: 2rem;
+}
+
+.c4 {
+  font-weight: 600;
+  padding: 0 0.6rem;
+}
+
+.c6 {
+  color: #7d7d7d;
+}
+
+.c7 {
+  width: 12rem;
+  display: inline-block;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <button
+        className="c3"
+        onClick={[Function]}
+      >
+        <svg
+          height={24}
+          viewBox="0 0 32 32"
+          width={24}
+        >
+          <path
+            d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
+            fill="#323232"
+          />
+        </svg>
+        <span
+          className="c4"
+        >
+          FILTERS
+           
+        </span>
+      </button>
+    </div>
+    <div>
+      <span
+        className="c5"
+      >
+        <span
+          className="c6"
+        >
+          Products found: 
+        </span>
+         
+        255
+      </span>
+      <span
+        className="c5"
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c8"
+          >
+            <div
+              className=""
+            >
+              <div
+                className="css-1pcexqc-container"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="c9"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="c10"
+                  >
+                    Sort by:
+                  </span>
+                  <div
+                    className="c11"
+                  >
+                     
+                  </div>
+                  <div
+                    className="c12"
+                    rotate="false"
+                  >
+                    <svg
+                      height={10}
+                      viewBox="0 0 32 32"
+                      width={10}
+                    >
+                      <path
+                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+  <div
+    className="c13"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/ProductListHeader with active filters 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c14 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c11 {
+  color: #7d7d7d;
+  display: inline-block;
+  white-space: pre;
+}
+
+.c9 {
+  width: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.c10 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.c12 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c13 {
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c1 {
+  height: 5rem;
+  background-color: #f1f5f5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 2rem;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c3 {
+  font-size: 0.875rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.c5 {
+  padding-left: 2rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #7d7d7d;
+}
+
+.c6 {
+  padding-left: 2rem;
+}
+
+.c4 {
+  font-weight: 600;
+  padding: 0 0.6rem;
+}
+
+.c7 {
+  color: #7d7d7d;
+}
+
+.c8 {
+  width: 12rem;
+  display: inline-block;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <button
+        className="c3"
+        onClick={[Function]}
+      >
+        <svg
+          height={24}
+          viewBox="0 0 32 32"
+          width={24}
+        >
+          <path
+            d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
+            fill="#323232"
+          />
+        </svg>
+        <span
+          className="c4"
+        >
+          FILTERS
+           
+          <span>
+            (
+            3
+            )
+          </span>
+        </span>
+      </button>
+      <button
+        className="c5"
+        onClick={[Function]}
+      >
+        CLEAR FILTERS
+      </button>
+    </div>
+    <div>
+      <span
+        className="c6"
+      >
+        <span
+          className="c7"
+        >
+          Products found: 
+        </span>
+         
+        255
+      </span>
+      <span
+        className="c6"
+      >
+        <div
+          className="c8"
+        >
+          <div
+            className="c9"
+          >
+            <div
+              className=""
+            >
+              <div
+                className="css-1pcexqc-container"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="c10"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="c11"
+                  >
+                    Sort by:
+                  </span>
+                  <div
+                    className="c12"
+                  >
+                     
+                  </div>
+                  <div
+                    className="c13"
+                    rotate="false"
+                  >
+                    <svg
+                      height={10}
+                      viewBox="0 0 32 32"
+                      width={10}
+                    >
+                      <path
+                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+  <div
+    className="c14"
+  />
+</div>
+`;

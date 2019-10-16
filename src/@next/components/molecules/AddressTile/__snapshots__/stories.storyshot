@@ -98,7 +98,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
 }
 
 .c8:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c8:hover svg path {
@@ -367,7 +367,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
 }
 
 .c8:hover {
-  background-color: #21125e;
+  background-color: rgb(33,18,94);
 }
 
 .c8:hover svg path {

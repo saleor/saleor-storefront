@@ -3,10 +3,11 @@ export const autofillColor = "rgb(250, 255, 189)";
 export const autofillColorSelected = "rgb(232, 240, 254)";
 export const baseFontColor = "#323232";
 export const black = "#323232";
-export const blue = "#21125e";
+export const blue = "rgb(33,18,94)";
 export const blueDark = "#190c4e";
 export const blueLight = "#513CA3";
-export const blueOverlay = `rgba(${blue}, 0.15)`;
+export const blueOverlay = `rgba(33,18,94,0.1)`;
+export const blueOverlayDark = `rgba(33,18,94,0.2)`;
 export const gray = "#7d7d7d";
 export const grayMedium = "#c4c4c4";
 export const grayDark = "#323232";
@@ -16,8 +17,8 @@ export const overlayColor = "rgba(199, 207, 207, 0.8)";
 export const rose = "#c22d74";
 export const turquoise = "#13bebb";
 export const turquoiseDark = "#06a09e";
-export const turquoiseLight = "rgba(19, 190, 187, 0.25)";
-export const turquoiseTransparent = "rgba(19, 190, 187, 0.1)";
+export const turquoiseLight = "rgba(6, 132, 123, 0.25)";
+export const turquoiseTransparent = "rgba(6, 132, 123, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
@@ -43,6 +44,8 @@ export const theme = {
   primaryTransparent: turquoiseTransparent,
   secondary: blue,
   secondaryDark: blueDark,
+  secondaryOverlay: blueOverlay,
+  secondaryOverlayDark: blueOverlayDark,
   success: green,
   tableDivider: tabelGray,
   white,

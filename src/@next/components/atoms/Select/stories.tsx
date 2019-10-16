@@ -1,41 +1,37 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import styled from "styled-components";
 
 import { Select } from ".";
 
-const Container = styled.div`
-  padding: 2rem;
-  width: 350px;
-`;
-
-const country = { label: "Poland", value: "PL" };
 const DEFAULT_PROPS = {
-  label: "Country",
   name: "country",
-  onBlur: (name: any, value: any) => {
-    return value;
-  },
-  onChange: (name: any, inputValue: any) => {
-    DEFAULT_PROPS.value.label = inputValue.label;
-    DEFAULT_PROPS.value.value = inputValue.value;
-  },
+  optionLabelKey: "country",
+  optionValueKey: "code",
   options: [
-    { value: "PL", label: "Poland" },
-    { value: "PT", label: "Portugal" },
-    { value: "US", label: "United States of America" },
-    { value: "DE", label: "Germany" },
-    { value: "BE", label: "Belarus" },
-    { value: "SE", label: "Sweden" },
-    { value: "FR", label: "France" },
+    { code: "PL", country: "Poland" },
+    { code: "PT", country: "Portugal" },
+    { code: "US", country: "United States of America" },
+    { code: "DE", country: "Germany" },
+    { code: "BE", country: "Belarus" },
+    { code: "SE", country: "Sweden" },
+    { code: "FR", country: "France" },
+    { code: "CZ", country: "Czech Republic" },
+    { code: "FI", country: "Finland" },
+    { code: "GB", country: "Great Britain" },
   ],
-  value: country,
+};
+
+const Container = () => {
+  const [value, setValue] = React.useState();
+  return (
+    <Select
+      value={value}
+      onChange={value => setValue(value)}
+      {...DEFAULT_PROPS}
+    />
+  );
 };
 
 storiesOf("@components/atoms/Select", module).add("sample select", () => {
-  return (
-    <Container>
-      <Select {...DEFAULT_PROPS} />
-    </Container>
-  );
+  return <Container />;
 });

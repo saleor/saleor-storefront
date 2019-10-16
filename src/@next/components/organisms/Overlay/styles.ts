@@ -6,6 +6,7 @@ interface IStyleProps {
   open: boolean;
   position: Position;
   state: TransitionState;
+  transparent?: boolean;
 }
 
 const getTranslate = (side: "left" | "right") =>
@@ -63,7 +64,7 @@ export const Lightbox = styled.div<IStyleProps>`
         ${position}: 0;
         transform: translateX(${getTranslate(position)});
         animation: ${slideAnimation(open, position)} 0.4s both;
-        animation-delay: ${open ? ".5s" : 0};
+        animation-delay: ${open ? ".1s" : 0};
       `;
     }
   }}
@@ -81,7 +82,8 @@ export const Overlay = styled.div<IStyleProps>`
   z-index: 2;
   transition: opacity 0.2s ease;
   transition-delay: ${({ open }) => (open ? 0 : ".4s")};
-  background-color: ${props => props.theme.colors.overlay};
+  background-color: ${({ transparent, theme }) =>
+    transparent ? "" : theme.colors.overlay};
   align-items: center;
   justify-content: ${({ position }) => justify[position]};
   opacity: ${({ state }) => opacity[state]};

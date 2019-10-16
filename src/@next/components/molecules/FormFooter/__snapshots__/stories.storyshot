@@ -59,7 +59,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 .c2 {
   font-size: 1rem;
   font-weight: 600;
-  color: #21125e;
+  color: rgb(33,18,94);
   background: transparent;
   outline: none;
   border: none;
