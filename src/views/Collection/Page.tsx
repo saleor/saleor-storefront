@@ -3,13 +3,11 @@ import "../Collection/scss/custom_index.scss";
 import * as React from "react";
 
 import {
-  Breadcrumbs,
   Filters,
-  ProductFilters,
   ProductsFeatured,
   ProductsList
 } from "../../components";
-import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
+import { maybe } from "../../core/utils";
 import {
   Collection_attributes_edges_node,
   Collection_collection,
@@ -46,44 +44,24 @@ export const Page: React.FC<PageProps> = ({
     false
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
-  const breadcrumbs = [
-    {
-      link: [
-        `/collection`,
-        `/${collection.slug}`,
-        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`,
-      ].join(""),
-      value: collection.name,
-    },
-  ];
 
   return (
-    <div className="category">
+    <div className="collection">
       <div
-        className="category__header"
+        className="collection__header"
         style={
           collection.backgroundImage
             ? { backgroundImage: `url(${collection.backgroundImage.url})` }
             : undefined
         }
       >
-        <span className="category__header__title">
+        <span className="collection__header__title">
           <h1>{collection.name}</h1>
         </span>
+        <div className="collection__description">
+          <h2>{collection.seoDescription}</h2>
+        </div>
       </div>
-
-      <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
-      </div>
-
-      {hasProducts && (
-        <ProductFilters
-          filters={filters}
-          attributes={attributes}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          onPriceChange={onPriceChange}
-        />
-      )}
 
       {canDisplayProducts && (
         <ProductsList
@@ -97,6 +75,23 @@ export const Page: React.FC<PageProps> = ({
         />
       )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
+      <div
+        className="collection__footer"
+        style={
+          collection.backgroundImage
+            ? { backgroundImage: `url(${collection.backgroundImage.url})` }
+            : undefined
+        }
+      >
+        <span className="collection__footer__title">
+          <h1>{collection.name}</h1>
+        </span>
+        <div className="collection__footer__booknow">
+          <button className="button primary ">
+            <span>Book Now</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
