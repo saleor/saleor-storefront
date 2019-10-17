@@ -17,7 +17,7 @@ $autofillColor: rgb(250, 255, 189);
 $autofillColorSelected: rgb(232, 240, 254);
 
 // typography
-$base-font-family: "Inter", sans-serif;
+$base-font-family: Proxima Nova Light,Helvetica Neue,helvetica,arial,"sans-serif";
 $base-font-size: 1rem; // 16px
 $small-font-size: 0.875rem; // 14px
 $base-line-height: 1.25rem; // 20px
@@ -25,6 +25,8 @@ $h1-font-size: 1.8rem; // 64px
 $h1-line-height: 1;
 $h3-font-size: 1.5rem; // 24px
 $h4-font-size: 1.125rem; // 18px
+$light-font-weight: 300;
+$medium-font-weight: 500;
 $bold-font-weight: 600;
 $extra-bold-font-weight: 900;
 

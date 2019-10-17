@@ -48,6 +48,9 @@ body {
 
   p {
     line-height: 1.5rem;
+    font-family: $base-font-family;
+    letter-spacing: 0.1px;
+    text-align: justify;
   }
 
   #root {
