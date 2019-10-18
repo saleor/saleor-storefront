@@ -14,7 +14,6 @@ const View: React.FC<RouteComponentProps> = ({
   },
 }) => {
   React.useEffect(() => {
-    sdk.trackSite("user_checkout_finished");
     /**
      * Clear router state on leaving the page to ensure view becames unavailable
      * after leaving.

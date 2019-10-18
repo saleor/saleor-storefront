@@ -46,6 +46,12 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.product.id !== this.props.product.id) {
+      sdk.trackSite("product_details");
+    }
+  }
+
   componentWillUnmount() {
     if (this.showCarousel) {
       window.removeEventListener("scroll", this.handleScroll);
