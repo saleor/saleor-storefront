@@ -133,11 +133,15 @@ body {
   }
 }
 
-body.checkout-btn-b .product-description__action {
-  background-color: red;
+body.checkout-btn-b {
+  font-family: Comic Sans MS;
 
-  &:hover {
-    background-color: darkred;
+  .product-description__action {
+    background-color: red;
+
+    &:hover {
+      background-color: darkred;
+    }
   }
 }
 
