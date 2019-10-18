@@ -13,8 +13,13 @@ declare module "query-string";
 // This was copied from src/@sdk/global.d.ts to make TS compiler happy
 declare interface Window {
   PasswordCredential: any;
+  sdk: any;
+  ExpSDK: any;
 }
 
 declare interface Navigator {
   credentials: any;
 }
+
+// TEMPORARY
+declare const sdk: any;

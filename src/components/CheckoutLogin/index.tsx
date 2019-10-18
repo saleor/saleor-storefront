@@ -18,10 +18,6 @@ const CheckoutLogin: React.FC<{}> = () => {
   const overlay = useContext(OverlayContext);
   const { data: user } = useUserDetails();
 
-  React.useEffect(() => {
-    sdk.trackSite("user_checkout");
-  }, []);
-
   if (user) {
     return <Redirect to={checkoutUrl} />;
   }
