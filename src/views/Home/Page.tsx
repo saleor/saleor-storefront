@@ -4,18 +4,32 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Button, Loader, ProductsFeatured } from "../../components";
+import { Button } from "@components/atoms";
+
+import { Loader, ProductsFeatured } from "../../components";
 import { generateCategoryUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
   ProductsList_shop,
-  ProductsList_shop_homepageCollection_backgroundImage
+  ProductsList_shop_homepageCollection_backgroundImage,
 } from "./types/ProductsList";
 
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
+import { styled } from "@styles";
 import noPhotoImg from "../../images/no-photo.svg";
+
+const DarkButton = styled(Button)`
+  border: none;
+  color: #1c1c1d;
+  background-color: #fff;
+
+  &:hover {
+    color: #fff;
+    background-color: #1c1c1d;
+  }
+`;
 
 const Page: React.FC<{
   loading: boolean;
@@ -38,12 +52,7 @@ const Page: React.FC<{
       <div className="home-page__hero-text">
         <div>
           <span className="home-page__hero__title">
-            <h1>Final reduction</h1>
-          </span>
-        </div>
-        <div>
-          <span className="home-page__hero__title">
-            <h1>Up to 70% off sale</h1>
+            <h1>LOOK BEYOND</h1>
           </span>
         </div>
       </div>
@@ -57,7 +66,7 @@ const Page: React.FC<{
               categories.edges[0].node.name
             )}
           >
-            <Button>Shop sale</Button>
+            <DarkButton>VIEW DASHBOARD</DarkButton>
           </Link>
         )}
       </div>

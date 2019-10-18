@@ -76,6 +76,12 @@ export const SquareButton = styled.button<{ selected?: boolean }>`
   margin-left: 10px;
   height: 36px;
   width: 36px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #fff;
+    color: ${GQL_COLOR};
+  }
 `;
 
 export const BaseButton = styled(SquareButton)`

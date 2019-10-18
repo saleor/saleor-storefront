@@ -33,11 +33,11 @@
     }
 
     &__title {
-      background-color: $white;
+      background-color: #1c1c1d;
       display: inline-block;
-      transform: skew(45deg);
-      padding: $spacer $spacer * 3;
-      margin-bottom: $spacer / 2;
+      transform: skew(-45deg);
+      padding: $spacer $spacer * 5;
+      margin-bottom: $spacer;
 
       @media (max-width: $small-screen) {
         padding: 0.6rem $spacer;
@@ -46,10 +46,10 @@
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
+        transform: skew(45deg);
         font-weight: $bold-font-weight;
         text-transform: uppercase;
-        color: $blue;
+        color: $white;
         font-size: $h1-font-size;
         font-weight: 900;
 
