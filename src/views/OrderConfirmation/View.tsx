@@ -42,8 +42,11 @@ const View: React.FC<RouteComponentProps> = ({
       <h3 className="checkout-btn baseline">
         Thank you for <br /> your order! [BASELINE]
       </h3>
-      <h3 className="checkout-btn variant_B">
+      <h3 className="checkout-btn b">
         Thank you for <br /> your order! [VARIANT B]
+      </h3>
+      <h3 className="checkout-btn c">
+        Thank you for <br /> your order! [VARIANT C]
       </h3>
       <p className="order-confirmation__info">
         We’ve emailed you an order confirmation.

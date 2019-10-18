@@ -133,11 +133,19 @@ body {
   }
 }
 
-body.checkout-btn-variant_B .product-description__action {
+body.checkout-btn-b .product-description__action {
   background-color: red;
 
   &:hover {
     background-color: darkred;
+  }
+}
+
+body.checkout-btn-c .product-description__action {
+  background-color: green;
+
+  &:hover {
+    background-color: darkgreen;
   }
 }
 
