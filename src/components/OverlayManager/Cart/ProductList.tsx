@@ -23,7 +23,7 @@ const ProductList: React.SFC<{
           <div className="cart__list__item__details">
             <p>{line.pricing.price.gross.localized}</p>
             <Link to={productUrl}>
-              <p>{line.product.name}</p>
+              <h4>{line.product.name}</h4>
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.name}</span>
