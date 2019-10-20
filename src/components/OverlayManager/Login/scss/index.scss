@@ -20,10 +20,12 @@
 
       &:first-of-type {
         border-right: 1px solid $white;
+        letter-spacing: 0.05rem;
       }
 
       &:last-of-type {
         border-left: 1px solid $white;
+        letter-spacing: 0.05rem;
       }
 
       &.active-tab {

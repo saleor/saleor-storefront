@@ -24,12 +24,25 @@ body {
     font-size: $h3-font-size;
     line-height: 1.7rem;
     text-align: center;
-    font-family: Miller Display Light,Georgia,"serif";
+    font-family: $header-font-family;
     text-transform: none;
   }
 
   h4 {
     font-size: $h4-font-size;
+    font-family: $title-font-family;
+  }
+
+  h5 {
+    text-align: justify;
+    padding: 5%;
+    transform: none;
+    color: $black;
+    background-color: white;
+    font-family: $sub-des-font-family;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.279rem;
   }
 
   h6 {
@@ -37,20 +50,27 @@ body {
     text-align: center;
     font-weight: 200;
     text-transform: uppercase;
-    font-size: .6rem;  
+    font-size: .6rem;
+    font-family: "Palanquin Dark", sans-serif;
   }
 
   a {
     text-decoration: none;
     font-weight: normal;
     color: inherit;
+    font-family: $header-font-family;
+    font-size: 1rem;
   }
 
   p {
     line-height: 1.5rem;
-    font-family: $base-font-family;
     letter-spacing: 0.1px;
     text-align: justify;
+    font-family: $des-font-family;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem!important;
+    line-height: 1.8rem;
   }
 
   #root {

@@ -1,4 +1,4 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import { mediumScreen } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
 import classNames from "classnames";
@@ -7,7 +7,6 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { baseUrl } from "../../routes";
 import { Category_category } from "../../views/Category/types/Category";
 
 export interface Breadcrumb {
@@ -44,15 +43,12 @@ const Breadcrumbs: React.FC<{
 }> = ({ breadcrumbs }) => (
   <Media
     query={{
-      minWidth: smallScreen,
+      minWidth: mediumScreen,
     }}
   >
     {matches =>
       matches ? (
         <ul className="breadcrumbs">
-          <li>
-            <Link to={baseUrl}>Home</Link>
-          </li>
           {breadcrumbs.map((breadcrumb, index) => (
             <li
               key={breadcrumb.value}

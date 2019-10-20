@@ -25,6 +25,7 @@ button.button {
     font-weight: $button-font-weight;
     line-height: $button-line-height;
     transform: $button-content-transform;
+    letter-spacing: 0.1rem;
   }
 
   &:hover {

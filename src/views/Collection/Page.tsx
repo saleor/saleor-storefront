@@ -59,7 +59,7 @@ export const Page: React.FC<PageProps> = ({
           <h1>{collection.name}</h1>
         </span>
         <div className="collection__description">
-          <h2>{collection.seoDescription}</h2>
+          <h5>{collection.seoDescription}</h5>
         </div>
       </div>
 
