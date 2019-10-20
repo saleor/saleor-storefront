@@ -133,7 +133,7 @@ body {
   }
 }
 
-body.checkout-btn-b {
+body[data-sxp~="checkout-btn#b"] {
   font-family: Comic Sans MS;
 
   .product-description__action {
@@ -145,7 +145,7 @@ body.checkout-btn-b {
   }
 }
 
-body.checkout-btn-c .product-description__action {
+body[data-sxp~="checkout-btn#c"] .product-description__action {
   background-color: green;
 
   &:hover {
