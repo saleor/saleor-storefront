@@ -10,7 +10,7 @@ import {
   convertSortByFromString,
   convertToAttributeScalar,
   getGraphqlIdFromDBId,
-  maybe
+  maybe,
 } from "../../core/utils";
 import Page from "./Page";
 import { TypedCategoryProductsQuery } from "./queries";
@@ -96,7 +96,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: "Relevance",
       value: null,
     },
     {
