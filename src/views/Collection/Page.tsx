@@ -2,50 +2,58 @@ import "../Category/scss/index.scss";
 
 import * as React from "react";
 
-import {
-  Breadcrumbs,
-  Filters,
-  ProductFilters,
-  ProductsFeatured,
-  ProductsList
-} from "../../components";
+import { IFilterAttributes, IFilters } from "@types";
+import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
-import {
-  Collection_attributes_edges_node,
-  Collection_collection,
-  Collection_products
-} from "./types/Collection";
 
-interface PageProps {
-  attributes: Collection_attributes_edges_node[];
-  collection: Collection_collection;
-  displayLoader: boolean;
-  filters: Filters;
-  hasNextPage: boolean;
-  products: Collection_products;
-  onLoadMore: () => void;
-  onPriceChange: (field: "priceLte" | "priceGte", value: number) => void;
-  onAttributeFiltersChange: (attributeSlug: string, values: string[]) => void;
-  onOrder: (order: string) => void;
+import { ProductListHeader } from "../../@next/components/molecules";
+import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+import { Collection_collection, Collection_products } from "./types/Collection";
+
+interface SortItem {
+  label: string;
+  value?: string;
 }
 
-export const Page: React.FC<PageProps> = ({
+interface SortOptions extends Array<SortItem> {}
+
+interface PageProps {
+  activeFilters: number;
+  attributes: IFilterAttributes[];
+  activeSortOption: string;
+  collection: Collection_collection;
+  displayLoader: boolean;
+  filters: IFilters;
+  hasNextPage: boolean;
+  products: Collection_products;
+  sortOptions: SortOptions;
+  clearFilters: () => void;
+  onLoadMore: () => void;
+  onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
+  onOrder: (order: { value?: string; label: string }) => void;
+}
+
+const Page: React.FC<PageProps> = ({
+  activeFilters,
+  activeSortOption,
   attributes,
   collection,
   displayLoader,
-  filters,
   hasNextPage,
+  clearFilters,
   onLoadMore,
   products,
-  onAttributeFiltersChange,
-  onPriceChange,
+  filters,
   onOrder,
+  sortOptions,
+  onAttributeFiltersChange,
 }) => {
   const canDisplayProducts = maybe(
-    () => products.edges && products.totalCount !== undefined,
-    false
+    () => !!products.edges && products.totalCount !== undefined
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
+  const [showFilters, setShowFilters] = React.useState(false);
+
   const breadcrumbs = [
     {
       link: [
@@ -58,43 +66,41 @@ export const Page: React.FC<PageProps> = ({
   ];
 
   return (
-    <div className="category">
-      <div
-        className="category__header"
-        style={
-          collection.backgroundImage
-            ? { backgroundImage: `url(${collection.backgroundImage.url})` }
-            : undefined
-        }
-      >
-        <span className="category__header__title">
-          <h1>{collection.name}</h1>
-        </span>
-      </div>
-
+    <div className="collection">
       <div className="container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
+        <FilterSidebar
+          show={showFilters}
+          hide={() => setShowFilters(false)}
+          onAttributeFiltersChange={onAttributeFiltersChange}
+          attributes={attributes}
+          filters={filters}
+        />
+        <ProductListHeader
+          activeSortOption={activeSortOption}
+          openFiltersMenu={() => setShowFilters(true)}
+          numberOfProducts={products ? products.totalCount : 0}
+          activeFilters={activeFilters}
+          clearFilters={clearFilters}
+          sortOptions={sortOptions}
+          onChange={onOrder}
+        />
       </div>
 
-      {hasProducts && (
-        <ProductFilters
-          filters={filters}
-          attributes={attributes}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          onPriceChange={onPriceChange}
-        />
-      )}
-
       {canDisplayProducts && (
-        <ProductsList
-          displayLoader={displayLoader}
-          hasNextPage={hasNextPage}
-          onLoadMore={onLoadMore}
-          products={products.edges.map(edge => edge.node)}
-          totalCount={products.totalCount}
-        />
+        <>
+          <ProductsList
+            displayLoader={displayLoader}
+            hasNextPage={hasNextPage}
+            onLoadMore={onLoadMore}
+            products={products.edges.map(edge => edge.node)}
+            totalCount={products.totalCount}
+          />
+        </>
       )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };
+
+export default Page;
