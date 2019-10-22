@@ -269,8 +269,7 @@ export interface Category_products_edges_node {
    */
   thumbnail2x: Category_products_edges_node_thumbnail2x | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Category_products_edges_node_pricing | null;
   category: Category_products_edges_node_category;
@@ -279,7 +278,7 @@ export interface Category_products_edges_node {
 export interface Category_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Category_products_edges_node;
 }
@@ -307,7 +306,7 @@ export interface Category_products_pageInfo {
 export interface Category_products {
   __typename: "ProductCountableConnection";
   /**
-   * A total count of items in the collection
+   * A total count of items in the collection.
    */
   totalCount: number | null;
   edges: Category_products_edges[];
@@ -337,7 +336,7 @@ export interface Category_category_ancestors_edges_node {
 export interface Category_category_ancestors_edges {
   __typename: "CategoryCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Category_category_ancestors_edges_node;
 }
@@ -402,7 +401,7 @@ export interface Category_attributes_edges_node {
 export interface Category_attributes_edges {
   __typename: "AttributeCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Category_attributes_edges_node;
 }
@@ -418,7 +417,7 @@ export interface Category {
    */
   products: Category_products | null;
   /**
-   * Lookup a category by ID.
+   * Look up a category by ID.
    */
   category: Category_category | null;
   /**

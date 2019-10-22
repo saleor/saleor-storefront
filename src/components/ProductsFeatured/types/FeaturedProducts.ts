@@ -267,8 +267,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    */
   thumbnail2x: FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail2x | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing | null;
   category: FeaturedProducts_shop_homepageCollection_products_edges_node_category;
@@ -277,7 +276,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
 export interface FeaturedProducts_shop_homepageCollection_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: FeaturedProducts_shop_homepageCollection_products_edges_node;
 }
@@ -302,7 +301,7 @@ export interface FeaturedProducts_shop_homepageCollection {
 export interface FeaturedProducts_shop {
   __typename: "Shop";
   /**
-   * Collection displayed on homepage
+   * Collection displayed on homepage.
    */
   homepageCollection: FeaturedProducts_shop_homepageCollection | null;
 }

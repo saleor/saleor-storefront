@@ -203,8 +203,7 @@ export interface CheckoutLine_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: CheckoutLine_variant_pricing | null;
   product: CheckoutLine_variant_product;

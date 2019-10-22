@@ -32,7 +32,7 @@ export interface User_defaultShippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: User_defaultShippingAddress_country;
   countryArea: string;
@@ -65,7 +65,7 @@ export interface User_defaultBillingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: User_defaultBillingAddress_country;
   countryArea: string;
@@ -98,7 +98,7 @@ export interface User_addresses {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: User_addresses_country;
   countryArea: string;
