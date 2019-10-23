@@ -45,7 +45,7 @@ export interface Attributes_attributes_edges_node {
 export interface Attributes_attributes_edges {
   __typename: "AttributeCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Attributes_attributes_edges_node;
 }

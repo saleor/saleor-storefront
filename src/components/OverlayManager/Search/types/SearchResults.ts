@@ -60,7 +60,7 @@ export interface SearchResults_products_edges_node {
 export interface SearchResults_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: SearchResults_products_edges_node;
 }

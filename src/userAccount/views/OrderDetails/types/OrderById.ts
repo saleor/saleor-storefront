@@ -34,7 +34,7 @@ export interface OrderById_order_shippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: OrderById_order_shippingAddress_country;
   countryArea: string;
@@ -190,8 +190,7 @@ export interface OrderById_order_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: OrderById_order_lines_variant_pricing | null;
   product: OrderById_order_lines_variant_product;
@@ -222,8 +221,7 @@ export interface OrderById_order_lines {
   productName: string;
   quantity: number;
   /**
-   * A purchased product variant. Note: this field may be null if the
-   * variant has been removed from stock at all.
+   * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderById_order_lines_variant | null;
   /**
@@ -412,7 +410,7 @@ export interface OrderById_order {
 
 export interface OrderById {
   /**
-   * Lookup an order by ID.
+   * Look up an order by ID.
    */
   order: OrderById_order | null;
 }

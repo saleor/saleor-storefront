@@ -204,8 +204,7 @@ export interface VariantList_productVariants_edges_node {
    */
   isAvailable: boolean | null;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: VariantList_productVariants_edges_node_pricing | null;
   /**
@@ -218,7 +217,7 @@ export interface VariantList_productVariants_edges_node {
 export interface VariantList_productVariants_edges {
   __typename: "ProductVariantCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: VariantList_productVariants_edges_node;
 }

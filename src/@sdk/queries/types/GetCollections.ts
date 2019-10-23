@@ -30,7 +30,7 @@ export interface GetCollections_collections_edges_node {
 export interface GetCollections_collections_edges {
   __typename: "CollectionCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: GetCollections_collections_edges_node;
 }

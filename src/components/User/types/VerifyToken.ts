@@ -32,7 +32,7 @@ export interface VerifyToken_tokenVerify_user_defaultShippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: VerifyToken_tokenVerify_user_defaultShippingAddress_country;
   countryArea: string;
@@ -65,7 +65,7 @@ export interface VerifyToken_tokenVerify_user_defaultBillingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: VerifyToken_tokenVerify_user_defaultBillingAddress_country;
   countryArea: string;
@@ -98,7 +98,7 @@ export interface VerifyToken_tokenVerify_user_addresses {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: VerifyToken_tokenVerify_user_addresses_country;
   countryArea: string;
@@ -131,7 +131,7 @@ export interface VerifyToken_tokenVerify {
 
 export interface VerifyToken {
   /**
-   * Mutation that confirm if token is valid and also return user data.
+   * Mutation that confirms if token is valid and also returns user data.
    */
   tokenVerify: VerifyToken_tokenVerify | null;
 }

@@ -30,7 +30,7 @@ export interface GetProducts_products_edges_node {
 export interface GetProducts_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: GetProducts_products_edges_node;
 }

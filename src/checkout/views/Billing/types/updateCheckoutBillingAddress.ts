@@ -11,9 +11,8 @@ import { AddressInput } from "./../../../../../types/globalTypes";
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -165,7 +164,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress_country;
   countryArea: string;
@@ -198,7 +197,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress_country;
   countryArea: string;
@@ -498,8 +497,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing | null;
   product: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product;
@@ -542,7 +540,7 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   billingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingAddress | null;
   /**
-   * Email of a customer
+   * Email of a customer.
    */
   email: string;
   /**
@@ -567,14 +565,14 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {
    */
   errors: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[] | null;
   /**
-   * An updated checkout
+   * An updated checkout.
    */
   checkout: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout | null;
 }
 
 export interface updateCheckoutBillingAddress {
   /**
-   * Update billing address in the existing Checkout.
+   * Update billing address in the existing checkout.
    */
   checkoutBillingAddressUpdate: updateCheckoutBillingAddress_checkoutBillingAddressUpdate | null;
 }

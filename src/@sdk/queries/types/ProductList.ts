@@ -105,8 +105,7 @@ export interface ProductList_products_edges_node {
    */
   price: ProductList_products_edges_node_price | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductList_products_edges_node_pricing | null;
   category: ProductList_products_edges_node_category;
@@ -115,7 +114,7 @@ export interface ProductList_products_edges_node {
 export interface ProductList_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: ProductList_products_edges_node;
 }
@@ -143,7 +142,7 @@ export interface ProductList_products_pageInfo {
 export interface ProductList_products {
   __typename: "ProductCountableConnection";
   /**
-   * A total count of items in the collection
+   * A total count of items in the collection.
    */
   totalCount: number | null;
   edges: ProductList_products_edges[];
