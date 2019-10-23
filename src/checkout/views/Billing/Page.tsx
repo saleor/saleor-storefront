@@ -18,6 +18,8 @@ import { CheckoutFormType } from "../../types";
 import { Checkout } from "../../types/Checkout";
 import { IBillingPageProps } from "./types";
 
+import { CountryCode } from "types/globalTypes";
+
 const computeMutationVariables = (
   formData: FormAddressType,
   checkout: Checkout,
@@ -31,7 +33,7 @@ const computeMutationVariables = (
   return {
     billingAddress: {
       city: data.city,
-      country: maybe(() => data.country.value, data.country.code),
+      country: maybe(() => data.country.value, data.country.code) as CountryCode,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,
