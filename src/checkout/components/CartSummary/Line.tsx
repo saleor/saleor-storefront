@@ -16,7 +16,7 @@ const Line: React.FC<Omit<LineI, "totalPrice">> = ({
     <img src={maybe(() => product.thumbnail.url, noPhotoImg)} />
     <div>
       <p>{pricing.price.gross.localized}</p>
-      <p>{product.name}</p>
+      <h3>{product.name}</h3>
       <div className="cart-summary__product-item__details">
         <span>{name ? `(${name})` : null}</span>
         <span>Qty: {quantity}</span>
