@@ -1,14 +1,20 @@
-import "../Category/scss/index.scss";
+import "./scss/index.scss";
 
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
-import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
-import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
+import {
+  DebounceChange,
+  ProductsFeatured,
+  ProductsList,
+  TextField,
+} from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
-import { Collection_collection, Collection_products } from "./types/Collection";
+import { maybe } from "../../core/utils";
+
+import { SearchProducts_products } from "./types/SearchProducts";
 
 interface SortItem {
   label: string;
@@ -21,11 +27,15 @@ interface PageProps {
   activeFilters: number;
   attributes: IFilterAttributes[];
   activeSortOption: string;
-  collection: Collection_collection;
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  products: Collection_products;
+  search?: string;
+  setSearch?: (
+    newValue: string,
+    updateType?: "replace" | "replaceIn" | "push" | "pushIn"
+  ) => void;
+  products: SearchProducts_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
@@ -37,7 +47,8 @@ const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
   attributes,
-  collection,
+  search,
+  setSearch,
   displayLoader,
   hasNextPage,
   clearFilters,
@@ -54,21 +65,33 @@ const Page: React.FC<PageProps> = ({
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
 
-  const breadcrumbs = [
-    {
-      link: [
-        `/collection`,
-        `/${collection.slug}`,
-        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`,
-      ].join(""),
-      value: collection.name,
-    },
-  ];
-
   return (
-    <div className="collection">
+    <div className="category">
+      <div className="search-page">
+        <div className="search-page__header">
+          <div className="search-page__header__input container">
+            <DebounceChange
+              debounce={evt =>
+                setSearch((evt.target.value as string).toLowerCase())
+              }
+              value={search}
+              time={500}
+            >
+              {({ change, value }) => {
+                return (
+                  <TextField
+                    autoFocus
+                    label="Search term:"
+                    onChange={change}
+                    value={value}
+                  />
+                );
+              }}
+            </DebounceChange>
+          </div>
+        </div>
+      </div>
       <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}

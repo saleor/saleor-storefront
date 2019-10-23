@@ -3,7 +3,7 @@ import { RouteComponentProps } from "react-router";
 
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
@@ -13,7 +13,7 @@ import {
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
-import { TypedCategoryProductsQuery } from "./queries";
+import { TypedSearchProductsQuery } from "./queries";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -41,6 +41,7 @@ export const FilterQuerySet = {
 
 export const View: React.FC<ViewProps> = ({ match }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
+  const [search, setSearch] = useQueryParam("q", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
@@ -91,6 +92,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       ? convertToAttributeScalar(filters.attributes)
       : {},
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
+    query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
@@ -128,14 +130,14 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCategoryProductsQuery
+        <TypedSearchProductsQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
           {({ loading, data, loadMore }) => {
             const canDisplayFilters = maybe(
-              () => !!data.attributes.edges && !!data.category.name,
+              () => !!data.attributes.edges && !!data.products.edges,
               false
             );
 
@@ -154,42 +156,35 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                 );
 
               return (
-                <MetaWrapper
-                  meta={{
-                    description: data.category.seoDescription,
-                    title: data.category.seoTitle,
-                    type: "product.category",
+                <Page
+                  clearFilters={clearFilters}
+                  attributes={data.attributes.edges.map(edge => edge.node)}
+                  displayLoader={loading}
+                  hasNextPage={maybe(
+                    () => data.products.pageInfo.hasNextPage,
+                    false
+                  )}
+                  sortOptions={sortOptions}
+                  setSearch={setSearch}
+                  search={search}
+                  activeSortOption={filters.sortBy}
+                  filters={filters}
+                  products={data.products}
+                  onAttributeFiltersChange={onFiltersChange}
+                  onLoadMore={handleLoadMore}
+                  activeFilters={
+                    filters!.attributes
+                      ? Object.keys(filters!.attributes).length
+                      : 0
+                  }
+                  onOrder={value => {
+                    setSort(value.value);
                   }}
-                >
-                  <Page
-                    clearFilters={clearFilters}
-                    attributes={data.attributes.edges.map(edge => edge.node)}
-                    category={data.category}
-                    displayLoader={loading}
-                    hasNextPage={maybe(
-                      () => data.products.pageInfo.hasNextPage,
-                      false
-                    )}
-                    sortOptions={sortOptions}
-                    activeSortOption={filters.sortBy}
-                    filters={filters}
-                    products={data.products}
-                    onAttributeFiltersChange={onFiltersChange}
-                    onLoadMore={handleLoadMore}
-                    activeFilters={
-                      filters!.attributes
-                        ? Object.keys(filters!.attributes).length
-                        : 0
-                    }
-                    onOrder={value => {
-                      setSort(value.value);
-                    }}
-                  />
-                </MetaWrapper>
+                />
               );
             }
 
-            if (data && data.category === null) {
+            if (data && data.products === null) {
               return <NotFound />;
             }
 
@@ -197,7 +192,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               return <OfflinePlaceholder />;
             }
           }}
-        </TypedCategoryProductsQuery>
+        </TypedSearchProductsQuery>
       )}
     </NetworkStatus>
   );
