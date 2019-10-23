@@ -120,14 +120,14 @@
   &__icon-left {
     position: absolute;
     left: $spacer;
-    top: 50%;
-    transform: translate(0, -50%);
+    z-index: 100;
+    transform: translate(0, 105%);
   }
 
   &__icon-right {
     position: absolute;
+    z-index: 100;
     right: $spacer;
-    top: 50%;
-    transform: translate(0, -50%);
+    transform: translate(0, 60%);
   }
 }
