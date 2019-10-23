@@ -53,11 +53,11 @@ export interface getShop_shop_geolocalization {
 export interface getShop_shop {
   __typename: "Shop";
   /**
-   * Display prices with tax in store
+   * Display prices with tax in store.
    */
   displayGrossPrices: boolean;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   defaultCountry: getShop_shop_defaultCountry | null;
   /**

@@ -167,8 +167,7 @@ export interface ProductVariantFields {
    */
   isAvailable: boolean | null;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductVariantFields_pricing | null;
   /**

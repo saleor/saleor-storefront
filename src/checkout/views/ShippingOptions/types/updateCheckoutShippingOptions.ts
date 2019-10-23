@@ -9,9 +9,8 @@
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -163,7 +162,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress_country;
   countryArea: string;
@@ -196,7 +195,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingAddress_country;
   countryArea: string;
@@ -496,8 +495,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing | null;
   product: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_product;
@@ -540,7 +538,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   billingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_billingAddress | null;
   shippingAddress: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingAddress | null;
   /**
-   * Email of a customer
+   * Email of a customer.
    */
   email: string;
   /**
@@ -565,7 +563,7 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {
    */
   errors: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_errors[] | null;
   /**
-   * An updated checkout
+   * An updated checkout.
    */
   checkout: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout | null;
 }

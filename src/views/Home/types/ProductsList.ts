@@ -35,7 +35,7 @@ export interface ProductsList_shop {
    */
   name: string;
   /**
-   * Collection displayed on homepage
+   * Collection displayed on homepage.
    */
   homepageCollection: ProductsList_shop_homepageCollection | null;
 }
@@ -61,7 +61,7 @@ export interface ProductsList_categories_edges_node {
 export interface ProductsList_categories_edges {
   __typename: "CategoryCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: ProductsList_categories_edges_node;
 }

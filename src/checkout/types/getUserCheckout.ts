@@ -149,7 +149,7 @@ export interface getUserCheckout_me_checkout_billingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: getUserCheckout_me_checkout_billingAddress_country;
   countryArea: string;
@@ -182,7 +182,7 @@ export interface getUserCheckout_me_checkout_shippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: getUserCheckout_me_checkout_shippingAddress_country;
   countryArea: string;
@@ -482,8 +482,7 @@ export interface getUserCheckout_me_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: getUserCheckout_me_checkout_lines_variant_pricing | null;
   product: getUserCheckout_me_checkout_lines_variant_product;
@@ -526,7 +525,7 @@ export interface getUserCheckout_me_checkout {
   billingAddress: getUserCheckout_me_checkout_billingAddress | null;
   shippingAddress: getUserCheckout_me_checkout_shippingAddress | null;
   /**
-   * Email of a customer
+   * Email of a customer.
    */
   email: string;
   /**

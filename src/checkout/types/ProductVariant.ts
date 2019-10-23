@@ -155,8 +155,7 @@ export interface ProductVariant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductVariant_pricing | null;
   product: ProductVariant_product;

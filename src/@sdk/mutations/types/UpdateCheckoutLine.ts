@@ -205,8 +205,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing | null;
   product: UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_product;
@@ -289,9 +288,8 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
 export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -303,7 +301,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
 export interface UpdateCheckoutLine_checkoutLinesUpdate {
   __typename: "CheckoutLinesUpdate";
   /**
-   * An updated Checkout.
+   * An updated checkout.
    */
   checkout: UpdateCheckoutLine_checkoutLinesUpdate_checkout | null;
   /**
@@ -314,7 +312,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
 
 export interface UpdateCheckoutLine {
   /**
-   * Updates CheckoutLine in the existing Checkout.
+   * Updates checkout line in the existing checkout.
    */
   checkoutLinesUpdate: UpdateCheckoutLine_checkoutLinesUpdate | null;
 }

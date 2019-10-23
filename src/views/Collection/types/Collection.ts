@@ -290,8 +290,7 @@ export interface Collection_products_edges_node {
    */
   thumbnail2x: Collection_products_edges_node_thumbnail2x | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Collection_products_edges_node_pricing | null;
   category: Collection_products_edges_node_category;
@@ -300,7 +299,7 @@ export interface Collection_products_edges_node {
 export interface Collection_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Collection_products_edges_node;
 }
@@ -328,7 +327,7 @@ export interface Collection_products_pageInfo {
 export interface Collection_products {
   __typename: "ProductCountableConnection";
   /**
-   * A total count of items in the collection
+   * A total count of items in the collection.
    */
   totalCount: number | null;
   edges: Collection_products_edges[];
@@ -377,7 +376,7 @@ export interface Collection_attributes_edges_node {
 export interface Collection_attributes_edges {
   __typename: "AttributeCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: Collection_attributes_edges_node;
 }
@@ -389,7 +388,7 @@ export interface Collection_attributes {
 
 export interface Collection {
   /**
-   * Lookup a collection by ID.
+   * Look up a collection by ID.
    */
   collection: Collection_collection | null;
   /**

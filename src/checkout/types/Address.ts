@@ -32,7 +32,7 @@ export interface Address {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: Address_country;
   countryArea: string;

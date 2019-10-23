@@ -149,17 +149,17 @@ export interface CheckoutDetails_checkout_billingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: CheckoutDetails_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -190,17 +190,17 @@ export interface CheckoutDetails_checkout_shippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: CheckoutDetails_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -498,8 +498,7 @@ export interface CheckoutDetails_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: CheckoutDetails_checkout_lines_variant_pricing | null;
   product: CheckoutDetails_checkout_lines_variant_product;
@@ -542,7 +541,7 @@ export interface CheckoutDetails_checkout {
   billingAddress: CheckoutDetails_checkout_billingAddress | null;
   shippingAddress: CheckoutDetails_checkout_shippingAddress | null;
   /**
-   * Email of a customer
+   * Email of a customer.
    */
   email: string;
   /**
@@ -562,7 +561,7 @@ export interface CheckoutDetails_checkout {
 
 export interface CheckoutDetails {
   /**
-   * Lookup a checkout by token.
+   * Look up a checkout by token.
    */
   checkout: CheckoutDetails_checkout | null;
 }

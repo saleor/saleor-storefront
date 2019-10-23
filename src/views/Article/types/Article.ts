@@ -39,14 +39,14 @@ export interface Article_shop_homepageCollection {
 export interface Article_shop {
   __typename: "Shop";
   /**
-   * Collection displayed on homepage
+   * Collection displayed on homepage.
    */
   homepageCollection: Article_shop_homepageCollection | null;
 }
 
 export interface Article {
   /**
-   * Lookup a page by ID or slug.
+   * Look up a page by ID or slug.
    */
   page: Article_page | null;
   /**

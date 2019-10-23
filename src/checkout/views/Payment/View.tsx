@@ -20,6 +20,8 @@ import { Stripe } from "./Gateways/Stripe";
 import { TypedPaymentMethodCreateMutation } from "./queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 
+import { CountryCode } from "types/globalTypes";
+
 export interface ProviderProps {
   loading: boolean;
   formRef: React.RefObject<HTMLFormElement>;
@@ -81,7 +83,7 @@ class View extends React.Component<
             amount: totalPrice.gross.amount,
             billingAddress: {
               city: billingAddress.city,
-              country: billingAddress.country.code,
+              country: billingAddress.country.code as CountryCode,
               countryArea: billingAddress.countryArea,
               firstName: billingAddress.firstName,
               lastName: billingAddress.lastName,
