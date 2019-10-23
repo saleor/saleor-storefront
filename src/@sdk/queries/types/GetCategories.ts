@@ -30,7 +30,7 @@ export interface GetCategories_categories_edges_node {
 export interface GetCategories_categories_edges {
   __typename: "CategoryCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: GetCategories_categories_edges_node;
 }

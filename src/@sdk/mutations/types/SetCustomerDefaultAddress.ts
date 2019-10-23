@@ -11,9 +11,8 @@ import { AddressTypeEnum } from "./../../types/globalTypes";
 export interface SetCustomerDefaultAddress_accountSetDefaultAddress_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -48,17 +47,17 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_default
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -89,17 +88,17 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_default
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -130,17 +129,17 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user_address
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }

@@ -9,9 +9,8 @@
 export interface TokenAuth_tokenCreate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -46,17 +45,17 @@ export interface TokenAuth_tokenCreate_user_defaultShippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: TokenAuth_tokenCreate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -87,17 +86,17 @@ export interface TokenAuth_tokenCreate_user_defaultBillingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: TokenAuth_tokenCreate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -128,17 +127,17 @@ export interface TokenAuth_tokenCreate_user_addresses {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: TokenAuth_tokenCreate_user_addresses_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -173,7 +172,7 @@ export interface TokenAuth {
    * Mutation that authenticates a user and returns token and user data.
    * 
    * It overrides the default graphql_jwt.ObtainJSONWebToken to wrap potential
-   * authentication errors in our Error type, which is consistent to how rest of
+   * authentication errors in our Error type, which is consistent to how the rest of
    * the mutation works.
    */
   tokenCreate: TokenAuth_tokenCreate | null;

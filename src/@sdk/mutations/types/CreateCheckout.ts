@@ -11,9 +11,8 @@ import { CheckoutCreateInput } from "./../../types/globalTypes";
 export interface CreateCheckout_checkoutCreate_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -165,17 +164,17 @@ export interface CreateCheckout_checkoutCreate_checkout_billingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: CreateCheckout_checkoutCreate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -206,17 +205,17 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: CreateCheckout_checkoutCreate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -514,8 +513,7 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: CreateCheckout_checkoutCreate_checkout_lines_variant_pricing | null;
   product: CreateCheckout_checkoutCreate_checkout_lines_variant_product;
@@ -558,7 +556,7 @@ export interface CreateCheckout_checkoutCreate_checkout {
   billingAddress: CreateCheckout_checkoutCreate_checkout_billingAddress | null;
   shippingAddress: CreateCheckout_checkoutCreate_checkout_shippingAddress | null;
   /**
-   * Email of a customer
+   * Email of a customer.
    */
   email: string;
   /**

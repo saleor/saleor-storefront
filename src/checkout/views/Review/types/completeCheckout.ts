@@ -9,9 +9,8 @@
 export interface completeCheckout_checkoutComplete_errors {
   __typename: "Error";
   /**
-   * Name of a field that caused the error. A value of
-   *         `null` indicates that the error isn't associated with a particular
-   *         field.
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
    */
   field: string | null;
   /**
@@ -36,7 +35,7 @@ export interface completeCheckout_checkoutComplete {
    */
   errors: completeCheckout_checkoutComplete_errors[] | null;
   /**
-   * Placed order
+   * Placed order.
    */
   order: completeCheckout_checkoutComplete_order | null;
 }

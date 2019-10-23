@@ -12,7 +12,7 @@ import {
   OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
-  OverlayType
+  OverlayType,
 } from "../..";
 import { maybe } from "../../../core/utils";
 import { searchUrl } from "../../../routes";

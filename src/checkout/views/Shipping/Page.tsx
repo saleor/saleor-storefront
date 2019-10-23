@@ -15,6 +15,8 @@ import { shippingOptionsUrl } from "../../routes";
 import { ICheckoutData, ICheckoutUserArgs } from "../../types";
 import { IShippingPageProps } from "./types";
 
+import { CountryCode } from "types/globalTypes";
+
 const computeCheckoutData = (
   data: FormAddressType,
   lines: CartLineInterface[],
@@ -24,7 +26,7 @@ const computeCheckoutData = (
   shippingAddress: {
     city: data.city,
     companyName: data.companyName,
-    country: data.country.value || data.country.code,
+    country: (data.country.value || data.country.code) as CountryCode,
     countryArea: data.countryArea,
     firstName: data.firstName,
     lastName: data.lastName,

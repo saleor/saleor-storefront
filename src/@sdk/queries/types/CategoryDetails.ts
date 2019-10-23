@@ -26,7 +26,7 @@ export interface CategoryDetails_category_ancestors_edges_node {
 export interface CategoryDetails_category_ancestors_edges {
   __typename: "CategoryCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: CategoryDetails_category_ancestors_edges_node;
 }
@@ -54,7 +54,7 @@ export interface CategoryDetails_category {
 
 export interface CategoryDetails {
   /**
-   * Lookup a category by ID.
+   * Look up a category by ID.
    */
   category: CategoryDetails_category | null;
 }

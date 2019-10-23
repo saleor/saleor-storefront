@@ -6,6 +6,8 @@ import { AddressForm, Modal } from "../";
 
 import { IProps } from "./types";
 
+import { CountryCode } from "types/globalTypes";
+
 export const AddressFormModal: React.FC<IProps> = ({
   hideModal,
   submitBtnText,
@@ -69,7 +71,7 @@ export const AddressFormModal: React.FC<IProps> = ({
             setCreatUserAddress({
               input: {
                 ...data,
-                country: data!.country!.code,
+                country: data!.country!.code as CountryCode,
               },
             });
           } else {
@@ -77,7 +79,7 @@ export const AddressFormModal: React.FC<IProps> = ({
               id: address!.id,
               input: {
                 ...data,
-                country: data!.country!.code,
+                country: data!.country!.code as CountryCode,
               },
             });
           }

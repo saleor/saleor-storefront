@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { CheckoutLogin, NotFound } from "../components";
 import UserAccount, {
   baseUrl as userAccountBaseUrl,
-  userOrderDetailsUrl
+  userOrderDetailsUrl,
 } from "../userAccount/routes";
 import { OrderDetails } from "../userAccount/views";
 import { Account } from "../views/Account";
@@ -15,7 +15,7 @@ import { CollectionPage } from "../views/Collection";
 import { HomePage } from "../views/Home";
 import OrderConfirmation from "../views/OrderConfirmation/View";
 import { ProductPage } from "../views/Product";
-import SearchPage from "../views/Search";
+import { SearchPage } from "../views/Search";
 
 const slugUrl = ":slug([a-z-0-9]+)/:id([0-9]+)/";
 export const baseUrl = "/";

@@ -34,17 +34,17 @@ export interface OrderByToken_orderByToken_shippingAddress {
   city: string;
   postalCode: string;
   /**
-   * Default shop's country
+   * Shop's default country.
    */
   country: OrderByToken_orderByToken_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
-   * Address is user's default billing address
+   * Address is user's default billing address.
    */
   isDefaultBillingAddress: boolean | null;
   /**
-   * Address is user's default shipping address
+   * Address is user's default shipping address.
    */
   isDefaultShippingAddress: boolean | null;
 }
@@ -198,8 +198,7 @@ export interface OrderByToken_orderByToken_lines_variant {
   id: string;
   name: string;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: OrderByToken_orderByToken_lines_variant_pricing | null;
   product: OrderByToken_orderByToken_lines_variant_product;
@@ -230,8 +229,7 @@ export interface OrderByToken_orderByToken_lines {
   productName: string;
   quantity: number;
   /**
-   * A purchased product variant. Note: this field may be null if the
-   * variant has been removed from stock at all.
+   * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrderByToken_orderByToken_lines_variant | null;
   /**
@@ -420,7 +418,7 @@ export interface OrderByToken_orderByToken {
 
 export interface OrderByToken {
   /**
-   * Lookup an order by token.
+   * Look up an order by token.
    */
   orderByToken: OrderByToken_orderByToken | null;
 }

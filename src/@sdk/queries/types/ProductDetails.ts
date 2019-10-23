@@ -503,8 +503,7 @@ export interface ProductDetails_product_category_products_edges_node {
    */
   thumbnail2x: ProductDetails_product_category_products_edges_node_thumbnail2x | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_category_products_edges_node_pricing | null;
   category: ProductDetails_product_category_products_edges_node_category;
@@ -513,7 +512,7 @@ export interface ProductDetails_product_category_products_edges_node {
 export interface ProductDetails_product_category_products_edges {
   __typename: "ProductCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: ProductDetails_product_category_products_edges_node;
 }
@@ -709,8 +708,7 @@ export interface ProductDetails_product_variants {
    */
   isAvailable: boolean | null;
   /**
-   * Lists the storefront variant's pricing,
-   *             the current price and discounts, only meant for displaying
+   * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_variants_pricing | null;
   /**
@@ -743,32 +741,30 @@ export interface ProductDetails_product {
    */
   thumbnail2x: ProductDetails_product_thumbnail2x | null;
   /**
-   * Lists the storefront product's pricing,
-   *             the current price and discounts, only meant for displaying.
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_pricing | null;
   descriptionJson: any;
   category: ProductDetails_product_category;
   /**
-   * List of images for the product
+   * List of images for the product.
    */
   images: (ProductDetails_product_images | null)[] | null;
   /**
-   * List of variants for the product
+   * List of variants for the product.
    */
   variants: (ProductDetails_product_variants | null)[] | null;
   seoDescription: string | null;
   seoTitle: string | null;
   /**
-   * Informs about product's availability in the
-   *                storefront, current price and discounts.
+   * Informs about product's availability in the storefront, current price and discounts.
    */
   availability: ProductDetails_product_availability | null;
 }
 
 export interface ProductDetails {
   /**
-   * Lookup a product by ID.
+   * Look up a product by ID.
    */
   product: ProductDetails_product | null;
 }

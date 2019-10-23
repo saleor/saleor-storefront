@@ -107,8 +107,7 @@ export interface OrdersByUser_me_orders_edges_node_lines {
    */
   id: string;
   /**
-   * A purchased product variant. Note: this field may be null if the
-   * variant has been removed from stock at all.
+   * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
   variant: OrdersByUser_me_orders_edges_node_lines_variant | null;
   /**
@@ -150,7 +149,7 @@ export interface OrdersByUser_me_orders_edges_node {
 export interface OrdersByUser_me_orders_edges {
   __typename: "OrderCountableEdge";
   /**
-   * The item at the end of the edge
+   * The item at the end of the edge.
    */
   node: OrdersByUser_me_orders_edges_node;
 }
