@@ -19,6 +19,7 @@ interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
   name: string;
   children: React.ReactNode;
+  alert: any;
   addToCart(varinatId: string, quantity?: number): void;
 }
 
@@ -30,6 +31,7 @@ interface ProductDescriptionState {
   variant: string;
   variantStock: number;
   pricing: ProductDetails_product_variants_pricing;
+  wishlist: boolean;
 }
 
 class ProductDescription extends React.Component<
@@ -293,4 +295,4 @@ class ProductDescription extends React.Component<
   }
 }
 
-export default withAlert()(ProductDescription);
+export default withAlert<any>()(ProductDescription);

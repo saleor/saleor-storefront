@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@components/atoms";
 
-import { Loader, ProductsFeatured } from "../../components";
+import { ProductsFeatured } from "../../components";
 import { generateCategoryUrl } from "../../core/utils";
 
 import {
