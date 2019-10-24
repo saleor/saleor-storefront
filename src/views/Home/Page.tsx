@@ -57,9 +57,9 @@ const Page: React.FC<{
         </div>
       </div>
       <div className="home-page__hero-action">
-        <Link to="/dashboard">
+        <a href="/dashboard">
           <DarkButton>VIEW DASHBOARD</DarkButton>
-        </Link>
+        </a>
       </div>
     </div>
     <ProductsFeatured />
