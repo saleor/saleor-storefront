@@ -1,13 +1,15 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { withAlert } from "react-alert";
+import { Link } from "react-router-dom";
 
 import {
   ProductDetails_product_variants,
-  ProductDetails_product_variants_pricing
+  ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
 
-import { SelectField, TextField } from "..";
+import { Button, SelectField, TextField } from "..";
 import { maybe } from "../../core/utils";
 import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
@@ -45,6 +47,7 @@ class ProductDescription extends React.Component<
       quantity: 1,
       variant: "",
       variantStock: null,
+      wishlist: false,
     };
   }
 
@@ -247,16 +250,47 @@ class ProductDescription extends React.Component<
         </div>
         <CartContext.Consumer>
           {({ lines }) => (
-            <AddToCart
-              onSubmit={this.handleSubmit}
-              lines={lines}
-              disabled={!this.canAddToCart(lines)}
-            />
+            <>
+              <AddToCart
+                onSubmit={this.handleSubmit}
+                lines={lines}
+                disabled={!this.canAddToCart(lines)}
+              />
+              <Link to="/login" data-sxp="checkout-btn#b">
+                <AddToCart
+                  onSubmit={this.handleSubmit}
+                  lines={lines}
+                  disabled={!this.canAddToCart(lines)}
+                  name="Buy now"
+                  style={{ marginTop: 15 }}
+                />
+              </Link>
+            </>
           )}
         </CartContext.Consumer>
+        <Button
+          data-sxp="checkout-btn#c"
+          style={{ marginTop: 15, marginLeft: "1.5rem" }}
+          onClick={() => {
+            if (!this.state.wishlist) {
+              this.setState({ wishlist: true });
+              this.props.alert.show(
+                {
+                  title: "Added to wishlist!",
+                },
+                {
+                  timeout: 3000,
+                  type: "success",
+                }
+              );
+            }
+          }}
+        >
+          Add{this.state.wishlist && "ed"} to wishlist
+        </Button>
       </div>
     );
   }
 }
 
-export default ProductDescription;
+export default withAlert()(ProductDescription);

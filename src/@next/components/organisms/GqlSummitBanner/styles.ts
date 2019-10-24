@@ -2,7 +2,7 @@ import { media, styled } from "@styles";
 
 const GQL_COLOR = "#290f57";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;

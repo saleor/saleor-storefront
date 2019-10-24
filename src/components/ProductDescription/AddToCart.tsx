@@ -11,7 +11,9 @@ const AddToCart: React.FC<{
   disabled: boolean;
   lines: CartLine[];
   onSubmit: () => void;
-}> = ({ disabled, lines, onSubmit }) => {
+  style?: any;
+  name?: string;
+}> = ({ disabled, lines, onSubmit, style, name = "Add to basket" }) => {
   const { data: user } = useUserDetails();
   return (
     <CheckoutContext.Consumer>
@@ -40,8 +42,9 @@ const AddToCart: React.FC<{
                 sdk.emitEvent("checkout-btn", "add_to_cart");
               }}
               disabled={disabled || mutationLoading || checkoutLoading}
+              style={style}
             >
-              Add to basket
+              {name}
             </AddToCartButton>
           )}
         </TypedCreateCheckoutMutation>

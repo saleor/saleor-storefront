@@ -57,18 +57,9 @@ const Page: React.FC<{
         </div>
       </div>
       <div className="home-page__hero-action">
-        {loading && !categories ? (
-          <Loader />
-        ) : (
-          <Link
-            to={generateCategoryUrl(
-              categories.edges[0].node.id,
-              categories.edges[0].node.name
-            )}
-          >
-            <DarkButton>VIEW DASHBOARD</DarkButton>
-          </Link>
-        )}
+        <Link to="/dashboard">
+          <DarkButton>VIEW DASHBOARD</DarkButton>
+        </Link>
       </div>
     </div>
     <ProductsFeatured />

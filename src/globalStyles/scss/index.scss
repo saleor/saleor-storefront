@@ -137,19 +137,19 @@ body[data-sxp~="checkout-btn#b"] {
   font-family: Comic Sans MS;
 
   .product-description__action {
-    background-color: red;
+    background-color: #290f57;
 
     &:hover {
-      background-color: darkred;
+      background-color: #180d46;
     }
   }
 }
 
 body[data-sxp~="checkout-btn#c"] .product-description__action {
-  background-color: green;
+  background-color: #290f57;
 
   &:hover {
-    background-color: darkgreen;
+    background-color: #180d46;
   }
 }
 
