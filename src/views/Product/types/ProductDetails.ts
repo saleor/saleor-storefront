@@ -651,6 +651,19 @@ export interface ProductDetails_product_variants_pricing {
   price: ProductDetails_product_variants_pricing_price | null;
 }
 
+export interface ProductDetails_product_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  slug: string | null;
+}
+
 export interface ProductDetails_product_variants_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -661,6 +674,22 @@ export interface ProductDetails_product_variants_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+}
+
+export interface ProductDetails_product_attributes_value {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
 }
 
 export interface ProductDetails_product_variants_attributes_value {
@@ -689,6 +718,17 @@ export interface ProductDetails_product_variants_attributes {
    * The value or the first value of an attribute.
    */
   value: ProductDetails_product_variants_attributes_value | null;
+}
+
+export interface ProductDetails_product_attributes {
+  __typename: "ProductAttributes";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  attribute: ProductDetails_product_attributes_attribute;
+  values: 
 }
 
 export interface ProductDetails_product_variants {
@@ -750,6 +790,10 @@ export interface ProductDetails_product {
    * List of images for the product.
    */
   images: (ProductDetails_product_images | null)[] | null;
+  /**
+   * List of attributes for the product.
+   */
+  attributes: (ProductDetails_product_attributes | null)[] | null;
   /**
    * List of variants for the product.
    */

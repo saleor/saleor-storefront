@@ -121,6 +121,17 @@ export const productDetailsQuery = gql`
         id
         url
       }
+      attributes {
+        attribute {
+          id
+          name
+          slug
+        }
+        values {
+          id
+          name
+        }
+      }
       variants {
         ...ProductVariantFields
       }

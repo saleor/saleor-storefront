@@ -107,6 +107,11 @@
       }
     }
 
+    &__artisan {
+      text-align: center;
+      padding: $spacer * 4 0;
+    }
+
     &__video {
       text-align: center;
       position: relative;
