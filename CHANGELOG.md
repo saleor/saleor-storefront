@@ -4,10 +4,12 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 0.7.0
+
 - Fix login and registration overlay not showing - #322 by @mateuszkula
 - Add new design for 404 page - #183 by @mateuszkula
 - Add Sitemap generator - #342 by @bogdal
-- Add cypress tests - #333 by @AlicjaSzu
+- Add Cypress tests - #333 by @AlicjaSzu
 - Add rich-text content renderer - #361 by @AlicjaSzu
 - Add rich-text content renderer for pages - #426 @ChanceLeachman
 - Add TextField and ErrorMessage components - #373 by @AlicjaSzu
@@ -15,17 +17,17 @@ All notable, unreleased changes to this project will be documented in this file.
 - Display filters when no product was found - #319 by @aldomonteiro
 - Add ServiceWorker provider - #352 by @bogdal
 - Add ButtonLink atom component - #392 by @AlicjaSzu
-- Add lingui - #382 by @AlicjaSzu
+- Add `lingui` - #382 by @AlicjaSzu
 - Add FormFooter molecule component - #393 by @AlicjaSzu
 - Add Overlay component - #402 by @AlicjaSzu
 - Add Modal component - #391 by @AlicjaSzu
 - Add the Credential Management API support - #409 by @bogdal
 - Add size picker component - #425 by @bogdal
-- Replace BACKEND_URL in favor of API_URI - #474 by @bogdal
+- Replace `BACKEND_URL` in favor of `API_URI` - #474 by @bogdal
 - Adapt `checkout.availablePaymentGateways` structure to the new schema - #483 by @bogdal
 - Replace product/variant `price` fields with appropriate `pricing` fields - #483 by @bogdal
 - Add Stripe integration - #486 by @bogdal
-- Add PlaceholderImage component and show it in case of missing thumbnail - #489 by @xit4
+- Add `PlaceholderImage` component and show it in case of missing thumbnail - #489 by @xit4
 
 ## 0.6.0
 
