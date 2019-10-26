@@ -84,8 +84,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
         )}
       </CartContext.Consumer>
     );
-    const artisan = product.attributes.find(({ attribute: { slug } }) => slug === "artisan");
-    const artisanValues = artisan ? artisan.values.map(({ name }) => name).join(", ") : null;
     const video = product.attributes.find(({ attribute: { slug } }) => slug === "video");
     const videoValues = video ? video.values.map(({ name }) => name).join(", ") : null;
     const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0"
@@ -139,10 +137,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               }
             </Media>
           </div>
-        </div>
-
-        <div className="product-page__product__artisan">
-          <h1>{artisanValues}</h1>
         </div>
 
         <div className="product-page__product__video">

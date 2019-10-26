@@ -1,10 +1,10 @@
-import "../Category/scss/index.scss";
+import "../Collection/scss/custom_index.scss";
 
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
-import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
-import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
+import { ProductsFeatured, ProductsList } from "../../components";
+import { maybe } from "../../core/utils";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
@@ -54,21 +54,23 @@ const Page: React.FC<PageProps> = ({
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
 
-  const breadcrumbs = [
-    {
-      link: [
-        `/collection`,
-        `/${collection.slug}`,
-        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`,
-      ].join(""),
-      value: collection.name,
-    },
-  ];
-
   return (
     <div className="collection">
+      <div className="collection__header"
+        style={
+          collection.backgroundImage
+            ? { backgroundImage: `url(${collection.backgroundImage.url})` }
+            : undefined
+        }
+      >
+        <span className="collection__header__title">
+          <h1>{collection.name}</h1>
+        </span>
+        <div className="collection__description">
+          <h2>{collection.seoDescription}</h2>
+        </div>
+      </div>
       <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}

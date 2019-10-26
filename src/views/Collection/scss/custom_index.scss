@@ -37,6 +37,19 @@
     padding-right: 5%;
     padding-top: $spacer * 15;
 
+    h2 {
+      text-align: left;
+      padding: 5%;
+      transform: none;
+      color: $black;
+      background-color: white;
+      font-family: $sub-des-font-family;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 1.279rem;
+      line-height: 1.6rem;
+    }
+
   }
 
   &__footer {
