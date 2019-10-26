@@ -86,7 +86,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     );
     const video = product.attributes.find(({ attribute: { slug } }) => slug === "video");
     const videoValues = video ? video.values.map(({ name }) => name).join(", ") : null;
-    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0"
+    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&autoplay=1&loop=1&autopause=0&muted=1"
     return (
       <div className="product-page">
         <div className="container">
