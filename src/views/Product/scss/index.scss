@@ -142,6 +142,16 @@
         height: 100%;
       }
     }
+
+    &__collectionsnippet {
+      padding-top: $spacer * 10;
+      padding-bottom: $spacer * 10;
+
+      &__title {
+        color: $white;
+        text-align: center;
+      }
+    }
   }
 
   &__other-products {
@@ -161,11 +171,11 @@
       grid-gap: $spacer * 2;
 
       @media (min-width: $small-screen) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       @media (min-width: $medium-screen) {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
       }
     }
   }

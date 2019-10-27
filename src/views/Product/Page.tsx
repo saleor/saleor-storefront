@@ -145,14 +145,14 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
           <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
         </div>
 
-        <div className="collection__header"
+        <div className="product-page__product__collectionsnippet"
           style={
             product.collections[0].backgroundImage
               ? { backgroundImage: `url(${product.collections[0].backgroundImage.url})` }
               : undefined
           }
         >
-          <span className="collection__header__title">
+          <span className="product-page__product__collectionsnippet__title">
             <a href={collUrl}><h1>{artName}</h1></a>
           </span>
         </div>
