@@ -121,6 +121,13 @@ export const productDetailsQuery = gql`
         id
         url
       }
+      collections {
+        name
+        id
+        backgroundImage {
+          url
+        }
+      }
       attributes {
         attribute {
           id

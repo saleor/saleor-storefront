@@ -6,6 +6,18 @@
 // GraphQL query operation: ProductDetails
 // ====================================================
 
+export interface ProductDetails_product_collectionBack {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
 export interface ProductDetails_product_thumbnail {
   __typename: "Image";
   /**
@@ -720,6 +732,16 @@ export interface ProductDetails_product_variants_attributes {
   value: ProductDetails_product_variants_attributes_value | null;
 }
 
+export interface ProductDetails_product_collections {
+  __typename: "ProductCollections";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  backgroundImage: ProductDetails_product_collectionBack | null;
+}
+
 export interface ProductDetails_product_attributes {
   __typename: "ProductAttributes";
   /**
@@ -793,6 +815,7 @@ export interface ProductDetails_product {
   /**
    * List of attributes for the product.
    */
+  collections: (ProductDetails_product_collections | null)[] | null;
   attributes: (ProductDetails_product_attributes | null)[] | null;
   /**
    * List of variants for the product.

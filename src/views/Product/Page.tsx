@@ -9,7 +9,7 @@ import { CachedImage, Thumbnail } from "@components/molecules";
 
 import { Breadcrumbs, ProductDescription } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
-import { generateCategoryUrl } from "../../core/utils";
+import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
@@ -86,7 +86,9 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     );
     const video = product.attributes.find(({ attribute: { slug } }) => slug === "video");
     const videoValues = video ? video.values.map(({ name }) => name).join(", ") : null;
-    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&autoplay=1&loop=1&autopause=0&muted=1"
+    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&autoplay=1&loop=1&autopause=0&muted=1";
+    const artName = product.collections[0].name;
+    const collUrl = generateCollectionUrl(product.collections[0].id, product.collections[0].name)
     return (
       <div className="product-page">
         <div className="container">
@@ -141,6 +143,18 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
 
         <div className="product-page__product__video">
           <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
+        </div>
+
+        <div className="collection__header"
+          style={
+            product.collections[0].backgroundImage
+              ? { backgroundImage: `url(${product.collections[0].backgroundImage.url})` }
+              : undefined
+          }
+        >
+          <span className="collection__header__title">
+            <a href={collUrl}><h1>{artName}</h1></a>
+          </span>
         </div>
 
         <OtherProducts products={product.category.products.edges} />
