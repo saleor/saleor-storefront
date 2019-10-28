@@ -4,9 +4,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: #130d44;
   padding: 1.5em;
+  max-height: 60px;
   font-size: 12;
 `;
 
