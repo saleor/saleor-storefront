@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #130d44;
+  padding: 1.5em;
+  font-size: 12;
+}
+
+.c2 {
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.c3 {
+  color: #00c5aa;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <a
+      className="c2"
+      href="https://pwa.saleor.io/dashboard/"
+      target="_blank"
+    >
+      See the GraphQL-first 
+      <span
+        className="c3"
+      >
+        dashboard
+      </span>
+    </a>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;
