@@ -22,7 +22,7 @@
         color: $white;
         font-size: 8vw;
         font-weight: 300;
-        font-family: Miller Display Light,Georgia,"serif";
+        font-family: $sub-des-font-family;
 
         @media (min-width: $small-screen) {
           font-size: 4vw;
