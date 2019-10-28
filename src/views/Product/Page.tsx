@@ -84,9 +84,8 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
         )}
       </CartContext.Consumer>
     );
-    const video = product.attributes.find(({ attribute: { slug } }) => slug === "video");
-    const videoValues = video ? video.values.map(({ name }) => name).join(", ") : null;
-    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&autoplay=1&loop=1&autopause=0&muted=1";
+    const videoValues = product.collections[0].seoTitle;
+    const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&loop=1&autopause=0";
     const artName = product.collections[0].name;
     const collUrl = generateCollectionUrl(product.collections[0].id, product.collections[0].name)
     return (
@@ -141,10 +140,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
           </div>
         </div>
 
-        <div className="product-page__product__video">
-          <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
-        </div>
-
         <div className="product-page__product__collectionsnippet"
           style={
             product.collections[0].backgroundImage
@@ -155,6 +150,10 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
           <span className="product-page__product__collectionsnippet__title">
             <a href={collUrl}><h1>{artName}</h1></a>
           </span>
+        </div>
+
+        <div className="product-page__product__video">
+          <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
         </div>
 
         <OtherProducts products={product.category.products.edges} />

@@ -739,6 +739,7 @@ export interface ProductDetails_product_collections {
    */
   id: string;
   name: string;
+  seoTitle: string;
   backgroundImage: ProductDetails_product_collectionBack | null;
 }
 

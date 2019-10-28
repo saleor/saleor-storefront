@@ -6,8 +6,6 @@ import { IFilterAttributes, IFilters } from "@types";
 import { ProductsFeatured, ProductsList } from "../../components";
 import { maybe } from "../../core/utils";
 
-import { ProductListHeader } from "../../@next/components/molecules";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection, Collection_products } from "./types/Collection";
 
 interface SortItem {
@@ -52,7 +50,8 @@ const Page: React.FC<PageProps> = ({
     () => !!products.edges && products.totalCount !== undefined
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
-  const [showFilters, setShowFilters] = React.useState(false);
+  const videoValues = collection.seoTitle;
+  const srcVideo = "https://player.vimeo.com/video/" + videoValues + "?title=0&byline=0&portrait=0&loop=1&autopause=0";
 
   return (
     <div className="collection">
@@ -70,23 +69,9 @@ const Page: React.FC<PageProps> = ({
           <h2>{collection.seoDescription}</h2>
         </div>
       </div>
-      <div className="container">
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
-        <ProductListHeader
-          activeSortOption={activeSortOption}
-          openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
-          activeFilters={activeFilters}
-          clearFilters={clearFilters}
-          sortOptions={sortOptions}
-          onChange={onOrder}
-        />
+
+      <div className="product-page__product__video">
+        <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
       </div>
 
       {canDisplayProducts && (
