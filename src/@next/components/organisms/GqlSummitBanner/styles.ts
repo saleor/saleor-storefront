@@ -51,6 +51,10 @@ export const Text = styled.span`
 export const HelperText = styled(Text)`
   display: block;
   margin: 12px 15px;
+
+  ${media.smallScreen`
+    margin: 12px 5px;
+  `}
 `;
 
 export const Flex = styled.div`
