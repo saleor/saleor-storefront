@@ -13,6 +13,7 @@ import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
+import ArtisanVideo from "./Video";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
@@ -138,22 +139,21 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               }
             </Media>
           </div>
-        </div>
 
-        <div className="product-page__product__collectionsnippet"
-          style={
-            product.collections[0].backgroundImage
-              ? { backgroundImage: `url(${product.collections[0].backgroundImage.url})` }
-              : undefined
-          }
-        >
-          <span className="product-page__product__collectionsnippet__title">
-            <a href={collUrl}><h1>{artName}</h1></a>
-          </span>
-        </div>
+          <div className="product-page__product__collectionsnippet"
+            style={
+              product.collections[0].backgroundImage
+                ? { backgroundImage: `url(${product.collections[0].backgroundImage.url})` }
+                : undefined
+            }
+          >
+            <span className="product-page__product__collectionsnippet__title">
+              <a href={collUrl}><h1>{artName}</h1></a>
+            </span>
+          </div>
 
-        <div className="product-page__product__video">
-          <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
+          <ArtisanVideo srcVideo={srcVideo} />
+
         </div>
 
         <OtherProducts products={product.category.products.edges} />
