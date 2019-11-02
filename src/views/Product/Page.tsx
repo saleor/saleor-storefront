@@ -140,18 +140,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             </Media>
           </div>
 
-          <div className="product-page__product__collectionsnippet"
-            style={
-              product.collections[0].backgroundImage
-                ? { backgroundImage: `url(${product.collections[0].backgroundImage.url})` }
-                : undefined
-            }
-          >
-            <span className="product-page__product__collectionsnippet__title">
-              <a href={collUrl}><h1>{artName}</h1></a>
-            </span>
-          </div>
-
           <ArtisanVideo srcVideo={srcVideo} />
 
         </div>

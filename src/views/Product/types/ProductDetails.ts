@@ -740,6 +740,7 @@ export interface ProductDetails_product_collections {
   id: string;
   name: string;
   seoTitle: string;
+  seoDescription: string | null;
   backgroundImage: ProductDetails_product_collectionBack | null;
 }
 

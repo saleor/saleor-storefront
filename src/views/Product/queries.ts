@@ -125,6 +125,7 @@ export const productDetailsQuery = gql`
         name
         id
         seoTitle
+        seoDescription
         backgroundImage {
           url
         }
