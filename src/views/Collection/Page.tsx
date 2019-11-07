@@ -70,9 +70,9 @@ const Page: React.FC<PageProps> = ({
         </div>
       </div>
 
-      <div className="product-page__product__video">
+      {videoValues ? <div className="product-page__product__video">
         <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
-      </div>
+      </div> : ''}
 
       {canDisplayProducts && (
         <>

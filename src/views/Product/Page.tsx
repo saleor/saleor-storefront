@@ -141,8 +141,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             </Media>
           </div>
 
-
-        <ArtisanVideo srcVideo={srcVideo} />
+        {videoValues ? <ArtisanVideo srcVideo={srcVideo}/> : ''}
 
         <div className="home-page__categories">
           <div className="container">
