@@ -9,7 +9,7 @@ import { TypedHomePageQuery } from "./queries";
 import { ProductsList } from "./types/ProductsList";
 
 const canDisplay = (data: ProductsList) =>
-  maybe(() => !!data.shop.homepageCollection && !!data.categories.edges.length);
+  maybe(() => !!data.shop.homepageCollection && !!data.categories.edges.length && !!data.collections.edges.length);
 
 const View: React.FC = () => (
   <div className="home-page">
@@ -27,6 +27,7 @@ const View: React.FC = () => (
                 loading={loading}
                 backgroundImage={data.shop.homepageCollection.backgroundImage}
                 categories={data.categories}
+                collections={data.collections}
                 shop={data.shop}
               />
             </MetaWrapper>
