@@ -4,7 +4,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Button, Loader, ProductsFeatured } from "../../components";
+import { Button, Loader, ProductsCategories } from "../../components";
 import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
 
 import {
@@ -64,10 +64,10 @@ const Page: React.FC<{
         )}
       </div>
     </div>
-    <ProductsFeatured />
+    <ProductsCategories />
     <div className="home-page__categories">
       <div className="container">
-        <h3>Shop by collection</h3>
+        <h1>Latest Stories</h1>
         <div className="home-page__categories__list">
           {collections.edges.map(({ node: collection }) => (
             <div key={collection.id}>

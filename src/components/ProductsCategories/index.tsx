@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Carousel, ProductListItem } from "..";
-import { generateProductUrl, maybe } from "../../core/utils";
+import { Carousel, ProductListItemCategory } from "..";
+import { generateCategoryUrl, maybe } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -28,10 +28,10 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <Carousel>
                   {products.map(({ node: product }) => (
                     <Link
-                      to={generateProductUrl(product.id, product.name)}
-                      key={product.id}
+                      to={generateCategoryUrl(product.category.id, product.category.name)}
+                      key={product.category.id}
                     >
-                      <ProductListItem product={product} />
+                      <ProductListItemCategory product={product} />
                     </Link>
                   ))}
                 </Carousel>
@@ -45,7 +45,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
 };
 
 ProductsFeatured.defaultProps = {
-  title: "Editor's Pick",
+  title: "Gifting Categories",
 };
 
 export default ProductsFeatured;

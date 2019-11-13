@@ -33,13 +33,6 @@ interface ProductListItemProps {
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const {
-    pricing: {
-      priceRange: {
-        start: {
-          gross: { amount },
-        },
-      },
-    },
     category,
   } = product;
   return (
@@ -47,9 +40,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <div className="product-list-item__image">
         <Thumbnail source={product} />
       </div>
-      <h3 className="product-list-item__title">{product.name}</h3>
-      <p className="product-list-item__category">{category.name}</p>
-      <p className="product-list-item__price">${amount}</p>
+      <h3 className="product-list-item__title">{category.name}</h3>
     </div>
   );
 };

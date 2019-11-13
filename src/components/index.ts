@@ -18,6 +18,7 @@ export { default as PasswordResetForm } from "./PasswordResetForm";
 export { default as PriceRangeFilter } from "./PriceRangeFilter";
 export { default as ProductDescription } from "./ProductDescription";
 export { default as ProductListItem } from "./ProductListItem";
+export { default as ProductListItemCategory } from "./ProductListItemCategory";
 export { default as ProductsList } from "./ProductsList";
 export { default as SelectField } from "./SelectField";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
@@ -28,6 +29,7 @@ export { CartTable } from "./CartTable";
 export { default as ShippingAddressForm } from "./ShippingAddressForm";
 export { AddressType, FormAddressType } from "./ShippingAddressForm/types";
 export { default as ProductsFeatured } from "./ProductsFeatured";
+export { default as ProductsCategories } from "./ProductsCategories";
 export { Filters, ProductFilters } from "./ProductFilters";
 export {
   default as Breadcrumbs,
