@@ -33,6 +33,7 @@
     "js-base64": "^2.4.8",
     "lodash": "^4.17.13",
     "nuka-carousel": "^4.4.5",
+    "nuxt": "2.10.2",
     "react": "^16.8.5",
     "react-addons-css-transition-group": "^15.6.2",
     "react-alert": "^5.5.0",
