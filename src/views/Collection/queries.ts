@@ -15,7 +15,6 @@ export const collectionProductsQuery = gql`
     $attributes: [AttributeScalar]
     $after: String
     $pageSize: Int
-    $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
   ) {
@@ -33,7 +32,7 @@ export const collectionProductsQuery = gql`
       after: $after
       attributes: $attributes
       first: $pageSize
-      sortBy: $sortBy
+      sortBy: {field: TYPE, direction: DESC}
       filter: {
         collections: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }

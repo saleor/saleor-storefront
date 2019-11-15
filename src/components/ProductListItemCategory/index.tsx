@@ -14,7 +14,7 @@ export interface Product extends BasicProductFields {
   collections?: {
     id: string;
     name: string;
-  }
+  };
   pricing: {
     priceRange: {
       start: {
