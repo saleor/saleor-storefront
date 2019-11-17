@@ -30,11 +30,18 @@ const NavItem: React.FC<NavItemProps> = ({
         "side-nav__menu-item--has-subnavigation": hasSubNavigation,
       })}
     >
-      <NavLink
-        item={item}
-        className={"side-nav__menu-item-link"}
-        onClick={() => showSubItems(item)}
-      />
+      {hasSubNavigation ?
+        <NavLink
+          item={item}
+          className={"side-nav__menu-item-link"}
+          onClick={() => showSubItems(item)}
+        /> :
+        <NavLink
+          item={item}
+          className={"side-nav__menu-item-link"}
+          onClick={hideOverlay}
+        />
+      }
       {hasSubNavigation && (
         <ReactSVG
           path={subcategoriesImg}
