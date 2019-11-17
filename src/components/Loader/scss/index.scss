@@ -83,10 +83,11 @@
     margin: 0 auto;
 
     span {
-      background-color: $blue;
+      background-color: $white;
+      background-image: url("https://www.storitalia.com/images/favicon.svg");
       width: 1rem;
       height: 1rem;
-      border-radius: 1rem;
+      border-radius: 0rem;
       position: absolute;
 
       &:nth-child(1) {
