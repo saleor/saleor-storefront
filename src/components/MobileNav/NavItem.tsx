@@ -33,7 +33,7 @@ const NavItem: React.FC<NavItemProps> = ({
       <NavLink
         item={item}
         className={"side-nav__menu-item-link"}
-        onClick={hideOverlay}
+        onClick={() => showSubItems(item)}
       />
       {hasSubNavigation && (
         <ReactSVG

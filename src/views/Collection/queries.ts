@@ -32,7 +32,7 @@ export const collectionProductsQuery = gql`
       after: $after
       attributes: $attributes
       first: $pageSize
-      sortBy: {field: TYPE, direction: DESC}
+      sortBy: {field: PUBLISHED, direction: DESC}
       filter: {
         collections: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }
