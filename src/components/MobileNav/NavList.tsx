@@ -10,6 +10,9 @@ import NavItem, { INavItem } from "./NavItem";
 import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
 
+import { SocialMediaIcon } from "..";
+import { SOCIAL_MEDIA } from "../../core/config";
+
 interface NavListProps {
   items: INavItem[];
   hideOverlay(): void;
@@ -94,6 +97,14 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             {...item}
           />
         ))}
+        <div className="side-nav__footer__favicons">
+          {SOCIAL_MEDIA.map(medium => (
+            <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
+          ))}
+        </div>
+        <div className="side-nav__footer__line">
+          <h6>storitalia© | all rights reserved</h6>
+        </div>
       </ul>
     );
   }

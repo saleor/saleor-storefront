@@ -5,6 +5,20 @@
   max-width: calc(100vw - 5rem);
   width: 30rem;
 
+  &__footer {
+    &__favicons {
+      border-top: 1px solid $gray-light;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__line {
+      h6 {
+        color: #0D233F;
+      }
+    }
+  }
+
   &__menu-item {
     border-bottom: 1px solid $gray-light;
     display: grid;

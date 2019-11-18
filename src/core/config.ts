@@ -21,9 +21,19 @@ export const SOCIAL_MEDIA = [
     path: require("../images/instagram-icon.svg"),
   },
   {
+    ariaLabel: "twitter",
+    href: "https://www.twitter.com/storitalia/",
+    path: require("../images/twitter-icon.svg"),
+  },
+  {
+    ariaLabel: "pinterest",
+    href: "https://www.pinterest.com/storitalia/",
+    path: require("../images/pinterest-icon.svg"),
+  },
+  {
     ariaLabel: "vimeo",
     href: "https://vimeo.com/storitalia",
-    path: require("../images/youtube-icon.svg"),
+    path: require("../images/vimeo-icon.svg"),
   },
 ];
 export const META_DEFAULTS = {
