@@ -97,6 +97,42 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             {...item}
           />
         ))}
+        <li className="side-nav__menu-item side-nav__menu-item--parent">
+          <Link
+            to="/page/about-us/"
+            className="side-nav__menu-item-logo"
+            onClick={hideOverlay}
+          >
+            <h3>ABOUT US</h3>
+          </Link>
+        </li>
+        <li className="side-nav__menu-item side-nav__menu-item--parent">
+          <Link
+            to="/page/showrooms/"
+            className="side-nav__menu-item-logo"
+            onClick={hideOverlay}
+          >
+            <h3>SHOWROOMS</h3>
+          </Link>
+        </li>
+        <li className="side-nav__menu-item side-nav__menu-item--parent">
+          <Link
+            to="/page/shipping-returns/"
+            className="side-nav__menu-item-logo"
+            onClick={hideOverlay}
+          >
+            <h3>SHIPPING & RETURNS</h3>
+          </Link>
+        </li>
+        <li className="side-nav__menu-item side-nav__menu-item--parent">
+          <Link
+            to="/page/terms-conditions/"
+            className="side-nav__menu-item-logo"
+            onClick={hideOverlay}
+          >
+            <h3>TERMS AND CONDITIONS</h3>
+          </Link>
+        </li>
         <div className="side-nav__footer__favicons">
           {SOCIAL_MEDIA.map(medium => (
             <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
