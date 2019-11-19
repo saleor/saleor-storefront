@@ -250,6 +250,11 @@
         position: relative;
         width: 188px;
 
+        img {
+          width: 200px;
+          align-self: right;
+        }
+
         // 2nd level name
         > a {
           font-size: $base-font-size;
