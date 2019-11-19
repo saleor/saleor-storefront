@@ -69,7 +69,7 @@ class NavDropdown extends React.PureComponent<
               />
             ))}
             {children.length < 4 &&
-              <li><img src="http://saleor-storitalia.herokuapp.com/static/images/liguori_DSC_0062.jpg" /></li>
+              <li><img src="https://saleor-storitalia.herokuapp.com/static/images/liguori_DSC_0062.jpg" /></li>
             }
           </ul>
         </li>
