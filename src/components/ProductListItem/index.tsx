@@ -6,6 +6,8 @@ import { Thumbnail } from "@components/molecules";
 
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
+import NumberFormat from 'react-number-format';
+
 export interface Product extends BasicProductFields {
   category?: {
     id: string;
@@ -49,7 +51,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       </div>
       <h3 className="product-list-item__title">{product.name}</h3>
       <p className="product-list-item__category">{category.name}</p>
-      <p className="product-list-item__price">${amount}</p>
+      <p className="product-list-item__price"><NumberFormat value={amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></p>
     </div>
   );
 };

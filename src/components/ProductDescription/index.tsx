@@ -13,6 +13,8 @@ import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
 
+import NumberFormat from 'react-number-format';
+
 interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
   name: string;
@@ -191,7 +193,7 @@ class ProductDescription extends React.Component<
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <p>${pricing.price.gross.amount}</p>
+        <p><NumberFormat value={pricing.price.gross.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></p>
         <div className="product-description__variant-picker">
           {primaryPicker && (
             <SelectField
