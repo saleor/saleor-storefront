@@ -104,6 +104,9 @@ export const productDetailsQuery = gql`
       category {
         id
         name
+        backgroundImage {
+          url
+        }
         products(first: 3) {
           edges {
             node {

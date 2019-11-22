@@ -167,26 +167,27 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                   />
                   <h3>{product.collections[0].name}</h3>
                 </Link>
-              </div>
+              </div> 
 
-              <div key={product.collections[1].id}>
+              <div key={product.category.id}>
                 <Link
-                  to={generateCollectionUrl(product.collections[1].id, product.collections[1].name)}
-                  key={product.collections[1].id}
+                  to={generateCategoryUrl(product.category.id, product.category.name)}
+                  key={product.category.id}
                 >
                   <div
                     className={classNames("home-page__categories__list__image", {
-                      "home-page__categories__list__image--no-photo": !product.collections[1].backgroundImage,
+                      "home-page__categories__list__image--no-photo": !product.category.backgroundImage,
                     })}
                     style={{
                       backgroundImage: `url(${
-                        product.collections[1].backgroundImage
-                          ? product.collections[1].backgroundImage.url
+                        product.category.backgroundImage
+                          ?
+                          product.category.backgroundImage.url
                           : noPhotoImg
                       })`,
                     }}
                   />
-                  <h3>{product.collections[1].name}</h3>
+                  <h3>{product.category.name}</h3>
                 </Link>
               </div>
 

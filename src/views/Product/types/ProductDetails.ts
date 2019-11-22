@@ -18,6 +18,14 @@ export interface ProductDetails_product_collectionBack {
   alt: string | null;
 }
 
+export interface ProductDetails_product_categoryBack {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface ProductDetails_product_thumbnail {
   __typename: "Image";
   /**
@@ -544,6 +552,7 @@ export interface ProductDetails_product_category {
   /**
    * List of products in the category.
    */
+  backgroundImage: ProductDetails_product_categoryBack | null;
   products: ProductDetails_product_category_products | null;
 }
 
