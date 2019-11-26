@@ -27,7 +27,18 @@ export const homePageQuery = gql`
         }
       }
     }
-    collections(query: "a", first: 3, filter: {published: PUBLISHED}, ) {
+    collections(query: "f", first: 3, filter: {published: PUBLISHED}) {
+      edges {
+        node {
+          id
+          name
+          backgroundImage {
+            url
+          }
+        }
+      }
+    }
+    projects: collections(query: "villa", first: 2) {
       edges {
         node {
           id

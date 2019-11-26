@@ -5,7 +5,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsCategories } from "../../components";
-import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
+import { generateCollectionUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
@@ -50,13 +50,13 @@ const Page: React.FC<{
         </div>
       </div>
       <div className="home-page__hero-action">
-        {loading && !categories ? (
+        {loading && !collections ? (
           <Loader />
         ) : (
           <Link
-            to={generateCategoryUrl(
-              categories.edges[1].node.id,
-              categories.edges[1].node.name
+            to={generateCollectionUrl(
+              collections.edges[1].node.id,
+              collections.edges[1].node.name
             )}
           >
             <Button>Explore</Button>
