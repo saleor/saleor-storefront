@@ -21,6 +21,7 @@ import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
+import ProductItemCategory from "./ProductItemCategory";
 import ProductItemCollection from "./ProductItemCollection";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
@@ -57,7 +58,10 @@ class Search extends React.Component<SearchProps, SearchState> {
     maybe(() => !!data.products.edges.length);
 
   hasResultsCollection = (data: SearchResults) =>
-   maybe(() => !!data.collections.edges.length);
+    maybe(() => !!data.collections.edges.length);
+
+  hasResultsCategory = (data: SearchResults) =>
+    maybe(() => !!data.categories.edges.length);
 
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -123,7 +127,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                       variables={{ query: this.state.search }}
                     >
                       {({ data, error, loading }) => {
-                        if (this.hasResults(data) || this.hasResultsCollection(data)) {
+                        if (this.hasResults(data) || this.hasResultsCollection(data) || this.hasResultsCategory(data)) {
                           return (
                             <>
                               <ul>
@@ -131,6 +135,12 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <ProductItemCollection
                                     {...collection}
                                     key={collection.node.id}
+                                  />
+                                ))}
+                                {data.categories.edges.map(category => (
+                                  <ProductItemCategory
+                                    {...category}
+                                    key={category.node.id}
                                   />
                                 ))}
                                 {data.products.edges.map(product => (

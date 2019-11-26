@@ -35,6 +35,15 @@ export interface SearchResults_products_edges_node_category {
   name: string;
 }
 
+export interface SearchResults_categories_edges_node {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface SearchResults_collections_edges_node {
   __typename: "Collection";
   /**
@@ -64,6 +73,14 @@ export interface SearchResults_products_edges_node {
    */
   url: string;
   category: SearchResults_products_edges_node_category;
+}
+
+export interface SearchResults_categories_edges {
+  __typename: "categoryCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: SearchResults_categories_edges_node;
 }
 
 export interface SearchResults_collections_edges {
@@ -102,6 +119,15 @@ export interface SearchResults_products_pageInfo {
   startCursor: string | null;
 }
 
+export interface SearchResults_categories {
+  __typename: "CategoryCountableConnection";
+  edges: SearchResults_categories_edges[];
+  /**
+   * Pagination data for this connection.
+   */
+  pageInfo: SearchResults_products_pageInfo;
+}
+
 export interface SearchResults_collections {
   __typename: "CollectionCountableConnection";
   edges: SearchResults_collections_edges[];
@@ -126,6 +152,7 @@ export interface SearchResults {
    */
   products: SearchResults_products | null;
   collections: SearchResults_collections | null;
+  categories: SearchResults_categories | null;
 }
 
 export interface SearchResultsVariables {

@@ -11,6 +11,7 @@ const CollectionItem: React.FC<SearchResults_collections_edges> = ({
     <Link to={generateCollectionUrl(collection.id, collection.name)}>
       <span>
         <h4>{collection.name}</h4>
+        <p>Collection</p>
       </span>
     </Link>
   </li>
