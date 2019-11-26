@@ -27,7 +27,7 @@ export const homePageQuery = gql`
         }
       }
     }
-    collections(first: 3, after: "Q29sbGVjdGlvbjoxMQ==") {
+    collections(query: "a", first: 3, filter: {published: PUBLISHED}, ) {
       edges {
         node {
           id
