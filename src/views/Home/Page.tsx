@@ -40,12 +40,12 @@ const Page: React.FC<{
       <div className="home-page__hero-text">
         <div>
           <span className="home-page__hero__title">
-            <h1>The Most Beautiful Italian Villas and Furnitures</h1>
+            <h1>Discover Unique Italian Furniture & Décor</h1>
           </span>
         </div>
         <div>
           <span className="home-page__hero__title">
-            <h1>DISCOVER UNIQUE HANDMADE FURNITURE & DÉCOR</h1>
+            <h3>Timeless Stories of Italy</h3>
           </span>
         </div>
       </div>
