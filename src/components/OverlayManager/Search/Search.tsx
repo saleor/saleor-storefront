@@ -21,6 +21,7 @@ import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
+import ProductItemCollection from "./ProductItemCollection";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
 
@@ -54,6 +55,9 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   hasResults = (data: SearchResults) =>
     maybe(() => !!data.products.edges.length);
+
+  hasResultsCollection = (data: SearchResults) =>
+   maybe(() => !!data.collections.edges.length);
 
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -119,10 +123,16 @@ class Search extends React.Component<SearchProps, SearchState> {
                       variables={{ query: this.state.search }}
                     >
                       {({ data, error, loading }) => {
-                        if (this.hasResults(data)) {
+                        if (this.hasResults(data) || this.hasResultsCollection(data)) {
                           return (
                             <>
                               <ul>
+                                {data.collections.edges.map(collection => (
+                                  <ProductItemCollection
+                                    {...collection}
+                                    key={collection.node.id}
+                                  />
+                                ))}
                                 {data.products.edges.map(product => (
                                   <ProductItem
                                     {...product}

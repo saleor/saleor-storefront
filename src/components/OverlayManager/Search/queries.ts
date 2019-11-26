@@ -31,6 +31,23 @@ const searchResultsQuery = gql`
         startCursor
       }
     }
+    collections(query: $query, first: 20, filter: {published: PUBLISHED}) {
+      edges {
+        node {
+          id
+          name
+          backgroundImage {
+            url
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
   }
 `;
 

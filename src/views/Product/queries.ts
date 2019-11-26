@@ -33,6 +33,10 @@ export const basicProductFragment = gql`
     thumbnail2x: thumbnail(size: 510) {
       url
     }
+    collections {
+      id
+      name
+    }
   }
 `;
 

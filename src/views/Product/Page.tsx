@@ -145,7 +145,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
 
         <div className="home-page__categories">
           <div className="container">
-            <h3>Shop by collection</h3>
+            <h3>Shop by collection | category</h3>
             <div className="home-page__categories__list">
 
               <div key={product.collections[0].id}>
