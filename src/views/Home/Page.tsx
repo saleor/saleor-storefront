@@ -40,7 +40,7 @@ const Page: React.FC<{
       <div className="home-page__hero-text">
         <div>
           <span className="home-page__hero__title">
-            <h1>Discover Unique Italian Furniture & Décor</h1>
+            <h1>Unique Italian Furniture & Décor</h1>
           </span>
         </div>
         <div>
@@ -55,8 +55,8 @@ const Page: React.FC<{
         ) : (
           <Link
             to={generateCollectionUrl(
-              collections.edges[1].node.id,
-              collections.edges[1].node.name
+              collections.edges[2].node.id,
+              collections.edges[2].node.name
             )}
           >
             <Button>Explore</Button>
