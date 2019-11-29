@@ -4,7 +4,7 @@ import { Button } from "../..";
 
 const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
   <div className="cart__empty">
-    <h4>Yor bag is empty</h4>
+    <h4>Your bag is empty</h4>
     <p>
       You haven’t added anything to your bag. We’re sure you’ll find something
       in our store
