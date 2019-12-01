@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { RichTextContent } from "@components/atoms";
-import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
   active: boolean;
@@ -10,7 +9,6 @@ interface PageNavigationElement {
 }
 
 interface PageProps {
-  breadcrumbs: Breadcrumb[];
   headerImage: string | null;
   navigation: PageNavigationElement[];
   page: {
@@ -19,7 +17,6 @@ interface PageProps {
   };
 }
 export const Page: React.FC<PageProps> = ({
-  breadcrumbs,
   headerImage,
   navigation,
   page,
@@ -34,7 +31,6 @@ export const Page: React.FC<PageProps> = ({
       </span>
     </div>
     <div className="container">
-      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="article-page__container">
         <div className="article-page__navigation">
         </div>

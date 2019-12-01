@@ -65,6 +65,21 @@ const searchResultsQuery = gql`
         startCursor
       }
     }
+    pages(query: $query, first:20) {
+      edges {
+        node {
+          id
+          title
+          slug
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
   }
 `;
 

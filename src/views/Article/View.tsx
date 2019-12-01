@@ -5,7 +5,7 @@ import { RouteComponentProps } from "react-router-dom";
 
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
-import { generatePageUrl, maybe } from "../../core/utils";
+import { maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
 import { Article_shop } from "./types/Article";
@@ -31,12 +31,6 @@ export const View: React.FC<ViewProps> = ({
       const { page, shop } = data;
 
       if (canDisplay(page)) {
-        const breadcrumbs = [
-          {
-            link: generatePageUrl(slug),
-            value: page.title,
-          },
-        ];
         return (
           <MetaWrapper
             meta={{
@@ -45,7 +39,6 @@ export const View: React.FC<ViewProps> = ({
             }}
           >
             <Page
-              breadcrumbs={breadcrumbs}
               headerImage={getHeaderImage(shop)}
               navigation={navigation}
               page={data.page}

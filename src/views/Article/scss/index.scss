@@ -4,7 +4,7 @@
   &__container {
     column-gap: $spacer * 1.5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     margin: 60px 0;
 
     @media (max-width: $medium-screen) {
@@ -29,12 +29,14 @@
       h1 {
         display: inline-block;
         transform: skew(-45deg);
-        font-weight: $bold-font-weight;
         text-transform: none;
         color: $white;
-        font-size: 8vw;
-        font-weight: 300;
-        font-family: Miller Display Light,Georgia,"serif";
+        font-family: "Josefin Sans", sans-serif;
+        font-weight: 0;
+        font-size: 2.5rem;
+        font-weight: 0;
+        font-family: "Josefin Sans", sans-serif;
+        line-height: 1.5;
 
         @media (min-width: $small-screen) {
           font-size: 4vw;
@@ -52,14 +54,50 @@
       font-weight: 600;
     }
 
-    h2 {
+    h1 {
+      font-family: $sub-des-font-family;
+      line-height: 2rem;
       font-size: 1.5rem;
       margin-bottom: $spacer * 1.5;
+      padding-left: 15%;
+      padding-right: 15%;
+      
+      @media (max-width: $small-screen) {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: $spacer;
+      padding-left: 15%;
+      padding-right: 15%;
+      
+      @media (max-width: $small-screen) {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
     }
 
     h3 {
-      font-size: 1.2rem;
-      margin-bottom: $spacer;
+      padding-left: 15%;
+      padding-right: 15%;
+      
+      @media (max-width: $small-screen) {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+    }
+
+    p {
+      padding-left: 15%;
+      padding-right: 15%;
+      
+      @media (max-width: $small-screen) {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
     }
 
     img {

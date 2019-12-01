@@ -117,8 +117,8 @@
       position: relative;
       padding-bottom: 66.25%;
       overflow: hidden;
-      margin-left: 10%;
-      margin-right: 10%;
+      margin-left: 0px;
+      margin-right: 0px;
 
       iframe {
         position: absolute;
@@ -140,6 +140,11 @@
         left: 0;
         width: 100%;
         height: 100%;
+      }
+      
+      @media (min-width: $medium-screen) {
+        margin-left: 10%;
+        margin-right: 10%;
       }
     }
 

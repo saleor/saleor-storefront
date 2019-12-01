@@ -1,10 +1,11 @@
 import "../Collection/scss/custom_index.scss";
 
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductsFeatured, ProductsList } from "../../components";
-import { maybe } from "../../core/utils";
+import { generatePageUrl, maybe } from "../../core/utils";
 
 import { Collection_collection, Collection_products } from "./types/Collection";
 
@@ -55,24 +56,43 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <div className="collection">
-      <div className="collection__header"
-        style={
-          collection.backgroundImage
-            ? { backgroundImage: `url(${collection.backgroundImage.url})` }
-            : undefined
-        }
-      >
-        <span className="collection__header__title">
-          <h1>{collection.name}</h1>
-        </span>
-        <div className="collection__description">
-          <h2>{collection.seoDescription}</h2>
+	    <div
+	      className="home-page__hero"
+	      style={
+	        collection.backgroundImage
+	          ? { backgroundImage: `url(${collection.backgroundImage.url})` }
+	          : null
+	      }
+	    >
+	      <div className="home-page__hero-text">
+	        <div>
+	          <span className="collection-page__hero__title">
+	            <h1>{ collection.name }</h1>
+	          </span>
+	        </div>
+	        <div>
+	          <span className="collection-page__hero__title">
+	            <h3>{ collection.seoDescription }</h3>
+	          </span>
+	        </div>
+	      </div>
+        <div className="collection-page__hero-action">
+          <span className="collection-page__hero__title"><Link
+            to={generatePageUrl(
+              collection.slug
+            )}
+          >The Story >
+          </Link></span>
         </div>
-      </div>
+	    </div>
 
       {videoValues ? <div className="product-page__product__video">
         <iframe src={srcVideo} allow="autoplay; fullscreen"></iframe>
-      </div> : ''}
+      </div> : ""}
+          
+      <span className="collection-page__hero__subtitle">
+        <h1>Collection</h1>
+      </span>
 
       {canDisplayProducts && (
         <>

@@ -10,6 +10,7 @@ import { generateCollectionUrl } from "../../core/utils";
 import {
   ProductsList_categories,
   ProductsList_collections,
+  ProductsList_projects,
   ProductsList_shop,
   ProductsList_shop_homepageCollection_backgroundImage
 } from "./types/ProductsList";
@@ -23,8 +24,9 @@ const Page: React.FC<{
   categories: ProductsList_categories;
   collections: ProductsList_collections;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
+  projects: ProductsList_projects;
   shop: ProductsList_shop;
-}> = ({ loading, categories, collections, backgroundImage, shop }) => (
+}> = ({ loading, categories, collections, projects, backgroundImage, shop }) => (
   <>
     <script className="structured-data-list" type="application/ld+json">
       {structuredData(shop)}
@@ -67,7 +69,9 @@ const Page: React.FC<{
     <ProductsCategories />
     <div className="home-page__categories">
       <div className="container">
-        <h1>Latest Stories</h1>
+          <span className="home-page__hero__subtitle">
+            <h1>Latest Stories</h1>
+          </span>
         <div className="home-page__categories__list">
           {collections.edges.map(({ node: collection }) => (
             <div key={collection.id}>
@@ -94,7 +98,38 @@ const Page: React.FC<{
         </div>
       </div>
     </div>
-  </>
+    <div className="home-page__projects">
+        <div className="container">
+          <span className="home-page__hero__subtitle">
+            <h1>Latest Projects</h1>
+          </span>
+          <div className="home-page__projects__list">
+            {projects.edges.map(({ node: project }) => (
+              <div key={project.id}>
+                <Link
+                  to={generateCollectionUrl(project.id, project.name)}
+                  key={project.id}
+                >
+                  <div
+                    className={classNames("home-page__projects__list__image", {
+                      "home-page__projects__list__image--no-photo": !project.backgroundImage,
+                    })}
+                    style={{
+                      backgroundImage: `url(${
+                        project.backgroundImage
+                          ? project.backgroundImage.url
+                          : noPhotoImg
+                      })`,
+                    }}
+                  />
+                  <h3>{project.name}</h3>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
 );
 
 export default Page;

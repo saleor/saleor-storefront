@@ -38,7 +38,7 @@ export const homePageQuery = gql`
         }
       }
     }
-    projects: collections(query: "villa", first: 2) {
+    projects: collections(query: "Project", first: 2) {
       edges {
         node {
           id

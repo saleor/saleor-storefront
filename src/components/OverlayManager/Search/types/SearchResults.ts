@@ -35,6 +35,22 @@ export interface SearchResults_products_edges_node_category {
   name: string;
 }
 
+export interface SearchResults_pages_edges_node {
+  __typename: "Page";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * The Title of the object.
+   */
+  title: string;
+  /**
+   * The Slug of the object.
+   */
+  slug: string;
+}
+
 export interface SearchResults_categories_edges_node {
   __typename: "Category";
   /**
@@ -73,6 +89,14 @@ export interface SearchResults_products_edges_node {
    */
   url: string;
   category: SearchResults_products_edges_node_category;
+}
+
+export interface SearchResults_pages_edges {
+  __typename: "pageCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: SearchResults_pages_edges_node;
 }
 
 export interface SearchResults_categories_edges {
@@ -119,6 +143,15 @@ export interface SearchResults_products_pageInfo {
   startCursor: string | null;
 }
 
+export interface SearchResults_pages {
+  __typename: "PageCountableConnection";
+  edges: SearchResults_pages_edges[];
+  /**
+   * Pagination data for this connection.
+   */
+  pageInfo: SearchResults_products_pageInfo;
+}
+
 export interface SearchResults_categories {
   __typename: "CategoryCountableConnection";
   edges: SearchResults_categories_edges[];
@@ -153,6 +186,7 @@ export interface SearchResults {
   products: SearchResults_products | null;
   collections: SearchResults_collections | null;
   categories: SearchResults_categories | null;
+  pages: SearchResults_pages | null;
 }
 
 export interface SearchResultsVariables {

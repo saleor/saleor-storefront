@@ -28,6 +28,7 @@ const View: React.FC = () => (
                 backgroundImage={data.shop.homepageCollection.backgroundImage}
                 categories={data.categories}
                 collections={data.collections}
+                projects={data.projects}
                 shop={data.shop}
               />
             </MetaWrapper>

@@ -23,6 +23,7 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import ProductItemCategory from "./ProductItemCategory";
 import ProductItemCollection from "./ProductItemCollection";
+import ProductItemPage from "./ProductItemPage";
 import { TypedSearchResults } from "./queries";
 import { SearchResults } from "./types/SearchResults";
 
@@ -62,6 +63,9 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   hasResultsCategory = (data: SearchResults) =>
     maybe(() => !!data.categories.edges.length);
+
+  hasResultsPage = (data: SearchResults) =>
+    maybe(() => !!data.pages.edges.length);
 
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -127,20 +131,26 @@ class Search extends React.Component<SearchProps, SearchState> {
                       variables={{ query: this.state.search }}
                     >
                       {({ data, error, loading }) => {
-                        if (this.hasResults(data) || this.hasResultsCollection(data) || this.hasResultsCategory(data)) {
+                        if (this.hasResults(data) || this.hasResultsCollection(data) || this.hasResultsCategory(data) || this.hasResultsPage(data)) {
                           return (
                             <>
                               <ul>
+                                {data.categories.edges.map(category => (
+                                  <ProductItemCategory
+                                    {...category}
+                                    key={category.node.id}
+                                  />
+                                ))}
                                 {data.collections.edges.map(collection => (
                                   <ProductItemCollection
                                     {...collection}
                                     key={collection.node.id}
                                   />
                                 ))}
-                                {data.categories.edges.map(category => (
-                                  <ProductItemCategory
-                                    {...category}
-                                    key={category.node.id}
+                                {data.pages.edges.map(page => (
+                                  <ProductItemPage
+                                    {...page}
+                                    key={page.node.id}
                                   />
                                 ))}
                                 {data.products.edges.map(product => (
