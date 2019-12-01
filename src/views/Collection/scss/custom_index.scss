@@ -87,12 +87,12 @@
         font-weight: 0;
         text-transform: none;
         color: $white;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         font-weight: 0;
         font-family: $des-font-family;
         line-height: 1.5;
 
-        @media (min-width: $small-screen) and (max-width: $medium-screen) {
+        @media (min-width: $small-screen) {
           font-size: 38px;
         }
       }
@@ -100,6 +100,11 @@
       h3 {
         color: white;
         letter-spacing: 0.1rem;
+        font-size: 1rem;
+
+        @media (min-width: $small-screen) {
+          font-size: 20px;
+        }
       }
     }
   }
