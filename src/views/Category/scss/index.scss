@@ -12,12 +12,10 @@
     &__title {
       background-color: none;
       display: inline-block;
-      transform: skew(-45deg);
       padding: 1.5vw 9vw;
 
       h1 {
         display: inline-block;
-        transform: skew(45deg);
         font-weight: $bold-font-weight;
         text-transform: none;
         color: $white;
