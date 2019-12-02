@@ -16,7 +16,7 @@ A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://
 
 ## Demo
 
-See the [public demo](http://pwa.getsaleor.com) of Saleor Storefront!
+See the [public demo](http://pwa.saleor.io) of Saleor Storefront!
 
 Or launch the demo on a free Heroku instance.
 
