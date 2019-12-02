@@ -178,11 +178,11 @@
       grid-template-columns: 1fr;
       grid-gap: $spacer * 2;
 
-      @media (min-width: $small-screen) {
+      @media (max-width: $small-screen) {
         grid-template-columns: 1fr;
       }
 
-      @media (min-width: $medium-screen) {
+      @media (min-width: $small-screen) {
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
