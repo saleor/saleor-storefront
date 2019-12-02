@@ -93,7 +93,10 @@
         line-height: 1.5;
 
         @media (min-width: $small-screen) {
-          font-size: 38px;
+          font-size: 2.5rem;
+        }
+        @media (min-width: $medium-screen) {
+          font-size: 3.5rem;
         }
       }
 
@@ -103,7 +106,22 @@
         font-size: 1rem;
 
         @media (min-width: $small-screen) {
-          font-size: 20px;
+          font-size: 1rem;
+        }
+
+        @media (min-width: $medium-screen) {
+          font-size: 1.5rem;
+        }
+      }
+
+      a {
+        color: white;
+        letter-spacing: 0.1rem;
+        font-size: 1rem;
+        font-family: $des-font-family;
+
+        @media (min-width: $small-screen) {
+          font-size: 1rem;
         }
       }
     }
