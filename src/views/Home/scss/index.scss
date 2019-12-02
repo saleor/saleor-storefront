@@ -55,6 +55,10 @@
         @media (min-width: $small-screen) and (max-width: $medium-screen) {
           font-size: 38px;
         }
+
+        @media (max-width: $small-screen) {
+          font-size: 2rem;
+        }
       }
 
       h3 {

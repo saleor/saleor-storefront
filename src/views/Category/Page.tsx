@@ -69,7 +69,7 @@ const Page: React.FC<PageProps> = ({
             : undefined
         }
       >
-        <span className="collection__header__title">
+        <span className="category__header__title">
           <h1>{category.name}</h1>
         </span>
       </div>

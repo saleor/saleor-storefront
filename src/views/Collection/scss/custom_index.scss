@@ -117,7 +117,7 @@
       a {
         color: white;
         letter-spacing: 0.1rem;
-        font-size: 1rem;
+        font-size: 1.3rem;
         font-family: $des-font-family;
 
         @media (min-width: $small-screen) {
@@ -195,93 +195,5 @@
         }
       }
     }
-  }
-}
-
-.collection {
-  &__header {
-    text-align: center;
-    padding-top: $spacer * 10;
-    background-size: cover;
-    background-color: $blue-overlay;
-    background-blend-mode: multiply;
-    background-position: center;
-
-    &__title {
-      background-color: none;
-      display: flex;
-      padding: 1.5vw 9vw;
-
-      h1 {
-        display: flex;
-        font-weight: $bold-font-weight;
-        text-transform: none;
-        color: $white;
-        font-size: 8vw;
-        font-weight: 300;
-        font-family: $des-font-family;
-
-        @media (min-width: $small-screen) {
-          font-size: 4vw;
-        }
-      }
-    }
-  }
-
-  &__description {
-
-    padding-top: $spacer * 25;
-
-    h2 {
-      text-align: justify;
-      padding: 5%;
-      transform: none;
-      color: $black;
-      background-color: white;
-      font-family: $sub-des-font-family;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 1.279rem;
-      line-height: 1.7rem;
-    }
-
-  }
-
-  &__footer {
-    text-align: center;
-    padding-top: $spacer * 10;
-    background-size: cover;
-    background-color: $blue-overlay;
-    background-blend-mode: multiply;
-
-    &__title {
-      background-color: none;
-      display: flex;
-      transform: skew(-45deg);
-      padding: 1.5vw 9vw;
-
-      h1 {
-        display: flex;
-        transform: skew(45deg);
-        font-weight: $bold-font-weight;
-        text-transform: none;
-        color: $white;
-        font-size: 8vw;
-        font-weight: 300;
-        font-family: Miller Display Light,Georgia,"serif";
-
-        @media (min-width: $small-screen) {
-          font-size: 4vw;
-        }
-      }
-    }
-    
-    &__booknow {
-      padding-bottom: 3%;
-    }
-  }
-
-  .products-list__products__subheader {
-    display: none;
   }
 }

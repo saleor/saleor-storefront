@@ -2,7 +2,7 @@
 
 .category {
   &__header {
-    text-align: center;
+    text-align: left;
     padding-top: $spacer * 6.5;
     padding-bottom: $spacer * 6.5;
     background-size: cover;
@@ -15,16 +15,17 @@
       padding: 1.5vw 9vw;
 
       h1 {
-        display: inline-block;
-        font-weight: $bold-font-weight;
+        display: flex;
+        font-weight: 0;
         text-transform: none;
-        color: $white;
-        font-size: 8vw;
+        color: $white!important;
+        font-size: 1.6rem;
         font-weight: 300;
-        font-family: Miller Display Light,Georgia,"serif";
+        font-family: "Josefin Sans", sans-serif;
 
         @media (min-width: $small-screen) {
           font-size: 4vw;
+          color: $white!important;
         }
       }
     }

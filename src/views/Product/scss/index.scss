@@ -146,6 +146,9 @@
         margin-left: 10%;
         margin-right: 10%;
       }
+      @media (max-width: $medium-screen) {
+        margin-bottom: 5%;
+      }
     }
 
     &__collectionsnippet {
