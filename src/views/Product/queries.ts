@@ -135,7 +135,7 @@ export const productDetailsQuery = gql`
 
 // FIXME: Check how to handle pagination of `productVariants` in the UI.
 // We need allow the user view  all cart items regardless of pagination.
-export const productVariatnsQuery = gql`
+export const productVariantsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
   query VariantList($ids: [ID!]) {
@@ -161,4 +161,4 @@ export const TypedProductDetailsQuery = TypedQuery<
 export const TypedProductVariantsQuery = TypedQuery<
   VariantList,
   VariantListVariables
->(productVariatnsQuery);
+>(productVariantsQuery);
