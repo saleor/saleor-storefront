@@ -193,7 +193,7 @@ class ProductDescription extends React.Component<
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <p><NumberFormat value={pricing.price.gross.amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></p>
+        <p><NumberFormat value={pricing.price.gross.amount} displayType={'text'} thousandSeparator={true} prefix={'€'} /></p>
         <div className="product-description__variant-picker">
           {primaryPicker && (
             <SelectField
