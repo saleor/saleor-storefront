@@ -7,7 +7,8 @@ import {
   Breadcrumbs,
   extractBreadcrumbs,
   ProductsFeatured,
-  ProductsList
+  ProductsList,
+  ProductsListCollections
 } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
@@ -59,6 +60,9 @@ const Page: React.FC<PageProps> = ({
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
 
+  const catCheck = maybe(
+    () => category.id === "Q2F0ZWdvcnk6MzE="
+  );
   return (
     <div className="category">
       <div
@@ -93,17 +97,27 @@ const Page: React.FC<PageProps> = ({
         />
       </div>
 
-      {canDisplayProducts && (
-        <>
-          <ProductsList
-            displayLoader={displayLoader}
-            hasNextPage={hasNextPage}
-            onLoadMore={onLoadMore}
-            products={products.edges.map(edge => edge.node)}
-            totalCount={products.totalCount}
-          />
-        </>
-      )}
+      {catCheck && canDisplayProducts ?
+          <>
+            <ProductsListCollections
+              displayLoader={displayLoader}
+              hasNextPage={hasNextPage}
+              onLoadMore={onLoadMore}
+              products={products.edges.map(edge => edge.node)}
+              totalCount={products.totalCount}
+            />
+          </> :
+          <>
+            <ProductsList
+              displayLoader={displayLoader}
+              hasNextPage={hasNextPage}
+              onLoadMore={onLoadMore}
+              products={products.edges.map(edge => edge.node)}
+              totalCount={products.totalCount}
+            />
+          </>
+      }
+
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );

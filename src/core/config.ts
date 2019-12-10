@@ -38,10 +38,10 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description: "PWA Storefront",
+  description: "Unique Italian Furniture & Décor",
 
   image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title: "Saleor",
+  title: "STORITALIA - Timeless Stories of Italy",
   type: "website",
   url: window.location.origin,
 };

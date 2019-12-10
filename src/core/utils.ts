@@ -63,6 +63,8 @@ export const generateCollectionUrl = (id: string, name: string) =>
 
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
+export const generatePageUrlColl = (name: string) => `/page/${slugify(name)}/`;
+
 interface AttributeDict {
   [attributeSlug: string]: string[];
 }

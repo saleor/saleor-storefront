@@ -19,7 +19,9 @@ export { default as PriceRangeFilter } from "./PriceRangeFilter";
 export { default as ProductDescription } from "./ProductDescription";
 export { default as ProductListItem } from "./ProductListItem";
 export { default as ProductListItemCategory } from "./ProductListItemCategory";
+export { default as ProductListItemCollection } from "./ProductListItemCollection";
 export { default as ProductsList } from "./ProductsList";
+export { default as ProductsListCollections } from "./ProductsListCollections"
 export { default as SelectField } from "./SelectField";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as TextField } from "./TextField";
