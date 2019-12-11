@@ -12,6 +12,7 @@ export * from "./OrderTabel";
 export * from "./AccountMenu";
 export * from "./AccountMenuMobile";
 export * from "./AccountTabTiles";
+export * from "./ProductListCollectionHeader";
 export * from "./ProductListHeader";
 export * from "./InputSelect";
 export * from "./FilterAttribute";

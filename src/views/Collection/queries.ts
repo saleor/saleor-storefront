@@ -36,6 +36,7 @@ export const collectionProductsQuery = gql`
       filter: {
         collections: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }
+        stockAvailability: IN_STOCK
       }
     ) {
       totalCount

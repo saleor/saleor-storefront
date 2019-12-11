@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, ProductListItemCollection } from "..";
-import { generatePageUrlColl } from "../../core/utils";
+import { generateCollectionUrl } from "../../core/utils";
 import Loader from "../Loader";
 
 import { Product } from "../ProductListItemCollection";
@@ -36,7 +36,7 @@ export const ProductList: React.FC<ProductsListProps> = ({
             <div className="products-list__products__collection__grid">
               {products.map(product => (
                 <Link
-                  to={generatePageUrlColl(product.name)}
+                  to={generateCollectionUrl(product.collections[0].id, product.collections[0].name)}
                   key={product.id}
                 >
                   <ProductListItemCollection product={product} />

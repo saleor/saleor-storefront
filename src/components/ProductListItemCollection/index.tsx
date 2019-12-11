@@ -38,12 +38,16 @@ interface ProductListItemProps {
 }
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
+  const {
+    collections,
+  } = product;
   return (
     <div className="product-list-item">
       <div className="product-list-item__image">
         <ThumbnailCollection source={product} />
       </div>
-      <h3 className="product-list-item__title">{product.name}</h3>
+      <h3 className="product-list-item__title">{collections[0].name}</h3>
+      <p className="product-list-item__category">{collections[0].name}</p>
     </div>
   );
 };
