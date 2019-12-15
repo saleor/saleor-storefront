@@ -36,6 +36,7 @@ export const basicProductFragment = gql`
     collections {
       id
       name
+      description
     }
   }
 `;

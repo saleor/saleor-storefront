@@ -6,6 +6,14 @@ import { ThumbnailCollection } from "@components/molecules";
 
 import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
+export interface ProductCollectionBackgroundImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface ProductCollections {
   __typename: "ProductCollections";
   /**
@@ -13,6 +21,7 @@ export interface ProductCollections {
    */
   id: string;
   name: string;
+  description: string;
 }
 
 export interface Product extends BasicProductFields {
@@ -45,9 +54,10 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
     <div className="product-list-item">
       <div className="product-list-item__image">
         <ThumbnailCollection source={product} />
+        <ThumbnailCollection source={product} />
       </div>
       <h3 className="product-list-item__title">{collections[0].name}</h3>
-      <p className="product-list-item__category">{collections[0].name}</p>
+      <p className="product-list-item__category">{collections[0].description}</p>
     </div>
   );
 };

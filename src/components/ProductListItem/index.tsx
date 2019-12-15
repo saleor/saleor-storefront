@@ -57,7 +57,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       </div>
       <h3 className="product-list-item__title">{product.name}</h3>
       <p className="product-list-item__category">{collections[0].name}</p>
-      <p className="product-list-item__price"><NumberFormat value={amount} displayType={'text'} thousandSeparator={true} prefix={'€'} /></p>
+      <p className="product-list-item__price"><NumberFormat value={amount} displayType={'text'} thousandSeparator={true} prefix={'$'} /></p>
     </div>
   );
 };
