@@ -6,7 +6,7 @@
 // GraphQL mutation operation: RegisterCutomer
 // ====================================================
 
-export interface RegisterCutomer_customerRegister_errors {
+export interface RegisterCutomer_accountRegister_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
@@ -19,19 +19,19 @@ export interface RegisterCutomer_customerRegister_errors {
   message: string | null;
 }
 
-export interface RegisterCutomer_customerRegister {
-  __typename: "CustomerRegister";
+export interface RegisterCutomer_accountRegister {
+  __typename: "AccountRegister";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: RegisterCutomer_customerRegister_errors[] | null;
+  errors: RegisterCutomer_accountRegister_errors[] | null;
 }
 
 export interface RegisterCutomer {
   /**
-   * DEPRECATED: Will be removed in Saleor 2.10, use AccountRegister instead. Register a new user.
+   * Register a new user.
    */
-  customerRegister: RegisterCutomer_customerRegister | null;
+  accountRegister: RegisterCutomer_accountRegister | null;
 }
 
 export interface RegisterCutomerVariables {

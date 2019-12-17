@@ -61,6 +61,17 @@ export const productPricingFragment = gql`
   }
 `;
 
+export const selectedAttributeFragment = gql`
+  fragment SelectedAttributeFields on SelectedAttribute {
+    attribute {
+      name
+    }
+    values {
+      name
+    }
+  }
+`;
+
 export const productVariantFragment = gql`
   ${priceFragment}
   fragment ProductVariantFields on ProductVariant {
@@ -94,6 +105,7 @@ export const productVariantFragment = gql`
 
 export const productDetailsQuery = gql`
   ${basicProductFragment}
+  ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
   query ProductDetails($id: ID!) {
@@ -120,6 +132,9 @@ export const productDetailsQuery = gql`
       images {
         id
         url
+      }
+      attributes {
+        ...SelectedAttributeFields
       }
       variants {
         ...ProductVariantFields

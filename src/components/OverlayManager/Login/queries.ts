@@ -8,7 +8,7 @@ import {
 
 const customerRegisterMutation = gql`
   mutation RegisterCutomer($email: String!, $password: String!) {
-    customerRegister(input: { email: $email, password: $password }) {
+    accountRegister(input: { email: $email, password: $password }) {
       errors {
         field
         message

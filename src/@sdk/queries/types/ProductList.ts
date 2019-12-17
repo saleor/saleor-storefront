@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList
@@ -108,7 +108,7 @@ export interface ProductList_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductList_products_edges_node_pricing | null;
-  category: ProductList_products_edges_node_category;
+  category: ProductList_products_edges_node_category | null;
 }
 
 export interface ProductList_products_edges {

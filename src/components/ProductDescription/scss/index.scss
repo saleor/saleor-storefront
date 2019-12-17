@@ -84,4 +84,12 @@
       }
     }
   }
+
+  &__selected-attributes {
+    font-size: $small-font-size;
+    
+    > span:first-child {
+      color: $gray-dark;
+    }
+  }
 }
