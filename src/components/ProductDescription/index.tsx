@@ -243,7 +243,7 @@ class ProductDescription extends React.Component<
             }
           />
           {selectedAttributes.map(({ attribute, values }) =>
-            <div className="product-description__selected-attributes">
+            values.length > 0 && <div className="product-description__selected-attributes">
               <span>
                 {`${attribute.name}: `}
               </span>
