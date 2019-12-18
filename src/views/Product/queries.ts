@@ -132,6 +132,7 @@ export const productDetailsQuery = gql`
       collections {
         name
         id
+        description
         seoTitle
         seoDescription
         backgroundImage {

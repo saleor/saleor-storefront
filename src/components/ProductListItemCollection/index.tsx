@@ -57,7 +57,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
         <ThumbnailCollection source={product} />
       </div>
       <h3 className="product-list-item__title">{collections[0].name}</h3>
-      <p className="product-list-item__category">{collections[0].description}</p>
+      <p className="product-list-item__category">{collections[0].id}</p>
     </div>
   );
 };
