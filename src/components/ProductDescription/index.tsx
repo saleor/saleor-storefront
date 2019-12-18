@@ -12,6 +12,7 @@ import { maybe } from "../../core/utils";
 import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
+
 import { ProductDetails_product_attributes } from "@temp/views/Product/types/ProductDetails";
 
 interface ProductDescriptionProps {
@@ -35,7 +36,7 @@ interface ProductDescriptionState {
 class ProductDescription extends React.Component<
   ProductDescriptionProps,
   ProductDescriptionState
-  > {
+> {
   constructor(props: ProductDescriptionProps) {
     super(props);
     const pickers =
@@ -175,9 +176,7 @@ class ProductDescription extends React.Component<
     const syncedQuantityWithCart = cartLine
       ? quantity + cartLine.quantity
       : quantity;
-    return (
-      quantity !== 0 && (variant && variantStock >= syncedQuantityWithCart)
-    );
+    return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
   };
 
   render() {
@@ -242,15 +241,14 @@ class ProductDescription extends React.Component<
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
-          {selectedAttributes.map(({ attribute, values }) =>
-            values.length > 0 && <div className="product-description__selected-attributes">
-              <span>
-                {`${attribute.name}: `}
-              </span>
-              <span>
-                {values.map(({ name }) => name).join(', ')}
-              </span>
-            </div>
+          {selectedAttributes.map(
+            ({ attribute, values }) =>
+              values.length > 0 && (
+                <div className="product-description__selected-attributes">
+                  <span>{`${attribute.name}: `}</span>
+                  <span>{values.map(({ name }) => name).join(", ")}</span>
+                </div>
+              )
           )}
         </div>
         <div className="product-description__about">
