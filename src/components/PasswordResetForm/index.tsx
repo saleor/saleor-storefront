@@ -16,7 +16,7 @@ const PasswordResetForm: React.FC = () => (
       {(passwordReset, { loading, data }) => {
         return (
           <Form
-            errors={maybe(() => data.customerPasswordReset.errors, [])}
+            errors={maybe(() => data.requestPasswordReset.errors, [])}
             onSubmit={(event, { email }) => {
               event.preventDefault();
               passwordReset({ variables: { email } });
@@ -30,7 +30,7 @@ const PasswordResetForm: React.FC = () => (
               required
             />
             <div className="password-reset-form__button">
-              <Button type="submit" {...loading && { disabled: true }}>
+              <Button type="submit" {...(loading && { disabled: true })}>
                 {loading ? "Loading" : "Reset password"}
               </Button>
             </div>

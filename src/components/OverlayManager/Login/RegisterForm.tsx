@@ -14,7 +14,7 @@ const showSuccessNotification = (
   hide: () => void,
   alert: AlertManager
 ) => {
-  const successful = maybe(() => !data.customerRegister.errors.length);
+  const successful = maybe(() => !data.accountRegister.errors.length);
 
   if (successful) {
     hide();
@@ -36,7 +36,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
       {(registerCustomer, { loading, data }) => {
         return (
           <Form
-            errors={maybe(() => data.customerRegister.errors, [])}
+            errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
               registerCustomer({ variables: { email, password } });
@@ -57,7 +57,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
               required
             />
             <div className="login__content__button">
-              <Button type="submit" {...loading && { disabled: true }}>
+              <Button type="submit" {...(loading && { disabled: true })}>
                 {loading ? "Loading" : "Register"}
               </Button>
             </div>
