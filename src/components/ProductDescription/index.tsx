@@ -4,7 +4,7 @@ import * as React from "react";
 
 import {
   ProductDetails_product_variants,
-  ProductDetails_product_variants_pricing
+  ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
 
 import { SelectField, TextField } from "..";
@@ -13,8 +13,11 @@ import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
 
+import { ProductDetails_product_attributes } from "@temp/views/Product/types/ProductDetails";
+
 interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
+  selectedAttributes: ProductDetails_product_attributes[];
   name: string;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
@@ -173,13 +176,11 @@ class ProductDescription extends React.Component<
     const syncedQuantityWithCart = cartLine
       ? quantity + cartLine.quantity
       : quantity;
-    return (
-      quantity !== 0 && (variant && variantStock >= syncedQuantityWithCart)
-    );
+    return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
   };
 
   render() {
-    const { children, name } = this.props;
+    const { children, name, selectedAttributes } = this.props;
     const {
       pricing,
       primaryPicker,
@@ -240,6 +241,15 @@ class ProductDescription extends React.Component<
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
+          {selectedAttributes.map(
+            ({ attribute, values }) =>
+              values.length > 0 && (
+                <div className="product-description__selected-attributes">
+                  <span>{`${attribute.name}: `}</span>
+                  <span>{values.map(({ name }) => name).join(", ")}</span>
+                </div>
+              )
+          )}
         </div>
         <div className="product-description__about">
           <h4>Description</h4>

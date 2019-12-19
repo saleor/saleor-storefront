@@ -84,4 +84,13 @@
       }
     }
   }
+
+  &__selected-attributes {
+    font-size: $small-font-size;
+    margin: 0.2rem 0;
+
+    > span:first-child {
+      color: $gray-dark;
+    }
+  }
 }

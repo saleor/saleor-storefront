@@ -270,7 +270,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing | null;
-  category: FeaturedProducts_shop_homepageCollection_products_edges_node_category;
+  category: FeaturedProducts_shop_homepageCollection_products_edges_node_category | null;
 }
 
 export interface FeaturedProducts_shop_homepageCollection_products_edges {

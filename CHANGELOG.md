@@ -4,6 +4,8 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Add missing product attributes on product page - #536 by @orzechdev
+
 ## 0.7.0
 
 - Fix login and registration overlay not showing - #322 by @mateuszkula
