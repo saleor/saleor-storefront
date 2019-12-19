@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// <reference types="cypress" />
 import { userBuilder } from "../../support/generate";
 
 describe("User login, logout and registration", () => {
