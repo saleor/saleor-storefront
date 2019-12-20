@@ -2,7 +2,8 @@ import gql from "graphql-tag";
 
 import {
   basicProductFragment,
-  productVariantFragment
+  productVariantFragment,
+  selectedAttributeFragment,
 } from "../fragments/products";
 
 export const productPricingFragment = gql`
@@ -86,6 +87,7 @@ export const productListDetails = gql`
 
 export const productDetails = gql`
   ${basicProductFragment}
+  ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
   query ProductDetails($id: ID!) {
@@ -112,6 +114,9 @@ export const productDetails = gql`
       images {
         id
         url
+      }
+      attributes {
+        ...SelectedAttributeFields
       }
       variants {
         ...ProductVariantFields

@@ -2,7 +2,9 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { ProductVariantPicker } from "@components/organisms";
 import {
+  ProductDetails_product_attributes,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
@@ -12,8 +14,6 @@ import { maybe } from "../../core/utils";
 import { CartContext, CartLine } from "../CartProvider/context";
 import { SelectValue } from "../SelectField";
 import AddToCart from "./AddToCart";
-
-import { ProductDetails_product_attributes } from "@temp/views/Product/types/ProductDetails";
 
 interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
@@ -39,9 +39,7 @@ class ProductDescription extends React.Component<
 > {
   constructor(props: ProductDescriptionProps) {
     super(props);
-    const pickers =
-      maybe(() => this.props.productVariants[0].attributes[0].attribute) &&
-      this.createPickers();
+    const pickers = null;
     this.state = {
       ...pickers,
       pricing: this.props.productVariants[0].pricing,
@@ -51,120 +49,120 @@ class ProductDescription extends React.Component<
     };
   }
 
-  componentDidMount() {
-    this.getVariant();
-  }
+  // componentDidMount() {
+  //   this.getVariant();
+  // }
 
-  createPickers = () => {
-    const primaryPicker = {
-      label: this.props.productVariants[0].attributes[0].attribute.name,
-      selected: "",
-      values: [],
-    };
+  // createPickers = () => {
+  //   const primaryPicker = {
+  //     label: this.props.productVariants[0].attributes[0].attribute.name,
+  //     selected: "",
+  //     values: [],
+  //   };
 
-    let secondaryPicker;
+  //   let secondaryPicker;
 
-    if (this.props.productVariants[0].attributes.length > 1) {
-      secondaryPicker = {
-        label: this.props.productVariants[0].attributes
-          .slice(1)
-          .map(attribute => attribute.attribute.name)
-          .join(" / "),
-        selected: "",
-        values: [],
-      };
-    }
+  //   if (this.props.productVariants[0].attributes.length > 1) {
+  //     secondaryPicker = {
+  //       label: this.props.productVariants[0].attributes
+  //         .slice(1)
+  //         .map(attribute => attribute.attribute.name)
+  //         .join(" / "),
+  //       selected: "",
+  //       values: [],
+  //     };
+  //   }
 
-    const variants = {};
+  //   const variants = {};
 
-    this.props.productVariants.map(variant => {
-      if (!primaryPicker.values.includes(variant.attributes[0].value.value)) {
-        primaryPicker.values.push(variant.attributes[0].value.value);
-      }
+  //   this.props.productVariants.map(variant => {
+  //     if (!primaryPicker.values.includes(variant.attributes[0].value.value)) {
+  //       primaryPicker.values.push(variant.attributes[0].value.value);
+  //     }
 
-      if (secondaryPicker) {
-        const combinedValues = variant.attributes
-          .slice(1)
-          .map(attribute => attribute.value.value)
-          .join(" / ");
+  //     if (secondaryPicker) {
+  //       const combinedValues = variant.attributes
+  //         .slice(1)
+  //         .map(attribute => attribute.value.value)
+  //         .join(" / ");
 
-        if (!secondaryPicker.values.includes(combinedValues)) {
-          secondaryPicker.values.push(combinedValues);
-        }
+  //       if (!secondaryPicker.values.includes(combinedValues)) {
+  //         secondaryPicker.values.push(combinedValues);
+  //       }
 
-        if (variants[variant.attributes[0].value.value]) {
-          variants[variant.attributes[0].value.value] = [
-            ...variants[variant.attributes[0].value.value],
-            combinedValues,
-          ];
-        } else {
-          variants[variant.attributes[0].value.value] = [combinedValues];
-        }
-      }
+  //       if (variants[variant.attributes[0].value.value]) {
+  //         variants[variant.attributes[0].value.value] = [
+  //           ...variants[variant.attributes[0].value.value],
+  //           combinedValues,
+  //         ];
+  //       } else {
+  //         variants[variant.attributes[0].value.value] = [combinedValues];
+  //       }
+  //     }
 
-      primaryPicker.selected = primaryPicker.values[0];
-      if (secondaryPicker) {
-        secondaryPicker.selected = secondaryPicker.values[0];
-      }
-    });
+  //     primaryPicker.selected = primaryPicker.values[0];
+  //     if (secondaryPicker) {
+  //       secondaryPicker.selected = secondaryPicker.values[0];
+  //     }
+  //   });
 
-    return {
-      primaryPicker,
-      secondaryPicker,
-      variants,
-    };
-  };
+  //   return {
+  //     primaryPicker,
+  //     secondaryPicker,
+  //     variants,
+  //   };
+  // };
 
-  onPrimaryPickerChange = value => {
-    const primaryPicker = this.state.primaryPicker;
-    primaryPicker.selected = value;
-    this.setState({ primaryPicker });
-    if (this.state.secondaryPicker) {
-      if (
-        !this.state.variants[value].includes(
-          this.state.secondaryPicker.selected
-        )
-      ) {
-        this.onSecondaryPickerChange("");
-        this.setState({ variant: "" });
-      } else {
-        this.getVariant();
-      }
-    } else {
-      this.getVariant();
-    }
-  };
+  // onPrimaryPickerChange = value => {
+  //   const primaryPicker = this.state.primaryPicker;
+  //   primaryPicker.selected = value;
+  //   this.setState({ primaryPicker });
+  //   if (this.state.secondaryPicker) {
+  //     if (
+  //       !this.state.variants[value].includes(
+  //         this.state.secondaryPicker.selected
+  //       )
+  //     ) {
+  //       this.onSecondaryPickerChange("");
+  //       this.setState({ variant: "" });
+  //     } else {
+  //       this.getVariant();
+  //     }
+  //   } else {
+  //     this.getVariant();
+  //   }
+  // };
 
-  onSecondaryPickerChange = value => {
-    const secondaryPicker = this.state.secondaryPicker;
-    secondaryPicker.selected = value;
-    this.setState({ secondaryPicker });
-    this.getVariant();
-  };
+  // onSecondaryPickerChange = value => {
+  //   const secondaryPicker = this.state.secondaryPicker;
+  //   secondaryPicker.selected = value;
+  //   this.setState({ secondaryPicker });
+  //   this.getVariant();
+  // };
 
-  getVariant = () => {
-    const { productVariants } = this.props;
-    const { primaryPicker, secondaryPicker } = this.state;
-    let variant;
+  // getVariant = () => {
+  //   const { productVariants } = this.props;
+  //   const { primaryPicker, secondaryPicker } = this.state;
+  //   let variant;
 
-    if (!secondaryPicker && primaryPicker) {
-      variant = productVariants.find(
-        variant => variant.name === `${primaryPicker.selected}`
-      );
-    } else if (secondaryPicker && primaryPicker) {
-      variant = productVariants.find(
-        variant =>
-          variant.name ===
-          `${primaryPicker.selected} / ${secondaryPicker.selected}`
-      );
-    } else {
-      variant = this.props.productVariants[0];
-    }
+  //   if (!secondaryPicker && primaryPicker) {
+  //     variant = productVariants.find(
+  //       variant => variant.name === `${primaryPicker.selected}`
+  //     );
+  //   } else if (secondaryPicker && primaryPicker) {
+  //     variant = productVariants.find(
+  //       variant =>
+  //         variant.name ===
+  //         `${primaryPicker.selected} / ${secondaryPicker.selected}`
+  //     );
+  //   } else {
+  //     variant = this.props.productVariants[0];
+  //   }
 
-    const variantStock = variant.stockQuantity;
-    const pricing = variant.pricing;
-    this.setState({ variant: variant.id, variantStock, pricing });
-  };
+  //   const variantStock = variant.stockQuantity;
+  //   const pricing = variant.pricing;
+  //   this.setState({ variant: variant.id, variantStock, pricing });
+  // };
 
   handleSubmit = () => {
     this.props.addToCart(this.state.variant, this.state.quantity);
@@ -183,10 +181,10 @@ class ProductDescription extends React.Component<
     const { children, name, selectedAttributes } = this.props;
     const {
       pricing,
-      primaryPicker,
+      // primaryPicker,
       quantity,
-      secondaryPicker,
-      variants,
+      // secondaryPicker,
+      // variants,
     } = this.state;
 
     return (
@@ -194,7 +192,7 @@ class ProductDescription extends React.Component<
         <h3>{name}</h3>
         <h4>{pricing.price.gross.localized}</h4>
         <div className="product-description__variant-picker">
-          {primaryPicker && (
+          {/* {primaryPicker && (
             <SelectField
               onChange={(e: SelectValue) => this.onPrimaryPickerChange(e.value)}
               label={primaryPicker.label}
@@ -230,7 +228,8 @@ class ProductDescription extends React.Component<
                 value,
               }))}
             />
-          )}
+          )} */}
+          <ProductVariantPicker productVariants={this.props.productVariants} />
           <TextField
             type="number"
             label="Quantity"

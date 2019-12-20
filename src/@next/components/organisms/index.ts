@@ -9,3 +9,4 @@ export * from "./SideNavbar";
 export * from "./SizeOverlay";
 export * from "./AddressFormModal";
 export * from "./FilterSidebar";
+export * from "./ProductVariantPicker";
