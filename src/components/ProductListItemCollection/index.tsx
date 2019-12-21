@@ -21,7 +21,7 @@ export interface ProductCollections {
    */
   id: string;
   name: string;
-  description: string;
+  description: string | null;
 }
 
 export interface Product extends BasicProductFields {
@@ -57,7 +57,7 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
         <ThumbnailCollection source={product} />
       </div>
       <h3 className="product-list-item__title">{collections[0].name}</h3>
-      <p className="product-list-item__category">{collections[0].id}</p>
+      <p className="product-list-item__category">{collections[0].description}</p>
     </div>
   );
 };

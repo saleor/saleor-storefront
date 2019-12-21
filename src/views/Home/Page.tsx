@@ -5,7 +5,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsCategories } from "../../components";
-import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
+import { generateCollectionUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
@@ -56,9 +56,9 @@ const Page: React.FC<{
           <Loader />
         ) : (
           <Link
-            to={generateCategoryUrl(
-              categories.edges[0].node.id,
-              categories.edges[0].node.name
+            to={generateCollectionUrl(
+              'Q29sbGVjdGlvbjoyNg==',
+              'Paola Romano'
             )}
           >
             <Button>Explore</Button>
