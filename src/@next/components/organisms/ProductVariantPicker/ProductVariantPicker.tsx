@@ -11,7 +11,7 @@ import {
   IProps,
 } from "./types";
 
-const useProductVariableAttributes = (
+export const useProductVariableAttributes = (
   productVariants: ProductDetails_product_variants[]
 ): IProductVariableAttributes => {
   const [productVariableAttributes, setProductVariableAttributes] = useState<
@@ -51,38 +51,6 @@ const useProductVariableAttributes = (
   }, [productVariants]);
 
   return productVariableAttributes;
-};
-
-const usePossibleProductVariants = (
-  productVariants: ProductDetails_product_variants[],
-  productVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue
-): ProductDetails_product_variants[] => {
-  const [productPossibleVariants, setProductPossibleVariants] = useState<
-    ProductDetails_product_variants[]
-  >([]);
-
-  useEffect(() => {
-    const possibleVariants = productVariants.filter(productVariant => {
-      return Object.keys(productVariableAttributesSelectedValue).every(
-        selectedValueId => {
-          if (!productVariableAttributesSelectedValue[selectedValueId]) {
-            return true;
-          }
-          return productVariant.attributes.some(productVariantAttribute => {
-            return (
-              productVariantAttribute.attribute.id === selectedValueId &&
-              productVariantAttribute.value ===
-                productVariableAttributesSelectedValue[selectedValueId]
-            );
-          });
-        }
-      );
-    });
-
-    setProductPossibleVariants(possibleVariants);
-  }, [productVariants, productVariableAttributesSelectedValue]);
-
-  return productPossibleVariants;
 };
 
 const useProductVariableAttributesSelectedValue = (
@@ -158,13 +126,6 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     productVariableAttributesSelectedValue,
     selectProductVariableAttributesValue,
   ] = useProductVariableAttributesSelectedValue(productVariableAttributes);
-  const productPossibleVariants = usePossibleProductVariants(
-    productVariants,
-    productVariableAttributesSelectedValue
-  );
-  const productPossibleVariableAttributes = useProductVariableAttributes(
-    productPossibleVariants
-  );
 
   return (
     <S.Wrapper>
@@ -172,14 +133,13 @@ export const ProductVariantPicker: React.FC<IProps> = ({
         productVariableAttributeId => (
           <ProductAttributeInputSelect
             key={productVariableAttributeId}
+            productVariants={productVariants}
+            productVariableAttributeId={productVariableAttributeId}
             productVariableAttribute={
               productVariableAttributes[productVariableAttributeId]
             }
-            productPossibleVariableAttribute={
-              productPossibleVariableAttributes[productVariableAttributeId]
-            }
             productVariableAttributesSelectedValue={
-              productVariableAttributesSelectedValue[productVariableAttributeId]
+              productVariableAttributesSelectedValue
             }
             onChange={optionValue =>
               selectProductVariableAttributesValue(

@@ -1,31 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { InputSelect } from "@components/molecules";
-import { ProductDetails_product_variants_attributes_value } from "@sdk/queries/types/ProductDetails";
+import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
+import { useProductVariableAttributes } from "./ProductVariantPicker";
 import {
   IProductVariableAttribute,
   IProductVariableAttributesOptionValue,
+  IProductVariableAttributesSelectedValue,
 } from "./types";
 
+const usePossibleProductVariants = (
+  productVariableAttributeId: string,
+  productVariants: ProductDetails_product_variants[],
+  productVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue
+): ProductDetails_product_variants[] => {
+  const [productPossibleVariants, setProductPossibleVariants] = useState<
+    ProductDetails_product_variants[]
+  >([]);
+
+  useEffect(() => {
+    const possibleVariants = productVariants.filter(productVariant => {
+      return Object.keys(productVariableAttributesSelectedValue).every(
+        selectedValueId => {
+          if (selectedValueId === productVariableAttributeId) {
+            return true;
+          }
+          if (!productVariableAttributesSelectedValue[selectedValueId]) {
+            return true;
+          }
+          return productVariant.attributes.some(productVariantAttribute => {
+            return (
+              productVariantAttribute.attribute.id === selectedValueId &&
+              productVariantAttribute.value ===
+                productVariableAttributesSelectedValue[selectedValueId]
+            );
+          });
+        }
+      );
+    });
+
+    setProductPossibleVariants(possibleVariants);
+  }, [
+    productVariableAttributeId,
+    productVariants,
+    productVariableAttributesSelectedValue,
+  ]);
+
+  return productPossibleVariants;
+};
+
 export const ProductAttributeInputSelect: React.FC<{
+  productVariableAttributeId: string;
+  productVariants: ProductDetails_product_variants[];
   productVariableAttribute: IProductVariableAttribute;
-  productPossibleVariableAttribute: IProductVariableAttribute;
-  productVariableAttributesSelectedValue: ProductDetails_product_variants_attributes_value | null;
+  productVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue;
   onChange: (value: any, name?: any) => void;
 }> = ({
+  productVariableAttributeId,
+  productVariants,
   productVariableAttribute,
-  productPossibleVariableAttribute,
   productVariableAttributesSelectedValue,
   onChange,
 }) => {
+  const productPossibleVariants = usePossibleProductVariants(
+    productVariableAttributeId,
+    productVariants,
+    productVariableAttributesSelectedValue
+  );
+  const productPossibleVariableAttributes = useProductVariableAttributes(
+    productPossibleVariants
+  );
+
   const getProductVariableAttributesSelectedValue = () => {
-    if (productVariableAttributesSelectedValue) {
+    if (
+      productVariableAttributesSelectedValue &&
+      productVariableAttributesSelectedValue[productVariableAttributeId]
+    ) {
       return {
         disabled: false,
-        id: productVariableAttributesSelectedValue.id,
-        label: productVariableAttributesSelectedValue.name!,
-        value: productVariableAttributesSelectedValue.value!,
+        id: productVariableAttributesSelectedValue[productVariableAttributeId]!
+          .id,
+        label: productVariableAttributesSelectedValue[
+          productVariableAttributeId
+        ]!.name!,
+        value: productVariableAttributesSelectedValue[
+          productVariableAttributeId
+        ]!.value!,
       };
     } else {
       return null;
@@ -37,8 +98,10 @@ export const ProductAttributeInputSelect: React.FC<{
       .filter(value => value)
       .map(value => {
         const isOptionDisabled =
-          productPossibleVariableAttribute &&
-          !productPossibleVariableAttribute.values.includes(value);
+          productPossibleVariableAttributes[productVariableAttributeId] &&
+          !productPossibleVariableAttributes[
+            productVariableAttributeId
+          ].values.includes(value);
 
         return {
           disabled: isOptionDisabled,
