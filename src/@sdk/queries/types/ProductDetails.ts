@@ -550,6 +550,10 @@ export interface ProductDetails_product_images {
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
@@ -557,6 +561,10 @@ export interface ProductDetails_product_attributes_attribute {
 
 export interface ProductDetails_product_attributes_values {
   __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   /**
    * Name of a value displayed in the interface.
    */

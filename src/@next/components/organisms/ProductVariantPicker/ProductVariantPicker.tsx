@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { InputSelect, TextField } from "@components/molecules";
+import { TextField } from "@components/molecules";
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
 import { ProductAttributeInputSelect } from "./ProductAttributeInputSelect";
 import * as S from "./styles";
 import {
   IProductVariableAttributes,
-  IProductVariableAttributesOptionValue,
   IProductVariableAttributesSelectedValue,
   IProps,
 } from "./types";
