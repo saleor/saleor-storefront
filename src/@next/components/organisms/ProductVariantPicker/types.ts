@@ -1,8 +1,8 @@
 import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_attributes_attribute,
+  ProductDetails_product_variants_attributes_value,
 } from "@sdk/queries/types/ProductDetails";
-import { ProductDetails_product_variants_attributes_value } from "@temp/core/types/saleor";
 
 export interface IProductVariableAttribute {
   attribute: ProductDetails_product_variants_attributes_attribute;

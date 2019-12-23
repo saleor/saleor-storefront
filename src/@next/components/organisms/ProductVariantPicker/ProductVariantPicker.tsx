@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { InputSelect, TextField } from "@components/molecules";
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
+import { ProductAttributeInputSelect } from "./ProductAttributeInputSelect";
 import * as S from "./styles";
 import {
   IProductVariableAttributes,
@@ -68,7 +69,7 @@ const usePossibleProductVariants = (
           if (!productVariableAttributesSelectedValue[selectedValueId]) {
             return true;
           }
-          productVariant.attributes.some(productVariantAttribute => {
+          return productVariant.attributes.some(productVariantAttribute => {
             return (
               productVariantAttribute.attribute.id === selectedValueId &&
               productVariantAttribute.value ===
@@ -108,20 +109,10 @@ const useProductVariableAttributesSelectedValue = (
     );
   }, []);
 
-  useEffect(() => {
-    // tslint:disable-next-line:no-console
-    console.log(productVariableAttributesSelectedValue);
-  }, [productVariableAttributesSelectedValue]);
-
   const selectProductVariableAttributesValue = (
     selectedProductVariableAttributeId: string,
     selectedProductVariableAttributeValue: string
   ) => {
-    // tslint:disable-next-line:no-console
-    console.log(
-      selectedProductVariableAttributeId,
-      selectedProductVariableAttributeValue
-    );
     setProductVariableAttributesSelectedValue(
       prevVariableAttributesSelectedValue => {
         const newVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue = {};
@@ -176,91 +167,27 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     productPossibleVariants
   );
 
-  const getProductVariableAttributeOptionValues = (
-    productVariableAttributeId: string
-  ): IProductVariableAttributesOptionValue[] => {
-    const productVariableAttribute =
-      productVariableAttributes[productVariableAttributeId];
-    const productPossibleVariableAttribute =
-      productPossibleVariableAttributes[productVariableAttributeId];
-
-    const productVariableAttributeValues: IProductVariableAttributesOptionValue[] = productVariableAttribute.values
-      .filter(value => value)
-      .map(value => {
-        const isOptionDisabled =
-          productPossibleVariableAttribute &&
-          !productPossibleVariableAttribute.values.includes(value);
-
-        return {
-          disabled: isOptionDisabled,
-          id: value.id,
-          label: value.name!,
-          value: value.value!,
-        };
-      });
-
-    return productVariableAttributeValues;
-  };
-
-  const getProductVariableAttributesSelectedValue = (
-    productVariableAttributeId: string
-  ) => {
-    if (
-      productVariableAttributesSelectedValue &&
-      productVariableAttributesSelectedValue[productVariableAttributeId]
-    ) {
-      const optionValue =
-        productVariableAttributesSelectedValue[productVariableAttributeId];
-
-      if (optionValue) {
-        return {
-          disabled: false,
-          id: optionValue.id,
-          label: optionValue.name!,
-          value: optionValue.value!,
-        };
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  };
-
   return (
     <S.Wrapper>
       {Object.keys(productVariableAttributes).map(
         productVariableAttributeId => (
-          <InputSelect
-            key={
-              productVariableAttributes[productVariableAttributeId].attribute.id
+          <ProductAttributeInputSelect
+            key={productVariableAttributeId}
+            productVariableAttribute={
+              productVariableAttributes[productVariableAttributeId]
             }
-            name={
-              productVariableAttributes[productVariableAttributeId].attribute.id
+            productPossibleVariableAttribute={
+              productPossibleVariableAttributes[productVariableAttributeId]
             }
-            label={
-              productVariableAttributes[productVariableAttributeId].attribute
-                .name
-                ? productVariableAttributes[productVariableAttributeId]
-                    .attribute.name!
-                : ""
+            productVariableAttributesSelectedValue={
+              productVariableAttributesSelectedValue[productVariableAttributeId]
             }
-            value={getProductVariableAttributesSelectedValue(
-              productVariableAttributeId
-            )}
-            options={getProductVariableAttributeOptionValues(
-              productVariableAttributeId
-            )}
-            // isOptionDisabled={(
-            //   optionValue: IProductVariableAttributesOptionValue
-            // ) => optionValue.disabled}
             onChange={optionValue =>
               selectProductVariableAttributesValue(
                 productVariableAttributeId,
                 optionValue.value
               )
             }
-            autoComplete="given-name"
           />
         )
       )}

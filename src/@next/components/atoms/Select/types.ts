@@ -2,6 +2,7 @@ export interface IProps {
   value: any;
   name?: string;
   options?: any[];
+  isOptionDisabled?: (option: any) => boolean;
   autoComplete?: string;
   defaultValue?: any;
   optionLabelKey?: string;

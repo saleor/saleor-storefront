@@ -38,6 +38,7 @@ export const Select: React.FC<IProps> = ({
   onChange,
   name,
   options,
+  isOptionDisabled,
   customComponents,
   defaultValue,
   menuIsOpen,
@@ -66,6 +67,7 @@ export const Select: React.FC<IProps> = ({
         openMenuOnFocus={true}
         styles={{ ...optionStyle(customTheme), ...customStyles }}
         options={options}
+        isOptionDisabled={isOptionDisabled}
         placeholder={""}
         components={customComponents}
       ></ReactSelect>
