@@ -59,7 +59,7 @@ const useProductVariableAttributesSelectedValue = (
   IProductVariableAttributesSelectedValue,
   (
     selectedProductVariableAttributeId: string,
-    selectedProductVariableAttributeValue: string
+    selectedProductVariableAttributeValue: string | null
   ) => void
 ] => {
   const [
@@ -78,7 +78,7 @@ const useProductVariableAttributesSelectedValue = (
 
   const selectProductVariableAttributesValue = (
     selectedProductVariableAttributeId: string,
-    selectedProductVariableAttributeValue: string
+    selectedProductVariableAttributeValue: string | null
   ) => {
     setProductVariableAttributesSelectedValue(
       prevVariableAttributesSelectedValue => {
@@ -89,12 +89,16 @@ const useProductVariableAttributesSelectedValue = (
             if (
               productVariableAttributeId === selectedProductVariableAttributeId
             ) {
-              const selectedValue =
-                productVariableAttributes[
-                  productVariableAttributeId
-                ].values.find(
-                  value => value.value === selectedProductVariableAttributeValue
-                ) || null;
+              let selectedValue = null;
+              if (selectedProductVariableAttributeValue) {
+                selectedValue =
+                  productVariableAttributes[
+                    productVariableAttributeId
+                  ].values.find(
+                    value =>
+                      value.value === selectedProductVariableAttributeValue
+                  ) || null;
+              }
               newVariableAttributesSelectedValue[
                 productVariableAttributeId
               ] = selectedValue;
@@ -144,7 +148,13 @@ export const ProductVariantPicker: React.FC<IProps> = ({
             onChange={optionValue =>
               selectProductVariableAttributesValue(
                 productVariableAttributeId,
-                optionValue.value
+                optionValue && optionValue.value
+              )
+            }
+            clearValue={() =>
+              selectProductVariableAttributesValue(
+                productVariableAttributeId,
+                null
               )
             }
           />

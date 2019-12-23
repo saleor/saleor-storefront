@@ -12,6 +12,7 @@ const optionStyle = (customTheme: any) => ({
       isSelected: any;
       isFocused: boolean;
       customTheme: any;
+      isDisabled: boolean;
     }
   ) => {
     return {
@@ -22,7 +23,9 @@ const optionStyle = (customTheme: any) => ({
         : state.isFocused
         ? customTheme.colors.primaryTransparent
         : "white",
-      color: customTheme.colors.dark,
+      color: state.isDisabled
+        ? customTheme.colors.lightFont
+        : customTheme.colors.dark,
       display: "flex",
       fontWeight: state.isSelected && customTheme.typography.boldFontWeight,
       margin: "0 auto",
@@ -36,6 +39,8 @@ const optionStyle = (customTheme: any) => ({
 export const Select: React.FC<IProps> = ({
   value,
   onChange,
+  isClearable,
+  clearValue,
   name,
   options,
   isOptionDisabled,
@@ -59,6 +64,7 @@ export const Select: React.FC<IProps> = ({
         defaultValue={defaultValue}
         onChange={handleChange}
         value={value}
+        clearValue={clearValue}
         menuIsOpen={menuIsOpen}
         menuShouldScrollIntoView={true}
         tabSelectsValue={false}
@@ -70,6 +76,7 @@ export const Select: React.FC<IProps> = ({
         isOptionDisabled={isOptionDisabled}
         placeholder={""}
         components={customComponents}
+        isClearable={isClearable}
       ></ReactSelect>
     </S.Wrapper>
   );

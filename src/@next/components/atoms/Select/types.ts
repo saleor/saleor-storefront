@@ -10,6 +10,8 @@ export interface IProps {
   customStyles?: any;
   optionValueKey?: string;
   onChange: (value: any, name?: any) => void;
+  isClearable?: boolean;
+  clearValue?: () => void;
   customComponents?: {
     Control: (props?: any) => JSX.Element | null;
     IndicatorSeparator: (props?: any) => JSX.Element | null;

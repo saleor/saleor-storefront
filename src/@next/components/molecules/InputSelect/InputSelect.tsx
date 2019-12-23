@@ -38,6 +38,7 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
       };
     },
   };
+
   const customComponents = {
     Control: (props: any) => {
       const customTheme = React.useContext(ThemeContext);
@@ -56,13 +57,26 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
       );
     },
     IndicatorSeparator: () => null,
-    IndicatorsContainer: ({ selectProps }: any) => {
+    IndicatorsContainer: ({ selectProps, hasValue, clearValue }: any) => {
+      const showClearIndicator =
+        selectProps.isClearable ||
+        (selectProps.isMulti && selectProps.isClearable === undefined);
+
       return (
-        // Boolean to string conversion done due to
-        // https://github.com/styled-components/styled-components/issues/1198
-        <S.Indicator rotate={String(selectProps.menuIsOpen)}>
-          <Icon name="select_arrow" size={10} />
-        </S.Indicator>
+        <>
+          {showClearIndicator && hasValue && (
+            <S.ClearIndicator onClick={clearValue}>
+              <Icon name="x" size={10} />
+            </S.ClearIndicator>
+          )}
+          {/* 
+            Boolean to string conversion done due to 
+            https://github.com/styled-components/styled-components/issues/1198 
+          */}
+          <S.Indicator rotate={String(selectProps.menuIsOpen)}>
+            <Icon name="select_arrow" size={10} />
+          </S.Indicator>
+        </>
       );
     },
     Option: (props: any) => {

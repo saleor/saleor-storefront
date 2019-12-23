@@ -9,3 +9,8 @@ export const Indicator = styled.div<{ rotate: string }>`
   transform: ${props =>
     props.rotate === "true" ? "rotate(180deg)" : "rotate(0deg)"};
 `;
+
+export const ClearIndicator = styled.div`
+  position: absolute;
+  right: 2rem;
+`;

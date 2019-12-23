@@ -56,12 +56,14 @@ export const ProductAttributeInputSelect: React.FC<{
   productVariableAttribute: IProductVariableAttribute;
   productVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue;
   onChange: (value: any, name?: any) => void;
+  clearValue: () => void;
 }> = ({
   productVariableAttributeId,
   productVariants,
   productVariableAttribute,
   productVariableAttributesSelectedValue,
   onChange,
+  clearValue,
 }) => {
   const productPossibleVariants = usePossibleProductVariants(
     productVariableAttributeId,
@@ -132,6 +134,8 @@ export const ProductAttributeInputSelect: React.FC<{
       options={getProductVariableAttributeOptionValues()}
       isOptionDisabled={isOptionDisabled}
       onChange={onChange}
+      isClearable={true}
+      clearValue={clearValue}
     />
   );
 };
