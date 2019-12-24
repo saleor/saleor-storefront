@@ -1,135 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
+import { useProductVariantsAttributes } from "../../../hooks/useProductVariantsAttributes";
 
-import { ProductAttributeInputSelect } from "./ProductAttributeInputSelect";
+import { useProductVariantsAttributesValuesSelection } from "../../../hooks/useProductVariantsAttributesValuesSelection";
+import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";
-import {
-  IProductVariableAttributes,
-  IProductVariableAttributesSelectedValue,
-  IProps,
-} from "./types";
-
-export const useProductVariableAttributes = (
-  productVariants: ProductDetails_product_variants[]
-): IProductVariableAttributes => {
-  const [productVariableAttributes, setProductVariableAttributes] = useState<
-    IProductVariableAttributes
-  >({});
-
-  useEffect(() => {
-    const varibleAttributes: IProductVariableAttributes = {};
-
-    productVariants.forEach(productVariant => {
-      productVariant.attributes.forEach(productVariantAttribute => {
-        const productVariantAttributeId = productVariantAttribute.attribute.id;
-        const varibleAttributeExists = varibleAttributes.hasOwnProperty(
-          productVariantAttributeId
-        );
-
-        if (varibleAttributeExists) {
-          const varibleAttributeValueExists = varibleAttributes[
-            productVariantAttributeId
-          ].values.includes(productVariantAttribute.value!);
-
-          if (!varibleAttributeValueExists) {
-            varibleAttributes[productVariantAttributeId].values.push(
-              productVariantAttribute.value!
-            );
-          }
-        } else {
-          varibleAttributes[productVariantAttributeId] = {
-            attribute: productVariantAttribute.attribute,
-            values: [productVariantAttribute.value!],
-          };
-        }
-      });
-    });
-
-    setProductVariableAttributes(varibleAttributes);
-  }, [productVariants]);
-
-  return productVariableAttributes;
-};
-
-const useProductVariableAttributesSelectedValue = (
-  productVariableAttributes: IProductVariableAttributes
-): [
-  IProductVariableAttributesSelectedValue,
-  (
-    selectedProductVariableAttributeId: string,
-    selectedProductVariableAttributeValue: string | null
-  ) => void
-] => {
-  const [
-    productVariableAttributesSelectedValue,
-    setProductVariableAttributesSelectedValue,
-  ] = useState<IProductVariableAttributesSelectedValue>({});
-
-  useEffect(() => {
-    const variableAttributesSelectedValue: IProductVariableAttributesSelectedValue = {};
-    Object.keys(productVariableAttributes).forEach(
-      productVariableAttributeId => {
-        variableAttributesSelectedValue[productVariableAttributeId] = null;
-      }
-    );
-  }, []);
-
-  const selectProductVariableAttributesValue = (
-    selectedProductVariableAttributeId: string,
-    selectedProductVariableAttributeValue: string | null
-  ) => {
-    setProductVariableAttributesSelectedValue(
-      prevVariableAttributesSelectedValue => {
-        const newVariableAttributesSelectedValue: IProductVariableAttributesSelectedValue = {};
-
-        Object.keys(productVariableAttributes).forEach(
-          productVariableAttributeId => {
-            if (
-              productVariableAttributeId === selectedProductVariableAttributeId
-            ) {
-              let selectedValue = null;
-              if (selectedProductVariableAttributeValue) {
-                selectedValue =
-                  productVariableAttributes[
-                    productVariableAttributeId
-                  ].values.find(
-                    value =>
-                      value.value === selectedProductVariableAttributeValue
-                  ) || null;
-              }
-              newVariableAttributesSelectedValue[
-                productVariableAttributeId
-              ] = selectedValue;
-            } else {
-              newVariableAttributesSelectedValue[productVariableAttributeId] =
-                prevVariableAttributesSelectedValue[productVariableAttributeId];
-            }
-          }
-        );
-
-        return newVariableAttributesSelectedValue;
-      }
-    );
-  };
-
-  return [
-    productVariableAttributesSelectedValue,
-    selectProductVariableAttributesValue,
-  ];
-};
+import { IProps } from "./types";
 
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
   onChange,
 }: IProps) => {
-  const productVariableAttributes = useProductVariableAttributes(
+  const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
   );
   const [
-    productVariableAttributesSelectedValue,
-    selectProductVariableAttributesValue,
-  ] = useProductVariableAttributesSelectedValue(productVariableAttributes);
+    productVariantsAttributesSelectedValues,
+    selectProductVariantsAttributesValue,
+  ] = useProductVariantsAttributesValuesSelection(productVariantsAttributes);
 
   useEffect(() => {
     const selectedVariant = productVariants.find(productVariant => {
@@ -138,9 +26,9 @@ export const ProductVariantPicker: React.FC<IProps> = ({
 
         if (
           productVariantAttribute.value &&
-          productVariableAttributesSelectedValue[productVariantAttributeId] &&
+          productVariantsAttributesSelectedValues[productVariantAttributeId] &&
           productVariantAttribute.value.id ===
-            productVariableAttributesSelectedValue[productVariantAttributeId]!
+            productVariantsAttributesSelectedValues[productVariantAttributeId]!
               .id
         ) {
           return true;
@@ -151,33 +39,33 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     });
 
     if (onChange) {
-      onChange(productVariableAttributesSelectedValue, selectedVariant);
+      onChange(productVariantsAttributesSelectedValues, selectedVariant);
     }
-  }, [productVariableAttributesSelectedValue]);
+  }, [productVariantsAttributesSelectedValues]);
 
   return (
     <S.Wrapper>
-      {Object.keys(productVariableAttributes).map(
-        productVariableAttributeId => (
-          <ProductAttributeInputSelect
-            key={productVariableAttributeId}
+      {Object.keys(productVariantsAttributes).map(
+        productVariantsAttributeId => (
+          <ProductVariantAttributeSelect
+            key={productVariantsAttributeId}
             productVariants={productVariants}
-            productVariableAttributeId={productVariableAttributeId}
-            productVariableAttribute={
-              productVariableAttributes[productVariableAttributeId]
+            productVariantsAttributeId={productVariantsAttributeId}
+            productVariantsAttribute={
+              productVariantsAttributes[productVariantsAttributeId]
             }
-            productVariableAttributesSelectedValue={
-              productVariableAttributesSelectedValue
+            productVariantsAttributesSelectedValues={
+              productVariantsAttributesSelectedValues
             }
-            onChange={optionValue =>
-              selectProductVariableAttributesValue(
-                productVariableAttributeId,
+            onChangeSelection={optionValue =>
+              selectProductVariantsAttributesValue(
+                productVariantsAttributeId,
                 optionValue && optionValue.value
               )
             }
-            clearValue={() =>
-              selectProductVariableAttributesValue(
-                productVariableAttributeId,
+            onClearSelection={() =>
+              selectProductVariantsAttributesValue(
+                productVariantsAttributeId,
                 null
               )
             }

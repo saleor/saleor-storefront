@@ -4,12 +4,12 @@ import * as React from "react";
 
 import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
-import { IProductVariableAttributesSelectedValue } from "@components/organisms/ProductVariantPicker/types";
 import {
   ProductDetails_product_attributes,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
+import { IProductVariantsAttributesSelectedValues } from "@temp/@next/types/IProductVariantsAttributes";
 
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
@@ -44,7 +44,7 @@ class ProductDescription extends React.Component<
   }
 
   onVariantPickerChange = (
-    _selectedAttributesValues?: IProductVariableAttributesSelectedValue,
+    _selectedAttributesValues?: IProductVariantsAttributesSelectedValues,
     selectedVariant?: ProductDetails_product_variants
   ) => {
     if (selectedVariant) {
