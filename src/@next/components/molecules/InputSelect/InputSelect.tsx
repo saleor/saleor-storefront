@@ -21,6 +21,7 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
         outlineStyle: "solid",
         outlineWidth: "1px",
       },
+      background: "none",
       border: state.menuIsOpen
         ? `1px solid ${secondaryColor}`
         : `1px solid ${borderColor}`,
@@ -47,7 +48,7 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
           <components.Control {...{ customTheme, ...props }} />
           {
             <InputLabel
-              labelBackground="#FFF"
+              labelBackground={customTheme.colors.light}
               active={props.selectProps.menuIsOpen || props.hasValue}
             >
               {label}
@@ -64,18 +65,17 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
 
       return (
         <>
-          {showClearIndicator && hasValue && (
+          {showClearIndicator && hasValue ? (
             <S.ClearIndicator onClick={clearValue}>
-              <Icon name="x" size={10} />
+              <Icon name="select_x" size={10} />
             </S.ClearIndicator>
+          ) : (
+            // Boolean to string conversion done due to
+            // https://github.com/styled-components/styled-components/issues/1198
+            <S.Indicator rotate={String(selectProps.menuIsOpen)}>
+              <Icon name="select_arrow" size={10} />
+            </S.Indicator>
           )}
-          {/* 
-            Boolean to string conversion done due to 
-            https://github.com/styled-components/styled-components/issues/1198 
-          */}
-          <S.Indicator rotate={String(selectProps.menuIsOpen)}>
-            <Icon name="select_arrow" size={10} />
-          </S.Indicator>
         </>
       );
     },

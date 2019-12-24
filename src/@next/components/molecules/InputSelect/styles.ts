@@ -12,5 +12,5 @@ export const Indicator = styled.div<{ rotate: string }>`
 
 export const ClearIndicator = styled.div`
   position: absolute;
-  right: 2rem;
+  right: 1rem;
 `;

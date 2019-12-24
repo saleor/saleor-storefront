@@ -2,15 +2,15 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
+import { IProductVariableAttributesSelectedValue } from "@components/organisms/ProductVariantPicker/types";
 import {
   ProductDetails_product_attributes,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
 
-import { IProductVariableAttributesSelectedValue } from "@components/organisms/ProductVariantPicker/types";
-import { TextField } from "..";
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
 
@@ -79,21 +79,7 @@ class ProductDescription extends React.Component<
       <div className="product-description">
         <h3>{name}</h3>
         <h4>{pricing.price.gross.localized}</h4>
-        <div className="product-description__variant-picker">
-          <ProductVariantPicker
-            productVariants={this.props.productVariants}
-            onChange={this.onVariantPickerChange}
-          />
-          <TextField
-            type="number"
-            label="Quantity"
-            min="1"
-            value={quantity || ""}
-            styleType="grey"
-            onChange={e =>
-              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
-            }
-          />
+        <div>
           {selectedAttributes.map(
             ({ attribute, values }) =>
               values.length > 0 && (
@@ -106,6 +92,23 @@ class ProductDescription extends React.Component<
                 </div>
               )
           )}
+        </div>
+        <div className="product-description__variant-picker">
+          <ProductVariantPicker
+            productVariants={this.props.productVariants}
+            onChange={this.onVariantPickerChange}
+          />
+        </div>
+        <div className="product-description__quantity-input">
+          <TextField
+            type="number"
+            label="Quantity"
+            min="1"
+            value={quantity || ""}
+            onChange={e =>
+              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
+            }
+          />
         </div>
         <div className="product-description__about">
           <h4>Description</h4>
