@@ -72,9 +72,9 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
           ) : (
             // Boolean to string conversion done due to
             // https://github.com/styled-components/styled-components/issues/1198
-            <S.Indicator rotate={String(selectProps.menuIsOpen)}>
+            <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
               <Icon name="select_arrow" size={10} />
-            </S.Indicator>
+            </S.DropdownIndicator>
           )}
         </>
       );
