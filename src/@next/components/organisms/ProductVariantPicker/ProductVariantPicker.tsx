@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import { TextField } from "@components/molecules";
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
 import { ProductAttributeInputSelect } from "./ProductAttributeInputSelect";
@@ -122,6 +121,7 @@ const useProductVariableAttributesSelectedValue = (
 
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
+  onChange,
 }: IProps) => {
   const productVariableAttributes = useProductVariableAttributes(
     productVariants
@@ -130,6 +130,30 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     productVariableAttributesSelectedValue,
     selectProductVariableAttributesValue,
   ] = useProductVariableAttributesSelectedValue(productVariableAttributes);
+
+  useEffect(() => {
+    const selectedVariant = productVariants.find(productVariant => {
+      return productVariant.attributes.every(productVariantAttribute => {
+        const productVariantAttributeId = productVariantAttribute.attribute.id;
+
+        if (
+          productVariantAttribute.value &&
+          productVariableAttributesSelectedValue[productVariantAttributeId] &&
+          productVariantAttribute.value.id ===
+            productVariableAttributesSelectedValue[productVariantAttributeId]!
+              .id
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    });
+
+    if (onChange) {
+      onChange(productVariableAttributesSelectedValue, selectedVariant);
+    }
+  }, [productVariableAttributesSelectedValue]);
 
   return (
     <S.Wrapper>
@@ -160,13 +184,6 @@ export const ProductVariantPicker: React.FC<IProps> = ({
           />
         )
       )}
-      <TextField
-        name="quantity"
-        label="Quantity"
-        autoComplete="given-name"
-        // {...basicInputProps()}
-      />
-      {/* --- here --- */}
     </S.Wrapper>
   );
 };

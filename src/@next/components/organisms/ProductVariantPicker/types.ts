@@ -26,4 +26,8 @@ export interface IProductVariableAttributesOptionValue {
 
 export interface IProps {
   productVariants?: ProductDetails_product_variants[];
+  onChange?: (
+    selectedAttributesValues?: IProductVariableAttributesSelectedValue,
+    selectedVariant?: ProductDetails_product_variants | undefined
+  ) => void;
 }
