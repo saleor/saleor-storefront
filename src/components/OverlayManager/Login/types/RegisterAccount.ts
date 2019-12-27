@@ -29,7 +29,7 @@ export interface RegisterAccount_accountRegister {
 
 export interface RegisterAccount {
   /**
-   * DEPRECATED: Will be removed in Saleor 2.10, use AccountRegister instead. Register a new user.
+   * Register a new user.
    */
   accountRegister: RegisterAccount_accountRegister | null;
 }
