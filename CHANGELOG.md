@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add missing product attributes on product page - #536 by @orzechdev
+- Change register mutation to accountRegister - #549 by @tomaszszymanski129
 
 ## 0.7.0
 
