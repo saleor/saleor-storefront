@@ -6,8 +6,8 @@ export const structuredData = shop => {
   return JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    description: shop.description,
-    name: shop.name,
+    description: shop ? shop.description : "",
+    name: shop ? shop.name : "",
     potentialAction: {
       "@type": "SearchAction",
       "query-input": "required name=q",
