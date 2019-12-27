@@ -1316,23 +1316,23 @@ export interface ProductsList {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: RegisterCutomer
+// GraphQL mutation operation: RegisterAccount
 // ====================================================
 
-export interface RegisterCutomer_customerRegister_errors {
+export interface RegisterAccount_accountRegister_errors {
   field: string | null;
   message: string | null;
 }
 
-export interface RegisterCutomer_customerRegister {
-  errors: (RegisterCutomer_customerRegister_errors | null)[] | null;
+export interface RegisterAccount_accountRegister {
+  errors: (RegisterAccount_accountRegister_errors | null)[] | null;
 }
 
-export interface RegisterCutomer {
-  customerRegister: RegisterCutomer_customerRegister | null;
+export interface RegisterAccount {
+  accountRegister: RegisterAccount_accountRegister | null;
 }
 
-export interface RegisterCutomerVariables {
+export interface RegisterAccountVariables {
   email: string;
   password: string;
 }
