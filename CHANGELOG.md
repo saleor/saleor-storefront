@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add missing product attributes on product page - #536 by @orzechdev
+- Add `ProductVariantPicker` component supporting multiple product variant attributes - #550 by @orzechdev
 
 ## 0.7.0
 
