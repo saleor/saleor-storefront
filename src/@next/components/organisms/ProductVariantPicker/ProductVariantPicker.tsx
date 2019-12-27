@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { useProductVariantsAttributes } from "../../../hooks/useProductVariantsAttributes";
-
 import { useProductVariantsAttributesValuesSelection } from "../../../hooks/useProductVariantsAttributesValuesSelection";
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";

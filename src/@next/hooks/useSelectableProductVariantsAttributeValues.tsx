@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { useProductVariantsAttributes } from "@hooks/useProductVariantsAttributes";
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 import {
   IProductVariantsAttributes,
   IProductVariantsAttributesSelectedValues,
 } from "@temp/@next/types/IProductVariantsAttributes";
+
+import { useProductVariantsAttributes } from "./useProductVariantsAttributes";
 
 export const useSelectableProductVariantsAttributeValues = (
   consideredProductVariantsAttributeId: string,

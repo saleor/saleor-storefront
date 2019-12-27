@@ -1,13 +1,14 @@
 import React from "react";
 
 import { InputSelect } from "@components/molecules";
-import { useSelectableProductVariantsAttributeValues } from "@hooks/useSelectableProductVariantsAttributeValues";
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 import {
   IProductVariantsAttribute,
   IProductVariantsAttributesOptionValue,
   IProductVariantsAttributesSelectedValues,
 } from "@temp/@next/types/IProductVariantsAttributes";
+
+import { useSelectableProductVariantsAttributeValues } from "../../../hooks/useSelectableProductVariantsAttributeValues";
 
 export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributeId: string;
