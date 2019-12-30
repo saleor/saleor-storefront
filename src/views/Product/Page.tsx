@@ -6,8 +6,9 @@ import Media from "react-media";
 
 import { RichTextContent } from "@components/atoms";
 import { CachedImage, Thumbnail } from "@components/molecules";
+import { ProductDescription } from "@components/organisms";
 
-import { Breadcrumbs, ProductDescription } from "../../components";
+import { Breadcrumbs } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
