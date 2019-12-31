@@ -10,3 +10,4 @@ export * from "./SizeOverlay";
 export * from "./AddressFormModal";
 export * from "./FilterSidebar";
 export * from "./ProductVariantPicker";
+export * from "./SelectSidebar";
