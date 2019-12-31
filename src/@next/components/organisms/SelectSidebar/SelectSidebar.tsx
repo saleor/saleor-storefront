@@ -1,7 +1,8 @@
+import { Trans } from "@lingui/react";
 import React from "react";
 
-import { IconButton } from "@components/atoms";
-import { OverlayItem } from "@components/molecules";
+import { ButtonLink } from "@components/atoms";
+import { CardHeader, OverlayItem } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
 import { Overlay } from "../";
@@ -31,11 +32,9 @@ export const SelectSidebar: React.FC<IProps> = ({
       target={target}
     >
       <S.Wrapper ref={setElementRef()}>
-        {" "}
-        <S.Header>
+        <CardHeader divider onHide={hide}>
           <span>{title}</span>
-          <IconButton onClick={hide} name="x" size={18} color="000" />
-        </S.Header>
+        </CardHeader>
         {values.map(value => {
           return (
             <S.SelectOption>
@@ -48,6 +47,11 @@ export const SelectSidebar: React.FC<IProps> = ({
             </S.SelectOption>
           );
         })}
+        <S.Footer>
+          <ButtonLink color="secondary">
+            <Trans id="Show size table" />
+          </ButtonLink>
+        </S.Footer>
       </S.Wrapper>
     </Overlay>
   );

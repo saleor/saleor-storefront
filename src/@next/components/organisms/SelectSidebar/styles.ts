@@ -2,7 +2,6 @@ import { styled } from "@styles";
 
 export const Wrapper = styled.div`
   overflow: scroll;
-  width: 410px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -22,6 +21,13 @@ export const Header = styled.div`
 
   font-weight: ${props => props.theme.typography.boldFontWeight};
   font-size: ${props => props.theme.typography.h3FontSize};
+`;
+
+export const Footer = styled.div`
+  width: 100%;
+  background-color: ${props => props.theme.colors.light};
+  padding: ${({ theme: { spacing } }) =>
+    `1.3rem ${spacing.gutter} 1rem ${spacing.gutter}`};
 `;
 
 export const SelectOption = styled.div`
