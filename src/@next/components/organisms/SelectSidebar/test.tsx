@@ -12,7 +12,12 @@ describe("<SelectSidebar />", () => {
   // Example test
   it("exists", () => {
     const wrapper = shallow(
-      <SelectSidebar {...DEFAULT_PROPS} hide={hide} onSelect={onSelect} />
+      <SelectSidebar
+        title="PLEASE SELECT SIZE"
+        {...DEFAULT_PROPS}
+        hide={hide}
+        onSelect={onSelect}
+      />
     );
 
     expect(wrapper.exists()).toEqual(true);

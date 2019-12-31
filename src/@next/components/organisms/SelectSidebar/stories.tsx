@@ -15,6 +15,7 @@ if (!portalRoot) {
 
 storiesOf("@components/organisms/SelectSidebar", module).add("default", () => (
   <SelectSidebar
+    title="PLEASE SELECT SIZE"
     target={portalRoot}
     {...DEFAULT_PROPS}
     hide={action("hide")}

@@ -9,6 +9,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const SelectSidebar: React.FC<IProps> = ({
+  title,
   values,
   hide,
   onSelect,
@@ -32,7 +33,7 @@ export const SelectSidebar: React.FC<IProps> = ({
       <S.Wrapper ref={setElementRef()}>
         {" "}
         <S.Header>
-          <span>PLEASE SELECT SIZE</span>
+          <span>{title}</span>
           <IconButton onClick={hide} name="x" size={18} color="000" />
         </S.Header>
         {values.map(value => {
