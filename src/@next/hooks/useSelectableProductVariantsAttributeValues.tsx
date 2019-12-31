@@ -4,7 +4,7 @@ import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetai
 import {
   IProductVariantsAttributes,
   IProductVariantsAttributesSelectedValues,
-} from "@temp/@next/types/IProductVariantsAttributes";
+} from "@types";
 
 import { useProductVariantsAttributes } from "./useProductVariantsAttributes";
 

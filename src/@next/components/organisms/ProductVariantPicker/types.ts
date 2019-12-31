@@ -1,6 +1,6 @@
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
-import { IProductVariantsAttributesSelectedValues } from "@temp/@next/types/IProductVariantsAttributes";
+import { IProductVariantsAttributesSelectedValues } from "@types";
 
 export interface IProps {
   productVariants?: ProductDetails_product_variants[];

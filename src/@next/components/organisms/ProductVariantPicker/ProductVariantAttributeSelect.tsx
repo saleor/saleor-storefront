@@ -6,7 +6,7 @@ import {
   IProductVariantsAttribute,
   IProductVariantsAttributesOptionValue,
   IProductVariantsAttributesSelectedValues,
-} from "@temp/@next/types/IProductVariantsAttributes";
+} from "@types";
 
 import { useSelectableProductVariantsAttributeValues } from "../../../hooks/useSelectableProductVariantsAttributeValues";
 

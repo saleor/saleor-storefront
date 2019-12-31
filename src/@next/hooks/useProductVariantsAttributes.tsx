@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
 
-import { IProductVariantsAttributes } from "../types/IProductVariantsAttributes";
+import { IProductVariantsAttributes } from "@types";
 
 export const useProductVariantsAttributes = (
   productVariants: ProductDetails_product_variants[]

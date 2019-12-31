@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   IProductVariantsAttributes,
   IProductVariantsAttributesSelectedValues,
-} from "../types/IProductVariantsAttributes";
+} from "@types";
 
 export const useProductVariantsAttributesValuesSelection = (
   productVariantsAttributes: IProductVariantsAttributes

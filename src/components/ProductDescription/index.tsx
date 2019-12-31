@@ -9,7 +9,7 @@ import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
-import { IProductVariantsAttributesSelectedValues } from "@temp/@next/types/IProductVariantsAttributes";
+import { IProductVariantsAttributesSelectedValues } from "@types";
 
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
