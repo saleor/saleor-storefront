@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   margin: 20px;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   box-sizing: border-box;
 }
 
-.c11 {
+.c12 {
   font-size: 1rem;
   font-weight: 600;
   color: rgb(33,18,94);
@@ -36,7 +36,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   transition: color 0.3s ease;
 }
 
-.c11:hover {
+.c12:hover {
   color: #513CA3;
 }
 
@@ -108,29 +108,6 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   margin: 0;
 }
 
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 1.1rem 1.875rem;
-  border-bottom: 1px solid #f1f5f5;
-}
-
-.c8:hover {
-  background-color: rgba(6,132,123,0.25);
-  color: #06a09e;
-  font-weight: 600;
-}
-
 .c9 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -146,10 +123,33 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   align-items: center;
   padding: 1.1rem 1.875rem;
   border-bottom: 1px solid #f1f5f5;
-  font-weight: 600;
 }
 
 .c9:hover {
+  background-color: rgba(6,132,123,0.25);
+  color: #06a09e;
+  font-weight: 600;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+  font-weight: 600;
+}
+
+.c10:hover {
   background-color: rgba(6,132,123,0.25);
   color: #06a09e;
   font-weight: 600;
@@ -203,33 +203,40 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
 }
 
 .c3 {
-  overflow: scroll;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 100%;
   box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
 }
 
-.c10 {
-  width: 100%;
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: calc(100vh - 1.875rem);
+  overflow: auto;
+}
+
+.c11 {
   background-color: #f1f5f5;
   padding: 1.3rem 1.875rem 1rem 1.875rem;
 }
 
-.c7 {
-  width: 100%;
+.c8 {
+  cursor: pointer;
 }
 
 <div
@@ -280,93 +287,119 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
         >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 1
-          </div>
-        </div>
-        <div
-          className="c7"
-        >
-          <div
-            className="c9"
-            onClick={[Function]}
-            selected={true}
-          >
-            Option 2
-            <svg
-              height={16}
-              viewBox="0 0 32 32"
-              width={16}
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
             >
-              <path
-                d="M31.416 2.142l-19.195 29.858-11.638-12.414 2.889-2.709 8.164 8.708 16.448-25.586 3.331 2.142z"
-                fill="#13BEBB"
-              />
-            </svg>
+              7
+            </div>
           </div>
-        </div>
-        <div
-          className="c7"
-        >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 3
+            <div
+              className="c10"
+              onClick={[Function]}
+              selected={true}
+            >
+              7 1/8
+              <svg
+                height={16}
+                viewBox="0 0 32 32"
+                width={16}
+              >
+                <path
+                  d="M31.416 2.142l-19.195 29.858-11.638-12.414 2.889-2.709 8.164 8.708 16.448-25.586 3.331 2.142z"
+                  fill="#13BEBB"
+                />
+              </svg>
+            </div>
           </div>
-        </div>
-        <div
-          className="c7"
-        >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 4
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 1/4
+            </div>
           </div>
-        </div>
-        <div
-          className="c7"
-        >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 5
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 3/8
+            </div>
           </div>
-        </div>
-        <div
-          className="c7"
-        >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 6
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 1/2
+            </div>
           </div>
-        </div>
-        <div
-          className="c7"
-        >
           <div
             className="c8"
-            onClick={[Function]}
-            selected={false}
           >
-            Option 7
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 5/8
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 3/4
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              7 7/8
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+              onClick={[Function]}
+              selected={false}
+            >
+              8
+            </div>
           </div>
         </div>
         <div
-          className="c10"
+          className="c11"
         >
           <button
-            className="c11"
+            className="c12"
             color="secondary"
             size="md"
           >
@@ -377,7 +410,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
     </div>
   </div>
   <div
-    className="c12"
+    className="c13"
   />
 </div>
 `;

@@ -1,42 +1,43 @@
 export const DEFAULT_PROPS = {
-  show: true,
-  values: [
+  disabled: ["7 1/2"],
+  options: [
     {
-      id: 1,
-      label: "Option 1",
-      value: "option_1",
+      label: "7",
+      value: "7",
     },
     {
-      id: 2,
-      label: "Option 2",
-      selected: true,
-      value: "option_2",
+      label: "7 1/8",
+      value: "7 1/8",
     },
     {
-      id: 3,
-      label: "Option 3",
-      value: "option_3",
+      label: "7 1/4",
+      value: "7 1/4",
     },
     {
-      id: 4,
-      label: "Option 4",
-      value: "option_4",
+      label: "7 3/8",
+      value: "7 3/84",
     },
     {
-      disabled: true,
-      id: 5,
-      label: "Option 5",
-      value: "option_5",
+      label: "7 1/2",
+      value: "7 1/2",
     },
     {
-      id: 6,
-      label: "Option 6",
-      value: "option_6",
+      label: "7 5/8",
+      value: "7 5/8",
     },
     {
-      id: 7,
-      label: "Option 7",
-      value: "option_7",
+      label: "7 3/4",
+      value: "7 3/4",
+    },
+    {
+      label: "7 7/8",
+      value: "7 7/8",
+    },
+    {
+      label: "8",
+      value: "8",
     },
   ],
+  selected: ["7 1/8"],
+  show: true,
 };

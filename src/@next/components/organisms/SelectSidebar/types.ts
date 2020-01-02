@@ -2,9 +2,11 @@ import { ISelectOption } from "@types";
 
 export interface IProps {
   title: React.ReactNode;
-  values: ISelectOption[];
+  options: ISelectOption[];
+  selected?: string[];
+  disabled?: string[];
   hide: () => void;
-  onSelect: (value: ISelectOption) => void;
+  onSelect: (value: string) => void;
   show: boolean;
   target?: HTMLElement | null;
 }

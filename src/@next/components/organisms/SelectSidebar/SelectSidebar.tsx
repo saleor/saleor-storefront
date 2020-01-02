@@ -11,12 +11,13 @@ import { IProps } from "./types";
 
 export const SelectSidebar: React.FC<IProps> = ({
   title,
-  values,
+  options = [],
+  disabled = [],
+  selected = [],
   hide,
   onSelect,
   show,
   target,
-  ...props
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -24,7 +25,6 @@ export const SelectSidebar: React.FC<IProps> = ({
 
   return (
     <Overlay
-      duration={0}
       position="right"
       show={show}
       hide={hide}
@@ -35,18 +35,22 @@ export const SelectSidebar: React.FC<IProps> = ({
         <CardHeader divider onHide={hide}>
           <span>{title}</span>
         </CardHeader>
-        {values.map(value => {
-          return (
-            <S.SelectOption>
-              <OverlayItem
-                selected={value.selected}
-                onClick={() => onSelect(value)}
-              >
-                {value.label}
-              </OverlayItem>
-            </S.SelectOption>
-          );
-        })}
+        <S.Content>
+          {options.map(option => {
+            const isSelected = selected.some(value => value === option.value);
+
+            return (
+              <S.Option key={option.value}>
+                <OverlayItem
+                  selected={isSelected}
+                  onClick={() => onSelect(option.value)}
+                >
+                  {option.label}
+                </OverlayItem>
+              </S.Option>
+            );
+          })}
+        </S.Content>
         <S.Footer>
           <ButtonLink color="secondary">
             <Trans id="Show size table" />
