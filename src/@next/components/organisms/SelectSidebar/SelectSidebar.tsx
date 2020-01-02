@@ -26,6 +26,7 @@ export const SelectSidebar: React.FC<IProps> = ({
   return (
     <Overlay
       position="right"
+      duration={0}
       show={show}
       hide={hide}
       transparent

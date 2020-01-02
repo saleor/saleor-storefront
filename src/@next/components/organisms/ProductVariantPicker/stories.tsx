@@ -20,7 +20,8 @@ const PROPS = {
   productVariants: PRODUCT_VARIANTS,
 };
 
-storiesOf("@components/organisms/ProductVariantPicker", module).add(
-  "default",
-  () => withContainer(<ProductVariantPicker {...PROPS} />)
-);
+storiesOf("@components/organisms/ProductVariantPicker", module)
+  .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
+  .add("with sidebar", () =>
+    withContainer(<ProductVariantPicker selectSidebar={true} {...PROPS} />)
+  );

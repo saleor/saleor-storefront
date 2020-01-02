@@ -9,6 +9,7 @@ import { IProps } from "./types";
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
   onChange,
+  selectSidebar = false,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
@@ -48,6 +49,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
         productVariantsAttributeId => (
           <ProductVariantAttributeSelect
             key={productVariantsAttributeId}
+            selectSidebar={selectSidebar}
             productVariants={productVariants}
             productVariantsAttributeId={productVariantsAttributeId}
             productVariantsAttribute={
@@ -59,7 +61,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
             onChangeSelection={optionValue =>
               selectProductVariantsAttributesValue(
                 productVariantsAttributeId,
-                optionValue && optionValue.value
+                optionValue
               )
             }
             onClearSelection={() =>

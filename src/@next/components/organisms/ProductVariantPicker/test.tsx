@@ -19,7 +19,11 @@ describe("<ProductVariantPicker />", () => {
     const onChangeVariantPicker = jest.fn();
 
     const wrapper = mount(
-      <ProductVariantPicker {...PROPS} onChange={onChangeVariantPicker} />
+      <ProductVariantPicker
+        {...PROPS}
+        selectSidebar={false}
+        onChange={onChangeVariantPicker}
+      />
     );
 
     wrapper
@@ -37,7 +41,9 @@ describe("<ProductVariantPicker />", () => {
   });
 
   it("should disable possible selection of other variant attribute values after selection of one variant attribute values", () => {
-    const wrapper = mount(<ProductVariantPicker {...PROPS} />);
+    const wrapper = mount(
+      <ProductVariantPicker selectSidebar={false} {...PROPS} />
+    );
 
     // Select value for first attribute
     wrapper

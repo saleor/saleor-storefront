@@ -8,4 +8,5 @@ export interface IProps {
     selectedAttributesValues?: IProductVariantsAttributesSelectedValues,
     selectedVariant?: ProductDetails_product_variants | undefined
   ) => void;
+  selectSidebar?: boolean;
 }

@@ -123,6 +123,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
   align-items: center;
   padding: 1.1rem 1.875rem;
   border-bottom: 1px solid #f1f5f5;
+  color: unset;
 }
 
 .c8:hover {
@@ -147,6 +148,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
   padding: 1.1rem 1.875rem;
   border-bottom: 1px solid #f1f5f5;
   font-weight: 600;
+  color: unset;
 }
 
 .c9:hover {
@@ -281,6 +283,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
         >
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -288,6 +291,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -295,6 +299,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -302,6 +307,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c9"
+            disabled={false}
             onClick={[Function]}
             selected={true}
           >
@@ -319,6 +325,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -326,6 +333,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -333,6 +341,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -340,6 +349,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
@@ -347,6 +357,7 @@ exports[`Storyshots @components/organisms/SizeOverlay default 1`] = `
           </div>
           <div
             className="c8"
+            disabled={false}
             onClick={[Function]}
             selected={false}
           >
