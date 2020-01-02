@@ -38,11 +38,13 @@ export const SelectSidebar: React.FC<IProps> = ({
         <S.Content>
           {options.map(option => {
             const isSelected = selected.some(value => value === option.value);
+            const isDisabled = disabled.some(value => value === option.value);
 
             return (
-              <S.Option key={option.value}>
+              <S.Option key={option.value} disabled={isDisabled}>
                 <OverlayItem
                   selected={isSelected}
+                  disabled={isDisabled}
                   onClick={() => onSelect(option.value)}
                 >
                   {option.label}

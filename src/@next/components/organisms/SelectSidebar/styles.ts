@@ -21,6 +21,6 @@ export const Footer = styled.div`
     `1.3rem ${spacing.gutter} 1rem ${spacing.gutter}`};
 `;
 
-export const Option = styled.div`
-  cursor: pointer;
+export const Option = styled.div<{ disabled: boolean }>`
+  cursor: ${props => (props.disabled ? `default` : `pointer`)};
 `;
