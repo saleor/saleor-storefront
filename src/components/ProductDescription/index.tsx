@@ -97,10 +97,14 @@ class ProductDescription extends React.Component<
       return this.getLocalPriceFormat(amount, currency);
     } else if (eachVariantPricingRange) {
       const { min, max, currency } = eachVariantPricingRange;
-      return `${this.getLocalPriceFormat(
-        min,
-        currency
-      )} - ${this.getLocalPriceFormat(max, currency)}`;
+      if (min === max) {
+        return this.getLocalPriceFormat(min, currency);
+      } else {
+        return `${this.getLocalPriceFormat(
+          min,
+          currency
+        )} - ${this.getLocalPriceFormat(max, currency)}`;
+      }
     } else {
       const { amount, currency } = basePrice;
       return this.getLocalPriceFormat(amount, currency);
