@@ -14,6 +14,7 @@ import * as S from "./styles";
 
 export const ProductVariantAttributeSelect: React.FC<{
   selectSidebar: boolean;
+  selectSidebarTarget?: HTMLElement | null;
   productVariantsAttributeId: string;
   productVariants: ProductDetails_product_variants[];
   productVariantsAttribute: IProductVariantsAttribute;
@@ -22,6 +23,7 @@ export const ProductVariantAttributeSelect: React.FC<{
   onClearSelection: () => void;
 }> = ({
   selectSidebar = false,
+  selectSidebarTarget,
   productVariantsAttributeId,
   productVariants,
   productVariantsAttribute,
@@ -124,6 +126,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
           onSelect={onSelectValueInSidebar}
+          target={selectSidebarTarget}
         />
       </>
     );

@@ -10,6 +10,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
   onChange,
   selectSidebar = false,
+  selectSidebarTarget,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
@@ -50,6 +51,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
           <ProductVariantAttributeSelect
             key={productVariantsAttributeId}
             selectSidebar={selectSidebar}
+            selectSidebarTarget={selectSidebarTarget}
             productVariants={productVariants}
             productVariantsAttributeId={productVariantsAttributeId}
             productVariantsAttribute={

@@ -6,6 +6,13 @@ import styled from "styled-components";
 import { ProductVariantPicker } from ".";
 import { productVariants } from "./fixtures";
 
+let portalRoot = document.getElementById("portal-root");
+if (!portalRoot) {
+  portalRoot = document.createElement("div");
+  portalRoot.setAttribute("id", "portal-root");
+  document.body.appendChild(portalRoot);
+}
+
 const Container = styled.div`
   width: 600px;
 `;
@@ -23,5 +30,11 @@ const PROPS = {
 storiesOf("@components/organisms/ProductVariantPicker", module)
   .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
   .add("with sidebar", () =>
-    withContainer(<ProductVariantPicker selectSidebar={true} {...PROPS} />)
+    withContainer(
+      <ProductVariantPicker
+        selectSidebar={true}
+        selectSidebarTarget={portalRoot}
+        {...PROPS}
+      />
+    )
   );

@@ -9,4 +9,5 @@ export interface IProps {
     selectedVariant?: ProductDetails_product_variants | undefined
   ) => void;
   selectSidebar?: boolean;
+  selectSidebarTarget?: HTMLElement | null;
 }
