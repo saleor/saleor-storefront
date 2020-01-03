@@ -13,12 +13,24 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
-storiesOf("@components/organisms/SelectSidebar", module).add("default", () => (
-  <SelectSidebar
-    title="PLEASE SELECT SIZE"
-    target={portalRoot}
-    {...DEFAULT_PROPS}
-    hide={action("hide")}
-    onSelect={action("onSelect")}
-  />
-));
+storiesOf("@components/organisms/SelectSidebar", module)
+  .add("default", () => (
+    <SelectSidebar
+      title="PLEASE SELECT SIZE"
+      target={portalRoot}
+      {...DEFAULT_PROPS}
+      hide={action("hide")}
+      onSelect={action("onSelect")}
+    />
+  ))
+  .add("with footer", () => (
+    <SelectSidebar
+      title="PLEASE SELECT SIZE"
+      footerTitle="SHOW SIZE TABLE"
+      onClickFooter={action("onClickFooter")}
+      target={portalRoot}
+      {...DEFAULT_PROPS}
+      hide={action("hide")}
+      onSelect={action("onSelect")}
+    />
+  ));

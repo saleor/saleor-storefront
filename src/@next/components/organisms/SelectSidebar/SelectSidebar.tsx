@@ -18,6 +18,8 @@ export const SelectSidebar: React.FC<IProps> = ({
   onSelect,
   show,
   target,
+  footerTitle,
+  onClickFooter,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -54,11 +56,13 @@ export const SelectSidebar: React.FC<IProps> = ({
             );
           })}
         </S.Content>
-        <S.Footer>
-          <ButtonLink color="secondary">
-            <Trans id="Show size table" />
-          </ButtonLink>
-        </S.Footer>
+        {footerTitle && (
+          <S.Footer onClick={onClickFooter}>
+            <ButtonLink color="secondary">
+              <Trans id={footerTitle} />
+            </ButtonLink>
+          </S.Footer>
+        )}
       </S.Wrapper>
     </Overlay>
   );

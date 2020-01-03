@@ -9,4 +9,6 @@ export interface IProps {
   onSelect: (value: string) => void;
   show: boolean;
   target?: HTMLElement | null;
+  footerTitle?: string;
+  onClickFooter?: () => void;
 }
