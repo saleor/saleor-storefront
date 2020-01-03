@@ -39,5 +39,4 @@ export const DEFAULT_PROPS = {
     },
   ],
   selected: ["7 1/8"],
-  show: true,
 };
