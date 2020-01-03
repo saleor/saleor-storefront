@@ -6,6 +6,7 @@ import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
 import {
   ProductDetails_product_attributes,
+  ProductDetails_product_basePrice,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
@@ -18,6 +19,7 @@ interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
   selectedAttributes: ProductDetails_product_attributes[];
   name: string;
+  basePrice: ProductDetails_product_basePrice;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
@@ -26,7 +28,12 @@ interface ProductDescriptionState {
   quantity: number;
   variant: string;
   variantStock: number;
-  pricing: ProductDetails_product_variants_pricing;
+  variantPricing: ProductDetails_product_variants_pricing;
+  eachVariantPricingRange: {
+    min: number;
+    max: number;
+    currency: string;
+  };
 }
 
 class ProductDescription extends React.Component<
@@ -35,13 +42,70 @@ class ProductDescription extends React.Component<
 > {
   constructor(props: ProductDescriptionProps) {
     super(props);
+
     this.state = {
-      pricing: this.props.productVariants[0].pricing,
+      eachVariantPricingRange: this.getEachVariantPricingRange(),
       quantity: 1,
       variant: "",
+      variantPricing: null,
       variantStock: null,
     };
   }
+
+  getEachVariantPricingRange = () => {
+    const { productVariants } = this.props;
+
+    if (productVariants && productVariants.length) {
+      const currency = productVariants[0].pricing.price.gross.currency;
+      let min = productVariants[0].pricing.price.gross.amount;
+      let max = productVariants[0].pricing.price.gross.amount;
+
+      for (let index = 1; index < productVariants.length; index++) {
+        const variant = productVariants[index];
+        const variantAmount = variant.pricing.price.gross.amount;
+
+        if (variantAmount < min) {
+          min = variantAmount;
+        } else if (variantAmount > max) {
+          max = variantAmount;
+        }
+      }
+
+      return {
+        currency,
+        max,
+        min,
+      };
+    } else {
+      return null;
+    }
+  };
+
+  getLocalPriceFormat = (amount: number, currency: string) => {
+    return amount.toLocaleString(undefined, {
+      currency,
+      style: "currency",
+    });
+  };
+
+  getProductPrice = () => {
+    const { basePrice } = this.props;
+    const { variantPricing, eachVariantPricingRange } = this.state;
+
+    if (variantPricing) {
+      const { amount, currency } = variantPricing.price.gross;
+      return this.getLocalPriceFormat(amount, currency);
+    } else if (eachVariantPricingRange) {
+      const { min, max, currency } = eachVariantPricingRange;
+      return `${this.getLocalPriceFormat(
+        min,
+        currency
+      )} - ${this.getLocalPriceFormat(max, currency)}`;
+    } else {
+      const { amount, currency } = basePrice;
+      return this.getLocalPriceFormat(amount, currency);
+    }
+  };
 
   onVariantPickerChange = (
     _selectedAttributesValues?: IProductVariantsAttributesSelectedValues,
@@ -49,12 +113,12 @@ class ProductDescription extends React.Component<
   ) => {
     if (selectedVariant) {
       this.setState({
-        pricing: selectedVariant.pricing,
         variant: selectedVariant.id,
+        variantPricing: selectedVariant.pricing,
         variantStock: selectedVariant.stockQuantity,
       });
     } else {
-      this.setState({ variant: "" });
+      this.setState({ variant: "", variantPricing: null });
     }
   };
 
@@ -73,12 +137,12 @@ class ProductDescription extends React.Component<
 
   render() {
     const { children, name, selectedAttributes } = this.props;
-    const { pricing, quantity } = this.state;
+    const { quantity } = this.state;
 
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>{pricing.price.gross.localized}</h4>
+        <h4>{this.getProductPrice()}</h4>
         <div>
           {selectedAttributes.map(
             ({ attribute, values }) =>

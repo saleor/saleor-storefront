@@ -135,6 +135,11 @@ export const productDetailsQuery = gql`
         id
         url
       }
+      basePrice {
+        amount
+        currency
+        localized
+      }
       attributes {
         ...SelectedAttributeFields
       }
