@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add missing product attributes on product page - #536 by @orzechdev
+- Change register mutation to accountRegister - #549 by @tomaszszymanski129
 - Fix not working storefront when no data in saleor database exist - #551 by @orzechdev
 
 ## 0.7.0
