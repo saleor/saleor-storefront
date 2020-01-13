@@ -63,21 +63,21 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
         selectProps.isClearable ||
         (selectProps.isMulti && selectProps.isClearable === undefined);
 
-      return (
-        <>
-          {showClearIndicator && hasValue ? (
-            <S.ClearIndicator onClick={clearValue}>
-              <Icon name="select_x" size={10} />
-            </S.ClearIndicator>
-          ) : (
-            // Boolean to string conversion done due to
-            // https://github.com/styled-components/styled-components/issues/1198
-            <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
-              <Icon name="select_arrow" size={10} />
-            </S.DropdownIndicator>
-          )}
-        </>
-      );
+      if (showClearIndicator && hasValue) {
+        return (
+          <S.ClearIndicator onClick={clearValue}>
+            <Icon name="select_x" size={10} />
+          </S.ClearIndicator>
+        );
+      } else {
+        // Boolean to string conversion done due to
+        // https://github.com/styled-components/styled-components/issues/1198
+        return (
+          <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
+            <Icon name="select_arrow" size={10} />
+          </S.DropdownIndicator>
+        );
+      }
     },
     Option: (props: any) => {
       const customTheme = React.useContext(ThemeContext);
