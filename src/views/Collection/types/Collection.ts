@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder } from "./../../../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Collection
@@ -403,7 +403,7 @@ export interface Collection {
 
 export interface CollectionVariables {
   id: string;
-  attributes?: (any | null)[] | null;
+  attributes?: (AttributeInput | null)[] | null;
   after?: string | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;

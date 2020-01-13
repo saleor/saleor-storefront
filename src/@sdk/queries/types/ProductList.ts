@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList
@@ -28,7 +28,7 @@ export interface ProductList_products_edges_node_thumbnail2x {
   url: string;
 }
 
-export interface ProductList_products_edges_node_price {
+export interface ProductList_products_edges_node_basePrice {
   __typename: "Money";
   /**
    * Amount of money.
@@ -103,7 +103,7 @@ export interface ProductList_products_edges_node {
   /**
    * The product's default base price.
    */
-  price: ProductList_products_edges_node_price | null;
+  basePrice: ProductList_products_edges_node_basePrice | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder } from "./../../../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: SearchProducts
@@ -370,7 +370,7 @@ export interface SearchProducts {
 
 export interface SearchProductsVariables {
   query: string;
-  attributes?: (any | null)[] | null;
+  attributes?: (AttributeInput | null)[] | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
   after?: string | null;

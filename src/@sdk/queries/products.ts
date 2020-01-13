@@ -55,7 +55,7 @@ export const productListDetails = gql`
       edges {
         node {
           ...BasicProductFields
-          price {
+          basePrice {
             amount
             currency
             localized
@@ -128,9 +128,7 @@ export const productDetails = gql`
       }
       seoDescription
       seoTitle
-      availability {
-        available
-      }
+      isAvailable
     }
   }
 `;

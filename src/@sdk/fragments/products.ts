@@ -50,7 +50,7 @@ export const productVariantFragment = gql`
         id
         name
       }
-      value {
+      values {
         id
         name
         value: name

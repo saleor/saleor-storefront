@@ -5,14 +5,18 @@ import { TypedQuery } from "../../../core/queries";
 import { createPayment, createPaymentVariables } from "./types/createPayment";
 import {
   getPaymentToken,
-  getPaymentTokenVariables
+  getPaymentTokenVariables,
 } from "./types/getPaymentToken";
 
-const getPaymentTokenQuery = gql`
-  query getPaymentToken($gateway: String!) {
-    paymentClientToken(gateway: $gateway)
-  }
-`;
+/*
+  TODO: getPaymentTokenQuery is deprecated, fix it.
+*/
+
+// const getPaymentTokenQuery = gql`
+//   query getPaymentToken($gateway: String!) {
+//     paymentClientToken(gateway: $gateway)
+//   }
+// `;
 
 const paymentMethodCreateMutation = gql`
   mutation createPayment($input: PaymentInput!, $checkoutId: ID!) {
@@ -25,10 +29,10 @@ const paymentMethodCreateMutation = gql`
   }
 `;
 
-export const TypedGetPaymentTokenQuery = TypedQuery<
-  getPaymentToken,
-  getPaymentTokenVariables
->(getPaymentTokenQuery);
+// export const TypedGetPaymentTokenQuery = TypedQuery<
+//   getPaymentToken,
+//   getPaymentTokenVariables
+// >(getPaymentTokenQuery);
 
 export const TypedPaymentMethodCreateMutation = TypedMutation<
   createPayment,
