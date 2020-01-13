@@ -7,7 +7,7 @@ import UserAccount, {
   userOrderDetailsUrl,
 } from "../userAccount/routes";
 import { OrderDetails } from "../userAccount/views";
-import { Account } from "../views/Account";
+import { Account, AccountConfirm } from "../views/Account";
 import { ArticlePage } from "../views/Article";
 import { CartPage } from "../views/Cart";
 import { CategoryPage } from "../views/Category";
@@ -29,6 +29,7 @@ export const pageUrl = `${baseUrl}page/:slug/`;
 export const guestOrderDetailsUrl = `/order/:token/`;
 export const orderConfirmationUrl = `${baseUrl}order-confirmation/`;
 export const accountUrl = `${baseUrl}account/`;
+export const accountConfirmUrl = `${baseUrl}account-confirm/`;
 export const orderHistoryUrl = `${baseUrl}order-history/`;
 export const addressBookUrl = `${baseUrl}address-book/`;
 export const paymentOptionsUrl = `${baseUrl}payment-options/`;
@@ -48,6 +49,7 @@ export const Routes: React.FC = () => (
     <Route path={guestOrderDetailsUrl} component={OrderDetails} />
     <Route path={orderConfirmationUrl} component={OrderConfirmation} />
     <Route path={accountUrl} component={Account} />
+    <Route path={accountConfirmUrl} component={AccountConfirm} />
     <Route path={orderHistoryUrl} component={Account} />
     <Route path={addressBookUrl} component={Account} />
     <Route path={paymentOptionsUrl} component={Account} />
