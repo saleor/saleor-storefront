@@ -5,6 +5,7 @@ import { components } from "react-select";
 
 import { OverlayItem } from "@components/molecules";
 import { SelectSidebar } from "@components/organisms";
+
 import { ProductVariantPicker } from ".";
 import { productVariants } from "./fixtures";
 
