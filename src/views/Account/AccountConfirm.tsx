@@ -21,10 +21,9 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   const alert = useAlert();
 
   React.useEffect(() => {
-    const promise = this.accountManagerFn({
+    this.accountManagerFn({
       variables: {email: query.email, token: query.token},
-    });
-    promise.then((result) => {
+    }).then((result) => {
       const errors = result.data.confirmAccount.errors;
       {
         alert.show(
