@@ -1,5 +1,5 @@
 export const DEFAULT_PROPS = {
-  disabled: ["7 1/2"],
+  disabledOptions: ["7 1/2"],
   options: [
     {
       label: "7",
@@ -38,5 +38,5 @@ export const DEFAULT_PROPS = {
       value: "8",
     },
   ],
-  selected: ["7 1/8"],
+  selectedOptions: ["7 1/8"],
 };

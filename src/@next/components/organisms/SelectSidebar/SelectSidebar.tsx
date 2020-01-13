@@ -12,8 +12,8 @@ import { IProps } from "./types";
 export const SelectSidebar: React.FC<IProps> = ({
   title,
   options = [],
-  disabled = [],
-  selected = [],
+  disabledOptions = [],
+  selectedOptions = [],
   hide,
   onSelect,
   show,
@@ -40,8 +40,12 @@ export const SelectSidebar: React.FC<IProps> = ({
         </CardHeader>
         <S.Content>
           {options.map(option => {
-            const isSelected = selected.some(value => value === option.value);
-            const isDisabled = disabled.some(value => value === option.value);
+            const isSelected = selectedOptions.some(
+              value => value === option.value
+            );
+            const isDisabled = disabledOptions.some(
+              value => value === option.value
+            );
 
             return (
               <S.Option key={option.value} disabled={isDisabled}>

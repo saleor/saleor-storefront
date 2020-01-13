@@ -116,8 +116,8 @@ export const ProductVariantAttributeSelect: React.FC<{
         />
         <SelectSidebar
           options={attributeOptions}
-          selected={selectedValuesList}
-          disabled={disabledValuesList}
+          selectedOptions={selectedValuesList}
+          disabledOptions={disabledValuesList}
           title={`Please select ${selectLabel}`}
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
