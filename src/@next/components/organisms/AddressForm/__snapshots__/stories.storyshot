@@ -389,7 +389,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-1f50ceg-control"
+                className="css-133ddnz-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -955,7 +955,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-1f50ceg-control"
+                className="css-133ddnz-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >
@@ -1497,7 +1497,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
               onKeyDown={[Function]}
             >
               <div
-                className="css-1f50ceg-control"
+                className="css-133ddnz-control"
                 onMouseDown={[Function]}
                 onTouchEnd={[Function]}
               >

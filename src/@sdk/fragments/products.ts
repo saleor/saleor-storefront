@@ -15,6 +15,19 @@ export const basicProductFragment = gql`
   }
 `;
 
+export const selectedAttributeFragment = gql`
+  fragment SelectedAttributeFields on SelectedAttribute {
+    attribute {
+      id
+      name
+    }
+    values {
+      id
+      name
+    }
+  }
+`;
+
 export const productVariantFragment = gql`
   ${checkoutPriceFragment}
   fragment ProductVariantFields on ProductVariant {

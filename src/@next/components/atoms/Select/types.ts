@@ -2,6 +2,7 @@ export interface IProps {
   value: any;
   name?: string;
   options?: any[];
+  isOptionDisabled?: (option: any) => boolean;
   autoComplete?: string;
   defaultValue?: any;
   optionLabelKey?: string;
@@ -9,6 +10,8 @@ export interface IProps {
   customStyles?: any;
   optionValueKey?: string;
   onChange: (value: any, name?: any) => void;
+  clearable?: boolean;
+  clearValue?: () => void;
   customComponents?: {
     Control: (props?: any) => JSX.Element | null;
     IndicatorSeparator: (props?: any) => JSX.Element | null;

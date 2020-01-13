@@ -62,8 +62,18 @@
     }
   }
 
+  &__selected-attributes {
+    font-size: $small-font-size;
+    margin-top: 20px;
+
+    > span:first-child {
+      color: $gray-dark;
+    }
+  }
+
   &__variant-picker {
     display: grid;
+    margin-top: 20px;
 
     .react-select-wrapper,
     .input {
@@ -85,12 +95,9 @@
     }
   }
 
-  &__selected-attributes {
-    font-size: $small-font-size;
-    margin: 0.2rem 0;
-
-    > span:first-child {
-      color: $gray-dark;
-    }
+  &__quantity-input {
+    margin-top: 20px;
+    border-top: 1px solid $gray;
+    padding-top: 20px;
   }
 }
