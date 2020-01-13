@@ -141,7 +141,7 @@ export const ProductVariantAttributeSelect: React.FC<{
         onChange={optionValue =>
           onChangeSelection(optionValue && optionValue.value)
         }
-        isClearable={true}
+        clearable={true}
         clearValue={onClearSelection}
       />
     );

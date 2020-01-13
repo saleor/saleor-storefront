@@ -39,7 +39,7 @@ const optionStyle = (customTheme: any) => ({
 export const Select: React.FC<IProps> = ({
   value,
   onChange,
-  isClearable,
+  clearable,
   clearValue,
   name,
   options,
@@ -76,7 +76,7 @@ export const Select: React.FC<IProps> = ({
         isOptionDisabled={isOptionDisabled}
         placeholder={""}
         components={customComponents}
-        isClearable={isClearable}
+        isClearable={clearable}
       ></ReactSelect>
     </S.Wrapper>
   );
