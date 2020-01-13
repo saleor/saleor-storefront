@@ -35,9 +35,8 @@ export const ProductVariantPicker: React.FC<IProps> = ({
               .id
         ) {
           return true;
-        } else {
-          return false;
         }
+        return false;
       });
     });
 

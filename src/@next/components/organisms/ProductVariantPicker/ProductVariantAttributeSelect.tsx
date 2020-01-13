@@ -39,22 +39,18 @@ export const ProductVariantAttributeSelect: React.FC<{
     productVariantsAttributesSelectedValues
   );
 
-  const selectedValue =
-    productVariantsAttributesSelectedValues &&
-    productVariantsAttributesSelectedValues[productVariantsAttributeId]
-      ? {
-          disabled: false,
-          id: productVariantsAttributesSelectedValues[
-            productVariantsAttributeId
-          ]!.id,
-          label: productVariantsAttributesSelectedValues[
-            productVariantsAttributeId
-          ]!.name!,
-          value: productVariantsAttributesSelectedValues[
-            productVariantsAttributeId
-          ]!.value!,
-        }
-      : null;
+  const selectedValue = productVariantsAttributesSelectedValues &&
+    productVariantsAttributesSelectedValues[productVariantsAttributeId] && {
+      disabled: false,
+      id: productVariantsAttributesSelectedValues[productVariantsAttributeId]!
+        .id,
+      label: productVariantsAttributesSelectedValues[
+        productVariantsAttributeId
+      ]!.name!,
+      value: productVariantsAttributesSelectedValues[
+        productVariantsAttributeId
+      ]!.value!,
+    };
 
   const attributeOptions = productVariantsAttribute.values
     .filter(value => value)
@@ -83,7 +79,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     .filter(optionValue => optionValue.disabled)
     .map(optionValue => optionValue.value);
 
-  const onSelectValueInSidebar = (optionValue: string) => {
+  const handleSelectValueInSidebar = (optionValue: string) => {
     if (
       disabledValuesList.every(disabledValue => disabledValue !== optionValue)
     ) {
@@ -125,7 +121,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           title={`Please select ${selectLabel}`}
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
-          onSelect={onSelectValueInSidebar}
+          onSelect={handleSelectValueInSidebar}
           target={selectSidebarTarget}
         />
       </>
