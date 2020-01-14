@@ -131,7 +131,7 @@
     "react-select": "^2.4.4",
     "react-test-renderer": "^16.8.6",
     "sass-loader": "^7.1.0",
-    "sitemap": "^2.2.0",
+    "sitemap": "^5.1.0",
     "storybook-addon-styled-component-theme": "^1.2.5",
     "storybook-styled-components": "^1.1.4",
     "style-loader": "^0.21.0",
