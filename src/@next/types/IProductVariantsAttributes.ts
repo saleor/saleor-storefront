@@ -1,12 +1,12 @@
 import { ISelectOption } from "@types";
 import {
   ProductDetails_product_variants_attributes_attribute,
-  ProductDetails_product_variants_attributes_value,
+  ProductDetails_product_variants_attributes_values,
 } from "../../@sdk/queries/types/ProductDetails";
 
 export interface IProductVariantsAttribute {
   attribute: ProductDetails_product_variants_attributes_attribute;
-  values: ProductDetails_product_variants_attributes_value[];
+  values: ProductDetails_product_variants_attributes_values[];
 }
 
 export interface IProductVariantsAttributes {
@@ -14,7 +14,7 @@ export interface IProductVariantsAttributes {
 }
 
 export interface IProductVariantsAttributesSelectedValues {
-  [key: string]: ProductDetails_product_variants_attributes_value | null;
+  [key: string]: ProductDetails_product_variants_attributes_values | null;
 }
 
 export interface IProductVariantsAttributesOptionValue extends ISelectOption {

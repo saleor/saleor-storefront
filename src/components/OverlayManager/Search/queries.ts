@@ -5,7 +5,7 @@ import { SearchResults, SearchResultsVariables } from "./types/SearchResults";
 
 const searchResultsQuery = gql`
   query SearchResults($query: String!) {
-    products(query: $query, first: 20) {
+    products(filter: { search: $query }, first: 20) {
       edges {
         node {
           id

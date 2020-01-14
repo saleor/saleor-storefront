@@ -4,21 +4,20 @@ import { TypedQuery } from "../../core/queries";
 import { productPricingFragment } from "../Product/queries";
 import {
   SearchProducts,
-  SearchProductsVariables
+  SearchProductsVariables,
 } from "./types/SearchProducts";
 
 export const searchProductsQuery = gql`
   ${productPricingFragment}
   query SearchProducts(
     $query: String!
-    $attributes: [AttributeScalar]
+    $attributes: [AttributeInput]
     $pageSize: Int
     $sortBy: ProductOrder
     $after: String
   ) {
     products(
-      query: $query
-      attributes: $attributes
+      filter: { search: $query, attributes: $attributes }
       first: $pageSize
       sortBy: $sortBy
       after: $after

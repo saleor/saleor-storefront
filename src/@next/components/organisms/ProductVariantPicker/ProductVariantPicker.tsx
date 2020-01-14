@@ -28,9 +28,9 @@ export const ProductVariantPicker: React.FC<IProps> = ({
         const productVariantAttributeId = productVariantAttribute.attribute.id;
 
         if (
-          productVariantAttribute.value &&
+          productVariantAttribute.values[0] &&
           productVariantsAttributesSelectedValues[productVariantAttributeId] &&
-          productVariantAttribute.value.id ===
+          productVariantAttribute.values[0]!.id ===
             productVariantsAttributesSelectedValues[productVariantAttributeId]!
               .id
         ) {

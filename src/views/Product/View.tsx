@@ -29,8 +29,8 @@ const extractMeta = (product: ProductDetails_product) => ({
       property: "product:price:currency",
     },
     {
-      content: product.availability.available ? "in stock" : "out off stock",
-      property: "product:availability",
+      content: product.isAvailable ? "in stock" : "out off stock",
+      property: "product:isAvailable",
     },
     {
       content: product.category.name,

@@ -122,7 +122,7 @@ export interface ProductVariantFields_attributes_attribute {
   name: string | null;
 }
 
-export interface ProductVariantFields_attributes_value {
+export interface ProductVariantFields_attributes_values {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -145,9 +145,9 @@ export interface ProductVariantFields_attributes {
    */
   attribute: ProductVariantFields_attributes_attribute;
   /**
-   * The value or the first value of an attribute.
+   * Values of an attribute.
    */
-  value: ProductVariantFields_attributes_value | null;
+  values: (ProductVariantFields_attributes_values | null)[];
 }
 
 export interface ProductVariantFields {

@@ -38,7 +38,7 @@ export const useSelectableProductVariantsAttributeValues = (
             return (
               productVariantAttribute.attribute.id ===
                 selectedValueAttributeId &&
-              productVariantAttribute.value ===
+              productVariantAttribute.values[0] ===
                 productVariantsAttributesSelectedValues[
                   selectedValueAttributeId
                 ]

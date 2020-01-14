@@ -547,22 +547,6 @@ export interface ProductDetails_product_images {
   url: string;
 }
 
-export interface ProductDetails_product_basePrice {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -715,7 +699,7 @@ export interface ProductDetails_product_variants_attributes_attribute {
   name: string | null;
 }
 
-export interface ProductDetails_product_variants_attributes_value {
+export interface ProductDetails_product_variants_attributes_values {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -738,9 +722,9 @@ export interface ProductDetails_product_variants_attributes {
    */
   attribute: ProductDetails_product_variants_attributes_attribute;
   /**
-   * The value or the first value of an attribute.
+   * Values of an attribute.
    */
-  value: ProductDetails_product_variants_attributes_value | null;
+  values: (ProductDetails_product_variants_attributes_values | null)[];
 }
 
 export interface ProductDetails_product_variants {
@@ -769,14 +753,6 @@ export interface ProductDetails_product_variants {
   attributes: ProductDetails_product_variants_attributes[];
 }
 
-export interface ProductDetails_product_availability {
-  __typename: "ProductPricingInfo";
-  /**
-   * Whether it is in stock and visible or not.
-   */
-  available: boolean | null;
-}
-
 export interface ProductDetails_product {
   __typename: "Product";
   /**
@@ -803,10 +779,6 @@ export interface ProductDetails_product {
    */
   images: (ProductDetails_product_images | null)[] | null;
   /**
-   * The product's default base price.
-   */
-  basePrice: ProductDetails_product_basePrice | null;
-  /**
    * List of attributes assigned to this product.
    */
   attributes: ProductDetails_product_attributes[];
@@ -817,9 +789,9 @@ export interface ProductDetails_product {
   seoDescription: string | null;
   seoTitle: string | null;
   /**
-   * Informs about product's availability in the storefront, current price and discounts.
+   * Whether the product is in stock and visible or not.
    */
-  availability: ProductDetails_product_availability | null;
+  isAvailable: boolean | null;
 }
 
 export interface ProductDetails {

@@ -96,7 +96,7 @@ export const productVariantFragment = gql`
         id
         name
       }
-      value {
+      values {
         id
         name
         value: name
@@ -135,11 +135,6 @@ export const productDetailsQuery = gql`
         id
         url
       }
-      basePrice {
-        amount
-        currency
-        localized
-      }
       attributes {
         ...SelectedAttributeFields
       }
@@ -148,9 +143,7 @@ export const productDetailsQuery = gql`
       }
       seoDescription
       seoTitle
-      availability {
-        available
-      }
+      isAvailable
     }
   }
 `;
