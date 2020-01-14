@@ -20,27 +20,37 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
 
   const alert = useAlert();
 
+  const displayConfirmationAlert = (anyErrors) => {
+    alert.show(
+      {
+        content: anyErrors.length > 0 ? anyErrors.map(
+          error => error.message
+        ).join(" "): "You can now log in",
+        title: anyErrors.length > 0 ? "Error": "Account confirmed",
+      },
+      { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
+    );
+  }
+
   React.useEffect(() => {
     this.accountManagerFn({
       variables: {email: query.email, token: query.token},
     }).then((result) => {
-      const errors = result.data.confirmAccount.errors;
-      {
-        alert.show(
-          {
-            content: errors.length > 0 ? errors.map(error => error.message).join(" "): "You can now log in",
-            title: errors.length > 0 ? "Error": "Account confirmed",
-          },
-          { type: errors.length > 0 ? "error" : "success", timeout: 5000 }
-        );
-      }
+      const possibleErrors = result.data.confirmAccount.errors;
+      displayConfirmationAlert(possibleErrors);
+    }).catch(() => {
+      const errors = [{
+        message: "Something went wrong while activating your account.",
+      }];
+      displayConfirmationAlert(errors);
+    }).finally(() => {
+      history.push(BASE_URL);
     });
-    history.push(BASE_URL);
-  });
+  }, []);
 
   return (
       <TypedAccountConfirmMutation
-        variables={{email: query.email, token: query.token}}
+        variables={{ email: query.email, token: query.token }}
       >
       {(accountConfirm) => {
         this.accountManagerFn = accountConfirm;
