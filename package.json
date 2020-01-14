@@ -70,7 +70,7 @@
     "@storybook/cli": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "@storybook/theming": "^5.2.1",
-    "@types/braintree-web": "^3.6.5",
+    "@types/braintree-web": "^3.47.0",
     "@types/classnames": "^2.2.6",
     "@types/dompurify": "0.0.33",
     "@types/enzyme": "^3.9.3",
