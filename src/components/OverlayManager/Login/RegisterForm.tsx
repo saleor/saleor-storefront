@@ -39,7 +39,8 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
-              registerCustomer({ variables: { email, password } });
+              const redirectOrigin = window.location.origin;
+              registerCustomer({ variables: { email, password, redirectOrigin } });
             }}
           >
             <TextField

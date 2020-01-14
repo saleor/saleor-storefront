@@ -7,8 +7,8 @@ import {
 } from "./types/RegisterAccount";
 
 const accountRegisterMutation = gql`
-  mutation RegisterAccount($email: String!, $password: String!) {
-    accountRegister(input: { email: $email, password: $password }) {
+  mutation RegisterAccount($email: String!, $password: String!, $redirectOrigin: String!) {
+    accountRegister(input: { email: $email, password: $password, redirectOrigin: $redirectOrigin }) {
       errors {
         field
         message

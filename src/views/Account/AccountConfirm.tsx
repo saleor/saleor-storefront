@@ -34,7 +34,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
 
   React.useEffect(() => {
     this.accountManagerFn({
-      variables: {email: query.email, token: query.token},
+      variables: { email: query.email, token: query.token },
     }).then((result) => {
       const possibleErrors = result.data.confirmAccount.errors;
       displayConfirmationAlert(possibleErrors);
@@ -49,9 +49,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
   }, []);
 
   return (
-      <TypedAccountConfirmMutation
-        variables={{ email: query.email, token: query.token }}
-      >
+    <TypedAccountConfirmMutation>
       {(accountConfirm) => {
         this.accountManagerFn = accountConfirm;
         return (<div></div>);
