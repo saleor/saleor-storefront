@@ -31,7 +31,7 @@
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
     "js-base64": "^2.4.8",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.15",
     "nuka-carousel": "^4.4.5",
     "react": "^16.8.5",
     "react-addons-css-transition-group": "^15.6.2",
