@@ -547,22 +547,6 @@ export interface ProductDetails_product_images {
   url: string;
 }
 
-export interface ProductDetails_product_basePrice {
-  __typename: "Money";
-  /**
-   * Amount of money.
-   */
-  amount: number;
-  /**
-   * Currency code.
-   */
-  currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
-}
-
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -794,10 +778,6 @@ export interface ProductDetails_product {
    * List of images for the product.
    */
   images: (ProductDetails_product_images | null)[] | null;
-  /**
-   * The product's default base price.
-   */
-  basePrice: ProductDetails_product_basePrice | null;
   /**
    * List of attributes assigned to this product.
    */

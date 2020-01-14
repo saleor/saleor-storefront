@@ -6,7 +6,7 @@ import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
 import {
   ProductDetails_product_attributes,
-  ProductDetails_product_basePrice,
+  ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
@@ -19,7 +19,7 @@ interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
   selectedAttributes: ProductDetails_product_attributes[];
   name: string;
-  basePrice: ProductDetails_product_basePrice;
+  pricing: ProductDetails_product_pricing;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
 }
@@ -89,7 +89,7 @@ class ProductDescription extends React.Component<
   };
 
   getProductPrice = () => {
-    const { basePrice } = this.props;
+    const { pricing } = this.props;
     const { variantPricing, eachVariantPricingRange } = this.state;
 
     if (variantPricing) {
@@ -106,8 +106,22 @@ class ProductDescription extends React.Component<
         )} - ${this.getLocalPriceFormat(max, currency)}`;
       }
     } else {
-      const { amount, currency } = basePrice;
-      return this.getLocalPriceFormat(amount, currency);
+      const {
+        start: {
+          gross: { amount: min, currency },
+        },
+        stop: {
+          gross: { amount: max },
+        },
+      } = pricing.priceRange;
+      if (min === max) {
+        return this.getLocalPriceFormat(min, currency);
+      } else {
+        return `${this.getLocalPriceFormat(
+          min,
+          currency
+        )} - ${this.getLocalPriceFormat(max, currency)}`;
+      }
     }
   };
 

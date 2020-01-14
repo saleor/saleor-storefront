@@ -32,6 +32,7 @@ export const productPricingFragment = gql`
 
 export const productListDetails = gql`
   ${basicProductFragment}
+  ${productPricingFragment}
   query ProductList(
     $id: ID!
     $attributes: [AttributeInput]
@@ -55,20 +56,7 @@ export const productListDetails = gql`
       edges {
         node {
           ...BasicProductFields
-          basePrice {
-            amount
-            currency
-            localized
-          }
-          pricing {
-            priceRange {
-              start {
-                gross {
-                  localized
-                }
-              }
-            }
-          }
+          ...ProductPricingField
           category {
             id
             name
@@ -114,11 +102,6 @@ export const productDetails = gql`
       images {
         id
         url
-      }
-      basePrice {
-        amount
-        currency
-        localized
       }
       attributes {
         ...SelectedAttributeFields
