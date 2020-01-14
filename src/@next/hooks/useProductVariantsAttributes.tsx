@@ -24,17 +24,17 @@ export const useProductVariantsAttributes = (
         if (variantsAttributeExists) {
           const variantsAttributeValueExists = variantsAttributes[
             productVariantAttributeId
-          ].values.includes(productVariantAttribute.value!);
+          ].values.includes(productVariantAttribute.values[0]!);
 
           if (!variantsAttributeValueExists) {
             variantsAttributes[productVariantAttributeId].values.push(
-              productVariantAttribute.value!
+              productVariantAttribute.values[0]!
             );
           }
         } else {
           variantsAttributes[productVariantAttributeId] = {
             attribute: productVariantAttribute.attribute,
-            values: [productVariantAttribute.value!],
+            values: [productVariantAttribute.values[0]!],
           };
         }
       });
