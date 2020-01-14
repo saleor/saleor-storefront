@@ -3,14 +3,14 @@ import "./scss/index.scss";
 import * as React from "react";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import {
   Loader,
   Offline,
   OfflinePlaceholder,
   Online,
-  OverlayManager
+  OverlayManager,
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
@@ -23,7 +23,7 @@ const CheckoutApp: React.FC = () => (
   <div className="checkout">
     <div className="checkout__menu">
       <div className="checkout__menu__bar">
-        <ReactSVG path={logoImg} />
+        <ReactSVG src={logoImg} />
       </div>
       <Link to={BASE_URL}>Return to shopping</Link>
     </div>

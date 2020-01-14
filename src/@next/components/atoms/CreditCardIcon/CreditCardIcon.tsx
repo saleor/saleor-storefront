@@ -1,5 +1,5 @@
 import React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import amexImg from "images/amex.svg";
 import discoverImg from "images/discover.svg";
@@ -26,7 +26,7 @@ export const CreditCardIcon: React.FC<IProps> = ({
   return (
     <S.CreditCardIcon>
       {providers.has(creditCardProvider) && (
-        <ReactSVG path={providers.get(creditCardProvider)} />
+        <ReactSVG src={providers.get(creditCardProvider)} />
       )}
     </S.CreditCardIcon>
   );

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import {
   Button,
@@ -94,9 +94,9 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
+                <ReactSVG src={closeImg} onClick={this.props.overlay.hide} />
               }
-              iconRight={<ReactSVG path={searchImg} />}
+              iconRight={<ReactSVG src={searchImg} />}
               autoFocus={true}
               placeholder="Search"
               onBlur={this.handleInputBlur}

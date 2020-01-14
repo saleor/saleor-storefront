@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { baseUrl } from "../../routes";
 import NavItem, { INavItem } from "./NavItem";
@@ -66,7 +66,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         {parent ? (
           <li className="side-nav__menu-item side-nav__menu-item-back">
             <span onClick={this.handleGoBack}>
-              <ReactSVG path={backImg} /> {parent.name}
+              <ReactSVG src={backImg} /> {parent.name}
             </span>
           </li>
         ) : (
@@ -77,7 +77,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-logo"
                 onClick={hideOverlay}
               >
-                <ReactSVG path={logoImg} />
+                <ReactSVG src={logoImg} />
               </Link>
               <span className="side-nav__menu-item-close" onClick={hideOverlay}>
                 <span />

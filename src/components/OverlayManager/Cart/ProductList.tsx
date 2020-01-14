@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { Thumbnail } from "@components/molecules";
 
@@ -30,7 +30,7 @@ const ProductList: React.SFC<{
               <span>{`Qty: ${line.quantity}`}</span>
             </span>
             <ReactSVG
-              path={removeImg}
+              src={removeImg}
               className="cart__list__item__details__delete-icon"
               onClick={() => remove(line.id)}
             />

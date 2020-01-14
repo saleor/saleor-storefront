@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { Button } from "..";
 import closeImg from "../../images/modal-close.svg";
@@ -38,7 +38,7 @@ const Modal: React.FC<IModalProps> = ({
               <div className="modal__title">
                 <p>{title}</p>
                 <ReactSVG
-                  path={closeImg}
+                  src={closeImg}
                   className="modal__close"
                   onClick={hide}
                 />

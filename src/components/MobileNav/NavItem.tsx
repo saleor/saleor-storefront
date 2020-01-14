@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { NavLink } from "..";
 import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
@@ -37,7 +37,7 @@ const NavItem: React.FC<NavItemProps> = ({
       />
       {hasSubNavigation && (
         <ReactSVG
-          path={subcategoriesImg}
+          src={subcategoriesImg}
           className="side-nav__menu-item-more"
           onClick={() => showSubItems(item)}
         />

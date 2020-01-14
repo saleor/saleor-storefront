@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { Modal } from "@components/organisms";
 
@@ -74,7 +74,7 @@ const AddressPicker: React.FC<IAddressPickerProps> = props => (
       onClick={props.showAddNewModalForm}
     >
       <div>
-        <ReactSVG path={plusSvg} />
+        <ReactSVG src={plusSvg} />
         <p>Add new address</p>
       </div>
     </div>

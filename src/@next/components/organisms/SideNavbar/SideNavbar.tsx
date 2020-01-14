@@ -76,7 +76,7 @@ export const SideNavbar: React.FC<IProps> = ({
       <S.Wrapper>
         <S.Menu>
           <TopBar onHide={handleHide}>
-            <S.LogoWrapper path={LogoSmall} />
+            <S.LogoWrapper src={LogoSmall} />
           </TopBar>
           <S.Link to="/">Home</S.Link>
           {items.map((item, index) =>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { Button } from "../../../components";
 import { SUPPORT_EMAIL } from "../../../core/config";
@@ -10,7 +10,7 @@ const ShippingUnavailableModal: React.FC<{ hide(): void }> = ({ hide }) => (
   <div className="modal">
     <div className="modal__title">
       <p>We’re not shipping to your country</p>{" "}
-      <ReactSVG path={closeImg} className="modal__close" onClick={hide} />
+      <ReactSVG src={closeImg} className="modal__close" onClick={hide} />
     </div>
     <div className="modal__body">
       <p className="modal__body__lead">We’re not shipping to your country</p>

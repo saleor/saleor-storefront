@@ -1,7 +1,7 @@
 import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { CreditCardIcon } from ".";
 

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { Thumbnail } from "@components/molecules";
 
@@ -53,11 +53,11 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       : line.quantity < line.stockQuantity;
   const quantityChangeControls = mediumScreen ? (
     <div>
-      <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
+      <ReactSVG src={cartSubtractImg} onClick={() => subtract(line.id)} />
       <p>{line.quantity}</p>
       <ReactSVG
         className={classNames({ disabled: !inStock })}
-        path={inStock ? cartAddImg : cartAddDisabledImg}
+        src={inStock ? cartAddImg : cartAddDisabledImg}
         onClick={inStock ? () => add(line.id) : undefined}
       />
     </div>
@@ -103,7 +103,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 
       {editable && (
         <td>
-          <ReactSVG path={cartRemoveImg} onClick={() => remove(line.id)} />
+          <ReactSVG src={cartRemoveImg} onClick={() => remove(line.id)} />
         </td>
       )}
     </tr>

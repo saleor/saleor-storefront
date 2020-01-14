@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { AddressSummary } from "../../../components";
 import { CardData } from "../../context";
@@ -38,7 +38,7 @@ class Summary extends React.PureComponent<{
             Shipping address
             <ReactSVG
               className="checkout-review__summary-copy"
-              path={copyImg}
+              src={copyImg}
               onClick={this.copyHandler(this.shippingAddressRef)}
             />
           </h4>
@@ -54,7 +54,7 @@ class Summary extends React.PureComponent<{
             <ReactSVG
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.billingAddressRef)}
-              path={copyImg}
+              src={copyImg}
             />
           </h4>
           <AddressSummary
@@ -68,7 +68,7 @@ class Summary extends React.PureComponent<{
             <ReactSVG
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.shippingMethodRef)}
-              path={copyImg}
+              src={copyImg}
             />
           </h4>
           <p ref={this.shippingMethodRef}>{checkout.shippingMethod.name}</p>
@@ -79,7 +79,7 @@ class Summary extends React.PureComponent<{
             <ReactSVG
               className="checkout-review__summary-copy"
               onClick={this.copyHandler(this.paymentMethodRef)}
-              path={copyImg}
+              src={copyImg}
             />
           </h4>
           <p ref={this.paymentMethodRef}>

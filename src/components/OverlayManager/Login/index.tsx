@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import {
   LoginForm,
@@ -11,7 +11,7 @@ import {
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "../..";
 import RegisterForm from "./RegisterForm";
 
@@ -47,7 +47,7 @@ class Login extends React.Component<
             <div className="overlay__header">
               <p className="overlay__header-text">Saleor account</p>
               <ReactSVG
-                path={closeImg}
+                src={closeImg}
                 onClick={hide}
                 className="overlay__header__close-icon"
               />

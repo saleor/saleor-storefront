@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import { useUserDetails } from "@sdk/react";
 
@@ -12,7 +12,7 @@ import {
   OfflinePlaceholder,
   Online,
   Overlay,
-  OverlayContextInterface
+  OverlayContextInterface,
 } from "../..";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
@@ -65,7 +65,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       <div className="cart">
                         <div className="overlay__header">
                           <ReactSVG
-                            path={cartImg}
+                            src={cartImg}
                             className="overlay__header__cart-icon"
                           />
                           <div className="overlay__header-text">
@@ -75,7 +75,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                             </span>
                           </div>
                           <ReactSVG
-                            path={closeImg}
+                            src={closeImg}
                             onClick={overlay.hide}
                             className="overlay__header__close-icon"
                           />

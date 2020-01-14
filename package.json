@@ -150,7 +150,7 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "engines": {
-    "node": ">=10.0.0 <11"
+    "node": ">=10.0.0 <12"
   },
   "scripts": {
     "test": "jest --config .jest/config.json",

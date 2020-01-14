@@ -1,11 +1,15 @@
 import fs from "fs";
 import { chunk } from "lodash";
 import path from "path";
-import { buildSitemapIndex, createSitemap } from "sitemap";
+import {
+  buildSitemapIndex,
+  createSitemap,
+  ISitemapItemOptionsLoose,
+} from "sitemap";
 
 class SitemapGenerator {
-  urls: [object?];
-  chunks: object[][];
+  urls: Array<ISitemapItemOptionsLoose | string>;
+  chunks: Array<Array<ISitemapItemOptionsLoose | string>>;
   sitemapSize: number;
   sitemapName: string;
   hostname: string;
@@ -23,11 +27,14 @@ class SitemapGenerator {
     this.cacheTime = options.cacheTime || 600000;
   }
 
-  add(url: object) {
+  add(url: ISitemapItemOptionsLoose | string) {
     this.urls.push(url);
   }
 
-  generateSitemap(urls: [object?], filename: string) {
+  generateSitemap(
+    urls: Array<ISitemapItemOptionsLoose | string>,
+    filename: string
+  ) {
     this.sitemaps.push(filename);
     this.saveToFile(
       createSitemap({
@@ -55,9 +62,11 @@ class SitemapGenerator {
     this.chunks = chunk(this.urls, this.sitemapSize);
 
     if (this.chunks.length > 1) {
-      this.chunks.forEach((chunk: [object], index) => {
-        this.generateSitemap(chunk, `${this.sitemapName}-${index}.xml`);
-      });
+      this.chunks.forEach(
+        (chunk: Array<ISitemapItemOptionsLoose | string>, index) => {
+          this.generateSitemap(chunk, `${this.sitemapName}-${index}.xml`);
+        }
+      );
       this.generateSitemapIndex(filename);
     } else {
       this.generateSitemap(this.urls, filename);

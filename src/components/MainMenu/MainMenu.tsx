@@ -1,6 +1,6 @@
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
@@ -10,7 +10,7 @@ import { Trans } from "@lingui/react";
 import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import {
   MenuDropdown,
@@ -18,7 +18,7 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
 import { maybe } from "../../core/utils";
 import {
@@ -26,7 +26,7 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
+  paymentOptionsUrl,
 } from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
@@ -68,11 +68,11 @@ const MainMenu: React.FC = () => {
                           }
                         >
                           <ReactSVG
-                            path={hamburgerImg}
+                            src={hamburgerImg}
                             className={"main-menu__hamburger--icon"}
                           />
                           <ReactSVG
-                            path={hamburgerHoverImg}
+                            src={hamburgerHoverImg}
                             className={"main-menu__hamburger--hover"}
                           />
                         </li>
@@ -96,7 +96,7 @@ const MainMenu: React.FC = () => {
 
           <div className="main-menu__center">
             <Link to={baseUrl}>
-              <ReactSVG path={logoImg} />
+              <ReactSVG src={logoImg} />
             </Link>
           </div>
 
@@ -111,7 +111,7 @@ const MainMenu: React.FC = () => {
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userImg} />
+                              <ReactSVG src={userImg} />
                             </li>
                           }
                           content={
@@ -153,7 +153,7 @@ const MainMenu: React.FC = () => {
                             )
                           }
                         >
-                          <ReactSVG path={userImg} />
+                          <ReactSVG src={userImg} />
                         </li>
                       )}
                     </>
@@ -170,7 +170,7 @@ const MainMenu: React.FC = () => {
                         );
                       }}
                     >
-                      <ReactSVG path={cartImg} />
+                      <ReactSVG src={cartImg} />
                       {cart.getQuantity() > 0 ? (
                         <span className="main-menu__cart__quantity">
                           {cart.getQuantity()}
@@ -198,7 +198,7 @@ const MainMenu: React.FC = () => {
                   query={{ minWidth: mediumScreen }}
                   render={() => <span>Search</span>}
                 />
-                <ReactSVG path={searchImg} />
+                <ReactSVG src={searchImg} />
               </li>
             </ul>
           </div>

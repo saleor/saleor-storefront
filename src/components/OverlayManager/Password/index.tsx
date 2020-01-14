@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
 import {
   Offline,
@@ -9,7 +9,7 @@ import {
   Online,
   Overlay,
   OverlayContextInterface,
-  PasswordResetForm
+  PasswordResetForm,
 } from "../..";
 
 import closeImg from "../../../images/x.svg";
@@ -23,7 +23,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
         <div className="overlay__header">
           <p className="overlay__header-text">Reset your password</p>
           <ReactSVG
-            path={closeImg}
+            src={closeImg}
             onClick={overlay.hide}
             className="overlay__header__close-icon"
           />
