@@ -4,7 +4,7 @@ import { TypedMutation } from "../core/mutations";
 import { TypedQuery } from "../core/queries";
 import {
   createCheckout,
-  createCheckoutVariables
+  createCheckoutVariables,
 } from "./types/createCheckout";
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 import { getUserCheckout } from "./types/getUserCheckout";
@@ -142,6 +142,7 @@ export const checkoutFragment = gql`
     lines {
       ...CheckoutLine
     }
+    isShippingRequired
   }
 `;
 

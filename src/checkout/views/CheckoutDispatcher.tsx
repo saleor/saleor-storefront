@@ -8,7 +8,7 @@ import {
   paymentUrl,
   reviewUrl,
   shippingAddressUrl,
-  shippingOptionsUrl
+  shippingOptionsUrl,
 } from "../routes";
 
 const getRedirectUrl = (token: string, step: CheckoutStep): string => {

@@ -541,4 +541,8 @@ export interface Checkout {
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (Checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }

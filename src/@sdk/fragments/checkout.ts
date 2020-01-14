@@ -136,5 +136,6 @@ export const checkoutFragment = gql`
     lines {
       ...CheckoutLine
     }
+    isShippingRequired
   }
 `;

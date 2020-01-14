@@ -556,6 +556,10 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -1105,6 +1109,10 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {
