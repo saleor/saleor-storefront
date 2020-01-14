@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@lingui/react": "^2.8.3",
-    "apollo": "^2.6.2",
+    "apollo": "^2.21.3",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-cache-persist": "^0.1.1",
     "apollo-client": "^2.5.1",
@@ -24,12 +24,13 @@
     "classnames": "^2.2.6",
     "core-js": "^2.5.7",
     "cross-env": "^5.2.0",
-    "dompurify": "^1.0.11",
+    "dompurify": "^2.0.7",
     "draftjs-to-html": "^0.8.4",
     "formik": "^1.5.7",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "history": "^4.7.2",
+    "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.4.8",
     "lodash": "^4.17.15",
     "nuka-carousel": "^4.6.0",
@@ -153,7 +154,7 @@
     "node": ">=10.0.0 <11"
   },
   "scripts": {
-    "test": "jest --config .jest/config.json",
+    "test": "jest --runInBand --config .jest/config.json",
     "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly",
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
