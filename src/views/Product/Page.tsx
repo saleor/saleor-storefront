@@ -27,18 +27,21 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   populateBreadcrumbs = product => [
     {
       link: generateCategoryUrl(product.category.id, product.category.name),
-      value: product.category.name,
+      value: product.category.name
     },
     {
       link: generateProductUrl(product.id, product.name),
-      value: product.name,
-    },
+      value: product.name
+    }
   ];
 
   componentDidMount() {
     if (this.showCarousel) {
       window.addEventListener("scroll", this.handleScroll, {
-        passive: true,
+        passive: true
+      });
+      window.addEventListener("resize", this.handleScroll, {
+        passive: true
       });
     }
   }
@@ -46,6 +49,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   componentWillUnmount() {
     if (this.showCarousel) {
       window.removeEventListener("scroll", this.handleScroll);
+      window.removeEventListener("resize", this.handleScroll);
     }
   }
 
@@ -54,10 +58,12 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     const fixedElement = this.fixedElement.current;
 
     if (productGallery && fixedElement) {
-      const containerPostion =
-        window.innerHeight - productGallery.getBoundingClientRect().bottom;
-      const fixedPosition =
-        window.innerHeight - fixedElement.getBoundingClientRect().bottom;
+      const containerPostion = Math.floor(
+        window.innerHeight - productGallery.getBoundingClientRect().bottom
+      );
+      const fixedPosition = Math.floor(
+        window.innerHeight - fixedElement.getBoundingClientRect().bottom
+      );
       const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
       const galleryToTop = Math.floor(
         this.productGallery.current.getBoundingClientRect().top + window.scrollY
@@ -126,7 +132,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       <div
                         className={classNames({
                           ["product-page__product__info--fixed"]: this
-                            .showCarousel,
+                            .showCarousel
                         })}
                         ref={this.fixedElement}
                       >
