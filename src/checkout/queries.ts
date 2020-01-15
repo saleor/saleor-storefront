@@ -8,6 +8,10 @@ import {
 } from "./types/createCheckout";
 import { getCheckout, getCheckoutVariables } from "./types/getCheckout";
 import { getUserCheckout } from "./types/getUserCheckout";
+import {
+  getVariantsProducts,
+  getVariantsProductsVariables,
+} from "./types/getVariantsProducts";
 
 export const checkoutAddressFragment = gql`
   fragment Address on Address {
@@ -217,3 +221,26 @@ const getUserCheckoutQuery = gql`
 export const TypedGetUserCheckoutQuery = TypedQuery<getUserCheckout, {}>(
   getUserCheckoutQuery
 );
+
+export const getVariantsProductsQuery = gql`
+  query getVariantsProducts($ids: [ID]) {
+    productVariants(ids: $ids, first: 100) {
+      edges {
+        node {
+          id
+          product {
+            id
+            productType {
+              isShippingRequired
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const TypedGetVariantsProductsQuery = TypedQuery<
+  getVariantsProducts,
+  getVariantsProductsVariables
+>(getUserCheckoutQuery);
