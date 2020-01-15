@@ -6,7 +6,7 @@ import { useAuth, useCheckoutDetails, useUserCheckout } from "@sdk/react";
 import {
   CheckoutContext,
   CheckoutContextInterface,
-  CheckoutStep
+  CheckoutStep,
 } from "./context";
 
 interface ProviderProps {
@@ -63,7 +63,8 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
       state.checkout.availableShippingMethods.length &&
       !!state.checkout.shippingAddress;
     const isBillingStep =
-      isShippingOptionStep && !!state.checkout.shippingMethod;
+      (isShippingOptionStep && !!state.checkout.shippingMethod) ||
+      !state.checkout.isShippingRequired;
     const isPaymentStep = isBillingStep && !!state.checkout.billingAddress;
     const isReviewStep =
       isPaymentStep && !!(state.cardData || state.dummyStatus);

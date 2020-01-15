@@ -173,6 +173,7 @@ export const updateCheckoutLineQuery = gql`
         subtotalPrice {
           ...Price
         }
+        isShippingRequired
       }
       errors {
         field

@@ -10,7 +10,7 @@ import {
   GuestAddressForm,
   StepCheck,
   Steps,
-  UserAddressSelector
+  UserAddressSelector,
 } from "../../components";
 import { CheckoutStep } from "../../context";
 import { paymentUrl } from "../../routes";
@@ -33,7 +33,10 @@ const computeMutationVariables = (
   return {
     billingAddress: {
       city: data.city,
-      country: maybe(() => data.country.value, data.country.code) as CountryCode,
+      country: maybe(
+        () => data.country.value,
+        data.country.code
+      ) as CountryCode,
       countryArea: data.countryArea,
       firstName: data.firstName,
       lastName: data.lastName,
@@ -113,21 +116,23 @@ const View: React.FC<IBillingPageProps> = ({
         checkout={checkout}
       >
         <>
-          <div className="address-form__copy-address">
-            <label className="checkbox">
-              <input
-                name="asBilling"
-                type="checkbox"
-                checked={shippingAsBilling}
-                onChange={({ target: { checked } }) =>
-                  update({
-                    shippingAsBilling: checked,
-                  })
-                }
-              />
-              <span>Same as Shipping Address</span>
-            </label>
-          </div>
+          {checkout.isShippingRequired && (
+            <div className="address-form__copy-address">
+              <label className="checkbox">
+                <input
+                  name="asBilling"
+                  type="checkbox"
+                  checked={shippingAsBilling}
+                  onChange={({ target: { checked } }) =>
+                    update({
+                      shippingAsBilling: checked,
+                    })
+                  }
+                />
+                <span>Same as Shipping Address</span>
+              </label>
+            </div>
+          )}
           {user ? (
             <UserAddressSelector
               update={update}

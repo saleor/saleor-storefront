@@ -43,7 +43,7 @@ class Summary extends React.PureComponent<{
             />
           </h4>
           <AddressSummary
-            address={checkout.shippingAddress}
+            address={checkout.isShippingRequired && checkout.shippingAddress}
             email={checkout.email}
             paragraphRef={this.shippingAddressRef}
           />
@@ -62,17 +62,19 @@ class Summary extends React.PureComponent<{
             paragraphRef={this.billingAddressRef}
           />
         </div>
-        <div>
-          <h4>
-            Shipping method
-            <ReactSVG
-              className="checkout-review__summary-copy"
-              onClick={this.copyHandler(this.shippingMethodRef)}
-              path={copyImg}
-            />
-          </h4>
-          <p ref={this.shippingMethodRef}>{checkout.shippingMethod.name}</p>
-        </div>
+        {checkout.isShippingRequired && (
+          <div>
+            <h4>
+              Shipping method
+              <ReactSVG
+                className="checkout-review__summary-copy"
+                onClick={this.copyHandler(this.shippingMethodRef)}
+                path={copyImg}
+              />
+            </h4>
+            <p ref={this.shippingMethodRef}>{checkout.shippingMethod.name}</p>
+          </div>
+        )}
         <div>
           <h4>
             Payment method

@@ -50,11 +50,13 @@ const Steps: React.FC<{
     {
       header: "Shipping Address",
       path: shippingAddressUrl,
+      shippingContent: true,
       step: CheckoutStep.ShippingAddress,
     },
     {
       header: "Shipping Method",
       path: shippingOptionsUrl,
+      shippingContent: true,
       step: CheckoutStep.ShippingOption,
     },
     {
@@ -67,11 +69,15 @@ const Steps: React.FC<{
       step: CheckoutStep.Payment,
     },
   ];
+  const availableSteps =
+    checkout && checkout.isShippingRequired
+      ? steps
+      : steps.filter(({ shippingContent }) => !shippingContent);
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
 
   return (
     <>
-      {steps.map(({ header, step, path }, index) => (
+      {availableSteps.map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>

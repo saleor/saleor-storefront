@@ -5,7 +5,7 @@ import { NotificationTemplate } from "@components/atoms";
 import {
   I18nLoader,
   ServiceWorkerContext,
-  ServiceWorkerProvider
+  ServiceWorkerProvider,
 } from "@components/containers";
 import { SaleorProvider, useAuth, useUserDetails } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
@@ -38,7 +38,7 @@ import ShopProvider from "./components/ShopProvider";
 
 import {
   authLink,
-  invalidTokenLinkWithTokenHandlerComponent
+  invalidTokenLinkWithTokenHandlerComponent,
 } from "./core/auth";
 
 import { languages } from "./languages";

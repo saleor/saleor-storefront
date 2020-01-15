@@ -84,7 +84,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
         </Link>
 
         <div className="checkout__step checkout__step--inactive">
-          <span>5</span>
+          <span>{checkout.isShippingRequired ? "5" : "3"}</span>
           <h4 className="checkout__header">Review your order</h4>
         </div>
 
@@ -92,7 +92,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           <CartTable
             lines={extractCheckoutLines(checkout.lines)}
             subtotal={checkout.subtotalPrice.gross.localized}
-            deliveryCost={checkout.shippingMethod.price.localized}
+            deliveryCost={
+              checkout.shippingMethod && checkout.shippingMethod.price.localized
+            }
             totalCost={checkout.totalPrice.gross.localized}
           />
           <div className="checkout-review__content">
