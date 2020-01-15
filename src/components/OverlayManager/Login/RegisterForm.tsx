@@ -20,9 +20,11 @@ const showSuccessNotification = (
     hide();
     alert.show(
       {
-        title: "New user has been created",
+        title: data.accountRegister.requiresConfirmation
+        ? "Please check your e-mail for further instructions"
+        : "New user has been created",
       },
-      { type: "success" }
+      { type: "success", timeout: 5000 }
     );
   }
 };

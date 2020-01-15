@@ -13,6 +13,7 @@ const accountRegisterMutation = gql`
         field
         message
       }
+      requiresConfirmation
     }
   }
 `;

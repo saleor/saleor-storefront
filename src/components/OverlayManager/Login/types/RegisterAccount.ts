@@ -19,12 +19,18 @@ export interface RegisterAccount_accountRegister_errors {
   message: string | null;
 }
 
+export interface RegisterAccount_accountRegister_requiresConfirmation {
+  __typename: "RequiresConfirmation";
+  field: boolean | null;
+}
+
 export interface RegisterAccount_accountRegister {
   __typename: "AccountRegister";
   /**
    * List of errors that occurred executing the mutation.
    */
   errors: RegisterAccount_accountRegister_errors[] | null;
+  requiresConfirmation: RegisterAccount_accountRegister_requiresConfirmation | null;
 }
 
 export interface RegisterAccount {
