@@ -102,14 +102,15 @@ const View: React.FC<IBillingPageProps> = ({
 
   const { data: user } = useUserDetails();
 
-  return !validateStep ? (
-    <StepCheck
-      step={step}
-      checkout={checkout}
-      path={path}
-      token={proceedToNextStepData.token}
-    />
-  ) : (
+  return (
+    // !validateStep ? (
+    //   <StepCheck
+    //     step={step}
+    //     checkout={checkout}
+    //     path={path}
+    //     token={proceedToNextStepData.token}
+    //   />
+    // ) : (
     <CartSummary checkout={checkout}>
       <Steps
         step={CheckoutStep.BillingAddress}
@@ -151,6 +152,7 @@ const View: React.FC<IBillingPageProps> = ({
         </>
       </Steps>
     </CartSummary>
+    // )
   );
 };
 

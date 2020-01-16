@@ -24,6 +24,9 @@ export interface CheckoutContextInterface {
   checkout?: Checkout;
   loading?: boolean;
   shippingAsBilling?: boolean;
+  /*
+   * @deprecated Use anything else
+   */
   step?: CheckoutStep;
   update?(checkoutData: CheckoutContextInterface): void;
   clear?(): void;

@@ -16,20 +16,16 @@ import {
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import { CheckoutContext } from "./context";
+import { CheckoutContext, CheckoutStep } from "./context";
 import { billingUrl, Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
 
 const CheckoutApp: React.FC<{ location: any }> = ({ location }) => {
+  const { loading, checkout, cardData, dummyStatus } = React.useContext(
+    CheckoutContext
+  );
   const { lines: cartLines } = React.useContext(CartContext);
-  const {
-    data: variantsProducts,
-    loading: variantsProductsLoading,
-  } = useVariantsProducts({
-    ids: cartLines ? cartLines.map(line => line.variantId) : [],
-  });
-  const [initialStepRequired, setInitialStepRequired] = React.useState(true);
 
   return (
     <div className="checkout">
@@ -41,31 +37,17 @@ const CheckoutApp: React.FC<{ location: any }> = ({ location }) => {
       </div>
       <div className="container">
         <Online>
-          <CartContext.Consumer>
-            {cart => (
-              <CheckoutContext.Consumer>
-                {({ loading, checkout }) => {
-                  if (!cartLines.length) {
-                    return <Redirect to={BASE_URL} />;
-                  }
+          {(() => {
+            if (!cartLines.length) {
+              return <Redirect to={BASE_URL} />;
+            }
 
-                  if (loading) {
-                    return <Loader />;
-                  }
+            if (loading) {
+              return <Loader />;
+            }
 
-                  if (
-                    !checkout &&
-                    variantsProducts &&
-                    location.pathname !== generatePath(billingUrl)
-                  ) {
-                    return <Redirect to={generatePath(billingUrl)} />;
-                  }
-
-                  return <Routes />;
-                }}
-              </CheckoutContext.Consumer>
-            )}
-          </CartContext.Consumer>
+            return <Routes />;
+          })()}
         </Online>
         <Offline>
           <OfflinePlaceholder />
