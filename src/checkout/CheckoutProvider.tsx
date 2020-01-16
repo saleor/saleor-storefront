@@ -1,7 +1,12 @@
 import * as React from "react";
 
 import { useLocalStorage } from "@hooks";
-import { useAuth, useCheckoutDetails, useUserCheckout } from "@sdk/react";
+import {
+  useAuth,
+  useCheckoutDetails,
+  useUserCheckout,
+  useVariantsProducts,
+} from "@sdk/react";
 
 import {
   CheckoutContext,
@@ -53,6 +58,19 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
       setState(prevState => ({ ...prevState, syncUserCheckout: true }));
     }
   }, [user.data]);
+
+  const {
+    data: variantsProducts,
+    loading: variantsProductsLoading,
+  } = useVariantsProducts({
+    ids: state.checkout
+      ? state.checkout.lines.map(({ variant }) => variant.id)
+      : [],
+  });
+
+  // TODO: Something is wrong, it takes too much products!
+  // tslint:disable-next-line:no-console
+  console.log(variantsProducts);
 
   const getCurrentStep = () => {
     if (!state.checkout) {

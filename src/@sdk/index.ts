@@ -16,13 +16,13 @@ import {
   MapFn,
   QueryShape,
   WatchMapFn,
-  WatchQueryData
+  WatchQueryData,
 } from "./types";
 import {
   getErrorsFromData,
   getMappedData,
   isDataEmpty,
-  mergeEdges
+  mergeEdges,
 } from "./utils";
 
 import { UserDetails } from "./queries/types/UserDetails";
@@ -86,6 +86,11 @@ export class SaleorAPI {
 
   getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
     data.me ? data.me.checkout : null
+  );
+
+  getVariantsProducts = this.watchQuery(
+    QUERIES.VariantsProducts,
+    data => data.productVariants
   );
 
   setUserDefaultAddress = this.fireQuery(

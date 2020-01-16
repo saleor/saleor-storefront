@@ -1,7 +1,7 @@
 import {
   ApolloClient,
   ObservableQuery,
-  QueryOptions as ApolloQueryOptions
+  QueryOptions as ApolloQueryOptions,
 } from "apollo-client";
 import gql from "graphql-tag";
 
@@ -14,26 +14,31 @@ import * as Product from "./products";
 
 import {
   CheckoutDetails,
-  CheckoutDetailsVariables
+  CheckoutDetailsVariables,
 } from "./types/CheckoutDetails";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 
 import { Attributes, AttributesVariables } from "./types/Attributes";
 import {
   ProductDetails,
-  ProductDetailsVariables
+  ProductDetailsVariables,
 } from "./types/ProductDetails";
 
 import { ProductList, ProductListVariables } from "./types/ProductList";
 
 import {
   CategoryDetails,
-  CategoryDetailsVariables
+  CategoryDetailsVariables,
 } from "./types/CategoryDetails";
 
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
+import {
+  VariantsProducts,
+  VariantsProductsVariables,
+} from "./types/VariantsProducts";
+
 import * as User from "./user";
 
 type QueryOptions<T = {}> = T extends { [n: string]: never }
@@ -129,6 +134,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${User.getUserDetailsQuery}
+      `,
+      ...options,
+    }),
+  VariantsProducts: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<VariantsProductsVariables>
+  ): ObservableQuery<VariantsProducts, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Product.variantsProducts}
       `,
       ...options,
     }),
