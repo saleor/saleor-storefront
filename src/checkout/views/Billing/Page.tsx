@@ -58,6 +58,7 @@ const View: React.FC<IBillingPageProps> = ({
   step,
   update,
   updateCheckoutBillingAddress,
+  isShippingRequired,
 }) => {
   const [saveBillingAddress, { loading, error }] = updateCheckoutBillingAddress;
   const errors = maybe(() => error.extraInfo.userInputErrors, []);
@@ -101,7 +102,7 @@ const View: React.FC<IBillingPageProps> = ({
 
   const { data: user } = useUserDetails();
 
-  return validateStep ? (
+  return !validateStep ? (
     <StepCheck
       step={step}
       checkout={checkout}
@@ -116,7 +117,7 @@ const View: React.FC<IBillingPageProps> = ({
         checkout={checkout}
       >
         <>
-          {checkout.isShippingRequired && (
+          {isShippingRequired && (
             <div className="address-form__copy-address">
               <label className="checkbox">
                 <input

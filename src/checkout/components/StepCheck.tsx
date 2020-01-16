@@ -8,7 +8,7 @@ import {
   paymentUrl,
   reviewUrl,
   shippingAddressUrl,
-  shippingOptionsUrl
+  shippingOptionsUrl,
 } from "../routes";
 import { Checkout } from "../types/Checkout";
 

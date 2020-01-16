@@ -9,7 +9,7 @@ import { CheckoutContextInterface, CheckoutStep } from "../../context";
 import { Checkout } from "../../types/Checkout";
 import {
   updateCheckoutBillingAddress_checkoutBillingAddressUpdate,
-  updateCheckoutBillingAddressVariables
+  updateCheckoutBillingAddressVariables,
 } from "./types/updateCheckoutBillingAddress";
 
 export interface IBillingPageProps {
@@ -38,6 +38,7 @@ export interface IBillingPageProps {
     token?: string;
   };
   validateStep: boolean;
+  isShippingRequired: boolean;
 }
 
 export interface IBillingPageState {

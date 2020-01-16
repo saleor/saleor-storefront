@@ -3,9 +3,9 @@ import { generatePath, Link } from "react-router-dom";
 
 import { useVariantsProducts } from "@sdk/react";
 
-import { CartContext } from "@temp/components/CartProvider/context";
 import { ShippingOptionSummary } from ".";
 import { AddressSummary } from "../../components";
+import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutStep } from "../context";
 import { billingUrl, shippingAddressUrl, shippingOptionsUrl } from "../routes";
 import { Checkout } from "../types/Checkout";
@@ -118,7 +118,7 @@ const Steps: React.FC<{
                   <h4 className="checkout__header">{header}</h4>
                 </div>
               </Link>
-              {getSummary(step, checkout)}
+              {checkout && getSummary(step, checkout)}
             </>
           ) : (
             <div className="checkout__step">
