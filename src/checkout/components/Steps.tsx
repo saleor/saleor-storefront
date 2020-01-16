@@ -1,6 +1,9 @@
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
 
+import { useVariantsProducts } from "@sdk/react";
+
+import { CartContext } from "@temp/components/CartProvider/context";
 import { ShippingOptionSummary } from ".";
 import { AddressSummary } from "../../components";
 import { CheckoutStep } from "../context";
@@ -46,6 +49,14 @@ const Steps: React.FC<{
   token?: string;
   checkout?: Checkout;
 }> = ({ checkout, step: currentStep, token, children }) => {
+  const { lines: cardLines } = React.useContext(CartContext);
+  const {
+    data: variantsProducts,
+    loading: variantsProductsLoading,
+  } = useVariantsProducts({
+    ids: cardLines ? cardLines.map(line => line.variantId) : [],
+  });
+
   const steps = [
     {
       header: "Shipping Address",
@@ -69,15 +80,31 @@ const Steps: React.FC<{
       step: CheckoutStep.Payment,
     },
   ];
-  const availableSteps =
-    checkout && checkout.isShippingRequired
-      ? steps
-      : steps.filter(({ shippingContent }) => !shippingContent);
+
+  const availableSteps = () => {
+    if (checkout && checkout.isShippingRequired) {
+      return steps;
+    } else if (checkout) {
+      return steps.filter(({ shippingContent }) => !shippingContent);
+    } else if (variantsProducts) {
+      const isShippingRequired =
+        variantsProducts.edges &&
+        variantsProducts.edges.some(
+          ({ node }) => node.product.productType.isShippingRequired
+        );
+      if (isShippingRequired) {
+        return steps;
+      }
+      return steps.filter(({ shippingContent }) => !shippingContent);
+    }
+    return steps;
+  };
+
   const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
 
   return (
     <>
-      {availableSteps.map(({ header, step, path }, index) => (
+      {availableSteps().map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>
