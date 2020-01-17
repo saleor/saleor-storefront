@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@lingui/react": "^2.8.3",
+    "@types/yup": "^0.26.27",
     "apollo": "^2.21.3",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-cache-persist": "^0.1.1",
@@ -50,7 +51,8 @@
     "styled-components": "^4.3.0",
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0",
-    "use-query-params": "^0.4.1"
+    "use-query-params": "^0.4.1",
+    "yup": "^0.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
