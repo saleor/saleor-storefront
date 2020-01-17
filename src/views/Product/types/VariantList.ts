@@ -122,7 +122,7 @@ export interface VariantList_productVariants_edges_node_attributes_attribute {
   name: string | null;
 }
 
-export interface VariantList_productVariants_edges_node_attributes_value {
+export interface VariantList_productVariants_edges_node_attributes_values {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -145,9 +145,9 @@ export interface VariantList_productVariants_edges_node_attributes {
    */
   attribute: VariantList_productVariants_edges_node_attributes_attribute;
   /**
-   * The value or the first value of an attribute.
+   * Values of an attribute.
    */
-  value: VariantList_productVariants_edges_node_attributes_value | null;
+  values: (VariantList_productVariants_edges_node_attributes_values | null)[];
 }
 
 export interface VariantList_productVariants_edges_node_product_thumbnail {

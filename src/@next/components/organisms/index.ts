@@ -6,6 +6,7 @@ export * from "./AddressGrid";
 export * from "./AddressForm";
 export * from "./TopNavbar";
 export * from "./SideNavbar";
-export * from "./SizeOverlay";
 export * from "./AddressFormModal";
 export * from "./FilterSidebar";
+export * from "./ProductVariantPicker";
+export * from "./SelectSidebar";

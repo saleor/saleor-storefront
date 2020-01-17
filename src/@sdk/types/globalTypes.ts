@@ -345,9 +345,9 @@ export interface CheckoutLineInput {
 }
 
 export interface ProductOrder {
-  field?: ProductOrderField | null;
-  attributeId?: string | null;
   direction: OrderDirection;
+  attributeId?: string | null;
+  field?: ProductOrderField | null;
 }
 
 //==============================================================

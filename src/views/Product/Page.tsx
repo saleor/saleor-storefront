@@ -82,6 +82,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             name={product.name}
             productVariants={product.variants}
             selectedAttributes={product.attributes}
+            pricing={product.pricing}
             addToCart={cart.add}
           >
             <RichTextContent descriptionJson={product.descriptionJson} />

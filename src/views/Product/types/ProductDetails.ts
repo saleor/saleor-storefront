@@ -550,6 +550,10 @@ export interface ProductDetails_product_images {
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
@@ -557,6 +561,10 @@ export interface ProductDetails_product_attributes_attribute {
 
 export interface ProductDetails_product_attributes_values {
   __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   /**
    * Name of a value displayed in the interface.
    */
@@ -691,7 +699,7 @@ export interface ProductDetails_product_variants_attributes_attribute {
   name: string | null;
 }
 
-export interface ProductDetails_product_variants_attributes_value {
+export interface ProductDetails_product_variants_attributes_values {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -714,9 +722,9 @@ export interface ProductDetails_product_variants_attributes {
    */
   attribute: ProductDetails_product_variants_attributes_attribute;
   /**
-   * The value or the first value of an attribute.
+   * Values of an attribute.
    */
-  value: ProductDetails_product_variants_attributes_value | null;
+  values: (ProductDetails_product_variants_attributes_values | null)[];
 }
 
 export interface ProductDetails_product_variants {
@@ -743,14 +751,6 @@ export interface ProductDetails_product_variants {
    * List of attributes assigned to this variant.
    */
   attributes: ProductDetails_product_variants_attributes[];
-}
-
-export interface ProductDetails_product_availability {
-  __typename: "ProductPricingInfo";
-  /**
-   * Whether it is in stock and visible or not.
-   */
-  available: boolean | null;
 }
 
 export interface ProductDetails_product {
@@ -789,9 +789,9 @@ export interface ProductDetails_product {
   seoDescription: string | null;
   seoTitle: string | null;
   /**
-   * Informs about product's availability in the storefront, current price and discounts.
+   * Whether the product is in stock and visible or not.
    */
-  availability: ProductDetails_product_availability | null;
+  isAvailable: boolean | null;
 }
 
 export interface ProductDetails {

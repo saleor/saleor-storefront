@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
 import {
   basicProductFragment,
-  productPricingFragment
+  productPricingFragment,
 } from "../Product/queries";
 import { Category, CategoryVariables } from "./types/Category";
 
@@ -12,7 +12,7 @@ export const categoryProductsQuery = gql`
   ${productPricingFragment}
   query Category(
     $id: ID!
-    $attributes: [AttributeScalar]
+    $attributes: [AttributeInput]
     $after: String
     $pageSize: Int
     $sortBy: ProductOrder
@@ -21,10 +21,10 @@ export const categoryProductsQuery = gql`
   ) {
     products(
       after: $after
-      attributes: $attributes
       first: $pageSize
       sortBy: $sortBy
       filter: {
+        attributes: $attributes
         categories: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }
       }
@@ -64,7 +64,7 @@ export const categoryProductsQuery = gql`
         }
       }
     }
-    attributes(inCategory: $id, first: 100) {
+    attributes(filter: { inCategory: $id }, first: 100) {
       edges {
         node {
           id

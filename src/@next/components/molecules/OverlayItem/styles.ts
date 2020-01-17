@@ -1,6 +1,6 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div<{ selected: boolean }>`
+export const Wrapper = styled.div<{ selected: boolean; disabled: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,10 +8,13 @@ export const Wrapper = styled.div<{ selected: boolean }>`
   border-bottom: 1px solid ${props => props.theme.colors.light};
   ${({ selected, theme }) =>
     selected && `font-weight: ${theme.typography.boldFontWeight};`}
+  color: ${props => (props.disabled ? props.theme.colors.disabled : `unset`)};
 
-  &:hover {
-    background-color: ${props => props.theme.colors.primaryLight};
-    color: ${props => props.theme.colors.primaryDark};
-    font-weight: ${props => props.theme.typography.boldFontWeight};
-  }
+  ${props =>
+    !props.disabled &&
+    `&:hover {
+    background-color: ${props.theme.colors.primaryLight};
+    color: ${props.theme.colors.primaryDark};
+    font-weight: ${props.theme.typography.boldFontWeight};
+  }`}
 `;
