@@ -33,10 +33,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     CheckoutContext
   );
   const { lines: cardLines } = React.useContext(CartContext);
-  const {
-    data: variantsProducts,
-    loading: variantsProductsLoading,
-  } = useVariantsProducts({
+  const { data: variantsProducts } = useVariantsProducts({
     ids: cardLines ? cardLines.map(line => line.variantId) : [],
   });
   const isShippingRequired = () => {

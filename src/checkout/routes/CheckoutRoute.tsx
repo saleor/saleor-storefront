@@ -16,9 +16,12 @@ import {
 } from "./";
 
 export const CheckoutRoute = () => {
-  const { loading, checkout, cardData, dummyStatus } = React.useContext(
-    CheckoutContext
-  );
+  const {
+    loading: checkoutLoading,
+    checkout,
+    cardData,
+    dummyStatus,
+  } = React.useContext(CheckoutContext);
   const { lines: cartLines } = React.useContext(CartContext);
 
   const {
@@ -35,7 +38,7 @@ export const CheckoutRoute = () => {
     dummyStatus
   );
 
-  if (loading) {
+  if (checkoutLoading || variantsProductsLoading || !step) {
     return <Loader />;
   }
 

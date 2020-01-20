@@ -1,11 +1,9 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { generatePath, Redirect, withRouter } from "react-router";
+import { Redirect, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
-
-import { useVariantsProducts } from "@sdk/react";
 
 import {
   Loader,
@@ -16,15 +14,13 @@ import {
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import { CheckoutContext, CheckoutStep } from "./context";
-import { billingUrl, Routes } from "./routes";
+import { CheckoutContext } from "./context";
+import { Routes } from "./routes";
 
 import logoImg from "../images/logo.svg";
 
-const CheckoutApp: React.FC<{ location: any }> = ({ location }) => {
-  const { loading, checkout, cardData, dummyStatus } = React.useContext(
-    CheckoutContext
-  );
+const CheckoutApp: React.FC<{}> = () => {
+  const { loading } = React.useContext(CheckoutContext);
   const { lines: cartLines } = React.useContext(CartContext);
 
   return (

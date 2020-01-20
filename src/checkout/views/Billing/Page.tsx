@@ -8,7 +8,6 @@ import { maybe } from "../../../core/utils";
 import {
   CartSummary,
   GuestAddressForm,
-  StepCheck,
   Steps,
   UserAddressSelector,
 } from "../../components";

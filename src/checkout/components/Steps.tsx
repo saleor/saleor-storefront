@@ -50,10 +50,7 @@ const Steps: React.FC<{
   checkout?: Checkout;
 }> = ({ checkout, step: currentStep, token, children }) => {
   const { lines: cardLines } = React.useContext(CartContext);
-  const {
-    data: variantsProducts,
-    loading: variantsProductsLoading,
-  } = useVariantsProducts({
+  const { data: variantsProducts } = useVariantsProducts({
     ids: cardLines ? cardLines.map(line => line.variantId) : [],
   });
 
@@ -81,7 +78,7 @@ const Steps: React.FC<{
     },
   ];
 
-  const availableSteps = () => {
+  const getAvailableSteps = () => {
     if (checkout && checkout.isShippingRequired) {
       return steps;
     } else if (checkout) {
@@ -100,11 +97,15 @@ const Steps: React.FC<{
     return steps;
   };
 
-  const currentStepIndex = steps.findIndex(({ step }) => step === currentStep);
+  const availableSteps = getAvailableSteps();
+
+  const currentStepIndex = availableSteps.findIndex(
+    ({ step }) => step === currentStep
+  );
 
   return (
     <>
-      {availableSteps().map(({ header, step, path }, index) => (
+      {availableSteps.map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
           {currentStepIndex > index ? (
             <>

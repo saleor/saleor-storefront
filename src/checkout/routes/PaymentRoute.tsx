@@ -1,12 +1,12 @@
 import * as React from "react";
 
 import { StepCheck } from "../components";
-import { Shipping } from "../views";
+import { Payment } from "../views";
 
-export const ShippingRoute = props => {
+export const PaymentRoute = props => {
   return (
     <StepCheck>
-      <Shipping {...props} />
+      <Payment {...props} />
     </StepCheck>
   );
 };
