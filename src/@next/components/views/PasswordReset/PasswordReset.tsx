@@ -4,12 +4,11 @@ import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { TextField } from "@components/molecules";
 import { setAuthToken } from "@sdk/auth";
 import { useSetPassword } from "@sdk/react";
 import { BASE_URL } from "../../../../core/config";
 
-import { Button } from "@components/atoms";
+import { ResetPasswordForm } from "@components/molecules";
 import * as S from "./styles";
 import { FormikProps, IProps } from "./types";
 
@@ -34,7 +33,8 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
     token: StringParam,
   });
 
-  const [wrongToken, setWrongToken] = React.useState(false);
+  const [tokenError, setTokenError] = React.useState(false);
+  const [passwordError, setPasswordError] = React.useState("");
 
   const [setPassword, { data, error: graphqlErrors }] = useSetPassword();
 
@@ -49,21 +49,23 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
       graphqlErrors.extraInfo.userInputErrors
     ) {
       graphqlErrors.extraInfo.userInputErrors.filter(error => {
-        if (error.field === "token") {
-          setWrongToken(true);
-        }
+        error.field === "token" ? setTokenError(true) : setTokenError(false);
+        error.field === "password"
+          ? setPasswordError(error.message)
+          : setPasswordError("");
       });
     }
   }, [data, graphqlErrors]);
 
   const { email, token } = query;
+
   if (!email || !token) {
     history.push(BASE_URL);
   }
 
-  const onSubmit = async (values: FormikProps) => {
+  const onSubmit = (values: FormikProps) => {
     if (email && token && values.password) {
-      await setPassword({
+      setPassword({
         email,
         password: values.password,
         token,
@@ -71,34 +73,8 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
     }
   };
 
-  const parsePasswordErrors = (formikErrors: any, graphqlErrors: any) => {
-    if (formikErrors.password) {
-      return [{ field: "password", message: formikErrors.password }];
-    }
-
-    if (graphqlErrors && graphqlErrors.extraInfo) {
-      return graphqlErrors.extraInfo.userInputErrors.filter(
-        (error: { field: string; message: string }) => {
-          if (error.field === "password") {
-            return {
-              field: "password",
-              message: error.message,
-            };
-          }
-        }
-      );
-    }
-  };
   return (
     <S.Wrapper>
-      <h3>Reset your password</h3>
-
-      <p>Please provide new password</p>
-      {wrongToken && (
-        <S.GeneralError>
-          It seems that token for password reset is not valid anymore.
-        </S.GeneralError>
-      )}
       <Formik
         initialValues={initialData}
         validationSchema={PasswordResetSchema}
@@ -106,43 +82,21 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ handleChange, handleBlur, values, errors, handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <S.InputFields>
-              <TextField
-                label="Password"
-                name="password"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                type="password"
-                value={values.password}
-                errors={parsePasswordErrors(errors, graphqlErrors)}
-              />
-              <TextField
-                label="Retype password"
-                onBlur={handleBlur}
-                name="retypedPassword"
-                onChange={handleChange}
-                type="password"
-                value={values.retypedPassword}
-                errors={
-                  errors.retypedPassword
-                    ? [
-                        {
-                          field: "retypedPassword",
-                          message: errors.retypedPassword,
-                        },
-                      ]
-                    : undefined
-                }
-              />
-            </S.InputFields>
-
-            <Button type="submit" fullWidth={true}>
-              SET NEW PASSWORD
-            </Button>
-          </form>
-        )}
+        {({ handleChange, handleBlur, values, errors, handleSubmit }) => {
+          return (
+            <ResetPasswordForm
+              {...{
+                errors,
+                handleBlur,
+                handleChange,
+                handleSubmit,
+                passwordError,
+                tokenError,
+                values,
+              }}
+            />
+          );
+        }}
       </Formik>
     </S.Wrapper>
   );

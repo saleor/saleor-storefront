@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/ResetPasswordForm default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c11 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c9 {
+  background-color: #13bebb;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+}
+
+.c9:hover {
+  background-color: #06a09e;
+  color: #fff;
+}
+
+.c9:active {
+  background-color: #06a09e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c9:disabled {
+  background-color: #7d7d7d;
+}
+
+.c9:disabled,
+.c9:disabled:hover {
+  cursor: default;
+}
+
+.c10 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.c7 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c4:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c5 {
+  position: relative;
+  width: 100%;
+}
+
+.c6 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c3 {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.c8 {
+  position: absolute;
+  top: 100%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c1 h3 {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.c1 p {
+  color: #7d7d7d;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  height: 10.5rem;
+  margin: 1rem auto;
+}
+
+@media (max-width:540px) {
+  .c9 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <h3>
+      Reset your password
+    </h3>
+    <p>
+      Please provide new password
+    </p>
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          <div
+            className="c4"
+            disabled={false}
+          >
+            <div
+              className="c5"
+            >
+              <input
+                className="c6"
+                disabled={false}
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="password"
+                value=""
+              />
+              <label
+                className="c7"
+              >
+                Password
+              </label>
+            </div>
+          </div>
+          <div
+            className="c8"
+          />
+        </div>
+        <div
+          className="c3"
+        >
+          <div
+            className="c4"
+            disabled={false}
+          >
+            <div
+              className="c5"
+            >
+              <input
+                className="c6"
+                disabled={false}
+                name="retypedPassword"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                type="password"
+                value=""
+              />
+              <label
+                className="c7"
+              >
+                Retype password
+              </label>
+            </div>
+          </div>
+          <div
+            className="c8"
+          />
+        </div>
+      </div>
+      <button
+        className="c9"
+        color="primary"
+        size="md"
+        type="submit"
+      >
+        <span
+          className="c10"
+          size="md"
+        >
+          SET NEW PASSWORD
+        </span>
+      </button>
+    </form>
+  </div>
+  <div
+    className="c11"
+  />
+</div>
+`;

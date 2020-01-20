@@ -83,7 +83,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c10 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
@@ -665,7 +664,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c10 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
@@ -1253,7 +1251,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c10 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }

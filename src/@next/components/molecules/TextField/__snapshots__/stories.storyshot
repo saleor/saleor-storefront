@@ -73,7 +73,6 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
 }
 
 .c6 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
@@ -200,7 +199,6 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
 }
 
 .c7 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
@@ -334,7 +332,6 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
 }
 
 .c7 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
@@ -466,7 +463,6 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
 }
 
 .c6 {
-  overflow: visible;
   position: absolute;
   top: 100%;
 }
