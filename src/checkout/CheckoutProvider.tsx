@@ -3,11 +3,7 @@ import * as React from "react";
 import { useLocalStorage } from "@hooks";
 import { useAuth, useCheckoutDetails, useUserCheckout } from "@sdk/react";
 
-import {
-  CheckoutContext,
-  CheckoutContextInterface,
-  CheckoutStep,
-} from "./context";
+import { CheckoutContext, CheckoutContextInterface } from "./context";
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -30,7 +26,6 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
     dummyStatus: null,
     loading: !!token,
     shippingAsBilling: false,
-    step: CheckoutStep.BillingAddress, // LEGACY! step should be removed
     /**
      * Flag to determine, when the user checkout should be fetched from the
      * API and override the current, storred one - happens after user log in
@@ -54,37 +49,6 @@ export const CheckoutProvider: React.FC<ProviderProps> = ({
       setState(prevState => ({ ...prevState, syncUserCheckout: true }));
     }
   }, [user.data]);
-
-  /*
-  LEGACY CODE: move step logic outside of checkout provider, as it may depend on other contexts, not just on checkout context!
-    -- in the best scenario it should be in hook!
-  */
-  // const getCurrentStep = () => {
-  //   if (!state.checkout) {
-  //     return CheckoutStep.ShippingAddress;
-  //   }
-
-  //   const isShippingOptionStep =
-  //     state.checkout.availableShippingMethods.length &&
-  //     !!state.checkout.shippingAddress;
-  //   const isBillingStep =
-  //     (isShippingOptionStep && !!state.checkout.shippingMethod) ||
-  //     !state.checkout.isShippingRequired;
-  //   const isPaymentStep = isBillingStep && !!state.checkout.billingAddress;
-  //   const isReviewStep =
-  //     isPaymentStep && !!(state.cardData || state.dummyStatus);
-
-  //   if (isReviewStep) {
-  //     return CheckoutStep.Review;
-  //   } else if (isPaymentStep) {
-  //     return CheckoutStep.Payment;
-  //   } else if (isBillingStep) {
-  //     return CheckoutStep.BillingAddress;
-  //   } else if (isShippingOptionStep) {
-  //     return CheckoutStep.ShippingOption;
-  //   }
-  //   return CheckoutStep.ShippingAddress;
-  // };
 
   const update = (checkoutData: CheckoutContextInterface) => {
     setState(prevState => ({
