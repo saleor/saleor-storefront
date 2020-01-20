@@ -24,7 +24,7 @@ const computeMutationVariables = (
   checkout: Checkout,
   shippingAsBilling: boolean
 ) => {
-  const { shippingAddress } = checkout;
+  const shippingAddress = checkout ? checkout.shippingAddress : {};
   const data = shippingAsBilling
     ? (shippingAddress as FormAddressType)
     : formData;
@@ -43,18 +43,16 @@ const computeMutationVariables = (
       streetAddress1: data.streetAddress1,
       streetAddress2: data.streetAddress2,
     },
-    checkoutId: checkout.id,
+    checkoutId: checkout ? checkout.id : null,
+    email: data.email,
   };
 };
 
 const View: React.FC<IBillingPageProps> = ({
   checkout,
-  validateStep,
   proceedToNextStepData,
-  path,
   shippingAsBilling,
   shop,
-  step,
   update,
   updateCheckoutBillingAddress,
   isShippingRequired,
@@ -70,21 +68,29 @@ const View: React.FC<IBillingPageProps> = ({
 
   const onSubmitHandler = (formData: FormAddressType) => {
     return new Promise<boolean>(async resolve => {
-      const result = await onSaveBillingAddressHandler(formData);
-      resolve(!!result);
+      if (isShippingRequired) {
+        const result = await onSaveBillingAddressHandler(formData);
+        resolve(!!result);
+      } else {
+        resolve(true);
+      }
     });
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { history, token, update } = proceedToNextStepData;
 
-    const result = await onSaveBillingAddressHandler(formData);
-    const canProceed = !!result;
+    if (isShippingRequired) {
+      const result = await onSaveBillingAddressHandler(formData);
+      const canProceed = !!result;
 
-    if (canProceed) {
-      update({
-        checkout: result.data.checkout || checkout,
-      });
+      if (canProceed) {
+        update({
+          checkout: result.data.checkout || checkout,
+        });
+        history.push(generatePath(paymentUrl, { token }));
+      }
+    } else {
       history.push(generatePath(paymentUrl, { token }));
     }
   };
@@ -102,14 +108,6 @@ const View: React.FC<IBillingPageProps> = ({
   const { data: user } = useUserDetails();
 
   return (
-    // !validateStep ? (
-    //   <StepCheck
-    //     step={step}
-    //     checkout={checkout}
-    //     path={path}
-    //     token={proceedToNextStepData.token}
-    //   />
-    // ) : (
     <CartSummary checkout={checkout}>
       <Steps
         step={CheckoutStep.BillingAddress}
@@ -145,13 +143,13 @@ const View: React.FC<IBillingPageProps> = ({
             <GuestAddressForm
               key={`${shippingAsBilling}`}
               shop={shop}
+              noShipping={!isShippingRequired}
               {...billingProps}
             />
           )}
         </>
       </Steps>
     </CartSummary>
-    // )
   );
 };
 

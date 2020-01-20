@@ -16,20 +16,14 @@ import Page from "./Page";
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    path,
     params: { token },
   },
 }) => {
-  const [validateStep, setValidateStep] = React.useState(true);
   const updateCheckoutBillingAddress = useUpdateCheckoutBillingAddress();
-
-  React.useEffect(() => {
-    setValidateStep(false);
-  }, []);
 
   const { data: user } = useUserDetails();
 
-  const { update, checkout, shippingAsBilling, step } = React.useContext(
+  const { update, checkout, shippingAsBilling } = React.useContext(
     CheckoutContext
   );
   const { lines: cardLines } = React.useContext(CartContext);
@@ -64,9 +58,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           checkoutId={maybe(() => checkout.id, null)}
           checkout={checkout}
           shop={shop}
-          path={path}
           update={update}
-          step={step}
           user={user}
           updateCheckoutBillingAddress={updateCheckoutBillingAddress}
           proceedToNextStepData={{
@@ -74,7 +66,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             token,
             update,
           }}
-          validateStep={validateStep}
         />
       )}
     </ShopContext.Consumer>

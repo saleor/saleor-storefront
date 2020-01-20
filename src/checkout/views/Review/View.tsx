@@ -49,7 +49,6 @@ const completeCheckout = (
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    path,
     params: { token },
   },
 }) => {
