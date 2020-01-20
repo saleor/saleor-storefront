@@ -5,6 +5,8 @@ import { Redirect, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { useVariantsProducts } from "@sdk/react";
+
 import {
   Loader,
   Offline,
@@ -14,14 +16,36 @@ import {
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
 import { BASE_URL } from "../core/config";
-import { CheckoutContext } from "./context";
-import { Routes } from "./routes";
-
 import logoImg from "../images/logo.svg";
+import { CheckoutContext } from "./context";
+import { useCheckoutStepFromPath, useCheckoutStepState } from "./hooks";
+import { baseUrl, Routes } from "./routes";
 
-const CheckoutApp: React.FC<{}> = () => {
-  const { loading } = React.useContext(CheckoutContext);
+const CheckoutApp: React.FC<{ location }> = ({ location }) => {
+  const {
+    loading: checkoutLoading,
+    checkout,
+    cardData,
+    dummyStatus,
+  } = React.useContext(CheckoutContext);
   const { lines: cartLines } = React.useContext(CartContext);
+
+  const {
+    data: variantsProducts,
+    loading: variantsProductsLoading,
+  } = useVariantsProducts({
+    ids: cartLines ? cartLines.map(line => line.variantId) : [],
+  });
+
+  const { pathname } = location;
+
+  const step = useCheckoutStepState(
+    checkout,
+    variantsProducts,
+    cardData,
+    dummyStatus
+  );
+  const stepFromPath = useCheckoutStepFromPath(pathname);
 
   return (
     <div className="checkout">
@@ -38,8 +62,17 @@ const CheckoutApp: React.FC<{}> = () => {
               return <Redirect to={BASE_URL} />;
             }
 
-            if (loading) {
+            if (
+              checkoutLoading ||
+              variantsProductsLoading ||
+              !step ||
+              (!stepFromPath && baseUrl !== pathname)
+            ) {
               return <Loader />;
+            }
+
+            if ((!checkout && !variantsProducts) || step < stepFromPath) {
+              return <Redirect to={baseUrl} />;
             }
 
             return <Routes />;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Redirect } from "react-router";
+import { generatePath, Redirect } from "react-router";
 
 import { useVariantsProducts } from "@sdk/react";
 
@@ -15,7 +15,11 @@ import {
   shippingOptionsUrl,
 } from "./";
 
-export const CheckoutRoute = () => {
+export const CheckoutRoute = ({ match }) => {
+  const {
+    params: { token },
+  } = match;
+
   const {
     loading: checkoutLoading,
     checkout,
@@ -44,14 +48,14 @@ export const CheckoutRoute = () => {
 
   switch (step) {
     case CheckoutStep.BillingAddress:
-      return <Redirect to={billingUrl} />;
+      return <Redirect to={generatePath(billingUrl, { token })} />;
     case CheckoutStep.ShippingAddress:
-      return <Redirect to={shippingAddressUrl} />;
+      return <Redirect to={generatePath(shippingAddressUrl, { token })} />;
     case CheckoutStep.Review:
-      return <Redirect to={reviewUrl} />;
+      return <Redirect to={generatePath(reviewUrl, { token })} />;
     case CheckoutStep.Payment:
-      return <Redirect to={paymentUrl} />;
+      return <Redirect to={generatePath(paymentUrl, { token })} />;
     case CheckoutStep.ShippingOption:
-      return <Redirect to={shippingOptionsUrl} />;
+      return <Redirect to={generatePath(shippingOptionsUrl, { token })} />;
   }
 };

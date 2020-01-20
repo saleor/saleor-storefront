@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { generatePath } from "react-router";
 
 import { CheckoutStep } from "../context";
 import {
-  billingUrl,
-  paymentUrl,
-  reviewUrl,
-  shippingAddressUrl,
-  shippingOptionsUrl,
+  baseUrl,
+  billingBaseUrl,
+  paymentBaseUrl,
+  reviewBaseUrl,
+  shippingAddressBaseUrl,
+  shippingOptionsBaseUrl,
 } from "../routes";
 
 /**
@@ -18,27 +18,28 @@ export const useCheckoutStepFromPath = (
   token?: string
 ): CheckoutStep => {
   const getStep = () => {
-    const generatedPath = path => generatePath(path, { token });
+    const pathList = [
+      {
+        basePath: `${baseUrl}${shippingAddressBaseUrl}`,
+        step: CheckoutStep.ShippingAddress,
+      },
+      {
+        basePath: `${baseUrl}${shippingOptionsBaseUrl}`,
+        step: CheckoutStep.ShippingOption,
+      },
+      {
+        basePath: `${baseUrl}${billingBaseUrl}`,
+        step: CheckoutStep.BillingAddress,
+      },
+      { basePath: `${baseUrl}${paymentBaseUrl}`, step: CheckoutStep.Payment },
+      { basePath: `${baseUrl}${reviewBaseUrl}`, step: CheckoutStep.Review },
+    ];
 
-    switch (generatedPath(path)) {
-      case generatedPath(shippingAddressUrl):
-        return CheckoutStep.ShippingAddress;
+    const pathItem = pathList.find(({ basePath }) =>
+      path.replace(/\//g, "").includes(basePath.replace(/\//g, ""))
+    );
 
-      case generatedPath(shippingOptionsUrl):
-        return CheckoutStep.ShippingOption;
-
-      case generatedPath(billingUrl):
-        return CheckoutStep.BillingAddress;
-
-      case generatedPath(paymentUrl):
-        return CheckoutStep.Payment;
-
-      case generatedPath(reviewUrl):
-        return CheckoutStep.Review;
-
-      default:
-        return null;
-    }
+    return pathItem ? pathItem.step : null;
   };
 
   const [step, setStep] = useState(getStep());

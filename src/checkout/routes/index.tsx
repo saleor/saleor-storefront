@@ -10,11 +10,16 @@ import { ShippingOptionsRoute } from "./ShippingOptionsRoute";
 import { ShippingRoute } from "./ShippingRoute";
 
 export const baseUrl = "/checkout/";
-export const shippingAddressUrl = `${baseUrl}shipping-address/:token?/`;
-export const shippingOptionsUrl = `${baseUrl}shipping-options/:token?/`;
-export const billingUrl = `${baseUrl}billing-address/:token?/`;
-export const paymentUrl = `${baseUrl}payment/:token?/`;
-export const reviewUrl = `${baseUrl}review/:token?/`;
+export const shippingAddressBaseUrl = `shipping-address/`;
+export const shippingOptionsBaseUrl = `shipping-options/`;
+export const billingBaseUrl = `billing-address/`;
+export const paymentBaseUrl = `payment/`;
+export const reviewBaseUrl = `review/`;
+export const shippingAddressUrl = `${baseUrl}${shippingAddressBaseUrl}:token?/`;
+export const shippingOptionsUrl = `${baseUrl}${shippingOptionsBaseUrl}:token?/`;
+export const billingUrl = `${baseUrl}${billingBaseUrl}:token?/`;
+export const paymentUrl = `${baseUrl}${paymentBaseUrl}:token?/`;
+export const reviewUrl = `${baseUrl}${reviewBaseUrl}:token?/`;
 
 export const Routes: React.FC = () => (
   <Switch>
