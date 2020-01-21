@@ -2,6 +2,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
 import {
+  useCreateCheckout,
   useUpdateCheckoutBillingAddress,
   useUserDetails,
   useVariantsProducts,
@@ -49,6 +50,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     return false;
   };
 
+  const createCheckout = useCreateCheckout();
+
   return (
     <ShopContext.Consumer>
       {shop => (
@@ -58,6 +61,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           checkoutId={maybe(() => checkout.id, null)}
           checkout={checkout}
           shop={shop}
+          createCheckout={createCheckout}
           update={update}
           user={user}
           updateCheckoutBillingAddress={updateCheckoutBillingAddress}
@@ -66,6 +70,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             token,
             update,
           }}
+          lines={cardLines}
         />
       )}
     </ShopContext.Consumer>

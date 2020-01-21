@@ -18,6 +18,7 @@ import { Checkout } from "../../types/Checkout";
 import { IBillingPageProps } from "./types";
 
 import { CountryCode } from "types/globalTypes";
+import { CartLineInterface } from "../../../components/CartProvider/context";
 
 const computeMutationVariables = (
   formData: FormAddressType,
@@ -48,12 +49,42 @@ const computeMutationVariables = (
   };
 };
 
+const computeCheckoutData = (
+  data: FormAddressType,
+  lines: CartLineInterface[],
+  email?: string
+) => ({
+  billingAddress: {
+    city: data.city,
+    country: maybe(() => data.country.value, data.country.code) as CountryCode,
+    countryArea: data.countryArea,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    postalCode: data.postalCode,
+    streetAddress1: data.streetAddress1,
+    streetAddress2: data.streetAddress2,
+  },
+  email: data.email || email,
+  ...(lines && {
+    lines: lines.map(({ quantity, variantId }) => ({
+      quantity,
+      variantId,
+    })),
+  }),
+});
+
 const View: React.FC<IBillingPageProps> = ({
+  checkoutId,
   checkout,
+  createCheckout: [
+    create,
+    { loading: createCheckoutLoading, error: createCheckoutError },
+  ],
   proceedToNextStepData,
   shippingAsBilling,
   shop,
   update,
+  lines,
   updateCheckoutBillingAddress,
   isShippingRequired,
 }) => {
@@ -61,36 +92,38 @@ const View: React.FC<IBillingPageProps> = ({
   const errors = maybe(() => error.extraInfo.userInputErrors, []);
 
   const onSaveBillingAddressHandler = (formData: FormAddressType) => {
-    return saveBillingAddress(
-      computeMutationVariables(formData, checkout, shippingAsBilling)
-    );
+    if (checkoutId) {
+      return saveBillingAddress(
+        computeMutationVariables(formData, checkout, shippingAsBilling)
+      );
+    }
+    const data = computeCheckoutData(formData, lines);
+    return create({
+      checkoutInput: {
+        billingAddress: data.billingAddress,
+        email: data.email,
+        lines: data.lines,
+      },
+    });
   };
 
   const onSubmitHandler = (formData: FormAddressType) => {
     return new Promise<boolean>(async resolve => {
-      if (isShippingRequired) {
-        const result = await onSaveBillingAddressHandler(formData);
-        resolve(!!result);
-      } else {
-        resolve(true);
-      }
+      const result = await onSaveBillingAddressHandler(formData);
+      resolve(!!result);
     });
   };
 
   const onProceedToShippingSubmit = async (formData: FormAddressType) => {
     const { history, token, update } = proceedToNextStepData;
 
-    if (isShippingRequired) {
-      const result = await onSaveBillingAddressHandler(formData);
-      const canProceed = !!result;
+    const result = await onSaveBillingAddressHandler(formData);
+    const canProceed = !!result;
 
-      if (canProceed) {
-        update({
-          checkout: result.data.checkout || checkout,
-        });
-        history.push(generatePath(paymentUrl, { token }));
-      }
-    } else {
+    if (canProceed) {
+      update({
+        checkout: result.data.checkout || checkout,
+      });
       history.push(generatePath(paymentUrl, { token }));
     }
   };
