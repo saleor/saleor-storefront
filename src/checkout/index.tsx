@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { Redirect, withRouter } from "react-router";
+import { Redirect, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -21,7 +21,11 @@ import { CheckoutContext } from "./context";
 import { useCheckoutStepFromPath, useCheckoutStepState } from "./hooks";
 import { baseUrl, Routes } from "./routes";
 
-const CheckoutApp: React.FC<{ location }> = ({ location }) => {
+const CheckoutApp: React.FC<RouteComponentProps> = ({
+  history: {
+    location: { pathname },
+  },
+}) => {
   const {
     loading: checkoutLoading,
     checkout,
@@ -36,8 +40,6 @@ const CheckoutApp: React.FC<{ location }> = ({ location }) => {
   } = useVariantsProducts({
     ids: cartLines ? cartLines.map(line => line.variantId) : [],
   });
-
-  const { pathname } = location;
 
   const step = useCheckoutStepState(
     checkout,
@@ -87,4 +89,4 @@ const CheckoutApp: React.FC<{ location }> = ({ location }) => {
   );
 };
 
-export default withRouter(CheckoutApp);
+export default CheckoutApp;

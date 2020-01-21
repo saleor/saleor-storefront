@@ -2,7 +2,7 @@ import * as React from "react";
 import ReactSVG from "react-svg";
 
 import { AddressSummary } from "../../../components";
-import { CardData } from "../../context";
+import { CardData } from "../../types/CardData";
 import { Checkout } from "../../types/Checkout";
 
 import copyImg from "../../../images/copy.svg";

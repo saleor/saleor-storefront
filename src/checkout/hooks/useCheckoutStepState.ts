@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { VariantsProducts_productVariants } from "@sdk/queries/types/VariantsProducts";
+
+import { CardData } from "../types/CardData";
+import { Checkout } from "../types/Checkout";
+
 export enum CheckoutStep {
   ShippingAddress = 1,
   ShippingOption,
@@ -9,10 +14,10 @@ export enum CheckoutStep {
 }
 
 export const useCheckoutStepState = (
-  checkout,
-  variantsProducts,
-  cardData,
-  dummyStatus
+  checkout: Checkout,
+  variantsProducts: VariantsProducts_productVariants,
+  cardData: CardData,
+  dummyStatus: string
 ): CheckoutStep => {
   const isShippingRequiredForProducts = () => {
     const isShippingRequired =

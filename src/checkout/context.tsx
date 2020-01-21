@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
+import { CardData } from "./types/CardData";
 import { Checkout } from "./types/Checkout";
 
 export enum CheckoutStep {
@@ -8,12 +9,6 @@ export enum CheckoutStep {
   BillingAddress,
   Payment,
   Review,
-}
-
-export interface CardData {
-  lastDigits: string;
-  ccType: string;
-  token: string;
 }
 
 export interface CheckoutContextInterface {
@@ -25,7 +20,7 @@ export interface CheckoutContextInterface {
   loading?: boolean;
   shippingAsBilling?: boolean;
   /*
-   * @deprecated Use anything else
+   * @deprecated Use useCheckoutStepState hook to determine step instead.
    */
   step?: CheckoutStep;
   update?(checkoutData: CheckoutContextInterface): void;

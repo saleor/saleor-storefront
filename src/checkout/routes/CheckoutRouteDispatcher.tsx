@@ -1,5 +1,5 @@
 import * as React from "react";
-import { generatePath, Redirect } from "react-router";
+import { generatePath, Redirect, RouteComponentProps } from "react-router";
 
 import { useVariantsProducts } from "@sdk/react";
 
@@ -15,11 +15,13 @@ import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutContext } from "../context";
 import { CheckoutStep, useCheckoutStepState } from "../hooks";
 
-export const CheckoutRouteDispatcher = ({ match }) => {
-  const {
+export const CheckoutRouteDispatcher: React.FC<RouteComponentProps<{
+  token?: string;
+}>> = ({
+  match: {
     params: { token },
-  } = match;
-
+  },
+}) => {
   const {
     loading: checkoutLoading,
     checkout,
