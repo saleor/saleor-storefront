@@ -199,7 +199,7 @@ class View extends React.Component<
                               disabled={loading}
                               onClick={() => {
                                 this.formRef.current.dispatchEvent(
-                                  new Event("submit")
+                                  new Event("submit", {cancelable: true})
                                 );
                               }}
                             >
