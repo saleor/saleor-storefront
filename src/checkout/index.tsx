@@ -32,7 +32,9 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
     cardData,
     dummyStatus,
   } = React.useContext(CheckoutContext);
-  const { lines: cartLines } = React.useContext(CartContext);
+  const { lines: cartLines, loading: cartLoading } = React.useContext(
+    CartContext
+  );
 
   const {
     data: variantsProducts,
@@ -60,17 +62,18 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
       <div className="container">
         <Online>
           {(() => {
-            if (!cartLines.length) {
-              return <Redirect to={BASE_URL} />;
-            }
-
             if (
+              cartLoading ||
               checkoutLoading ||
               variantsProductsLoading ||
               !step ||
               (!stepFromPath && baseUrl !== pathname)
             ) {
               return <Loader />;
+            }
+
+            if (!cartLines.length) {
+              return <Redirect to={BASE_URL} />;
             }
 
             if ((!checkout && !variantsProducts) || step < stepFromPath) {
