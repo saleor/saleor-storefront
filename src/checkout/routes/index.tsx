@@ -2,12 +2,8 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { NotFound } from "../../components";
-import { BillingRoute } from "./BillingRoute";
-import { CheckoutRoute } from "./CheckoutRoute";
-import { PaymentRoute } from "./PaymentRoute";
-import { ReviewRoute } from "./ReviewRoute";
-import { ShippingOptionsRoute } from "./ShippingOptionsRoute";
-import { ShippingRoute } from "./ShippingRoute";
+import { Billing, Payment, Review, Shipping, ShippingOptions } from "../views";
+import { CheckoutRouteDispatcher } from "./CheckoutRouteDispatcher";
 
 export const baseUrl = "/checkout/";
 export const shippingAddressBaseUrl = `shipping-address/`;
@@ -23,12 +19,12 @@ export const reviewUrl = `${baseUrl}${reviewBaseUrl}:token?/`;
 
 export const Routes: React.FC = () => (
   <Switch>
-    <Route exact path={baseUrl} component={CheckoutRoute} />
-    <Route path={shippingAddressUrl} component={ShippingRoute} />
-    <Route path={shippingOptionsUrl} component={ShippingOptionsRoute} />
-    <Route path={billingUrl} component={BillingRoute} />
-    <Route path={paymentUrl} component={PaymentRoute} />
-    <Route path={reviewUrl} component={ReviewRoute} />
+    <Route exact path={baseUrl} component={CheckoutRouteDispatcher} />
+    <Route path={shippingAddressUrl} component={Shipping} />
+    <Route path={shippingOptionsUrl} component={ShippingOptions} />
+    <Route path={billingUrl} component={Billing} />
+    <Route path={paymentUrl} component={Payment} />
+    <Route path={reviewUrl} component={Review} />
     <Route component={NotFound} />
   </Switch>
 );

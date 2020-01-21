@@ -3,19 +3,19 @@ import { generatePath, Redirect } from "react-router";
 
 import { useVariantsProducts } from "@sdk/react";
 
-import { Loader } from "../../components";
-import { CartContext } from "../../components/CartProvider/context";
-import { CheckoutContext } from "../context";
-import { CheckoutStep, useCheckoutStepState } from "../hooks";
 import {
   billingUrl,
   paymentUrl,
   reviewUrl,
   shippingAddressUrl,
   shippingOptionsUrl,
-} from "./";
+} from ".";
+import { Loader } from "../../components";
+import { CartContext } from "../../components/CartProvider/context";
+import { CheckoutContext } from "../context";
+import { CheckoutStep, useCheckoutStepState } from "../hooks";
 
-export const CheckoutRoute = ({ match }) => {
+export const CheckoutRouteDispatcher = ({ match }) => {
   const {
     params: { token },
   } = match;
