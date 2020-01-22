@@ -31,24 +31,20 @@ export interface ProviderProps {
   setLoadingState(loading: boolean): void;
 }
 
-class View extends React.Component<
-  RouteComponentProps<{ token?: string }>,
-  {
-    loading: boolean;
-    validateStep: boolean;
-    selectedGeteway: string;
-  }
-> {
-  state = {
-    loading: false,
-    selectedGeteway: null,
-    validateStep: true,
-  };
-  formRef: React.RefObject<HTMLFormElement> = React.createRef();
+const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
+  match: {
+    params: { token },
+  },
+}) => {
+  const [loadingPayment, setLoadingPayment] = React.useState(false);
+  const [selectedGeteway, setSelectedGeteway] = React.useState(null);
 
-  setLoadingState = (loading: boolean) => this.setState({ loading });
+  const formRef = React.useRef<HTMLFormElement>(null);
 
-  proceedNext = (data: createPayment) => {
+  const setLoadingState = (loadingPayment: boolean) =>
+    setLoadingPayment(loadingPayment);
+
+  const proceedNext = (data: createPayment) => {
     const canProceed = !data.checkoutPaymentCreate.errors.length;
 
     if (canProceed) {
@@ -58,16 +54,12 @@ class View extends React.Component<
           params: { token },
         },
       } = this.props;
-      this.setState({ loading: false });
+      setLoadingPayment(false);
       history.push(generatePath(reviewUrl, { token }));
     }
   };
 
-  componentDidMount() {
-    this.setState({ validateStep: false });
-  }
-
-  processPayment = (
+  const makeProcessPayment = (
     createPaymentMethod: MutationFn<createPayment, createPaymentVariables>,
     checkout: CheckoutContextInterface
   ) => async (token: string, gateway: string) => {
@@ -99,112 +91,100 @@ class View extends React.Component<
     }
   };
 
-  render() {
-    const {
-      params: { token },
-    } = this.props.match;
-    const { selectedGeteway, loading: stateLoding } = this.state;
+  return (
+    <CheckoutContext.Consumer>
+      {checkout => (
+        <CartSummary checkout={checkout.checkout}>
+          <div className="checkout-payment">
+            <Steps
+              step={CheckoutStep.Payment}
+              token={token}
+              checkout={checkout.checkout}
+            >
+              <TypedPaymentMethodCreateMutation onCompleted={proceedNext}>
+                {(createPaymentMethod, { loading: paymentCreateLoading }) => {
+                  const { availablePaymentGateways } = checkout.checkout;
+                  const processPayment = makeProcessPayment(
+                    createPaymentMethod,
+                    checkout
+                  );
+                  const loading = loadingPayment || paymentCreateLoading;
+                  const optionProps = providerName => ({
+                    key: providerName,
+                    onSelect: () => setSelectedGeteway(providerName),
+                    selected: selectedGeteway === providerName,
+                    value: providerName,
+                  });
+                  const providerProps = {
+                    checkout,
+                    formRef,
+                    loading,
+                    processPayment,
+                    setLoadingState,
+                  };
 
-    return (
-      <CheckoutContext.Consumer>
-        {checkout => (
-          <CartSummary checkout={checkout.checkout}>
-            <div className="checkout-payment">
-              <Steps
-                step={CheckoutStep.Payment}
-                token={token}
-                checkout={checkout.checkout}
-              >
-                <TypedPaymentMethodCreateMutation
-                  onCompleted={this.proceedNext}
-                >
-                  {(createPaymentMethod, { loading: paymentCreateLoading }) => {
-                    const { availablePaymentGateways } = checkout.checkout;
-                    const processPayment = this.processPayment(
-                      createPaymentMethod,
-                      checkout
-                    );
-                    const loading = stateLoding || paymentCreateLoading;
-                    const optionProps = providerName => ({
-                      key: providerName,
-                      onSelect: () =>
-                        this.setState({ selectedGeteway: providerName }),
-                      selected: selectedGeteway === providerName,
-                      value: providerName,
-                    });
-                    const providerProps = {
-                      checkout,
-                      formRef: this.formRef,
-                      loading,
-                      processPayment,
-                      setLoadingState: this.setLoadingState,
-                    };
+                  return (
+                    <div className="checkout-payment__form">
+                      {availablePaymentGateways.map(provider => {
+                        const providerName = provider.name;
+                        const paymentGatewayProps = {
+                          ...providerProps,
+                          paymentGatewayConfig: provider.config,
+                        };
+                        switch (providerName) {
+                          case PROVIDERS.BRAINTREE:
+                            return (
+                              <Option
+                                label="Credit Card"
+                                {...optionProps(providerName)}
+                              >
+                                <CreditCard {...paymentGatewayProps} />
+                              </Option>
+                            );
 
-                    return (
-                      <div className="checkout-payment__form">
-                        {availablePaymentGateways.map(provider => {
-                          const providerName = provider.name;
-                          const paymentGatewayProps = {
-                            ...providerProps,
-                            paymentGatewayConfig: provider.config,
-                          };
-                          switch (providerName) {
-                            case PROVIDERS.BRAINTREE:
-                              return (
-                                <Option
-                                  label="Credit Card"
-                                  {...optionProps(providerName)}
-                                >
-                                  <CreditCard {...paymentGatewayProps} />
-                                </Option>
-                              );
+                          case PROVIDERS.DUMMY:
+                            return (
+                              <Option
+                                label="Dummy"
+                                {...optionProps(providerName)}
+                              >
+                                <Dummy {...paymentGatewayProps} />
+                              </Option>
+                            );
 
-                            case PROVIDERS.DUMMY:
-                              return (
-                                <Option
-                                  label="Dummy"
-                                  {...optionProps(providerName)}
-                                >
-                                  <Dummy {...paymentGatewayProps} />
-                                </Option>
-                              );
+                          case PROVIDERS.STRIPE:
+                            return (
+                              <Option
+                                label="Stripe"
+                                {...optionProps(providerName)}
+                              >
+                                <Stripe {...paymentGatewayProps} />
+                              </Option>
+                            );
+                        }
+                      })}
 
-                            case PROVIDERS.STRIPE:
-                              return (
-                                <Option
-                                  label="Stripe"
-                                  {...optionProps(providerName)}
-                                >
-                                  <Stripe {...paymentGatewayProps} />
-                                </Option>
-                              );
-                          }
-                        })}
-
-                        <div>
-                          <Button
-                            type="submit"
-                            disabled={loading}
-                            onClick={() => {
-                              this.formRef.current.dispatchEvent(
-                                new Event("submit")
-                              );
-                            }}
-                          >
-                            Continue to Review Your Order
-                          </Button>
-                        </div>
+                      <div>
+                        <Button
+                          type="submit"
+                          disabled={loading}
+                          onClick={() => {
+                            formRef.current.dispatchEvent(new Event("submit"));
+                          }}
+                        >
+                          Continue to Review Your Order
+                        </Button>
                       </div>
-                    );
-                  }}
-                </TypedPaymentMethodCreateMutation>
-              </Steps>
-            </div>
-          </CartSummary>
-        )}
-      </CheckoutContext.Consumer>
-    );
-  }
-}
+                    </div>
+                  );
+                }}
+              </TypedPaymentMethodCreateMutation>
+            </Steps>
+          </div>
+        </CartSummary>
+      )}
+    </CheckoutContext.Consumer>
+  );
+};
 
 export default View;
