@@ -20,9 +20,11 @@ const showSuccessNotification = (
     hide();
     alert.show(
       {
-        title: "New user has been created",
+        title: data.accountRegister.requiresConfirmation
+        ? "Please check your e-mail for further instructions"
+        : "New user has been created",
       },
-      { type: "success" }
+      { type: "success", timeout: 5000 }
     );
   }
 };
@@ -39,7 +41,8 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
-              registerCustomer({ variables: { email, password } });
+              const redirectUrl = window.location.origin;
+              registerCustomer({ variables: { email, password, redirectUrl } });
             }}
           >
             <TextField

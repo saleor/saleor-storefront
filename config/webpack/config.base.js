@@ -5,6 +5,10 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 
+if (!process.env.API_URI) {
+  throw new Error("Environment variable API_URI not set");
+}
+
 module.exports = ({ sourceDir, distDir }) => ({
   resolve: {
     alias: {
