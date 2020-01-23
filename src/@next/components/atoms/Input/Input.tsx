@@ -22,7 +22,7 @@ const getBackgroundColor = (ref: any): string => {
       return bgColor;
     }
 
-    return getBackgroundColor(el.parentNode);
+    return getBackgroundColor(el.parentElement);
   }
   return DEFAULT_COLOR;
 };
