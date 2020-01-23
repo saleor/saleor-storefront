@@ -44,13 +44,13 @@ class ProductDescription extends React.Component<
     super(props);
 
     this.state = {
+      quantity: 1,
+      variant: "",
+      variantPricing: null,
       variantPricingRange: {
         max: props.pricing.priceRange.stop,
         min: props.pricing.priceRange.start,
       },
-      quantity: 1,
-      variant: "",
-      variantPricing: null,
       variantStock: null,
     };
   }
