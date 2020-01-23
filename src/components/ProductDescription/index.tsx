@@ -12,9 +12,9 @@ import {
 } from "@sdk/queries/types/ProductDetails";
 import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
+import { TaxedMoney } from "../../@next/components/containers";
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
-import { TaxedMoney } from "../../@next/components/containers";
 
 interface ProductDescriptionProps {
   productVariants: ProductDetails_product_variants[];
@@ -45,8 +45,8 @@ class ProductDescription extends React.Component<
 
     this.state = {
       variantPricingRange: {
-        min: props.pricing.priceRange.start,
         max: props.pricing.priceRange.stop,
+        min: props.pricing.priceRange.start,
       },
       quantity: 1,
       variant: "",
