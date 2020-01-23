@@ -38,6 +38,10 @@ export interface completeCheckout_checkoutComplete {
    * Placed order.
    */
   order: completeCheckout_checkoutComplete_order | null;
+  /**
+   * Set to true if payment needs to be confirmed before checkout is complete.
+   */
+  confirmationNeeded: boolean | null;
 }
 
 export interface completeCheckout {

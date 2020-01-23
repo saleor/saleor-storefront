@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AccountInput } from "./../../types/globalTypes";
+import { AccountInput } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AccountUpdate
@@ -52,14 +52,6 @@ export interface AccountUpdate_accountUpdate_user_defaultShippingAddress {
   country: AccountUpdate_accountUpdate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AccountUpdate_accountUpdate_user_defaultBillingAddress_country {
@@ -93,14 +85,6 @@ export interface AccountUpdate_accountUpdate_user_defaultBillingAddress {
   country: AccountUpdate_accountUpdate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AccountUpdate_accountUpdate_user_addresses_country {
@@ -134,14 +118,6 @@ export interface AccountUpdate_accountUpdate_user_addresses {
   country: AccountUpdate_accountUpdate_user_addresses_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AccountUpdate_accountUpdate_user {

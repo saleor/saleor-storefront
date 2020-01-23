@@ -3,10 +3,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: RegisterAccount
+// GraphQL mutation operation: confirmAccount
 // ====================================================
 
-export interface RegisterAccount_accountRegister_errors {
+export interface confirmAccount_confirmAccount_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
@@ -19,27 +19,22 @@ export interface RegisterAccount_accountRegister_errors {
   message: string | null;
 }
 
-export interface RegisterAccount_accountRegister {
-  __typename: "AccountRegister";
+export interface confirmAccount_confirmAccount {
+  __typename: "ConfirmAccount";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: RegisterAccount_accountRegister_errors[] | null;
-  /**
-   * Informs whether users need to confirm their email address.
-   */
-  requiresConfirmation: boolean | null;
+  errors: confirmAccount_confirmAccount_errors[] | null;
 }
 
-export interface RegisterAccount {
+export interface confirmAccount {
   /**
-   * Register a new user.
+   * Confirm user account by token sent by email during registration
    */
-  accountRegister: RegisterAccount_accountRegister | null;
+  confirmAccount: confirmAccount_confirmAccount | null;
 }
 
-export interface RegisterAccountVariables {
+export interface confirmAccountVariables {
   email: string;
-  password: string;
-  redirectUrl: string;
+  token: string;
 }
