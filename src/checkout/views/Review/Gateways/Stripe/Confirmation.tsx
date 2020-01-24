@@ -5,13 +5,15 @@ import {
   ReactStripeElements,
 } from "react-stripe-elements";
 
-import { PROVIDERS } from "../../../../core/config";
-import { ProviderProps } from "../../Payment/View";
+import { PROVIDERS } from "../../../../../core/config";
+import { ProviderProps } from "../../../Payment/View";
 
 const Confirmation = ({ stripe }: ReactStripeElements.InjectedStripeProps) => {
   const [errors, setErrors] = React.useState([]);
 
   React.useEffect(() => {
+    // stripe.paym
+
     stripe.confirmCardPayment();
 
     // TODO: show modal somehow?

@@ -5,15 +5,10 @@ import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
 import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
-import {
-  CardElement,
-  injectStripe,
-  ReactStripeElements,
-  StripeProvider,
-} from "react-stripe-elements";
 
 import { Button, CartTable } from "../../../components";
 
+import { Checkout_availablePaymentGateways_config } from "@sdk/fragments/types/Checkout";
 import { PROVIDERS } from "@temp/core/config";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
@@ -21,10 +16,14 @@ import { orderConfirmationUrl } from "../../../routes";
 import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
+import { Stripe } from "./Gateways/Stripe";
 import { TypedCompleteCheckoutMutation } from "./queries";
-import Confirmation from "./Stripe/Confirmation";
 import Summary from "./Summary";
 import { completeCheckout } from "./types/completeCheckout";
+
+export interface ProviderProps {
+  paymentGatewayConfig: Checkout_availablePaymentGateways_config[];
+}
 
 const completeCheckout = (
   data: completeCheckout,
@@ -135,15 +134,11 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                     );
 
                     if (stripeGateway) {
-                      const apiKey = stripeGateway.config.find(
-                        ({ field }) => field === "api_key"
-                      ).value;
+                      const paymentGatewayProps = {
+                        paymentGatewayConfig: stripeGateway.config,
+                      };
 
-                      return (
-                        <StripeProvider apiKey={apiKey}>
-                          <Confirmation />
-                        </StripeProvider>
-                      );
+                      return <Stripe {...paymentGatewayProps} />;
                     }
                   }
 
