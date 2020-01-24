@@ -82,6 +82,11 @@ export const productVariantFragment = gql`
     name
     stockQuantity
     isAvailable
+    images {
+      id
+      url
+      alt
+    }
     pricing {
       onSale
       priceUndiscounted {

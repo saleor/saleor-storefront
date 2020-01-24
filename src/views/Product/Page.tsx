@@ -17,6 +17,21 @@ import { ProductDetails_product } from "./types/ProductDetails";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
 class Page extends React.PureComponent<{ product: ProductDetails_product }> {
+  fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
+  productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      variantId: "",
+    };
+  }
+
+  setVariantId = (id: string) => {
+    console.log("SET VARIANT ID has been called", id);
+    this.setState({ variantId: id });
+  };
+
   get showCarousel() {
     return this.props.product.images.length > 1;
   }
@@ -32,8 +47,60 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     },
   ];
 
+  componentDidMount() {
+    if (this.showCarousel) {
+      window.addEventListener("scroll", this.handleScroll, {
+        passive: true,
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.showCarousel) {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
+  }
+
+  handleScroll = () => {
+    const productGallery = this.productGallery.current;
+    const fixedElement = this.fixedElement.current;
+
+    if (productGallery && fixedElement) {
+      const containerPostion =
+        window.innerHeight - productGallery.getBoundingClientRect().bottom;
+      const fixedPosition =
+        window.innerHeight - fixedElement.getBoundingClientRect().bottom;
+      const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
+      const galleryToTop = Math.floor(
+        this.productGallery.current.getBoundingClientRect().top + window.scrollY
+      );
+
+      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
+        fixedElement.classList.remove("product-page__product__info--fixed");
+        fixedElement.classList.add("product-page__product__info--absolute");
+      } else {
+        fixedElement.classList.remove("product-page__product__info--absolute");
+        fixedElement.classList.add("product-page__product__info--fixed");
+      }
+    }
+  };
+
+  getImages = () => {
+    const { product } = this.props;
+    if (product.variants && this.state.variantId) {
+      const variant = product.variants
+        .filter(variant => variant.id === this.state.variantId)
+        .pop();
+      return variant.images;
+    } else {
+      return product.images;
+    }
+  };
+
   render() {
     const { product } = this.props;
+    console.log(this.getImages());
+
     const cartContextConsumer = (
       <CartContext.Consumer>
         {cart => (
@@ -43,6 +110,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             selectedAttributes={product.attributes}
             pricing={product.pricing}
             addToCart={cart.add}
+            setVariantId={this.setVariantId}
           >
             <RichTextContent descriptionJson={product.descriptionJson} />
           </ProductDescription>
@@ -66,15 +134,18 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               {matches =>
                 matches ? (
                   <>
-                    <GalleryCarousel images={product.images} />
+                    <GalleryCarousel images={this.getImages()} />
                     <div className="product-page__product__info">
                       {cartContextConsumer}
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="product-page__product__gallery">
-                      {product.images.map((image, index) => (
+                    <div
+                      className="product-page__product__gallery"
+                      ref={this.productGallery}
+                    >
+                      {this.getImages().map((image, index) => (
                         <CachedImage url={image.url} key={image.id}>
                           <Thumbnail source={product} />
                         </CachedImage>

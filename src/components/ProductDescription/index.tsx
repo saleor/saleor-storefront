@@ -22,6 +22,7 @@ interface ProductDescriptionProps {
   pricing: ProductDetails_product_pricing;
   children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
+  setVariantId(variantId: string);
 }
 
 interface ProductDescriptionState {
@@ -135,8 +136,10 @@ class ProductDescription extends React.Component<
         variantPricing: selectedVariant.pricing,
         variantStock: selectedVariant.stockQuantity,
       });
+      this.props.setVariantId(selectedVariant.id);
     } else {
       this.setState({ variant: "", variantPricing: null });
+      this.props.setVariantId("");
     }
   };
 
