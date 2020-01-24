@@ -97,6 +97,20 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     }
   };
 
+  renderImages = product => {
+    const images = this.getImages();
+    if (images && images.length) {
+      return images.map(image => (
+        <a href={image.url || image.url2x} target="_blank">
+          <CachedImage url={image.url} key={image.id}>
+            <Thumbnail source={product} />
+          </CachedImage>
+        </a>
+      ));
+    }
+    return <CachedImage />;
+  };
+
   render() {
     const { product } = this.props;
     console.log(this.getImages());
@@ -145,11 +159,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {this.getImages().map((image, index) => (
-                        <CachedImage url={image.url} key={image.id}>
-                          <Thumbnail source={product} />
-                        </CachedImage>
-                      ))}
+                      {this.renderImages(product)}
                     </div>
                     <div className="product-page__product__info">
                       <div
