@@ -60,10 +60,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_net {
@@ -76,10 +72,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice {
@@ -104,10 +96,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice_net {
@@ -120,10 +108,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_subtotalPrice {
@@ -266,10 +250,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice_net {
@@ -282,10 +262,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingPrice {
@@ -310,10 +286,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice_net {
@@ -326,10 +298,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_totalPrice {
@@ -354,10 +322,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -370,10 +334,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -398,10 +358,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price_net {
@@ -414,10 +370,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price {
@@ -609,10 +561,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_net {
@@ -625,10 +573,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_tota
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice {
@@ -653,10 +597,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice_net {
@@ -669,10 +609,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subt
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_subtotalPrice {
@@ -815,10 +751,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice_net {
@@ -831,10 +763,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingPrice {
@@ -859,10 +787,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice_net {
@@ -875,10 +799,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_totalPrice {
@@ -903,10 +823,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -919,10 +835,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -947,10 +859,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price_net {
@@ -963,10 +871,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price {

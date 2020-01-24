@@ -329,7 +329,8 @@ export interface AddressInput {
 
 export interface AttributeInput {
   slug: string;
-  value: string;
+  value?: string | null;
+  values?: (string | null)[] | null;
 }
 
 export interface CheckoutCreateInput {

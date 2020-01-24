@@ -210,6 +210,30 @@ export interface OrderByToken_orderByToken_lines_unitPrice_gross {
    * Amount of money.
    */
   amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderByToken_orderByToken_lines_unitPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_unitPrice {
@@ -222,6 +246,10 @@ export interface OrderByToken_orderByToken_lines_unitPrice {
    * Amount of money including taxes.
    */
   gross: OrderByToken_orderByToken_lines_unitPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_lines_unitPrice_net;
 }
 
 export interface OrderByToken_orderByToken_lines {

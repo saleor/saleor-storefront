@@ -58,10 +58,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_net {
@@ -74,10 +70,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice {
@@ -102,10 +94,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_net {
@@ -118,10 +106,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice {
@@ -264,10 +248,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_net {
@@ -280,10 +260,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice {
@@ -308,10 +284,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_net {
@@ -324,10 +296,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice {
@@ -352,10 +320,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -368,10 +332,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -396,10 +356,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_price_net {
@@ -412,10 +368,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_price {

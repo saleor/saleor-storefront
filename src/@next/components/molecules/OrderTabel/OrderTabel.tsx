@@ -3,6 +3,8 @@ import React from "react";
 import Media from "react-media";
 import { ThemeContext } from "styled-components";
 
+import { TaxedMoney } from "@components/containers";
+
 import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -84,7 +86,9 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                             {`${date.getMonth() +
                               1}/${date.getDate()}/${date.getFullYear()}`}
                           </S.DateOfOrder>
-                          <S.Value>{order.node.total.gross.localized}</S.Value>
+                          <S.Value>
+                            <TaxedMoney taxedMoney={order.node.total} />
+                          </S.Value>
                         </>
                       ) : (
                         ""

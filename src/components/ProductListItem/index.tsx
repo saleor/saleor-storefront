@@ -4,8 +4,8 @@ import * as React from "react";
 
 import { Thumbnail } from "@components/molecules";
 
-import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 import { TaxedMoney } from "../../@next/components/containers";
+import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
 
 export interface Product extends BasicProductFields {
   category?: {
