@@ -20,15 +20,12 @@ export const useCheckoutStepState = (
   dummyStatus: string
 ): CheckoutStep => {
   const isShippingRequiredForProducts = () => {
-    const isShippingRequired =
+    return (
       variantsProducts.edges &&
       variantsProducts.edges.some(
         ({ node }) => node.product.productType.isShippingRequired
-      );
-    if (isShippingRequired) {
-      return true;
-    }
-    return false;
+      )
+    );
   };
 
   const getStep = () => {
