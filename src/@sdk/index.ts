@@ -88,6 +88,11 @@ export class SaleorAPI {
     data.me ? data.me.checkout : null
   );
 
+  getVariantsProducts = this.watchQuery(
+    QUERIES.VariantsProducts,
+    data => data.productVariants
+  );
+
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.accountSetDefaultAddress

@@ -11,7 +11,6 @@ import { Button, CartTable } from "../../../components";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
 import { orderConfirmationUrl } from "../../../routes";
-import { StepCheck } from "../../components";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
@@ -50,7 +49,6 @@ const completeCheckout = (
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   history,
   match: {
-    path,
     params: { token },
   },
 }) => {
@@ -60,21 +58,11 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     dummyStatus,
     checkout,
     clear: clearCheckout,
-    step,
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
 
-  const stepCheck = (
-    <StepCheck checkout={checkout} step={step} path={path} token={token} />
-  );
-
-  if (!checkout) {
-    return stepCheck;
-  }
-
   return (
     <>
-      {stepCheck}
       <div className="checkout-review">
         <Link
           to={generatePath(paymentUrl, { token })}
@@ -84,7 +72,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
         </Link>
 
         <div className="checkout__step checkout__step--inactive">
-          <span>5</span>
+          <span>{checkout.isShippingRequired ? "5" : "3"}</span>
           <h4 className="checkout__header">Review your order</h4>
         </div>
 
@@ -92,7 +80,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
           <CartTable
             lines={extractCheckoutLines(checkout.lines)}
             subtotal={checkout.subtotalPrice.gross.localized}
-            deliveryCost={checkout.shippingMethod.price.localized}
+            deliveryCost={
+              checkout.shippingMethod && checkout.shippingMethod.price.localized
+            }
             totalCost={checkout.totalPrice.gross.localized}
           />
           <div className="checkout-review__content">
