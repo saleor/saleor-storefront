@@ -16,7 +16,10 @@ import { ProductDetails_product } from "./types/ProductDetails";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
-class Page extends React.PureComponent<{ product: ProductDetails_product }> {
+class Page extends React.PureComponent<
+  { product: ProductDetails_product },
+  { variantId: string }
+> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
 
