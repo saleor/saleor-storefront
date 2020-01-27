@@ -103,7 +103,7 @@ class Page extends React.PureComponent<
     const images = this.getImages();
     if (images && images.length) {
       return images.map(image => (
-        <a href={image.url || image.url2x} target="_blank">
+        <a href={image.url} target="_blank">
           <CachedImage url={image.url} key={image.id}>
             <Thumbnail source={product} />
           </CachedImage>
