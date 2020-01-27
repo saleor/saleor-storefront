@@ -3,7 +3,7 @@ import { media, styled } from "@styles";
 import { Size } from "./types";
 
 const padding = {
-  md: "0.9rem 0.6rem 0.9rem 0.9rem",
+  md: "0.6rem 0.6rem 0.6rem 0.9rem",
   sm: "0.1rem",
 };
 
@@ -30,7 +30,7 @@ export const Primary = styled.div<{
   outline: none;
   color: ${props => props.theme.button.colors[props.color].color};
   width: ${props => (props.fullWidth ? "100%" : "auto")}
-  display: inline;
+  display: inline-block;
   cursor: default;
 
   ${media.smallScreen`
@@ -59,6 +59,7 @@ export const Text = styled.span<{ size: Size }>`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
   margin-right: ${props => paddingCloseButton[props.size]};
+  vertical-align: middle;
 `;
 
 export const CloseButton = styled.button<{

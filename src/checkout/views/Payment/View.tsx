@@ -46,24 +46,20 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 
   const [loadingPayment, setLoadingPayment] = React.useState(false);
   const [selectedGeteway, setSelectedGeteway] = React.useState(null);
-  const [promoCodeFormVisible, setPromoCodeFormVisible] = React.useState(false);
+  const [promoCodeFormVisible, setPromoCodeFormVisible] = React.useState(
+    !!checkout.checkout.voucherCode
+  );
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const [
     addCheckoutPromoCode,
-    {
-      data: addedPromoCode,
-      // error, addedPromoCodeErrors
-    },
+    { data: addedPromoCode, error: addedPromoCodeErrors },
   ] = useAddCheckoutPromoCode();
 
   const [
     removeCheckoutPromoCode,
-    {
-      data: removedPromoCode,
-      // error, removedPromoCodeErrors
-    },
+    { data: removedPromoCode, error: removedPromoCodeErrors },
   ] = useRemoveCheckoutPromoCode();
 
   React.useEffect(() => {
@@ -170,6 +166,24 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     });
   };
 
+  let discountErrors = [];
+
+  const addPromoErrors =
+    addedPromoCodeErrors &&
+    addedPromoCodeErrors.extraInfo &&
+    addedPromoCodeErrors.extraInfo.userInputErrors;
+  const removePromoErrors =
+    removedPromoCodeErrors &&
+    removedPromoCodeErrors.extraInfo &&
+    removedPromoCodeErrors.extraInfo.userInputErrors;
+
+  if (addPromoErrors) {
+    discountErrors = discountErrors.concat(addPromoErrors);
+  }
+  if (removePromoErrors) {
+    discountErrors = discountErrors.concat(removePromoErrors);
+  }
+
   return (
     <CartSummary checkout={checkout.checkout}>
       <div className="checkout-payment">
@@ -186,13 +200,16 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             Do you have a discount code?
           </Checkbox>
           {promoCodeFormVisible && (
-            <DiscountForm
-              discount={{ promoCode: checkout.checkout.voucherCode }}
-              handleApplyDiscount={discountCode =>
-                handleApplyDiscount(checkout, discountCode)
-              }
-              handleRemovePromoCode={() => handleRemovePromoCode(checkout)}
-            />
+            <div className="checkout-payment__discount-form">
+              <DiscountForm
+                discount={{ promoCode: checkout.checkout.voucherCode }}
+                handleApplyDiscount={discountCode =>
+                  handleApplyDiscount(checkout, discountCode)
+                }
+                handleRemovePromoCode={() => handleRemovePromoCode(checkout)}
+                errors={discountErrors}
+              />
+            </div>
           )}
           <TypedPaymentMethodCreateMutation onCompleted={proceedNext}>
             {(createPaymentMethod, { loading: paymentCreateLoading }) => {
