@@ -14,13 +14,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 3,
           currency: "USD",
-          localized: "$3.00",
           __typename: "Money",
         },
         net: {
           amount: 3,
           currency: "USD",
-          localized: "$3.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",
@@ -29,13 +27,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 3,
           currency: "USD",
-          localized: "$3.00",
           __typename: "Money",
         },
         net: {
           amount: 3,
           currency: "USD",
-          localized: "$3.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",
@@ -106,13 +102,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 7,
           currency: "USD",
-          localized: "$7.00",
           __typename: "Money",
         },
         net: {
           amount: 7,
           currency: "USD",
-          localized: "$7.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",
@@ -121,13 +115,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 7,
           currency: "USD",
-          localized: "$7.00",
           __typename: "Money",
         },
         net: {
           amount: 7,
           currency: "USD",
-          localized: "$7.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",
@@ -198,13 +190,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 12,
           currency: "USD",
-          localized: "$12.00",
           __typename: "Money",
         },
         net: {
           amount: 12,
           currency: "USD",
-          localized: "$12.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",
@@ -213,13 +203,11 @@ export const productVariants: ProductDetails_product_variants[] = [
         gross: {
           amount: 12,
           currency: "USD",
-          localized: "$12.00",
           __typename: "Money",
         },
         net: {
           amount: 12,
           currency: "USD",
-          localized: "$12.00",
           __typename: "Money",
         },
         __typename: "TaxedMoney",

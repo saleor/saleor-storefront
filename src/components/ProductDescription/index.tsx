@@ -60,19 +60,15 @@ class ProductDescription extends React.Component<
 
     const { min, max } = variantPricingRange;
     if (variantPricing) {
-      return (
-        <h4>
-          <TaxedMoney taxedMoney={variantPricing.price} />
-        </h4>
-      );
+      return <TaxedMoney taxedMoney={variantPricing.price} />;
     }
     if (min === max) {
       return <TaxedMoney taxedMoney={min} />;
     } else {
       return (
-        <span>
+        <>
           <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
-        </span>
+        </>
       );
     }
   };

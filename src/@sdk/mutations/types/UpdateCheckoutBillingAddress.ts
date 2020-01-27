@@ -60,10 +60,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_net {
@@ -76,10 +72,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice {
@@ -104,10 +96,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice_net {
@@ -120,10 +108,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_subtotalPrice {
@@ -282,10 +266,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice_net {
@@ -298,10 +278,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingPrice {
@@ -326,10 +302,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice_net {
@@ -342,10 +314,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_totalPrice {
@@ -370,10 +338,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -386,10 +350,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -414,10 +374,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price_net {
@@ -430,10 +386,6 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_pricing_price {

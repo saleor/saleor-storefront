@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { TaxedMoney } from "@components/containers";
+
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { LineI } from "../../../components/CartTable/ProductRow";
-import { priceToString } from "../../../core/utils";
 import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
 import {
   OrderByToken_orderByToken,
@@ -55,9 +56,9 @@ const Page: React.FC<{
       </p>
       <CartTable
         lines={extractOrderLines(order.lines)}
-        totalCost={order.total.gross.localized}
-        deliveryCost={order.shippingPrice.gross.localized}
-        subtotal={order.subtotal.gross.localized}
+        totalCost={<TaxedMoney taxedMoney={order.total} />}
+        deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
+        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
       />
       <div className="order-details__summary">
         <div>
