@@ -502,6 +502,18 @@ export interface getUserCheckout_me_checkout_lines {
   variant: getUserCheckout_me_checkout_lines_variant;
 }
 
+export interface getUserCheckout_me_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface getUserCheckout_me_checkout {
   __typename: "Checkout";
   /**
@@ -545,6 +557,10 @@ export interface getUserCheckout_me_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: getUserCheckout_me_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface getUserCheckout_me {

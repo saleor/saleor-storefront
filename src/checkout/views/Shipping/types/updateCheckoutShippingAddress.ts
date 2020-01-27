@@ -517,6 +517,18 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   variant: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -560,6 +572,10 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -1070,6 +1086,18 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   variant: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -1113,6 +1141,10 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_errors {

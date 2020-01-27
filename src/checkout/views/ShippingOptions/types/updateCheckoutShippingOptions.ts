@@ -515,6 +515,18 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   variant: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -558,6 +570,10 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {

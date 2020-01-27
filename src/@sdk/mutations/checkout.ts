@@ -115,3 +115,23 @@ export const addCheckoutPromoCode = gql`
     }
   }
 `;
+
+export const removeCheckoutPromoCode = gql`
+  ${checkoutFragment}
+  mutation RemoveCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
+    checkoutRemovePromoCode(checkoutId: $checkoutId, promoCode: $promoCode) {
+      checkout {
+        ...Checkout
+      }
+      errors {
+        field
+        message
+      }
+      checkoutErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
