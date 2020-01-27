@@ -16,13 +16,13 @@ import {
   MapFn,
   QueryShape,
   WatchMapFn,
-  WatchQueryData
+  WatchQueryData,
 } from "./types";
 import {
   getErrorsFromData,
   getMappedData,
   isDataEmpty,
-  mergeEdges
+  mergeEdges,
 } from "./utils";
 
 import { UserDetails } from "./queries/types/UserDetails";
@@ -129,6 +129,8 @@ export class SaleorAPI {
   );
 
   setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
+
+  setPassword = this.fireQuery(MUTATIONS.SetPassword, data => data);
 
   private client: ApolloClient<any>;
 

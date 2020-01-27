@@ -222,7 +222,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   .c10 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -510,7 +509,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   .c9 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -789,7 +787,6 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   .c9 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 

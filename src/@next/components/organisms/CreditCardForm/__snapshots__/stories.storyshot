@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
   margin: 20px;
 }
 
-.c9 {
+.c10 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -69,6 +69,12 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
 
 .c3 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c8 {
+  position: absolute;
+  top: 100%;
 }
 
 .c1 {
@@ -79,7 +85,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -90,16 +96,16 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
   justify-content: space-between;
 }
 
-.c8 > div {
+.c9 > div {
   padding-right: 1rem;
 }
 
-.c8 > div:last-child {
+.c9 > div:last-child {
   padding-right: 0;
 }
 
 @media (max-width:540px) {
-  .c8 {
+  .c9 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -107,7 +113,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
 }
 
 @media (max-width:540px) {
-  .c8 > div {
+  .c9 > div {
     padding-right: 0;
   }
 }
@@ -153,10 +159,13 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
             </label>
           </div>
         </div>
+        <div
+          className="c8"
+        />
       </div>
     </div>
     <div
-      className="c8"
+      className="c9"
     >
       <div
         className="c2"
@@ -191,6 +200,9 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
       <div
@@ -226,12 +238,15 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
     </div>
   </form>
   <div
-    className="c9"
+    className="c10"
   />
 </div>
 `;
@@ -242,7 +257,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
   margin: 20px;
 }
 
-.c9 {
+.c10 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -305,6 +320,12 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
 
 .c3 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c8 {
+  position: absolute;
+  top: 100%;
 }
 
 .c1 {
@@ -315,7 +336,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
   width: 100%;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -326,16 +347,16 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
   justify-content: space-between;
 }
 
-.c8 > div {
+.c9 > div {
   padding-right: 1rem;
 }
 
-.c8 > div:last-child {
+.c9 > div:last-child {
   padding-right: 0;
 }
 
 @media (max-width:540px) {
-  .c8 {
+  .c9 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -343,7 +364,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
 }
 
 @media (max-width:540px) {
-  .c8 > div {
+  .c9 > div {
     padding-right: 0;
   }
 }
@@ -389,10 +410,13 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
             </label>
           </div>
         </div>
+        <div
+          className="c8"
+        />
       </div>
     </div>
     <div
-      className="c8"
+      className="c9"
     >
       <div
         className="c2"
@@ -427,6 +451,9 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
       <div
@@ -462,12 +489,15 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
     </div>
   </form>
   <div
-    className="c9"
+    className="c10"
   />
 </div>
 `;
@@ -478,7 +508,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   margin: 20px;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -489,12 +519,12 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   box-sizing: border-box;
 }
 
-.c8 {
+.c9 {
   color: #c22d74;
   font-size: 0.75rem;
 }
 
-.c9 {
+.c10 {
   margin: 0;
 }
 
@@ -513,7 +543,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   pointer-events: none;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -525,7 +555,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   transition: all 0.3s ease;
 }
 
-.c11:hover {
+.c12:hover {
   color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
@@ -570,6 +600,12 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
 
 .c3 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c8 {
+  position: absolute;
+  top: 100%;
 }
 
 .c1 {
@@ -580,7 +616,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   width: 100%;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -591,16 +627,16 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   justify-content: space-between;
 }
 
-.c10 > div {
+.c11 > div {
   padding-right: 1rem;
 }
 
-.c10 > div:last-child {
+.c11 > div:last-child {
   padding-right: 0;
 }
 
 @media (max-width:540px) {
-  .c10 {
+  .c11 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -608,7 +644,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
 }
 
 @media (max-width:540px) {
-  .c10 > div {
+  .c11 > div {
     padding-right: 0;
   }
 }
@@ -657,16 +693,20 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
         <div
           className="c8"
         >
-          <p
+          <div
             className="c9"
           >
-            Wrong number
-          </p>
+            <p
+              className="c10"
+            >
+              Wrong number
+            </p>
+          </div>
         </div>
       </div>
     </div>
     <div
-      className="c10"
+      className="c11"
     >
       <div
         className="c2"
@@ -675,7 +715,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
           className="c3"
         >
           <div
-            className="c11"
+            className="c12"
             disabled={false}
           >
             <div
@@ -701,6 +741,9 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
       <div
@@ -710,7 +753,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
           className="c3"
         >
           <div
-            className="c11"
+            className="c12"
             disabled={false}
           >
             <div
@@ -736,12 +779,15 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
               </label>
             </div>
           </div>
+          <div
+            className="c8"
+          />
         </div>
       </div>
     </div>
   </form>
   <div
-    className="c12"
+    className="c13"
   />
 </div>
 `;

@@ -4,8 +4,8 @@ import { ResetPassword, ResetPasswordVariables } from "./types/ResetPassword";
 
 // fixme: this will be fixed in issue https://github.com/mirumee/saleor-storefront/issues/500
 const passwordResetMutation = gql`
-  mutation ResetPassword($email: String!) {
-    requestPasswordReset(email: $email, redirectUrl: "") {
+  mutation ResetPassword($email: String!, $redirectUrl: String!) {
+    requestPasswordReset(email: $email, redirectUrl: $redirectUrl) {
       errors {
         field
         message
