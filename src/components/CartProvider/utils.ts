@@ -64,6 +64,17 @@ export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
       totalPrice: {
         ...line.totalPrice,
         currency: line.totalPrice.gross.currency,
+        gross: {
+          amount: line.quantity * line.totalPrice.gross.amount,
+          ...line.totalPrice.gross,
+          localized: null,
+        },
+        // locale,
+        net: {
+          amount: line.quantity * line.totalPrice.net.amount,
+          ...line.totalPrice.net,
+          localized: null,
+        },
       },
       ...line.variant,
     }))

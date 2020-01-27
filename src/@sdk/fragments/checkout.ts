@@ -5,12 +5,10 @@ export const checkoutPriceFragment = gql`
     gross {
       amount
       currency
-      localized
     }
     net {
       amount
       currency
-      localized
     }
   }
 `;
