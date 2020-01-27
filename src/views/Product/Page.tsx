@@ -28,7 +28,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   }
 
   setVariantId = (id: string) => {
-    console.log("SET VARIANT ID has been called", id);
     this.setState({ variantId: id });
   };
 
@@ -113,7 +112,6 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
 
   render() {
     const { product } = this.props;
-    console.log(this.getImages());
 
     const cartContextConsumer = (
       <CartContext.Consumer>
