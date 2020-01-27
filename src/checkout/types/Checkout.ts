@@ -30,11 +30,6 @@ export interface Checkout_availablePaymentGateways {
   config: Checkout_availablePaymentGateways_config[];
 }
 
-export interface Checkout_user {
-  __typename: "User";
-  email: string;
-}
-
 export interface Checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -513,7 +508,6 @@ export interface Checkout {
    * The ID of the object.
    */
   id: string;
-  user: Checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
