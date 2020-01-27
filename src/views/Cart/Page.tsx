@@ -4,6 +4,7 @@ import * as React from "react";
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 
+import { TaxedMoney } from "@components/containers";
 import { useUserDetails } from "@sdk/react";
 
 import { CheckoutContextInterface } from "../../checkout/context";
@@ -13,7 +14,7 @@ import { CartInterface } from "../../components/CartProvider/context";
 import {
   extractCartLines,
   extractCheckoutLines,
-  getTotal
+  getTotal,
 } from "../../components/CartProvider/utils";
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
@@ -88,7 +89,7 @@ const Page: React.FC<PageProps> = ({
         <CartTable
           {...productTableProps}
           lines={extractCheckoutLines(checkout.lines)}
-          subtotal={checkout.subtotalPrice.gross.localized}
+          subtotal={<TaxedMoney taxedMoney={checkout.subtotalPrice} />}
         />
       ) : (
         <TypedProductVariantsQuery

@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 import {
   checkoutAddressFragment,
-  checkoutProductVariantFragment
+  checkoutProductVariantFragment,
 } from "./checkout";
 
 export const orderPriceFragment = gql`
@@ -43,9 +43,7 @@ export const orderDetailFragment = gql`
       }
       unitPrice {
         currency
-        gross {
-          amount
-        }
+        ...OrderPrice
       }
     }
     subtotal {

@@ -7,7 +7,7 @@ import { priceToString } from "../../../core/utils";
 import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
 import {
   OrderByToken_orderByToken,
-  OrderByToken_orderByToken_lines
+  OrderByToken_orderByToken_lines,
 } from "./types/OrderByToken";
 
 import { orderHistoryUrl } from "../../../routes";
@@ -18,10 +18,20 @@ const extractOrderLines = (
   return lines
     .map(line => ({
       quantity: line.quantity,
-      totalPrice: priceToString({
-        amount: line.quantity * line.unitPrice.gross.amount,
+      totalPrice: {
+        ...line.unitPrice,
         currency: line.unitPrice.currency,
-      }),
+        gross: {
+          amount: line.quantity * line.unitPrice.gross.amount,
+          ...line.unitPrice.gross,
+          localized: null,
+        },
+        net: {
+          amount: line.quantity * line.unitPrice.net.amount,
+          ...line.unitPrice.net,
+          localized: null,
+        },
+      },
       ...line.variant,
       name: line.productName,
     }))

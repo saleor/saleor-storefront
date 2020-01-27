@@ -51,10 +51,6 @@ export interface OrderDetail_lines_variant_pricing_priceUndiscounted_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderDetail_lines_variant_pricing_priceUndiscounted_net {
@@ -67,10 +63,6 @@ export interface OrderDetail_lines_variant_pricing_priceUndiscounted_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderDetail_lines_variant_pricing_priceUndiscounted {
@@ -95,10 +87,6 @@ export interface OrderDetail_lines_variant_pricing_price_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderDetail_lines_variant_pricing_price_net {
@@ -111,10 +99,6 @@ export interface OrderDetail_lines_variant_pricing_price_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderDetail_lines_variant_pricing_price {
@@ -202,18 +186,46 @@ export interface OrderDetail_lines_unitPrice_gross {
    * Amount of money.
    */
   amount: number;
-}
-
-export interface OrderDetail_lines_unitPrice {
-  __typename: "TaxedMoney";
   /**
    * Currency code.
    */
   currency: string;
   /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_lines_unitPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Money formatted according to the current locale.
+   */
+  localized: string;
+}
+
+export interface OrderDetail_lines_unitPrice {
+  __typename: "TaxedMoney";
+  /**
    * Amount of money including taxes.
    */
   gross: OrderDetail_lines_unitPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderDetail_lines_unitPrice_net;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface OrderDetail_lines {

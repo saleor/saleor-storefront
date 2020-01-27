@@ -1,17 +1,18 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { generatePath, RouteComponentProps } from "react-router";
+
+import { Money } from "@components/containers";
 
 import { Button } from "../../../components";
 import { CartSummary, Option, StepCheck, Steps } from "../../components";
 import {
   CheckoutContext,
   CheckoutContextInterface,
-  CheckoutStep
+  CheckoutStep,
 } from "../../context";
 import { billingUrl } from "../../routes";
 import { TypedUpdateCheckoutShippingOptionsMutation } from "./queries";
+import "./scss/index.scss";
 import { updateCheckoutShippingOptions } from "./types/updateCheckoutShippingOptions";
 
 class View extends React.Component<
@@ -79,9 +80,15 @@ class View extends React.Component<
                                   this.handleShippngChange(method.id)
                                 }
                                 value={method.id}
-                                label={`${method.name} | +${
-                                  method.price.localized
-                                }`}
+                                label={
+                                  <>
+                                    {`${method.name} | +`}
+                                    <Money
+                                      defaultValue="0"
+                                      money={method.price}
+                                    />
+                                  </>
+                                }
                               />
                             ))}
                           </div>
