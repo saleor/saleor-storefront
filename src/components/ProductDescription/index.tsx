@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import isEqual from "lodash/isEqual";
 
 import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
@@ -60,9 +61,21 @@ class ProductDescription extends React.Component<
 
     const { min, max } = variantPricingRange;
     if (variantPricing) {
-      return <TaxedMoney taxedMoney={variantPricing.price} />;
+      if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
+        return <TaxedMoney taxedMoney={variantPricing.price} />;
+      } else {
+        return (
+          <>
+            <span className="product-description__discount_price">
+              <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
+            </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <TaxedMoney taxedMoney={variantPricing.price} />
+          </>
+        );
+      }
     }
-    if (min === max) {
+    if (isEqual(min, max)) {
       return <TaxedMoney taxedMoney={min} />;
     } else {
       return (
