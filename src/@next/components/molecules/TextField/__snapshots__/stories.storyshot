@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -69,6 +69,12 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
 
 .c1 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c6 {
+  position: absolute;
+  top: 100%;
 }
 
 <div
@@ -99,9 +105,12 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
         </label>
       </div>
     </div>
+    <div
+      className="c6"
+    />
   </div>
   <div
-    className="c6"
+    className="c7"
   />
 </div>
 `;
@@ -112,7 +121,7 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c8 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -186,6 +195,12 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
 
 .c1 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c7 {
+  position: absolute;
+  top: 100%;
 }
 
 <div
@@ -223,9 +238,12 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
         </label>
       </div>
     </div>
+    <div
+      className="c7"
+    />
   </div>
   <div
-    className="c7"
+    className="c8"
   />
 </div>
 `;
@@ -236,7 +254,7 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c8 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -310,6 +328,12 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
 
 .c1 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c7 {
+  position: absolute;
+  top: 100%;
 }
 
 <div
@@ -347,9 +371,12 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
         </span>
       </span>
     </div>
+    <div
+      className="c7"
+    />
   </div>
   <div
-    className="c7"
+    className="c8"
   />
 </div>
 `;
@@ -360,7 +387,7 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   margin: 20px;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -371,12 +398,12 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
+.c7 {
   color: #c22d74;
   font-size: 0.75rem;
 }
 
-.c7 {
+.c8 {
   margin: 0;
 }
 
@@ -432,6 +459,12 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
 
 .c1 {
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.c6 {
+  position: absolute;
+  top: 100%;
 }
 
 <div
@@ -465,15 +498,19 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
     <div
       className="c6"
     >
-      <p
+      <div
         className="c7"
       >
-        Some error
-      </p>
+        <p
+          className="c8"
+        >
+          Some error
+        </p>
+      </div>
     </div>
   </div>
   <div
-    className="c8"
+    className="c9"
   />
 </div>
 `;

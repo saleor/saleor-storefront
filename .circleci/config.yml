@@ -24,6 +24,9 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
+      - run:
+          name: Package lock security test
+          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn --validate-https
       - persist_to_workspace:
           root: ~/app
           paths:

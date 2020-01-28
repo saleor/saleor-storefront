@@ -583,6 +583,19 @@ export interface ProductDetails_product_attributes {
   values: (ProductDetails_product_attributes_values | null)[];
 }
 
+export interface ProductDetails_product_variants_images {
+  __typename: "ProductImage";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  alt: string;
+}
+
 export interface ProductDetails_product_variants_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
@@ -743,6 +756,10 @@ export interface ProductDetails_product_variants {
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * List of images for the product variant.
+   */
+  images: (ProductDetails_product_variants_images | null)[] | null;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

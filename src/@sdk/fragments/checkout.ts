@@ -108,9 +108,6 @@ export const checkoutFragment = gql`
     }
     token
     id
-    user {
-      email
-    }
     totalPrice {
       ...Price
     }

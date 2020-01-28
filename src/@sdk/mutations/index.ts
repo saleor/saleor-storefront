@@ -33,6 +33,8 @@ import {
   UpdateUserAddressVariables,
 } from "./types/UpdateUserAddress";
 
+import { SetPassword, SetPasswordVariables } from "./types/SetPassword";
+
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 import {
   UpdateCheckoutBillingAddress,
@@ -153,6 +155,16 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.removeCheckoutPromoCode}
+      `,
+      ...options,
+    }),
+  SetPassword: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<SetPassword, SetPasswordVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${User.setPassword}
       `,
       ...options,
     }),

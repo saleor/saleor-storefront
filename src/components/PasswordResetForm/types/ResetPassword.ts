@@ -36,4 +36,5 @@ export interface ResetPassword {
 
 export interface ResetPasswordVariables {
   email: string;
+  redirectUrl: string;
 }

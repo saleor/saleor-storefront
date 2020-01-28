@@ -39,18 +39,13 @@
       }
 
       &--fixed {
-        position: fixed;
+        top: 0;
+        position: sticky;
         width: auto;
 
         @media (min-width: $container-width) {
           width: calc(#{$container-width} * 40 / 100);
         }
-      }
-
-      &--absolute {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
       }
     }
 
