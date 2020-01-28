@@ -10,6 +10,13 @@
     text-align: left;
   }
 
+  &__undiscounted_price {
+    text-decoration: line-through;
+    color: $gray;
+    font-size: $small-font-size;
+    font-weight: regular;
+  }
+
   &__category {
     color: $product-item-category-color;
     text-align: left;
