@@ -16,9 +16,23 @@ import { ProductDetails_product } from "./types/ProductDetails";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
-class Page extends React.PureComponent<{ product: ProductDetails_product }> {
+class Page extends React.PureComponent<
+  { product: ProductDetails_product },
+  { variantId: string }
+> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      variantId: "",
+    };
+  }
+
+  setVariantId = (id: string) => {
+    this.setState({ variantId: id });
+  };
 
   get showCarousel() {
     return this.props.product.images.length > 1;
@@ -73,8 +87,35 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
     }
   };
 
+  getImages = () => {
+    const { product } = this.props;
+    if (product.variants && this.state.variantId) {
+      const variant = product.variants
+        .filter(variant => variant.id === this.state.variantId)
+        .pop();
+      return variant.images;
+    } else {
+      return product.images;
+    }
+  };
+
+  renderImages = product => {
+    const images = this.getImages();
+    if (images && images.length) {
+      return images.map(image => (
+        <a href={image.url} target="_blank">
+          <CachedImage url={image.url} key={image.id}>
+            <Thumbnail source={product} />
+          </CachedImage>
+        </a>
+      ));
+    }
+    return <CachedImage />;
+  };
+
   render() {
     const { product } = this.props;
+
     const cartContextConsumer = (
       <CartContext.Consumer>
         {cart => (
@@ -84,6 +125,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
             selectedAttributes={product.attributes}
             pricing={product.pricing}
             addToCart={cart.add}
+            setVariantId={this.setVariantId}
           >
             <RichTextContent descriptionJson={product.descriptionJson} />
           </ProductDescription>
@@ -107,7 +149,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               {matches =>
                 matches ? (
                   <>
-                    <GalleryCarousel images={product.images} />
+                    <GalleryCarousel images={this.getImages()} />
                     <div className="product-page__product__info">
                       {cartContextConsumer}
                     </div>
@@ -118,19 +160,13 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {product.images.map((image, index) => (
-                        <CachedImage url={image.url} key={image.id}>
-                          <Thumbnail source={product} />
-                        </CachedImage>
-                      ))}
+                      {this.renderImages(product)}
                     </div>
                     <div className="product-page__product__info">
                       <div
-                        className={classNames({
-                          ["product-page__product__info--fixed"]: this
-                            .showCarousel,
-                        })}
-                        ref={this.fixedElement}
+                        className={classNames(
+                          "product-page__product__info--fixed"
+                        )}
                       >
                         {cartContextConsumer}
                       </div>
