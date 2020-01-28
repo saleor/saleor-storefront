@@ -127,7 +127,6 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   .c8 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
