@@ -6,6 +6,8 @@ import { AlertManager, useAlert } from "react-alert";
 import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
+import { Money } from "@components/containers";
+
 import { Button, CartTable } from "../../../components";
 
 import { CartContext } from "../../../components/CartProvider/context";
@@ -61,6 +63,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
 
+  const discountExists = checkout.discount && !!checkout.discount.amount;
+
   return (
     <>
       <div className="checkout-review">
@@ -84,6 +88,14 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               checkout.shippingMethod && checkout.shippingMethod.price.localized
             }
             totalCost={checkout.totalPrice.gross.localized}
+            discount={
+              discountExists && (
+                <>
+                  - <Money money={checkout.discount} />
+                </>
+              )
+            }
+            discountName={checkout.discountName}
           />
           <div className="checkout-review__content">
             <Summary
