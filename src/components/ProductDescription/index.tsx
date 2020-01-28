@@ -66,7 +66,7 @@ class ProductDescription extends React.Component<
       } else {
         return (
           <>
-            <span className="product-description__discount_price">
+            <span className="product-description__undiscounted_price">
               <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
             </span>
             &nbsp;&nbsp;&nbsp;&nbsp;
