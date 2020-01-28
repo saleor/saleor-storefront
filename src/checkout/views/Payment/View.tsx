@@ -262,7 +262,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                       type="submit"
                       disabled={loading}
                       onClick={() => {
-                        formRef.current.dispatchEvent(new Event("submit"));
+                        formRef.current.dispatchEvent(
+                          new Event("submit", { cancelable: true })
+                        );
                       }}
                     >
                       Continue to Review Your Order
