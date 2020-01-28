@@ -164,9 +164,9 @@ class Page extends React.PureComponent<
                     </div>
                     <div className="product-page__product__info">
                       <div
-                        className={classNames({
-                          ["product-page__product__info--fixed"]: true,
-                        })}
+                        className={classNames(
+                          "product-page__product__info--fixed"
+                        )}
                       >
                         {cartContextConsumer}
                       </div>
