@@ -32,7 +32,8 @@ const ORDERS = [
       statusDisplay: "Unfulfilled",
       token: "687f3e43-b198-4c7f-b6e5-75c2c93b3f45",
       total: {
-        gross: { localized: "$42.91" },
+        gross: { amount: 42.91, currency: "USD" },
+        net: { amount: 42.91, currency: "USD" },
       },
     },
   },
@@ -65,7 +66,8 @@ const ORDERS = [
       statusDisplay: "Fulfilled",
       token: "c2deea58-00ad-4838-bb7b-0678fd4f1f38",
       total: {
-        gross: { localized: "$29.24" },
+        gross: { amount: 29.24, currency: "USD" },
+        net: { amount: 29.24, currency: "USD" },
       },
     },
   },
