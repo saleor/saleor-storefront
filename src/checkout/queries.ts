@@ -240,4 +240,4 @@ export const getVariantsProductsQuery = gql`
 export const TypedGetVariantsProductsQuery = TypedQuery<
   getVariantsProducts,
   getVariantsProductsVariables
->(getUserCheckoutQuery);
+>(getVariantsProductsQuery);
