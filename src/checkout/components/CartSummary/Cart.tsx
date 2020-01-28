@@ -41,11 +41,19 @@ const Cart: React.FC<{
             <Line key={id} {...variant} quantity={quantity} />
           ))}
           <Subtotal checkout={checkout} lines={lines} />
+          {checkout.discount && !!checkout.discount.amount && (
+            <div className="cart-summary__totals">
+              <h5>Discount: {checkout.discountName}</h5>
+              <h5>
+                - <Money defaultValue="-" money={checkout.discount} />
+              </h5>
+            </div>
+          )}
           <div className="cart-summary__totals">
-            <h4>Delivery</h4>
-            <h4>
+            <h5>Delivery</h5>
+            <h5>
               <Money defaultValue="-" money={checkout.shippingPrice.gross} />
-            </h4>
+            </h5>
           </div>
           <div className="cart-summary__totals last">
             <h4>Grand total</h4>
