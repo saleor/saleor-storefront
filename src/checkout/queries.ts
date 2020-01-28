@@ -171,6 +171,9 @@ export const updateCheckoutLineQuery = gql`
         lines {
           ...CheckoutLine
         }
+        totalPrice {
+          ...Price
+        }
         subtotalPrice {
           ...Price
         }
