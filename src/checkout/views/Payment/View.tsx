@@ -38,6 +38,7 @@ export interface ProviderProps {
 }
 
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
+  history,
   match: {
     params: { token },
   },
@@ -67,10 +68,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 
     if (updatedCheckout) {
       checkout.update({
-        checkout: {
-          ...checkout.checkout,
-          voucherCode: updatedCheckout.voucherCode,
-        },
+        checkout: updatedCheckout,
       });
     }
   }, [addedPromoCode]);
@@ -80,10 +78,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
 
     if (updatedCheckout) {
       checkout.update({
-        checkout: {
-          ...checkout.checkout,
-          voucherCode: updatedCheckout.voucherCode,
-        },
+        checkout: updatedCheckout,
       });
     }
   }, [removedPromoCode]);
@@ -98,12 +93,6 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     const canProceed = !data.checkoutPaymentCreate.errors.length;
 
     if (canProceed) {
-      const {
-        history,
-        match: {
-          params: { token },
-        },
-      } = this.props;
       setLoadingPayment(false);
       history.push(generatePath(reviewUrl, { token }));
     }
