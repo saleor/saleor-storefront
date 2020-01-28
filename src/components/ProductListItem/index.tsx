@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
-import * as React from "react";
 import isEqual from "lodash/isEqual";
+import * as React from "react";
 
 import { Thumbnail } from "@components/molecules";
 
