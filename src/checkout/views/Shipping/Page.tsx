@@ -8,7 +8,7 @@ import {
   CartSummary,
   GuestAddressForm,
   Steps,
-  UserAddressSelector
+  UserAddressSelector,
 } from "../../components";
 import { CheckoutStep } from "../../context";
 import { shippingOptionsUrl } from "../../routes";

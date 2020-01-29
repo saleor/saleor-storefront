@@ -9,6 +9,7 @@ export interface AddressType extends Partial<AddressInterface> {
 export interface FormAddressType extends Omit<AddressType, "country"> {
   asBilling?: boolean;
   asNew?: boolean;
+  email?: string;
   country: { country?: string; code?: string; value?: string };
 }
 
@@ -23,9 +24,11 @@ export interface IShippingAddressFormProps
   buttonText: string;
   onSubmit: (data: FormAddressType) => void;
   shippingAsBilling?: boolean;
+  noShipping?: boolean;
 }
 
 export interface IShippingNewAddressFormProps
   extends IBaseShippingAddressFormProps {
   onSubmit: (data: FormAddressType) => void;
+  noShipping?: boolean;
 }

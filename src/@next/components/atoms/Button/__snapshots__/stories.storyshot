@@ -60,7 +60,6 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   .c1 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -148,7 +147,6 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   .c1 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -233,7 +231,6 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
   .c1 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 

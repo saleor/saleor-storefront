@@ -2,11 +2,11 @@ import { History } from "history";
 
 import {
   CreateCheckout_checkoutCreate,
-  CreateCheckoutVariables
+  CreateCheckoutVariables,
 } from "@sdk/mutations/types/CreateCheckout";
 import {
   UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate,
-  UpdateCheckoutShippingAddressVariables
+  UpdateCheckoutShippingAddressVariables,
 } from "@sdk/mutations/types/UpdateCheckoutShippingAddress";
 import { MutationFn, MutationResult } from "@sdk/react/useMutation";
 

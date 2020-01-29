@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import {
   checkoutFragment,
   checkoutLineFragment,
-  checkoutPriceFragment
+  checkoutPriceFragment,
 } from "../fragments/checkout";
 
 export const updateCheckoutLineQuery = gql`
@@ -19,6 +19,7 @@ export const updateCheckoutLineQuery = gql`
         subtotalPrice {
           ...Price
         }
+        isShippingRequired
       }
       errors {
         field

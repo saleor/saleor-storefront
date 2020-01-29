@@ -49,8 +49,8 @@ export const Primary = styled.button<{
 
   ${media.smallScreen`
     padding:  0.9rem 1rem;
-    width: 88%;
-    max-width: 88%;
+    width: ${(props: { fullWidth: boolean }) =>
+      props.fullWidth ? "100%" : "88%"};
   `}
 `;
 

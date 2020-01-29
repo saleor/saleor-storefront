@@ -45,11 +45,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   config: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availablePaymentGateways_config[];
 }
 
-export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_user {
-  __typename: "User";
-  email: string;
-}
-
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -480,7 +475,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * The ID of the object.
    */
   id: string;
-  user: updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
@@ -508,6 +502,10 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate {

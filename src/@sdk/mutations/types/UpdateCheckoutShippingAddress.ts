@@ -45,11 +45,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   config: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways_config[];
 }
 
-export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user {
-  __typename: "User";
-  email: string;
-}
-
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -496,7 +491,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * The ID of the object.
    */
   id: string;
-  user: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
@@ -524,6 +518,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -560,11 +558,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
    * Payment gateway client configuration.
    */
   config: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways_config[];
-}
-
-export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user {
-  __typename: "User";
-  email: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross {
@@ -1013,7 +1006,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * The ID of the object.
    */
   id: string;
-  user: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
@@ -1041,6 +1033,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {

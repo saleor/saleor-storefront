@@ -251,6 +251,10 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
    * The price of the checkout before shipping, with taxes included.
    */
   subtotalPrice: UpdateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
