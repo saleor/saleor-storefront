@@ -51,7 +51,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
     line.stockQuantity === undefined
       ? false
       : line.quantity < line.stockQuantity;
-  const quantityChangeControls = mediumScreen ? (
+  const quantityChangeControls = (
     <div>
       <ReactSVG path={cartSubtractImg} onClick={() => subtract(line.id)} />
       <p>{line.quantity}</p>
@@ -61,17 +61,6 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         onClick={inStock ? () => add(line.id) : undefined}
       />
     </div>
-  ) : (
-    <DebouncedTextField
-      value={line.quantity}
-      onChange={evt =>
-        changeQuantity([
-          { variantId: line.id, quantity: parseInt(evt.target.value, 10) },
-        ])
-      }
-      resetValue={invalid}
-      disabled={processing}
-    />
   );
 
   return (
