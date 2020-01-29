@@ -8,7 +8,7 @@ describe("<Checkbox />", () => {
   // Example test
   it("exists", () => {
     const wrapper = shallow(
-      <Checkbox name="defauld-checkbox">Checkbox with label</Checkbox>
+      <Checkbox name="default-checkbox">Checkbox with label</Checkbox>
     );
 
     expect(wrapper.exists()).toEqual(true);

@@ -3,5 +3,5 @@ import React from "react";
 
 import { Checkbox } from ".";
 storiesOf("@components/atoms/Checkbox", module).add("default", () => (
-  <Checkbox name="defauld-checkbox">Checkbox with label</Checkbox>
+  <Checkbox name="default-checkbox">Checkbox with label</Checkbox>
 ));
