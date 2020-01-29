@@ -184,7 +184,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
         className="c6"
       >
         <span>
-          US$ 42.91
+          
         </span>
       </div>
       <div
@@ -225,7 +225,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
         className="c6"
       >
         <span>
-          US$ 29.24
+          
         </span>
       </div>
       <div
