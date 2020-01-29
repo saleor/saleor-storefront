@@ -27,7 +27,6 @@ const DEFAULT_PROPS = {
 };
 
 describe("<ProductListHeader />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
 
