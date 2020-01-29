@@ -31,6 +31,8 @@ const showSuccessNotification = (
 
 const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
   const alert = useAlert();
+  const accountConfirmPath = 'account-confirm'
+
   return (
     <TypedAccountRegisterMutation
       onCompleted={data => showSuccessNotification(data, hide, alert)}
@@ -41,7 +43,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
-              const redirectUrl = window.location.origin;
+              const redirectUrl = `${window.location.origin}/${accountConfirmPath}`;
               registerCustomer({ variables: { email, password, redirectUrl } });
             }}
           >
