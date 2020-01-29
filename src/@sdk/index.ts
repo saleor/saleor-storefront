@@ -108,6 +108,16 @@ export class SaleorAPI {
     data => data!.checkoutShippingAddressUpdate
   );
 
+  setAddCheckoutPromoCode = this.fireQuery(
+    MUTATIONS.AddCheckoutPromoCode,
+    data => data!.checkoutAddPromoCode
+  );
+
+  setRemoveCheckoutPromoCode = this.fireQuery(
+    MUTATIONS.RemoveCheckoutPromoCode,
+    data => data!.checkoutRemovePromoCode
+  );
+
   setDeleteUserAddress = this.fireQuery(
     MUTATIONS.DeleteUserAddress,
     data => data!.accountAddressDelete

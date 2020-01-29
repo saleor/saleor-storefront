@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput } from "./../../types/globalTypes";
+import { AddressInput } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingAddress
@@ -164,14 +164,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country {
@@ -205,14 +197,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price {
@@ -528,6 +512,18 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   variant: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -570,6 +566,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -727,14 +727,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_bill
   country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country {
@@ -768,14 +760,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
@@ -1091,6 +1075,18 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   variant: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -1133,6 +1129,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {

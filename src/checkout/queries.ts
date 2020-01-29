@@ -144,6 +144,13 @@ export const checkoutFragment = gql`
       ...CheckoutLine
     }
     isShippingRequired
+    discount {
+      currency
+      amount
+    }
+    discountName
+    translatedDiscountName
+    voucherCode
   }
 `;
 

@@ -10,6 +10,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add `ProductVariantPicker` component supporting multiple product variant attributes - #550 by @orzechdev
 - Fix not working storefront when no data in saleor database exist - #551 by @orzechdev
 - Make checkout working without shipping if it is not required - #571 by @orzechdev
+- Add ability to apply a promo code in checkout - #582 by @orzechdev
 
 ## 0.7.0
 

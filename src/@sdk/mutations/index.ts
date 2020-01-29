@@ -50,6 +50,16 @@ import {
   PasswordChangeVariables,
 } from "./types/PasswordChange";
 
+import {
+  AddCheckoutPromoCode,
+  AddCheckoutPromoCodeVariables,
+} from "./types/AddCheckoutPromoCode";
+
+import {
+  RemoveCheckoutPromoCode,
+  RemoveCheckoutPromoCodeVariables,
+} from "./types/RemoveCheckoutPromoCode";
+
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
 
 export type MutationOptions<TData, TVariables> = Omit<
@@ -66,6 +76,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${User.accountUpdate}
+      `,
+      ...options,
+    }),
+  AddCheckoutPromoCode: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      AddCheckoutPromoCode,
+      AddCheckoutPromoCodeVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.addCheckoutPromoCode}
       `,
       ...options,
     }),
@@ -119,6 +142,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${User.changeUserPassword}
+      `,
+      ...options,
+    }),
+  RemoveCheckoutPromoCode: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveCheckoutPromoCode,
+      RemoveCheckoutPromoCodeVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.removeCheckoutPromoCode}
       `,
       ...options,
     }),

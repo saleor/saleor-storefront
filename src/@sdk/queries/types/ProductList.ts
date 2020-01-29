@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList

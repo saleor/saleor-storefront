@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput } from "./../../types/globalTypes";
+import { CheckoutCreateInput } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
@@ -164,14 +164,6 @@ export interface CreateCheckout_checkoutCreate_checkout_billingAddress {
   country: CreateCheckout_checkoutCreate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingAddress_country {
@@ -205,14 +197,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
   country: CreateCheckout_checkoutCreate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods_price {
@@ -528,6 +512,18 @@ export interface CreateCheckout_checkoutCreate_checkout_lines {
   variant: CreateCheckout_checkoutCreate_checkout_lines_variant;
 }
 
+export interface CreateCheckout_checkoutCreate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface CreateCheckout_checkoutCreate_checkout {
   __typename: "Checkout";
   /**
@@ -570,6 +566,10 @@ export interface CreateCheckout_checkoutCreate_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: CreateCheckout_checkoutCreate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface CreateCheckout_checkoutCreate {

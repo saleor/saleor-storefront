@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Checkbox default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c3 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c3 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c3 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  z-index: 10;
+}
+
+.c1:hover .c3 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c3 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c3 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1 c2"
+    onClick={[Function]}
+  >
+    <label
+      className="c3"
+    >
+      <input
+        name="default-checkbox"
+        readOnly={true}
+        tabIndex={-1}
+        type="checkbox"
+      />
+      <div
+        onKeyDown={[Function]}
+        tabIndex={0}
+      >
+        <span />
+      </div>
+    </label>
+    Checkbox with label
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;

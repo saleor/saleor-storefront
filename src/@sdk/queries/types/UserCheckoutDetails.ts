@@ -149,14 +149,6 @@ export interface UserCheckoutDetails_me_checkout_billingAddress {
   country: UserCheckoutDetails_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_shippingAddress_country {
@@ -190,14 +182,6 @@ export interface UserCheckoutDetails_me_checkout_shippingAddress {
   country: UserCheckoutDetails_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_availableShippingMethods_price {
@@ -513,6 +497,18 @@ export interface UserCheckoutDetails_me_checkout_lines {
   variant: UserCheckoutDetails_me_checkout_lines_variant;
 }
 
+export interface UserCheckoutDetails_me_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UserCheckoutDetails_me_checkout {
   __typename: "Checkout";
   /**
@@ -555,6 +551,10 @@ export interface UserCheckoutDetails_me_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UserCheckoutDetails_me_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UserCheckoutDetails_me {

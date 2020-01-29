@@ -513,6 +513,18 @@ export interface Checkout_lines {
   variant: Checkout_lines_variant;
 }
 
+export interface Checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface Checkout {
   __typename: "Checkout";
   /**
@@ -555,4 +567,8 @@ export interface Checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: Checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }

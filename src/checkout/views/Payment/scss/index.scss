@@ -7,6 +7,10 @@
     grid-row-gap: 1.25rem;
     grid-template-columns: 1fr;
 
+    border-top: 1px solid #f1f5f5;
+    margin-top: 2rem;
+    padding-top: 2rem;
+
     > .c-option__content {
       @media (min-width: $medium-screen) {
         padding: 0 3rem 0 6rem;
@@ -16,5 +20,10 @@
         background-color: $white;
       }
     }
+  }
+
+  &__discount-form {
+    background-color: $gray-light;
+    padding: 2rem 2.6rem;
   }
 }
