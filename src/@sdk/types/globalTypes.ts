@@ -355,6 +355,17 @@ export enum ProductOrderField {
   TYPE = "TYPE",
 }
 
+/**
+ * An enumeration.
+ */
+export enum WishlistErrorCode {
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
 export interface AccountInput {
   firstName?: string | null;
   lastName?: string | null;
