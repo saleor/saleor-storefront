@@ -120,6 +120,7 @@ class Page extends React.PureComponent<
       <CartContext.Consumer>
         {cart => (
           <ProductDescription
+            productId={product.id}
             name={product.name}
             productVariants={product.variants}
             selectedAttributes={product.attributes}

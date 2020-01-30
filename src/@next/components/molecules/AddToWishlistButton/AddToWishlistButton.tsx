@@ -5,7 +5,7 @@ import { Icon } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const AddToWishlist: React.FC<IProps> = ({
+export const AddToWishlistButton: React.FC<IProps> = ({
   added,
   onClick = () => null,
 }: IProps) => {

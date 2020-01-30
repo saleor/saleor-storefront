@@ -89,7 +89,11 @@ export class SaleorAPI {
   );
 
   getUserWishlist = this.watchQuery(QUERIES.UserWishlist, data =>
-    data.me ? data.me.wishlist && data.me.wishlist.edges : null
+    data.me
+      ? data.me.wishlist &&
+        data.me.wishlist.edges &&
+        data.me.wishlist.edges.map(({ node }) => node)
+      : null
   );
 
   getVariantsProducts = this.watchQuery(

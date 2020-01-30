@@ -14,8 +14,10 @@ import { IProductVariantsAttributesSelectedValues } from "@types";
 
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
+import AddToWishlist from "./AddToWishlist";
 
 interface ProductDescriptionProps {
+  productId: string;
   productVariants: ProductDetails_product_variants[];
   selectedAttributes: ProductDetails_product_attributes[];
   name: string;
@@ -35,6 +37,7 @@ interface ProductDescriptionState {
     max: number;
     currency: string;
   };
+  addedToWishlist: boolean;
 }
 
 class ProductDescription extends React.Component<
@@ -45,6 +48,7 @@ class ProductDescription extends React.Component<
     super(props);
 
     this.state = {
+      addedToWishlist: false,
       eachVariantPricingRange: this.getEachVariantPricingRange(),
       quantity: 1,
       variant: "",
@@ -209,6 +213,9 @@ class ProductDescription extends React.Component<
             />
           )}
         </CartContext.Consumer>
+        <div className="product-description__add-to-wishlist">
+          <AddToWishlist productId={this.props.productId} />
+        </div>
       </div>
     );
   }

@@ -15,4 +15,4 @@ export * from "./ProductListHeader";
 export * from "./InputSelect";
 export * from "./FilterAttribute";
 export * from "./ResetPasswordForm";
-export * from "./AddToWishlist";
+export * from "./AddToWishlistButton";

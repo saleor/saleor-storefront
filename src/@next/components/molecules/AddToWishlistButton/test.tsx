@@ -2,12 +2,11 @@ import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { AddToWishlist } from ".";
+import { AddToWishlistButton } from ".";
 
-describe("<AddToWishlist />", () => {
-  // Example test
+describe("<AddToWishlistButton />", () => {
   it("exists", () => {
-    const wrapper = shallow(<AddToWishlist />);
+    const wrapper = shallow(<AddToWishlistButton />);
 
     expect(wrapper.exists()).toEqual(true);
   });
