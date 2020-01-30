@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutErrorCode } from "./../../../../types/globalTypes";
+import { CheckoutErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AddCheckoutPromoCode
@@ -30,11 +30,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePay
    * Payment gateway client configuration.
    */
   config: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways_config[];
-}
-
-export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_user {
-  __typename: "User";
-  email: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice_gross {
@@ -156,6 +151,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_billingAddre
   country: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddress_country {
@@ -189,6 +192,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddr
   country: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availableShippingMethods_price {
@@ -527,7 +538,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout {
    * The ID of the object.
    */
   id: string;
-  user: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
