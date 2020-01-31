@@ -24,4 +24,4 @@ export const useVariantsProducts = queryWithVariablesFactory(
   "getVariantsProducts"
 );
 
-export const useUserWishlist = queryFactory("getUserWishlist");
+export const useUserWishlist = queryWithVariablesFactory("getUserWishlist");

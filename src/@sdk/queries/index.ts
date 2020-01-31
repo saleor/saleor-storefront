@@ -11,7 +11,7 @@ import * as Category from "./category";
 import * as Checkout from "./checkout";
 import * as Orders from "./orders";
 import * as Product from "./products";
-import * as Wishlist from "./wishlist";
+import * as WishlistQuery from "./wishlist";
 
 import {
   CheckoutDetails,
@@ -35,11 +35,11 @@ import {
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
-import { UserWishlist } from "./types/UserWishlist";
 import {
   VariantsProducts,
   VariantsProductsVariables,
 } from "./types/VariantsProducts";
+import { Wishlist, WishlistVariables } from "./types/Wishlist";
 
 import * as User from "./user";
 
@@ -139,16 +139,6 @@ export const QUERIES = {
       `,
       ...options,
     }),
-  UserWishlist: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<null>
-  ): ObservableQuery<UserWishlist, any> =>
-    client.watchQuery({
-      query: gql`
-        ${Wishlist.userWishlist}
-      `,
-      ...options,
-    }),
   VariantsProducts: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<VariantsProductsVariables>
@@ -156,6 +146,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Product.variantsProducts}
+      `,
+      ...options,
+    }),
+  Wishlist: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<WishlistVariables>
+  ): ObservableQuery<Wishlist, any> =>
+    client.watchQuery({
+      query: gql`
+        ${WishlistQuery.userWishlist}
       `,
       ...options,
     }),

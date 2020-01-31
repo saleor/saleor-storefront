@@ -3,10 +3,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserWishlist
+// GraphQL query operation: Wishlist
 // ====================================================
 
-export interface UserWishlist_me_wishlist_pageInfo {
+export interface Wishlist_me_wishlist_pageInfo {
   __typename: "PageInfo";
   /**
    * When paginating forwards, are there more items?
@@ -18,7 +18,7 @@ export interface UserWishlist_me_wishlist_pageInfo {
   endCursor: string | null;
 }
 
-export interface UserWishlist_me_wishlist_edges_node_product {
+export interface Wishlist_me_wishlist_edges_node_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -27,7 +27,7 @@ export interface UserWishlist_me_wishlist_edges_node_product {
   name: string;
 }
 
-export interface UserWishlist_me_wishlist_edges_node_variants_edges_node {
+export interface Wishlist_me_wishlist_edges_node_variants_edges_node {
   __typename: "ProductVariant";
   /**
    * The ID of the object.
@@ -36,47 +36,47 @@ export interface UserWishlist_me_wishlist_edges_node_variants_edges_node {
   name: string;
 }
 
-export interface UserWishlist_me_wishlist_edges_node_variants_edges {
+export interface Wishlist_me_wishlist_edges_node_variants_edges {
   __typename: "ProductVariantCountableEdge";
   /**
    * The item at the end of the edge.
    */
-  node: UserWishlist_me_wishlist_edges_node_variants_edges_node;
+  node: Wishlist_me_wishlist_edges_node_variants_edges_node;
 }
 
-export interface UserWishlist_me_wishlist_edges_node_variants {
+export interface Wishlist_me_wishlist_edges_node_variants {
   __typename: "ProductVariantCountableConnection";
-  edges: UserWishlist_me_wishlist_edges_node_variants_edges[];
+  edges: Wishlist_me_wishlist_edges_node_variants_edges[];
 }
 
-export interface UserWishlist_me_wishlist_edges_node {
+export interface Wishlist_me_wishlist_edges_node {
   __typename: "WishlistItem";
   /**
    * The ID of the object.
    */
   id: string;
-  product: UserWishlist_me_wishlist_edges_node_product;
-  variants: UserWishlist_me_wishlist_edges_node_variants;
+  product: Wishlist_me_wishlist_edges_node_product;
+  variants: Wishlist_me_wishlist_edges_node_variants;
 }
 
-export interface UserWishlist_me_wishlist_edges {
+export interface Wishlist_me_wishlist_edges {
   __typename: "WishlistItemCountableEdge";
   /**
    * The item at the end of the edge.
    */
-  node: UserWishlist_me_wishlist_edges_node;
+  node: Wishlist_me_wishlist_edges_node;
 }
 
-export interface UserWishlist_me_wishlist {
+export interface Wishlist_me_wishlist {
   __typename: "WishlistItemCountableConnection";
   /**
    * Pagination data for this connection.
    */
-  pageInfo: UserWishlist_me_wishlist_pageInfo;
-  edges: UserWishlist_me_wishlist_edges[];
+  pageInfo: Wishlist_me_wishlist_pageInfo;
+  edges: Wishlist_me_wishlist_edges[];
 }
 
-export interface UserWishlist_me {
+export interface Wishlist_me {
   __typename: "User";
   /**
    * The ID of the object.
@@ -85,12 +85,17 @@ export interface UserWishlist_me {
   /**
    * User's wishlist.
    */
-  wishlist: UserWishlist_me_wishlist | null;
+  wishlist: Wishlist_me_wishlist | null;
 }
 
-export interface UserWishlist {
+export interface Wishlist {
   /**
    * Return the currently authenticated user.
    */
-  me: UserWishlist_me | null;
+  me: Wishlist_me | null;
+}
+
+export interface WishlistVariables {
+  after?: string | null;
+  first?: number | null;
 }

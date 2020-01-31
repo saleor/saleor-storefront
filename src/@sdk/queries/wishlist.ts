@@ -4,10 +4,14 @@ import { wishlistItemFragment } from "../fragments/wishlist";
 
 export const userWishlist = gql`
   ${wishlistItemFragment}
-  query UserWishlist {
+  query Wishlist($after: String, $first: Int) {
     me {
       id
-      wishlist {
+      wishlist(after: $after, first: $first) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         edges {
           node {
             ...WishlistItem
