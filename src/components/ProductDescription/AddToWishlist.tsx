@@ -2,7 +2,7 @@ import React from "react";
 
 import { AddToWishlistButton } from "@components/molecules";
 import { useAddWishlistProduct, useRemoveWishlistProduct } from "@sdk/react";
-import { WishlistContext } from "@temp/@sdk/react/components/WishlistProvider/context";
+import { WishlistContext } from "@sdk/react/components/WishlistProvider/context";
 
 const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
   const { wishlist, update } = React.useContext(WishlistContext);
@@ -15,11 +15,21 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     isAddedToWishlist()
   );
 
-  const {} = useAddWishlistProduct({ productId });
-  const {} = useRemoveWishlistProduct({ productId });
+  const [
+    addWishlistProduct,
+    { data: addData, loading: addLoading, error: addError },
+  ] = useAddWishlistProduct({ productId });
+  const [
+    removeWishlistProduct,
+    { data: removeData, loading: removeLoading, error: removeError },
+  ] = useRemoveWishlistProduct({ productId });
 
   const addOrRemoveFromWishlist = () => {
-    // TODO
+    if (addedToWishlist) {
+      removeWishlistProduct({ productId });
+    } else {
+      addWishlistProduct({ productId });
+    }
   };
 
   return (

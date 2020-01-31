@@ -1,10 +1,27 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ added: boolean }>`
   display: flex;
   align-items: center;
   text-transform: uppercase;
   cursor: pointer;
+
+  svg {
+    position: relative;
+    top: ${props => (props.added ? `0.5` : `0.8`)}rem;
+    left: ${props => (props.added ? `0.4` : `0.6`)}rem;
+  }
+
+  :hover {
+    svg {
+      top: 0.5rem;
+      left: 0.4rem;
+
+      path {
+        fill: ${props => props.theme.colors.activeMenuOption};
+      }
+    }
+  }
 `;
 
 export const WishlistIcon = styled.div`
