@@ -1,4 +1,6 @@
-export interface IProps {
+import React from "react";
+
+export interface IImage {
   url?: string;
   url2x?: string;
   alt?: string;
