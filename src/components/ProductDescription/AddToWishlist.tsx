@@ -15,6 +15,14 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     isAddedToWishlist()
   );
 
+  React.useEffect(() => {
+    const added = isAddedToWishlist();
+
+    if (added !== addedToWishlist) {
+      setAddedToWishlist(added);
+    }
+  }, [wishlist]);
+
   const [
     addWishlistProduct,
     { data: addData, loading: addLoading, error: addError },
@@ -24,11 +32,13 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     { data: removeData, loading: removeLoading, error: removeError },
   ] = useRemoveWishlistProduct({ productId });
 
-  const addOrRemoveFromWishlist = () => {
+  const addOrRemoveFromWishlist = async () => {
     if (addedToWishlist) {
-      removeWishlistProduct({ productId });
+      await removeWishlistProduct({ productId });
+      update();
     } else {
       addWishlistProduct({ productId });
+      update();
     }
   };
 

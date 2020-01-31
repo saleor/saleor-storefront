@@ -16,16 +16,6 @@ export function WishlistProvider({
     first: WHISHLIST_ITEMS_PER_API_CALL,
   });
 
-  const [state, setState] = React.useState<{
-    wishlist: WishlistItem[] | null;
-    loading: boolean;
-    error: ApolloErrorWithUserInput | null;
-  }>({
-    error,
-    loading,
-    wishlist: data && data.edges.map(({ node }) => node),
-  });
-
   React.useEffect(() => {
     if (data && data.pageInfo.hasNextPage) {
       loadMore({
@@ -35,13 +25,17 @@ export function WishlistProvider({
     }
   }, [data]);
 
-  const update = (wishlist: WishlistItem[]) => {
-    setState(state => ({ ...state, wishlist }));
+  const update = () => {
+    refetch({
+      first: WHISHLIST_ITEMS_PER_API_CALL,
+    });
   };
 
   const getContext = () => ({
-    ...state,
+    error,
+    loading,
     update,
+    wishlist: data && data.edges.map(({ node }) => node),
   });
 
   return (

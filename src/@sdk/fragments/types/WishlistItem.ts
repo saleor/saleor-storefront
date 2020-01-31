@@ -15,28 +15,6 @@ export interface WishlistItem_product {
   name: string;
 }
 
-export interface WishlistItem_variants_edges_node {
-  __typename: "ProductVariant";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  name: string;
-}
-
-export interface WishlistItem_variants_edges {
-  __typename: "ProductVariantCountableEdge";
-  /**
-   * The item at the end of the edge.
-   */
-  node: WishlistItem_variants_edges_node;
-}
-
-export interface WishlistItem_variants {
-  __typename: "ProductVariantCountableConnection";
-  edges: WishlistItem_variants_edges[];
-}
-
 export interface WishlistItem {
   __typename: "WishlistItem";
   /**
@@ -44,5 +22,4 @@ export interface WishlistItem {
    */
   id: string;
   product: WishlistItem_product;
-  variants: WishlistItem_variants;
 }

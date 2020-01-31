@@ -17,28 +17,6 @@ export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist_product {
   name: string;
 }
 
-export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants_edges_node {
-  __typename: "ProductVariant";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  name: string;
-}
-
-export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants_edges {
-  __typename: "ProductVariantCountableEdge";
-  /**
-   * The item at the end of the edge.
-   */
-  node: RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants_edges_node;
-}
-
-export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants {
-  __typename: "ProductVariantCountableConnection";
-  edges: RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants_edges[];
-}
-
 export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist {
   __typename: "WishlistItem";
   /**
@@ -46,7 +24,6 @@ export interface RemoveWishlistProduct_wishlistRemoveProduct_wishlist {
    */
   id: string;
   product: RemoveWishlistProduct_wishlistRemoveProduct_wishlist_product;
-  variants: RemoveWishlistProduct_wishlistRemoveProduct_wishlist_variants;
 }
 
 export interface RemoveWishlistProduct_wishlistRemoveProduct_errors {

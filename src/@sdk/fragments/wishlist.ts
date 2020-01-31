@@ -7,13 +7,5 @@ export const wishlistItemFragment = gql`
       id
       name
     }
-    variants {
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
   }
 `;

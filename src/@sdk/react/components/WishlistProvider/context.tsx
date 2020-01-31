@@ -8,13 +8,13 @@ export interface IWishlistContext {
   wishlist: WishlistItem[] | null;
   loading: boolean;
   error: ApolloErrorWithUserInput | null;
-  update(wishlist: WishlistItem[]): void;
+  update(): void;
 }
 
 export const WishlistContext = React.createContext<IWishlistContext>({
   error: null,
   loading: false,
-  update: wishlist => null,
+  update: () => null,
   wishlist: [],
 });
 
