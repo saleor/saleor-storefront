@@ -41,6 +41,10 @@
         display: flex;
         justify-content: space-around;
 
+        @media (max-width: $small-screen) {
+          flex-direction: column-reverse;
+        }
+
         &.disabled {
           opacity: 0.8;
 
