@@ -9,18 +9,7 @@ export const AddToWishlistButton: React.FC<IProps> = ({
   added,
   onClick = () => null,
 }: IProps) => {
-  const [iconName, setIconName] = useState<"heart" | "heart_filled">(
-    added ? "heart_filled" : "heart"
-  );
   const [hover, setHover] = useState(false);
-
-  useEffect(() => {
-    if (added || hover) {
-      setIconName("heart_filled");
-    } else {
-      setIconName("heart");
-    }
-  }, [added, hover]);
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -37,9 +26,16 @@ export const AddToWishlistButton: React.FC<IProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <S.WishlistIcon>
-        <Icon name={iconName} size={iconName === "heart" ? 38 : 28} />
-      </S.WishlistIcon>
+      {/* S.WishlistIcon component is reapeted for two icons - it should to prevent flashing css */}
+      {added || hover ? (
+        <S.WishlistIcon>
+          <Icon name="heart_filled" size={28} />
+        </S.WishlistIcon>
+      ) : (
+        <S.WishlistIcon>
+          <Icon name="heart" size={38} />
+        </S.WishlistIcon>
+      )}
       Add to wishlist
     </S.Wrapper>
   );

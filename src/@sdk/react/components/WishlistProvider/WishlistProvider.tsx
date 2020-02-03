@@ -1,9 +1,7 @@
 import React from "react";
 
-import { WishlistItem } from "@sdk/fragments/types/WishlistItem";
 import { useUserWishlist } from "@sdk/react";
 
-import { ApolloErrorWithUserInput } from "../../types";
 import { WishlistContext } from "./context";
 import { IProps } from "./types";
 
