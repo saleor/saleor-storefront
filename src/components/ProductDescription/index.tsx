@@ -37,7 +37,6 @@ interface ProductDescriptionState {
     max: number;
     currency: string;
   };
-  addedToWishlist: boolean;
 }
 
 class ProductDescription extends React.Component<
@@ -48,7 +47,6 @@ class ProductDescription extends React.Component<
     super(props);
 
     this.state = {
-      addedToWishlist: false,
       eachVariantPricingRange: this.getEachVariantPricingRange(),
       quantity: 1,
       variant: "",

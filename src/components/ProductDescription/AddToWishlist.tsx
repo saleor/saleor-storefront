@@ -36,7 +36,7 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     { loading: errorLoading, error: removeError },
   ] = useRemoveWishlistProduct({ productId });
 
-  const addOrRemoveFromWishlist = async () => {
+  const addOrRemoveFromWishlist = () => {
     if (addedToWishlist) {
       removeWishlistProduct({ productId });
       update();
