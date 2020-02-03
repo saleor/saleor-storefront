@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   }
 
   ${media.mediumScreen`
-  padding: 1.8rem;
+    padding: 1.8rem;
   `}
 `;
 
