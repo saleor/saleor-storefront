@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   max-height: 30rem;
 
   ${media.mediumScreen`
-  padding: 1.8rem;
+    padding: 1.8rem;
   `}
 `;
 
