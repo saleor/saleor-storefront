@@ -36,7 +36,7 @@ export const AddToWishlistButton: React.FC<IProps> = ({
           <Icon name="heart" size={38} />
         </S.WishlistIcon>
       )}
-      Add to wishlist
+      {added ? `Remove from wishlist` : `Add to wishlist`}
     </S.Wrapper>
   );
 };
