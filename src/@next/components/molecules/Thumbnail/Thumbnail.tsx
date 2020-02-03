@@ -11,11 +11,11 @@ export const Thumbnail: React.FC<IProps> = ({
   children,
   ...props
 }: IProps) => {
-  if (!source.thumbnail && !source.thumbnail2x) {
+  const { thumbnail, thumbnail2x } = source;
+
+  if (!thumbnail && !thumbnail2x) {
     return <PlaceholderImage />;
   }
-
-  const { thumbnail, thumbnail2x } = source;
 
   return (
     <CachedImage
