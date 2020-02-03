@@ -96,7 +96,7 @@ exports[`Storyshots @components/molecules/AddToWishlistButton added 1`] = `
         />
       </svg>
     </div>
-    Add to wishlist
+    Remove from wishlist
   </div>
   <div
     className="c3"
