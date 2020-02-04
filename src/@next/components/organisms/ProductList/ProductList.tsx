@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
-import { generateProductUrl } from "@temp/core/utils";
+
+import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
 import { IProps } from "./types";
