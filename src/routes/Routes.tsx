@@ -17,6 +17,8 @@ import OrderConfirmation from "../views/OrderConfirmation/View";
 import { ProductPage } from "../views/Product";
 import { SearchPage } from "../views/Search";
 
+import { Product } from "../@next/components/views";
+
 import { PasswordReset } from "../@next/components/views";
 
 const slugUrl = ":slug([a-z-0-9]+)/:id([0-9]+)/";
@@ -25,6 +27,7 @@ export const searchUrl = `${baseUrl}search/`;
 export const categoryUrl = `${baseUrl}category/${slugUrl}`;
 export const collectionUrl = `${baseUrl}collection/${slugUrl}`;
 export const productUrl = `${baseUrl}product/${slugUrl}`;
+export const newProductUrl = `${baseUrl}newProduct/${slugUrl}`;
 export const cartUrl = `${baseUrl}cart/:token?/`;
 export const checkoutLoginUrl = `${baseUrl}login/`;
 export const pageUrl = `${baseUrl}page/:slug/`;
@@ -47,6 +50,7 @@ export const Routes: React.FC = () => (
     <Route path={cartUrl} component={CartPage} />
     <Route path={checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={pageUrl} component={ArticlePage} />
+    <Route path={newProductUrl} component={Product} />
     <Route path={userAccountBaseUrl} component={UserAccount} />
     <Route path={userOrderDetailsUrl} component={OrderDetails} />
     <Route path={guestOrderDetailsUrl} component={OrderDetails} />

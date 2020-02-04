@@ -11,6 +11,7 @@ import * as Category from "./category";
 import * as Checkout from "./checkout";
 import * as Orders from "./orders";
 import * as Product from "./products";
+import * as SingleProductQuery from "./singleProduct";
 
 import {
   CheckoutDetails,
@@ -40,6 +41,7 @@ import {
 } from "./types/VariantsProducts";
 
 import * as User from "./user";
+import { SingleProductVariables, SingleProduct } from "./types/SingleProduct";
 
 type QueryOptions<T = {}> = T extends { [n: string]: never }
   ? Omit<ApolloQueryOptions<{}>, "query">
@@ -114,6 +116,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Product.productListDetails}
+      `,
+      ...options,
+    }),
+  SingleProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<SingleProductVariables>
+  ): ObservableQuery<SingleProduct, any> =>
+    client.watchQuery({
+      query: gql`
+        ${SingleProductQuery.productQuery}
       `,
       ...options,
     }),

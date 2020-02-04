@@ -70,6 +70,11 @@ export class SaleorAPI {
 
   getProductList = this.watchQuery(QUERIES.ProductList, data => data.products);
 
+  getSingleProduct = this.watchQuery(
+    QUERIES.SingleProduct,
+    data => data.product
+  );
+
   getCategoryDetails = this.watchQuery(
     QUERIES.CategoryDetails,
     data => data.category

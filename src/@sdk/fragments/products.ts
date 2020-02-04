@@ -15,6 +15,31 @@ export const basicProductFragment = gql`
   }
 `;
 
+export const productPricingFragment = gql`
+  ${checkoutPriceFragment}
+  fragment ProductPricingField on Product {
+    pricing {
+      onSale
+      priceRangeUndiscounted {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+      priceRange {
+        start {
+          ...Price
+        }
+        stop {
+          ...Price
+        }
+      }
+    }
+  }
+`;
+
 export const selectedAttributeFragment = gql`
   fragment SelectedAttributeFields on SelectedAttribute {
     attribute {

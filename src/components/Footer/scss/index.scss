@@ -45,7 +45,7 @@
   }
 
   &-nav {
-    background-color: $gray-light;
+    background-color: $white;
     padding: $spacer * 3 0 $spacer * 2;
 
     .container {
@@ -68,11 +68,11 @@
         p {
           margin-bottom: $spacer;
           font-size: $small-font-size;
-          color: $gray;
+          color: $gray-dark;
 
           a {
             text-decoration: none;
-            color: $gray;
+            color: $gray-dark;
           }
         }
       }

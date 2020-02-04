@@ -7,6 +7,8 @@ export const useUserDetails = queryFactory("getUserDetails");
 
 export const useUserCheckout = queryFactory("getUserCheckout");
 
+export const useSingleProduct = queryWithVariablesFactory("getSingleProduct");
+
 export const useCheckoutDetails = queryWithVariablesFactory(
   "getCheckoutDetails"
 );
