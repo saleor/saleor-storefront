@@ -7,12 +7,17 @@ import {
   Breadcrumbs,
   extractBreadcrumbs,
   ProductsFeatured,
-  ProductsList
 } from "../../components";
 
-import { ProductListHeader } from "../../@next/components/molecules";
+import {
+  LoadingListAdapter,
+  ProductListHeader,
+} from "../../@next/components/molecules";
+import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+
 import { maybe } from "../../core/utils";
+
 import { Category_category, Category_products } from "./types/Category";
 
 interface SortItem {
@@ -79,19 +84,20 @@ const Page: React.FC<PageProps> = ({
           sortOptions={sortOptions}
           onChange={onOrder}
         />
+        <LoadingListAdapter
+          loading={displayLoader}
+          canLoadMore={hasNextPage}
+          onLoadMore={onLoadMore}
+        >
+          {canDisplayProducts && (
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              totalCount={products.totalCount}
+            />
+          )}
+        </LoadingListAdapter>
       </div>
 
-      {canDisplayProducts && (
-        <>
-          <ProductsList
-            displayLoader={displayLoader}
-            hasNextPage={hasNextPage}
-            onLoadMore={onLoadMore}
-            products={products.edges.map(edge => edge.node)}
-            totalCount={products.totalCount}
-          />
-        </>
-      )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );

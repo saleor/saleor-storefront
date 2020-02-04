@@ -3,10 +3,14 @@ import "../Category/scss/index.scss";
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
-import { Breadcrumbs, ProductsFeatured, ProductsList } from "../../components";
+import {
+  LoadingListAdapter,
+  ProductListHeader,
+} from "../../@next/components/molecules";
+import { ProductList } from "../../@next/components/organisms";
+import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
-import { ProductListHeader } from "../../@next/components/molecules";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection, Collection_products } from "./types/Collection";
 
@@ -85,19 +89,20 @@ const Page: React.FC<PageProps> = ({
           sortOptions={sortOptions}
           onChange={onOrder}
         />
+        <LoadingListAdapter
+          loading={displayLoader}
+          canLoadMore={hasNextPage}
+          onLoadMore={onLoadMore}
+        >
+          {canDisplayProducts && (
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              totalCount={products.totalCount}
+            />
+          )}
+        </LoadingListAdapter>
       </div>
 
-      {canDisplayProducts && (
-        <>
-          <ProductsList
-            displayLoader={displayLoader}
-            hasNextPage={hasNextPage}
-            onLoadMore={onLoadMore}
-            products={products.edges.map(edge => edge.node)}
-            totalCount={products.totalCount}
-          />
-        </>
-      )}
       {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
