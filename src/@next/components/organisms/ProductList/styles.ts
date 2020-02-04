@@ -1,8 +1,6 @@
 import { media, styled } from "@styles";
 
-export const Wrapper = styled.div``;
-
-export const ProductsGrid = styled.div`
+export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
@@ -17,7 +15,5 @@ export const ProductsGrid = styled.div`
     grid-gap: 1rem;
   `}
 `;
-
-export const LoadMore = styled.div``;
 
 export const NotFount = styled.div``;
