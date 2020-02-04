@@ -18,10 +18,16 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
 }
 
 .c1 {
-  background-color: #f1f5f5;
+  background: #f1f5f5;
   padding: 2.5rem;
   text-align: center;
   max-height: 30rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1:hover {
+  background-color: rgba(6,132,123,0.25);
 }
 
 .c2 {
