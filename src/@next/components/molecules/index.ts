@@ -16,4 +16,3 @@ export * from "./InputSelect";
 export * from "./FilterAttribute";
 export * from "./ResetPasswordForm";
 export * from "./ProductTile";
-export * from "./LoadingListAdapter";

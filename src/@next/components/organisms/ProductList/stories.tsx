@@ -5,5 +5,10 @@ import { ProductList } from ".";
 import { PRODUCTS } from "./fixtures";
 
 storiesOf("@components/organisms/ProductList", module).add("default", () => (
-  <ProductList products={PRODUCTS} totalCount={PRODUCTS.length} />
+  <ProductList
+    products={PRODUCTS}
+    canLoadMore={true}
+    loading={false}
+    onLoadMore={() => null}
+  />
 ));
