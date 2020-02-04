@@ -15,3 +15,4 @@ export * from "./ProductListHeader";
 export * from "./InputSelect";
 export * from "./FilterAttribute";
 export * from "./ResetPasswordForm";
+export * from "./ProductTile";
