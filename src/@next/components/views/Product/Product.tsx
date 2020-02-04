@@ -10,7 +10,7 @@ export const Product: React.FC<RouteComponentProps<{ id: string }>> = ({
   match,
 }: RouteComponentProps<{ id: string }>) => {
   const id = getGraphqlIdFromDBId(match.params.id, "Product");
-  const { data, loading } = useSingleProduct(
+  const { loading } = useSingleProduct(
     { id },
     {
       fetchPolicy: "cache-and-network",

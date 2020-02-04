@@ -17,9 +17,7 @@ import OrderConfirmation from "../views/OrderConfirmation/View";
 import { ProductPage } from "../views/Product";
 import { SearchPage } from "../views/Search";
 
-import { Product } from "../@next/components/views";
-
-import { PasswordReset } from "../@next/components/views";
+import { PasswordReset, Product } from "../@next/components/views";
 
 const slugUrl = ":slug([a-z-0-9]+)/:id([0-9]+)/";
 export const baseUrl = "/";

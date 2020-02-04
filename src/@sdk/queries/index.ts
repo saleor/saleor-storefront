@@ -41,7 +41,7 @@ import {
 } from "./types/VariantsProducts";
 
 import * as User from "./user";
-import { SingleProductVariables, SingleProduct } from "./types/SingleProduct";
+import { SingleProduct, SingleProductVariables } from "./types/SingleProduct";
 
 type QueryOptions<T = {}> = T extends { [n: string]: never }
   ? Omit<ApolloQueryOptions<{}>, "query">
