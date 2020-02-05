@@ -20,6 +20,10 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
   justify-content: center;
   height: 100px;
   overflow: hidden;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
 
   margin-top: 20px;
   margin-bottom: 20px;
@@ -57,11 +61,13 @@ export const ThumbnailList = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: none;
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 
   ul {
     position: absolute;
     display: block;
-    overflow-y: scroll;
     padding: 0;
     margin: 0;
   }
