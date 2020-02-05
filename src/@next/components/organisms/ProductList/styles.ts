@@ -20,5 +20,3 @@ export const Loader = styled.div`
   text-align: center;
   margin: 2.5rem 0;
 `;
-
-export const NotFount = styled.div``;
