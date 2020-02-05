@@ -16,10 +16,6 @@ export interface ProductVariantFields_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface ProductVariantFields_attributes_attribute {

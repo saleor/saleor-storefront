@@ -1,13 +1,14 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { TaxedMoney } from "@components/containers";
+
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { LineI } from "../../../components/CartTable/ProductRow";
-import { priceToString } from "../../../core/utils";
 import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
 import {
   OrderByToken_orderByToken,
-  OrderByToken_orderByToken_lines
+  OrderByToken_orderByToken_lines,
 } from "./types/OrderByToken";
 
 import { orderHistoryUrl } from "../../../routes";
@@ -18,10 +19,18 @@ const extractOrderLines = (
   return lines
     .map(line => ({
       quantity: line.quantity,
-      totalPrice: priceToString({
-        amount: line.quantity * line.unitPrice.gross.amount,
+      totalPrice: {
+        ...line.unitPrice,
         currency: line.unitPrice.currency,
-      }),
+        gross: {
+          amount: line.quantity * line.unitPrice.gross.amount,
+          ...line.unitPrice.gross,
+        },
+        net: {
+          amount: line.quantity * line.unitPrice.net.amount,
+          ...line.unitPrice.net,
+        },
+      },
       ...line.variant,
       name: line.productName,
     }))
@@ -45,9 +54,9 @@ const Page: React.FC<{
       </p>
       <CartTable
         lines={extractOrderLines(order.lines)}
-        totalCost={order.total.gross.localized}
-        deliveryCost={order.shippingPrice.gross.localized}
-        subtotal={order.subtotal.gross.localized}
+        totalCost={<TaxedMoney taxedMoney={order.total} />}
+        deliveryCost={<TaxedMoney taxedMoney={order.shippingPrice} />}
+        subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
       />
       <div className="order-details__summary">
         <div>

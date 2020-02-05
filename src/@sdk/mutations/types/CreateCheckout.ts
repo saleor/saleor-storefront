@@ -55,10 +55,6 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_totalPrice_net {
@@ -71,10 +67,6 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_totalPrice {
@@ -99,10 +91,6 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_net {
@@ -115,10 +103,6 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice {
@@ -225,10 +209,6 @@ export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods {
@@ -251,10 +231,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingMethod_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingMethod {
@@ -277,10 +253,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_net {
@@ -293,10 +265,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingPrice {
@@ -321,10 +289,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net {
@@ -337,10 +301,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice {
@@ -365,10 +325,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -381,10 +337,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -409,10 +361,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_net {
@@ -425,10 +373,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price {
