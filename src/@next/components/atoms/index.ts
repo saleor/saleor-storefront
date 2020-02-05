@@ -23,3 +23,5 @@ export * from "./Label";
 export * from "./InputLabel";
 export * from "./DropdownSelect";
 export * from "./PlaceholderImage";
+export * from "./Checkbox";
+export * from "./Chip";

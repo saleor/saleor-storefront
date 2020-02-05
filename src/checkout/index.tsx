@@ -15,11 +15,11 @@ import {
   OverlayManager,
 } from "../components";
 import { CartContext } from "../components/CartProvider/context";
-import { BASE_URL } from "../core/config";
+import { BASE_URL as appBaseUrl } from "../core/config";
 import logoImg from "../images/logo.svg";
 import { CheckoutContext } from "./context";
 import { useCheckoutStepFromPath, useCheckoutStepState } from "./hooks";
-import { baseUrl, Routes } from "./routes";
+import { baseUrl as checkoutBaseUrl, CheckoutRoutes } from "./routes";
 
 const CheckoutApp: React.FC<RouteComponentProps> = ({
   history: {
@@ -57,7 +57,7 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
         <div className="checkout__menu__bar">
           <ReactSVG path={logoImg} />
         </div>
-        <Link to={BASE_URL}>Return to shopping</Link>
+        <Link to={appBaseUrl}>Return to shopping</Link>
       </div>
       <div className="container">
         <Online>
@@ -67,20 +67,23 @@ const CheckoutApp: React.FC<RouteComponentProps> = ({
               checkoutLoading ||
               variantsProductsLoading ||
               !step ||
-              (!stepFromPath && baseUrl !== pathname)
+              (!stepFromPath && checkoutBaseUrl !== pathname)
             ) {
               return <Loader />;
             }
 
             if (!cartLines.length) {
-              return <Redirect to={BASE_URL} />;
+              return <Redirect to={appBaseUrl} />;
             }
 
-            if ((!checkout && !variantsProducts) || step < stepFromPath) {
-              return <Redirect to={baseUrl} />;
+            if (
+              ((!checkout && !variantsProducts) || step < stepFromPath) &&
+              checkoutBaseUrl !== pathname
+            ) {
+              return <Redirect to={checkoutBaseUrl} />;
             }
 
-            return <Routes />;
+            return <CheckoutRoutes />;
           })()}
         </Online>
         <Offline>

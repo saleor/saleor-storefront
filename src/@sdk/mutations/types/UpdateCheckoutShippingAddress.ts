@@ -456,6 +456,18 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   variant: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -498,6 +510,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -947,6 +963,18 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   variant: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -989,6 +1017,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {

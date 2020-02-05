@@ -40,17 +40,6 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   color: #513CA3;
 }
 
-.c2 {
-  width: 80%;
-  padding-bottom: 2rem;
-}
-
-.c3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  padding-bottom: 1.5rem;
-}
-
 .c5 {
   width: 100%;
   margin-bottom: 1.25rem;
@@ -69,15 +58,6 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   cursor: pointer;
   position: relative;
   margin-left: -4px;
-}
-
-.c9 {
-  border-bottom: 1px solid #f1f5f5;
-  width: 95%;
-}
-
-.c7 {
-  padding-bottom: 1.25rem;
 }
 
 .c6 {
@@ -147,6 +127,26 @@ exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
   background-clip: content-box;
   padding: 2px;
   background-color: rgb(33,18,94);
+}
+
+.c2 {
+  width: 80%;
+  padding-bottom: 2rem;
+}
+
+.c3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-bottom: 1.5rem;
+}
+
+.c9 {
+  border-bottom: 1px solid #f1f5f5;
+  width: 95%;
+}
+
+.c7 {
+  padding-bottom: 1.25rem;
 }
 
 .c1 {

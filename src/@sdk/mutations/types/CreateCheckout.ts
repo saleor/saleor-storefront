@@ -456,6 +456,18 @@ export interface CreateCheckout_checkoutCreate_checkout_lines {
   variant: CreateCheckout_checkoutCreate_checkout_lines_variant;
 }
 
+export interface CreateCheckout_checkoutCreate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface CreateCheckout_checkoutCreate_checkout {
   __typename: "Checkout";
   /**
@@ -498,6 +510,10 @@ export interface CreateCheckout_checkoutCreate_checkout {
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: CreateCheckout_checkoutCreate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface CreateCheckout_checkoutCreate {

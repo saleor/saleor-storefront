@@ -126,6 +126,7 @@ export default class CartProvider extends React.Component<
             isShippingRequired: updatedCheckout.isShippingRequired,
             lines: updatedCheckout.lines,
             subtotalPrice: updatedCheckout.subtotalPrice,
+            totalPrice: updatedCheckout.totalPrice,
           },
         });
       }

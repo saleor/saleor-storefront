@@ -141,6 +141,13 @@ export const checkoutFragment = gql`
       ...CheckoutLine
     }
     isShippingRequired
+    discount {
+      currency
+      amount
+    }
+    discountName
+    translatedDiscountName
+    voucherCode
   }
 `;
 
@@ -167,6 +174,9 @@ export const updateCheckoutLineQuery = gql`
         id
         lines {
           ...CheckoutLine
+        }
+        totalPrice {
+          ...Price
         }
         subtotalPrice {
           ...Price
@@ -237,4 +247,4 @@ export const getVariantsProductsQuery = gql`
 export const TypedGetVariantsProductsQuery = TypedQuery<
   getVariantsProducts,
   getVariantsProductsVariables
->(getUserCheckoutQuery);
+>(getVariantsProductsQuery);

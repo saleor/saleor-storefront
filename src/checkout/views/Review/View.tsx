@@ -62,6 +62,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   } = React.useContext(CheckoutContext);
   const { clear: clearCart } = React.useContext(CartContext);
 
+  const discountExists = checkout.discount && !!checkout.discount.amount;
+
   return (
     <>
       <div className="checkout-review">
@@ -84,13 +86,23 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             deliveryCost={
               <Money defaultValue="0" money={checkout.shippingMethod.price} />
             }
-            totalCost={<TaxedMoney taxedMoney={checkout.totalPrice} />}
+            totalCost={<Money taxedMoney={checkout.totalPrice} />}
+            discount={
+              discountExists && (
+                <>
+                  - <Money money={checkout.discount} />
+                </>
+              )
+            }
+            discountName={checkout.discountName}
           />
           <div className="checkout-review__content">
             <Summary
               checkout={checkout}
               cardData={cardData}
               dummyStatus={dummyStatus}
+              history={history}
+              token={token}
             />
             <div className="checkout-review__content__submit">
               <TypedCompleteCheckoutMutation

@@ -456,6 +456,18 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   variant: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant;
 }
 
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -498,6 +510,10 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Returns True, if checkout requires shipping.
    */
   isShippingRequired: boolean;
+  discount: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate {
