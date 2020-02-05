@@ -62,17 +62,17 @@ export const ThumbnailList = styled.div`
     position: absolute;
     display: block;
     overflow-y: scroll;
+    padding: 0;
+    margin: 0;
   }
 `;
 
 export const Preview = styled.div`
   grid-area: preview;
   width: 100%;
-  overflow: none;
-  max-height: 560px;
+  height: 560px;
+  overflow: hidden;
   img {
-    max-height: auto;
-    max-width: 560px;
     width: 100%;
     object-fit: contain;
   }

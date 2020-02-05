@@ -1,43 +1,51 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 
-import { CachedImage } from "@components/molecules";
 import { Icon } from "@components/atoms";
+import { CachedImage } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS = 4;
+
 export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   const [imageIndex, setImageIndex] = React.useState<number>(0);
 
-  const bottomRef = React.useRef();
-  const topRef = React.useRef();
-  const [topImage, topImageInView] = useInView({
+  const displayButtons = images.length > MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS;
+
+  if (imageIndex >= images.length && imageIndex > 0) {
+    setImageIndex(0);
+  }
+
+  const bottomImageRef = React.useRef<HTMLDivElement>(null);
+  const topImageRef = React.useRef<HTMLDivElement>(null);
+  const [topImageIntersectionObserver, topImageInView] = useInView({
     threshold: 0.5,
   });
 
-  const [bottomImage, bottomImageInView] = useInView({
+  const [bottomImageIntersectionObserver, bottomImageInView] = useInView({
     threshold: 0.5,
   });
 
   const setBottomRef = React.useCallback(
     node => {
-      bottomRef.current = node;
-      bottomImage(node);
+      bottomImageRef.current = node;
+      bottomImageIntersectionObserver(node);
     },
-    [bottomImage]
+    [bottomImageIntersectionObserver]
   );
 
   const setTopRef = React.useCallback(
     node => {
-      topRef.current = node;
-      topImage(node);
+      topImageRef.current = node;
+      topImageIntersectionObserver(node);
     },
-    [topImage]
+    [topImageIntersectionObserver]
   );
 
-  const setIntersectionObserver = (index, lengthOfArray) => {
-    if (lengthOfArray > 2) {
+  const setIntersectionObserver = (index: number, lengthOfArray: number) => {
+    if (lengthOfArray > MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS) {
       if (index === 0) {
         return setTopRef;
       }
@@ -47,21 +55,17 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
     }
   };
 
-  if (imageIndex > images.length) {
-    setImageIndex(0);
-  }
-
   return (
     <S.Wrapper>
       <S.ThumnbanilsContainer>
-        {!topImageInView && (
+        {!topImageInView && displayButtons && (
           <S.TopButton
             onClick={() => {
-              if (topRef.current) {
-                topRef.current.scrollIntoView({
+              if (topImageRef.current) {
+                topImageRef.current.scrollIntoView({
+                  behavior: "smooth",
                   block: "end",
                   inline: "nearest",
-                  behavior: "smooth",
                 });
               }
             }}
@@ -69,14 +73,14 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
             <Icon name="select_arrow" size={10} />
           </S.TopButton>
         )}
-        {!bottomImageInView && (
+        {!bottomImageInView && displayButtons && (
           <S.BottomButton
             onClick={() => {
-              if (bottomRef.current) {
-                bottomRef.current.scrollIntoView({
+              if (bottomImageRef.current) {
+                bottomImageRef.current.scrollIntoView({
+                  behavior: "smooth",
                   block: "end",
                   inline: "nearest",
-                  behavior: "smooth",
                 });
               }
             }}
@@ -107,12 +111,13 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
       </S.ThumnbanilsContainer>
 
       <S.Preview>
-        {images && images.length > 0 && (
+        {images && images.length > 0 && imageIndex < images.length && (
           <CachedImage
             alt={images[imageIndex].alt}
             url={images[imageIndex].url}
           />
         )}
+        {images.length === 0 && <CachedImage />}
       </S.Preview>
     </S.Wrapper>
   );
