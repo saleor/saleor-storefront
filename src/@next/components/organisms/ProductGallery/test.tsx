@@ -17,7 +17,6 @@ describe("<ProductGallery />", () => {
 
   it("should contain n+1 images", () => {
     const wrapper = shallow(<ProductGallery images={eightImages} />);
-    console.log(wrapper.debug());
 
     expect(wrapper.find(CachedImage).length).toEqual(eightImages.length + 1);
   });

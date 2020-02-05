@@ -18,8 +18,8 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
     setImageIndex(0);
   }
 
-  const bottomImageRef = React.useRef<HTMLDivElement>(null);
-  const topImageRef = React.useRef<HTMLDivElement>(null);
+  const bottomImageRef = React.useRef<HTMLDivElement | null>(null);
+  const topImageRef = React.useRef<HTMLDivElement | null>(null);
   const [topImageIntersectionObserver, topImageInView] = useInView({
     threshold: 0.5,
   });
