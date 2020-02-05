@@ -69,7 +69,6 @@ export const checkoutShippingMethodFragment = gql`
     price {
       currency
       amount
-      localized
     }
   }
 `;

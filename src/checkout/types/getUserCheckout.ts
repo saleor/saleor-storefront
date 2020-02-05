@@ -178,10 +178,6 @@ export interface getUserCheckout_me_checkout_availableShippingMethods_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface getUserCheckout_me_checkout_availableShippingMethods {
@@ -204,10 +200,6 @@ export interface getUserCheckout_me_checkout_shippingMethod_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface getUserCheckout_me_checkout_shippingMethod {

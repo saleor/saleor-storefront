@@ -25,12 +25,10 @@ const extractOrderLines = (
         gross: {
           amount: line.quantity * line.unitPrice.gross.amount,
           ...line.unitPrice.gross,
-          localized: null,
         },
         net: {
           amount: line.quantity * line.unitPrice.net.amount,
           ...line.unitPrice.net,
-          localized: null,
         },
       },
       ...line.variant,

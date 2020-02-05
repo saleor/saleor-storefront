@@ -191,10 +191,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods {
@@ -217,10 +213,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod {

@@ -190,10 +190,6 @@ export interface OrderById_order_lines_unitPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_lines_unitPrice_net {
@@ -206,10 +202,6 @@ export interface OrderById_order_lines_unitPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_lines_unitPrice {
@@ -252,10 +244,6 @@ export interface OrderById_order_subtotal_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_subtotal_net {
@@ -268,10 +256,6 @@ export interface OrderById_order_subtotal_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_subtotal {
@@ -296,10 +280,6 @@ export interface OrderById_order_total_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_total_net {
@@ -312,10 +292,6 @@ export interface OrderById_order_total_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_total {
@@ -340,10 +316,6 @@ export interface OrderById_order_shippingPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_shippingPrice_net {
@@ -356,10 +328,6 @@ export interface OrderById_order_shippingPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderById_order_shippingPrice {

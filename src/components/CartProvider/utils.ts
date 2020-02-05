@@ -43,13 +43,11 @@ export const extractCartLines = (
           gross: {
             amount: quantity * node.pricing.price.gross.amount,
             ...node.pricing.price.gross,
-            localized: null,
           },
           locale,
           net: {
             amount: quantity * node.pricing.price.net.amount,
             ...node.pricing.price.net,
-            localized: null,
           },
         },
       };
@@ -67,13 +65,10 @@ export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
         gross: {
           amount: line.quantity * line.totalPrice.gross.amount,
           ...line.totalPrice.gross,
-          localized: null,
         },
-        // locale,
         net: {
           amount: line.quantity * line.totalPrice.net.amount,
           ...line.totalPrice.net,
-          localized: null,
         },
       },
       ...line.variant,

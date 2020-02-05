@@ -12,10 +12,6 @@ export interface Price_gross {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Price {

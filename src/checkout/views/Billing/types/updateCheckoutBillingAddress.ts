@@ -193,10 +193,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_availableShippingMethods {
@@ -219,10 +215,6 @@ export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_shippingMethod {

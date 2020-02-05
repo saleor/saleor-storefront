@@ -133,14 +133,6 @@ export interface CheckoutDetails_checkout_billingAddress {
   country: CheckoutDetails_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CheckoutDetails_checkout_shippingAddress_country {
@@ -174,14 +166,6 @@ export interface CheckoutDetails_checkout_shippingAddress {
   country: CheckoutDetails_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CheckoutDetails_checkout_availableShippingMethods_price {
@@ -194,10 +178,6 @@ export interface CheckoutDetails_checkout_availableShippingMethods_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CheckoutDetails_checkout_availableShippingMethods {
@@ -220,10 +200,6 @@ export interface CheckoutDetails_checkout_shippingMethod_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CheckoutDetails_checkout_shippingMethod {

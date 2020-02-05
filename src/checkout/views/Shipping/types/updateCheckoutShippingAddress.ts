@@ -193,10 +193,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods {
@@ -219,10 +215,6 @@ export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingMethod {
@@ -692,10 +684,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods {
@@ -718,10 +706,6 @@ export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingMethod {
