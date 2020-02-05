@@ -2,6 +2,7 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 
 import { CachedImage } from "@components/molecules";
+import { Icon } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -65,7 +66,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               }
             }}
           >
-            top
+            <Icon name="select_arrow" size={10} />
           </S.TopButton>
         )}
         {!bottomImageInView && (
@@ -80,7 +81,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               }
             }}
           >
-            bottom
+            <Icon name="select_arrow" size={10} />
           </S.BottomButton>
         )}
         <S.ThumbnailList>

@@ -31,10 +31,16 @@ export const Button = styled.div`
   position: absolute;
   z-index: 1;
   background-color: rgba(50, 50, 50, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const TopButton = styled(Button)`
   top: 0%;
+
+  transform: rotate(180deg);
 `;
 
 export const BottomButton = styled(Button)`
