@@ -44,6 +44,11 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
   margin-bottom: 20px;
 }
 
+.c4 img {
+  width: 100%;
+  object-fit: contain;
+}
+
 .c2 {
   position: relative;
 }
@@ -59,10 +64,13 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
   scrollbar-width: none;
 }
 
+.c3::-webkit-scrollbar {
+  width: 0px;
+}
+
 .c3 ul {
   position: absolute;
   display: block;
-  overflow-y: scroll;
   padding: 0;
   margin: 0;
 }
@@ -170,6 +178,11 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
   margin-bottom: 20px;
 }
 
+.c6 img {
+  width: 100%;
+  object-fit: contain;
+}
+
 .c7 {
   width: 76px;
   display: -webkit-box;
@@ -187,6 +200,11 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
   overflow: hidden;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.c7 img {
+  width: 100%;
+  object-fit: contain;
 }
 
 .c3 {
@@ -251,10 +269,13 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
   scrollbar-width: none;
 }
 
+.c5::-webkit-scrollbar {
+  width: 0px;
+}
+
 .c5 ul {
   position: absolute;
   display: block;
-  overflow-y: scroll;
   padding: 0;
   margin: 0;
 }
@@ -490,6 +511,11 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
   margin-bottom: 20px;
 }
 
+.c4 img {
+  width: 100%;
+  object-fit: contain;
+}
+
 .c5 {
   width: 76px;
   display: -webkit-box;
@@ -509,6 +535,11 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
   margin-bottom: 20px;
 }
 
+.c5 img {
+  width: 100%;
+  object-fit: contain;
+}
+
 .c2 {
   position: relative;
 }
@@ -524,10 +555,13 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
   scrollbar-width: none;
 }
 
+.c3::-webkit-scrollbar {
+  width: 0px;
+}
+
 .c3 ul {
   position: absolute;
   display: block;
-  overflow-y: scroll;
   padding: 0;
   margin: 0;
 }
