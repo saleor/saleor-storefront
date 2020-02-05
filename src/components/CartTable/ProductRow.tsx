@@ -3,7 +3,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@sdk/queries/types/OrderByToken";
 
 import { generateProductUrl } from "../../core/utils";
 import { CartLine } from "../CartProvider/context";
@@ -16,7 +18,7 @@ import cartSubtractImg from "../../images/cart-subtract.svg";
 
 export type LineI = ProductVariant & {
   quantity: number;
-  totalPrice: string;
+  totalPrice: OrderByToken_orderByToken_lines_unitPrice;
   stockQuantity?: number;
 };
 
@@ -79,7 +81,11 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         </div>
       </td>
 
-      {mediumScreen && <td>{line.pricing.price.gross.localized}</td>}
+      {mediumScreen && (
+        <td>
+          <TaxedMoney taxedMoney={line.pricing.price} />
+        </td>
+      )}
 
       <td>{line.name}</td>
 
@@ -87,7 +93,9 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         {editable ? quantityChangeControls : <p>{line.quantity}</p>}
       </td>
 
-      <td colSpan={editable ? 1 : 2}>{line.totalPrice}</td>
+      <td colSpan={editable ? 1 : 2}>
+        <TaxedMoney taxedMoney={line.totalPrice} />
+      </td>
 
       {editable && (
         <td>

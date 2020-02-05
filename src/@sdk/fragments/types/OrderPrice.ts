@@ -16,10 +16,6 @@ export interface OrderPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderPrice_net {
@@ -32,10 +28,6 @@ export interface OrderPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderPrice {

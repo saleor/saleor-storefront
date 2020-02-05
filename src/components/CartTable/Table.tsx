@@ -9,9 +9,9 @@ import ProductRow, { EditableProductRowProps, LineI } from "./ProductRow";
 
 interface TableProps extends EditableProductRowProps {
   lines: LineI[];
-  subtotal: string;
-  deliveryCost?: string;
-  totalCost?: string;
+  subtotal: React.ReactNode;
+  deliveryCost?: React.ReactNode;
+  totalCost?: React.ReactNode;
   discount?: React.ReactNode;
   discountName?: string;
 }

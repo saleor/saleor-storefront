@@ -5,7 +5,7 @@ import React from "react";
 
 const Option: React.FC<{
   value: string;
-  label: string;
+  label: React.ReactNode;
   selected?: boolean;
   onSelect?(): void;
 }> = ({ value, label, selected, onSelect, children }) => (

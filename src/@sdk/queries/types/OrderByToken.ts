@@ -2,7 +2,10 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus } from "./../../types/globalTypes";
+import {
+  PaymentChargeStatusEnum,
+  OrderStatus,
+} from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrderByToken
@@ -59,10 +62,6 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net {
@@ -75,10 +74,6 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted {
@@ -103,10 +98,6 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
@@ -119,10 +110,6 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant_pricing_price {
@@ -210,6 +197,22 @@ export interface OrderByToken_orderByToken_lines_unitPrice_gross {
    * Amount of money.
    */
   amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface OrderByToken_orderByToken_lines_unitPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
 }
 
 export interface OrderByToken_orderByToken_lines_unitPrice {
@@ -222,6 +225,10 @@ export interface OrderByToken_orderByToken_lines_unitPrice {
    * Amount of money including taxes.
    */
   gross: OrderByToken_orderByToken_lines_unitPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: OrderByToken_orderByToken_lines_unitPrice_net;
 }
 
 export interface OrderByToken_orderByToken_lines {
@@ -248,10 +255,6 @@ export interface OrderByToken_orderByToken_subtotal_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_subtotal_net {
@@ -264,10 +267,6 @@ export interface OrderByToken_orderByToken_subtotal_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_subtotal {
@@ -292,10 +291,6 @@ export interface OrderByToken_orderByToken_total_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_total_net {
@@ -308,10 +303,6 @@ export interface OrderByToken_orderByToken_total_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_total {
@@ -336,10 +327,6 @@ export interface OrderByToken_orderByToken_shippingPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_shippingPrice_net {
@@ -352,10 +339,6 @@ export interface OrderByToken_orderByToken_shippingPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrderByToken_orderByToken_shippingPrice {

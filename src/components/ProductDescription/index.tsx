@@ -1,5 +1,6 @@
 import "./scss/index.scss";
 
+import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { TextField } from "@components/molecules";
@@ -10,8 +11,9 @@ import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@sdk/queries/types/ProductDetails";
-import { IProductVariantsAttributesSelectedValues } from "@types";
+import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
+import { TaxedMoney } from "../../@next/components/containers";
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
 
@@ -30,10 +32,9 @@ interface ProductDescriptionState {
   variant: string;
   variantStock: number;
   variantPricing: ProductDetails_product_variants_pricing;
-  eachVariantPricingRange: {
-    min: number;
-    max: number;
-    currency: string;
+  variantPricingRange: {
+    min: ITaxedMoney;
+    max: ITaxedMoney;
   };
 }
 
@@ -45,84 +46,44 @@ class ProductDescription extends React.Component<
     super(props);
 
     this.state = {
-      eachVariantPricingRange: this.getEachVariantPricingRange(),
       quantity: 1,
       variant: "",
       variantPricing: null,
+      variantPricingRange: {
+        max: props.pricing.priceRange.stop,
+        min: props.pricing.priceRange.start,
+      },
       variantStock: null,
     };
   }
 
-  getEachVariantPricingRange = () => {
-    const { productVariants } = this.props;
-
-    if (productVariants && productVariants.length) {
-      const currency = productVariants[0].pricing.price.gross.currency;
-      let min = productVariants[0].pricing.price.gross.amount;
-      let max = productVariants[0].pricing.price.gross.amount;
-
-      for (let index = 1; index < productVariants.length; index++) {
-        const variant = productVariants[index];
-        const variantAmount = variant.pricing.price.gross.amount;
-
-        if (variantAmount < min) {
-          min = variantAmount;
-        } else if (variantAmount > max) {
-          max = variantAmount;
-        }
-      }
-
-      return {
-        currency,
-        max,
-        min,
-      };
-    } else {
-      return null;
-    }
-  };
-
-  getLocalPriceFormat = (amount: number, currency: string) => {
-    return amount.toLocaleString(undefined, {
-      currency,
-      style: "currency",
-    });
-  };
-
   getProductPrice = () => {
-    const { pricing } = this.props;
-    const { variantPricing, eachVariantPricingRange } = this.state;
+    const { variantPricingRange, variantPricing } = this.state;
 
+    const { min, max } = variantPricingRange;
     if (variantPricing) {
-      const { amount, currency } = variantPricing.price.gross;
-      return this.getLocalPriceFormat(amount, currency);
-    } else if (eachVariantPricingRange) {
-      const { min, max, currency } = eachVariantPricingRange;
-      if (min === max) {
-        return this.getLocalPriceFormat(min, currency);
+      if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
+        return <TaxedMoney taxedMoney={variantPricing.price} />;
       } else {
-        return `${this.getLocalPriceFormat(
-          min,
-          currency
-        )} - ${this.getLocalPriceFormat(max, currency)}`;
+        return (
+          <>
+            <span className="product-description__undiscounted_price">
+              <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
+            </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <TaxedMoney taxedMoney={variantPricing.price} />
+          </>
+        );
       }
+    }
+    if (isEqual(min, max)) {
+      return <TaxedMoney taxedMoney={min} />;
     } else {
-      const {
-        start: {
-          gross: { amount: min, currency },
-        },
-        stop: {
-          gross: { amount: max },
-        },
-      } = pricing.priceRange;
-      if (min === max) {
-        return this.getLocalPriceFormat(min, currency);
-      } else {
-        return `${this.getLocalPriceFormat(
-          min,
-          currency
-        )} - ${this.getLocalPriceFormat(max, currency)}`;
-      }
+      return (
+        <>
+          <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
+        </>
+      );
     }
   };
 

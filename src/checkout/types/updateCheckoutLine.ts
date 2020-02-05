@@ -18,10 +18,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net {
@@ -34,10 +30,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
@@ -62,10 +54,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -78,10 +66,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -106,10 +90,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_net {
@@ -122,10 +102,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price {
@@ -279,10 +255,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_g
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net {
@@ -295,10 +267,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_n
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {

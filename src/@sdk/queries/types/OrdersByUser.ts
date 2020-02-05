@@ -28,10 +28,6 @@ export interface OrdersByUser_me_orders_edges_node_total_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrdersByUser_me_orders_edges_node_total_net {
@@ -44,10 +40,6 @@ export interface OrdersByUser_me_orders_edges_node_total_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface OrdersByUser_me_orders_edges_node_total {

@@ -1,13 +1,6 @@
+import { ITaxedMoney } from "@types";
+
 export interface IProps {
-  taxedMoney?: {
-    net: {
-      amount: number;
-      currency: string;
-    };
-    gross: {
-      amount: number;
-      currency: string;
-    };
-  };
+  taxedMoney?: ITaxedMoney;
   defaultValue?: string;
 }
