@@ -34,3 +34,16 @@ export const Price = styled.p`
 `;
 
 export const Image = styled.div``;
+
+export const AddToWishlist = styled.div<{ show: boolean }>`
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  transition: 0.3s;
+  transform: scale(0);
+  transform-origin: calc(100% - 1rem);
+
+  ${props =>
+    props.show &&
+    `visibility: visible; transform: scale(1); transform-origin: calc(100% - 1rem);`};
+`;

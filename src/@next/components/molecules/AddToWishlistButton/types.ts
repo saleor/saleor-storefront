@@ -1,4 +1,5 @@
 export interface IProps {
   added: boolean;
-  onClick: () => void;
+  showText: boolean;
+  onClick: (event: React.MouseEvent) => void;
 }

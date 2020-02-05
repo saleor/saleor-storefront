@@ -4,7 +4,7 @@ import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { TextField } from "@components/molecules";
-import { ProductVariantPicker } from "@components/organisms";
+import { AddToWishlist, ProductVariantPicker } from "@components/organisms";
 import {
   ProductDetails_product_attributes,
   ProductDetails_product_pricing,
@@ -16,7 +16,6 @@ import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 import { TaxedMoney } from "../../@next/components/containers";
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
-import AddToWishlist from "./AddToWishlist";
 
 interface ProductDescriptionProps {
   productId: string;

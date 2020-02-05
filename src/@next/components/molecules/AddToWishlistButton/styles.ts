@@ -24,7 +24,7 @@ export const Wrapper = styled.div<{ added: boolean }>`
   }
 `;
 
-export const WishlistIcon = styled.div`
+export const WishlistIcon = styled.div<{ addRightMargin: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +39,7 @@ export const WishlistIcon = styled.div`
   border-width: 0;
 
   background-color: ${props => props.theme.colors.light};
-  margin-right: 0.5rem;
+  ${props => props.addRightMargin && `margin-right: 0.5rem;`}
 
   svg {
     display: block;

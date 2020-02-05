@@ -7,7 +7,8 @@ import { IProps } from "./types";
 
 export const AddToWishlistButton: React.FC<IProps> = ({
   added,
-  onClick = () => null,
+  showText = true,
+  onClick = evt => null,
 }: IProps) => {
   const [hover, setHover] = useState(false);
 
@@ -28,15 +29,15 @@ export const AddToWishlistButton: React.FC<IProps> = ({
     >
       {/* S.WishlistIcon component is reapeted for two icons - it should to prevent flashing css */}
       {added || hover ? (
-        <S.WishlistIcon>
+        <S.WishlistIcon addRightMargin={showText}>
           <Icon name="heart_filled" size={28} />
         </S.WishlistIcon>
       ) : (
-        <S.WishlistIcon>
+        <S.WishlistIcon addRightMargin={showText}>
           <Icon name="heart" size={38} />
         </S.WishlistIcon>
       )}
-      {added ? `Remove from wishlist` : `Add to wishlist`}
+      {showText ? (added ? `Remove from wishlist` : `Add to wishlist`) : ``}
     </S.Wrapper>
   );
 };

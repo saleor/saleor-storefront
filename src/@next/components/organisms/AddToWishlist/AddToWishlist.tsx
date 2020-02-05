@@ -9,7 +9,12 @@ import {
 } from "@sdk/react";
 import { WishlistContext } from "@sdk/react/components/WishlistProvider/context";
 
-const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
+import { IProps } from "./types";
+
+export const AddToWishlist: React.FC<IProps> = ({
+  productId,
+  showButtonText = true,
+}: IProps) => {
   const { wishlist, update } = React.useContext(WishlistContext);
   const { data: user } = useUserDetails();
 
@@ -18,7 +23,9 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
   const [showNotLoggedMessage, setShowNotLoggedMessage] = React.useState(false);
 
   const isAddedToWishlist = () => {
-    return wishlist && wishlist.some(({ product }) => product.id === productId);
+    return (
+      !!wishlist && wishlist.some(({ product }) => product.id === productId)
+    );
   };
 
   const [addedToWishlist, setAddedToWishlist] = React.useState(
@@ -42,7 +49,8 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     { loading: errorLoading, error: removeError },
   ] = useRemoveWishlistProduct({ productId });
 
-  const addOrRemoveFromWishlist = () => {
+  const addOrRemoveFromWishlist = (event: React.MouseEvent) => {
+    event.preventDefault();
     if (!user) {
       setShowNotLoggedMessage(true);
       return;
@@ -60,13 +68,16 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     }
   };
 
-  const handleRemoveMessageClose = () => {
+  const handleRemoveMessageClose = (event: React.MouseEvent) => {
+    event.preventDefault();
     setShowRemoveMessage(false);
   };
-  const handleAddMessageClose = () => {
+  const handleAddMessageClose = (event: React.MouseEvent) => {
+    event.preventDefault();
     setShowAddMessage(false);
   };
-  const handleNotLoggedMessageClose = () => {
+  const handleNotLoggedMessageClose = (event: React.MouseEvent) => {
+    event.preventDefault();
     setShowNotLoggedMessage(false);
   };
 
@@ -84,6 +95,7 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
       <AddToWishlistButton
         added={addedToWishlist}
         onClick={addOrRemoveFromWishlist}
+        showText={showButtonText}
       />
       {showAddMessage && !addLoading && (
         <Message
@@ -109,5 +121,3 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     </>
   );
 };
-
-export default AddToWishlist;
