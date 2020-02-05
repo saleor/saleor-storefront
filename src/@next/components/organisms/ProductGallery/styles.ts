@@ -25,16 +25,38 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
   margin-bottom: 20px;
 `;
 
+export const Button = styled.div`
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(50, 50, 50, 0.3);
+`;
+
+export const TopButton = styled(Button)`
+  top: 0%;
+`;
+
+export const BottomButton = styled(Button)`
+  bottom: 0%;
+`;
+
 export const ThumnbanilsContainer = styled.div`
   position: relative;
-  overflow-x: hidden;
-  overflow-x: scroll;
-
-  scrollbar-width: none;
 `;
 
 export const ThumbnailList = styled.div`
-  position: absolute;
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+
+  ul {
+    position: absolute;
+    display: block;
+    overflow-y: scroll;
+  }
 `;
 
 export const Preview = styled.div`
