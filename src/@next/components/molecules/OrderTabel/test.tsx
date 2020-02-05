@@ -85,12 +85,6 @@ const ORDERS = [
 });
 
 describe("<OrderTabel />", () => {
-  // beforeAll(() => {
-  //   Number.prototype.toLocaleString = (
-  //     locales?: string | string[],
-  //     options?: any
-  //   ) => "";
-  // });
   it("exists", () => {
     const wrapper = shallow(<OrderTabel history={history} orders={[]} />);
 
