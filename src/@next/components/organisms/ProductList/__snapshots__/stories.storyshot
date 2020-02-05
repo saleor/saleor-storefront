@@ -145,7 +145,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
@@ -174,7 +176,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
@@ -203,7 +207,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
@@ -232,7 +238,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
@@ -261,7 +269,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
@@ -290,7 +300,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         <p
           className="c4"
         >
-          $1.80
+          <span>
+            
+          </span>
         </p>
         <div
           className=""
