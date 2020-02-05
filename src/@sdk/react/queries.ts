@@ -23,3 +23,5 @@ export const useAtrributes = queryWithVariablesFactory("getAttributes");
 export const useVariantsProducts = queryWithVariablesFactory(
   "getVariantsProducts"
 );
+
+export const useUserWishlist = queryWithVariablesFactory("getUserWishlist");

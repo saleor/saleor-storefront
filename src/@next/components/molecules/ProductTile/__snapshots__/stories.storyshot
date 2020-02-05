@@ -71,7 +71,9 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
       <p
         className="c3"
       >
-        $1.80
+        <span>
+          
+        </span>
       </p>
       <div
         className=""

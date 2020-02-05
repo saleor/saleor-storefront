@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutErrorCode } from "./../../../../types/globalTypes";
+import { CheckoutErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: RemoveCheckoutPromoCode
@@ -30,11 +30,6 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_availa
    * Payment gateway client configuration.
    */
   config: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_availablePaymentGateways_config[];
-}
-
-export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_user {
-  __typename: "User";
-  email: string;
 }
 
 export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_totalPrice_gross {
@@ -156,6 +151,14 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_billin
   country: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_shippingAddress_country {
@@ -189,6 +192,14 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_shippi
   country: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_availableShippingMethods_price {
@@ -527,7 +538,6 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout {
    * The ID of the object.
    */
   id: string;
-  user: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
