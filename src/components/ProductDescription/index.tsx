@@ -173,7 +173,7 @@ class ProductDescription extends React.Component<
           )}
         </CartContext.Consumer>
         <div className="product-description__add-to-wishlist">
-          <AddToWishlist productId={this.props.productId} />
+          <AddToWishlist productVariantId={this.state.variant} />
         </div>
       </div>
     );

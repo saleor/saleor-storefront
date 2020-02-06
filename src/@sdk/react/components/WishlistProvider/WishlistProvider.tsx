@@ -12,6 +12,7 @@ export function WishlistProvider({
 }: IProps): React.ReactElement<IProps> {
   const { data, loading, error, loadMore, refetch } = useUserWishlist({
     first: WHISHLIST_ITEMS_PER_API_CALL,
+    firstVariants: 100,
   });
 
   React.useEffect(() => {
@@ -19,6 +20,7 @@ export function WishlistProvider({
       loadMore({
         after: data!.pageInfo.endCursor,
         first: WHISHLIST_ITEMS_PER_API_CALL,
+        firstVariants: 100,
       });
     }
   }, [data]);
@@ -26,6 +28,7 @@ export function WishlistProvider({
   const update = () => {
     refetch({
       first: WHISHLIST_ITEMS_PER_API_CALL,
+      firstVariants: 100,
     });
   };
 

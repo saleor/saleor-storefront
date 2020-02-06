@@ -3,13 +3,15 @@ import React from "react";
 import { Message } from "@components/atoms";
 import { AddToWishlistButton } from "@components/molecules";
 import {
-  useAddWishlistProduct,
-  useRemoveWishlistProduct,
+  useAddRemoveWishlistProductVariant,
+  useAddWishlistProductVariant,
   useUserDetails,
 } from "@sdk/react";
 import { WishlistContext } from "@sdk/react/components/WishlistProvider/context";
 
-const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
+const AddToWishlist: React.FC<{
+  productVariantId: string;
+}> = ({ productVariantId }) => {
   const { wishlist, update } = React.useContext(WishlistContext);
   const { data: user } = useUserDetails();
 
@@ -18,7 +20,15 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
   const [showNotLoggedMessage, setShowNotLoggedMessage] = React.useState(false);
 
   const isAddedToWishlist = () => {
-    return wishlist && wishlist.some(({ product }) => product.id === productId);
+    return (
+      wishlist &&
+      wishlist.some(({ variants }) =>
+        variants.edges.some(
+          ({ node: { id: wishlistVariantId } }) =>
+            productVariantId === wishlistVariantId
+        )
+      )
+    );
   };
 
   const [addedToWishlist, setAddedToWishlist] = React.useState(
@@ -31,16 +41,16 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
     if (added !== addedToWishlist) {
       setAddedToWishlist(added);
     }
-  }, [wishlist]);
+  }, [wishlist, productVariantId]);
 
   const [
-    addWishlistProduct,
+    addWishlistProductVariant,
     { loading: addLoading, error: addError },
-  ] = useAddWishlistProduct({ productId });
+  ] = useAddWishlistProductVariant({ variantId: productVariantId });
   const [
-    removeWishlistProduct,
+    removeWishlistProductVariant,
     { loading: errorLoading, error: removeError },
-  ] = useRemoveWishlistProduct({ productId });
+  ] = useAddRemoveWishlistProductVariant({ variantId: productVariantId });
 
   const addOrRemoveFromWishlist = () => {
     if (!user) {
@@ -48,12 +58,12 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
       return;
     }
     if (addedToWishlist) {
-      removeWishlistProduct({ productId });
+      removeWishlistProductVariant({ variantId: productVariantId });
       update();
       setShowAddMessage(false);
       setShowRemoveMessage(true);
     } else {
-      addWishlistProduct({ productId });
+      addWishlistProductVariant({ variantId: productVariantId });
       update();
       setShowRemoveMessage(false);
       setShowAddMessage(true);
@@ -71,11 +81,11 @@ const AddToWishlist: React.FC<{ productId: string }> = ({ productId }) => {
   };
 
   const getRemoveMessage = () =>
-    !addError
+    !removeError
       ? "Product removed from wishlist"
       : "Error while removing product from wishlist";
   const getAddMessage = () =>
-    !removeError
+    !addError
       ? "Product added to wishlist"
       : "Error while adding product to wishlist";
 
