@@ -1,10 +1,12 @@
 import gql from "graphql-tag";
 
-import { wishlistItemFragment } from "../fragments/wishlist";
-
 export const userWishlist = gql`
-  ${wishlistItemFragment}
-  query Wishlist($after: String, $first: Int) {
+  query Wishlist(
+    $after: String
+    $first: Int
+    $afterVariants: String
+    $firstVariants: Int
+  ) {
     me {
       id
       wishlist(after: $after, first: $first) {
@@ -14,7 +16,19 @@ export const userWishlist = gql`
         }
         edges {
           node {
-            ...WishlistItem
+            id
+            product {
+              id
+              name
+            }
+            variants(after: $afterVariants, first: $firstVariants) {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
           }
         }
       }

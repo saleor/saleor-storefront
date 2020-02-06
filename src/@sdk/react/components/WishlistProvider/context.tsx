@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { WishlistItem } from "@sdk/fragments/types/WishlistItem";
+import { Wishlist_me_wishlist_edges_node } from "@sdk/queries/types/Wishlist";
 
 import { ApolloErrorWithUserInput } from "../../types";
 
 export interface IWishlistContext {
-  wishlist: WishlistItem[] | null;
+  wishlist: Wishlist_me_wishlist_edges_node[] | null;
   loading: boolean;
   error: ApolloErrorWithUserInput | null;
   update(): void;

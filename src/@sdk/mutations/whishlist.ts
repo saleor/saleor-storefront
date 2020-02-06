@@ -1,13 +1,14 @@
 import gql from "graphql-tag";
 
-import { wishlistItemFragment } from "../fragments/wishlist";
-
 export const addWhishlistProduct = gql`
-  ${wishlistItemFragment}
   mutation AddWishlistProduct($productId: ID!) {
     wishlistAddProduct(productId: $productId) {
       wishlist {
-        ...WishlistItem
+        id
+        product {
+          id
+          name
+        }
       }
       errors {
         field
@@ -23,11 +24,14 @@ export const addWhishlistProduct = gql`
 `;
 
 export const removeWhishlistProduct = gql`
-  ${wishlistItemFragment}
   mutation RemoveWishlistProduct($productId: ID!) {
     wishlistRemoveProduct(productId: $productId) {
       wishlist {
-        ...WishlistItem
+        id
+        product {
+          id
+          name
+        }
       }
       errors {
         field
@@ -43,11 +47,14 @@ export const removeWhishlistProduct = gql`
 `;
 
 export const addWhishlistProductVariant = gql`
-  ${wishlistItemFragment}
   mutation AddWishlistProductVariant($variantId: ID!) {
     wishlistAddVariant(variantId: $variantId) {
       wishlist {
-        ...WishlistItem
+        id
+        product {
+          id
+          name
+        }
       }
       errors {
         field
@@ -63,11 +70,14 @@ export const addWhishlistProductVariant = gql`
 `;
 
 export const removeWhishlistProductVariant = gql`
-  ${wishlistItemFragment}
   mutation RemoveWishlistProductVariant($variantId: ID!) {
     wishlistRemoveVariant(variantId: $variantId) {
       wishlist {
-        ...WishlistItem
+        id
+        product {
+          id
+          name
+        }
       }
       errors {
         field
