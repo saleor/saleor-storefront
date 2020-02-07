@@ -1,5 +1,7 @@
 import { Wishlist_me_wishlist_edges_node } from "@sdk/queries/types/Wishlist";
 
+import { TEMPishlistItem } from "./fixtures";
+
 export interface IProps {
-  wishlist: Wishlist_me_wishlist_edges_node[] | null;
+  wishlist: TEMPishlistItem[] | null;
 }
