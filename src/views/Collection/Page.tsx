@@ -3,7 +3,7 @@ import "../Category/scss/index.scss";
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
-import { ProductListHeader } from "../../@next/components/molecules";
+import { ProductListFilters } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
@@ -77,7 +77,7 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
-        <ProductListHeader
+        <ProductListFilters
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={products ? products.totalCount : 0}

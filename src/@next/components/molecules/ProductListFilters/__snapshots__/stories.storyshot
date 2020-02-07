@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
+exports[`Storyshots @components/molecules/ProductListFilters default 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
@@ -235,7 +235,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/molecules/ProductListHeader with active filters 1`] = `
+exports[`Storyshots @components/molecules/ProductListFilters with active filters 1`] = `
 .c0 {
   position: relative;
   margin: 20px;

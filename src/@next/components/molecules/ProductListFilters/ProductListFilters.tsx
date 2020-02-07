@@ -5,7 +5,7 @@ import { DropdownSelect, Icon } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const ProductListHeader: React.FC<IProps> = ({
+export const ProductListFilters: React.FC<IProps> = ({
   numberOfProducts = 0,
   openFiltersMenu,
   clearFilters,

@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { ProductListHeader } from ".";
+import { ProductListFilters } from ".";
 
 const DEFAULT_PROPS = {
   activeFilters: 0,
@@ -22,8 +22,8 @@ const DEFAULT_PROPS = {
   ],
 };
 
-storiesOf("@components/molecules/ProductListHeader", module)
-  .add("default", () => <ProductListHeader {...DEFAULT_PROPS} />)
+storiesOf("@components/molecules/ProductListFilters", module)
+  .add("default", () => <ProductListFilters {...DEFAULT_PROPS} />)
   .add("with active filters", () => (
-    <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+    <ProductListFilters {...DEFAULT_PROPS} activeFilters={3} />
   ));

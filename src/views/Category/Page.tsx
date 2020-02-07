@@ -9,7 +9,7 @@ import {
   ProductsFeatured,
 } from "../../components";
 
-import { ProductListHeader } from "../../@next/components/molecules";
+import { ProductListFilters } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
@@ -72,7 +72,7 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
-        <ProductListHeader
+        <ProductListFilters
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={products ? products.totalCount : 0}
