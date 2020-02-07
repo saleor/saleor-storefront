@@ -42,10 +42,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice_g
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice_net {
@@ -58,10 +54,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice_n
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice {
@@ -86,10 +78,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_subtotalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_subtotalPrice_net {
@@ -102,10 +90,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_subtotalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_subtotalPrice {
@@ -212,10 +196,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availableShi
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availableShippingMethods {
@@ -238,10 +218,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingMeth
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingMethod {
@@ -264,10 +240,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingPrice_net {
@@ -280,10 +252,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingPrice {
@@ -308,10 +276,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_totalP
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_totalPrice_net {
@@ -324,10 +288,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_totalP
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_totalPrice {
@@ -352,10 +312,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -368,10 +324,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_pricing_priceUndiscounted {
@@ -396,10 +348,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_pricing_price_net {
@@ -412,10 +360,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_pricing_price {

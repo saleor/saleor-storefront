@@ -2,10 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import {
-  PaymentChargeStatusEnum,
-  OrderStatus,
-} from "./../../types/globalTypes";
+import { PaymentChargeStatusEnum, OrderStatus } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: OrderDetail

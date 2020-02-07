@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 
-import { ProductListItem } from "../../components";
-import { generateProductUrl } from "../../core/utils";
+import { ProductList } from "@components/organisms";
+
 import { ProductDetails_product_category_products_edges } from "./types/ProductDetails";
 
 const OtherProducts: React.FC<{
@@ -13,16 +12,7 @@ const OtherProducts: React.FC<{
       <h4 className="product-page__other-products__title">
         Other products in this category
       </h4>
-      <div className="product-page__other-products__grid">
-        {products.map(({ node: product }) => (
-          <Link
-            to={generateProductUrl(product.id, product.name)}
-            key={product.id}
-          >
-            <ProductListItem product={product} key={product.id} />
-          </Link>
-        ))}
-      </div>
+      <ProductList products={products.map(({ node }) => node)} />
     </div>
   </div>
 );
