@@ -12,4 +12,3 @@ export * from "./ProductVariantPicker";
 export * from "./SelectSidebar";
 export * from "./DiscountForm";
 export * from "./ProductList";
-export * from "./ProductFeaturedList";
