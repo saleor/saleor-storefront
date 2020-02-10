@@ -54,6 +54,7 @@ export const theme = {
   secondaryOverlayDark: blueOverlayDark,
   success: green,
   tableDivider: tabelGray,
+  thumbnailBorder: darkGreen,
   white,
 };
 
