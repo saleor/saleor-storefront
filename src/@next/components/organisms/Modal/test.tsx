@@ -2,7 +2,7 @@ import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { Overlay } from "@components/organisms";
+import { Overlay } from "@components/atoms";
 
 import { Modal } from ".";
 import * as S from "./styles";

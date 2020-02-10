@@ -1,4 +1,3 @@
-import { Wishlist_me_wishlist_edges_node } from "@sdk/queries/types/Wishlist";
 import { IFilterAttributes, IFilters } from "@types";
 
 import { TEMPishlistItem } from "./fixtures";
