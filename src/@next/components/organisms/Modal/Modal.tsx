@@ -1,7 +1,7 @@
 import React from "react";
 
+import { Overlay } from "@components/atoms";
 import { CardHeader, FormFooter } from "@components/molecules";
-import { Overlay } from "@components/organisms";
 
 import * as S from "./styles";
 import { IProps } from "./types";

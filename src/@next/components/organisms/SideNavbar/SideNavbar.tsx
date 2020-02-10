@@ -2,11 +2,10 @@ import React from "react";
 import Media from "react-responsive";
 import { Transition } from "react-transition-group";
 
-import { Icon } from "@components/atoms";
+import { Icon, Overlay } from "@components/atoms";
 import { mediumScreen } from "@styles/constants";
 import LogoSmall from "images/logo-small.svg";
 
-import { Overlay } from "../";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
 

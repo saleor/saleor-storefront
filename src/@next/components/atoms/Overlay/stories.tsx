@@ -28,7 +28,7 @@ const DEFAULT_PROPS = {
   target: portalRoot,
 };
 
-storiesOf("@components/organisms/Overlay", module)
+storiesOf("@components/atoms/Overlay", module)
   .add("Position center", () => (
     <Overlay {...DEFAULT_PROPS}>
       <Children />

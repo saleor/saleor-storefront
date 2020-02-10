@@ -1,10 +1,9 @@
 import React from "react";
 
-import { IconButton } from "@components/atoms";
+import { IconButton, Overlay } from "@components/atoms";
 import { FilterAttribute } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
-import { Overlay } from "../";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -19,6 +18,7 @@ export const FilterSidebar: React.FC<IProps> = ({
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
+
   return (
     <Overlay
       duration={0}

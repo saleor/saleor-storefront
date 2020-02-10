@@ -20,6 +20,7 @@ export const Overlay: React.FC<IProps> = ({
     open: show,
     position,
   };
+
   return (
     target &&
     ReactDOM.createPortal(

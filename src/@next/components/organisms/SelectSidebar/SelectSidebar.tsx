@@ -1,11 +1,10 @@
 import { Trans } from "@lingui/react";
 import React from "react";
 
-import { ButtonLink } from "@components/atoms";
+import { ButtonLink, Overlay } from "@components/atoms";
 import { CardHeader, OverlayItem } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
-import { Overlay } from "../";
 import * as S from "./styles";
 import { IProps } from "./types";
 
