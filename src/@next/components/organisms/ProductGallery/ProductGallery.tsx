@@ -14,9 +14,11 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
 
   const displayButtons = images.length > MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS;
 
-  if (imageIndex >= images.length && imageIndex > 0) {
-    setImageIndex(0);
-  }
+  React.useEffect(() => {
+    if (imageIndex >= images.length) {
+      setImageIndex(0);
+    }
+  }, [images]);
 
   const bottomImageRef = React.useRef<HTMLDivElement | null>(null);
   const topImageRef = React.useRef<HTMLDivElement | null>(null);
