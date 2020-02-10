@@ -17,3 +17,4 @@ export * from "./FilterAttribute";
 export * from "./ResetPasswordForm";
 export * from "./AddToWishlistButton";
 export * from "./ProductTile";
+export * from "./ProductDescription";

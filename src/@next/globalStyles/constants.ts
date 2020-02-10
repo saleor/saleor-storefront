@@ -2,6 +2,8 @@
 export const autofillColor = "rgb(250, 255, 189)";
 export const autofillColorSelected = "rgb(232, 240, 254)";
 export const baseFontColor = "#323232";
+export const baseFontColorSemiTransparent = "rgba(50,50,50,0.6)";
+export const baseFontColorTransparent = "rgba(50,50,50,0.1)";
 export const black = "#323232";
 export const blue = "rgb(33,18,94)";
 export const blueDark = "#190c4e";
@@ -37,6 +39,10 @@ export const theme = {
   hoverLightBackground: turquoiseLight,
   light: grayLight,
   lightFont: gray,
+  listBullet: darkGreen,
+  listAttributeName: baseFontColorSemiTransparent,
+  tabsBorder: baseFontColorTransparent,
+  tabTitle: darkGreen,
   overlay: overlayColor,
   primary: turquoise,
   primaryDark: turquoiseDark,

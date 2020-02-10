@@ -4,7 +4,6 @@ import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
 
-import { RichTextContent } from "@components/atoms";
 import { CachedImage, Thumbnail } from "@components/molecules";
 
 import { Breadcrumbs, ProductDescription } from "../../components";
@@ -13,6 +12,8 @@ import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
+
+import { ProductDescription as NewProductDescription } from "../../@next/components/molecules/";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
@@ -89,9 +90,7 @@ class Page extends React.PureComponent<
             pricing={product.pricing}
             addToCart={cart.add}
             setVariantId={this.setVariantId}
-          >
-            <RichTextContent descriptionJson={product.descriptionJson} />
-          </ProductDescription>
+          />
         )}
       </CartContext.Consumer>
     );
@@ -138,6 +137,11 @@ class Page extends React.PureComponent<
                 )
               }
             </Media>
+          </div>
+        </div>
+        <div className="container">
+          <div className="product-page__product__description">
+            <NewProductDescription descriptionJson={product.descriptionJson} />
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />

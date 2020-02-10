@@ -24,7 +24,6 @@ interface ProductDescriptionProps {
   selectedAttributes: ProductDetails_product_attributes[];
   name: string;
   pricing: ProductDetails_product_pricing;
-  children: React.ReactNode;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
 }
@@ -158,10 +157,6 @@ class ProductDescription extends React.Component<
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
-        </div>
-        <div className="product-description__about">
-          <h4>Description</h4>
-          {children}
         </div>
         <CartContext.Consumer>
           {({ lines }) => (
