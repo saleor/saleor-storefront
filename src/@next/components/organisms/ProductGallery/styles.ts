@@ -51,7 +51,7 @@ export const BottomButton = styled(Button)`
   bottom: 0%;
 `;
 
-export const ThumnbanilsContainer = styled.div`
+export const ThumbnailsContainer = styled.div`
   position: relative;
 `;
 

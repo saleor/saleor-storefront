@@ -57,7 +57,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
 
   return (
     <S.Wrapper>
-      <S.ThumnbanilsContainer>
+      <S.ThumbnailsContainer>
         {!topImageInView && displayButtons && (
           <S.TopButton
             onClick={() => {
@@ -108,7 +108,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               })}
           </ul>
         </S.ThumbnailList>
-      </S.ThumnbanilsContainer>
+      </S.ThumbnailsContainer>
 
       <S.Preview>
         {images && images.length > 0 && imageIndex < images.length && (
