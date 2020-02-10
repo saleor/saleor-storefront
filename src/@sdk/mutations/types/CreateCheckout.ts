@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput } from "./../../../../types/globalTypes";
+import { CheckoutCreateInput } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
@@ -55,10 +55,6 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_totalPrice_net {
@@ -71,10 +67,6 @@ export interface CreateCheckout_checkoutCreate_checkout_totalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_totalPrice {
@@ -99,10 +91,6 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_net {
@@ -115,10 +103,6 @@ export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_subtotalPrice {
@@ -164,6 +148,14 @@ export interface CreateCheckout_checkoutCreate_checkout_billingAddress {
   country: CreateCheckout_checkoutCreate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingAddress_country {
@@ -197,6 +189,14 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingAddress {
   country: CreateCheckout_checkoutCreate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods_price {
@@ -209,10 +209,6 @@ export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_availableShippingMethods {
@@ -235,10 +231,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingMethod_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingMethod {
@@ -261,10 +253,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_net {
@@ -277,10 +265,6 @@ export interface CreateCheckout_checkoutCreate_checkout_shippingPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_shippingPrice {
@@ -305,10 +289,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net {
@@ -321,10 +301,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_totalPrice {
@@ -349,10 +325,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -365,10 +337,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -393,10 +361,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price_net {
@@ -409,10 +373,6 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_pr
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_pricing_price {

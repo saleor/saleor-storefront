@@ -32,6 +32,13 @@
     }
   }
 
+  &__undiscounted_price {
+    text-decoration: line-through;
+    color: $gray;
+    font-size: $small-font-size;
+    font-weight: regular;
+  }
+
   &__action {
     margin-left: $spacer * 1.5;
     min-width: 280px;
@@ -99,5 +106,9 @@
     margin-top: 20px;
     border-top: 1px solid $gray;
     padding-top: 20px;
+  }
+
+  &__add-to-wishlist {
+    margin-top: 20px;
   }
 }

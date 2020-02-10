@@ -2,6 +2,8 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { accountConfirmUrl } from "../../../routes/Routes";
+
 import { Button, Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
 import { TypedAccountRegisterMutation } from "./queries";
@@ -31,6 +33,7 @@ const showSuccessNotification = (
 
 const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
   const alert = useAlert();
+
   return (
     <TypedAccountRegisterMutation
       onCompleted={data => showSuccessNotification(data, hide, alert)}
@@ -41,7 +44,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
-              const redirectUrl = window.location.origin;
+              const redirectUrl = `${window.location.origin}${accountConfirmUrl}`;
               registerCustomer({ variables: { email, password, redirectUrl } });
             }}
           >

@@ -6,10 +6,9 @@ import { AlertManager, useAlert } from "react-alert";
 import { generatePath, RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Money } from "@components/containers";
+import { Money, TaxedMoney } from "@components/containers";
 
 import { Button, CartTable } from "../../../components";
-
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
 import { orderConfirmationUrl } from "../../../routes";
@@ -83,11 +82,11 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
         <div className="checkout__content">
           <CartTable
             lines={extractCheckoutLines(checkout.lines)}
-            subtotal={checkout.subtotalPrice.gross.localized}
+            subtotal={<TaxedMoney taxedMoney={checkout.subtotalPrice} />}
             deliveryCost={
-              checkout.shippingMethod && checkout.shippingMethod.price.localized
+              <Money defaultValue="0" money={checkout.shippingMethod.price} />
             }
-            totalCost={checkout.totalPrice.gross.localized}
+            totalCost={<Money money={checkout.totalPrice.gross} />}
             discount={
               discountExists && (
                 <>
@@ -102,6 +101,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
               checkout={checkout}
               cardData={cardData}
               dummyStatus={dummyStatus}
+              history={history}
+              token={token}
             />
             <div className="checkout-review__content__submit">
               <TypedCompleteCheckoutMutation

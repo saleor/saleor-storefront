@@ -18,10 +18,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_net {
@@ -34,10 +30,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start {
@@ -62,10 +54,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
@@ -78,10 +66,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop {
@@ -118,10 +102,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_start_gro
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_start_net {
@@ -134,10 +114,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_start_net
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_start {
@@ -162,10 +138,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_stop_gros
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_stop_net {
@@ -178,10 +150,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_stop_net 
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_stop {

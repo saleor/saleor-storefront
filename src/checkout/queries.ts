@@ -37,12 +37,10 @@ const checkoutPriceFragment = gql`
     gross {
       amount
       currency
-      localized
     }
     net {
       amount
       currency
-      localized
     }
   }
 `;
@@ -82,7 +80,6 @@ const checkoutShippingMethodFragment = gql`
     price {
       currency
       amount
-      localized
     }
   }
 `;
@@ -178,6 +175,9 @@ export const updateCheckoutLineQuery = gql`
         lines {
           ...CheckoutLine
         }
+        totalPrice {
+          ...Price
+        }
         subtotalPrice {
           ...Price
         }
@@ -247,4 +247,4 @@ export const getVariantsProductsQuery = gql`
 export const TypedGetVariantsProductsQuery = TypedQuery<
   getVariantsProducts,
   getVariantsProductsVariables
->(getUserCheckoutQuery);
+>(getVariantsProductsQuery);

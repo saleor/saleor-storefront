@@ -8,6 +8,7 @@ import * as Address from "./address";
 import * as Auth from "./auth";
 import * as Checkout from "./checkout";
 import * as User from "./user";
+import * as Wishlist from "./whishlist";
 
 import {
   CreateCheckout,
@@ -62,6 +63,26 @@ import {
 
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
 
+import {
+  AddWishlistProduct,
+  AddWishlistProductVariables,
+} from "./types/AddWishlistProduct";
+
+import {
+  RemoveWishlistProduct,
+  RemoveWishlistProductVariables,
+} from "./types/RemoveWishlistProduct";
+
+import {
+  AddWishlistProductVariant,
+  AddWishlistProductVariantVariables,
+} from "./types/AddWishlistProductVariant";
+
+import {
+  RemoveWishlistProductVariant,
+  RemoveWishlistProductVariantVariables,
+} from "./types/RemoveWishlistProductVariant";
+
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
   "mutation"
@@ -89,6 +110,29 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.addCheckoutPromoCode}
+      `,
+      ...options,
+    }),
+  AddWishlistProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<AddWishlistProduct, AddWishlistProductVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.addWhishlistProduct}
+      `,
+      ...options,
+    }),
+  AddWishlistProductVariant: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      AddWishlistProductVariant,
+      AddWishlistProductVariantVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.addWhishlistProductVariant}
       `,
       ...options,
     }),
@@ -155,6 +199,32 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.removeCheckoutPromoCode}
+      `,
+      ...options,
+    }),
+  RemoveWishlistProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveWishlistProduct,
+      RemoveWishlistProductVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.removeWhishlistProduct}
+      `,
+      ...options,
+    }),
+  RemoveWishlistProductVariant: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveWishlistProductVariant,
+      RemoveWishlistProductVariantVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.removeWhishlistProductVariant}
       `,
       ...options,
     }),

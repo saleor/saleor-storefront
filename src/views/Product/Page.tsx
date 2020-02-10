@@ -51,44 +51,6 @@ class Page extends React.PureComponent<
     },
   ];
 
-  componentDidMount() {
-    if (this.showCarousel) {
-      window.addEventListener("scroll", this.handleScroll, {
-        passive: true,
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.showCarousel) {
-      window.removeEventListener("scroll", this.handleScroll);
-    }
-  }
-
-  handleScroll = () => {
-    const productGallery = this.productGallery.current;
-    const fixedElement = this.fixedElement.current;
-
-    if (productGallery && fixedElement) {
-      const containerPostion =
-        window.innerHeight - productGallery.getBoundingClientRect().bottom;
-      const fixedPosition =
-        window.innerHeight - fixedElement.getBoundingClientRect().bottom;
-      const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
-      const galleryToTop = Math.floor(
-        this.productGallery.current.getBoundingClientRect().top + window.scrollY
-      );
-
-      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
-        fixedElement.classList.remove("product-page__product__info--fixed");
-        fixedElement.classList.add("product-page__product__info--absolute");
-      } else {
-        fixedElement.classList.remove("product-page__product__info--absolute");
-        fixedElement.classList.add("product-page__product__info--fixed");
-      }
-    }
-  };
-
   getImages = () => {
     const { product } = this.props;
     if (product.variants && this.state.variantId) {
@@ -122,6 +84,7 @@ class Page extends React.PureComponent<
       <CartContext.Consumer>
         {cart => (
           <ProductDescription
+            productId={product.id}
             name={product.name}
             productVariants={product.variants}
             selectedAttributes={product.attributes}
