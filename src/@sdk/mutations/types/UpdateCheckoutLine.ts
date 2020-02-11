@@ -211,10 +211,6 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gros
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net {
@@ -227,10 +223,6 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net 
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice {

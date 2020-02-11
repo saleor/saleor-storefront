@@ -99,19 +99,5 @@
       font-weight: $bold-font-weight;
       margin-bottom: $spacer * 2;
     }
-
-    &__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: $spacer * 2;
-
-      @media (min-width: $small-screen) {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      @media (min-width: $medium-screen) {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-      }
-    }
   }
 }

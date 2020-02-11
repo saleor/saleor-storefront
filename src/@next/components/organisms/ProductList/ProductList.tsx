@@ -12,8 +12,8 @@ import { IProps } from "./types";
 export const ProductList: React.FC<IProps> = ({
   products,
   canLoadMore = false,
-  loading,
-  onLoadMore,
+  loading = false,
+  onLoadMore = () => null,
 }: IProps) => {
   return (
     <>
