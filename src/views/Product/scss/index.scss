@@ -1,7 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .product-page {
-  background-color: $turquoise-light;
+  background-color: $white; 
 
   .breadcrumbs {
     background-color: $white;
@@ -21,11 +21,11 @@
 
     &__info {
       flex-grow: 1;
-      width: 40%;
+      width: 30%;
       position: relative;
 
       @media (max-width: $medium-screen) {
-        width: 60%;
+        width: 70%;
       }
 
       @media (max-width: $small-screen) {
@@ -44,7 +44,7 @@
         width: auto;
 
         @media (min-width: $container-width) {
-          width: calc(#{$container-width} * 40 / 100);
+          width: calc(#{$container-width} * 30 / 100);
         }
       }
     }
@@ -64,19 +64,6 @@
         padding: 0;
         margin-bottom: $spacer * 2;
         padding: 0;
-      }
-
-      img {
-        width: 100%;
-
-        &:not(:last-of-type) {
-          margin-bottom: $spacer * 5;
-        }
-
-        @media (max-width: $small-screen) {
-          height: calc(100vw - #{$spacer * 2});
-          margin-bottom: $spacer * 2;
-        }
       }
 
       &__nav {

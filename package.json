@@ -40,6 +40,7 @@
     "react-alert": "^5.5.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.0",
+    "react-intersection-observer": "^8.25.2",
     "react-media": "^1.8.0",
     "react-responsive": "^7.0.0",
     "react-router": "^4.3.1",

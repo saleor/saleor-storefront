@@ -11,4 +11,5 @@ export * from "./FilterSidebar";
 export * from "./ProductVariantPicker";
 export * from "./SelectSidebar";
 export * from "./DiscountForm";
+export * from "./ProductGallery";
 export * from "./ProductList";

@@ -14,6 +14,8 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
+import { ProductGallery } from "../../@next/components/organisms/";
+
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
 class Page extends React.PureComponent<
@@ -123,7 +125,7 @@ class Page extends React.PureComponent<
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {this.renderImages(product)}
+                      <ProductGallery images={this.getImages()} />
                     </div>
                     <div className="product-page__product__info">
                       <div
