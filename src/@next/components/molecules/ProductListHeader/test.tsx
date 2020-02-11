@@ -2,7 +2,7 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { ProductListFilters } from ".";
+import { ProductListHeader } from ".";
 
 const clearFilterMock = jest.fn();
 const onChangeMock = jest.fn();
@@ -10,6 +10,7 @@ const openFiltersMenuMock = jest.fn();
 
 const DEFAULT_PROPS = {
   activeFilters: 0,
+  activeFiltersAttributes: [],
   clearFilters: clearFilterMock,
   numberOfProducts: 255,
   onChange: onChangeMock,
@@ -26,28 +27,28 @@ const DEFAULT_PROPS = {
   ],
 };
 
-describe("<ProductListFilters />", () => {
+describe("<ProductListHeader />", () => {
   it("exists", () => {
-    const wrapper = shallow(<ProductListFilters {...DEFAULT_PROPS} />);
+    const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should display number of products found", () => {
-    const wrapper = shallow(<ProductListFilters {...DEFAULT_PROPS} />);
+    const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
 
     expect(wrapper.text()).toContain(String(DEFAULT_PROPS.numberOfProducts));
   });
 
   it("should not display Clear Filters button if no active filters present", () => {
-    const wrapper = shallow(<ProductListFilters {...DEFAULT_PROPS} />);
+    const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
 
     expect(wrapper.text()).not.toContain("Clear Filters");
   });
 
   it("should display Clear Filters button if active filters present are present", () => {
     const wrapper = shallow(
-      <ProductListFilters {...DEFAULT_PROPS} activeFilters={3} />
+      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
     );
 
     expect(wrapper.text()).toContain("CLEAR FILTERS");
@@ -55,7 +56,7 @@ describe("<ProductListFilters />", () => {
 
   it("should display number of active filters if any are present", () => {
     const wrapper = shallow(
-      <ProductListFilters {...DEFAULT_PROPS} activeFilters={3} />
+      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
     );
 
     expect(wrapper.text()).toContain("FILTERS (3)");
@@ -63,7 +64,7 @@ describe("<ProductListFilters />", () => {
 
   it("should call method for clearing filters when clicking on Clear Filters button", () => {
     const wrapper = mount(
-      <ProductListFilters {...DEFAULT_PROPS} activeFilters={3} />
+      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
     );
 
     wrapper
@@ -78,7 +79,7 @@ describe("<ProductListFilters />", () => {
 
   it("should call method for clearing filters when clicking on Clear Filters button", () => {
     const wrapper = mount(
-      <ProductListFilters {...DEFAULT_PROPS} activeFilters={3} />
+      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
     );
 
     wrapper

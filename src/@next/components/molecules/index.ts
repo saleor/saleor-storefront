@@ -11,7 +11,7 @@ export * from "./OrderTabel";
 export * from "./AccountMenu";
 export * from "./AccountMenuMobile";
 export * from "./AccountTabTiles";
-export * from "./ProductListFilters";
+export * from "./ProductListHeader";
 export * from "./InputSelect";
 export * from "./FilterAttribute";
 export * from "./ResetPasswordForm";
