@@ -19,8 +19,7 @@ exports[`Storyshots @components/organisms/ProductVariantPicker default 1`] = `
 
 .c2 {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr;
 }
 
 .c1 {
@@ -63,8 +62,7 @@ exports[`Storyshots @components/organisms/ProductVariantPicker with sidebar 1`] 
 
 .c2 {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr;
 }
 
 .c1 {

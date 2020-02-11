@@ -6,7 +6,6 @@ import * as React from "react";
 import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
 import {
-  ProductDetails_product_attributes,
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
@@ -21,7 +20,6 @@ import AddToWishlist from "./AddToWishlist";
 interface ProductDescriptionProps {
   productId: string;
   productVariants: ProductDetails_product_variants[];
-  selectedAttributes: ProductDetails_product_attributes[];
   name: string;
   pricing: ProductDetails_product_pricing;
   addToCart(varinatId: string, quantity?: number): void;
@@ -119,27 +117,13 @@ class ProductDescription extends React.Component<
   };
 
   render() {
-    const { children, name, selectedAttributes } = this.props;
+    const { name } = this.props;
     const { quantity } = this.state;
 
     return (
       <div className="product-description">
         <h3>{name}</h3>
         <h4>{this.getProductPrice()}</h4>
-        <div>
-          {selectedAttributes.map(
-            ({ attribute, values }) =>
-              values.length > 0 && (
-                <div
-                  className="product-description__selected-attributes"
-                  key={attribute.id}
-                >
-                  <span>{`${attribute.name}: `}</span>
-                  <span>{values.map(({ name }) => name).join(", ")}</span>
-                </div>
-              )
-          )}
-        </div>
         <div className="product-description__variant-picker">
           <ProductVariantPicker
             productVariants={this.props.productVariants}

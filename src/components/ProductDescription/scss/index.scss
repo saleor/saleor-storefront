@@ -40,7 +40,6 @@
   }
 
   &__action {
-    margin-left: $spacer * 1.5;
     min-width: 280px;
     min-height: 49px;
 
@@ -104,7 +103,6 @@
 
   &__quantity-input {
     margin-top: 20px;
-    border-top: 1px solid $gray;
     padding-top: 20px;
   }
 
