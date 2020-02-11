@@ -1,5 +1,8 @@
 export interface IProps {
   description?: string;
   descriptionJson?: string;
-  attributes?: Array<{ name: string; value: string }>;
+  attributes?: Array<{
+    attribute: { name: string };
+    values: Array<{ name: string }>;
+  }>;
 }

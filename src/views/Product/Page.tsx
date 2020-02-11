@@ -88,7 +88,6 @@ class Page extends React.PureComponent<
             productId={product.id}
             name={product.name}
             productVariants={product.variants}
-            selectedAttributes={product.attributes}
             pricing={product.pricing}
             addToCart={cart.add}
             setVariantId={this.setVariantId}
@@ -143,7 +142,10 @@ class Page extends React.PureComponent<
         </div>
         <div className="container">
           <div className="product-page__product__description">
-            <NewProductDescription descriptionJson={product.descriptionJson} />
+            <NewProductDescription
+              descriptionJson={product.descriptionJson}
+              attributes={product.attributes}
+            />
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />

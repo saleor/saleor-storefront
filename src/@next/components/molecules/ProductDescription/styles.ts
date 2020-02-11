@@ -32,6 +32,7 @@ export const Tabs = styled.div`
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
   margin-bottom: 70px;
+  overflow: hidden;
 `;
 
 export const TabTitle = styled.div<{ active?: boolean }>`
@@ -46,6 +47,12 @@ export const TabTitle = styled.div<{ active?: boolean }>`
     props.active ? props.theme.colors.tabTitle : "transparent"};
   padding-bottom: 25px;
   margin-right: 60px;
+
+  ${media.smallScreen`
+    font-size: ${(props: any) => props.theme.typography.h4FontSize};
+    min-width: 150px;
+    margin-right: 20px;
+  `};
 `;
 
 export const AttributeName = styled.span`
