@@ -58,7 +58,11 @@ class Page extends React.PureComponent<
       const variant = product.variants
         .filter(variant => variant.id === this.state.variantId)
         .pop();
-      return variant.images;
+      if (variant.images.length > 0) {
+        return variant.images;
+      } else {
+        return product.images;
+      }
     } else {
       return product.images;
     }
