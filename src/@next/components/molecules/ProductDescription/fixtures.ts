@@ -1,27 +1,54 @@
 export const attributes = [
   {
-    name: "Author",
-    value: "John Doe",
+    attribute: { name: "Author" },
+    values: [
+      {
+        name: "John Doe",
+      },
+    ],
   },
   {
-    name: "Country of Manufacture",
-    value: "Poland",
+    attribute: { name: "Country of Manufacture" },
+    values: [
+      {
+        name: "Poland",
+      },
+      {
+        name: "China",
+      },
+    ],
   },
   {
-    name: "Size",
-    value: "40x40cm",
+    attribute: { name: "Size" },
+    values: [
+      {
+        name: "40x40cm",
+      },
+    ],
   },
   {
-    name: "Material",
-    value: "Polystyrene",
+    attribute: { name: "Material" },
+    values: [
+      {
+        name: "Polystyrene",
+      },
+    ],
   },
   {
-    name: "Manufacture time",
-    value: "2 to 4 weeks",
+    attribute: { name: "Manufacture time" },
+    values: [
+      {
+        name: "2 to 4 weeks",
+      },
+    ],
   },
   {
-    name: "SKU",
-    value: "1244-SGG",
+    attribute: { name: "SKU" },
+    values: [
+      {
+        name: "1244-SGG",
+      },
+    ],
   },
 ];
 
