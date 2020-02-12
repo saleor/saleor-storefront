@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-areas: "sidebar preview";
   height: 100%;
-  grid-template-columns: 76px 560px;
+  grid-template-columns: 76px 1fr;
   grid-column-gap: 40px;
 `;
 
@@ -75,8 +75,8 @@ export const ThumbnailList = styled.div`
 
 export const Preview = styled.div`
   grid-area: preview;
-  width: 100%;
-  height: 560px;
+  width: auto;
+  max-height: 560px;
   overflow: hidden;
   img {
     width: 100%;
