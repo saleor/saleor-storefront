@@ -6,14 +6,14 @@ import { CheckoutContextInterface } from "../../checkout/context";
 import { updateCheckoutLineQuery } from "../../checkout/queries";
 import {
   updateCheckoutLine,
-  updateCheckoutLineVariables
+  updateCheckoutLineVariables,
 } from "../../checkout/types/updateCheckoutLine";
 import { maybe } from "../../core/utils";
 import {
   CartContext,
   CartInterface,
   CartLine,
-  CartLineInterface
+  CartLineInterface,
 } from "./context";
 
 enum LocalStorageKeys {
@@ -123,8 +123,10 @@ export default class CartProvider extends React.Component<
         checkout.update({
           checkout: {
             ...checkout.checkout,
+            isShippingRequired: updatedCheckout.isShippingRequired,
             lines: updatedCheckout.lines,
             subtotalPrice: updatedCheckout.subtotalPrice,
+            totalPrice: updatedCheckout.totalPrice,
           },
         });
       }

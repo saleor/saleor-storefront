@@ -6,7 +6,7 @@
 // GraphQL mutation operation: ResetPassword
 // ====================================================
 
-export interface ResetPassword_customerPasswordReset_errors {
+export interface ResetPassword_requestPasswordReset_errors {
   __typename: "Error";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
@@ -19,21 +19,22 @@ export interface ResetPassword_customerPasswordReset_errors {
   message: string | null;
 }
 
-export interface ResetPassword_customerPasswordReset {
-  __typename: "CustomerPasswordReset";
+export interface ResetPassword_requestPasswordReset {
+  __typename: "RequestPasswordReset";
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: ResetPassword_customerPasswordReset_errors[] | null;
+  errors: ResetPassword_requestPasswordReset_errors[] | null;
 }
 
 export interface ResetPassword {
   /**
-   * DEPRECATED: Will be removed in Saleor 2.10, use RequestPasswordReset instead. Resets the customer's password.
+   * Sends an email with the account password modification link.
    */
-  customerPasswordReset: ResetPassword_customerPasswordReset | null;
+  requestPasswordReset: ResetPassword_requestPasswordReset | null;
 }
 
 export interface ResetPasswordVariables {
   email: string;
+  redirectUrl: string;
 }

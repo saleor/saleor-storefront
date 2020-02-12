@@ -16,10 +16,6 @@ export interface ShippingMethod_price {
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface ShippingMethod {

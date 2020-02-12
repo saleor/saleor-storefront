@@ -2,22 +2,23 @@ import gql from "graphql-tag";
 
 import { TypedMutation } from "../../../core/mutations";
 import {
-  RegisterCutomer,
-  RegisterCutomerVariables
-} from "./types/RegisterCutomer";
+  RegisterAccount,
+  RegisterAccountVariables
+} from "./types/RegisterAccount";
 
-const customerRegisterMutation = gql`
-  mutation RegisterCutomer($email: String!, $password: String!) {
-    customerRegister(input: { email: $email, password: $password }) {
+const accountRegisterMutation = gql`
+  mutation RegisterAccount($email: String!, $password: String!, $redirectUrl: String!) {
+    accountRegister(input: { email: $email, password: $password, redirectUrl: $redirectUrl }) {
       errors {
         field
         message
       }
+      requiresConfirmation
     }
   }
 `;
 
-export const TypedCustomerRegisterMutation = TypedMutation<
-  RegisterCutomer,
-  RegisterCutomerVariables
->(customerRegisterMutation);
+export const TypedAccountRegisterMutation = TypedMutation<
+  RegisterAccount,
+  RegisterAccountVariables
+>(accountRegisterMutation);

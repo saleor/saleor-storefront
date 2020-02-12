@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// <reference types="cypress" />
 import "./login";
 
 Cypress.Commands.add("visitStubbed", (url, operations = {}) => {

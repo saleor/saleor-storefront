@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Chip default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #13bebb;
+  padding: 0.6rem 0.6rem 0.6rem 0.9rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  color: #fff;
+  width: auto;
+  display: inline-block;
+  cursor: default;
+}
+
+.c2 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+
+.c3 {
+  padding: 0.3rem;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.c3:hover {
+  background-color: #06a09e;
+  color: #fff;
+}
+
+.c3:active {
+  background-color: #06a09e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c3:disabled {
+  background-color: #7d7d7d;
+}
+
+.c3:disabled,
+.c3:disabled:hover {
+  cursor: default;
+}
+
+@media (max-width:540px) {
+  .c1 {
+    padding: 0.9rem 1rem;
+    width: 88%;
+    max-width: 88%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="primary"
+    size="md"
+  >
+    <span
+      className="c2"
+      size="md"
+    >
+      Some thing
+    </span>
+    <button
+      className="c3"
+      color="primary"
+      onClick={[Function]}
+      size="md"
+    >
+      <svg
+        height={16}
+        viewBox="0 0 32 32"
+        width={16}
+      >
+        <path
+          d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+          fill="#fff"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;

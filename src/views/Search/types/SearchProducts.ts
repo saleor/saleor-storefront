@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder } from "./../../../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: SearchProducts
@@ -18,10 +18,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start_net {
@@ -34,10 +30,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_start {
@@ -62,10 +54,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
@@ -78,10 +66,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscount
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRangeUndiscounted_stop {
@@ -118,10 +102,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_start_gro
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_start_net {
@@ -134,10 +114,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_start_net
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_start {
@@ -162,10 +138,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_stop_gros
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_stop_net {
@@ -178,10 +150,6 @@ export interface SearchProducts_products_edges_node_pricing_priceRange_stop_net 
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface SearchProducts_products_edges_node_pricing_priceRange_stop {
@@ -272,7 +240,7 @@ export interface SearchProducts_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
-  category: SearchProducts_products_edges_node_category;
+  category: SearchProducts_products_edges_node_category | null;
 }
 
 export interface SearchProducts_products_edges {
@@ -370,7 +338,7 @@ export interface SearchProducts {
 
 export interface SearchProductsVariables {
   query: string;
-  attributes?: (any | null)[] | null;
+  attributes?: (AttributeInput | null)[] | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
   after?: string | null;

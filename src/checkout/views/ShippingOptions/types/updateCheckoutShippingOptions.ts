@@ -43,11 +43,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   config: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availablePaymentGateways_config[];
 }
 
-export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_user {
-  __typename: "User";
-  email: string;
-}
-
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -58,10 +53,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice_net {
@@ -74,10 +65,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_totalPrice {
@@ -102,10 +89,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice_net {
@@ -118,10 +101,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_subtotalPrice {
@@ -212,10 +191,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_availableShippingMethods {
@@ -238,10 +213,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Amount of money.
    */
   amount: number;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingMethod {
@@ -264,10 +235,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice_net {
@@ -280,10 +247,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_shippingPrice {
@@ -308,10 +271,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice_net {
@@ -324,10 +283,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_totalPrice {
@@ -352,10 +307,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -368,10 +319,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -396,10 +343,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_price_net {
@@ -412,10 +355,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant_pricing_price {
@@ -515,6 +454,18 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
   variant: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_discount {
+  __typename: "Money";
+  /**
+   * Currency code.
+   */
+  currency: string;
+  /**
+   * Amount of money.
+   */
+  amount: number;
+}
+
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -526,7 +477,6 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * The ID of the object.
    */
   id: string;
-  user: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_user | null;
   /**
    * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
    */
@@ -554,6 +504,14 @@ export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate_chec
    * A list of checkout lines, each containing information about an item in the checkout.
    */
   lines: (updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_lines | null)[] | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
+  discount: updateCheckoutShippingOptions_checkoutShippingMethodUpdate_checkout_discount | null;
+  discountName: string | null;
+  translatedDiscountName: string | null;
+  voucherCode: string | null;
 }
 
 export interface updateCheckoutShippingOptions_checkoutShippingMethodUpdate {

@@ -5,9 +5,14 @@ import { NotificationTemplate } from "@components/atoms";
 import {
   I18nLoader,
   ServiceWorkerContext,
-  ServiceWorkerProvider
+  ServiceWorkerProvider,
 } from "@components/containers";
-import { SaleorProvider, useAuth, useUserDetails } from "@sdk/react";
+import {
+  SaleorProvider,
+  useAuth,
+  useUserDetails,
+  WishlistProvider,
+} from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -38,7 +43,7 @@ import ShopProvider from "./components/ShopProvider";
 
 import {
   authLink,
-  invalidTokenLinkWithTokenHandlerComponent
+  invalidTokenLinkWithTokenHandlerComponent,
 } from "./core/auth";
 
 import { languages } from "./languages";
@@ -148,14 +153,16 @@ const startApp = async () => {
                           checkout={checkout}
                           apolloClient={apolloClient}
                         >
-                          <Switch>
-                            <Route
-                              path={checkoutBaseUrl}
-                              component={CheckoutApp}
-                            />
-                            <Route component={App} />
-                          </Switch>
-                          <Notifications />
+                          <WishlistProvider>
+                            <Switch>
+                              <Route
+                                path={checkoutBaseUrl}
+                                component={CheckoutApp}
+                              />
+                              <Route component={App} />
+                            </Switch>
+                            <Notifications />
+                          </WishlistProvider>
                         </CartProvider>
                       )}
                     </CheckoutContext.Consumer>

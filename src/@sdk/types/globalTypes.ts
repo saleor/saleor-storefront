@@ -9,9 +9,58 @@
 /**
  * An enumeration.
  */
+export enum AccountErrorCode {
+  ACTIVATE_OWN_ACCOUNT = "ACTIVATE_OWN_ACCOUNT",
+  ACTIVATE_SUPERUSER_ACCOUNT = "ACTIVATE_SUPERUSER_ACCOUNT",
+  ASSIGN_NON_STAFF_MEMBER = "ASSIGN_NON_STAFF_MEMBER",
+  DEACTIVATE_OWN_ACCOUNT = "DEACTIVATE_OWN_ACCOUNT",
+  DEACTIVATE_SUPERUSER_ACCOUNT = "DEACTIVATE_SUPERUSER_ACCOUNT",
+  DELETE_NON_STAFF_USER = "DELETE_NON_STAFF_USER",
+  DELETE_OWN_ACCOUNT = "DELETE_OWN_ACCOUNT",
+  DELETE_STAFF_ACCOUNT = "DELETE_STAFF_ACCOUNT",
+  DELETE_SUPERUSER_ACCOUNT = "DELETE_SUPERUSER_ACCOUNT",
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  INVALID_PASSWORD = "INVALID_PASSWORD",
+  NOT_FOUND = "NOT_FOUND",
+  PASSWORD_ENTIRELY_NUMERIC = "PASSWORD_ENTIRELY_NUMERIC",
+  PASSWORD_TOO_COMMON = "PASSWORD_TOO_COMMON",
+  PASSWORD_TOO_SHORT = "PASSWORD_TOO_SHORT",
+  PASSWORD_TOO_SIMILAR = "PASSWORD_TOO_SIMILAR",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
+/**
+ * An enumeration.
+ */
 export enum AddressTypeEnum {
   BILLING = "BILLING",
   SHIPPING = "SHIPPING",
+}
+
+/**
+ * An enumeration.
+ */
+export enum CheckoutErrorCode {
+  BILLING_ADDRESS_NOT_SET = "BILLING_ADDRESS_NOT_SET",
+  CHECKOUT_NOT_FULLY_PAID = "CHECKOUT_NOT_FULLY_PAID",
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INSUFFICIENT_STOCK = "INSUFFICIENT_STOCK",
+  INVALID = "INVALID",
+  INVALID_SHIPPING_METHOD = "INVALID_SHIPPING_METHOD",
+  NOT_FOUND = "NOT_FOUND",
+  PAYMENT_ERROR = "PAYMENT_ERROR",
+  QUANTITY_GREATER_THAN_LIMIT = "QUANTITY_GREATER_THAN_LIMIT",
+  REQUIRED = "REQUIRED",
+  SHIPPING_ADDRESS_NOT_SET = "SHIPPING_ADDRESS_NOT_SET",
+  SHIPPING_METHOD_NOT_APPLICABLE = "SHIPPING_METHOD_NOT_APPLICABLE",
+  SHIPPING_METHOD_NOT_SET = "SHIPPING_METHOD_NOT_SET",
+  SHIPPING_NOT_REQUIRED = "SHIPPING_NOT_REQUIRED",
+  TAX_ERROR = "TAX_ERROR",
+  UNIQUE = "UNIQUE",
+  VOUCHER_NOT_APPLICABLE = "VOUCHER_NOT_APPLICABLE",
+  ZERO_QUANTITY = "ZERO_QUANTITY",
 }
 
 /**
@@ -306,6 +355,17 @@ export enum ProductOrderField {
   TYPE = "TYPE",
 }
 
+/**
+ * An enumeration.
+ */
+export enum WishlistErrorCode {
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
 export interface AccountInput {
   firstName?: string | null;
   lastName?: string | null;
@@ -329,7 +389,8 @@ export interface AddressInput {
 
 export interface AttributeInput {
   slug: string;
-  value: string;
+  value?: string | null;
+  values?: (string | null)[] | null;
 }
 
 export interface CheckoutCreateInput {
@@ -345,9 +406,9 @@ export interface CheckoutLineInput {
 }
 
 export interface ProductOrder {
-  field?: ProductOrderField | null;
-  attributeId?: string | null;
   direction: OrderDirection;
+  attributeId?: string | null;
+  field?: ProductOrderField | null;
 }
 
 //==============================================================

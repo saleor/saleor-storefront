@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
-  ProductDetailsVariables
+  ProductDetailsVariables,
 } from "./types/ProductDetails";
 import { VariantList, VariantListVariables } from "./types/VariantList";
 
@@ -12,12 +12,10 @@ export const priceFragment = gql`
     gross {
       amount
       currency
-      localized
     }
     net {
       amount
       currency
-      localized
     }
   }
 `;
@@ -61,6 +59,19 @@ export const productPricingFragment = gql`
   }
 `;
 
+export const selectedAttributeFragment = gql`
+  fragment SelectedAttributeFields on SelectedAttribute {
+    attribute {
+      id
+      name
+    }
+    values {
+      id
+      name
+    }
+  }
+`;
+
 export const productVariantFragment = gql`
   ${priceFragment}
   fragment ProductVariantFields on ProductVariant {
@@ -69,6 +80,11 @@ export const productVariantFragment = gql`
     name
     stockQuantity
     isAvailable
+    images {
+      id
+      url
+      alt
+    }
     pricing {
       onSale
       priceUndiscounted {
@@ -83,7 +99,7 @@ export const productVariantFragment = gql`
         id
         name
       }
-      value {
+      values {
         id
         name
         value: name
@@ -94,6 +110,7 @@ export const productVariantFragment = gql`
 
 export const productDetailsQuery = gql`
   ${basicProductFragment}
+  ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
   query ProductDetails($id: ID!) {
@@ -104,7 +121,7 @@ export const productDetailsQuery = gql`
       category {
         id
         name
-        products(first: 4) {
+        products(first: 3) {
           edges {
             node {
               ...BasicProductFields
@@ -121,21 +138,22 @@ export const productDetailsQuery = gql`
         id
         url
       }
+      attributes {
+        ...SelectedAttributeFields
+      }
       variants {
         ...ProductVariantFields
       }
       seoDescription
       seoTitle
-      availability {
-        available
-      }
+      isAvailable
     }
   }
 `;
 
 // FIXME: Check how to handle pagination of `productVariants` in the UI.
 // We need allow the user view  all cart items regardless of pagination.
-export const productVariatnsQuery = gql`
+export const productVariantsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
   query VariantList($ids: [ID!]) {
@@ -161,4 +179,4 @@ export const TypedProductDetailsQuery = TypedQuery<
 export const TypedProductVariantsQuery = TypedQuery<
   VariantList,
   VariantListVariables
->(productVariatnsQuery);
+>(productVariantsQuery);

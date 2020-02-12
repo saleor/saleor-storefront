@@ -1,0 +1,658 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  grid-template-areas: "sidebar preview";
+  height: 100%;
+  grid-template-columns: 76px 1fr;
+  grid-column-gap: 40px;
+}
+
+.c4 {
+  width: 76px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #06847B;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.c4 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c3::-webkit-scrollbar {
+  width: 0px;
+}
+
+.c3 ul {
+  position: absolute;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.c5 {
+  grid-area: preview;
+  width: auto;
+  max-height: 560px;
+  overflow: hidden;
+}
+
+.c5 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <ul>
+          <li>
+            <div
+              className="c4"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      className="c5"
+    >
+      <img
+        alt="product"
+        onError={[Function]}
+        src="test-file-stub"
+        srcSet="test-file-stub 1x"
+      />
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c9 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  grid-template-areas: "sidebar preview";
+  height: 100%;
+  grid-template-columns: 76px 1fr;
+  grid-column-gap: 40px;
+}
+
+.c6 {
+  width: 76px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #06847B;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.c6 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.c7 {
+  width: 76px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.c7 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.c3 {
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(50,50,50,0.3);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  top: 0%;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.c4 {
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(50,50,50,0.3);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  bottom: 0%;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c5 {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c5::-webkit-scrollbar {
+  width: 0px;
+}
+
+.c5 ul {
+  position: absolute;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.c8 {
+  grid-area: preview;
+  width: auto;
+  max-height: 560px;
+  overflow: hidden;
+}
+
+.c8 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+        onClick={[Function]}
+      >
+        <svg
+          height={10}
+          viewBox="0 0 32 32"
+          width={10}
+        >
+          <path
+            d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+            fill="#21125E"
+          />
+        </svg>
+      </div>
+      <div
+        className="c4"
+        onClick={[Function]}
+      >
+        <svg
+          height={10}
+          viewBox="0 0 32 32"
+          width={10}
+        >
+          <path
+            d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+            fill="#21125E"
+          />
+        </svg>
+      </div>
+      <div
+        className="c5"
+      >
+        <ul>
+          <li>
+            <div
+              className="c6"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+          <li>
+            <div
+              className="c7"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <img
+                alt="product"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      className="c8"
+    >
+      <img
+        alt="product"
+        onError={[Function]}
+        src="test-file-stub"
+        srcSet="test-file-stub 1x"
+      />
+    </div>
+  </div>
+  <div
+    className="c9"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  grid-template-areas: "sidebar preview";
+  height: 100%;
+  grid-template-columns: 76px 1fr;
+  grid-column-gap: 40px;
+}
+
+.c4 {
+  width: 76px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #06847B;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.c4 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.c5 {
+  width: 76px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.c5 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.c2 {
+  position: relative;
+}
+
+.c3 {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c3::-webkit-scrollbar {
+  width: 0px;
+}
+
+.c3 ul {
+  position: absolute;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.c6 {
+  grid-area: preview;
+  width: auto;
+  max-height: 560px;
+  overflow: hidden;
+}
+
+.c6 img {
+  width: 100%;
+  object-fit: contain;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          <ul>
+            <li>
+              <div
+                className="c4"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                <img
+                  alt="product"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </li>
+            <li>
+              <div
+                className="c5"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                <img
+                  alt="product"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </li>
+            <li>
+              <div
+                className="c5"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+              >
+                <img
+                  alt="product"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        className="c6"
+      >
+        <img
+          alt="product"
+          onError={[Function]}
+          src="test-file-stub"
+          srcSet="test-file-stub 1x"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;

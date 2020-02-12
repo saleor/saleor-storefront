@@ -18,10 +18,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice_net {
@@ -34,10 +30,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPric
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_totalPrice {
@@ -62,10 +54,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted_net {
@@ -78,10 +66,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_priceUndiscounted {
@@ -106,10 +90,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price_net {
@@ -122,10 +102,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_p
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant_pricing_price {
@@ -225,6 +201,42 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_lines {
   variant: updateCheckoutLine_checkoutLinesUpdate_checkout_lines_variant;
 }
 
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+
+export interface updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice_net;
+}
+
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_gross {
   __typename: "Money";
   /**
@@ -235,10 +247,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_g
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_net {
@@ -251,10 +259,6 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice_n
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice {
@@ -280,9 +284,17 @@ export interface updateCheckoutLine_checkoutLinesUpdate_checkout {
    */
   lines: (updateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
   /**
+   * The sum of the the checkout line prices, with all the taxes,shipping costs, and discounts included.
+   */
+  totalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_totalPrice | null;
+  /**
    * The price of the checkout before shipping, with taxes included.
    */
   subtotalPrice: updateCheckoutLine_checkoutLinesUpdate_checkout_subtotalPrice | null;
+  /**
+   * Returns True, if checkout requires shipping.
+   */
+  isShippingRequired: boolean;
 }
 
 export interface updateCheckoutLine_checkoutLinesUpdate_errors {

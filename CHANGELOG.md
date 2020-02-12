@@ -4,6 +4,14 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Account confirmation mechanism - #565 by @tomaszszymanski129
+- Add missing product attributes on product page - #536 by @orzechdev
+- Change register mutation to accountRegister - #549 by @tomaszszymanski129
+- Add `ProductVariantPicker` component supporting multiple product variant attributes - #550 by @orzechdev
+- Fix not working storefront when no data in saleor database exist - #551 by @orzechdev
+- Make checkout working without shipping if it is not required - #571 by @orzechdev
+- Add ability to apply a promo code in checkout - #582 by @orzechdev
+
 ## 0.7.0
 
 - Fix login and registration overlay not showing - #322 by @mateuszkula

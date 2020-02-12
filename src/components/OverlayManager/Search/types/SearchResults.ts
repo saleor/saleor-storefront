@@ -54,7 +54,7 @@ export interface SearchResults_products_edges_node {
    * The storefront URL for the product.
    */
   url: string;
-  category: SearchResults_products_edges_node_category;
+  category: SearchResults_products_edges_node_category | null;
 }
 
 export interface SearchResults_products_edges {

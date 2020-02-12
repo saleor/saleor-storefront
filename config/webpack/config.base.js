@@ -1,28 +1,32 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 
+if (!process.env.API_URI) {
+  throw new Error("Environment variable API_URI not set");
+}
+
 module.exports = ({ sourceDir, distDir }) => ({
   resolve: {
     alias: {
-      "react-dom": "@hot-loader/react-dom"
+      "react-dom": "@hot-loader/react-dom",
     },
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     plugins: [
       new TsconfigPathsPlugin({
-        configFile: "./tsconfig.json"
-      })
-    ]
+        configFile: "./tsconfig.json",
+      }),
+    ],
   },
   entry: {
-    app: `${sourceDir}/index.tsx`
+    app: `${sourceDir}/index.tsx`,
   },
   output: {
     path: distDir,
-    publicPath: "/"
+    publicPath: "/",
   },
   devtool: "source-map",
   module: {
@@ -33,8 +37,8 @@ module.exports = ({ sourceDir, distDir }) => ({
         exclude: /node_modules/,
         options: {
           experimentalWatchApi: true,
-          transpileOnly: true
-        }
+          transpileOnly: true,
+        },
       },
       {
         test: /\.(woff2?|ttf|eot)$/,
@@ -44,10 +48,10 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "fonts/",
-              publicPath: "/fonts/"
-            }
-          }
-        ]
+              publicPath: "/fonts/",
+            },
+          },
+        ],
       },
       {
         test: /\.(gif|jpg|png|svg)$/,
@@ -57,39 +61,41 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "images/",
-              publicPath: "/images/"
-            }
+              publicPath: "/images/",
+            },
           },
           {
             loader: "image-webpack-loader",
             options: {
               mozjpeg: {
                 progressive: true,
-                quality: 85
+                quality: 85,
               },
               pngquant: {
                 quality: "65-90",
-                speed: 4
+                speed: 4,
               },
               gifsicle: {
-                enabled: false
-              }
-            }
-          }
-        ]
-      }
-    ]
+                enabled: false,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
-    new CleanWebpackPlugin([distDir]),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: distDir,
+    }),
     new HtmlWebpackPlugin({
       filename: `${distDir}/index.html`,
-      template: `${sourceDir}/index.html`
+      template: `${sourceDir}/index.html`,
     }),
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
       exclude: "node_modules",
-      async: false
+      async: false,
     }),
     // PWA plugins
     new WebappWebpackPlugin({
@@ -101,16 +107,16 @@ module.exports = ({ sourceDir, distDir }) => ({
         display: "standalone",
         developerURL: null, // prevent retrieving from the nearest package.json
         background: "#ddd",
-        theme_color: "#333"
-      }
+        theme_color: "#333",
+      },
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
-      SERVICE_WORKER_TIMEOUT: "60000"
-    })
+      SERVICE_WORKER_TIMEOUT: "60000",
+    }),
   ],
   node: {
     fs: "empty",
-    module: "empty"
-  }
+    module: "empty",
+  },
 });

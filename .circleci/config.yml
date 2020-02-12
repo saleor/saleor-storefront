@@ -24,45 +24,13 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
+      - run:
+          name: Package lock security test
+          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn --validate-https
       - persist_to_workspace:
           root: ~/app
           paths:
             - dist/*
-  cypress/run:
-    docker:
-      - image: cypress/base:8
-        environment:
-          TERM: xterm
-    parallelism: 1
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - cache-{{ .Branch }}-{{ checksum "package.json" }}
-      - run:
-          name: Npm CI
-          command: npm ci
-      - run:
-          command: npx cypress verify
-      - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project
-            - .cache/Cypress
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Running E2E tests
-          command: npm run test:e2e:run
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
   deploy:
     working_directory: ~/app
     docker:
@@ -92,4 +60,3 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - cypress/run

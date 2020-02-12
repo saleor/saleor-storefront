@@ -16,7 +16,28 @@ export const useUpdateCheckoutBillingAddress = mutationFactory(
 export const useUpdateCheckoutShippingAddress = mutationFactory(
   "setCheckoutShippingAddress"
 );
+export const useAddCheckoutPromoCode = mutationFactory(
+  "setAddCheckoutPromoCode"
+);
+
+export const useRemoveCheckoutPromoCode = mutationFactory(
+  "setRemoveCheckoutPromoCode"
+);
 
 // User mutations
 export const usePasswordChange = mutationFactory("setPasswordChange");
 export const useAccountUpdate = mutationFactory("setAccountUpdate");
+
+export const useSetPassword = mutationFactory("setPassword");
+
+// Wishlist mutation
+export const useAddWishlistProduct = mutationFactory("setAddWishlistProduct");
+export const useRemoveWishlistProduct = mutationFactory(
+  "setRemoveWishlistProduct"
+);
+export const useAddWishlistProductVariant = mutationFactory(
+  "setAddWishlistProductVariant"
+);
+export const useAddRemoveWishlistProductVariant = mutationFactory(
+  "setRemoveWishlistProductVariant"
+);

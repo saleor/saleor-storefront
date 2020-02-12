@@ -32,9 +32,14 @@
     }
   }
 
+  &__undiscounted_price {
+    text-decoration: line-through;
+    color: $gray;
+    font-size: $small-font-size;
+    font-weight: regular;
+  }
+
   &__action {
-    margin-left: $spacer * 1.5;
-    min-width: 280px;
     min-height: 49px;
 
     &--fade {
@@ -62,8 +67,18 @@
     }
   }
 
+  &__selected-attributes {
+    font-size: $small-font-size;
+    margin-top: 20px;
+
+    > span:first-child {
+      color: $gray-dark;
+    }
+  }
+
   &__variant-picker {
     display: grid;
+    margin-top: 20px;
 
     .react-select-wrapper,
     .input {
@@ -83,5 +98,14 @@
         }
       }
     }
+  }
+
+  &__quantity-input {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  &__add-to-wishlist {
+    margin-top: 20px;
   }
 }

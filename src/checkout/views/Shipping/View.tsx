@@ -4,7 +4,7 @@ import { RouteComponentProps } from "react-router";
 import {
   useCreateCheckout,
   useUpdateCheckoutShippingAddress,
-  useUserDetails
+  useUserDetails,
 } from "@sdk/react";
 
 import { CartContext } from "../../../components/CartProvider/context";

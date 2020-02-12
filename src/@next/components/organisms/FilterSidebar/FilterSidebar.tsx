@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Overlay } from "../";
-
 import { IconButton } from "@components/atoms";
 import { FilterAttribute } from "@components/molecules";
-import { useHandlerWhenClickedOutside } from "../../../hooks";
+import { useHandlerWhenClickedOutside } from "@hooks";
+
+import { Overlay } from "../";
 import * as S from "./styles";
 import { IProps } from "./types";
 

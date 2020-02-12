@@ -36,6 +36,7 @@ export interface IGuestAddressProps {
   proceedToNextStep: (formData: FormAddressType) => void;
   shippingAsBilling?: boolean;
   type?: CheckoutFormType;
+  noShipping?: boolean;
 }
 
 export interface UserAddressSelectorProps {

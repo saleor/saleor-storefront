@@ -1,6 +1,6 @@
 import {
   ApolloClient,
-  MutationOptions as ApolloMutationOptions
+  MutationOptions as ApolloMutationOptions,
 } from "apollo-client";
 import gql from "graphql-tag";
 
@@ -8,47 +8,80 @@ import * as Address from "./address";
 import * as Auth from "./auth";
 import * as Checkout from "./checkout";
 import * as User from "./user";
+import * as Wishlist from "./whishlist";
 
 import {
   CreateCheckout,
-  CreateCheckoutVariables
+  CreateCheckoutVariables,
 } from "./types/CreateCheckout";
 import {
   DeleteUserAddress,
-  DeleteUserAddressVariables
+  DeleteUserAddressVariables,
 } from "./types/DeleteUserAddress";
 
 import {
   CreateUserAddress,
-  CreateUserAddressVariables
+  CreateUserAddressVariables,
 } from "./types/CreateUserAddress";
 
 import {
   SetCustomerDefaultAddress,
-  SetCustomerDefaultAddressVariables
+  SetCustomerDefaultAddressVariables,
 } from "./types/SetCustomerDefaultAddress";
 
 import {
   UpdateUserAddress,
-  UpdateUserAddressVariables
+  UpdateUserAddressVariables,
 } from "./types/UpdateUserAddress";
+
+import { SetPassword, SetPasswordVariables } from "./types/SetPassword";
 
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 import {
   UpdateCheckoutBillingAddress,
-  UpdateCheckoutBillingAddressVariables
+  UpdateCheckoutBillingAddressVariables,
 } from "./types/UpdateCheckoutBillingAddress";
 import {
   UpdateCheckoutShippingAddress,
-  UpdateCheckoutShippingAddressVariables
+  UpdateCheckoutShippingAddressVariables,
 } from "./types/UpdateCheckoutShippingAddress";
 
 import {
   PasswordChange,
-  PasswordChangeVariables
+  PasswordChangeVariables,
 } from "./types/PasswordChange";
 
+import {
+  AddCheckoutPromoCode,
+  AddCheckoutPromoCodeVariables,
+} from "./types/AddCheckoutPromoCode";
+
+import {
+  RemoveCheckoutPromoCode,
+  RemoveCheckoutPromoCodeVariables,
+} from "./types/RemoveCheckoutPromoCode";
+
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
+
+import {
+  AddWishlistProduct,
+  AddWishlistProductVariables,
+} from "./types/AddWishlistProduct";
+
+import {
+  RemoveWishlistProduct,
+  RemoveWishlistProductVariables,
+} from "./types/RemoveWishlistProduct";
+
+import {
+  AddWishlistProductVariant,
+  AddWishlistProductVariantVariables,
+} from "./types/AddWishlistProductVariant";
+
+import {
+  RemoveWishlistProductVariant,
+  RemoveWishlistProductVariantVariables,
+} from "./types/RemoveWishlistProductVariant";
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,
@@ -64,6 +97,42 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${User.accountUpdate}
+      `,
+      ...options,
+    }),
+  AddCheckoutPromoCode: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      AddCheckoutPromoCode,
+      AddCheckoutPromoCodeVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.addCheckoutPromoCode}
+      `,
+      ...options,
+    }),
+  AddWishlistProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<AddWishlistProduct, AddWishlistProductVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.addWhishlistProduct}
+      `,
+      ...options,
+    }),
+  AddWishlistProductVariant: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      AddWishlistProductVariant,
+      AddWishlistProductVariantVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.addWhishlistProductVariant}
       `,
       ...options,
     }),
@@ -117,6 +186,55 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${User.changeUserPassword}
+      `,
+      ...options,
+    }),
+  RemoveCheckoutPromoCode: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveCheckoutPromoCode,
+      RemoveCheckoutPromoCodeVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.removeCheckoutPromoCode}
+      `,
+      ...options,
+    }),
+  RemoveWishlistProduct: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveWishlistProduct,
+      RemoveWishlistProductVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.removeWhishlistProduct}
+      `,
+      ...options,
+    }),
+  RemoveWishlistProductVariant: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      RemoveWishlistProductVariant,
+      RemoveWishlistProductVariantVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Wishlist.removeWhishlistProductVariant}
+      `,
+      ...options,
+    }),
+  SetPassword: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<SetPassword, SetPasswordVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${User.setPassword}
       `,
       ...options,
     }),

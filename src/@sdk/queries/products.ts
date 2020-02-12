@@ -2,7 +2,8 @@ import gql from "graphql-tag";
 
 import {
   basicProductFragment,
-  productVariantFragment
+  productVariantFragment,
+  selectedAttributeFragment,
 } from "../fragments/products";
 
 export const productPricingFragment = gql`
@@ -31,6 +32,7 @@ export const productPricingFragment = gql`
 
 export const productListDetails = gql`
   ${basicProductFragment}
+  ${productPricingFragment}
   query ProductList(
     $id: ID!
     $attributes: [AttributeInput]
@@ -54,20 +56,7 @@ export const productListDetails = gql`
       edges {
         node {
           ...BasicProductFields
-          price {
-            amount
-            currency
-            localized
-          }
-          pricing {
-            priceRange {
-              start {
-                gross {
-                  localized
-                }
-              }
-            }
-          }
+          ...ProductPricingField
           category {
             id
             name
@@ -86,6 +75,7 @@ export const productListDetails = gql`
 
 export const productDetails = gql`
   ${basicProductFragment}
+  ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
   query ProductDetails($id: ID!) {
@@ -96,7 +86,7 @@ export const productDetails = gql`
       category {
         id
         name
-        products(first: 4) {
+        products(first: 3) {
           edges {
             node {
               ...BasicProductFields
@@ -113,13 +103,32 @@ export const productDetails = gql`
         id
         url
       }
+      attributes {
+        ...SelectedAttributeFields
+      }
       variants {
         ...ProductVariantFields
       }
       seoDescription
       seoTitle
-      availability {
-        available
+      isAvailable
+    }
+  }
+`;
+
+export const variantsProducts = gql`
+  query VariantsProducts($ids: [ID]) {
+    productVariants(ids: $ids, first: 100) {
+      edges {
+        node {
+          id
+          product {
+            id
+            productType {
+              isShippingRequired
+            }
+          }
+        }
       }
     }
   }

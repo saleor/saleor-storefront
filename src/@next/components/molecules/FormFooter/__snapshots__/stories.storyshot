@@ -94,7 +94,6 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
   .c3 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -206,7 +205,6 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
   .c2 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 
@@ -310,7 +308,6 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
   .c2 {
     padding: 0.9rem 1rem;
     width: 88%;
-    max-width: 88%;
   }
 }
 

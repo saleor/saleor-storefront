@@ -5,12 +5,10 @@ export const checkoutPriceFragment = gql`
     gross {
       amount
       currency
-      localized
     }
     net {
       amount
       currency
-      localized
     }
   }
 `;
@@ -71,7 +69,6 @@ export const checkoutShippingMethodFragment = gql`
     price {
       currency
       amount
-      localized
     }
   }
 `;
@@ -108,9 +105,6 @@ export const checkoutFragment = gql`
     }
     token
     id
-    user {
-      email
-    }
     totalPrice {
       ...Price
     }
@@ -136,5 +130,13 @@ export const checkoutFragment = gql`
     lines {
       ...CheckoutLine
     }
+    isShippingRequired
+    discount {
+      currency
+      amount
+    }
+    discountName
+    translatedDiscountName
+    voucherCode
   }
 `;

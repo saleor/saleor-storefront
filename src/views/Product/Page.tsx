@@ -4,7 +4,6 @@ import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
 
-import { RichTextContent } from "@components/atoms";
 import { CachedImage, Thumbnail } from "@components/molecules";
 
 import { Breadcrumbs, ProductDescription } from "../../components";
@@ -14,11 +13,29 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
+import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
+
+import { ProductGallery } from "../../@next/components/organisms/";
+
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
-class Page extends React.PureComponent<{ product: ProductDetails_product }> {
+class Page extends React.PureComponent<
+  { product: ProductDetails_product },
+  { variantId: string }
+> {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
   productGallery: React.RefObject<HTMLDivElement> = React.createRef();
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      variantId: "",
+    };
+  }
+
+  setVariantId = (id: string) => {
+    this.setState({ variantId: id });
+  };
 
   get showCarousel() {
     return this.props.product.images.length > 1;
@@ -27,70 +44,58 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
   populateBreadcrumbs = product => [
     {
       link: generateCategoryUrl(product.category.id, product.category.name),
-      value: product.category.name
+      value: product.category.name,
     },
     {
       link: generateProductUrl(product.id, product.name),
-      value: product.name
-    }
+      value: product.name,
+    },
   ];
 
-  componentDidMount() {
-    if (this.showCarousel) {
-      window.addEventListener("scroll", this.handleScroll, {
-        passive: true
-      });
-      window.addEventListener("resize", this.handleScroll, {
-        passive: true
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.showCarousel) {
-      window.removeEventListener("scroll", this.handleScroll);
-      window.removeEventListener("resize", this.handleScroll);
-    }
-  }
-
-  handleScroll = () => {
-    const productGallery = this.productGallery.current;
-    const fixedElement = this.fixedElement.current;
-
-    if (productGallery && fixedElement) {
-      const containerPostion = Math.floor(
-        window.innerHeight - productGallery.getBoundingClientRect().bottom
-      );
-      const fixedPosition = Math.floor(
-        window.innerHeight - fixedElement.getBoundingClientRect().bottom
-      );
-      const fixedToTop = Math.floor(fixedElement.getBoundingClientRect().top);
-      const galleryToTop = Math.floor(
-        this.productGallery.current.getBoundingClientRect().top + window.scrollY
-      );
-
-      if (containerPostion >= fixedPosition && fixedToTop <= galleryToTop) {
-        fixedElement.classList.remove("product-page__product__info--fixed");
-        fixedElement.classList.add("product-page__product__info--absolute");
+  getImages = () => {
+    const { product } = this.props;
+    if (product.variants && this.state.variantId) {
+      const variant = product.variants
+        .filter(variant => variant.id === this.state.variantId)
+        .pop();
+      if (variant.images.length > 0) {
+        return variant.images;
       } else {
-        fixedElement.classList.remove("product-page__product__info--absolute");
-        fixedElement.classList.add("product-page__product__info--fixed");
+        return product.images;
       }
+    } else {
+      return product.images;
     }
+  };
+
+  renderImages = product => {
+    const images = this.getImages();
+    if (images && images.length) {
+      return images.map(image => (
+        <a href={image.url} target="_blank">
+          <CachedImage url={image.url} key={image.id}>
+            <Thumbnail source={product} />
+          </CachedImage>
+        </a>
+      ));
+    }
+    return <CachedImage />;
   };
 
   render() {
     const { product } = this.props;
+
     const cartContextConsumer = (
       <CartContext.Consumer>
         {cart => (
           <ProductDescription
+            productId={product.id}
             name={product.name}
             productVariants={product.variants}
+            pricing={product.pricing}
             addToCart={cart.add}
-          >
-            <RichTextContent descriptionJson={product.descriptionJson} />
-          </ProductDescription>
+            setVariantId={this.setVariantId}
+          />
         )}
       </CartContext.Consumer>
     );
@@ -111,7 +116,7 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
               {matches =>
                 matches ? (
                   <>
-                    <GalleryCarousel images={product.images} />
+                    <GalleryCarousel images={this.getImages()} />
                     <div className="product-page__product__info">
                       {cartContextConsumer}
                     </div>
@@ -122,19 +127,13 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                       className="product-page__product__gallery"
                       ref={this.productGallery}
                     >
-                      {product.images.map((image, index) => (
-                        <CachedImage url={image.url} key={image.id}>
-                          <Thumbnail source={product} />
-                        </CachedImage>
-                      ))}
+                      <ProductGallery images={this.getImages()} />
                     </div>
                     <div className="product-page__product__info">
                       <div
-                        className={classNames({
-                          ["product-page__product__info--fixed"]: this
-                            .showCarousel
-                        })}
-                        ref={this.fixedElement}
+                        className={classNames(
+                          "product-page__product__info--fixed"
+                        )}
                       >
                         {cartContextConsumer}
                       </div>
@@ -143,6 +142,14 @@ class Page extends React.PureComponent<{ product: ProductDetails_product }> {
                 )
               }
             </Media>
+          </div>
+        </div>
+        <div className="container">
+          <div className="product-page__product__description">
+            <NewProductDescription
+              descriptionJson={product.descriptionJson}
+              attributes={product.attributes}
+            />
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />

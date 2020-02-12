@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder } from "./../../../../types/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Collection
@@ -59,10 +59,6 @@ export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_s
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_start_net {
@@ -75,10 +71,6 @@ export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_s
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_start {
@@ -103,10 +95,6 @@ export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_s
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
@@ -119,10 +107,6 @@ export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_s
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRangeUndiscounted_stop {
@@ -159,10 +143,6 @@ export interface Collection_products_edges_node_pricing_priceRange_start_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRange_start_net {
@@ -175,10 +155,6 @@ export interface Collection_products_edges_node_pricing_priceRange_start_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRange_start {
@@ -203,10 +179,6 @@ export interface Collection_products_edges_node_pricing_priceRange_stop_gross {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRange_stop_net {
@@ -219,10 +191,6 @@ export interface Collection_products_edges_node_pricing_priceRange_stop_net {
    * Currency code.
    */
   currency: string;
-  /**
-   * Money formatted according to the current locale.
-   */
-  localized: string;
 }
 
 export interface Collection_products_edges_node_pricing_priceRange_stop {
@@ -293,7 +261,7 @@ export interface Collection_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Collection_products_edges_node_pricing | null;
-  category: Collection_products_edges_node_category;
+  category: Collection_products_edges_node_category | null;
 }
 
 export interface Collection_products_edges {
@@ -403,7 +371,7 @@ export interface Collection {
 
 export interface CollectionVariables {
   id: string;
-  attributes?: (any | null)[] | null;
+  attributes?: (AttributeInput | null)[] | null;
   after?: string | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
