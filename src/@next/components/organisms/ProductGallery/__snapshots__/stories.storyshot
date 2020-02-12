@@ -21,7 +21,7 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
   display: grid;
   grid-template-areas: "sidebar preview";
   height: 100%;
-  grid-template-columns: 76px 560px;
+  grid-template-columns: 76px 1fr;
   grid-column-gap: 40px;
 }
 
@@ -77,8 +77,8 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
 
 .c5 {
   grid-area: preview;
-  width: 100%;
-  height: 560px;
+  width: auto;
+  max-height: 560px;
   overflow: hidden;
 }
 
@@ -155,7 +155,7 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
   display: grid;
   grid-template-areas: "sidebar preview";
   height: 100%;
-  grid-template-columns: 76px 560px;
+  grid-template-columns: 76px 1fr;
   grid-column-gap: 40px;
 }
 
@@ -282,8 +282,8 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
 
 .c8 {
   grid-area: preview;
-  width: 100%;
-  height: 560px;
+  width: auto;
+  max-height: 560px;
   overflow: hidden;
 }
 
@@ -488,7 +488,7 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
   display: grid;
   grid-template-areas: "sidebar preview";
   height: 100%;
-  grid-template-columns: 76px 560px;
+  grid-template-columns: 76px 1fr;
   grid-column-gap: 40px;
 }
 
@@ -568,8 +568,8 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
 
 .c6 {
   grid-area: preview;
-  width: 100%;
-  height: 560px;
+  width: auto;
+  max-height: 560px;
   overflow: hidden;
 }
 
