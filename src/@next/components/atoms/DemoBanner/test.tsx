@@ -5,7 +5,6 @@ import React from "react";
 import { DemoBanner } from ".";
 
 describe("<DemoBanner />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<DemoBanner />);
 

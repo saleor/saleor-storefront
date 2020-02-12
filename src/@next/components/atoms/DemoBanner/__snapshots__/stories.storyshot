@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
   margin: 20px;
 }
 
-.c4 {
+.c8 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -18,6 +18,13 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
 }
 
 .c1 {
+  width: 100%;
+  background-color: #EBF1F6;
+  padding: 0 1.3rem;
+  font-size: 12;
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25,52 +32,129 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 100%;
-  background-color: #130d44;
-  padding: 1.5em;
   max-height: 60px;
-  font-size: 12;
-}
-
-.c2 {
-  color: white;
-  font-weight: 600;
-  text-transform: uppercase;
+  padding: 1.5em 0;
+  background-image: linear-gradient( to right, #9D9FB1 13%, rgba(255,255,255,0) 0% );
+  background-position: bottom;
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
 }
 
 .c3 {
-  color: #00c5aa;
+  line-height: 0;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  padding: 1rem;
+}
+
+.c6 {
+  color: #036DFF;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.c7 {
+  border-right: 1px solid #9D9FB1;
+  height: 2rem;
 }
 
 <div
   className="c0"
 >
-  <div
+  <section
     className="c1"
   >
-    <a
+    <div
       className="c2"
-      href="https://pwa.saleor.io/dashboard/"
-      target="_blank"
     >
-      See the GraphQL-first 
-      <span
-        className="c3"
+      <a
+        href="https://saleor.io/"
+        target="_blank"
       >
-        dashboard
-      </span>
-    </a>
-  </div>
+        <div
+          className="c3"
+        />
+      </a>
+      <div
+        className="c4"
+      >
+        <a
+          className="c5"
+          href="https://pwa.demo.saleor.rocks/graphql/"
+          target="_blank"
+        >
+          <span
+            className="c6"
+          >
+            API
+          </span>
+        </a>
+        <div
+          className="c7"
+        />
+        <a
+          className="c5"
+          href="https://pwa.saleor.io/dashboard/"
+          target="_blank"
+        >
+          <span
+            className="c6"
+          >
+            Dashboard
+          </span>
+        </a>
+        <a
+          className="c5"
+          href="https://pwa.saleor.io/dashboard/"
+          target="_blank"
+        >
+          Explore 
+          <span
+            className="c6"
+          >
+            Store’s dashboard
+          </span>
+        </a>
+        <div
+          className="c7"
+        />
+        <a
+          className="c5"
+          href="https://pwa.demo.saleor.rocks/graphql/"
+          target="_blank"
+        >
+          Play with 
+          <span
+            className="c6"
+          >
+            GraphQL API
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
   <div
-    className="c4"
+    className="c8"
   />
 </div>
 `;
