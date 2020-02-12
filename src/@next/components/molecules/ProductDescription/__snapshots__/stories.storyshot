@@ -32,6 +32,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
 }
 
 .c2 {
+  cursor: pointer;
   min-width: 230px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -48,6 +49,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
 }
 
 .c3 {
+  cursor: pointer;
   min-width: 230px;
   font-size: 1.5rem;
   font-weight: 600;
