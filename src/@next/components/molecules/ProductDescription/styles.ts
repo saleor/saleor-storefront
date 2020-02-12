@@ -36,6 +36,7 @@ export const Tabs = styled.div`
 `;
 
 export const TabTitle = styled.div<{ active?: boolean }>`
+  cursor: pointer;
   min-width: 230px;
   font-size: ${props => props.theme.typography.h3FontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};
