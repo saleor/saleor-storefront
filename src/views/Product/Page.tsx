@@ -4,7 +4,6 @@ import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
 
-import { RichTextContent } from "@components/atoms";
 import { CachedImage, Thumbnail } from "@components/molecules";
 
 import { Breadcrumbs, ProductDescription } from "../../components";
@@ -13,6 +12,8 @@ import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
+
+import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
 
 import { ProductGallery } from "../../@next/components/organisms/";
 
@@ -57,7 +58,11 @@ class Page extends React.PureComponent<
       const variant = product.variants
         .filter(variant => variant.id === this.state.variantId)
         .pop();
-      return variant.images;
+      if (variant.images.length > 0) {
+        return variant.images;
+      } else {
+        return product.images;
+      }
     } else {
       return product.images;
     }
@@ -87,13 +92,10 @@ class Page extends React.PureComponent<
             productId={product.id}
             name={product.name}
             productVariants={product.variants}
-            selectedAttributes={product.attributes}
             pricing={product.pricing}
             addToCart={cart.add}
             setVariantId={this.setVariantId}
-          >
-            <RichTextContent descriptionJson={product.descriptionJson} />
-          </ProductDescription>
+          />
         )}
       </CartContext.Consumer>
     );
@@ -140,6 +142,14 @@ class Page extends React.PureComponent<
                 )
               }
             </Media>
+          </div>
+        </div>
+        <div className="container">
+          <div className="product-page__product__description">
+            <NewProductDescription
+              descriptionJson={product.descriptionJson}
+              attributes={product.attributes}
+            />
           </div>
         </div>
         <OtherProducts products={product.category.products.edges} />

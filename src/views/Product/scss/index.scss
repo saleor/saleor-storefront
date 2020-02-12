@@ -1,7 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .product-page {
-  background-color: $white; 
+  background-color: $white;
 
   .breadcrumbs {
     background-color: $white;
@@ -17,6 +17,12 @@
     @media (max-width: $small-screen) {
       display: block;
       margin-bottom: $spacer * 2;
+    }
+
+    &__description {
+      width: 100%;
+      min-height: $spacer * 10;
+      margin-bottom: $spacer * 9; 
     }
 
     &__info {

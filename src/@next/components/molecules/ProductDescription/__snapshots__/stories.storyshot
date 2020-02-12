@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: none;
+  -ms-flex-wrap: none;
+  flex-wrap: none;
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin-bottom: 70px;
+  overflow: hidden;
+}
+
+.c2 {
+  cursor: pointer;
+  min-width: 230px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.02em;
+  -moz-letter-spacing: 0.02em;
+  -ms-letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+  color: #06847B;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: #06847B;
+  padding-bottom: 25px;
+  margin-right: 60px;
+}
+
+.c3 {
+  cursor: pointer;
+  min-width: 230px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.02em;
+  -moz-letter-spacing: 0.02em;
+  -ms-letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  padding-bottom: 25px;
+  margin-right: 60px;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    font-size: 1.125rem;
+    min-width: 150px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width:540px) {
+  .c3 {
+    font-size: 1.125rem;
+    min-width: 150px;
+    margin-right: 20px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        DESCRIPTION
+      </div>
+      <div
+        className="c3"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        ATTRIBUTES
+      </div>
+    </div>
+    <p>
+      This is some cool product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;
