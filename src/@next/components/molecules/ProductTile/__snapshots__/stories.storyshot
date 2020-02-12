@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
   margin: 20px;
 }
 
-.c4 {
+.c5 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -44,6 +44,18 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
   text-align: left;
 }
 
+.c4 {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.c4 > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
 @media (max-width:992px) {
   .c1 {
     padding: 1.8rem;
@@ -76,7 +88,7 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
         </span>
       </p>
       <div
-        className=""
+        className="c4"
       >
         <img
           alt=""
@@ -88,7 +100,7 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
     </div>
   </div>
   <div
-    className="c4"
+    className="c5"
   />
 </div>
 `;

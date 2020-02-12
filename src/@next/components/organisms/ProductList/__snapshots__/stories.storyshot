@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   margin: 20px;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
+.c7 {
   background-color: #fff;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -32,26 +32,26 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   border-right: 1px solid rgb(33,18,94);
 }
 
-.c6:hover {
+.c7:hover {
   background-color: rgb(33,18,94);
   color: #fff;
 }
 
-.c6:active {
+.c7:active {
   background-color: #190c4e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c6:disabled {
+.c7:disabled {
   background-color: #7d7d7d;
 }
 
-.c6:disabled,
-.c6:disabled:hover {
+.c7:disabled,
+.c7:disabled:hover {
   cursor: default;
 }
 
-.c7 {
+.c8 {
   display: inline-block;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -86,19 +86,31 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   text-align: left;
 }
 
+.c5 {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.c5 > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
 .c1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
 }
 
-.c5 {
+.c6 {
   text-align: center;
   margin: 2.5rem 0;
 }
 
 @media (max-width:540px) {
-  .c6 {
+  .c7 {
     padding: 0.9rem 1rem;
     width: 88%;
   }
@@ -150,7 +162,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -181,7 +193,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -212,7 +224,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -243,7 +255,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -274,7 +286,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -305,7 +317,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
           </span>
         </p>
         <div
-          className=""
+          className="c5"
         >
           <img
             alt=""
@@ -318,16 +330,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     </a>
   </div>
   <div
-    className="c5"
+    className="c6"
   >
     <button
-      className="c6"
+      className="c7"
       color="secondary"
       onClick={[Function]}
       size="md"
     >
       <span
-        className="c7"
+        className="c8"
         size="md"
       >
         More +
@@ -335,7 +347,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     </button>
   </div>
   <div
-    className="c8"
+    className="c9"
   />
 </div>
 `;
