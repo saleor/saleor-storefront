@@ -16,6 +16,7 @@ export interface IProps {
   numberOfProducts: number;
   sortOptions: SortOptions[];
   onChange: (order: { value?: string; label: string }) => void;
+  onCloseFilterAttribute: (attributeSlug: string, valueSlug: string) => void;
   openFiltersMenu: () => void;
   clearFilters: () => void;
 }

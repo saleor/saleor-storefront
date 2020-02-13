@@ -10,6 +10,7 @@ const DEFAULT_PROPS = {
   clearFilters: action("clearFilters"),
   numberOfProducts: 255,
   onChange: action("onChange"),
+  onCloseFilterAttribute: action("onAttributeFiltersChange"),
   openFiltersMenu: action("openFiltersMenu"),
   sortOptions: [
     {

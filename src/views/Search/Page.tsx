@@ -126,6 +126,7 @@ const Page: React.FC<PageProps> = ({
           clearFilters={clearFilters}
           sortOptions={sortOptions}
           onChange={onOrder}
+          onCloseFilterAttribute={onAttributeFiltersChange}
         />
         {canDisplayProducts && (
           <ProductList

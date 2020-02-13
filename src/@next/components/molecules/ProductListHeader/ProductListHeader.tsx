@@ -14,6 +14,7 @@ export const ProductListHeader: React.FC<IProps> = ({
   activeFiltersAttributes = [],
   sortOptions,
   onChange,
+  onCloseFilterAttribute,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -53,9 +54,15 @@ export const ProductListHeader: React.FC<IProps> = ({
         </div>
       </S.Bar>
       <S.FiltersChipsWrapper>
-        {activeFiltersAttributes.map(({ valueName }) => (
-          <Chip>{valueName}</Chip>
-        ))}
+        {activeFiltersAttributes.map(
+          ({ attributeSlug, valueName, valueSlug }) => (
+            <Chip
+              onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
+            >
+              {valueName}
+            </Chip>
+          )
+        )}
       </S.FiltersChipsWrapper>
     </S.Wrapper>
   );

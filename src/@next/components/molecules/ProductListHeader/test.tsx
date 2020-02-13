@@ -6,6 +6,7 @@ import { ProductListHeader } from ".";
 
 const clearFilterMock = jest.fn();
 const onChangeMock = jest.fn();
+const onCloseFilterAttributeMock = jest.fn();
 const openFiltersMenuMock = jest.fn();
 
 const DEFAULT_PROPS = {
@@ -14,6 +15,7 @@ const DEFAULT_PROPS = {
   clearFilters: clearFilterMock,
   numberOfProducts: 255,
   onChange: onChangeMock,
+  onCloseFilterAttribute: onCloseFilterAttributeMock,
   openFiltersMenu: openFiltersMenuMock,
   sortOptions: [
     {
