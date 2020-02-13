@@ -1,14 +1,14 @@
-import { media, styled } from "@styles";
+import { styled } from "@styles";
 
 import { Size } from "./types";
 
 const padding = {
-  md: "0.6rem 0.6rem 0.6rem 0.9rem",
+  md: "0.4rem 0.4rem 0.4rem 0.8rem",
   sm: "0.1rem",
 };
 
 const paddingCloseButton = {
-  md: "0.3rem",
+  md: "0.4rem 0.4rem 0.3rem 0.4rem",
   sm: "0.1rem",
 };
 
@@ -22,22 +22,16 @@ export const Primary = styled.div<{
   fullWidth?: boolean;
   size: Size;
 }>`
-  background-color: ${props =>
-    props.theme.button.colors[props.color].background};
+  background-color: ${props => props.theme.chip.colors[props.color].background};
   padding: ${props => padding[props.size]};
   border: none;
   transition: 0.3s;
   outline: none;
-  color: ${props => props.theme.button.colors[props.color].color};
+  border-radius: 2rem;
+  color: ${props => props.theme.chip.colors[props.color].color};
   width: ${props => (props.fullWidth ? "100%" : "auto")}
   display: inline-block;
   cursor: default;
-
-  ${media.smallScreen`
-    padding:  0.9rem 1rem;
-    width: 88%;
-    max-width: 88%;
-  `}
 `;
 
 export const Secondary = styled(Primary)`
@@ -52,10 +46,9 @@ export const Text = styled.span<{ size: Size }>`
   font-size: ${({
     size,
     theme: {
-      button: { typography },
+      chip: { typography },
     },
   }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
-  text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   line-height: ${props => props.theme.typography.baseLineHeight};
   margin-right: ${props => paddingCloseButton[props.size]};
@@ -69,17 +62,23 @@ export const CloseButton = styled.button<{
   padding: ${props => paddingCloseButton[props.size]};
   vertical-align: middle;
   cursor: pointer;
+  border-radius: 1rem;
+
+  > svg > path {
+    fill: ${props => props.theme.chip.colors[props.color].color};
+  }
 
   &:hover {
     background-color: ${props =>
-      props.theme.button.colors[props.color].hoverBackground};
-    color: ${props => props.theme.button.colors[props.color].hoverColor};
+      props.theme.chip.colors[props.color].hoverBackground};
+    > svg > path {
+      fill: ${props => props.theme.chip.colors[props.color].hoverColor};
+    }
   }
 
   &:active {
     background-color: ${props =>
-      props.theme.button.colors[props.color].activeBackground};
-    box-shadow: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
+      props.theme.chip.colors[props.color].activeBackground};
   }
 
   &:disabled {

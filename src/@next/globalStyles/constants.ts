@@ -44,6 +44,7 @@ export const theme = {
   primaryTransparent: turquoiseTransparent,
   secondary: blue,
   secondaryDark: blueDark,
+  secondaryLight: blueLight,
   secondaryOverlay: blueOverlay,
   secondaryOverlayDark: blueOverlayDark,
   success: green,
