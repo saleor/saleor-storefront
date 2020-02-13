@@ -4,6 +4,8 @@ $drawer-width: 25rem;
 
 .search {
   width: 100vw;
+  position: relative;
+  top: $demo-banner-height;
 
   @media (min-width: $medium-screen) {
     width: $drawer-width;
@@ -44,9 +46,14 @@ $drawer-width: 25rem;
         color: $black;
       }
     }
+
+    &__close-btn {
+      cursor: pointer;
+    }
   }
 
   &__products {
+    margin-top: -1rem;
     background: $white;
     overflow: auto;
     padding: $spacer / 2 0;

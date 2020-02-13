@@ -94,7 +94,11 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
+                <ReactSVG
+                  path={closeImg}
+                  onClick={this.props.overlay.hide}
+                  className="search__input__close-btn"
+                />
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}

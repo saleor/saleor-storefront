@@ -14,7 +14,7 @@ export const BorderedWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-height: 60px;
+  max-height: ${props => props.theme.demoBanner.height};
   padding: 1.5em 0;
 
   background-image: ${props => `linear-gradient(

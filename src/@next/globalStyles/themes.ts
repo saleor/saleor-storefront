@@ -49,6 +49,9 @@ export const defaultTheme = {
   container: {
     width: 1140,
   },
+  demoBanner: {
+    height: "60px",
+  },
   dropdown: {
     backgroundColor: C.theme.white,
     boxShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
