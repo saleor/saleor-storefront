@@ -18,13 +18,14 @@ exports[`Storyshots @components/atoms/Chip default 1`] = `
 }
 
 .c1 {
-  background-color: #13bebb;
-  padding: 0.6rem 0.6rem 0.6rem 0.9rem;
+  background-color: rgba(6,132,123,0.25);
+  padding: 0.4rem 0.4rem 0.4rem 0.8rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   outline: none;
-  color: #fff;
+  border-radius: 2rem;
+  color: #06a09e;
   width: auto;
   display: inline-block;
   cursor: default;
@@ -32,28 +33,34 @@ exports[`Storyshots @components/atoms/Chip default 1`] = `
 
 .c2 {
   display: inline-block;
-  font-size: 1.125rem;
-  text-transform: uppercase;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.25rem;
-  margin-right: 0.3rem;
+  margin-right: 0.4rem 0.4rem 0.3rem 0.4rem;
   vertical-align: middle;
 }
 
 .c3 {
-  padding: 0.3rem;
+  padding: 0.4rem 0.4rem 0.3rem 0.4rem;
   vertical-align: middle;
   cursor: pointer;
+  border-radius: 1rem;
+}
+
+.c3 > svg > path {
+  fill: #06a09e;
 }
 
 .c3:hover {
-  background-color: #06a09e;
-  color: #fff;
+  background-color: none;
+}
+
+.c3:hover > svg > path {
+  fill: #06a09e;
 }
 
 .c3:active {
-  background-color: #06a09e;
-  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+  background-color: rgba(6,132,123,0.1);
 }
 
 .c3:disabled {
@@ -63,14 +70,6 @@ exports[`Storyshots @components/atoms/Chip default 1`] = `
 .c3:disabled,
 .c3:disabled:hover {
   cursor: default;
-}
-
-@media (max-width:540px) {
-  .c1 {
-    padding: 0.9rem 1rem;
-    width: 88%;
-    max-width: 88%;
-  }
 }
 
 <div
