@@ -43,6 +43,28 @@ export const defaultTheme = {
     carouselControlPadding: "0.2rem 0.5rem",
     carouselControlShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.25)",
   },
+  chip: {
+    colors: {
+      primary: {
+        activeBackground: C.theme.primaryTransparent,
+        background: C.theme.primaryLight,
+        color: C.theme.primaryDark,
+        hoverBackground: "none",
+        hoverColor: C.theme.primaryDark,
+      },
+      secondary: {
+        activeBackground: C.theme.primaryTransparent,
+        background: C.theme.secondaryLight,
+        color: C.theme.secondaryDark,
+        hoverBackground: "none",
+        hoverColor: C.theme.secondaryDark,
+      },
+    },
+    typography: {
+      fontSize: "1rem",
+      smallFontSize: "0.75rem",
+    },
+  },
   colors: {
     ...C.theme,
   },

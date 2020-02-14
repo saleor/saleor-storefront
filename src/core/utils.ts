@@ -70,7 +70,9 @@ export const convertToAttributeScalar = (
   attributes: AttributeDict | IFilterAttributes
 ) =>
   Object.entries(attributes)
-    .map(([key, value]) => value.map((attribute: any) => `${key}:${attribute}`))
+    .map(([key, value]) =>
+      value.map((attribute: any) => ({ slug: key, value: attribute }))
+    )
     .reduce((prev, curr) => [...prev, ...curr], []);
 
 interface QueryString {
