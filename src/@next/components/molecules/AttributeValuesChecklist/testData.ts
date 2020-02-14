@@ -5,6 +5,7 @@ export const DEFAULT_PROPS = {
     {
       id: "2",
       name: "41",
+      selected: true,
       slug: "41",
     },
     {

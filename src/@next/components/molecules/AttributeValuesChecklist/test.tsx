@@ -19,7 +19,7 @@ describe("<AttributeValuesChecklist />", () => {
       <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
-    expect(wrapper.text()).toContain(DEFAULT_PROPS.name);
+    expect(wrapper.text()).toContain(DEFAULT_PROPS.title);
   });
 
   it("should show 5 atttributes visible", () => {
