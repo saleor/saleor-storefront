@@ -2,16 +2,13 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { FilterAttribute } from ".";
+import { AttributeValuesChecklist } from ".";
 import { DEFAULT_PROPS } from "./testData";
 
-describe("<FilterAttribute />", () => {
+describe("<AttributeValuesChecklist />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -19,21 +16,15 @@ describe("<FilterAttribute />", () => {
 
   it("should contain correct name of attribute section", () => {
     const wrapper = shallow(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
-    expect(wrapper.text()).toContain(DEFAULT_PROPS.attribute.name);
+    expect(wrapper.text()).toContain(DEFAULT_PROPS.title);
   });
 
   it("should show 5 atttributes visible", () => {
     const wrapper = mount(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
     expect(wrapper.find("label").length).toEqual(5);
@@ -41,10 +32,7 @@ describe("<FilterAttribute />", () => {
 
   it("should have one attribute checked set to true", () => {
     const wrapper = mount(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
     expect(
@@ -55,10 +43,7 @@ describe("<FilterAttribute />", () => {
   });
   it("should have attribute not checked set to false", () => {
     const wrapper = mount(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
     expect(
@@ -70,10 +55,7 @@ describe("<FilterAttribute />", () => {
 
   it("should show 6 attributes visible after clicking on view all options button", () => {
     const wrapper = mount(
-      <FilterAttribute
-        {...DEFAULT_PROPS}
-        onAttributeFiltersChange={jest.fn()}
-      />
+      <AttributeValuesChecklist {...DEFAULT_PROPS} onValueClick={jest.fn()} />
     );
 
     wrapper.find("button").simulate("click");
