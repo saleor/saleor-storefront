@@ -1,9 +1,9 @@
-import { IFilterAttributes, IFilters } from "@types";
+import { IFilterAttributes } from "@types";
+
 export interface IProps {
-  attributes: IFilterAttributes[];
-  filters: IFilters;
-  hide: () => void;
-  onAttributeFiltersChange: (attributeSlug: string, values: string) => void;
   show: boolean;
   target?: HTMLElement | null;
+  attributes: IFilterAttributes[];
+  hide: () => void;
+  onAttributeValueClick: (attributeSlug: string, valueSlug: string) => void;
 }

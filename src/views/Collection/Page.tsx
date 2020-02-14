@@ -8,7 +8,10 @@ import { ProductList } from "../../@next/components/organisms";
 import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+import {
+  checkIfAttributeIsChecked,
+  FilterSidebar,
+} from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection, Collection_products } from "./types/Collection";
 
 interface SortItem {
@@ -87,6 +90,14 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  const attributesList = attributes.map(attribute => ({
+    ...attribute,
+    values: attribute.values.map(value => ({
+      ...value,
+      selected: checkIfAttributeIsChecked(filters, value, attribute.slug),
+    })),
+  }));
+
   return (
     <div className="collection">
       <div className="container">
@@ -94,9 +105,8 @@ const Page: React.FC<PageProps> = ({
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
+          onAttributeValueClick={onAttributeFiltersChange}
+          attributes={attributesList}
         />
         <ProductListHeader
           activeSortOption={activeSortOption}

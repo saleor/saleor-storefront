@@ -5,13 +5,13 @@ import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
 import { Overlay } from "../";
-import { IFilters, ISingleFilterAttribute } from "../../../types";
+import { IFilterAttributeValue, IFilters } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const checkIfAttributeIsChecked = (
+export const checkIfAttributeIsChecked = (
   filters: IFilters,
-  value: ISingleFilterAttribute,
+  value: IFilterAttributeValue,
   slug: string
 ) => {
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
@@ -27,11 +27,10 @@ const checkIfAttributeIsChecked = (
 
 export const FilterSidebar: React.FC<IProps> = ({
   hide,
-  filters,
   show,
   attributes,
   target,
-  onAttributeFiltersChange,
+  onAttributeValueClick,
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -56,12 +55,9 @@ export const FilterSidebar: React.FC<IProps> = ({
               key={id}
               title={name}
               name={slug}
-              values={values.map(value => ({
-                ...value,
-                selected: checkIfAttributeIsChecked(filters, value, slug),
-              }))}
+              values={values}
               valuesShowLimit
-              onValueClick={value => onAttributeFiltersChange(slug, value.slug)}
+              onValueClick={value => onAttributeValueClick(slug, value.slug)}
             />
           );
         })}

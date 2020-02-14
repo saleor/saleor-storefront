@@ -7,7 +7,10 @@ import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
+import {
+  checkIfAttributeIsChecked,
+  FilterSidebar,
+} from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
@@ -83,6 +86,14 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  const attributesList = attributes.map(attribute => ({
+    ...attribute,
+    values: attribute.values.map(value => ({
+      ...value,
+      selected: checkIfAttributeIsChecked(filters, value, attribute.slug),
+    })),
+  }));
+
   return (
     <div className="category">
       <div className="search-page">
@@ -113,9 +124,8 @@ const Page: React.FC<PageProps> = ({
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
+          onAttributeValueClick={onAttributeFiltersChange}
+          attributes={attributesList}
         />
         <ProductListHeader
           activeSortOption={activeSortOption}

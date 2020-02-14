@@ -1,5 +1,13 @@
-export const DEFAULT_PROPS = {
+import { IFilterAttributeValue } from "../../../types";
+import { IProps } from "./types";
+
+export const GET_DEFAULT_PROPS = ({
+  onValueClick,
+}: {
+  onValueClick: (value: IFilterAttributeValue) => void;
+}): IProps => ({
   name: "size",
+  onValueClick,
   title: "Size",
   values: [
     {
@@ -35,4 +43,4 @@ export const DEFAULT_PROPS = {
     },
   ],
   valuesShowLimit: true,
-};
+});

@@ -17,6 +17,6 @@ storiesOf("@components/organisms/FilterSidebar", module).add("default", () => (
     target={portalRoot}
     {...DEFAULT_PROPS}
     hide={action("hide")}
-    onAttributeFiltersChange={action("onAttributesFiltersChange")}
+    onAttributeValueClick={action("onAttributeValueClick")}
   />
 ));

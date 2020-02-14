@@ -4,7 +4,7 @@ import { styled } from "@styles";
 import React from "react";
 
 import { AttributeValuesChecklist } from ".";
-import { DEFAULT_PROPS } from "./testData";
+import { GET_DEFAULT_PROPS } from "./fixtures";
 
 const Container = styled.div`
   width: 350px;
@@ -15,8 +15,7 @@ storiesOf("@components/molecules/AttributeValuesChecklist", module).add(
   () => (
     <Container>
       <AttributeValuesChecklist
-        {...DEFAULT_PROPS}
-        onValueClick={action("click")}
+        {...GET_DEFAULT_PROPS({ onValueClick: action("click") })}
       />
     </Container>
   )

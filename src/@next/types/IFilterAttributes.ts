@@ -1,4 +1,4 @@
-export interface ISingleFilterAttribute {
+export interface IFilterAttributeValue {
   id: string;
   name: string;
   slug: string;
@@ -9,5 +9,5 @@ export interface IFilterAttributes {
   id: string;
   name: string;
   slug: string;
-  values: ISingleFilterAttribute[];
+  values: IFilterAttributeValue[];
 }
