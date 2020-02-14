@@ -13,7 +13,7 @@ export * from "./AccountMenuMobile";
 export * from "./AccountTabTiles";
 export * from "./ProductListHeader";
 export * from "./InputSelect";
-export * from "./FilterAttribute";
+export * from "./AttributeValuesChecklist";
 export * from "./ResetPasswordForm";
 export * from "./AddToWishlistButton";
 export * from "./ProductTile";

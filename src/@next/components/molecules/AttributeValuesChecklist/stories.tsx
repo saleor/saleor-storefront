@@ -3,20 +3,20 @@ import { storiesOf } from "@storybook/react";
 import { styled } from "@styles";
 import React from "react";
 
-import { FilterAttribute } from ".";
+import { AttributeValuesChecklist } from ".";
 import { DEFAULT_PROPS } from "./testData";
 
 const Container = styled.div`
   width: 350px;
 `;
 
-storiesOf("@components/molecules/FilterAttribute", module).add(
+storiesOf("@components/molecules/AttributeValuesChecklist", module).add(
   "default",
   () => (
     <Container>
-      <FilterAttribute
+      <AttributeValuesChecklist
         {...DEFAULT_PROPS}
-        onAttributeFiltersChange={action("click")}
+        onValueClick={action("click")}
       />
     </Container>
   )
