@@ -21,7 +21,7 @@ describe("User login, logout and registration", () => {
   });
 
   it("should open overlay with a sign in and register form", () => {
-    cy.getByTestId("login-btn")
+    cy.findByTestId("login-btn")
       .click()
       .get(".overlay")
       .should("exist");
@@ -44,11 +44,12 @@ describe("User login, logout and registration", () => {
   // });
 
   describe("Login", () => {
-    // it("should successfully log in an user", () => {
-    //   cy.loginUser(user)
-    //     .get(".message__title")
-    //     .should("contain", "You are now logged in");
-    // });
+    it("should successfully log in an user", () => {
+      user = { email: "admin@example.com", password: "admin" };
+      cy.loginUser(user)
+        .get("[data-cy=alert]")
+        .should("contain", "You are now logged in");
+    });
     it("should display an error if user does not exist", () => {
       const notRegisteredUser = userBuilder();
       cy.loginUser(notRegisteredUser)
@@ -57,14 +58,14 @@ describe("User login, logout and registration", () => {
     });
   });
 
-  // describe("Logout", () => {
-  //   it("should successfully log out an user", () => {
-  //     const user = userBuilder();
-  //     cy.registerUser(user).loginUser(user);
-  //     cy.wait(500);
-  //     cy.logoutUser()
-  //       .get(".message__title")
-  //       .should("contain", "You are now logged out");
-  //   });
-  // });
+  describe("Logout", () => {
+    it("should successfully log out an user", () => {
+      user = { email: "admin@example.com", password: "admin" };
+      cy.loginUser(user);
+      cy.wait(500);
+      cy.logoutUser()
+        .get("[data-cy=alert]")
+        .should("contain", "You are now logged out");
+    });
+  });
 });
