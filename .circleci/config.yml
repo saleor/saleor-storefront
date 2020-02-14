@@ -33,7 +33,7 @@ jobs:
             - dist/*
   cypress/run:
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:10
         environment:
           TERM: xterm
     parallelism: 1
