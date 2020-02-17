@@ -1,6 +1,6 @@
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
@@ -18,7 +18,7 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
 import { maybe } from "../../core/utils";
 import {
@@ -26,7 +26,7 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
+  paymentOptionsUrl,
 } from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
@@ -82,7 +82,11 @@ const MainMenu: React.FC = () => {
                       query={{ minWidth: mediumScreen }}
                       render={() =>
                         items.map(item => (
-                          <li className="main-menu__item" key={item.id}>
+                          <li
+                            data-cy="main-menu__item"
+                            className="main-menu__item"
+                            key={item.id}
+                          >
                             <NavDropdown overlay={overlayContext} {...item} />
                           </li>
                         ))

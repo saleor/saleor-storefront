@@ -16,6 +16,7 @@ describe("User login, logout and registration", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
+    cy.visit("/");
     cy.setup(polyfill);
     cy.wait("@graphqlQuery");
   });
@@ -45,7 +46,7 @@ describe("User login, logout and registration", () => {
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      user = { email: "admin@example.com", password: "admin" };
+      user = { email: "admin@example.com", password: "asdasdasd" };
       cy.loginUser(user)
         .get("[data-cy=alert]")
         .should("contain", "You are now logged in");
@@ -60,7 +61,7 @@ describe("User login, logout and registration", () => {
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      user = { email: "admin@example.com", password: "admin" };
+      user = { email: "admin@example.com", password: "asdasdasd" };
       cy.loginUser(user);
       cy.wait(500);
       cy.logoutUser()

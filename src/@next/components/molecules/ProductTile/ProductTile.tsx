@@ -15,7 +15,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       : undefined;
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-cy="product-tile">
       <S.Title>{product.name}</S.Title>
       <S.Price>
         <TaxedMoney taxedMoney={price} />

@@ -17,7 +17,7 @@ export const ProductListHeader: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <S.LeftSide>
-        <S.FiltersButton onClick={openFiltersMenu}>
+        <S.FiltersButton onClick={openFiltersMenu} data-cy="filters__button">
           <Icon name="filter" size={24} />
           <S.Filters>
             FILTERS{" "}
@@ -34,8 +34,9 @@ export const ProductListHeader: React.FC<IProps> = ({
       </S.LeftSide>
 
       <div>
-        <S.Element>
-          <S.Label>Products found: </S.Label> {numberOfProducts}
+        <S.Element data-cy="no-of-products-found_label">
+          <S.Label>Products found: </S.Label>
+          {numberOfProducts}
         </S.Element>
         <S.Element>
           <S.Sort>
