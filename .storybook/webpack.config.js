@@ -7,8 +7,8 @@ module.exports = ({ config }) => {
     test: /\.(ts|tsx)$/,
     loader: require.resolve("ts-loader"),
     options: {
-      transpileOnly: true
-    }
+      transpileOnly: true,
+    },
   });
 
   config.module.rules.push({
@@ -17,34 +17,34 @@ module.exports = ({ config }) => {
       "style-loader",
       {
         loader: "css-loader",
-        options: { sourceMap: true }
+        options: { sourceMap: true },
       },
-      { loader: "sass-loader" }
-    ]
+      { loader: "sass-loader" },
+    ],
   });
 
   config.module.rules.push({
     test: /stories\.tsx?$/,
     loaders: [require.resolve("@storybook/addon-storysource/loader")],
-    enforce: "pre"
+    enforce: "pre",
   });
 
   config.resolve.extensions.push(".ts", ".tsx");
   config.resolve.plugins = [
     new TsconfigPathsPlugin({
-      configFile: path.resolve(__dirname, "../tsconfig.json")
-    })
+      configFile: path.resolve(__dirname, "../tsconfig.json"),
+    }),
   ];
 
   config.resolve.modules = [
     ...(config.resolve.modules || []),
-    path.resolve("./")
+    path.resolve("./"),
   ];
 
   config.plugins.push(
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
-      exclude: "node_modules"
+      exclude: "node_modules",
     })
   );
 

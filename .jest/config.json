@@ -20,6 +20,7 @@
   "setupFilesAfterEnv": ["<rootDir>/.jest/setupTests.js"],
   "transform": {
     "^.+\\.(j|t)sx?$": "babel-jest",
+    "^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx",
     "^.+\\.svg$": "jest-svg-transformer"
   },
   "transformIgnorePatterns": [
