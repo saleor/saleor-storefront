@@ -3,6 +3,7 @@ import { withOptions } from "@storybook/addon-options";
 import { withKnobs } from "@storybook/addon-knobs";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { withThemes } from "storybook-styled-components";
+import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
 
 import { OutLineDecorator } from "./OutlineDecorator";
 // themes
@@ -19,6 +20,12 @@ withOptions({
   sidebarAnimations: true,
 });
 addParameters({ viewport: { viewports: INITIAL_VIEWPORTS } });
+addParameters({
+  docs: {
+    container: DocsContainer,
+    page: DocsPage,
+  },
+});
 addDecorator(withKnobs);
 addDecorator(OutLineDecorator);
 addDecorator(withThemes(themes));
