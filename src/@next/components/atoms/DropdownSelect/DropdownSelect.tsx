@@ -40,7 +40,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   };
 
   return (
-    <S.Wrapper ref={setElementRef()}>
+    <S.Wrapper data-cy="dropdown-select" ref={setElementRef()}>
       <Select
         options={options}
         value={value}

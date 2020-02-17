@@ -14,9 +14,17 @@ describe("Product list view", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
-    cy.setup(polyfill);
-    cy.wait(1000)
-      .get("[data-cy=main-menu__item]")
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        delete win.fetch;
+        // since the application code does not ship with a polyfill
+        // load a polyfilled "fetch" from the test
+        win.eval(polyfill);
+        win.fetch = win.unfetch;
+      },
+    });
+
+    cy.get("[data-cy=main-menu__item]")
       .first()
       .click();
   });
