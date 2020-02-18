@@ -73,7 +73,20 @@ describe("Category view - filtering and sorting", () => {
       .click()
       .get("[data-cy=icon_button]")
       .click()
-      .get("[data-cy=dropdown-select]")
-      .click();
+      .wait(3000);
+    cy.get("[data-cy=product-tile]")
+      .first()
+      .invoke("text")
+      .then(firstTileText => {
+        console.log(firstTileText);
+        cy.get("[data-cy=dropdown-select]")
+          .click()
+          .contains("Name Decreasing")
+          .click()
+          .wait(3000);
+        cy.get("[data-cy=product-tile]")
+          .last()
+          .should("have.text", firstTileText);
+      });
   });
 });
