@@ -46,7 +46,7 @@ describe("User login, logout and registration", () => {
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      user = { email: "admin@example.com", password: "asdasdasd" };
+      user = { email: "admin@example.com", password: "admin" };
       cy.loginUser(user)
         .get("[data-cy=alert]")
         .should("contain", "You are now logged in");
@@ -61,9 +61,9 @@ describe("User login, logout and registration", () => {
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      user = { email: "admin@example.com", password: "asdasdasd" };
+      user = { email: "admin@example.com", password: "admin" };
       cy.loginUser(user);
-      cy.wait(500);
+      cy.wait(3000);
       cy.logoutUser()
         .get("[data-cy=alert]")
         .should("contain", "You are now logged out");
