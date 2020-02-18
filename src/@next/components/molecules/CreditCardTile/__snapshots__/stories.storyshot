@@ -179,6 +179,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
         <div>
           <div
             className="c10"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
