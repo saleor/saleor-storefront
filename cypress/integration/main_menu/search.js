@@ -3,6 +3,7 @@
 describe.only("Search", () => {
   const typedText = "t";
   let polyfill;
+
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
     cy.request(polyfillUrl).then(response => {
@@ -23,8 +24,6 @@ describe.only("Search", () => {
         win.fetch = win.unfetch;
       },
     });
-    cy.setup(polyfill);
-    cy.wait("@graphqlQuery");
   });
 
   it("should show input on click", () => {
