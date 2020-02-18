@@ -1,6 +1,6 @@
 .*
 !.storybook
-!.travis
+!.travis.yml
 !.gitignore
 !.babelrc
 !.plop

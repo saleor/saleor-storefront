@@ -1,0 +1,13 @@
+dist: xenial
+language: node_js
+sudo: false
+
+node_js:
+  - "11.11"
+
+script:
+  - npm run build
+
+env:
+  global:
+    - API_URI="/graphql/"
