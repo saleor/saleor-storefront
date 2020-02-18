@@ -1,5 +1,6 @@
 .*
 !.storybook
+!.travis
 !.gitignore
 !.babelrc
 !.plop
