@@ -3,7 +3,6 @@
 describe.only("Search", () => {
   const typedText = "t";
   let polyfill;
-
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
     cy.request(polyfillUrl).then(response => {
@@ -15,6 +14,15 @@ describe.only("Search", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        delete win.fetch;
+        // since the application code does not ship with a polyfill
+        // load a polyfilled "fetch" from the test
+        win.eval(polyfill);
+        win.fetch = win.unfetch;
+      },
+    });
     cy.setup(polyfill);
     cy.wait("@graphqlQuery");
     cy.get(".main-menu__search")

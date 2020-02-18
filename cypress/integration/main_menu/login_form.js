@@ -16,9 +16,15 @@ describe("User login, logout and registration", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
-    cy.visit("/");
-    cy.setup(polyfill);
-    cy.wait("@graphqlQuery");
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        delete win.fetch;
+        // since the application code does not ship with a polyfill
+        // load a polyfilled "fetch" from the test
+        win.eval(polyfill);
+        win.fetch = win.unfetch;
+      },
+    });
   });
 
   it("should open overlay with a sign in and register form", () => {
@@ -63,7 +69,7 @@ describe("User login, logout and registration", () => {
     it("should successfully log out an user", () => {
       user = { email: "admin@example.com", password: "admin" };
       cy.loginUser(user);
-      cy.wait(3000);
+      cy.wait(10000);
       cy.logoutUser()
         .get("[data-cy=alert]")
         .should("contain", "You are now logged out");
