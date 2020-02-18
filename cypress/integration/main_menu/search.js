@@ -25,26 +25,31 @@ describe.only("Search", () => {
     });
     cy.setup(polyfill);
     cy.wait("@graphqlQuery");
-    cy.get(".main-menu__search")
-      .click()
-      .get("form.search input")
-      .as("searchInput");
   });
 
   it("should show input on click", () => {
-    cy.get("@searchInput").should("exist");
+    cy.get(".main-menu__search")
+      .click()
+      .get("form.search input")
+      .should("exist");
   });
 
   it("should search products", () => {
-    cy.get("@searchInput")
+    cy.get(".main-menu__search")
+      .click()
+      .get("form.search input")
       .type(typedText)
       .get(".search__products.search__products--expanded")
       .should("exist");
   });
 
   it("should redirect to Search page on form submit", () => {
-    cy.get("@searchInput").type(typedText);
-    cy.get("form.search button[type='submit']").click();
+    cy.get(".main-menu__search")
+      .click()
+      .get("form.search input")
+      .type(typedText)
+      .get("form.search button[type='submit']")
+      .click();
 
     cy.url().should("include", `/search/?q=${typedText}`);
     cy.get(".search-page").should("exist");
