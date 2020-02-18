@@ -29,7 +29,7 @@ import { Route, Router, Switch } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 
 import { App } from "./app";
-import CheckoutApp from "./checkout";
+import { CheckoutApp } from "./checkout";
 import { CheckoutProvider } from "./checkout/CheckoutProvider";
 import { CheckoutContext } from "./checkout/context";
 import { baseUrl as checkoutBaseUrl } from "./checkout/routes";

@@ -1,6 +1,6 @@
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
@@ -18,16 +18,16 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
-import { maybe } from "../../core/utils";
 import {
   accountUrl,
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
+  paymentOptionsUrl,
+} from "../../app/routes";
+import { maybe } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";

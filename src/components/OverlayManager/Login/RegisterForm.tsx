@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { accountConfirmUrl } from "../../../routes/Routes";
+import { accountConfirmUrl } from "../../../app/routes";
 
 import { Button, Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
@@ -23,8 +23,8 @@ const showSuccessNotification = (
     alert.show(
       {
         title: data.accountRegister.requiresConfirmation
-        ? "Please check your e-mail for further instructions"
-        : "New user has been created",
+          ? "Please check your e-mail for further instructions"
+          : "New user has been created",
       },
       { type: "success", timeout: 5000 }
     );
