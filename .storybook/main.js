@@ -8,7 +8,7 @@ module.exports = {
     // "@storybook/preset-create-react-app",
     "@storybook/addon-actions",
     // "@storybook/addon-links",
-    // "@storybook/addon-storysource",
+    "@storybook/addon-storysource",
     "@storybook/addon-knobs",
     {
       name: "@storybook/addon-docs",
@@ -32,6 +32,11 @@ module.exports = {
         },
         {
           loader: require.resolve("react-docgen-typescript-loader"),
+          options: {
+            // Providing the path to tsconfig.json so that stories can
+            // display types from outside each individual story.
+            tsconfigPath: path.resolve(__dirname, "../tsconfig.json"),
+          },
         },
       ],
     });
@@ -48,11 +53,11 @@ module.exports = {
       ],
     });
 
-    // config.module.rules.push({
-    //   test: /stories\.tsx?$/,
-    //   loaders: [require.resolve("@storybook/addon-storysource/loader")],
-    //   enforce: "pre",
-    // });
+    config.module.rules.push({
+      test: /stories\.tsx?$/,
+      loaders: [require.resolve("@storybook/addon-storysource/loader")],
+      enforce: "pre",
+    });
 
     config.resolve.extensions.push(".ts", ".tsx");
     config.resolve.plugins = [

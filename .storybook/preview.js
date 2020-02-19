@@ -40,4 +40,4 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-configure(req, module);
+configure(loadStories, module);
