@@ -97,6 +97,11 @@ export class SaleorAPI {
     data => data.productVariants
   );
 
+  getAddressValidationRules = this.watchQuery(
+    QUERIES.AddressValidationRules,
+    data => data.addressValidationRules
+  );
+
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.accountSetDefaultAddress

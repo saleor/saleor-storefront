@@ -6,6 +6,7 @@ import {
 import gql from "graphql-tag";
 
 import { RequireOnlyOne } from "../tsHelpers";
+import * as Address from "./address";
 import * as AttributesList from "./attributes";
 import * as Category from "./category";
 import * as Checkout from "./checkout";
@@ -32,6 +33,10 @@ import {
   CategoryDetailsVariables,
 } from "./types/CategoryDetails";
 
+import {
+  AddressValidationRules,
+  AddressValidationRulesVariables,
+} from "./types/AddressValidationRules";
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
 import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
@@ -49,6 +54,16 @@ type QueryOptions<T = {}> = T extends { [n: string]: never }
 
 // TODO: Add ability to pass custom fragments to queries
 export const QUERIES = {
+  AddressValidationRules: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<AddressValidationRulesVariables>
+  ): ObservableQuery<AddressValidationRules, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Address.addressValidationRules}
+      `,
+      ...options,
+    }),
   Attributes: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<AttributesVariables>

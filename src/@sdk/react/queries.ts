@@ -25,3 +25,7 @@ export const useVariantsProducts = queryWithVariablesFactory(
 );
 
 export const useUserWishlist = queryWithVariablesFactory("getUserWishlist");
+
+export const useAddressValidationRules = queryWithVariablesFactory(
+  "getAddressValidationRules"
+);
