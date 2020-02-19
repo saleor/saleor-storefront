@@ -1,20 +1,27 @@
-import { boolean } from "@storybook/addon-knobs";
-import { storiesOf } from "@storybook/react";
+// import { boolean } from "@storybook/addon-knobs";
+// import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { Button } from ".";
+import { Button } from "./Button";
 
-storiesOf("@components/atoms/Button", module)
-  .add("Primary", () => (
-    <Button fullWidth={boolean("FullWidth", false)}>Primary Button</Button>
-  ))
-  .add("Secondary", () => (
-    <Button color="secondary" fullWidth={boolean("FullWidth", false)}>
-      Secondary Button
-    </Button>
-  ))
-  .add("Size sm", () => (
-    <Button size="sm" fullWidth={boolean("FullWidth", false)}>
-      Small Button
-    </Button>
-  ));
+// storiesOf("@components/atoms/Button", module)
+//   .add("Primary", () => (
+//     <Button fullWidth={boolean("FullWidth", false)}>Primary Button</Button>
+//   ))
+//   .add("Secondary", () => (
+//     <Button color="secondary" fullWidth={boolean("FullWidth", false)}>
+//       Secondary Button
+//     </Button>
+//   ))
+//   .add("Size sm", () => (
+//     <Button size="sm" fullWidth={boolean("FullWidth", false)}>
+//       Small Button
+//     </Button>
+//   ));
+
+export default {
+  component: Button,
+  title: "@components/atoms/Button",
+};
+
+export const Basic = () => <Button fullWidth={false}>Primary Button</Button>;
