@@ -74,6 +74,7 @@ export interface IAddressPickerProps {
   isVisibleModalForm: boolean;
   loading: boolean;
   selectedAddress?: FormAddressType;
+  emailRequired?: boolean;
   onAddressSelect: (address: FormAddressType) => void;
   handleAddressAdd: (address: FormAddressType) => void;
   hideAddNewModalForm: () => void;
