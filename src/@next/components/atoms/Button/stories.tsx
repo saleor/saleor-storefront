@@ -2,7 +2,7 @@ import { boolean } from "@storybook/addon-knobs";
 // import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { Button } from "./Button";
+import { Button } from ".";
 
 // storiesOf("@components/atoms/Button", module)
 //   .add("Primary", () => (
