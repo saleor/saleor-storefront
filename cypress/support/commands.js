@@ -1,6 +1,7 @@
 // <reference types="cypress" />
 import "./login";
 import "./category";
+import "./account";
 
 Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
   function responseStub(result) {
