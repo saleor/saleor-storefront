@@ -28,6 +28,7 @@ const PROPS = {
 };
 
 storiesOf("@components/organisms/ProductVariantPicker", module)
+  .addParameters({ component: ProductVariantPicker })
   .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
   .add("with sidebar", () =>
     withContainer(

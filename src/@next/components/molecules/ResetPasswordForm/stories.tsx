@@ -17,7 +17,6 @@ const DEFAULT_PROPS = {
   },
 };
 
-storiesOf("@components/molecules/ResetPasswordForm", module).add(
-  "default",
-  () => <ResetPasswordForm {...DEFAULT_PROPS} />
-);
+storiesOf("@components/molecules/ResetPasswordForm", module)
+  .addParameters({ component: ResetPasswordForm })
+  .add("default", () => <ResetPasswordForm {...DEFAULT_PROPS} />);

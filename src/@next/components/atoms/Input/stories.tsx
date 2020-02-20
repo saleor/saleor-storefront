@@ -5,6 +5,7 @@ import React from "react";
 import { Input } from ".";
 
 storiesOf("@components/atoms/Input", module)
+  .addParameters({ component: Input })
   .add("default", () => <Input value="" label="Empty" />)
   .add("with value", () => (
     <Input

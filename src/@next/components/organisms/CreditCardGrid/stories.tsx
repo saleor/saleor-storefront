@@ -15,6 +15,6 @@ const ccData = {
 
 const elements = [ccData, ccData, ccData];
 
-storiesOf("@components/organisms/CreditCardGrid", module).add("default", () => (
-  <CreditCardGrid creditCards={elements} />
-));
+storiesOf("@components/organisms/CreditCardGrid", module)
+  .addParameters({ component: CreditCardGrid })
+  .add("default", () => <CreditCardGrid creditCards={elements} />);
