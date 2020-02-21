@@ -240,6 +240,7 @@ export interface SearchProducts_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
+  isPublished: boolean;
   category: SearchProducts_products_edges_node_category | null;
 }
 

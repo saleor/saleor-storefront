@@ -41,4 +41,5 @@ export interface BasicProductFields {
    * The main thumbnail for a product.
    */
   thumbnail2x: BasicProductFields_thumbnail2x | null;
+  isPublished: boolean;
 }

@@ -9,6 +9,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==1",
+    isPublished: true,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -92,6 +93,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==2",
+    isPublished: true,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -175,6 +177,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==3",
+    isPublished: true,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -258,6 +261,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==4",
+    isPublished: true,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -341,6 +345,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==5",
+    isPublished: false,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",
@@ -424,6 +429,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       name: "Juices",
     },
     id: "UHJvZHVjdDo3Mg==6",
+    isPublished: false,
     name: "Apple Juice",
     pricing: {
       __typename: "ProductPricingInfo",

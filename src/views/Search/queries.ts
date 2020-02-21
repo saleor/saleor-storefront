@@ -35,6 +35,7 @@ export const searchProductsQuery = gql`
           thumbnail2x: thumbnail(size: 510) {
             url
           }
+          isPublished
           category {
             id
             name

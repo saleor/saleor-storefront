@@ -8,6 +8,7 @@ export const PRODUCT: ProductList_products_edges_node = {
     name: "Juices",
   },
   id: "UHJvZHVjdDo3Mg==",
+  isPublished: true,
   name: "Apple Juice",
   pricing: {
     __typename: "ProductPricingInfo",

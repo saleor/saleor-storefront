@@ -236,6 +236,7 @@ export interface Category_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: Category_products_edges_node_thumbnail2x | null;
+  isPublished: boolean;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */

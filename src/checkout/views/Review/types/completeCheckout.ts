@@ -43,7 +43,10 @@ export interface completeCheckout_checkoutComplete {
 export interface completeCheckout {
   /**
    * Completes the checkout. As a result a new order is created and a payment
-   * charge is made. This action requires a successful payment before it can be performed.
+   * charge is made. This action requires a successful payment before it can be
+   * performed. In case additional confirmation step as 3D secure is required
+   * confirmationNeeded flag will be set to True and no order created until payment
+   * is confirmed with second call of this mutation.
    */
   checkoutComplete: completeCheckout_checkoutComplete | null;
 }

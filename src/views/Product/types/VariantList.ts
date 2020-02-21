@@ -182,6 +182,7 @@ export interface VariantList_productVariants_edges_node_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
+  isPublished: boolean;
 }
 
 export interface VariantList_productVariants_edges_node {
