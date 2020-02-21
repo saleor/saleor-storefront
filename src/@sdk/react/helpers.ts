@@ -1,7 +1,7 @@
 import React from "react";
 
 import { SaleorAPI } from "../";
-import { getAuthToken, removeAuthToken } from "../auth";
+import { clearStorage, getAuthToken } from "../auth";
 import { SaleorContext } from "./context";
 
 export function useSaleorClient(): SaleorAPI {
@@ -43,7 +43,7 @@ export const useAuth = (
 
 export const useSignOut = () => [
   () => {
-    removeAuthToken();
+    clearStorage();
     if (navigator.credentials && navigator.credentials.preventSilentAccess) {
       navigator.credentials.preventSilentAccess();
     }
