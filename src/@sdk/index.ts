@@ -213,6 +213,8 @@ export class SaleorAPI {
   ) =>
     new Promise<{ data: TokenAuth["tokenCreate"] }>(async (resolve, reject) => {
       try {
+        this.client.resetStore();
+
         const data = await this.fireQuery(
           MUTATIONS.TokenAuth,
           data => data!.tokenCreate

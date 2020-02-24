@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSaleorClient, useSignIn } from "../..";
+import { CheckoutContext } from "../../../../checkout/context";
 import { IProps } from "./types";
 
 export function CredentialsProvider({
@@ -8,6 +9,7 @@ export function CredentialsProvider({
 }: IProps): React.ReactElement<IProps> {
   const saleor = useSaleorClient();
   const [signIn] = useSignIn();
+  const { update } = React.useContext(CheckoutContext);
 
   const autoSignIn = async () => {
     const credentials = await navigator.credentials.get({
@@ -20,6 +22,8 @@ export function CredentialsProvider({
         password: credentials.password,
       });
     }
+
+    update({ syncUserCheckout: true });
   };
 
   React.useEffect(() => {
