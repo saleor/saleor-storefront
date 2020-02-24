@@ -41,7 +41,7 @@ import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
 const MainMenu: React.FC = () => {
-  const { data: user, refetch: refetchUser } = useUserDetails();
+  const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
   const { clear: clearCart } = useContext(CartContext);
   const { clear: clearCheckout } = useContext(CheckoutContext);
@@ -50,7 +50,6 @@ const MainMenu: React.FC = () => {
     signOut();
     clearCart();
     clearCheckout();
-    refetchUser();
   };
 
   return (
