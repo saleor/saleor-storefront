@@ -28,13 +28,14 @@ describe("Accessing user account views", () => {
   it("if user is logged in, dropdown menu should be visible while hovering over user button", () => {
     const user = { email: "admin@example.com", password: "admin" };
     cy.loginUser(user)
-      .findByTestId("user-btn", { timeout: 10000 })
+      .wait(10000)
+      .findByTestId("user-btn", { timeout: 15000 })
       .trigger("mouseover");
   });
 
   it("should transfer user to account view after clicking option in menu", () => {
     const user = { email: "admin@example.com", password: "admin" };
-    cy.loginUser(user);
+    cy.loginUser(user).wait(10000);
     [
       { classId: "my_account__link", url: "/account/" },
       { classId: "order_history__link", url: "/order-history/" },

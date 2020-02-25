@@ -29,7 +29,7 @@ describe("User orders histoy", () => {
     const user = { email: "admin@example.com", password: "admin" };
     cy.loginUser(user)
       .openAccountMenu("order_history__link")
-      .findAllByTestId("order__row", { timeout: 10000 })
+      .findAllByTestId("order__row", { timeout: 15000 })
       .should("have.length", 5);
   });
 
@@ -37,7 +37,7 @@ describe("User orders histoy", () => {
     const user = { email: "admin@example.com", password: "admin" };
     cy.loginUser(user)
       .openAccountMenu("order_history__link")
-      .findByTestId("load_more__button", { timeout: 10000 })
+      .findByTestId("load_more__button", { timeout: 15000 })
       .click()
       .findAllByTestId("order__row", { timeout: 10000 })
       .should("have.length", 10);
