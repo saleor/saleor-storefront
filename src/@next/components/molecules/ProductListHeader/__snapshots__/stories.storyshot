@@ -179,13 +179,13 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       <div>
         <span
           className="c6"
+          data-cy="no-of-products-found_label"
         >
           <span
             className="c7"
           >
             Products found: 
           </span>
-           
           255
         </span>
         <span
@@ -449,13 +449,13 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       <div>
         <span
           className="c7"
+          data-cy="no-of-products-found_label"
         >
           <span
             className="c8"
           >
             Products found: 
           </span>
-           
           255
         </span>
         <span
