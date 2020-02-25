@@ -23,7 +23,9 @@ export function CredentialsProvider({
       });
     }
 
-    update({ syncUserCheckout: true });
+    if (update) {
+      update({ syncUserCheckout: true });
+    }
   };
 
   React.useEffect(() => {
