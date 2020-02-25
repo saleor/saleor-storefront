@@ -1,6 +1,6 @@
 // <reference types="cypress" />
 
-describe("User account view", () => {
+describe("Accessing user account views", () => {
   let polyfill = null;
 
   before(() => {

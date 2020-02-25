@@ -16,7 +16,7 @@ export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
           .map(s => s.charAt(0).toUpperCase() + s.substring(1))
           .join(" ");
         return (
-          <Link to={link} key={link}>
+          <Link to={link} key={link} data-testid="account_menu__link">
             <S.MenuItem active={active === link}>{menuItem}</S.MenuItem>
           </Link>
         );
