@@ -8,6 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
+    "@lhci/cli": "^0.3.9",
     "@lingui/react": "^2.8.3",
     "@types/yup": "^0.26.27",
     "apollo": "^2.21.3",
