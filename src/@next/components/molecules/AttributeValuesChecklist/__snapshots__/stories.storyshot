@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/molecules/FilterAttribute default 1`] = `
+exports[`Storyshots @components/molecules/AttributeValuesChecklist default 1`] = `
 .c0 {
   position: relative;
   margin: 20px;

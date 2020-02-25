@@ -1,6 +1,10 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
+  margin-bottom: 1.4rem;
+`;
+
+export const Bar = styled.div`
   height: 5rem;
   background-color: ${props => props.theme.tile.backgroundColor};
   display: flex;
@@ -9,7 +13,7 @@ export const Wrapper = styled.div`
   padding: 0 2rem;
   font-size: ${props => props.theme.typography.smallFontSize};
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 `;
 
 export const LeftSide = styled.div`
@@ -46,4 +50,10 @@ export const Label = styled.span`
 export const Sort = styled.div`
   width: 12rem;
   display: inline-block;
+`;
+
+export const FiltersChipsWrapper = styled.div`
+  > div {
+    margin: 0.4rem;
+  }
 `;

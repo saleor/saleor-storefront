@@ -126,10 +126,6 @@ export const productDetailsQuery = gql`
             node {
               ...BasicProductFields
               ...ProductPricingField
-              category {
-                id
-                name
-              }
             }
           }
         }

@@ -62,6 +62,27 @@ const Page: React.FC<PageProps> = ({
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
 
+  const getAttribute = (attributeSlug: string, valueSlug: string) => {
+    return {
+      attributeSlug,
+      valueName: attributes
+        .find(({ slug }) => attributeSlug === slug)
+        .values.find(({ slug }) => valueSlug === slug).name,
+      valueSlug,
+    };
+  };
+
+  const activeFiltersAttributes =
+    filters &&
+    filters.attributes &&
+    Object.keys(filters.attributes).reduce(
+      (acc, key) =>
+        acc.concat(
+          filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))
+        ),
+      []
+    );
+
   return (
     <div className="category">
       <div className="search-page">
@@ -101,9 +122,11 @@ const Page: React.FC<PageProps> = ({
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={products ? products.totalCount : 0}
           activeFilters={activeFilters}
+          activeFiltersAttributes={activeFiltersAttributes}
           clearFilters={clearFilters}
           sortOptions={sortOptions}
           onChange={onOrder}
+          onCloseFilterAttribute={onAttributeFiltersChange}
         />
         {canDisplayProducts && (
           <ProductList
