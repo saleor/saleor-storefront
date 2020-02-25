@@ -3,6 +3,9 @@ import React from "react";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+/**
+ * The basic button
+ */
 export const Button: React.FC<IProps> = ({
   color = "primary",
   btnRef,

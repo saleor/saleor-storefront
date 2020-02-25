@@ -13,13 +13,15 @@ if (!portalRoot) {
 }
 
 import { SideNavbar } from ".";
-storiesOf("@components/organisms/SideNavbar", module).add("default", () => (
-  <BrowserRouter>
-    <SideNavbar
-      show={true}
-      onHide={action("hide")}
-      target={portalRoot}
-      items={items}
-    />
-  </BrowserRouter>
-));
+storiesOf("@components/organisms/SideNavbar", module)
+  .addParameters({ component: SideNavbar })
+  .add("default", () => (
+    <BrowserRouter>
+      <SideNavbar
+        show={true}
+        onHide={action("hide")}
+        target={portalRoot}
+        items={items}
+      />
+    </BrowserRouter>
+  ));
