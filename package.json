@@ -64,6 +64,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@hot-loader/react-dom": "^16.9.0",
+    "@lhci/cli": "^0.3.9",
     "@lingui/cli": "^2.8.3",
     "@lingui/loader": "^2.8.3",
     "@storybook/addon-actions": "^5.3.13",
