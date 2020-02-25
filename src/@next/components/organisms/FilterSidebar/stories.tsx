@@ -12,11 +12,13 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
-storiesOf("@components/organisms/FilterSidebar", module).add("default", () => (
-  <FilterSidebar
-    target={portalRoot}
-    {...DEFAULT_PROPS}
-    hide={action("hide")}
-    onAttributeFiltersChange={action("onAttributesFiltersChange")}
-  />
-));
+storiesOf("@components/organisms/FilterSidebar", module)
+  .addParameters({ component: FilterSidebar })
+  .add("default", () => (
+    <FilterSidebar
+      target={portalRoot}
+      {...DEFAULT_PROPS}
+      hide={action("hide")}
+      onAttributeFiltersChange={action("onAttributesFiltersChange")}
+    />
+  ));

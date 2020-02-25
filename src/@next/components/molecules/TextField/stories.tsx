@@ -15,6 +15,7 @@ const ContentLeft = () => <span>Content Left</span>;
 const ContentRight = () => <span>Content Right</span>;
 
 storiesOf("@components/molecules/TextField", module)
+  .addParameters({ component: TextField })
   .add("default", () => <TextField {...DEFAULT_PROPS} />)
   .add("with errors", () => (
     <TextField

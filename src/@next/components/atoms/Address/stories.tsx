@@ -18,6 +18,6 @@ const DEFAULT_PROPS = {
 };
 
 import { Address } from ".";
-storiesOf("@components/atoms/Address", module).add("default", () => (
-  <Address {...DEFAULT_PROPS} />
-));
+storiesOf("@components/atoms/Address", module)
+  .addParameters({ component: Address })
+  .add("default", () => <Address {...DEFAULT_PROPS} />);

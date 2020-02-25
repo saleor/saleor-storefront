@@ -94,8 +94,10 @@ const items = [
   },
 ];
 
-storiesOf("@components/organisms/TopNavbar", module).add("default", () => (
-  <BrowserRouter>
-    <TopNavbar items={items} />
-  </BrowserRouter>
-));
+storiesOf("@components/organisms/TopNavbar", module)
+  .addParameters({ component: TopNavbar })
+  .add("default", () => (
+    <BrowserRouter>
+      <TopNavbar items={items} />
+    </BrowserRouter>
+  ));

@@ -63,6 +63,7 @@ const INITIAL_DATA = {
 };
 
 storiesOf("@components/organisms/AddressForm", module)
+  .addParameters({ component: AddressForm })
   .add("default", () => withContainer(<AddressForm {...PROPS} />))
   .add("with errors", () =>
     withContainer(<AddressForm {...PROPS} {...ERRORS} />)
