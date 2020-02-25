@@ -29,7 +29,7 @@ jobs:
           command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn --validate-https
       - run:
           name: lhci autorun
-          command: npx lhci autorun --output=html
+          command: npx lhci autorun --output=html --rc-overrides.upload.target=temporary-public-storage
       - persist_to_workspace:
           root: ~/app
           paths:
