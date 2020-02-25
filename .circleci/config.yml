@@ -34,8 +34,6 @@ jobs:
           root: ~/app
           paths:
             - dist/*
-    - store_artifacts:
-      path: .lighthouseci/
   cypress/run:
     docker:
       - image: cypress/base:10
