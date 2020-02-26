@@ -56,8 +56,8 @@ export const ProductDescription: React.FC<IProps> = ({
       {activeTab === TABS.ATTRIBUTES && (
         <S.AttributeList>
           {attributes &&
-            attributes.map(attribute => (
-              <li>
+            attributes.map((attribute, index) => (
+              <li key={index}>
                 <S.AttributeName>{attribute.attribute.name}: </S.AttributeName>{" "}
                 {attribute.values.map(value => value.name).join(", ")}
               </li>

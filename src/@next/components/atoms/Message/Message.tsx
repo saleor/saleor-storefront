@@ -14,7 +14,7 @@ export const Message: React.FC<IProps> = ({
   const isAction = !!actionText;
 
   return (
-    <S.Wrapper status={status}>
+    <S.Wrapper status={status} data-cy="alert">
       <S.TopWrapper>
         <S.Title>{title}</S.Title>
         {isAction ? (

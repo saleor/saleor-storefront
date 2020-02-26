@@ -82,7 +82,11 @@ const MainMenu: React.FC = () => {
                       query={{ minWidth: mediumScreen }}
                       render={() =>
                         items.map(item => (
-                          <li className="main-menu__item" key={item.id}>
+                          <li
+                            data-cy="main-menu__item"
+                            className="main-menu__item"
+                            key={item.id}
+                          >
                             <NavDropdown overlay={overlayContext} {...item} />
                           </li>
                         ))
@@ -116,22 +120,22 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li>
+                              <li data-testid="my_account__link">
                                 <Link to={accountUrl}>
                                   <Trans id="My Account" />
                                 </Link>
                               </li>
-                              <li>
+                              <li data-testid="order_history__link">
                                 <Link to={orderHistoryUrl}>
                                   <Trans id="Order history" />
                                 </Link>
                               </li>
-                              <li>
+                              <li data-testid="address_book__link">
                                 <Link to={addressBookUrl}>
                                   <Trans id="Address book" />
                                 </Link>
                               </li>
-                              <li>
+                              <li data-testid="payment_options__link">
                                 <Link to={paymentOptionsUrl}>
                                   Payment options
                                 </Link>

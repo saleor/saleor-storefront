@@ -45,7 +45,7 @@ export const FilterSidebar: React.FC<IProps> = ({
       transparent
       target={target}
     >
-      <S.Wrapper ref={setElementRef()}>
+      <S.Wrapper ref={setElementRef()} data-cy="filter-sidebar">
         <S.Header>
           <span>FILTERS</span>
           <IconButton onClick={hide} name="x" size={18} color="000" />

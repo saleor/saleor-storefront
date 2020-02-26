@@ -17,6 +17,7 @@ const DEFAULT_PROPS = {
 };
 
 storiesOf("@components/molecules/FormFooter", module)
+  .addParameters({ component: FormFooter })
   .add("with submit button", () => <FormFooter {...DEFAULT_PROPS} />)
   .add("with submit and cancel button", () => {
     const PROPS = {

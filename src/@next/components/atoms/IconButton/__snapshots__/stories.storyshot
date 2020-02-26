@@ -64,6 +64,7 @@ exports[`Storyshots @components/atoms/IconButton edit icon button 1`] = `
 >
   <div
     className="c1"
+    data-cy="icon_button"
   >
     <svg
       height={19}
@@ -146,6 +147,7 @@ exports[`Storyshots @components/atoms/IconButton trash icon button 1`] = `
 >
   <div
     className="c1"
+    data-cy="icon_button"
   >
     <svg
       height={22}

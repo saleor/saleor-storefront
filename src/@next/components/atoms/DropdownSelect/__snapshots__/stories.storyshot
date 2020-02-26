@@ -75,6 +75,7 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
 >
   <div
     className="c1"
+    data-cy="dropdown-select"
   >
     <div
       className=""

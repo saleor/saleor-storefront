@@ -1,5 +1,7 @@
 // <reference types="cypress" />
 import "./login";
+import "./category";
+import "./account";
 
 Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
   function responseStub(result) {
@@ -10,7 +12,7 @@ Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
       text() {
         return Promise.resolve(JSON.stringify(result));
       },
-      ok: true
+      ok: true,
     };
   }
 
@@ -30,7 +32,7 @@ Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
       cy.stub(win, "fetch")
         .callsFake(serverStub)
         .as("fetch stub");
-    }
+    },
   });
 });
 
@@ -48,7 +50,7 @@ Cypress.Commands.add("mockGraphQL", stubs => {
               ok: true,
               text() {
                 return Promise.resolve(JSON.stringify(stub.response));
-              }
+              },
             });
             return true;
           }
@@ -75,6 +77,6 @@ Cypress.Commands.add("setup", polyfill => {
       delete win.fetch;
       win.eval(polyfill);
       win.fetch = win.unfetch;
-    }
+    },
   });
 });

@@ -252,6 +252,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -539,6 +540,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -817,6 +819,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg

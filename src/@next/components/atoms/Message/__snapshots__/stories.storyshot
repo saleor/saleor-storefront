@@ -67,6 +67,7 @@ exports[`Storyshots @components/atoms/Message action card 1`] = `
 >
   <div
     className="c1"
+    data-cy="alert"
   >
     <div
       className="c2"
@@ -163,6 +164,7 @@ exports[`Storyshots @components/atoms/Message action snackbar 1`] = `
 >
   <div
     className="c1"
+    data-cy="alert"
   >
     <div
       className="c2"
@@ -258,6 +260,7 @@ exports[`Storyshots @components/atoms/Message error w/ children 1`] = `
 >
   <div
     className="c1"
+    data-cy="alert"
   >
     <div
       className="c2"
@@ -363,6 +366,7 @@ exports[`Storyshots @components/atoms/Message neutral snackbar 1`] = `
 >
   <div
     className="c1"
+    data-cy="alert"
   >
     <div
       className="c2"
@@ -467,6 +471,7 @@ exports[`Storyshots @components/atoms/Message success w/ children 1`] = `
 >
   <div
     className="c1"
+    data-cy="alert"
   >
     <div
       className="c2"

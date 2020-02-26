@@ -4,7 +4,8 @@ import React from "react";
 import { ProductDescription } from ".";
 import { attributes, description } from "./fixtures";
 
-storiesOf("@components/molecules/ProductDescription", module).add(
-  "default",
-  () => <ProductDescription attributes={attributes} description={description} />
-);
+storiesOf("@components/molecules/ProductDescription", module)
+  .addParameters({ component: ProductDescription })
+  .add("default", () => (
+    <ProductDescription attributes={attributes} description={description} />
+  ));
