@@ -30,5 +30,5 @@ export interface IShippingAddressFormProps
 export interface IShippingNewAddressFormProps
   extends IBaseShippingAddressFormProps {
   onSubmit: (data: FormAddressType) => void;
-  noShipping?: boolean;
+  emailRequired?: boolean;
 }

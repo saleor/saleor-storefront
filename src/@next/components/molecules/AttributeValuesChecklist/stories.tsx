@@ -10,13 +10,12 @@ const Container = styled.div`
   width: 350px;
 `;
 
-storiesOf("@components/molecules/AttributeValuesChecklist", module).add(
-  "default",
-  () => (
+storiesOf("@components/molecules/AttributeValuesChecklist", module)
+  .addParameters({ component: AttributeValuesChecklist })
+  .add("default", () => (
     <Container>
       <AttributeValuesChecklist
         {...GET_DEFAULT_PROPS({ onValueClick: action("click") })}
       />
     </Container>
-  )
-);
+  ));

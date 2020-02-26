@@ -15,7 +15,7 @@ export const AddNewShippingAddressForm: React.FC<IShippingNewAddressFormProps> =
   onSubmit,
   children,
   type,
-  noShipping = false,
+  emailRequired = true,
 }) => (
   <div className="address-form">
     <ShopContext.Consumer>
@@ -101,7 +101,7 @@ export const AddNewShippingAddressForm: React.FC<IShippingNewAddressFormProps> =
               }
             )}
           >
-            {type === "shipping" && (
+            {type === "shipping" && emailRequired && (
               <TextField
                 label="Email Address"
                 type="email"

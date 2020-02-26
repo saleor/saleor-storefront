@@ -1,13 +1,13 @@
+import React, { useContext } from "react";
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
 import { useSignOut, useUserDetails } from "@sdk/react";
 
 import { Trans } from "@lingui/react";
-import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -18,16 +18,11 @@ import {
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
+import * as appPaths from "../../app/routes";
+import { CheckoutContext } from "../../checkout/context";
 import { maybe } from "../../core/utils";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -42,6 +37,14 @@ import userImg from "../../images/user.svg";
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
+  const { clear: clearCart } = useContext(CartContext);
+  const { clear: clearCheckout } = useContext(CheckoutContext);
+
+  const handleSignOut = () => {
+    signOut();
+    clearCart();
+    clearCheckout();
+  };
 
   return (
     <OverlayContext.Consumer>
@@ -82,7 +85,11 @@ const MainMenu: React.FC = () => {
                       query={{ minWidth: mediumScreen }}
                       render={() =>
                         items.map(item => (
-                          <li className="main-menu__item" key={item.id}>
+                          <li
+                            data-cy="main-menu__item"
+                            className="main-menu__item"
+                            key={item.id}
+                          >
                             <NavDropdown overlay={overlayContext} {...item} />
                           </li>
                         ))
@@ -95,7 +102,7 @@ const MainMenu: React.FC = () => {
           </div>
 
           <div className="main-menu__center">
-            <Link to={baseUrl}>
+            <Link to={appPaths.baseUrl}>
               <ReactSVG path={logoImg} />
             </Link>
           </div>
@@ -116,27 +123,30 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li>
-                                <Link to={accountUrl}>
+                              <li data-testid="my_account__link">
+                                <Link to={appPaths.accountUrl}>
                                   <Trans id="My Account" />
                                 </Link>
                               </li>
-                              <li>
-                                <Link to={orderHistoryUrl}>
+                              <li data-testid="order_history__link">
+                                <Link to={appPaths.orderHistoryUrl}>
                                   <Trans id="Order history" />
                                 </Link>
                               </li>
-                              <li>
-                                <Link to={addressBookUrl}>
+                              <li data-testid="address_book__link">
+                                <Link to={appPaths.addressBookUrl}>
                                   <Trans id="Address book" />
                                 </Link>
                               </li>
-                              <li>
-                                <Link to={paymentOptionsUrl}>
+                              <li data-testid="payment_options__link">
+                                <Link to={appPaths.paymentOptionsUrl}>
                                   Payment options
                                 </Link>
                               </li>
-                              <li onClick={signOut} data-testid="logout-link">
+                              <li
+                                onClick={handleSignOut}
+                                data-testid="logout-link"
+                              >
                                 Log Out
                               </li>
                             </ul>

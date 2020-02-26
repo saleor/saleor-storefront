@@ -13,8 +13,8 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
+  paymentOptionsUrl,
+} from "../../app/routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@components/views";

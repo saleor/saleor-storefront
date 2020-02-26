@@ -148,6 +148,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -179,6 +180,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -210,6 +212,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -241,6 +244,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -272,6 +276,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -303,6 +308,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
+        data-cy="product-tile"
       >
         <h4
           className="c3"
@@ -335,6 +341,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     <button
       className="c7"
       color="secondary"
+      data-cy="load-more_button"
       onClick={[Function]}
       size="md"
     >

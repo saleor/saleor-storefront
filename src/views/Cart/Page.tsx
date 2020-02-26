@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { TaxedMoney } from "@components/containers";
 import { useUserDetails } from "@sdk/react";
 
+import { checkoutLoginUrl } from "../../app/routes";
 import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
 import { Button, CartTable, EmptyCart, Loader } from "../../components";
@@ -19,7 +20,6 @@ import {
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
-import { checkoutLoginUrl } from "../../routes";
 import { TypedProductVariantsQuery } from "../Product/queries";
 
 interface PageProps {

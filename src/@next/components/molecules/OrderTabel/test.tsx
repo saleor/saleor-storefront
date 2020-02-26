@@ -114,7 +114,9 @@ describe("<OrderTabel />", () => {
       .at(1)
       .simulate("click");
 
-    expect(historySpy).toHaveBeenCalledWith(`/order/${ORDERS[0].node.token}`);
+    expect(historySpy).toHaveBeenCalledWith(
+      `/order-history/${ORDERS[0].node.token}`
+    );
   });
 
   it("should navigate to product page when clicking on product thumbnail", () => {

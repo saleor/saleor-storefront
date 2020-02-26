@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 import { Money, TaxedMoney } from "@components/containers";
 
+import { orderConfirmationUrl } from "../../../app/routes";
 import { Button, CartTable } from "../../../components";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
-import { orderConfirmationUrl } from "../../../routes";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
