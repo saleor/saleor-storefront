@@ -34,22 +34,6 @@ describe("User login, logout and registration", () => {
       .should("exist");
   });
 
-  // describe("Registration", () => {
-  //   it("should register a new user", () => {
-  //     user = userBuilder();
-  //     cy.registerUser(user)
-  //       .get(".message__title")
-  //       .should("contain", "New user has been created");
-  //   });
-  //   it("should display an error if user exists", () => {
-  //     cy.registerUser(user)
-  //       .get(".login__content .input")
-  //       .first()
-  //       .get(".input__error")
-  //       .should("contain", "User with this Email already exists.");
-  //   });
-  // });
-
   describe("Login", () => {
     it("should successfully log in an user", () => {
       user = { email: "admin@example.com", password: "admin" };
