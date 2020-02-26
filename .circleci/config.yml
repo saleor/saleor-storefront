@@ -26,7 +26,7 @@ jobs:
           command: npm run test
       - run:
           name: Package lock security test
-          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn --validate-https
+          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
       - run:
           name: lhci autorun
           command: npx lhci autorun --output=html --rc-overrides.upload.target=temporary-public-storage
