@@ -53,7 +53,7 @@ describe("User login, logout and registration", () => {
     it("should successfully log out an user", () => {
       user = { email: "admin@example.com", password: "admin" };
       cy.loginUser(user);
-      cy.wait(10000);
+      cy.wait(15000);
       cy.logoutUser()
         .get("[data-cy=alert]")
         .should("contain", "You are now logged out");
