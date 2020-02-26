@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:10.7.0
+      - image: circleci/node:10.7.0-browsers
     steps:
       - checkout
       - run:
@@ -27,6 +27,9 @@ jobs:
       - run:
           name: Package lock security test
           command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
+      - run:
+          name: lhci autorun
+          command: npx lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
       - persist_to_workspace:
           root: ~/app
           paths:
