@@ -12,11 +12,11 @@ import {
   OfflinePlaceholder,
   Online,
   Overlay,
-  OverlayContextInterface
+  OverlayContextInterface,
 } from "../..";
+import { cartUrl, checkoutLoginUrl } from "../../../app/routes";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
-import { cartUrl, checkoutLoginUrl } from "../../../routes";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { CartContext } from "../../CartProvider/context";
 import { extractCartLines, getTotal } from "../../CartProvider/utils";

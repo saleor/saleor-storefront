@@ -1,6 +1,6 @@
 import urljoin from "url-join";
 
-import { searchUrl } from "../../../routes";
+import { searchUrl } from "../../../app/routes";
 
 export const structuredData = shop => {
   return JSON.stringify({
