@@ -11,7 +11,7 @@ export const IconButton: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.Wrapper onClick={onClick}>
+    <S.Wrapper data-cy="icon_button" onClick={onClick}>
       <Icon size={size} {...props} />
     </S.Wrapper>
   );

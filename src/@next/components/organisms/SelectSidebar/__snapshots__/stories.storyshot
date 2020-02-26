@@ -264,6 +264,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -710,6 +711,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg

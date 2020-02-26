@@ -53,10 +53,11 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                   const date = new Date(order.node.created);
                   return (
                     <S.Row
+                      data-testid="order__row"
                       key={order.node.number}
                       onClick={evt => {
                         evt.stopPropagation();
-                        history.push(`/order/${order.node.token}`);
+                        history.push(`/order-history/${order.node.token}`);
                       }}
                     >
                       <S.IndexNumber>{order.node.number}</S.IndexNumber>
