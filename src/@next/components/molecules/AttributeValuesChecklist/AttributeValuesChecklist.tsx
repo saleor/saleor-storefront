@@ -13,33 +13,34 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
   valuesShowLimitNumber = 5,
   onValueClick,
 }: IProps) => {
-  const [viewAllOptions, setViewAllOptions] = React.useState(!valuesShowLimit);
+  const [valuesHidden, setValuesHidden] = React.useState(
+    valuesShowLimit && values.length > valuesShowLimitNumber
+  );
+
+  const visibleValues = valuesHidden
+    ? values.slice(0, valuesShowLimitNumber)
+    : values;
 
   return (
     <S.Wrapper>
       {title && <S.Header>{title}</S.Header>}
-      {values &&
-        values.map((value, index) => {
-          if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
-            return <></>;
-          } else {
-            return (
-              <Checkbox
-                name={name}
-                checked={!!value.selected}
-                onChange={() => onValueClick(value)}
-              >
-                {value && value.name}
-              </Checkbox>
-            );
-          }
-        })}
-      {!viewAllOptions && values.length > valuesShowLimitNumber && (
+      {visibleValues &&
+        visibleValues.map(value => (
+          <Checkbox
+            key={value.slug}
+            name={name}
+            checked={!!value.selected}
+            onChange={() => onValueClick(value)}
+          >
+            {value && value.name}
+          </Checkbox>
+        ))}
+      {valuesHidden && (
         <S.ViewMoreButton>
           <ButtonLink
             size="sm"
             color="secondary"
-            onClick={() => setViewAllOptions(true)}
+            onClick={() => setValuesHidden(false)}
           >
             VIEW ALL OPTIONS
           </ButtonLink>

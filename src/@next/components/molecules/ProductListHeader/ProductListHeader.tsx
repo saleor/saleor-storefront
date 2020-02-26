@@ -58,6 +58,7 @@ export const ProductListHeader: React.FC<IProps> = ({
         {activeFiltersAttributes.map(
           ({ attributeSlug, valueName, valueSlug }) => (
             <Chip
+              key={`${attributeSlug}_${valueSlug}`}
               onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
             >
               {valueName}
