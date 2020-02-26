@@ -24,6 +24,7 @@ export function removeAuthToken() {
 
 export function clearStorage(): void {
   localStorage.clear();
+  dispatchEvent(authEvent);
 }
 
 interface ResponseError extends ErrorResponse {
