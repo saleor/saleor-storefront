@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   mediumScreen,
   smallScreen,
@@ -7,7 +8,6 @@ import "./scss/index.scss";
 import { useSignOut, useUserDetails } from "@sdk/react";
 
 import { Trans } from "@lingui/react";
-import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -20,6 +20,7 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
+import { CheckoutContext } from "../../checkout/context";
 import { maybe } from "../../core/utils";
 import {
   accountUrl,
@@ -42,6 +43,14 @@ import userImg from "../../images/user.svg";
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
+  const { clear: clearCart } = useContext(CartContext);
+  const { clear: clearCheckout } = useContext(CheckoutContext);
+
+  const handleSignOut = () => {
+    signOut();
+    clearCart();
+    clearCheckout();
+  };
 
   return (
     <OverlayContext.Consumer>
@@ -140,7 +149,10 @@ const MainMenu: React.FC = () => {
                                   Payment options
                                 </Link>
                               </li>
-                              <li onClick={signOut} data-testid="logout-link">
+                              <li
+                                onClick={handleSignOut}
+                                data-testid="logout-link"
+                              >
                                 Log Out
                               </li>
                             </ul>
