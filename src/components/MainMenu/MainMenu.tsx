@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   mediumScreen,
   smallScreen,
@@ -7,7 +8,6 @@ import "./scss/index.scss";
 import { useSignOut, useUserDetails } from "@sdk/react";
 
 import { Trans } from "@lingui/react";
-import * as React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -20,13 +20,8 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl,
-} from "../../app/routes";
+import * as appPaths from "../../app/routes";
+import { CheckoutContext } from "../../checkout/context";
 import { maybe } from "../../core/utils";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
@@ -42,6 +37,14 @@ import userImg from "../../images/user.svg";
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
+  const { clear: clearCart } = useContext(CartContext);
+  const { clear: clearCheckout } = useContext(CheckoutContext);
+
+  const handleSignOut = () => {
+    signOut();
+    clearCart();
+    clearCheckout();
+  };
 
   return (
     <OverlayContext.Consumer>
@@ -99,7 +102,7 @@ const MainMenu: React.FC = () => {
           </div>
 
           <div className="main-menu__center">
-            <Link to={baseUrl}>
+            <Link to={appPaths.baseUrl}>
               <ReactSVG path={logoImg} />
             </Link>
           </div>
@@ -121,26 +124,29 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-testid="my_account__link">
-                                <Link to={accountUrl}>
+                                <Link to={appPaths.accountUrl}>
                                   <Trans id="My Account" />
                                 </Link>
                               </li>
                               <li data-testid="order_history__link">
-                                <Link to={orderHistoryUrl}>
+                                <Link to={appPaths.orderHistoryUrl}>
                                   <Trans id="Order history" />
                                 </Link>
                               </li>
                               <li data-testid="address_book__link">
-                                <Link to={addressBookUrl}>
+                                <Link to={appPaths.addressBookUrl}>
                                   <Trans id="Address book" />
                                 </Link>
                               </li>
                               <li data-testid="payment_options__link">
-                                <Link to={paymentOptionsUrl}>
+                                <Link to={appPaths.paymentOptionsUrl}>
                                   Payment options
                                 </Link>
                               </li>
-                              <li onClick={signOut} data-testid="logout-link">
+                              <li
+                                onClick={handleSignOut}
+                                data-testid="logout-link"
+                              >
                                 Log Out
                               </li>
                             </ul>
