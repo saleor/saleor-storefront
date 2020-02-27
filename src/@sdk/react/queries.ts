@@ -3,6 +3,8 @@ import { queryFactory, queryWithVariablesFactory } from "./useQuery";
 export const useProductDetails = queryWithVariablesFactory("getProductDetails");
 export const useProductList = queryWithVariablesFactory("getProductList");
 
+export const useShopDetails = queryFactory("getShopDetails");
+
 export const useUserDetails = queryFactory("getUserDetails");
 
 export const useUserCheckout = queryFactory("getUserCheckout");

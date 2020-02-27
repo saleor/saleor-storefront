@@ -103,6 +103,8 @@ export class SaleorAPI {
     data => data.productVariants
   );
 
+  getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
+
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.accountSetDefaultAddress

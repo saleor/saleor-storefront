@@ -1,10 +1,7 @@
 import gql from "graphql-tag";
 
-import { TypedQuery } from "../../core/queries";
-import { getShop } from "./types/getShop";
-
-const getShopQuery = gql`
-  query getShop {
+export const getShop = gql`
+  query GetShop {
     shop {
       displayGrossPrices
       defaultCountry {
@@ -24,5 +21,3 @@ const getShopQuery = gql`
     }
   }
 `;
-
-export const TypedGetShopQuery = TypedQuery<getShop, {}>(getShopQuery);
