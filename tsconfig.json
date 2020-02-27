@@ -18,6 +18,7 @@
       "@components/organisms": ["./src/@next/components/organisms/index.ts"],
       "@components/views": ["./src/@next/components/views/index.ts"],
       "@components/containers": ["./src/@next/components/containers/index.ts"],
+      "@components/templates": ["./src/@next/components/templates/index.ts"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],
