@@ -6,7 +6,7 @@ import { Button, Form, TextField } from "..";
 import { maybe } from "../../core/utils";
 import { TypedPasswordResetMutation } from "./queries";
 
-import { passwordResetUrl } from "../../routes/";
+import { passwordResetUrl } from "../../app/routes";
 
 const PasswordResetForm: React.FC = () => (
   <div className="password-reset-form">

@@ -4,9 +4,16 @@ export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
-  BRAINTREE: "Braintree",
-  DUMMY: "Dummy",
-  STRIPE: "Stripe",
+  BRAINTREE: {
+    label: "Braintree",
+  },
+  DUMMY: {
+    label: "Dummy",
+  },
+  STRIPE: {
+    href: "https://js.stripe.com/v3/",
+    label: "Stripe",
+  },
 };
 export const STATIC_PAGES = [
   {
@@ -38,7 +45,8 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description: "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
+  description:
+    "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
   title: "Demo PWA Storefront – Saleor Commerce",
   type: "website",

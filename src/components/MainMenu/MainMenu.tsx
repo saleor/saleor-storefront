@@ -20,15 +20,9 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
+import * as appPaths from "../../app/routes";
 import { CheckoutContext } from "../../checkout/context";
 import { maybe } from "../../core/utils";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-  paymentOptionsUrl,
-} from "../../routes";
 import { CartContext } from "../CartProvider/context";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -108,7 +102,7 @@ const MainMenu: React.FC = () => {
           </div>
 
           <div className="main-menu__center">
-            <Link to={baseUrl}>
+            <Link to={appPaths.baseUrl}>
               <ReactSVG path={logoImg} />
             </Link>
           </div>
@@ -130,22 +124,22 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-testid="my_account__link">
-                                <Link to={accountUrl}>
+                                <Link to={appPaths.accountUrl}>
                                   <Trans id="My Account" />
                                 </Link>
                               </li>
                               <li data-testid="order_history__link">
-                                <Link to={orderHistoryUrl}>
+                                <Link to={appPaths.orderHistoryUrl}>
                                   <Trans id="Order history" />
                                 </Link>
                               </li>
                               <li data-testid="address_book__link">
-                                <Link to={addressBookUrl}>
+                                <Link to={appPaths.addressBookUrl}>
                                   <Trans id="Address book" />
                                 </Link>
                               </li>
                               <li data-testid="payment_options__link">
-                                <Link to={paymentOptionsUrl}>
+                                <Link to={appPaths.paymentOptionsUrl}>
                                   Payment options
                                 </Link>
                               </li>
