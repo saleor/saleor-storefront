@@ -1,6 +1,6 @@
+import { VariantList } from "../../app/views/Product/types/VariantList";
 import { Checkout_lines } from "../../checkout/types/Checkout";
 import { priceToString } from "../../core/utils";
-import { VariantList } from "../../views/Product/types/VariantList";
 import { LineI } from "../CartTable/ProductRow";
 import { CartLineInterface } from "./context";
 

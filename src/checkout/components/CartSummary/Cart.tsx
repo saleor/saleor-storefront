@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Money } from "@components/containers";
 
+import { TypedProductVariantsQuery } from "../../../app/views/Product/queries";
 import { CartInterface } from "../../../components/CartProvider/context";
-import { TypedProductVariantsQuery } from "../../../views/Product/queries";
 import { Checkout } from "../../types/Checkout";
 import Line from "./Line";
 import Subtotal from "./Subtotal";

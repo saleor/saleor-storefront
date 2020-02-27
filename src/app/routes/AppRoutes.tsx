@@ -4,15 +4,15 @@ import { Route, Switch } from "react-router-dom";
 import { CheckoutLogin, NotFound } from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
-import { Account, AccountConfirm } from "../../views/Account";
-import { ArticlePage } from "../../views/Article";
-import { CartPage } from "../../views/Cart";
-import { CategoryPage } from "../../views/Category";
-import { CollectionPage } from "../../views/Collection";
-import { HomePage } from "../../views/Home";
-import OrderConfirmation from "../../views/OrderConfirmation/View";
-import { ProductPage } from "../../views/Product";
-import { SearchPage } from "../../views/Search";
+import { Account, AccountConfirm } from "../views/Account";
+import { ArticlePage } from "../views/Article";
+import { CartPage } from "../views/Cart";
+import { CategoryPage } from "../views/Category";
+import { CollectionPage } from "../views/Collection";
+import { HomePage } from "../views/Home";
+import OrderConfirmation from "../views/OrderConfirmation/View";
+import { ProductPage } from "../views/Product";
+import { SearchPage } from "../views/Search";
 
 import { PasswordReset } from "../../@next/components/views";
 

@@ -7,8 +7,8 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { baseUrl } from "../../app/routes";
+import { Category_category } from "../../app/views/Category/types/Category";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { Category_category } from "../../views/Category/types/Category";
 
 export interface Breadcrumb {
   value: string;
