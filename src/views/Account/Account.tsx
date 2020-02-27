@@ -72,7 +72,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
           </div>
         </Media>
         <div className="account__content">
-          {returnTab(match.path, user, history)}
+          {user && returnTab(match.path, user, history)}
         </div>
       </div>
     </div>
