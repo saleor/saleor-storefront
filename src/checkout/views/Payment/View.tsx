@@ -33,6 +33,7 @@ export interface ProviderProps {
   formRef: React.RefObject<HTMLFormElement>;
   checkout: CheckoutContextInterface;
   paymentGatewayConfig: Checkout_availablePaymentGateways_config[];
+  paymentGatewayHref?: string;
   processPayment(token: string, gateway: string): Promise<void>;
   setLoadingState(loading: boolean): void;
 }
@@ -231,7 +232,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                       paymentGatewayConfig: provider.config,
                     };
                     switch (providerName) {
-                      case PROVIDERS.BRAINTREE:
+                      case PROVIDERS.BRAINTREE.label:
                         return (
                           <Option
                             label="Credit Card"
@@ -241,17 +242,20 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
                           </Option>
                         );
 
-                      case PROVIDERS.DUMMY:
+                      case PROVIDERS.DUMMY.label:
                         return (
                           <Option label="Dummy" {...optionProps(providerName)}>
                             <Dummy {...paymentGatewayProps} />
                           </Option>
                         );
 
-                      case PROVIDERS.STRIPE:
+                      case PROVIDERS.STRIPE.label:
                         return (
                           <Option label="Stripe" {...optionProps(providerName)}>
-                            <Stripe {...paymentGatewayProps} />
+                            <Stripe
+                              {...paymentGatewayProps}
+                              paymentGatewayHref={PROVIDERS.STRIPE.href}
+                            />
                           </Option>
                         );
                     }

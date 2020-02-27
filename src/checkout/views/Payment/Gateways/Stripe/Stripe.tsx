@@ -16,7 +16,7 @@ export const Stripe = (props: ProviderProps) => {
     if (!(window as Window).Stripe) {
       const stripeJs = document.createElement("script");
 
-      stripeJs.src = "https://js.stripe.com/v3/";
+      stripeJs.src = props.paymentGatewayHref;
       stripeJs.async = true;
       stripeJs.onload = () => {
         setStripe((window as Window).Stripe(apiKey));
