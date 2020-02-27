@@ -3,9 +3,7 @@ import React from "react";
 import { CartContext } from "./context";
 import { IProps } from "./types";
 
-export function WishlistProvider({
-  children,
-}: IProps): React.ReactElement<IProps> {
+export function CartProvider({ children }: IProps): React.ReactElement<IProps> {
   /**
    * TODO
    */
