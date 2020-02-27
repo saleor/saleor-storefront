@@ -7,7 +7,7 @@ import {
   braintreePayment,
   ErrorData,
   IPaymentCardError,
-  PaymentData
+  PaymentData,
 } from "../../../../../core/payments/braintree";
 import { maybe, removeEmptySpaces } from "../../../../../core/utils";
 import { ProviderProps } from "../../View";
@@ -75,7 +75,7 @@ const CreditCard = ({
         number: removeEmptySpaces(maybe(() => formData.ccNumber, "")),
       };
       const token = await tokenizeCcCard(creditCard);
-      processPayment(token, PROVIDERS.BRAINTREE);
+      processPayment(token, PROVIDERS.BRAINTREE.label);
       setLoadingState(false);
     };
 
