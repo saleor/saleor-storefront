@@ -336,8 +336,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               , 
               Poland
               <br />
-              Phone number
-              : 
+              Phone number: 
               555-5555
                
               <br />
@@ -577,8 +576,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               , 
               Poland
               <br />
-              Phone number
-              : 
+              Phone number: 
               555-5555
                
               <br />
@@ -700,8 +698,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               , 
               Poland
               <br />
-              Phone number
-              : 
+              Phone number: 
               555-5555
                
               <br />

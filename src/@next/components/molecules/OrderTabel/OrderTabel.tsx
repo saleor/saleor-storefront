@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/react";
 import React from "react";
 import Media from "react-media";
 import { ThemeContext } from "styled-components";
@@ -13,25 +12,15 @@ import { IProps } from "./types";
 
 const header = (matches: boolean) => (
   <S.HeaderRow>
-    <S.IndexNumber>
-      <Trans id="Index Number" />
-    </S.IndexNumber>
+    <S.IndexNumber>Index Number</S.IndexNumber>
     {matches && (
       <>
-        <S.ProductsOrdered>
-          <Trans id="Products Ordered" />
-        </S.ProductsOrdered>
-        <S.DateOfOrder>
-          <Trans id="Date of Order" />
-        </S.DateOfOrder>
-        <S.Value>
-          <Trans id="Value" />
-        </S.Value>
+        <S.ProductsOrdered>Products Ordered</S.ProductsOrdered>
+        <S.DateOfOrder>Date of Order</S.DateOfOrder>
+        <S.Value>Value</S.Value>
       </>
     )}
-    <S.Status>
-      <Trans id="Status" />
-    </S.Status>
+    <S.Status>Status</S.Status>
   </S.HeaderRow>
 );
 
