@@ -1,6 +1,6 @@
-import { CartLine } from "./context";
+import { CheckoutContextInterface } from "@temp/checkout/context";
 
 export interface IProps {
   children: React.ReactNode;
-  initialLines: CartLine[];
+  checkoutContext: CheckoutContextInterface;
 }

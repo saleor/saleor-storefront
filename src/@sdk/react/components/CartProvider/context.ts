@@ -2,27 +2,23 @@ import * as React from "react";
 
 import { ApolloErrorWithUserInput } from "../../types";
 
-export interface CartLine {
+export interface CartItem {
   variantId: string;
   quantity: number;
 }
 
 export interface ICartContext {
-  // lines: CartLine[];
-  // loading: boolean;
-  // error: ApolloErrorWithUserInput | null;
-  // setLine(variantId: string, quantity?: number): void;
-  // clear(): void;
-  // clearErrors(): void;
+  items: CartItem[];
+  error: ApolloErrorWithUserInput | null;
+  loading: boolean;
+  setItem(item: CartItem): void;
 }
 
 export const CartContext = React.createContext<ICartContext>({
-  // clear: () => null,
-  // clearErrors: () => null,
-  // error: null,
-  // lines: [],
-  // loading: false,
-  // setLine: (variantId, quantity = 1) => null,
+  error: null,
+  items: [],
+  loading: false,
+  setItem: () => null,
 });
 
 CartContext.displayName = "CartContext";

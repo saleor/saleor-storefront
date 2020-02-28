@@ -6,11 +6,11 @@ import { CartContext } from "@sdk/react/components/CartProvider/context";
 import { IProps } from "./types";
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
-  const {} = React.useContext(CartContext);
+  const { items, setItem, loading, error } = React.useContext(CartContext);
 
   return (
     <>
-      <Cart />
+      <Cart items={items} setItem={setItem} loading={loading} error={error} />
     </>
   );
 };
