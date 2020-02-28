@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 
+import { apiUrl } from "../../constants";
 import { Consumer as MetaConsumer } from "./context";
 
 const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
@@ -8,6 +9,7 @@ const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
     {({ title, description, image, type, url, custom }) => (
       <>
         <Helmet
+          link={[{ href: apiUrl, rel: "preconnect" }]}
           title={title}
           meta={[
             { name: "description", content: description },
