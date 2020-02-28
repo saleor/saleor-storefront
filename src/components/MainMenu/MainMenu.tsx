@@ -7,7 +7,6 @@ import "./scss/index.scss";
 
 import { useSignOut, useUserDetails } from "@sdk/react";
 
-import { Trans } from "@lingui/react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -124,18 +123,16 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-testid="my_account__link">
-                                <Link to={appPaths.accountUrl}>
-                                  <Trans id="My Account" />
-                                </Link>
+                                <Link to={appPaths.accountUrl}>My Account</Link>
                               </li>
                               <li data-testid="order_history__link">
                                 <Link to={appPaths.orderHistoryUrl}>
-                                  <Trans id="Order history" />
+                                  Order history
                                 </Link>
                               </li>
                               <li data-testid="address_book__link">
                                 <Link to={appPaths.addressBookUrl}>
-                                  <Trans id="Address book" />
+                                  Address book
                                 </Link>
                               </li>
                               <li data-testid="payment_options__link">

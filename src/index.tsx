@@ -3,7 +3,6 @@ import { ThemeProvider } from "styled-components";
 
 import { NotificationTemplate } from "@components/atoms";
 import {
-  I18nLoader,
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
@@ -45,8 +44,6 @@ import {
   authLink,
   invalidTokenLinkWithTokenHandlerComponent,
 } from "./core/auth";
-
-import { languages } from "./languages";
 
 const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
   UserProvider
@@ -178,17 +175,15 @@ const startApp = async () => {
 
   render(
     <ThemeProvider theme={defaultTheme}>
-      <I18nLoader languages={languages}>
-        <AlertProvider
-          template={NotificationTemplate as any}
-          {...notificationOptions}
-        >
-          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-            <GlobalStyle />
-            <Root />
-          </ServiceWorkerProvider>
-        </AlertProvider>
-      </I18nLoader>
+      <AlertProvider
+        template={NotificationTemplate as any}
+        {...notificationOptions}
+      >
+        <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+          <GlobalStyle />
+          <Root />
+        </ServiceWorkerProvider>
+      </AlertProvider>
     </ThemeProvider>,
     document.getElementById("root")
   );

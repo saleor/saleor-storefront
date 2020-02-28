@@ -212,8 +212,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             , 
             Poland
             <br />
-            Phone number
-            : 
+            Phone number: 
             555-5555
              
             <br />
@@ -483,8 +482,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             , 
             Poland
             <br />
-            Phone number
-            : 
+            Phone number: 
             555-5555
              
             <br />
