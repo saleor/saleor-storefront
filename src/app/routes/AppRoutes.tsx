@@ -14,7 +14,7 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
-import { PasswordReset } from "../../@next/components/views";
+import { PasswordReset } from "@pages";
 
 import * as paths from "./paths";
 

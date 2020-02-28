@@ -17,7 +17,7 @@ import {
 } from "../../app/routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@components/views";
+import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
 
 const returnTab: any = (path: string, userDetails, history) => {
