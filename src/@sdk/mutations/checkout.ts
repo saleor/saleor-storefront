@@ -6,7 +6,7 @@ import {
   checkoutPriceFragment,
 } from "../fragments/checkout";
 
-export const updateCheckoutLineQuery = gql`
+export const updateCheckoutLineMutation = gql`
   ${checkoutLineFragment}
   ${checkoutPriceFragment}
   mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {

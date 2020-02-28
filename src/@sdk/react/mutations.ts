@@ -14,6 +14,7 @@ export const useCreateCheckout = mutationFactory("setCreateCheckout");
 export const useUpdateCheckoutBillingAddress = mutationFactory(
   "setCheckoutBillingAddress"
 );
+export const useUpdateCheckoutLine = mutationFactory("setCheckoutLine");
 export const useUpdateCheckoutShippingAddress = mutationFactory(
   "setCheckoutShippingAddress"
 );
