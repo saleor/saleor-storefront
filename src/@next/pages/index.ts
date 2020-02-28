@@ -1,4 +1,4 @@
 export * from "./OrdersHistory";
 export * from "./AccountTab";
 export * from "./PasswordReset";
-export * from "./CartView";
+export * from "./CartPage";

@@ -5,7 +5,7 @@ import { CartContext } from "@sdk/react/components/CartProvider/context";
 
 import { IProps } from "./types";
 
-export const CartView: React.FC<IProps> = ({}: IProps) => {
+export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const {} = React.useContext(CartContext);
 
   return (
