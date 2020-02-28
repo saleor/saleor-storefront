@@ -91,6 +91,7 @@ module.exports = ({ sourceDir, distDir }) => ({
     new HtmlWebpackPlugin({
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
+      API_URI: process.env.API_URI,
     }),
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
