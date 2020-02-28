@@ -12,7 +12,7 @@ export function CredentialsProvider({
   const { update } = React.useContext(CheckoutContext);
 
   const autoSignIn = async () => {
-    const credentials = await navigator.credentials.get({
+    const credentials = await (navigator.credentials as any).get({
       password: true,
     });
 

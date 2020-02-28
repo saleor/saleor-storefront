@@ -132,7 +132,7 @@ export const parseQueryString = (
   location: LocationState
 ): { [key: string]: string } => {
   const query = {
-    ...parseQs(location.search.substr(1)),
+    ...parseQs((location as any).search.substr(1)),
   };
   each(query, (value, key) => {
     if (Array.isArray(value)) {

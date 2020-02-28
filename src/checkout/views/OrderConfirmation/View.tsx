@@ -8,6 +8,8 @@ import { Button, NotFound } from "../../../components";
 import { BASE_URL } from "../../../core/config";
 import { userOrderDetailsUrl } from "../../../userAccount/routes";
 
+type TState = {token: any, id: number};
+
 const View: React.FC<RouteComponentProps> = ({
   history: {
     location: { state },
@@ -17,7 +19,7 @@ const View: React.FC<RouteComponentProps> = ({
     return <NotFound />;
   }
 
-  const { token, id } = state;
+  const { token, id } = state as TState;
   const guest = !id;
   const orderDetailsRef = guest
     ? generatePath(guestOrderDetailsUrl, { token })

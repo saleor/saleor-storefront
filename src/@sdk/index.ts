@@ -1,5 +1,5 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient, ApolloError, ObservableQuery } from "apollo-client";
+import { ApolloClient, ApolloError, ObservableQuery, WatchQueryOptions } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
@@ -289,7 +289,7 @@ export class SaleorAPI {
   ) {
     return <
       TVariables extends InferOptions<T>["variables"],
-      TOptions extends Omit<InferOptions<T>, "variables">
+      TOptions extends Omit<InferOptions<T> | WatchQueryOptions<InferOptions<T>>, "variables">
     >(
       variables: TVariables,
       options: TOptions & {
