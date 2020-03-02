@@ -1,4 +1,4 @@
-import { CartItem } from "@sdk/react/components/CartProvider/context";
+import { CartItem } from "@temp/@sdk/react/components/CheckoutProvider/context";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 
 export interface IProps {

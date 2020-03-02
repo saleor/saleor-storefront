@@ -12,19 +12,19 @@ export enum CheckoutStep {
 }
 
 export interface CheckoutContextInterface {
-  syncWithCart?: boolean;
-  syncUserCheckout?: boolean;
+  syncWithCart?: boolean; // To remove
+  syncUserCheckout?: boolean; // To remove
   dummyStatus?: string | null;
-  cardData?: CardData | null;
-  checkout?: Checkout | null;
-  loading?: boolean;
-  shippingAsBilling?: boolean;
+  cardData?: CardData | null; // To remove
+  checkout?: Checkout | null; // Done
+  loading?: boolean; // Done
+  shippingAsBilling?: boolean; // Done
   /*
    * @deprecated Use useCheckoutStepState hook to determine step instead.
    */
-  step?: CheckoutStep;
-  update?(checkoutData: CheckoutContextInterface): void;
-  clear?(): void;
+  step?: CheckoutStep; // To remove
+  update?(checkoutData: CheckoutContextInterface): void; // ?
+  clear?(): void; // ?
 }
 
 export const defaultContext = {
