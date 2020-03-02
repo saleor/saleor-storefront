@@ -1,9 +1,13 @@
-import { CartItem } from "@temp/@sdk/react/components/CheckoutProvider/context";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 
+export interface ICartItem {
+  productVariantId: string;
+  quantity: number;
+}
+
 export interface IProps {
-  items: CartItem[];
+  items: ICartItem[];
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
-  setItem(item: CartItem): void;
+  updateItem(item: ICartItem): void;
 }

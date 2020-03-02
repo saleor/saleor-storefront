@@ -8,7 +8,7 @@ import { IProps } from "./types";
  */
 export const Cart: React.FC<IProps> = ({
   items,
-  setItem,
+  updateItem,
   loading,
   error,
 }: IProps) => {
