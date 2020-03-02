@@ -8,7 +8,7 @@ import { useUpdateCheckoutLine } from "@sdk/react";
 
 import { maybe } from "../../../../core/utils";
 import { ApolloErrorWithUserInput } from "../../types";
-import { CheckoutContext, CartLine, CartItem } from "./context";
+import { CartItem, CartLine, CheckoutContext } from "./context";
 import { IProps } from "./types";
 
 enum LocalStorageKeys {
@@ -24,10 +24,10 @@ export function CheckoutProvider({
     { data: updateData, loading: updateLoading, error: updateError },
   ] = useUpdateCheckoutLine();
 
-  const { storedValue: token, setValue: setCheckoutToken } = useLocalStorage(
+  const { storedValue: token, setValue: storeToken } = useLocalStorage(
     LocalStorageKeys.CheckoutToken
   );
-  const { storedValue: cart, setValue: setCart } = useLocalStorage(
+  const { storedValue: cart, setValue: storeCart } = useLocalStorage(
     LocalStorageKeys.Cart
   );
   const [checkoutData, setCheckoutData] = useState<Checkout | null>(null);
@@ -35,17 +35,15 @@ export function CheckoutProvider({
 
   const update = (checkoutData: Checkout) => {
     setCheckoutData(checkoutData);
-    setCheckoutToken(checkoutData.token);
+    storeToken(checkoutData.token);
+    storeCart(checkoutData.lines);
   };
 
   useEffect(() => {
     const updatedCheckout = updateData?.checkout;
 
     if (updatedCheckout) {
-      setCheckoutData((checkoutData: Checkout) => ({
-        ...checkoutData,
-        ...updatedCheckout,
-      }));
+      setCheckoutData(updatedCheckout);
     }
   }, [updateData]);
 
@@ -65,6 +63,7 @@ export function CheckoutProvider({
     error: updateError,
     loading: updateLoading,
     shippingAsBilling,
+    update,
   });
 
   return (

@@ -12,17 +12,7 @@ export const updateCheckoutLineMutation = gql`
   mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
-        id
-        lines {
-          ...CheckoutLine
-        }
-        totalPrice {
-          ...Price
-        }
-        subtotalPrice {
-          ...Price
-        }
-        isShippingRequired
+        ...Checkout
       }
       errors {
         field

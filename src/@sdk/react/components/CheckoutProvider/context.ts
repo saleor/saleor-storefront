@@ -8,6 +8,7 @@ export interface ICheckoutContext {
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
   shippingAsBilling?: boolean;
+  update: (checkoutData: Checkout) => void;
 }
 
 export const CheckoutContext = React.createContext<ICheckoutContext>({
@@ -15,6 +16,7 @@ export const CheckoutContext = React.createContext<ICheckoutContext>({
   error: null,
   loading: false,
   shippingAsBilling: false,
+  update: () => null,
 });
 
 CheckoutContext.displayName = "CheckoutContext";
