@@ -11,9 +11,10 @@ import { ApolloErrorWithUserInput } from "../../types";
 import { CheckoutContext, CartLine, CartItem } from "./context";
 import { IProps } from "./types";
 
-// enum LocalStorageKeys {
-//   Cart = "cart",
-// }
+enum LocalStorageKeys {
+  Cart = "cart",
+  CheckoutToken = "checkoutToken",
+}
 
 export function CheckoutProvider({
   children,
@@ -24,7 +25,10 @@ export function CheckoutProvider({
   ] = useUpdateCheckoutLine();
 
   const { storedValue: token, setValue: setCheckoutToken } = useLocalStorage(
-    "checkoutToken"
+    LocalStorageKeys.CheckoutToken
+  );
+  const { storedValue: cart, setValue: setCart } = useLocalStorage(
+    LocalStorageKeys.Cart
   );
   const [checkoutData, setCheckoutData] = useState<Checkout | null>(null);
   const [shippingAsBilling, setShippingAsBilling] = useState(false);
