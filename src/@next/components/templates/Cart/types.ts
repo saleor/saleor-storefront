@@ -1,7 +1,7 @@
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 
 export interface ICartItem {
-  productVariantId: string;
+  variantId: string;
   quantity: number;
 }
 

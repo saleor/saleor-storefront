@@ -8,7 +8,7 @@ import { useUpdateCheckoutLine } from "@sdk/react";
 
 import { maybe } from "../../../../core/utils";
 import { ApolloErrorWithUserInput } from "../../types";
-import { CartItem, CartLine, CheckoutContext } from "./context";
+import { CheckoutContext } from "./context";
 import { IProps } from "./types";
 
 enum LocalStorageKeys {
@@ -19,11 +19,6 @@ enum LocalStorageKeys {
 export function CheckoutProvider({
   children,
 }: IProps): React.ReactElement<IProps> {
-  const [
-    setUpdateCheckoutLine,
-    { data: updateData, loading: updateLoading, error: updateError },
-  ] = useUpdateCheckoutLine();
-
   const { storedValue: token, setValue: storeToken } = useLocalStorage(
     LocalStorageKeys.CheckoutToken
   );
@@ -39,29 +34,10 @@ export function CheckoutProvider({
     storeCart(checkoutData.lines);
   };
 
-  useEffect(() => {
-    const updatedCheckout = updateData?.checkout;
-
-    if (updatedCheckout) {
-      setCheckoutData(updatedCheckout);
-    }
-  }, [updateData]);
-
-  // const setItem = (item: CartItem) => {
-  //   const checkoutId = checkoutContext?.checkout?.id;
-
-  //   if (checkoutId) {
-  //     setUpdateCheckoutLine({
-  //       checkoutId,
-  //       lines: [item],
-  //     });
-  //   }
-  // };
-
   const getContext = () => ({
     checkout: checkoutData,
-    error: updateError,
-    loading: updateLoading,
+    error: null,
+    loading: false,
     shippingAsBilling,
     update,
   });

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Cart } from "@components/templates";
-import { CheckoutContext } from "@temp/@sdk/react/components/CheckoutProvider/context";
+import { useUpdateCheckoutLine } from "@sdk/react";
+import { CheckoutContext } from "@sdk/react/components/CheckoutProvider/context";
 
 import { ICartItem } from "../../components/templates/Cart/types";
 
@@ -12,18 +13,35 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     CheckoutContext
   );
 
+  const [
+    setUpdateCheckoutLine,
+    { data: updateData, loading: updateLoading, error: updateError },
+  ] = useUpdateCheckoutLine();
+
+  useEffect(() => {
+    const updatedCheckout = updateData?.checkout;
+
+    if (updatedCheckout) {
+      update(updatedCheckout);
+    }
+  }, [updateData]);
+
   const checkoutItems = checkout?.lines
     ? checkout?.lines?.map(item => ({
-        productVariantId: item!.id,
         quantity: item!.quantity,
+        variantId: item!.id,
       }))
     : [];
 
   const handleUpdateItem = (cartItem: ICartItem) => {
-    update(
-      checkout
-      // lines: ,
-    );
+    const checkoutId = checkout?.id;
+
+    if (checkoutId) {
+      setUpdateCheckoutLine({
+        checkoutId,
+        lines: [cartItem],
+      });
+    }
   };
 
   return (
