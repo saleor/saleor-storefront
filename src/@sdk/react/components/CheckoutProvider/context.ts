@@ -4,28 +4,34 @@ import { Checkout } from "@sdk/fragments/types/Checkout";
 import { ApolloErrorWithUserInput } from "../../types";
 import { ICartItem } from "./types";
 
-export interface ICheckoutContextHandlers {
+export interface ICheckoutContextState {
+  checkout: Checkout | null;
+  shippingAsBilling?: boolean;
+}
+export interface ICheckoutContextStateHandlers {
   setCartItems: (cartItems: ICartItem[]) => void;
 }
 
 export interface ICheckoutContext {
-  checkout: Checkout | null;
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
-  shippingAsBilling?: boolean;
-  contextHandlers: ICheckoutContextHandlers;
+  state: ICheckoutContextState;
+  stateHandlers: ICheckoutContextStateHandlers;
 }
 
-const CheckoutContextHandlers = {
+const CheckoutContextState = {
+  checkout: null,
+  shippingAsBilling: false,
+};
+const CheckoutContextStateHandlers = {
   setCartItems: () => null,
 };
 
 export const CheckoutContext = React.createContext<ICheckoutContext>({
-  checkout: null,
-  contextHandlers: CheckoutContextHandlers,
   error: null,
   loading: false,
-  shippingAsBilling: false,
+  state: CheckoutContextState,
+  stateHandlers: CheckoutContextStateHandlers,
 });
 
 CheckoutContext.displayName = "CheckoutContext";

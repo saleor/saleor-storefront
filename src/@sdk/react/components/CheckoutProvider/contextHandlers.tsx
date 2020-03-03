@@ -4,22 +4,21 @@ import { Checkout } from "@sdk/fragments/types/Checkout";
 
 import { useUpdateCheckoutLine } from "../..";
 import { ApolloErrorWithUserInput } from "../../types";
-import { CheckoutContext, ICheckoutContext } from "./context";
 import { ICartItem } from "./types";
 
-interface IContextHandlersParams {
+interface IContextStateHandlersParams {
   checkout: Checkout | null;
   updateCheckout: (checkout: Checkout | null) => void;
   updateLoading: (loading: boolean) => void;
   updateError: (error: ApolloErrorWithUserInput | null) => void;
 }
 
-export const useCheckoutContextHandlers = ({
+export const useCheckoutContextStateHandlers = ({
   checkout,
   updateCheckout,
   updateLoading,
   updateError,
-}: IContextHandlersParams) => {
+}: IContextStateHandlersParams) => {
   const [
     setUpdateCheckoutLine,
     { data: updateData, loading: loadingData, error: errorData },

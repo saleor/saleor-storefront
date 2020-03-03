@@ -9,8 +9,8 @@ import { IProps } from "./types";
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const {
-    checkout,
-    contextHandlers: { setCartItems },
+    state: { checkout, shippingAsBilling },
+    stateHandlers: { setCartItems },
     loading,
     error,
   } = React.useContext(CheckoutContext);

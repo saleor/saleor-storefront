@@ -2,10 +2,6 @@ import React from "react";
 
 import { SaleorAPI } from "../";
 import { getAuthToken } from "../auth";
-import {
-  CheckoutContext,
-  ICheckoutContext,
-} from "./components/CheckoutProvider/context";
 import { SaleorContext } from "./context";
 
 export function useSaleorClient(): SaleorAPI {
@@ -18,21 +14,6 @@ export function useSaleorClient(): SaleorAPI {
     );
   }
   return saleor;
-}
-
-export function useContextHandlers(): { checkoutContext: ICheckoutContext } {
-  const checkoutContext = React.useContext(CheckoutContext);
-
-  if (!checkoutContext) {
-    throw new Error(
-      "Could not find checkout context. " +
-        "Did you forget to wrap the root component in a <CheckoutProvider>?"
-    );
-  }
-
-  return {
-    checkoutContext,
-  };
 }
 
 export const useAuth = (
