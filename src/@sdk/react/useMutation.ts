@@ -9,7 +9,7 @@ import {
   ApolloErrorWithUserInput,
   Options,
   ReturnData,
-  Variables
+  Variables,
 } from "./types";
 
 type MutationUpdaterFn<TData = Record<string, any>> = (
@@ -116,9 +116,15 @@ const useMutation = <
         handleMutationStart();
 
         const mutationId = generateNewMutationId();
-        const apolloVariables = { ...(baseVariables as object), ...(variables as object) };
+        const apolloVariables = {
+          ...(baseVariables as object),
+          ...(variables as object),
+        };
 
-        const apolloOptions = { ...(baseOptions as object), ...(options as object) };
+        const apolloOptions = {
+          ...(baseOptions as object),
+          ...(options as object),
+        };
 
         (saleor[mutation] as (variables: any, options: any) => Promise<any>)(
           apolloVariables,

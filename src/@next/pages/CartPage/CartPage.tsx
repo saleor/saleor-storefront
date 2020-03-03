@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Cart } from "@components/templates";
-import { useUpdateCheckoutLine } from "@sdk/react";
 import { CheckoutContext } from "@sdk/react/components/CheckoutProvider/context";
 
 import { ICartItem } from "../../components/templates/Cart/types";
@@ -9,22 +8,12 @@ import { ICartItem } from "../../components/templates/Cart/types";
 import { IProps } from "./types";
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
-  const { checkout, update, loading, error } = React.useContext(
-    CheckoutContext
-  );
-
-  const [
-    setUpdateCheckoutLine,
-    { data: updateData, loading: updateLoading, error: updateError },
-  ] = useUpdateCheckoutLine();
-
-  useEffect(() => {
-    const updatedCheckout = updateData?.checkout;
-
-    if (updatedCheckout) {
-      update(updatedCheckout);
-    }
-  }, [updateData]);
+  const {
+    checkout,
+    contextHandlers: { setCartItems },
+    loading,
+    error,
+  } = React.useContext(CheckoutContext);
 
   const checkoutItems = checkout?.lines
     ? checkout?.lines?.map(item => ({
@@ -34,14 +23,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     : [];
 
   const handleUpdateItem = (cartItem: ICartItem) => {
-    const checkoutId = checkout?.id;
-
-    if (checkoutId) {
-      setUpdateCheckoutLine({
-        checkoutId,
-        lines: [cartItem],
-      });
-    }
+    setCartItems([cartItem]);
   };
 
   return (

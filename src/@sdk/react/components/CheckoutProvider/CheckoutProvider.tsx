@@ -9,7 +9,8 @@ import { useUpdateCheckoutLine } from "@sdk/react";
 import { maybe } from "../../../../core/utils";
 import { ApolloErrorWithUserInput } from "../../types";
 import { CheckoutContext } from "./context";
-import { IProps } from "./types";
+import { useCheckoutContextHandlers } from "./contextHandlers";
+import { ICartItem, IProps } from "./types";
 
 enum LocalStorageKeys {
   Cart = "cart",
@@ -26,20 +27,38 @@ export function CheckoutProvider({
     LocalStorageKeys.Cart
   );
   const [checkoutData, setCheckoutData] = useState<Checkout | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<ApolloErrorWithUserInput | null>(null);
   const [shippingAsBilling, setShippingAsBilling] = useState(false);
 
-  const update = (checkoutData: Checkout) => {
+  useEffect(() => {
+    if (checkoutData && cart) {
+      setCheckoutData({
+        ...checkoutData,
+        lines: cart,
+      });
+    }
+  }, [checkoutData]);
+
+  const updateCheckout = (checkoutData: Checkout | null) => {
     setCheckoutData(checkoutData);
-    storeToken(checkoutData.token);
-    storeCart(checkoutData.lines);
+    storeToken(checkoutData?.token);
+    storeCart(checkoutData?.lines);
   };
+
+  const contextHandlers = useCheckoutContextHandlers({
+    checkout: checkoutData,
+    updateCheckout,
+    updateError: setError,
+    updateLoading: setLoading,
+  });
 
   const getContext = () => ({
     checkout: checkoutData,
+    contextHandlers,
     error: null,
     loading: false,
     shippingAsBilling,
-    update,
   });
 
   return (
