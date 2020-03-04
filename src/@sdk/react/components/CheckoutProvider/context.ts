@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Checkout } from "@sdk/fragments/types/Checkout";
+
 import { ApolloErrorWithUserInput } from "../../types";
 import { ICartItem } from "./types";
 
