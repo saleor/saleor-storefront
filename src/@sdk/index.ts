@@ -37,6 +37,7 @@ import {
 } from "./utils";
 
 import { UserDetails } from "./queries/types/UserDetails";
+import { Checkout } from "./fragments/types/Checkout";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -65,6 +66,35 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
     },
     link: getLink(url),
   });
+
+export class SaleorSDK {
+  checkout = {
+    addItemToCart: (variantId: string, quantity: number) => {
+      const checkoutId = (this.checkout.checkout as Checkout | null)?.id;
+
+      if (checkoutId) {
+        this.api.setCheckoutLine({
+          checkoutId,
+          lines: [{ variantId, quantity }],
+        });
+      }
+    },
+    checkout: null,
+    promoCode: null,
+    removeItemFromCart: (variantId: string, quantity: number) => null,
+    setBillingAddress: () => null,
+    setShippingAddress: () => null,
+    setShippingAsBillingAddress: () => null,
+    shippingAsBilling: false,
+    updateItemInCart: (variantId: string, quantity: number) => null,
+  };
+
+  private api: SaleorAPI;
+
+  constructor(api: SaleorAPI) {
+    this.api = api;
+  }
+}
 
 export class SaleorAPI {
   getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);

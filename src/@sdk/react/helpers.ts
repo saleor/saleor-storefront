@@ -1,19 +1,33 @@
 import React from "react";
 
-import { SaleorAPI } from "../";
+import { SaleorAPI, SaleorSDK } from "../";
 import { getAuthToken } from "../auth";
 import { SaleorContext } from "./context";
 
 export function useSaleorClient(): SaleorAPI {
-  const saleor = React.useContext(SaleorContext);
+  const { api } = React.useContext(SaleorContext);
 
-  if (!saleor) {
+  if (!api) {
     throw new Error(
       "Could not find saleor's apollo client in the context. " +
         "Did you forget to wrap the root component in a <SaleorProvider>?"
     );
   }
-  return saleor;
+
+  return api;
+}
+
+export function useSaleorSDK(): SaleorSDK {
+  const { sdk } = React.useContext(SaleorContext);
+
+  if (!sdk) {
+    throw new Error(
+      "Could not find saleor's apollo client in the context. " +
+        "Did you forget to wrap the root component in a <SaleorProvider>?"
+    );
+  }
+
+  return sdk;
 }
 
 export const useAuth = (
