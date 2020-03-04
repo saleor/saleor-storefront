@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { Checkout } from "@sdk/fragments/types/Checkout";
 
 import { useUpdateCheckoutLine } from "../..";
 import { ApolloErrorWithUserInput } from "../../types";
+import { ICheckoutContextStateHandlers } from "./context";
 import { ICartItem } from "./types";
 
 interface IContextStateHandlersParams {
@@ -11,6 +12,7 @@ interface IContextStateHandlersParams {
   updateCheckout: (checkout: Checkout | null) => void;
   updateLoading: (loading: boolean) => void;
   updateError: (error: ApolloErrorWithUserInput | null) => void;
+  updateShippingAsBilling: (shippingAsBilling: boolean) => void;
 }
 
 export const useCheckoutContextStateHandlers = ({
@@ -18,7 +20,8 @@ export const useCheckoutContextStateHandlers = ({
   updateCheckout,
   updateLoading,
   updateError,
-}: IContextStateHandlersParams) => {
+  updateShippingAsBilling,
+}: IContextStateHandlersParams): ICheckoutContextStateHandlers => {
   const [
     setUpdateCheckoutLine,
     { data: updateData, loading: loadingData, error: errorData },
@@ -51,7 +54,12 @@ export const useCheckoutContextStateHandlers = ({
     }
   };
 
+  const setShippingAsBilling = (shippingAsBilling: boolean) => {
+    updateShippingAsBilling(shippingAsBilling);
+  };
+
   return {
     setCartItems,
+    setShippingAsBilling,
   };
 };

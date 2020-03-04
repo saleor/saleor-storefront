@@ -9,7 +9,7 @@ import { IProps } from "./types";
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const {
-    state: { checkout, shippingAsBilling },
+    state: { checkout },
     stateHandlers: { setCartItems },
     loading,
     error,

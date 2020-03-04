@@ -10,6 +10,7 @@ export interface ICheckoutContextState {
 }
 export interface ICheckoutContextStateHandlers {
   setCartItems: (cartItems: ICartItem[]) => void;
+  setShippingAsBilling: (shippingAsBilling: boolean) => void;
 }
 
 export interface ICheckoutContext {
@@ -25,6 +26,7 @@ const CheckoutContextState = {
 };
 const CheckoutContextStateHandlers = {
   setCartItems: () => null,
+  setShippingAsBilling: () => null,
 };
 
 export const CheckoutContext = React.createContext<ICheckoutContext>({
