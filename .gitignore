@@ -1,4 +1,5 @@
 .*
+!.dockerignore
 !.storybook
 !.circle
 !.gitignore
