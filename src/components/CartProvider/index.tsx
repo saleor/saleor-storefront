@@ -27,6 +27,9 @@ interface CartProviderProps {
 
 type CartProviderState = CartInterface;
 
+/**
+ * @deprecated use CheckoutProvider from next instead
+ */
 export default class CartProvider extends React.Component<
   CartProviderProps,
   CartProviderState

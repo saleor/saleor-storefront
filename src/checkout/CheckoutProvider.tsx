@@ -13,6 +13,9 @@ interface ProviderProps {
   };
 }
 
+/**
+ * @deprecated use CheckoutProvider from next instead
+ */
 export const CheckoutProvider: React.FC<ProviderProps> = ({
   children,
   user,

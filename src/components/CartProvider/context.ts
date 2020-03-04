@@ -12,6 +12,9 @@ export interface CartLine {
   quantity: number;
 }
 
+/**
+ * @deprecated use CheckoutContextInterface from next instead
+ */
 export interface CartInterface {
   errors: updateCheckoutLine_checkoutLinesUpdate_errors[] | null;
   lines: CartLineInterface[];
@@ -25,6 +28,9 @@ export interface CartInterface {
   subtract(variantId: string, quantity?: number): void;
 }
 
+/**
+ * @deprecated use CheckoutContext from next instead
+ */
 /* tslint:disable:no-empty */
 export const CartContext = createContext<CartInterface>({
   add: (variantId, quantity = 1) => {},

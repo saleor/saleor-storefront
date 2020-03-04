@@ -11,6 +11,9 @@ export enum CheckoutStep {
   Review,
 }
 
+/**
+ * @deprecated use CheckoutContextInterface from next instead
+ */
 export interface CheckoutContextInterface {
   syncWithCart?: boolean; // To remove
   syncUserCheckout?: boolean; // To remove
@@ -40,6 +43,9 @@ export const defaultContext = {
   update: (checkoutData: {}) => null,
 };
 
+/**
+ * @deprecated use CheckoutContext from next instead
+ */
 export const CheckoutContext = createContext<CheckoutContextInterface>(
   defaultContext
 );
