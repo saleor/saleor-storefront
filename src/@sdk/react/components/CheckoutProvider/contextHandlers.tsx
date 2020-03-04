@@ -28,11 +28,7 @@ export const useCheckoutContextStateHandlers = ({
   ] = useUpdateCheckoutLine();
 
   useEffect(() => {
-    const updatedCheckout = updateData?.checkout;
-
-    if (updatedCheckout) {
-      updateCheckout(updatedCheckout);
-    }
+    updateCheckout(updateData?.checkout || null);
   }, [updateData]);
 
   useEffect(() => {
