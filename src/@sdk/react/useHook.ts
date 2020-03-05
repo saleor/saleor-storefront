@@ -1,8 +1,8 @@
-import { SaleorSDK } from "../index";
-import { useSaleorSDK } from "./helpers";
+import { SaleorAPI } from "../index";
+import { useSaleorClient } from "./helpers";
 
-const useHook = <T extends keyof SaleorSDK>(dataName: T): SaleorSDK[T] => {
-  const saleor = useSaleorSDK();
+const useHook = <T extends keyof SaleorAPI>(dataName: T): SaleorAPI[T] => {
+  const saleor = useSaleorClient();
 
   // const handleUnsubscribe = (data: SaleorSDK[T]) => {
   //   data[dataName] = null;
@@ -15,13 +15,11 @@ const useHook = <T extends keyof SaleorSDK>(dataName: T): SaleorSDK[T] => {
   // }, [dataName, saleor[dataName]]);
 
   const getHookData = () => {
-    saleor[dataName].unsubscribe = () => (saleor[dataName][dataName] = null);
-
     return saleor[dataName];
   };
 
   return getHookData();
 };
 
-export const hookFactory = <T extends keyof SaleorSDK>(query: T) => () =>
+export const hookFactory = <T extends keyof SaleorAPI>(query: T) => () =>
   useHook(query);

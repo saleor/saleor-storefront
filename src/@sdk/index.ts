@@ -12,6 +12,7 @@ import { GraphQLError } from "graphql";
 import urljoin from "url-join";
 
 import { TokenAuth } from "../components/User/types/TokenAuth";
+import { SaleorCheckoutAPI } from "./api/Checkout";
 import {
   authLink,
   clearStorage,
@@ -21,6 +22,7 @@ import {
 } from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
+import { UserDetails } from "./queries/types/UserDetails";
 import { RequireAtLeastOne } from "./tsHelpers";
 import {
   InferOptions,
@@ -35,10 +37,6 @@ import {
   isDataEmpty,
   mergeEdges,
 } from "./utils";
-
-import { Checkout } from "./fragments/types/Checkout";
-import { UserDetails } from "./queries/types/UserDetails";
-import { ApolloErrorWithUserInput } from "./react/types";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -68,123 +66,9 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
     link: getLink(url),
   });
 
-interface SDKData {
-  unsubscribe?: () => void;
-}
-
-interface SaleorSDKCheckout extends SDKData {
-  addItemToCart: (variantId: string, quantity: number) => void;
-  checkout: Checkout | null;
-  errors: Array<ApolloErrorWithUserInput | any>;
-  load: () => void;
-  loading: {
-    addItemToCart: boolean;
-    load: boolean;
-    removeItemFromCart: boolean;
-    setBillingAddress: boolean;
-    setShippingAddress: boolean;
-    setShippingAsBillingAddress: boolean;
-    updateItemInCart: boolean;
-  };
-  promoCode: string | null;
-  removeItemFromCart: (variantId: string) => void;
-  setBillingAddress: () => void;
-  setShippingAddress: () => void;
-  setShippingAsBillingAddress: () => void;
-  shippingAsBilling: boolean;
-  updateItemInCart: (variantId: string, quantity: number) => void;
-}
-
-export class SaleorSDK {
-  checkout: SaleorSDKCheckout = {
-    addItemToCart: async (variantId: string, quantity: number) => {
-      const checkoutId = this.checkout.checkout?.id;
-
-      if (checkoutId) {
-        this.checkout.loading.addItemToCart = true;
-        const { data } = await this.api.setCheckoutLine({
-          checkoutId,
-          lines: [{ variantId, quantity }],
-        });
-
-        this.checkout.checkout = data?.checkout || null;
-        this.checkout.errors.concat(data?.errors);
-        this.checkout.loading.addItemToCart = false;
-      }
-    },
-    checkout: null,
-    errors: [],
-    load: async () => {
-      this.checkout.loading.load = true;
-      // const checkoutId = this.checkout.checkout?.id;
-
-      // if (checkoutId) {
-      this.api.getUserCheckout(null, {
-        onError: error => {
-          this.checkout.errors.push(error);
-          this.checkout.loading.load = false;
-        },
-        onUpdate: data => {
-          this.checkout.checkout = data;
-          this.checkout.loading.load = false;
-        },
-      });
-      // }
-    },
-    loading: {
-      addItemToCart: false,
-      load: false,
-      removeItemFromCart: false,
-      setBillingAddress: false,
-      setShippingAddress: false,
-      setShippingAsBillingAddress: false,
-      updateItemInCart: false,
-    },
-    promoCode: null,
-    removeItemFromCart: async (variantId: string) => {
-      const checkoutId = this.checkout.checkout?.id;
-
-      if (checkoutId) {
-        this.checkout.loading.removeItemFromCart = true;
-        const { data } = await this.api.setCheckoutLine({
-          checkoutId,
-          lines: [{ variantId, quantity: 0 }],
-        });
-
-        this.checkout.checkout = data?.checkout || null;
-        this.checkout.errors.concat(data?.errors);
-        this.checkout.loading.removeItemFromCart = false;
-      }
-    },
-    setBillingAddress: () => null,
-    setShippingAddress: () => null,
-    setShippingAsBillingAddress: () => null,
-    shippingAsBilling: false,
-    updateItemInCart: async (variantId: string, quantity: number) => {
-      const checkoutId = this.checkout.checkout?.id;
-
-      if (checkoutId) {
-        this.checkout.loading.updateItemInCart = true;
-        const { data } = await this.api.setCheckoutLine({
-          checkoutId,
-          lines: [{ variantId, quantity }],
-        });
-
-        this.checkout.checkout = data?.checkout || null;
-        this.checkout.errors.concat(data?.errors);
-        this.checkout.loading.updateItemInCart = false;
-      }
-    },
-  };
-
-  private api: SaleorAPI;
-
-  constructor(api: SaleorAPI) {
-    this.api = api;
-  }
-}
-
 export class SaleorAPI {
+  checkout: SaleorCheckoutAPI;
+
   getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
 
   getCheckoutDetails = this.watchQuery(
@@ -311,6 +195,7 @@ export class SaleorAPI {
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
+    this.checkout = new SaleorCheckoutAPI(this);
   }
 
   getUserDetails = (

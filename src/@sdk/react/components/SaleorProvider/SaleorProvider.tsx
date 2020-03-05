@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { CredentialsProvider } from "../";
-import { SaleorAPI, SaleorSDK } from "../../../";
+import { SaleorAPI } from "../../../";
 import { SaleorContext } from "../../context";
 import { IProps } from "./types";
 
@@ -10,13 +10,7 @@ export function SaleorProvider<TCacheShape = any>({
   children,
 }: IProps<TCacheShape>): React.ReactElement<IProps<TCacheShape>> {
   const context = useMemo(() => {
-    const api = new SaleorAPI(client);
-    const sdk = new SaleorSDK(api);
-
-    return {
-      api,
-      sdk,
-    };
+    return new SaleorAPI(client);
   }, [client]);
 
   return (
