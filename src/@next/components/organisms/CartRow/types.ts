@@ -7,7 +7,8 @@ export interface IProps {
   sku?: string;
   quantity: number;
   onRemove: () => void;
-  onQuantityChange: () => void;
+  onAdd: () => void;
+  onSubstract: () => void;
   thumbnail?: IImage;
   attributes: Array<{
     name: string;

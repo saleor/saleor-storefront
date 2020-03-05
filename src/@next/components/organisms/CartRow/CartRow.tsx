@@ -6,10 +6,14 @@ import { CachedImage } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const QuantityButtons = (
+const QuantityButtons = (onAdd, onSubstract) => (
   <S.QuantityButtons>
-    <Icon size={16} name="horizontal_line" />
-    <Icon size={16} name="plus" />
+    <div onClick={onSubstract}>
+      <Icon size={16} name="horizontal_line" />
+    </div>
+    <div onClick={onAdd}>
+      <Icon size={16} name="plus" />
+    </div>
   </S.QuantityButtons>
 );
 
@@ -22,6 +26,8 @@ export const CartRow: React.FC<IProps> = ({
   thumbnail,
   attributes,
   onRemove,
+  onAdd,
+  onSubstract,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -50,7 +56,7 @@ export const CartRow: React.FC<IProps> = ({
           label="Quantity"
           value={quantity}
           readOnly={true}
-          contentRight={QuantityButtons}
+          contentRight={QuantityButtons(onAdd, onSubstract)}
         />
       </S.Quantity>
       <S.Trash>

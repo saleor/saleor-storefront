@@ -29,8 +29,13 @@ export const QuantityButtons = styled.div`
   margin: 0 15px 0 0;
   width: 50px;
 
+  > div {
+    display: flex;
+  }
+
   svg {
     cursor: pointer;
+    justify-self: center;
   }
 `;
 

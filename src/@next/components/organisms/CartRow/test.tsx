@@ -1,8 +1,8 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { IconButton } from "@components/atoms";
+import { IconButton, Icon } from "@components/atoms";
 
 import { CartRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
@@ -10,12 +10,14 @@ import { DEFAULT_PROPS } from "./fixtures";
 describe("<CartRow />", () => {
   it("exists", () => {
     const onRemoveMock = jest.fn();
-    const onQuantityChangeMock = jest.fn();
+    const onAddMock = jest.fn();
+    const onSubstractMock = jest.fn();
     const wrapper = shallow(
       <CartRow
         {...DEFAULT_PROPS}
         onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
+        onAdd={onAddMock}
+        onSubstract={onSubstractMock}
       />
     );
 
@@ -24,12 +26,14 @@ describe("<CartRow />", () => {
 
   it("should call mock when clicking on trash icon", () => {
     const onRemoveMock = jest.fn();
-    const onQuantityChangeMock = jest.fn();
+    const onAddMock = jest.fn();
+    const onSubstractMock = jest.fn();
     const wrapper = shallow(
       <CartRow
         {...DEFAULT_PROPS}
         onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
+        onAdd={onAddMock}
+        onSubstract={onSubstractMock}
       />
     );
 
@@ -43,39 +47,43 @@ describe("<CartRow />", () => {
 
   it("should call mock when clicking on substract quantity icon", () => {
     const onRemoveMock = jest.fn();
-    const onQuantityChangeMock = jest.fn();
-    const wrapper = shallow(
+    const onAddMock = jest.fn();
+    const onSubstractMock = jest.fn();
+    const wrapper = mount(
       <CartRow
         {...DEFAULT_PROPS}
         onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
+        onAdd={onAddMock}
+        onSubstract={onSubstractMock}
       />
     );
 
     wrapper
-      .find(IconButton)
-      .findWhere(wrapper => wrapper.props().name === "trash")
+      .find(Icon)
+      .findWhere(wrapper => wrapper.props().name === "horizontal_line")
       .simulate("click");
 
-    expect(onRemoveMock).toHaveBeenCalled();
+    expect(onSubstractMock).toHaveBeenCalled();
   });
 
   it("should call mock when clicking on add more quantity icon", () => {
     const onRemoveMock = jest.fn();
-    const onQuantityChangeMock = jest.fn();
-    const wrapper = shallow(
+    const onAddMock = jest.fn();
+    const onSubstractMock = jest.fn();
+    const wrapper = mount(
       <CartRow
         {...DEFAULT_PROPS}
         onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
+        onAdd={onAddMock}
+        onSubstract={onSubstractMock}
       />
     );
 
     wrapper
-      .find(IconButton)
-      .findWhere(wrapper => wrapper.props().name === "trash")
+      .find(Icon)
+      .findWhere(wrapper => wrapper.props().name === "plus")
       .simulate("click");
 
-    expect(onRemoveMock).toHaveBeenCalled();
+    expect(onAddMock).toHaveBeenCalled();
   });
 });
