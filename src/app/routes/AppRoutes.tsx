@@ -6,7 +6,7 @@ import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
-import { CartPage } from "../../views/Cart";
+// import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
@@ -14,7 +14,7 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
-import { PasswordReset } from "@pages";
+import { CartPage, PasswordReset } from "@pages";
 
 import * as paths from "./paths";
 

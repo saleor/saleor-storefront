@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { CredentialsProvider } from "../";
 import { SaleorAPI, SaleorSDK } from "../../../";
@@ -9,13 +9,15 @@ export function SaleorProvider<TCacheShape = any>({
   client,
   children,
 }: IProps<TCacheShape>): React.ReactElement<IProps<TCacheShape>> {
-  const api = new SaleorAPI(client);
-  const sdk = new SaleorSDK(api);
+  const context = useMemo(() => {
+    const api = new SaleorAPI(client);
+    const sdk = new SaleorSDK(api);
 
-  const context = {
-    api,
-    sdk,
-  };
+    return {
+      api,
+      sdk,
+    };
+  }, [client]);
 
   return (
     <SaleorContext.Provider value={context}>

@@ -38,6 +38,7 @@ import {
 
 import { Checkout } from "./fragments/types/Checkout";
 import { UserDetails } from "./queries/types/UserDetails";
+import { ApolloErrorWithUserInput } from "./react/types";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -67,8 +68,27 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
     link: getLink(url),
   });
 
+interface SDKData {
+  unsubscribe?: () => void;
+}
+
+interface SaleorSDKCheckout extends SDKData {
+  addItemToCart: (variantId: string, quantity: number) => void;
+  checkout: Checkout | null;
+  error: ApolloErrorWithUserInput | null;
+  load: () => void;
+  loading: boolean;
+  promoCode: string | null;
+  removeItemFromCart: (variantId: string) => void;
+  setBillingAddress: () => void;
+  setShippingAddress: () => void;
+  setShippingAsBillingAddress: () => void;
+  shippingAsBilling: boolean;
+  updateItemInCart: (variantId: string, quantity: number) => void;
+}
+
 export class SaleorSDK {
-  checkout = {
+  checkout: SaleorSDKCheckout = {
     addItemToCart: async (variantId: string, quantity: number) => {
       const checkoutId = this.checkout.checkout?.id;
 
@@ -81,8 +101,22 @@ export class SaleorSDK {
         this.checkout.checkout = data?.checkout || null;
       }
     },
-    checkout: null as Checkout | null,
+    checkout: null,
     error: null,
+    load: async () => {
+      // const checkoutId = this.checkout.checkout?.id;
+
+      // if (checkoutId) {
+      this.api.getUserCheckout(null, {
+        onError: error => {
+          this.checkout.error = error;
+        },
+        onUpdate: data => {
+          this.checkout.checkout = data;
+        },
+      });
+      // }
+    },
     loading: false,
     promoCode: null,
     removeItemFromCart: async (variantId: string) => {
