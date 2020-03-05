@@ -9,10 +9,8 @@ export interface IProps {
   onRemove: () => void;
   onQuantityChange: () => void;
   thumbnail?: IImage;
-  attributes: [
-    {
-      name: string;
-      values: { value: string }[];
-    }
-  ];
+  attributes: Array<{
+    name: string;
+    values: Array<{ value: string }>;
+  }>;
 }

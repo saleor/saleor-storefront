@@ -1,4 +1,4 @@
-import { styled, media } from "@styles";
+import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   display: grid;
@@ -8,9 +8,11 @@ export const Wrapper = styled.div`
     ". description . . . .";
   grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
+  ${media.mediumScreen`
+    grid-template-columns: 1fr 3fr 1fr 2fr 1fr 1fr;
+  `};
   ${media.smallScreen`
-
-    grid-template-columns: 1fr 3fr 5fr;
+    grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
     grid-template-areas: "photo description description"
@@ -18,6 +20,18 @@ export const Wrapper = styled.div`
     ". unitPrice quantity"
     ". . totalPrice";
   `};
+`;
+
+export const QuantityButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 15px 0 0;
+  width: 50px;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export const Photo = styled.div`
@@ -82,11 +96,14 @@ export const Price = styled.div`
     font-weight: normal;
     flex-direction: column;
   `}
+
+  p {
+    margin: 0;
+  }
 `;
 
 export const PriceLabel = styled.p`
   display: none;
-  margin: 0;
   ${media.smallScreen`
     display: block;
   `}

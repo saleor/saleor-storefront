@@ -1,10 +1,17 @@
 import React from "react";
 
-import { IconButton, Input } from "@components/atoms";
+import { Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
+
+const QuantityButtons = (
+  <S.QuantityButtons>
+    <Icon size={16} name="horizontal_line" />
+    <Icon size={16} name="plus" />
+  </S.QuantityButtons>
+);
 
 export const CartRow: React.FC<IProps> = ({
   totalPrice,
@@ -38,7 +45,13 @@ export const CartRow: React.FC<IProps> = ({
         </S.Attributes>
       </S.Description>
       <S.Quantity>
-        <Input name="quantity" label="Quantity" value={quantity} />
+        <Input
+          name="quantity"
+          label="Quantity"
+          value={quantity}
+          readOnly={true}
+          contentRight={QuantityButtons}
+        />
       </S.Quantity>
       <S.Trash>
         <IconButton size={22} name="trash" onClick={onRemove} />
@@ -48,13 +61,13 @@ export const CartRow: React.FC<IProps> = ({
         <S.PriceLabel>
           <S.LightFont>Total Price</S.LightFont>
         </S.PriceLabel>
-        {totalPrice}
+        <p>{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice>
         <S.PriceLabel>
           <S.LightFont>Price</S.LightFont>
         </S.PriceLabel>
-        {unitPrice}
+        <p>{unitPrice}</p>
       </S.UnitPrice>
     </S.Wrapper>
   );
