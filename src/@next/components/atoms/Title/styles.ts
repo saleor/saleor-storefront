@@ -1,4 +1,4 @@
-import { styled, media, DefaultTheme } from "@styles";
+import { DefaultTheme, media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   font-size: ${props => props.theme.typography.h1FontSize};
