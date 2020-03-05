@@ -10,7 +10,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     checkout,
     load,
     loading,
-    error,
+    errors,
     updateItemInCart,
     removeItemFromCart,
   } = useCheckout();
@@ -23,6 +23,14 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       load();
     }
   }, []);
+
+  const isLoading = ({
+    load,
+    updateItemInCart,
+    removeItemFromCart,
+  }: typeof loading) => {
+    return load || updateItemInCart || removeItemFromCart;
+  };
 
   const checkoutItems = checkout?.lines
     ? checkout?.lines?.map(item => ({
@@ -37,8 +45,8 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
         items={checkoutItems}
         updateItem={updateItemInCart}
         removeItem={removeItemFromCart}
-        loading={loading}
-        error={error}
+        loading={isLoading(loading)}
+        errors={errors}
       />
     </>
   );

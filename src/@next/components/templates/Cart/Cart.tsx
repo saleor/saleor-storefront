@@ -11,7 +11,7 @@ export const Cart: React.FC<IProps> = ({
   updateItem,
   removeItem,
   loading,
-  error,
+  errors,
 }: IProps) => {
   /**
    * TODO

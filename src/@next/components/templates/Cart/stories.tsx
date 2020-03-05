@@ -13,6 +13,6 @@ storiesOf("@components/templates/Cart", module)
       updateItem={action("updateItem")}
       removeItem={action("removeItem")}
       loading={false}
-      error={null}
+      errors={[]}
     />
   ));

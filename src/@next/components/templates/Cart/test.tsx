@@ -12,7 +12,7 @@ describe("<Cart />", () => {
         updateItem={jest.fn()}
         removeItem={jest.fn()}
         loading={false}
-        error={null}
+        errors={[]}
       />
     );
 

@@ -9,6 +9,9 @@ export const useUserDetails = queryFactory("getUserDetails");
 
 export const useUserCheckout = queryFactory("getUserCheckout");
 
+/**
+ * @deprecated Use useCheckout hook instead
+ */
 export const useCheckoutDetails = queryWithVariablesFactory(
   "getCheckoutDetails"
 );

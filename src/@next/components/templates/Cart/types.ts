@@ -7,7 +7,7 @@ export interface ICartItem {
 
 export interface IProps {
   items: ICartItem[];
-  error: ApolloErrorWithUserInput | null;
+  errors: Array<ApolloErrorWithUserInput | null>;
   loading: boolean;
   updateItem(variantId: string, quantity: number): void;
   removeItem(variantId: string): void;

@@ -75,9 +75,17 @@ interface SDKData {
 interface SaleorSDKCheckout extends SDKData {
   addItemToCart: (variantId: string, quantity: number) => void;
   checkout: Checkout | null;
-  error: ApolloErrorWithUserInput | null;
+  errors: Array<ApolloErrorWithUserInput | any>;
   load: () => void;
-  loading: boolean;
+  loading: {
+    addItemToCart: boolean;
+    load: boolean;
+    removeItemFromCart: boolean;
+    setBillingAddress: boolean;
+    setShippingAddress: boolean;
+    setShippingAsBillingAddress: boolean;
+    updateItemInCart: boolean;
+  };
   promoCode: string | null;
   removeItemFromCart: (variantId: string) => void;
   setBillingAddress: () => void;
@@ -93,42 +101,59 @@ export class SaleorSDK {
       const checkoutId = this.checkout.checkout?.id;
 
       if (checkoutId) {
+        this.checkout.loading.addItemToCart = true;
         const { data } = await this.api.setCheckoutLine({
           checkoutId,
           lines: [{ variantId, quantity }],
         });
 
         this.checkout.checkout = data?.checkout || null;
+        this.checkout.errors.concat(data?.errors);
+        this.checkout.loading.addItemToCart = false;
       }
     },
     checkout: null,
-    error: null,
+    errors: [],
     load: async () => {
+      this.checkout.loading.load = true;
       // const checkoutId = this.checkout.checkout?.id;
 
       // if (checkoutId) {
       this.api.getUserCheckout(null, {
         onError: error => {
-          this.checkout.error = error;
+          this.checkout.errors.push(error);
+          this.checkout.loading.load = false;
         },
         onUpdate: data => {
           this.checkout.checkout = data;
+          this.checkout.loading.load = false;
         },
       });
       // }
     },
-    loading: false,
+    loading: {
+      addItemToCart: false,
+      load: false,
+      removeItemFromCart: false,
+      setBillingAddress: false,
+      setShippingAddress: false,
+      setShippingAsBillingAddress: false,
+      updateItemInCart: false,
+    },
     promoCode: null,
     removeItemFromCart: async (variantId: string) => {
       const checkoutId = this.checkout.checkout?.id;
 
       if (checkoutId) {
+        this.checkout.loading.removeItemFromCart = true;
         const { data } = await this.api.setCheckoutLine({
           checkoutId,
           lines: [{ variantId, quantity: 0 }],
         });
 
         this.checkout.checkout = data?.checkout || null;
+        this.checkout.errors.concat(data?.errors);
+        this.checkout.loading.removeItemFromCart = false;
       }
     },
     setBillingAddress: () => null,
@@ -139,12 +164,15 @@ export class SaleorSDK {
       const checkoutId = this.checkout.checkout?.id;
 
       if (checkoutId) {
+        this.checkout.loading.updateItemInCart = true;
         const { data } = await this.api.setCheckoutLine({
           checkoutId,
           lines: [{ variantId, quantity }],
         });
 
         this.checkout.checkout = data?.checkout || null;
+        this.checkout.errors.concat(data?.errors);
+        this.checkout.loading.updateItemInCart = false;
       }
     },
   };
