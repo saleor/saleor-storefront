@@ -11,6 +11,7 @@ storiesOf("@components/templates/Cart", module)
     <Cart
       items={[]}
       updateItem={action("updateItem")}
+      removeItem={action("removeItem")}
       loading={false}
       error={null}
     />

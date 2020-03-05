@@ -36,8 +36,8 @@ import {
   mergeEdges,
 } from "./utils";
 
-import { UserDetails } from "./queries/types/UserDetails";
 import { Checkout } from "./fragments/types/Checkout";
+import { UserDetails } from "./queries/types/UserDetails";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -69,24 +69,50 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
 
 export class SaleorSDK {
   checkout = {
-    addItemToCart: (variantId: string, quantity: number) => {
-      const checkoutId = (this.checkout.checkout as Checkout | null)?.id;
+    addItemToCart: async (variantId: string, quantity: number) => {
+      const checkoutId = this.checkout.checkout?.id;
 
       if (checkoutId) {
-        this.api.setCheckoutLine({
+        const { data } = await this.api.setCheckoutLine({
           checkoutId,
           lines: [{ variantId, quantity }],
         });
+
+        this.checkout.checkout = data?.checkout || null;
       }
     },
-    checkout: null,
+    checkout: null as Checkout | null,
+    error: null,
+    loading: false,
     promoCode: null,
-    removeItemFromCart: (variantId: string, quantity: number) => null,
+    removeItemFromCart: async (variantId: string) => {
+      const checkoutId = this.checkout.checkout?.id;
+
+      if (checkoutId) {
+        const { data } = await this.api.setCheckoutLine({
+          checkoutId,
+          lines: [{ variantId, quantity: 0 }],
+        });
+
+        this.checkout.checkout = data?.checkout || null;
+      }
+    },
     setBillingAddress: () => null,
     setShippingAddress: () => null,
     setShippingAsBillingAddress: () => null,
     shippingAsBilling: false,
-    updateItemInCart: (variantId: string, quantity: number) => null,
+    updateItemInCart: async (variantId: string, quantity: number) => {
+      const checkoutId = this.checkout.checkout?.id;
+
+      if (checkoutId) {
+        const { data } = await this.api.setCheckoutLine({
+          checkoutId,
+          lines: [{ variantId, quantity }],
+        });
+
+        this.checkout.checkout = data?.checkout || null;
+      }
+    },
   };
 
   private api: SaleorAPI;

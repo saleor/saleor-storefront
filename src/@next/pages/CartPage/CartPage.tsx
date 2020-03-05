@@ -2,9 +2,9 @@ import React from "react";
 
 import { Cart } from "@components/templates";
 import { useCheckout } from "@sdk/react";
-import { CheckoutContext } from "@sdk/react/components/CheckoutProvider/context";
+// import { CheckoutContext } from "@sdk/react/components/CheckoutProvider/context";
 
-import { ICartItem } from "../../components/templates/Cart/types";
+// import { ICartItem } from "../../components/templates/Cart/types";
 
 import { IProps } from "./types";
 
@@ -18,7 +18,8 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
 
   const {
     checkout,
-    addItemToCart,
+    loading,
+    error,
     updateItemInCart,
     removeItemFromCart,
   } = useCheckout();
@@ -30,15 +31,12 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       }))
     : [];
 
-  const handleUpdateItem = (cartItem: ICartItem) => {
-    setCartItems([cartItem]);
-  };
-
   return (
     <>
       <Cart
         items={checkoutItems}
-        updateItem={handleUpdateItem}
+        updateItem={updateItemInCart}
+        removeItem={removeItemFromCart}
         loading={loading}
         error={error}
       />

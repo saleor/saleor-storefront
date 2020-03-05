@@ -9,5 +9,6 @@ export interface IProps {
   items: ICartItem[];
   error: ApolloErrorWithUserInput | null;
   loading: boolean;
-  updateItem(item: ICartItem): void;
+  updateItem(variantId: string, quantity: number): void;
+  removeItem(variantId: string): void;
 }
