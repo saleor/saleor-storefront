@@ -42,6 +42,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
+    /**
+     * 1. save in local storage
+     * 2. save online if possible
+     *    a. make add request if checkout id available
+     *    b. else get checkout from backend and make add request if checkout id available
+     *    c. else create checkout if possible and make add request if checkout id available
+     */
+
+    // 1.
+    const checkout = this.repository.getCheckout();
+    const lines = checkout.lines;
+    this.repository.setCheckout({
+      ...checkout,
+      lines: lines ? lines.concat([{ variantId, quantity }]) : lines,
+    });
+
+    // 2. TODO
+
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
@@ -132,6 +150,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   };
 
   makeOrder = () => null;
+
+  private getCheckout = async () => null;
 
   private createCheckout = async () => {
     const {
