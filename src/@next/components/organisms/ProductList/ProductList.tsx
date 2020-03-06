@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
-// import { useCheckout } from "@sdk/react";
 
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -16,10 +15,6 @@ export const ProductList: React.FC<IProps> = ({
   loading = false,
   onLoadMore = () => null,
 }: IProps) => {
-  // TEST
-  // const { checkout } = useCheckout();
-  // console.log("ProductList", checkout);
-
   return (
     <>
       <S.List>

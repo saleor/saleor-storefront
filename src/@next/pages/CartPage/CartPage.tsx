@@ -15,9 +15,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     removeItemFromCart,
   } = useCheckout();
 
-  // TEST
-  // console.log("CartPage", checkout);
-
   useEffect(() => {
     if (!checkout) {
       load();
