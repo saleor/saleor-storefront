@@ -6,4 +6,5 @@ export interface ISaleorCheckoutAPI {
   setShippingAddress: () => void;
   setShippingAsBillingAddress: () => void;
   updateItemInCart: (variantId: string, quantity: number) => void;
+  makeOrder: () => void;
 }

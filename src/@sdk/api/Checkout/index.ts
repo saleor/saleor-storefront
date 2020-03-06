@@ -1,6 +1,7 @@
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
+import { ILocalRepository } from "@sdk/repository";
 
 import { ISaleorCheckoutAPI } from "./types";
 
@@ -20,9 +21,11 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   shippingAsBilling: boolean;
 
   private api: SaleorAPI;
+  private repository: ILocalRepository;
 
-  constructor(api: SaleorAPI) {
+  constructor(api: SaleorAPI, repository: ILocalRepository) {
     this.api = api;
+    this.repository = repository;
     this.errors = [];
     this.checkout = null;
     this.loading = {
@@ -56,20 +59,38 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
   load = async () => {
     this.loading.load = true;
-    // const checkoutId = this.checkout?.id;
+    const checkoutToken = localStorage.getItem("checkoutToken");
 
-    // if (checkoutId) {
-    this.api.getUserCheckout(null, {
-      onError: error => {
-        this.errors.push(error);
-        this.loading.load = false;
-      },
-      onUpdate: data => {
-        this.checkout = data;
-        this.loading.load = false;
-      },
-    });
-    // }
+    if (this.api.isLoggedIn()) {
+      this.api.getUserCheckout(null, {
+        onError: error => {
+          this.errors.push(error);
+          this.loading.load = false;
+        },
+        onUpdate: data => {
+          this.checkout = data;
+          this.loading.load = false;
+        },
+      });
+    } else if (checkoutToken) {
+      this.api.getCheckoutDetails(
+        {
+          token: checkoutToken,
+        },
+        {
+          onError: error => {
+            this.errors.push(error);
+            this.loading.load = false;
+          },
+          onUpdate: data => {
+            this.checkout = data;
+            this.loading.load = false;
+          },
+        }
+      );
+    } else {
+      this.createCheckout();
+    }
   };
 
   removeItemFromCart = async (variantId: string) => {
@@ -107,6 +128,34 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       this.checkout = data?.checkout || null;
       this.errors.concat(data?.errors);
       this.loading.updateItemInCart = false;
+    }
+  };
+
+  makeOrder = () => null;
+
+  private createCheckout = async () => {
+    const {
+      email,
+      shippingAddress,
+      billingAddress,
+      lines,
+    } = this.repository.getCheckout();
+
+    if (email && shippingAddress && billingAddress && lines) {
+      const { data } = await this.api.setCreateCheckout({
+        checkoutInput: {
+          billingAddress,
+          email,
+          lines,
+          shippingAddress,
+        },
+      });
+
+      if (data?.errors) {
+        this.errors.push(this.errors);
+      } else {
+        this.checkout = data?.checkout || null;
+      }
     }
   };
 }
