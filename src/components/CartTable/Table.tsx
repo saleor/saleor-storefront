@@ -5,7 +5,10 @@ import * as React from "react";
 import Media from "react-media";
 
 import CostRow from "./CostRow";
-import ProductRow, { EditableProductRowProps, LineI } from "./ProductRow";
+import { EditableProductRowProps, LineI } from "./ProductRow";
+
+import { CartRow } from "@components/organisms";
+import { TaxedMoney } from "../../@next/components/containers";
 
 interface TableProps extends EditableProductRowProps {
   lines: LineI[];
@@ -39,13 +42,29 @@ const Table: React.FC<TableProps> = ({
         </thead>
         <tbody>
           {lines.map(line => (
+            <tr>
+              <td colSpan={12}>
+                <CartRow
+                  onSubstract={() => rowProps.subtract(line.id)}
+                  onAdd={() => rowProps.add(line.id)}
+                  onRemove={() => rowProps.remove(line.id)}
+                  totalPrice={<TaxedMoney taxedMoney={line.totalPrice} />}
+                  unitPrice={<TaxedMoney taxedMoney={line.pricing.price} />}
+                  name={line.product.name}
+                  quantity={line.quantity}
+                  thumbnail={line.product.thumbnail}
+                />
+              </td>
+            </tr>
+          ))}
+          {/* {lines.map(line => (
             <ProductRow
               key={line.id}
               line={line}
               mediumScreen={mediumScreen}
               {...rowProps}
             />
-          ))}
+          ))} */}
         </tbody>
         <tfoot>
           <CostRow

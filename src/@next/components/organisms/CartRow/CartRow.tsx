@@ -24,7 +24,7 @@ export const CartRow: React.FC<IProps> = ({
   sku,
   quantity,
   thumbnail,
-  attributes,
+  attributes = [],
   onRemove,
   onAdd,
   onSubstract,

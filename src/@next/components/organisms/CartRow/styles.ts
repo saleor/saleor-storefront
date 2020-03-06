@@ -3,15 +3,14 @@ import { media, styled } from "@styles";
 export const Wrapper = styled.div`
   display: grid;
   min-height: 140px;
+  max-height: min-content;
+  width: 100%;
   grid-template-areas:
     "photo description unitPrice quantity totalPrice trash"
     ". description . . . .";
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
   align-items: center;
   ${media.mediumScreen`
-    grid-template-columns: 1fr 3fr 1fr 2fr 1fr 1fr;
-  `};
-  ${media.smallScreen`
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
@@ -41,8 +40,13 @@ export const QuantityButtons = styled.div`
 
 export const Photo = styled.div`
   grid-area: photo;
+  margin-top: 20px;
+  margin-bottom: 100%;
+  align-self: top;
   width: 70px;
   height: 90px;
+
+  background-color: #f1f5f5;
 
   img {
     width: 100%;
@@ -50,13 +54,17 @@ export const Photo = styled.div`
     object-fit: contain;
   }
 `;
+
 export const Description = styled.div`
   grid-area: description;
-  max-width: 500px;
+  height: 100%;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 export const Sku = styled.p`
   margin: 6px 0;
+  text-align: left;
   margin-bottom: 10px;
 `;
 
@@ -83,8 +91,9 @@ export const SingleAttribute = styled.p`
 export const Name = styled.p`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   font-size: ${props => props.theme.typography.h4FontSize};
+  text-align: left;
   text-transform: uppercase;
-  margin: 6px 0;
+  margin-bottom: 6px;
 `;
 
 export const LightFont = styled.span`
@@ -119,6 +128,9 @@ export const TotalPrice = styled(Price)`
 `;
 
 export const Trash = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   grid-area: trash;
 `;
 
@@ -128,4 +140,5 @@ export const UnitPrice = styled(Price)`
 
 export const Quantity = styled.div`
   grid-area: quantity;
+  margin: 0 15px;
 `;

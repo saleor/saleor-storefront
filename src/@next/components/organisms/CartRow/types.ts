@@ -1,8 +1,9 @@
 import { IImage } from "@types";
+import React from "react";
 
 export interface IProps {
-  unitPrice: string;
-  totalPrice: string;
+  unitPrice: React.ReactNode;
+  totalPrice: React.ReactNode;
   name: string;
   sku?: string;
   quantity: number;
@@ -10,7 +11,7 @@ export interface IProps {
   onAdd: () => void;
   onSubstract: () => void;
   thumbnail?: IImage;
-  attributes: Array<{
+  attributes?: Array<{
     name: string;
     values: Array<{ value: string }>;
   }>;

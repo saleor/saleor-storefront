@@ -2,7 +2,7 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { IconButton, Icon } from "@components/atoms";
+import { Icon, IconButton } from "@components/atoms";
 
 import { CartRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
