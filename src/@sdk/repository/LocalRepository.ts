@@ -1,6 +1,12 @@
 import { ICheckoutModel, ILocalRepository, LocalStorageItems } from "./types";
 
 class Repository {
+  protected saveItem(name: LocalStorageItems, item: string): void {
+    localStorage.setItem(name, item);
+  }
+  protected retrieveItem(name: LocalStorageItems): string | null {
+    return localStorage.getItem(name);
+  }
   protected saveObject<T extends object>(
     name: LocalStorageItems,
     object: T
@@ -13,6 +19,12 @@ class Repository {
 }
 
 export class LocalRepository extends Repository implements ILocalRepository {
+  getCheckoutToken(): string | null {
+    return this.retrieveItem(LocalStorageItems.CHECKOUT_TOKEN);
+  }
+  setCheckoutToken(token: string): void {
+    this.saveItem(LocalStorageItems.CHECKOUT_TOKEN, token);
+  }
   getCheckout(): ICheckoutModel {
     return this.retrieveObject(LocalStorageItems.CHECKOUT);
   }

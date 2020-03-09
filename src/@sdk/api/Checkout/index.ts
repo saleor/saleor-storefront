@@ -1,7 +1,7 @@
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
-import { ILocalRepository } from "@sdk/repository";
+import { ICheckoutModel, ILocalRepository } from "@sdk/repository";
 
 import { ISaleorCheckoutAPI } from "./types";
 
@@ -42,24 +42,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
+    await this.provideData();
+
     /**
      * 1. save in local storage
-     * 2. save online if possible
-     *    a. make add request if checkout id available
-     *    b. else get checkout from backend and make add request if checkout id available
-     *    c. else create checkout if possible and make add request if checkout id available
+     * 2. save online if possible (if checkout id available)
      */
 
     // 1.
     const checkout = this.repository.getCheckout();
-    const lines = checkout.lines;
+    const lines = checkout?.lines || [];
     this.repository.setCheckout({
       ...checkout,
-      lines: lines ? lines.concat([{ variantId, quantity }]) : lines,
+      lines: lines
+        ? lines.concat([{ variantId, quantity }])
+        : [{ variantId, quantity }],
     });
 
-    // 2. TODO
-
+    // 2.
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
@@ -70,48 +70,34 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       });
 
       this.checkout = data?.checkout || null;
-      this.errors.concat(data?.errors);
+      this.errors = this.errors.concat(data?.errors);
       this.loading.addItemToCart = false;
     }
   };
 
   load = async () => {
-    this.loading.load = true;
-    const checkoutToken = localStorage.getItem("checkoutToken");
-
-    if (this.api.isLoggedIn()) {
-      this.api.getUserCheckout(null, {
-        onError: error => {
-          this.errors.push(error);
-          this.loading.load = false;
-        },
-        onUpdate: data => {
-          this.checkout = data;
-          this.loading.load = false;
-        },
-      });
-    } else if (checkoutToken) {
-      this.api.getCheckoutDetails(
-        {
-          token: checkoutToken,
-        },
-        {
-          onError: error => {
-            this.errors.push(error);
-            this.loading.load = false;
-          },
-          onUpdate: data => {
-            this.checkout = data;
-            this.loading.load = false;
-          },
-        }
-      );
-    } else {
-      this.createCheckout();
-    }
+    await this.provideData();
   };
 
   removeItemFromCart = async (variantId: string) => {
+    await this.provideData();
+
+    /**
+     * 1. save in local storage
+     * 2. save online if possible (if checkout id available)
+     */
+
+    // 1.
+    const checkout = this.repository.getCheckout();
+    const lines = checkout?.lines || [];
+    this.repository.setCheckout({
+      ...checkout,
+      lines: lines
+        ? lines.concat([{ variantId, quantity: 0 }])
+        : [{ variantId, quantity: 0 }],
+    });
+
+    // 2.
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
@@ -122,7 +108,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       });
 
       this.checkout = data?.checkout || null;
-      this.errors.concat(data?.errors);
+      this.errors = this.errors.concat(data?.errors);
       this.loading.removeItemFromCart = false;
     }
   };
@@ -134,6 +120,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   setShippingAsBillingAddress = () => null;
 
   updateItemInCart = async (variantId: string, quantity: number) => {
+    await this.provideData();
+
+    /**
+     * 1. save in local storage
+     * 2. save online if possible (if checkout id available)
+     */
+
+    // 1.
+    const checkout = this.repository.getCheckout();
+    const lines = checkout?.lines || [];
+    this.repository.setCheckout({
+      ...checkout,
+      lines: lines
+        ? lines.concat([{ variantId, quantity }])
+        : [{ variantId, quantity }],
+    });
+
+    // 2.
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
@@ -144,14 +148,82 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       });
 
       this.checkout = data?.checkout || null;
-      this.errors.concat(data?.errors);
+      this.errors = this.errors.concat(data?.errors);
       this.loading.updateItemInCart = false;
     }
   };
 
   makeOrder = () => null;
 
-  private getCheckout = async () => null;
+  private provideData = async () => {
+    // 1. Try to take checkout from runtime memory
+    if (!this.checkout) {
+      return;
+    }
+
+    // 2. Try to take checkout from local storage
+    let checkout:
+      | Checkout
+      | ICheckoutModel
+      | null = this.repository.getCheckout();
+
+    if (!checkout) {
+      this.checkout = checkout;
+      return;
+    }
+
+    // 3. Try to take checkout from backend database
+    this.loading.load = true;
+    const checkoutToken = this.repository.getCheckoutToken();
+    checkout = await new Promise((resolve, reject) => {
+      if (this.api.isLoggedIn()) {
+        this.api.getUserCheckout(null, {
+          onError: error => {
+            reject(error);
+            // this.errors.push(error);
+            // this.loading.load = false;
+          },
+          onUpdate: data => {
+            resolve(data);
+            // this.checkout = data;
+            // this.loading.load = false;
+          },
+        });
+      } else if (checkoutToken) {
+        this.api.getCheckoutDetails(
+          {
+            token: checkoutToken,
+          },
+          {
+            onError: error => {
+              reject(error);
+              // this.errors.push(error);
+              // this.loading.load = false;
+            },
+            onUpdate: data => {
+              resolve(data);
+              // this.checkout = data;
+              // this.loading.load = false;
+            },
+          }
+        );
+      }
+    });
+
+    if (!checkout) {
+      this.checkout = checkout;
+      return;
+    }
+
+    // 4. Try to take new created checkout from backend
+    checkout = await this.createCheckout();
+
+    if (!checkout) {
+      this.checkout = checkout;
+      this.loading.load = false;
+      return;
+    }
+  };
 
   private createCheckout = async () => {
     const {
@@ -172,10 +244,12 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       });
 
       if (data?.errors) {
-        this.errors.push(this.errors);
+        throw this.errors;
       } else {
-        this.checkout = data?.checkout || null;
+        return data?.checkout || null;
       }
+    } else {
+      return null;
     }
   };
 }
