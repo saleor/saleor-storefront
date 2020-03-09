@@ -3,6 +3,8 @@ import { SaleorAPI } from "@sdk/index";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import { ICheckoutModel, ILocalRepository } from "@sdk/repository";
 
+import { CheckoutController } from "@temp/@sdk/controllers";
+import { ICheckoutController } from "@temp/@sdk/controllers/Checkout/types";
 import { ISaleorCheckoutAPI } from "./types";
 
 export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
@@ -17,11 +19,18 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     setShippingAsBillingAddress: boolean;
     updateItemInCart: boolean;
   };
+  pendingUpdate: {
+    updateCart: boolean;
+    billingAddress: boolean;
+    shippingAddress: boolean;
+    shippingAsBillingAddress: boolean;
+  };
   promoCode: string | null;
   shippingAsBilling: boolean;
 
   private api: SaleorAPI;
   private repository: ILocalRepository;
+  private controller: ICheckoutController;
 
   constructor(api: SaleorAPI, repository: ILocalRepository) {
     this.api = api;
@@ -39,17 +48,13 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     };
     this.promoCode = null;
     this.shippingAsBilling = false;
+    this.controller = new CheckoutController(this.api);
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
     await this.provideData();
 
-    /**
-     * 1. save in local storage
-     * 2. save online if possible (if checkout id available)
-     */
-
-    // 1.
+    // 1. save in local storage
     const lines = this.checkout?.lines || [];
     const checkout = this.checkout
       ? {
@@ -61,40 +66,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       : null;
     this.repository.setCheckout(checkout);
 
-    // 2.
+    // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
       this.loading.addItemToCart = true;
-      const { data } = await this.api.setCheckoutLine({
-        checkoutId,
-        lines: [{ variantId, quantity }],
-      });
 
-      if (data?.checkout) {
-        const {
-          id,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-        } = data?.checkout;
-        this.checkout = {
-          billingAddress,
-          email,
-          id,
-          lines: lines
-            ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => ({
-              quantity: item!.quantity,
-              variantId: item!.variant.id,
-            })),
-          shippingAddress,
-        };
-      } else {
-        this.checkout = null;
+      const { data, errors } = await this.controller.setCartItem(
+        checkoutId,
+        variantId,
+        quantity
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else if (data) {
+        this.checkout = data;
       }
-      this.errors = this.errors.concat(data?.errors);
+
       this.loading.addItemToCart = false;
     }
   };
@@ -106,12 +95,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   removeItemFromCart = async (variantId: string) => {
     await this.provideData();
 
-    /**
-     * 1. save in local storage
-     * 2. save online if possible (if checkout id available)
-     */
-
-    // 1.
+    // 1. save in local storage
     const lines = this.checkout?.lines || [];
     const checkout = this.checkout
       ? {
@@ -123,40 +107,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       : null;
     this.repository.setCheckout(checkout);
 
-    // 2.
+    // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
       this.loading.removeItemFromCart = true;
-      const { data } = await this.api.setCheckoutLine({
-        checkoutId,
-        lines: [{ variantId, quantity: 0 }],
-      });
 
-      if (data?.checkout) {
-        const {
-          id,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-        } = data?.checkout;
-        this.checkout = {
-          billingAddress,
-          email,
-          id,
-          lines: lines
-            ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => ({
-              quantity: item!.quantity,
-              variantId: item!.variant.id,
-            })),
-          shippingAddress,
-        };
-      } else {
-        this.checkout = null;
+      const { data, errors } = await this.controller.setCartItem(
+        checkoutId,
+        variantId,
+        0
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else if (data) {
+        this.checkout = data;
       }
-      this.errors = this.errors.concat(data?.errors);
+
       this.loading.removeItemFromCart = false;
     }
   };
@@ -170,12 +138,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   updateItemInCart = async (variantId: string, quantity: number) => {
     await this.provideData();
 
-    /**
-     * 1. save in local storage
-     * 2. save online if possible (if checkout id available)
-     */
-
-    // 1.
+    // 1. save in local storage
     const lines = this.checkout?.lines || [];
     const checkout = this.checkout
       ? {
@@ -187,40 +150,24 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       : null;
     this.repository.setCheckout(checkout);
 
-    // 2.
+    // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
 
     if (checkoutId) {
       this.loading.updateItemInCart = true;
-      const { data } = await this.api.setCheckoutLine({
-        checkoutId,
-        lines: [{ variantId, quantity }],
-      });
 
-      if (data?.checkout) {
-        const {
-          id,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-        } = data?.checkout;
-        this.checkout = {
-          billingAddress,
-          email,
-          id,
-          lines: lines
-            ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => ({
-              quantity: item!.quantity,
-              variantId: item!.variant.id,
-            })),
-          shippingAddress,
-        };
-      } else {
-        this.checkout = null;
+      const { data, errors } = await this.controller.setCartItem(
+        checkoutId,
+        variantId,
+        quantity
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else if (data) {
+        this.checkout = data;
       }
-      this.errors = this.errors.concat(data?.errors);
+
       this.loading.updateItemInCart = false;
     }
   };
@@ -245,104 +192,32 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     // 3. Try to take checkout from backend database
     this.loading.load = true;
     const checkoutToken = this.repository.getCheckoutToken();
-    let checkout: Checkout | null;
-    checkout = await new Promise((resolve, reject) => {
-      if (this.api.isLoggedIn()) {
-        this.api.getUserCheckout(null, {
-          onError: error => {
-            reject(error);
-            // this.errors.push(error);
-            // this.loading.load = false;
-          },
-          onUpdate: data => {
-            resolve(data);
-            // this.checkout = data;
-            // this.loading.load = false;
-          },
-        });
-      } else if (checkoutToken) {
-        this.api.getCheckoutDetails(
-          {
-            token: checkoutToken,
-          },
-          {
-            onError: error => {
-              reject(error);
-              // this.errors.push(error);
-              // this.loading.load = false;
-            },
-            onUpdate: data => {
-              resolve(data);
-              // this.checkout = data;
-              // this.loading.load = false;
-            },
-          }
-        );
-      }
-    });
 
-    if (checkout) {
-      const { id, email, shippingAddress, billingAddress, lines } = checkout;
-      this.checkout = {
-        billingAddress,
-        email,
-        id,
-        lines: lines
-          ?.filter(item => item?.quantity && item.variant.id)
-          .map(item => ({
-            quantity: item!.quantity,
-            variantId: item!.variant.id,
-          })),
-        shippingAddress,
-      };
+    const { data, errors } = await this.controller.getCheckout(checkoutToken);
+
+    if (errors) {
+      this.errors = this.errors.concat(errors);
+    } else if (data) {
+      this.checkout = data;
       return;
     }
 
     // 4. Try to take new created checkout from backend
-    checkout = await this.createCheckout(this.checkout);
-
-    if (checkout) {
-      const { id, email, shippingAddress, billingAddress, lines } = checkout;
-      this.checkout = {
-        billingAddress,
-        email,
-        id,
-        lines: lines
-          ?.filter(item => item?.quantity && item.variant.id)
-          .map(item => ({
-            quantity: item!.quantity,
-            variantId: item!.variant.id,
-          })),
-        shippingAddress,
-      };
-      this.loading.load = false;
-      return;
-    }
-  };
-
-  private createCheckout = async ({
-    email,
-    shippingAddress,
-    billingAddress,
-    lines,
-  }: ICheckoutModel) => {
+    const { email, shippingAddress, billingAddress, lines } = this.checkout;
     if (email && shippingAddress && billingAddress && lines) {
-      const { data } = await this.api.setCreateCheckout({
-        checkoutInput: {
-          billingAddress,
-          email,
-          lines,
-          shippingAddress,
-        },
-      });
+      const { data, errors } = await this.controller.createCheckout(
+        email,
+        shippingAddress,
+        billingAddress,
+        lines
+      );
 
-      if (data?.errors) {
-        throw this.errors;
-      } else {
-        return data?.checkout || null;
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else if (data) {
+        this.checkout = data;
+        return;
       }
-    } else {
-      return null;
     }
   };
 }
