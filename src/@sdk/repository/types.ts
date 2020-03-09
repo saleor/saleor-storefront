@@ -6,14 +6,20 @@ export enum LocalStorageItems {
 export interface ICheckoutModel {
   id: string | undefined;
   email: string | undefined;
-  shippingAddress: object | undefined;
-  billingAddress: object | undefined;
-  lines: Array<{ variantId: string; quantity: number }> | null;
+  shippingAddress: object | null | undefined;
+  billingAddress: object | null | undefined;
+  lines:
+    | Array<{
+        variantId: string;
+        quantity: number;
+      }>
+    | null
+    | undefined;
 }
 
 export interface ILocalRepository {
-  getCheckout(): ICheckoutModel;
-  setCheckout(checkout: ICheckoutModel): void;
+  getCheckout(): ICheckoutModel | null;
+  setCheckout(checkout: ICheckoutModel | null): void;
   getCheckoutToken(): string | null;
   setCheckoutToken(token: string): void;
 }

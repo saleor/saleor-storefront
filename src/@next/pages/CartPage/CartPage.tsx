@@ -29,12 +29,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     return load || updateItemInCart || removeItemFromCart;
   };
 
-  const checkoutItems = checkout?.lines
-    ? checkout?.lines?.map(item => ({
-        quantity: item!.quantity,
-        variantId: item!.id,
-      }))
-    : [];
+  const checkoutItems = checkout?.lines || [];
 
   return (
     <>
