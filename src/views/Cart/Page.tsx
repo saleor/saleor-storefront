@@ -10,7 +10,7 @@ import { useUserDetails } from "@sdk/react";
 import { checkoutLoginUrl } from "../../app/routes";
 import { CheckoutContextInterface } from "../../checkout/context";
 import { baseUrl as checkoutUrl } from "../../checkout/routes";
-import { Button, CartTable, EmptyCart, Loader } from "../../components";
+import { CartTable, EmptyCart, Loader } from "../../components";
 import { CartInterface } from "../../components/CartProvider/context";
 import {
   extractCartLines,
@@ -21,6 +21,8 @@ import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
+
+import { Button } from "@components/atoms";
 
 interface PageProps {
   checkout: CheckoutContextInterface;

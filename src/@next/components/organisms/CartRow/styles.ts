@@ -1,4 +1,5 @@
 import { media, styled } from "@styles";
+import { css } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;
@@ -10,7 +11,7 @@ export const Wrapper = styled.div`
     ". description . . . .";
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
   align-items: center;
-  ${media.mediumScreen`
+  ${media.smallScreen`
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
@@ -21,7 +22,7 @@ export const Wrapper = styled.div`
   `};
 `;
 
-export const QuantityButtons = styled.div`
+export const QuantityButtons = styled.div<{ processing: boolean }>`
   display: flex;
   justify-content: space-between;
   padding: 0;
@@ -33,15 +34,15 @@ export const QuantityButtons = styled.div`
   }
 
   svg {
-    cursor: pointer;
+    cursor: ${props => (props.processing ? css`progress` : css`pointer`)};
     justify-self: center;
   }
 `;
 
 export const Photo = styled.div`
   grid-area: photo;
-  margin-top: 20px;
-  margin-bottom: 100%;
+  display: flex;
+  align-items: flex-start;
   align-self: top;
   width: 70px;
   height: 90px;
@@ -140,5 +141,6 @@ export const UnitPrice = styled(Price)`
 
 export const Quantity = styled.div`
   grid-area: quantity;
+  min-width: 120px;
   margin: 0 15px;
 `;

@@ -59,6 +59,18 @@ export const checkoutProductVariantFragment = gql`
         ...Price
       }
     }
+    attributes {
+      attribute {
+        id
+        name
+      }
+      values {
+        id
+        name
+        value: name
+      }
+    }
+    sku
     product {
       id
       name

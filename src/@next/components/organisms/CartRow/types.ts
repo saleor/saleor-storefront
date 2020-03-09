@@ -6,13 +6,14 @@ export interface IProps {
   totalPrice: React.ReactNode;
   name: string;
   sku?: string;
+  processing?: boolean;
   quantity: number;
   onRemove: () => void;
   onAdd: () => void;
   onSubstract: () => void;
   thumbnail?: IImage;
   attributes?: Array<{
-    name: string;
-    values: Array<{ value: string }>;
+    attribute: { name: string };
+    values: Array<{ name: string }>;
   }>;
 }

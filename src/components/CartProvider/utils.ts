@@ -56,6 +56,7 @@ export const extractCartLines = (
     .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
 
 export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
+  console.log("EXTRACT_CHECKOUT, ", lines);
   return lines
     .map(line => ({
       quantity: line.quantity,

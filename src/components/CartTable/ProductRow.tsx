@@ -17,9 +17,14 @@ import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
 
 export type LineI = ProductVariant & {
+  sku: string;
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
   stockQuantity?: number;
+  attributes?: Array<{
+    attribute: { name: string };
+    values: Array<{ value: string }>;
+  }>;
 };
 
 interface ReadProductRowProps {

@@ -1,5 +1,28 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.cart-header {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  width: 100%;
+  p {
+    text-align: center;
+  }
+  #product {
+    text-align: left
+  }
+  @media (max-width: $small-screen) {
+    display: none;
+  }
+}
+
+.cart-total {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 4.5fr 1fr 0.5fr;
+}
+
 .cart-table {
   @media (max-width: $medium-screen) {
     td:last-child,
@@ -48,9 +71,6 @@
         &.disabled {
           opacity: 0.8;
 
-          &:hover svg {
-            cursor: default;
-          }
         }
       }
 
@@ -58,10 +78,6 @@
         padding: $spacer / 2;
       }
     }
-  }
-
-  svg:hover {
-    cursor: pointer;
   }
 
   &__thumbnail {
