@@ -6,7 +6,7 @@ exports[`Storyshots @components/templates/Cart default 1`] = `
   margin: 20px;
 }
 
-.c1 {
+.c2 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,14 +17,40 @@ exports[`Storyshots @components/templates/Cart default 1`] = `
   box-sizing: border-box;
 }
 
+.c1 {
+  width: 1140;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width:992px) {
+  .c1 {
+    width: 100%;
+  }
+}
+
 <div
   className="c0"
 >
   <div
-    className=""
-  />
-  <div
     className="c1"
+  >
+    <div
+      className=""
+    />
+    <div
+      className=""
+    />
+    <div
+      className=""
+    />
+    <div
+      className=""
+    />
+  </div>
+  <div
+    className="c2"
   />
 </div>
 `;
