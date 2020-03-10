@@ -1,12 +1,13 @@
 import { ICheckoutModel, ILocalRepository, LocalStorageItems } from "./types";
 
-class Repository {
+class Repository extends RepositoryObservable {
   protected saveItem(name: LocalStorageItems, item: string | null): void {
     if (item) {
       localStorage.setItem(name, item);
     } else {
       localStorage.removeItem(name);
     }
+    this.notify(name, item);
   }
   protected retrieveItem(name: LocalStorageItems): string | null {
     return localStorage.getItem(name);
@@ -20,6 +21,7 @@ class Repository {
     } else {
       localStorage.removeItem(name);
     }
+    this.notify(name, object);
   }
   protected retrieveObject<T extends object>(
     name: LocalStorageItems

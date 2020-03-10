@@ -1,4 +1,3 @@
-import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import { ICheckoutModel, ILocalRepository } from "@sdk/repository";
@@ -19,14 +18,15 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     setShippingAsBillingAddress: boolean;
     updateItemInCart: boolean;
   };
-  pendingUpdate: {
-    updateCart: boolean;
-    billingAddress: boolean;
-    shippingAddress: boolean;
-    shippingAsBillingAddress: boolean;
-  };
   promoCode: string | null;
   shippingAsBilling: boolean;
+
+  // private pendingUpdate: {
+  //   updateCart: boolean;
+  //   billingAddress: boolean;
+  //   shippingAddress: boolean;
+  //   shippingAsBillingAddress: boolean;
+  // };
 
   private api: SaleorAPI;
   private repository: ILocalRepository;
@@ -56,12 +56,22 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
     // 1. save in local storage
     const lines = this.checkout?.lines || [];
+    let variant = lines.find(variant => variant.variantId === variantId);
+    const alteredLines = lines.filter(
+      variant => variant.variantId !== variantId
+    );
+    const newVariantQuantity = variant ? variant.quantity + quantity : quantity;
+    if (variant) {
+      variant.quantity = newVariantQuantity;
+      alteredLines.push(variant);
+    } else {
+      variant = { variantId, quantity };
+      alteredLines.push(variant);
+    }
     const checkout = this.checkout
       ? {
           ...this.checkout,
-          lines: lines
-            ? lines.concat([{ variantId, quantity }])
-            : [{ variantId, quantity }],
+          lines: alteredLines,
         }
       : null;
     this.repository.setCheckout(checkout);
@@ -75,7 +85,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const { data, errors } = await this.controller.setCartItem(
         checkoutId,
         variantId,
-        quantity
+        newVariantQuantity
       );
 
       if (errors) {
@@ -97,12 +107,18 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
     // 1. save in local storage
     const lines = this.checkout?.lines || [];
+    const variant = lines.find(variant => variant.variantId === variantId);
+    const alteredLines = lines.filter(
+      variant => variant.variantId !== variantId
+    );
+    if (variant) {
+      variant.quantity = 0;
+      alteredLines.push(variant);
+    }
     const checkout = this.checkout
       ? {
           ...this.checkout,
-          lines: lines
-            ? lines.concat([{ variantId, quantity: 0 }])
-            : [{ variantId, quantity: 0 }],
+          lines: alteredLines,
         }
       : null;
     this.repository.setCheckout(checkout);
@@ -230,42 +246,46 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       return;
     }
 
-    // 2. Try to take checkout from local storage
-    let checkoutModel: ICheckoutModel | null;
-    checkoutModel = this.repository.getCheckout();
+    if (navigator.onLine) {
+      // 2. Try to take checkout from backend database
+      this.loading.load = true;
+      const checkoutToken = this.repository.getCheckoutToken();
 
-    if (checkoutModel) {
-      this.checkout = checkoutModel;
-      return;
-    }
-
-    // 3. Try to take checkout from backend database
-    this.loading.load = true;
-    const checkoutToken = this.repository.getCheckoutToken();
-
-    const { data, errors } = await this.controller.getCheckout(checkoutToken);
-
-    if (errors) {
-      this.errors = this.errors.concat(errors);
-    } else if (data) {
-      this.checkout = data;
-      return;
-    }
-
-    // 4. Try to take new created checkout from backend
-    const { email, shippingAddress, billingAddress, lines } = this.checkout;
-    if (email && shippingAddress && billingAddress && lines) {
-      const { data, errors } = await this.controller.createCheckout(
-        email,
-        shippingAddress,
-        billingAddress,
-        lines
-      );
+      const { data, errors } = await this.controller.getCheckout(checkoutToken);
 
       if (errors) {
         this.errors = this.errors.concat(errors);
       } else if (data) {
+        this.repository.setCheckout(data);
         this.checkout = data;
+        return;
+      }
+
+      // 3. Try to take new created checkout from backend
+      const { email, shippingAddress, billingAddress, lines } = this.checkout;
+      if (email && shippingAddress && billingAddress && lines) {
+        const { data, errors } = await this.controller.createCheckout(
+          email,
+          shippingAddress,
+          billingAddress,
+          lines
+        );
+
+        if (errors) {
+          this.errors = this.errors.concat(errors);
+        } else if (data) {
+          this.repository.setCheckout(data);
+          this.checkout = data;
+          return;
+        }
+      }
+    } else {
+      // 4. Try to take checkout from local storage
+      let checkoutModel: ICheckoutModel | null;
+      checkoutModel = this.repository.getCheckout();
+
+      if (checkoutModel) {
+        this.checkout = checkoutModel;
         return;
       }
     }
