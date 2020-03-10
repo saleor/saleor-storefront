@@ -10,7 +10,7 @@ import { IProps } from "./types";
 /**
  * Example component description.
  */
-export const {{> p_componentName}}: React.FC<IProps> = ({
+const {{> p_componentName}}: React.FC<IProps> = ({
   // destructure props here if needed
 }: IProps) => {
   return (
@@ -25,3 +25,5 @@ export const {{> p_componentName}}: React.FC<IProps> = ({
 {{/if}}
   )
 };
+
+export { {{> p_componentName}} }
