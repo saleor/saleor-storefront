@@ -135,17 +135,67 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
   setShippingAsBillingAddress = () => null;
 
+  subtractItemFromCart = async (variantId: string) => {
+    await this.provideData();
+
+    // 1. save in local storage
+    const lines = this.checkout?.lines || [];
+    const variant = lines.find(variant => variant.variantId === variantId);
+    const alteredLines = lines.filter(
+      variant => variant.variantId !== variantId
+    );
+    const newVariantQuantity = variant ? variant.quantity - 1 : 0;
+    if (variant) {
+      variant.quantity = newVariantQuantity;
+      alteredLines.push(variant);
+    }
+    const checkout = this.checkout
+      ? {
+          ...this.checkout,
+          lines: alteredLines,
+        }
+      : null;
+    this.repository.setCheckout(checkout);
+
+    // 2. save online if possible (if checkout id available)
+    const checkoutId = this.checkout?.id;
+
+    if (checkoutId) {
+      this.loading.updateItemInCart = true;
+
+      const { data, errors } = await this.controller.setCartItem(
+        checkoutId,
+        variantId,
+        newVariantQuantity
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else if (data) {
+        this.checkout = data;
+      }
+
+      this.loading.updateItemInCart = false;
+    }
+  };
+
   updateItemInCart = async (variantId: string, quantity: number) => {
     await this.provideData();
 
     // 1. save in local storage
     const lines = this.checkout?.lines || [];
+    const variant = lines.find(variant => variant.variantId === variantId);
+    const alteredLines = lines.filter(
+      variant => variant.variantId !== variantId
+    );
+    if (variant) {
+      variant.quantity = quantity;
+      alteredLines.push(variant);
+    }
     const checkout = this.checkout
       ? {
           ...this.checkout,
-          lines: lines
-            ? lines.concat([{ variantId, quantity }])
-            : [{ variantId, quantity }],
+          lines: alteredLines,
         }
       : null;
     this.repository.setCheckout(checkout);
