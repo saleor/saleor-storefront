@@ -1,26 +1,44 @@
 import { LocalStorageItems } from "./types";
 
 interface IRepositoryObservable {
-  subscribe: (f: (name: LocalStorageItems, data: any) => any) => void;
-  unsubscribe: (f: (name: LocalStorageItems, data: any) => any) => void;
+  subscribeToChange: (
+    name: LocalStorageItems,
+    func: (data: any) => any
+  ) => void;
+  unsubscribeToChange: (
+    name: LocalStorageItems,
+    func: (data: any) => any
+  ) => void;
 }
 
 export class RepositoryObservable implements IRepositoryObservable {
-  private observers: any[];
+  private observers: Array<{
+    name: LocalStorageItems;
+    func: (data: any) => any;
+  }>;
 
   constructor() {
     this.observers = [];
   }
 
-  subscribe = (f: (name: LocalStorageItems, data: any) => any) => {
-    this.observers.push(f);
+  subscribeToChange = (name: LocalStorageItems, func: (data: any) => any) => {
+    this.observers.push({
+      func,
+      name,
+    });
   };
 
-  unsubscribe = (f: (name: LocalStorageItems, data: any) => any) => {
-    this.observers = this.observers.filter(observer => observer !== f);
+  unsubscribeToChange = (name: LocalStorageItems, func: (data: any) => any) => {
+    this.observers = this.observers.filter(
+      observer => name !== observer.name && func !== observer.func
+    );
   };
 
-  protected notify = (name: LocalStorageItems, data: any) => {
-    this.observers.forEach(observer => observer(name, data));
+  protected notifyChange = (name: LocalStorageItems, data: any) => {
+    this.observers.forEach(observer => {
+      if (name === observer.name) {
+        observer.func(data);
+      }
+    });
   };
 }
