@@ -1,46 +1,17 @@
+import { Repository } from "./Repository";
 import { ICheckoutModel, ILocalRepository, LocalStorageItems } from "./types";
-
-class Repository extends RepositoryObservable {
-  protected saveItem(name: LocalStorageItems, item: string | null): void {
-    if (item) {
-      localStorage.setItem(name, item);
-    } else {
-      localStorage.removeItem(name);
-    }
-    this.notify(name, item);
-  }
-  protected retrieveItem(name: LocalStorageItems): string | null {
-    return localStorage.getItem(name);
-  }
-  protected saveObject<T extends object>(
-    name: LocalStorageItems,
-    object: T | null
-  ): void {
-    if (object) {
-      localStorage.setItem(name, JSON.stringify(object));
-    } else {
-      localStorage.removeItem(name);
-    }
-    this.notify(name, object);
-  }
-  protected retrieveObject<T extends object>(
-    name: LocalStorageItems
-  ): T | null {
-    return JSON.parse(localStorage.getItem(name) || "");
-  }
-}
 
 export class LocalRepository extends Repository implements ILocalRepository {
   getCheckoutToken(): string | null {
     return this.retrieveItem(LocalStorageItems.CHECKOUT_TOKEN);
   }
-  setCheckoutToken(token: string): void {
+  setCheckoutToken(token: string | null): void {
     this.saveItem(LocalStorageItems.CHECKOUT_TOKEN, token);
   }
   getCheckout(): ICheckoutModel | null {
     return this.retrieveObject(LocalStorageItems.CHECKOUT);
   }
-  setCheckout(checkout: ICheckoutModel): void {
+  setCheckout(checkout: ICheckoutModel | null): void {
     this.saveObject(LocalStorageItems.CHECKOUT, checkout);
   }
 }

@@ -1,6 +1,11 @@
 import { SaleorAPI } from "@sdk/index";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
-import { ICheckoutModel, ILocalRepository } from "@sdk/repository";
+import {
+  ICheckoutModel,
+  LocalRepository,
+  LocalStorageItems,
+  CheckoutRepositoryManager,
+} from "@sdk/repository";
 
 import { CheckoutController } from "@temp/@sdk/controllers";
 import { ICheckoutController } from "@temp/@sdk/controllers/Checkout/types";
@@ -29,12 +34,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   // };
 
   private api: SaleorAPI;
-  private repository: ILocalRepository;
+  private repositoryManager: CheckoutRepositoryManager;
   private controller: ICheckoutController;
 
-  constructor(api: SaleorAPI, repository: ILocalRepository) {
-    this.api = api;
-    this.repository = repository;
+  constructor(api: SaleorAPI, repository: LocalRepository) {
     this.errors = [];
     this.checkout = null;
     this.loading = {
@@ -48,33 +51,26 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     };
     this.promoCode = null;
     this.shippingAsBilling = false;
+
+    this.api = api;
+    this.repositoryManager = new CheckoutRepositoryManager(repository);
     this.controller = new CheckoutController(this.api);
+
+    this.repositoryManager.onCheckoutChangeListener(checkout => {
+      this.checkout = checkout;
+      console.log("Repository observer notification", checkout);
+    });
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
     await this.provideData();
 
     // 1. save in local storage
-    const lines = this.checkout?.lines || [];
-    let variant = lines.find(variant => variant.variantId === variantId);
-    const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+    const alteredCheckout = this.repositoryManager.addItemToCart(
+      this.checkout,
+      variantId,
+      quantity
     );
-    const newVariantQuantity = variant ? variant.quantity + quantity : quantity;
-    if (variant) {
-      variant.quantity = newVariantQuantity;
-      alteredLines.push(variant);
-    } else {
-      variant = { variantId, quantity };
-      alteredLines.push(variant);
-    }
-    const checkout = this.checkout
-      ? {
-          ...this.checkout,
-          lines: alteredLines,
-        }
-      : null;
-    this.repository.setCheckout(checkout);
 
     // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
@@ -85,7 +81,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const { data, errors } = await this.controller.setCartItem(
         checkoutId,
         variantId,
-        newVariantQuantity
+        alteredCheckout?.lines.find(line => line.variantId === variantId)
+          ?.quantity || 0
       );
 
       if (errors) {
@@ -106,22 +103,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     await this.provideData();
 
     // 1. save in local storage
-    const lines = this.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
-    const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
-    );
-    if (variant) {
-      variant.quantity = 0;
-      alteredLines.push(variant);
-    }
-    const checkout = this.checkout
-      ? {
-          ...this.checkout,
-          lines: alteredLines,
-        }
-      : null;
-    this.repository.setCheckout(checkout);
+    this.repositoryManager.removeItemFromCart(this.checkout, variantId);
 
     // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
@@ -155,23 +137,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     await this.provideData();
 
     // 1. save in local storage
-    const lines = this.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
-    const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+    const alteredCheckout = this.repositoryManager.subtractItemFromCart(
+      this.checkout,
+      variantId
     );
-    const newVariantQuantity = variant ? variant.quantity - 1 : 0;
-    if (variant) {
-      variant.quantity = newVariantQuantity;
-      alteredLines.push(variant);
-    }
-    const checkout = this.checkout
-      ? {
-          ...this.checkout,
-          lines: alteredLines,
-        }
-      : null;
-    this.repository.setCheckout(checkout);
 
     // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
@@ -182,7 +151,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const { data, errors } = await this.controller.setCartItem(
         checkoutId,
         variantId,
-        newVariantQuantity
+        alteredCheckout?.lines.find(line => line.variantId === variantId)
+          ?.quantity || 0
       );
 
       if (errors) {
@@ -199,22 +169,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     await this.provideData();
 
     // 1. save in local storage
-    const lines = this.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
-    const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
-    );
-    if (variant) {
-      variant.quantity = quantity;
-      alteredLines.push(variant);
-    }
-    const checkout = this.checkout
-      ? {
-          ...this.checkout,
-          lines: alteredLines,
-        }
-      : null;
-    this.repository.setCheckout(checkout);
+    this.repositoryManager.addItemToCart(this.checkout, variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
     const checkoutId = this.checkout?.id;
@@ -249,14 +204,16 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     if (navigator.onLine) {
       // 2. Try to take checkout from backend database
       this.loading.load = true;
-      const checkoutToken = this.repository.getCheckoutToken();
+      const checkoutToken = this.repositoryManager
+        .getRepository()
+        .getCheckoutToken();
 
       const { data, errors } = await this.controller.getCheckout(checkoutToken);
 
       if (errors) {
         this.errors = this.errors.concat(errors);
       } else if (data) {
-        this.repository.setCheckout(data);
+        this.repositoryManager.getRepository().setCheckout(data);
         this.checkout = data;
         return;
       }
@@ -274,7 +231,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
         if (errors) {
           this.errors = this.errors.concat(errors);
         } else if (data) {
-          this.repository.setCheckout(data);
+          this.repositoryManager.getRepository().setCheckout(data);
           this.checkout = data;
           return;
         }
@@ -282,7 +239,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     } else {
       // 4. Try to take checkout from local storage
       let checkoutModel: ICheckoutModel | null;
-      checkoutModel = this.repository.getCheckout();
+      checkoutModel = this.repositoryManager.getRepository().getCheckout();
 
       if (checkoutModel) {
         this.checkout = checkoutModel;

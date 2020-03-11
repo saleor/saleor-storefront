@@ -199,9 +199,6 @@ export class SaleorAPI {
   constructor(client: ApolloClient<any>) {
     this.client = client;
     this.repository = new LocalRepository();
-    this.repository.subscribe((name, data) =>
-      console.log("Repository observer notification", name, data)
-    );
     this.checkout = new SaleorCheckoutAPI(this, this.repository);
   }
 
