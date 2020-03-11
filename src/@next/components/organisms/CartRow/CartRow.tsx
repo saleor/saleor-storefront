@@ -6,16 +6,20 @@ import { CachedImage } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const QuantityButtons = (onAdd, onSubstract) => (
+const QuantityButtons = (add, substract) => (
   <S.QuantityButtons>
-    <div onClick={onSubstract}>
+    <div onClick={substract}>
       <Icon size={16} name="horizontal_line" />
     </div>
-    <div onClick={onAdd}>
+    <div onClick={add}>
       <Icon size={16} name="plus" />
     </div>
   </S.QuantityButtons>
 );
+
+/**
+ * Product row displayed on cart page
+ */
 
 export const CartRow: React.FC<IProps> = ({
   totalPrice,
@@ -23,12 +27,17 @@ export const CartRow: React.FC<IProps> = ({
   name,
   sku,
   quantity,
+  onQuantityChange,
   thumbnail,
   attributes = [],
   onRemove,
-  onAdd,
-  onSubstract,
 }: IProps) => {
+  const add = React.useCallback(() => onQuantityChange(quantity + 1), [
+    quantity,
+  ]);
+  const substract = React.useCallback(() => onQuantityChange(quantity - 1), [
+    quantity,
+  ]);
   return (
     <S.Wrapper>
       <S.Photo>
@@ -55,8 +64,8 @@ export const CartRow: React.FC<IProps> = ({
           name="quantity"
           label="Quantity"
           value={quantity}
-          readOnly={true}
-          contentRight={QuantityButtons(onAdd, onSubstract)}
+          onChange={evt => onQuantityChange(evt.target.value)}
+          contentRight={QuantityButtons(add, substract)}
         />
       </S.Quantity>
       <S.Trash>
