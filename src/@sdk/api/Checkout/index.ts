@@ -1,14 +1,12 @@
 import { SaleorAPI } from "@sdk/index";
+import { CheckoutNetworkManager } from "@sdk/network";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import {
+  CheckoutRepositoryManager,
   ICheckoutModel,
   LocalRepository,
-  LocalStorageItems,
-  CheckoutRepositoryManager,
 } from "@sdk/repository";
 
-import { CheckoutController } from "@temp/@sdk/controllers";
-import { ICheckoutController } from "@temp/@sdk/controllers/Checkout/types";
 import { ISaleorCheckoutAPI } from "./types";
 
 export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
@@ -35,7 +33,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
   private api: SaleorAPI;
   private repositoryManager: CheckoutRepositoryManager;
-  private controller: ICheckoutController;
+  private networkManager: CheckoutNetworkManager;
 
   constructor(api: SaleorAPI, repository: LocalRepository) {
     this.errors = [];
@@ -54,7 +52,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
     this.api = api;
     this.repositoryManager = new CheckoutRepositoryManager(repository);
-    this.controller = new CheckoutController(this.api);
+    this.networkManager = new CheckoutNetworkManager(this.api);
 
     this.repositoryManager.onCheckoutChangeListener(checkout => {
       this.checkout = checkout;
@@ -78,7 +76,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     if (checkoutId) {
       this.loading.addItemToCart = true;
 
-      const { data, errors } = await this.controller.setCartItem(
+      const { data, errors } = await this.networkManager.setCartItem(
         checkoutId,
         variantId,
         alteredCheckout?.lines.find(line => line.variantId === variantId)
@@ -111,7 +109,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     if (checkoutId) {
       this.loading.removeItemFromCart = true;
 
-      const { data, errors } = await this.controller.setCartItem(
+      const { data, errors } = await this.networkManager.setCartItem(
         checkoutId,
         variantId,
         0
@@ -148,7 +146,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     if (checkoutId) {
       this.loading.updateItemInCart = true;
 
-      const { data, errors } = await this.controller.setCartItem(
+      const { data, errors } = await this.networkManager.setCartItem(
         checkoutId,
         variantId,
         alteredCheckout?.lines.find(line => line.variantId === variantId)
@@ -177,7 +175,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     if (checkoutId) {
       this.loading.updateItemInCart = true;
 
-      const { data, errors } = await this.controller.setCartItem(
+      const { data, errors } = await this.networkManager.setCartItem(
         checkoutId,
         variantId,
         quantity
@@ -208,7 +206,9 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
         .getRepository()
         .getCheckoutToken();
 
-      const { data, errors } = await this.controller.getCheckout(checkoutToken);
+      const { data, errors } = await this.networkManager.getCheckout(
+        checkoutToken
+      );
 
       if (errors) {
         this.errors = this.errors.concat(errors);
@@ -221,7 +221,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       // 3. Try to take new created checkout from backend
       const { email, shippingAddress, billingAddress, lines } = this.checkout;
       if (email && shippingAddress && billingAddress && lines) {
-        const { data, errors } = await this.controller.createCheckout(
+        const { data, errors } = await this.networkManager.createCheckout(
           email,
           shippingAddress,
           billingAddress,

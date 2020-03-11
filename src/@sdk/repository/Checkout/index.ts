@@ -1,28 +1,6 @@
-import { LocalRepository } from "./LocalRepository";
-import { ICheckoutModel, LocalStorageItems } from "./types";
-
-interface ICheckoutRepositoryManager {
-  getRepository: () => LocalRepository;
-  onCheckoutChangeListener: (f: (checkout: ICheckoutModel) => any) => void;
-  addItemToCart: (
-    checkout: ICheckoutModel | null,
-    variantId: string,
-    quantity: number
-  ) => ICheckoutModel | null;
-  removeItemFromCart: (
-    checkout: ICheckoutModel | null,
-    variantId: string
-  ) => ICheckoutModel | null;
-  subtractItemFromCart: (
-    checkout: ICheckoutModel | null,
-    variantId: string
-  ) => ICheckoutModel | null;
-  updateItemInCart: (
-    checkout: ICheckoutModel | null,
-    variantId: string,
-    quantity: number
-  ) => ICheckoutModel | null;
-}
+import { LocalRepository } from "../LocalRepository";
+import { ICheckoutModel, LocalStorageItems } from "../types";
+import { ICheckoutRepositoryManager } from "./types";
 
 export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
   private repository: LocalRepository;

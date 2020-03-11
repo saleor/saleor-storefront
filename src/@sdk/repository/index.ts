@@ -1,4 +1,4 @@
 export * from "./Repository";
 export * from "./LocalRepository";
-export * from "./CheckoutRepositoryManager";
+export * from "./Checkout";
 export * from "./types";
