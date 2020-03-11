@@ -6,9 +6,8 @@ import { CartRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 
 const STORY_PROPS = {
-  onAdd: action("onAdd has been called"),
   onRemove: action("onRemove has been called"),
-  onSubstract: action("onSubstract has been called"),
+  onQuantityChange: action("onQuantityChange has been called")
   ...DEFAULT_PROPS,
 };
 
