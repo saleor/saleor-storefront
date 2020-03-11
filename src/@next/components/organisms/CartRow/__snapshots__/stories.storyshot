@@ -462,8 +462,8 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
             disabled={false}
             name="quantity"
             onBlur={[Function]}
+            onChange={[Function]}
             onFocus={[Function]}
-            readOnly={true}
             value={3}
           />
           <label

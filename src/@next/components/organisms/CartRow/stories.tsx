@@ -7,7 +7,7 @@ import { DEFAULT_PROPS } from "./fixtures";
 
 const STORY_PROPS = {
   onRemove: action("onRemove has been called"),
-  onQuantityChange: action("onQuantityChange has been called")
+  onQuantityChange: action("onQuantityChange has been called"),
   ...DEFAULT_PROPS,
 };
 
