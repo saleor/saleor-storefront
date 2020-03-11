@@ -1,5 +1,6 @@
 import { SaleorAPI } from "@sdk/index";
 import { CheckoutNetworkManager } from "@sdk/network";
+import { NetworkQueue } from "@sdk/network/NetworkManager";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import {
   CheckoutRepositoryManager,
@@ -32,10 +33,15 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   // };
 
   private api: SaleorAPI;
+  private networkQueue: NetworkQueue;
   private repositoryManager: CheckoutRepositoryManager;
   private networkManager: CheckoutNetworkManager;
 
-  constructor(api: SaleorAPI, repository: LocalRepository) {
+  constructor(
+    api: SaleorAPI,
+    repository: LocalRepository,
+    networkQueue: NetworkQueue
+  ) {
     this.errors = [];
     this.checkout = null;
     this.loading = {
@@ -51,6 +57,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.shippingAsBilling = false;
 
     this.api = api;
+    this.networkQueue = networkQueue;
     this.repositoryManager = new CheckoutRepositoryManager(repository);
     this.networkManager = new CheckoutNetworkManager(this.api);
 
@@ -71,26 +78,32 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    const checkoutId = this.checkout?.id;
-
-    if (checkoutId) {
-      this.loading.addItemToCart = true;
-
-      const { data, errors } = await this.networkManager.setCartItem(
-        checkoutId,
-        variantId,
-        alteredCheckout?.lines.find(line => line.variantId === variantId)
-          ?.quantity || 0
+    this.networkQueue.addToQueue(async () => {
+      // TODO: any data like checkout should be taken from localStorage, to prevent memory leak!
+      console.log(
+        "any data like checkout should be taken from localStorage, to prevent memory leak!"
       );
+      const checkoutId = this.checkout?.id;
 
-      if (errors) {
-        this.errors = this.errors.concat(errors);
-      } else if (data) {
-        this.checkout = data;
+      if (checkoutId) {
+        this.loading.addItemToCart = true;
+
+        const { data, errors } = await this.networkManager.setCartItem(
+          checkoutId,
+          variantId,
+          alteredCheckout?.lines.find(line => line.variantId === variantId)
+            ?.quantity || 0
+        );
+
+        if (errors) {
+          this.errors = this.errors.concat(errors);
+        } else if (data) {
+          this.checkout = data;
+        }
+
+        this.loading.addItemToCart = false;
       }
-
-      this.loading.addItemToCart = false;
-    }
+    });
   };
 
   load = async () => {
