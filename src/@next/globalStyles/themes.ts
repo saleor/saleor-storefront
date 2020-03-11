@@ -140,6 +140,7 @@ export const defaultTheme = {
     extraBoldFontWeight: C.extraBoldFontWeight,
     h1FontSize: C.h1FontSize, // 64px
     h1LineHeight: C.h1LineHeight,
+    h2FontSize: C.h2FontSize, // 48px
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
     smallFontSize: C.smallFontSize, // 14px

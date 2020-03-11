@@ -1,5 +1,4 @@
 import { media, styled } from "@styles";
-import { css } from "styled-components";
 
 export const Wrapper = styled.div`
   display: grid;

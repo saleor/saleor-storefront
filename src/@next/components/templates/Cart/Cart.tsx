@@ -16,10 +16,12 @@ const Cart: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <Container>
-      <S.Breadcrumbs>{breadcrumbs}</S.Breadcrumbs>
-      <S.Title>{title}</S.Title>
-      <S.Cart>{cart}</S.Cart>
-      <S.ProceedButton>{button}</S.ProceedButton>
+      <S.Wrapper>
+        <S.Breadcrumbs>{breadcrumbs}</S.Breadcrumbs>
+        <S.Title>{title}</S.Title>
+        <S.Cart>{cart}</S.Cart>
+        <S.ProceedButton>{button}</S.ProceedButton>
+      </S.Wrapper>
     </Container>
   );
 };

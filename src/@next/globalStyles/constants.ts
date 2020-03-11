@@ -66,6 +66,7 @@ export const baseLineHeight = "1.25rem"; // 20px
 export const boldFontWeight = 600;
 export const extraBoldFontWeight = 800;
 export const h1FontSize = "4rem"; // 64px
+export const h2FontSize = "3rem"; // 48px
 export const h1LineHeight = 1;
 export const h3FontSize = "1.5rem"; // 24px
 export const h4FontSize = "1.125rem"; // 18px
