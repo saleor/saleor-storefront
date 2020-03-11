@@ -2,6 +2,7 @@ export interface ISaleorCheckoutAPI {
   addItemToCart: (variantId: string, quantity: number) => void;
   load: () => void;
   removeItemFromCart: (variantId: string) => void;
+  subtractItemFromCart: (variantId: string) => void;
   setBillingAddress: () => void;
   setShippingAddress: () => void;
   setShippingAsBillingAddress: () => void;

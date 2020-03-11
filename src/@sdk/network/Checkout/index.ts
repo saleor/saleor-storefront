@@ -1,9 +1,9 @@
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
 
-import { ICheckoutController } from "./types";
+import { ICheckoutNetworkManager } from "./types";
 
-export class CheckoutController implements ICheckoutController {
+export class CheckoutNetworkManager implements ICheckoutNetworkManager {
   private api: SaleorAPI;
 
   constructor(api: SaleorAPI) {

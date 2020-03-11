@@ -23,7 +23,7 @@ import {
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
 import { UserDetails } from "./queries/types/UserDetails";
-import { ILocalRepository, LocalRepository } from "./repository";
+import { LocalRepository } from "./repository";
 import { RequireAtLeastOne } from "./tsHelpers";
 import {
   InferOptions,
@@ -194,7 +194,7 @@ export class SaleorAPI {
 
   private client: ApolloClient<any>;
 
-  private repository: ILocalRepository;
+  private repository: LocalRepository;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
