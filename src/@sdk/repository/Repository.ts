@@ -8,7 +8,7 @@ export class Repository extends RepositoryObservable {
     } else {
       localStorage.removeItem(name);
     }
-    this.notify(name, item);
+    this.notifyChange(name, item);
   }
   protected retrieveItem(name: LocalStorageItems): string | null {
     return localStorage.getItem(name);
@@ -22,7 +22,7 @@ export class Repository extends RepositoryObservable {
     } else {
       localStorage.removeItem(name);
     }
-    this.notify(name, object);
+    this.notifyChange(name, object);
   }
   protected retrieveObject<T extends object>(
     name: LocalStorageItems

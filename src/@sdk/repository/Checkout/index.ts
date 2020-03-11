@@ -13,12 +13,8 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     return this.repository;
   };
 
-  onCheckoutChangeListener = (f: (checkout: ICheckoutModel) => any) => {
-    this.repository.subscribe((name, data) => {
-      if (name === LocalStorageItems.CHECKOUT) {
-        f(data);
-      }
-    });
+  onCheckoutChangeListener = (func: (checkout: ICheckoutModel) => any) => {
+    this.repository.subscribeToChange(LocalStorageItems.CHECKOUT, func);
   };
 
   addItemToCart = (
