@@ -1,6 +1,7 @@
 export enum LocalStorageItems {
-  CHECKOUT = "checkout",
-  CHECKOUT_TOKEN = "checkoutToken",
+  JOB_QUEUE_CHECKOUT = "job_queueCheckout",
+  CHECKOUT = "data_checkout",
+  CHECKOUT_TOKEN = "data_checkoutToken",
 }
 
 export interface ICheckoutModel {
@@ -15,6 +16,12 @@ export interface ICheckoutModel {
       }>
     | null
     | undefined;
+}
+
+export interface IJobsModel {
+  checkout: {
+    setCartItem: boolean;
+  };
 }
 
 export interface ILocalRepository {
