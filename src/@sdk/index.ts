@@ -21,7 +21,6 @@ import {
   setAuthToken,
 } from "./auth";
 import { MUTATIONS } from "./mutations";
-import { NetworkQueue } from "./network/NetworkManager";
 import { QUERIES } from "./queries";
 import { UserDetails } from "./queries/types/UserDetails";
 import { LocalRepository } from "./repository";
@@ -196,17 +195,11 @@ export class SaleorAPI {
   private client: ApolloClient<any>;
 
   private repository: LocalRepository;
-  private networkQueue: NetworkQueue;
 
   constructor(client: ApolloClient<any>) {
     this.client = client;
     this.repository = new LocalRepository();
-    this.networkQueue = new NetworkQueue();
-    this.checkout = new SaleorCheckoutAPI(
-      this,
-      this.repository,
-      this.networkQueue
-    );
+    this.checkout = new SaleorCheckoutAPI(this, this.repository);
   }
 
   getUserDetails = (

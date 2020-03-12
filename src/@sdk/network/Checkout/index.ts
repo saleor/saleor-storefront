@@ -1,5 +1,6 @@
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
+import { ICheckoutModel } from "@sdk/repository";
 
 import { ICheckoutNetworkManager } from "./types";
 
@@ -122,50 +123,50 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     }
   };
 
-  setCartItem = async (
-    checkoutId: string,
-    variantId: string,
-    quantity: number
-  ) => {
-    const { data } = await this.api.setCheckoutLine({
-      checkoutId,
-      lines: [{ variantId, quantity }],
-    });
+  setCartItem = async (checkout: ICheckoutModel) => {
+    const checkoutId = checkout.id;
+    const lines = checkout.lines;
 
-    if (data?.errors) {
-      return {
-        data: null,
-        errors: data.errors,
-      };
-    }
-
-    if (data?.checkout) {
-      const {
-        id,
-        email,
-        shippingAddress,
-        billingAddress,
+    if (checkoutId && lines) {
+      const { data } = await this.api.setCheckoutLine({
+        checkoutId,
         lines,
-      } = data?.checkout;
+      });
 
-      return {
-        data: {
-          billingAddress,
-          email,
+      if (data?.errors) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.checkout) {
+        const {
           id,
-          lines: lines
-            ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => ({
-              quantity: item!.quantity,
-              variantId: item!.variant.id,
-            })),
+          email,
           shippingAddress,
-        },
-        errors: null,
-      };
-    } else {
-      return { data: null, errors: null };
+          billingAddress,
+          lines,
+        } = data?.checkout;
+
+        return {
+          data: {
+            billingAddress,
+            email,
+            id,
+            lines: lines
+              ?.filter(item => item?.quantity && item.variant.id)
+              .map(item => ({
+                quantity: item!.quantity,
+                variantId: item!.variant.id,
+              })),
+            shippingAddress,
+          },
+          errors: null,
+        };
+      }
     }
+    return { data: null, errors: null };
   };
 
   setBillingAddress = async () => ({ data: null, errors: null });
