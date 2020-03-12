@@ -16,10 +16,10 @@ export class CheckoutJobQueue extends JobQueue {
     this.repository = repository;
     this.checkoutNetworkManager = checkoutNetworkManager;
 
-    const jobs = this.repository.getJobs();
-    if (jobs?.checkout.setCartItem) {
-      this.enqueueSetCartItem();
-    }
+    const queuePossibilities = new Map([
+      ["setCartItem", this.enqueueSetCartItem],
+    ]);
+    this.enqueueSavedInRepository(queuePossibilities);
   }
 
   enqueueSetCartItem() {
@@ -69,4 +69,19 @@ export class CheckoutJobQueue extends JobQueue {
       this.loading.addItemToCart = false;
     }
   };
+
+  private enqueueSavedInRepository(queuePossibilities: Map<string, () => any>) {
+    const jobs = this.repository.getJobs();
+
+    if (jobs) {
+      const checkout = jobs.checkout;
+      const checkoutJobsNames = Object.keys(checkout) as Array<
+        keyof typeof checkout
+      >;
+
+      checkoutJobsNames
+        .filter(name => checkout[name])
+        .forEach(name => queuePossibilities.get(name));
+    }
+  }
 }
