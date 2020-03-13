@@ -13,7 +13,7 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     return this.repository;
   };
 
-  onCheckoutChangeListener = (func: (checkout: ICheckoutModel) => any) => {
+  addOnCheckoutChangeListener = (func: (checkout: ICheckoutModel) => any) => {
     this.repository.subscribeToChange(LocalStorageItems.CHECKOUT, func);
   };
 

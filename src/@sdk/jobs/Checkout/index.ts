@@ -19,13 +19,16 @@ export class CheckoutJobQueue extends JobQueue {
     const queuePossibilities = new Map([
       ["setCartItem", this.enqueueSetCartItem],
     ]);
-    this.enqueueSavedInRepository(queuePossibilities);
+    this.enqueueAllSavedInRepository(queuePossibilities);
   }
 
-  enqueueSetCartItem() {
+  enqueueSetCartItem(
+    onLoading?: (loading: boolean) => any,
+    onError?: (error: any) => any
+  ) {
     this.addToQueue(
       LocalStorageJobs.CHECKOUT_SET_CART_ITEM,
-      this.setCartItem,
+      () => this.setCartItem(onLoading, onError),
       () => {
         const jobs = this.repository.getJobs();
 
@@ -51,26 +54,35 @@ export class CheckoutJobQueue extends JobQueue {
     );
   }
 
-  private setCartItem = async () => {
+  private setCartItem = async (
+    onLoading?: (loading: boolean) => any,
+    onError?: (error: any) => any
+  ) => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      this.loading.addItemToCart = true;
+      if (onLoading) {
+        onLoading(true);
+      }
 
       const { data, errors } = await this.checkoutNetworkManager.setCartItem(
         checkout
       );
-      if (errors) {
-        this.errors = this.errors.concat(errors);
+      if (errors && onError) {
+        onError(errors);
       } else if (data) {
         this.repository.setCheckout(data);
       }
 
-      this.loading.addItemToCart = false;
+      if (onLoading) {
+        onLoading(false);
+      }
     }
   };
 
-  private enqueueSavedInRepository(queuePossibilities: Map<string, () => any>) {
+  private enqueueAllSavedInRepository(
+    queuePossibilities: Map<string, () => any>
+  ) {
     const jobs = this.repository.getJobs();
 
     if (jobs) {

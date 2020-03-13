@@ -20,6 +20,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     setBillingAddress: boolean;
     setShippingAddress: boolean;
     setShippingAsBillingAddress: boolean;
+    subtractItemFromCart: boolean;
     updateItemInCart: boolean;
   };
   promoCode: string | null;
@@ -39,6 +40,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       setBillingAddress: false,
       setShippingAddress: false,
       setShippingAsBillingAddress: false,
+      subtractItemFromCart: false,
       updateItemInCart: false,
     };
     this.promoCode = null;
@@ -50,9 +52,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       repository,
       this.checkoutNetworkManager
     );
-    this.checkoutRepositoryManager.onCheckoutChangeListener(checkout => {
+    this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
-      console.log("Repository observer notification", checkout);
     });
   }
 
@@ -67,7 +68,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem();
+    this.checkoutJobQueue.enqueueSetCartItem(
+      loading => (this.loading.addItemToCart = loading),
+      error => this.errors.concat(error)
+    );
   };
 
   load = async () => {
@@ -81,7 +85,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.checkoutRepositoryManager.removeItemFromCart(this.checkout, variantId);
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem();
+    this.checkoutJobQueue.enqueueSetCartItem(
+      loading => (this.loading.removeItemFromCart = loading),
+      error => this.errors.concat(error)
+    );
   };
 
   setBillingAddress = () => null;
@@ -100,7 +107,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem();
+    this.checkoutJobQueue.enqueueSetCartItem(
+      loading => (this.loading.subtractItemFromCart = loading),
+      error => this.errors.concat(error)
+    );
   };
 
   updateItemInCart = async (variantId: string, quantity: number) => {
@@ -114,10 +124,17 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem();
+    this.checkoutJobQueue.enqueueSetCartItem(
+      loading => (this.loading.updateItemInCart = loading),
+      error => this.errors.concat(error)
+    );
   };
 
   makeOrder = () => null;
+
+  clearErrors = () => {
+    this.errors = [];
+  };
 
   private provideData = async () => {
     // 1. Try to take checkout from runtime memory
@@ -141,30 +158,36 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       } else if (data) {
         this.checkoutRepositoryManager.getRepository().setCheckout(data);
         this.checkout = data;
+        this.loading.load = false;
         return;
       }
 
       // 3. Try to take new created checkout from backend
-      const { email, shippingAddress, billingAddress, lines } = this.checkout;
-      if (email && shippingAddress && billingAddress && lines) {
-        const {
-          data,
-          errors,
-        } = await this.checkoutNetworkManager.createCheckout(
-          email,
-          shippingAddress,
-          billingAddress,
-          lines
-        );
+      if (this.checkout) {
+        const { email, shippingAddress, billingAddress, lines } = this.checkout;
+        if (email && shippingAddress && billingAddress && lines) {
+          const {
+            data,
+            errors,
+          } = await this.checkoutNetworkManager.createCheckout(
+            email,
+            shippingAddress,
+            billingAddress,
+            lines
+          );
 
-        if (errors) {
-          this.errors = this.errors.concat(errors);
-        } else if (data) {
-          this.checkoutRepositoryManager.getRepository().setCheckout(data);
-          this.checkout = data;
-          return;
+          if (errors) {
+            this.errors = this.errors.concat(errors);
+          } else if (data) {
+            this.checkoutRepositoryManager.getRepository().setCheckout(data);
+            this.checkout = data;
+            this.loading.load = false;
+            return;
+          }
         }
       }
+
+      this.loading.load = false;
     } else {
       // 4. Try to take checkout from local storage
       let checkoutModel: ICheckoutModel | null;
