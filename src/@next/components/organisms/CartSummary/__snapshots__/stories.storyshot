@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CartSummary default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+  padding: 30px 20px;
+}
+
+.c2 {
+  margin: 0;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-weight: normal;
+}
+
+.c4 span {
+  display: inline-block;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.c5 span {
+  display: inline-block;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 div {
+  margin-bottom: 20px;
+}
+
+.c3 div:last-of-type {
+  margin-bottom: 0px;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    font-size: 1.125rem;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <p
+      className="c2"
+    >
+      Cart Summary
+    </p>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <span>
+          Subtotal
+        </span>
+        <span>
+          <span>
+            
+          </span>
+        </span>
+      </div>
+      <div
+        className="c4"
+      >
+        <span>
+          Promo Code
+        </span>
+        <span>
+          <span>
+            
+          </span>
+        </span>
+      </div>
+      <div
+        className="c4"
+      >
+        <span>
+          Shipping
+        </span>
+        <span>
+          <span>
+            
+          </span>
+        </span>
+      </div>
+      <div
+        className="c5"
+      >
+        <span>
+          Total
+        </span>
+        <span>
+          <span>
+            
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;

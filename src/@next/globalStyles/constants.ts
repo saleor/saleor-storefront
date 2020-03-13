@@ -31,6 +31,7 @@ export const theme = {
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
   baseFont: baseFontColor,
+  baseFontColorSemiTransparent: baseFontColorSemiTransparent,
   dark: black,
   disabled: gray,
   divider: grayLight,

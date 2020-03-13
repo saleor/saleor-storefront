@@ -67,16 +67,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   background-color: transparent;
 }
 
-.c12 {
-  position: absolute;
-  right: 1rem;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
 .c5 {
   margin-bottom: 1rem;
   position: relative;
@@ -85,6 +75,16 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 .c10 {
   position: absolute;
   top: 100%;
+}
+
+.c12 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c2 {
@@ -648,16 +648,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   background-color: transparent;
 }
 
-.c15 {
-  position: absolute;
-  right: 1rem;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
 .c5 {
   margin-bottom: 1rem;
   position: relative;
@@ -666,6 +656,16 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 .c10 {
   position: absolute;
   top: 100%;
+}
+
+.c15 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c2 {
@@ -1235,16 +1235,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   background-color: transparent;
 }
 
-.c12 {
-  position: absolute;
-  right: 1rem;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
 .c5 {
   margin-bottom: 1rem;
   position: relative;
@@ -1253,6 +1243,16 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 .c10 {
   position: absolute;
   top: 100%;
+}
+
+.c12 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .c2 {
