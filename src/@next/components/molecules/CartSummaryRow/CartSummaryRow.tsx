@@ -1,7 +1,7 @@
 import React from "react";
 
-import { CachedImage } from "..";
 import { TaxedMoney } from "@components/containers";
+import { CachedImage } from "..";
 
 import * as S from "./styles";
 import { IProps } from "./types";

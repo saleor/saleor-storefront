@@ -5,12 +5,12 @@ import React from "react";
 import { CartSummary } from ".";
 
 const money = {
-  net: {
-    amount: 100,
-    currency: "PLN",
-  },
   gross: {
     amount: 123,
+    currency: "PLN",
+  },
+  net: {
+    amount: 100,
     currency: "PLN",
   },
 };

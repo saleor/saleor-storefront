@@ -1,4 +1,4 @@
-import { media, styled, defaultTheme, DefaultTheme } from "@styles";
+import { DefaultTheme, media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   background-color: ${props => props.theme.colors.light};

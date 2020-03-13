@@ -1,8 +1,9 @@
 import React from "react";
 
+import { TaxedMoney } from "@components/containers";
+
 import * as S from "./styles";
-import { IProps, ICosts, ICostLine } from "./types";
-import { TaxedMoney } from "../../containers";
+import { ICostLine, ICosts, IProps } from "./types";
 
 const CostLine: React.FC<ICostLine> = ({
   name,

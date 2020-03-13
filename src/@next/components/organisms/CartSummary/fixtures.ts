@@ -9,8 +9,8 @@ const money = {
   },
 };
 export const DEFAULT_PROPS = {
-  subtotal: money,
-  total: money,
   promoCode: money,
   shipping: money,
+  subtotal: money,
+  total: money,
 };

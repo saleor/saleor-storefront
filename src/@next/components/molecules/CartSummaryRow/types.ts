@@ -1,4 +1,4 @@
-import { ITaxedMoney, IImage } from "@types";
+import { IImage, ITaxedMoney } from "@types";
 
 export interface IProps {
   name: string;
