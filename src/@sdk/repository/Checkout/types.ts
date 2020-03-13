@@ -3,7 +3,7 @@ import { ICheckoutModel } from "../types";
 
 export interface ICheckoutRepositoryManager {
   getRepository: () => LocalRepository;
-  onCheckoutChangeListener: (f: (checkout: ICheckoutModel) => any) => void;
+  addOnCheckoutChangeListener: (f: (checkout: ICheckoutModel) => any) => void;
   addItemToCart: (
     checkout: ICheckoutModel | null,
     variantId: string,
