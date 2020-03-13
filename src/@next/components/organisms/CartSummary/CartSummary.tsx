@@ -1,9 +1,26 @@
 import React from "react";
 
 import { TaxedMoney } from "@components/containers";
+import { CartSummaryRow } from "@components/molecules";
 
 import * as S from "./styles";
 import { ICostLine, ICosts, IProps } from "./types";
+
+const ProductList: React.FC = ({ products }) =>
+  products.map(product => (
+    <>
+      <S.ProductLine>
+        <CartSummaryRow
+          sku={product.sku}
+          quantity={product.quanity}
+          name={product.name}
+          price={product.price}
+          thumbnail={product.thumbnail}
+        />
+      </S.ProductLine>
+      <S.HR />
+    </>
+  ));
 
 const CostLine: React.FC<ICostLine> = ({
   name,
@@ -40,10 +57,13 @@ const CartSummary: React.FC<IProps> = ({
   total,
   shipping,
   promoCode,
+  products,
 }: IProps) => {
   return (
     <S.Wrapper>
       <S.Title>Cart Summary</S.Title>
+      <S.HR />
+      <ProductList products={products} />
       <Costs
         subtotal={subtotal}
         total={total}

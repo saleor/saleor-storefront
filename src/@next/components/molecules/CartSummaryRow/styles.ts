@@ -3,7 +3,6 @@ import { styled } from "@styles";
 export const Wrapper = styled.div`
   display: grid;
   grid-row-gap: 6px;
-  width: 345px;
   grid-column-gap: 20px;
   grid-template-areas:
     "photo name name"

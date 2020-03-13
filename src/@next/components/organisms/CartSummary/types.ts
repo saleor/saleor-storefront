@@ -1,4 +1,4 @@
-import { ITaxedMoney } from "@types";
+import { IImage, ITaxedMoney } from "@types";
 export interface ICostLine {
   name: string;
   cost: ITaxedMoney;
@@ -10,7 +10,7 @@ export interface ICosts {
   promoCode?: ITaxedMoney;
   shipping?: ITaxedMoney;
   total?: ITaxedMoney;
-  products?: Array<{
+  products: Array<{
     name: string;
     sku: string;
     quantity: number;
@@ -18,4 +18,12 @@ export interface ICosts {
   }>;
 }
 
-export interface IProps extends ICosts {}
+export interface IProps extends ICosts {
+  products: Array<{
+    name: string;
+    quantity: number;
+    sku: string;
+    price: ITaxedMoney;
+    thumbnail: IImage;
+  }>;
+}

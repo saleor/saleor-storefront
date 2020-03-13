@@ -1,7 +1,7 @@
 import React from "react";
 
 import { TaxedMoney } from "@components/containers";
-import { CachedImage } from "..";
+import { CachedImage } from "../CachedImage";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -18,15 +18,15 @@ const CartSummaryRow: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <S.Photo>
-        <CachedImage {...thumbnail} />
-      </S.Photo>
       <S.Name>{name}</S.Name>
       <S.Sku>SKU: {sku}</S.Sku>
       <S.Quantity>Quantity: {quantity}</S.Quantity>
       <S.Price>
         <TaxedMoney taxedMoney={price} />
       </S.Price>
+      <S.Photo>
+        <CachedImage {...thumbnail} />
+      </S.Photo>
     </S.Wrapper>
   );
 };

@@ -5,6 +5,19 @@ export const Wrapper = styled.div`
   padding: 30px 20px;
 `;
 
+export const ProductLine = styled.div`
+  padding: 30px 0;
+`;
+
+export const HR = styled.hr`
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid ${props => props.theme.colors.baseFontColorTransparent};
+  margin: 0;
+  padding: 0;
+`;
+
 export const Title = styled.p`
   margin: 0;
   font-size: ${props => props.theme.typography.h3FontSize};
