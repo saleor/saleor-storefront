@@ -13,3 +13,4 @@ export * from "./SelectSidebar";
 export * from "./DiscountForm";
 export * from "./ProductGallery";
 export * from "./ProductList";
+export * from "./CartSummary";
