@@ -50,10 +50,22 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             id,
             lines: lines
               ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => ({
-                quantity: item!.quantity,
-                variantId: item!.variant.id,
-              })),
+              .map(item => {
+                const itemVariant = item?.variant;
+
+                return {
+                  id: item!.id,
+                  quantity: item!.quantity,
+                  totalPrice: item?.totalPrice,
+                  variant: {
+                    id: itemVariant!.id,
+                    name: itemVariant?.name,
+                    pricing: itemVariant?.pricing,
+                    product: itemVariant?.product,
+                    stockQuantity: itemVariant?.stockQuantity,
+                  },
+                };
+              }),
             shippingAddress,
           },
           errors: null,
@@ -110,10 +122,22 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           id,
           lines: lines
             ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => ({
-              quantity: item!.quantity,
-              variantId: item!.variant.id,
-            })),
+            .map(item => {
+              const itemVariant = item?.variant;
+
+              return {
+                id: item!.id,
+                quantity: item!.quantity,
+                totalPrice: item?.totalPrice,
+                variant: {
+                  id: itemVariant!.id,
+                  name: itemVariant?.name,
+                  pricing: itemVariant?.pricing,
+                  product: itemVariant?.product,
+                  stockQuantity: itemVariant?.stockQuantity,
+                },
+              };
+            }),
           shippingAddress,
         },
         errors: null,
@@ -128,9 +152,14 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const lines = checkout.lines;
 
     if (checkoutId && lines) {
+      const alteredLines = lines.map(line => ({
+        quantity: line.quantity,
+        variantId: line.variant.id,
+      }));
+
       const { data } = await this.api.setCheckoutLine({
         checkoutId,
-        lines,
+        lines: alteredLines,
       });
 
       if (data?.errors) {
@@ -156,10 +185,22 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             id,
             lines: lines
               ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => ({
-                quantity: item!.quantity,
-                variantId: item!.variant.id,
-              })),
+              .map(item => {
+                const itemVariant = item?.variant;
+
+                return {
+                  id: item!.id,
+                  quantity: item!.quantity,
+                  totalPrice: item?.totalPrice,
+                  variant: {
+                    id: itemVariant!.id,
+                    name: itemVariant?.name,
+                    pricing: itemVariant?.pricing,
+                    product: itemVariant?.product,
+                    stockQuantity: itemVariant?.stockQuantity,
+                  },
+                };
+              }),
             shippingAddress,
           },
           errors: null,

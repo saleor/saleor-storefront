@@ -23,16 +23,27 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     quantity: number
   ) => {
     const lines = checkout?.lines || [];
-    let variant = lines.find(variant => variant.variantId === variantId);
+    let variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+      variant => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity + quantity : quantity;
     if (variant) {
       variant.quantity = newVariantQuantity;
       alteredLines.push(variant);
     } else {
-      variant = { variantId, quantity };
+      variant = {
+        id: undefined,
+        quantity,
+        totalPrice: undefined,
+        variant: {
+          id: variantId,
+          name: undefined,
+          pricing: undefined,
+          product: undefined,
+          stockQuantity: undefined,
+        },
+      };
       alteredLines.push(variant);
     }
     const alteredCheckout = checkout
@@ -48,9 +59,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   removeItemFromCart = (checkout: ICheckoutModel | null, variantId: string) => {
     const lines = checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+      variant => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = 0;
@@ -72,9 +83,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     variantId: string
   ) => {
     const lines = checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+      variant => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity - 1 : 0;
     if (variant) {
@@ -98,9 +109,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     quantity: number
   ) => {
     const lines = checkout?.lines || [];
-    const variant = lines.find(variant => variant.variantId === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variantId !== variantId
+      variant => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = quantity;
