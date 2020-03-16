@@ -10,20 +10,16 @@ export interface ICosts {
   promoCode?: ITaxedMoney;
   shipping?: ITaxedMoney;
   total?: ITaxedMoney;
-  products: Array<{
-    name: string;
-    sku: string;
-    quantity: number;
-    price: ITaxedMoney;
-  }>;
+}
+
+export interface IProduct {
+  name: string;
+  quantity: number;
+  sku: string;
+  price: ITaxedMoney;
+  thumbnail: IImage;
 }
 
 export interface IProps extends ICosts {
-  products: Array<{
-    name: string;
-    quantity: number;
-    sku: string;
-    price: ITaxedMoney;
-    thumbnail: IImage;
-  }>;
+  products?: IProduct[];
 }

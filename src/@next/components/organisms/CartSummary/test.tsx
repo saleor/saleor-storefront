@@ -2,7 +2,10 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
+import { CartSummaryRow } from "@components/molecules";
+
 import { CartSummary } from ".";
+import { DEFAULT_PROPS } from "./fixtures";
 
 const money = {
   gross: {
@@ -45,5 +48,13 @@ describe("<CartSummary />", () => {
     const wrapper = mount(<CartSummary total={money} />);
 
     expect(wrapper.text()).toContain("123");
+  });
+
+  it("should show correct number of product rows", () => {
+    const wrapper = shallow(<CartSummary {...DEFAULT_PROPS} />);
+
+    expect(wrapper.find(CartSummaryRow).length).toEqual(
+      DEFAULT_PROPS.products.length
+    );
   });
 });

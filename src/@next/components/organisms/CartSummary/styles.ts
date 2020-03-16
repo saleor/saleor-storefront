@@ -9,6 +9,10 @@ export const ProductLine = styled.div`
   padding: 30px 0;
 `;
 
+export const CartSummaryProductList = styled.div`
+  margin-bottom: 30px;
+`;
+
 export const HR = styled.hr`
   display: block;
   height: 1px;
@@ -23,6 +27,7 @@ export const Title = styled.p`
   font-size: ${props => props.theme.typography.h3FontSize};
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
+  margin-bottom: 30px;
   ${media.smallScreen`
     font-size: ${(props: { theme: DefaultTheme }) =>
       props.theme.typography.h4FontSize};

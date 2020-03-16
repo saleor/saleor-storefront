@@ -20,41 +20,41 @@ exports[`Storyshots @components/molecules/CartSummaryRow default 1`] = `
 .c1 {
   display: grid;
   grid-row-gap: 6px;
-  width: 345px;
   grid-column-gap: 20px;
+  grid-template-columns: 60px auto auto;
   grid-template-areas: "photo name name" "photo sku ." "photo . ." "photo quantity price";
 }
 
-.c2 {
+.c6 {
   grid-area: photo;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
 }
 
-.c2 img {
+.c6 img {
   height: auto;
   max-width: 60px;
 }
 
-.c4 {
+.c3 {
   grid-area: sku;
   color: rgba(50,50,50,0.6);
   font-size: 0.875rem;
 }
 
-.c3 {
+.c2 {
   grid-area: name;
   font-size: 1.125rem;
 }
 
-.c6 {
+.c5 {
   grid-area: price;
   text-align: right;
   font-size: 0.875rem;
 }
 
-.c5 {
+.c4 {
   grid-area: quantity;
   color: rgba(50,50,50,0.6);
   font-size: 0.875rem;
@@ -69,36 +69,36 @@ exports[`Storyshots @components/molecules/CartSummaryRow default 1`] = `
     <div
       className="c2"
     >
+      The Great Square Table
+    </div>
+    <div
+      className="c3"
+    >
+      SKU: 
+      TGS-122A
+    </div>
+    <div
+      className="c4"
+    >
+      Quantity: 
+      2
+    </div>
+    <div
+      className="c5"
+    >
+      <span>
+        PLN 123.00
+      </span>
+    </div>
+    <div
+      className="c6"
+    >
       <img
         alt="Product image"
         onError={[Function]}
         src="test-file-stub"
         srcSet="test-file-stub 1x"
       />
-    </div>
-    <div
-      className="c3"
-    >
-      The Great Square Table
-    </div>
-    <div
-      className="c4"
-    >
-      SKU: 
-      TGS-122A
-    </div>
-    <div
-      className="c5"
-    >
-      Quantity: 
-      2
-    </div>
-    <div
-      className="c6"
-    >
-      <span>
-        PLN 123.00
-      </span>
     </div>
   </div>
   <div

@@ -67,16 +67,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   background-color: transparent;
 }
 
-.c5 {
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.c10 {
-  position: absolute;
-  top: 100%;
-}
-
 .c12 {
   position: absolute;
   right: 1rem;
@@ -85,6 +75,16 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
+}
+
+.c5 {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.c10 {
+  position: absolute;
+  top: 100%;
 }
 
 .c2 {
@@ -648,16 +648,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   background-color: transparent;
 }
 
-.c5 {
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.c10 {
-  position: absolute;
-  top: 100%;
-}
-
 .c15 {
   position: absolute;
   right: 1rem;
@@ -666,6 +656,16 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
+}
+
+.c5 {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.c10 {
+  position: absolute;
+  top: 100%;
 }
 
 .c2 {
@@ -1235,16 +1235,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   background-color: transparent;
 }
 
-.c5 {
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.c10 {
-  position: absolute;
-  top: 100%;
-}
-
 .c12 {
   position: absolute;
   right: 1rem;
@@ -1253,6 +1243,16 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   transform: rotate(0deg);
+}
+
+.c5 {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.c10 {
+  position: absolute;
+  top: 100%;
 }
 
 .c2 {

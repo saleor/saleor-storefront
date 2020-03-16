@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c15 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,9 +17,69 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   box-sizing: border-box;
 }
 
+.c6 {
+  display: grid;
+  grid-row-gap: 6px;
+  grid-column-gap: 20px;
+  grid-template-columns: 60px auto auto;
+  grid-template-areas: "photo name name" "photo sku ." "photo . ." "photo quantity price";
+}
+
+.c11 {
+  grid-area: photo;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.c11 img {
+  height: auto;
+  max-width: 60px;
+}
+
+.c8 {
+  grid-area: sku;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
+.c7 {
+  grid-area: name;
+  font-size: 1.125rem;
+}
+
+.c10 {
+  grid-area: price;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.c9 {
+  grid-area: quantity;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
 .c1 {
   background-color: #f1f5f5;
   padding: 30px 20px;
+}
+
+.c5 {
+  padding: 30px 0;
+}
+
+.c4 {
+  margin-bottom: 30px;
+}
+
+.c3 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgba(50,50,50,0.1);
+  margin: 0;
+  padding: 0;
 }
 
 .c2 {
@@ -27,9 +87,10 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: 600;
+  margin-bottom: 30px;
 }
 
-.c4 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -41,11 +102,11 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   font-weight: normal;
 }
 
-.c4 span {
+.c13 span {
   display: inline-block;
 }
 
-.c5 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -57,11 +118,11 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   font-weight: 600;
 }
 
-.c5 span {
+.c14 span {
   display: inline-block;
 }
 
-.c3 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -71,11 +132,11 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   flex-direction: column;
 }
 
-.c3 div {
+.c12 div {
   margin-bottom: 20px;
 }
 
-.c3 div:last-of-type {
+.c12 div:last-of-type {
   margin-bottom: 0px;
 }
 
@@ -96,11 +157,153 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
     >
       Cart Summary
     </p>
-    <div
+    <hr
       className="c3"
+    />
+    <div
+      className="c4"
     >
       <div
-        className="c4"
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            The Great Square Table
+          </div>
+          <div
+            className="c8"
+          >
+            SKU: 
+            TGS-122A
+          </div>
+          <div
+            className="c9"
+          >
+            Quantity: 
+            2
+          </div>
+          <div
+            className="c10"
+          >
+            <span>
+              
+            </span>
+          </div>
+          <div
+            className="c11"
+          >
+            <img
+              alt="product image"
+              onError={[Function]}
+              src="test-file-stub"
+              srcSet="test-file-stub 1x"
+            />
+          </div>
+        </div>
+      </div>
+      <hr
+        className="c3"
+      />
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            The Great Square Table
+          </div>
+          <div
+            className="c8"
+          >
+            SKU: 
+            TGS-122A
+          </div>
+          <div
+            className="c9"
+          >
+            Quantity: 
+            2
+          </div>
+          <div
+            className="c10"
+          >
+            <span>
+              
+            </span>
+          </div>
+          <div
+            className="c11"
+          >
+            <img
+              alt="product image"
+              onError={[Function]}
+              src="test-file-stub"
+              srcSet="test-file-stub 1x"
+            />
+          </div>
+        </div>
+      </div>
+      <hr
+        className="c3"
+      />
+      <div
+        className="c5"
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            The Great Square Table
+          </div>
+          <div
+            className="c8"
+          >
+            SKU: 
+            TGS-122A
+          </div>
+          <div
+            className="c9"
+          >
+            Quantity: 
+            2
+          </div>
+          <div
+            className="c10"
+          >
+            <span>
+              
+            </span>
+          </div>
+          <div
+            className="c11"
+          >
+            <img
+              alt="product image"
+              onError={[Function]}
+              src="test-file-stub"
+              srcSet="test-file-stub 1x"
+            />
+          </div>
+        </div>
+      </div>
+      <hr
+        className="c3"
+      />
+    </div>
+    <div
+      className="c12"
+    >
+      <div
+        className="c13"
       >
         <span>
           Subtotal
@@ -112,7 +315,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         </span>
       </div>
       <div
-        className="c4"
+        className="c13"
       >
         <span>
           Promo Code
@@ -124,7 +327,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         </span>
       </div>
       <div
-        className="c4"
+        className="c13"
       >
         <span>
           Shipping
@@ -136,7 +339,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         </span>
       </div>
       <div
-        className="c5"
+        className="c14"
       >
         <span>
           Total
@@ -150,7 +353,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
     </div>
   </div>
   <div
-    className="c6"
+    className="c15"
   />
 </div>
 `;

@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: grid;
   grid-row-gap: 6px;
   grid-column-gap: 20px;
+  grid-template-columns: 60px auto auto;
   grid-template-areas:
     "photo name name"
     "photo sku ."

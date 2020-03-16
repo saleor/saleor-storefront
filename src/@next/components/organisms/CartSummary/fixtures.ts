@@ -13,12 +13,12 @@ const money = {
 
 const product = {
   name: "The Great Square Table",
-  quanity: 2,
-  sku: "TGS-122A",
   price: money,
+  quantity: 2,
+  sku: "TGS-122A",
   thumbnail: {
-    url: productImage,
     alt: "product image",
+    url: productImage,
   },
 };
 
