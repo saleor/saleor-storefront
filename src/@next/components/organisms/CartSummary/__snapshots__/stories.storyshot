@@ -321,6 +321,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           Promo Code
         </span>
         <span>
+          - 
           <span>
             
           </span>

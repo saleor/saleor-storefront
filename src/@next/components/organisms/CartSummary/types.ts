@@ -3,6 +3,7 @@ export interface ICostLine {
   name: string;
   cost: ITaxedMoney;
   last?: boolean;
+  negative?: boolean;
 }
 
 export interface ICosts {

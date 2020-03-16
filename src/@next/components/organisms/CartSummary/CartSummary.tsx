@@ -6,10 +6,16 @@ import { CartSummaryRow } from "@components/molecules";
 import * as S from "./styles";
 import { ICostLine, ICosts, IProps } from "./types";
 
-const CostLine = ({ name, cost, last = false }: ICostLine) => (
+const CostLine = ({
+  name,
+  cost,
+  last = false,
+  negative = false,
+}: ICostLine) => (
   <S.CostLine last={last}>
     <span>{name}</span>
     <span>
+      {negative && "- "}
       <TaxedMoney taxedMoney={cost} />
     </span>
   </S.CostLine>
@@ -18,7 +24,9 @@ const CostLine = ({ name, cost, last = false }: ICostLine) => (
 const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => (
   <S.Costs>
     {subtotal && <CostLine name="Subtotal" cost={subtotal} />}
-    {promoCode && <CostLine name="Promo Code" cost={promoCode} />}
+    {promoCode && (
+      <CostLine name="Promo Code" cost={promoCode} negative={true} />
+    )}
     {shipping && <CostLine name="Shipping" cost={shipping} />}
     {total && <CostLine name="Total" cost={total} last={true} />}
   </S.Costs>
