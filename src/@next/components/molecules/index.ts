@@ -19,3 +19,4 @@ export * from "./AddToWishlistButton";
 export * from "./ProductTile";
 export * from "./ProductDescription";
 export * from "./CartSummaryRow";
+export * from "./CheckoutProgressBar";
