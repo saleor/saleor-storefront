@@ -1,14 +1,9 @@
 import gql from "graphql-tag";
 
-import {
-  checkoutFragment,
-  checkoutLineFragment,
-  checkoutPriceFragment,
-} from "../fragments/checkout";
+import { checkoutFragment } from "../fragments/checkout";
 
 export const updateCheckoutLineMutation = gql`
-  ${checkoutLineFragment}
-  ${checkoutPriceFragment}
+  ${checkoutFragment}
   mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {

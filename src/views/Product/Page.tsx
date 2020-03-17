@@ -20,7 +20,10 @@ import { ProductGallery } from "../../@next/components/organisms/";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 
 class Page extends React.PureComponent<
-  { product: ProductDetails_product },
+  {
+    product: ProductDetails_product;
+    add: (variantId: string, quantity: number) => any;
+  },
   { variantId: string }
 > {
   fixedElement: React.RefObject<HTMLDivElement> = React.createRef();
@@ -93,7 +96,7 @@ class Page extends React.PureComponent<
             name={product.name}
             productVariants={product.variants}
             pricing={product.pricing}
-            addToCart={cart.add}
+            addToCart={this.props.add}
             setVariantId={this.setVariantId}
           />
         )}

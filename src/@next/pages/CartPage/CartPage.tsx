@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 
@@ -24,6 +24,10 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     updateItemInCart,
     checkout,
   } = useCheckout();
+
+  useEffect(() => {
+    console.log("CartPage, useEffect", checkout);
+  }, [checkout]);
 
   const productVariants = checkout?.lines;
 

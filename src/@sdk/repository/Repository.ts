@@ -27,6 +27,10 @@ export class Repository extends RepositoryObservable {
   protected retrieveObject<T extends object>(
     name: LocalStorageItems
   ): T | null {
-    return JSON.parse(localStorage.getItem(name) || "");
+    const item = localStorage.getItem(name);
+    if (item) {
+      return JSON.parse(item);
+    }
+    return null;
   }
 }
