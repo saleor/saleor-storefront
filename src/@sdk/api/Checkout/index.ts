@@ -83,7 +83,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   };
 
   load = async () => {
-    await this.provideData();
+    await this.provideData(true);
   };
 
   removeItemFromCart = async (variantId: string) => {
@@ -144,9 +144,9 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.errors = [];
   };
 
-  private provideData = async () => {
+  private provideData = async (forceReload?: boolean) => {
     // 1.a. Try to take checkout from runtime memory (if exist on server - has checkout id)
-    if (this.checkout?.id) {
+    if (this.checkout?.id && !forceReload) {
       return;
     }
 
@@ -203,7 +203,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       this.loading.load = false;
     } else {
       // 1.b. Try to take checkout from runtime memory (if exist in memory - has any checkout data)
-      if (this.checkout) {
+      if (this.checkout && !forceReload) {
         return;
       }
 
