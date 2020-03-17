@@ -30,7 +30,11 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   private checkoutNetworkManager: CheckoutNetworkManager;
   private checkoutJobQueue: CheckoutJobQueue;
 
-  constructor(api: SaleorAPI, repository: LocalRepository) {
+  constructor(
+    api: SaleorAPI,
+    repository: LocalRepository,
+    loadOnStart: boolean
+  ) {
     this.errors = [];
     this.checkout = null;
     this.loading = {
@@ -55,6 +59,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
     });
+
+    if (loadOnStart) {
+      this.load();
+    }
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {

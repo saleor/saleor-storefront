@@ -14,13 +14,7 @@ const App: React.FC<RouteComponentProps> = ({
     location: { pathname },
   },
 }) => {
-  const { load } = useCheckout();
-
   const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
-
-  useEffect(() => {
-    load();
-  }, []);
 
   return (
     <>

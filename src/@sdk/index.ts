@@ -20,12 +20,14 @@ import {
   invalidTokenLink,
   setAuthToken,
 } from "./auth";
+import { defaultConfig } from "./config";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
 import { UserDetails } from "./queries/types/UserDetails";
 import { LocalRepository } from "./repository";
 import { RequireAtLeastOne } from "./tsHelpers";
 import {
+  Config,
   InferOptions,
   MapFn,
   QueryShape,
@@ -196,10 +198,24 @@ export class SaleorAPI {
 
   private repository: LocalRepository;
 
-  constructor(client: ApolloClient<any>) {
+  constructor(client: ApolloClient<any>, config?: Config) {
+    const finalConfig = {
+      ...defaultConfig,
+      ...config,
+      loadOnStart: {
+        ...defaultConfig.loadOnStart,
+        ...config?.loadOnStart,
+      },
+    };
+    const { loadOnStart } = finalConfig;
+
     this.client = client;
     this.repository = new LocalRepository();
-    this.checkout = new SaleorCheckoutAPI(this, this.repository);
+    this.checkout = new SaleorCheckoutAPI(
+      this,
+      this.repository,
+      loadOnStart.checkout
+    );
   }
 
   getUserDetails = (
