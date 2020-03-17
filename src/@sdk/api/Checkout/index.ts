@@ -30,7 +30,11 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   private checkoutNetworkManager: CheckoutNetworkManager;
   private checkoutJobQueue: CheckoutJobQueue;
 
-  constructor(api: SaleorAPI, repository: LocalRepository) {
+  constructor(
+    api: SaleorAPI,
+    repository: LocalRepository,
+    loadOnStart: boolean
+  ) {
     this.errors = [];
     this.checkout = null;
     this.loading = {
@@ -55,6 +59,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
     });
+
+    if (loadOnStart) {
+      this.load();
+    }
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
@@ -137,8 +145,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   };
 
   private provideData = async () => {
-    // 1. Try to take checkout from runtime memory
-    if (this.checkout) {
+    // 1.a. Try to take checkout from runtime memory (if exist on server - has checkout id)
+    if (this.checkout?.id) {
       return;
     }
 
@@ -166,6 +174,11 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       if (this.checkout) {
         const { email, shippingAddress, billingAddress, lines } = this.checkout;
         if (email && shippingAddress && billingAddress && lines) {
+          const alteredLines = lines.map(item => ({
+            quantity: item!.quantity,
+            variantId: item?.variant!.id,
+          }));
+
           const {
             data,
             errors,
@@ -173,7 +186,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
             email,
             shippingAddress,
             billingAddress,
-            lines
+            alteredLines
           );
 
           if (errors) {
@@ -189,6 +202,11 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
       this.loading.load = false;
     } else {
+      // 1.b. Try to take checkout from runtime memory (if exist in memory - has any checkout data)
+      if (this.checkout) {
+        return;
+      }
+
       // 4. Try to take checkout from local storage
       let checkoutModel: ICheckoutModel | null;
       checkoutModel = this.checkoutRepositoryManager

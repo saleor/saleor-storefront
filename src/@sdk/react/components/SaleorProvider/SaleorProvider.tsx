@@ -7,10 +7,11 @@ import { IProps } from "./types";
 
 export function SaleorProvider<TCacheShape = any>({
   client,
+  config,
   children,
 }: IProps<TCacheShape>): React.ReactElement<IProps<TCacheShape>> {
   const context = useMemo(() => {
-    return new SaleorAPI(client);
+    return new SaleorAPI(client, config);
   }, [client]);
 
   return (
