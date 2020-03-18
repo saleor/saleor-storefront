@@ -28,7 +28,7 @@ interface CartProviderProps {
 type CartProviderState = CartInterface;
 
 /**
- * @deprecated use CheckoutProvider from next instead
+ * @deprecated use useCheckout hook from next instead
  */
 export default class CartProvider extends React.Component<
   CartProviderProps,
@@ -57,16 +57,19 @@ export default class CartProvider extends React.Component<
     };
   }
 
-  componentDidUpdate() {
-    const {
-      checkout: { syncWithCart, update },
-    } = this.props;
+  /**
+   * Commented due to breaking new useCheckout hook functionality
+   */
+  // componentDidUpdate() {
+  //   const {
+  //     checkout: { syncWithCart, update },
+  //   } = this.props;
 
-    if (syncWithCart) {
-      this.syncCheckoutFromCart();
-      update({ syncWithCart: false });
-    }
-  }
+  //   if (syncWithCart) {
+  //     this.syncCheckoutFromCart();
+  //     update({ syncWithCart: false });
+  //   }
+  // }
 
   syncCheckoutFromCart = async () => {
     const { checkout } = this.props.checkout;

@@ -99,7 +99,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       },
     });
 
-    if (data?.errors) {
+    if (data?.errors && data.errors.length) {
       return {
         data: null,
         errors: data?.errors,
@@ -162,7 +162,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         lines: alteredLines,
       });
 
-      if (data?.errors) {
+      if (data?.errors && data.errors.length) {
         return {
           data: null,
           errors: data.errors,

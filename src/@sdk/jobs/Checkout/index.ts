@@ -22,10 +22,10 @@ export class CheckoutJobQueue extends JobQueue {
     this.enqueueAllSavedInRepository(queuePossibilities);
   }
 
-  enqueueSetCartItem(
+  enqueueSetCartItem = (
     onLoading?: (loading: boolean) => any,
     onError?: (error: any) => any
-  ) {
+  ) => {
     this.addToQueue(
       LocalStorageJobs.CHECKOUT_SET_CART_ITEM,
       () => this.setCartItem(onLoading, onError),
@@ -52,7 +52,7 @@ export class CheckoutJobQueue extends JobQueue {
         });
       }
     );
-  }
+  };
 
   private setCartItem = async (
     onLoading?: (loading: boolean) => any,
@@ -93,7 +93,12 @@ export class CheckoutJobQueue extends JobQueue {
 
       checkoutJobsNames
         .filter(name => checkout[name])
-        .forEach(name => queuePossibilities.get(name));
+        .forEach(name => {
+          const queueFunc = queuePossibilities.get(name);
+          if (queueFunc) {
+            queueFunc();
+          }
+        });
     }
   }
 }
