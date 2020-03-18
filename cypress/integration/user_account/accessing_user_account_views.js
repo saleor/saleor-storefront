@@ -29,7 +29,7 @@ describe("Accessing user account views", () => {
     const user = { email: "admin@example.com", password: "admin" };
     cy.loginUser(user)
       .wait(10000)
-      .findByTestId("user-btn", { timeout: 15000 })
+      .get("[data-cy=user-btn]", { timeout: 15000 })
       .trigger("mouseover");
   });
 

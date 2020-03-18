@@ -122,28 +122,25 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li data-testid="my_account__link">
+                              <li data-cy="my_account__link">
                                 <Link to={appPaths.accountUrl}>My Account</Link>
                               </li>
-                              <li data-testid="order_history__link">
+                              <li data-cy="order_history__link">
                                 <Link to={appPaths.orderHistoryUrl}>
                                   Order history
                                 </Link>
                               </li>
-                              <li data-testid="address_book__link">
+                              <li data-cy="address_book__link">
                                 <Link to={appPaths.addressBookUrl}>
                                   Address book
                                 </Link>
                               </li>
-                              <li data-testid="payment_options__link">
+                              <li data-cy="payment_options__link">
                                 <Link to={appPaths.paymentOptionsUrl}>
                                   Payment options
                                 </Link>
                               </li>
-                              <li
-                                onClick={handleSignOut}
-                                data-testid="logout-link"
-                              >
+                              <li onClick={handleSignOut} data-cy="logout-link">
                                 Log Out
                               </li>
                             </ul>
@@ -151,7 +148,7 @@ const MainMenu: React.FC = () => {
                         />
                       ) : (
                         <li
-                          data-testid="login-btn"
+                          data-cy="login-btn"
                           className="main-menu__icon"
                           onClick={() =>
                             overlayContext.show(

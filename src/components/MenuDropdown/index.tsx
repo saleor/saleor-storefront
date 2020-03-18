@@ -16,7 +16,7 @@ class MenuDropdown extends React.Component<
   render() {
     return (
       <div
-        data-testid="user-btn"
+        data-cy="user-btn"
         className="menu-dropdown"
         onMouseOver={() => this.setState({ active: true })}
         onMouseLeave={() => this.setState({ active: false })}

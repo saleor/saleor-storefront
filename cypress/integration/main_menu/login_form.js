@@ -28,7 +28,7 @@ describe("User login, logout and registration", () => {
   });
 
   it("should open overlay with a sign in and register form", () => {
-    cy.findByTestId("login-btn")
+    cy.get("[data-cy=login-btn]")
       .click()
       .get(".overlay")
       .should("exist");

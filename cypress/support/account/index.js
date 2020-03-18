@@ -1,8 +1,8 @@
 const openAccountMenu = testId => {
   return cy
-    .findByTestId("user-btn", { timeout: 15000 })
+    .get("[data-cy=user-btn]", { timeout: 15000 })
     .trigger("mouseover")
-    .findByTestId(testId)
+    .get(`[data-cy=${testId}]`)
     .click()
     .trigger("mouseout");
 };

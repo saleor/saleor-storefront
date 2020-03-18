@@ -154,7 +154,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
     </div>
     <div
       className="c1"
-      data-testid="order__row"
+      data-cy="order__row"
       onClick={[Function]}
     >
       <div
@@ -196,7 +196,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
     </div>
     <div
       className="c1"
-      data-testid="order__row"
+      data-cy="order__row"
       onClick={[Function]}
     >
       <div

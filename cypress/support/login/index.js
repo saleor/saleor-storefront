@@ -20,7 +20,7 @@ const loginOrRegisterUser = (type = "login", user) => {
       : ".login__tabs span:not(.active-tab)";
 
   return cy
-    .findByTestId("login-btn")
+    .get("[data-cy=login-btn]")
     .click()
     .get(tabSelector)
     .click()
@@ -38,8 +38,8 @@ Cypress.Commands.add("registerUser", user =>
 Cypress.Commands.add("loginUser", user => loginOrRegisterUser("login", user));
 Cypress.Commands.add("logoutUser", () =>
   cy
-    .findByTestId("user-btn", { timeout: 3000 })
+    .get("[data-cy=user-btn]", { timeout: 3000 })
     .trigger("mouseover")
-    .findByTestId("logout-link")
+    .get("[data-cy=logout-link]")
     .click()
 );

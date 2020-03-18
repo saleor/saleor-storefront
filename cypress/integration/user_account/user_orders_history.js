@@ -37,7 +37,7 @@ describe("User orders histoy", () => {
     const user = { email: "admin@example.com", password: "admin" };
     cy.loginUser(user)
       .openAccountMenu("order_history__link")
-      .findByTestId("load_more__button", { timeout: 15000 })
+      .get("[data-cy=load_more__button]", { timeout: 15000 })
       .click()
       .findAllByTestId("order__row", { timeout: 10000 })
       .should("have.length", 10);
