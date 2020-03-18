@@ -51,7 +51,13 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           ...checkout,
           lines: alteredLines,
         }
-      : null;
+      : {
+          billingAddress: undefined,
+          email: undefined,
+          id: undefined,
+          lines: alteredLines,
+          shippingAddress: undefined,
+        };
     this.repository.setCheckout(alteredCheckout);
 
     return alteredCheckout;
@@ -72,7 +78,13 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           ...checkout,
           lines: alteredLines,
         }
-      : null;
+      : {
+          billingAddress: undefined,
+          email: undefined,
+          id: undefined,
+          lines: alteredLines,
+          shippingAddress: undefined,
+        };
     this.repository.setCheckout(alteredCheckout);
 
     return alteredCheckout;
@@ -97,7 +109,13 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           ...checkout,
           lines: alteredLines,
         }
-      : null;
+      : {
+          billingAddress: undefined,
+          email: undefined,
+          id: undefined,
+          lines: alteredLines,
+          shippingAddress: undefined,
+        };
     this.repository.setCheckout(alteredCheckout);
 
     return alteredCheckout;
@@ -122,7 +140,13 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           ...checkout,
           lines: alteredLines,
         }
-      : null;
+      : {
+          billingAddress: undefined,
+          email: undefined,
+          id: undefined,
+          lines: alteredLines,
+          shippingAddress: undefined,
+        };
     this.repository.setCheckout(alteredCheckout);
 
     return alteredCheckout;

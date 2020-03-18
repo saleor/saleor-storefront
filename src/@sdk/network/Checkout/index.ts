@@ -38,6 +38,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               },
             }
           );
+        } else {
+          resolve(null);
         }
       });
 
