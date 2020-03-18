@@ -198,16 +198,32 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
             return;
           }
         }
+      } else {
+        // 1.b.1 Try to take checkout from runtime memory (if exist in memory - has any checkout data)
+        if (this.checkout && !forceReload) {
+          return;
+        }
+
+        // 4.1 Try to take checkout from local storage
+        let checkoutModel: ICheckoutModel | null;
+        checkoutModel = this.checkoutRepositoryManager
+          .getRepository()
+          .getCheckout();
+
+        if (checkoutModel) {
+          this.checkout = checkoutModel;
+          return;
+        }
       }
 
       this.loading.load = false;
     } else {
-      // 1.b. Try to take checkout from runtime memory (if exist in memory - has any checkout data)
+      // 1.b.2 Try to take checkout from runtime memory (if exist in memory - has any checkout data)
       if (this.checkout && !forceReload) {
         return;
       }
 
-      // 4. Try to take checkout from local storage
+      // 4.2 Try to take checkout from local storage
       let checkoutModel: ICheckoutModel | null;
       checkoutModel = this.checkoutRepositoryManager
         .getRepository()
