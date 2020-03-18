@@ -168,6 +168,16 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
         this.checkout = data;
         this.loading.load = false;
         return;
+      } else if (!this.checkout) {
+        // 4.1 Try to take checkout from local storage
+        let checkoutModel: ICheckoutModel | null;
+        checkoutModel = this.checkoutRepositoryManager
+          .getRepository()
+          .getCheckout();
+
+        if (checkoutModel) {
+          this.checkout = checkoutModel;
+        }
       }
 
       // 3. Try to take new created checkout from backend
@@ -197,22 +207,6 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
             this.loading.load = false;
             return;
           }
-        }
-      } else {
-        // 1.b.1 Try to take checkout from runtime memory (if exist in memory - has any checkout data)
-        if (this.checkout && !forceReload) {
-          return;
-        }
-
-        // 4.1 Try to take checkout from local storage
-        let checkoutModel: ICheckoutModel | null;
-        checkoutModel = this.checkoutRepositoryManager
-          .getRepository()
-          .getCheckout();
-
-        if (checkoutModel) {
-          this.checkout = checkoutModel;
-          return;
         }
       }
 
