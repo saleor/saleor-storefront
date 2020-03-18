@@ -100,7 +100,7 @@ const MainMenu: React.FC = () => {
             </TypedMainMenuQuery>
           </div>
 
-          <div className="main-menu__center">
+          <div className="main-menu__center" data-cy="main-menu_saleor-logo">
             <Link to={appPaths.baseUrl}>
               <ReactSVG path={logoImg} />
             </Link>

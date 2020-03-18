@@ -16,6 +16,7 @@ export const Checkbox: React.FC<IProps> = ({
 
   return (
     <S.Checkbox
+      data-cy="checkbox"
       ref={ref}
       onClick={evt => {
         evt.preventDefault();
