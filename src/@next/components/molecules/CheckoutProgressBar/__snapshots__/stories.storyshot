@@ -73,7 +73,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  top: 41px;
+  top: 35px;
 }
 
 .c9 {
@@ -93,7 +93,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  top: 41px;
+  top: 35px;
   right: 0;
 }
 
@@ -112,7 +112,6 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
 }
 
 .c1 {
-  margin-top: 50px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

@@ -77,11 +77,7 @@ const CheckoutProgressBar: React.FC<IProps> = ({
   steps,
   activeStep,
 }: IProps) => {
-  return (
-    <>
-      <S.Wrapper>{generateSteps(steps, activeStep)}</S.Wrapper>
-    </>
-  );
+  return <S.Wrapper>{generateSteps(steps, activeStep)}</S.Wrapper>;
 };
 
 export { CheckoutProgressBar };

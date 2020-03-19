@@ -28,11 +28,11 @@ export const Label = styled.span`
 
 export const LeftLabel = styled(Label)`
   transform: none;
-  top: 41px;
+  top: 35px;
 `;
 export const RightLabel = styled(Label)`
   transform: none;
-  top: 41px;
+  top: 35px;
   right: 0;
 `;
 
@@ -44,7 +44,6 @@ export const ProgressBar = styled.div<{ done?: boolean }>`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 50px;
   display: flex;
   width: 100%;
   justify-content: space-between;

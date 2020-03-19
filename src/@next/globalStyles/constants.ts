@@ -74,6 +74,7 @@ export const h3FontSize = "1.5rem"; // 24px
 export const h4FontSize = "1.125rem"; // 18px
 export const labelFontSize = "0.75rem"; // 12px
 export const smallFontSize = "0.875rem"; // 14px
+export const ultraBigFont = "6rem"; // 96px
 
 // spacing
 export const spacer = 1; // rem

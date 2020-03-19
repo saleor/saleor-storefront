@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Container } from "@components/templates";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -13,12 +15,14 @@ const Checkout: React.FC<IProps> = ({
   button,
 }: IProps) => {
   return (
-    <S.Wrapper>
-      <S.Navigation>{navigation}</S.Navigation>
-      <S.Checkout>{checkout}</S.Checkout>
-      <S.CartSummary>{cartSummary}</S.CartSummary>
-      <S.Button>{button}</S.Button>
-    </S.Wrapper>
+    <Container>
+      <S.Wrapper>
+        <S.Navigation>{navigation}</S.Navigation>
+        <S.Checkout>{checkout}</S.Checkout>
+        <S.CartSummary>{cartSummary}</S.CartSummary>
+        <S.Button>{button}</S.Button>
+      </S.Wrapper>
+    </Container>
   );
 };
 

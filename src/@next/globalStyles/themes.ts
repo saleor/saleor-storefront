@@ -144,6 +144,7 @@ export const defaultTheme = {
     h3FontSize: C.h3FontSize, // 24px
     h4FontSize: C.h4FontSize, // 18px
     smallFontSize: C.smallFontSize, // 14px
+    ultraBigFontSize: C.ultraBigFont, // 96px
   },
 };
 
