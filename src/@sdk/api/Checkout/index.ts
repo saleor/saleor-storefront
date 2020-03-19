@@ -80,7 +80,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const {
         data,
         errors,
-      } = await this.checkoutNetworkManager.updateCheckoutLines(
+      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
 
@@ -116,7 +116,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const {
         data,
         errors,
-      } = await this.checkoutNetworkManager.updateCheckoutLines(
+      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
 
@@ -157,7 +157,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const {
         data,
         errors,
-      } = await this.checkoutNetworkManager.updateCheckoutLines(
+      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
 
@@ -193,7 +193,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       const {
         data,
         errors,
-      } = await this.checkoutNetworkManager.updateCheckoutLines(
+      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
 

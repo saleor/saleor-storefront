@@ -6,7 +6,7 @@ export interface ICheckoutNetworkManager {
   getCheckout: (
     checkoutToken: string | null
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
-  updateCheckoutLines: (
+  getRefreshedCheckoutLines: (
     checkoutlines: ICheckoutModelLine[] | null
   ) => Promise<INetworkManagerResponse<ICheckoutModelLine[]>>;
   createCheckout: (

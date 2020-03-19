@@ -87,7 +87,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     }
   };
 
-  updateCheckoutLines = async (checkoutlines: ICheckoutModelLine[] | null) => {
+  getRefreshedCheckoutLines = async (
+    checkoutlines: ICheckoutModelLine[] | null
+  ) => {
     const idsOfMissingVariants = checkoutlines
       ?.filter(line => !line.variant || !line.totalPrice)
       .map(line => line.variant.id);
