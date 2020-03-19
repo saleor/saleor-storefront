@@ -1,5 +1,7 @@
 import {
   Checkout_lines_totalPrice,
+  Checkout_lines_totalPrice_gross,
+  Checkout_lines_totalPrice_net,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
 } from "../fragments/types/Checkout";
@@ -8,6 +10,11 @@ export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
   CHECKOUT = "data_checkout",
   CHECKOUT_TOKEN = "data_checkoutToken",
+}
+
+export interface ICheckoutModelLineTotalPrice {
+  gross: Checkout_lines_totalPrice_gross;
+  net: Checkout_lines_totalPrice_net;
 }
 
 export interface ICheckoutModelLineVariant {
@@ -22,7 +29,7 @@ export interface ICheckoutModelLine {
   quantity: number;
   id: string | undefined;
   variant: ICheckoutModelLineVariant;
-  totalPrice: Checkout_lines_totalPrice | null | undefined;
+  totalPrice: ICheckoutModelLineTotalPrice | null | undefined;
 }
 
 export interface ICheckoutModel {

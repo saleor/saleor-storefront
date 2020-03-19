@@ -86,7 +86,6 @@ export const checkoutLineFragment = gql`
       stockQuantity
       ...ProductVariant
     }
-    quantity
   }
 `;
 

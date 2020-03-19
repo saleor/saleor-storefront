@@ -66,7 +66,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   }
 
   addItemToCart = async (variantId: string, quantity: number) => {
-    await this.provideData();
+    await this.provideCheckout();
 
     // 1. save in local storage
     this.checkoutRepositoryManager.addItemToCart(
@@ -76,27 +76,65 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem(
-      loading => (this.loading.addItemToCart = loading),
-      error => this.errors.concat(error)
-    );
+    if (this.checkout?.lines) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.updateCheckoutLines(
+        this.checkout.lines
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else {
+        this.checkoutRepositoryManager.getRepository().setCheckout({
+          ...this.checkout,
+          lines: data,
+        });
+      }
+    }
+    if (this.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetCartItem(
+        loading => (this.loading.addItemToCart = loading),
+        error => this.errors.concat(error)
+      );
+    }
   };
 
   load = async () => {
-    await this.provideData(true);
+    await this.provideCheckout(true);
   };
 
   removeItemFromCart = async (variantId: string) => {
-    await this.provideData();
+    await this.provideCheckout();
 
     // 1. save in local storage
     this.checkoutRepositoryManager.removeItemFromCart(this.checkout, variantId);
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem(
-      loading => (this.loading.removeItemFromCart = loading),
-      error => this.errors.concat(error)
-    );
+    if (this.checkout?.lines) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.updateCheckoutLines(
+        this.checkout.lines
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else {
+        this.checkoutRepositoryManager.getRepository().setCheckout({
+          ...this.checkout,
+          lines: data,
+        });
+      }
+    }
+    if (this.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetCartItem(
+        loading => (this.loading.removeItemFromCart = loading),
+        error => this.errors.concat(error)
+      );
+    }
   };
 
   setBillingAddress = () => null;
@@ -106,7 +144,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   setShippingAsBillingAddress = () => null;
 
   subtractItemFromCart = async (variantId: string) => {
-    await this.provideData();
+    await this.provideCheckout();
 
     // 1. save in local storage
     this.checkoutRepositoryManager.subtractItemFromCart(
@@ -115,14 +153,33 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem(
-      loading => (this.loading.subtractItemFromCart = loading),
-      error => this.errors.concat(error)
-    );
+    if (this.checkout?.lines) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.updateCheckoutLines(
+        this.checkout.lines
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else {
+        this.checkoutRepositoryManager.getRepository().setCheckout({
+          ...this.checkout,
+          lines: data,
+        });
+      }
+    }
+    if (this.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetCartItem(
+        loading => (this.loading.subtractItemFromCart = loading),
+        error => this.errors.concat(error)
+      );
+    }
   };
 
   updateItemInCart = async (variantId: string, quantity: number) => {
-    await this.provideData();
+    await this.provideCheckout();
 
     // 1. save in local storage
     this.checkoutRepositoryManager.updateItemInCart(
@@ -132,10 +189,29 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     // 2. save online if possible (if checkout id available)
-    this.checkoutJobQueue.enqueueSetCartItem(
-      loading => (this.loading.updateItemInCart = loading),
-      error => this.errors.concat(error)
-    );
+    if (this.checkout?.lines) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.updateCheckoutLines(
+        this.checkout.lines
+      );
+
+      if (errors) {
+        this.errors = this.errors.concat(errors);
+      } else {
+        this.checkoutRepositoryManager.getRepository().setCheckout({
+          ...this.checkout,
+          lines: data,
+        });
+      }
+    }
+    if (this.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetCartItem(
+        loading => (this.loading.updateItemInCart = loading),
+        error => this.errors.concat(error)
+      );
+    }
   };
 
   makeOrder = () => null;
@@ -144,80 +220,42 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.errors = [];
   };
 
-  private provideData = async (forceReload?: boolean) => {
-    // 1.a. Try to take checkout from runtime memory (if exist on server - has checkout id)
-    if (this.checkout?.id && !forceReload) {
+  private isCheckoutCreatedOnline = () => this.checkout?.id;
+
+  private provideCheckout = async (forceReload?: boolean) => {
+    if (this.isCheckoutCreatedOnline() && !forceReload) {
       return;
     }
 
     if (navigator.onLine) {
-      // 2. Try to take checkout from backend database
-      this.loading.load = true;
-      const checkoutToken = this.checkoutRepositoryManager
-        .getRepository()
-        .getCheckoutToken();
-
-      const { data, errors } = await this.checkoutNetworkManager.getCheckout(
-        checkoutToken
-      );
-
-      if (errors) {
-        this.errors = this.errors.concat(errors);
-      } else if (data) {
-        this.checkoutRepositoryManager.getRepository().setCheckout(data);
-        this.checkout = data;
-        this.loading.load = false;
-        return;
-      } else if (!this.checkout) {
-        // 4.1 Try to take checkout from local storage
-        let checkoutModel: ICheckoutModel | null;
-        checkoutModel = this.checkoutRepositoryManager
-          .getRepository()
-          .getCheckout();
-
-        if (checkoutModel) {
-          this.checkout = checkoutModel;
-        }
-      }
-
-      // 3. Try to take new created checkout from backend
-      if (this.checkout) {
-        const { email, shippingAddress, billingAddress, lines } = this.checkout;
-        if (email && shippingAddress && billingAddress && lines) {
-          const alteredLines = lines.map(item => ({
-            quantity: item!.quantity,
-            variantId: item?.variant!.id,
-          }));
-
-          const {
-            data,
-            errors,
-          } = await this.checkoutNetworkManager.createCheckout(
-            email,
-            shippingAddress,
-            billingAddress,
-            alteredLines
-          );
-
-          if (errors) {
-            this.errors = this.errors.concat(errors);
-          } else if (data) {
-            this.checkoutRepositoryManager.getRepository().setCheckout(data);
-            this.checkout = data;
-            this.loading.load = false;
-            return;
-          }
-        }
-      }
-
-      this.loading.load = false;
+      await this.provideCheckoutOnline();
     } else {
-      // 1.b.2 Try to take checkout from runtime memory (if exist in memory - has any checkout data)
-      if (this.checkout && !forceReload) {
-        return;
-      }
+      this.provideCheckoutOffline(forceReload);
+    }
+  };
 
-      // 4.2 Try to take checkout from local storage
+  private provideCheckoutOnline = async () => {
+    // 1. Try to take checkout from backend database
+    this.loading.load = true;
+    const checkoutToken = this.checkoutRepositoryManager
+      .getRepository()
+      .getCheckoutToken();
+
+    const { data, errors } = await this.checkoutNetworkManager.getCheckout(
+      checkoutToken
+    );
+
+    if (errors) {
+      this.errors = this.errors.concat(errors);
+    } else if (data) {
+      this.checkoutRepositoryManager.getRepository().setCheckout(data);
+      this.checkout = data;
+      this.loading.load = false;
+      return;
+    }
+
+    // 2.a. Try to take checkout from local storage
+    if (!this.checkout) {
       let checkoutModel: ICheckoutModel | null;
       checkoutModel = this.checkoutRepositoryManager
         .getRepository()
@@ -225,8 +263,57 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
       if (checkoutModel) {
         this.checkout = checkoutModel;
-        return;
       }
+    }
+
+    // 2.b. Try to take new created checkout from backend
+    if (this.checkout) {
+      const { email, shippingAddress, billingAddress, lines } = this.checkout;
+      if (email && shippingAddress && billingAddress && lines) {
+        const alteredLines = lines.map(item => ({
+          quantity: item!.quantity,
+          variantId: item?.variant!.id,
+        }));
+
+        const {
+          data,
+          errors,
+        } = await this.checkoutNetworkManager.createCheckout(
+          email,
+          shippingAddress,
+          billingAddress,
+          alteredLines
+        );
+
+        if (errors) {
+          this.errors = this.errors.concat(errors);
+        } else if (data) {
+          this.checkoutRepositoryManager.getRepository().setCheckout(data);
+          this.checkout = data;
+          this.loading.load = false;
+          return;
+        }
+      }
+    }
+
+    this.loading.load = false;
+  };
+
+  private provideCheckoutOffline = (forceReload?: boolean) => {
+    // 1. Try to take checkout from runtime memory (if exist in memory - has any checkout data)
+    if (this.checkout && !forceReload) {
+      return;
+    }
+
+    // 2. Try to take checkout from local storage
+    let checkoutModel: ICheckoutModel | null;
+    checkoutModel = this.checkoutRepositoryManager
+      .getRepository()
+      .getCheckout();
+
+    if (checkoutModel) {
+      this.checkout = checkoutModel;
+      return;
     }
   };
 }

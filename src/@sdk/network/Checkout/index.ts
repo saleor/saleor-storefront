@@ -1,6 +1,7 @@
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { SaleorAPI } from "@sdk/index";
-import { ICheckoutModel } from "@sdk/repository";
+import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
+import { ICheckoutModel, ICheckoutModelLine } from "@sdk/repository";
 
 import { ICheckoutNetworkManager } from "./types";
 
@@ -84,6 +85,107 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         errors,
       };
     }
+  };
+
+  updateCheckoutLines = async (checkoutlines: ICheckoutModelLine[] | null) => {
+    const idsOfMissingVariants = checkoutlines
+      ?.filter(line => !line.variant || !line.totalPrice)
+      .map(line => line.variant.id);
+    const linesWithProperVariant =
+      checkoutlines?.filter(line => line.variant && line.totalPrice) || [];
+
+    let variants: CheckoutProductVariants_productVariants | null | undefined;
+    if (idsOfMissingVariants && idsOfMissingVariants.length) {
+      try {
+        variants = await new Promise((resolve, reject) => {
+          this.api.getCheckoutProductVariants(
+            {
+              ids: idsOfMissingVariants,
+            },
+            {
+              onError: error => {
+                reject(error);
+              },
+              onUpdate: data => {
+                resolve(data);
+              },
+            }
+          );
+        });
+      } catch (errors) {
+        return {
+          data: null,
+          errors,
+        };
+      }
+    }
+
+    const linesWithMissingVariantUpdated = variants
+      ? variants.edges.map(edge => {
+          const existingLine = checkoutlines?.find(
+            line => line.variant.id === edge.node.id
+          );
+          const variantPricing = edge.node.pricing?.price;
+          const totalPrice = variantPricing
+            ? {
+                gross: {
+                  ...variantPricing.gross,
+                  amount:
+                    variantPricing.gross.amount * (existingLine?.quantity || 0),
+                },
+                net: {
+                  ...variantPricing.net,
+                  amount:
+                    variantPricing.net.amount * (existingLine?.quantity || 0),
+                },
+              }
+            : null;
+
+          return {
+            id: existingLine?.id,
+            quantity: existingLine?.quantity || 0,
+            totalPrice,
+            variant: {
+              id: edge.node.id,
+              name: edge.node.name,
+              pricing: edge.node.pricing,
+              product: edge.node.product,
+              stockQuantity: edge.node.stockQuantity,
+            },
+          };
+        })
+      : [];
+
+    const linesWithProperVariantUpdated = linesWithProperVariant.map(line => {
+      const variantPricing = line.variant.pricing?.price;
+      const totalPrice = variantPricing
+        ? {
+            gross: {
+              ...variantPricing.gross,
+              amount: variantPricing.gross.amount * line.quantity,
+            },
+            net: {
+              ...variantPricing.net,
+              amount: variantPricing.net.amount * line.quantity,
+            },
+          }
+        : null;
+
+      return {
+        id: line.id,
+        quantity: line.quantity,
+        totalPrice,
+        variant: line.variant,
+      };
+    });
+
+    return {
+      data: [
+        ...linesWithMissingVariantUpdated,
+        ...linesWithProperVariantUpdated,
+      ],
+      errors: null,
+    };
   };
 
   createCheckout = async (

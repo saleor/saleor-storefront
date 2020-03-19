@@ -113,6 +113,11 @@ export class SaleorAPI {
     data => data.productVariants
   );
 
+  getCheckoutProductVariants = this.watchQuery(
+    QUERIES.CheckoutProductVariants,
+    data => data.productVariants
+  );
+
   getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
 
   setUserDefaultAddress = this.fireQuery(
