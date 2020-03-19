@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/ThankYou default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c6 {
+  background-color: #13bebb;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+}
+
+.c6:hover {
+  background-color: #06a09e;
+  color: #fff;
+}
+
+.c6:active {
+  background-color: #06a09e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c6:disabled {
+  background-color: #7d7d7d;
+}
+
+.c6:disabled,
+.c6:disabled:hover {
+  cursor: default;
+}
+
+.c4 {
+  background-color: #fff;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: rgb(33,18,94);
+  width: 100%;
+  box-shadow: inset 0px 0px 0px 3px rgb(33,18,94);
+  border-left: 1px solid rgb(33,18,94);
+  border-right: 1px solid rgb(33,18,94);
+}
+
+.c4:hover {
+  background-color: rgb(33,18,94);
+  color: #fff;
+}
+
+.c4:active {
+  background-color: #190c4e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c4:disabled {
+  background-color: #7d7d7d;
+}
+
+.c4:disabled,
+.c4:disabled:hover {
+  cursor: default;
+}
+
+.c5 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.c1 {
+  font-size: 6rem;
+  margin: 0;
+  line-height: 110%;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin-bottom: 40px;
+}
+
+.c1 span {
+  font-weight: 600;
+}
+
+.c2 {
+  font-size: 1.125rem;
+  margin: 0;
+  line-height: 170%;
+}
+
+.c2 span {
+  font-weight: 600;
+}
+
+.c3 {
+  width: 50%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 30px;
+}
+
+.c3 button {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width:540px) {
+  .c6 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width:540px) {
+  .c4 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width:540px) {
+  .c1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width:540px) {
+  .c3 {
+    grid-template-columns: 1fr;
+    grid-row-gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <p
+      className="c1"
+    >
+      Thank you
+      <br />
+      <span>
+        for your order!
+      </span>
+    </p>
+    <p
+      className="c2"
+    >
+       
+      Your order number is 
+      <span>
+        #341414
+      </span>
+    </p>
+    <p
+      className="c2"
+    >
+      We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped.
+    </p>
+    <div
+      className="c3"
+    >
+      <button
+        className="c4"
+        color="secondary"
+        onClick={[Function]}
+        size="md"
+      >
+        <span
+          className="c5"
+          size="md"
+        >
+          CONTINUE SHOPPING
+        </span>
+      </button>
+      <button
+        className="c6"
+        color="primary"
+        onClick={[Function]}
+        size="md"
+      >
+        <span
+          className="c5"
+          size="md"
+        >
+          ORDER DETAILS
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;
