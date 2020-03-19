@@ -12,7 +12,7 @@ import { GraphQLError } from "graphql";
 import urljoin from "url-join";
 
 import { TokenAuth } from "../components/User/types/TokenAuth";
-import { SaleorCheckoutAPI } from "./api/Checkout";
+import { SaleorCheckoutAPI, SaleorCheckoutAPIState } from "./api/Checkout";
 import {
   authLink,
   clearStorage,
@@ -24,7 +24,7 @@ import { defaultConfig } from "./config";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
 import { UserDetails } from "./queries/types/UserDetails";
-import { LocalRepository } from "./repository";
+import { LocalRepository, ICheckoutModel } from "./repository";
 import { RequireAtLeastOne } from "./tsHelpers";
 import {
   Config,
@@ -40,6 +40,7 @@ import {
   isDataEmpty,
   mergeEdges,
 } from "./utils";
+import { ApolloErrorWithUserInput } from "./react/types";
 
 const { invalidLink } = invalidTokenLink();
 const getLink = (url?: string) =>
@@ -69,264 +70,47 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
     link: getLink(url),
   });
 
-export class SaleorAPI {
-  checkout: SaleorCheckoutAPI;
+export interface SaleorCheckoutSDK {
+  errors: Array<ApolloErrorWithUserInput | any>;
+  checkout: ICheckoutModel | null;
+  loading: {
+    addItemToCart: boolean;
+    load: boolean;
+    removeItemFromCart: boolean;
+    setBillingAddress: boolean;
+    setShippingAddress: boolean;
+    setShippingAsBillingAddress: boolean;
+    subtractItemFromCart: boolean;
+    updateItemInCart: boolean;
+  };
+  promoCode: string | null;
+  shippingAsBilling: boolean;
+  addItemToCart: (variantId: string, quantity: number) => void;
+  load: () => void;
+  removeItemFromCart: (variantId: string) => void;
+  subtractItemFromCart: (variantId: string) => void;
+  setBillingAddress: () => void;
+  setShippingAddress: () => void;
+  setShippingAsBillingAddress: () => void;
+  updateItemInCart: (variantId: string, quantity: number) => void;
+  makeOrder: () => void;
+}
 
-  getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
+export interface SaleorSDK {
+  checkout: SaleorCheckoutSDK;
+}
 
-  getCheckoutDetails = this.watchQuery(
-    QUERIES.CheckoutDetails,
-    data => data.checkout
-  );
+export class API {
+  client: ApolloClient<any>;
 
-  getProductDetails = this.watchQuery(
-    QUERIES.ProductDetails,
-    data => data.product
-  );
-
-  getProductList = this.watchQuery(QUERIES.ProductList, data => data.products);
-
-  getCategoryDetails = this.watchQuery(
-    QUERIES.CategoryDetails,
-    data => data.category
-  );
-
-  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>
-    data.me ? data.me.orders : null
-  );
-
-  getOrderDetails = this.watchQuery(
-    QUERIES.OrderDetails,
-    data => data.orderByToken
-  );
-
-  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
-    data.me ? data.me.checkout : null
-  );
-
-  getUserWishlist = this.watchQuery(QUERIES.Wishlist, data =>
-    data.me ? data.me.wishlist : null
-  );
-
-  getVariantsProducts = this.watchQuery(
-    QUERIES.VariantsProducts,
-    data => data.productVariants
-  );
-
-  getCheckoutProductVariants = this.watchQuery(
-    QUERIES.CheckoutProductVariants,
-    data => data.productVariants
-  );
-
-  getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
-
-  setUserDefaultAddress = this.fireQuery(
-    MUTATIONS.AddressTypeUpdate,
-    data => data!.accountSetDefaultAddress
-  );
-
-  setCreateCheckout = this.fireQuery(
-    MUTATIONS.CreateCheckout,
-    data => data!.checkoutCreate
-  );
-
-  setCheckoutLine = this.fireQuery(
-    MUTATIONS.UpdateCheckoutLine,
-    data => data!.checkoutLinesUpdate
-  );
-
-  setCheckoutShippingAddress = this.fireQuery(
-    MUTATIONS.UpdateCheckoutShippingAddress,
-    data => data!.checkoutShippingAddressUpdate
-  );
-
-  setAddCheckoutPromoCode = this.fireQuery(
-    MUTATIONS.AddCheckoutPromoCode,
-    data => data!.checkoutAddPromoCode
-  );
-
-  setRemoveCheckoutPromoCode = this.fireQuery(
-    MUTATIONS.RemoveCheckoutPromoCode,
-    data => data!.checkoutRemovePromoCode
-  );
-
-  setDeleteUserAddress = this.fireQuery(
-    MUTATIONS.DeleteUserAddress,
-    data => data!.accountAddressDelete
-  );
-
-  setCreateUserAddress = this.fireQuery(
-    MUTATIONS.CreateUserAddress,
-    data => data!.accountAddressCreate
-  );
-
-  setUpdateuserAddress = this.fireQuery(
-    MUTATIONS.UpdateUserAddress,
-    data => data!.accountAddressUpdate
-  );
-
-  setAddWishlistProduct = this.fireQuery(
-    MUTATIONS.AddWishlistProduct,
-    data => data!.wishlistAddProduct
-  );
-
-  setRemoveWishlistProduct = this.fireQuery(
-    MUTATIONS.RemoveWishlistProduct,
-    data => data!.wishlistRemoveProduct
-  );
-
-  setAddWishlistProductVariant = this.fireQuery(
-    MUTATIONS.AddWishlistProductVariant,
-    data => data!.wishlistAddVariant
-  );
-
-  setRemoveWishlistProductVariant = this.fireQuery(
-    MUTATIONS.RemoveWishlistProductVariant,
-    data => data!.wishlistRemoveVariant
-  );
-
-  setCheckoutBillingAddress = this.fireQuery(
-    MUTATIONS.UpdateCheckoutBillingAddress,
-    data => data!.checkoutBillingAddressUpdate
-  );
-
-  setAccountUpdate = this.fireQuery(
-    MUTATIONS.AccountUpdate,
-    data => data!.accountUpdate
-  );
-
-  setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
-
-  setPassword = this.fireQuery(MUTATIONS.SetPassword, data => data);
-
-  private client: ApolloClient<any>;
-
-  private repository: LocalRepository;
-
-  constructor(client: ApolloClient<any>, config?: Config) {
-    const finalConfig = {
-      ...defaultConfig,
-      ...config,
-      loadOnStart: {
-        ...defaultConfig.loadOnStart,
-        ...config?.loadOnStart,
-      },
-    };
-    const { loadOnStart } = finalConfig;
-
+  constructor(client: ApolloClient<any>) {
     this.client = client;
-    this.repository = new LocalRepository();
-    this.checkout = new SaleorCheckoutAPI(
-      this,
-      this.repository,
-      loadOnStart.checkout
-    );
   }
 
-  getUserDetails = (
-    variables: InferOptions<QUERIES["UserDetails"]>["variables"],
-    options: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
-      onUpdate: (data: UserDetails["me"] | null) => void;
-    }
-  ) => {
-    if (this.isLoggedIn()) {
-      return this.watchQuery(QUERIES.UserDetails, data => data.me)(
-        variables,
-        options
-      );
-    }
-    if (options.onUpdate) {
-      options.onUpdate(null);
-    }
-    return {
-      refetch: () =>
-        new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
-          resolve({ data: null });
-        }),
-      unsubscribe: () => undefined,
-    };
-  };
-
-  signIn = (
-    variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
-    options?: Omit<InferOptions<MUTATIONS["TokenAuth"]>, "variables">
-  ) =>
-    new Promise<{ data: TokenAuth["tokenCreate"] }>(async (resolve, reject) => {
-      try {
-        this.client.resetStore();
-
-        const data = await this.fireQuery(
-          MUTATIONS.TokenAuth,
-          data => data!.tokenCreate
-        )(variables, {
-          ...options,
-          update: (proxy, data) => {
-            const handledData = handleDataErrors(
-              (data: any) => data.tokenCreate,
-              data.data,
-              data.errors
-            );
-            if (!handledData.errors && handledData.data) {
-              setAuthToken(handledData.data.token);
-              if (window.PasswordCredential && variables) {
-                navigator.credentials.store(
-                  new window.PasswordCredential({
-                    id: variables.email,
-                    password: variables.password,
-                  })
-                );
-              }
-            }
-            if (options && options.update) {
-              options.update(proxy, data);
-            }
-          },
-        });
-
-        resolve(data);
-      } catch (e) {
-        reject(e);
-      }
-    });
-
-  signOut = () =>
-    new Promise(async (resolve, reject) => {
-      try {
-        clearStorage();
-        if (
-          navigator.credentials &&
-          navigator.credentials.preventSilentAccess
-        ) {
-          navigator.credentials.preventSilentAccess();
-        }
-        this.client.resetStore();
-
-        resolve();
-      } catch (e) {
-        reject(e);
-      }
-    });
-
-  attachAuthListener = (callback: (authenticated: boolean) => void) => {
-    const eventHandler = () => {
-      callback(this.isLoggedIn());
-    };
-
-    addEventListener("auth", eventHandler);
-
-    return () => {
-      removeEventListener("auth", eventHandler);
-    };
-  };
-
-  isLoggedIn = () => {
-    return !!getAuthToken();
-  };
-
-  private watchQuery<T extends QueryShape, TResult>(
+  _watchQuery = <T extends QueryShape, TResult>(
     query: T,
     mapFn: WatchMapFn<T, TResult>
-  ) {
+  ) => {
     return <
       TVariables extends InferOptions<T>["variables"],
       TOptions extends Omit<
@@ -442,24 +226,24 @@ export class SaleorAPI {
             }
           }
 
-          return this.firePromise(() => observable.refetch(variables), mapFn);
+          return this._firePromise(() => observable.refetch(variables), mapFn);
         },
         setOptions: (options: TOptions) =>
-          this.firePromise(() => observable.setOptions(options), mapFn),
+          this._firePromise(() => observable.setOptions(options), mapFn),
         unsubscribe: subscription.unsubscribe.bind(subscription),
       };
     };
-  }
+  };
 
-  private fireQuery<T extends QueryShape, TResult>(
+  _fireQuery = <T extends QueryShape, TResult>(
     query: T,
     mapFn: MapFn<T, TResult>
-  ) {
+  ) => {
     return (
       variables: InferOptions<T>["variables"],
       options?: Omit<InferOptions<T>, "variables">
     ) =>
-      this.firePromise(
+      this._firePromise(
         () =>
           query(this.client, {
             ...options,
@@ -467,13 +251,13 @@ export class SaleorAPI {
           }),
         mapFn
       );
-  }
+  };
 
   // Promise wrapper to catch errors
-  private firePromise<T extends QueryShape, TResult>(
+  _firePromise = <T extends QueryShape, TResult>(
     promise: () => Promise<any>,
     mapFn: MapFn<T, TResult> | WatchMapFn<T, TResult>
-  ) {
+  ) => {
     return new Promise<{ data: ReturnType<typeof mapFn> | null }>(
       async (resolve, reject) => {
         try {
@@ -490,7 +274,269 @@ export class SaleorAPI {
         }
       }
     );
+  };
+}
+
+export class SaleorAPI extends API {
+  checkout: SaleorCheckoutAPI;
+
+  getAttributes = this._watchQuery(QUERIES.Attributes, data => data.attributes);
+
+  getCheckoutDetails = this._watchQuery(
+    QUERIES.CheckoutDetails,
+    data => data.checkout
+  );
+
+  getProductDetails = this._watchQuery(
+    QUERIES.ProductDetails,
+    data => data.product
+  );
+
+  getProductList = this._watchQuery(QUERIES.ProductList, data => data.products);
+
+  getCategoryDetails = this._watchQuery(
+    QUERIES.CategoryDetails,
+    data => data.category
+  );
+
+  getOrdersByUser = this._watchQuery(QUERIES.OrdersByUser, data =>
+    data.me ? data.me.orders : null
+  );
+
+  getOrderDetails = this._watchQuery(
+    QUERIES.OrderDetails,
+    data => data.orderByToken
+  );
+
+  getUserCheckout = this._watchQuery(QUERIES.UserCheckoutDetails, data =>
+    data.me ? data.me.checkout : null
+  );
+
+  getUserWishlist = this._watchQuery(QUERIES.Wishlist, data =>
+    data.me ? data.me.wishlist : null
+  );
+
+  getVariantsProducts = this._watchQuery(
+    QUERIES.VariantsProducts,
+    data => data.productVariants
+  );
+
+  getCheckoutProductVariants = this._watchQuery(
+    QUERIES.CheckoutProductVariants,
+    data => data.productVariants
+  );
+
+  getShopDetails = this._watchQuery(QUERIES.GetShopDetails, data => data);
+
+  setUserDefaultAddress = this._fireQuery(
+    MUTATIONS.AddressTypeUpdate,
+    data => data!.accountSetDefaultAddress
+  );
+
+  setCreateCheckout = this._fireQuery(
+    MUTATIONS.CreateCheckout,
+    data => data!.checkoutCreate
+  );
+
+  setCheckoutLine = this._fireQuery(
+    MUTATIONS.UpdateCheckoutLine,
+    data => data!.checkoutLinesUpdate
+  );
+
+  setCheckoutShippingAddress = this._fireQuery(
+    MUTATIONS.UpdateCheckoutShippingAddress,
+    data => data!.checkoutShippingAddressUpdate
+  );
+
+  setAddCheckoutPromoCode = this._fireQuery(
+    MUTATIONS.AddCheckoutPromoCode,
+    data => data!.checkoutAddPromoCode
+  );
+
+  setRemoveCheckoutPromoCode = this._fireQuery(
+    MUTATIONS.RemoveCheckoutPromoCode,
+    data => data!.checkoutRemovePromoCode
+  );
+
+  setDeleteUserAddress = this._fireQuery(
+    MUTATIONS.DeleteUserAddress,
+    data => data!.accountAddressDelete
+  );
+
+  setCreateUserAddress = this._fireQuery(
+    MUTATIONS.CreateUserAddress,
+    data => data!.accountAddressCreate
+  );
+
+  setUpdateuserAddress = this._fireQuery(
+    MUTATIONS.UpdateUserAddress,
+    data => data!.accountAddressUpdate
+  );
+
+  setAddWishlistProduct = this._fireQuery(
+    MUTATIONS.AddWishlistProduct,
+    data => data!.wishlistAddProduct
+  );
+
+  setRemoveWishlistProduct = this._fireQuery(
+    MUTATIONS.RemoveWishlistProduct,
+    data => data!.wishlistRemoveProduct
+  );
+
+  setAddWishlistProductVariant = this._fireQuery(
+    MUTATIONS.AddWishlistProductVariant,
+    data => data!.wishlistAddVariant
+  );
+
+  setRemoveWishlistProductVariant = this._fireQuery(
+    MUTATIONS.RemoveWishlistProductVariant,
+    data => data!.wishlistRemoveVariant
+  );
+
+  setCheckoutBillingAddress = this._fireQuery(
+    MUTATIONS.UpdateCheckoutBillingAddress,
+    data => data!.checkoutBillingAddressUpdate
+  );
+
+  setAccountUpdate = this._fireQuery(
+    MUTATIONS.AccountUpdate,
+    data => data!.accountUpdate
+  );
+
+  setPasswordChange = this._fireQuery(MUTATIONS.PasswordChange, data => data);
+
+  setPassword = this._fireQuery(MUTATIONS.SetPassword, data => data);
+
+  client: ApolloClient<any>;
+
+  repository: LocalRepository;
+
+  constructor(
+    client: ApolloClient<any>,
+    config?: Config,
+    onStateUpdate?: () => any
+  ) {
+    // this = new API(client);
+    super(client);
+    const finalConfig = {
+      ...defaultConfig,
+      ...config,
+      loadOnStart: {
+        ...defaultConfig.loadOnStart,
+        ...config?.loadOnStart,
+      },
+    };
+    const { loadOnStart } = finalConfig;
+
+    this.client = client;
+    this.repository = new LocalRepository();
+    this.checkout = new SaleorCheckoutAPI(
+      this,
+      this.repository,
+      loadOnStart.checkout,
+      onStateUpdate
+    );
   }
+
+  getUserDetails = (
+    variables: InferOptions<QUERIES["UserDetails"]>["variables"],
+    options: Omit<InferOptions<QUERIES["UserDetails"]>, "variables"> & {
+      onUpdate: (data: UserDetails["me"] | null) => void;
+    }
+  ) => {
+    if (this.isLoggedIn()) {
+      return this._watchQuery(QUERIES.UserDetails, data => data.me)(
+        variables,
+        options
+      );
+    }
+    if (options.onUpdate) {
+      options.onUpdate(null);
+    }
+    return {
+      refetch: () =>
+        new Promise<{ data: UserDetails["me"] }>((resolve, _reject) => {
+          resolve({ data: null });
+        }),
+      unsubscribe: () => undefined,
+    };
+  };
+
+  signIn = (
+    variables: InferOptions<MUTATIONS["TokenAuth"]>["variables"],
+    options?: Omit<InferOptions<MUTATIONS["TokenAuth"]>, "variables">
+  ) =>
+    new Promise<{ data: TokenAuth["tokenCreate"] }>(async (resolve, reject) => {
+      try {
+        this.client.resetStore();
+
+        const data = await this._fireQuery(
+          MUTATIONS.TokenAuth,
+          data => data!.tokenCreate
+        )(variables, {
+          ...options,
+          update: (proxy, data) => {
+            const handledData = handleDataErrors(
+              (data: any) => data.tokenCreate,
+              data.data,
+              data.errors
+            );
+            if (!handledData.errors && handledData.data) {
+              setAuthToken(handledData.data.token);
+              if (window.PasswordCredential && variables) {
+                navigator.credentials.store(
+                  new window.PasswordCredential({
+                    id: variables.email,
+                    password: variables.password,
+                  })
+                );
+              }
+            }
+            if (options && options.update) {
+              options.update(proxy, data);
+            }
+          },
+        });
+
+        resolve(data);
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+  signOut = () =>
+    new Promise(async (resolve, reject) => {
+      try {
+        clearStorage();
+        if (
+          navigator.credentials &&
+          navigator.credentials.preventSilentAccess
+        ) {
+          navigator.credentials.preventSilentAccess();
+        }
+        this.client.resetStore();
+
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+  attachAuthListener = (callback: (authenticated: boolean) => void) => {
+    const eventHandler = () => {
+      callback(this.isLoggedIn());
+    };
+
+    addEventListener("auth", eventHandler);
+
+    return () => {
+      removeEventListener("auth", eventHandler);
+    };
+  };
+
+  isLoggedIn = () => {
+    return !!getAuthToken();
+  };
 }
 
 // error handler

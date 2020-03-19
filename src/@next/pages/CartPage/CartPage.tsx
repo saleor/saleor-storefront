@@ -23,9 +23,12 @@ const generateCart = (lines, removeItemFromCart) => {
     <CartRow
       name={line.variant.product.name}
       quantity={line.quantity}
-      onRemove={() => removeItemFromCart(line.id)}
+      onRemove={() => removeItemFromCart(line.variant.id)}
       onQuantityChange={() =>
-        console.log("Change quantity on product with id: ", line.id)
+        console.log(
+          "Change quantity on product variant with id: ",
+          line.variant.id
+        )
       }
       thumbnail={line.variant.product.thumbnail}
       totalPrice={<TaxedMoney taxedMoney={line.totalPrice} />}

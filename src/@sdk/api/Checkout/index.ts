@@ -33,7 +33,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   constructor(
     api: SaleorAPI,
     repository: LocalRepository,
-    loadOnStart: boolean
+    loadOnStart: boolean,
+    onStateUpdate?: () => any
   ) {
     this.errors = [];
     this.checkout = null;
@@ -58,6 +59,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
     this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
+      if (onStateUpdate) {
+        console.log("addOnCheckoutChangeListener onStateUpdate");
+        onStateUpdate();
+      }
     });
 
     if (loadOnStart) {
@@ -108,17 +113,20 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   removeItemFromCart = async (variantId: string) => {
     await this.provideCheckout();
 
+    console.log(this.checkout);
     // 1. save in local storage
     this.checkoutRepositoryManager.removeItemFromCart(this.checkout, variantId);
-
+    console.log(this.checkout);
     // 2. save online if possible (if checkout id available)
     if (this.checkout?.lines) {
+      console.log(this.checkout);
       const {
         data,
         errors,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
+      console.log(this.checkout);
 
       if (errors) {
         this.errors = this.errors.concat(errors);
@@ -128,7 +136,9 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
           lines: data,
         });
       }
+      console.log(this.checkout);
     }
+    console.log(this.checkout);
     if (this.checkout?.id) {
       this.checkoutJobQueue.enqueueSetCartItem(
         loading => (this.loading.removeItemFromCart = loading),
