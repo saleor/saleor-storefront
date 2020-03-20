@@ -18,22 +18,17 @@ const title = <h1>My Cart</h1>;
 
 const button = <Button>PROCEED TO CHECKOUT</Button>;
 
-const generateCart = (lines, removeItemFromCart) => {
+const generateCart = (lines, removeItemFromCart, updateItemInCart) => {
   return lines.map(line => (
     <CartRow
       name={line.variant.product.name}
       quantity={line.quantity}
       onRemove={() => removeItemFromCart(line.variant.id)}
-      onQuantityChange={() =>
-        console.log(
-          "Change quantity on product variant with id: ",
-          line.variant.id
-        )
-      }
+      onQuantityChange={quantity => updateItemInCart(line.variant.id, quantity)}
       thumbnail={line.variant.product.thumbnail}
       totalPrice={<TaxedMoney taxedMoney={line.totalPrice} />}
       unitPrice={<TaxedMoney taxedMoney={line.variant.pricing.price} />}
-      sku="-"
+      sku={line.variant.sku}
     />
   ));
 };
@@ -59,7 +54,8 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       title={title}
       button={button}
       cart={
-        productVariants && generateCart(productVariants, removeItemFromCart)
+        productVariants &&
+        generateCart(productVariants, removeItemFromCart, updateItemInCart)
       }
     />
   );
