@@ -39,9 +39,9 @@ export const createSaleorClient = (url?: string, cache = new InMemoryCache()) =>
   });
 
 export class SaleorManager {
-  apiProxy: APIProxy;
-  api: SaleorAPI;
-  apiChangeListener: ((api: SaleorAPI) => any) | undefined;
+  private apiProxy: APIProxy;
+  private api: SaleorAPI;
+  private apiChangeListener: ((api: SaleorAPI) => any) | undefined;
 
   constructor(client: ApolloClient<any>, config?: Config) {
     this.apiProxy = new APIProxy(client);
