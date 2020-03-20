@@ -1,23 +1,23 @@
+import { APIProxy } from "@sdk/api/APIProxy";
 import { Checkout } from "@sdk/fragments/types/Checkout";
-import { SaleorAPI } from "@sdk/index";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
 import { ICheckoutModel, ICheckoutModelLine } from "@sdk/repository";
 
 import { ICheckoutNetworkManager } from "./types";
 
 export class CheckoutNetworkManager implements ICheckoutNetworkManager {
-  private api: SaleorAPI;
+  private apiProxy: APIProxy;
 
-  constructor(api: SaleorAPI) {
-    this.api = api;
+  constructor(apiProxy: APIProxy) {
+    this.apiProxy = apiProxy;
   }
 
   getCheckout = async (checkoutToken: string | null) => {
     let checkout: Checkout | null;
     try {
       checkout = await new Promise((resolve, reject) => {
-        if (this.api.isLoggedIn()) {
-          this.api.getUserCheckout(null, {
+        if (this.apiProxy.isLoggedIn()) {
+          this.apiProxy.getUserCheckout(null, {
             onError: error => {
               reject(error);
             },
@@ -26,7 +26,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             },
           });
         } else if (checkoutToken) {
-          this.api.getCheckoutDetails(
+          this.apiProxy.getCheckoutDetails(
             {
               token: checkoutToken,
             },
@@ -101,7 +101,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     if (idsOfMissingVariants && idsOfMissingVariants.length) {
       try {
         variants = await new Promise((resolve, reject) => {
-          this.api.getCheckoutProductVariants(
+          this.apiProxy.getCheckoutProductVariants(
             {
               ids: idsOfMissingVariants,
             },
@@ -198,7 +198,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     billingAddress: object,
     lines: Array<{ variantId: string; quantity: number }>
   ) => {
-    const { data } = await this.api.setCreateCheckout({
+    const { data } = await this.apiProxy.setCreateCheckout({
       checkoutInput: {
         billingAddress,
         email,
@@ -266,7 +266,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         variantId: line.variant.id,
       }));
 
-      const { data } = await this.api.setCheckoutLine({
+      const { data } = await this.apiProxy.setCheckoutLine({
         checkoutId,
         lines: alteredLines,
       });

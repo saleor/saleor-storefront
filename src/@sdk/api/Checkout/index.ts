@@ -1,4 +1,3 @@
-import { SaleorAPI } from "@sdk/index";
 import { CheckoutJobQueue } from "@sdk/jobs/Checkout";
 import { CheckoutNetworkManager } from "@sdk/network";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
@@ -8,7 +7,34 @@ import {
   LocalRepository,
 } from "@sdk/repository";
 
+import { APIProxy } from "../APIProxy";
 import { ISaleorCheckoutAPI } from "./types";
+
+// export interface SaleorCheckoutSDK {
+//   errors: Array<ApolloErrorWithUserInput | any>;
+//   checkout: ICheckoutModel | null;
+//   loading: {
+//     addItemToCart: boolean;
+//     load: boolean;
+//     removeItemFromCart: boolean;
+//     setBillingAddress: boolean;
+//     setShippingAddress: boolean;
+//     setShippingAsBillingAddress: boolean;
+//     subtractItemFromCart: boolean;
+//     updateItemInCart: boolean;
+//   };
+//   promoCode: string | null;
+//   shippingAsBilling: boolean;
+//   addItemToCart: (variantId: string, quantity: number) => void;
+//   load: () => void;
+//   removeItemFromCart: (variantId: string) => void;
+//   subtractItemFromCart: (variantId: string) => void;
+//   setBillingAddress: () => void;
+//   setShippingAddress: () => void;
+//   setShippingAsBillingAddress: () => void;
+//   updateItemInCart: (variantId: string, quantity: number) => void;
+//   makeOrder: () => void;
+// }
 
 export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   errors: Array<ApolloErrorWithUserInput | any>;
@@ -22,7 +48,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     setShippingAsBillingAddress: boolean;
     subtractItemFromCart: boolean;
     updateItemInCart: boolean;
-  };
+  }; // to change
   promoCode: string | null;
   shippingAsBilling: boolean;
 
@@ -31,12 +57,12 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   private checkoutJobQueue: CheckoutJobQueue;
 
   constructor(
-    api: SaleorAPI,
+    apiProxy: APIProxy,
     repository: LocalRepository,
     loadOnStart: boolean,
     onStateUpdate?: () => any
   ) {
-    this.errors = [];
+    this.errors = []; // One time error
     this.checkout = null;
     this.loading = {
       addItemToCart: false,
@@ -52,7 +78,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.shippingAsBilling = false;
 
     this.checkoutRepositoryManager = new CheckoutRepositoryManager(repository);
-    this.checkoutNetworkManager = new CheckoutNetworkManager(api);
+    this.checkoutNetworkManager = new CheckoutNetworkManager(apiProxy);
     this.checkoutJobQueue = new CheckoutJobQueue(
       repository,
       this.checkoutNetworkManager

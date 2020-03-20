@@ -29,7 +29,7 @@ export function CredentialsProvider({
   };
 
   React.useEffect(() => {
-    if (!saleor.isLoggedIn() && window.PasswordCredential) {
+    if (!saleor.legacyAPIProxy.isLoggedIn() && window.PasswordCredential) {
       autoSignIn();
     }
   }, []);

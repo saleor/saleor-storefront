@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { CredentialsProvider } from "../";
-import { SaleorAPI, API } from "../../../";
-import { SaleorCheckoutAPIState } from "../../../api/Checkout";
+import { SaleorManager } from "../../../";
+import { SaleorAPI } from "../../../api";
 import { SaleorContext } from "../../context";
 import { IProps } from "./types";
 
@@ -13,26 +13,13 @@ export function SaleorProvider<TCacheShape = any>({
 }: IProps<TCacheShape>): React.ReactElement<IProps<TCacheShape>> {
   const [context, setContext] = useState<SaleorAPI | null>(null);
 
-  const onStateUpdate = () => {
-    console.log("context onStateUpdate");
-    setContext(context => {
-      if (context) {
-        return {
-          ...context,
-        };
-      } else {
-        return context;
-      }
-    });
-  };
+  useMemo(() => {
+    const manager = new SaleorManager(client, config);
 
-  useEffect(() => {
-    setContext(new SaleorAPI(client, config, onStateUpdate));
-  }, []);
+    manager.connect(saleorAPI => setContext({ ...saleorAPI }));
 
-  // const contextMemo = useMemo(() => {
-  //   return new SaleorAPI(client, config, onStateUpdate);
-  // }, [client]);
+    return manager;
+  }, [client]);
 
   console.log(context);
 

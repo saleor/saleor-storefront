@@ -1,21 +1,21 @@
 import { isEqual } from "apollo-utilities";
 import React from "react";
 
-import { SaleorAPI } from "../index";
+import { APIProxy } from "../api/APIProxy";
 import { RequireAtLeastOne } from "../tsHelpers";
 import { useAuth, useSaleorClient } from "./helpers";
 import {
   ApolloErrorWithUserInput,
   Options,
   Variables,
-  WatchQueryReturnData
+  WatchQueryReturnData,
 } from "./types";
 
-type OmittedOptions<T extends keyof SaleorAPI> = Omit<
+type OmittedOptions<T extends keyof APIProxy> = Omit<
   Options<T>,
   "onUpdate" | "onComplete" | "onError"
 > & { skip?: boolean };
-type AdditionalAPI = ReturnType<SaleorAPI["watchQuery"]>;
+type AdditionalAPI = ReturnType<APIProxy["watchQuery"]>;
 type Result<TData> = {
   data: TData | null;
   loading: boolean;
@@ -23,7 +23,7 @@ type Result<TData> = {
 };
 
 const useQuery = <
-  T extends keyof SaleorAPI,
+  T extends keyof APIProxy,
   TVariables extends Variables<T>,
   TOptions extends OmittedOptions<T>,
   TData extends WatchQueryReturnData<T>
@@ -59,7 +59,7 @@ const useQuery = <
     loadMore: _loadMore,
   } = React.useMemo(
     () =>
-      (saleor[query] as AdditionalAPI)(variables, {
+      (saleor.legacyAPIProxy[query] as AdditionalAPI)(variables, {
         ...(options as any),
         onError: (error: ApolloErrorWithUserInput) =>
           setResult(result => ({ ...result, loading: false, error })),
@@ -122,11 +122,11 @@ const useQuery = <
   };
 };
 
-export const queryWithVariablesFactory = <T extends keyof SaleorAPI>(
+export const queryWithVariablesFactory = <T extends keyof APIProxy>(
   query: T
 ) => (variables: Variables<T>, options?: OmittedOptions<T>) =>
   useQuery(query, variables, options);
 
-export const queryFactory = <T extends keyof SaleorAPI>(query: T) => (
+export const queryFactory = <T extends keyof APIProxy>(query: T) => (
   options?: OmittedOptions<T>
 ) => useQuery(query, undefined, options);

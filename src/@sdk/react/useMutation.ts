@@ -2,7 +2,7 @@ import { DataProxy } from "apollo-cache";
 import { FetchResult } from "apollo-link";
 import React from "react";
 
-import { SaleorAPI } from "../index";
+import { APIProxy } from "../api/APIProxy";
 import { MutationOptions } from "../mutations";
 import { useSaleorClient } from "./helpers";
 import {
@@ -61,7 +61,7 @@ const initialState: MutationResult<any> = {
 };
 
 const useMutation = <
-  T extends keyof SaleorAPI,
+  T extends keyof APIProxy,
   TVariables extends Variables<T>,
   TOptions extends Options<T>,
   TData extends ReturnData<T>
@@ -126,10 +126,10 @@ const useMutation = <
           ...(options as object),
         };
 
-        (saleor[mutation] as (variables: any, options: any) => Promise<any>)(
-          apolloVariables,
-          apolloOptions
-        )
+        (saleor.legacyAPIProxy[mutation] as (
+          variables: any,
+          options: any
+        ) => Promise<any>)(apolloVariables, apolloOptions)
           .then(data => {
             handleMutationComplete(data.data, mutationId);
             resolve(data);
@@ -147,7 +147,7 @@ const useMutation = <
 };
 
 export const mutationFactory = <
-  T extends keyof SaleorAPI,
+  T extends keyof APIProxy,
   TVariables extends Variables<T>,
   TOptions extends Options<T>
 >(
