@@ -65,6 +65,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                     name: itemVariant?.name,
                     pricing: itemVariant?.pricing,
                     product: itemVariant?.product,
+                    sku: itemVariant?.sku,
                     stockQuantity: itemVariant?.stockQuantity,
                   },
                 };
@@ -152,6 +153,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               name: edge.node.name,
               pricing: edge.node.pricing,
               product: edge.node.product,
+              sku: edge.node.sku,
               stockQuantity: edge.node.stockQuantity,
             },
           };
@@ -240,6 +242,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                   name: itemVariant?.name,
                   pricing: itemVariant?.pricing,
                   product: itemVariant?.product,
+                  sku: itemVariant?.sku,
                   stockQuantity: itemVariant?.stockQuantity,
                 },
               };
@@ -303,6 +306,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                     name: itemVariant?.name,
                     pricing: itemVariant?.pricing,
                     product: itemVariant?.product,
+                    sku: itemVariant?.sku,
                     stockQuantity: itemVariant?.stockQuantity,
                   },
                 };

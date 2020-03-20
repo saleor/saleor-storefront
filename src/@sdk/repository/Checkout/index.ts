@@ -41,6 +41,7 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           name: undefined,
           pricing: undefined,
           product: undefined,
+          sku: undefined,
           stockQuantity: undefined,
         },
       };

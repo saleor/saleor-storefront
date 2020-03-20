@@ -438,6 +438,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines_
    */
   id: string;
   name: string;
+  sku: string;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

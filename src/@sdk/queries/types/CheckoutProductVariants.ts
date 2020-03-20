@@ -142,6 +142,7 @@ export interface CheckoutProductVariants_productVariants_edges_node {
    */
   id: string;
   name: string;
+  sku: string;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

@@ -436,6 +436,7 @@ export interface UserCheckoutDetails_me_checkout_lines_variant {
    */
   id: string;
   name: string;
+  sku: string;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */

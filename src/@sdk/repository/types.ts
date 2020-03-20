@@ -21,6 +21,7 @@ export interface ICheckoutModelLineVariant {
   stockQuantity: number | undefined;
   id: string;
   name: string | undefined;
+  sku: string | undefined;
   pricing: Checkout_lines_variant_pricing | null | undefined;
   product: Checkout_lines_variant_product | undefined;
 }
