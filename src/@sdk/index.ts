@@ -48,6 +48,10 @@ export class SaleorManager {
     this.api = new SaleorAPI(this.apiProxy, config, this.onSaleorAPIChange);
   }
 
+  /**
+   * Use this method to obtain current API and listen to its update on occured changes within it.
+   * @param apiChangeListener Function called to get an API and called on every API update.
+   */
   connect(apiChangeListener: (api: SaleorAPI) => any) {
     this.apiChangeListener = apiChangeListener;
     this.apiChangeListener(this.api);
@@ -55,6 +59,7 @@ export class SaleorManager {
 
   private onSaleorAPIChange = () => {
     if (this.apiChangeListener) {
+      console.log("SaleorManager onSaleorAPIChange");
       this.apiChangeListener(this.api);
     }
   };

@@ -31,11 +31,13 @@ export class SaleorAPI {
     const { loadOnStart } = finalConfig;
 
     const repository = new LocalRepository();
+    if (onStateUpdate) {
+      repository.subscribeToNotifiedChanges(onStateUpdate);
+    }
     this.checkout = new SaleorCheckoutAPI(
       apiProxy,
       repository,
-      loadOnStart.checkout,
-      onStateUpdate
+      loadOnStart.checkout
     );
   }
 }

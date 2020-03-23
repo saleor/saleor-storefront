@@ -59,8 +59,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
   constructor(
     apiProxy: APIProxy,
     repository: LocalRepository,
-    loadOnStart: boolean,
-    onStateUpdate?: () => any
+    loadOnStart: boolean
   ) {
     this.errors = []; // One time error
     this.checkout = null;
@@ -85,10 +84,6 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
     this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
-      if (onStateUpdate) {
-        console.log("addOnCheckoutChangeListener onStateUpdate");
-        onStateUpdate();
-      }
     });
 
     if (loadOnStart) {
