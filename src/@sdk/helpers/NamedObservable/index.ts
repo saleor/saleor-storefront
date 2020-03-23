@@ -1,21 +1,6 @@
-import { LocalStorageItems } from "./types";
-
-interface IRepositoryObservable {
-  subscribeToChange: (
-    name: LocalStorageItems,
-    func: (data: any) => any
-  ) => void;
-  unsubscribeToChange: (
-    name: LocalStorageItems,
-    func: (data: any) => any
-  ) => void;
-  subscribeToNotifiedChanges: (func: (data: any) => any) => void;
-  unsubscribeToNotifiedChanges: (func: (data: any) => any) => void;
-}
-
-export class RepositoryObservable implements IRepositoryObservable {
+export class NamedObservable<T> implements INamedObservable<T> {
   private observers: Array<{
-    name: LocalStorageItems;
+    name: T;
     func: (data: any) => any;
   }>;
   private notifiedObservers: Array<(data: any) => any>;
@@ -25,14 +10,14 @@ export class RepositoryObservable implements IRepositoryObservable {
     this.notifiedObservers = [];
   }
 
-  subscribeToChange = (name: LocalStorageItems, func: (data: any) => any) => {
+  subscribeToChange = (name: T, func: (data: any) => any) => {
     this.observers.push({
       func,
       name,
     });
   };
 
-  unsubscribeToChange = (name: LocalStorageItems, func: (data: any) => any) => {
+  unsubscribeToChange = (name: T, func: (data: any) => any) => {
     this.observers = this.observers.filter(
       observer => name !== observer.name && func !== observer.func
     );
@@ -48,7 +33,7 @@ export class RepositoryObservable implements IRepositoryObservable {
     );
   };
 
-  protected notifyChange = (name: LocalStorageItems, data: any) => {
+  protected notifyChange = (name: T, data: any) => {
     this.observers.forEach(observer => {
       if (name === observer.name) {
         observer.func(data);

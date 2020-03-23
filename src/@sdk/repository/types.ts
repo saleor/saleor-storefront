@@ -1,5 +1,4 @@
 import {
-  Checkout_lines_totalPrice,
   Checkout_lines_totalPrice_gross,
   Checkout_lines_totalPrice_net,
   Checkout_lines_variant_pricing,

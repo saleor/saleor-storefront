@@ -4,11 +4,11 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 
 import { Button } from "@components/atoms";
 import { Cart } from "@components/templates";
-import { useCheckout } from "@sdk/react";
+import { useCart, useCheckout } from "@sdk/react";
 
-import { IProps } from "./types";
 import { TaxedMoney } from "../../components/containers";
 import { CartRow } from "../../components/organisms/CartRow";
+import { IProps } from "./types";
 
 const cartBreadcrumbs = (
   <Breadcrumbs breadcrumbs={[{ value: "Cart", link: "/cart/" }]} />
@@ -34,29 +34,20 @@ const generateCart = (lines, removeItemFromCart, updateItemInCart) => {
 };
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
-  const {
-    removeItemFromCart,
-    addItemToCart,
-    subtractItemFromCart,
-    updateItemInCart,
-    checkout,
-  } = useCheckout();
+  const { checkout } = useCheckout();
+  const { removeItem, updateItem, items } = useCart();
 
   useEffect(() => {
-    console.log("CartPage, useEffect", checkout);
+    console.log("CartPage, useEffect checkout", checkout);
+    console.log("CartPage, useEffect items", items);
   }, [checkout]);
-
-  const productVariants = checkout?.lines;
 
   return (
     <Cart
       breadcrumbs={cartBreadcrumbs}
       title={title}
       button={button}
-      cart={
-        productVariants &&
-        generateCart(productVariants, removeItemFromCart, updateItemInCart)
-      }
+      cart={items && generateCart(items, removeItem, updateItem)}
     />
   );
 };

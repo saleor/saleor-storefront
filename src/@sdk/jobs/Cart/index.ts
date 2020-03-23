@@ -5,7 +5,7 @@ import { LocalRepository } from "@sdk/repository";
 import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
-export class CheckoutJobQueue extends JobQueue {
+export class CartJobQueue extends JobQueue {
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
   private onErrorListener:

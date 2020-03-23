@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { useCheckout } from "@sdk/react";
+import { useCart } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -47,7 +47,7 @@ const extractMeta = (product: ProductDetails_product) => ({
 });
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
-  const { addItemToCart } = useCheckout();
+  const { addItem } = useCart();
 
   return (
     <TypedProductDetailsQuery
@@ -66,7 +66,7 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
             if (canDisplay(product)) {
               return (
                 <MetaWrapper meta={extractMeta(product)}>
-                  <Page product={product} add={addItemToCart} />
+                  <Page product={product} add={addItem} />
                 </MetaWrapper>
               );
             }

@@ -1,16 +1,21 @@
 import { defaultConfig } from "../config";
-import { LocalRepository } from "../repository";
+import { CheckoutNetworkManager } from "../network";
+import { CheckoutRepositoryManager, LocalRepository } from "../repository";
+import { SaleorState } from "../state";
 import { Config } from "../types";
 import { APIProxy } from "./APIProxy";
+import { SaleorCartAPI } from "./Cart";
 import { SaleorCheckoutAPI } from "./Checkout";
 
 export * from "./Checkout";
+export * from "./Cart";
 
 // SaleorAPI.checkout....
 // SaleorAPI.cart....
 
 export class SaleorAPI {
   checkout: SaleorCheckoutAPI;
+  cart: SaleorCartAPI;
 
   /**
    * @deprecated Please do not use it anymore. Reference to API Proxy will be removed in future.
@@ -31,13 +36,25 @@ export class SaleorAPI {
     const { loadOnStart } = finalConfig;
 
     const repository = new LocalRepository();
+    const checkoutRepositoryManager = new CheckoutRepositoryManager(repository);
+    const checkoutNetworkManager = new CheckoutNetworkManager(apiProxy);
+    const saleorState = new SaleorState(repository, checkoutNetworkManager);
+
     if (onStateUpdate) {
-      repository.subscribeToNotifiedChanges(onStateUpdate);
+      saleorState.subscribeToNotifiedChanges(onStateUpdate);
     }
+
     this.checkout = new SaleorCheckoutAPI(
-      apiProxy,
-      repository,
+      checkoutRepositoryManager,
+      checkoutNetworkManager,
+      saleorState,
       loadOnStart.checkout
+    );
+    this.cart = new SaleorCartAPI(
+      checkoutRepositoryManager,
+      checkoutNetworkManager,
+      saleorState,
+      loadOnStart.cart
     );
   }
 }

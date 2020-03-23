@@ -1,7 +1,7 @@
-import { RepositoryObservable } from "./RepositoryObserver";
+import { NamedObservable } from "../helpers";
 import { LocalStorageItems } from "./types";
 
-export class Repository extends RepositoryObservable {
+export class Repository extends NamedObservable<LocalStorageItems> {
   protected saveItem(name: LocalStorageItems, item: string | null): void {
     if (item) {
       localStorage.setItem(name, item);
