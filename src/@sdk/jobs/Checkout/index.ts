@@ -1,4 +1,5 @@
 import { CheckoutNetworkManager } from "@sdk/network";
+import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import { LocalRepository } from "@sdk/repository";
 
 import { JobQueue } from "../JobQueue";
@@ -7,14 +8,19 @@ import { LocalStorageJobs } from "../types";
 export class CheckoutJobQueue extends JobQueue {
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
+  private onErrorListener:
+    | ((error: ApolloErrorWithUserInput | any) => any)
+    | undefined;
 
   constructor(
     repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
+    checkoutNetworkManager: CheckoutNetworkManager,
+    onErrorListener: (error: ApolloErrorWithUserInput | any) => any
   ) {
     super();
     this.repository = repository;
     this.checkoutNetworkManager = checkoutNetworkManager;
+    this.onErrorListener = onErrorListener;
 
     const queuePossibilities = new Map([
       ["setCartItem", this.enqueueSetCartItem],
@@ -22,13 +28,10 @@ export class CheckoutJobQueue extends JobQueue {
     this.enqueueAllSavedInRepository(queuePossibilities);
   }
 
-  enqueueSetCartItem = (
-    onLoading?: (loading: boolean) => any,
-    onError?: (error: any) => any
-  ) => {
+  enqueueSetCartItem = () => {
     this.addToQueue(
       LocalStorageJobs.CHECKOUT_SET_CART_ITEM,
-      () => this.setCartItem(onLoading, onError),
+      () => this.setCartItem(),
       () => {
         const jobs = this.repository.getJobs();
 
@@ -54,28 +57,17 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
-  private setCartItem = async (
-    onLoading?: (loading: boolean) => any,
-    onError?: (error: any) => any
-  ) => {
+  private setCartItem = async () => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      if (onLoading) {
-        onLoading(true);
-      }
-
       const { data, errors } = await this.checkoutNetworkManager.setCartItem(
         checkout
       );
-      if (errors && onError) {
-        onError(errors);
+      if (errors && this.onErrorListener) {
+        this.onErrorListener(errors);
       } else if (data) {
         this.repository.setCheckout(data);
-      }
-
-      if (onLoading) {
-        onLoading(false);
       }
     }
   };

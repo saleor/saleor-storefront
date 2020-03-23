@@ -59,7 +59,6 @@ export class SaleorManager {
 
   private onSaleorAPIChange = () => {
     if (this.apiChangeListener) {
-      console.log("SaleorManager onSaleorAPIChange");
       this.apiChangeListener(this.api);
     }
   };

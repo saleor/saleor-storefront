@@ -21,8 +21,6 @@ export function SaleorProvider<TCacheShape = any>({
     return manager;
   }, [client]);
 
-  console.log(context);
-
   return (
     <SaleorContext.Provider value={context}>
       {context ? <CredentialsProvider>{children}</CredentialsProvider> : <></>}

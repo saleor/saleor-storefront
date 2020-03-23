@@ -1,6 +1,5 @@
 import { CheckoutJobQueue } from "@sdk/jobs/Checkout";
 import { CheckoutNetworkManager } from "@sdk/network";
-import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import {
   CheckoutRepositoryManager,
   ICheckoutModel,
@@ -8,47 +7,12 @@ import {
 } from "@sdk/repository";
 
 import { APIProxy } from "../APIProxy";
+import { ErrorListener } from "../utils";
 import { ISaleorCheckoutAPI } from "./types";
 
-// export interface SaleorCheckoutSDK {
-//   errors: Array<ApolloErrorWithUserInput | any>;
-//   checkout: ICheckoutModel | null;
-//   loading: {
-//     addItemToCart: boolean;
-//     load: boolean;
-//     removeItemFromCart: boolean;
-//     setBillingAddress: boolean;
-//     setShippingAddress: boolean;
-//     setShippingAsBillingAddress: boolean;
-//     subtractItemFromCart: boolean;
-//     updateItemInCart: boolean;
-//   };
-//   promoCode: string | null;
-//   shippingAsBilling: boolean;
-//   addItemToCart: (variantId: string, quantity: number) => void;
-//   load: () => void;
-//   removeItemFromCart: (variantId: string) => void;
-//   subtractItemFromCart: (variantId: string) => void;
-//   setBillingAddress: () => void;
-//   setShippingAddress: () => void;
-//   setShippingAsBillingAddress: () => void;
-//   updateItemInCart: (variantId: string, quantity: number) => void;
-//   makeOrder: () => void;
-// }
-
-export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
-  errors: Array<ApolloErrorWithUserInput | any>;
+export class SaleorCheckoutAPI extends ErrorListener
+  implements ISaleorCheckoutAPI {
   checkout: ICheckoutModel | null;
-  loading: {
-    addItemToCart: boolean;
-    load: boolean;
-    removeItemFromCart: boolean;
-    setBillingAddress: boolean;
-    setShippingAddress: boolean;
-    setShippingAsBillingAddress: boolean;
-    subtractItemFromCart: boolean;
-    updateItemInCart: boolean;
-  }; // to change
   promoCode: string | null;
   shippingAsBilling: boolean;
 
@@ -61,18 +25,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     repository: LocalRepository,
     loadOnStart: boolean
   ) {
-    this.errors = []; // One time error
+    super();
     this.checkout = null;
-    this.loading = {
-      addItemToCart: false,
-      load: false,
-      removeItemFromCart: false,
-      setBillingAddress: false,
-      setShippingAddress: false,
-      setShippingAsBillingAddress: false,
-      subtractItemFromCart: false,
-      updateItemInCart: false,
-    };
     this.promoCode = null;
     this.shippingAsBilling = false;
 
@@ -80,7 +34,8 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     this.checkoutNetworkManager = new CheckoutNetworkManager(apiProxy);
     this.checkoutJobQueue = new CheckoutJobQueue(
       repository,
-      this.checkoutNetworkManager
+      this.checkoutNetworkManager,
+      this.fireError
     );
     this.checkoutRepositoryManager.addOnCheckoutChangeListener(checkout => {
       this.checkout = checkout;
@@ -111,7 +66,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       );
 
       if (errors) {
-        this.errors = this.errors.concat(errors);
+        this.fireError(errors);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.checkout,
@@ -120,59 +75,80 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       }
     }
     if (this.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetCartItem(
-        loading => (this.loading.addItemToCart = loading),
-        error => this.errors.concat(error)
-      );
+      this.checkoutJobQueue.enqueueSetCartItem();
+      return {
+        pending: true,
+      };
     }
+    return {
+      pending: false,
+    };
   };
 
   load = async () => {
     await this.provideCheckout(true);
+    return {
+      pending: false,
+    };
   };
 
   removeItemFromCart = async (variantId: string) => {
     await this.provideCheckout();
 
-    console.log(this.checkout);
     // 1. save in local storage
     this.checkoutRepositoryManager.removeItemFromCart(this.checkout, variantId);
-    console.log(this.checkout);
     // 2. save online if possible (if checkout id available)
     if (this.checkout?.lines) {
-      console.log(this.checkout);
       const {
         data,
         errors,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.checkout.lines
       );
-      console.log(this.checkout);
 
       if (errors) {
-        this.errors = this.errors.concat(errors);
+        this.fireError(errors);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.checkout,
           lines: data,
         });
       }
-      console.log(this.checkout);
     }
-    console.log(this.checkout);
     if (this.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetCartItem(
-        loading => (this.loading.removeItemFromCart = loading),
-        error => this.errors.concat(error)
-      );
+      this.checkoutJobQueue.enqueueSetCartItem();
+      return {
+        pending: true,
+      };
     }
+    return {
+      pending: false,
+    };
   };
 
-  setBillingAddress = () => null;
+  /**
+   * Method not implemented yet
+   */
+  setBillingAddress = () =>
+    Promise.resolve({
+      pending: false,
+    });
 
-  setShippingAddress = () => null;
+  /**
+   * Method not implemented yet
+   */
+  setShippingAddress = () =>
+    Promise.resolve({
+      pending: false,
+    });
 
-  setShippingAsBillingAddress = () => null;
+  /**
+   * Method not implemented yet
+   */
+  setShippingAsBillingAddress = () =>
+    Promise.resolve({
+      pending: false,
+    });
 
   subtractItemFromCart = async (variantId: string) => {
     await this.provideCheckout();
@@ -193,7 +169,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       );
 
       if (errors) {
-        this.errors = this.errors.concat(errors);
+        this.fireError(errors);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.checkout,
@@ -202,11 +178,14 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       }
     }
     if (this.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetCartItem(
-        loading => (this.loading.subtractItemFromCart = loading),
-        error => this.errors.concat(error)
-      );
+      this.checkoutJobQueue.enqueueSetCartItem();
+      return {
+        pending: true,
+      };
     }
+    return {
+      pending: false,
+    };
   };
 
   updateItemInCart = async (variantId: string, quantity: number) => {
@@ -229,7 +208,7 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       );
 
       if (errors) {
-        this.errors = this.errors.concat(errors);
+        this.fireError(errors);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.checkout,
@@ -238,18 +217,23 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
       }
     }
     if (this.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetCartItem(
-        loading => (this.loading.updateItemInCart = loading),
-        error => this.errors.concat(error)
-      );
+      this.checkoutJobQueue.enqueueSetCartItem();
+      return {
+        pending: true,
+      };
     }
+    return {
+      pending: false,
+    };
   };
 
-  makeOrder = () => null;
-
-  clearErrors = () => {
-    this.errors = [];
-  };
+  /**
+   * Method not implemented yet
+   */
+  makeOrder = () =>
+    Promise.resolve({
+      pending: false,
+    });
 
   private isCheckoutCreatedOnline = () => this.checkout?.id;
 
@@ -267,7 +251,6 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
 
   private provideCheckoutOnline = async () => {
     // 1. Try to take checkout from backend database
-    this.loading.load = true;
     const checkoutToken = this.checkoutRepositoryManager
       .getRepository()
       .getCheckoutToken();
@@ -277,11 +260,10 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
     );
 
     if (errors) {
-      this.errors = this.errors.concat(errors);
+      this.fireError(errors);
     } else if (data) {
       this.checkoutRepositoryManager.getRepository().setCheckout(data);
       this.checkout = data;
-      this.loading.load = false;
       return;
     }
 
@@ -317,17 +299,14 @@ export class SaleorCheckoutAPI implements ISaleorCheckoutAPI {
         );
 
         if (errors) {
-          this.errors = this.errors.concat(errors);
+          this.fireError(errors);
         } else if (data) {
           this.checkoutRepositoryManager.getRepository().setCheckout(data);
           this.checkout = data;
-          this.loading.load = false;
           return;
         }
       }
     }
-
-    this.loading.load = false;
   };
 
   private provideCheckoutOffline = (forceReload?: boolean) => {
