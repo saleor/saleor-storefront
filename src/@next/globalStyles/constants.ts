@@ -80,5 +80,9 @@ export const ultraBigFont = "6rem"; // 96px
 export const spacer = 1; // rem
 
 // breakpoints
-export const mediumScreen = 992;
+export const xxxLargeScreen = 1920;
+export const xxLargeScreen = 1600;
+export const xLargeScreen = 1280;
+export const largeScreen = 992;
+export const mediumScreen = 720;
 export const smallScreen = 540;

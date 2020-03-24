@@ -20,7 +20,6 @@ const QuantityButtons = (add, substract) => (
 /**
  * Product row displayed on cart page
  */
-
 export const CartRow: React.FC<IProps> = ({
   totalPrice,
   unitPrice,
@@ -38,6 +37,7 @@ export const CartRow: React.FC<IProps> = ({
   const substract = React.useCallback(() => onQuantityChange(quantity - 1), [
     quantity,
   ]);
+
   return (
     <S.Wrapper>
       <S.Photo>

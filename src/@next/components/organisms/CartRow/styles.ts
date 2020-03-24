@@ -5,19 +5,20 @@ export const Wrapper = styled.div`
   min-height: 140px;
   max-height: min-content;
   width: 100%;
-  grid-template-areas:
-    "photo description unitPrice quantity totalPrice trash"
-    ". description . . . .";
+  grid-template-areas: "photo description unitPrice quantity totalPrice trash";
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
   align-items: center;
-  ${media.smallScreen`
+  border-bottom: 1px solid rgba(50, 50, 50, 0.1);
+  padding: 0.8rem 0.5rem;
+  ${media.mediumScreen`
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
     grid-template-areas: "photo description description"
     "trash description description"
-    ". unitPrice quantity"
+    "trash unitPrice quantity"
     ". . totalPrice";
+    padding: 1rem 0rem;
   `};
 `;
 
@@ -60,7 +61,7 @@ export const Description = styled.div`
   height: 100%;
   margin-top: 20px;
   margin-left: 20px;
-  ${media.smallScreen`
+  ${media.mediumScreen`
     margin-left: 0px;
   `}
 `;
@@ -76,7 +77,7 @@ export const Attributes = styled.div`
   grid-auto-columns: max-content;
   grid-template-columns: repeat(auto-fit, minmax(166px, 500px));
   margin-left: -15px;
-  ${media.smallScreen`
+  ${media.mediumScreen`
     flex-flow: column;
   `};
 `;
@@ -109,7 +110,7 @@ export const Price = styled.div`
   display: flex;
   justify-content: center;
   font-weight: bold;
-  ${media.smallScreen`
+  ${media.mediumScreen`
     font-weight: normal;
     flex-direction: column;
   `}
@@ -121,14 +122,14 @@ export const Price = styled.div`
 
 export const PriceLabel = styled.p`
   display: none;
-  ${media.smallScreen`
+  ${media.mediumScreen`
     display: block;
   `}
 `;
 
 export const TotalPrice = styled(Price)`
   grid-area: totalPrice;
-  ${media.smallScreen`
+  ${media.mediumScreen`
     p {
       text-align: right;
     }

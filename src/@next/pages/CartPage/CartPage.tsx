@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 
-import { Button } from "@components/atoms";
+import { Button, CartHeader } from "@components/atoms";
+import { TaxedMoney } from "@components/containers";
+import { CartRow } from "@components/organisms";
 import { Cart } from "@components/templates";
 import { IItems } from "@sdk/api/Cart/types";
 import { useCart, useCheckout } from "@sdk/react";
 
-import { TaxedMoney } from "../../components/containers";
-import { CartRow } from "../../components/organisms/CartRow";
 import { IProps } from "./types";
 
 const cartBreadcrumbs = (
@@ -18,6 +18,8 @@ const cartBreadcrumbs = (
 const title = <h1>My Cart</h1>;
 
 const button = <Button>PROCEED TO CHECKOUT</Button>;
+
+const cartHeader = <CartHeader />;
 
 const generateCart = (
   items: IItems,
@@ -73,6 +75,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       breadcrumbs={cartBreadcrumbs}
       title={title}
       button={button}
+      cartHeader={cartHeader}
       cart={items && generateCart(items, removeItem, updateItem)}
     />
   );

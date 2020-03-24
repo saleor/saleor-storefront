@@ -11,6 +11,7 @@ import { IProps } from "./types";
 const Cart: React.FC<IProps> = ({
   breadcrumbs,
   title,
+  cartHeader,
   cart,
   button,
 }: IProps) => {
@@ -19,6 +20,7 @@ const Cart: React.FC<IProps> = ({
       <S.Wrapper>
         <S.Breadcrumbs>{breadcrumbs}</S.Breadcrumbs>
         <S.Title>{title}</S.Title>
+        <S.CartHeader>{cartHeader}</S.CartHeader>
         <S.Cart>{cart}</S.Cart>
         <S.ProceedButton>{button}</S.ProceedButton>
       </S.Wrapper>

@@ -30,7 +30,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
     <S.Wrapper>
       <Media
         query={{
-          minWidth: theme.breakpoints.mediumScreen,
+          minWidth: theme.breakpoints.largeScreen,
         }}
       >
         {(matches: boolean) => {

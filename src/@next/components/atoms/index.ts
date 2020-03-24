@@ -25,3 +25,4 @@ export * from "./DropdownSelect";
 export * from "./PlaceholderImage";
 export * from "./Checkbox";
 export * from "./Chip";
+export * from "./CartHeader";

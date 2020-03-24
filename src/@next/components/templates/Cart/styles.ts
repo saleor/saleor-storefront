@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   margin: 30px 0 100px 0;
@@ -11,7 +11,15 @@ export const Title = styled.div`
   margin-bottom: 60px;
 `;
 
-export const Cart = styled.div``;
+export const CartHeader = styled.div`
+  ${media.mediumScreen`
+    display: none;
+  `};
+`;
+export const Cart = styled.div`
+  border-top: 1px solid rgba(50, 50, 50, 0.1);
+`;
 export const ProceedButton = styled.div`
   text-align: right;
+  margin-top: 40px;
 `;

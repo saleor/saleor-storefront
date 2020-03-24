@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 ${props => props.theme.spacing.spacer};
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     width: 100%;      
   `}
 `;
