@@ -71,23 +71,20 @@ export class SaleorState extends NamedObservable<StateItems>
       onError(errors);
     } else if (data) {
       this.repository.setCheckout(data);
-      this.updateCheckout(data);
+      // this.updateCheckout(data);
       return;
     }
 
     // 2.a. Try to take checkout from local storage
-    if (!this.checkout) {
-      let checkoutModel: ICheckoutModel | null;
-      checkoutModel = this.repository.getCheckout();
-
-      if (checkoutModel) {
-        this.updateCheckout(checkoutModel);
-      }
+    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
+    if (checkoutModel && checkoutModel.id) {
+      this.updateCheckout(checkoutModel);
+      return;
     }
 
     // 2.b. Try to take new created checkout from backend
-    if (this.checkout) {
-      const { email, shippingAddress, billingAddress, lines } = this.checkout;
+    if (checkoutModel && !checkoutModel.id) {
+      const { email, shippingAddress, billingAddress, lines } = checkoutModel;
       if (email && shippingAddress && billingAddress && lines) {
         const alteredLines = lines.map(item => ({
           quantity: item!.quantity,
@@ -108,7 +105,10 @@ export class SaleorState extends NamedObservable<StateItems>
           onError(errors);
         } else if (data) {
           this.repository.setCheckout(data);
-          this.updateCheckout(data);
+          // this.updateCheckout(data);
+          return;
+        } else {
+          this.updateCheckout(checkoutModel);
           return;
         }
       }

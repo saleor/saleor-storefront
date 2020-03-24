@@ -36,7 +36,19 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
       ({ lines }: ICheckoutModel) => {
-        this.items = lines?.filter(line => line.quantity > 0);
+        this.items = lines
+          ?.filter(line => line.quantity > 0)
+          .sort((a, b) => {
+            if (a.id && b.id) {
+              const aId = a.id?.toUpperCase() || "";
+              const bId = b.id?.toUpperCase() || "";
+              return aId < bId ? -1 : aId > bId ? 1 : 0;
+            } else {
+              const aId = a.variant.name?.toUpperCase() || "";
+              const bId = b.variant.name?.toUpperCase() || "";
+              return aId < bId ? -1 : aId > bId ? 1 : 0;
+            }
+          });
       }
     );
 

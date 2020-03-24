@@ -1,35 +1,36 @@
 import React from "react";
 
-import { Checkout } from "@components/templates";
-import { useCheckout } from "@sdk/react";
 import { CheckoutProgressBar } from "@components/molecules";
 import { CartSummary } from "@components/organisms";
+import { CartSummaryProductList } from "@components/organisms/CartSummary/styles";
+import { Checkout } from "@components/templates";
+import { useCheckout } from "@sdk/react";
 
 import { IProps } from "./types";
-import { CartSummaryProductList } from "../../components/organisms/CartSummary/styles";
 
 const steps = [
   {
-    name: "Shipping",
     link: "new-checkout/shipping",
+    name: "Shipping",
   },
   {
-    name: "Billing",
     link: "new-checkout/billing",
+    name: "Billing",
   },
   {
-    name: "Payment",
     link: "new-checkout/payment",
+    name: "Payment",
   },
   {
-    name: "Review",
     link: "new-checkout/review",
+    name: "Review",
   },
 ];
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const checkoutProgress = <CheckoutProgressBar steps={steps} activeStep={0} />;
   const cartSummary = <CartSummary />;
+
   return <Checkout navigation={checkoutProgress} cartSummary={cartSummary} />;
 };
 

@@ -4,6 +4,7 @@ import Breadcrumbs from "../../../components/Breadcrumbs";
 
 import { Button } from "@components/atoms";
 import { Cart } from "@components/templates";
+import { IItems } from "@sdk/api/Cart/types";
 import { useCart, useCheckout } from "@sdk/react";
 
 import { TaxedMoney } from "../../components/containers";
@@ -18,17 +19,27 @@ const title = <h1>My Cart</h1>;
 
 const button = <Button>PROCEED TO CHECKOUT</Button>;
 
-const generateCart = (lines, removeItemFromCart, updateItemInCart) => {
-  return lines.map(line => (
+const generateCart = (
+  items: IItems,
+  removeItem: (variantId: string) => any,
+  updateItem: (variantId: string, quantity: number) => any
+) => {
+  return items?.map(({ id, variant, quantity, totalPrice }) => (
     <CartRow
-      name={line.variant.product.name}
-      quantity={line.quantity}
-      onRemove={() => removeItemFromCart(line.variant.id)}
-      onQuantityChange={quantity => updateItemInCart(line.variant.id, quantity)}
-      thumbnail={line.variant.product.thumbnail}
-      totalPrice={<TaxedMoney taxedMoney={line.totalPrice} />}
-      unitPrice={<TaxedMoney taxedMoney={line.variant.pricing.price} />}
-      sku={line.variant.sku}
+      key={id}
+      name={variant?.product?.name || ""}
+      quantity={quantity}
+      onRemove={() => removeItem(variant.id)}
+      onQuantityChange={quantity => updateItem(variant.id, quantity)}
+      thumbnail={{
+        ...variant?.product?.thumbnail,
+        alt: variant?.product?.thumbnail?.alt || "",
+      }}
+      totalPrice={<TaxedMoney taxedMoney={totalPrice || undefined} />}
+      unitPrice={
+        <TaxedMoney taxedMoney={variant?.pricing?.price || undefined} />
+      }
+      sku={variant.sku}
     />
   ));
 };
@@ -37,10 +48,10 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const { checkout } = useCheckout();
   const { removeItem, updateItem, items } = useCart();
 
-  useEffect(() => {
-    console.log("CartPage, useEffect checkout", checkout);
-    console.log("CartPage, useEffect items", items);
-  }, [checkout]);
+  // useEffect(() => {
+  // console.log("CartPage, useEffect checkout", checkout);
+  // console.log("CartPage, useEffect items", items);
+  // }, [checkout]);
 
   return (
     <Cart
