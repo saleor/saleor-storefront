@@ -40,6 +40,8 @@ export const checkoutProductVariantFragment = gql`
     id
     name
     sku
+    stockQuantity
+    isAvailable
     pricing {
       onSale
       priceUndiscounted {
@@ -47,6 +49,17 @@ export const checkoutProductVariantFragment = gql`
       }
       price {
         ...Price
+      }
+    }
+    attributes {
+      attribute {
+        id
+        name
+      }
+      values {
+        id
+        name
+        value: name
       }
     }
     product {
@@ -84,7 +97,6 @@ export const checkoutLineFragment = gql`
       ...Price
     }
     variant {
-      stockQuantity
       ...ProductVariant
     }
   }

@@ -4,6 +4,7 @@ export const DEFAULT_PROPS = {
   attributes: [
     {
       attribute: {
+        id: "1",
         name: "Color",
       },
       values: [
@@ -14,6 +15,7 @@ export const DEFAULT_PROPS = {
     },
     {
       attribute: {
+        id: "2",
         name: "Size",
       },
       values: [
@@ -24,6 +26,7 @@ export const DEFAULT_PROPS = {
     },
     {
       attribute: {
+        id: "3",
         name: "Legs",
       },
       values: [
@@ -34,6 +37,7 @@ export const DEFAULT_PROPS = {
     },
     {
       attribute: {
+        id: "4",
         name: "Armrest",
       },
       values: [

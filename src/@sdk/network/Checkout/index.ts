@@ -61,7 +61,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                   quantity: item!.quantity,
                   totalPrice: item?.totalPrice,
                   variant: {
+                    attributes: itemVariant?.attributes,
                     id: itemVariant!.id,
+                    isAvailable: itemVariant?.isAvailable,
                     name: itemVariant?.name,
                     pricing: itemVariant?.pricing,
                     product: itemVariant?.product,
@@ -149,7 +151,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             quantity: existingLine?.quantity || 0,
             totalPrice,
             variant: {
+              attributes: edge.node.attributes,
               id: edge.node.id,
+              isAvailable: edge.node.isAvailable,
               name: edge.node.name,
               pricing: edge.node.pricing,
               product: edge.node.product,
@@ -238,7 +242,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                 quantity: item!.quantity,
                 totalPrice: item?.totalPrice,
                 variant: {
+                  attributes: itemVariant?.attributes,
                   id: itemVariant!.id,
+                  isAvailable: itemVariant?.isAvailable,
                   name: itemVariant?.name,
                   pricing: itemVariant?.pricing,
                   product: itemVariant?.product,
@@ -302,7 +308,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                   quantity: item!.quantity,
                   totalPrice: item?.totalPrice,
                   variant: {
+                    attributes: itemVariant?.attributes,
                     id: itemVariant!.id,
+                    isAvailable: itemVariant?.isAvailable,
                     name: itemVariant?.name,
                     pricing: itemVariant?.pricing,
                     product: itemVariant?.product,

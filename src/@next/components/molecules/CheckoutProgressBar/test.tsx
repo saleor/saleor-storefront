@@ -1,9 +1,9 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { MemoryRouter } from "react-router-dom";
 
 import { CheckoutProgressBar } from ".";
-import { MemoryRouter } from "react-router-dom";
 
 const steps = [
   {
@@ -21,7 +21,6 @@ const steps = [
 ];
 
 describe("<CheckoutProgressBar />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(
       <CheckoutProgressBar steps={steps} activeStep={0} />

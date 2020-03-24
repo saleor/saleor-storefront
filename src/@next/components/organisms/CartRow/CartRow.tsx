@@ -49,11 +49,11 @@ export const CartRow: React.FC<IProps> = ({
           <S.LightFont>SKU: {sku ? sku : "-"}</S.LightFont>
         </S.Sku>
         <S.Attributes>
-          {attributes.map(attribute => (
-            <S.SingleAttribute>
+          {attributes.map(({ attribute, values }) => (
+            <S.SingleAttribute key={attribute.id}>
               <span>
-                <S.LightFont>{attribute.attribute.name}:</S.LightFont>{" "}
-                {attribute.values.map(value => value.name).join(", ")}
+                <S.LightFont>{attribute.name}:</S.LightFont>{" "}
+                {values.map(value => value.name).join(", ")}
               </span>
             </S.SingleAttribute>
           ))}

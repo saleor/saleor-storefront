@@ -1,6 +1,7 @@
 import {
   Checkout_lines_totalPrice_gross,
   Checkout_lines_totalPrice_net,
+  Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
 } from "../fragments/types/Checkout";
@@ -23,6 +24,8 @@ export interface ICheckoutModelLineVariant {
   sku: string | undefined;
   pricing: Checkout_lines_variant_pricing | null | undefined;
   product: Checkout_lines_variant_product | undefined;
+  isAvailable: boolean | null | undefined;
+  attributes: Checkout_lines_variant_attributes[] | undefined;
 }
 
 export interface ICheckoutModelLine {

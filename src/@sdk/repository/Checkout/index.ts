@@ -37,7 +37,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
         quantity,
         totalPrice: undefined,
         variant: {
+          attributes: undefined,
           id: variantId,
+          isAvailable: undefined,
           name: undefined,
           pricing: undefined,
           product: undefined,

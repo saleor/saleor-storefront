@@ -40,6 +40,21 @@ const generateCart = (
         <TaxedMoney taxedMoney={variant?.pricing?.price || undefined} />
       }
       sku={variant.sku}
+      attributes={variant.attributes?.map(attribute => {
+        return {
+          attribute: {
+            id: attribute.attribute.id,
+            name: attribute.attribute.name || "",
+          },
+          values: attribute.values.map(value => {
+            return {
+              id: value?.id,
+              name: value?.name || "",
+              value: value?.value,
+            };
+          }),
+        };
+      })}
     />
   ));
 };

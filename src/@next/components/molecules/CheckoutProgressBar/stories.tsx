@@ -1,5 +1,5 @@
-import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/react";
 import React from "react";
 import { MemoryRouter } from "react-router";
 
@@ -28,9 +28,9 @@ const steps = [
 const label = "Active step";
 const defaultValue = 1;
 const options = {
-  range: true,
-  min: 0,
   max: 3,
+  min: 0,
+  range: true,
   step: 1,
 };
 

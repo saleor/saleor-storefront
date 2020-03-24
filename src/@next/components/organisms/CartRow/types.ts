@@ -38,7 +38,7 @@ export interface IProps {
    * Variant attributes
    */
   attributes?: Array<{
-    attribute: { name: string };
+    attribute: { id: string; name: string };
     values: Array<{ name: string }>;
   }>;
 }

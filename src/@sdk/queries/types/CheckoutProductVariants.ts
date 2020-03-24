@@ -94,6 +94,46 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing {
   price: CheckoutProductVariants_productVariants_edges_node_pricing_price | null;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface CheckoutProductVariants_productVariants_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface CheckoutProductVariants_productVariants_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: CheckoutProductVariants_productVariants_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (CheckoutProductVariants_productVariants_edges_node_attributes_values | null)[];
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_product_thumbnail {
   __typename: "Image";
   /**
@@ -144,9 +184,17 @@ export interface CheckoutProductVariants_productVariants_edges_node {
   name: string;
   sku: string;
   /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
+  /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: CheckoutProductVariants_productVariants_edges_node_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: CheckoutProductVariants_productVariants_edges_node_attributes[];
   product: CheckoutProductVariants_productVariants_edges_node_product;
 }
 
