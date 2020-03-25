@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 
-import { Button, CartHeader } from "@components/atoms";
+import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
+import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
 import { useCart, useCheckout } from "@sdk/react";
 
 import { IProps } from "./types";
@@ -21,11 +21,22 @@ const button = <Button>PROCEED TO CHECKOUT</Button>;
 
 const cartHeader = <CartHeader />;
 
+const prepareCartFooter = (
+  totalPrice: ITotalPrice,
+  subtotalPrice: ISubtotalPrice
+) => (
+  <CartFooter
+    subtotalPrice={<TaxedMoney taxedMoney={totalPrice || undefined} />}
+    totalPrice={<TaxedMoney taxedMoney={subtotalPrice || undefined} />}
+  />
+);
+
 const generateCart = (
   items: IItems,
   removeItem: (variantId: string) => any,
   updateItem: (variantId: string, quantity: number) => any
 ) => {
+  // const sum = items?.reduce((prevVal, currVal, currIdx, arr) => prevVal + currVal.totalPrice?.gross.amount, 0)
   return items?.map(({ id, variant, quantity, totalPrice }) => (
     <CartRow
       key={id}
@@ -63,7 +74,13 @@ const generateCart = (
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const { checkout } = useCheckout();
-  const { removeItem, updateItem, items } = useCart();
+  const {
+    removeItem,
+    updateItem,
+    items,
+    totalPrice,
+    subtotalPrice,
+  } = useCart();
 
   // useEffect(() => {
   // console.log("CartPage, useEffect checkout", checkout);
@@ -76,6 +93,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
       title={title}
       button={button}
       cartHeader={cartHeader}
+      cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
       cart={items && generateCart(items, removeItem, updateItem)}
     />
   );

@@ -5,10 +5,12 @@ import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 import { CartJobQueue } from "@temp/@sdk/jobs/Cart";
 
-import { IItems, ISaleorCartAPI } from "./types";
+import { IItems, ISaleorCartAPI, ISubtotalPrice, ITotalPrice } from "./types";
 
 export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   items: IItems;
+  totalPrice: ITotalPrice;
+  subtotalPrice: ISubtotalPrice;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -23,6 +25,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   ) {
     super();
     this.items = null;
+    this.totalPrice = null;
+    this.subtotalPrice = null;
 
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
@@ -35,7 +39,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
-      ({ lines }: ICheckoutModel) => {
+      ({ lines, totalPrice, subtotalPrice }: ICheckoutModel) => {
         this.items = lines
           ?.filter(line => line.quantity > 0)
           .sort((a, b) => {
@@ -49,6 +53,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
               return aId < bId ? -1 : aId > bId ? 1 : 0;
             }
           });
+        this.totalPrice = totalPrice;
+        this.subtotalPrice = subtotalPrice;
       }
     );
 

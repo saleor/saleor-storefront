@@ -16,6 +16,7 @@ export const CartHeader = styled.div`
     display: none;
   `};
 `;
+export const CartFooter = styled.div``;
 export const Cart = styled.div`
   border-top: 1px solid rgba(50, 50, 50, 0.1);
 `;

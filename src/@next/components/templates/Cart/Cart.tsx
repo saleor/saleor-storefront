@@ -12,6 +12,7 @@ const Cart: React.FC<IProps> = ({
   breadcrumbs,
   title,
   cartHeader,
+  cartFooter,
   cart,
   button,
 }: IProps) => {
@@ -22,6 +23,7 @@ const Cart: React.FC<IProps> = ({
         <S.Title>{title}</S.Title>
         <S.CartHeader>{cartHeader}</S.CartHeader>
         <S.Cart>{cart}</S.Cart>
+        <S.CartFooter>{cartFooter}</S.CartFooter>
         <S.ProceedButton>{button}</S.ProceedButton>
       </S.Wrapper>
     </Container>

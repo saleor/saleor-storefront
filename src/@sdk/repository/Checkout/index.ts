@@ -60,6 +60,8 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           id: undefined,
           lines: alteredLines,
           shippingAddress: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
         };
     this.repository.setCheckout(alteredCheckout);
 
@@ -87,6 +89,8 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           id: undefined,
           lines: alteredLines,
           shippingAddress: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
         };
     this.repository.setCheckout(alteredCheckout);
 
@@ -118,6 +122,8 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           id: undefined,
           lines: alteredLines,
           shippingAddress: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
         };
     this.repository.setCheckout(alteredCheckout);
 
@@ -149,6 +155,8 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           id: undefined,
           lines: alteredLines,
           shippingAddress: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
         };
     this.repository.setCheckout(alteredCheckout);
 

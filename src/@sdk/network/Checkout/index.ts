@@ -45,7 +45,15 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       });
 
       if (checkout) {
-        const { id, email, shippingAddress, billingAddress, lines } = checkout;
+        const {
+          id,
+          email,
+          shippingAddress,
+          billingAddress,
+          lines,
+          totalPrice,
+          subtotalPrice,
+        } = checkout;
         return {
           data: {
             billingAddress,
@@ -73,6 +81,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                 };
               }),
             shippingAddress,
+            subtotalPrice,
+            totalPrice,
           },
           errors: null,
         };
@@ -225,6 +235,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         shippingAddress,
         billingAddress,
         lines,
+        totalPrice,
+        subtotalPrice,
       } = data?.checkout;
 
       return {
@@ -254,6 +266,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               };
             }),
           shippingAddress,
+          subtotalPrice,
+          totalPrice,
         },
         errors: null,
       };
@@ -291,6 +305,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           shippingAddress,
           billingAddress,
           lines,
+          totalPrice,
+          subtotalPrice,
         } = data?.checkout;
 
         return {
@@ -320,6 +336,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                 };
               }),
             shippingAddress,
+            subtotalPrice,
+            totalPrice,
           },
           errors: null,
         };

@@ -5,7 +5,6 @@ import React from "react";
 import { CartHeader } from ".";
 
 describe("<CartHeader />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<CartHeader />);
 
