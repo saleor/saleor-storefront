@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
@@ -6,7 +6,7 @@ import { CachedImage } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const QuantityButtons = (add, substract) => (
+const QuantityButtons = (add: () => void, substract: () => void) => (
   <S.QuantityButtons>
     <div onClick={substract}>
       <Icon size={16} name="horizontal_line" />
@@ -31,12 +31,33 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
 }: IProps) => {
+  const [tempQuantity, setTempQuantity] = useState(quantity);
+
+  const handleBlurQuantityInput = () => {
+    if (tempQuantity <= 0) {
+      setTempQuantity(quantity);
+    }
+  };
+
+  useEffect(() => {
+    setTempQuantity(quantity);
+  }, [quantity]);
+
   const add = React.useCallback(() => onQuantityChange(quantity + 1), [
     quantity,
   ]);
-  const substract = React.useCallback(() => onQuantityChange(quantity - 1), [
-    quantity,
-  ]);
+  const substract = React.useCallback(
+    () => quantity > 1 && onQuantityChange(quantity - 1),
+    [quantity]
+  );
+  const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
+    const newQuantity = evt.target.value;
+    if (newQuantity !== "" && newQuantity > 0) {
+      onQuantityChange(newQuantity);
+    } else {
+      setTempQuantity(newQuantity);
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -63,8 +84,9 @@ export const CartRow: React.FC<IProps> = ({
         <Input
           name="quantity"
           label="Quantity"
-          value={quantity}
-          onChange={evt => onQuantityChange(evt.target.value)}
+          value={tempQuantity}
+          onBlur={handleBlurQuantityInput}
+          onChange={handleQuantityChange}
           contentRight={QuantityButtons(add, substract)}
         />
       </S.Quantity>
