@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
@@ -31,10 +31,14 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
 }: IProps) => {
-  const [tempQuantity, setTempQuantity] = useState(quantity);
+  const [tempQuantity, setTempQuantity] = useState<number | string>(quantity);
 
   const handleBlurQuantityInput = () => {
-    if (tempQuantity <= 0) {
+    const newQuantity =
+      typeof tempQuantity === "number"
+        ? tempQuantity
+        : parseInt(tempQuantity, 10);
+    if (isNaN(newQuantity) || newQuantity <= 0) {
       setTempQuantity(quantity);
     }
   };
@@ -51,11 +55,11 @@ export const CartRow: React.FC<IProps> = ({
     [quantity]
   );
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
-    const newQuantity = evt.target.value;
-    if (newQuantity !== "" && newQuantity > 0) {
+    const newQuantity = parseInt(evt.target.value, 10);
+    if (!isNaN(newQuantity) && newQuantity > 0) {
       onQuantityChange(newQuantity);
     } else {
-      setTempQuantity(newQuantity);
+      setTempQuantity(evt.target.value);
     }
   };
 
