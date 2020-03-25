@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 
@@ -7,7 +7,7 @@ import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart } from "@components/templates";
 import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
-import { useCart, useCheckout } from "@sdk/react";
+import { useCart } from "@sdk/react";
 
 import { IProps } from "./types";
 
@@ -73,7 +73,6 @@ const generateCart = (
 };
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
-  const { checkout } = useCheckout();
   const {
     removeItem,
     updateItem,
@@ -82,7 +81,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     subtotalPrice,
   } = useCart();
 
-  // useEffect(() => {
+  // React.useEffect(() => {
   // console.log("CartPage, useEffect checkout", checkout);
   // console.log("CartPage, useEffect items", items);
   // }, [checkout]);

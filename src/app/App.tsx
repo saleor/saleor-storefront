@@ -1,9 +1,7 @@
 import "../globalStyles/scss/index.scss";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { RouteComponentProps } from "react-router";
-
-import { useCheckout } from "@sdk/react";
 
 import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
 import { isPath } from "../core/utils";
