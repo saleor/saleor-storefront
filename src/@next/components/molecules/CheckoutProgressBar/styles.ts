@@ -43,6 +43,15 @@ export const ProgressBar = styled.div<{ done?: boolean }>`
   background-color: ${props => (props.done ? "#06847B" : "#c2c2c2")};
 `;
 
+export const Step = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:not(:last-child) {
+    width: 100%;
+  }
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;

@@ -59,19 +59,19 @@ const generateProgressBar = (
 const generateSteps = (steps: IStep[], currentActive: number) => {
   return steps?.map((step, index) => {
     return (
-      <>
+      <S.Step key={index}>
         <Link to={step.link}>
           {generateDot(index, currentActive)}
           {generateLabel(index, step.name, steps.length)}
         </Link>
         {generateProgressBar(index, currentActive, steps.length)}
-      </>
+      </S.Step>
     );
   });
 };
 
 /**
- * Example component description.
+ * Progress bar showing current step of checkout process.
  */
 const CheckoutProgressBar: React.FC<IProps> = ({
   steps,
