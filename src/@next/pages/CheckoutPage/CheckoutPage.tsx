@@ -1,6 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
+import { Button } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import { CartSummary } from "@components/organisms";
 import { Checkout } from "@components/templates";
@@ -10,27 +11,39 @@ import { IProps } from "./types";
 
 const steps = [
   {
-    link: "/new-checkout/shipping",
-    name: "Shipping",
+    link: "/new-checkout/address",
+    name: "Address",
+    nextActionName: "Continue to Shipping",
+    nextStepLink: "/new-checkout/shipping",
   },
   {
-    link: "/new-checkout/billing",
-    name: "Billing",
+    link: "/new-checkout/shipping",
+    name: "Shipping",
+    nextActionName: "Continue to Payment",
+    nextStepLink: "/new-checkout/payment",
   },
   {
     link: "/new-checkout/payment",
     name: "Payment",
+    nextActionName: "Continue to Review",
+    nextStepLink: "/new-checkout/review",
   },
   {
     link: "/new-checkout/review",
     name: "Review",
+    nextActionName: "Finalize order",
+    nextStepLink: "/TODO",
   },
 ];
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
+  const history = useHistory();
+
   const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
 
+  const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
+  const activeStep = steps[activeStepIndex];
   const products = items?.map(({ variant, totalPrice, quantity }) => ({
     name: variant.name || "",
     price: {
@@ -53,10 +66,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }));
 
   const checkoutProgress = (
-    <CheckoutProgressBar
-      steps={steps}
-      activeStep={steps.findIndex(({ link }) => link === pathname)}
-    />
+    <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
   );
   const cartSummary = (
     <CartSummary
@@ -66,8 +76,19 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       products={products}
     />
   );
+  const button = (
+    <Button onClick={() => history.push(activeStep.nextStepLink)}>
+      {activeStep.nextActionName.toUpperCase()}
+    </Button>
+  );
 
-  return <Checkout navigation={checkoutProgress} cartSummary={cartSummary} />;
+  return (
+    <Checkout
+      navigation={checkoutProgress}
+      cartSummary={cartSummary}
+      button={button}
+    />
+  );
 };
 
 export { CheckoutPage };
