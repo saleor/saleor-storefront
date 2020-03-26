@@ -1,3 +1,5 @@
+import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
+
 import { PromiseResponse } from "../types";
 
 export interface ICheckout {
@@ -13,7 +15,9 @@ export interface ISaleorCheckoutAPI {
   shippingAsBilling: boolean;
   load: () => PromiseResponse;
   setBillingAddress: () => PromiseResponse;
-  setShippingAddress: () => PromiseResponse;
+  setShippingAddress: (
+    shippingAddress: Checkout_shippingAddress
+  ) => PromiseResponse;
   setShippingAsBillingAddress: () => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

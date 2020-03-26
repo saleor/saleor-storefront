@@ -4,6 +4,7 @@ import {
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
+  Checkout_shippingAddress,
   Checkout_shippingPrice,
   Checkout_subtotalPrice,
   Checkout_totalPrice,
@@ -41,7 +42,7 @@ export interface ICheckoutModelLine {
 export interface ICheckoutModel {
   id: string | undefined;
   email: string | undefined;
-  shippingAddress: object | null | undefined;
+  shippingAddress: Checkout_shippingAddress | null | undefined;
   billingAddress: object | null | undefined;
   lines: ICheckoutModelLine[] | null | undefined;
   totalPrice: Checkout_totalPrice | null | undefined;
@@ -50,8 +51,11 @@ export interface ICheckoutModel {
 }
 
 export interface IJobsModel {
-  checkout: {
+  cart: {
     setCartItem: boolean;
+  };
+  checkout: {
+    setShippingAddress: boolean;
   };
 }
 

@@ -353,6 +353,11 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
   };
 
   setBillingAddress = async () => ({ data: null, errors: null });
-  setShippingAddress = async () => ({ data: null, errors: null });
+  setShippingAddress = async () => {
+    this.apiProxy.setCheckoutShippingAddress({
+      //TODO
+    });
+    return { data: null, errors: null };
+  };
   setShippingAsBillingAddress = async () => ({ data: null, errors: null });
 }

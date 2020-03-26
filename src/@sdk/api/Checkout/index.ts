@@ -1,4 +1,6 @@
+import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
 import { ErrorListener } from "@sdk/helpers";
+import { CheckoutJobQueue } from "@sdk/jobs";
 import { CheckoutNetworkManager } from "@sdk/network";
 import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
@@ -15,6 +17,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
   private checkoutNetworkManager: CheckoutNetworkManager;
+  private checkoutJobQueue: CheckoutJobQueue;
 
   constructor(
     checkoutRepositoryManager: CheckoutRepositoryManager,
@@ -30,6 +33,11 @@ export class SaleorCheckoutAPI extends ErrorListener
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
     this.checkoutNetworkManager = checkoutNetworkManager;
+    this.checkoutJobQueue = new CheckoutJobQueue(
+      this.checkoutRepositoryManager.getRepository(),
+      this.checkoutNetworkManager,
+      this.fireError
+    );
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -66,10 +74,26 @@ export class SaleorCheckoutAPI extends ErrorListener
   /**
    * Method not implemented yet
    */
-  setShippingAddress = () =>
-    Promise.resolve({
+  setShippingAddress = async (shippingAddress: Checkout_shippingAddress) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    this.checkoutRepositoryManager.setShippingAddress(
+      this.saleorState.checkout,
+      shippingAddress
+    );
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetShippingAddress();
+      return {
+        pending: true,
+      };
+    }
+    return {
       pending: false,
-    });
+    };
+  };
 
   /**
    * Method not implemented yet

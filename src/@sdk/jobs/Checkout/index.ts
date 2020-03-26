@@ -5,7 +5,7 @@ import { LocalRepository } from "@sdk/repository";
 import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
-export class CartJobQueue extends JobQueue {
+export class CheckoutJobQueue extends JobQueue {
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
   private onErrorListener:
@@ -23,29 +23,29 @@ export class CartJobQueue extends JobQueue {
     this.onErrorListener = onErrorListener;
 
     const queuePossibilities = new Map([
-      ["setCartItem", this.enqueueSetCartItem],
+      ["setShippingAddress", this.enqueueSetShippingAddress],
     ]);
     this.enqueueAllSavedInRepository(queuePossibilities);
   }
 
-  enqueueSetCartItem = () => {
+  enqueueSetShippingAddress = () => {
     this.addToQueue(
-      LocalStorageJobs.CHECKOUT_SET_CART_ITEM,
-      () => this.setCartItem(),
+      LocalStorageJobs.CHECKOUT_SET_SHIPPING_ADDRESS,
+      () => this.setShippingAddress(),
       () => {
         const jobs = this.repository.getJobs();
 
         this.repository.setJobs({
           ...jobs,
-          cart: jobs?.cart
-            ? jobs.cart
-            : {
-                setCartItem: false,
-              },
-          checkout: {
+          cart: {
             ...jobs?.checkout,
-            setShippingAddress: true,
+            setCartItem: true,
           },
+          checkout: jobs?.checkout
+            ? jobs.checkout
+            : {
+                setShippingAddress: false,
+              },
         });
       },
       () => {
@@ -53,27 +53,28 @@ export class CartJobQueue extends JobQueue {
 
         this.repository.setJobs({
           ...jobs,
-          cart: jobs?.cart
-            ? jobs.cart
-            : {
-                setCartItem: false,
-              },
-          checkout: {
+          cart: {
             ...jobs?.checkout,
-            setShippingAddress: false,
+            setCartItem: false,
           },
+          checkout: jobs?.checkout
+            ? jobs.checkout
+            : {
+                setShippingAddress: false,
+              },
         });
       }
     );
   };
 
-  private setCartItem = async () => {
+  private setShippingAddress = async () => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const { data, errors } = await this.checkoutNetworkManager.setCartItem(
-        checkout
-      );
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.setShippingAddress(checkout);
       if (errors && this.onErrorListener) {
         this.onErrorListener(errors);
       } else if (data) {
@@ -88,11 +89,13 @@ export class CartJobQueue extends JobQueue {
     const jobs = this.repository.getJobs();
 
     if (jobs) {
-      const cart = jobs.cart;
-      const cartJobsNames = Object.keys(cart) as Array<keyof typeof cart>;
+      const checkout = jobs.checkout;
+      const checkoutJobsNames = Object.keys(checkout) as Array<
+        keyof typeof checkout
+      >;
 
-      cartJobsNames
-        .filter(name => cart[name])
+      checkoutJobsNames
+        .filter(name => checkout[name])
         .forEach(name => {
           const queueFunc = queuePossibilities.get(name);
           if (queueFunc) {

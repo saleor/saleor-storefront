@@ -1,3 +1,5 @@
+import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
+
 import { LocalRepository } from "../LocalRepository";
 import { ICheckoutModel, LocalStorageItems } from "../types";
 import { ICheckoutRepositoryManager } from "./types";
@@ -158,6 +160,30 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
           id: undefined,
           lines: alteredLines,
           shippingAddress: undefined,
+          shippingPrice: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
+        };
+    this.repository.setCheckout(alteredCheckout);
+
+    return alteredCheckout;
+  };
+
+  setShippingAddress = (
+    checkout: ICheckoutModel | null,
+    shippingAddress: Checkout_shippingAddress
+  ) => {
+    const alteredCheckout = checkout
+      ? {
+          ...checkout,
+          shippingAddress,
+        }
+      : {
+          billingAddress: undefined,
+          email: undefined,
+          id: undefined,
+          lines: undefined,
+          shippingAddress,
           shippingPrice: undefined,
           subtotalPrice: undefined,
           totalPrice: undefined,
