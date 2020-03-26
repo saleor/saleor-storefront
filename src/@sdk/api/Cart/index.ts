@@ -5,12 +5,19 @@ import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 import { CartJobQueue } from "@temp/@sdk/jobs/Cart";
 
-import { IItems, ISaleorCartAPI, ISubtotalPrice, ITotalPrice } from "./types";
+import {
+  IItems,
+  ISaleorCartAPI,
+  IShippingPrice,
+  ISubtotalPrice,
+  ITotalPrice,
+} from "./types";
 
 export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   items: IItems;
   totalPrice: ITotalPrice;
   subtotalPrice: ISubtotalPrice;
+  shippingPrice: IShippingPrice;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -27,6 +34,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     this.items = null;
     this.totalPrice = null;
     this.subtotalPrice = null;
+    this.shippingPrice = null;
 
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
@@ -39,7 +47,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
-      ({ lines, totalPrice, subtotalPrice }: ICheckoutModel) => {
+      ({ lines, totalPrice, subtotalPrice, shippingPrice }: ICheckoutModel) => {
         this.items = lines
           ?.filter(line => line.quantity > 0)
           .sort((a, b) => {
@@ -55,6 +63,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
           });
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
+        this.shippingPrice = shippingPrice;
       }
     );
 

@@ -4,6 +4,7 @@ import {
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
+  Checkout_shippingPrice,
   Checkout_subtotalPrice,
   Checkout_totalPrice,
 } from "../fragments/types/Checkout";
@@ -45,6 +46,7 @@ export interface ICheckoutModel {
   lines: ICheckoutModelLine[] | null | undefined;
   totalPrice: Checkout_totalPrice | null | undefined;
   subtotalPrice: Checkout_subtotalPrice | null | undefined;
+  shippingPrice: Checkout_shippingPrice | null | undefined;
 }
 
 export interface IJobsModel {

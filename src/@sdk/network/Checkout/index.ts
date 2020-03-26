@@ -53,6 +53,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           lines,
           totalPrice,
           subtotalPrice,
+          shippingPrice,
         } = checkout;
         return {
           data: {
@@ -81,6 +82,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                 };
               }),
             shippingAddress,
+            shippingPrice,
             subtotalPrice,
             totalPrice,
           },
@@ -237,6 +239,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         lines,
         totalPrice,
         subtotalPrice,
+        shippingPrice,
       } = data?.checkout;
 
       return {
@@ -266,6 +269,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               };
             }),
           shippingAddress,
+          shippingPrice,
           subtotalPrice,
           totalPrice,
         },
@@ -307,6 +311,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           lines,
           totalPrice,
           subtotalPrice,
+          shippingPrice,
         } = data?.checkout;
 
         return {
@@ -336,6 +341,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
                 };
               }),
             shippingAddress,
+            shippingPrice,
             subtotalPrice,
             totalPrice,
           },
