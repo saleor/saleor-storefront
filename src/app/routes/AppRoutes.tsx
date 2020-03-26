@@ -14,7 +14,12 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
-import { CartPage as NewCartPage, CheckoutPage, PasswordReset } from "@pages";
+import {
+  CartPage as NewCartPage,
+  CheckoutPage,
+  PasswordReset,
+  ThankYouPage,
+} from "@pages";
 
 import * as paths from "./paths";
 
@@ -40,6 +45,7 @@ export const Routes: React.FC = () => (
     <Route path={paths.paymentOptionsUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route path={paths.newCheckout} component={CheckoutPage} />
+    <Route path={paths.newOrderFinalized} component={ThankYouPage} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -16,3 +16,5 @@ export * from "./ProductList";
 export * from "./CartSummary";
 export * from "./CartRow";
 export * from "./ThankYou";
+export * from "./CheckoutAddress";
+export * from "./AddressGridSelector";

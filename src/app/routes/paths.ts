@@ -17,3 +17,4 @@ export const addressBookUrl = `${baseUrl}address-book/`;
 export const paymentOptionsUrl = `${baseUrl}payment-options/`;
 export const passwordResetUrl = `${baseUrl}reset-password/`;
 export const newCheckout = `${baseUrl}new-checkout/`;
+export const newOrderFinalized = `${baseUrl}new-order-finalized/`;

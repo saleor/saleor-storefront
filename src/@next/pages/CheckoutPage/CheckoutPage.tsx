@@ -1,11 +1,11 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary } from "@components/organisms";
+import { CartSummary, CheckoutAddress } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { useCart, useCheckout } from "@sdk/react";
+import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 
 import { IProps } from "./types";
 
@@ -32,14 +32,14 @@ const steps = [
     link: "/new-checkout/review",
     name: "Review",
     nextActionName: "Finalize order",
-    nextStepLink: "/TODO",
+    nextStepLink: "/new-order-finalized",
   },
 ];
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
   const history = useHistory();
-
+  const { data: user } = useUserDetails();
   const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
@@ -76,6 +76,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       products={products}
     />
   );
+  const checkout = (
+    <Switch>
+      <Route
+        path={steps[0].link}
+        render={props => <CheckoutAddress {...props} user={user} />}
+      />
+    </Switch>
+  );
   const button = (
     <Button onClick={() => history.push(activeStep.nextStepLink)}>
       {activeStep.nextActionName.toUpperCase()}
@@ -86,6 +94,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <Checkout
       navigation={checkoutProgress}
       cartSummary={cartSummary}
+      checkout={checkout}
       button={button}
     />
   );
