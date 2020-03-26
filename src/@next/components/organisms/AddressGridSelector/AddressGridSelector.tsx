@@ -23,8 +23,8 @@ const AddressGridSelector: React.FC<IProps> = ({ addresses }: IProps) => {
           inputName="address-tile-option"
           label="Deliver to this address"
           address={address}
-          onSelect={() => setTemoSelectId(id)}
-          selected={tempSelectId === id}
+          onChange={() => setTemoSelectId(id)}
+          checked={tempSelectId === id}
         />
       );
       return elements;

@@ -2,8 +2,8 @@ import { IAddressWithAddressType } from "@types";
 
 export interface IProps {
   id: string;
-  onSelect: () => void;
-  selected: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  checked: boolean;
   address: IAddressWithAddressType;
   inputName: string;
   label: string;

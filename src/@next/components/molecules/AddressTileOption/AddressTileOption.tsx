@@ -13,28 +13,26 @@ const AddressTileOption: React.FC<IProps> = ({
   inputName,
   label,
   address,
-  onSelect,
-  selected,
+  onChange,
+  checked,
 }: IProps) => {
   return (
-    <S.Wrapper selected={selected}>
-      <label>
-        <Address {...address} />
-        <S.LabeledInput selected={selected}>
-          <input
-            type="radio"
-            name={inputName}
-            value={id}
-            checked={selected}
-            onChange={onSelect}
-          />{" "}
-          <span>
-            <span></span>
-          </span>
-          {label}
-        </S.LabeledInput>
-      </label>
-    </S.Wrapper>
+    <S.Label checked={checked}>
+      <Address {...address} />
+      <S.LabeledInput checked={checked}>
+        <input
+          type="radio"
+          name={inputName}
+          value={id}
+          checked={checked}
+          onChange={onChange}
+        />{" "}
+        <div>
+          <span></span>
+        </div>
+        {label}
+      </S.LabeledInput>
+    </S.Label>
   );
 };
 

@@ -1,22 +1,24 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div<{ selected: boolean }>`
+export const Label = styled.label<{ checked: boolean }>`
+  display: block;
   background-color: ${props => props.theme.colors.light};
   padding: 30px;
-  ${props => props.selected && `border: 2px solid #21125E;`}
+  ${props => props.checked && `border: 2px solid #21125E;`}
   font-size: ${props => props.theme.typography.smallFontSize};
+  cursor: pointer;
 `;
 
-export const LabeledInput = styled.div<{ selected: boolean }>`
+export const LabeledInput = styled.div<{ checked: boolean }>`
   padding-top: 1rem;
-  ${props => props.selected && `color: #21125E;`}
+  ${props => props.checked && `color: #21125E;`}
 
   input[type="radio"] {
     opacity: 0;
     position: fixed;
     width: 0;
   }
-  > span {
+  > div {
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -27,8 +29,8 @@ export const LabeledInput = styled.div<{ selected: boolean }>`
     vertical-align: bottom;
   }
   ${props =>
-    props.selected &&
-    `> span > span {
+    props.checked &&
+    `> div > span {
     display: block;
     width: 0.5em;
     height: 0.5em;
