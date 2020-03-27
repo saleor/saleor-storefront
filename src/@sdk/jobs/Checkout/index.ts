@@ -60,7 +60,10 @@ export class CheckoutJobQueue extends JobQueue {
       if (errors && this.onErrorListener) {
         this.onErrorListener(errors);
       } else if (data) {
-        this.repository.setCheckout(data);
+        this.repository.setCheckout({
+          ...checkout,
+          shippingAddress: data.shippingAddress,
+        });
       }
     }
   };

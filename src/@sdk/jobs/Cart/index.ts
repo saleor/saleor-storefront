@@ -60,7 +60,10 @@ export class CartJobQueue extends JobQueue {
       if (errors && this.onErrorListener) {
         this.onErrorListener(errors);
       } else if (data) {
-        this.repository.setCheckout(data);
+        this.repository.setCheckout({
+          ...checkout,
+          lines: data.lines,
+        });
       }
     }
   };

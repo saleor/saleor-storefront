@@ -2,6 +2,7 @@ import { APIProxy } from "@sdk/api/APIProxy";
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
 import { ICheckoutModel, ICheckoutModelLine } from "@sdk/repository";
+import { CountryCode } from "@sdk/types/globalTypes";
 
 import { ICheckoutNetworkManager } from "./types";
 
@@ -352,12 +353,81 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     return { data: null, errors: null };
   };
 
-  setBillingAddress = async () => ({ data: null, errors: null });
-  setShippingAddress = async () => {
-    this.apiProxy.setCheckoutShippingAddress({
-      //TODO
-    });
+  setShippingAddress = async (checkout: ICheckoutModel) => {
+    const checkoutId = checkout.id;
+    const shippingAddress = checkout.shippingAddress;
+    const email = checkout.email;
+
+    if (checkoutId && shippingAddress && email) {
+      const { data } = await this.apiProxy.setCheckoutShippingAddress({
+        checkoutId,
+        email,
+        shippingAddress: {
+          ...shippingAddress,
+          country:
+            CountryCode[
+              shippingAddress?.country.code as keyof typeof CountryCode
+            ],
+        },
+      });
+
+      if (data?.errors && data.errors.length) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.checkout) {
+        const {
+          id,
+          email,
+          shippingAddress,
+          billingAddress,
+          lines,
+          totalPrice,
+          subtotalPrice,
+          shippingPrice,
+        } = data?.checkout;
+
+        return {
+          data: {
+            billingAddress,
+            email,
+            id,
+            lines: lines
+              ?.filter(item => item?.quantity && item.variant.id)
+              .map(item => {
+                const itemVariant = item?.variant;
+
+                return {
+                  id: item!.id,
+                  quantity: item!.quantity,
+                  totalPrice: item?.totalPrice,
+                  variant: {
+                    attributes: itemVariant?.attributes,
+                    id: itemVariant!.id,
+                    isAvailable: itemVariant?.isAvailable,
+                    name: itemVariant?.name,
+                    pricing: itemVariant?.pricing,
+                    product: itemVariant?.product,
+                    sku: itemVariant?.sku,
+                    stockQuantity: itemVariant?.stockQuantity,
+                  },
+                };
+              }),
+            shippingAddress,
+            shippingPrice,
+            subtotalPrice,
+            totalPrice,
+          },
+          errors: null,
+        };
+      }
+    }
     return { data: null, errors: null };
   };
+
+  setBillingAddress = async () => ({ data: null, errors: null });
   setShippingAsBillingAddress = async () => ({ data: null, errors: null });
 }

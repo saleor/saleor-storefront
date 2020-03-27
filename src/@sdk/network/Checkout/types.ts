@@ -19,7 +19,9 @@ export interface ICheckoutNetworkManager {
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setBillingAddress: () => Promise<INetworkManagerResponse<ICheckoutModel>>;
-  setShippingAddress: () => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  setShippingAddress: (
+    checkout: ICheckoutModel
+  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingAsBillingAddress: () => Promise<
     INetworkManagerResponse<ICheckoutModel>
   >;
