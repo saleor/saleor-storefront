@@ -1,3 +1,4 @@
+import { IJobsModel, LocalRepository } from "../repository";
 import { IJobQueue, LocalStorageJobs } from "./types";
 
 export class JobQueue implements IJobQueue {
@@ -28,6 +29,30 @@ export class JobQueue implements IJobQueue {
         this.queue.set(name, { func, onFinish });
       }
       return onPending();
+    }
+  }
+
+  protected enqueueAllSavedInRepository(
+    queuePossibilities: Map<string, () => any>,
+    repository: LocalRepository,
+    jobsName: keyof IJobsModel
+  ) {
+    const jobs = repository.getJobs();
+
+    if (jobs) {
+      const jobCategory = jobs[jobsName];
+      const jobCategoryJobsNames = Object.keys(jobCategory) as Array<
+        keyof typeof jobCategory
+      >;
+
+      jobCategoryJobsNames
+        .filter(name => jobCategory[name])
+        .forEach(name => {
+          const queueFunc = queuePossibilities.get(name);
+          if (queueFunc) {
+            queueFunc();
+          }
+        });
     }
   }
 

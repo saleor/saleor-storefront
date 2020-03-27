@@ -25,7 +25,11 @@ export class CartJobQueue extends JobQueue {
     const queuePossibilities = new Map([
       ["setCartItem", this.enqueueSetCartItem],
     ]);
-    this.enqueueAllSavedInRepository(queuePossibilities);
+    this.enqueueAllSavedInRepository(
+      queuePossibilities,
+      this.repository,
+      "cart"
+    );
   }
 
   enqueueSetCartItem = () => {
@@ -81,24 +85,4 @@ export class CartJobQueue extends JobQueue {
       }
     }
   };
-
-  private enqueueAllSavedInRepository(
-    queuePossibilities: Map<string, () => any>
-  ) {
-    const jobs = this.repository.getJobs();
-
-    if (jobs) {
-      const cart = jobs.cart;
-      const cartJobsNames = Object.keys(cart) as Array<keyof typeof cart>;
-
-      cartJobsNames
-        .filter(name => cart[name])
-        .forEach(name => {
-          const queueFunc = queuePossibilities.get(name);
-          if (queueFunc) {
-            queueFunc();
-          }
-        });
-    }
-  }
 }

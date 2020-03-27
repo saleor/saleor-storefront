@@ -25,7 +25,11 @@ export class CheckoutJobQueue extends JobQueue {
     const queuePossibilities = new Map([
       ["setShippingAddress", this.enqueueSetShippingAddress],
     ]);
-    this.enqueueAllSavedInRepository(queuePossibilities);
+    this.enqueueAllSavedInRepository(
+      queuePossibilities,
+      this.repository,
+      "checkout"
+    );
   }
 
   enqueueSetShippingAddress = () => {
@@ -82,26 +86,4 @@ export class CheckoutJobQueue extends JobQueue {
       }
     }
   };
-
-  private enqueueAllSavedInRepository(
-    queuePossibilities: Map<string, () => any>
-  ) {
-    const jobs = this.repository.getJobs();
-
-    if (jobs) {
-      const checkout = jobs.checkout;
-      const checkoutJobsNames = Object.keys(checkout) as Array<
-        keyof typeof checkout
-      >;
-
-      checkoutJobsNames
-        .filter(name => checkout[name])
-        .forEach(name => {
-          const queueFunc = queuePossibilities.get(name);
-          if (queueFunc) {
-            queueFunc();
-          }
-        });
-    }
-  }
 }
