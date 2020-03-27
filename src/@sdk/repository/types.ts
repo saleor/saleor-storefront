@@ -52,10 +52,10 @@ export interface ICheckoutModel {
 
 export interface IJobsModel {
   cart: {
-    setCartItem: boolean;
+    setCartItem?: boolean;
   };
   checkout: {
-    setShippingAddress: boolean;
+    setShippingAddress?: boolean;
   };
 }
 

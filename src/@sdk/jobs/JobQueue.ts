@@ -1,6 +1,15 @@
 import { IJobsModel, LocalRepository } from "../repository";
 import { IJobQueue, LocalStorageJobs } from "./types";
 
+export const JobsModelInitialState: IJobsModel = {
+  cart: {
+    setCartItem: false,
+  },
+  checkout: {
+    setShippingAddress: false,
+  },
+};
+
 export class JobQueue implements IJobQueue {
   private queue: Map<
     LocalStorageJobs,
@@ -32,21 +41,41 @@ export class JobQueue implements IJobQueue {
     }
   }
 
+  protected updateJobsStateInRepository<T extends keyof IJobsModel>(
+    groupStateJobsToUpdate: IJobsModel[T],
+    repository: LocalRepository,
+    jobsGroup: T
+  ) {
+    let jobs = repository.getJobs();
+
+    if (!jobs) {
+      jobs = JobsModelInitialState;
+    }
+
+    repository.setJobs({
+      ...jobs,
+      [jobsGroup]: {
+        ...jobs[jobsGroup],
+        ...groupStateJobsToUpdate,
+      },
+    });
+  }
+
   protected enqueueAllSavedInRepository(
     queuePossibilities: Map<string, () => any>,
     repository: LocalRepository,
-    jobsName: keyof IJobsModel
+    jobsGroup: keyof IJobsModel
   ) {
     const jobs = repository.getJobs();
 
     if (jobs) {
-      const jobCategory = jobs[jobsName];
-      const jobCategoryJobsNames = Object.keys(jobCategory) as Array<
-        keyof typeof jobCategory
+      const jobsGroupObject = jobs[jobsGroup];
+      const jobsGroupObjectJobsNames = Object.keys(jobsGroupObject) as Array<
+        keyof typeof jobsGroupObject
       >;
 
-      jobCategoryJobsNames
-        .filter(name => jobCategory[name])
+      jobsGroupObjectJobsNames
+        .filter(name => jobsGroupObject[name])
         .forEach(name => {
           const queueFunc = queuePossibilities.get(name);
           if (queueFunc) {

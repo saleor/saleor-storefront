@@ -37,36 +37,22 @@ export class CartJobQueue extends JobQueue {
       LocalStorageJobs.CHECKOUT_SET_CART_ITEM,
       () => this.setCartItem(),
       () => {
-        const jobs = this.repository.getJobs();
-
-        this.repository.setJobs({
-          ...jobs,
-          cart: jobs?.cart
-            ? jobs.cart
-            : {
-                setCartItem: false,
-              },
-          checkout: {
-            ...jobs?.checkout,
-            setShippingAddress: true,
+        this.updateJobsStateInRepository(
+          {
+            setCartItem: false,
           },
-        });
+          this.repository,
+          "cart"
+        );
       },
       () => {
-        const jobs = this.repository.getJobs();
-
-        this.repository.setJobs({
-          ...jobs,
-          cart: jobs?.cart
-            ? jobs.cart
-            : {
-                setCartItem: false,
-              },
-          checkout: {
-            ...jobs?.checkout,
-            setShippingAddress: false,
+        this.updateJobsStateInRepository(
+          {
+            setCartItem: false,
           },
-        });
+          this.repository,
+          "cart"
+        );
       }
     );
   };
