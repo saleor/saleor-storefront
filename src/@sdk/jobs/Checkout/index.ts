@@ -6,7 +6,6 @@ import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
 export class CheckoutJobQueue extends JobQueue {
-  private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
   private onErrorListener:
     | ((error: ApolloErrorWithUserInput | any) => any)
@@ -17,19 +16,14 @@ export class CheckoutJobQueue extends JobQueue {
     checkoutNetworkManager: CheckoutNetworkManager,
     onErrorListener: (error: ApolloErrorWithUserInput | any) => any
   ) {
-    super();
-    this.repository = repository;
+    super(repository);
     this.checkoutNetworkManager = checkoutNetworkManager;
     this.onErrorListener = onErrorListener;
 
     const queuePossibilities = new Map([
       ["setShippingAddress", this.enqueueSetShippingAddress],
     ]);
-    this.enqueueAllSavedInRepository(
-      queuePossibilities,
-      this.repository,
-      "checkout"
-    );
+    this.enqueueAllSavedInRepository(queuePossibilities, "checkout");
   }
 
   enqueueSetShippingAddress = () => {
@@ -41,7 +35,6 @@ export class CheckoutJobQueue extends JobQueue {
           {
             setShippingAddress: false,
           },
-          this.repository,
           "checkout"
         );
       },
@@ -50,7 +43,6 @@ export class CheckoutJobQueue extends JobQueue {
           {
             setShippingAddress: false,
           },
-          this.repository,
           "checkout"
         );
       }

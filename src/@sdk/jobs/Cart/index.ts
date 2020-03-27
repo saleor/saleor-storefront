@@ -6,7 +6,6 @@ import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
 export class CartJobQueue extends JobQueue {
-  private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
   private onErrorListener:
     | ((error: ApolloErrorWithUserInput | any) => any)
@@ -17,7 +16,7 @@ export class CartJobQueue extends JobQueue {
     checkoutNetworkManager: CheckoutNetworkManager,
     onErrorListener: (error: ApolloErrorWithUserInput | any) => any
   ) {
-    super();
+    super(repository);
     this.repository = repository;
     this.checkoutNetworkManager = checkoutNetworkManager;
     this.onErrorListener = onErrorListener;
@@ -25,11 +24,7 @@ export class CartJobQueue extends JobQueue {
     const queuePossibilities = new Map([
       ["setCartItem", this.enqueueSetCartItem],
     ]);
-    this.enqueueAllSavedInRepository(
-      queuePossibilities,
-      this.repository,
-      "cart"
-    );
+    this.enqueueAllSavedInRepository(queuePossibilities, "cart");
   }
 
   enqueueSetCartItem = () => {
@@ -41,7 +36,6 @@ export class CartJobQueue extends JobQueue {
           {
             setCartItem: false,
           },
-          this.repository,
           "cart"
         );
       },
@@ -50,7 +44,6 @@ export class CartJobQueue extends JobQueue {
           {
             setCartItem: false,
           },
-          this.repository,
           "cart"
         );
       }

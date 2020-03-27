@@ -11,6 +11,7 @@ export const JobsModelInitialState: IJobsModel = {
 };
 
 export class JobQueue implements IJobQueue {
+  protected repository: LocalRepository;
   private queue: Map<
     LocalStorageJobs,
     {
@@ -19,7 +20,8 @@ export class JobQueue implements IJobQueue {
     }
   >;
 
-  constructor() {
+  constructor(repository: LocalRepository) {
+    this.repository = repository;
     this.queue = new Map();
     window.addEventListener("online", this.onOnline);
   }
@@ -43,16 +45,15 @@ export class JobQueue implements IJobQueue {
 
   protected updateJobsStateInRepository<T extends keyof IJobsModel>(
     groupStateJobsToUpdate: IJobsModel[T],
-    repository: LocalRepository,
     jobsGroup: T
   ) {
-    let jobs = repository.getJobs();
+    let jobs = this.repository.getJobs();
 
     if (!jobs) {
       jobs = JobsModelInitialState;
     }
 
-    repository.setJobs({
+    this.repository.setJobs({
       ...jobs,
       [jobsGroup]: {
         ...jobs[jobsGroup],
@@ -63,10 +64,9 @@ export class JobQueue implements IJobQueue {
 
   protected enqueueAllSavedInRepository(
     queuePossibilities: Map<string, () => any>,
-    repository: LocalRepository,
     jobsGroup: keyof IJobsModel
   ) {
-    const jobs = repository.getJobs();
+    const jobs = this.repository.getJobs();
 
     if (jobs) {
       const jobsGroupObject = jobs[jobsGroup];
