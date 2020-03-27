@@ -1,5 +1,7 @@
 import React from "react";
 
+import { IAddressWithAddressType } from "@types";
+
 import { AddressGridSelector } from "../AddressGridSelector";
 
 import * as S from "./styles";
@@ -8,9 +10,13 @@ import { IProps } from "./types";
 /**
  * Address form used in checkout.
  */
-const CheckoutAddress: React.FC<IProps> = ({ user }: IProps) => {
+const CheckoutAddress: React.FC<IProps> = ({
+  checkoutAddress,
+  userAddresses,
+  setShippingAddress,
+}: IProps) => {
   const adresses =
-    user?.addresses
+    userAddresses
       ?.filter(function notEmpty<TValue>(
         value: TValue | null | undefined
       ): value is TValue {
@@ -27,11 +33,17 @@ const CheckoutAddress: React.FC<IProps> = ({ user }: IProps) => {
         onSelect: () => null,
       })) || [];
 
+  console.log(userAddresses, checkoutAddress);
+
   return (
     <S.Wrapper>
       <S.Title>SHIPPING ADDRESS</S.Title>
-      {user ? (
-        <AddressGridSelector addresses={adresses} onSelect={() => null} />
+      {userAddresses ? (
+        <AddressGridSelector
+          addresses={adresses}
+          selectedAddressId={checkoutAddress?.id}
+          onSelect={setShippingAddress}
+        />
       ) : (
         <></>
       )}

@@ -1,11 +1,26 @@
-import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
-
 import { PromiseResponse } from "../types";
+
+export interface IAddress {
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  companyName?: string;
+  streetAddress1?: string;
+  streetAddress2?: string;
+  city?: string;
+  postalCode?: string;
+  countryArea?: string;
+  phone?: string | null;
+  country?: {
+    code?: string;
+    country?: string;
+  };
+}
 
 export interface ICheckout {
   id: string | undefined;
   email: string | undefined;
-  shippingAddress: object | null | undefined;
+  shippingAddress: IAddress | null | undefined;
   billingAddress: object | null | undefined;
 }
 
@@ -15,9 +30,7 @@ export interface ISaleorCheckoutAPI {
   shippingAsBilling: boolean;
   load: () => PromiseResponse;
   setBillingAddress: () => PromiseResponse;
-  setShippingAddress: (
-    shippingAddress: Checkout_shippingAddress
-  ) => PromiseResponse;
+  setShippingAddress: (shippingAddress: IAddress) => PromiseResponse;
   setShippingAsBillingAddress: () => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

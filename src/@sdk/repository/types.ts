@@ -39,10 +39,27 @@ export interface ICheckoutModelLine {
   totalPrice: ICheckoutModelLineTotalPrice | null | undefined;
 }
 
+export interface ICheckoutAddress {
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  companyName?: string;
+  streetAddress1?: string;
+  streetAddress2?: string;
+  city?: string;
+  postalCode?: string;
+  countryArea?: string;
+  phone?: string | null;
+  country?: {
+    code?: string;
+    country?: string;
+  };
+}
+
 export interface ICheckoutModel {
   id: string | undefined;
   email: string | undefined;
-  shippingAddress: Checkout_shippingAddress | null | undefined;
+  shippingAddress: ICheckoutAddress | null | undefined;
   billingAddress: object | null | undefined;
   lines: ICheckoutModelLine[] | null | undefined;
   totalPrice: Checkout_totalPrice | null | undefined;

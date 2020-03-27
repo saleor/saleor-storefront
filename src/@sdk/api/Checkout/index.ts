@@ -1,4 +1,3 @@
-import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
 import { ErrorListener } from "@sdk/helpers";
 import { CheckoutJobQueue } from "@sdk/jobs";
 import { CheckoutNetworkManager } from "@sdk/network";
@@ -6,7 +5,7 @@ import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
-import { ICheckout, ISaleorCheckoutAPI } from "./types";
+import { IAddress, ICheckout, ISaleorCheckoutAPI } from "./types";
 
 export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
@@ -71,10 +70,7 @@ export class SaleorCheckoutAPI extends ErrorListener
       pending: false,
     });
 
-  /**
-   * Method not implemented yet
-   */
-  setShippingAddress = async (shippingAddress: Checkout_shippingAddress) => {
+  setShippingAddress = async (shippingAddress: IAddress) => {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage

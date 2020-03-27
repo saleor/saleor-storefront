@@ -9,13 +9,15 @@ import { IProps } from "./types";
 /**
  * Example component description.
  */
-const AddressGridSelector: React.FC<IProps> = ({ addresses }: IProps) => {
-  const [tempSelectId, setTemoSelectId] = React.useState(addresses[0].id);
-
+const AddressGridSelector: React.FC<IProps> = ({
+  addresses,
+  selectedAddressId,
+  onSelect,
+}: IProps) => {
   const addNewTile = <AddNewTile key="0" type="address" onClick={() => null} />;
 
   const addressTiles = addresses.reduce(
-    (elements, { id, address, onSelect }) => {
+    (elements, { id, address }) => {
       elements.push(
         <AddressTileOption
           key={id}
@@ -23,8 +25,8 @@ const AddressGridSelector: React.FC<IProps> = ({ addresses }: IProps) => {
           inputName="address-tile-option"
           label="Deliver to this address"
           address={address}
-          onChange={() => setTemoSelectId(id)}
-          checked={tempSelectId === id}
+          onChange={() => onSelect(id, address)}
+          checked={!!selectedAddressId && selectedAddressId === id}
         />
       );
       return elements;

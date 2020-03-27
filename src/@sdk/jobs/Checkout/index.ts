@@ -33,7 +33,7 @@ export class CheckoutJobQueue extends JobQueue {
       () => {
         this.updateJobsStateInRepository(
           {
-            setShippingAddress: false,
+            setShippingAddress: true,
           },
           "checkout"
         );

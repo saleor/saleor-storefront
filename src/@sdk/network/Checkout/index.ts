@@ -363,11 +363,19 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         checkoutId,
         email,
         shippingAddress: {
-          ...shippingAddress,
+          city: shippingAddress.city,
+          companyName: shippingAddress.companyName,
           country:
             CountryCode[
-              shippingAddress?.country.code as keyof typeof CountryCode
+              shippingAddress?.country?.code as keyof typeof CountryCode
             ],
+          countryArea: shippingAddress.countryArea,
+          firstName: shippingAddress.firstName,
+          lastName: shippingAddress.lastName,
+          phone: shippingAddress.phone,
+          postalCode: shippingAddress.postalCode,
+          streetAddress1: shippingAddress.streetAddress1,
+          streetAddress2: shippingAddress.streetAddress2,
         },
       });
 

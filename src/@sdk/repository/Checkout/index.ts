@@ -1,7 +1,7 @@
 import { Checkout_shippingAddress } from "@sdk/fragments/types/Checkout";
 
 import { LocalRepository } from "../LocalRepository";
-import { ICheckoutModel, LocalStorageItems } from "../types";
+import { ICheckoutAddress, ICheckoutModel, LocalStorageItems } from "../types";
 import { ICheckoutRepositoryManager } from "./types";
 
 export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
@@ -171,7 +171,7 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   setShippingAddress = (
     checkout: ICheckoutModel | null,
-    shippingAddress: Checkout_shippingAddress
+    shippingAddress: ICheckoutAddress
   ) => {
     const alteredCheckout = checkout
       ? {

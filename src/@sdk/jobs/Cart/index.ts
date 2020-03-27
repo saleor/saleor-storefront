@@ -34,7 +34,7 @@ export class CartJobQueue extends JobQueue {
       () => {
         this.updateJobsStateInRepository(
           {
-            setCartItem: false,
+            setCartItem: true,
           },
           "cart"
         );

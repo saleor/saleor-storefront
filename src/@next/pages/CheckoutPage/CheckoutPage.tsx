@@ -41,6 +41,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
   const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
+  const { checkout, setShippingAddress } = useCheckout();
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
   const activeStep = steps[activeStepIndex];
@@ -76,11 +77,26 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       products={products}
     />
   );
-  const checkout = (
+  const checkoutView = (
     <Switch>
       <Route
         path={steps[0].link}
-        render={props => <CheckoutAddress {...props} user={user} />}
+        render={props => (
+          <CheckoutAddress
+            {...props}
+            checkoutAddress={{
+              ...checkout?.shippingAddress,
+              phone: checkout?.shippingAddress?.phone || undefined,
+            }}
+            userAddresses={user?.addresses}
+            setShippingAddress={(id, address) =>
+              setShippingAddress({
+                ...address,
+                id,
+              })
+            }
+          />
+        )}
       />
     </Switch>
   );
@@ -94,7 +110,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <Checkout
       navigation={checkoutProgress}
       cartSummary={cartSummary}
-      checkout={checkout}
+      checkout={checkoutView}
       button={button}
     />
   );
