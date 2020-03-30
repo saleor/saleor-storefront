@@ -1,7 +1,7 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
-  margin-top: 45px;
+  margin: 45px 0;
   display: grid;
 
   grid-template-columns: 8fr 4fr;

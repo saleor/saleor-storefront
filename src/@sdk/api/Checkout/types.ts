@@ -25,7 +25,7 @@ export interface ICheckout {
   id: string | undefined;
   email: string | undefined;
   shippingAddress: IAddress | null | undefined;
-  billingAddress: object | null | undefined;
+  billingAddress: IAddress | null | undefined;
 }
 
 export interface ISaleorCheckoutAPI {

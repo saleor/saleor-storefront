@@ -7,6 +7,7 @@ import {
   CartSummary,
   CheckoutAddress,
   CheckoutPayment,
+  CheckoutReview,
   CheckoutShipping,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
@@ -80,9 +81,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     },
   }));
 
-  const checkoutAddress = {
+  const checkoutShippingAddress = {
     ...checkout?.shippingAddress,
     phone: checkout?.shippingAddress?.phone || undefined,
+  };
+  const checkoutBillingAddress = {
+    ...checkout?.billingAddress,
+    phone: checkout?.billingAddress?.phone || undefined,
   };
   const handleSetShippingAddress = (
     id: string,
@@ -122,7 +127,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         render={props => (
           <CheckoutAddress
             {...props}
-            checkoutAddress={checkoutAddress}
+            checkoutAddress={checkoutShippingAddress}
             userAddresses={user?.addresses}
             selectedUserAddressId={selectedShippingAddressId}
             setShippingAddress={handleSetShippingAddress}
@@ -145,6 +150,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             setBillingAddress={handleSetBillingAddress}
             billingAsShippingAddress={billingAsShipping}
             setBillingAsShippingAddress={setBillingAsShippingAddress}
+          />
+        )}
+      />
+      <Route
+        path={steps[3].link}
+        render={props => (
+          <CheckoutReview
+            {...props}
+            shippingAddress={checkoutShippingAddress}
+            billingAddress={checkoutBillingAddress}
+            email={checkout?.email}
           />
         )}
       />
