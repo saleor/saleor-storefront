@@ -4,6 +4,7 @@ export enum StateItems {
   CHECKOUT,
   PROMO_CODE,
   SHIPPING_AS_BILLING,
+  SELECTED_SHIPPING_ADDRESS_ID,
 }
 
 export interface ISaleorState {

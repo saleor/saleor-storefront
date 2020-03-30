@@ -3,6 +3,7 @@ import { IAddress, IAddressWithAddressType } from "@types";
 
 export interface IProps {
   userAddresses: UserDetails_me["addresses"] | null | undefined;
+  selectedUserAddressId?: string;
   checkoutAddress: IAddress | null | undefined;
   setShippingAddress: (id: string, address: IAddressWithAddressType) => void;
 }

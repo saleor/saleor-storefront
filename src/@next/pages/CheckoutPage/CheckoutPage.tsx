@@ -3,9 +3,14 @@ import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary, CheckoutAddress } from "@components/organisms";
+import {
+  CartSummary,
+  CheckoutAddress,
+  CheckoutShipping,
+} from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { IAddressWithAddressType } from "@types";
 
 import { IProps } from "./types";
 
@@ -41,7 +46,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
   const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
-  const { checkout, setShippingAddress } = useCheckout();
+  const {
+    checkout,
+    setShippingAddress,
+    selectedShippingAddressId,
+    availableShippingMethods,
+  } = useCheckout();
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
   const activeStep = steps[activeStepIndex];
@@ -66,6 +76,22 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     },
   }));
 
+  const checkoutAddress = {
+    ...checkout?.shippingAddress,
+    phone: checkout?.shippingAddress?.phone || undefined,
+  };
+  const handleSetShippingAddress = (
+    id: string,
+    address: IAddressWithAddressType
+  ) =>
+    setShippingAddress({
+      ...address,
+      id,
+    });
+  const shippingMethods = availableShippingMethods
+    ? availableShippingMethods
+    : [];
+
   const checkoutProgress = (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
   );
@@ -84,18 +110,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         render={props => (
           <CheckoutAddress
             {...props}
-            checkoutAddress={{
-              ...checkout?.shippingAddress,
-              phone: checkout?.shippingAddress?.phone || undefined,
-            }}
+            checkoutAddress={checkoutAddress}
             userAddresses={user?.addresses}
-            setShippingAddress={(id, address) =>
-              setShippingAddress({
-                ...address,
-                id,
-              })
-            }
+            selectedUserAddressId={selectedShippingAddressId}
+            setShippingAddress={handleSetShippingAddress}
           />
+        )}
+      />
+      <Route
+        path={steps[1].link}
+        render={props => (
+          <CheckoutShipping {...props} shippingMethods={shippingMethods} />
         )}
       />
     </Switch>

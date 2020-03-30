@@ -5,13 +5,20 @@ import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
-import { IAddress, ICheckout, ISaleorCheckoutAPI } from "./types";
+import {
+  IAddress,
+  IAvailableShippingMethods,
+  ICheckout,
+  ISaleorCheckoutAPI,
+} from "./types";
 
 export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
   checkout: ICheckout | null;
   promoCode: string | null;
   shippingAsBilling: boolean;
+  selectedShippingAddressId?: string;
+  availableShippingMethods?: IAvailableShippingMethods;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -40,13 +47,26 @@ export class SaleorCheckoutAPI extends ErrorListener
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
-      ({ id, email, shippingAddress, billingAddress }: ICheckoutModel) => {
+      ({
+        id,
+        email,
+        shippingAddress,
+        billingAddress,
+        availableShippingMethods,
+      }: ICheckoutModel) => {
         this.checkout = {
           billingAddress,
           email,
           id,
           shippingAddress,
         };
+        this.availableShippingMethods = availableShippingMethods;
+      }
+    );
+    this.saleorState.subscribeToChange(
+      StateItems.SELECTED_SHIPPING_ADDRESS_ID,
+      (selectedShippingAddressId?: string) => {
+        this.selectedShippingAddressId = selectedShippingAddressId;
       }
     );
 
@@ -78,6 +98,7 @@ export class SaleorCheckoutAPI extends ErrorListener
       this.saleorState.checkout,
       shippingAddress
     );
+    this.saleorState.updateSelectedShippingAddressId(shippingAddress.id);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {

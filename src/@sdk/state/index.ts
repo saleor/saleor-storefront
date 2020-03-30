@@ -13,6 +13,7 @@ export class SaleorState extends NamedObservable<StateItems>
   checkout: ICheckoutModel | null;
   promoCode: string | null;
   shippingAsBilling: boolean;
+  selectedShippingAddressId?: string;
 
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -48,6 +49,14 @@ export class SaleorState extends NamedObservable<StateItems>
     } else {
       this.provideCheckoutOffline(forceReload);
     }
+  };
+
+  updateSelectedShippingAddressId = (selectedShippingAddressId?: string) => {
+    this.selectedShippingAddressId = selectedShippingAddressId;
+    this.notifyChange(
+      StateItems.SELECTED_SHIPPING_ADDRESS_ID,
+      this.selectedShippingAddressId
+    );
   };
 
   private updateCheckout = (checkout: ICheckoutModel | null) => {

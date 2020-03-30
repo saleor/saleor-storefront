@@ -55,9 +55,17 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           totalPrice,
           subtotalPrice,
           shippingPrice,
+          availableShippingMethods,
         } = checkout;
         return {
           data: {
+            availableShippingMethods: availableShippingMethods
+              ? availableShippingMethods.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             billingAddress,
             email,
             id,
@@ -241,10 +249,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         totalPrice,
         subtotalPrice,
         shippingPrice,
+        availableShippingMethods,
       } = data?.checkout;
 
       return {
         data: {
+          availableShippingMethods: availableShippingMethods
+            ? availableShippingMethods.filter(function notEmpty<TValue>(
+                value: TValue | null | undefined
+              ): value is TValue {
+                return value !== null && value !== undefined;
+              })
+            : [],
           billingAddress,
           email,
           id,
@@ -313,10 +329,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           totalPrice,
           subtotalPrice,
           shippingPrice,
+          availableShippingMethods,
         } = data?.checkout;
 
         return {
           data: {
+            availableShippingMethods: availableShippingMethods
+              ? availableShippingMethods.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             billingAddress,
             email,
             id,
@@ -396,10 +420,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           totalPrice,
           subtotalPrice,
           shippingPrice,
+          availableShippingMethods,
         } = data?.checkout;
 
         return {
           data: {
+            availableShippingMethods: availableShippingMethods
+              ? availableShippingMethods.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             billingAddress,
             email,
             id,

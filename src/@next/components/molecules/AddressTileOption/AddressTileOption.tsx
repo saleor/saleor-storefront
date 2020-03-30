@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Address } from "@components/atoms";
+import { Address, Radio } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -19,19 +19,17 @@ const AddressTileOption: React.FC<IProps> = ({
   return (
     <S.Label checked={checked}>
       <Address {...address} />
-      <S.LabeledInput checked={checked}>
-        <input
-          type="radio"
+      <S.RadioWrapper>
+        <Radio
           name={inputName}
           value={id}
           checked={checked}
           onChange={onChange}
-        />{" "}
-        <div>
-          <span></span>
-        </div>
-        {label}
-      </S.LabeledInput>
+          customLabel={true}
+        >
+          {label}
+        </Radio>
+      </S.RadioWrapper>
     </S.Label>
   );
 };

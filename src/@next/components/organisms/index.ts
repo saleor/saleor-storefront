@@ -18,3 +18,4 @@ export * from "./CartRow";
 export * from "./ThankYou";
 export * from "./CheckoutAddress";
 export * from "./AddressGridSelector";
+export * from "./CheckoutShipping";

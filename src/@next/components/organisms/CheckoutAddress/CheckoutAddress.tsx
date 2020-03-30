@@ -12,6 +12,7 @@ import { IProps } from "./types";
  */
 const CheckoutAddress: React.FC<IProps> = ({
   checkoutAddress,
+  selectedUserAddressId,
   userAddresses,
   setShippingAddress,
 }: IProps) => {
@@ -41,7 +42,7 @@ const CheckoutAddress: React.FC<IProps> = ({
       {userAddresses ? (
         <AddressGridSelector
           addresses={adresses}
-          selectedAddressId={checkoutAddress?.id}
+          selectedAddressId={selectedUserAddressId}
           onSelect={setShippingAddress}
         />
       ) : (
