@@ -1,6 +1,6 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const Section = styled.section``;
 
 export const Title = styled.h3`
   font-weight: ${props => props.theme.typography.boldFontWeight};

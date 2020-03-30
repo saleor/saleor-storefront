@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const RadioWrapper = styled.div`
   padding-top: 1rem;
@@ -11,4 +11,8 @@ export const Label = styled.label<{ checked: boolean }>`
   ${props => props.checked && `border: 2px solid #21125E;`}
   font-size: ${props => props.theme.typography.smallFontSize};
   cursor: pointer;
+
+  ${media.smallScreen`
+    padding: 30px 20px;
+  `}
 `;

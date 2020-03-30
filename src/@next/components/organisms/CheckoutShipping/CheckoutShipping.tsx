@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Radio, Tile } from "@components/atoms";
+import { Radio } from "@components/atoms";
 import { Money } from "@components/containers";
 
 import * as S from "./styles";
@@ -14,7 +14,7 @@ const CheckoutShipping: React.FC<IProps> = ({
   selectedShippingMethodId,
 }: IProps) => {
   return (
-    <S.Wrapper>
+    <S.Section>
       <S.Title>SHIPPING METHOD</S.Title>
       <S.ShippingMethodList>
         {shippingMethods.map(({ id, name, price }) => {
@@ -22,7 +22,7 @@ const CheckoutShipping: React.FC<IProps> = ({
             !!selectedShippingMethodId && selectedShippingMethodId === id;
 
           return (
-            <S.Tile checked={checked}>
+            <S.Tile checked={checked} key={id}>
               <Radio
                 name="shipping-method"
                 value={id}
@@ -36,7 +36,7 @@ const CheckoutShipping: React.FC<IProps> = ({
           );
         })}
       </S.ShippingMethodList>
-    </S.Wrapper>
+    </S.Section>
   );
 };
 

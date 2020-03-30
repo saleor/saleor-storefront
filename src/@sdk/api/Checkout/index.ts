@@ -16,7 +16,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
   checkout: ICheckout | null;
   promoCode: string | null;
-  shippingAsBilling: boolean;
+  billingAsShipping: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
 
@@ -34,7 +34,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     super();
     this.checkout = null;
     this.promoCode = null;
-    this.shippingAsBilling = false;
+    this.billingAsShipping = false;
 
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
@@ -85,7 +85,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   /**
    * Method not implemented yet
    */
-  setBillingAddress = () =>
+  setBillingAddress = async (billingAddress: IAddress) =>
     Promise.resolve({
       pending: false,
     });
@@ -115,7 +115,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   /**
    * Method not implemented yet
    */
-  setShippingAsBillingAddress = () =>
+  setBillingAsShippingAddress = (billingAsShipping: boolean) =>
     Promise.resolve({
       pending: false,
     });

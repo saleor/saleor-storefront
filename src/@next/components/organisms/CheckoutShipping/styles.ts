@@ -1,6 +1,6 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const Section = styled.section``;
 
 export const ShippingMethodList = styled.div`
   display: grid;

@@ -31,12 +31,12 @@ export interface ICheckout {
 export interface ISaleorCheckoutAPI {
   checkout: ICheckout | null;
   promoCode: string | null;
-  shippingAsBilling: boolean;
+  billingAsShipping: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   load: () => PromiseResponse;
-  setBillingAddress: () => PromiseResponse;
+  setBillingAddress: (billingAddress: IAddress) => PromiseResponse;
   setShippingAddress: (shippingAddress: IAddress) => PromiseResponse;
-  setShippingAsBillingAddress: () => PromiseResponse;
+  setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

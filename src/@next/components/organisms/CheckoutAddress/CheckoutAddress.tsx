@@ -34,10 +34,8 @@ const CheckoutAddress: React.FC<IProps> = ({
         onSelect: () => null,
       })) || [];
 
-  console.log(userAddresses, checkoutAddress);
-
   return (
-    <S.Wrapper>
+    <S.Section>
       <S.Title>SHIPPING ADDRESS</S.Title>
       {userAddresses ? (
         <AddressGridSelector
@@ -48,7 +46,7 @@ const CheckoutAddress: React.FC<IProps> = ({
       ) : (
         <></>
       )}
-    </S.Wrapper>
+    </S.Section>
   );
 };
 

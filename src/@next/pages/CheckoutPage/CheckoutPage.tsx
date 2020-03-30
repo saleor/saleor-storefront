@@ -6,6 +6,7 @@ import { CheckoutProgressBar } from "@components/molecules";
 import {
   CartSummary,
   CheckoutAddress,
+  CheckoutPayment,
   CheckoutShipping,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
@@ -48,7 +49,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
   const {
     checkout,
+    billingAsShipping,
     setShippingAddress,
+    setBillingAddress,
+    setBillingAsShippingAddress,
     selectedShippingAddressId,
     availableShippingMethods,
   } = useCheckout();
@@ -88,6 +92,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       ...address,
       id,
     });
+  const handleSetBillingAddress = (
+    id: string,
+    address: IAddressWithAddressType
+  ) =>
+    setBillingAddress({
+      ...address,
+      id,
+    });
   const shippingMethods = availableShippingMethods
     ? availableShippingMethods
     : [];
@@ -121,6 +133,19 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         path={steps[1].link}
         render={props => (
           <CheckoutShipping {...props} shippingMethods={shippingMethods} />
+        )}
+      />
+      <Route
+        path={steps[2].link}
+        render={props => (
+          <CheckoutPayment
+            {...props}
+            userAddresses={user?.addresses}
+            selectedUserAddressId={selectedShippingAddressId}
+            setBillingAddress={handleSetBillingAddress}
+            billingAsShippingAddress={billingAsShipping}
+            setBillingAsShippingAddress={setBillingAsShippingAddress}
+          />
         )}
       />
     </Switch>
