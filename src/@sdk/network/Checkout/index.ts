@@ -1,7 +1,11 @@
 import { APIProxy } from "@sdk/api/APIProxy";
 import { Checkout } from "@sdk/fragments/types/Checkout";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
-import { ICheckoutModel, ICheckoutModelLine } from "@sdk/repository";
+import {
+  ICheckoutAddress,
+  ICheckoutModel,
+  ICheckoutModelLine,
+} from "@sdk/repository";
 import { CountryCode } from "@sdk/types/globalTypes";
 
 import { ICheckoutNetworkManager } from "./types";
@@ -219,16 +223,46 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
 
   createCheckout = async (
     email: string,
-    shippingAddress: object,
-    billingAddress: object,
-    lines: Array<{ variantId: string; quantity: number }>
+    lines: Array<{ variantId: string; quantity: number }>,
+    shippingAddress: ICheckoutAddress,
+    billingAddress?: ICheckoutAddress
   ) => {
     const { data } = await this.apiProxy.setCreateCheckout({
       checkoutInput: {
-        billingAddress,
+        billingAddress: billingAddress
+          ? {
+              city: billingAddress.city,
+              companyName: billingAddress.companyName,
+              country:
+                CountryCode[
+                  billingAddress?.country?.code as keyof typeof CountryCode
+                ],
+              countryArea: billingAddress.countryArea,
+              firstName: billingAddress.firstName,
+              lastName: billingAddress.lastName,
+              phone: billingAddress.phone,
+              postalCode: billingAddress.postalCode,
+              streetAddress1: billingAddress.streetAddress1,
+              streetAddress2: billingAddress.streetAddress2,
+            }
+          : undefined,
         email,
         lines,
-        shippingAddress,
+        shippingAddress: {
+          city: shippingAddress.city,
+          companyName: shippingAddress.companyName,
+          country:
+            CountryCode[
+              shippingAddress?.country?.code as keyof typeof CountryCode
+            ],
+          countryArea: shippingAddress.countryArea,
+          firstName: shippingAddress.firstName,
+          lastName: shippingAddress.lastName,
+          phone: shippingAddress.phone,
+          postalCode: shippingAddress.postalCode,
+          streetAddress1: shippingAddress.streetAddress1,
+          streetAddress2: shippingAddress.streetAddress2,
+        },
       },
     });
 

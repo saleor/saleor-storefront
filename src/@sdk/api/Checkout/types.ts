@@ -36,7 +36,10 @@ export interface ISaleorCheckoutAPI {
   availableShippingMethods?: IAvailableShippingMethods;
   load: () => PromiseResponse;
   setBillingAddress: (billingAddress: IAddress) => PromiseResponse;
-  setShippingAddress: (shippingAddress: IAddress) => PromiseResponse;
+  setShippingAddress: (
+    shippingAddress: IAddress,
+    email: string
+  ) => PromiseResponse;
   setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

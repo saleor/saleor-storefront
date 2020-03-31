@@ -1,5 +1,5 @@
 import { LocalRepository } from "../LocalRepository";
-import { ICheckoutModel } from "../types";
+import { ICheckoutAddress, ICheckoutModel } from "../types";
 
 export interface ICheckoutRepositoryManager {
   getRepository: () => LocalRepository;
@@ -21,5 +21,14 @@ export interface ICheckoutRepositoryManager {
     checkout: ICheckoutModel | null,
     variantId: string,
     quantity: number
+  ) => ICheckoutModel | null;
+  setShippingAddress: (
+    checkout: ICheckoutModel | null,
+    shippingAddress: ICheckoutAddress,
+    email?: string
+  ) => ICheckoutModel | null;
+  setBillingAddress: (
+    checkout: ICheckoutModel | null,
+    shippingAddress: ICheckoutAddress
   ) => ICheckoutModel | null;
 }

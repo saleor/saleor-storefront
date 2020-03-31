@@ -61,7 +61,7 @@ export interface ICheckoutModel {
   id: string | undefined;
   email: string | undefined;
   shippingAddress: ICheckoutAddress | null | undefined;
-  billingAddress: object | null | undefined;
+  billingAddress: ICheckoutAddress | null | undefined;
   lines: ICheckoutModelLine[] | null | undefined;
   totalPrice: Checkout_totalPrice | null | undefined;
   subtotalPrice: Checkout_subtotalPrice | null | undefined;

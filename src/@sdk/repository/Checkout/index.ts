@@ -171,19 +171,45 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   setShippingAddress = (
     checkout: ICheckoutModel | null,
-    shippingAddress: ICheckoutAddress
+    shippingAddress: ICheckoutAddress,
+    email?: string
   ) => {
     const alteredCheckout = checkout
       ? {
           ...checkout,
+          email,
           shippingAddress,
         }
       : {
           billingAddress: undefined,
-          email: undefined,
+          email,
           id: undefined,
           lines: undefined,
           shippingAddress,
+          shippingPrice: undefined,
+          subtotalPrice: undefined,
+          totalPrice: undefined,
+        };
+    this.repository.setCheckout(alteredCheckout);
+
+    return alteredCheckout;
+  };
+
+  setBillingAddress = (
+    checkout: ICheckoutModel | null,
+    billingAddress: ICheckoutAddress
+  ) => {
+    const alteredCheckout = checkout
+      ? {
+          ...checkout,
+          billingAddress,
+        }
+      : {
+          billingAddress,
+          email: undefined,
+          id: undefined,
+          lines: undefined,
+          shippingAddress: undefined,
           shippingPrice: undefined,
           subtotalPrice: undefined,
           totalPrice: undefined,

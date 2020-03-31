@@ -1,7 +1,4 @@
-import React, { useContext } from "react";
-
-import { ShopContext } from "@temp/components/ShopProvider/context";
-import { IAddressWithAddressType } from "@types";
+import React, { useMemo } from "react";
 
 import { AddressForm, AddressGridSelector } from "..";
 import * as S from "./styles";
@@ -12,6 +9,7 @@ import { IProps } from "./types";
  */
 const CheckoutAddress: React.FC<IProps> = ({
   checkoutAddress,
+  email,
   selectedUserAddressId,
   userAddresses,
   countries,
@@ -55,8 +53,13 @@ const CheckoutAddress: React.FC<IProps> = ({
           ): value is TValue {
             return value !== null && value !== undefined;
           })}
-          address={checkoutAddress || undefined}
-          handleSubmit={address => address && setShippingAddress(address)}
+          address={{
+            ...checkoutAddress,
+            email,
+          }}
+          handleSubmit={address =>
+            address && setShippingAddress(address, address.email)
+          }
         />
       )}
     </S.Section>

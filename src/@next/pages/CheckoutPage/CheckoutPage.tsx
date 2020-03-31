@@ -100,13 +100,29 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         phone: checkout?.billingAddress?.phone || undefined,
       }
     : undefined;
-  const handleSetShippingAddress = (address: IAddress, id?: string) => {
-    setShippingAddress({
-      ...address,
-      id,
-    });
+  const handleSetShippingAddress = (
+    address: IAddress,
+    email?: string,
+    userAddressId?: string
+  ) => {
+    let shippingEmail;
+    if (user && userAddressId) {
+      shippingEmail = user?.email;
+    } else if (email) {
+      shippingEmail = email;
+    } else {
+      return;
+    }
 
-    if (!id) {
+    setShippingAddress(
+      {
+        ...address,
+        id: userAddressId,
+      },
+      shippingEmail
+    );
+
+    if (!userAddressId) {
       history.push(activeStep.nextStepLink);
     }
   };
@@ -151,6 +167,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             formId={checkoutAddressFormId}
             formRef={checkoutAddressFormRef}
             checkoutAddress={checkoutShippingAddress}
+            email={checkout?.email}
             userAddresses={user?.addresses}
             selectedUserAddressId={selectedShippingAddressId}
             countries={countries}

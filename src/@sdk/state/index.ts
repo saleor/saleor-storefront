@@ -94,7 +94,7 @@ export class SaleorState extends NamedObservable<StateItems>
     // 2.b. Try to take new created checkout from backend
     if (checkoutModel && !checkoutModel.id) {
       const { email, shippingAddress, billingAddress, lines } = checkoutModel;
-      if (email && shippingAddress && billingAddress && lines) {
+      if (email && shippingAddress && lines) {
         const alteredLines = lines.map(item => ({
           quantity: item!.quantity,
           variantId: item?.variant!.id,
@@ -105,9 +105,9 @@ export class SaleorState extends NamedObservable<StateItems>
           errors,
         } = await this.checkoutNetworkManager.createCheckout(
           email,
+          alteredLines,
           shippingAddress,
-          billingAddress,
-          alteredLines
+          billingAddress || undefined
         );
 
         if (errors) {

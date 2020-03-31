@@ -62,6 +62,7 @@ export class CheckoutJobQueue extends JobQueue {
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
+          email: data.email,
           shippingAddress: data.shippingAddress,
         });
       }

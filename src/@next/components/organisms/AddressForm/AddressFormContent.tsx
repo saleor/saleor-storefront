@@ -135,6 +135,16 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
+        <S.RowWithTwoCells>
+          <TextField
+            name="email"
+            label="Email"
+            value={values!.email}
+            autoComplete="email"
+            errors={fieldErrors!.email}
+            {...basicInputProps()}
+          />
+        </S.RowWithTwoCells>
       </S.Wrapper>
     </S.AddressForm>
   );

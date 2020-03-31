@@ -90,13 +90,14 @@ export class SaleorCheckoutAPI extends ErrorListener
       pending: false,
     });
 
-  setShippingAddress = async (shippingAddress: IAddress) => {
+  setShippingAddress = async (shippingAddress: IAddress, email: string) => {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
     this.checkoutRepositoryManager.setShippingAddress(
       this.saleorState.checkout,
-      shippingAddress
+      shippingAddress,
+      email
     );
     this.saleorState.updateSelectedShippingAddressId(shippingAddress.id);
 

@@ -6,8 +6,9 @@ export interface IProps {
   userAddresses: UserDetails_me["addresses"] | null | undefined;
   selectedUserAddressId?: string;
   checkoutAddress: IAddress | null | undefined;
+  email?: string;
   countries: Array<getShop_shop_countries | null>;
   formRef: React.RefObject<HTMLFormElement>;
   formId: string;
-  setShippingAddress: (address: IAddress, id?: string) => void;
+  setShippingAddress: (address: IAddress, email?: string, id?: string) => void;
 }

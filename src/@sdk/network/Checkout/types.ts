@@ -1,4 +1,8 @@
-import { ICheckoutModel, ICheckoutModelLine } from "@sdk/repository";
+import {
+  ICheckoutAddress,
+  ICheckoutModel,
+  ICheckoutModelLine,
+} from "@sdk/repository";
 
 import { INetworkManagerResponse } from "../types";
 
@@ -11,9 +15,9 @@ export interface ICheckoutNetworkManager {
   ) => Promise<INetworkManagerResponse<ICheckoutModelLine[]>>;
   createCheckout: (
     email: string,
-    shippingAddress: object,
-    billingAddress: object,
-    lines: Array<{ variantId: string; quantity: number }>
+    lines: Array<{ variantId: string; quantity: number }>,
+    shippingAddress: ICheckoutAddress,
+    billingAddress?: ICheckoutAddress
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setCartItem: (
     checkout: ICheckoutModel
