@@ -2,7 +2,7 @@ import React from "react";
 
 import { Checkbox } from "@components/atoms";
 
-import { AddressGridSelector, DiscountForm } from "..";
+import { AddressForm, AddressGridSelector, DiscountForm } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -13,6 +13,10 @@ const CheckoutPayment: React.FC<IProps> = ({
   selectedUserAddressId,
   userAddresses,
   billingAsShippingAddress = false,
+  checkoutBillingAddress,
+  countries,
+  formRef,
+  formId,
   setBillingAddress,
   setBillingAsShippingAddress,
 }: IProps) => {
@@ -57,7 +61,17 @@ const CheckoutPayment: React.FC<IProps> = ({
                 onSelect={setBillingAddress}
               />
             ) : (
-              <></>
+              <AddressForm
+                formId={formId}
+                formRef={formRef}
+                countriesOptions={countries.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })}
+                address={checkoutBillingAddress || undefined}
+                handleSubmit={address => address && setBillingAddress(address)}
+              />
             )}
           </>
         )}

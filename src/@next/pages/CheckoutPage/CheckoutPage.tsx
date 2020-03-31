@@ -85,6 +85,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
   const checkoutAddressFormId = "address-form";
   const checkoutAddressFormRef = useRef(null);
+  const checkoutBillingFormId = "billing-form";
+  const checkoutBillingFormRef = useRef(null);
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -120,6 +122,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       if (user && selectedShippingAddressId) {
         history.push(activeStep.nextStepLink);
       }
+    } else {
+      history.push(activeStep.nextStepLink);
     }
   };
   const shippingMethods = availableShippingMethods
@@ -165,8 +169,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         render={props => (
           <CheckoutPayment
             {...props}
+            formId={checkoutBillingFormId}
+            formRef={checkoutBillingFormRef}
             userAddresses={user?.addresses}
             selectedUserAddressId={selectedShippingAddressId}
+            checkoutBillingAddress={checkoutBillingAddress}
+            countries={countries}
             setBillingAddress={handleSetBillingAddress}
             billingAsShippingAddress={billingAsShipping}
             setBillingAsShippingAddress={setBillingAsShippingAddress}
