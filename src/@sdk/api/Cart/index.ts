@@ -56,8 +56,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
               const bId = b.id?.toUpperCase() || "";
               return aId < bId ? -1 : aId > bId ? 1 : 0;
             } else {
-              const aId = a.variant.name?.toUpperCase() || "";
-              const bId = b.variant.name?.toUpperCase() || "";
+              const aId = a.variant.id?.toUpperCase() || "";
+              const bId = b.variant.id?.toUpperCase() || "";
               return aId < bId ? -1 : aId > bId ? 1 : 0;
             }
           });

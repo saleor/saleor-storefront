@@ -120,6 +120,9 @@ export class SaleorState extends NamedObservable<StateItems>
           this.updateCheckout(checkoutModel);
           return;
         }
+      } else {
+        this.updateCheckout(checkoutModel);
+        return;
       }
     }
   };

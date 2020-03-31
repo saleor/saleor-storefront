@@ -8,5 +8,5 @@ declare type Address = {
 export interface IProps {
   addresses: Address[];
   selectedAddressId?: string;
-  onSelect: (id: string, address: IAddressWithAddressType) => void;
+  onSelect: (address: IAddressWithAddressType, id: string) => void;
 }

@@ -25,7 +25,7 @@ const AddressGridSelector: React.FC<IProps> = ({
           inputName="address-tile-option"
           label="Deliver to this address"
           address={address}
-          onChange={() => onSelect(id, address)}
+          onChange={() => onSelect(address, id)}
           checked={!!selectedAddressId && selectedAddressId === id}
         />
       );

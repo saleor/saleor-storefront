@@ -6,7 +6,7 @@ export interface IFormikProps {
   handleBlur?: (e: React.FocusEvent) => void;
   setFieldValue: (field: string, value: string) => void;
   values?: IAddress;
-  options?: Array<{
+  countriesOptions?: Array<{
     code: string;
     country: string;
   }>;
@@ -16,6 +16,10 @@ export type AddressError = { field?: string; message: string };
 
 export interface IProps {
   address?: IAddress;
+  countriesOptions?: Array<{
+    code: string;
+    country: string;
+  }>;
   defaultValue?: any;
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;

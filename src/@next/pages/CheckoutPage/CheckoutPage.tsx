@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "@components/atoms";
@@ -12,7 +12,8 @@ import {
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
-import { IAddressWithAddressType } from "@types";
+import { ShopContext } from "@temp/components/ShopProvider/context";
+import { IAddress } from "@types";
 
 import { IProps } from "./types";
 
@@ -57,6 +58,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedShippingAddressId,
     availableShippingMethods,
   } = useCheckout();
+  const { countries } = useContext(ShopContext);
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
   const activeStep = steps[activeStepIndex];
@@ -81,30 +83,45 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     },
   }));
 
-  const checkoutShippingAddress = {
-    ...checkout?.shippingAddress,
-    phone: checkout?.shippingAddress?.phone || undefined,
-  };
-  const checkoutBillingAddress = {
-    ...checkout?.billingAddress,
-    phone: checkout?.billingAddress?.phone || undefined,
-  };
-  const handleSetShippingAddress = (
-    id: string,
-    address: IAddressWithAddressType
-  ) =>
+  const checkoutAddressFormId = "address-form";
+  const checkoutAddressFormRef = useRef(null);
+
+  const checkoutShippingAddress = checkout?.shippingAddress
+    ? {
+        ...checkout?.shippingAddress,
+        phone: checkout?.shippingAddress?.phone || undefined,
+      }
+    : undefined;
+  const checkoutBillingAddress = checkout?.billingAddress
+    ? {
+        ...checkout?.billingAddress,
+        phone: checkout?.billingAddress?.phone || undefined,
+      }
+    : undefined;
+  const handleSetShippingAddress = (address: IAddress, id?: string) => {
     setShippingAddress({
       ...address,
       id,
     });
-  const handleSetBillingAddress = (
-    id: string,
-    address: IAddressWithAddressType
-  ) =>
+
+    if (!id) {
+      history.push(activeStep.nextStepLink);
+    }
+  };
+  const handleSetBillingAddress = (address: IAddress, id?: string) =>
     setBillingAddress({
       ...address,
       id,
     });
+  const handleNextStepClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    if (activeStepIndex === 0) {
+      if (user && selectedShippingAddressId) {
+        history.push(activeStep.nextStepLink);
+      }
+    }
+  };
   const shippingMethods = availableShippingMethods
     ? availableShippingMethods
     : [];
@@ -127,9 +144,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         render={props => (
           <CheckoutAddress
             {...props}
+            formId={checkoutAddressFormId}
+            formRef={checkoutAddressFormRef}
             checkoutAddress={checkoutShippingAddress}
             userAddresses={user?.addresses}
             selectedUserAddressId={selectedShippingAddressId}
+            countries={countries}
             setShippingAddress={handleSetShippingAddress}
           />
         )}
@@ -167,7 +187,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     </Switch>
   );
   const button = (
-    <Button onClick={() => history.push(activeStep.nextStepLink)}>
+    <Button
+      onClick={handleNextStepClick}
+      type={checkoutAddressFormId ? "submit" : "button"}
+      form={checkoutAddressFormId}
+    >
       {activeStep.nextActionName.toUpperCase()}
     </Button>
   );

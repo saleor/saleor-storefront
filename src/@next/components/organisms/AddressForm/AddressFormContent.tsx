@@ -13,7 +13,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   errors,
   handleSubmit,
   values,
-  options,
+  countriesOptions,
   defaultValue,
   setFieldValue,
 }) => {
@@ -114,11 +114,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             defaultValue={defaultValue}
             label="Country"
             name="country"
-            options={options}
+            options={countriesOptions}
             value={
               values!.country &&
-              options &&
-              options!.find(option => option.code === values!.country!.code)
+              countriesOptions &&
+              countriesOptions!.find(
+                option => option.code === values!.country!.code
+              )
             }
             onChange={(value: any, name: any) => setFieldValue(name, value)}
             optionLabelKey="country"

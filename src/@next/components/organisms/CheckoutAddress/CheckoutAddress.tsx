@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 
+import { ShopContext } from "@temp/components/ShopProvider/context";
 import { IAddressWithAddressType } from "@types";
 
-import { AddressGridSelector } from "../AddressGridSelector";
-
+import { AddressForm, AddressGridSelector } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -14,6 +14,9 @@ const CheckoutAddress: React.FC<IProps> = ({
   checkoutAddress,
   selectedUserAddressId,
   userAddresses,
+  countries,
+  formRef,
+  formId,
   setShippingAddress,
 }: IProps) => {
   const adresses =
@@ -44,7 +47,17 @@ const CheckoutAddress: React.FC<IProps> = ({
           onSelect={setShippingAddress}
         />
       ) : (
-        <></>
+        <AddressForm
+          formId={formId}
+          formRef={formRef}
+          countriesOptions={countries.filter(function notEmpty<TValue>(
+            value: TValue | null | undefined
+          ): value is TValue {
+            return value !== null && value !== undefined;
+          })}
+          address={checkoutAddress || undefined}
+          handleSubmit={address => address && setShippingAddress(address)}
+        />
       )}
     </S.Section>
   );
