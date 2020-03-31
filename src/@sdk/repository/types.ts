@@ -23,21 +23,21 @@ export interface ICheckoutModelLineTotalPrice {
 }
 
 export interface ICheckoutModelLineVariant {
-  stockQuantity: number | undefined;
+  stockQuantity?: number;
   id: string;
-  name: string | undefined;
-  sku: string | undefined;
-  pricing: Checkout_lines_variant_pricing | null | undefined;
-  product: Checkout_lines_variant_product | undefined;
-  isAvailable: boolean | null | undefined;
-  attributes: Checkout_lines_variant_attributes[] | undefined;
+  name?: string;
+  sku?: string;
+  pricing?: Checkout_lines_variant_pricing | null;
+  product?: Checkout_lines_variant_product;
+  isAvailable?: boolean | null;
+  attributes?: Checkout_lines_variant_attributes[];
 }
 
 export interface ICheckoutModelLine {
   quantity: number;
-  id: string | undefined;
+  id?: string;
   variant: ICheckoutModelLineVariant;
-  totalPrice: ICheckoutModelLineTotalPrice | null | undefined;
+  totalPrice?: ICheckoutModelLineTotalPrice | null;
 }
 
 export interface ICheckoutAddress {
@@ -58,14 +58,14 @@ export interface ICheckoutAddress {
 }
 
 export interface ICheckoutModel {
-  id: string | undefined;
-  email: string | undefined;
-  shippingAddress: ICheckoutAddress | null | undefined;
-  billingAddress: ICheckoutAddress | null | undefined;
-  lines: ICheckoutModelLine[] | null | undefined;
-  totalPrice: Checkout_totalPrice | null | undefined;
-  subtotalPrice: Checkout_subtotalPrice | null | undefined;
-  shippingPrice: Checkout_shippingPrice | null | undefined;
+  id?: string;
+  email?: string;
+  shippingAddress?: ICheckoutAddress | null;
+  billingAddress?: ICheckoutAddress | null;
+  lines?: ICheckoutModelLine[] | null;
+  totalPrice?: Checkout_totalPrice | null;
+  subtotalPrice?: Checkout_subtotalPrice | null;
+  shippingPrice?: Checkout_shippingPrice | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
 }
 

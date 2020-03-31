@@ -14,9 +14,9 @@ import {
 
 export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
-  checkout: ICheckout | null;
-  promoCode: string | null;
-  billingAsShipping: boolean;
+  checkout?: ICheckout;
+  promoCode?: string;
+  billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
 
@@ -32,10 +32,6 @@ export class SaleorCheckoutAPI extends ErrorListener
     loadOnStart: boolean
   ) {
     super();
-    this.checkout = null;
-    this.promoCode = null;
-    this.billingAsShipping = false;
-
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
     this.checkoutNetworkManager = checkoutNetworkManager;
@@ -94,11 +90,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.setShippingAddress(
-      this.saleorState.checkout,
-      shippingAddress,
-      email
-    );
+    this.checkoutRepositoryManager.setShippingAddress(shippingAddress, email);
     this.saleorState.updateSelectedShippingAddressId(shippingAddress.id);
 
     // 2. save online if possible (if checkout id available)

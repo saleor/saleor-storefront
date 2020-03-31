@@ -31,11 +31,6 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     loadOnStart: boolean
   ) {
     super();
-    this.items = null;
-    this.totalPrice = null;
-    this.subtotalPrice = null;
-    this.shippingPrice = null;
-
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
     this.checkoutNetworkManager = checkoutNetworkManager;
@@ -76,11 +71,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.addItemToCart(
-      this.saleorState.checkout,
-      variantId,
-      quantity
-    );
+    this.checkoutRepositoryManager.addItemToCart(variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
@@ -122,10 +113,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.removeItemFromCart(
-      this.saleorState.checkout,
-      variantId
-    );
+    this.checkoutRepositoryManager.removeItemFromCart(variantId);
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
       const {
@@ -159,10 +147,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.subtractItemFromCart(
-      this.saleorState.checkout,
-      variantId
-    );
+    this.checkoutRepositoryManager.subtractItemFromCart(variantId);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
@@ -197,11 +182,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.updateItemInCart(
-      this.saleorState.checkout,
-      variantId,
-      quantity
-    );
+    this.checkoutRepositoryManager.updateItemInCart(variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {

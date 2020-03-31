@@ -36,9 +36,12 @@ export class SaleorAPI {
     const { loadOnStart } = finalConfig;
 
     const repository = new LocalRepository();
-    const checkoutRepositoryManager = new CheckoutRepositoryManager(repository);
     const checkoutNetworkManager = new CheckoutNetworkManager(apiProxy);
     const saleorState = new SaleorState(repository, checkoutNetworkManager);
+    const checkoutRepositoryManager = new CheckoutRepositoryManager(
+      repository,
+      saleorState
+    );
 
     if (onStateUpdate) {
       saleorState.subscribeToNotifiedChanges(onStateUpdate);

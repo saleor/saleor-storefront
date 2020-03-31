@@ -29,9 +29,9 @@ export interface ICheckout {
 }
 
 export interface ISaleorCheckoutAPI {
-  checkout: ICheckout | null;
-  promoCode: string | null;
-  billingAsShipping: boolean;
+  checkout?: ICheckout | null;
+  promoCode?: string | null;
+  billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   load: () => PromiseResponse;

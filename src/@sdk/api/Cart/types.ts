@@ -13,10 +13,10 @@ export type ISubtotalPrice = Checkout_subtotalPrice | null | undefined;
 export type IShippingPrice = Checkout_shippingPrice | null | undefined;
 
 export interface ISaleorCartAPI {
-  items: IItems;
-  totalPrice: ITotalPrice;
-  subtotalPrice: ISubtotalPrice;
-  shippingPrice: IShippingPrice;
+  items?: IItems;
+  totalPrice?: ITotalPrice;
+  subtotalPrice?: ISubtotalPrice;
+  shippingPrice?: IShippingPrice;
   addItem: (variantId: string, quantity: number) => PromiseResponse;
   load: () => PromiseResponse;
   removeItem: (variantId: string) => PromiseResponse;
