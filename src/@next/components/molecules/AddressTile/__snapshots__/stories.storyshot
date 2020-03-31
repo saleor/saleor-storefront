@@ -169,6 +169,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
               >
                 <div
                   className="c8"
+                  data-cy="icon_button"
                 >
                   <svg
                     height={24}
@@ -211,8 +212,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             , 
             Poland
             <br />
-            Phone number
-            : 
+            Phone number: 
             555-5555
              
             <br />
@@ -227,6 +227,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             <div>
               <div
                 className="c8"
+                data-cy="icon_button"
                 onClick={[Function]}
               >
                 <svg
@@ -244,6 +245,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             <div>
               <div
                 className="c8"
+                data-cy="icon_button"
                 onClick={[Function]}
               >
                 <svg
@@ -438,6 +440,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
               >
                 <div
                   className="c8"
+                  data-cy="icon_button"
                 >
                   <svg
                     height={24}
@@ -479,8 +482,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             , 
             Poland
             <br />
-            Phone number
-            : 
+            Phone number: 
             555-5555
              
             <br />
@@ -495,6 +497,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             <div>
               <div
                 className="c8"
+                data-cy="icon_button"
                 onClick={[Function]}
               >
                 <svg
@@ -512,6 +515,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             <div>
               <div
                 className="c8"
+                data-cy="icon_button"
                 onClick={[Function]}
               >
                 <svg

@@ -14,9 +14,9 @@ export enum CheckoutStep {
 export interface CheckoutContextInterface {
   syncWithCart?: boolean;
   syncUserCheckout?: boolean;
-  dummyStatus?: string;
-  cardData?: CardData;
-  checkout?: Checkout;
+  dummyStatus?: string | null;
+  cardData?: CardData | null;
+  checkout?: Checkout | null;
   loading?: boolean;
   shippingAsBilling?: boolean;
   /*

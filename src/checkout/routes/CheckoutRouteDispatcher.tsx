@@ -3,13 +3,7 @@ import { generatePath, Redirect, RouteComponentProps } from "react-router";
 
 import { useVariantsProducts } from "@sdk/react";
 
-import {
-  billingUrl,
-  paymentUrl,
-  reviewUrl,
-  shippingAddressUrl,
-  shippingOptionsUrl,
-} from ".";
+import * as paths from ".";
 import { Loader } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutContext } from "../context";
@@ -50,14 +44,18 @@ export const CheckoutRouteDispatcher: React.FC<RouteComponentProps<{
 
   switch (step) {
     case CheckoutStep.BillingAddress:
-      return <Redirect to={generatePath(billingUrl, { token })} />;
+      return <Redirect to={generatePath(paths.billingUrl, { token })} />;
     case CheckoutStep.ShippingAddress:
-      return <Redirect to={generatePath(shippingAddressUrl, { token })} />;
+      return (
+        <Redirect to={generatePath(paths.shippingAddressUrl, { token })} />
+      );
     case CheckoutStep.Review:
-      return <Redirect to={generatePath(reviewUrl, { token })} />;
+      return <Redirect to={generatePath(paths.reviewUrl, { token })} />;
     case CheckoutStep.Payment:
-      return <Redirect to={generatePath(paymentUrl, { token })} />;
+      return <Redirect to={generatePath(paths.paymentUrl, { token })} />;
     case CheckoutStep.ShippingOption:
-      return <Redirect to={generatePath(shippingOptionsUrl, { token })} />;
+      return (
+        <Redirect to={generatePath(paths.shippingOptionsUrl, { token })} />
+      );
   }
 };

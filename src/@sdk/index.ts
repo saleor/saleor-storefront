@@ -1,5 +1,5 @@
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient, ApolloError, ObservableQuery } from "apollo-client";
+import { ApolloClient, ApolloError, ObservableQuery, WatchQueryOptions } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { BatchHttpLink } from "apollo-link-batch-http";
 import { RetryLink } from "apollo-link-retry";
@@ -7,7 +7,13 @@ import { GraphQLError } from "graphql";
 import urljoin from "url-join";
 
 import { TokenAuth } from "../components/User/types/TokenAuth";
-import { authLink, getAuthToken, invalidTokenLink, setAuthToken } from "./auth";
+import {
+  authLink,
+  clearStorage,
+  getAuthToken,
+  invalidTokenLink,
+  setAuthToken,
+} from "./auth";
 import { MUTATIONS } from "./mutations";
 import { QUERIES } from "./queries";
 import { RequireAtLeastOne } from "./tsHelpers";
@@ -96,6 +102,8 @@ export class SaleorAPI {
     QUERIES.VariantsProducts,
     data => data.productVariants
   );
+
+  getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
@@ -207,6 +215,8 @@ export class SaleorAPI {
   ) =>
     new Promise<{ data: TokenAuth["tokenCreate"] }>(async (resolve, reject) => {
       try {
+        this.client.resetStore();
+
         const data = await this.fireQuery(
           MUTATIONS.TokenAuth,
           data => data!.tokenCreate
@@ -241,6 +251,24 @@ export class SaleorAPI {
       }
     });
 
+  signOut = () =>
+    new Promise(async (resolve, reject) => {
+      try {
+        clearStorage();
+        if (
+          navigator.credentials &&
+          navigator.credentials.preventSilentAccess
+        ) {
+          navigator.credentials.preventSilentAccess();
+        }
+        this.client.resetStore();
+
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
+
   attachAuthListener = (callback: (authenticated: boolean) => void) => {
     const eventHandler = () => {
       callback(this.isLoggedIn());
@@ -263,7 +291,7 @@ export class SaleorAPI {
   ) {
     return <
       TVariables extends InferOptions<T>["variables"],
-      TOptions extends Omit<InferOptions<T>, "variables">
+      TOptions extends Omit<InferOptions<T> | WatchQueryOptions<InferOptions<T>>, "variables">
     >(
       variables: TVariables,
       options: TOptions & {

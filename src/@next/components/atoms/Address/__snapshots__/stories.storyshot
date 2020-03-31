@@ -48,8 +48,7 @@ exports[`Storyshots @components/atoms/Address default 1`] = `
     , 
     Poland
     <br />
-    Phone number
-    : 
+    Phone number: 
     555-5555
      
     <br />

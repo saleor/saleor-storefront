@@ -5,13 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 import { ProductList } from ".";
 import { PRODUCTS } from "./fixtures";
 
-storiesOf("@components/organisms/ProductList", module).add("default", () => (
-  <BrowserRouter>
-    <ProductList
-      products={PRODUCTS}
-      canLoadMore={true}
-      loading={false}
-      onLoadMore={() => null}
-    />
-  </BrowserRouter>
-));
+storiesOf("@components/organisms/ProductList", module)
+  .addParameters({ component: ProductList })
+  .add("default", () => (
+    <BrowserRouter>
+      <ProductList
+        products={PRODUCTS}
+        canLoadMore={true}
+        loading={false}
+        onLoadMore={() => null}
+      />
+    </BrowserRouter>
+  ));

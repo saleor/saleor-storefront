@@ -1,5 +1,7 @@
 .*
+!.dockerignore
 !.storybook
+!.circle
 !.gitignore
 !.babelrc
 !.plop

@@ -2,7 +2,7 @@ import React from "react";
 import {
   CardElement,
   injectStripe,
-  ReactStripeElements
+  ReactStripeElements,
 } from "react-stripe-elements";
 
 import { ErrorMessage } from "@components/atoms";
@@ -36,7 +36,7 @@ const CardForm = ({
           token: id,
         },
       });
-      processPayment(id, PROVIDERS.STRIPE);
+      processPayment(id, PROVIDERS.STRIPE.label);
     }
     setLoadingState(false);
   };

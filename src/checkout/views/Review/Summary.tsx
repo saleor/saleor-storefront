@@ -70,7 +70,7 @@ class Summary extends React.PureComponent<{
                 path={copyImg}
               />
             </h4>
-            <p>{checkout.shippingMethod.name}</p>
+            <p>{checkout.shippingMethod?.name}</p>
           </div>
         )}
         <div>

@@ -74,6 +74,7 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
   >
     <div
       className="c1"
+      data-cy="product-tile"
     >
       <h4
         className="c2"

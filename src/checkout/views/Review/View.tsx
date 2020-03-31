@@ -8,10 +8,10 @@ import { Link } from "react-router-dom";
 
 import { Money, TaxedMoney } from "@components/containers";
 
+import { orderConfirmationUrl } from "../../../app/routes";
 import { Button, CartTable } from "../../../components";
 import { CartContext } from "../../../components/CartProvider/context";
 import { extractCheckoutLines } from "../../../components/CartProvider/utils";
-import { orderConfirmationUrl } from "../../../routes";
 import { CheckoutContext } from "../../context";
 import { paymentUrl } from "../../routes";
 import { TypedCompleteCheckoutMutation } from "./queries";
@@ -84,7 +84,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             lines={extractCheckoutLines(checkout.lines)}
             subtotal={<TaxedMoney taxedMoney={checkout.subtotalPrice} />}
             deliveryCost={
-              <Money defaultValue="0" money={checkout.shippingMethod.price} />
+              <Money defaultValue="0" money={checkout.shippingMethod?.price} />
             }
             totalCost={<Money money={checkout.totalPrice.gross} />}
             discount={

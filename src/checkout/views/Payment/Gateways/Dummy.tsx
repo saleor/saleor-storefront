@@ -30,7 +30,7 @@ class Dummy extends React.PureComponent<
         onSubmit={async evt => {
           evt.preventDefault();
           await update({ dummyStatus: selectedStatus.label });
-          processPayment(selectedStatus.token, PROVIDERS.DUMMY);
+          processPayment(selectedStatus.token, PROVIDERS.DUMMY.label);
         }}
         className="c-option__content"
       >

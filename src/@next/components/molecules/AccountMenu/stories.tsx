@@ -19,6 +19,7 @@ const DEFAULT_PROPS = { ...{ links, active } };
 import { MemoryRouter } from "react-router";
 import { AccountMenu } from ".";
 storiesOf("@components/molecules/AccountMenu", module)
+  .addParameters({ component: AccountMenu })
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))

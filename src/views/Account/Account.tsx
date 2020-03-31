@@ -13,11 +13,11 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
+  paymentOptionsUrl,
+} from "../../app/routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@components/views";
+import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
 
 const returnTab: any = (path: string, userDetails, history) => {
@@ -72,7 +72,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
           </div>
         </Media>
         <div className="account__content">
-          {returnTab(match.path, user, history)}
+          {user && returnTab(match.path, user, history)}
         </div>
       </div>
     </div>
