@@ -7,6 +7,7 @@ import { StateItems } from "@sdk/state/types";
 
 import {
   IAddress,
+  IAvailablePaymentGateways,
   IAvailableShippingMethods,
   ICheckout,
   ISaleorCheckoutAPI,
@@ -19,6 +20,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
+  availablePaymentGateways?: IAvailablePaymentGateways;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -49,6 +51,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         shippingAddress,
         billingAddress,
         availableShippingMethods,
+        availablePaymentGateways,
       }: ICheckoutModel) => {
         this.checkout = {
           billingAddress,
@@ -57,6 +60,7 @@ export class SaleorCheckoutAPI extends ErrorListener
           shippingAddress,
         };
         this.availableShippingMethods = availableShippingMethods;
+        this.availablePaymentGateways = availablePaymentGateways;
       }
     );
     this.saleorState.subscribeToChange(

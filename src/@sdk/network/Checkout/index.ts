@@ -60,9 +60,17 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           subtotalPrice,
           shippingPrice,
           availableShippingMethods,
+          availablePaymentGateways,
         } = checkout;
         return {
           data: {
+            availablePaymentGateways: availablePaymentGateways
+              ? availablePaymentGateways.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             availableShippingMethods: availableShippingMethods
               ? availableShippingMethods.filter(function notEmpty<TValue>(
                   value: TValue | null | undefined
@@ -284,10 +292,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         subtotalPrice,
         shippingPrice,
         availableShippingMethods,
+        availablePaymentGateways,
       } = data?.checkout;
 
       return {
         data: {
+          availablePaymentGateways: availablePaymentGateways
+            ? availablePaymentGateways.filter(function notEmpty<TValue>(
+                value: TValue | null | undefined
+              ): value is TValue {
+                return value !== null && value !== undefined;
+              })
+            : [],
           availableShippingMethods: availableShippingMethods
             ? availableShippingMethods.filter(function notEmpty<TValue>(
                 value: TValue | null | undefined
@@ -364,10 +380,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           subtotalPrice,
           shippingPrice,
           availableShippingMethods,
+          availablePaymentGateways,
         } = data?.checkout;
 
         return {
           data: {
+            availablePaymentGateways: availablePaymentGateways
+              ? availablePaymentGateways.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             availableShippingMethods: availableShippingMethods
               ? availableShippingMethods.filter(function notEmpty<TValue>(
                   value: TValue | null | undefined
@@ -455,10 +479,18 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           subtotalPrice,
           shippingPrice,
           availableShippingMethods,
+          availablePaymentGateways,
         } = data?.checkout;
 
         return {
           data: {
+            availablePaymentGateways: availablePaymentGateways
+              ? availablePaymentGateways.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
             availableShippingMethods: availableShippingMethods
               ? availableShippingMethods.filter(function notEmpty<TValue>(
                   value: TValue | null | undefined

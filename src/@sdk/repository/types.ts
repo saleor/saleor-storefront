@@ -1,4 +1,5 @@
 import {
+  Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
   Checkout_lines_totalPrice_gross,
   Checkout_lines_totalPrice_net,
@@ -67,6 +68,7 @@ export interface ICheckoutModel {
   subtotalPrice?: Checkout_subtotalPrice | null;
   shippingPrice?: Checkout_shippingPrice | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
+  availablePaymentGateways?: Checkout_availablePaymentGateways[];
 }
 
 export interface IJobsModel {

@@ -57,6 +57,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     setBillingAsShippingAddress,
     selectedShippingAddressId,
     availableShippingMethods,
+    availablePaymentGateways,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
 
@@ -145,6 +146,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const shippingMethods = availableShippingMethods
     ? availableShippingMethods
     : [];
+  const paymentGateways = availablePaymentGateways
+    ? availablePaymentGateways
+    : [];
 
   const checkoutProgress = (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
@@ -192,6 +196,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             selectedUserAddressId={selectedShippingAddressId}
             checkoutBillingAddress={checkoutBillingAddress}
             countries={countries}
+            paymentGateways={paymentGateways}
             setBillingAddress={handleSetBillingAddress}
             billingAsShippingAddress={billingAsShipping}
             setBillingAsShippingAddress={setBillingAsShippingAddress}

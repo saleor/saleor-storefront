@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Checkbox } from "@components/atoms";
+import { Checkbox, Radio } from "@components/atoms";
 
 import { AddressForm, AddressGridSelector, DiscountForm } from "..";
 import * as S from "./styles";
@@ -17,6 +17,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   countries,
   formRef,
   formId,
+  paymentGateways,
   setBillingAddress,
   setBillingAsShippingAddress,
 }: IProps) => {
@@ -97,6 +98,22 @@ const CheckoutPayment: React.FC<IProps> = ({
           />
         </S.DiscountField>
         <S.Divider />
+        <S.PaymentMethodList>
+          {paymentGateways.map(({ name, config }, index) => {
+            return (
+              <S.Tile checked={false} key={index}>
+                <Radio
+                  name="payment-method"
+                  value={""}
+                  checked={false}
+                  customLabel={true}
+                >
+                  {name}
+                </Radio>
+              </S.Tile>
+            );
+          })}
+        </S.PaymentMethodList>
       </S.Section>
     </S.Wrapper>
   );

@@ -24,3 +24,17 @@ export const DiscountField = styled.div`
     padding: 30px 20px;
   `}
 `;
+
+export const PaymentMethodList = styled.div`
+  display: grid;
+  grid-gap: 20px;
+`;
+
+export const Tile = styled.label<{ checked: boolean }>`
+  display: block;
+  background-color: ${props => props.theme.colors.light};
+  padding: 20px;
+  ${props => props.checked && `border: 2px solid #21125E;`}
+  font-size: ${props => props.theme.typography.smallFontSize};
+  cursor: pointer;
+`;

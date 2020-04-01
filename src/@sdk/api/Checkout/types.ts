@@ -1,4 +1,7 @@
-import { Checkout_availableShippingMethods } from "@sdk/fragments/types/Checkout";
+import {
+  Checkout_availablePaymentGateways,
+  Checkout_availableShippingMethods,
+} from "@sdk/fragments/types/Checkout";
 
 import { PromiseResponse } from "../types";
 
@@ -20,6 +23,7 @@ export interface IAddress {
 }
 
 export type IAvailableShippingMethods = Checkout_availableShippingMethods[];
+export type IAvailablePaymentGateways = Checkout_availablePaymentGateways[];
 
 export interface ICheckout {
   id: string | undefined;
@@ -34,6 +38,7 @@ export interface ISaleorCheckoutAPI {
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
+  availablePaymentGateways?: IAvailablePaymentGateways;
   load: () => PromiseResponse;
   setBillingAddress: (billingAddress: IAddress) => PromiseResponse;
   setShippingAddress: (
