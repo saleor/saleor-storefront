@@ -25,7 +25,7 @@ export const DiscountField = styled.div`
   `}
 `;
 
-export const PaymentMethodList = styled.div`
+export const PaymentGatewayList = styled.div`
   display: grid;
   grid-gap: 20px;
 `;

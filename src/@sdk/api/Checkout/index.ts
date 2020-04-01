@@ -47,6 +47,7 @@ export class SaleorCheckoutAPI extends ErrorListener
       StateItems.CHECKOUT,
       ({
         id,
+        token,
         email,
         shippingAddress,
         billingAddress,
@@ -58,6 +59,7 @@ export class SaleorCheckoutAPI extends ErrorListener
           email,
           id,
           shippingAddress,
+          token,
         };
         this.availableShippingMethods = availableShippingMethods;
         this.availablePaymentGateways = availablePaymentGateways;

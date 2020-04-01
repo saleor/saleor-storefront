@@ -70,12 +70,12 @@ export class SaleorState extends NamedObservable<StateItems>
     onError: (error: ApolloErrorWithUserInput | any) => any
   ) => {
     // 1. Try to take checkout from backend database
-    const checkoutToken = this.repository.getCheckoutToken();
+    const checkout = this.repository.getCheckout();
 
     const { data, errors } = await this.checkoutNetworkManager.getCheckout(
-      checkoutToken
+      checkout?.token
     );
-
+    console.log(data);
     if (errors) {
       onError(errors);
     } else if (data) {

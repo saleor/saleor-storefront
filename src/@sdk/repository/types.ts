@@ -60,6 +60,7 @@ export interface ICheckoutAddress {
 
 export interface ICheckoutModel {
   id?: string;
+  token?: any;
   email?: string;
   shippingAddress?: ICheckoutAddress | null;
   billingAddress?: ICheckoutAddress | null;

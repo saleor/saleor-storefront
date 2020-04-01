@@ -21,3 +21,6 @@ export * from "./AddressGridSelector";
 export * from "./CheckoutShipping";
 export * from "./CheckoutPayment";
 export * from "./CheckoutReview";
+export * from "./BraintreePaymentGateway";
+export * from "./DummyPaymentGateway";
+export * from "./StripePaymentGateway";

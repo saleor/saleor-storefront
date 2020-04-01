@@ -52,6 +52,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       if (checkout) {
         const {
           id,
+          token,
           email,
           shippingAddress,
           billingAddress,
@@ -105,6 +106,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             shippingAddress,
             shippingPrice,
             subtotalPrice,
+            token,
             totalPrice,
           },
           errors: null,
@@ -284,6 +286,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     if (data?.checkout) {
       const {
         id,
+        token,
         email,
         shippingAddress,
         billingAddress,
@@ -338,6 +341,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           shippingAddress,
           shippingPrice,
           subtotalPrice,
+          token,
           totalPrice,
         },
         errors: null,
@@ -372,6 +376,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       if (data?.checkout) {
         const {
           id,
+          token,
           email,
           shippingAddress,
           billingAddress,
@@ -426,6 +431,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             shippingAddress,
             shippingPrice,
             subtotalPrice,
+            token,
             totalPrice,
           },
           errors: null,
@@ -471,6 +477,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       if (data?.checkout) {
         const {
           id,
+          token,
           email,
           shippingAddress,
           billingAddress,
@@ -525,6 +532,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             shippingAddress,
             shippingPrice,
             subtotalPrice,
+            token,
             totalPrice,
           },
           errors: null,

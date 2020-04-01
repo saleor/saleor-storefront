@@ -27,6 +27,7 @@ export type IAvailablePaymentGateways = Checkout_availablePaymentGateways[];
 
 export interface ICheckout {
   id: string | undefined;
+  token: any;
   email: string | undefined;
   shippingAddress: IAddress | null | undefined;
   billingAddress: IAddress | null | undefined;
