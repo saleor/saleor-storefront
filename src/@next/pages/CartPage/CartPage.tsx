@@ -17,7 +17,9 @@ const cartBreadcrumbs = (
 
 const title = <h1>My Cart</h1>;
 
-const button = <Button>PROCEED TO CHECKOUT</Button>;
+const button = (
+  <Button data-cy="cartPageBtnProceedToCheckout">PROCEED TO CHECKOUT</Button>
+);
 
 const cartHeader = <CartHeader />;
 
@@ -26,8 +28,18 @@ const prepareCartFooter = (
   subtotalPrice: ISubtotalPrice
 ) => (
   <CartFooter
-    subtotalPrice={<TaxedMoney taxedMoney={totalPrice || undefined} />}
-    totalPrice={<TaxedMoney taxedMoney={subtotalPrice || undefined} />}
+    subtotalPrice={
+      <TaxedMoney
+        data-cy="cartPageSubtotalPrice"
+        taxedMoney={totalPrice || undefined}
+      />
+    }
+    totalPrice={
+      <TaxedMoney
+        data-cy="cartPageTotalPrice"
+        taxedMoney={subtotalPrice || undefined}
+      />
+    }
   />
 );
 
@@ -40,6 +52,7 @@ const generateCart = (
   return items?.map(({ id, variant, quantity, totalPrice }) => (
     <CartRow
       key={id}
+      id={id}
       name={variant?.product?.name || ""}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
@@ -48,9 +61,17 @@ const generateCart = (
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
       }}
-      totalPrice={<TaxedMoney taxedMoney={totalPrice || undefined} />}
+      totalPrice={
+        <TaxedMoney
+          data-cy={`cartPageItem${id}TotalPrice`}
+          taxedMoney={totalPrice || undefined}
+        />
+      }
       unitPrice={
-        <TaxedMoney taxedMoney={variant?.pricing?.price || undefined} />
+        <TaxedMoney
+          data-cy={`cartPageItem${id}UnitPrice`}
+          taxedMoney={variant?.pricing?.price || undefined}
+        />
       }
       sku={variant.sku}
       attributes={variant.attributes?.map(attribute => {

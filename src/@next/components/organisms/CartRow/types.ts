@@ -3,6 +3,10 @@ import React from "react";
 
 export interface IProps {
   /**
+   * Item id
+   */
+  id?: string;
+  /**
    * Price for single unit
    */
   unitPrice: React.ReactNode;

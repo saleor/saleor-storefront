@@ -6,12 +6,16 @@ import { CachedImage } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const QuantityButtons = (add: () => void, substract: () => void) => (
+const QuantityButtons = (
+  add: () => void,
+  substract: () => void,
+  id?: string
+) => (
   <S.QuantityButtons>
-    <div onClick={substract}>
+    <div onClick={substract} data-cy={`cartPageItem${id}QuantityBtnSubtract`}>
       <Icon size={16} name="horizontal_line" />
     </div>
-    <div onClick={add}>
+    <div onClick={add} data-cy={`cartPageItem${id}QuantityBtnAdd`}>
       <Icon size={16} name="plus" />
     </div>
   </S.QuantityButtons>
@@ -21,6 +25,7 @@ const QuantityButtons = (add: () => void, substract: () => void) => (
  * Product row displayed on cart page
  */
 export const CartRow: React.FC<IProps> = ({
+  id,
   totalPrice,
   unitPrice,
   name,
@@ -66,17 +71,19 @@ export const CartRow: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <S.Photo>
-        <CachedImage {...thumbnail} />
+        <CachedImage data-cy={`cartPageItem${id}Image`} {...thumbnail} />
       </S.Photo>
       <S.Description>
-        <S.Name>{name}</S.Name>
+        <S.Name data-cy={`cartPageItem${id}Name`}>{name}</S.Name>
         <S.Sku>
-          <S.LightFont>SKU: {sku ? sku : "-"}</S.LightFont>
+          <S.LightFont>
+            SKU: <span data-cy={`cartPageItem${id}SKU`}>{sku ? sku : "-"}</span>
+          </S.LightFont>
         </S.Sku>
-        <S.Attributes>
+        <S.Attributes data-cy={`cartPageItem${id}Attributes`}>
           {attributes.map(({ attribute, values }) => (
             <S.SingleAttribute key={attribute.id}>
-              <span>
+              <span data-cy={`cartPageItem${id}SingleAttribute${attribute.id}`}>
                 <S.LightFont>{attribute.name}:</S.LightFont>{" "}
                 {values.map(value => value.name).join(", ")}
               </span>
@@ -86,16 +93,22 @@ export const CartRow: React.FC<IProps> = ({
       </S.Description>
       <S.Quantity>
         <Input
+          data-cy={`cartPageItem${id}QuantityInput`}
           name="quantity"
           label="Quantity"
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
-          contentRight={QuantityButtons(add, substract)}
+          contentRight={QuantityButtons(add, substract, id)}
         />
       </S.Quantity>
       <S.Trash>
-        <IconButton size={22} name="trash" onClick={onRemove} />
+        <IconButton
+          data-cy={`cartPageItem${id}BtnRemove`}
+          size={22}
+          name="trash"
+          onClick={onRemove}
+        />
       </S.Trash>
 
       <S.TotalPrice>
