@@ -1,4 +1,6 @@
+import { History } from "history";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import Breadcrumbs from "../../../components/Breadcrumbs";
 
@@ -17,8 +19,13 @@ const cartBreadcrumbs = (
 
 const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
-const button = (
-  <Button data-cy="cartPageBtnProceedToCheckout">PROCEED TO CHECKOUT</Button>
+const getButton = (history: History) => (
+  <Button
+    data-cy="cartPageBtnProceedToCheckout"
+    onClick={() => history.push("/new-checkout/address")}
+  >
+    PROCEED TO CHECKOUT
+  </Button>
 );
 
 const cartHeader = <CartHeader />;
@@ -93,6 +100,7 @@ const generateCart = (
 };
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
+  const history = useHistory();
   const {
     removeItem,
     updateItem,
@@ -105,7 +113,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     <Cart
       breadcrumbs={cartBreadcrumbs}
       title={title}
-      button={button}
+      button={getButton(history)}
       cartHeader={cartHeader}
       cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
       cart={items && generateCart(items, removeItem, updateItem)}
