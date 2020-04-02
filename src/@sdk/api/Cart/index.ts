@@ -1,6 +1,11 @@
 import { ErrorListener } from "@sdk/helpers";
 import { CheckoutNetworkManager } from "@sdk/network";
-import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
+import {
+  CheckoutRepositoryManager,
+  ICheckoutModel,
+  ICheckoutModelLine,
+  ICheckoutModelPrice,
+} from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 import { CartJobQueue } from "@temp/@sdk/jobs/Cart";
@@ -85,9 +90,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       if (errors) {
         this.fireError(errors);
       } else {
+        const summaryPrices = this.getSummaryPricesForItems(data);
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
+          subtotalPrice: summaryPrices?.subtotalPrice,
+          totalPrice: summaryPrices?.totalPrice,
         });
       }
     }
@@ -126,9 +134,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       if (errors) {
         this.fireError(errors);
       } else {
+        const summaryPrices = this.getSummaryPricesForItems(data);
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
+          subtotalPrice: summaryPrices?.subtotalPrice,
+          totalPrice: summaryPrices?.totalPrice,
         });
       }
     }
@@ -161,9 +172,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       if (errors) {
         this.fireError(errors);
       } else {
+        const summaryPrices = this.getSummaryPricesForItems(data);
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
+          subtotalPrice: summaryPrices?.subtotalPrice,
+          totalPrice: summaryPrices?.totalPrice,
         });
       }
     }
@@ -196,9 +210,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       if (errors) {
         this.fireError(errors);
       } else {
+        const summaryPrices = this.getSummaryPricesForItems(data);
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
+          subtotalPrice: summaryPrices?.subtotalPrice,
+          totalPrice: summaryPrices?.totalPrice,
         });
       }
     }
@@ -212,4 +229,69 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       pending: false,
     };
   };
+
+  private getSummaryPricesForItems(
+    items?: ICheckoutModelLine[] | null
+  ):
+    | {
+        totalPrice?: ICheckoutModelPrice;
+        subtotalPrice?: ICheckoutModelPrice;
+      }
+    | undefined {
+    if (items && items.length) {
+      const firstItemTotalPrice = items[0].totalPrice;
+
+      if (firstItemTotalPrice) {
+        const {
+          firstItemGrossTotalPrice,
+          firstItemNetTotalPrice,
+        } = items.reduce(
+          (prevVals, item) => {
+            prevVals.firstItemGrossTotalPrice +=
+              item.totalPrice?.gross.amount || 0;
+            prevVals.firstItemNetTotalPrice += item.totalPrice?.net.amount || 0;
+            return prevVals;
+          },
+          {
+            firstItemGrossTotalPrice: 0,
+            firstItemNetTotalPrice: 0,
+          }
+        );
+
+        const totalPrice = {
+          ...firstItemTotalPrice,
+          gross: {
+            ...firstItemTotalPrice?.gross,
+            amount: firstItemGrossTotalPrice,
+          },
+          net: {
+            ...firstItemTotalPrice?.net,
+            amount: firstItemNetTotalPrice,
+          },
+        };
+
+        const subtotalGrossPrice =
+          totalPrice.gross.amount - (this.shippingPrice?.gross.amount || 0);
+        const subtotalNetPrice =
+          totalPrice.net.amount - (this.shippingPrice?.net.amount || 0);
+
+        const subtotalPrice = {
+          ...totalPrice,
+          gross: {
+            ...totalPrice.gross,
+            amount: subtotalGrossPrice,
+          },
+          net: {
+            ...totalPrice.net,
+            amount: subtotalNetPrice,
+          },
+        };
+
+        return {
+          subtotalPrice,
+          totalPrice,
+        };
+      }
+    }
+  }
 }

@@ -1,16 +1,11 @@
-import {
-  Checkout_shippingPrice,
-  Checkout_subtotalPrice,
-  Checkout_totalPrice,
-} from "@sdk/fragments/types/Checkout";
-import { ICheckoutModelLine } from "@sdk/repository";
+import { ICheckoutModelLine, ICheckoutModelPrice } from "@sdk/repository";
 
 import { PromiseResponse } from "../types";
 
 export type IItems = ICheckoutModelLine[] | null | undefined;
-export type ITotalPrice = Checkout_totalPrice | null | undefined;
-export type ISubtotalPrice = Checkout_subtotalPrice | null | undefined;
-export type IShippingPrice = Checkout_shippingPrice | null | undefined;
+export type ITotalPrice = ICheckoutModelPrice | null | undefined;
+export type ISubtotalPrice = ICheckoutModelPrice | null | undefined;
+export type IShippingPrice = ICheckoutModelPrice | null | undefined;
 
 export interface ISaleorCartAPI {
   items?: IItems;

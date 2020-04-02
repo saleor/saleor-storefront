@@ -19,8 +19,8 @@ export enum LocalStorageItems {
 }
 
 export interface ICheckoutModelLineTotalPrice {
-  gross: Checkout_lines_totalPrice_gross;
-  net: Checkout_lines_totalPrice_net;
+  gross: ICheckoutModelPriceValue;
+  net: ICheckoutModelPriceValue;
 }
 
 export interface ICheckoutModelLineVariant {
@@ -39,6 +39,16 @@ export interface ICheckoutModelLine {
   id?: string;
   variant: ICheckoutModelLineVariant;
   totalPrice?: ICheckoutModelLineTotalPrice | null;
+}
+
+export interface ICheckoutModelPriceValue {
+  amount: number;
+  currency?: string;
+}
+
+export interface ICheckoutModelPrice {
+  gross: ICheckoutModelPriceValue;
+  net: ICheckoutModelPriceValue;
 }
 
 export interface ICheckoutAddress {
@@ -65,9 +75,9 @@ export interface ICheckoutModel {
   shippingAddress?: ICheckoutAddress | null;
   billingAddress?: ICheckoutAddress | null;
   lines?: ICheckoutModelLine[] | null;
-  totalPrice?: Checkout_totalPrice | null;
-  subtotalPrice?: Checkout_subtotalPrice | null;
-  shippingPrice?: Checkout_shippingPrice | null;
+  totalPrice?: ICheckoutModelPrice | null;
+  subtotalPrice?: ICheckoutModelPrice | null;
+  shippingPrice?: ICheckoutModelPrice | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
   availablePaymentGateways?: Checkout_availablePaymentGateways[];
 }

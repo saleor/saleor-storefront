@@ -15,7 +15,7 @@ const cartBreadcrumbs = (
   <Breadcrumbs breadcrumbs={[{ value: "Cart", link: "/cart/" }]} />
 );
 
-const title = <h1>My Cart</h1>;
+const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
 const button = (
   <Button data-cy="cartPageBtnProceedToCheckout">PROCEED TO CHECKOUT</Button>
@@ -48,7 +48,6 @@ const generateCart = (
   removeItem: (variantId: string) => any,
   updateItem: (variantId: string, quantity: number) => any
 ) => {
-  // const sum = items?.reduce((prevVal, currVal, currIdx, arr) => prevVal + currVal.totalPrice?.gross.amount, 0)
   return items?.map(({ id, variant, quantity, totalPrice }) => (
     <CartRow
       key={id}
@@ -101,11 +100,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     totalPrice,
     subtotalPrice,
   } = useCart();
-
-  // React.useEffect(() => {
-  // console.log("CartPage, useEffect checkout", checkout);
-  // console.log("CartPage, useEffect items", items);
-  // }, [checkout]);
 
   return (
     <Cart
