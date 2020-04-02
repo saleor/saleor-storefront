@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Checkbox, Radio } from "@components/atoms";
-import { PROVIDERS } from "@temp/core/config";
+import { Checkbox } from "@components/atoms";
 
 import { AddressForm, AddressGridSelector, DiscountForm } from "..";
+import { PaymentGatewaysList } from "../PaymentGatewaysList";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -99,53 +99,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           />
         </S.DiscountField>
         <S.Divider />
-        <S.PaymentGatewayList>
-          {paymentGateways.map(({ name, config }, index) => {
-            switch (name) {
-              case PROVIDERS.BRAINTREE.label:
-                return (
-                  <S.Tile checked={false} key={index}>
-                    <Radio
-                      name="payment-method"
-                      value="credit-card"
-                      checked={false}
-                      customLabel={true}
-                    >
-                      {name}
-                    </Radio>
-                  </S.Tile>
-                );
-
-              case PROVIDERS.DUMMY.label:
-                return (
-                  <S.Tile checked={false} key={index}>
-                    <Radio
-                      name="payment-method"
-                      value="dummy"
-                      checked={false}
-                      customLabel={true}
-                    >
-                      {name}
-                    </Radio>
-                  </S.Tile>
-                );
-
-              case PROVIDERS.STRIPE.label:
-                return (
-                  <S.Tile checked={false} key={index}>
-                    <Radio
-                      name="payment-method"
-                      value="stripe"
-                      checked={false}
-                      customLabel={true}
-                    >
-                      {name}
-                    </Radio>
-                  </S.Tile>
-                );
-            }
-          })}
-        </S.PaymentGatewayList>
+        <PaymentGatewaysList paymentGateways={paymentGateways} />
       </S.Section>
     </S.Wrapper>
   );

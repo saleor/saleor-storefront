@@ -7,3 +7,4 @@ export * from "./ISelectOptions";
 export * from "./IProductVariantsAttributes";
 export * from "./IImage";
 export * from "./ITaxedMoney";
+export * from "./IPaymentGateway";

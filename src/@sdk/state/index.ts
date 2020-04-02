@@ -75,7 +75,7 @@ export class SaleorState extends NamedObservable<StateItems>
     const { data, errors } = await this.checkoutNetworkManager.getCheckout(
       checkout?.token
     );
-    console.log(data);
+
     if (errors) {
       onError(errors);
     } else if (data) {
