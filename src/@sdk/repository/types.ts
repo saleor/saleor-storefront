@@ -43,7 +43,7 @@ export interface ICheckoutModelLine {
 
 export interface ICheckoutModelPriceValue {
   amount: number;
-  currency?: string;
+  currency: string;
 }
 
 export interface ICheckoutModelPrice {
