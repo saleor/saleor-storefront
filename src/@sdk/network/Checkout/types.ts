@@ -22,11 +22,10 @@ export interface ICheckoutNetworkManager {
   setCartItem: (
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
-  setBillingAddress: () => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  setBillingAddress: (
+    checkout: ICheckoutModel
+  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingAddress: (
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
-  setShippingAsBillingAddress: () => Promise<
-    INetworkManagerResponse<ICheckoutModel>
-  >;
 }

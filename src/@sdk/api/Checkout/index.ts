@@ -19,6 +19,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   promoCode?: string;
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
+  selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   availablePaymentGateways?: IAvailablePaymentGateways;
 
@@ -51,6 +52,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         email,
         shippingAddress,
         billingAddress,
+        billingAsShipping,
         availableShippingMethods,
         availablePaymentGateways,
       }: ICheckoutModel) => {
@@ -63,12 +65,19 @@ export class SaleorCheckoutAPI extends ErrorListener
         };
         this.availableShippingMethods = availableShippingMethods;
         this.availablePaymentGateways = availablePaymentGateways;
+        this.billingAsShipping = billingAsShipping;
       }
     );
     this.saleorState.subscribeToChange(
       StateItems.SELECTED_SHIPPING_ADDRESS_ID,
       (selectedShippingAddressId?: string) => {
         this.selectedShippingAddressId = selectedShippingAddressId;
+      }
+    );
+    this.saleorState.subscribeToChange(
+      StateItems.SELECTED_BILLING_ADDRESS_ID,
+      (selectedBillingAddressId?: string) => {
+        this.selectedBillingAddressId = selectedBillingAddressId;
       }
     );
 
@@ -84,13 +93,24 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  /**
-   * Method not implemented yet
-   */
-  setBillingAddress = async (billingAddress: IAddress) =>
-    Promise.resolve({
+  setBillingAddress = async (billingAddress: IAddress) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    this.checkoutRepositoryManager.setBillingAddress(billingAddress);
+    this.saleorState.updateSelectedBillingAddressId(billingAddress.id);
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetBillingAddress();
+      return {
+        pending: true,
+      };
+    }
+    return {
       pending: false,
-    });
+    };
+  };
 
   setShippingAddress = async (shippingAddress: IAddress, email: string) => {
     await this.saleorState.provideCheckout(this.fireError);
@@ -111,10 +131,36 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
+  setBillingAsShippingAddress = async (billingAsShipping: boolean) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    if (this.checkout?.shippingAddress) {
+      this.checkoutRepositoryManager.setBillingAddress(
+        this.checkout?.shippingAddress,
+        billingAsShipping
+      );
+      this.saleorState.updateSelectedBillingAddressId(
+        this.checkout?.shippingAddress.id
+      );
+    }
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetBillingAddress();
+      return {
+        pending: true,
+      };
+    }
+    return {
+      pending: false,
+    };
+  };
+
   /**
    * Method not implemented yet
    */
-  setBillingAsShippingAddress = (billingAsShipping: boolean) =>
+  createPayment = () =>
     Promise.resolve({
       pending: false,
     });

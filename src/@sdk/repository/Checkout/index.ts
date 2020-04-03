@@ -139,14 +139,22 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     return alteredCheckout;
   };
 
-  setBillingAddress = (billingAddress: ICheckoutAddress) => {
+  setBillingAddress = (
+    billingAddress: ICheckoutAddress,
+    billingAsShipping?: boolean
+  ) => {
     const alteredCheckout = this.saleorState.checkout
       ? {
           ...this.saleorState.checkout,
           billingAddress,
+          billingAsShipping:
+            billingAsShipping !== undefined
+              ? billingAsShipping
+              : this.saleorState.checkout.billingAsShipping,
         }
       : {
           billingAddress,
+          billingAsShipping,
         };
     this.repository.setCheckout(alteredCheckout);
 

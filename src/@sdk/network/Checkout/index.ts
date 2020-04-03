@@ -542,6 +542,102 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     return { data: null, errors: null };
   };
 
-  setBillingAddress = async () => ({ data: null, errors: null });
-  setShippingAsBillingAddress = async () => ({ data: null, errors: null });
+  setBillingAddress = async (checkout: ICheckoutModel) => {
+    const checkoutId = checkout.id;
+    const billingAddress = checkout.billingAddress;
+
+    if (checkoutId && billingAddress) {
+      const { data } = await this.apiProxy.setCheckoutBillingAddress({
+        billingAddress: {
+          city: billingAddress.city,
+          companyName: billingAddress.companyName,
+          country:
+            CountryCode[
+              billingAddress?.country?.code as keyof typeof CountryCode
+            ],
+          countryArea: billingAddress.countryArea,
+          firstName: billingAddress.firstName,
+          lastName: billingAddress.lastName,
+          phone: billingAddress.phone,
+          postalCode: billingAddress.postalCode,
+          streetAddress1: billingAddress.streetAddress1,
+          streetAddress2: billingAddress.streetAddress2,
+        },
+        checkoutId,
+      });
+
+      if (data?.errors && data.errors.length) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.checkout) {
+        const {
+          id,
+          token,
+          email,
+          shippingAddress,
+          billingAddress,
+          lines,
+          totalPrice,
+          subtotalPrice,
+          shippingPrice,
+          availableShippingMethods,
+          availablePaymentGateways,
+        } = data?.checkout;
+
+        return {
+          data: {
+            availablePaymentGateways: availablePaymentGateways
+              ? availablePaymentGateways.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
+            availableShippingMethods: availableShippingMethods
+              ? availableShippingMethods.filter(function notEmpty<TValue>(
+                  value: TValue | null | undefined
+                ): value is TValue {
+                  return value !== null && value !== undefined;
+                })
+              : [],
+            billingAddress,
+            email,
+            id,
+            lines: lines
+              ?.filter(item => item?.quantity && item.variant.id)
+              .map(item => {
+                const itemVariant = item?.variant;
+
+                return {
+                  id: item!.id,
+                  quantity: item!.quantity,
+                  totalPrice: item?.totalPrice,
+                  variant: {
+                    attributes: itemVariant?.attributes,
+                    id: itemVariant!.id,
+                    isAvailable: itemVariant?.isAvailable,
+                    name: itemVariant?.name,
+                    pricing: itemVariant?.pricing,
+                    product: itemVariant?.product,
+                    sku: itemVariant?.sku,
+                    stockQuantity: itemVariant?.stockQuantity,
+                  },
+                };
+              }),
+            shippingAddress,
+            shippingPrice,
+            subtotalPrice,
+            token,
+            totalPrice,
+          },
+          errors: null,
+        };
+      }
+    }
+    return { data: null, errors: null };
+  };
 }

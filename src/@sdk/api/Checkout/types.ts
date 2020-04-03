@@ -38,6 +38,7 @@ export interface ISaleorCheckoutAPI {
   promoCode?: string | null;
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
+  selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   availablePaymentGateways?: IAvailablePaymentGateways;
   load: () => PromiseResponse;
@@ -47,5 +48,6 @@ export interface ISaleorCheckoutAPI {
     email: string
   ) => PromiseResponse;
   setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
+  createPayment: () => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

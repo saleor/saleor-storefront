@@ -1,21 +1,14 @@
 import {
   Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
-  Checkout_lines_totalPrice_gross,
-  Checkout_lines_totalPrice_net,
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
-  Checkout_shippingAddress,
-  Checkout_shippingPrice,
-  Checkout_subtotalPrice,
-  Checkout_totalPrice,
 } from "../fragments/types/Checkout";
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
   CHECKOUT = "data_checkout",
-  CHECKOUT_TOKEN = "data_checkoutToken",
 }
 
 export interface ICheckoutModelLineTotalPrice {
@@ -74,6 +67,7 @@ export interface ICheckoutModel {
   email?: string;
   shippingAddress?: ICheckoutAddress | null;
   billingAddress?: ICheckoutAddress | null;
+  billingAsShipping?: boolean;
   lines?: ICheckoutModelLine[] | null;
   totalPrice?: ICheckoutModelPrice | null;
   subtotalPrice?: ICheckoutModelPrice | null;
@@ -88,12 +82,11 @@ export interface IJobsModel {
   };
   checkout: {
     setShippingAddress?: boolean;
+    setBillingAddress?: boolean;
   };
 }
 
 export interface ILocalRepository {
   getCheckout(): ICheckoutModel | null;
   setCheckout(checkout: ICheckoutModel | null): void;
-  getCheckoutToken(): string | null;
-  setCheckoutToken(token: string): void;
 }

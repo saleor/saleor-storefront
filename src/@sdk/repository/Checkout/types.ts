@@ -16,6 +16,7 @@ export interface ICheckoutRepositoryManager {
     email?: string
   ) => ICheckoutModel | null;
   setBillingAddress: (
-    shippingAddress: ICheckoutAddress
+    billingAddress: ICheckoutAddress,
+    billingAsShipping?: boolean
   ) => ICheckoutModel | null;
 }

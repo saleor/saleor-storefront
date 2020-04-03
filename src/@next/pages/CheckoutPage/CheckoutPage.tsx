@@ -127,14 +127,16 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       history.push(activeStep.nextStepLink);
     }
   };
-  const handleSetBillingAddress = (address: IAddress, id?: string) =>
+  const handleSetBillingAddress = (
+    address: IAddress,
+    userAddressId?: string
+  ) => {
     setBillingAddress({
       ...address,
-      id,
+      id: userAddressId,
     });
-  const handleNextStepClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  };
+  const handleNextStepClick = () => {
     if (activeStepIndex === 0) {
       if (user && selectedShippingAddressId) {
         history.push(activeStep.nextStepLink);

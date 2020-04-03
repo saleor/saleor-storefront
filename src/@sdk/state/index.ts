@@ -10,10 +10,10 @@ import { ISaleorState, StateItems } from "./types";
 
 export class SaleorState extends NamedObservable<StateItems>
   implements ISaleorState {
-  checkout: ICheckoutModel | null;
-  promoCode: string | null;
-  shippingAsBilling: boolean;
+  checkout?: ICheckoutModel;
+  promoCode?: string;
   selectedShippingAddressId?: string;
+  selectedBillingAddressId?: string;
 
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -25,10 +25,6 @@ export class SaleorState extends NamedObservable<StateItems>
     super();
     this.repository = repository;
     this.checkoutNetworkManager = checkoutNetworkManager;
-
-    this.checkout = null;
-    this.promoCode = null;
-    this.shippingAsBilling = false;
 
     repository.subscribeToChange(
       LocalStorageItems.CHECKOUT,
@@ -59,7 +55,15 @@ export class SaleorState extends NamedObservable<StateItems>
     );
   };
 
-  private updateCheckout = (checkout: ICheckoutModel | null) => {
+  updateSelectedBillingAddressId = (selectedBillingAddressId?: string) => {
+    this.selectedBillingAddressId = selectedBillingAddressId;
+    this.notifyChange(
+      StateItems.SELECTED_BILLING_ADDRESS_ID,
+      this.selectedBillingAddressId
+    );
+  };
+
+  private updateCheckout = (checkout: ICheckoutModel) => {
     this.checkout = checkout;
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
   };

@@ -22,6 +22,7 @@ export class CheckoutJobQueue extends JobQueue {
 
     const queuePossibilities = new Map([
       ["setShippingAddress", this.enqueueSetShippingAddress],
+      ["setBillingAddress", this.enqueueSetBillingAddress],
     ]);
     this.enqueueAllSavedInRepository(queuePossibilities, "checkout");
   }
@@ -49,6 +50,29 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
+  enqueueSetBillingAddress = () => {
+    this.addToQueue(
+      LocalStorageJobs.CHECKOUT_SET_BILLING_ADDRESS,
+      () => this.setBillingAddress(),
+      () => {
+        this.updateJobsStateInRepository(
+          {
+            setBillingAddress: true,
+          },
+          "checkout"
+        );
+      },
+      () => {
+        this.updateJobsStateInRepository(
+          {
+            setBillingAddress: false,
+          },
+          "checkout"
+        );
+      }
+    );
+  };
+
   private setShippingAddress = async () => {
     const checkout = this.repository.getCheckout();
 
@@ -64,6 +88,25 @@ export class CheckoutJobQueue extends JobQueue {
           ...checkout,
           email: data.email,
           shippingAddress: data.shippingAddress,
+        });
+      }
+    }
+  };
+
+  private setBillingAddress = async () => {
+    const checkout = this.repository.getCheckout();
+
+    if (checkout) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.setBillingAddress(checkout);
+      if (errors && this.onErrorListener) {
+        this.onErrorListener(errors);
+      } else if (data) {
+        this.repository.setCheckout({
+          ...checkout,
+          billingAddress: data.billingAddress,
         });
       }
     }

@@ -48,7 +48,7 @@ const CartSummary: React.FC<IProps> = ({
       <S.HR />
       <S.CartSummaryProductList>
         {products?.map(product => (
-          <>
+          <div key={product.sku}>
             <S.ProductLine>
               <CartSummaryRow
                 sku={product.sku}
@@ -59,7 +59,7 @@ const CartSummary: React.FC<IProps> = ({
               />
             </S.ProductLine>
             <S.HR />
-          </>
+          </div>
         ))}
       </S.CartSummaryProductList>
       <Costs
