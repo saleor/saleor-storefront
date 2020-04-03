@@ -16,7 +16,7 @@ import cartAddImg from "../../images/cart-add.svg";
 import cartRemoveImg from "../../images/cart-remove.svg";
 import cartSubtractImg from "../../images/cart-subtract.svg";
 
-export type LineI = ProductVariant & {
+export type LineI = Omit<ProductVariant, "__typename"> & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
   stockQuantity?: number;
