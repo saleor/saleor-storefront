@@ -48,6 +48,6 @@ export interface ISaleorCheckoutAPI {
     email: string
   ) => PromiseResponse;
   setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
-  createPayment: () => PromiseResponse;
+  createPayment: (gateway: string, token: string) => PromiseResponse;
   makeOrder: () => PromiseResponse;
 }

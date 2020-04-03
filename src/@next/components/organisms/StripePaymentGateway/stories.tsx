@@ -4,6 +4,5 @@ import React from "react";
 import { StripePaymentGateway } from ".";
 
 storiesOf("@components/organisms/StripePaymentGateway", module)
-.addParameters({ component: StripePaymentGateway })
-.add("default", () =>
-<StripePaymentGateway />);
+  .addParameters({ component: StripePaymentGateway })
+  .add("default", () => <StripePaymentGateway />);

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "@components/atoms";
@@ -56,10 +56,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     setBillingAddress,
     setBillingAsShippingAddress,
     selectedShippingAddressId,
+    selectedBillingAddressId,
     availableShippingMethods,
     availablePaymentGateways,
+    createPayment,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
+  const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
+    string
+  >();
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
   const activeStep = steps[activeStepIndex];
@@ -85,9 +90,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }));
 
   const checkoutAddressFormId = "address-form";
-  const checkoutAddressFormRef = useRef(null);
+  const checkoutAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutBillingFormId = "billing-form";
-  const checkoutBillingFormRef = useRef(null);
+  const checkoutBillingFormRef = useRef<HTMLFormElement>(null);
+  const checkoutGatewayFormId = "gateway-form";
+  const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -123,23 +130,48 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       shippingEmail
     );
 
-    if (!userAddressId) {
-      history.push(activeStep.nextStepLink);
-    }
+    history.push(activeStep.nextStepLink);
   };
-  const handleSetBillingAddress = (
+  const handleSetBillingAddress = async (
     address: IAddress,
     userAddressId?: string
   ) => {
-    setBillingAddress({
+    await setBillingAddress({
       ...address,
       id: userAddressId,
     });
+    checkoutGatewayFormRef.current?.dispatchEvent(
+      new Event("submit", { cancelable: true })
+    );
+  };
+  const handleProcessPayment = (token: string) => {
+    if (selectedPaymentGateway) {
+      createPayment(selectedPaymentGateway, token);
+      history.push(activeStep.nextStepLink);
+    }
   };
   const handleNextStepClick = () => {
     if (activeStepIndex === 0) {
       if (user && selectedShippingAddressId) {
-        history.push(activeStep.nextStepLink);
+        checkoutAddressFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        // TODO validate form
+        checkoutAddressFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      }
+    } else if (activeStepIndex === 2) {
+      if (user && selectedBillingAddressId) {
+        checkoutBillingFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        // TODO validate form
+        checkoutBillingFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
       }
     } else {
       history.push(activeStep.nextStepLink);
@@ -199,9 +231,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             checkoutBillingAddress={checkoutBillingAddress}
             countries={countries}
             paymentGateways={paymentGateways}
+            selectedPaymentGateway={selectedPaymentGateway}
+            selectPaymentGateway={setSelectedPaymentGateway}
             setBillingAddress={handleSetBillingAddress}
             billingAsShippingAddress={billingAsShipping}
             setBillingAsShippingAddress={setBillingAsShippingAddress}
+            gatewayFormRef={checkoutGatewayFormRef}
+            processPayment={handleProcessPayment}
           />
         )}
       />
@@ -221,8 +257,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const button = (
     <Button
       onClick={handleNextStepClick}
-      type={checkoutAddressFormId ? "submit" : "button"}
-      form={checkoutAddressFormId}
+      type={
+        checkoutAddressFormId || checkoutBillingFormId || checkoutGatewayFormId
+          ? "submit"
+          : "button"
+      }
     >
       {activeStep.nextActionName.toUpperCase()}
     </Button>

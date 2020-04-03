@@ -8,23 +8,15 @@ import { IProps } from "./types";
  */
 const Radio: React.FC<IProps> = ({
   checked,
-  name,
-  value,
-  onChange,
   children,
   customLabel = false,
+  ...props
 }: IProps) => {
   const StyledInput = customLabel ? S.Input : S.LabeledInput;
 
   return (
-    <StyledInput checked={checked}>
-      <input
-        type="radio"
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-      />{" "}
+    <StyledInput checked={checked || false}>
+      <input type="radio" checked={checked} {...props} />{" "}
       <div>
         <span></span>
       </div>

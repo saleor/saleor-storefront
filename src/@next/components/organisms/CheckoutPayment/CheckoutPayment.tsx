@@ -21,6 +21,10 @@ const CheckoutPayment: React.FC<IProps> = ({
   paymentGateways,
   setBillingAddress,
   setBillingAsShippingAddress,
+  selectedPaymentGateway,
+  selectPaymentGateway,
+  gatewayFormRef,
+  processPayment,
 }: IProps) => {
   const adresses =
     userAddresses
@@ -97,7 +101,13 @@ const CheckoutPayment: React.FC<IProps> = ({
           />
         </S.DiscountField>
         <S.Divider />
-        <PaymentGatewaysList paymentGateways={paymentGateways} />
+        <PaymentGatewaysList
+          paymentGateways={paymentGateways}
+          formRef={gatewayFormRef}
+          processPayment={processPayment}
+          selectedPaymentGateway={selectedPaymentGateway}
+          selectPaymentGateway={selectPaymentGateway}
+        />
       </S.Section>
     </S.Wrapper>
   );

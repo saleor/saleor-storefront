@@ -14,20 +14,31 @@ import { IProps } from "./types";
 /**
  * Payment Gateways list
  */
-const PaymentGatewaysList: React.FC<IProps> = ({ paymentGateways }: IProps) => {
+const PaymentGatewaysList: React.FC<IProps> = ({
+  paymentGateways,
+  selectedPaymentGateway,
+  selectPaymentGateway,
+  formRef,
+  processPayment,
+}: IProps) => {
   return (
     <S.Wrapper>
       {paymentGateways.map(({ name, config }, index) => {
+        const checked = selectedPaymentGateway === name;
+
         switch (name) {
           case PROVIDERS.BRAINTREE.label:
             return (
               <div key={index}>
-                <S.Tile checked={false}>
+                <S.Tile checked={checked}>
                   <Radio
                     name="payment-method"
                     value="credit-card"
-                    checked={false}
-                    onChange={() => null}
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway &&
+                      selectPaymentGateway(PROVIDERS.BRAINTREE.label)
+                    }
                     customLabel={true}
                   >
                     {name}
@@ -40,30 +51,39 @@ const PaymentGatewaysList: React.FC<IProps> = ({ paymentGateways }: IProps) => {
           case PROVIDERS.DUMMY.label:
             return (
               <div key={index}>
-                <S.Tile checked={false} key={index}>
+                <S.Tile checked={checked}>
                   <Radio
                     name="payment-method"
                     value="dummy"
-                    checked={false}
-                    onChange={() => null}
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway &&
+                      selectPaymentGateway(PROVIDERS.DUMMY.label)
+                    }
                     customLabel={true}
                   >
                     {name}
                   </Radio>
                 </S.Tile>
-                <DummyPaymentGateway />
+                <DummyPaymentGateway
+                  formRef={formRef}
+                  processPayment={processPayment}
+                />
               </div>
             );
 
           case PROVIDERS.STRIPE.label:
             return (
               <div key={index}>
-                <S.Tile checked={false} key={index}>
+                <S.Tile checked={checked}>
                   <Radio
                     name="payment-method"
                     value="stripe"
-                    checked={false}
-                    onChange={() => null}
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway &&
+                      selectPaymentGateway(PROVIDERS.STRIPE.label)
+                    }
                     customLabel={true}
                   >
                     {name}

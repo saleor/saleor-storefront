@@ -1,8 +1,7 @@
-export interface IProps {
-  value: string;
-  name: string;
-  checked: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Label or additional content which belongs to the radio.
+   */
   children: React.ReactNode;
   /**
    * If true, it will not wrap radio input in label tag.

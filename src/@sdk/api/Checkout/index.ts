@@ -160,10 +160,15 @@ export class SaleorCheckoutAPI extends ErrorListener
   /**
    * Method not implemented yet
    */
-  createPayment = () =>
-    Promise.resolve({
+  createPayment = async (gateway: string, token: string) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // TODO...
+
+    return {
       pending: false,
-    });
+    };
+  };
 
   /**
    * Method not implemented yet

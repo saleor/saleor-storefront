@@ -5,6 +5,8 @@ import { styled } from "@styles";
 const inputStyle = css<{ checked: boolean }>`
   ${props => props.checked && `color: #21125E;`}
 
+  cursor: pointer;
+
   input[type="radio"] {
     opacity: 0;
     position: fixed;
@@ -23,18 +25,16 @@ const inputStyle = css<{ checked: boolean }>`
   ${props =>
     props.checked &&
     `> div > span {
-  display: block;
-  width: 0.5em;
-  height: 0.5em;
-  margin: 0.125em;
-  /* border: 1px solid #21125e; */
-  border-radius: 0.25em;
-  background: #21125e;
-  cursor: pointer;
-}`}
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+      margin: 0.125em;
+      border-radius: 0.25em;
+      background: #21125e;
+    }`}
 `;
 
-export const Input = styled.div`
+export const Input = styled.div<{ checked: boolean }>`
   ${inputStyle}
 `;
 

@@ -6,14 +6,8 @@ import { IProps } from "./types";
 /**
  * Example component description.
  */
-const StripePaymentGateway: React.FC<IProps> = ({
-  // destructure props here if needed
-}: IProps) => {
-  return (
-    <S.Wrapper>
-      {/* --- here --- */}
-    </S.Wrapper>
-  )
+const StripePaymentGateway: React.FC<IProps> = ({}: IProps) => {
+  return <S.Wrapper>{/* --- here --- */}</S.Wrapper>;
 };
 
-export { StripePaymentGateway }
+export { StripePaymentGateway };

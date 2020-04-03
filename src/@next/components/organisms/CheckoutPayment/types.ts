@@ -13,4 +13,20 @@ export interface IProps {
   paymentGateways: IPaymentGateway[];
   setBillingAddress: (address: IAddress, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
+  /**
+   * Selected payment gateway.
+   */
+  selectedPaymentGateway?: string;
+  /**
+   * Called when selected payment gateway with passed the payment gateway name attribute.
+   */
+  selectPaymentGateway?: (paymentGateway: string) => void;
+  /**
+   * Gateway form reference on which payment might be submitted.
+   */
+  gatewayFormRef?: React.RefObject<HTMLFormElement>;
+  /**
+   * Method called when the form is submitted. Passed gateway label and token attribute might be used to create payment.
+   */
+  processPayment: (token: string) => void;
 }
