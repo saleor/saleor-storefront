@@ -6,7 +6,6 @@ import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
-import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
@@ -14,12 +13,7 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
-import {
-  CartPage as NewCartPage,
-  CheckoutPage,
-  PasswordReset,
-  ThankYouPage,
-} from "@pages";
+import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
 
 import * as paths from "./paths";
 
@@ -31,7 +25,6 @@ export const Routes: React.FC = () => (
     <Route path={paths.collectionUrl} component={CollectionPage} />
     <Route path={paths.productUrl} component={ProductPage} />
     <Route path={paths.cartUrl} component={CartPage} />
-    <Route path={paths.newCartUrl} component={NewCartPage} />
     <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={paths.pageUrl} component={ArticlePage} />
     <Route path={accountPaths.baseUrl} component={UserAccount} />
