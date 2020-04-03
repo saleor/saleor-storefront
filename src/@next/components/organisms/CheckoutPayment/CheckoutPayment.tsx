@@ -82,11 +82,9 @@ const CheckoutPayment: React.FC<IProps> = ({
       <S.Section>
         <S.Title>PAYMENT METHOD</S.Title>
         <Checkbox
-          name="billing-same-as-shipping"
-          checked={billingAsShippingAddress}
-          onChange={() =>
-            setBillingAsShippingAddress(!billingAsShippingAddress)
-          }
+          name="payment-promo-code"
+          checked={false}
+          onChange={() => null}
         >
           Do you have a gift card voucher or discount code?
         </Checkbox>
