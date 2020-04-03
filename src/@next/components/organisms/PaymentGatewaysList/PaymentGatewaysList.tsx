@@ -44,7 +44,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     {name}
                   </Radio>
                 </S.Tile>
-                <BraintreePaymentGateway />
+                {checked && <BraintreePaymentGateway />}
               </div>
             );
 
@@ -65,10 +65,12 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     {name}
                   </Radio>
                 </S.Tile>
-                <DummyPaymentGateway
-                  formRef={formRef}
-                  processPayment={processPayment}
-                />
+                {checked && (
+                  <DummyPaymentGateway
+                    formRef={formRef}
+                    processPayment={processPayment}
+                  />
+                )}
               </div>
             );
 
@@ -89,7 +91,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     {name}
                   </Radio>
                 </S.Tile>
-                <StripePaymentGateway />
+                {checked && <StripePaymentGateway />}
               </div>
             );
         }
