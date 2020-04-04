@@ -18,7 +18,7 @@ export interface IProps {
    */
   formRef?: React.RefObject<HTMLFormElement>;
   /**
-   * Method called when the form is submitted. Passed token attribute might be used to create payment.
+   * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */
-  processPayment: (token: string) => void;
+  processPayment: (gateway: string, token: string) => void;
 }

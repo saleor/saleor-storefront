@@ -1,7 +1,11 @@
 import { ErrorListener } from "@sdk/helpers";
 import { CheckoutJobQueue } from "@sdk/jobs";
 import { CheckoutNetworkManager } from "@sdk/network";
-import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
+import {
+  CheckoutRepositoryManager,
+  ICheckoutModel,
+  IPaymentModel,
+} from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
@@ -10,6 +14,7 @@ import {
   IAvailablePaymentGateways,
   IAvailableShippingMethods,
   ICheckout,
+  IPayment,
   ISaleorCheckoutAPI,
 } from "./types";
 
@@ -22,6 +27,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   availablePaymentGateways?: IAvailablePaymentGateways;
+  payment?: IPayment;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -80,6 +86,16 @@ export class SaleorCheckoutAPI extends ErrorListener
         this.selectedBillingAddressId = selectedBillingAddressId;
       }
     );
+    this.saleorState.subscribeToChange(
+      StateItems.PAYMENT,
+      ({ id, token, gateway }: IPaymentModel) => {
+        this.payment = {
+          gateway,
+          id,
+          token,
+        };
+      }
+    );
 
     if (loadOnStart) {
       this.load();
@@ -88,6 +104,7 @@ export class SaleorCheckoutAPI extends ErrorListener
 
   load = async () => {
     await this.saleorState.provideCheckout(this.fireError, true);
+    await this.saleorState.providePayment(true);
     return {
       pending: false,
     };
@@ -159,6 +176,7 @@ export class SaleorCheckoutAPI extends ErrorListener
 
   createPayment = async (gateway: string, token: string) => {
     await this.saleorState.provideCheckout(this.fireError);
+    await this.saleorState.providePayment();
 
     // 1. save in local storage
     this.checkoutRepositoryManager.setPaymentGatewayData(gateway, token);

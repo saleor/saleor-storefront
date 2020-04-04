@@ -59,14 +59,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedBillingAddressId,
     availableShippingMethods,
     availablePaymentGateways,
+    payment,
     createPayment,
     addOnErrorListener,
     removeOnErrorListener,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
-    string
-  >();
+    string | undefined
+  >(payment?.gateway);
 
   useEffect(() => {
     addOnErrorListener(onErrorListener);
@@ -158,11 +159,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       new Event("submit", { cancelable: true })
     );
   };
-  const handleProcessPayment = (token: string) => {
-    if (selectedPaymentGateway) {
-      createPayment(selectedPaymentGateway, token);
-      history.push(activeStep.nextStepLink);
-    }
+  const handleProcessPayment = (gateway: string, token: string) => {
+    createPayment(gateway, token);
+    history.push(activeStep.nextStepLink);
   };
   const handleNextStepClick = () => {
     if (activeStepIndex === 0) {

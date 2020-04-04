@@ -25,6 +25,12 @@ export interface IAddress {
 export type IAvailableShippingMethods = Checkout_availableShippingMethods[];
 export type IAvailablePaymentGateways = Checkout_availablePaymentGateways[];
 
+export interface IPayment {
+  id?: string;
+  token?: string;
+  gateway?: string;
+}
+
 export interface ICheckout {
   id: string | undefined;
   token: any;
@@ -41,6 +47,7 @@ export interface ISaleorCheckoutAPI {
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
   availablePaymentGateways?: IAvailablePaymentGateways;
+  payment?: IPayment;
   load: () => PromiseResponse;
   setBillingAddress: (billingAddress: IAddress) => PromiseResponse;
   setShippingAddress: (

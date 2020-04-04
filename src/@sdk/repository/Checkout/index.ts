@@ -1,7 +1,12 @@
 import { SaleorState } from "@sdk/state";
 
 import { LocalRepository } from "../LocalRepository";
-import { ICheckoutAddress, ICheckoutModel, LocalStorageItems } from "../types";
+import {
+  ICheckoutAddress,
+  ICheckoutModel,
+  IPaymentModel,
+  LocalStorageItems,
+} from "../types";
 import { ICheckoutRepositoryManager } from "./types";
 
 export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
@@ -15,10 +20,6 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   getRepository = () => {
     return this.repository;
-  };
-
-  addOnCheckoutChangeListener = (func: (checkout: ICheckoutModel) => any) => {
-    this.repository.subscribeToChange(LocalStorageItems.CHECKOUT, func);
   };
 
   addItemToCart = (variantId: string, quantity: number) => {
@@ -164,7 +165,7 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
   setPaymentGatewayData = (gateway: string, token: string) => {
     const alteredPayment = this.saleorState.payment
       ? {
-          ...this.saleorState.checkout,
+          ...this.saleorState.payment,
           gateway,
           token,
         }

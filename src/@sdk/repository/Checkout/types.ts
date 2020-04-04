@@ -3,7 +3,6 @@ import { ICheckoutAddress, ICheckoutModel, IPaymentModel } from "../types";
 
 export interface ICheckoutRepositoryManager {
   getRepository: () => LocalRepository;
-  addOnCheckoutChangeListener: (f: (checkout: ICheckoutModel) => any) => void;
   addItemToCart: (variantId: string, quantity: number) => ICheckoutModel | null;
   removeItemFromCart: (variantId: string) => ICheckoutModel | null;
   subtractItemFromCart: (variantId: string) => ICheckoutModel | null;

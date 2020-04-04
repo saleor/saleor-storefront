@@ -68,7 +68,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 {checked && (
                   <DummyPaymentGateway
                     formRef={formRef}
-                    processPayment={processPayment}
+                    processPayment={token =>
+                      processPayment(PROVIDERS.DUMMY.label, token)
+                    }
                   />
                 )}
               </div>

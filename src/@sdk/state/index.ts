@@ -32,6 +32,7 @@ export class SaleorState extends NamedObservable<StateItems>
       LocalStorageItems.CHECKOUT,
       this.updateCheckout
     );
+    repository.subscribeToChange(LocalStorageItems.PAYMENT, this.updatePayment);
   }
 
   provideCheckout = async (
@@ -47,6 +48,10 @@ export class SaleorState extends NamedObservable<StateItems>
     } else {
       this.provideCheckoutOffline(forceReload);
     }
+  };
+
+  providePayment = async (forceReload?: boolean) => {
+    this.provideCheckoutOffline(forceReload);
   };
 
   updateSelectedShippingAddressId = (selectedShippingAddressId?: string) => {
@@ -68,6 +73,10 @@ export class SaleorState extends NamedObservable<StateItems>
   private updateCheckout = (checkout: ICheckoutModel) => {
     this.checkout = checkout;
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
+  };
+  private updatePayment = (payment: IPaymentModel) => {
+    this.payment = payment;
+    this.notifyChange(StateItems.PAYMENT, this.payment);
   };
 
   private isCheckoutCreatedOnline = () => this.checkout?.id;
@@ -145,6 +154,22 @@ export class SaleorState extends NamedObservable<StateItems>
 
     if (checkoutModel) {
       this.updateCheckout(checkoutModel);
+      return;
+    }
+  };
+
+  private providePaymentOffline = (forceReload?: boolean) => {
+    // 1. Try to take checkout from runtime memory (if exist in memory - has any checkout data)
+    if (this.payment && !forceReload) {
+      return;
+    }
+
+    // 2. Try to take checkout from local storage
+    let paymentModel: ICheckoutModel | null;
+    paymentModel = this.repository.getPayment();
+
+    if (paymentModel) {
+      this.updatePayment(paymentModel);
       return;
     }
   };
