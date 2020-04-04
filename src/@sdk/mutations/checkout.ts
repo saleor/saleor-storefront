@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 
 import { checkoutFragment } from "../fragments/checkout";
+import { paymentFragment } from "../fragments/payment";
 
 export const updateCheckoutLineMutation = gql`
   ${checkoutFragment}
@@ -116,6 +117,33 @@ export const removeCheckoutPromoCode = gql`
         message
       }
       checkoutErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
+export const createCheckoutPaymentMutation = gql`
+  ${checkoutFragment}
+  ${paymentFragment}
+  mutation CreateCheckoutPayment(
+    $checkoutId: ID!
+    $paymentInput: PaymentInput!
+  ) {
+    checkoutPaymentCreate(checkoutId: $checkoutId, input: $paymentInput) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+      payment {
+        ...Payment
+      }
+      paymentErrors {
         field
         message
         code

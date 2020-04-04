@@ -160,4 +160,20 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
     return alteredCheckout;
   };
+
+  setPaymentGatewayData = (gateway: string, token: string) => {
+    const alteredPayment = this.saleorState.payment
+      ? {
+          ...this.saleorState.checkout,
+          gateway,
+          token,
+        }
+      : {
+          gateway,
+          token,
+        };
+    this.repository.setPayment(alteredPayment);
+
+    return alteredPayment;
+  };
 }

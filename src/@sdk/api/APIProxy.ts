@@ -145,6 +145,11 @@ export class APIProxy {
     data => data!.checkoutBillingAddressUpdate
   );
 
+  setCreateCheckoutPayment = this.fireQuery(
+    MUTATIONS.CreateCheckoutPayment,
+    data => data!.checkoutPaymentCreate
+  );
+
   setAccountUpdate = this.fireQuery(
     MUTATIONS.AccountUpdate,
     data => data!.accountUpdate

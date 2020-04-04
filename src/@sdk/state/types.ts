@@ -1,4 +1,4 @@
-import { ICheckoutModel } from "../repository";
+import { ICheckoutModel, IPaymentModel } from "../repository";
 
 export enum StateItems {
   CHECKOUT,
@@ -6,6 +6,7 @@ export enum StateItems {
   BILLING_AS_SHIPPING,
   SELECTED_SHIPPING_ADDRESS_ID,
   SELECTED_BILLING_ADDRESS_ID,
+  PAYMENT,
 }
 
 export interface ISaleorState {
@@ -13,4 +14,5 @@ export interface ISaleorState {
   promoCode?: string;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
+  payment?: IPaymentModel;
 }

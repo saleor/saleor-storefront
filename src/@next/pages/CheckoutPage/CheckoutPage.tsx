@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
 import { Button } from "@components/atoms";
@@ -60,11 +60,25 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     availableShippingMethods,
     availablePaymentGateways,
     createPayment,
+    addOnErrorListener,
+    removeOnErrorListener,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string
   >();
+
+  useEffect(() => {
+    addOnErrorListener(onErrorListener);
+    return () => {
+      removeOnErrorListener(onErrorListener);
+    };
+  }, []);
+
+  const onErrorListener = (error: any) => {
+    console.log("CheckoutPage error");
+    console.log(error);
+  };
 
   const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
   const activeStep = steps[activeStepIndex];

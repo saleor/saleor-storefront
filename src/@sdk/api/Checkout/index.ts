@@ -157,14 +157,19 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  /**
-   * Method not implemented yet
-   */
   createPayment = async (gateway: string, token: string) => {
     await this.saleorState.provideCheckout(this.fireError);
 
-    // TODO...
+    // 1. save in local storage
+    this.checkoutRepositoryManager.setPaymentGatewayData(gateway, token);
 
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id && gateway && token) {
+      this.checkoutJobQueue.runCreatePayment();
+      return {
+        pending: true,
+      };
+    }
     return {
       pending: false,
     };

@@ -5,6 +5,7 @@ import {
   ICheckoutAddress,
   ICheckoutModel,
   ICheckoutModelLine,
+  IPaymentModel,
 } from "@sdk/repository";
 import { CountryCode } from "@sdk/types/globalTypes";
 
@@ -638,6 +639,69 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         };
       }
     }
+    return { data: null, errors: null };
+  };
+
+  createPayment = async (checkout: ICheckoutModel, payment: IPaymentModel) => {
+    const checkoutId = checkout.id;
+    const paymentGateway = payment.gateway;
+    const paymentToken = payment.token;
+    const amount = checkout.totalPrice?.gross.amount;
+    const billingAddress = checkout.billingAddress;
+
+    if (
+      checkoutId &&
+      paymentGateway &&
+      paymentToken &&
+      amount !== null &&
+      amount !== undefined &&
+      billingAddress
+    ) {
+      const { data } = await this.apiProxy.setCreateCheckoutPayment({
+        checkoutId,
+        paymentInput: {
+          amount,
+          billingAddress: {
+            city: billingAddress.city,
+            companyName: billingAddress.companyName,
+            country:
+              CountryCode[
+                billingAddress?.country?.code as keyof typeof CountryCode
+              ],
+            countryArea: billingAddress.countryArea,
+            firstName: billingAddress.firstName,
+            lastName: billingAddress.lastName,
+            phone: billingAddress.phone,
+            postalCode: billingAddress.postalCode,
+            streetAddress1: billingAddress.streetAddress1,
+            streetAddress2: billingAddress.streetAddress2,
+          },
+          gateway: paymentGateway,
+          token: paymentToken,
+        },
+      });
+
+      if (data?.errors && data.errors.length) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.payment) {
+        const { id, gateway, token } = data?.payment;
+
+        return {
+          data: {
+            gateway,
+            id,
+            token,
+          },
+          errors: null,
+        };
+      }
+    }
+
     return { data: null, errors: null };
   };
 }

@@ -9,6 +9,7 @@ import {
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
   CHECKOUT = "data_checkout",
+  PAYMENT = "data_payment",
 }
 
 export interface ICheckoutModelLineTotalPrice {
@@ -76,6 +77,12 @@ export interface ICheckoutModel {
   availablePaymentGateways?: Checkout_availablePaymentGateways[];
 }
 
+export interface IPaymentModel {
+  id?: string;
+  token?: string;
+  gateway?: string;
+}
+
 export interface IJobsModel {
   cart: {
     setCartItem?: boolean;
@@ -89,4 +96,6 @@ export interface IJobsModel {
 export interface ILocalRepository {
   getCheckout(): ICheckoutModel | null;
   setCheckout(checkout: ICheckoutModel | null): void;
+  getPayment(): IPaymentModel | null;
+  setPayment(payment: IPaymentModel | null): void;
 }

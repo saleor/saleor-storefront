@@ -3,6 +3,7 @@ import { CheckoutNetworkManager } from "../network";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
   ICheckoutModel,
+  IPaymentModel,
   LocalRepository,
   LocalStorageItems,
 } from "../repository";
@@ -14,6 +15,7 @@ export class SaleorState extends NamedObservable<StateItems>
   promoCode?: string;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
+  payment?: IPaymentModel;
 
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;

@@ -2,6 +2,7 @@ import {
   ICheckoutAddress,
   ICheckoutModel,
   ICheckoutModelLine,
+  IPaymentModel,
 } from "@sdk/repository";
 
 import { INetworkManagerResponse } from "../types";
@@ -28,4 +29,8 @@ export interface ICheckoutNetworkManager {
   setShippingAddress: (
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  createPayment: (
+    checkout: ICheckoutModel,
+    payment: IPaymentModel
+  ) => Promise<INetworkManagerResponse<IPaymentModel>>;
 }

@@ -65,6 +65,11 @@ import {
   RemoveCheckoutPromoCodeVariables,
 } from "./types/RemoveCheckoutPromoCode";
 
+import {
+  CreateCheckoutPayment,
+  CreateCheckoutPaymentVariables,
+} from "./types/CreateCheckoutPayment";
+
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
 
 import {
@@ -160,6 +165,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.createCheckoutMutation}
+      `,
+      ...options,
+    }),
+  CreateCheckoutPayment: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      CreateCheckoutPayment,
+      CreateCheckoutPaymentVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.createCheckoutPaymentMutation}
       `,
       ...options,
     }),
