@@ -91,8 +91,9 @@ export class SaleorCheckoutAPI extends ErrorListener
     );
     this.saleorState.subscribeToChange(
       StateItems.PAYMENT,
-      ({ id, token, gateway }: IPaymentModel) => {
+      ({ id, token, gateway, creditCard }: IPaymentModel) => {
         this.payment = {
+          creditCard,
           gateway,
           id,
           token,

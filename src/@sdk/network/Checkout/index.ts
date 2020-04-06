@@ -448,9 +448,6 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     shippingAddress,
     billingAddress,
     lines,
-    // totalPrice,
-    // subtotalPrice,
-    // shippingPrice,
     availableShippingMethods,
     shippingMethod,
     availablePaymentGateways,
@@ -495,17 +492,16 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       }),
     shippingAddress,
     shippingMethod,
-    // shippingPrice,
-    // subtotalPrice,
     token,
-    // totalPrice,
   });
 
   private constructPaymentModel = ({
     id,
     gateway,
     token,
+    creditCard,
   }: Payment): IPaymentModel => ({
+    creditCard,
     gateway,
     id,
     token,

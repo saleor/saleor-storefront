@@ -2,6 +2,7 @@ import {
   Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
 } from "@sdk/fragments/types/Checkout";
+import { Payment_creditCard } from "@sdk/fragments/types/Payment";
 import { ICheckoutModelPrice, ICheckoutModelPriceValue } from "@sdk/repository";
 
 import { PromiseResponse } from "../types";
@@ -35,10 +36,13 @@ export interface IShippingMethod {
   price?: IPriceValue | null;
 }
 
+export type ICreditCard = Payment_creditCard;
+
 export interface IPayment {
   id?: string;
   token?: string;
   gateway?: string;
+  creditCard?: ICreditCard | null;
 }
 
 export interface ICheckout {

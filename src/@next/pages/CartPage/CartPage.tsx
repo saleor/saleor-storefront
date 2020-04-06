@@ -38,13 +38,13 @@ const prepareCartFooter = (
     subtotalPrice={
       <TaxedMoney
         data-cy="cartPageSubtotalPrice"
-        taxedMoney={totalPrice || undefined}
+        taxedMoney={subtotalPrice || undefined}
       />
     }
     totalPrice={
       <TaxedMoney
         data-cy="cartPageTotalPrice"
-        taxedMoney={subtotalPrice || undefined}
+        taxedMoney={totalPrice || undefined}
       />
     }
   />
@@ -62,7 +62,7 @@ const generateCart = (
       name={variant?.product?.name || ""}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
-      onQuantityChange={quantity => updateItem(variant.id, quantity)}
+      onQuantityChange={(quantity) => updateItem(variant.id, quantity)}
       thumbnail={{
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
@@ -80,13 +80,13 @@ const generateCart = (
         />
       }
       sku={variant.sku}
-      attributes={variant.attributes?.map(attribute => {
+      attributes={variant.attributes?.map((attribute) => {
         return {
           attribute: {
             id: attribute.attribute.id,
             name: attribute.attribute.name || "",
           },
-          values: attribute.values.map(value => {
+          values: attribute.values.map((value) => {
             return {
               id: value?.id,
               name: value?.name || "",

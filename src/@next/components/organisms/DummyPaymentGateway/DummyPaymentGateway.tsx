@@ -6,7 +6,7 @@ import { Radio } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const statuses = [
+export const statuses = [
   { token: "charged", label: "Charged" },
   { token: "fully-refunded", label: "Fully refunded" },
   { token: "not-charged", label: "Not charged" },

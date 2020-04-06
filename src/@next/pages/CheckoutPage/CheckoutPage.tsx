@@ -10,6 +10,7 @@ import {
   CheckoutReview,
   CheckoutShipping,
 } from "@components/organisms";
+import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
@@ -216,6 +217,18 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     gross: shippingPrice,
     net: shippingPrice,
   };
+  const getPaymentMethodDescription = () => {
+    if (payment?.gateway === "Dummy") {
+      return `Dummy: ${
+        dummyStatuses.find(
+          (status) => status.token === selectedPaymentGatewayToken
+        )?.label
+      }`;
+    } else if (payment?.creditCard) {
+      return `Ending in ${payment?.creditCard.lastDigits}`;
+    }
+    return ``;
+  };
 
   const checkoutProgress = (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
@@ -287,6 +300,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             {...props}
             shippingAddress={checkoutShippingAddress}
             billingAddress={checkoutBillingAddress}
+            shippingMethodName={checkout?.shippingMethod?.name}
+            paymentMethodName={getPaymentMethodDescription()}
             email={checkout?.email}
           />
         )}

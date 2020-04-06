@@ -11,6 +11,8 @@ import { IProps } from "./types";
 const CheckoutReview: React.FC<IProps> = ({
   shippingAddress,
   billingAddress,
+  shippingMethodName,
+  paymentMethodName,
   email,
 }: IProps) => {
   return (
@@ -30,12 +32,12 @@ const CheckoutReview: React.FC<IProps> = ({
         <S.Section>
           <S.SubTitle>Shipping Method</S.SubTitle>
           <S.Divider />
-          ...
+          <S.TextSummary>{shippingMethodName}</S.TextSummary>
         </S.Section>
         <S.Section>
           <S.SubTitle>Payment Method</S.SubTitle>
           <S.Divider />
-          ...
+          <S.TextSummary>{paymentMethodName}</S.TextSummary>
         </S.Section>
       </S.Grid>
     </S.Wrapper>
