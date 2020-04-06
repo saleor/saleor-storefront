@@ -51,7 +51,7 @@ export class SaleorState extends NamedObservable<StateItems>
   };
 
   providePayment = async (forceReload?: boolean) => {
-    this.provideCheckoutOffline(forceReload);
+    this.providePaymentOffline(forceReload);
   };
 
   updateSelectedShippingAddressId = (selectedShippingAddressId?: string) => {
@@ -110,7 +110,7 @@ export class SaleorState extends NamedObservable<StateItems>
     if (checkoutModel && !checkoutModel.id) {
       const { email, shippingAddress, billingAddress, lines } = checkoutModel;
       if (email && shippingAddress && lines) {
-        const alteredLines = lines.map(item => ({
+        const alteredLines = lines.map((item) => ({
           quantity: item!.quantity,
           variantId: item?.variant!.id,
         }));

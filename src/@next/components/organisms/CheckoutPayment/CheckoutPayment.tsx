@@ -22,6 +22,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   setBillingAddress,
   setBillingAsShippingAddress,
   selectedPaymentGateway,
+  selectedPaymentGatewayToken,
   selectPaymentGateway,
   gatewayFormRef,
   processPayment,
@@ -33,7 +34,7 @@ const CheckoutPayment: React.FC<IProps> = ({
       ): value is TValue {
         return value !== null && value !== undefined;
       })
-      .map(address => ({
+      .map((address) => ({
         address: {
           ...address,
           isDefaultBillingAddress: address.isDefaultBillingAddress || false,
@@ -76,7 +77,9 @@ const CheckoutPayment: React.FC<IProps> = ({
                   return value !== null && value !== undefined;
                 })}
                 address={checkoutBillingAddress || undefined}
-                handleSubmit={address => address && setBillingAddress(address)}
+                handleSubmit={(address) =>
+                  address && setBillingAddress(address)
+                }
               />
             )}
           </>
@@ -106,6 +109,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           formRef={gatewayFormRef}
           processPayment={processPayment}
           selectedPaymentGateway={selectedPaymentGateway}
+          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
           selectPaymentGateway={selectPaymentGateway}
         />
       </S.Section>

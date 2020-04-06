@@ -10,6 +10,10 @@ export interface IProps {
    */
   selectedPaymentGateway?: string;
   /**
+   * Selected payment gateway token.
+   */
+  selectedPaymentGatewayToken?: string;
+  /**
    * Called when selected payment gateway with passed the payment gateway name attribute.
    */
   selectPaymentGateway?: (paymentGateway: string) => void;

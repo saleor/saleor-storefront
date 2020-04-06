@@ -17,6 +17,7 @@ import { IProps } from "./types";
 const PaymentGatewaysList: React.FC<IProps> = ({
   paymentGateways,
   selectedPaymentGateway,
+  selectedPaymentGatewayToken,
   selectPaymentGateway,
   formRef,
   processPayment,
@@ -68,9 +69,10 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 {checked && (
                   <DummyPaymentGateway
                     formRef={formRef}
-                    processPayment={token =>
+                    processPayment={(token) =>
                       processPayment(PROVIDERS.DUMMY.label, token)
                     }
+                    initialStatus={selectedPaymentGatewayToken}
                   />
                 )}
               </div>

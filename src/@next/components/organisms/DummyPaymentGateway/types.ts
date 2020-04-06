@@ -7,4 +7,8 @@ export interface IProps {
    * Method called when the form is submitted. Passed token attribute might be used to create payment.
    */
   processPayment: (token: string) => void;
+  /**
+   * Initially selected status/token
+   */
+  initialStatus?: string;
 }

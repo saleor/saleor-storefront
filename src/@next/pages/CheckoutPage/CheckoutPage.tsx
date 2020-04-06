@@ -68,6 +68,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
+  const [
+    selectedPaymentGatewayToken,
+    setSelectedPaymentGatewayToken,
+  ] = useState<string | undefined>(payment?.token);
+
+  useEffect(() => {
+    setSelectedPaymentGateway(payment?.gateway);
+  }, [payment?.gateway]);
+  useEffect(() => {
+    setSelectedPaymentGatewayToken(payment?.token);
+  }, [payment?.token]);
 
   useEffect(() => {
     addOnErrorListener(onErrorListener);
@@ -212,7 +223,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <Switch>
       <Route
         path={steps[0].link}
-        render={props => (
+        render={(props) => (
           <CheckoutAddress
             {...props}
             formId={checkoutAddressFormId}
@@ -228,13 +239,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       />
       <Route
         path={steps[1].link}
-        render={props => (
+        render={(props) => (
           <CheckoutShipping {...props} shippingMethods={shippingMethods} />
         )}
       />
       <Route
         path={steps[2].link}
-        render={props => (
+        render={(props) => (
           <CheckoutPayment
             {...props}
             formId={checkoutBillingFormId}
@@ -245,6 +256,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             countries={countries}
             paymentGateways={paymentGateways}
             selectedPaymentGateway={selectedPaymentGateway}
+            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             selectPaymentGateway={setSelectedPaymentGateway}
             setBillingAddress={handleSetBillingAddress}
             billingAsShippingAddress={billingAsShipping}
@@ -256,7 +268,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       />
       <Route
         path={steps[3].link}
-        render={props => (
+        render={(props) => (
           <CheckoutReview
             {...props}
             shippingAddress={checkoutShippingAddress}

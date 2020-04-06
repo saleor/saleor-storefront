@@ -18,16 +18,13 @@ const statuses = [
 const DummyPaymentGateway: React.FC<IProps> = ({
   processPayment,
   formRef,
+  initialStatus,
 }: IProps) => {
-  const [selectedStatusToken, setSelectedStatusToken] = useState(
-    statuses[0].token
-  );
-
   return (
     <Formik
-      initialValues={selectedStatusToken}
-      onSubmit={(statusToken, { setSubmitting }) => {
-        processPayment(statusToken);
+      initialValues={{ status: initialStatus || statuses[0].token }}
+      onSubmit={(values, { setSubmitting }) => {
+        processPayment(values.status);
         setSubmitting(false);
       }}
     >
@@ -48,8 +45,8 @@ const DummyPaymentGateway: React.FC<IProps> = ({
                   type="radio"
                   name="status"
                   value={token}
-                  checked={selectedStatusToken === token}
-                  onChange={() => setSelectedStatusToken(token)}
+                  checked={values.status === token}
+                  onChange={handleChange}
                 >
                   {label}
                 </Radio>
