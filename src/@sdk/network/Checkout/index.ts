@@ -1,5 +1,6 @@
 import { APIProxy } from "@sdk/api/APIProxy";
 import { Checkout } from "@sdk/fragments/types/Checkout";
+import { Payment } from "@sdk/fragments/types/Payment";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
 import {
   ICheckoutAddress,
@@ -24,10 +25,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       checkout = await new Promise((resolve, reject) => {
         if (this.apiProxy.isLoggedIn()) {
           this.apiProxy.getUserCheckout(null, {
-            onError: error => {
+            onError: (error) => {
               reject(error);
             },
-            onUpdate: data => {
+            onUpdate: (data) => {
               resolve(data);
             },
           });
@@ -37,10 +38,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               token: checkoutToken,
             },
             {
-              onError: error => {
+              onError: (error) => {
                 reject(error);
               },
-              onUpdate: data => {
+              onUpdate: (data) => {
                 resolve(data);
               },
             }
@@ -51,65 +52,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       });
 
       if (checkout) {
-        const {
-          id,
-          token,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-          totalPrice,
-          subtotalPrice,
-          shippingPrice,
-          availableShippingMethods,
-          availablePaymentGateways,
-        } = checkout;
         return {
-          data: {
-            availablePaymentGateways: availablePaymentGateways
-              ? availablePaymentGateways.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            availableShippingMethods: availableShippingMethods
-              ? availableShippingMethods.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            billingAddress,
-            email,
-            id,
-            lines: lines
-              ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => {
-                const itemVariant = item?.variant;
-
-                return {
-                  id: item!.id,
-                  quantity: item!.quantity,
-                  totalPrice: item?.totalPrice,
-                  variant: {
-                    attributes: itemVariant?.attributes,
-                    id: itemVariant!.id,
-                    isAvailable: itemVariant?.isAvailable,
-                    name: itemVariant?.name,
-                    pricing: itemVariant?.pricing,
-                    product: itemVariant?.product,
-                    sku: itemVariant?.sku,
-                    stockQuantity: itemVariant?.stockQuantity,
-                  },
-                };
-              }),
-            shippingAddress,
-            shippingPrice,
-            subtotalPrice,
-            token,
-            totalPrice,
-          },
+          data: this.constructCheckoutModel(checkout),
           errors: null,
         };
       } else {
@@ -130,10 +74,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     checkoutlines: ICheckoutModelLine[] | null
   ) => {
     const idsOfMissingVariants = checkoutlines
-      ?.filter(line => !line.variant || !line.totalPrice)
-      .map(line => line.variant.id);
+      ?.filter((line) => !line.variant || !line.totalPrice)
+      .map((line) => line.variant.id);
     const linesWithProperVariant =
-      checkoutlines?.filter(line => line.variant && line.totalPrice) || [];
+      checkoutlines?.filter((line) => line.variant && line.totalPrice) || [];
 
     let variants: CheckoutProductVariants_productVariants | null | undefined;
     if (idsOfMissingVariants && idsOfMissingVariants.length) {
@@ -144,10 +88,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               ids: idsOfMissingVariants,
             },
             {
-              onError: error => {
+              onError: (error) => {
                 reject(error);
               },
-              onUpdate: data => {
+              onUpdate: (data) => {
                 resolve(data);
               },
             }
@@ -162,9 +106,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     }
 
     const linesWithMissingVariantUpdated = variants
-      ? variants.edges.map(edge => {
+      ? variants.edges.map((edge) => {
           const existingLine = checkoutlines?.find(
-            line => line.variant.id === edge.node.id
+            (line) => line.variant.id === edge.node.id
           );
           const variantPricing = edge.node.pricing?.price;
           const totalPrice = variantPricing
@@ -200,7 +144,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         })
       : [];
 
-    const linesWithProperVariantUpdated = linesWithProperVariant.map(line => {
+    const linesWithProperVariantUpdated = linesWithProperVariant.map((line) => {
       const variantPricing = line.variant.pricing?.price;
       const totalPrice = variantPricing
         ? {
@@ -285,66 +229,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     }
 
     if (data?.checkout) {
-      const {
-        id,
-        token,
-        email,
-        shippingAddress,
-        billingAddress,
-        lines,
-        totalPrice,
-        subtotalPrice,
-        shippingPrice,
-        availableShippingMethods,
-        availablePaymentGateways,
-      } = data?.checkout;
-
       return {
-        data: {
-          availablePaymentGateways: availablePaymentGateways
-            ? availablePaymentGateways.filter(function notEmpty<TValue>(
-                value: TValue | null | undefined
-              ): value is TValue {
-                return value !== null && value !== undefined;
-              })
-            : [],
-          availableShippingMethods: availableShippingMethods
-            ? availableShippingMethods.filter(function notEmpty<TValue>(
-                value: TValue | null | undefined
-              ): value is TValue {
-                return value !== null && value !== undefined;
-              })
-            : [],
-          billingAddress,
-          email,
-          id,
-          lines: lines
-            ?.filter(item => item?.quantity && item.variant.id)
-            .map(item => {
-              const itemVariant = item?.variant;
-
-              return {
-                id: item!.id,
-                quantity: item!.quantity,
-                totalPrice: item?.totalPrice,
-                variant: {
-                  attributes: itemVariant?.attributes,
-                  id: itemVariant!.id,
-                  isAvailable: itemVariant?.isAvailable,
-                  name: itemVariant?.name,
-                  pricing: itemVariant?.pricing,
-                  product: itemVariant?.product,
-                  sku: itemVariant?.sku,
-                  stockQuantity: itemVariant?.stockQuantity,
-                },
-              };
-            }),
-          shippingAddress,
-          shippingPrice,
-          subtotalPrice,
-          token,
-          totalPrice,
-        },
+        data: this.constructCheckoutModel(data.checkout),
         errors: null,
       };
     } else {
@@ -357,7 +243,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const lines = checkout.lines;
 
     if (checkoutId && lines) {
-      const alteredLines = lines.map(line => ({
+      const alteredLines = lines.map((line) => ({
         quantity: line.quantity,
         variantId: line.variant.id,
       }));
@@ -375,66 +261,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       }
 
       if (data?.checkout) {
-        const {
-          id,
-          token,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-          totalPrice,
-          subtotalPrice,
-          shippingPrice,
-          availableShippingMethods,
-          availablePaymentGateways,
-        } = data?.checkout;
-
         return {
-          data: {
-            availablePaymentGateways: availablePaymentGateways
-              ? availablePaymentGateways.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            availableShippingMethods: availableShippingMethods
-              ? availableShippingMethods.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            billingAddress,
-            email,
-            id,
-            lines: lines
-              ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => {
-                const itemVariant = item?.variant;
-
-                return {
-                  id: item!.id,
-                  quantity: item!.quantity,
-                  totalPrice: item?.totalPrice,
-                  variant: {
-                    attributes: itemVariant?.attributes,
-                    id: itemVariant!.id,
-                    isAvailable: itemVariant?.isAvailable,
-                    name: itemVariant?.name,
-                    pricing: itemVariant?.pricing,
-                    product: itemVariant?.product,
-                    sku: itemVariant?.sku,
-                    stockQuantity: itemVariant?.stockQuantity,
-                  },
-                };
-              }),
-            shippingAddress,
-            shippingPrice,
-            subtotalPrice,
-            token,
-            totalPrice,
-          },
+          data: this.constructCheckoutModel(data.checkout),
           errors: null,
         };
       }
@@ -476,66 +304,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       }
 
       if (data?.checkout) {
-        const {
-          id,
-          token,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-          totalPrice,
-          subtotalPrice,
-          shippingPrice,
-          availableShippingMethods,
-          availablePaymentGateways,
-        } = data?.checkout;
-
         return {
-          data: {
-            availablePaymentGateways: availablePaymentGateways
-              ? availablePaymentGateways.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            availableShippingMethods: availableShippingMethods
-              ? availableShippingMethods.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            billingAddress,
-            email,
-            id,
-            lines: lines
-              ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => {
-                const itemVariant = item?.variant;
-
-                return {
-                  id: item!.id,
-                  quantity: item!.quantity,
-                  totalPrice: item?.totalPrice,
-                  variant: {
-                    attributes: itemVariant?.attributes,
-                    id: itemVariant!.id,
-                    isAvailable: itemVariant?.isAvailable,
-                    name: itemVariant?.name,
-                    pricing: itemVariant?.pricing,
-                    product: itemVariant?.product,
-                    sku: itemVariant?.sku,
-                    stockQuantity: itemVariant?.stockQuantity,
-                  },
-                };
-              }),
-            shippingAddress,
-            shippingPrice,
-            subtotalPrice,
-            token,
-            totalPrice,
-          },
+          data: this.constructCheckoutModel(data.checkout),
           errors: null,
         };
       }
@@ -575,66 +345,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       }
 
       if (data?.checkout) {
-        const {
-          id,
-          token,
-          email,
-          shippingAddress,
-          billingAddress,
-          lines,
-          totalPrice,
-          subtotalPrice,
-          shippingPrice,
-          availableShippingMethods,
-          availablePaymentGateways,
-        } = data?.checkout;
-
         return {
-          data: {
-            availablePaymentGateways: availablePaymentGateways
-              ? availablePaymentGateways.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            availableShippingMethods: availableShippingMethods
-              ? availableShippingMethods.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })
-              : [],
-            billingAddress,
-            email,
-            id,
-            lines: lines
-              ?.filter(item => item?.quantity && item.variant.id)
-              .map(item => {
-                const itemVariant = item?.variant;
-
-                return {
-                  id: item!.id,
-                  quantity: item!.quantity,
-                  totalPrice: item?.totalPrice,
-                  variant: {
-                    attributes: itemVariant?.attributes,
-                    id: itemVariant!.id,
-                    isAvailable: itemVariant?.isAvailable,
-                    name: itemVariant?.name,
-                    pricing: itemVariant?.pricing,
-                    product: itemVariant?.product,
-                    sku: itemVariant?.sku,
-                    stockQuantity: itemVariant?.stockQuantity,
-                  },
-                };
-              }),
-            shippingAddress,
-            shippingPrice,
-            subtotalPrice,
-            token,
-            totalPrice,
-          },
+          data: this.constructCheckoutModel(data.checkout),
           errors: null,
         };
       }
@@ -642,11 +354,41 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     return { data: null, errors: null };
   };
 
-  createPayment = async (checkout: ICheckoutModel, payment: IPaymentModel) => {
+  setShippingMethod = async (checkout: ICheckoutModel) => {
+    const checkoutId = checkout.id;
+    const shippingMethodId = checkout.shippingMethod?.id;
+
+    if (checkoutId && shippingMethodId) {
+      const { data } = await this.apiProxy.setCheckoutShippingMethod({
+        checkoutId,
+        shippingMethodId,
+      });
+
+      if (data?.errors && data.errors.length) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.checkout) {
+        return {
+          data: this.constructCheckoutModel(data.checkout),
+          errors: null,
+        };
+      }
+    }
+    return { data: null, errors: null };
+  };
+
+  createPayment = async (
+    amount: number,
+    checkout: ICheckoutModel,
+    payment: IPaymentModel
+  ) => {
     const checkoutId = checkout.id;
     const paymentGateway = payment.gateway;
     const paymentToken = payment.token;
-    const amount = checkout.totalPrice?.gross.amount;
     const billingAddress = checkout.billingAddress;
 
     if (
@@ -689,14 +431,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       }
 
       if (data?.payment) {
-        const { id, gateway, token } = data?.payment;
-
         return {
-          data: {
-            gateway,
-            id,
-            token,
-          },
+          data: this.constructPaymentModel(data.payment),
           errors: null,
         };
       }
@@ -704,4 +440,74 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
 
     return { data: null, errors: null };
   };
+
+  private constructCheckoutModel = ({
+    id,
+    token,
+    email,
+    shippingAddress,
+    billingAddress,
+    lines,
+    // totalPrice,
+    // subtotalPrice,
+    // shippingPrice,
+    availableShippingMethods,
+    shippingMethod,
+    availablePaymentGateways,
+  }: Checkout): ICheckoutModel => ({
+    availablePaymentGateways: availablePaymentGateways
+      ? availablePaymentGateways.filter(function notEmpty<TValue>(
+          value: TValue | null | undefined
+        ): value is TValue {
+          return value !== null && value !== undefined;
+        })
+      : [],
+    availableShippingMethods: availableShippingMethods
+      ? availableShippingMethods.filter(function notEmpty<TValue>(
+          value: TValue | null | undefined
+        ): value is TValue {
+          return value !== null && value !== undefined;
+        })
+      : [],
+    billingAddress,
+    email,
+    id,
+    lines: lines
+      ?.filter((item) => item?.quantity && item.variant.id)
+      .map((item) => {
+        const itemVariant = item?.variant;
+
+        return {
+          id: item!.id,
+          quantity: item!.quantity,
+          totalPrice: item?.totalPrice,
+          variant: {
+            attributes: itemVariant?.attributes,
+            id: itemVariant!.id,
+            isAvailable: itemVariant?.isAvailable,
+            name: itemVariant?.name,
+            pricing: itemVariant?.pricing,
+            product: itemVariant?.product,
+            sku: itemVariant?.sku,
+            stockQuantity: itemVariant?.stockQuantity,
+          },
+        };
+      }),
+    shippingAddress,
+    shippingMethod,
+    // shippingPrice,
+    // subtotalPrice,
+    token,
+    // totalPrice,
+  });
+
+  private constructPaymentModel = ({
+    id,
+    gateway,
+    token,
+  }: Payment): IPaymentModel => ({
+    gateway,
+    id,
+    token,
+  });
 }

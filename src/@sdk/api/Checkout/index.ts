@@ -26,6 +26,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
+  selectedShippingMethodId?: string;
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
 
@@ -60,6 +61,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         billingAddress,
         billingAsShipping,
         availableShippingMethods,
+        shippingMethod,
         availablePaymentGateways,
       }: ICheckoutModel) => {
         this.checkout = {
@@ -67,6 +69,7 @@ export class SaleorCheckoutAPI extends ErrorListener
           email,
           id,
           shippingAddress,
+          shippingMethod,
           token,
         };
         this.availableShippingMethods = availableShippingMethods;
@@ -174,6 +177,26 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
+  setShippingMethod = async (shippingMethodId: string) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    if (this.checkout?.id) {
+      this.checkoutRepositoryManager.setShippingMethod(shippingMethodId);
+    }
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetShippingMethod();
+      return {
+        pending: true,
+      };
+    }
+    return {
+      pending: false,
+    };
+  };
+
   createPayment = async (gateway: string, token: string) => {
     await this.saleorState.provideCheckout(this.fireError);
     await this.saleorState.providePayment();
@@ -182,8 +205,15 @@ export class SaleorCheckoutAPI extends ErrorListener
     this.checkoutRepositoryManager.setPaymentGatewayData(gateway, token);
 
     // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.id && gateway && token) {
-      this.checkoutJobQueue.runCreatePayment();
+    if (
+      this.saleorState.checkout?.id &&
+      this.saleorState.summaryPrices?.totalPrice &&
+      gateway &&
+      token
+    ) {
+      this.checkoutJobQueue.runCreatePayment(
+        this.saleorState.summaryPrices?.totalPrice.gross.amount
+      );
       return {
         pending: true,
       };

@@ -7,7 +7,7 @@ import {
   LocalRepository,
   LocalStorageItems,
 } from "../repository";
-import { ISaleorState, StateItems } from "./types";
+import { ISaleorState, ISaleorStateSummeryPrices, StateItems } from "./types";
 
 export class SaleorState extends NamedObservable<StateItems>
   implements ISaleorState {
@@ -16,6 +16,7 @@ export class SaleorState extends NamedObservable<StateItems>
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   payment?: IPaymentModel;
+  summaryPrices?: ISaleorStateSummeryPrices;
 
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -30,9 +31,12 @@ export class SaleorState extends NamedObservable<StateItems>
 
     repository.subscribeToChange(
       LocalStorageItems.CHECKOUT,
-      this.updateCheckout
+      this.onCheckoutUpdate
     );
-    repository.subscribeToChange(LocalStorageItems.PAYMENT, this.updatePayment);
+    repository.subscribeToChange(
+      LocalStorageItems.PAYMENT,
+      this.onPaymentUpdate
+    );
   }
 
   provideCheckout = async (
@@ -70,11 +74,13 @@ export class SaleorState extends NamedObservable<StateItems>
     );
   };
 
-  private updateCheckout = (checkout: ICheckoutModel) => {
+  private onCheckoutUpdate = (checkout: ICheckoutModel) => {
     this.checkout = checkout;
+    this.summaryPrices = this.calculateSummaryPrices(checkout);
     this.notifyChange(StateItems.CHECKOUT, this.checkout);
+    this.notifyChange(StateItems.SUMMARY_PRICES, this.summaryPrices);
   };
-  private updatePayment = (payment: IPaymentModel) => {
+  private onPaymentUpdate = (payment: IPaymentModel) => {
     this.payment = payment;
     this.notifyChange(StateItems.PAYMENT, this.payment);
   };
@@ -102,7 +108,7 @@ export class SaleorState extends NamedObservable<StateItems>
     // 2.a. Try to take checkout from local storage
     const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
     if (checkoutModel && checkoutModel.id) {
-      this.updateCheckout(checkoutModel);
+      this.onCheckoutUpdate(checkoutModel);
       return;
     }
 
@@ -132,11 +138,11 @@ export class SaleorState extends NamedObservable<StateItems>
           // this.updateCheckout(data);
           return;
         } else {
-          this.updateCheckout(checkoutModel);
+          this.onCheckoutUpdate(checkoutModel);
           return;
         }
       } else {
-        this.updateCheckout(checkoutModel);
+        this.onCheckoutUpdate(checkoutModel);
         return;
       }
     }
@@ -153,7 +159,7 @@ export class SaleorState extends NamedObservable<StateItems>
     checkoutModel = this.repository.getCheckout();
 
     if (checkoutModel) {
-      this.updateCheckout(checkoutModel);
+      this.onCheckoutUpdate(checkoutModel);
       return;
     }
   };
@@ -169,8 +175,69 @@ export class SaleorState extends NamedObservable<StateItems>
     paymentModel = this.repository.getPayment();
 
     if (paymentModel) {
-      this.updatePayment(paymentModel);
+      this.onPaymentUpdate(paymentModel);
       return;
     }
   };
+
+  private calculateSummaryPrices(
+    checkout?: ICheckoutModel
+  ): ISaleorStateSummeryPrices | undefined {
+    const items = checkout?.lines;
+    const shippingMethod = checkout?.shippingMethod;
+
+    if (items && items.length) {
+      const firstItemTotalPrice = items[0].totalPrice;
+
+      if (firstItemTotalPrice) {
+        const shippingPrice = {
+          ...shippingMethod?.price,
+          amount: shippingMethod?.price?.amount || 0,
+          currency: shippingMethod?.price?.currency || "",
+        };
+
+        const { itemsNetPrice, itmesGrossPrice } = items.reduce(
+          (prevVals, item) => {
+            prevVals.itemsNetPrice += item.totalPrice?.net.amount || 0;
+            prevVals.itmesGrossPrice += item.totalPrice?.gross.amount || 0;
+            return prevVals;
+          },
+          {
+            itemsNetPrice: 0,
+            itmesGrossPrice: 0,
+          }
+        );
+
+        const subtotalPrice = {
+          ...firstItemTotalPrice,
+          gross: {
+            ...firstItemTotalPrice.gross,
+            amount: itmesGrossPrice,
+          },
+          net: {
+            ...firstItemTotalPrice.net,
+            amount: itemsNetPrice,
+          },
+        };
+
+        const totalPrice = {
+          ...subtotalPrice,
+          gross: {
+            ...subtotalPrice.gross,
+            amount: itmesGrossPrice + shippingPrice.amount,
+          },
+          net: {
+            ...subtotalPrice.net,
+            amount: itemsNetPrice + shippingPrice.amount,
+          },
+        };
+
+        return {
+          shippingPrice,
+          subtotalPrice,
+          totalPrice,
+        };
+      }
+    }
+  }
 }

@@ -85,6 +85,32 @@ export const updateCheckoutShippingAddressMutation = gql`
   }
 `;
 
+export const updateCheckoutShippingMethodMutation = gql`
+  ${checkoutFragment}
+  mutation UpdateCheckoutShippingMethod(
+    $checkoutId: ID!
+    $shippingMethodId: ID!
+  ) {
+    checkoutShippingMethodUpdate(
+      checkoutId: $checkoutId
+      shippingMethodId: $shippingMethodId
+    ) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+      checkoutErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
   mutation AddCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {

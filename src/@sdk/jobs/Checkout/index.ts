@@ -73,8 +73,31 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
-  runCreatePayment = () => {
-    this.createPayment();
+  enqueueSetShippingMethod = () => {
+    this.addToQueue(
+      LocalStorageJobs.CHECKOUT_SET_SHIPPING_METHOD,
+      () => this.setShippingMethod(),
+      () => {
+        this.updateJobsStateInRepository(
+          {
+            setShippingMethod: true,
+          },
+          "checkout"
+        );
+      },
+      () => {
+        this.updateJobsStateInRepository(
+          {
+            setShippingMethod: false,
+          },
+          "checkout"
+        );
+      }
+    );
+  };
+
+  runCreatePayment = (amount: number) => {
+    this.createPayment(amount);
   };
 
   private setShippingAddress = async () => {
@@ -116,12 +139,32 @@ export class CheckoutJobQueue extends JobQueue {
     }
   };
 
-  private createPayment = async () => {
+  private setShippingMethod = async () => {
+    const checkout = this.repository.getCheckout();
+
+    if (checkout) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.setShippingMethod(checkout);
+      if (errors && this.onErrorListener) {
+        this.onErrorListener(errors);
+      } else if (data) {
+        this.repository.setCheckout({
+          ...checkout,
+          shippingMethod: data.shippingMethod,
+        });
+      }
+    }
+  };
+
+  private createPayment = async (amount: number) => {
     const checkout = this.repository.getCheckout();
     const payment = this.repository.getPayment();
 
     if (checkout && payment) {
       const { data, errors } = await this.checkoutNetworkManager.createPayment(
+        amount,
         checkout,
         payment
       );

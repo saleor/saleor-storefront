@@ -2,8 +2,12 @@ import {
   Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
 } from "@sdk/fragments/types/Checkout";
+import { ICheckoutModelPrice, ICheckoutModelPriceValue } from "@sdk/repository";
 
 import { PromiseResponse } from "../types";
+
+export type IPrice = ICheckoutModelPrice | null | undefined;
+export type IPriceValue = ICheckoutModelPriceValue | null | undefined;
 
 export interface IAddress {
   id?: string;
@@ -25,6 +29,12 @@ export interface IAddress {
 export type IAvailableShippingMethods = Checkout_availableShippingMethods[];
 export type IAvailablePaymentGateways = Checkout_availablePaymentGateways[];
 
+export interface IShippingMethod {
+  id: string;
+  name: string;
+  price?: IPriceValue | null;
+}
+
 export interface IPayment {
   id?: string;
   token?: string;
@@ -32,11 +42,12 @@ export interface IPayment {
 }
 
 export interface ICheckout {
-  id: string | undefined;
+  id?: string;
   token: any;
-  email: string | undefined;
-  shippingAddress: IAddress | null | undefined;
-  billingAddress: IAddress | null | undefined;
+  email?: string;
+  shippingAddress?: IAddress | null;
+  shippingMethod?: IShippingMethod | null;
+  billingAddress?: IAddress | null;
 }
 
 export interface ISaleorCheckoutAPI {
@@ -46,6 +57,7 @@ export interface ISaleorCheckoutAPI {
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
+  selectedShippingMethodId?: string;
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
   load: () => PromiseResponse;
@@ -54,6 +66,7 @@ export interface ISaleorCheckoutAPI {
     shippingAddress: IAddress,
     email: string
   ) => PromiseResponse;
+  setShippingMethod: (shippingMethodId: string) => PromiseResponse;
   setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
   createPayment: (gateway: string, token: string) => PromiseResponse;
   makeOrder: () => PromiseResponse;

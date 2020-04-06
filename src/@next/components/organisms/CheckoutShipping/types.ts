@@ -21,4 +21,5 @@ export interface IShippingMethod {
 export interface IProps {
   shippingMethods: IShippingMethod[];
   selectedShippingMethodId?: string;
+  selectShippingMethod: (shippingMethodId: string) => void;
 }

@@ -58,6 +58,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedShippingAddressId,
     selectedBillingAddressId,
     availableShippingMethods,
+    setShippingMethod,
     availablePaymentGateways,
     payment,
     createPayment,
@@ -187,7 +188,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         );
       }
     } else if (activeStepIndex === 2) {
-      if (user && selectedBillingAddressId) {
+      if (billingAsShipping) {
+        checkoutGatewayFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else if (user && selectedBillingAddressId) {
         checkoutBillingFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
@@ -207,13 +212,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const paymentGateways = availablePaymentGateways
     ? availablePaymentGateways
     : [];
+  const shippingTaxedPrice = shippingPrice && {
+    gross: shippingPrice,
+    net: shippingPrice,
+  };
 
   const checkoutProgress = (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
   );
   const cartSummary = (
     <CartSummary
-      shipping={shippingPrice || undefined}
+      shipping={shippingTaxedPrice || undefined}
       subtotal={subtotalPrice || undefined}
       total={totalPrice || undefined}
       products={products}
@@ -240,7 +249,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       <Route
         path={steps[1].link}
         render={(props) => (
-          <CheckoutShipping {...props} shippingMethods={shippingMethods} />
+          <CheckoutShipping
+            {...props}
+            shippingMethods={shippingMethods}
+            selectedShippingMethodId={checkout?.shippingMethod?.id}
+            selectShippingMethod={setShippingMethod}
+          />
         )}
       />
       <Route

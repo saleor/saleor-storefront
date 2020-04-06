@@ -27,137 +27,148 @@ import {
 } from "../utils";
 
 export class APIProxy {
-  getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
+  getAttributes = this.watchQuery(
+    QUERIES.Attributes,
+    (data) => data.attributes
+  );
 
   getCheckoutDetails = this.watchQuery(
     QUERIES.CheckoutDetails,
-    data => data.checkout
+    (data) => data.checkout
   );
 
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
-    data => data.product
+    (data) => data.product
   );
 
-  getProductList = this.watchQuery(QUERIES.ProductList, data => data.products);
+  getProductList = this.watchQuery(
+    QUERIES.ProductList,
+    (data) => data.products
+  );
 
   getCategoryDetails = this.watchQuery(
     QUERIES.CategoryDetails,
-    data => data.category
+    (data) => data.category
   );
 
-  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, data =>
+  getOrdersByUser = this.watchQuery(QUERIES.OrdersByUser, (data) =>
     data.me ? data.me.orders : null
   );
 
   getOrderDetails = this.watchQuery(
     QUERIES.OrderDetails,
-    data => data.orderByToken
+    (data) => data.orderByToken
   );
 
-  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
+  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, (data) =>
     data.me ? data.me.checkout : null
   );
 
-  getUserWishlist = this.watchQuery(QUERIES.Wishlist, data =>
+  getUserWishlist = this.watchQuery(QUERIES.Wishlist, (data) =>
     data.me ? data.me.wishlist : null
   );
 
   getVariantsProducts = this.watchQuery(
     QUERIES.VariantsProducts,
-    data => data.productVariants
+    (data) => data.productVariants
   );
 
   getCheckoutProductVariants = this.watchQuery(
     QUERIES.CheckoutProductVariants,
-    data => data.productVariants
+    (data) => data.productVariants
   );
 
-  getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
+  getShopDetails = this.watchQuery(QUERIES.GetShopDetails, (data) => data);
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
-    data => data!.accountSetDefaultAddress
+    (data) => data!.accountSetDefaultAddress
   );
 
   setCreateCheckout = this.fireQuery(
     MUTATIONS.CreateCheckout,
-    data => data!.checkoutCreate
+    (data) => data!.checkoutCreate
   );
 
   setCheckoutLine = this.fireQuery(
     MUTATIONS.UpdateCheckoutLine,
-    data => data!.checkoutLinesUpdate
+    (data) => data!.checkoutLinesUpdate
   );
 
   setCheckoutShippingAddress = this.fireQuery(
     MUTATIONS.UpdateCheckoutShippingAddress,
-    data => data!.checkoutShippingAddressUpdate
+    (data) => data!.checkoutShippingAddressUpdate
+  );
+
+  setCheckoutShippingMethod = this.fireQuery(
+    MUTATIONS.UpdateCheckoutShippingMethod,
+    (data) => data!.checkoutShippingMethodUpdate
   );
 
   setAddCheckoutPromoCode = this.fireQuery(
     MUTATIONS.AddCheckoutPromoCode,
-    data => data!.checkoutAddPromoCode
+    (data) => data!.checkoutAddPromoCode
   );
 
   setRemoveCheckoutPromoCode = this.fireQuery(
     MUTATIONS.RemoveCheckoutPromoCode,
-    data => data!.checkoutRemovePromoCode
+    (data) => data!.checkoutRemovePromoCode
   );
 
   setDeleteUserAddress = this.fireQuery(
     MUTATIONS.DeleteUserAddress,
-    data => data!.accountAddressDelete
+    (data) => data!.accountAddressDelete
   );
 
   setCreateUserAddress = this.fireQuery(
     MUTATIONS.CreateUserAddress,
-    data => data!.accountAddressCreate
+    (data) => data!.accountAddressCreate
   );
 
   setUpdateuserAddress = this.fireQuery(
     MUTATIONS.UpdateUserAddress,
-    data => data!.accountAddressUpdate
+    (data) => data!.accountAddressUpdate
   );
 
   setAddWishlistProduct = this.fireQuery(
     MUTATIONS.AddWishlistProduct,
-    data => data!.wishlistAddProduct
+    (data) => data!.wishlistAddProduct
   );
 
   setRemoveWishlistProduct = this.fireQuery(
     MUTATIONS.RemoveWishlistProduct,
-    data => data!.wishlistRemoveProduct
+    (data) => data!.wishlistRemoveProduct
   );
 
   setAddWishlistProductVariant = this.fireQuery(
     MUTATIONS.AddWishlistProductVariant,
-    data => data!.wishlistAddVariant
+    (data) => data!.wishlistAddVariant
   );
 
   setRemoveWishlistProductVariant = this.fireQuery(
     MUTATIONS.RemoveWishlistProductVariant,
-    data => data!.wishlistRemoveVariant
+    (data) => data!.wishlistRemoveVariant
   );
 
   setCheckoutBillingAddress = this.fireQuery(
     MUTATIONS.UpdateCheckoutBillingAddress,
-    data => data!.checkoutBillingAddressUpdate
+    (data) => data!.checkoutBillingAddressUpdate
   );
 
   setCreateCheckoutPayment = this.fireQuery(
     MUTATIONS.CreateCheckoutPayment,
-    data => data!.checkoutPaymentCreate
+    (data) => data!.checkoutPaymentCreate
   );
 
   setAccountUpdate = this.fireQuery(
     MUTATIONS.AccountUpdate,
-    data => data!.accountUpdate
+    (data) => data!.accountUpdate
   );
 
-  setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, data => data);
+  setPasswordChange = this.fireQuery(MUTATIONS.PasswordChange, (data) => data);
 
-  setPassword = this.fireQuery(MUTATIONS.SetPassword, data => data);
+  setPassword = this.fireQuery(MUTATIONS.SetPassword, (data) => data);
 
   client: ApolloClient<any>;
 
@@ -172,7 +183,7 @@ export class APIProxy {
     }
   ) => {
     if (this.isLoggedIn()) {
-      return this.watchQuery(QUERIES.UserDetails, data => data.me)(
+      return this.watchQuery(QUERIES.UserDetails, (data) => data.me)(
         variables,
         options
       );
@@ -199,7 +210,7 @@ export class APIProxy {
 
         const data = await this.fireQuery(
           MUTATIONS.TokenAuth,
-          data => data!.tokenCreate
+          (data) => data!.tokenCreate
         )(variables, {
           ...options,
           update: (proxy, data) => {
@@ -306,7 +317,7 @@ export class APIProxy {
       }
 
       const subscription = observable.subscribe(
-        result => {
+        (result) => {
           const { data, errors: apolloErrors } = result;
           const errorHandledData = handleDataErrors(
             mapFn,
@@ -326,7 +337,7 @@ export class APIProxy {
             }
           }
         },
-        error => {
+        (error) => {
           if (onError) {
             onError(error);
           }
@@ -361,7 +372,7 @@ export class APIProxy {
                 );
 
                 // use new result for metadata and mutate existing data
-                Object.keys(prevResultRef).forEach(key => {
+                Object.keys(prevResultRef).forEach((key) => {
                   prevResultRef[key] = newResultRef[key];
                 });
                 prevResultRef.edges = mergedEdges;

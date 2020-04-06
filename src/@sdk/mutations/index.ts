@@ -51,6 +51,11 @@ import {
 } from "./types/UpdateCheckoutShippingAddress";
 
 import {
+  UpdateCheckoutShippingMethod,
+  UpdateCheckoutShippingMethodVariables,
+} from "./types/UpdateCheckoutShippingMethod";
+
+import {
   PasswordChange,
   PasswordChangeVariables,
 } from "./types/PasswordChange";
@@ -303,6 +308,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.updateCheckoutShippingAddressMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutShippingMethod: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      UpdateCheckoutShippingMethod,
+      UpdateCheckoutShippingMethodVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutShippingMethodMutation}
       `,
       ...options,
     }),

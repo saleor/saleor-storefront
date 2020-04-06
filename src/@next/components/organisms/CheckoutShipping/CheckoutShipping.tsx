@@ -12,6 +12,7 @@ import { IProps } from "./types";
 const CheckoutShipping: React.FC<IProps> = ({
   shippingMethods,
   selectedShippingMethodId,
+  selectShippingMethod,
 }: IProps) => {
   return (
     <S.Section>
@@ -28,6 +29,9 @@ const CheckoutShipping: React.FC<IProps> = ({
                 value={id}
                 checked={checked}
                 customLabel={true}
+                onChange={() =>
+                  selectShippingMethod && !checked && selectShippingMethod(id)
+                }
               >
                 {name}
                 <S.Price> | +{<Money money={price || undefined} />}</S.Price>

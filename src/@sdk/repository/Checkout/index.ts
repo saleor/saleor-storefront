@@ -1,12 +1,7 @@
 import { SaleorState } from "@sdk/state";
 
 import { LocalRepository } from "../LocalRepository";
-import {
-  ICheckoutAddress,
-  ICheckoutModel,
-  IPaymentModel,
-  LocalStorageItems,
-} from "../types";
+import { ICheckoutAddress, ICheckoutModel } from "../types";
 import { ICheckoutRepositoryManager } from "./types";
 
 export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
@@ -24,9 +19,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   addItemToCart = (variantId: string, quantity: number) => {
     const lines = this.saleorState.checkout?.lines || [];
-    let variant = lines.find(variant => variant.variant.id === variantId);
+    let variant = lines.find((variant) => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variant.id !== variantId
+      (variant) => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity + quantity : quantity;
     if (variant) {
@@ -56,9 +51,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   removeItemFromCart = (variantId: string) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variant.id === variantId);
+    const variant = lines.find((variant) => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variant.id !== variantId
+      (variant) => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = 0;
@@ -79,9 +74,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   subtractItemFromCart = (variantId: string) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variant.id === variantId);
+    const variant = lines.find((variant) => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variant.id !== variantId
+      (variant) => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity - 1 : 0;
     if (variant) {
@@ -103,9 +98,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   updateItemInCart = (variantId: string, quantity: number) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find(variant => variant.variant.id === variantId);
+    const variant = lines.find((variant) => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      variant => variant.variant.id !== variantId
+      (variant) => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = quantity;
@@ -156,6 +151,28 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
       : {
           billingAddress,
           billingAsShipping,
+        };
+    this.repository.setCheckout(alteredCheckout);
+
+    return alteredCheckout;
+  };
+
+  setShippingMethod = (shippingMethodId: string) => {
+    const currentCheckout = this.saleorState.checkout;
+    const selectedShippingMethod = currentCheckout?.availableShippingMethods?.find(
+      (method) => method.id === shippingMethodId
+    );
+    const alteredSelectedShippingMethod = selectedShippingMethod && {
+      ...selectedShippingMethod,
+    };
+
+    const alteredCheckout: ICheckoutModel = currentCheckout
+      ? {
+          ...currentCheckout,
+          shippingMethod: alteredSelectedShippingMethod,
+        }
+      : {
+          shippingMethod: alteredSelectedShippingMethod,
         };
     this.repository.setCheckout(alteredCheckout);
 

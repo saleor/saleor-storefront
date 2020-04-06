@@ -29,7 +29,11 @@ export interface ICheckoutNetworkManager {
   setShippingAddress: (
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  setShippingMethod: (
+    checkout: ICheckoutModel
+  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   createPayment: (
+    amount: number,
     checkout: ICheckoutModel,
     payment: IPaymentModel
   ) => Promise<INetworkManagerResponse<IPaymentModel>>;

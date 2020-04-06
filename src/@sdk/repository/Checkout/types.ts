@@ -18,6 +18,7 @@ export interface ICheckoutRepositoryManager {
     billingAddress: ICheckoutAddress,
     billingAsShipping?: boolean
   ) => ICheckoutModel | null;
+  setShippingMethod: (shippingMethodId: string) => ICheckoutModel | null;
   setPaymentGatewayData: (
     gateway: string,
     token: string

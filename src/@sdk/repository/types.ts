@@ -62,6 +62,12 @@ export interface ICheckoutAddress {
   };
 }
 
+export interface ICheckoutModelShippingMethod {
+  id: string;
+  name: string;
+  price: ICheckoutModelPriceValue | null;
+}
+
 export interface ICheckoutModel {
   id?: string;
   token?: any;
@@ -70,10 +76,8 @@ export interface ICheckoutModel {
   billingAddress?: ICheckoutAddress | null;
   billingAsShipping?: boolean;
   lines?: ICheckoutModelLine[] | null;
-  totalPrice?: ICheckoutModelPrice | null;
-  subtotalPrice?: ICheckoutModelPrice | null;
-  shippingPrice?: ICheckoutModelPrice | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
+  shippingMethod?: ICheckoutModelShippingMethod | null;
   availablePaymentGateways?: Checkout_availablePaymentGateways[];
 }
 
@@ -90,6 +94,7 @@ export interface IJobsModel {
   checkout: {
     setShippingAddress?: boolean;
     setBillingAddress?: boolean;
+    setShippingMethod?: boolean;
   };
 }
 
