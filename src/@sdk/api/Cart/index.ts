@@ -14,6 +14,7 @@ import {
 } from "./types";
 
 export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
+  loaded: boolean;
   items: IItems;
   totalPrice: ITotalPrice;
   subtotalPrice: ISubtotalPrice;
@@ -39,6 +40,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       this.checkoutNetworkManager,
       this.fireError
     );
+    this.loaded = false;
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -76,6 +78,14 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     }
   }
 
+  load = async () => {
+    await this.saleorState.provideCheckout(this.fireError, true);
+    this.loaded = true;
+    return {
+      pending: false,
+    };
+  };
+
   addItem = async (variantId: string, quantity: number) => {
     await this.saleorState.provideCheckout(this.fireError);
 
@@ -106,13 +116,6 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
         pending: true,
       };
     }
-    return {
-      pending: false,
-    };
-  };
-
-  load = async () => {
-    await this.saleorState.provideCheckout(this.fireError, true);
     return {
       pending: false,
     };

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { RouteComponentProps, useHistory, useLocation } from "react-router-dom";
 
-import { Button } from "@components/atoms";
+import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import {
   CartSummary,
@@ -15,43 +15,25 @@ import { Checkout } from "@components/templates";
 import { useCheckoutStepState } from "@hooks";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
+import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress } from "@types";
 
+import { CheckoutRouter } from "./CheckoutRouter";
 import { IProps } from "./types";
-
-const steps = [
-  {
-    link: "/new-checkout/address",
-    name: "Address",
-    nextActionName: "Continue to Shipping",
-    nextStepLink: "/new-checkout/shipping",
-  },
-  {
-    link: "/new-checkout/shipping",
-    name: "Shipping",
-    nextActionName: "Continue to Payment",
-    nextStepLink: "/new-checkout/payment",
-  },
-  {
-    link: "/new-checkout/payment",
-    name: "Payment",
-    nextActionName: "Continue to Review",
-    nextStepLink: "/new-checkout/review",
-  },
-  {
-    link: "/new-checkout/review",
-    name: "Review",
-    nextActionName: "Finalize order",
-    nextStepLink: "/new-order-finalized",
-  },
-];
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
   const history = useHistory();
   const { data: user } = useUserDetails();
-  const { shippingPrice, subtotalPrice, totalPrice, items } = useCart();
   const {
+    loaded: cartLoaded,
+    shippingPrice,
+    subtotalPrice,
+    totalPrice,
+    items,
+  } = useCart();
+  const {
+    loaded: checkoutLoaded,
     checkout,
     billingAsShipping,
     setShippingAddress,
@@ -95,8 +77,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     console.log(error);
   };
 
-  const activeStepIndex = steps.findIndex(({ link }) => link === pathname);
-  const activeStep = steps[activeStepIndex];
+  const activeStepIndex = CHECKOUT_STEPS.findIndex(
+    ({ link }) => link === pathname
+  );
+  const activeStep = CHECKOUT_STEPS[activeStepIndex];
   const products = items?.map(({ variant, totalPrice, quantity }) => ({
     name: variant.name || "",
     price: {
@@ -231,8 +215,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     return ``;
   };
 
+  const step = useCheckoutStepState(items, checkout, payment);
+
   const checkoutProgress = (
-    <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
+    <CheckoutProgressBar steps={CHECKOUT_STEPS} activeStep={activeStepIndex} />
   );
   const cartSummary = (
     <CartSummary
@@ -242,73 +228,69 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       products={products}
     />
   );
-  const checkoutView = (
-    <Switch>
-      <Route
-        path={steps[0].link}
-        render={(props) => (
-          <CheckoutAddress
-            {...props}
-            formId={checkoutAddressFormId}
-            formRef={checkoutAddressFormRef}
-            checkoutAddress={checkoutShippingAddress}
-            email={checkout?.email}
-            userAddresses={user?.addresses}
-            selectedUserAddressId={selectedShippingAddressId}
-            countries={countries}
-            setShippingAddress={handleSetShippingAddress}
-          />
-        )}
-      />
-      <Route
-        path={steps[1].link}
-        render={(props) => (
-          <CheckoutShipping
-            {...props}
-            shippingMethods={shippingMethods}
-            selectedShippingMethodId={checkout?.shippingMethod?.id}
-            selectShippingMethod={setShippingMethod}
-          />
-        )}
-      />
-      <Route
-        path={steps[2].link}
-        render={(props) => (
-          <CheckoutPayment
-            {...props}
-            formId={checkoutBillingFormId}
-            formRef={checkoutBillingFormRef}
-            userAddresses={user?.addresses}
-            selectedUserAddressId={selectedShippingAddressId}
-            checkoutBillingAddress={checkoutBillingAddress}
-            countries={countries}
-            paymentGateways={paymentGateways}
-            selectedPaymentGateway={selectedPaymentGateway}
-            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-            selectPaymentGateway={setSelectedPaymentGateway}
-            setBillingAddress={handleSetBillingAddress}
-            billingAsShippingAddress={billingAsShipping}
-            setBillingAsShippingAddress={setBillingAsShippingAddress}
-            gatewayFormRef={checkoutGatewayFormRef}
-            processPayment={handleProcessPayment}
-          />
-        )}
-      />
-      <Route
-        path={steps[3].link}
-        render={(props) => (
-          <CheckoutReview
-            {...props}
-            shippingAddress={checkoutShippingAddress}
-            billingAddress={checkoutBillingAddress}
-            shippingMethodName={checkout?.shippingMethod?.name}
-            paymentMethodName={getPaymentMethodDescription()}
-            email={checkout?.email}
-          />
-        )}
-      />
-    </Switch>
+  const renderAddress = (props: RouteComponentProps<any>) => (
+    <CheckoutAddress
+      {...props}
+      formId={checkoutAddressFormId}
+      formRef={checkoutAddressFormRef}
+      checkoutAddress={checkoutShippingAddress}
+      email={checkout?.email}
+      userAddresses={user?.addresses}
+      selectedUserAddressId={selectedShippingAddressId}
+      countries={countries}
+      setShippingAddress={handleSetShippingAddress}
+    />
   );
+  const renderShipping = (props: RouteComponentProps<any>) => (
+    <CheckoutShipping
+      {...props}
+      shippingMethods={shippingMethods}
+      selectedShippingMethodId={checkout?.shippingMethod?.id}
+      selectShippingMethod={setShippingMethod}
+    />
+  );
+  const renderPayment = (props: RouteComponentProps<any>) => (
+    <CheckoutPayment
+      {...props}
+      formId={checkoutBillingFormId}
+      formRef={checkoutBillingFormRef}
+      userAddresses={user?.addresses}
+      selectedUserAddressId={selectedShippingAddressId}
+      checkoutBillingAddress={checkoutBillingAddress}
+      countries={countries}
+      paymentGateways={paymentGateways}
+      selectedPaymentGateway={selectedPaymentGateway}
+      selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+      selectPaymentGateway={setSelectedPaymentGateway}
+      setBillingAddress={handleSetBillingAddress}
+      billingAsShippingAddress={billingAsShipping}
+      setBillingAsShippingAddress={setBillingAsShippingAddress}
+      gatewayFormRef={checkoutGatewayFormRef}
+      processPayment={handleProcessPayment}
+    />
+  );
+  const renderReview = (props: RouteComponentProps<any>) => (
+    <CheckoutReview
+      {...props}
+      shippingAddress={checkoutShippingAddress}
+      billingAddress={checkoutBillingAddress}
+      shippingMethodName={checkout?.shippingMethod?.name}
+      paymentMethodName={getPaymentMethodDescription()}
+      email={checkout?.email}
+    />
+  );
+  const checkoutView =
+    cartLoaded && checkoutLoaded ? (
+      <CheckoutRouter
+        step={step}
+        renderAddress={renderAddress}
+        renderShipping={renderShipping}
+        renderPayment={renderPayment}
+        renderReview={renderReview}
+      />
+    ) : (
+      <Loader />
+    );
   const button = (
     <Button
       onClick={handleNextStepClick}

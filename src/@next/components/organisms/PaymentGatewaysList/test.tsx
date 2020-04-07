@@ -2,12 +2,11 @@ import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { PaymentGatewayList } from ".";
+import { PaymentGatewaysList } from ".";
 
-describe("<PaymentGatewayList />", () => {
-  // Example test
+describe("<PaymentGatewaysList />", () => {
   it("exists", () => {
-    const wrapper = shallow(<PaymentGatewayList />);
+    const wrapper = shallow(<PaymentGatewaysList />);
 
     expect(wrapper.exists()).toEqual(true);
   });

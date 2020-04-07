@@ -1,9 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { PaymentGatewayList } from ".";
+import { PaymentGatewaysList } from ".";
 
-storiesOf("@components/organisms/PaymentGatewayList", module)
-.addParameters({ component: PaymentGatewayList })
-.add("default", () =>
-<PaymentGatewayList />);
+storiesOf("@components/organisms/PaymentGatewaysList", module)
+  .addParameters({ component: PaymentGatewaysList })
+  .add("default", () => <PaymentGatewaysList />);

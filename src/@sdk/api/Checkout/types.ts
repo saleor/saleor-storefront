@@ -55,6 +55,7 @@ export interface ICheckout {
 }
 
 export interface ISaleorCheckoutAPI {
+  loaded: boolean;
   checkout?: ICheckout | null;
   promoCode?: string | null;
   billingAsShipping?: boolean;

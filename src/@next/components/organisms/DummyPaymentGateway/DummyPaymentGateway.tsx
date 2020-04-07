@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 
 import { Radio } from "@components/atoms";
 
@@ -39,7 +39,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
         <S.Form ref={formRef} onSubmit={handleSubmit}>
           {statuses.map(({ token, label }) => {
             return (
-              <S.Status>
+              <S.Status key={token}>
                 <Radio
                   key={token}
                   type="radio"

@@ -52,3 +52,39 @@ export const META_DEFAULTS = {
   type: "website",
   url: window.location.origin,
 };
+export enum CheckoutStep {
+  Address = 1,
+  Shipping,
+  Payment,
+  Review,
+}
+export const CHECKOUT_STEPS = [
+  {
+    link: "/new-checkout/address",
+    name: "Address",
+    nextActionName: "Continue to Shipping",
+    nextStepLink: "/new-checkout/shipping",
+    step: CheckoutStep.Address,
+  },
+  {
+    link: "/new-checkout/shipping",
+    name: "Shipping",
+    nextActionName: "Continue to Payment",
+    nextStepLink: "/new-checkout/payment",
+    step: CheckoutStep.Shipping,
+  },
+  {
+    link: "/new-checkout/payment",
+    name: "Payment",
+    nextActionName: "Continue to Review",
+    nextStepLink: "/new-checkout/review",
+    step: CheckoutStep.Payment,
+  },
+  {
+    link: "/new-checkout/review",
+    name: "Review",
+    nextActionName: "Finalize order",
+    nextStepLink: "/new-order-finalized",
+    step: CheckoutStep.Review,
+  },
+];

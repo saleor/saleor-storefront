@@ -52,10 +52,14 @@ export class SaleorState extends NamedObservable<StateItems>
     } else {
       this.provideCheckoutOffline(forceReload);
     }
+
+    return;
   };
 
   providePayment = async (forceReload?: boolean) => {
     this.providePaymentOffline(forceReload);
+
+    return;
   };
 
   updateSelectedShippingAddressId = (selectedShippingAddressId?: string) => {

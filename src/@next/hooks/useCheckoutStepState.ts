@@ -2,18 +2,12 @@ import { useEffect, useState } from "react";
 
 import { IItems } from "@sdk/api/Cart/types";
 import { ICheckout, IPayment } from "@sdk/api/Checkout/types";
-
-export enum CheckoutStep {
-  Address = 1,
-  Shipping,
-  Payment,
-  Review,
-}
+import { CheckoutStep } from "@temp/core/config";
 
 export const useCheckoutStepState = (
-  checkout: ICheckout,
-  items: IItems,
-  payment: IPayment
+  items?: IItems,
+  checkout?: ICheckout,
+  payment?: IPayment
 ): CheckoutStep => {
   const isShippingRequiredForProducts =
     items &&
@@ -22,9 +16,9 @@ export const useCheckoutStepState = (
     );
 
   const getStep = () => {
-    if (!checkout.id && items && isShippingRequiredForProducts) {
+    if (!checkout?.id && items && isShippingRequiredForProducts) {
       return CheckoutStep.Address;
-    } else if (!checkout.id && items) {
+    } else if (!checkout?.id && items) {
       return CheckoutStep.Payment;
     }
     // else if (!checkout.id) {
@@ -32,14 +26,14 @@ export const useCheckoutStepState = (
     // }
 
     const isShippingStep =
-      !!checkout.shippingAddress || !isShippingRequiredForProducts;
+      !!checkout?.shippingAddress || !isShippingRequiredForProducts;
     const isPaymentStep =
-      (isShippingStep && !!checkout.shippingMethod) ||
+      (isShippingStep && !!checkout?.shippingMethod) ||
       !isShippingRequiredForProducts;
     const isReviewStep =
       isPaymentStep &&
-      !!checkout.billingAddress &&
-      !!(payment.creditCard || payment.gateway === "Dummy");
+      !!checkout?.billingAddress &&
+      !!(payment?.creditCard || payment?.gateway === "Dummy");
 
     if (isReviewStep) {
       return CheckoutStep.Review;

@@ -20,6 +20,7 @@ import {
 
 export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
+  loaded: boolean;
   checkout?: ICheckout;
   promoCode?: string;
   billingAsShipping?: boolean;
@@ -50,6 +51,7 @@ export class SaleorCheckoutAPI extends ErrorListener
       this.checkoutNetworkManager,
       this.fireError
     );
+    this.loaded = false;
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -109,6 +111,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   load = async () => {
     await this.saleorState.provideCheckout(this.fireError, true);
     await this.saleorState.providePayment(true);
+    this.loaded = true;
     return {
       pending: false,
     };

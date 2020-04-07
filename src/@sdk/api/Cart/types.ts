@@ -12,6 +12,7 @@ export type ISubtotalPrice = ICheckoutModelPrice | null | undefined;
 export type IShippingPrice = ICheckoutModelPriceValue | null | undefined;
 
 export interface ISaleorCartAPI {
+  loaded: boolean;
   items?: IItems;
   totalPrice?: ITotalPrice;
   subtotalPrice?: ISubtotalPrice;
