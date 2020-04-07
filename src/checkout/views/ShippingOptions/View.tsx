@@ -34,7 +34,7 @@ class View extends React.Component<
     }
   }
 
-  handleShippngChange = (shippingId: string) => {
+  handleShippingChange = (shippingId: string) => {
     this.setState({ selectedShipping: shippingId });
   };
 
@@ -70,7 +70,7 @@ class View extends React.Component<
                               key={method.id}
                               selected={selectedShipping === method.id}
                               onSelect={() =>
-                                this.handleShippngChange(method.id)
+                                this.handleShippingChange(method.id)
                               }
                               value={method.id}
                               label={
