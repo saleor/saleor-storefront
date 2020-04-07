@@ -84,7 +84,7 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
             lines={extractCheckoutLines(checkout.lines)}
             subtotal={<TaxedMoney taxedMoney={checkout.subtotalPrice} />}
             deliveryCost={
-              <Money defaultValue="0" money={checkout.shippingMethod.price} />
+              <Money defaultValue="0" money={checkout.shippingMethod?.price} />
             }
             totalCost={<Money money={checkout.totalPrice.gross} />}
             discount={
