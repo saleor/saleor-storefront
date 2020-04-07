@@ -14,6 +14,7 @@ export interface ICosts {
 }
 
 export interface IProduct {
+  id: string;
   name: string;
   quantity: number;
   sku: string;

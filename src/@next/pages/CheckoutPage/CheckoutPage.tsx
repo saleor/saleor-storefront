@@ -81,7 +81,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     ({ link }) => link === pathname
   );
   const activeStep = CHECKOUT_STEPS[activeStepIndex];
-  const products = items?.map(({ variant, totalPrice, quantity }) => ({
+  const products = items?.map(({ id, variant, totalPrice, quantity }) => ({
+    id: id || "",
     name: variant.name || "",
     price: {
       gross: {
@@ -295,6 +296,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     );
   const button = activeStep && (
     <Button
+      data-cy="checkoutPageBtnNextStep"
       onClick={handleNextStepClick}
       type={
         checkoutAddressFormRef ||

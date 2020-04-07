@@ -37,7 +37,7 @@ const CheckoutAddress: React.FC<IProps> = ({
 
   return (
     <S.Section>
-      <S.Title>SHIPPING ADDRESS</S.Title>
+      <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
       {userAddresses ? (
         <AddressGridSelector
           addresses={adresses}

@@ -7,7 +7,11 @@ import { Icon, InputLabel, Select } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
+export const InputSelect: React.FC<IProps> = ({
+  label,
+  inputProps,
+  ...props
+}: IProps) => {
   const customTheme = React.useContext(ThemeContext);
   const secondaryColor = customTheme.colors.secondary;
   const borderColor = customTheme.input.border;
@@ -78,6 +82,10 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
           </S.DropdownIndicator>
         );
       }
+    },
+    Input: (props: any) => {
+      const customTheme = React.useContext(ThemeContext);
+      return <components.Input {...{ customTheme, ...props, ...inputProps }} />;
     },
     Option: (props: any) => {
       const customTheme = React.useContext(ThemeContext);

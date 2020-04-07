@@ -15,12 +15,14 @@ const AddressTileOption: React.FC<IProps> = ({
   address,
   onChange,
   checked,
+  ...props
 }: IProps) => {
   return (
     <S.Label checked={checked}>
       <Address {...address} />
       <S.RadioWrapper>
         <Radio
+          {...props}
           name={inputName}
           value={id}
           checked={checked}

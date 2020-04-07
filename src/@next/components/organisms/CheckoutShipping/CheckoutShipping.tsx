@@ -16,7 +16,7 @@ const CheckoutShipping: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Section>
-      <S.Title>SHIPPING METHOD</S.Title>
+      <S.Title data-cy="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
       <S.ShippingMethodList>
         {shippingMethods.map(({ id, name, price }) => {
           const checked =
@@ -25,6 +25,7 @@ const CheckoutShipping: React.FC<IProps> = ({
           return (
             <S.Tile checked={checked} key={id}>
               <Radio
+                data-cy={`checkoutShippingMethodOption${id}Input`}
                 name="shipping-method"
                 value={id}
                 checked={checked}
@@ -33,8 +34,19 @@ const CheckoutShipping: React.FC<IProps> = ({
                   selectShippingMethod && !checked && selectShippingMethod(id)
                 }
               >
-                {name}
-                <S.Price> | +{<Money money={price || undefined} />}</S.Price>
+                <span data-cy={`checkoutShippingMethodOption${id}Name`}>
+                  {name}
+                </span>
+                <S.Price>
+                  {" "}
+                  | +
+                  {
+                    <Money
+                      data-cy={`checkoutShippingMethodOption${id}Price`}
+                      money={price || undefined}
+                    />
+                  }
+                </S.Price>
               </Radio>
             </S.Tile>
           );

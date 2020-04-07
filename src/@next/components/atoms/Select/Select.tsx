@@ -68,8 +68,8 @@ export const Select: React.FC<IProps> = ({
         menuIsOpen={menuIsOpen}
         menuShouldScrollIntoView={true}
         tabSelectsValue={false}
-        getOptionLabel={option => option[optionLabelKey]}
-        getOptionValue={option => option[optionValueKey]}
+        getOptionLabel={(option) => option[optionLabelKey]}
+        getOptionValue={(option) => option[optionValueKey]}
         openMenuOnFocus={true}
         styles={{ ...optionStyle(customTheme), ...customStyles }}
         options={options}

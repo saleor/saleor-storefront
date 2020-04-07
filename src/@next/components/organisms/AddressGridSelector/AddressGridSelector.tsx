@@ -13,12 +13,20 @@ const AddressGridSelector: React.FC<IProps> = ({
   selectedAddressId,
   onSelect,
 }: IProps) => {
-  const addNewTile = <AddNewTile key="0" type="address" onClick={() => null} />;
+  const addNewTile = (
+    <AddNewTile
+      data-cy={`addressTileAddNew`}
+      key="0"
+      type="address"
+      onClick={() => null}
+    />
+  );
 
   const addressTiles = addresses.reduce(
     (elements, { id, address }) => {
       elements.push(
         <AddressTileOption
+          data-cy={`addressTileOption${id}`}
           key={id}
           id={id}
           inputName="address-tile-option"

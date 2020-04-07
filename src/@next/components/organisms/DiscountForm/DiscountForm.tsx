@@ -26,13 +26,19 @@ export const DiscountForm: React.FC<IProps> = ({
         <S.InputWithButton>
           <S.InputWrapper>
             <Input
+              data-cy="checkoutPaymentPromoCodeInput"
               error={hasErrors}
               value={inputCode}
               label="Promo Code"
-              onChange={evt => setInputCode(evt.target.value)}
+              onChange={(evt) => setInputCode(evt.target.value)}
             />
           </S.InputWrapper>
-          <Button onClick={handleApplyBtnClick}>Apply</Button>
+          <Button
+            data-cy="checkoutPaymentPromoCodeBtn"
+            onClick={handleApplyBtnClick}
+          >
+            Apply
+          </Button>
         </S.InputWithButton>
         <ErrorMessage errors={errors} />
       </S.Input>
@@ -40,7 +46,9 @@ export const DiscountForm: React.FC<IProps> = ({
         <>
           <span>Promo code:</span>
           <S.ChipsWrapper>
-            <Chip onClose={handleRemovePromoCode}>{promoCode}</Chip>
+            <Chip onClose={handleRemovePromoCode}>
+              <span data-cy="checkoutPaymentPromoCodeChip">{promoCode}</span>
+            </Chip>
           </S.ChipsWrapper>
         </>
       )}

@@ -41,6 +41,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
             return (
               <S.Status key={token}>
                 <Radio
+                  data-cy={`checkoutPaymentGatewayDummyStatus${token}Input`}
                   key={token}
                   type="radio"
                   name="status"
@@ -48,7 +49,11 @@ const DummyPaymentGateway: React.FC<IProps> = ({
                   checked={values.status === token}
                   onChange={handleChange}
                 >
-                  {label}
+                  <span
+                    data-cy={`checkoutPaymentGatewayDummyStatus${token}Label`}
+                  >
+                    {label}
+                  </span>
                 </Radio>
               </S.Status>
             );

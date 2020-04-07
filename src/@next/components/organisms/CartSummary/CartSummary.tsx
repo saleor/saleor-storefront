@@ -14,7 +14,7 @@ const CostLine = ({
 }: ICostLine) => (
   <S.CostLine last={last}>
     <span>{name}</span>
-    <span>
+    <span data-cy={`cartSummaryCost${name.replace(/\s/g, "")}`}>
       {negative && "- "}
       <TaxedMoney taxedMoney={cost} />
     </span>
@@ -44,13 +44,14 @@ const CartSummary: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <S.Title>Cart Summary</S.Title>
+      <S.Title data-cy="cartSummaryTitle">Cart Summary</S.Title>
       <S.HR />
       <S.CartSummaryProductList>
         {products?.map((product) => (
           <div key={product.sku}>
             <S.ProductLine>
               <CartSummaryRow
+                id={product.id}
                 sku={product.sku}
                 quantity={product.quantity}
                 name={product.name}

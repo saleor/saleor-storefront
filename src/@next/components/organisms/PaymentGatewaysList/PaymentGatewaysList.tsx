@@ -33,6 +33,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
+                    data-cy="checkoutPaymentGatewayBraintreeInput"
                     name="payment-method"
                     value="credit-card"
                     checked={checked}
@@ -42,7 +43,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    {name}
+                    <span data-cy="checkoutPaymentGatewayBraintreeName">
+                      {name}
+                    </span>
                   </Radio>
                 </S.Tile>
                 {checked && <BraintreePaymentGateway />}
@@ -54,6 +57,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
+                    data-cy="checkoutPaymentGatewayDummyInput"
                     name="payment-method"
                     value="dummy"
                     checked={checked}
@@ -63,7 +67,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    {name}
+                    <span data-cy="checkoutPaymentGatewayDummyName">
+                      {name}
+                    </span>
                   </Radio>
                 </S.Tile>
                 {checked && (
@@ -83,6 +89,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
+                    data-cy="checkoutPaymentGatewayStripeInput"
                     name="payment-method"
                     value="stripe"
                     checked={checked}
@@ -92,7 +99,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    {name}
+                    <span data-cy="checkoutPaymentGatewayStripeName">
+                      {name}
+                    </span>
                   </Radio>
                 </S.Tile>
                 {checked && <StripePaymentGateway />}
