@@ -36,7 +36,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
             <div className="overlay__header-text">
               My bag,{" "}
               <span className="overlay__header-text-items">
-                {items.reduce(
+                {items?.reduce(
                   (prevVal, currVal) => prevVal + currVal.quantity,
                   0
                 ) || 0}{" "}
@@ -49,7 +49,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
               className="overlay__header__close-icon"
             />
           </div>
-          {items.length ? (
+          {items?.length ? (
             <>
               <ProductList lines={items} remove={removeItem} />
               <div className="cart__footer">

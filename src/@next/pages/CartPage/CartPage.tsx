@@ -22,7 +22,7 @@ const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 const getButton = (history: History) => (
   <Button
     data-cy="cartPageBtnProceedToCheckout"
-    onClick={() => history.push("/new-checkout/address")}
+    onClick={() => history.push("/new-checkout")}
   >
     PROCEED TO CHECKOUT
   </Button>

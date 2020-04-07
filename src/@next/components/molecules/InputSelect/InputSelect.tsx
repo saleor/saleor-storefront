@@ -84,8 +84,7 @@ export const InputSelect: React.FC<IProps> = ({
       }
     },
     Input: (props: any) => {
-      const customTheme = React.useContext(ThemeContext);
-      return <components.Input {...{ customTheme, ...props, ...inputProps }} />;
+      return <components.Input {...{ ...props, ...inputProps }} />;
     },
     Option: (props: any) => {
       const customTheme = React.useContext(ThemeContext);

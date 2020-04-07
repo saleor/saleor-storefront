@@ -42,7 +42,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         <AddressGridSelector
           addresses={adresses}
           selectedAddressId={selectedUserAddressId}
-          onSelect={setShippingAddress}
+          onSelect={(address, id) => setShippingAddress(address, undefined, id)}
         />
       ) : (
         <AddressForm

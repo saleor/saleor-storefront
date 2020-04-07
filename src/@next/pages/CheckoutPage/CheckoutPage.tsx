@@ -258,7 +258,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       formId={checkoutBillingFormId}
       formRef={checkoutBillingFormRef}
       userAddresses={user?.addresses}
-      selectedUserAddressId={selectedShippingAddressId}
+      selectedUserAddressId={selectedBillingAddressId}
       checkoutBillingAddress={checkoutBillingAddress}
       countries={countries}
       paymentGateways={paymentGateways}
