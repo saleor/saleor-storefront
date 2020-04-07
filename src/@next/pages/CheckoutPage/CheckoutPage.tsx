@@ -297,7 +297,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <Button
       onClick={handleNextStepClick}
       type={
-        checkoutAddressFormId || checkoutBillingFormId || checkoutGatewayFormId
+        checkoutAddressFormRef ||
+        checkoutBillingFormRef ||
+        checkoutGatewayFormRef
           ? "submit"
           : "button"
       }

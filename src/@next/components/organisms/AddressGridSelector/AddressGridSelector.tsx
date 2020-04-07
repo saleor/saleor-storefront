@@ -3,7 +3,6 @@ import React from "react";
 import { AddNewTile, TileGrid } from "@components/atoms";
 import { AddressTileOption } from "@components/molecules";
 
-import * as S from "./styles";
 import { IProps } from "./types";
 
 /**

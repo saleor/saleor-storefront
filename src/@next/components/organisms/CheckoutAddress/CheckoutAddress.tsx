@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 
 import { AddressForm, AddressGridSelector } from "..";
 import * as S from "./styles";
@@ -24,7 +24,7 @@ const CheckoutAddress: React.FC<IProps> = ({
       ): value is TValue {
         return value !== null && value !== undefined;
       })
-      .map(address => ({
+      .map((address) => ({
         address: {
           ...address,
           isDefaultBillingAddress: address.isDefaultBillingAddress || false,
@@ -57,7 +57,7 @@ const CheckoutAddress: React.FC<IProps> = ({
             ...checkoutAddress,
             email,
           }}
-          handleSubmit={address =>
+          handleSubmit={(address) =>
             address && setShippingAddress(address, address.email)
           }
         />
