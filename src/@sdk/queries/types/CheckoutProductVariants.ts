@@ -154,6 +154,11 @@ export interface CheckoutProductVariants_productVariants_edges_node_product_thum
   url: string;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_product {
   __typename: "Product";
   /**
@@ -169,6 +174,7 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: CheckoutProductVariants_productVariants_edges_node_product_thumbnail2x | null;
+  productType: CheckoutProductVariants_productVariants_edges_node_product_productType;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node {

@@ -463,6 +463,11 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   url: string;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -478,6 +483,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * The main thumbnail for a product.
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_productType;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
@@ -1035,6 +1041,11 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   url: string;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -1050,6 +1061,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * The main thumbnail for a product.
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_productType;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {

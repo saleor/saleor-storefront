@@ -12,6 +12,7 @@ import {
 } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { Checkout } from "@components/templates";
+import { useCheckoutStepState } from "@hooks";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { IAddress } from "@types";

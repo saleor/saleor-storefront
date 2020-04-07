@@ -72,6 +72,9 @@ export const checkoutProductVariantFragment = gql`
       thumbnail2x: thumbnail(size: 510) {
         url
       }
+      productType {
+        isShippingRequired
+      }
     }
   }
 `;

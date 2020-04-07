@@ -190,6 +190,11 @@ export interface CheckoutLine_variant_product_thumbnail2x {
   url: string;
 }
 
+export interface CheckoutLine_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface CheckoutLine_variant_product {
   __typename: "Product";
   /**
@@ -205,6 +210,7 @@ export interface CheckoutLine_variant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: CheckoutLine_variant_product_thumbnail2x | null;
+  productType: CheckoutLine_variant_product_productType;
 }
 
 export interface CheckoutLine_variant {

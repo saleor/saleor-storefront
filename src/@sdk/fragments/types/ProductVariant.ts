@@ -154,6 +154,11 @@ export interface ProductVariant_product_thumbnail2x {
   url: string;
 }
 
+export interface ProductVariant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface ProductVariant_product {
   __typename: "Product";
   /**
@@ -169,6 +174,7 @@ export interface ProductVariant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: ProductVariant_product_thumbnail2x | null;
+  productType: ProductVariant_product_productType;
 }
 
 export interface ProductVariant {

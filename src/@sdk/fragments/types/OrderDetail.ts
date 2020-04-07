@@ -197,6 +197,11 @@ export interface OrderDetail_lines_variant_product_thumbnail2x {
   url: string;
 }
 
+export interface OrderDetail_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface OrderDetail_lines_variant_product {
   __typename: "Product";
   /**
@@ -212,6 +217,7 @@ export interface OrderDetail_lines_variant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: OrderDetail_lines_variant_product_thumbnail2x | null;
+  productType: OrderDetail_lines_variant_product_productType;
 }
 
 export interface OrderDetail_lines_variant {

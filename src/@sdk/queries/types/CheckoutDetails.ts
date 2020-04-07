@@ -448,6 +448,11 @@ export interface CheckoutDetails_checkout_lines_variant_product_thumbnail2x {
   url: string;
 }
 
+export interface CheckoutDetails_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface CheckoutDetails_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -463,6 +468,7 @@ export interface CheckoutDetails_checkout_lines_variant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: CheckoutDetails_checkout_lines_variant_product_thumbnail2x | null;
+  productType: CheckoutDetails_checkout_lines_variant_product_productType;
 }
 
 export interface CheckoutDetails_checkout_lines_variant {

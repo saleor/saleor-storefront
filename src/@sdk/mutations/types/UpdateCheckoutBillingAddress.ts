@@ -463,6 +463,11 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   url: string;
 }
 
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -478,6 +483,7 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * The main thumbnail for a product.
    */
   thumbnail2x: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_productType;
 }
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant {
