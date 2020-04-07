@@ -121,7 +121,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         phone: checkout?.billingAddress?.phone || undefined,
       }
     : undefined;
-  const handleSetShippingAddress = (
+  const handleSetShippingAddress = async (
     address: IAddress,
     email?: string,
     userAddressId?: string
@@ -135,15 +135,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       return;
     }
 
-    setShippingAddress(
+    await setShippingAddress(
       {
         ...address,
         id: userAddressId,
       },
       shippingEmail
     );
-
     history.push(activeStep.nextStepLink);
+  };
+  const handleSetShippingMethod = async (shippingMethodId: string) => {
+    await setShippingMethod(shippingMethodId);
   };
   const handleSetBillingAddress = async (
     address: IAddress,
@@ -157,8 +159,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       new Event("submit", { cancelable: true })
     );
   };
-  const handleProcessPayment = (gateway: string, token: string) => {
-    createPayment(gateway, token);
+  const handleProcessPayment = async (gateway: string, token: string) => {
+    await createPayment(gateway, token);
     history.push(activeStep.nextStepLink);
   };
   const handleNextStepClick = () => {
@@ -246,7 +248,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       {...props}
       shippingMethods={shippingMethods}
       selectedShippingMethodId={checkout?.shippingMethod?.id}
-      selectShippingMethod={setShippingMethod}
+      selectShippingMethod={handleSetShippingMethod}
     />
   );
   const renderPayment = (props: RouteComponentProps<any>) => (
@@ -291,7 +293,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     ) : (
       <Loader />
     );
-  const button = (
+  const button = activeStep && (
     <Button
       onClick={handleNextStepClick}
       type={

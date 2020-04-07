@@ -28,17 +28,12 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
   const { pathname } = useLocation();
   const stepFromPath = useCheckoutStepFromPath(pathname);
 
-  if (stepFromPath && step < stepFromPath) {
-    switch (step) {
-      case CheckoutStep.Review:
-        return <Redirect to={CHECKOUT_STEPS[3].link} />;
-      case CheckoutStep.Payment:
-        return <Redirect to={CHECKOUT_STEPS[2].link} />;
-      case CheckoutStep.Shipping:
-        return <Redirect to={CHECKOUT_STEPS[1].link} />;
-      case CheckoutStep.Address:
-        return <Redirect to={CHECKOUT_STEPS[0].link} />;
-    }
+  const getStepLink = () =>
+    CHECKOUT_STEPS.find((stepObj) => stepObj.step === step)?.link ||
+    CHECKOUT_STEPS[0].link;
+
+  if (!stepFromPath || (stepFromPath && step < stepFromPath)) {
+    return <Redirect to={getStepLink()} />;
   }
 
   return (
@@ -47,6 +42,7 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
       <Route path={CHECKOUT_STEPS[1].link} render={renderShipping} />
       <Route path={CHECKOUT_STEPS[2].link} render={renderPayment} />
       <Route path={CHECKOUT_STEPS[3].link} render={renderReview} />
+      <Route render={(props) => <Redirect {...props} to={getStepLink()} />} />
     </Switch>
   );
 };
