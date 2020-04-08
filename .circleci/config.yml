@@ -20,6 +20,8 @@ jobs:
           command: npm run tslint
       - run:
           name: Build application
+          environment:
+            API_URI: http://saleorgraphql-dev.us-west-2.elasticbeanstalk.com/graphql/
           command: npm run build
       - run:
           name: Run tests
@@ -82,7 +84,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync dist s3://saleor-store-front/ --acl public-read
+          command: aws s3 sync dist s3://saleorstorefront1/ --acl public-read
 workflows:
   version: 2
   build-deploy:
