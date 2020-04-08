@@ -101,4 +101,4 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
-      - cypress/run
+      # - cypress/run
