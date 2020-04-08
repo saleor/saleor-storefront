@@ -136,7 +136,7 @@ class ProductDescription extends React.Component<
             label="Quantity"
             min="1"
             value={quantity || ""}
-            onChange={(e) =>
+            onChange={e =>
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />

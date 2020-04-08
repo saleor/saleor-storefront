@@ -52,7 +52,7 @@ const link = ApolloLink.from([
 ]);
 
 const cache = new InMemoryCache({
-  dataIdFromObject: (obj) => {
+  dataIdFromObject: obj => {
     if (obj.__typename === "Shop") {
       return "shop";
     }
@@ -140,7 +140,7 @@ const startApp = async () => {
                 <OverlayProvider>
                   <Checkout>
                     <CheckoutContext.Consumer>
-                      {(checkout) => (
+                      {checkout => (
                         <CartProvider
                           checkout={checkout}
                           apolloClient={apolloClient}
