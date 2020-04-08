@@ -46,7 +46,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       StateItems.CHECKOUT,
       ({ lines }: ICheckoutModel) => {
         this.items = lines
-          ?.filter((line) => line.quantity > 0)
+          ?.filter(line => line.quantity > 0)
           .sort((a, b) => {
             if (a.id && b.id) {
               const aId = a.id?.toUpperCase() || "";

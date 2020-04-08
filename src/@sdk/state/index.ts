@@ -120,7 +120,7 @@ export class SaleorState extends NamedObservable<StateItems>
     if (checkoutModel && !checkoutModel.id) {
       const { email, shippingAddress, billingAddress, lines } = checkoutModel;
       if (email && shippingAddress && lines) {
-        const alteredLines = lines.map((item) => ({
+        const alteredLines = lines.map(item => ({
           quantity: item!.quantity,
           variantId: item?.variant!.id,
         }));
@@ -186,7 +186,7 @@ export class SaleorState extends NamedObservable<StateItems>
 
   private calculateSummaryPrices(
     checkout?: ICheckoutModel
-  ): ISaleorStateSummeryPrices | undefined {
+  ): ISaleorStateSummeryPrices {
     const items = checkout?.lines;
     const shippingMethod = checkout?.shippingMethod;
 
@@ -197,7 +197,9 @@ export class SaleorState extends NamedObservable<StateItems>
         const shippingPrice = {
           ...shippingMethod?.price,
           amount: shippingMethod?.price?.amount || 0,
-          currency: shippingMethod?.price?.currency || "",
+          currency:
+            shippingMethod?.price?.currency ||
+            firstItemTotalPrice.gross.currency,
         };
 
         const { itemsNetPrice, itmesGrossPrice } = items.reduce(
@@ -243,5 +245,6 @@ export class SaleorState extends NamedObservable<StateItems>
         };
       }
     }
+    return {};
   }
 }

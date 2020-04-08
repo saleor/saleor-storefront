@@ -11,10 +11,12 @@ export const Money: React.FC<IProps> = ({
   }
   return (
     <span {...props}>
-      {money.amount.toLocaleString(undefined, {
-        currency: money.currency,
-        style: "currency",
-      })}
+      {money.currency && money.currency !== ""
+        ? money.amount.toLocaleString(undefined, {
+            currency: money.currency,
+            style: "currency",
+          })
+        : money.amount.toString()}
     </span>
   );
 };
