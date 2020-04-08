@@ -5,10 +5,23 @@
 import { PaymentChargeStatusEnum, OrderStatus } from "./../../types/globalTypes";
 
 // ====================================================
-// GraphQL query operation: OrderByToken
+// GraphQL mutation operation: CompleteCheckout
 // ====================================================
 
-export interface OrderByToken_orderByToken_shippingAddress_country {
+export interface CompleteCheckout_checkoutComplete_errors {
+  __typename: "Error";
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
+   */
+  field: string | null;
+  /**
+   * The error message.
+   */
+  message: string | null;
+}
+
+export interface CompleteCheckout_checkoutComplete_order_shippingAddress_country {
   __typename: "CountryDisplay";
   /**
    * Country code.
@@ -20,7 +33,7 @@ export interface OrderByToken_orderByToken_shippingAddress_country {
   country: string;
 }
 
-export interface OrderByToken_orderByToken_shippingAddress {
+export interface CompleteCheckout_checkoutComplete_order_shippingAddress {
   __typename: "Address";
   /**
    * The ID of the object.
@@ -36,7 +49,7 @@ export interface OrderByToken_orderByToken_shippingAddress {
   /**
    * Shop's default country.
    */
-  country: OrderByToken_orderByToken_shippingAddress_country;
+  country: CompleteCheckout_checkoutComplete_order_shippingAddress_country;
   countryArea: string;
   phone: string | null;
   /**
@@ -49,7 +62,7 @@ export interface OrderByToken_orderByToken_shippingAddress {
   isDefaultShippingAddress: boolean | null;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_gross {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -61,7 +74,7 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -73,19 +86,19 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscount
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_gross;
+  gross: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted_net;
+  net: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted_net;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_price_gross {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -97,7 +110,7 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_gross {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -109,19 +122,19 @@ export interface OrderByToken_orderByToken_lines_variant_pricing_price_net {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing_price {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_lines_variant_pricing_price_gross;
+  gross: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_lines_variant_pricing_price_net;
+  net: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price_net;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_pricing {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_pricing {
   __typename: "VariantPricingInfo";
   /**
    * Whether it is in sale or not.
@@ -130,14 +143,14 @@ export interface OrderByToken_orderByToken_lines_variant_pricing {
   /**
    * The price without any discount.
    */
-  priceUndiscounted: OrderByToken_orderByToken_lines_variant_pricing_priceUndiscounted | null;
+  priceUndiscounted: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_priceUndiscounted | null;
   /**
    * The price, with any discount subtracted.
    */
-  price: OrderByToken_orderByToken_lines_variant_pricing_price | null;
+  price: CompleteCheckout_checkoutComplete_order_lines_variant_pricing_price | null;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_attributes_attribute {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_attributes_attribute {
   __typename: "Attribute";
   /**
    * The ID of the object.
@@ -149,7 +162,7 @@ export interface OrderByToken_orderByToken_lines_variant_attributes_attribute {
   name: string | null;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_attributes_values {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_attributes_values {
   __typename: "AttributeValue";
   /**
    * The ID of the object.
@@ -165,19 +178,19 @@ export interface OrderByToken_orderByToken_lines_variant_attributes_values {
   value: string | null;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_attributes {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_attributes {
   __typename: "SelectedAttribute";
   /**
    * Name of an attribute displayed in the interface.
    */
-  attribute: OrderByToken_orderByToken_lines_variant_attributes_attribute;
+  attribute: CompleteCheckout_checkoutComplete_order_lines_variant_attributes_attribute;
   /**
    * Values of an attribute.
    */
-  values: (OrderByToken_orderByToken_lines_variant_attributes_values | null)[];
+  values: (CompleteCheckout_checkoutComplete_order_lines_variant_attributes_values | null)[];
 }
 
-export interface OrderByToken_orderByToken_lines_variant_product_thumbnail {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -189,7 +202,7 @@ export interface OrderByToken_orderByToken_lines_variant_product_thumbnail {
   alt: string | null;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_product_thumbnail2x {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_product_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -197,12 +210,12 @@ export interface OrderByToken_orderByToken_lines_variant_product_thumbnail2x {
   url: string;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_product_productType {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_product_productType {
   __typename: "ProductType";
   isShippingRequired: boolean;
 }
 
-export interface OrderByToken_orderByToken_lines_variant_product {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant_product {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -212,15 +225,15 @@ export interface OrderByToken_orderByToken_lines_variant_product {
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: OrderByToken_orderByToken_lines_variant_product_thumbnail | null;
+  thumbnail: CompleteCheckout_checkoutComplete_order_lines_variant_product_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: OrderByToken_orderByToken_lines_variant_product_thumbnail2x | null;
-  productType: OrderByToken_orderByToken_lines_variant_product_productType;
+  thumbnail2x: CompleteCheckout_checkoutComplete_order_lines_variant_product_thumbnail2x | null;
+  productType: CompleteCheckout_checkoutComplete_order_lines_variant_product_productType;
 }
 
-export interface OrderByToken_orderByToken_lines_variant {
+export interface CompleteCheckout_checkoutComplete_order_lines_variant {
   __typename: "ProductVariant";
   /**
    * The ID of the object.
@@ -239,15 +252,15 @@ export interface OrderByToken_orderByToken_lines_variant {
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
-  pricing: OrderByToken_orderByToken_lines_variant_pricing | null;
+  pricing: CompleteCheckout_checkoutComplete_order_lines_variant_pricing | null;
   /**
    * List of attributes assigned to this variant.
    */
-  attributes: OrderByToken_orderByToken_lines_variant_attributes[];
-  product: OrderByToken_orderByToken_lines_variant_product;
+  attributes: CompleteCheckout_checkoutComplete_order_lines_variant_attributes[];
+  product: CompleteCheckout_checkoutComplete_order_lines_variant_product;
 }
 
-export interface OrderByToken_orderByToken_lines_unitPrice_gross {
+export interface CompleteCheckout_checkoutComplete_order_lines_unitPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -259,7 +272,7 @@ export interface OrderByToken_orderByToken_lines_unitPrice_gross {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_unitPrice_net {
+export interface CompleteCheckout_checkoutComplete_order_lines_unitPrice_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -271,7 +284,7 @@ export interface OrderByToken_orderByToken_lines_unitPrice_net {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_lines_unitPrice {
+export interface CompleteCheckout_checkoutComplete_order_lines_unitPrice {
   __typename: "TaxedMoney";
   /**
    * Currency code.
@@ -280,28 +293,28 @@ export interface OrderByToken_orderByToken_lines_unitPrice {
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_lines_unitPrice_gross;
+  gross: CompleteCheckout_checkoutComplete_order_lines_unitPrice_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_lines_unitPrice_net;
+  net: CompleteCheckout_checkoutComplete_order_lines_unitPrice_net;
 }
 
-export interface OrderByToken_orderByToken_lines {
+export interface CompleteCheckout_checkoutComplete_order_lines {
   __typename: "OrderLine";
   productName: string;
   quantity: number;
   /**
    * A purchased product variant. Note: this field may be null if the variant has been removed from stock at all.
    */
-  variant: OrderByToken_orderByToken_lines_variant | null;
+  variant: CompleteCheckout_checkoutComplete_order_lines_variant | null;
   /**
    * Price of the single item in the order line.
    */
-  unitPrice: OrderByToken_orderByToken_lines_unitPrice | null;
+  unitPrice: CompleteCheckout_checkoutComplete_order_lines_unitPrice | null;
 }
 
-export interface OrderByToken_orderByToken_subtotal_gross {
+export interface CompleteCheckout_checkoutComplete_order_subtotal_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -313,7 +326,7 @@ export interface OrderByToken_orderByToken_subtotal_gross {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_subtotal_net {
+export interface CompleteCheckout_checkoutComplete_order_subtotal_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -325,19 +338,19 @@ export interface OrderByToken_orderByToken_subtotal_net {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_subtotal {
+export interface CompleteCheckout_checkoutComplete_order_subtotal {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_subtotal_gross;
+  gross: CompleteCheckout_checkoutComplete_order_subtotal_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_subtotal_net;
+  net: CompleteCheckout_checkoutComplete_order_subtotal_net;
 }
 
-export interface OrderByToken_orderByToken_total_gross {
+export interface CompleteCheckout_checkoutComplete_order_total_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -349,7 +362,7 @@ export interface OrderByToken_orderByToken_total_gross {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_total_net {
+export interface CompleteCheckout_checkoutComplete_order_total_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -361,19 +374,19 @@ export interface OrderByToken_orderByToken_total_net {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_total {
+export interface CompleteCheckout_checkoutComplete_order_total {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_total_gross;
+  gross: CompleteCheckout_checkoutComplete_order_total_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_total_net;
+  net: CompleteCheckout_checkoutComplete_order_total_net;
 }
 
-export interface OrderByToken_orderByToken_shippingPrice_gross {
+export interface CompleteCheckout_checkoutComplete_order_shippingPrice_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -385,7 +398,7 @@ export interface OrderByToken_orderByToken_shippingPrice_gross {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_shippingPrice_net {
+export interface CompleteCheckout_checkoutComplete_order_shippingPrice_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -397,19 +410,19 @@ export interface OrderByToken_orderByToken_shippingPrice_net {
   currency: string;
 }
 
-export interface OrderByToken_orderByToken_shippingPrice {
+export interface CompleteCheckout_checkoutComplete_order_shippingPrice {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: OrderByToken_orderByToken_shippingPrice_gross;
+  gross: CompleteCheckout_checkoutComplete_order_shippingPrice_gross;
   /**
    * Amount of money without taxes.
    */
-  net: OrderByToken_orderByToken_shippingPrice_net;
+  net: CompleteCheckout_checkoutComplete_order_shippingPrice_net;
 }
 
-export interface OrderByToken_orderByToken {
+export interface CompleteCheckout_checkoutComplete_order {
   __typename: "Order";
   /**
    * Email address of the customer.
@@ -437,32 +450,48 @@ export interface OrderByToken_orderByToken {
    * User-friendly number of an order.
    */
   number: string | null;
-  shippingAddress: OrderByToken_orderByToken_shippingAddress | null;
+  shippingAddress: CompleteCheckout_checkoutComplete_order_shippingAddress | null;
   /**
    * List of order lines.
    */
-  lines: (OrderByToken_orderByToken_lines | null)[];
+  lines: (CompleteCheckout_checkoutComplete_order_lines | null)[];
   /**
    * The sum of line prices not including shipping.
    */
-  subtotal: OrderByToken_orderByToken_subtotal | null;
+  subtotal: CompleteCheckout_checkoutComplete_order_subtotal | null;
   /**
    * Total amount of the order.
    */
-  total: OrderByToken_orderByToken_total | null;
+  total: CompleteCheckout_checkoutComplete_order_total | null;
   /**
    * Total price of shipping.
    */
-  shippingPrice: OrderByToken_orderByToken_shippingPrice | null;
+  shippingPrice: CompleteCheckout_checkoutComplete_order_shippingPrice | null;
 }
 
-export interface OrderByToken {
+export interface CompleteCheckout_checkoutComplete {
+  __typename: "CheckoutComplete";
   /**
-   * Look up an order by token.
+   * List of errors that occurred executing the mutation.
    */
-  orderByToken: OrderByToken_orderByToken | null;
+  errors: CompleteCheckout_checkoutComplete_errors[] | null;
+  /**
+   * Placed order.
+   */
+  order: CompleteCheckout_checkoutComplete_order | null;
 }
 
-export interface OrderByTokenVariables {
-  token: any;
+export interface CompleteCheckout {
+  /**
+   * Completes the checkout. As a result a new order is created and a payment
+   * charge is made. This action requires a successful payment before it can be
+   * performed. In case additional confirmation step as 3D secure is required
+   * confirmationNeeded flag will be set to True and no order created until payment
+   * is confirmed with second call of this mutation.
+   */
+  checkoutComplete: CompleteCheckout_checkoutComplete | null;
+}
+
+export interface CompleteCheckoutVariables {
+  checkoutId: string;
 }

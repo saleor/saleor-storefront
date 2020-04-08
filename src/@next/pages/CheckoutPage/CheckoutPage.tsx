@@ -209,7 +209,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     if (payment?.gateway === "Dummy") {
       return `Dummy: ${
         dummyStatuses.find(
-          (status) => status.token === selectedPaymentGatewayToken
+          status => status.token === selectedPaymentGatewayToken
         )?.label
       }`;
     } else if (payment?.creditCard) {

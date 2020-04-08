@@ -1,11 +1,13 @@
 import { APIProxy } from "@sdk/api/APIProxy";
 import { Checkout } from "@sdk/fragments/types/Checkout";
+import { OrderDetail } from "@sdk/fragments/types/OrderDetail";
 import { Payment } from "@sdk/fragments/types/Payment";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
 import {
   ICheckoutAddress,
   ICheckoutModel,
   ICheckoutModelLine,
+  IOrderModel,
   IPaymentModel,
 } from "@sdk/repository";
 import { CountryCode } from "@sdk/types/globalTypes";
@@ -25,10 +27,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       checkout = await new Promise((resolve, reject) => {
         if (this.apiProxy.isLoggedIn()) {
           this.apiProxy.getUserCheckout(null, {
-            onError: (error) => {
+            onError: error => {
               reject(error);
             },
-            onUpdate: (data) => {
+            onUpdate: data => {
               resolve(data);
             },
           });
@@ -38,10 +40,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               token: checkoutToken,
             },
             {
-              onError: (error) => {
+              onError: error => {
                 reject(error);
               },
-              onUpdate: (data) => {
+              onUpdate: data => {
                 resolve(data);
               },
             }
@@ -74,10 +76,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     checkoutlines: ICheckoutModelLine[] | null
   ) => {
     const idsOfMissingVariants = checkoutlines
-      ?.filter((line) => !line.variant || !line.totalPrice)
-      .map((line) => line.variant.id);
+      ?.filter(line => !line.variant || !line.totalPrice)
+      .map(line => line.variant.id);
     const linesWithProperVariant =
-      checkoutlines?.filter((line) => line.variant && line.totalPrice) || [];
+      checkoutlines?.filter(line => line.variant && line.totalPrice) || [];
 
     let variants: CheckoutProductVariants_productVariants | null | undefined;
     if (idsOfMissingVariants && idsOfMissingVariants.length) {
@@ -88,10 +90,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               ids: idsOfMissingVariants,
             },
             {
-              onError: (error) => {
+              onError: error => {
                 reject(error);
               },
-              onUpdate: (data) => {
+              onUpdate: data => {
                 resolve(data);
               },
             }
@@ -106,9 +108,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     }
 
     const linesWithMissingVariantUpdated = variants
-      ? variants.edges.map((edge) => {
+      ? variants.edges.map(edge => {
           const existingLine = checkoutlines?.find(
-            (line) => line.variant.id === edge.node.id
+            line => line.variant.id === edge.node.id
           );
           const variantPricing = edge.node.pricing?.price;
           const totalPrice = variantPricing
@@ -144,7 +146,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         })
       : [];
 
-    const linesWithProperVariantUpdated = linesWithProperVariant.map((line) => {
+    const linesWithProperVariantUpdated = linesWithProperVariant.map(line => {
       const variantPricing = line.variant.pricing?.price;
       const totalPrice = variantPricing
         ? {
@@ -243,7 +245,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const lines = checkout.lines;
 
     if (checkoutId && lines) {
-      const alteredLines = lines.map((line) => ({
+      const alteredLines = lines.map(line => ({
         quantity: line.quantity,
         variantId: line.variant.id,
       }));
@@ -441,6 +443,32 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     return { data: null, errors: null };
   };
 
+  completeCheckout = async (checkout: ICheckoutModel) => {
+    const checkoutId = checkout.id;
+
+    if (checkoutId) {
+      const { data } = await this.apiProxy.setCompleteCheckout({
+        checkoutId,
+      });
+
+      if (data?.errors && data.errors.length) {
+        return {
+          data: null,
+          errors: data.errors,
+        };
+      }
+
+      if (data?.order) {
+        return {
+          data: this.constructOrderModel(data.order),
+          errors: null,
+        };
+      }
+    }
+
+    return { data: null, errors: null };
+  };
+
   private constructCheckoutModel = ({
     id,
     token,
@@ -470,8 +498,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     email,
     id,
     lines: lines
-      ?.filter((item) => item?.quantity && item.variant.id)
-      .map((item) => {
+      ?.filter(item => item?.quantity && item.variant.id)
+      .map(item => {
         const itemVariant = item?.variant;
 
         return {
@@ -503,6 +531,11 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
   }: Payment): IPaymentModel => ({
     creditCard,
     gateway,
+    id,
+    token,
+  });
+
+  private constructOrderModel = ({ id, token }: OrderDetail): IOrderModel => ({
     id,
     token,
   });

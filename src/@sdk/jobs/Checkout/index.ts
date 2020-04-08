@@ -100,6 +100,10 @@ export class CheckoutJobQueue extends JobQueue {
     this.createPayment(amount);
   };
 
+  runCompleteCheckout = async () => {
+    return this.completeCheckout();
+  };
+
   private setShippingAddress = async () => {
     const checkout = this.repository.getCheckout();
 
@@ -172,6 +176,23 @@ export class CheckoutJobQueue extends JobQueue {
         this.onErrorListener(errors);
       } else if (data) {
         this.repository.setPayment(data);
+      }
+    }
+  };
+
+  private completeCheckout = async () => {
+    const checkout = this.repository.getCheckout();
+
+    if (checkout) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.completeCheckout(checkout);
+      if (errors && this.onErrorListener) {
+        this.onErrorListener(errors);
+      } else if (data) {
+        // this.repository.setOrder(data);
+        return data;
       }
     }
   };

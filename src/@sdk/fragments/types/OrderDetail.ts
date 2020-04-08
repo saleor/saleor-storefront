@@ -432,6 +432,7 @@ export interface OrderDetail {
    * The ID of the object.
    */
   id: string;
+  token: string;
   /**
    * User-friendly number of an order.
    */

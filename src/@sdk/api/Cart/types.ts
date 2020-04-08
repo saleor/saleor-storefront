@@ -4,7 +4,7 @@ import {
   ICheckoutModelPriceValue,
 } from "@sdk/repository";
 
-import { PromiseResponse } from "../types";
+import { PromiseQueuedResponse } from "../types";
 
 export type IItems = ICheckoutModelLine[] | null | undefined;
 export type ITotalPrice = ICheckoutModelPrice | null | undefined;
@@ -17,9 +17,9 @@ export interface ISaleorCartAPI {
   totalPrice?: ITotalPrice;
   subtotalPrice?: ISubtotalPrice;
   shippingPrice?: IShippingPrice;
-  addItem: (variantId: string, quantity: number) => PromiseResponse;
-  load: () => PromiseResponse;
-  removeItem: (variantId: string) => PromiseResponse;
-  subtractItem: (variantId: string) => PromiseResponse;
-  updateItem: (variantId: string, quantity: number) => PromiseResponse;
+  addItem: (variantId: string, quantity: number) => PromiseQueuedResponse;
+  load: () => PromiseQueuedResponse;
+  removeItem: (variantId: string) => PromiseQueuedResponse;
+  subtractItem: (variantId: string) => PromiseQueuedResponse;
+  updateItem: (variantId: string, quantity: number) => PromiseQueuedResponse;
 }

@@ -89,6 +89,11 @@ export interface IPaymentModel {
   creditCard?: Payment_creditCard | null;
 }
 
+export interface IOrderModel {
+  id?: string;
+  token?: string;
+}
+
 export interface IJobsModel {
   cart: {
     setCartItem?: boolean;

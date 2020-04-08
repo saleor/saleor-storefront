@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 
 import { checkoutFragment } from "../fragments/checkout";
 import { paymentFragment } from "../fragments/payment";
+import { orderDetailFragment } from "../fragments/user";
 
 export const updateCheckoutLineMutation = gql`
   ${checkoutFragment}
@@ -173,6 +174,21 @@ export const createCheckoutPaymentMutation = gql`
         field
         message
         code
+      }
+    }
+  }
+`;
+
+export const completeCheckoutMutation = gql`
+  ${orderDetailFragment}
+  mutation CompleteCheckout($checkoutId: ID!) {
+    checkoutComplete(checkoutId: $checkoutId) {
+      errors {
+        field
+        message
+      }
+      order {
+        ...OrderDetail
       }
     }
   }

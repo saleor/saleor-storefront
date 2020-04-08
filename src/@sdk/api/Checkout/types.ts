@@ -5,7 +5,7 @@ import {
 import { Payment_creditCard } from "@sdk/fragments/types/Payment";
 import { ICheckoutModelPrice, ICheckoutModelPriceValue } from "@sdk/repository";
 
-import { PromiseResponse } from "../types";
+import { PromiseQueuedResponse, PromiseRunResponse } from "../types";
 
 export type IPrice = ICheckoutModelPrice | null | undefined;
 export type IPriceValue = ICheckoutModelPriceValue | null | undefined;
@@ -65,14 +65,16 @@ export interface ISaleorCheckoutAPI {
   selectedShippingMethodId?: string;
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
-  load: () => PromiseResponse;
-  setBillingAddress: (billingAddress: IAddress) => PromiseResponse;
+  load: () => PromiseQueuedResponse;
+  setBillingAddress: (billingAddress: IAddress) => PromiseQueuedResponse;
   setShippingAddress: (
     shippingAddress: IAddress,
     email: string
-  ) => PromiseResponse;
-  setShippingMethod: (shippingMethodId: string) => PromiseResponse;
-  setBillingAsShippingAddress: (billingAsShipping: boolean) => PromiseResponse;
-  createPayment: (gateway: string, token: string) => PromiseResponse;
-  makeOrder: () => PromiseResponse;
+  ) => PromiseQueuedResponse;
+  setShippingMethod: (shippingMethodId: string) => PromiseQueuedResponse;
+  setBillingAsShippingAddress: (
+    billingAsShipping: boolean
+  ) => PromiseQueuedResponse;
+  createPayment: (gateway: string, token: string) => PromiseRunResponse;
+  completeCheckout: () => PromiseRunResponse;
 }

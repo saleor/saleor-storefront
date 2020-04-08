@@ -219,7 +219,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         this.saleorState.summaryPrices?.totalPrice.gross.amount
       );
       return {
-        pending: true,
+        pending: false,
       };
     }
     return {
@@ -227,11 +227,18 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  /**
-   * Method not implemented yet
-   */
-  makeOrder = () =>
-    Promise.resolve({
+  completeCheckout = async () => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    if (this.saleorState.checkout?.id) {
+      const data = this.checkoutJobQueue.runCompleteCheckout();
+      return {
+        data,
+        pending: false,
+      };
+    }
+    return {
       pending: false,
-    });
+    };
+  };
 }
