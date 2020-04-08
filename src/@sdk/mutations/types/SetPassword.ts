@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AccountErrorCode } from "./../../types/globalTypes";
+import { AccountErrorCode } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: SetPassword
@@ -52,14 +52,6 @@ export interface SetPassword_setPassword_user_defaultShippingAddress {
   country: SetPassword_setPassword_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user_defaultBillingAddress_country {
@@ -93,14 +85,6 @@ export interface SetPassword_setPassword_user_defaultBillingAddress {
   country: SetPassword_setPassword_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user_addresses_country {
@@ -134,14 +118,6 @@ export interface SetPassword_setPassword_user_addresses {
   country: SetPassword_setPassword_user_addresses_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user {
