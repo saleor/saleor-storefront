@@ -43,7 +43,7 @@ const Page: React.FC<{
         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
-              <h1>OneCabinet 3</h1>
+              <h1>OneCabinet w. CI</h1>
             </span>
           </div>
           <div>
