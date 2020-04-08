@@ -15,7 +15,6 @@ import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 import { TaxedMoney } from "../../@next/components/containers";
 import { CartContext, CartLine } from "../CartProvider/context";
 import AddToCart from "./AddToCart";
-import AddToWishlist from "./AddToWishlist";
 
 interface ProductDescriptionProps {
   productId: string;
@@ -137,7 +136,7 @@ class ProductDescription extends React.Component<
             label="Quantity"
             min="1"
             value={quantity || ""}
-            onChange={e =>
+            onChange={(e) =>
               this.setState({ quantity: Math.max(1, Number(e.target.value)) })
             }
           />
@@ -151,9 +150,6 @@ class ProductDescription extends React.Component<
             />
           )}
         </CartContext.Consumer>
-        <div className="product-description__add-to-wishlist">
-          <AddToWishlist productId={this.props.productId} />
-        </div>
       </div>
     );
   }
