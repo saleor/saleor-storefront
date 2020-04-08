@@ -100,5 +100,6 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              # ignore: /.*/
+              only: master
       # - cypress/run
