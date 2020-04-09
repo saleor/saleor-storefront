@@ -133,14 +133,6 @@ export interface UserCheckoutDetails_me_checkout_billingAddress {
   country: UserCheckoutDetails_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_shippingAddress_country {
@@ -174,14 +166,6 @@ export interface UserCheckoutDetails_me_checkout_shippingAddress {
   country: UserCheckoutDetails_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
-  /**
-   * Address is user's default billing address.
-   */
-  isDefaultBillingAddress: boolean | null;
-  /**
-   * Address is user's default shipping address.
-   */
-  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_availableShippingMethods_price {
