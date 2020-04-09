@@ -192,6 +192,8 @@ export class CheckoutJobQueue extends JobQueue {
         this.onErrorListener(errors);
       } else if (data) {
         // this.repository.setOrder(data);
+        this.repository.setCheckout({});
+        this.repository.setPayment({});
         return data;
       }
     }

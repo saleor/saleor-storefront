@@ -92,6 +92,7 @@ export interface IPaymentModel {
 export interface IOrderModel {
   id?: string;
   token?: string;
+  number?: string | null;
 }
 
 export interface IJobsModel {

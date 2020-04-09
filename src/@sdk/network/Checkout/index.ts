@@ -535,8 +535,13 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     token,
   });
 
-  private constructOrderModel = ({ id, token }: OrderDetail): IOrderModel => ({
+  private constructOrderModel = ({
     id,
+    token,
+    number: orderNumber,
+  }: OrderDetail): IOrderModel => ({
+    id,
+    number: orderNumber,
     token,
   });
 }

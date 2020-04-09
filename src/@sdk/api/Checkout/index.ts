@@ -231,7 +231,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     if (this.saleorState.checkout?.id) {
-      const data = this.checkoutJobQueue.runCompleteCheckout();
+      const data = await this.checkoutJobQueue.runCompleteCheckout();
       return {
         data,
         pending: false,

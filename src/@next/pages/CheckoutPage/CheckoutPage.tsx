@@ -46,6 +46,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     availablePaymentGateways,
     payment,
     createPayment,
+    completeCheckout,
     addOnErrorListener,
     removeOnErrorListener,
   } = useCheckout();
@@ -164,6 +165,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     await createPayment(gateway, token);
     history.push(activeStep.nextStepLink);
   };
+  const handleCompleteCheckout = async () => {
+    const { data } = await completeCheckout();
+    history.push({
+      pathname: activeStep.nextStepLink,
+      state: {
+        id: data?.id,
+        orderNumber: data?.number,
+        token: data?.token,
+      },
+    });
+  };
   const handleNextStepClick = () => {
     if (activeStepIndex === 0) {
       if (user && selectedShippingAddressId) {
@@ -191,6 +203,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           new Event("submit", { cancelable: true })
         );
       }
+    } else if (activeStepIndex === 3) {
+      handleCompleteCheckout();
     } else {
       history.push(activeStep.nextStepLink);
     }
