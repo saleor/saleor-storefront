@@ -19,9 +19,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   addItemToCart = (variantId: string, quantity: number) => {
     const lines = this.saleorState.checkout?.lines || [];
-    let variant = lines.find((variant) => variant.variant.id === variantId);
+    let variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      (variant) => variant.variant.id !== variantId
+      variant => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity + quantity : quantity;
     if (variant) {
@@ -51,9 +51,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   removeItemFromCart = (variantId: string) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find((variant) => variant.variant.id === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      (variant) => variant.variant.id !== variantId
+      variant => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = 0;
@@ -74,9 +74,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   subtractItemFromCart = (variantId: string) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find((variant) => variant.variant.id === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      (variant) => variant.variant.id !== variantId
+      variant => variant.variant.id !== variantId
     );
     const newVariantQuantity = variant ? variant.quantity - 1 : 0;
     if (variant) {
@@ -98,9 +98,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
 
   updateItemInCart = (variantId: string, quantity: number) => {
     const lines = this.saleorState.checkout?.lines || [];
-    const variant = lines.find((variant) => variant.variant.id === variantId);
+    const variant = lines.find(variant => variant.variant.id === variantId);
     const alteredLines = lines.filter(
-      (variant) => variant.variant.id !== variantId
+      variant => variant.variant.id !== variantId
     );
     if (variant) {
       variant.quantity = quantity;
@@ -160,7 +160,7 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
   setShippingMethod = (shippingMethodId: string) => {
     const currentCheckout = this.saleorState.checkout;
     const selectedShippingMethod = currentCheckout?.availableShippingMethods?.find(
-      (method) => method.id === shippingMethodId
+      method => method.id === shippingMethodId
     );
     const alteredSelectedShippingMethod = selectedShippingMethod && {
       ...selectedShippingMethod,
@@ -173,6 +173,25 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
         }
       : {
           shippingMethod: alteredSelectedShippingMethod,
+        };
+    this.repository.setCheckout(alteredCheckout);
+
+    return alteredCheckout;
+  };
+
+  setPromoCode = (promoCode?: string) => {
+    const alteredCheckout = this.saleorState.checkout
+      ? {
+          ...this.saleorState.checkout,
+          promoCode: {
+            ...this.saleorState.checkout.promoCode,
+            promoCode,
+          },
+        }
+      : {
+          promoCode: {
+            promoCode,
+          },
         };
     this.repository.setCheckout(alteredCheckout);
 

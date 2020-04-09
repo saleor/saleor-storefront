@@ -15,6 +15,7 @@ import {
   IAvailableShippingMethods,
   ICheckout,
   IPayment,
+  IPromoCode,
   ISaleorCheckoutAPI,
 } from "./types";
 
@@ -22,7 +23,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
   loaded: boolean;
   checkout?: ICheckout;
-  promoCode?: string;
+  promoCode?: IPromoCode;
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
@@ -65,6 +66,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         availableShippingMethods,
         shippingMethod,
         availablePaymentGateways,
+        promoCode,
       }: ICheckoutModel) => {
         this.checkout = {
           billingAddress,
@@ -77,6 +79,10 @@ export class SaleorCheckoutAPI extends ErrorListener
         this.availableShippingMethods = availableShippingMethods;
         this.availablePaymentGateways = availablePaymentGateways;
         this.billingAsShipping = billingAsShipping;
+        this.promoCode = {
+          code: promoCode?.code,
+          discountName: promoCode?.discountName,
+        };
       }
     );
     this.saleorState.subscribeToChange(
@@ -192,6 +198,46 @@ export class SaleorCheckoutAPI extends ErrorListener
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
       this.checkoutJobQueue.enqueueSetShippingMethod();
+      return {
+        pending: true,
+      };
+    }
+    return {
+      pending: false,
+    };
+  };
+
+  setPromoCode = async (promoCode: string) => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    if (this.checkout?.id) {
+      this.checkoutRepositoryManager.setPromoCode(promoCode);
+    }
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetPromoCode();
+      return {
+        pending: true,
+      };
+    }
+    return {
+      pending: false,
+    };
+  };
+
+  removePromoCode = async () => {
+    await this.saleorState.provideCheckout(this.fireError);
+
+    // 1. save in local storage
+    if (this.checkout?.id) {
+      this.checkoutRepositoryManager.setPromoCode(undefined);
+    }
+
+    // 2. save online if possible (if checkout id available)
+    if (this.saleorState.checkout?.id) {
+      this.checkoutJobQueue.enqueueSetPromoCode();
       return {
         pending: true,
       };

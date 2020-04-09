@@ -3,6 +3,7 @@ export enum LocalStorageJobs {
   CHECKOUT_SET_SHIPPING_ADDRESS = "job_checkoutSetShippingAddress",
   CHECKOUT_SET_BILLING_ADDRESS = "job_checkoutSetBillingAddress",
   CHECKOUT_SET_SHIPPING_METHOD = "job_checkoutSetShippingMethod",
+  CHECKOUT_SET_PROMO_CODE = "job_checkoutSetPromoCode",
 }
 
 export interface IJobQueue {

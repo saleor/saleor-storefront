@@ -19,11 +19,11 @@ export interface ISaleorStateSummeryPrices {
   shippingPrice?: ICheckoutModelPriceValue;
   subtotalPrice?: ICheckoutModelPrice;
   totalPrice?: ICheckoutModelPrice;
+  discount?: ICheckoutModelPriceValue;
 }
 
 export interface ISaleorState {
   checkout?: ICheckoutModel;
-  promoCode?: string;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   summaryPrices?: ISaleorStateSummeryPrices;

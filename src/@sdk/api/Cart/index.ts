@@ -6,6 +6,7 @@ import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
 import { CartJobQueue } from "@temp/@sdk/jobs/Cart";
 
 import {
+  IDiscount,
   IItems,
   ISaleorCartAPI,
   IShippingPrice,
@@ -19,6 +20,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   totalPrice: ITotalPrice;
   subtotalPrice: ISubtotalPrice;
   shippingPrice: IShippingPrice;
+  discount?: IDiscount;
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
@@ -66,10 +68,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
         totalPrice,
         subtotalPrice,
         shippingPrice,
+        discount,
       }: ISaleorStateSummeryPrices) => {
         this.totalPrice = totalPrice;
         this.subtotalPrice = subtotalPrice;
         this.shippingPrice = shippingPrice;
+        this.discount = discount;
       }
     );
 

@@ -189,6 +189,7 @@ export class SaleorState extends NamedObservable<StateItems>
   ): ISaleorStateSummeryPrices {
     const items = checkout?.lines;
     const shippingMethod = checkout?.shippingMethod;
+    const promoCodeDiscount = checkout?.promoCode?.discount;
 
     if (items && items.length) {
       const firstItemTotalPrice = items[0].totalPrice;
@@ -226,19 +227,27 @@ export class SaleorState extends NamedObservable<StateItems>
           },
         };
 
+        const discount = {
+          ...promoCodeDiscount,
+          amount: promoCodeDiscount?.amount || 0,
+          currency:
+            promoCodeDiscount?.currency || firstItemTotalPrice.gross.currency,
+        };
+
         const totalPrice = {
           ...subtotalPrice,
           gross: {
             ...subtotalPrice.gross,
-            amount: itmesGrossPrice + shippingPrice.amount,
+            amount: itmesGrossPrice + shippingPrice.amount - discount.amount,
           },
           net: {
             ...subtotalPrice.net,
-            amount: itemsNetPrice + shippingPrice.amount,
+            amount: itemsNetPrice + shippingPrice.amount - discount.amount,
           },
         };
 
         return {
+          discount,
           shippingPrice,
           subtotalPrice,
           totalPrice,
