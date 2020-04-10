@@ -1,10 +1,6 @@
-import { IPaymentGatewayConfig } from "@types";
+import { ReactStripeElements } from "react-stripe-elements";
 
-export interface IProps {
-  /**
-   * Payment gateway client configuration.
-   */
-  config: IPaymentGatewayConfig[];
+export interface IProps extends ReactStripeElements.InjectedStripeProps {
   /**
    * Form reference on which payment might be submitted.
    */
@@ -13,8 +9,4 @@ export interface IProps {
    * Method called when the form is submitted. Passed token attribute might be used to create payment.
    */
   processPayment: (token: string) => void;
-  /**
-   * Initially selected status/token
-   */
-  initialStatus?: string;
 }

@@ -74,8 +74,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 </S.Tile>
                 {checked && (
                   <DummyPaymentGateway
+                    config={config}
                     formRef={formRef}
-                    processPayment={(token) =>
+                    processPayment={token =>
                       processPayment(PROVIDERS.DUMMY.label, token)
                     }
                     initialStatus={selectedPaymentGatewayToken}
@@ -104,7 +105,16 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     </span>
                   </Radio>
                 </S.Tile>
-                {checked && <StripePaymentGateway />}
+                {checked && (
+                  <StripePaymentGateway
+                    config={config}
+                    href={PROVIDERS.STRIPE.href}
+                    formRef={formRef}
+                    processPayment={token =>
+                      processPayment(PROVIDERS.STRIPE.label, token)
+                    }
+                  />
+                )}
               </div>
             );
         }

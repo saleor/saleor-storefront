@@ -25,3 +25,4 @@ export * from "./BraintreePaymentGateway";
 export * from "./DummyPaymentGateway";
 export * from "./StripePaymentGateway";
 export * from "./PaymentGatewaysList";
+export * from "./StripeCreditCardForm";
