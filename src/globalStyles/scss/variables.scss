@@ -16,10 +16,13 @@ $blue-overlay: rgba($blue, 0.15);
 $autofillColor: rgb(250, 255, 189);
 $autofillColorSelected: rgb(232, 240, 254);
 
+// Custom cabinets
+$background-tan: #af9a50;
+
 // typography
 $base-font-family: "Inter", sans-serif;
 $base-font-size: 1rem; // 16px
-$small-font-size: 0.875rem; // 14px
+$small-font-size: 0.775rem; // 14px
 $base-line-height: 1.25rem; // 20px
 $h1-font-size: 4rem; // 64px
 $h1-line-height: 1;
@@ -35,17 +38,17 @@ $spacer: 1rem; // 16px
 $container-width: 1140px;
 
 // button
-$button-font-size: 1.125rem;
+$button-font-size: .9rem;
 $button-line-height: $base-line-height;
 $button-box-shadow: -5px 5px 14px 0px rgba(0, 0, 0, 0.2);
 $button-box-shadow-clicked: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
-$button-padding: 0.9rem 3.7rem;
+$button-padding: 0.9rem 2rem;
 $button-padding-small-screen: 0.9rem 1rem;
 $button-transition: 0.3s;
 $button-transform: skew(45deg);
 $button-content-transform: skew(-45deg);
 $button-text-transform: uppercase;
-$button-font-weight: $bold-font-weight;
+$button-font-weight: 400;
 
 // input
 $label-font-size: 0.75rem; // 12px

@@ -1,34 +1,30 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 button.button {
-  background-color: $turquoise;
-  transform: $button-transform;
+  background-color: $background-tan;
   padding: $button-padding;
   border: none;
-  box-shadow: $button-box-shadow;
-  transition: $button-transition;
+  border-radius: .5rem;
   outline: none;
   font-family: $base-font-family;
   cursor: pointer;
 
   @media (max-width: $small-screen) {
-    padding: $button-padding-small-screen;
-    width: 88%;
-    max-width: 88%;
+    width: 100%;
+    max-width: 100%;
   }
 
   > span {
     display: inline-block;
     color: $white;
     font-size: $button-font-size;
-    text-transform: $button-text-transform;
     font-weight: $button-font-weight;
     line-height: $button-line-height;
-    transform: $button-content-transform;
+    text-transform: uppercase;
   }
 
   &:hover {
-    background-color: $turquoise-dark;
+    background-color: $background-tan;
   }
 
   &:active {

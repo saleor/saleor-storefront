@@ -1,12 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ReactSVG from "react-svg";
+// import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 
 import { generateProductUrl } from "../../../core/utils";
-import removeImg from "../../../images/garbage.svg";
 import { LineI } from "../../CartTable/ProductRow";
 
 const ProductList: React.SFC<{
@@ -22,25 +21,58 @@ const ProductList: React.SFC<{
             <Thumbnail source={line.product} />
           </Link>
           <div className="cart__list__item__details">
-            <p>
-              <TaxedMoney taxedMoney={line.pricing.price} />
-            </p>
             <Link to={productUrl}>
               <p>{line.product.name}</p>
             </Link>
-            <span className="cart__list__item__details__variant">
-              <span>{line.name}</span>
-              <span>{`Qty: ${line.quantity}`}</span>
-            </span>
-            <ReactSVG
-              path={removeImg}
-              className="cart__list__item__details__delete-icon"
-              onClick={() => remove(line.id)}
-            />
+            <div className="cart__list__item__details__variant">
+              <span>SKU: {`W1230-CYOHH`}</span>
+              <span>Dimension: {`10"w x 12"h x 24"d`}</span>
+            </div>
+            <div className="cart__list__item__details__pricing">
+              <p>
+                <TaxedMoney taxedMoney={line.pricing.price} />
+              </p>
+              <QauntSelect quantity={line.quantity} />
+            </div>
           </div>
         </li>
       );
     })}
   </ul>
 );
+
+const QauntSelect: React.SFC<any> = props => {
+  const [quantity, setQuantity] = React.useState(props.quantity || 0);
+
+  function increment() {
+    if ((quantity + 1) > 10) {
+      return;
+    }
+    setQuantity(quantity + 1);
+  }
+
+  function decrement() {
+    if ((quantity - 1) < 0) {
+      return;
+    }
+    setQuantity(quantity - 1);
+  }
+
+  // @todo: implement update lineItem quantity graphql
+
+  return <div className="quantselect">
+    <button
+      onClick={decrement}
+      className="quantselect__increment">
+        -
+    </button>
+    <span className="quantselect__itemquantity">{quantity}</span>
+    <button
+      onClick={increment}
+      className="quantselect__increment">
+        +
+    </button>
+  </div>
+}
+
 export default ProductList;
