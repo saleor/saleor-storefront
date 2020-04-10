@@ -28,6 +28,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const {
     loaded: cartLoaded,
     shippingPrice,
+    discount,
     subtotalPrice,
     totalPrice,
     items,
@@ -44,6 +45,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     availableShippingMethods,
     setShippingMethod,
     availablePaymentGateways,
+    promoCodeDiscount,
+    addPromoCode,
+    removePromoCode,
     payment,
     createPayment,
     completeCheckout,
@@ -219,6 +223,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     gross: shippingPrice,
     net: shippingPrice,
   };
+  const promoTaxedPrice = discount && {
+    gross: discount,
+    net: discount,
+  };
   const getPaymentMethodDescription = () => {
     if (payment?.gateway === "Dummy") {
       return `Dummy: ${
@@ -241,6 +249,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <CartSummary
       shipping={shippingTaxedPrice || undefined}
       subtotal={subtotalPrice || undefined}
+      promoCode={promoTaxedPrice || undefined}
       total={totalPrice || undefined}
       products={products}
     />
@@ -282,6 +291,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       setBillingAddress={handleSetBillingAddress}
       billingAsShippingAddress={billingAsShipping}
       setBillingAsShippingAddress={setBillingAsShippingAddress}
+      promoCodeDiscount={{
+        voucherCode: promoCodeDiscount?.voucherCode,
+      }}
+      addPromoCode={addPromoCode}
+      removeVoucherCode={removePromoCode}
       gatewayFormRef={checkoutGatewayFormRef}
       processPayment={handleProcessPayment}
     />

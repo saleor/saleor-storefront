@@ -97,8 +97,12 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
-  runSetPromoCode = (promoCode: string) => {
-    this.setPromoCode(promoCode);
+  runAddPromoCode = (promoCode: string) => {
+    this.addPromoCode(promoCode);
+  };
+
+  runRemovePromoCode = (promoCode: string) => {
+    this.removePromoCode(promoCode);
   };
 
   runCreatePayment = (amount: number) => {
@@ -167,11 +171,11 @@ export class CheckoutJobQueue extends JobQueue {
     }
   };
 
-  private setPromoCode = async (promoCode: string) => {
+  private addPromoCode = async (promoCode: string) => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const { data, errors } = await this.checkoutNetworkManager.setPromoCode(
+      const { data, errors } = await this.checkoutNetworkManager.addPromoCode(
         promoCode,
         checkout
       );
@@ -180,7 +184,29 @@ export class CheckoutJobQueue extends JobQueue {
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
-          promoCodeDiscount: checkout.promoCodeDiscount,
+          promoCodeDiscount: data.promoCodeDiscount,
+        });
+      }
+    }
+  };
+
+  private removePromoCode = async (promoCode: string) => {
+    const checkout = this.repository.getCheckout();
+
+    if (checkout) {
+      const {
+        data,
+        errors,
+      } = await this.checkoutNetworkManager.removePromoCode(
+        promoCode,
+        checkout
+      );
+      if (errors && this.onErrorListener) {
+        this.onErrorListener(errors);
+      } else if (data) {
+        this.repository.setCheckout({
+          ...checkout,
+          promoCodeDiscount: data.promoCodeDiscount,
         });
       }
     }

@@ -33,7 +33,11 @@ export interface ICheckoutNetworkManager {
   setShippingMethod: (
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
-  setPromoCode: (
+  addPromoCode: (
+    promoCode: string,
+    checkout: ICheckoutModel
+  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  removePromoCode: (
     promoCode: string,
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;

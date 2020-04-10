@@ -2,6 +2,10 @@ import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { getShop_shop_countries } from "@temp/core/types/saleor";
 import { IAddress, IPaymentGateway } from "@types";
 
+export interface IPromoCodeDiscount {
+  voucherCode?: string | null;
+}
+
 export interface IProps {
   userAddresses: UserDetails_me["addresses"] | null | undefined;
   selectedUserAddressId?: string;
@@ -13,6 +17,9 @@ export interface IProps {
   paymentGateways: IPaymentGateway[];
   setBillingAddress: (address: IAddress, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
+  promoCodeDiscount: IPromoCodeDiscount;
+  addPromoCode: (promoCode: string) => void;
+  removeVoucherCode: (voucherCode: string) => void;
   /**
    * Selected payment gateway.
    */

@@ -1,3 +1,5 @@
+import { round } from "lodash";
+
 import { NamedObservable } from "../helpers";
 import { CheckoutNetworkManager } from "../network";
 import { ApolloErrorWithUserInput } from "../react/types";
@@ -219,11 +221,11 @@ export class SaleorState extends NamedObservable<StateItems>
           ...firstItemTotalPrice,
           gross: {
             ...firstItemTotalPrice.gross,
-            amount: itmesGrossPrice,
+            amount: round(itmesGrossPrice, 2),
           },
           net: {
             ...firstItemTotalPrice.net,
-            amount: itemsNetPrice,
+            amount: round(itemsNetPrice, 2),
           },
         };
 
@@ -238,11 +240,17 @@ export class SaleorState extends NamedObservable<StateItems>
           ...subtotalPrice,
           gross: {
             ...subtotalPrice.gross,
-            amount: itmesGrossPrice + shippingPrice.amount - discount.amount,
+            amount: round(
+              itmesGrossPrice + shippingPrice.amount - discount.amount,
+              2
+            ),
           },
           net: {
             ...subtotalPrice.net,
-            amount: itemsNetPrice + shippingPrice.amount - discount.amount,
+            amount: round(
+              itemsNetPrice + shippingPrice.amount - discount.amount,
+              2
+            ),
           },
         };
 

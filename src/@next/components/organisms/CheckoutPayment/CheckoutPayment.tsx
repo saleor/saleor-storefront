@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Checkbox } from "@components/atoms";
 
@@ -21,12 +21,33 @@ const CheckoutPayment: React.FC<IProps> = ({
   paymentGateways,
   setBillingAddress,
   setBillingAsShippingAddress,
+  promoCodeDiscount,
+  addPromoCode,
+  removeVoucherCode,
   selectedPaymentGateway,
   selectedPaymentGatewayToken,
   selectPaymentGateway,
   gatewayFormRef,
   processPayment,
 }: IProps) => {
+  const [showPromoCodeForm, setShowPromoCodeForm] = useState(
+    !!promoCodeDiscount.voucherCode
+  );
+
+  useEffect(() => {
+    const isVoucherCode = !!promoCodeDiscount.voucherCode;
+    if (isVoucherCode) {
+      setShowPromoCodeForm(!!promoCodeDiscount.voucherCode);
+    }
+  }, [promoCodeDiscount.voucherCode]);
+
+  const handleChangeShowPromoCodeForm = () => {
+    if (showPromoCodeForm && promoCodeDiscount?.voucherCode) {
+      removeVoucherCode(promoCodeDiscount?.voucherCode);
+    }
+    setShowPromoCodeForm(!showPromoCodeForm);
+  };
+
   const adresses =
     userAddresses
       ?.filter(function notEmpty<TValue>(
@@ -34,7 +55,7 @@ const CheckoutPayment: React.FC<IProps> = ({
       ): value is TValue {
         return value !== null && value !== undefined;
       })
-      .map((address) => ({
+      .map(address => ({
         address: {
           ...address,
           isDefaultBillingAddress: address.isDefaultBillingAddress || false,
@@ -78,9 +99,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                   return value !== null && value !== undefined;
                 })}
                 address={checkoutBillingAddress || undefined}
-                handleSubmit={(address) =>
-                  address && setBillingAddress(address)
-                }
+                handleSubmit={address => address && setBillingAddress(address)}
               />
             )}
           </>
@@ -92,19 +111,24 @@ const CheckoutPayment: React.FC<IProps> = ({
         <Checkbox
           data-cy="checkoutPaymentPromoCodeCheckbox"
           name="payment-promo-code"
-          checked={false}
-          onChange={() => null}
+          checked={showPromoCodeForm}
+          onChange={handleChangeShowPromoCodeForm}
         >
           Do you have a gift card voucher or discount code?
         </Checkbox>
-        <S.DiscountField>
-          <DiscountForm
-            discount={{ promoCode: null }}
-            handleApplyDiscount={() => null}
-            handleRemovePromoCode={() => null}
-            errors={null}
-          />
-        </S.DiscountField>
+        {showPromoCodeForm && (
+          <S.DiscountField>
+            <DiscountForm
+              discount={{ promoCode: promoCodeDiscount?.voucherCode }}
+              handleApplyDiscount={addPromoCode}
+              handleRemovePromoCode={() =>
+                promoCodeDiscount?.voucherCode &&
+                removeVoucherCode(promoCodeDiscount?.voucherCode)
+              }
+              errors={null}
+            />
+          </S.DiscountField>
+        )}
         <S.Divider />
         <PaymentGatewaysList
           paymentGateways={paymentGateways}

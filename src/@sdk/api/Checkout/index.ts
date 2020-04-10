@@ -211,7 +211,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.runSetPromoCode(promoCode);
+      this.checkoutJobQueue.runAddPromoCode(promoCode);
       return {
         pending: false,
       };
@@ -225,7 +225,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.runSetPromoCode(promoCode);
+      this.checkoutJobQueue.runRemovePromoCode(promoCode);
       return {
         pending: false,
       };
