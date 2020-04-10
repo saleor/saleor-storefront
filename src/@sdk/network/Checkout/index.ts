@@ -383,9 +383,8 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     return { data: null, errors: null };
   };
 
-  setPromoCode = async (checkout: ICheckoutModel) => {
+  setPromoCode = async (promoCode: string, checkout: ICheckoutModel) => {
     const checkoutId = checkout.id;
-    const promoCode = checkout.promoCode?.code;
 
     if (checkoutId && promoCode) {
       const { data } = await this.apiProxy.setAddCheckoutPromoCode({
@@ -504,6 +503,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     billingAddress,
     discount,
     discountName,
+    voucherCode,
     lines,
     availableShippingMethods,
     shippingMethod,
@@ -547,9 +547,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           },
         };
       }),
-    promoCode: {
+    promoCodeDiscount: {
       discount,
       discountName,
+      voucherCode,
     },
     shippingAddress,
     shippingMethod,

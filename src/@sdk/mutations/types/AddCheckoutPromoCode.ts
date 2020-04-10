@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutErrorCode } from "./../../../../types/globalTypes";
+import { CheckoutErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AddCheckoutPromoCode
@@ -135,6 +135,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_billingAddre
   country: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddress_country {
@@ -168,6 +176,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddr
   country: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availableShippingMethods_price {

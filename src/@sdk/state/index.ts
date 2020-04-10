@@ -189,7 +189,7 @@ export class SaleorState extends NamedObservable<StateItems>
   ): ISaleorStateSummeryPrices {
     const items = checkout?.lines;
     const shippingMethod = checkout?.shippingMethod;
-    const promoCodeDiscount = checkout?.promoCode?.discount;
+    const promoCodeDiscount = checkout?.promoCodeDiscount?.discount;
 
     if (items && items.length) {
       const firstItemTotalPrice = items[0].totalPrice;

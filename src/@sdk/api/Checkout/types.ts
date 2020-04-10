@@ -36,8 +36,8 @@ export interface IShippingMethod {
   price?: IPriceValue | null;
 }
 
-export interface IPromoCode {
-  code?: string;
+export interface IPromoCodeDiscount {
+  voucherCode?: string | null;
   discountName?: string | null;
 }
 
@@ -62,7 +62,7 @@ export interface ICheckout {
 export interface ISaleorCheckoutAPI {
   loaded: boolean;
   checkout?: ICheckout | null;
-  promoCode?: IPromoCode;
+  promoCodeDiscount?: IPromoCodeDiscount;
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
@@ -80,8 +80,8 @@ export interface ISaleorCheckoutAPI {
   setBillingAsShippingAddress: (
     billingAsShipping: boolean
   ) => PromiseQueuedResponse;
-  setPromoCode: (promoCode: string) => PromiseQueuedResponse;
-  removePromoCode: (promoCode: string) => PromiseQueuedResponse;
+  addPromoCode: (promoCode: string) => PromiseRunResponse;
+  removePromoCode: (promoCode: string) => PromiseRunResponse;
   createPayment: (gateway: string, token: string) => PromiseRunResponse;
   completeCheckout: () => PromiseRunResponse;
 }

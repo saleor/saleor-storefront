@@ -24,7 +24,6 @@ export class CheckoutJobQueue extends JobQueue {
       ["setShippingAddress", this.enqueueSetShippingAddress],
       ["setBillingAddress", this.enqueueSetBillingAddress],
       ["setShippingMethod", this.enqueueSetShippingMethod],
-      ["setPromoCode", this.enqueueSetPromoCode],
     ]);
     this.enqueueAllSavedInRepository(queuePossibilities, "checkout");
   }
@@ -98,27 +97,8 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
-  enqueueSetPromoCode = () => {
-    this.addToQueue(
-      LocalStorageJobs.CHECKOUT_SET_PROMO_CODE,
-      () => this.setPromoCode(),
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setPromoCode: true,
-          },
-          "checkout"
-        );
-      },
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setPromoCode: false,
-          },
-          "checkout"
-        );
-      }
-    );
+  runSetPromoCode = (promoCode: string) => {
+    this.setPromoCode(promoCode);
   };
 
   runCreatePayment = (amount: number) => {
@@ -187,11 +167,12 @@ export class CheckoutJobQueue extends JobQueue {
     }
   };
 
-  private setPromoCode = async () => {
+  private setPromoCode = async (promoCode: string) => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
       const { data, errors } = await this.checkoutNetworkManager.setPromoCode(
+        promoCode,
         checkout
       );
       if (errors && this.onErrorListener) {
@@ -199,11 +180,7 @@ export class CheckoutJobQueue extends JobQueue {
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
-          promoCode: {
-            ...checkout.promoCode,
-            discount: data.promoCode?.discount,
-            discountName: data.promoCode?.discountName,
-          },
+          promoCodeDiscount: checkout.promoCodeDiscount,
         });
       }
     }

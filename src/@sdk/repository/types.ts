@@ -69,8 +69,8 @@ export interface ICheckoutModelShippingMethod {
   price: ICheckoutModelPriceValue | null;
 }
 
-export interface ICheckoutModelPromoCode {
-  code?: string;
+export interface ICheckoutModelPromoCodeDiscount {
+  voucherCode?: string | null;
   discount?: ICheckoutModelPriceValue | null;
   discountName?: string | null;
 }
@@ -82,7 +82,7 @@ export interface ICheckoutModel {
   shippingAddress?: ICheckoutAddress | null;
   billingAddress?: ICheckoutAddress | null;
   billingAsShipping?: boolean;
-  promoCode?: ICheckoutModelPromoCode;
+  promoCodeDiscount?: ICheckoutModelPromoCodeDiscount;
   lines?: ICheckoutModelLine[] | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
   shippingMethod?: ICheckoutModelShippingMethod | null;

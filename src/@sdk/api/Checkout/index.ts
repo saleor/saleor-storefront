@@ -15,7 +15,7 @@ import {
   IAvailableShippingMethods,
   ICheckout,
   IPayment,
-  IPromoCode,
+  IPromoCodeDiscount,
   ISaleorCheckoutAPI,
 } from "./types";
 
@@ -23,7 +23,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   implements ISaleorCheckoutAPI {
   loaded: boolean;
   checkout?: ICheckout;
-  promoCode?: IPromoCode;
+  promoCodeDiscount?: IPromoCodeDiscount;
   billingAsShipping?: boolean;
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
@@ -66,7 +66,7 @@ export class SaleorCheckoutAPI extends ErrorListener
         availableShippingMethods,
         shippingMethod,
         availablePaymentGateways,
-        promoCode,
+        promoCodeDiscount,
       }: ICheckoutModel) => {
         this.checkout = {
           billingAddress,
@@ -79,9 +79,9 @@ export class SaleorCheckoutAPI extends ErrorListener
         this.availableShippingMethods = availableShippingMethods;
         this.availablePaymentGateways = availablePaymentGateways;
         this.billingAsShipping = billingAsShipping;
-        this.promoCode = {
-          code: promoCode?.code,
-          discountName: promoCode?.discountName,
+        this.promoCodeDiscount = {
+          discountName: promoCodeDiscount?.discountName,
+          voucherCode: promoCodeDiscount?.voucherCode,
         };
       }
     );
@@ -207,19 +207,13 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  setPromoCode = async (promoCode: string) => {
+  addPromoCode = async (promoCode: string) => {
     await this.saleorState.provideCheckout(this.fireError);
 
-    // 1. save in local storage
-    if (this.checkout?.id) {
-      this.checkoutRepositoryManager.setPromoCode(promoCode);
-    }
-
-    // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetPromoCode();
+      this.checkoutJobQueue.runSetPromoCode(promoCode);
       return {
-        pending: true,
+        pending: false,
       };
     }
     return {
@@ -227,19 +221,13 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  removePromoCode = async () => {
+  removePromoCode = async (promoCode: string) => {
     await this.saleorState.provideCheckout(this.fireError);
 
-    // 1. save in local storage
-    if (this.checkout?.id) {
-      this.checkoutRepositoryManager.setPromoCode(undefined);
-    }
-
-    // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetPromoCode();
+      this.checkoutJobQueue.runSetPromoCode(promoCode);
       return {
-        pending: true,
+        pending: false,
       };
     }
     return {
