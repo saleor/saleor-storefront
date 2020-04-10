@@ -164,7 +164,7 @@
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
     "watch": "webpack -d --watch",
-    "storybook": "start-storybook -p 9001 -c src/storybook/ -s src/",
+    "storybook": "start-storybook -p 9002",
     "@storybook": "start-storybook -p 9002",
     "codegen": "apollo codegen:generate --target=typescript types",
     "codegen-watch": "npm run codegen -- --watch",

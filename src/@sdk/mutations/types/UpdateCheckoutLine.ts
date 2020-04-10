@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutLineInput } from "./../../types/globalTypes";
+import { CheckoutLineInput } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutLine

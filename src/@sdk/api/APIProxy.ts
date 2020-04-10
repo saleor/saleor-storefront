@@ -59,10 +59,6 @@ export class APIProxy {
     data.me ? data.me.checkout : null
   );
 
-  getUserWishlist = this.watchQuery(QUERIES.Wishlist, data =>
-    data.me ? data.me.wishlist : null
-  );
-
   getVariantsProducts = this.watchQuery(
     QUERIES.VariantsProducts,
     data => data.productVariants
@@ -128,26 +124,6 @@ export class APIProxy {
   setUpdateuserAddress = this.fireQuery(
     MUTATIONS.UpdateUserAddress,
     data => data!.accountAddressUpdate
-  );
-
-  setAddWishlistProduct = this.fireQuery(
-    MUTATIONS.AddWishlistProduct,
-    data => data!.wishlistAddProduct
-  );
-
-  setRemoveWishlistProduct = this.fireQuery(
-    MUTATIONS.RemoveWishlistProduct,
-    data => data!.wishlistRemoveProduct
-  );
-
-  setAddWishlistProductVariant = this.fireQuery(
-    MUTATIONS.AddWishlistProductVariant,
-    data => data!.wishlistAddVariant
-  );
-
-  setRemoveWishlistProductVariant = this.fireQuery(
-    MUTATIONS.RemoveWishlistProductVariant,
-    data => data!.wishlistRemoveVariant
   );
 
   setCheckoutBillingAddress = this.fireQuery(

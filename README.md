@@ -79,28 +79,6 @@ npm start
 
 Go to `http://localhost:3000` to access the storefront.
 
-### Translating
-
-Add a new language pack file:
-
-```
-npm run add-locale <locale>
-```
-
-Update the list of available languages in the `./src/languages.ts` file.
-
-Extract messages from source files that need to be translated:
-
-```
-npm run extract
-```
-
-Compile messages:
-
-```
-npm run compile
-```
-
 ## License
 
 This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/master/LICENSE) file for details

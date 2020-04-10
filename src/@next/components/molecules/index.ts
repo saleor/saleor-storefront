@@ -15,7 +15,6 @@ export * from "./ProductListHeader";
 export * from "./InputSelect";
 export * from "./AttributeValuesChecklist";
 export * from "./ResetPasswordForm";
-export * from "./AddToWishlistButton";
 export * from "./ProductTile";
 export * from "./ProductDescription";
 export * from "./CartSummaryRow";
