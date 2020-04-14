@@ -1,13 +1,12 @@
-import { Formik } from "formik";
-import React from "react";
 import {
-  CardCVCElement,
-  CardExpiryElement,
   CardNumberElement,
-  injectStripe,
-} from "react-stripe-elements";
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { Formik } from "formik";
+import React, { useState } from "react";
 
-import { ErrorMessage } from "@components/atoms";
+import { ErrorMessage, StripeInputElement } from "@components/atoms";
 import { IFormError } from "@components/atoms/ErrorMessage/types";
 
 import * as S from "./styles";
@@ -16,50 +15,41 @@ import { IProps } from "./types";
 /**
  * Stripe credit card form.
  */
-const StripeCreditCardFormContent: React.FC<IProps> = ({
-  stripe,
+const StripeCreditCardForm: React.FC<IProps> = ({
   formRef,
   processPayment,
 }: IProps) => {
-  const CARD_OPTIONS = {
-    iconStyle: "solid",
-    style: {
-      base: {
-        ":-webkit-autofill": { color: "#fce883" },
-        "::placeholder": { color: "#87bbfd" },
-        color: "#fff",
-        fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-        fontSize: "16px",
-        fontSmoothing: "antialiased",
-        fontWeight: 500,
-        iconColor: "#c4f0ff",
-      },
-      invalid: {
-        color: "#ffc7ee",
-        iconColor: "#ffc7ee",
-      },
-    },
-  };
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const [errors, setErrors] = React.useState<IFormError[]>([]);
+  const [errors, setErrors] = useState<IFormError[]>([]);
 
   const handleFormSubmit = async () => {
     // setLoadingState(true);
+    const cartNumberElement = elements?.getElement(CardNumberElement);
 
-    const payload = await stripe?.createPaymentMethod("card");
-    if (payload?.error) {
-      const error = { ...payload.error, message: payload.error.message || "" };
-      setErrors([error]);
-    } else if (payload?.paymentMethod) {
-      const { card, id } = payload.paymentMethod;
-      // update({
-      //   cardData: {
-      //     ccType: card.brand,
-      //     lastDigits: card.last4,
-      //     token: id,
-      //   },
-      // });
-      processPayment(id);
+    if (cartNumberElement) {
+      const payload = await stripe?.createPaymentMethod({
+        card: cartNumberElement,
+        type: "card",
+      });
+      if (payload?.error) {
+        const error = {
+          ...payload.error,
+          message: payload.error.message || "",
+        };
+        setErrors([error]);
+      } else if (payload?.paymentMethod) {
+        const { card, id } = payload.paymentMethod;
+        // update({
+        //   cardData: {
+        //     ccType: card.brand,
+        //     lastDigits: card.last4,
+        //     token: id,
+        //   },
+        // });
+        processPayment(id);
+      }
     }
     // setLoadingState(false);
   };
@@ -82,43 +72,38 @@ const StripeCreditCardFormContent: React.FC<IProps> = ({
       }) => (
         <S.Form ref={formRef} onSubmit={handleSubmit}>
           <S.Card>
-            <S.Label>
-              Card number
-              <CardNumberElement
-                onChange={event => {
-                  handleChange(event);
-                  setErrors([]);
-                }}
-              />
-            </S.Label>
-            <S.Label>
-              Expiration date
-              <CardExpiryElement
-                onChange={event => {
-                  handleChange(event);
-                  setErrors([]);
-                }}
-              />
-            </S.Label>
-            <S.Label>
-              CVC
-              <CardCVCElement
-                onChange={event => {
-                  handleChange(event);
-                  setErrors([]);
-                }}
-              />
-            </S.Label>
-            <S.Label>
-              Postal code
-              <input
-                name="name"
-                type="text"
-                placeholder="94115"
-                className="StripeElement"
-                required
-              />
-            </S.Label>
+            <StripeInputElement
+              type="CardNumber"
+              label="Card number"
+              onChange={event => {
+                handleChange(event);
+                setErrors([]);
+              }}
+            />
+            <StripeInputElement
+              type="CardExpiry"
+              label="Expiration date"
+              onChange={event => {
+                handleChange(event);
+                setErrors([]);
+              }}
+            />
+            <StripeInputElement
+              type="CardCvc"
+              label="CVC"
+              onChange={event => {
+                handleChange(event);
+                setErrors([]);
+              }}
+            />
+            <StripeInputElement
+              type="PostalCode"
+              label="Postal code"
+              onChange={event => {
+                handleChange(event);
+                setErrors([]);
+              }}
+            />
           </S.Card>
           <ErrorMessage errors={errors} />
         </S.Form>
@@ -126,7 +111,5 @@ const StripeCreditCardFormContent: React.FC<IProps> = ({
     </Formik>
   );
 };
-
-const StripeCreditCardForm = injectStripe(StripeCreditCardFormContent);
 
 export { StripeCreditCardForm };

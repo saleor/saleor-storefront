@@ -1,6 +1,4 @@
-import { ReactStripeElements } from "react-stripe-elements";
-
-export interface IProps extends ReactStripeElements.InjectedStripeProps {
+export interface IProps {
   /**
    * Form reference on which payment might be submitted.
    */

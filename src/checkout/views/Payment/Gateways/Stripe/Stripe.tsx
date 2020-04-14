@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Elements, StripeProvider } from "react-stripe-elements";
+// import { Elements, StripeProvider } from "react-stripe-elements";
 
 import { ProviderProps } from "../../View";
 import CardForm from "./CardForm";
@@ -29,10 +29,10 @@ export const Stripe = (props: ProviderProps) => {
   }, []);
 
   return (
-    <StripeProvider stripe={stripe}>
-      <Elements>
-        <CardForm {...props} />
-      </Elements>
-    </StripeProvider>
+    // <StripeProvider stripe={stripe}>
+    // <Elements>
+    <CardForm {...props} />
+    // </Elements>
+    // </StripeProvider>
   );
 };

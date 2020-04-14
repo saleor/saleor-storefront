@@ -28,3 +28,4 @@ export * from "./Chip";
 export * from "./CartHeader";
 export * from "./CartFooter";
 export * from "./Radio";
+export * from "./StripeInputElement";
