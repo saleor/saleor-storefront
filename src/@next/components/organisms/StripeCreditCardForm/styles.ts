@@ -32,8 +32,11 @@ export const Form = styled.form`
 
 export const Card = styled.div<WrapperProps>`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-areas: 
+    "cardNumber cardNumber cardNumber cardNumber cardExpiry cardExpiry"
+    "cardCvc cardCvc cardCvc postalCode postalCode postalCode";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
 
   .StripeElement {
     padding: 0.8rem 1rem;
@@ -53,4 +56,18 @@ export const Card = styled.div<WrapperProps>`
   }
 `;
 
-export const Label = styled.label``;
+export const CardNumberField = styled.div`
+  grid-area: cardNumber;
+`;
+
+export const CardExpiryField = styled.div`
+  grid-area: cardExpiry;
+`;
+
+export const CardCvcField = styled.div`
+  grid-area: cardCvc;
+`;
+
+export const PostalCodeField = styled.div`
+  grid-area: postalCode;
+`;

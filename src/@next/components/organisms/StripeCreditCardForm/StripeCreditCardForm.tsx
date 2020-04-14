@@ -72,38 +72,46 @@ const StripeCreditCardForm: React.FC<IProps> = ({
       }) => (
         <S.Form ref={formRef} onSubmit={handleSubmit}>
           <S.Card>
-            <StripeInputElement
-              type="CardNumber"
-              label="Card number"
-              onChange={event => {
-                handleChange(event);
-                setErrors([]);
-              }}
-            />
-            <StripeInputElement
-              type="CardExpiry"
-              label="Expiration date"
-              onChange={event => {
-                handleChange(event);
-                setErrors([]);
-              }}
-            />
-            <StripeInputElement
-              type="CardCvc"
-              label="CVC"
-              onChange={event => {
-                handleChange(event);
-                setErrors([]);
-              }}
-            />
-            <StripeInputElement
-              type="PostalCode"
-              label="Postal code"
-              onChange={event => {
-                handleChange(event);
-                setErrors([]);
-              }}
-            />
+            <S.CardNumberField>
+              <StripeInputElement
+                type="CardNumber"
+                label="Card number"
+                onChange={event => {
+                  handleChange(event);
+                  setErrors([]);
+                }}
+              />
+            </S.CardNumberField>
+            <S.CardExpiryField>
+              <StripeInputElement
+                type="CardExpiry"
+                label="Expiration date"
+                onChange={event => {
+                  handleChange(event);
+                  setErrors([]);
+                }}
+              />
+            </S.CardExpiryField>
+            <S.CardCvcField>
+              <StripeInputElement
+                type="CardCvc"
+                label="CVC"
+                onChange={event => {
+                  handleChange(event);
+                  setErrors([]);
+                }}
+              />
+            </S.CardCvcField>
+            <S.PostalCodeField>
+              <StripeInputElement
+                type="PostalCode"
+                label="Postal code"
+                onChange={event => {
+                  handleChange(event);
+                  setErrors([]);
+                }}
+              />
+            </S.PostalCodeField>
           </S.Card>
           <ErrorMessage errors={errors} />
         </S.Form>
