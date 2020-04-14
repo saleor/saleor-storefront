@@ -18,8 +18,12 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
   const updated = () => setUpdateAvailable(true);
 
   React.useEffect(() => {
-    register("/service-worker.js", { registered, updated });
-    return () => unregister();
+    if (window.Cypress) {
+      unregister();
+    } else {
+      register("/service-worker.js", { registered, updated });
+      return () => unregister();
+    }
   }, []);
 
   return { updateAvailable };
