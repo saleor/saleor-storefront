@@ -4,7 +4,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { useUserDetails } from "@sdk/react";
+// import { useUserDetails } from "@sdk/react";
 
 import {
   Button,
@@ -14,7 +14,6 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { checkoutLoginUrl } from "../../../app/routes";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
@@ -32,7 +31,7 @@ import chevronUpImg from "../../../images/chevron-up.svg";
 import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
-  const { data: user } = useUserDetails();
+  // const { data: user } = useUserDetails();
   return (
     <Overlay context={overlay}>
       <Online>
@@ -94,9 +93,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                                 />
                               </div>
                               <div className="cart__footer__button">
-                                <Link
-                                  to={user ? checkoutUrl : checkoutLoginUrl}
-                                >
+                                <Link to={checkoutUrl}>
                                   <Button>Checkout</Button>
                                 </Link>
                               </div>

@@ -9,6 +9,11 @@
     margin-bottom: 1rem;
   }
 
+  .field-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__grid {
     display: grid;
     grid-gap: 0 $spacer;
@@ -34,7 +39,7 @@
     }
     &--full {
       @media (min-width: $medium-screen) {
-        grid-template-columns: none;
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

@@ -113,7 +113,7 @@ const Page: React.FC<IShippingPageProps> = ({
   };
 
   const getShippingProps = (userCheckoutData: ICheckoutUserArgs) => ({
-    buttonText: "Continue to Shipping",
+    buttonText: "Next",
     errors,
     loading,
     proceedToNextStep: onProceedToShippingSubmit,

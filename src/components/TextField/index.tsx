@@ -20,6 +20,7 @@ export interface TextFieldProps
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   styleType?: Style;
+  half?: boolean;
 }
 
 const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
@@ -37,9 +38,10 @@ const TextField: React.FC<TextFieldProps> = ({
   errors,
   helpText,
   styleType = "white" as Style,
+  half,
   ...rest
 }) => (
-  <div className="input">
+  <div className={`input${half ? ' half' : ''}`}>
     {iconLeft ? <span className="input__icon-left">{iconLeft}</span> : null}
     {iconRight ? <span className="input__icon-right">{iconRight}</span> : null}
     <div className="input__content">

@@ -94,7 +94,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       API_URI: process.env.API_URI,
     }),
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
+      tslint: false,
       exclude: "node_modules",
       async: false,
     }),
