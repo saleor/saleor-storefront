@@ -1,5 +1,10 @@
 import { LocalRepository } from "../LocalRepository";
-import { ICheckoutAddress, ICheckoutModel, IPaymentModel } from "../types";
+import {
+  ICheckoutAddress,
+  ICheckoutModel,
+  IPaymentCreditCard,
+  IPaymentModel,
+} from "../types";
 
 export interface ICheckoutRepositoryManager {
   getRepository: () => LocalRepository;
@@ -21,6 +26,7 @@ export interface ICheckoutRepositoryManager {
   setShippingMethod: (shippingMethodId: string) => ICheckoutModel | null;
   setPaymentGatewayData: (
     gateway: string,
-    token: string
+    token: string,
+    creditCard?: IPaymentCreditCard
   ) => IPaymentModel | null;
 }

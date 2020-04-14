@@ -14,6 +14,7 @@ import {
   IAvailablePaymentGateways,
   IAvailableShippingMethods,
   ICheckout,
+  ICreditCard,
   IPayment,
   IPromoCodeDiscount,
   ISaleorCheckoutAPI,
@@ -235,12 +236,20 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  createPayment = async (gateway: string, token: string) => {
+  createPayment = async (
+    gateway: string,
+    token: string,
+    creditCard?: ICreditCard
+  ) => {
     await this.saleorState.provideCheckout(this.fireError);
     await this.saleorState.providePayment();
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.setPaymentGatewayData(gateway, token);
+    this.checkoutRepositoryManager.setPaymentGatewayData(
+      gateway,
+      token,
+      creditCard
+    );
 
     // 2. save online if possible (if checkout id available)
     if (

@@ -16,7 +16,7 @@ import { useCheckoutStepState } from "@hooks";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
-import { IAddress } from "@types";
+import { IAddress, ICardData } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import { IProps } from "./types";
@@ -165,8 +165,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       new Event("submit", { cancelable: true })
     );
   };
-  const handleProcessPayment = async (gateway: string, token: string) => {
-    await createPayment(gateway, token);
+  const handleProcessPayment = async (
+    gateway: string,
+    token: string,
+    cardData?: ICardData
+  ) => {
+    await createPayment(gateway, token, cardData);
     history.push(activeStep.nextStepLink);
   };
   const handleCompleteCheckout = async () => {

@@ -5,7 +5,6 @@ import {
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
 } from "../fragments/types/Checkout";
-import { Payment_creditCard } from "../fragments/types/Payment";
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
@@ -75,6 +74,29 @@ export interface ICheckoutModelPromoCodeDiscount {
   discountName?: string | null;
 }
 
+export interface IPaymentCreditCard {
+  /**
+   * Card brand.
+   */
+  brand: string;
+  /**
+   * The host name of the domain.
+   */
+  firstDigits: string;
+  /**
+   * Last 4 digits of the card number.
+   */
+  lastDigits: string;
+  /**
+   * Two-digit number representing the card’s expiration month.
+   */
+  expMonth: number;
+  /**
+   * Four-digit number representing the card’s expiration year.
+   */
+  expYear: number;
+}
+
 export interface ICheckoutModel {
   id?: string;
   token?: any;
@@ -93,7 +115,7 @@ export interface IPaymentModel {
   id?: string;
   token?: string;
   gateway?: string;
-  creditCard?: Payment_creditCard | null;
+  creditCard?: IPaymentCreditCard | null;
 }
 
 export interface IOrderModel {

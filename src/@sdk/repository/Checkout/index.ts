@@ -1,7 +1,7 @@
 import { SaleorState } from "@sdk/state";
 
 import { LocalRepository } from "../LocalRepository";
-import { ICheckoutAddress, ICheckoutModel } from "../types";
+import { ICheckoutAddress, ICheckoutModel, IPaymentCreditCard } from "../types";
 import { ICheckoutRepositoryManager } from "./types";
 
 export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
@@ -179,33 +179,20 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
     return alteredCheckout;
   };
 
-  setPromoCode = (promoCode?: string) => {
-    const alteredCheckout = this.saleorState.checkout
-      ? {
-          ...this.saleorState.checkout,
-          promoCode: {
-            ...this.saleorState.checkout.promoCode,
-            promoCode,
-          },
-        }
-      : {
-          promoCode: {
-            promoCode,
-          },
-        };
-    this.repository.setCheckout(alteredCheckout);
-
-    return alteredCheckout;
-  };
-
-  setPaymentGatewayData = (gateway: string, token: string) => {
+  setPaymentGatewayData = (
+    gateway: string,
+    token: string,
+    creditCard?: IPaymentCreditCard
+  ) => {
     const alteredPayment = this.saleorState.payment
       ? {
           ...this.saleorState.payment,
+          creditCard,
           gateway,
           token,
         }
       : {
+          creditCard,
           gateway,
           token,
         };

@@ -225,7 +225,12 @@ export class CheckoutJobQueue extends JobQueue {
       if (errors && this.onErrorListener) {
         this.onErrorListener(errors);
       } else if (data) {
-        this.repository.setPayment(data);
+        this.repository.setPayment({
+          ...payment,
+          gateway: data.gateway,
+          id: data.id,
+          token: data.token,
+        });
       }
     }
   };

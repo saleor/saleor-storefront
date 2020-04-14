@@ -2,8 +2,11 @@ import {
   Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
 } from "@sdk/fragments/types/Checkout";
-import { Payment_creditCard } from "@sdk/fragments/types/Payment";
-import { ICheckoutModelPrice, ICheckoutModelPriceValue } from "@sdk/repository";
+import {
+  ICheckoutModelPrice,
+  ICheckoutModelPriceValue,
+  IPaymentCreditCard,
+} from "@sdk/repository";
 
 import { PromiseQueuedResponse, PromiseRunResponse } from "../types";
 
@@ -41,7 +44,7 @@ export interface IPromoCodeDiscount {
   discountName?: string | null;
 }
 
-export type ICreditCard = Payment_creditCard;
+export type ICreditCard = IPaymentCreditCard;
 
 export interface IPayment {
   id?: string;
@@ -82,6 +85,10 @@ export interface ISaleorCheckoutAPI {
   ) => PromiseQueuedResponse;
   addPromoCode: (promoCode: string) => PromiseRunResponse;
   removePromoCode: (promoCode: string) => PromiseRunResponse;
-  createPayment: (gateway: string, token: string) => PromiseRunResponse;
+  createPayment: (
+    gateway: string,
+    token: string,
+    creditCard?: ICreditCard
+  ) => PromiseRunResponse;
   completeCheckout: () => PromiseRunResponse;
 }

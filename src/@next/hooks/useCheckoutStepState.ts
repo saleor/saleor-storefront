@@ -31,9 +31,7 @@ export const useCheckoutStepState = (
       (isShippingStep && !!checkout?.shippingMethod) ||
       !isShippingRequiredForProducts;
     const isReviewStep =
-      isPaymentStep &&
-      !!checkout?.billingAddress &&
-      !!(payment?.creditCard || payment?.gateway === "Dummy");
+      isPaymentStep && !!checkout?.billingAddress && !!payment?.id;
 
     if (isReviewStep) {
       return CheckoutStep.Review;

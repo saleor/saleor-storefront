@@ -41,14 +41,12 @@ const StripeCreditCardForm: React.FC<IProps> = ({
         setErrors([error]);
       } else if (payload?.paymentMethod) {
         const { card, id } = payload.paymentMethod;
-        // update({
-        //   cardData: {
-        //     ccType: card.brand,
-        //     lastDigits: card.last4,
-        //     token: id,
-        //   },
-        // });
-        processPayment(id);
+        processPayment(id, {
+          brand: card?.brand,
+          expMonth: card?.exp_month,
+          expYear: card?.exp_year,
+          lastDigits: card?.last4,
+        });
       }
     }
     // setLoadingState(false);
@@ -102,16 +100,6 @@ const StripeCreditCardForm: React.FC<IProps> = ({
                 }}
               />
             </S.CardCvcField>
-            <S.PostalCodeField>
-              <StripeInputElement
-                type="PostalCode"
-                label="Postal code"
-                onChange={event => {
-                  handleChange(event);
-                  setErrors([]);
-                }}
-              />
-            </S.PostalCodeField>
           </S.Card>
           <ErrorMessage errors={errors} />
         </S.Form>

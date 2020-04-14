@@ -47,13 +47,3 @@ export const InputWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
-
-export const Input = styled.input`
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: ${props => props.theme.typography.baseFontSize};
-  outline: none;
-  background-color: transparent;
-`;

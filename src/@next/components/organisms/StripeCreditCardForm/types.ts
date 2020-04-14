@@ -1,3 +1,5 @@
+import { ICardData } from "@types";
+
 export interface IProps {
   /**
    * Form reference on which payment might be submitted.
@@ -6,5 +8,5 @@ export interface IProps {
   /**
    * Method called when the form is submitted. Passed token attribute might be used to create payment.
    */
-  processPayment: (token: string) => void;
+  processPayment: (token: string, cardData: ICardData) => void;
 }

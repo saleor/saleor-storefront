@@ -110,8 +110,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     config={config}
                     href={PROVIDERS.STRIPE.href}
                     formRef={formRef}
-                    processPayment={token =>
-                      processPayment(PROVIDERS.STRIPE.label, token)
+                    processPayment={(token, cardData) =>
+                      processPayment(PROVIDERS.STRIPE.label, token, cardData)
                     }
                   />
                 )}

@@ -8,7 +8,7 @@ import {
   StripeCardExpiryElementChangeEvent,
   StripeCardNumberElementChangeEvent,
 } from "@stripe/stripe-js";
-import React, { ChangeEvent } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import * as S from "./styles";
@@ -38,7 +38,7 @@ const getBackgroundColor = (ref: any): string => {
 };
 
 /**
- * Example component description.
+ * Stripe input element.
  */
 const StripeInputElement: React.FC<IProps> = ({
   onBlur,
@@ -116,12 +116,6 @@ const StripeInputElement: React.FC<IProps> = ({
       onChange(event);
     }
   };
-  const handleCustomInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilled(!!(event.target?.value && event.target?.value !== ""));
-    if (onChange) {
-      onChange(event);
-    }
-  };
 
   const renderStripeElement = () => {
     switch (type) {
@@ -153,19 +147,6 @@ const StripeInputElement: React.FC<IProps> = ({
             onBlur={handleBlur}
             onChange={handleStripeElementChange}
             options={OPTIONS}
-          />
-        );
-      case "PostalCode":
-        return (
-          <S.Input
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={handleCustomInputChange}
-            name="name"
-            type="text"
-            placeholder="94115"
-            className="StripeElement"
-            required
           />
         );
     }

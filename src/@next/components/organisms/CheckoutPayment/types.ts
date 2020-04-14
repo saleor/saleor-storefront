@@ -1,6 +1,6 @@
 import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { getShop_shop_countries } from "@temp/core/types/saleor";
-import { IAddress, IPaymentGateway } from "@types";
+import { IAddress, ICardData, IPaymentGateway } from "@types";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
@@ -39,5 +39,9 @@ export interface IProps {
   /**
    * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */
-  processPayment: (gateway: string, token: string) => void;
+  processPayment: (
+    gateway: string,
+    token: string,
+    cardData?: ICardData
+  ) => void;
 }

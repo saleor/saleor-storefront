@@ -1,4 +1,4 @@
-import { IPaymentGatewayConfig } from "@types";
+import { ICardData, IPaymentGatewayConfig } from "@types";
 
 export interface IProps {
   /**
@@ -16,7 +16,7 @@ export interface IProps {
   /**
    * Method called when the form is submitted. Passed token attribute might be used to create payment.
    */
-  processPayment: (token: string) => void;
+  processPayment: (token: string, cardData: ICardData) => void;
   /**
    * Initially selected status/token
    */
