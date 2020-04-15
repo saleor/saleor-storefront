@@ -12,6 +12,7 @@ const money = {
 };
 
 const product = {
+  id: "abc123",
   name: "The Great Square Table",
   price: money,
   quantity: 2,

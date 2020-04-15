@@ -9,7 +9,7 @@ import { IProps } from "./types";
 const QuantityButtons = (
   add: () => void,
   substract: () => void,
-  index?: string
+  index?: number
 ) => (
   <S.QuantityButtons>
     <div

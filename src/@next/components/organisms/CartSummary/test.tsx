@@ -19,7 +19,6 @@ const money = {
 };
 
 describe("<CartSummary />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<CartSummary />);
 
