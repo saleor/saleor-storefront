@@ -10,7 +10,7 @@ import { IProps } from "./types";
  * Example component description.
  */
 const CartSummaryRow: React.FC<IProps> = ({
-  id,
+  index,
   sku,
   name,
   price,
@@ -19,19 +19,19 @@ const CartSummaryRow: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <S.Name data-cy={`cartSummaryItem${id}Name`}>{name}</S.Name>
+      <S.Name data-cy={`cartSummaryItem${index}Name`}>{name}</S.Name>
       <S.Sku>
-        SKU: <span data-cy={`cartSummaryItem${id}SKU`}>{sku}</span>
+        SKU: <span data-cy={`cartSummaryItem${index}SKU`}>{sku}</span>
       </S.Sku>
       <S.Quantity>
         Quantity:{" "}
-        <span data-cy={`cartSummaryItem${id}Quantity`}>{quantity}</span>
+        <span data-cy={`cartSummaryItem${index}Quantity`}>{quantity}</span>
       </S.Quantity>
-      <S.Price data-cy={`cartSummaryItem${id}Price`}>
+      <S.Price data-cy={`cartSummaryItem${index}Price`}>
         <TaxedMoney taxedMoney={price} />
       </S.Price>
       <S.Photo>
-        <CachedImage data-cy={`cartSummaryItem${id}Image`} {...thumbnail} />
+        <CachedImage data-cy={`cartSummaryItem${index}Image`} {...thumbnail} />
       </S.Photo>
     </S.Wrapper>
   );

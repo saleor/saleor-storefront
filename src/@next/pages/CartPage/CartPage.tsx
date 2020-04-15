@@ -55,38 +55,38 @@ const generateCart = (
   removeItem: (variantId: string) => any,
   updateItem: (variantId: string, quantity: number) => any
 ) => {
-  return items?.map(({ id, variant, quantity, totalPrice }) => (
+  return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
       key={id}
-      id={id}
+      index={index}
       name={variant?.product?.name || ""}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
-      onQuantityChange={(quantity) => updateItem(variant.id, quantity)}
+      onQuantityChange={quantity => updateItem(variant.id, quantity)}
       thumbnail={{
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
       }}
       totalPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${id}TotalPrice`}
+          data-cy={`cartPageItem${index}TotalPrice`}
           taxedMoney={totalPrice || undefined}
         />
       }
       unitPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${id}UnitPrice`}
+          data-cy={`cartPageItem${index}UnitPrice`}
           taxedMoney={variant?.pricing?.price || undefined}
         />
       }
       sku={variant.sku}
-      attributes={variant.attributes?.map((attribute) => {
+      attributes={variant.attributes?.map(attribute => {
         return {
           attribute: {
             id: attribute.attribute.id,
             name: attribute.attribute.name || "",
           },
-          values: attribute.values.map((value) => {
+          values: attribute.values.map(value => {
             return {
               id: value?.id,
               name: value?.name || "",

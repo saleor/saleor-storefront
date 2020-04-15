@@ -1,7 +1,7 @@
 import { IImage, ITaxedMoney } from "@types";
 
 export interface IProps {
-  id: string;
+  index?: number;
   name: string;
   sku: string;
   quantity: number;

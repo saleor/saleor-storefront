@@ -3,9 +3,9 @@ import React from "react";
 
 export interface IProps {
   /**
-   * Item id
+   * Item index
    */
-  id?: string;
+  index?: number;
   /**
    * Price for single unit
    */

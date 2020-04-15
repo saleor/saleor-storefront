@@ -47,11 +47,11 @@ const CartSummary: React.FC<IProps> = ({
       <S.Title data-cy="cartSummaryTitle">Cart Summary</S.Title>
       <S.HR />
       <S.CartSummaryProductList>
-        {products?.map((product) => (
+        {products?.map((product, index) => (
           <div key={product.sku}>
             <S.ProductLine>
               <CartSummaryRow
-                id={product.id}
+                index={index}
                 sku={product.sku}
                 quantity={product.quantity}
                 name={product.name}
