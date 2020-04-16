@@ -1,6 +1,7 @@
 import { round } from "lodash";
 
 import { NamedObservable } from "../helpers";
+import { ErrorCheckoutTypes } from "../jobs";
 import { CheckoutNetworkManager } from "../network";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
@@ -42,7 +43,10 @@ export class SaleorState extends NamedObservable<StateItems>
   }
 
   provideCheckout = async (
-    onError: (error: ApolloErrorWithUserInput | any) => any,
+    onError: (
+      error: ApolloErrorWithUserInput | any,
+      type: ErrorCheckoutTypes
+    ) => any,
     forceReload?: boolean
   ) => {
     if (this.isCheckoutCreatedOnline() && !forceReload) {
@@ -94,17 +98,20 @@ export class SaleorState extends NamedObservable<StateItems>
   private isCheckoutCreatedOnline = () => this.checkout?.id;
 
   private provideCheckoutOnline = async (
-    onError: (error: ApolloErrorWithUserInput | any) => any
+    onError: (
+      error: ApolloErrorWithUserInput | any,
+      type: ErrorCheckoutTypes
+    ) => any
   ) => {
     // 1. Try to take checkout from backend database
     const checkout = this.repository.getCheckout();
 
-    const { data, errors } = await this.checkoutNetworkManager.getCheckout(
+    const { data, error } = await this.checkoutNetworkManager.getCheckout(
       checkout?.token
     );
 
-    if (errors) {
-      onError(errors);
+    if (error) {
+      onError(error, ErrorCheckoutTypes.GET_CHECKOUT);
     } else if (data) {
       this.repository.setCheckout(data);
       // this.updateCheckout(data);
@@ -129,7 +136,7 @@ export class SaleorState extends NamedObservable<StateItems>
 
         const {
           data,
-          errors,
+          error,
         } = await this.checkoutNetworkManager.createCheckout(
           email,
           alteredLines,
@@ -137,8 +144,8 @@ export class SaleorState extends NamedObservable<StateItems>
           billingAddress || undefined
         );
 
-        if (errors) {
-          onError(errors);
+        if (error) {
+          onError(error, ErrorCheckoutTypes.GET_CHECKOUT);
         } else if (data) {
           this.repository.setCheckout(data);
           // this.updateCheckout(data);

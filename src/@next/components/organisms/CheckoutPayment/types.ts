@@ -1,12 +1,14 @@
 import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { getShop_shop_countries } from "@temp/core/types/saleor";
-import { IAddress, ICardData, IPaymentGateway } from "@types";
+import { IAddress, ICardData, IFormError, IPaymentGateway } from "@types";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
 }
 
 export interface IProps {
+  billingErrors: IFormError[];
+  gatewayErrors: IFormError[];
   userAddresses: UserDetails_me["addresses"] | null | undefined;
   selectedUserAddressId?: string;
   billingAsShippingAddress?: boolean;

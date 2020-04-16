@@ -6,7 +6,8 @@ export const JobsModelInitialState: IJobsModel = {
     setCartItem: false,
   },
   checkout: {
-    setShippingAddress: false,
+    setPromoCode: false,
+    setShippingMethod: false,
   },
 };
 

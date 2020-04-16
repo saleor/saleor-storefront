@@ -133,8 +133,9 @@ export class SaleorCheckoutAPI extends ErrorListener
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetBillingAddress();
+      const data = await this.checkoutJobQueue.runSetBillingAddress();
       return {
+        data,
         pending: true,
       };
     }
@@ -152,9 +153,10 @@ export class SaleorCheckoutAPI extends ErrorListener
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetShippingAddress();
+      const data = await this.checkoutJobQueue.runSetShippingAddress();
       return {
-        pending: true,
+        data,
+        pending: false,
       };
     }
     return {
@@ -178,9 +180,10 @@ export class SaleorCheckoutAPI extends ErrorListener
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetBillingAddress();
+      const data = await this.checkoutJobQueue.runSetBillingAddress();
       return {
-        pending: true,
+        data,
+        pending: false,
       };
     }
     return {
@@ -212,8 +215,9 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.runAddPromoCode(promoCode);
+      const data = await this.checkoutJobQueue.runAddPromoCode(promoCode);
       return {
+        data,
         pending: false,
       };
     }
@@ -226,8 +230,9 @@ export class SaleorCheckoutAPI extends ErrorListener
     await this.saleorState.provideCheckout(this.fireError);
 
     if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.runRemovePromoCode(promoCode);
+      const data = await this.checkoutJobQueue.runRemovePromoCode(promoCode);
       return {
+        data,
         pending: false,
       };
     }
@@ -258,10 +263,11 @@ export class SaleorCheckoutAPI extends ErrorListener
       gateway &&
       token
     ) {
-      this.checkoutJobQueue.runCreatePayment(
+      const data = await this.checkoutJobQueue.runCreatePayment(
         this.saleorState.summaryPrices?.totalPrice.gross.amount
       );
       return {
+        data,
         pending: false,
       };
     }

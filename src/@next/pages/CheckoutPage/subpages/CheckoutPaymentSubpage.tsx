@@ -2,16 +2,20 @@ import React, {
   forwardRef,
   RefForwardingComponent,
   useContext,
+  useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from "react";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
+import { ErrorTypes } from "@sdk/helpers";
+import { ErrorCheckoutTypes } from "@sdk/jobs";
 import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
-import { IAddress, ICardData } from "@types";
+import { IAddress, ICardData, IFormError } from "@types";
 
 export interface ICheckoutPaymentSubpageHandles {
   submitPayment: () => void;
@@ -47,8 +51,29 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     addPromoCode,
     removePromoCode,
     createPayment,
+    addOnErrorListener,
+    removeOnErrorListener,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
+
+  const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
+  const [gatewayErrors, setGatewayErrors] = useState<IFormError[]>([]);
+
+  useEffect(() => {
+    addOnErrorListener(onErrorListener);
+    return () => {
+      removeOnErrorListener(onErrorListener);
+    };
+  }, []);
+
+  const onErrorListener = (error: any, type: ErrorTypes) => {
+    const errors = error.extraInfo.userInputErrors;
+    if (type === ErrorCheckoutTypes.SET_BILLING_ADDRESS && errors) {
+      setBillingErrors(errors);
+    } else if (type === ErrorCheckoutTypes.CREATE_PAYMENT && errors) {
+      setGatewayErrors(errors);
+    }
+  };
 
   const checkoutBillingAddress = checkout?.billingAddress
     ? {
@@ -89,25 +114,31 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     token: string,
     cardData?: ICardData
   ) => {
-    await createPayment(gateway, token, cardData);
-    history.push(CHECKOUT_STEPS[2].nextStepLink);
+    const { data } = await createPayment(gateway, token, cardData);
+    if (data) {
+      history.push(CHECKOUT_STEPS[2].nextStepLink);
+    }
   };
   const handleSetBillingAddress = async (
     address: IAddress,
     userAddressId?: string
   ) => {
-    await setBillingAddress({
+    const { data } = await setBillingAddress({
       ...address,
       id: userAddressId,
     });
-    checkoutGatewayFormRef.current?.dispatchEvent(
-      new Event("submit", { cancelable: true })
-    );
+    if (data) {
+      checkoutGatewayFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+    }
   };
 
   return (
     <CheckoutPayment
       {...props}
+      billingErrors={billingErrors}
+      gatewayErrors={gatewayErrors}
       formId={checkoutBillingFormId}
       formRef={checkoutBillingFormRef}
       userAddresses={user?.addresses}

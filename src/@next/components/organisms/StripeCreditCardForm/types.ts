@@ -1,4 +1,4 @@
-import { ICardData } from "@types";
+import { ICardData, IFormError } from "@types";
 
 export interface IProps {
   /**
@@ -7,6 +7,10 @@ export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
   /**
    * Method called when the form is submitted. Passed token attribute might be used to create payment.
+   */
+  errors?: IFormError[];
+  /**
+   * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */
   processPayment: (token: string, cardData: ICardData) => void;
 }

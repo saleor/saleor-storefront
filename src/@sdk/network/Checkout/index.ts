@@ -56,20 +56,14 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       if (checkout) {
         return {
           data: this.constructCheckoutModel(checkout),
-          errors: null,
-        };
-      } else {
-        return {
-          data: null,
-          errors: null,
         };
       }
-    } catch (errors) {
+    } catch (error) {
       return {
-        data: null,
-        errors,
+        error,
       };
     }
+    return {};
   };
 
   getRefreshedCheckoutLines = async (
@@ -99,10 +93,9 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             }
           );
         });
-      } catch (errors) {
+      } catch (error) {
         return {
-          data: null,
-          errors,
+          error,
         };
       }
     }
@@ -174,7 +167,6 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         ...linesWithMissingVariantUpdated,
         ...linesWithProperVariantUpdated,
       ],
-      errors: null,
     };
   };
 
@@ -184,60 +176,57 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     shippingAddress: ICheckoutAddress,
     billingAddress?: ICheckoutAddress
   ) => {
-    const { data } = await this.apiProxy.setCreateCheckout({
-      checkoutInput: {
-        billingAddress: billingAddress
-          ? {
-              city: billingAddress.city,
-              companyName: billingAddress.companyName,
-              country:
-                CountryCode[
-                  billingAddress?.country?.code as keyof typeof CountryCode
-                ],
-              countryArea: billingAddress.countryArea,
-              firstName: billingAddress.firstName,
-              lastName: billingAddress.lastName,
-              phone: billingAddress.phone,
-              postalCode: billingAddress.postalCode,
-              streetAddress1: billingAddress.streetAddress1,
-              streetAddress2: billingAddress.streetAddress2,
-            }
-          : undefined,
-        email,
-        lines,
-        shippingAddress: {
-          city: shippingAddress.city,
-          companyName: shippingAddress.companyName,
-          country:
-            CountryCode[
-              shippingAddress?.country?.code as keyof typeof CountryCode
-            ],
-          countryArea: shippingAddress.countryArea,
-          firstName: shippingAddress.firstName,
-          lastName: shippingAddress.lastName,
-          phone: shippingAddress.phone,
-          postalCode: shippingAddress.postalCode,
-          streetAddress1: shippingAddress.streetAddress1,
-          streetAddress2: shippingAddress.streetAddress2,
+    try {
+      const { data } = await this.apiProxy.setCreateCheckout({
+        checkoutInput: {
+          billingAddress: billingAddress
+            ? {
+                city: billingAddress.city,
+                companyName: billingAddress.companyName,
+                country:
+                  CountryCode[
+                    billingAddress?.country?.code as keyof typeof CountryCode
+                  ],
+                countryArea: billingAddress.countryArea,
+                firstName: billingAddress.firstName,
+                lastName: billingAddress.lastName,
+                phone: billingAddress.phone,
+                postalCode: billingAddress.postalCode,
+                streetAddress1: billingAddress.streetAddress1,
+                streetAddress2: billingAddress.streetAddress2,
+              }
+            : undefined,
+          email,
+          lines,
+          shippingAddress: {
+            city: shippingAddress.city,
+            companyName: shippingAddress.companyName,
+            country:
+              CountryCode[
+                shippingAddress?.country?.code as keyof typeof CountryCode
+              ],
+            countryArea: shippingAddress.countryArea,
+            firstName: shippingAddress.firstName,
+            lastName: shippingAddress.lastName,
+            phone: shippingAddress.phone,
+            postalCode: shippingAddress.postalCode,
+            streetAddress1: shippingAddress.streetAddress1,
+            streetAddress2: shippingAddress.streetAddress2,
+          },
         },
-      },
-    });
+      });
 
-    if (data?.errors && data.errors.length) {
+      if (data?.checkout) {
+        return {
+          data: this.constructCheckoutModel(data.checkout),
+        };
+      }
+    } catch (error) {
       return {
-        data: null,
-        errors: data?.errors,
+        error,
       };
     }
-
-    if (data?.checkout) {
-      return {
-        data: this.constructCheckoutModel(data.checkout),
-        errors: null,
-      };
-    } else {
-      return { data: null, errors: null };
-    }
+    return {};
   };
 
   setCartItem = async (checkout: ICheckoutModel) => {
@@ -250,26 +239,24 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
         variantId: line.variant.id,
       }));
 
-      const { data } = await this.apiProxy.setCheckoutLine({
-        checkoutId,
-        lines: alteredLines,
-      });
+      try {
+        const { data } = await this.apiProxy.setCheckoutLine({
+          checkoutId,
+          lines: alteredLines,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   setShippingAddress = async (checkout: ICheckoutModel) => {
@@ -278,41 +265,39 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const email = checkout.email;
 
     if (checkoutId && shippingAddress && email) {
-      const { data } = await this.apiProxy.setCheckoutShippingAddress({
-        checkoutId,
-        email,
-        shippingAddress: {
-          city: shippingAddress.city,
-          companyName: shippingAddress.companyName,
-          country:
-            CountryCode[
-              shippingAddress?.country?.code as keyof typeof CountryCode
-            ],
-          countryArea: shippingAddress.countryArea,
-          firstName: shippingAddress.firstName,
-          lastName: shippingAddress.lastName,
-          phone: shippingAddress.phone,
-          postalCode: shippingAddress.postalCode,
-          streetAddress1: shippingAddress.streetAddress1,
-          streetAddress2: shippingAddress.streetAddress2,
-        },
-      });
+      try {
+        const { data } = await this.apiProxy.setCheckoutShippingAddress({
+          checkoutId,
+          email,
+          shippingAddress: {
+            city: shippingAddress.city,
+            companyName: shippingAddress.companyName,
+            country:
+              CountryCode[
+                shippingAddress?.country?.code as keyof typeof CountryCode
+              ],
+            countryArea: shippingAddress.countryArea,
+            firstName: shippingAddress.firstName,
+            lastName: shippingAddress.lastName,
+            phone: shippingAddress.phone,
+            postalCode: shippingAddress.postalCode,
+            streetAddress1: shippingAddress.streetAddress1,
+            streetAddress2: shippingAddress.streetAddress2,
+          },
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   setBillingAddress = async (checkout: ICheckoutModel) => {
@@ -320,40 +305,38 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const billingAddress = checkout.billingAddress;
 
     if (checkoutId && billingAddress) {
-      const { data } = await this.apiProxy.setCheckoutBillingAddress({
-        billingAddress: {
-          city: billingAddress.city,
-          companyName: billingAddress.companyName,
-          country:
-            CountryCode[
-              billingAddress?.country?.code as keyof typeof CountryCode
-            ],
-          countryArea: billingAddress.countryArea,
-          firstName: billingAddress.firstName,
-          lastName: billingAddress.lastName,
-          phone: billingAddress.phone,
-          postalCode: billingAddress.postalCode,
-          streetAddress1: billingAddress.streetAddress1,
-          streetAddress2: billingAddress.streetAddress2,
-        },
-        checkoutId,
-      });
+      try {
+        const { data } = await this.apiProxy.setCheckoutBillingAddress({
+          billingAddress: {
+            city: billingAddress.city,
+            companyName: billingAddress.companyName,
+            country:
+              CountryCode[
+                billingAddress?.country?.code as keyof typeof CountryCode
+              ],
+            countryArea: billingAddress.countryArea,
+            firstName: billingAddress.firstName,
+            lastName: billingAddress.lastName,
+            phone: billingAddress.phone,
+            postalCode: billingAddress.postalCode,
+            streetAddress1: billingAddress.streetAddress1,
+            streetAddress2: billingAddress.streetAddress2,
+          },
+          checkoutId,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   setShippingMethod = async (checkout: ICheckoutModel) => {
@@ -361,78 +344,72 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     const shippingMethodId = checkout.shippingMethod?.id;
 
     if (checkoutId && shippingMethodId) {
-      const { data } = await this.apiProxy.setCheckoutShippingMethod({
-        checkoutId,
-        shippingMethodId,
-      });
+      try {
+        const { data } = await this.apiProxy.setCheckoutShippingMethod({
+          checkoutId,
+          shippingMethodId,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   addPromoCode = async (promoCode: string, checkout: ICheckoutModel) => {
     const checkoutId = checkout.id;
 
     if (checkoutId && promoCode) {
-      const { data } = await this.apiProxy.setAddCheckoutPromoCode({
-        checkoutId,
-        promoCode,
-      });
+      try {
+        const { data } = await this.apiProxy.setAddCheckoutPromoCode({
+          checkoutId,
+          promoCode,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   removePromoCode = async (promoCode: string, checkout: ICheckoutModel) => {
     const checkoutId = checkout.id;
 
     if (checkoutId && promoCode) {
-      const { data } = await this.apiProxy.setRemoveCheckoutPromoCode({
-        checkoutId,
-        promoCode,
-      });
+      try {
+        const { data } = await this.apiProxy.setRemoveCheckoutPromoCode({
+          checkoutId,
+          promoCode,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.checkout) {
+          return {
+            data: this.constructCheckoutModel(data.checkout),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.checkout) {
-        return {
-          data: this.constructCheckoutModel(data.checkout),
-          errors: null,
+          error,
         };
       }
     }
-    return { data: null, errors: null };
+    return {};
   };
 
   createPayment = async (
@@ -453,72 +430,66 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       amount !== undefined &&
       billingAddress
     ) {
-      const { data } = await this.apiProxy.setCreateCheckoutPayment({
-        checkoutId,
-        paymentInput: {
-          amount,
-          billingAddress: {
-            city: billingAddress.city,
-            companyName: billingAddress.companyName,
-            country:
-              CountryCode[
-                billingAddress?.country?.code as keyof typeof CountryCode
-              ],
-            countryArea: billingAddress.countryArea,
-            firstName: billingAddress.firstName,
-            lastName: billingAddress.lastName,
-            phone: billingAddress.phone,
-            postalCode: billingAddress.postalCode,
-            streetAddress1: billingAddress.streetAddress1,
-            streetAddress2: billingAddress.streetAddress2,
+      try {
+        const { data } = await this.apiProxy.setCreateCheckoutPayment({
+          checkoutId,
+          paymentInput: {
+            amount,
+            billingAddress: {
+              city: billingAddress.city,
+              companyName: billingAddress.companyName,
+              country:
+                CountryCode[
+                  billingAddress?.country?.code as keyof typeof CountryCode
+                ],
+              countryArea: billingAddress.countryArea,
+              firstName: billingAddress.firstName,
+              lastName: billingAddress.lastName,
+              phone: billingAddress.phone,
+              postalCode: billingAddress.postalCode,
+              streetAddress1: billingAddress.streetAddress1,
+              streetAddress2: billingAddress.streetAddress2,
+            },
+            gateway: paymentGateway,
+            token: paymentToken,
           },
-          gateway: paymentGateway,
-          token: paymentToken,
-        },
-      });
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.payment) {
+          return {
+            data: this.constructPaymentModel(data.payment),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.payment) {
-        return {
-          data: this.constructPaymentModel(data.payment),
-          errors: null,
+          error,
         };
       }
     }
-
-    return { data: null, errors: null };
+    return {};
   };
 
   completeCheckout = async (checkout: ICheckoutModel) => {
     const checkoutId = checkout.id;
 
     if (checkoutId) {
-      const { data } = await this.apiProxy.setCompleteCheckout({
-        checkoutId,
-      });
+      try {
+        const { data } = await this.apiProxy.setCompleteCheckout({
+          checkoutId,
+        });
 
-      if (data?.errors && data.errors.length) {
+        if (data?.order) {
+          return {
+            data: this.constructOrderModel(data.order),
+          };
+        }
+      } catch (error) {
         return {
-          data: null,
-          errors: data.errors,
-        };
-      }
-
-      if (data?.order) {
-        return {
-          data: this.constructOrderModel(data.order),
-          errors: null,
+          error,
         };
       }
     }
-
-    return { data: null, errors: null };
+    return {};
   };
 
   private constructCheckoutModel = ({

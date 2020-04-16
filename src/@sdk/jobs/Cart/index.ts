@@ -5,16 +5,24 @@ import { LocalRepository } from "@sdk/repository";
 import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
+export enum ErrorCartTypes {
+  "SET_CART_ITEM",
+}
+
 export class CartJobQueue extends JobQueue {
   private checkoutNetworkManager: CheckoutNetworkManager;
-  private onErrorListener:
-    | ((error: ApolloErrorWithUserInput | any) => any)
-    | undefined;
+  private onErrorListener?: (
+    error: ApolloErrorWithUserInput | any,
+    type: ErrorCartTypes
+  ) => any;
 
   constructor(
     repository: LocalRepository,
     checkoutNetworkManager: CheckoutNetworkManager,
-    onErrorListener: (error: ApolloErrorWithUserInput | any) => any
+    onErrorListener: (
+      error: ApolloErrorWithUserInput | any,
+      type: ErrorCartTypes
+    ) => any
   ) {
     super(repository);
     this.repository = repository;
@@ -54,11 +62,11 @@ export class CartJobQueue extends JobQueue {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const { data, errors } = await this.checkoutNetworkManager.setCartItem(
+      const { data, error } = await this.checkoutNetworkManager.setCartItem(
         checkout
       );
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCartTypes.SET_CART_ITEM);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,

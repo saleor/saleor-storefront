@@ -5,73 +5,48 @@ import { LocalRepository } from "@sdk/repository";
 import { JobQueue } from "../JobQueue";
 import { LocalStorageJobs } from "../types";
 
+export enum ErrorCheckoutTypes {
+  "SET_SHIPPING_ADDRESS",
+  "SET_BILLING_ADDRESS",
+  "SET_SHIPPING_METHOD",
+  "ADD_PROMO_CODE",
+  "REMOVE_PROMO_CODE",
+  "CREATE_PAYMENT",
+  "COMPLETE_CHECKOUT",
+  "GET_CHECKOUT",
+}
+
 export class CheckoutJobQueue extends JobQueue {
   private checkoutNetworkManager: CheckoutNetworkManager;
-  private onErrorListener:
-    | ((error: ApolloErrorWithUserInput | any) => any)
-    | undefined;
+  private onErrorListener?: (
+    error: ApolloErrorWithUserInput | any,
+    type: ErrorCheckoutTypes
+  ) => any;
 
   constructor(
     repository: LocalRepository,
     checkoutNetworkManager: CheckoutNetworkManager,
-    onErrorListener: (error: ApolloErrorWithUserInput | any) => any
+    onErrorListener: (
+      error: ApolloErrorWithUserInput | any,
+      type: ErrorCheckoutTypes
+    ) => any
   ) {
     super(repository);
     this.checkoutNetworkManager = checkoutNetworkManager;
     this.onErrorListener = onErrorListener;
 
     const queuePossibilities = new Map([
-      ["setShippingAddress", this.enqueueSetShippingAddress],
-      ["setBillingAddress", this.enqueueSetBillingAddress],
       ["setShippingMethod", this.enqueueSetShippingMethod],
     ]);
     this.enqueueAllSavedInRepository(queuePossibilities, "checkout");
   }
 
-  enqueueSetShippingAddress = () => {
-    this.addToQueue(
-      LocalStorageJobs.CHECKOUT_SET_SHIPPING_ADDRESS,
-      () => this.setShippingAddress(),
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setShippingAddress: true,
-          },
-          "checkout"
-        );
-      },
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setShippingAddress: false,
-          },
-          "checkout"
-        );
-      }
-    );
+  runSetShippingAddress = async () => {
+    return this.setShippingAddress();
   };
 
-  enqueueSetBillingAddress = () => {
-    this.addToQueue(
-      LocalStorageJobs.CHECKOUT_SET_BILLING_ADDRESS,
-      () => this.setBillingAddress(),
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setBillingAddress: true,
-          },
-          "checkout"
-        );
-      },
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setBillingAddress: false,
-          },
-          "checkout"
-        );
-      }
-    );
+  runSetBillingAddress = async () => {
+    return this.setBillingAddress();
   };
 
   enqueueSetShippingMethod = () => {
@@ -97,16 +72,16 @@ export class CheckoutJobQueue extends JobQueue {
     );
   };
 
-  runAddPromoCode = (promoCode: string) => {
-    this.addPromoCode(promoCode);
+  runAddPromoCode = async (promoCode: string) => {
+    return this.addPromoCode(promoCode);
   };
 
-  runRemovePromoCode = (promoCode: string) => {
-    this.removePromoCode(promoCode);
+  runRemovePromoCode = async (promoCode: string) => {
+    return this.removePromoCode(promoCode);
   };
 
-  runCreatePayment = (amount: number) => {
-    this.createPayment(amount);
+  runCreatePayment = async (amount: number) => {
+    return this.createPayment(amount);
   };
 
   runCompleteCheckout = async () => {
@@ -119,16 +94,17 @@ export class CheckoutJobQueue extends JobQueue {
     if (checkout) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.setShippingAddress(checkout);
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.SET_SHIPPING_ADDRESS);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
           email: data.email,
           shippingAddress: data.shippingAddress,
         });
+        return data;
       }
     }
   };
@@ -139,15 +115,16 @@ export class CheckoutJobQueue extends JobQueue {
     if (checkout) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.setBillingAddress(checkout);
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.SET_BILLING_ADDRESS);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
           billingAddress: data.billingAddress,
         });
+        return data;
       }
     }
   };
@@ -158,15 +135,16 @@ export class CheckoutJobQueue extends JobQueue {
     if (checkout) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.setShippingMethod(checkout);
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.SET_SHIPPING_METHOD);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
           shippingMethod: data.shippingMethod,
         });
+        return data;
       }
     }
   };
@@ -175,17 +153,18 @@ export class CheckoutJobQueue extends JobQueue {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const { data, errors } = await this.checkoutNetworkManager.addPromoCode(
+      const { data, error } = await this.checkoutNetworkManager.addPromoCode(
         promoCode,
         checkout
       );
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.ADD_PROMO_CODE);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
           promoCodeDiscount: data.promoCodeDiscount,
         });
+        return data;
       }
     }
   };
@@ -194,20 +173,18 @@ export class CheckoutJobQueue extends JobQueue {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const {
-        data,
-        errors,
-      } = await this.checkoutNetworkManager.removePromoCode(
+      const { data, error } = await this.checkoutNetworkManager.removePromoCode(
         promoCode,
         checkout
       );
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.REMOVE_PROMO_CODE);
       } else if (data) {
         this.repository.setCheckout({
           ...checkout,
           promoCodeDiscount: data.promoCodeDiscount,
         });
+        return data;
       }
     }
   };
@@ -217,13 +194,13 @@ export class CheckoutJobQueue extends JobQueue {
     const payment = this.repository.getPayment();
 
     if (checkout && payment) {
-      const { data, errors } = await this.checkoutNetworkManager.createPayment(
+      const { data, error } = await this.checkoutNetworkManager.createPayment(
         amount,
         checkout,
         payment
       );
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.CREATE_PAYMENT);
       } else if (data) {
         this.repository.setPayment({
           ...payment,
@@ -231,6 +208,7 @@ export class CheckoutJobQueue extends JobQueue {
           id: data.id,
           token: data.token,
         });
+        return data;
       }
     }
   };
@@ -241,10 +219,10 @@ export class CheckoutJobQueue extends JobQueue {
     if (checkout) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.completeCheckout(checkout);
-      if (errors && this.onErrorListener) {
-        this.onErrorListener(errors);
+      if (error && this.onErrorListener) {
+        this.onErrorListener(error, ErrorCheckoutTypes.COMPLETE_CHECKOUT);
       } else if (data) {
         // this.repository.setOrder(data);
         this.repository.setCheckout({});

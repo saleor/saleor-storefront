@@ -16,6 +16,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   formRef,
   formId,
   setShippingAddress,
+  errors,
 }: IProps) => {
   const adresses =
     userAddresses
@@ -24,7 +25,7 @@ const CheckoutAddress: React.FC<IProps> = ({
       ): value is TValue {
         return value !== null && value !== undefined;
       })
-      .map((address) => ({
+      .map(address => ({
         address: {
           ...address,
           isDefaultBillingAddress: address.isDefaultBillingAddress || false,
@@ -57,9 +58,10 @@ const CheckoutAddress: React.FC<IProps> = ({
             ...checkoutAddress,
             email,
           }}
-          handleSubmit={(address) =>
+          handleSubmit={address =>
             address && setShippingAddress(address, address.email)
           }
+          errors={errors}
         />
       )}
     </S.Section>

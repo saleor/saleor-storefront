@@ -11,6 +11,8 @@ import { IProps } from "./types";
  * Payment options used in checkout.
  */
 const CheckoutPayment: React.FC<IProps> = ({
+  gatewayErrors,
+  billingErrors,
   selectedUserAddressId,
   userAddresses,
   billingAsShippingAddress = false,
@@ -100,6 +102,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                 })}
                 address={checkoutBillingAddress || undefined}
                 handleSubmit={address => address && setBillingAddress(address)}
+                errors={billingErrors}
               />
             )}
           </>
@@ -131,6 +134,7 @@ const CheckoutPayment: React.FC<IProps> = ({
         )}
         <S.Divider />
         <PaymentGatewaysList
+          errors={gatewayErrors}
           paymentGateways={paymentGateways}
           formRef={gatewayFormRef}
           processPayment={processPayment}

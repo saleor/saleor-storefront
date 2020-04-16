@@ -16,6 +16,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
   processPayment,
   formRef,
   initialStatus,
+  errors,
 }: IProps) => {
   const apiKey = config.find(({ field }) => field === "api_key")?.value;
 
@@ -28,7 +29,11 @@ const StripePaymentGateway: React.FC<IProps> = ({
 
   return (
     <Elements stripe={stripePromise}>
-      <StripeCreditCardForm formRef={formRef} processPayment={processPayment} />
+      <StripeCreditCardForm
+        formRef={formRef}
+        processPayment={processPayment}
+        errors={errors}
+      />
     </Elements>
   );
 };

@@ -129,8 +129,6 @@ export interface IJobsModel {
     setCartItem?: boolean;
   };
   checkout: {
-    setShippingAddress?: boolean;
-    setBillingAddress?: boolean;
     setShippingMethod?: boolean;
     setPromoCode?: boolean;
   };

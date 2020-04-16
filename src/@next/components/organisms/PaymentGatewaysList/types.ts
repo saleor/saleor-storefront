@@ -1,4 +1,4 @@
-import { ICardData, IPaymentGateway } from "@types";
+import { ICardData, IFormError, IPaymentGateway } from "@types";
 
 export interface IProps {
   /**
@@ -21,6 +21,10 @@ export interface IProps {
    * Form reference on which payment might be submitted.
    */
   formRef?: React.RefObject<HTMLFormElement>;
+  /**
+   * Payment gateway errors.
+   */
+  errors?: IFormError[];
   /**
    * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */

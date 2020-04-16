@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 
 import { ErrorMessage, StripeInputElement } from "@components/atoms";
-import { IFormError } from "@components/atoms/ErrorMessage/types";
+import { IFormError } from "@types";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -18,11 +18,12 @@ import { IProps } from "./types";
 const StripeCreditCardForm: React.FC<IProps> = ({
   formRef,
   processPayment,
+  errors = [],
 }: IProps) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [errors, setErrors] = useState<IFormError[]>([]);
+  const [stripeErrors, setStripeErrors] = useState<IFormError[]>([]);
 
   const handleFormSubmit = async () => {
     // setLoadingState(true);
@@ -38,7 +39,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
           ...payload.error,
           message: payload.error.message || "",
         };
-        setErrors([error]);
+        setStripeErrors([error]);
       } else if (payload?.paymentMethod) {
         const { card, id } = payload.paymentMethod;
         processPayment(id, {
@@ -51,6 +52,8 @@ const StripeCreditCardForm: React.FC<IProps> = ({
     }
     // setLoadingState(false);
   };
+
+  const allErrors = [...errors, ...stripeErrors];
 
   return (
     <Formik
@@ -76,7 +79,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
                 label="Card number"
                 onChange={event => {
                   handleChange(event);
-                  setErrors([]);
+                  setStripeErrors([]);
                 }}
               />
             </S.CardNumberField>
@@ -86,7 +89,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
                 label="Expiration date"
                 onChange={event => {
                   handleChange(event);
-                  setErrors([]);
+                  setStripeErrors([]);
                 }}
               />
             </S.CardExpiryField>
@@ -96,12 +99,12 @@ const StripeCreditCardForm: React.FC<IProps> = ({
                 label="CVC"
                 onChange={event => {
                   handleChange(event);
-                  setErrors([]);
+                  setStripeErrors([]);
                 }}
               />
             </S.CardCvcField>
           </S.Card>
-          <ErrorMessage errors={errors} />
+          <ErrorMessage errors={allErrors} />
         </S.Form>
       )}
     </Formik>

@@ -3,7 +3,7 @@ import { CheckoutNetworkManager } from "@sdk/network";
 import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
-import { CartJobQueue } from "@temp/@sdk/jobs/Cart";
+import { CartJobQueue, ErrorCartTypes } from "@temp/@sdk/jobs/Cart";
 
 import {
   IDiscount,
@@ -100,13 +100,13 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     if (this.saleorState.checkout?.lines) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
-      if (errors) {
-        this.fireError(errors);
+      if (error) {
+        this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
@@ -134,13 +134,13 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     if (this.saleorState.checkout?.lines) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
-      if (errors) {
-        this.fireError(errors);
+      if (error) {
+        this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
@@ -169,13 +169,13 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     if (this.saleorState.checkout?.lines) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
-      if (errors) {
-        this.fireError(errors);
+      if (error) {
+        this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,
@@ -204,13 +204,13 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     if (this.saleorState.checkout?.lines) {
       const {
         data,
-        errors,
+        error,
       } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
-      if (errors) {
-        this.fireError(errors);
+      if (error) {
+        this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
         this.checkoutRepositoryManager.getRepository().setCheckout({
           ...this.saleorState.checkout,

@@ -1,3 +1,5 @@
+import { ApolloError } from "apollo-client";
+
 export enum PendingSaveItems {
   UPDATE_CART = "updateCart",
   BILLING_ADDRESS = "billingAddress",
@@ -5,7 +7,13 @@ export enum PendingSaveItems {
   SHIPPING_AS_BILLING_ADDRESS = "shippingAsBillingAddress",
 }
 
+export interface ApolloErrorWithUserInput extends ApolloError {
+  extraInfo: {
+    userInputErrors?: any[];
+  };
+}
+
 export interface INetworkManagerResponse<T> {
-  data: T | null;
-  errors: any;
+  data?: T;
+  error?: ApolloErrorWithUserInput;
 }

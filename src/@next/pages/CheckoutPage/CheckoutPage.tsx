@@ -94,13 +94,7 @@ const CheckoutPage: React.FC<IProps> = ({  }: IProps) => {
     totalPrice,
     items,
   } = useCart();
-  const {
-    loaded: checkoutLoaded,
-    checkout,
-    payment,
-    // addOnErrorListener,
-    // removeOnErrorListener,
-  } = useCheckout();
+  const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
@@ -115,18 +109,6 @@ const CheckoutPage: React.FC<IProps> = ({  }: IProps) => {
   useEffect(() => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
-
-  // useEffect(() => {
-  //   addOnErrorListener(onErrorListener);
-  //   return () => {
-  //     removeOnErrorListener(onErrorListener);
-  //   };
-  // }, []);
-
-  // const onErrorListener = (error: any) => {
-  //   console.log("CheckoutPage error");
-  //   console.log(error);
-  // };
 
   const activeStepIndex = CHECKOUT_STEPS.findIndex(
     ({ link }) => link === pathname

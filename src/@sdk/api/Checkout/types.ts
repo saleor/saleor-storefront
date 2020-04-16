@@ -74,11 +74,11 @@ export interface ISaleorCheckoutAPI {
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
   load: () => PromiseQueuedResponse;
-  setBillingAddress: (billingAddress: IAddress) => PromiseQueuedResponse;
+  setBillingAddress: (billingAddress: IAddress) => PromiseRunResponse;
   setShippingAddress: (
     shippingAddress: IAddress,
     email: string
-  ) => PromiseQueuedResponse;
+  ) => PromiseRunResponse;
   setShippingMethod: (shippingMethodId: string) => PromiseQueuedResponse;
   setBillingAsShippingAddress: (
     billingAsShipping: boolean

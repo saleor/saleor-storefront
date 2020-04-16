@@ -2,16 +2,21 @@ import React, {
   forwardRef,
   RefForwardingComponent,
   useContext,
+  useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from "react";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
+import { ErrorTypes } from "@sdk/helpers";
+import { ErrorCheckoutTypes } from "@sdk/jobs";
+import { ApolloErrorWithUserInput } from "@sdk/network/types";
 import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
-import { IAddress } from "@types";
+import { IAddress, IFormError } from "@types";
 
 export interface ICheckoutAddressSubpageHandles {
   submitAddress: () => void;
@@ -45,8 +50,29 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     checkout,
     setShippingAddress,
     selectedShippingAddressId,
+    addOnErrorListener,
+    removeOnErrorListener,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
+
+  const [errors, setErrors] = useState<IFormError[]>([]);
+
+  useEffect(() => {
+    addOnErrorListener(onErrorListener);
+    return () => {
+      removeOnErrorListener(onErrorListener);
+    };
+  }, []);
+
+  const onErrorListener = (
+    error: ApolloErrorWithUserInput,
+    type: ErrorTypes
+  ) => {
+    const errors = error.extraInfo.userInputErrors;
+    if (type === ErrorCheckoutTypes.SET_SHIPPING_ADDRESS && errors) {
+      setErrors(errors);
+    }
+  };
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -60,6 +86,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     email?: string,
     userAddressId?: string
   ) => {
+    setErrors([]);
+
     let shippingEmail;
     if (user && userAddressId) {
       shippingEmail = user?.email;
@@ -69,19 +97,22 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       return;
     }
 
-    await setShippingAddress(
+    const { data } = await setShippingAddress(
       {
         ...address,
         id: userAddressId,
       },
       shippingEmail
     );
-    history.push(CHECKOUT_STEPS[0].nextStepLink);
+    if (data) {
+      history.push(CHECKOUT_STEPS[0].nextStepLink);
+    }
   };
 
   return (
     <CheckoutAddress
       {...props}
+      errors={errors}
       formId={checkoutAddressFormId}
       formRef={checkoutAddressFormRef}
       checkoutAddress={checkoutShippingAddress}

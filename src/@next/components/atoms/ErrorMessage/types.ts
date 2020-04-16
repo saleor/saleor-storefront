@@ -1,7 +1,4 @@
-export interface IFormError {
-  message: string;
-  field?: string;
-}
+import { IFormError } from "@types";
 
 export interface IProps {
   errors?: IFormError[];
