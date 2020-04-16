@@ -6,7 +6,7 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import { SaleorProvider, useAuth, useUserDetails } from "@sdk/react";
+import { SaleorProvider, useAuth } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
@@ -19,20 +19,15 @@ import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 
 import { App } from "./app";
-import { CheckoutApp } from "./checkout";
-import { CheckoutProvider } from "./checkout/CheckoutProvider";
-import { CheckoutContext } from "./checkout/context";
-import { baseUrl as checkoutBaseUrl } from "./checkout/routes";
 import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
 
 import { OverlayProvider, UserProvider } from "./components";
 
-import CartProvider from "./components/CartProvider";
 import ShopProvider from "./components/ShopProvider";
 
 import {
@@ -122,15 +117,6 @@ const startApp = async () => {
       return null;
     };
 
-    const Checkout = ({ children }) => {
-      const user = useUserDetails();
-      return (
-        <>
-          <CheckoutProvider user={user}>{children}</CheckoutProvider>
-        </>
-      );
-    };
-
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
@@ -138,25 +124,8 @@ const startApp = async () => {
             <SaleorProvider client={apolloClient}>
               <ShopProvider>
                 <OverlayProvider>
-                  <Checkout>
-                    <CheckoutContext.Consumer>
-                      {checkout => (
-                        <CartProvider
-                          checkout={checkout}
-                          apolloClient={apolloClient}
-                        >
-                          <Switch>
-                            <Route
-                              path={checkoutBaseUrl}
-                              component={CheckoutApp}
-                            />
-                            <Route component={App} />
-                          </Switch>
-                          <Notifications />
-                        </CartProvider>
-                      )}
-                    </CheckoutContext.Consumer>
-                  </Checkout>
+                  <App />
+                  <Notifications />
                 </OverlayProvider>
               </ShopProvider>
             </SaleorProvider>

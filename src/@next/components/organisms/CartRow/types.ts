@@ -27,6 +27,10 @@ export interface IProps {
    */
   quantity: number;
   /**
+   * Maximum possible quantity of particular item
+   */
+  maxQuantity: number;
+  /**
    * Method run when removing item from cart
    */
   onRemove: () => void;

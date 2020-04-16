@@ -34,6 +34,7 @@ export const CartRow: React.FC<IProps> = ({
   name,
   sku,
   quantity,
+  maxQuantity,
   onQuantityChange,
   thumbnail,
   attributes = [],
@@ -46,8 +47,13 @@ export const CartRow: React.FC<IProps> = ({
       typeof tempQuantity === "number"
         ? tempQuantity
         : parseInt(tempQuantity, 10);
-    if (isNaN(newQuantity) || newQuantity <= 0) {
+    const notEnoughQuantity = isNaN(newQuantity) || newQuantity <= 0;
+    const tooMuchQuantity = newQuantity > maxQuantity;
+    if (notEnoughQuantity && !tooMuchQuantity) {
       setTempQuantity(quantity);
+    } else if (!notEnoughQuantity && tooMuchQuantity) {
+      setTempQuantity(maxQuantity);
+      onQuantityChange(maxQuantity);
     }
   };
 
@@ -55,16 +61,17 @@ export const CartRow: React.FC<IProps> = ({
     setTempQuantity(quantity);
   }, [quantity]);
 
-  const add = React.useCallback(() => onQuantityChange(quantity + 1), [
-    quantity,
-  ]);
+  const add = React.useCallback(
+    () => quantity < maxQuantity && onQuantityChange(quantity + 1),
+    [quantity]
+  );
   const substract = React.useCallback(
     () => quantity > 1 && onQuantityChange(quantity - 1),
     [quantity]
   );
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
     const newQuantity = parseInt(evt.target.value, 10);
-    if (!isNaN(newQuantity) && newQuantity > 0) {
+    if (!isNaN(newQuantity) && newQuantity > 0 && newQuantity <= maxQuantity) {
       onQuantityChange(newQuantity);
     } else {
       setTempQuantity(evt.target.value);

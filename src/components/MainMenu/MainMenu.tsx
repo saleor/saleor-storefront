@@ -20,7 +20,6 @@ import {
   OverlayType,
 } from "..";
 import * as appPaths from "../../app/routes";
-import { CheckoutContext } from "../../checkout/context";
 import { maybe } from "../../core/utils";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -36,11 +35,9 @@ const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
   const { items } = useCart();
-  const { clear: clearCheckout } = useContext(CheckoutContext);
 
   const handleSignOut = () => {
     signOut();
-    clearCheckout();
   };
 
   const cartItemsQuantity =

@@ -9,7 +9,6 @@ import { ArticlePage } from "../../views/Article";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
-import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
@@ -30,15 +29,14 @@ export const Routes: React.FC = () => (
     <Route path={accountPaths.baseUrl} component={UserAccount} />
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
-    <Route path={paths.orderConfirmationUrl} component={OrderConfirmation} />
     <Route path={paths.accountUrl} component={Account} />
     <Route path={paths.accountConfirmUrl} component={AccountConfirm} />
     <Route path={paths.orderHistoryUrl} component={Account} />
     <Route path={paths.addressBookUrl} component={Account} />
     <Route path={paths.paymentOptionsUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
-    <Route path={paths.newCheckout} component={CheckoutPage} />
-    <Route path={paths.newOrderFinalized} component={ThankYouPage} />
+    <Route path={paths.checkoutUrl} component={CheckoutPage} />
+    <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -9,7 +9,9 @@ import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart } from "@components/templates";
 import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
-import { useCart } from "@sdk/react";
+import { UserDetails_me } from "@sdk/queries/types/UserDetails";
+import { useCart, useUserDetails } from "@sdk/react";
+import { checkoutLoginUrl, checkoutUrl } from "@temp/app/routes";
 
 import { IProps } from "./types";
 
@@ -19,10 +21,10 @@ const cartBreadcrumbs = (
 
 const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
-const getButton = (history: History) => (
+const getButton = (history: History, user: UserDetails_me | null) => (
   <Button
     data-cy="cartPageBtnProceedToCheckout"
-    onClick={() => history.push("/new-checkout")}
+    onClick={() => history.push(user ? checkoutUrl : checkoutLoginUrl)}
   >
     PROCEED TO CHECKOUT
   </Button>
@@ -60,6 +62,7 @@ const generateCart = (
       key={id}
       index={index}
       name={variant?.product?.name || ""}
+      maxQuantity={variant.stockQuantity || quantity}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       onQuantityChange={quantity => updateItem(variant.id, quantity)}
@@ -99,8 +102,9 @@ const generateCart = (
   ));
 };
 
-export const CartPage: React.FC<IProps> = ({}: IProps) => {
+export const CartPage: React.FC<IProps> = ({  }: IProps) => {
   const history = useHistory();
+  const { data: user } = useUserDetails();
   const {
     removeItem,
     updateItem,
@@ -113,7 +117,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     <Cart
       breadcrumbs={cartBreadcrumbs}
       title={title}
-      button={getButton(history)}
+      button={getButton(history, user)}
       cartHeader={cartHeader}
       cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
       cart={items && generateCart(items, removeItem, updateItem)}

@@ -4,7 +4,8 @@ import { TypedQuery } from "../../../core/queries";
 import {
   checkoutAddressFragment,
   checkoutProductVariantFragment,
-} from "../../../checkout/queries";
+} from "@sdk/fragments/checkout";
+
 import { OrderById, OrderByIdVariables } from "./types/OrderById";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 

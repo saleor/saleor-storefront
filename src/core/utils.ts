@@ -158,9 +158,6 @@ export const updateQueryString = (
   };
 };
 
-export const isPath = (pathname: string, url: string) =>
-  pathname.indexOf(generatePath(url, { token: "" })) !== -1;
-
 export const findFormErrors = (result: void | FetchResult): FormError[] => {
   if (result) {
     const data = Object.values(maybe(() => result.data) as object);

@@ -12,8 +12,8 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { ProductDetails_product } from "./types/ProductDetails";
 
+import { ICheckoutModelLine } from "@sdk/repository";
 import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
-
 import { ProductGallery } from "../../@next/components/organisms/";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
@@ -22,6 +22,7 @@ class Page extends React.PureComponent<
   {
     product: ProductDetails_product;
     add: (variantId: string, quantity: number) => any;
+    items: ICheckoutModelLine[];
   },
   { variantId: string }
 > {
@@ -89,6 +90,7 @@ class Page extends React.PureComponent<
 
     const productDescription = (
       <ProductDescription
+        items={this.props.items}
         productId={product.id}
         name={product.name}
         productVariants={product.variants}

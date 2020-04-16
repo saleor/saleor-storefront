@@ -6,7 +6,6 @@ import { useSignIn } from "@sdk/react";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
-import { CheckoutContext } from "../../checkout/context";
 
 interface ILoginForm {
   hide?: () => void;
@@ -14,7 +13,6 @@ interface ILoginForm {
 
 const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   const [signIn, { loading, error }] = useSignIn();
-  const { update } = React.useContext(CheckoutContext);
 
   const handleOnSubmit = async (evt, { email, password }) => {
     evt.preventDefault();
@@ -22,7 +20,6 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
     if (authenticated && hide) {
       hide();
     }
-    update({ syncUserCheckout: true });
   };
 
   return (

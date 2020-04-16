@@ -110,9 +110,10 @@ const CheckoutPage: React.FC<IProps> = ({  }: IProps) => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
 
-  const activeStepIndex = CHECKOUT_STEPS.findIndex(
+  const matchingStepIndex = CHECKOUT_STEPS.findIndex(
     ({ link }) => link === pathname
   );
+  const activeStepIndex = matchingStepIndex !== -1 ? matchingStepIndex : 3;
   const activeStep = CHECKOUT_STEPS[activeStepIndex];
 
   const checkoutAddressSubpageRef = useRef<ICheckoutAddressSubpageHandles>(

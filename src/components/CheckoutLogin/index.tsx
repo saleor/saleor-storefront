@@ -7,7 +7,7 @@ import { useUserDetails } from "@sdk/react";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
-import { baseUrl as checkoutUrl } from "../../checkout/routes";
+import { checkoutUrl } from "@temp/app/routes";
 
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import ResetPasswordForm from "./ResetPasswordForm";

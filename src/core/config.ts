@@ -60,28 +60,28 @@ export enum CheckoutStep {
 }
 export const CHECKOUT_STEPS = [
   {
-    link: "/new-checkout/address",
+    link: "/checkout/address",
     name: "Address",
     nextActionName: "Continue to Shipping",
-    nextStepLink: "/new-checkout/shipping",
+    nextStepLink: "/checkout/shipping",
     step: CheckoutStep.Address,
   },
   {
-    link: "/new-checkout/shipping",
+    link: "/checkout/shipping",
     name: "Shipping",
     nextActionName: "Continue to Payment",
-    nextStepLink: "/new-checkout/payment",
+    nextStepLink: "/checkout/payment",
     step: CheckoutStep.Shipping,
   },
   {
-    link: "/new-checkout/payment",
+    link: "/checkout/payment",
     name: "Payment",
     nextActionName: "Continue to Review",
-    nextStepLink: "/new-checkout/review",
+    nextStepLink: "/checkout/review",
     step: CheckoutStep.Payment,
   },
   {
-    link: "/new-checkout/review",
+    link: "/checkout/review",
     name: "Review",
     nextActionName: "Finalize order",
     nextStepLink: "/new-order-finalized",

@@ -15,8 +15,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { cartUrl, checkoutLoginUrl } from "../../../app/routes";
-import { baseUrl as checkoutUrl } from "../../../checkout/routes";
+import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
