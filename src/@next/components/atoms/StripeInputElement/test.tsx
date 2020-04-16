@@ -5,7 +5,6 @@ import React from "react";
 import { StripeInputElement } from ".";
 
 describe("<StripeInputElement />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<StripeInputElement />);
 

@@ -5,10 +5,18 @@ import React from "react";
 import { Radio } from ".";
 
 describe("<Radio />", () => {
-  // Example test
-  it("exists", () => {
-    const wrapper = shallow(<Radio />);
+  it("renders children", () => {
+    const text = "test";
+    const wrapper = shallow(<Radio>{text}</Radio>);
 
-    expect(wrapper.exists()).toEqual(true);
+    expect(wrapper.text()).toEqual(text);
+  });
+
+  it("simulates change events", () => {
+    const onRadioChange = jest.fn();
+    const wrapper = shallow(<Radio onChange={onRadioChange} />);
+
+    wrapper.simulate("click");
+    expect(onRadioChange).toHaveBeenCalledTimes(1);
   });
 });

@@ -18,7 +18,7 @@ const AddressTileOption: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.Label checked={checked}>
+    <S.Label checked={!!checked}>
       <Address {...address} />
       <S.RadioWrapper>
         <Radio
