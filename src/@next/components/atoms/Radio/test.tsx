@@ -9,14 +9,19 @@ describe("<Radio />", () => {
     const text = "test";
     const wrapper = shallow(<Radio>{text}</Radio>);
 
-    expect(wrapper.text()).toEqual(text);
+    expect(wrapper.text().includes(text)).toBe(true);
   });
 
   it("simulates change events", () => {
     const onRadioChange = jest.fn();
-    const wrapper = shallow(<Radio onChange={onRadioChange} />);
+    const value = "test";
+    const wrapper = shallow(<Radio value={value} onChange={onRadioChange} />);
 
-    wrapper.simulate("click");
+    const input = wrapper.find("input").at(0);
+
+    input.simulate("change", {
+      target: { value },
+    });
     expect(onRadioChange).toHaveBeenCalledTimes(1);
   });
 });

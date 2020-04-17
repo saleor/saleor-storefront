@@ -18,30 +18,12 @@ const CheckoutAddress: React.FC<IProps> = ({
   setShippingAddress,
   errors,
 }: IProps) => {
-  const adresses =
-    userAddresses
-      ?.filter(function notEmpty<TValue>(
-        value: TValue | null | undefined
-      ): value is TValue {
-        return value !== null && value !== undefined;
-      })
-      .map(address => ({
-        address: {
-          ...address,
-          isDefaultBillingAddress: address.isDefaultBillingAddress || false,
-          isDefaultShippingAddress: address.isDefaultShippingAddress || false,
-          phone: address.phone || undefined,
-        },
-        id: address?.id || "",
-        onSelect: () => null,
-      })) || [];
-
   return (
     <S.Section>
       <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
-      {userAddresses ? (
+      {userAddresses && userAddresses.length ? (
         <AddressGridSelector
-          addresses={adresses}
+          addresses={userAddresses}
           selectedAddressId={selectedUserAddressId}
           onSelect={(address, id) => setShippingAddress(address, undefined, id)}
         />
@@ -49,7 +31,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         <AddressForm
           formId={formId}
           formRef={formRef}
-          countriesOptions={countries.filter(function notEmpty<TValue>(
+          countriesOptions={countries?.filter(function notEmpty<TValue>(
             value: TValue | null | undefined
           ): value is TValue {
             return value !== null && value !== undefined;

@@ -109,6 +109,24 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     }
   };
 
+  const userAdresses =
+    user?.addresses
+      ?.filter(function notEmpty<TValue>(
+        value: TValue | null | undefined
+      ): value is TValue {
+        return value !== null && value !== undefined;
+      })
+      .map(address => ({
+        address: {
+          ...address,
+          isDefaultBillingAddress: address.isDefaultBillingAddress || false,
+          isDefaultShippingAddress: address.isDefaultShippingAddress || false,
+          phone: address.phone || undefined,
+        },
+        id: address?.id || "",
+        onSelect: () => null,
+      })) || [];
+
   return (
     <CheckoutAddress
       {...props}
@@ -117,7 +135,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       formRef={checkoutAddressFormRef}
       checkoutAddress={checkoutShippingAddress}
       email={checkout?.email}
-      userAddresses={user?.addresses}
+      userAddresses={userAdresses}
       selectedUserAddressId={selectedShippingAddressId}
       countries={countries}
       setShippingAddress={handleSetShippingAddress}

@@ -1,15 +1,19 @@
-import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { getShop_shop_countries } from "@temp/core/types/saleor";
-import { IAddress, IFormError } from "@types";
+import { IAddress, IAddressWithAddressType, IFormError } from "@types";
+
+declare type Address = {
+  id: string;
+  address: IAddressWithAddressType;
+};
 
 export interface IProps {
-  userAddresses: UserDetails_me["addresses"] | null | undefined;
+  userAddresses?: Address[] | null;
   selectedUserAddressId?: string;
-  checkoutAddress: IAddress | null | undefined;
+  checkoutAddress?: IAddress | null;
   email?: string;
-  countries: Array<getShop_shop_countries | null>;
-  formRef: React.RefObject<HTMLFormElement>;
-  formId: string;
-  errors: IFormError[];
+  countries?: Array<getShop_shop_countries | null>;
+  formRef?: React.RefObject<HTMLFormElement>;
+  formId?: string;
+  errors?: IFormError[];
   setShippingAddress: (address: IAddress, email?: string, id?: string) => void;
 }

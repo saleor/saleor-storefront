@@ -25,9 +25,10 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
 }
 
 .c2 {
-  margin-top: 45px;
+  margin: 45px 0;
   display: grid;
   grid-template-columns: 8fr 4fr;
+  grid-template-rows: 85px auto auto;
   grid-column-gap: 30px;
   grid-template-areas: "navigation cartSummary" "checkout cartSummary" "button cartSummary";
 }
@@ -36,10 +37,12 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
   grid-area: navigation;
   border-bottom: 1px solid rgba(50,50,50,0.1);
   padding-bottom: 43px;
+  height: 85px;
 }
 
 .c4 {
   grid-area: checkout;
+  padding: 3rem 0;
 }
 
 .c5 {

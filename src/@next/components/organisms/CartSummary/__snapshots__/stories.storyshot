@@ -154,6 +154,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   >
     <p
       className="c2"
+      data-cy="cartSummaryTitle"
     >
       Cart Summary
     </p>
@@ -163,141 +164,183 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
     <div
       className="c4"
     >
-      <div
-        className="c5"
-      >
+      <div>
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
-            The Great Square Table
-          </div>
-          <div
-            className="c8"
-          >
-            SKU: 
-            TGS-122A
-          </div>
-          <div
-            className="c9"
-          >
-            Quantity: 
-            2
-          </div>
-          <div
-            className="c10"
-          >
-            <span>
-              
-            </span>
-          </div>
-          <div
-            className="c11"
-          >
-            <img
-              alt="product image"
-              onError={[Function]}
-              src="test-file-stub"
-              srcSet="test-file-stub 1x"
-            />
+            <div
+              className="c7"
+              data-cy="cartSummaryItem0Name"
+            >
+              The Great Square Table
+            </div>
+            <div
+              className="c8"
+            >
+              SKU: 
+              <span
+                data-cy="cartSummaryItem0SKU"
+              >
+                TGS-122A
+              </span>
+            </div>
+            <div
+              className="c9"
+            >
+              Quantity:
+               
+              <span
+                data-cy="cartSummaryItem0Quantity"
+              >
+                2
+              </span>
+            </div>
+            <div
+              className="c10"
+              data-cy="cartSummaryItem0Price"
+            >
+              <span>
+                
+              </span>
+            </div>
+            <div
+              className="c11"
+            >
+              <img
+                alt="product image"
+                data-cy="cartSummaryItem0Image"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
           </div>
         </div>
+        <hr
+          className="c3"
+        />
       </div>
-      <hr
-        className="c3"
-      />
-      <div
-        className="c5"
-      >
+      <div>
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
-            The Great Square Table
-          </div>
-          <div
-            className="c8"
-          >
-            SKU: 
-            TGS-122A
-          </div>
-          <div
-            className="c9"
-          >
-            Quantity: 
-            2
-          </div>
-          <div
-            className="c10"
-          >
-            <span>
-              
-            </span>
-          </div>
-          <div
-            className="c11"
-          >
-            <img
-              alt="product image"
-              onError={[Function]}
-              src="test-file-stub"
-              srcSet="test-file-stub 1x"
-            />
+            <div
+              className="c7"
+              data-cy="cartSummaryItem1Name"
+            >
+              The Great Square Table
+            </div>
+            <div
+              className="c8"
+            >
+              SKU: 
+              <span
+                data-cy="cartSummaryItem1SKU"
+              >
+                TGS-122A
+              </span>
+            </div>
+            <div
+              className="c9"
+            >
+              Quantity:
+               
+              <span
+                data-cy="cartSummaryItem1Quantity"
+              >
+                2
+              </span>
+            </div>
+            <div
+              className="c10"
+              data-cy="cartSummaryItem1Price"
+            >
+              <span>
+                
+              </span>
+            </div>
+            <div
+              className="c11"
+            >
+              <img
+                alt="product image"
+                data-cy="cartSummaryItem1Image"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
           </div>
         </div>
+        <hr
+          className="c3"
+        />
       </div>
-      <hr
-        className="c3"
-      />
-      <div
-        className="c5"
-      >
+      <div>
         <div
-          className="c6"
+          className="c5"
         >
           <div
-            className="c7"
+            className="c6"
           >
-            The Great Square Table
-          </div>
-          <div
-            className="c8"
-          >
-            SKU: 
-            TGS-122A
-          </div>
-          <div
-            className="c9"
-          >
-            Quantity: 
-            2
-          </div>
-          <div
-            className="c10"
-          >
-            <span>
-              
-            </span>
-          </div>
-          <div
-            className="c11"
-          >
-            <img
-              alt="product image"
-              onError={[Function]}
-              src="test-file-stub"
-              srcSet="test-file-stub 1x"
-            />
+            <div
+              className="c7"
+              data-cy="cartSummaryItem2Name"
+            >
+              The Great Square Table
+            </div>
+            <div
+              className="c8"
+            >
+              SKU: 
+              <span
+                data-cy="cartSummaryItem2SKU"
+              >
+                TGS-122A
+              </span>
+            </div>
+            <div
+              className="c9"
+            >
+              Quantity:
+               
+              <span
+                data-cy="cartSummaryItem2Quantity"
+              >
+                2
+              </span>
+            </div>
+            <div
+              className="c10"
+              data-cy="cartSummaryItem2Price"
+            >
+              <span>
+                
+              </span>
+            </div>
+            <div
+              className="c11"
+            >
+              <img
+                alt="product image"
+                data-cy="cartSummaryItem2Image"
+                onError={[Function]}
+                src="test-file-stub"
+                srcSet="test-file-stub 1x"
+              />
+            </div>
           </div>
         </div>
+        <hr
+          className="c3"
+        />
       </div>
-      <hr
-        className="c3"
-      />
     </div>
     <div
       className="c12"
@@ -308,7 +351,9 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         <span>
           Subtotal
         </span>
-        <span>
+        <span
+          data-cy="cartSummaryCostSubtotal"
+        >
           <span>
             
           </span>
@@ -320,7 +365,9 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         <span>
           Promo Code
         </span>
-        <span>
+        <span
+          data-cy="cartSummaryCostPromoCode"
+        >
           - 
           <span>
             
@@ -333,7 +380,9 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         <span>
           Shipping
         </span>
-        <span>
+        <span
+          data-cy="cartSummaryCostShipping"
+        >
           <span>
             
           </span>
@@ -345,7 +394,9 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
         <span>
           Total
         </span>
-        <span>
+        <span
+          data-cy="cartSummaryCostTotal"
+        >
           <span>
             
           </span>

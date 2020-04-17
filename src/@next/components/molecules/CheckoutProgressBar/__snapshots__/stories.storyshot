@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   margin: 20px;
 }
 
-.c10 {
+.c11 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   box-sizing: border-box;
 }
 
-.c2 {
+.c3 {
   position: relative;
   border-radius: 50%;
   width: 12px;
@@ -25,7 +25,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   border: 6px solid #06847B;
 }
 
-.c8 {
+.c9 {
   position: relative;
   border-radius: 50%;
   width: 12px;
@@ -33,14 +33,14 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   border: 6px solid #c2c2c2;
 }
 
-.c5 {
+.c6 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   box-shadow: 0 0 0 4px #c2c2c2;
 }
 
-.c6 {
+.c7 {
   white-space: pre;
   display: block;
   position: absolute;
@@ -56,7 +56,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   color: rgba(50,50,50,0.6);
 }
 
-.c3 {
+.c4 {
   white-space: pre;
   display: block;
   position: absolute;
@@ -76,7 +76,7 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   top: 35px;
 }
 
-.c9 {
+.c10 {
   white-space: pre;
   display: block;
   position: absolute;
@@ -97,18 +97,34 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   right: 0;
 }
 
-.c4 {
+.c5 {
   z-index: -1;
   width: 100%;
   height: 4px;
   background-color: #06847B;
 }
 
-.c7 {
+.c8 {
   z-index: -1;
   width: 100%;
   height: 4px;
   background-color: #c2c2c2;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.c2:not(:last-child) {
+  width: 100%;
 }
 
 .c1 {
@@ -134,74 +150,90 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar default 1`] = `
   <div
     className="c1"
   >
-    <a
-      href="/"
-      onClick={[Function]}
-    >
-      <div
-        className="c2"
-      />
-      <span
-        className="c3"
-      >
-        Shipping
-      </span>
-    </a>
     <div
-      className="c4"
-    />
-    <a
-      href="/"
-      onClick={[Function]}
+      className="c2"
     >
-      <div
-        className="c5"
+      <a
+        href="/"
+        onClick={[Function]}
       >
         <div
-          className="c2"
+          className="c3"
         />
-      </div>
-      <span
-        className="c6"
-      >
-        Billing
-      </span>
-    </a>
+        <span
+          className="c4"
+        >
+          Shipping
+        </span>
+      </a>
+      <div
+        className="c5"
+      />
+    </div>
     <div
-      className="c7"
-    />
-    <a
-      href="/"
-      onClick={[Function]}
+      className="c2"
     >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c3"
+          />
+        </div>
+        <span
+          className="c7"
+        >
+          Billing
+        </span>
+      </a>
       <div
         className="c8"
       />
-      <span
-        className="c6"
-      >
-        Payment
-      </span>
-    </a>
+    </div>
     <div
-      className="c7"
-    />
-    <a
-      href="/"
-      onClick={[Function]}
+      className="c2"
     >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <div
+          className="c9"
+        />
+        <span
+          className="c7"
+        >
+          Payment
+        </span>
+      </a>
       <div
         className="c8"
       />
-      <span
-        className="c9"
+    </div>
+    <div
+      className="c2"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
       >
-        Review
-      </span>
-    </a>
+        <div
+          className="c9"
+        />
+        <span
+          className="c10"
+        >
+          Review
+        </span>
+      </a>
+    </div>
   </div>
   <div
-    className="c10"
+    className="c11"
   />
 </div>
 `;

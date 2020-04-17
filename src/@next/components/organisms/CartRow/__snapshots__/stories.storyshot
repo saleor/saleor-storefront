@@ -127,12 +127,14 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   max-height: -moz-min-content;
   max-height: min-content;
   width: 100%;
-  grid-template-areas: "photo description unitPrice quantity totalPrice trash" ". description . . . .";
+  grid-template-areas: "photo description unitPrice quantity totalPrice trash";
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  padding: 0.8rem 0.5rem;
 }
 
 .c15 {
@@ -299,22 +301,23 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   margin: 0 15px;
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c1 {
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
-    grid-template-areas: "photo description description" "trash description description" ". unitPrice quantity" ". . totalPrice";
+    grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
+    padding: 1rem 0rem;
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c3 {
     margin-left: 0px;
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c7 {
     -webkit-flex-flow: column;
     -ms-flex-flow: column;
@@ -322,13 +325,13 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c19 {
     display: block;
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c18 {
     font-weight: normal;
     -webkit-flex-direction: column;
@@ -337,13 +340,13 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c18 p {
     text-align: right;
   }
 }
 
-@media (max-width:540px) {
+@media (max-width:720px) {
   .c20 {
     font-weight: normal;
     -webkit-flex-direction: column;
@@ -363,6 +366,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     >
       <img
         alt="product image"
+        data-cy="cartPageItemundefinedImage"
         onError={[Function]}
         src="test-file-stub"
         srcSet="test-file-stub 1x"
@@ -373,6 +377,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     >
       <p
         className="c4"
+        data-cy="cartPageItemundefinedName"
       >
         The Great Square Table
       </p>
@@ -382,17 +387,25 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          SKU: 
-          R4ND-0M-5KU
+          SKU:
+           
+          <span
+            data-cy="cartPageItemundefinedSKU"
+          >
+            R4ND-0M-5KU
+          </span>
         </span>
       </p>
       <div
         className="c7"
+        data-cy="cartPageItemundefinedAttributes"
       >
         <p
           className="c8"
         >
-          <span>
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute0"
+          >
             <span
               className="c6"
             >
@@ -406,7 +419,9 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <p
           className="c8"
         >
-          <span>
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute1"
+          >
             <span
               className="c6"
             >
@@ -420,7 +435,9 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <p
           className="c8"
         >
-          <span>
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute2"
+          >
             <span
               className="c6"
             >
@@ -434,7 +451,9 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <p
           className="c8"
         >
-          <span>
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute3"
+          >
             <span
               className="c6"
             >
@@ -459,6 +478,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         >
           <input
             className="c12"
+            data-cy="cartPageItemundefinedQuantityInput"
             disabled={false}
             name="quantity"
             onBlur={[Function]}
@@ -479,6 +499,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
             className="c15"
           >
             <div
+              data-cy="cartPageItemundefinedQuantityBtnSubtract"
               onClick={[Function]}
             >
               <svg
@@ -493,6 +514,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
               </svg>
             </div>
             <div
+              data-cy="cartPageItemundefinedQuantityBtnAdd"
               onClick={[Function]}
             >
               <svg
@@ -515,7 +537,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     >
       <div
         className="c17"
-        data-cy="icon_button"
+        data-cy="cartPageItemundefinedBtnRemove"
         onClick={[Function]}
       >
         <svg

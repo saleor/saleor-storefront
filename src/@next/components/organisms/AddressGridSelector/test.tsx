@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
@@ -16,11 +16,19 @@ describe("<AddressGridSelector />", () => {
 
   it("simulates select events", () => {
     const onSelect = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mount(
       <AddressGridSelector {...DEFAULT_PROPS} onSelect={onSelect} />
     );
 
-    wrapper.simulate("click");
-    expect(onSelect).toHaveBeenCalledTimes(1);
+    const input = wrapper.find("input").at(0);
+    const addressId = DEFAULT_PROPS.addresses[0].id;
+
+    input.simulate("change", {
+      target: { value: addressId },
+    });
+    expect(onSelect).toHaveBeenCalledWith(
+      DEFAULT_PROPS.addresses[0].address,
+      addressId
+    );
   });
 });

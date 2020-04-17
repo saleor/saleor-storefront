@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/AddressTileOption default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c2 {
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c4 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c3 {
+  padding-top: 1rem;
+}
+
+.c1 {
+  display: block;
+  background-color: #f1f5f5;
+  padding: 30px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+@media (max-width:540px) {
+  .c1 {
+    padding: 30px 20px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <label
+    checked={false}
+    className="c1"
+  >
+    <div>
+      <span
+        className="c2"
+      >
+        John Doe
+      </span>
+      Mirumee
+       
+      <br />
+      St Street
+      <br />
+      Second
+       
+      <br />
+      55-555,
+       
+      Wroclaw
+      <br />
+      dolnyslask
+      , 
+      Poland
+      <br />
+      Phone number: 
+      555-5555
+       
+      <br />
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        checked={false}
+        className="c4"
+      >
+        <input
+          checked={false}
+          name="address"
+          type="radio"
+          value="12345"
+        />
+         
+        <div>
+          <span />
+        </div>
+        Address Option
+      </div>
+    </div>
+  </label>
+  <div
+    className="c5"
+  />
+</div>
+`;

@@ -154,6 +154,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
             >
               <input
                 className="c6"
+                data-cy="checkoutPaymentPromoCodeInput"
                 disabled={false}
                 onBlur={[Function]}
                 onChange={[Function]}
@@ -171,6 +172,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
         <button
           className="c8"
           color="primary"
+          data-cy="checkoutPaymentPromoCodeBtn"
           onClick={[Function]}
           size="md"
         >

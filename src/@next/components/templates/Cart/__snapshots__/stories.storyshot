@@ -6,7 +6,7 @@ exports[`Storyshots @components/templates/Cart default 1`] = `
   margin: 20px;
 }
 
-.c5 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -33,13 +33,24 @@ exports[`Storyshots @components/templates/Cart default 1`] = `
   margin-bottom: 60px;
 }
 
-.c4 {
+.c5 {
+  border-top: 1px solid rgba(50,50,50,0.1);
+}
+
+.c6 {
   text-align: right;
+  margin-top: 40px;
 }
 
 @media (max-width:992px) {
   .c1 {
     width: 100%;
+  }
+}
+
+@media (max-width:720px) {
+  .c4 {
+    display: none;
   }
 }
 
@@ -59,15 +70,21 @@ exports[`Storyshots @components/templates/Cart default 1`] = `
         className="c3"
       />
       <div
+        className="c4"
+      />
+      <div
+        className="c5"
+      />
+      <div
         className=""
       />
       <div
-        className="c4"
+        className="c6"
       />
     </div>
   </div>
   <div
-    className="c5"
+    className="c7"
   />
 </div>
 `;
