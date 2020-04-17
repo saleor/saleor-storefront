@@ -41,13 +41,13 @@ export const extractCartLines = (
           ...node.pricing.price,
           currency: node.pricing.price.gross.currency,
           gross: {
-            amount: quantity * node.pricing.price.gross.amount,
             ...node.pricing.price.gross,
+            amount: quantity * node.pricing.price.gross.amount,
           },
           locale,
           net: {
-            amount: quantity * node.pricing.price.net.amount,
             ...node.pricing.price.net,
+            amount: quantity * node.pricing.price.net.amount,
           },
         },
       };
@@ -63,12 +63,12 @@ export const extractCheckoutLines = (lines: Checkout_lines[]): LineI[] => {
         ...line.totalPrice,
         currency: line.totalPrice.gross.currency,
         gross: {
-          amount: line.quantity * line.totalPrice.gross.amount,
           ...line.totalPrice.gross,
+          amount: line.quantity * line.totalPrice.gross.amount,
         },
         net: {
-          amount: line.quantity * line.totalPrice.net.amount,
           ...line.totalPrice.net,
+          amount: line.quantity * line.totalPrice.net.amount,
         },
       },
       ...line.variant,
