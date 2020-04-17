@@ -47,6 +47,7 @@ export const DEFAULT_PROPS = {
       ],
     },
   ],
+  maxQuantity: 5,
   name: "The Great Square Table",
   quantity: 3,
   sku: "R4ND-0M-5KU",

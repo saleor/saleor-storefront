@@ -3,6 +3,7 @@
   "setupFiles": ["<rootDir>/.jest/register-context.js"],
   "//": "Please remove 'react-syntax-highlighter/dist/esm/(.*)' from moduleNameMapper when storybook is upgraded to v.6.0.0 or higher - there is a fix https://github.com/storybookjs/storybook/issues/9470",
   "moduleNameMapper": {
+    "@temp/([^\\.]*)$": "<rootDir>/src/$1",
     "@styles/([^\\.]*)$": "<rootDir>/src/@next/globalStyles/$1",
     "@styles": "<rootDir>/src/@next/globalStyles/index.ts",
     "@app/([^\\.]*)$": "<rootDir>/src/@next/$1",
