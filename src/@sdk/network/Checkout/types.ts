@@ -25,28 +25,34 @@ export interface ICheckoutNetworkManager {
     checkout: ICheckoutModel
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setBillingAddress: (
-    checkout: ICheckoutModel
+    billingAddress: ICheckoutAddress,
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingAddress: (
-    checkout: ICheckoutModel
+    shippingAddress: ICheckoutAddress,
+    email: string,
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingMethod: (
-    checkout: ICheckoutModel
+    shippingMethodId: string,
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   addPromoCode: (
     promoCode: string,
-    checkout: ICheckoutModel
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   removePromoCode: (
     promoCode: string,
-    checkout: ICheckoutModel
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   createPayment: (
     amount: number,
-    checkout: ICheckoutModel,
-    payment: IPaymentModel
+    checkoutId: string,
+    paymentGateway: string,
+    paymentToken: string,
+    billingAddress: ICheckoutAddress
   ) => Promise<INetworkManagerResponse<IPaymentModel>>;
   completeCheckout: (
-    checkout: ICheckoutModel
+    checkoutId: string
   ) => Promise<INetworkManagerResponse<IOrderModel>>;
 }

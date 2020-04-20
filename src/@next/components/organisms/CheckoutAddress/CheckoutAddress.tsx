@@ -23,8 +23,11 @@ const CheckoutAddress: React.FC<IProps> = ({
       <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
       {userAddresses && userAddresses.length ? (
         <AddressGridSelector
+          formId={formId}
+          formRef={formRef}
           addresses={userAddresses}
           selectedAddressId={selectedUserAddressId}
+          errors={errors}
           onSelect={(address, id) => setShippingAddress(address, undefined, id)}
         />
       ) : (

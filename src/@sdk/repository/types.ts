@@ -103,6 +103,8 @@ export interface ICheckoutModel {
   email?: string;
   shippingAddress?: ICheckoutAddress | null;
   billingAddress?: ICheckoutAddress | null;
+  selectedShippingAddressId?: string;
+  selectedBillingAddressId?: string;
   billingAsShipping?: boolean;
   promoCodeDiscount?: ICheckoutModelPromoCodeDiscount;
   lines?: ICheckoutModelLine[] | null;
@@ -129,10 +131,18 @@ export interface IJobsModel {
     setCartItem?: boolean;
   };
   checkout: {
-    setShippingMethod?: boolean;
     setPromoCode?: boolean;
   };
 }
+
+export const JobsModelInitialState: IJobsModel = {
+  cart: {
+    setCartItem: false,
+  },
+  checkout: {
+    setPromoCode: false,
+  },
+};
 
 export interface ILocalRepository {
   getCheckout(): ICheckoutModel | null;

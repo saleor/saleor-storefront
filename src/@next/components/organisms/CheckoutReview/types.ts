@@ -6,4 +6,5 @@ export interface IProps {
   shippingMethodName?: string;
   paymentMethodName?: string;
   email?: string;
+  errors?: any;
 }

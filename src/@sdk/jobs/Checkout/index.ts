@@ -1,26 +1,16 @@
+import { DataErrorCheckoutTypes, ICreditCard } from "@sdk/api/Checkout/types";
 import { CheckoutNetworkManager } from "@sdk/network";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
-import { LocalRepository } from "@sdk/repository";
+import { ICheckoutAddress, LocalRepository } from "@sdk/repository";
 
 import { JobQueue } from "../JobQueue";
-import { LocalStorageJobs } from "../types";
-
-export enum ErrorCheckoutTypes {
-  "SET_SHIPPING_ADDRESS",
-  "SET_BILLING_ADDRESS",
-  "SET_SHIPPING_METHOD",
-  "ADD_PROMO_CODE",
-  "REMOVE_PROMO_CODE",
-  "CREATE_PAYMENT",
-  "COMPLETE_CHECKOUT",
-  "GET_CHECKOUT",
-}
+import { PromiseCheckoutJobRunResponse } from "../types";
 
 export class CheckoutJobQueue extends JobQueue {
   private checkoutNetworkManager: CheckoutNetworkManager;
   private onErrorListener?: (
     error: ApolloErrorWithUserInput | any,
-    type: ErrorCheckoutTypes
+    type: DataErrorCheckoutTypes
   ) => any;
 
   constructor(
@@ -28,207 +18,343 @@ export class CheckoutJobQueue extends JobQueue {
     checkoutNetworkManager: CheckoutNetworkManager,
     onErrorListener: (
       error: ApolloErrorWithUserInput | any,
-      type: ErrorCheckoutTypes
+      type: DataErrorCheckoutTypes
     ) => any
   ) {
     super(repository);
     this.checkoutNetworkManager = checkoutNetworkManager;
     this.onErrorListener = onErrorListener;
 
-    const queuePossibilities = new Map([
-      ["setShippingMethod", this.enqueueSetShippingMethod],
-    ]);
+    const queuePossibilities = new Map();
     this.enqueueAllSavedInRepository(queuePossibilities, "checkout");
   }
 
-  runSetShippingAddress = async () => {
-    return this.setShippingAddress();
-  };
-
-  runSetBillingAddress = async () => {
-    return this.setBillingAddress();
-  };
-
-  enqueueSetShippingMethod = () => {
-    this.addToQueue(
-      LocalStorageJobs.CHECKOUT_SET_SHIPPING_METHOD,
-      () => this.setShippingMethod(),
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setShippingMethod: true,
-          },
-          "checkout"
-        );
-      },
-      () => {
-        this.updateJobsStateInRepository(
-          {
-            setShippingMethod: false,
-          },
-          "checkout"
-        );
-      }
+  runCreateCheckout = async (
+    email: string,
+    lines: Array<{ variantId: string; quantity: number }>,
+    shippingAddress: ICheckoutAddress,
+    selectedShippingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.createCheckout(
+      email,
+      lines,
+      shippingAddress,
+      selectedShippingAddressId
     );
   };
 
-  runAddPromoCode = async (promoCode: string) => {
-    return this.addPromoCode(promoCode);
+  runSetShippingAddress = async (
+    checkoutId: string,
+    shippingAddress: ICheckoutAddress,
+    email: string,
+    selectedShippingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.setShippingAddress(
+      checkoutId,
+      shippingAddress,
+      email,
+      selectedShippingAddressId
+    );
   };
 
-  runRemovePromoCode = async (promoCode: string) => {
-    return this.removePromoCode(promoCode);
+  runSetBillingAddress = async (
+    checkoutId: string,
+    billingAddress: ICheckoutAddress,
+    billingAsShipping?: boolean,
+    selectedBillingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.setBillingAddress(
+      checkoutId,
+      billingAddress,
+      billingAsShipping,
+      selectedBillingAddressId
+    );
   };
 
-  runCreatePayment = async (amount: number) => {
-    return this.createPayment(amount);
+  runSetShippingMethod = async (
+    checkoutId: string,
+    shippingMethodId: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.setShippingMethod(checkoutId, shippingMethodId);
   };
 
-  runCompleteCheckout = async () => {
-    return this.completeCheckout();
+  runAddPromoCode = async (
+    checkoutId: string,
+    promoCode: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.addPromoCode(checkoutId, promoCode);
   };
 
-  private setShippingAddress = async () => {
-    const checkout = this.repository.getCheckout();
+  runRemovePromoCode = async (
+    checkoutId: string,
+    promoCode: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.removePromoCode(checkoutId, promoCode);
+  };
 
-    if (checkout) {
-      const {
+  runCreatePayment = async (
+    checkoutId: string,
+    amount: number,
+    paymentGateway: string,
+    paymentToken: string,
+    billingAddress: ICheckoutAddress,
+    creditCard?: ICreditCard
+  ): PromiseCheckoutJobRunResponse => {
+    return this.createPayment(
+      checkoutId,
+      amount,
+      paymentGateway,
+      paymentToken,
+      billingAddress,
+      creditCard
+    );
+  };
+
+  runCompleteCheckout = async (
+    checkoutId: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.completeCheckout(checkoutId);
+  };
+
+  private createCheckout = async (
+    email: string,
+    lines: Array<{ variantId: string; quantity: number }>,
+    shippingAddress: ICheckoutAddress,
+    selectedShippingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
+    const { data, error } = await this.checkoutNetworkManager.createCheckout(
+      email,
+      lines,
+      shippingAddress
+    );
+
+    if (error) {
+      /**
+       * TODO: Differentiate errors!!! THIS IS A BUG!!!
+       * DataErrorCheckoutTypes.SET_SHIPPING_ADDRESS is just one of every possible - instead of deprecated errors, checkoutErrors should be used.
+       */
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_SHIPPING_ADDRESS,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...data,
+        selectedShippingAddressId,
+      });
+      return {
         data,
-        error,
-      } = await this.checkoutNetworkManager.setShippingAddress(checkout);
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.SET_SHIPPING_ADDRESS);
-      } else if (data) {
-        this.repository.setCheckout({
-          ...checkout,
-          email: data.email,
-          shippingAddress: data.shippingAddress,
-        });
-        return data;
-      }
+      };
     }
   };
 
-  private setBillingAddress = async () => {
+  private setShippingAddress = async (
+    checkoutId: string,
+    shippingAddress: ICheckoutAddress,
+    email: string,
+    selectedShippingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    if (checkout) {
-      const {
-        data,
-        error,
-      } = await this.checkoutNetworkManager.setBillingAddress(checkout);
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.SET_BILLING_ADDRESS);
-      } else if (data) {
-        this.repository.setCheckout({
-          ...checkout,
-          billingAddress: data.billingAddress,
-        });
-        return data;
-      }
+    const {
+      data,
+      error,
+    } = await this.checkoutNetworkManager.setShippingAddress(
+      shippingAddress,
+      email,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_SHIPPING_ADDRESS,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        billingAsShipping: false,
+        email: data?.email,
+        selectedShippingAddressId,
+        shippingAddress: data?.shippingAddress,
+      });
+      return { data };
     }
   };
 
-  private setShippingMethod = async () => {
+  private setBillingAddress = async (
+    checkoutId: string,
+    billingAddress: ICheckoutAddress,
+    billingAsShipping?: boolean,
+    selectedBillingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    if (checkout) {
-      const {
-        data,
-        error,
-      } = await this.checkoutNetworkManager.setShippingMethod(checkout);
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.SET_SHIPPING_METHOD);
-      } else if (data) {
-        this.repository.setCheckout({
-          ...checkout,
-          shippingMethod: data.shippingMethod,
-        });
-        return data;
-      }
+    const { data, error } = await this.checkoutNetworkManager.setBillingAddress(
+      billingAddress,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_BILLING_ADDRESS,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        billingAddress: data?.billingAddress,
+        billingAsShipping: !!billingAsShipping,
+        selectedBillingAddressId,
+      });
+      return { data };
     }
   };
 
-  private addPromoCode = async (promoCode: string) => {
+  private setShippingMethod = async (
+    checkoutId: string,
+    shippingMethodId: string
+  ): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    if (checkout) {
-      const { data, error } = await this.checkoutNetworkManager.addPromoCode(
-        promoCode,
-        checkout
-      );
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.ADD_PROMO_CODE);
-      } else if (data) {
-        this.repository.setCheckout({
-          ...checkout,
-          promoCodeDiscount: data.promoCodeDiscount,
-        });
-        return data;
-      }
+    const { data, error } = await this.checkoutNetworkManager.setShippingMethod(
+      shippingMethodId,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_SHIPPING_METHOD,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        promoCodeDiscount: data?.promoCodeDiscount,
+        shippingMethod: data?.shippingMethod,
+      });
+      return { data };
     }
   };
 
-  private removePromoCode = async (promoCode: string) => {
+  private addPromoCode = async (
+    checkoutId: string,
+    promoCode: string
+  ): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    if (checkout) {
-      const { data, error } = await this.checkoutNetworkManager.removePromoCode(
-        promoCode,
-        checkout
-      );
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.REMOVE_PROMO_CODE);
-      } else if (data) {
-        this.repository.setCheckout({
-          ...checkout,
-          promoCodeDiscount: data.promoCodeDiscount,
-        });
-        return data;
-      }
+    const { data, error } = await this.checkoutNetworkManager.addPromoCode(
+      promoCode,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.ADD_PROMO_CODE,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        promoCodeDiscount: data?.promoCodeDiscount,
+      });
+      return { data };
     }
   };
 
-  private createPayment = async (amount: number) => {
+  private removePromoCode = async (
+    checkoutId: string,
+    promoCode: string
+  ): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
+
+    const { data, error } = await this.checkoutNetworkManager.removePromoCode(
+      promoCode,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.REMOVE_PROMO_CODE,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        promoCodeDiscount: data?.promoCodeDiscount,
+      });
+      return { data };
+    }
+  };
+
+  private createPayment = async (
+    checkoutId: string,
+    amount: number,
+    paymentGateway: string,
+    paymentToken: string,
+    billingAddress: ICheckoutAddress,
+    creditCard?: ICreditCard
+  ): PromiseCheckoutJobRunResponse => {
     const payment = this.repository.getPayment();
 
-    if (checkout && payment) {
-      const { data, error } = await this.checkoutNetworkManager.createPayment(
-        amount,
-        checkout,
-        payment
-      );
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.CREATE_PAYMENT);
-      } else if (data) {
-        this.repository.setPayment({
-          ...payment,
-          gateway: data.gateway,
-          id: data.id,
-          token: data.token,
-        });
-        return data;
-      }
+    const { data, error } = await this.checkoutNetworkManager.createPayment(
+      amount,
+      checkoutId,
+      paymentGateway,
+      paymentToken,
+      billingAddress
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.CREATE_PAYMENT,
+        },
+      };
+    } else {
+      this.repository.setPayment({
+        ...payment,
+        creditCard,
+        gateway: data?.gateway,
+        id: data?.id,
+        token: data?.token,
+      });
+      return { data };
     }
   };
 
-  private completeCheckout = async () => {
-    const checkout = this.repository.getCheckout();
+  private completeCheckout = async (
+    checkoutId: string
+  ): PromiseCheckoutJobRunResponse => {
+    const { data, error } = await this.checkoutNetworkManager.completeCheckout(
+      checkoutId
+    );
 
-    if (checkout) {
-      const {
-        data,
-        error,
-      } = await this.checkoutNetworkManager.completeCheckout(checkout);
-      if (error && this.onErrorListener) {
-        this.onErrorListener(error, ErrorCheckoutTypes.COMPLETE_CHECKOUT);
-      } else if (data) {
-        // this.repository.setOrder(data);
-        this.repository.setCheckout({});
-        this.repository.setPayment({});
-        return data;
-      }
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.COMPLETE_CHECKOUT,
+        },
+      };
+    } else {
+      // this.repository.setOrder(data);
+      this.repository.setCheckout({});
+      this.repository.setPayment({});
+      return { data };
     }
   };
 }

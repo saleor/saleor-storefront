@@ -2,7 +2,7 @@ import { styled } from "@styles";
 
 export const Section = styled.section``;
 
-export const ShippingMethodList = styled.div`
+export const ShippingMethodForm = styled.form`
   display: grid;
   grid-gap: 20px;
 `;

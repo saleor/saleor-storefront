@@ -9,7 +9,10 @@ import {
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
+import { PromiseRunResponse } from "../types";
 import {
+  DataErrorCheckoutTypes,
+  FunctionErrorCheckoutTypes,
   IAddress,
   IAvailablePaymentGateways,
   IAvailableShippingMethods,
@@ -63,6 +66,8 @@ export class SaleorCheckoutAPI extends ErrorListener
         email,
         shippingAddress,
         billingAddress,
+        selectedShippingAddressId,
+        selectedBillingAddressId,
         billingAsShipping,
         availableShippingMethods,
         shippingMethod,
@@ -77,6 +82,8 @@ export class SaleorCheckoutAPI extends ErrorListener
           shippingMethod,
           token,
         };
+        this.selectedShippingAddressId = selectedShippingAddressId;
+        this.selectedBillingAddressId = selectedBillingAddressId;
         this.availableShippingMethods = availableShippingMethods;
         this.availablePaymentGateways = availablePaymentGateways;
         this.billingAsShipping = billingAsShipping;
@@ -84,18 +91,6 @@ export class SaleorCheckoutAPI extends ErrorListener
           discountName: promoCodeDiscount?.discountName,
           voucherCode: promoCodeDiscount?.voucherCode,
         };
-      }
-    );
-    this.saleorState.subscribeToChange(
-      StateItems.SELECTED_SHIPPING_ADDRESS_ID,
-      (selectedShippingAddressId?: string) => {
-        this.selectedShippingAddressId = selectedShippingAddressId;
-      }
-    );
-    this.saleorState.subscribeToChange(
-      StateItems.SELECTED_BILLING_ADDRESS_ID,
-      (selectedBillingAddressId?: string) => {
-        this.selectedBillingAddressId = selectedBillingAddressId;
       }
     );
     this.saleorState.subscribeToChange(
@@ -124,170 +119,288 @@ export class SaleorCheckoutAPI extends ErrorListener
     };
   };
 
-  setBillingAddress = async (billingAddress: IAddress) => {
+  setShippingAddress = async (
+    shippingAddress: IAddress,
+    email: string
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
+    const alteredLines = this.saleorState.checkout?.lines?.map(item => ({
+      quantity: item!.quantity,
+      variantId: item?.variant!.id,
+    }));
 
-    // 1. save in local storage
-    this.checkoutRepositoryManager.setBillingAddress(billingAddress);
-    this.saleorState.updateSelectedBillingAddressId(billingAddress.id);
+    if (alteredLines && checkoutId) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runSetShippingAddress(
+        checkoutId,
+        shippingAddress,
+        email,
+        shippingAddress.id
+      );
 
-    // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runSetBillingAddress();
       return {
         data,
-        pending: true,
+        dataError,
+        pending: false,
       };
-    }
-    return {
-      pending: false,
-    };
-  };
+    } else if (alteredLines) {
+      const { data, dataError } = await this.checkoutJobQueue.runCreateCheckout(
+        email,
+        alteredLines,
+        shippingAddress,
+        shippingAddress.id
+      );
 
-  setShippingAddress = async (shippingAddress: IAddress, email: string) => {
-    await this.saleorState.provideCheckout(this.fireError);
-
-    // 1. save in local storage
-    this.checkoutRepositoryManager.setShippingAddress(shippingAddress, email);
-    this.saleorState.updateSelectedShippingAddressId(shippingAddress.id);
-
-    // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runSetShippingAddress();
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to add items to cart before setting shipping address."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
   };
 
-  setBillingAsShippingAddress = async (billingAsShipping: boolean) => {
+  setBillingAddress = async (
+    billingAddress: IAddress
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
 
-    // 1. save in local storage
-    if (this.checkout?.shippingAddress) {
-      this.checkoutRepositoryManager.setBillingAddress(
-        this.checkout?.shippingAddress,
-        billingAsShipping
+    if (checkoutId && this.checkout?.shippingAddress) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runSetBillingAddress(
+        checkoutId,
+        billingAddress,
+        false,
+        billingAddress.id
       );
-      this.saleorState.updateSelectedBillingAddressId(
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before setting billing address."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
+        pending: false,
+      };
+    }
+  };
+
+  setBillingAsShippingAddress = async (): PromiseRunResponse<
+    DataErrorCheckoutTypes,
+    FunctionErrorCheckoutTypes
+  > => {
+    await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
+
+    if (checkoutId && this.checkout?.shippingAddress) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runSetBillingAddress(
+        checkoutId,
+        this.checkout.shippingAddress,
+        true,
         this.checkout?.shippingAddress.id
       );
-    }
-
-    // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runSetBillingAddress();
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before setting billing address."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
   };
 
-  setShippingMethod = async (shippingMethodId: string) => {
+  setShippingMethod = async (
+    shippingMethodId: string
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
 
-    // 1. save in local storage
-    if (this.checkout?.id) {
-      this.checkoutRepositoryManager.setShippingMethod(shippingMethodId);
-    }
-
-    // 2. save online if possible (if checkout id available)
-    if (this.saleorState.checkout?.id) {
-      this.checkoutJobQueue.enqueueSetShippingMethod();
-      return {
-        pending: true,
-      };
-    }
-    return {
-      pending: false,
-    };
-  };
-
-  addPromoCode = async (promoCode: string) => {
-    await this.saleorState.provideCheckout(this.fireError);
-
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runAddPromoCode(promoCode);
+    if (checkoutId) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runSetShippingMethod(
+        checkoutId,
+        shippingMethodId
+      );
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before setting shipping method."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
   };
 
-  removePromoCode = async (promoCode: string) => {
+  addPromoCode = async (
+    promoCode: string
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
 
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runRemovePromoCode(promoCode);
+    if (checkoutId) {
+      const { data, dataError } = await this.checkoutJobQueue.runAddPromoCode(
+        checkoutId,
+        promoCode
+      );
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before modifying promo code."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
+  };
+
+  removePromoCode = async (
+    promoCode: string
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
+    await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
+
+    if (checkoutId) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runRemovePromoCode(checkoutId, promoCode);
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before modifying promo code."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
+        pending: false,
+      };
+    }
   };
 
   createPayment = async (
     gateway: string,
     token: string,
     creditCard?: ICreditCard
-  ) => {
+  ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
     await this.saleorState.providePayment();
+    const checkoutId = this.saleorState.checkout?.id;
+    const billingAddress = this.saleorState.checkout?.billingAddress;
+    const amount = this.saleorState.summaryPrices?.totalPrice?.gross.amount;
 
-    // 1. save in local storage
-    this.checkoutRepositoryManager.setPaymentGatewayData(
-      gateway,
-      token,
-      creditCard
-    );
-
-    // 2. save online if possible (if checkout id available)
     if (
-      this.saleorState.checkout?.id &&
-      this.saleorState.summaryPrices?.totalPrice &&
-      gateway &&
-      token
+      checkoutId &&
+      billingAddress &&
+      amount !== null &&
+      amount !== undefined
     ) {
-      const data = await this.checkoutJobQueue.runCreatePayment(
-        this.saleorState.summaryPrices?.totalPrice.gross.amount
+      const { data, dataError } = await this.checkoutJobQueue.runCreatePayment(
+        checkoutId,
+        amount,
+        gateway,
+        token,
+        billingAddress,
+        creditCard
       );
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set billing address before creating payment."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
   };
 
-  completeCheckout = async () => {
+  completeCheckout = async (): PromiseRunResponse<
+    DataErrorCheckoutTypes,
+    FunctionErrorCheckoutTypes
+  > => {
     await this.saleorState.provideCheckout(this.fireError);
+    const checkoutId = this.saleorState.checkout?.id;
 
-    if (this.saleorState.checkout?.id) {
-      const data = await this.checkoutJobQueue.runCompleteCheckout();
+    if (checkoutId) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runCompleteCheckout(checkoutId);
       return {
         data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to set shipping address before creating payment."
+          ),
+          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
         pending: false,
       };
     }
-    return {
-      pending: false,
-    };
   };
 }

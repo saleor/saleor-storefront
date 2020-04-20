@@ -13,6 +13,7 @@ import { IProps } from "./types";
 const CheckoutPayment: React.FC<IProps> = ({
   gatewayErrors,
   billingErrors,
+  promoCodeErrors,
   selectedUserAddressId,
   userAddresses,
   billingAsShippingAddress = false,
@@ -87,8 +88,11 @@ const CheckoutPayment: React.FC<IProps> = ({
             <S.Divider />
             {userAddresses ? (
               <AddressGridSelector
+                formId={formId}
+                formRef={formRef}
                 addresses={adresses}
                 selectedAddressId={selectedUserAddressId}
+                errors={billingErrors}
                 onSelect={setBillingAddress}
               />
             ) : (
@@ -128,7 +132,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                 promoCodeDiscount?.voucherCode &&
                 removeVoucherCode(promoCodeDiscount?.voucherCode)
               }
-              errors={null}
+              errors={promoCodeErrors}
             />
           </S.DiscountField>
         )}

@@ -9,6 +9,7 @@ export interface IPromoCodeDiscount {
 export interface IProps {
   billingErrors: IFormError[];
   gatewayErrors: IFormError[];
+  promoCodeErrors: IFormError[];
   userAddresses: UserDetails_me["addresses"] | null | undefined;
   selectedUserAddressId?: string;
   billingAsShippingAddress?: boolean;

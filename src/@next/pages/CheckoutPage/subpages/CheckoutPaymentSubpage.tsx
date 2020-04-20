@@ -10,8 +10,8 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
+import { DataErrorCheckoutTypes } from "@sdk/api/Checkout/types";
 import { ErrorTypes } from "@sdk/helpers";
-import { ErrorCheckoutTypes } from "@sdk/jobs";
 import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
@@ -51,29 +51,19 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     addPromoCode,
     removePromoCode,
     createPayment,
-    addOnErrorListener,
-    removeOnErrorListener,
   } = useCheckout();
   const { countries } = useContext(ShopContext);
 
   const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
   const [gatewayErrors, setGatewayErrors] = useState<IFormError[]>([]);
+  const [promoCodeErrors, setPromoCodeErrors] = useState<IFormError[]>([]);
 
+  const [billingAsShippingState, setBillingAsShippingState] = useState(
+    billingAsShipping
+  );
   useEffect(() => {
-    addOnErrorListener(onErrorListener);
-    return () => {
-      removeOnErrorListener(onErrorListener);
-    };
-  }, []);
-
-  const onErrorListener = (error: any, type: ErrorTypes) => {
-    const errors = error.extraInfo.userInputErrors;
-    if (type === ErrorCheckoutTypes.SET_BILLING_ADDRESS && errors) {
-      setBillingErrors(errors);
-    } else if (type === ErrorCheckoutTypes.CREATE_PAYMENT && errors) {
-      setGatewayErrors(errors);
-    }
-  };
+    setBillingAsShippingState(billingAsShipping);
+  }, [billingAsShipping]);
 
   const checkoutBillingAddress = checkout?.billingAddress
     ? {
@@ -92,10 +82,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
 
   useImperativeHandle(ref, () => ({
     submitPayment: () => {
-      if (billingAsShipping) {
-        checkoutGatewayFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
+      if (billingAsShippingState) {
+        handleSetBillingAddress();
       } else if (user && selectedBillingAddressId) {
         checkoutBillingFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
@@ -114,23 +102,55 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     token: string,
     cardData?: ICardData
   ) => {
-    const { data } = await createPayment(gateway, token, cardData);
-    if (data) {
+    const { dataError } = await createPayment(gateway, token, cardData);
+    const errors = dataError?.error.extraInfo.userInputErrors;
+    if (errors) {
+      setGatewayErrors(errors);
+    } else {
+      setGatewayErrors([]);
       history.push(CHECKOUT_STEPS[2].nextStepLink);
     }
   };
   const handleSetBillingAddress = async (
-    address: IAddress,
+    address?: IAddress,
     userAddressId?: string
   ) => {
-    const { data } = await setBillingAddress({
-      ...address,
-      id: userAddressId,
-    });
-    if (data) {
+    let errors;
+    if (billingAsShippingState) {
+      const { dataError } = await setBillingAsShippingAddress();
+      errors = dataError?.error.extraInfo.userInputErrors;
+    } else {
+      const { dataError } = await setBillingAddress({
+        ...address,
+        id: userAddressId,
+      });
+      errors = dataError?.error.extraInfo.userInputErrors;
+    }
+    if (errors) {
+      setBillingErrors(errors);
+    } else {
+      setBillingErrors([]);
       checkoutGatewayFormRef.current?.dispatchEvent(
         new Event("submit", { cancelable: true })
       );
+    }
+  };
+  const handleAddPromoCode = async (promoCode: string) => {
+    const { dataError } = await addPromoCode(promoCode);
+    const errors = dataError?.error.extraInfo.userInputErrors;
+    if (errors) {
+      setPromoCodeErrors(errors);
+    } else {
+      setPromoCodeErrors([]);
+    }
+  };
+  const handleRemovePromoCode = async (promoCode: string) => {
+    const { dataError } = await removePromoCode(promoCode);
+    const errors = dataError?.error.extraInfo.userInputErrors;
+    if (errors) {
+      setPromoCodeErrors(errors);
+    } else {
+      setPromoCodeErrors([]);
     }
   };
 
@@ -150,13 +170,14 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       selectedPaymentGatewayToken={selectedPaymentGatewayToken}
       selectPaymentGateway={selectPaymentGateway}
       setBillingAddress={handleSetBillingAddress}
-      billingAsShippingAddress={billingAsShipping}
-      setBillingAsShippingAddress={setBillingAsShippingAddress}
+      billingAsShippingAddress={billingAsShippingState}
+      setBillingAsShippingAddress={setBillingAsShippingState}
       promoCodeDiscount={{
         voucherCode: promoCodeDiscount?.voucherCode,
       }}
-      addPromoCode={addPromoCode}
-      removeVoucherCode={removePromoCode}
+      addPromoCode={handleAddPromoCode}
+      removeVoucherCode={handleRemovePromoCode}
+      promoCodeErrors={promoCodeErrors}
       gatewayFormRef={checkoutGatewayFormRef}
       processPayment={handleProcessPayment}
     />

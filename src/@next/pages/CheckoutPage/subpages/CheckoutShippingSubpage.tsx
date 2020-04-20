@@ -2,12 +2,15 @@ import React, {
   forwardRef,
   RefForwardingComponent,
   useImperativeHandle,
+  useRef,
+  useState,
 } from "react";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
 import { useCheckout } from "@sdk/react";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { IFormError } from "@types";
 
 export interface ICheckoutShippingSubpageHandles {
   submitShipping: () => void;
@@ -17,6 +20,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   ICheckoutShippingSubpageHandles,
   RouteComponentProps<any>
 > = ({ ...props }: RouteComponentProps<any>, ref) => {
+  const checkoutShippingFormId = "shipping-form";
+  const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
+
+  const [errors, setErrors] = useState<IFormError[]>([]);
+
   const history = useHistory();
   const {
     checkout,
@@ -30,12 +38,21 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
 
   useImperativeHandle(ref, () => ({
     submitShipping: () => {
-      history.push(CHECKOUT_STEPS[1].nextStepLink);
+      checkoutShippingFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
     },
   }));
 
   const handleSetShippingMethod = async (shippingMethodId: string) => {
-    await setShippingMethod(shippingMethodId);
+    const { dataError } = await setShippingMethod(shippingMethodId);
+    const errors = dataError?.error.extraInfo.userInputErrors;
+    if (errors) {
+      setErrors(errors);
+    } else {
+      setErrors([]);
+      history.push(CHECKOUT_STEPS[1].nextStepLink);
+    }
   };
 
   return (
@@ -43,7 +60,10 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       {...props}
       shippingMethods={shippingMethods}
       selectedShippingMethodId={checkout?.shippingMethod?.id}
+      errors={errors}
       selectShippingMethod={handleSetShippingMethod}
+      formId={checkoutShippingFormId}
+      formRef={checkoutShippingFormRef}
     />
   );
 };

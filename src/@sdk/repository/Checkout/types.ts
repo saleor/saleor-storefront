@@ -15,18 +15,4 @@ export interface ICheckoutRepositoryManager {
     variantId: string,
     quantity: number
   ) => ICheckoutModel | null;
-  setShippingAddress: (
-    shippingAddress: ICheckoutAddress,
-    email?: string
-  ) => ICheckoutModel | null;
-  setBillingAddress: (
-    billingAddress: ICheckoutAddress,
-    billingAsShipping?: boolean
-  ) => ICheckoutModel | null;
-  setShippingMethod: (shippingMethodId: string) => ICheckoutModel | null;
-  setPaymentGatewayData: (
-    gateway: string,
-    token: string,
-    creditCard?: IPaymentCreditCard
-  ) => IPaymentModel | null;
 }

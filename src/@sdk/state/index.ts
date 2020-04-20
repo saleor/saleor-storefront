@@ -1,7 +1,7 @@
 import { round } from "lodash";
 
+import { DataErrorCheckoutTypes } from "../api/Checkout/types";
 import { NamedObservable } from "../helpers";
-import { ErrorCheckoutTypes } from "../jobs";
 import { CheckoutNetworkManager } from "../network";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
@@ -45,7 +45,7 @@ export class SaleorState extends NamedObservable<StateItems>
   provideCheckout = async (
     onError: (
       error: ApolloErrorWithUserInput | any,
-      type: ErrorCheckoutTypes
+      type: DataErrorCheckoutTypes
     ) => any,
     forceReload?: boolean
   ) => {
@@ -68,22 +68,6 @@ export class SaleorState extends NamedObservable<StateItems>
     return;
   };
 
-  updateSelectedShippingAddressId = (selectedShippingAddressId?: string) => {
-    this.selectedShippingAddressId = selectedShippingAddressId;
-    this.notifyChange(
-      StateItems.SELECTED_SHIPPING_ADDRESS_ID,
-      this.selectedShippingAddressId
-    );
-  };
-
-  updateSelectedBillingAddressId = (selectedBillingAddressId?: string) => {
-    this.selectedBillingAddressId = selectedBillingAddressId;
-    this.notifyChange(
-      StateItems.SELECTED_BILLING_ADDRESS_ID,
-      this.selectedBillingAddressId
-    );
-  };
-
   private onCheckoutUpdate = (checkout: ICheckoutModel) => {
     this.checkout = checkout;
     this.summaryPrices = this.calculateSummaryPrices(checkout);
@@ -100,64 +84,31 @@ export class SaleorState extends NamedObservable<StateItems>
   private provideCheckoutOnline = async (
     onError: (
       error: ApolloErrorWithUserInput | any,
-      type: ErrorCheckoutTypes
+      type: DataErrorCheckoutTypes
     ) => any
   ) => {
     // 1. Try to take checkout from backend database
     const checkout = this.repository.getCheckout();
 
-    const { data, error } = await this.checkoutNetworkManager.getCheckout(
-      checkout?.token
-    );
+    if (checkout?.token) {
+      const { data, error } = await this.checkoutNetworkManager.getCheckout(
+        checkout?.token
+      );
 
-    if (error) {
-      onError(error, ErrorCheckoutTypes.GET_CHECKOUT);
-    } else if (data) {
-      this.repository.setCheckout(data);
-      // this.updateCheckout(data);
-      return;
-    }
-
-    // 2.a. Try to take checkout from local storage
-    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
-    if (checkoutModel && checkoutModel.id) {
-      this.onCheckoutUpdate(checkoutModel);
-      return;
-    }
-
-    // 2.b. Try to take new created checkout from backend
-    if (checkoutModel && !checkoutModel.id) {
-      const { email, shippingAddress, billingAddress, lines } = checkoutModel;
-      if (email && shippingAddress && lines) {
-        const alteredLines = lines.map(item => ({
-          quantity: item!.quantity,
-          variantId: item?.variant!.id,
-        }));
-
-        const {
-          data,
-          error,
-        } = await this.checkoutNetworkManager.createCheckout(
-          email,
-          alteredLines,
-          shippingAddress,
-          billingAddress || undefined
-        );
-
-        if (error) {
-          onError(error, ErrorCheckoutTypes.GET_CHECKOUT);
-        } else if (data) {
-          this.repository.setCheckout(data);
-          // this.updateCheckout(data);
-          return;
-        } else {
-          this.onCheckoutUpdate(checkoutModel);
-          return;
-        }
-      } else {
-        this.onCheckoutUpdate(checkoutModel);
+      if (error) {
+        onError(error, DataErrorCheckoutTypes.GET_CHECKOUT);
+      } else if (data) {
+        this.repository.setCheckout(data);
+        // this.updateCheckout(data);
         return;
       }
+    }
+
+    // 2. Try to take checkout from local storage
+    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
+    if (checkoutModel) {
+      this.onCheckoutUpdate(checkoutModel);
+      return;
     }
   };
 
@@ -168,8 +119,7 @@ export class SaleorState extends NamedObservable<StateItems>
     }
 
     // 2. Try to take checkout from local storage
-    let checkoutModel: ICheckoutModel | null;
-    checkoutModel = this.repository.getCheckout();
+    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
 
     if (checkoutModel) {
       this.onCheckoutUpdate(checkoutModel);
@@ -184,8 +134,7 @@ export class SaleorState extends NamedObservable<StateItems>
     }
 
     // 2. Try to take checkout from local storage
-    let paymentModel: ICheckoutModel | null;
-    paymentModel = this.repository.getPayment();
+    const paymentModel: ICheckoutModel | null = this.repository.getPayment();
 
     if (paymentModel) {
       this.onPaymentUpdate(paymentModel);

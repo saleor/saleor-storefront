@@ -2,6 +2,7 @@ import React, {
   forwardRef,
   RefForwardingComponent,
   useImperativeHandle,
+  useState,
 } from "react";
 import { RouteComponentProps, useHistory } from "react-router";
 
@@ -9,6 +10,7 @@ import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@sdk/react";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { IFormError } from "@types";
 
 export interface ICheckoutReviewSubpageHandles {
   complete: () => void;
@@ -23,6 +25,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 > = ({ selectedPaymentGatewayToken, ...props }: IProps, ref) => {
   const history = useHistory();
   const { checkout, payment, completeCheckout } = useCheckout();
+
+  const [errors, setErrors] = useState<IFormError[]>([]);
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -53,15 +57,20 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 
   useImperativeHandle(ref, () => ({
     complete: async () => {
-      const { data } = await completeCheckout();
-      history.push({
-        pathname: CHECKOUT_STEPS[3].nextStepLink,
-        state: {
-          id: data?.id,
-          orderNumber: data?.number,
-          token: data?.token,
-        },
-      });
+      const { data, dataError } = await completeCheckout();
+      if (dataError) {
+        setErrors(dataError.error);
+      } else {
+        setErrors([]);
+        history.push({
+          pathname: CHECKOUT_STEPS[3].nextStepLink,
+          state: {
+            id: data?.id,
+            orderNumber: data?.number,
+            token: data?.token,
+          },
+        });
+      }
     },
   }));
 
@@ -73,6 +82,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       shippingMethodName={checkout?.shippingMethod?.name}
       paymentMethodName={getPaymentMethodDescription()}
       email={checkout?.email}
+      errors={errors}
     />
   );
 };

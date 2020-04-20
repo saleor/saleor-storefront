@@ -1,6 +1,10 @@
+import {
+  DataErrorCheckoutTypes,
+  FunctionErrorCheckoutTypes,
+} from "../api/Checkout/types";
+
 export enum LocalStorageJobs {
   CHECKOUT_SET_CART_ITEM = "job_checkoutSetCartItem",
-  CHECKOUT_SET_SHIPPING_METHOD = "job_checkoutSetShippingMethod",
 }
 
 export interface IJobQueue {
@@ -11,3 +15,17 @@ export interface IJobQueue {
     onFinish: () => any
   ) => void;
 }
+
+export interface JobErrorResponse<T> {
+  error?: any;
+  type?: T;
+}
+
+export interface JobRunResponse<D, F> {
+  data?: any;
+  dataError?: JobErrorResponse<D>;
+}
+
+export type PromiseCheckoutJobRunResponse = Promise<
+  JobRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>
+>;

@@ -62,6 +62,21 @@ export interface ICheckout {
   billingAddress?: IAddress | null;
 }
 
+export enum FunctionErrorCheckoutTypes {
+  "SHIPPING_ADDRESS_NOT_SET",
+  "ITEMS_NOT_ADDED_TO_CART",
+}
+export enum DataErrorCheckoutTypes {
+  "SET_SHIPPING_ADDRESS",
+  "SET_BILLING_ADDRESS",
+  "SET_SHIPPING_METHOD",
+  "ADD_PROMO_CODE",
+  "REMOVE_PROMO_CODE",
+  "CREATE_PAYMENT",
+  "COMPLETE_CHECKOUT",
+  "GET_CHECKOUT",
+}
+
 export interface ISaleorCheckoutAPI {
   loaded: boolean;
   checkout?: ICheckout | null;
@@ -74,21 +89,33 @@ export interface ISaleorCheckoutAPI {
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
   load: () => PromiseQueuedResponse;
-  setBillingAddress: (billingAddress: IAddress) => PromiseRunResponse;
+  setBillingAddress: (
+    billingAddress: IAddress
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
   setShippingAddress: (
     shippingAddress: IAddress,
     email: string
-  ) => PromiseRunResponse;
-  setShippingMethod: (shippingMethodId: string) => PromiseQueuedResponse;
-  setBillingAsShippingAddress: (
-    billingAsShipping: boolean
-  ) => PromiseQueuedResponse;
-  addPromoCode: (promoCode: string) => PromiseRunResponse;
-  removePromoCode: (promoCode: string) => PromiseRunResponse;
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
+  setShippingMethod: (
+    shippingMethodId: string
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
+  setBillingAsShippingAddress: () => PromiseRunResponse<
+    DataErrorCheckoutTypes,
+    FunctionErrorCheckoutTypes
+  >;
+  addPromoCode: (
+    promoCode: string
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
+  removePromoCode: (
+    promoCode: string
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
   createPayment: (
     gateway: string,
     token: string,
     creditCard?: ICreditCard
-  ) => PromiseRunResponse;
-  completeCheckout: () => PromiseRunResponse;
+  ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
+  completeCheckout: () => PromiseRunResponse<
+    DataErrorCheckoutTypes,
+    FunctionErrorCheckoutTypes
+  >;
 }

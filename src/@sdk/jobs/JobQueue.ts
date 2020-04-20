@@ -1,15 +1,9 @@
-import { IJobsModel, LocalRepository } from "../repository";
+import {
+  IJobsModel,
+  JobsModelInitialState,
+  LocalRepository,
+} from "../repository";
 import { IJobQueue, LocalStorageJobs } from "./types";
-
-export const JobsModelInitialState: IJobsModel = {
-  cart: {
-    setCartItem: false,
-  },
-  checkout: {
-    setPromoCode: false,
-    setShippingMethod: false,
-  },
-};
 
 export class JobQueue implements IJobQueue {
   protected repository: LocalRepository;

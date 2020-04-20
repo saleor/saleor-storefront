@@ -1,5 +1,6 @@
 import React from "react";
 
+import { ErrorMessage } from "@components/atoms";
 import { AddressSummary } from "@components/molecules";
 
 import * as S from "./styles";
@@ -14,6 +15,7 @@ const CheckoutReview: React.FC<IProps> = ({
   shippingMethodName,
   paymentMethodName,
   email,
+  errors,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -48,6 +50,7 @@ const CheckoutReview: React.FC<IProps> = ({
           <S.TextSummary>{paymentMethodName}</S.TextSummary>
         </S.Section>
       </S.Grid>
+      <ErrorMessage errors={errors} />
     </S.Wrapper>
   );
 };

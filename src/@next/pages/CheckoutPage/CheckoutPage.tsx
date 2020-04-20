@@ -84,7 +84,7 @@ const getButton = (text: string, isSubmit: boolean, onClick: () => void) => {
   }
 };
 
-const CheckoutPage: React.FC<IProps> = ({  }: IProps) => {
+const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
   const {
     loaded: cartLoaded,
@@ -185,7 +185,11 @@ const CheckoutPage: React.FC<IProps> = ({  }: IProps) => {
           />
         )}
         renderReview={props => (
-          <CheckoutReviewSubpage ref={checkoutReviewSubpageRef} {...props} />
+          <CheckoutReviewSubpage
+            ref={checkoutReviewSubpageRef}
+            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            {...props}
+          />
         )}
       />
     ) : (
