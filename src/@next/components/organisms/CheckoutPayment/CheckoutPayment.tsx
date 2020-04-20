@@ -107,6 +107,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                 address={checkoutBillingAddress || undefined}
                 handleSubmit={address => address && setBillingAddress(address)}
                 errors={billingErrors}
+                showEmail={false}
               />
             )}
           </>

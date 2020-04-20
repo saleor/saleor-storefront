@@ -36,6 +36,9 @@ export class SaleorCheckoutAPI extends ErrorListener
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
 
+  private checkoutLoaded: boolean;
+  private paymentLoaded: boolean;
+
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -56,6 +59,8 @@ export class SaleorCheckoutAPI extends ErrorListener
       this.checkoutNetworkManager,
       this.fireError
     );
+    this.checkoutLoaded = false;
+    this.paymentLoaded = false;
     this.loaded = false;
 
     this.saleorState.subscribeToChange(
@@ -91,6 +96,8 @@ export class SaleorCheckoutAPI extends ErrorListener
           discountName: promoCodeDiscount?.discountName,
           voucherCode: promoCodeDiscount?.voucherCode,
         };
+        this.checkoutLoaded = true;
+        this.loaded = this.checkoutLoaded && this.paymentLoaded;
       }
     );
     this.saleorState.subscribeToChange(
@@ -102,6 +109,8 @@ export class SaleorCheckoutAPI extends ErrorListener
           id,
           token,
         };
+        this.paymentLoaded = true;
+        this.loaded = this.paymentLoaded && this.checkoutLoaded;
       }
     );
 
@@ -113,7 +122,6 @@ export class SaleorCheckoutAPI extends ErrorListener
   load = async () => {
     await this.saleorState.provideCheckout(this.fireError, true);
     await this.saleorState.providePayment(true);
-    this.loaded = true;
     return {
       pending: false,
     };

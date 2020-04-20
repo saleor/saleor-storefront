@@ -69,7 +69,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     } else if (email) {
       shippingEmail = email;
     } else {
-      return;
+      shippingEmail = "";
     }
 
     const { dataError } = await setShippingAddress(

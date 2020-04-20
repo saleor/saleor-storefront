@@ -1,3 +1,5 @@
+import { IFormError } from "@types";
+
 export interface IProps {
   value: any;
   name?: string;
@@ -18,4 +20,5 @@ export interface IProps {
     IndicatorsContainer: (props?: any) => JSX.Element | null;
     Option: (props?: any) => JSX.Element | null;
   };
+  errors?: IFormError[];
 }

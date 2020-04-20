@@ -22,6 +22,9 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   shippingPrice: IShippingPrice;
   discount?: IDiscount;
 
+  private checkoutLoaded: boolean;
+  private summaryPricesLoaded: boolean;
+
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -43,6 +46,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       this.fireError
     );
     this.loaded = false;
+    this.checkoutLoaded = false;
+    this.summaryPricesLoaded = false;
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -60,6 +65,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
               return aId < bId ? -1 : aId > bId ? 1 : 0;
             }
           });
+        this.checkoutLoaded = true;
+        this.loaded = this.checkoutLoaded && this.summaryPricesLoaded;
       }
     );
     this.saleorState.subscribeToChange(
@@ -74,6 +81,8 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
         this.subtotalPrice = subtotalPrice;
         this.shippingPrice = shippingPrice;
         this.discount = discount;
+        this.summaryPricesLoaded = true;
+        this.loaded = this.summaryPricesLoaded && this.checkoutLoaded;
       }
     );
 
@@ -84,7 +93,6 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
 
   load = async () => {
     await this.saleorState.provideCheckout(this.fireError, true);
-    this.loaded = true;
     return {
       pending: false,
     };

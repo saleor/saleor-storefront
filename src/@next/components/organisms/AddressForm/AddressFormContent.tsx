@@ -16,6 +16,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   countriesOptions,
   defaultValue,
   setFieldValue,
+  showEmail = true,
 }) => {
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
@@ -130,12 +131,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
               values!.country &&
               countriesOptions &&
               countriesOptions!.find(
-                (option) => option.code === values!.country!.code
+                option => option.code === values!.country!.code
               )
             }
             onChange={(value: any, name: any) => setFieldValue(name, value)}
             optionLabelKey="country"
             optionValueKey="code"
+            errors={fieldErrors!.country}
           />
           <TextField
             data-cy="addressFormCountryArea"
@@ -147,17 +149,19 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
-        <S.RowWithTwoCells>
-          <TextField
-            data-cy="addressFormEmail"
-            name="email"
-            label="Email"
-            value={values!.email}
-            autoComplete="email"
-            errors={fieldErrors!.email}
-            {...basicInputProps()}
-          />
-        </S.RowWithTwoCells>
+        {showEmail && (
+          <S.RowWithTwoCells>
+            <TextField
+              data-cy="addressFormEmail"
+              name="email"
+              label="Email"
+              value={values!.email}
+              autoComplete="email"
+              errors={fieldErrors!.email}
+              {...basicInputProps()}
+            />
+          </S.RowWithTwoCells>
+        )}
       </S.Wrapper>
     </S.AddressForm>
   );
