@@ -2,7 +2,6 @@ import React, {
   forwardRef,
   RefForwardingComponent,
   useContext,
-  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -10,9 +9,6 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
-import { DataErrorCheckoutTypes } from "@sdk/api/Checkout/types";
-import { ErrorTypes } from "@sdk/helpers";
-import { ApolloErrorWithUserInput } from "@sdk/network/types";
 import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";

@@ -1,10 +1,5 @@
 import { LocalRepository } from "../LocalRepository";
-import {
-  ICheckoutAddress,
-  ICheckoutModel,
-  IPaymentCreditCard,
-  IPaymentModel,
-} from "../types";
+import { ICheckoutModel } from "../types";
 
 export interface ICheckoutRepositoryManager {
   getRepository: () => LocalRepository;

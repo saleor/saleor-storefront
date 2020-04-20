@@ -10,8 +10,6 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
-import { DataErrorCheckoutTypes } from "@sdk/api/Checkout/types";
-import { ErrorTypes } from "@sdk/helpers";
 import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
