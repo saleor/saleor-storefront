@@ -1,6 +1,12 @@
 import { DefaultTheme, media, styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin: 80px 0;
+
+  ${media.smallScreen`
+    margin: 40px 0;
+  `}
+`;
 
 export const ThankYouHeader = styled.p`
   font-size: ${props => props.theme.typography.ultraBigFontSize};

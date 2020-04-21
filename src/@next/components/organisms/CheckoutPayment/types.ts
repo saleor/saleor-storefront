@@ -39,7 +39,9 @@ export interface IProps {
    * Gateway form reference on which payment might be submitted.
    */
   gatewayFormRef?: React.RefObject<HTMLFormElement>;
-  gatewayFormId: string;
+  gatewayFormId?: string;
+  newAddressFormId?: string;
+  userId?: string;
   /**
    * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */

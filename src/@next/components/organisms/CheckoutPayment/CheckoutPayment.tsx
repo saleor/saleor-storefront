@@ -33,6 +33,8 @@ const CheckoutPayment: React.FC<IProps> = ({
   selectPaymentGateway,
   gatewayFormRef,
   gatewayFormId,
+  userId,
+  newAddressFormId,
   processPayment,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
@@ -88,8 +90,10 @@ const CheckoutPayment: React.FC<IProps> = ({
                 formRef={billingFormRef}
                 addresses={adresses}
                 selectedAddressId={selectedUserAddressId}
+                userId={userId}
                 errors={billingErrors}
                 onSelect={setBillingAddress}
+                newAddressFormId={newAddressFormId}
               />
             ) : (
               <AddressForm
@@ -99,7 +103,6 @@ const CheckoutPayment: React.FC<IProps> = ({
                 address={checkoutBillingAddress || undefined}
                 handleSubmit={address => address && setBillingAddress(address)}
                 errors={billingErrors}
-                showEmail={false}
               />
             )}
           </>

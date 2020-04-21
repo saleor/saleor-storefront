@@ -10,7 +10,7 @@ export interface IFormikProps {
     code: string;
     country: string;
   }>;
-  showEmail?: boolean;
+  includeEmail?: boolean;
 }
 
 export type AddressError = { field?: string; message: string };
@@ -28,7 +28,7 @@ export interface IProps {
   handleSubmit?: (formData: IAddressWithEmail | undefined) => void;
   handleChange?: (e: React.ChangeEvent) => void;
   handleBlur?: (e: React.FocusEvent) => void;
-  showEmail?: boolean;
+  includeEmail?: boolean;
 }
 
 export type PropsWithFormik = Omit<IProps, "handleSubmit"> & IFormikProps;

@@ -16,7 +16,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   countriesOptions,
   defaultValue,
   setFieldValue,
-  showEmail = true,
+  includeEmail = false,
 }) => {
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
@@ -149,7 +149,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
-        {showEmail && (
+        {includeEmail && (
           <S.RowWithTwoCells>
             <TextField
               data-cy="addressFormEmail"

@@ -77,6 +77,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   const checkoutBillingFormRef = useRef<HTMLFormElement>(null);
   const checkoutGatewayFormId = "gateway-form";
   const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
+  const checkoutNewAddressFormId = "new-address-form";
 
   useImperativeHandle(ref, () => ({
     submitPayment: () => {
@@ -178,6 +179,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       promoCodeErrors={promoCodeErrors}
       gatewayFormId={checkoutGatewayFormId}
       gatewayFormRef={checkoutGatewayFormRef}
+      userId={user?.id}
+      newAddressFormId={checkoutNewAddressFormId}
       processPayment={handleProcessPayment}
     />
   );

@@ -25,6 +25,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 > = ({ ...props }: RouteComponentProps<any>, ref) => {
   const checkoutAddressFormId = "address-form";
   const checkoutAddressFormRef = useRef<HTMLFormElement>(null);
+  const checkoutNewAddressFormId = "new-address-form";
 
   useImperativeHandle(ref, () => ({
     submitAddress: () => {
@@ -112,6 +113,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       userAddresses={userAdresses}
       selectedUserAddressId={selectedShippingAddressId}
       countries={countries}
+      userId={user?.id}
+      newAddressFormId={checkoutNewAddressFormId}
       setShippingAddress={handleSetShippingAddress}
     />
   );

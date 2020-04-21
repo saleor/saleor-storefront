@@ -12,8 +12,10 @@ export interface IProps {
   checkoutAddress?: IAddress | null;
   email?: string;
   countries?: Array<getShop_shop_countries | null>;
+  userId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
   formId?: string;
+  newAddressFormId?: string;
   errors?: IFormError[];
   setShippingAddress: (address: IAddress, email?: string, id?: string) => void;
 }

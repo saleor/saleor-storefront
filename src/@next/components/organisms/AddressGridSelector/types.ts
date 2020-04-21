@@ -8,8 +8,14 @@ declare type Address = {
 export interface IProps {
   addresses: Address[];
   selectedAddressId?: string;
+  countriesOptions?: Array<{
+    code: string;
+    country: string;
+  }>;
+  userId?: string;
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
+  newAddressFormId?: string;
   errors?: IFormError[];
   onSelect: (address: IAddressWithAddressType, id: string) => void;
 }
