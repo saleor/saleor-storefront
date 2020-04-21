@@ -30,15 +30,17 @@ export const DiscountForm: React.FC<IProps> = ({
               error={hasErrors}
               value={inputCode}
               label="Promo Code"
-              onChange={(evt) => setInputCode(evt.target.value)}
+              onChange={evt => setInputCode(evt.target.value)}
             />
           </S.InputWrapper>
-          <Button
-            data-cy="checkoutPaymentPromoCodeBtn"
-            onClick={handleApplyBtnClick}
-          >
-            Apply
-          </Button>
+          <S.ButtonWrapper>
+            <Button
+              data-cy="checkoutPaymentPromoCodeBtn"
+              onClick={handleApplyBtnClick}
+            >
+              Apply
+            </Button>
+          </S.ButtonWrapper>
         </S.InputWithButton>
         <ErrorMessage errors={errors} />
       </S.Input>

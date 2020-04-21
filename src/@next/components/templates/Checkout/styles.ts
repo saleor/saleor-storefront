@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   margin: 45px 0;
@@ -11,6 +11,14 @@ export const Wrapper = styled.div`
     "navigation cartSummary"
     "checkout cartSummary"
     "button cartSummary";
+
+  ${media.mediumScreen`
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "navigation"
+      "checkout"
+      "button";
+  `}
 `;
 
 export const Navigation = styled.div`
@@ -26,6 +34,11 @@ export const Checkout = styled.div`
 `;
 export const CartSummary = styled.div`
   grid-area: cartSummary;
+
+  ${media.mediumScreen`
+    position: fixed;
+    bottom: 0;
+  `}
 `;
 export const Button = styled.div`
   grid-area: button;

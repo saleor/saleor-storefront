@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import { Icon } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartSummaryRow } from "@components/molecules";
 
@@ -42,33 +43,45 @@ const CartSummary: React.FC<IProps> = ({
   promoCode,
   products,
 }: IProps) => {
+  const [mobileCartOpened, setMobileCartOpened] = useState(false);
+
   return (
-    <S.Wrapper>
-      <S.Title data-cy="cartSummaryTitle">Cart Summary</S.Title>
-      <S.HR />
-      <S.CartSummaryProductList>
-        {products?.map((product, index) => (
-          <div key={product.sku}>
-            <S.ProductLine>
-              <CartSummaryRow
-                index={index}
-                sku={product.sku}
-                quantity={product.quantity}
-                name={product.name}
-                price={product.price}
-                thumbnail={product.thumbnail}
-              />
-            </S.ProductLine>
-            <S.HR />
-          </div>
-        ))}
-      </S.CartSummaryProductList>
-      <Costs
-        subtotal={subtotal}
-        total={total}
-        shipping={shipping}
-        promoCode={promoCode}
-      />
+    <S.Wrapper mobileCartOpened={mobileCartOpened}>
+      <S.Title
+        data-cy="cartSummaryTitle"
+        onClick={() => setMobileCartOpened(!mobileCartOpened)}
+      >
+        Cart Summary
+        <S.ArrowUp mobileCartOpened={mobileCartOpened}>
+          <Icon name="arrow_up" size={24} />
+        </S.ArrowUp>
+      </S.Title>
+      <S.Content>
+        <S.HR />
+        <S.CartSummaryProductList>
+          {products?.map((product, index) => (
+            <div key={product.sku}>
+              <S.ProductLine>
+                <CartSummaryRow
+                  index={index}
+                  sku={product.sku}
+                  quantity={product.quantity}
+                  name={product.name}
+                  price={product.price}
+                  thumbnail={product.thumbnail}
+                />
+              </S.ProductLine>
+              <S.HR />
+            </div>
+          ))}
+        </S.CartSummaryProductList>
+        <Costs
+          subtotal={subtotal}
+          total={total}
+          shipping={shipping}
+          promoCode={promoCode}
+        />
+      </S.Content>
     </S.Wrapper>
   );
 };

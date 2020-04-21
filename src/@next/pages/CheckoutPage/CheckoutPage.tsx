@@ -55,10 +55,10 @@ const prepareCartSummary = (
 
   return (
     <CartSummary
-      shipping={shippingTaxedPrice || undefined}
-      subtotal={subtotalPrice || undefined}
-      promoCode={promoTaxedPrice || undefined}
-      total={totalPrice || undefined}
+      shipping={shippingTaxedPrice}
+      subtotal={subtotalPrice}
+      promoCode={promoTaxedPrice}
+      total={totalPrice}
       products={products}
     />
   );

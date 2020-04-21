@@ -7,10 +7,10 @@ export interface ICostLine {
 }
 
 export interface ICosts {
-  subtotal?: ITaxedMoney;
-  promoCode?: ITaxedMoney;
-  shipping?: ITaxedMoney;
-  total?: ITaxedMoney;
+  subtotal?: ITaxedMoney | null;
+  promoCode?: ITaxedMoney | null;
+  shipping?: ITaxedMoney | null;
+  total?: ITaxedMoney | null;
 }
 
 export interface IProduct {
