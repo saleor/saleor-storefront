@@ -72,7 +72,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                         {
                           <Money
                             data-cy={`checkoutShippingMethodOption${index}Price`}
-                            money={price || undefined}
+                            money={price}
                           />
                         }
                       </S.Price>

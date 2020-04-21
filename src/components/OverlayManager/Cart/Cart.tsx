@@ -58,7 +58,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                   <span>
                     <TaxedMoney
                       data-cy="cartPageSubtotalPrice"
-                      taxedMoney={subtotalPrice || undefined}
+                      taxedMoney={subtotalPrice}
                     />
                   </span>
                 </div>

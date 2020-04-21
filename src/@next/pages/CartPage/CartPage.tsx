@@ -38,16 +38,10 @@ const prepareCartFooter = (
 ) => (
   <CartFooter
     subtotalPrice={
-      <TaxedMoney
-        data-cy="cartPageSubtotalPrice"
-        taxedMoney={subtotalPrice || undefined}
-      />
+      <TaxedMoney data-cy="cartPageSubtotalPrice" taxedMoney={subtotalPrice} />
     }
     totalPrice={
-      <TaxedMoney
-        data-cy="cartPageTotalPrice"
-        taxedMoney={totalPrice || undefined}
-      />
+      <TaxedMoney data-cy="cartPageTotalPrice" taxedMoney={totalPrice} />
     }
   />
 );
@@ -73,13 +67,13 @@ const generateCart = (
       totalPrice={
         <TaxedMoney
           data-cy={`cartPageItem${index}TotalPrice`}
-          taxedMoney={totalPrice || undefined}
+          taxedMoney={totalPrice}
         />
       }
       unitPrice={
         <TaxedMoney
           data-cy={`cartPageItem${index}UnitPrice`}
-          taxedMoney={variant?.pricing?.price || undefined}
+          taxedMoney={variant?.pricing?.price}
         />
       }
       sku={variant.sku}
@@ -102,7 +96,7 @@ const generateCart = (
   ));
 };
 
-export const CartPage: React.FC<IProps> = ({  }: IProps) => {
+export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
   const {
