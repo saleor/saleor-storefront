@@ -7,16 +7,16 @@ export interface IPromoCodeDiscount {
 }
 
 export interface IProps {
-  billingErrors: IFormError[];
-  gatewayErrors: IFormError[];
+  billingErrors?: IFormError[];
+  gatewayErrors?: IFormError[];
   promoCodeErrors: IFormError[];
   userAddresses: UserDetails_me["addresses"] | null | undefined;
   selectedUserAddressId?: string;
   billingAsShippingAddress?: boolean;
   checkoutBillingAddress: IAddress | null | undefined;
   countries: Array<getShop_shop_countries | null>;
-  formRef: React.RefObject<HTMLFormElement>;
-  formId: string;
+  billingFormRef: React.RefObject<HTMLFormElement>;
+  billingFormId: string;
   paymentGateways: IPaymentGateway[];
   setBillingAddress: (address: IAddress, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
@@ -39,6 +39,7 @@ export interface IProps {
    * Gateway form reference on which payment might be submitted.
    */
   gatewayFormRef?: React.RefObject<HTMLFormElement>;
+  gatewayFormId: string;
   /**
    * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
    */

@@ -5,7 +5,6 @@ import React from "react";
 import { AddressSummary } from ".";
 
 describe("<AddressSummary />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<AddressSummary />);
 

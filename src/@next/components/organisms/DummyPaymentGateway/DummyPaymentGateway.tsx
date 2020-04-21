@@ -18,6 +18,7 @@ export const statuses = [
 const DummyPaymentGateway: React.FC<IProps> = ({
   processPayment,
   formRef,
+  formId,
   initialStatus,
 }: IProps) => {
   return (
@@ -36,7 +37,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
         isSubmitting,
         isValid,
       }) => (
-        <S.Form ref={formRef} onSubmit={handleSubmit}>
+        <S.Form id={formId} ref={formRef} onSubmit={handleSubmit}>
           {statuses.map(({ token, label }) => {
             return (
               <S.Status key={token}>

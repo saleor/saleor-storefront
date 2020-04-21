@@ -22,6 +22,10 @@ export interface IProps {
    */
   formRef?: React.RefObject<HTMLFormElement>;
   /**
+   * Form id on which payment might be submitted.
+   */
+  formId?: string;
+  /**
    * Payment gateway errors.
    */
   errors?: IFormError[];

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { filterNotEmptyArrayItems } from "@utils/misc";
+
 import { AddressForm, AddressGridSelector } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -34,11 +36,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         <AddressForm
           formId={formId}
           formRef={formRef}
-          countriesOptions={countries?.filter(function notEmpty<TValue>(
-            value: TValue | null | undefined
-          ): value is TValue {
-            return value !== null && value !== undefined;
-          })}
+          countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
           address={{
             ...checkoutAddress,
             email,

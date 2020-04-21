@@ -17,6 +17,7 @@ import { IProps } from "./types";
  */
 const StripeCreditCardForm: React.FC<IProps> = ({
   formRef,
+  formId,
   processPayment,
   errors = [],
 }: IProps) => {
@@ -26,7 +27,6 @@ const StripeCreditCardForm: React.FC<IProps> = ({
   const [stripeErrors, setStripeErrors] = useState<IFormError[]>([]);
 
   const handleFormSubmit = async () => {
-    // setLoadingState(true);
     const cartNumberElement = elements?.getElement(CardNumberElement);
 
     if (cartNumberElement) {
@@ -50,7 +50,6 @@ const StripeCreditCardForm: React.FC<IProps> = ({
         });
       }
     }
-    // setLoadingState(false);
   };
 
   const allErrors = [...errors, ...stripeErrors];
@@ -71,7 +70,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
         isSubmitting,
         isValid,
       }) => (
-        <S.Form ref={formRef} onSubmit={handleSubmit}>
+        <S.Form id={formId} ref={formRef} onSubmit={handleSubmit}>
           <S.Card>
             <S.CardNumberField>
               <StripeInputElement

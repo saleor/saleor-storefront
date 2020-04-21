@@ -11,6 +11,7 @@ import {
   IPaymentModel,
 } from "@sdk/repository";
 import { CountryCode } from "@sdk/types/globalTypes";
+import { filterNotEmptyArrayItems } from "@sdk/utils";
 
 import { ICheckoutNetworkManager } from "./types";
 
@@ -481,18 +482,10 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     availablePaymentGateways,
   }: Checkout): ICheckoutModel => ({
     availablePaymentGateways: availablePaymentGateways
-      ? availablePaymentGateways.filter(function notEmpty<TValue>(
-          value: TValue | null | undefined
-        ): value is TValue {
-          return value !== null && value !== undefined;
-        })
+      ? availablePaymentGateways.filter(filterNotEmptyArrayItems)
       : [],
     availableShippingMethods: availableShippingMethods
-      ? availableShippingMethods.filter(function notEmpty<TValue>(
-          value: TValue | null | undefined
-        ): value is TValue {
-          return value !== null && value !== undefined;
-        })
+      ? availableShippingMethods.filter(filterNotEmptyArrayItems)
       : [],
     billingAddress,
     email,

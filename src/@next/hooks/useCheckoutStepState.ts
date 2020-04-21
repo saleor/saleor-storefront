@@ -21,9 +21,6 @@ export const useCheckoutStepState = (
     } else if (!checkout?.id && items) {
       return CheckoutStep.Payment;
     }
-    // else if (!checkout.id) {
-    //   return null;
-    // }
 
     const isShippingStep =
       !!checkout?.shippingAddress || !isShippingRequiredForProducts;

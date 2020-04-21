@@ -5,7 +5,6 @@ import React from "react";
 import { StripePaymentGateway } from ".";
 
 describe("<StripePaymentGateway />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<StripePaymentGateway />);
 

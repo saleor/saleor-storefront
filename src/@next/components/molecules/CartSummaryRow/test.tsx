@@ -8,7 +8,6 @@ import { CartSummaryRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 
 describe("<CartSummaryRow />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<CartSummaryRow {...DEFAULT_PROPS} />);
 

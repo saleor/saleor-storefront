@@ -157,8 +157,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       {...props}
       billingErrors={billingErrors}
       gatewayErrors={gatewayErrors}
-      formId={checkoutBillingFormId}
-      formRef={checkoutBillingFormRef}
+      billingFormId={checkoutBillingFormId}
+      billingFormRef={checkoutBillingFormRef}
       userAddresses={user?.addresses}
       selectedUserAddressId={selectedBillingAddressId}
       checkoutBillingAddress={checkoutBillingAddress}
@@ -176,6 +176,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       addPromoCode={handleAddPromoCode}
       removeVoucherCode={handleRemovePromoCode}
       promoCodeErrors={promoCodeErrors}
+      gatewayFormId={checkoutGatewayFormId}
       gatewayFormRef={checkoutGatewayFormRef}
       processPayment={handleProcessPayment}
     />

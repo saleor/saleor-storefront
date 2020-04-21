@@ -24,7 +24,7 @@ export interface IProps {
   shippingMethods: IShippingMethod[];
   selectedShippingMethodId?: string;
   selectShippingMethod?: (shippingMethodId: string) => void;
-  errors: IFormError[];
+  errors?: IFormError[];
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
 }

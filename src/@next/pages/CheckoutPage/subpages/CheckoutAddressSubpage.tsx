@@ -13,6 +13,7 @@ import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress, IFormError } from "@types";
+import { filterNotEmptyArrayItems } from "@utils/misc";
 
 export interface ICheckoutAddressSubpageHandles {
   submitAddress: () => void;
@@ -89,22 +90,16 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   };
 
   const userAdresses =
-    user?.addresses
-      ?.filter(function notEmpty<TValue>(
-        value: TValue | null | undefined
-      ): value is TValue {
-        return value !== null && value !== undefined;
-      })
-      .map(address => ({
-        address: {
-          ...address,
-          isDefaultBillingAddress: address.isDefaultBillingAddress || false,
-          isDefaultShippingAddress: address.isDefaultShippingAddress || false,
-          phone: address.phone || undefined,
-        },
-        id: address?.id || "",
-        onSelect: () => null,
-      })) || [];
+    user?.addresses?.filter(filterNotEmptyArrayItems).map(address => ({
+      address: {
+        ...address,
+        isDefaultBillingAddress: address.isDefaultBillingAddress || false,
+        isDefaultShippingAddress: address.isDefaultShippingAddress || false,
+        phone: address.phone || undefined,
+      },
+      id: address?.id || "",
+      onSelect: () => null,
+    })) || [];
 
   return (
     <CheckoutAddress

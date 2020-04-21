@@ -5,7 +5,6 @@ import React from "react";
 import { BraintreePaymentGateway } from ".";
 
 describe("<BraintreePaymentGateway />", () => {
-  // Example test
   it("exists", () => {
     const wrapper = shallow(<BraintreePaymentGateway />);
 

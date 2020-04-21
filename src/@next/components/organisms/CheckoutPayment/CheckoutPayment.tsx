@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Checkbox } from "@components/atoms";
+import { filterNotEmptyArrayItems } from "@utils/misc";
 
 import { AddressForm, AddressGridSelector, DiscountForm } from "..";
 import { PaymentGatewaysList } from "../PaymentGatewaysList";
@@ -19,8 +20,8 @@ const CheckoutPayment: React.FC<IProps> = ({
   billingAsShippingAddress = false,
   checkoutBillingAddress,
   countries,
-  formRef,
-  formId,
+  billingFormRef,
+  billingFormId,
   paymentGateways,
   setBillingAddress,
   setBillingAsShippingAddress,
@@ -31,6 +32,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   selectedPaymentGatewayToken,
   selectPaymentGateway,
   gatewayFormRef,
+  gatewayFormId,
   processPayment,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
@@ -52,22 +54,16 @@ const CheckoutPayment: React.FC<IProps> = ({
   };
 
   const adresses =
-    userAddresses
-      ?.filter(function notEmpty<TValue>(
-        value: TValue | null | undefined
-      ): value is TValue {
-        return value !== null && value !== undefined;
-      })
-      .map(address => ({
-        address: {
-          ...address,
-          isDefaultBillingAddress: address.isDefaultBillingAddress || false,
-          isDefaultShippingAddress: address.isDefaultShippingAddress || false,
-          phone: address.phone || undefined,
-        },
-        id: address?.id || "",
-        onSelect: () => null,
-      })) || [];
+    userAddresses?.filter(filterNotEmptyArrayItems).map(address => ({
+      address: {
+        ...address,
+        isDefaultBillingAddress: address.isDefaultBillingAddress || false,
+        isDefaultShippingAddress: address.isDefaultShippingAddress || false,
+        phone: address.phone || undefined,
+      },
+      id: address?.id || "",
+      onSelect: () => null,
+    })) || [];
 
   return (
     <S.Wrapper>
@@ -88,8 +84,8 @@ const CheckoutPayment: React.FC<IProps> = ({
             <S.Divider />
             {userAddresses ? (
               <AddressGridSelector
-                formId={formId}
-                formRef={formRef}
+                formId={billingFormId}
+                formRef={billingFormRef}
                 addresses={adresses}
                 selectedAddressId={selectedUserAddressId}
                 errors={billingErrors}
@@ -97,13 +93,9 @@ const CheckoutPayment: React.FC<IProps> = ({
               />
             ) : (
               <AddressForm
-                formId={formId}
-                formRef={formRef}
-                countriesOptions={countries.filter(function notEmpty<TValue>(
-                  value: TValue | null | undefined
-                ): value is TValue {
-                  return value !== null && value !== undefined;
-                })}
+                formId={billingFormId}
+                formRef={billingFormRef}
+                countriesOptions={countries.filter(filterNotEmptyArrayItems)}
                 address={checkoutBillingAddress || undefined}
                 handleSubmit={address => address && setBillingAddress(address)}
                 errors={billingErrors}
@@ -142,6 +134,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           errors={gatewayErrors}
           paymentGateways={paymentGateways}
           formRef={gatewayFormRef}
+          formId={gatewayFormId}
           processPayment={processPayment}
           selectedPaymentGateway={selectedPaymentGateway}
           selectedPaymentGatewayToken={selectedPaymentGatewayToken}

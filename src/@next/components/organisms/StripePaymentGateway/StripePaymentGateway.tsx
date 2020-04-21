@@ -15,6 +15,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
   href,
   processPayment,
   formRef,
+  formId,
   initialStatus,
   errors,
 }: IProps) => {
@@ -30,6 +31,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
   return (
     <Elements stripe={stripePromise}>
       <StripeCreditCardForm
+        formId={formId}
         formRef={formRef}
         processPayment={processPayment}
         errors={errors}

@@ -20,6 +20,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   selectedPaymentGatewayToken,
   selectPaymentGateway,
   formRef,
+  formId,
   processPayment,
   errors,
 }: IProps) => {
@@ -77,6 +78,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <DummyPaymentGateway
                     config={config}
                     formRef={formRef}
+                    formId={formId}
                     processPayment={token =>
                       processPayment(PROVIDERS.DUMMY.label, token)
                     }
@@ -111,6 +113,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     config={config}
                     href={PROVIDERS.STRIPE.href}
                     formRef={formRef}
+                    formId={formId}
                     processPayment={(token, cardData) =>
                       processPayment(PROVIDERS.STRIPE.label, token, cardData)
                     }
