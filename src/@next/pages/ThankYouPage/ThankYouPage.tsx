@@ -20,7 +20,7 @@ const ThankYouPage: React.FC<IProps> = ({}: IProps) => {
     <ThankYou
       continueShopping={() => history.push(baseUrl)}
       orderNumber={orderNumber}
-      orderDetails={() => {}}
+      orderDetails={() => null}
     />
   );
 };

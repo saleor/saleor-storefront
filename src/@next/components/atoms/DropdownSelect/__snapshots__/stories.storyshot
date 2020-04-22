@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -21,6 +21,10 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
+}
+
+.c6 {
+  top: 100%;
 }
 
 .c1 {
@@ -115,10 +119,13 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
           </div>
         </div>
       </div>
+      <div
+        className="c6"
+      />
     </div>
   </div>
   <div
-    className="c6"
+    className="c7"
   />
 </div>
 `;

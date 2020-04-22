@@ -24,6 +24,6 @@ export interface IProps
   ) => any;
   error?: boolean;
   label?: string;
-  type: "CardNumber" | "CardExpiry" | "CardCvc" | "PostalCode";
+  type: "CardNumber" | "CardExpiry" | "CardCvc";
   options?: StripeCardNumberElementOptions;
 }

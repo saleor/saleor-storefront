@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c9 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
+.c8 {
   background-color: #13bebb;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -29,26 +29,26 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   width: 100%;
 }
 
-.c6:hover {
+.c8:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c6:active {
+.c8:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c6:disabled {
+.c8:disabled {
   background-color: #7d7d7d;
 }
 
-.c6:disabled,
-.c6:disabled:hover {
+.c8:disabled,
+.c8:disabled:hover {
   cursor: default;
 }
 
-.c4 {
+.c6 {
   background-color: #fff;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -63,26 +63,26 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   border-right: 1px solid rgb(33,18,94);
 }
 
-.c4:hover {
+.c6:hover {
   background-color: rgb(33,18,94);
   color: #fff;
 }
 
-.c4:active {
+.c6:active {
   background-color: #190c4e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c4:disabled {
+.c6:disabled {
   background-color: #7d7d7d;
 }
 
-.c4:disabled,
-.c4:disabled:hover {
+.c6:disabled,
+.c6:disabled:hover {
   cursor: default;
 }
 
-.c5 {
+.c7 {
   display: inline-block;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -91,6 +91,17 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
 }
 
 .c1 {
+  width: 1140px;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.c2 {
+  margin: 80px 0;
+}
+
+.c3 {
   font-size: 6rem;
   margin: 0;
   line-height: 110%;
@@ -99,21 +110,21 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   margin-bottom: 40px;
 }
 
-.c1 span {
+.c3 span {
   font-weight: 600;
 }
 
-.c2 {
+.c4 {
   font-size: 1.125rem;
   margin: 0;
   line-height: 170%;
 }
 
-.c2 span {
+.c4 span {
   font-weight: 600;
 }
 
-.c3 {
+.c5 {
   width: 50%;
   margin-top: 40px;
   display: grid;
@@ -121,9 +132,16 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   grid-column-gap: 30px;
 }
 
-.c3 button {
+.c5 button {
   padding-left: 0;
   padding-right: 0;
+}
+
+@media (max-width:540px) {
+  .c8 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
 }
 
 @media (max-width:540px) {
@@ -133,21 +151,26 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   }
 }
 
-@media (max-width:540px) {
-  .c4 {
-    padding: 0.9rem 1rem;
+@media (max-width:992px) {
+  .c1 {
     width: 100%;
   }
 }
 
 @media (max-width:540px) {
-  .c1 {
-    font-size: 4rem;
+  .c2 {
+    margin: 40px 0;
   }
 }
 
 @media (max-width:540px) {
   .c3 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width:540px) {
+  .c5 {
     grid-template-columns: 1fr;
     grid-row-gap: 20px;
     width: 100%;
@@ -159,64 +182,68 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
   className="c0"
 >
   <div
-    className=""
+    className="c1"
   >
-    <p
-      className="c1"
-    >
-      Thank you
-      <br />
-      <span>
-        for your order!
-      </span>
-    </p>
-    <p
-      className="c2"
-    >
-       
-      Your order number is 
-      <span>
-        #341414
-      </span>
-    </p>
-    <p
-      className="c2"
-    >
-      We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped.
-    </p>
     <div
-      className="c3"
+      className="c2"
     >
-      <button
+      <p
+        className="c3"
+      >
+        Thank you
+        <br />
+        <span>
+          for your order!
+        </span>
+      </p>
+      <p
         className="c4"
-        color="secondary"
-        onClick={[Function]}
-        size="md"
       >
-        <span
-          className="c5"
+         
+        Your order number is 
+        <span>
+          #341414
+        </span>
+      </p>
+      <p
+        className="c4"
+      >
+        We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped.
+      </p>
+      <div
+        className="c5"
+      >
+        <button
+          className="c6"
+          color="secondary"
+          onClick={[Function]}
           size="md"
         >
-          CONTINUE SHOPPING
-        </span>
-      </button>
-      <button
-        className="c6"
-        color="primary"
-        onClick={[Function]}
-        size="md"
-      >
-        <span
-          className="c5"
+          <span
+            className="c7"
+            size="md"
+          >
+            CONTINUE SHOPPING
+          </span>
+        </button>
+        <button
+          className="c8"
+          color="primary"
+          onClick={[Function]}
           size="md"
         >
-          ORDER DETAILS
-        </span>
-      </button>
+          <span
+            className="c7"
+            size="md"
+          >
+            ORDER DETAILS
+          </span>
+        </button>
+      </div>
     </div>
   </div>
   <div
-    className="c7"
+    className="c9"
   />
 </div>
 `;

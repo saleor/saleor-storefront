@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   margin: 20px;
 }
 
-.c15 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -21,6 +21,10 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
+}
+
+.c14 {
+  top: 100%;
 }
 
 .c9 {
@@ -137,7 +141,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   display: inline-block;
 }
 
-.c14 > div {
+.c15 > div {
   margin: 0.4rem;
 }
 
@@ -236,6 +240,9 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                     </div>
                   </div>
                 </div>
+                <div
+                  className="c14"
+                />
               </div>
             </div>
           </div>
@@ -243,11 +250,11 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       </div>
     </div>
     <div
-      className="c14"
+      className="c15"
     />
   </div>
   <div
-    className="c15"
+    className="c16"
   />
 </div>
 `;
@@ -258,7 +265,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   margin: 20px;
 }
 
-.c16 {
+.c17 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -273,6 +280,10 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
+}
+
+.c15 {
+  top: 100%;
 }
 
 .c10 {
@@ -396,7 +407,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   display: inline-block;
 }
 
-.c15 > div {
+.c16 > div {
   margin: 0.4rem;
 }
 
@@ -506,6 +517,9 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                     </div>
                   </div>
                 </div>
+                <div
+                  className="c15"
+                />
               </div>
             </div>
           </div>
@@ -513,11 +527,11 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       </div>
     </div>
     <div
-      className="c15"
+      className="c16"
     />
   </div>
   <div
-    className="c16"
+    className="c17"
   />
 </div>
 `;

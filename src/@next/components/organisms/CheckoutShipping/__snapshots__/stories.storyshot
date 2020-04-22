@@ -72,8 +72,9 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
     >
       SHIPPING METHOD
     </h3>
-    <div
+    <form
       className="c2"
+      onSubmit={[Function]}
     >
       <label
         checked={false}
@@ -86,7 +87,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
           <input
             checked={false}
             data-cy="checkoutShippingMethodOption0Input"
-            name="shipping-method"
+            name="shippingMethod"
             onChange={[Function]}
             type="radio"
             value="1"
@@ -124,7 +125,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
           <input
             checked={false}
             data-cy="checkoutShippingMethodOption1Input"
-            name="shipping-method"
+            name="shippingMethod"
             onChange={[Function]}
             type="radio"
             value="2"
@@ -151,7 +152,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
           </span>
         </div>
       </label>
-    </div>
+    </form>
   </section>
   <div
     className="c6"

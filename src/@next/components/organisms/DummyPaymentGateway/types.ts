@@ -1,10 +1,4 @@
-import { IPaymentGatewayConfig } from "@types";
-
 export interface IProps {
-  /**
-   * Payment gateway client configuration.
-   */
-  config: IPaymentGatewayConfig[];
   /**
    * Form reference on which payment might be submitted.
    */

@@ -6,7 +6,13 @@ import { StripePaymentGateway } from ".";
 
 describe("<StripePaymentGateway />", () => {
   it("exists", () => {
-    const wrapper = shallow(<StripePaymentGateway />);
+    const config = [
+      { field: "api_key", value: "pk_test_6pRNASCoBOKtIshFeQd4XMUh" },
+    ];
+    const processPayment = jest.fn();
+    const wrapper = shallow(
+      <StripePaymentGateway config={config} processPayment={processPayment} />
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });

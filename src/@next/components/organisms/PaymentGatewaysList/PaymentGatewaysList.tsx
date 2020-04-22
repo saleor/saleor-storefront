@@ -76,7 +76,6 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 </S.Tile>
                 {checked && (
                   <DummyPaymentGateway
-                    config={config}
                     formRef={formRef}
                     formId={formId}
                     processPayment={token =>
@@ -111,7 +110,6 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 {checked && (
                   <StripePaymentGateway
                     config={config}
-                    href={PROVIDERS.STRIPE.href}
                     formRef={formRef}
                     formId={formId}
                     processPayment={(token, cardData) =>

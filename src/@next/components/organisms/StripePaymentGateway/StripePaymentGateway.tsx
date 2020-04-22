@@ -4,7 +4,6 @@ import React, { useMemo } from "react";
 
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
 
-import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
@@ -12,7 +11,6 @@ import { IProps } from "./types";
  */
 const StripePaymentGateway: React.FC<IProps> = ({
   config,
-  href,
   processPayment,
   formRef,
   formId,

@@ -161,102 +161,107 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
 <div
   className="c0"
 >
-  <div
-    className="c1"
+  <form
+    className=""
+    onSubmit={[Function]}
   >
     <div
-      className="c2"
+      className="c1"
     >
       <div
-        className="c3"
-        data-cy="addressTileAddNew"
-        onClick={[Function]}
+        className="c2"
       >
         <div
-          className="c4"
+          className="c3"
+          data-cy="addressTileAddNew"
+          onClick={[Function]}
         >
           <div
-            className="c5"
+            className="c4"
           >
-            <p>
-              <svg
-                height={24}
-                viewBox="0 0 32 32"
-                width={24}
-              >
-                <path
-                  d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                  fill="#21125E"
-                />
-              </svg>
-            </p>
-            <p>
-              Add new 
-              address
-            </p>
+            <div
+              className="c5"
+            >
+              <p>
+                <svg
+                  height={24}
+                  viewBox="0 0 32 32"
+                  width={24}
+                >
+                  <path
+                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                    fill="#21125E"
+                  />
+                </svg>
+              </p>
+              <p>
+                Add new 
+                address
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="c2"
-    >
-      <label
-        checked={false}
-        className="c6"
+      <div
+        className="c2"
       >
-        <div>
-          <span
-            className="c7"
-          >
-            John Doe
-          </span>
-          Mirumee
-           
-          <br />
-          St Street
-          <br />
-          Second
-           
-          <br />
-          55-555,
-           
-          Wroclaw
-          <br />
-          dolnyslask
-          , 
-          Poland
-          <br />
-          Phone number: 
-          555-5555
-           
-          <br />
-        </div>
-        <div
-          className="c8"
+        <label
+          checked={false}
+          className="c6"
         >
-          <div
-            checked={false}
-            className="c9"
-          >
-            <input
-              checked={false}
-              data-cy="addressTileOption0"
-              name="address-tile-option"
-              onChange={[Function]}
-              type="radio"
-              value="12345"
-            />
+          <div>
+            <span
+              className="c7"
+            >
+              John Doe
+            </span>
+            Mirumee
              
-            <div>
-              <span />
-            </div>
-            Deliver to this address
+            <br />
+            St Street
+            <br />
+            Second
+             
+            <br />
+            55-555,
+             
+            Wroclaw
+            <br />
+            dolnyslask
+            , 
+            Poland
+            <br />
+            Phone number: 
+            555-5555
+             
+            <br />
           </div>
-        </div>
-      </label>
+          <div
+            className="c8"
+          >
+            <div
+              checked={false}
+              className="c9"
+            >
+              <input
+                checked={false}
+                data-cy="addressTileOption0"
+                name="addressTileOption"
+                onChange={[Function]}
+                type="radio"
+                value="12345"
+              />
+               
+              <div>
+                <span />
+              </div>
+              Deliver to this address
+            </div>
+          </div>
+        </label>
+      </div>
     </div>
-  </div>
+  </form>
   <div
     className="c10"
   />

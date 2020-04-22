@@ -38,7 +38,7 @@ const getBackgroundColor = (ref: any): string => {
 };
 
 /**
- * Stripe input element.
+ * Wrapper component for Stripe input elements.
  */
 const StripeInputElement: React.FC<IProps> = ({
   onBlur,

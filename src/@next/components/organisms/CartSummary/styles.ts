@@ -39,7 +39,7 @@ export const HR = styled.hr`
   padding: 0;
 `;
 
-export const Title = styled.p`
+export const Title = styled.div`
   padding: 30px 20px;
   display: flex;
   justify-content: space-between;

@@ -59,6 +59,20 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
   }
 }
 
+@media (max-width:720px) {
+  .c2 {
+    grid-template-columns: 1fr;
+    grid-template-areas: "navigation" "checkout" "button";
+  }
+}
+
+@media (max-width:720px) {
+  .c5 {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
 <div
   className="c0"
 >

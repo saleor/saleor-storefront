@@ -6,10 +6,6 @@ export interface IProps {
    */
   config: IPaymentGatewayConfig[];
   /**
-   * Payment gateway URL address.
-   */
-  href: string;
-  /**
    * Form reference on which payment might be submitted.
    */
   formRef?: React.RefObject<HTMLFormElement>;
