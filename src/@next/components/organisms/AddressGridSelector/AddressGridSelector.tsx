@@ -3,8 +3,7 @@ import React, { useState } from "react";
 
 import { AddNewTile, ErrorMessage, TileGrid } from "@components/atoms";
 import { AddressTileOption } from "@components/molecules";
-
-import { AddressFormModal } from "..";
+import { AddressFormModal } from "@components/organisms";
 
 import * as S from "./styles";
 import { IProps } from "./types";

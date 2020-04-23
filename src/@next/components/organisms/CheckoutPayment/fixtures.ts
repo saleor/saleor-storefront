@@ -1,4 +1,4 @@
-const formAddress = {
+const address = {
   city: "Wroclaw",
   companyName: "Mirumee",
   country: {
@@ -17,27 +17,6 @@ const formAddress = {
   streetAddress2: "Second",
 };
 
-const userAddress = {
-  address: {
-    city: "Wroclaw",
-    companyName: "Mirumee",
-    country: {
-      code: "PL",
-      country: "Poland",
-    },
-    countryArea: "dolnyslask",
-    firstName: "John",
-    isDefaultBillingAddress: false,
-    isDefaultShippingAddress: true,
-    lastName: "Doe",
-    phone: "555-5555",
-    postalCode: "55-555",
-    streetAddress1: "St Street",
-    streetAddress2: "Second",
-  },
-  id: "12345",
-};
-
 const countries = [
   { code: "PL", country: "Poland" },
   { code: "PT", country: "Portugal" },
@@ -51,16 +30,43 @@ const countries = [
   { code: "GB", country: "Great Britain" },
 ];
 
+export const paymentGateways = [
+  {
+    config: [
+      {
+        field: "store_customer_card",
+        value: "false",
+      },
+    ],
+    name: "Dummy",
+  },
+  {
+    config: [
+      {
+        field: "api_key",
+        value: "pk_test_6pRNASCoBOKtIshFeQd4XMUh",
+      },
+      {
+        field: "store_customer_card",
+        value: "false",
+      },
+    ],
+    name: "Stripe",
+  },
+];
+
 export const LOGGED_IN_USER_PROPS = {
   countries,
+  paymentGateways,
   userAddresses: [
     {
-      ...userAddress,
+      ...address,
     },
   ],
 };
 
 export const ANONYMOUS_USER_PROPS = {
-  checkoutAddress: formAddress,
+  checkoutBillingAddress: address,
   countries,
+  paymentGateways,
 };

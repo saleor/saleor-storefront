@@ -20,8 +20,6 @@ const address = {
 };
 
 export const DEFAULT_PROPS = {
-  // tslint:disable-next-line: no-empty
-  addNewAddress: () => {},
   addresses: [
     {
       ...address,

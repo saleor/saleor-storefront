@@ -144,7 +144,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -742,7 +741,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -1208,13 +1206,13 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   top: 100%;
 }
 
-.c13 {
+.c9 {
   position: absolute;
-  left: 1rem;
-  padding: 0 0rem;
+  left: 0.5rem;
+  padding: 0 0.5rem;
   background-color: transparent;
-  font-size: 1rem;
-  top: 50%;
+  font-size: 0.75rem;
+  top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1223,11 +1221,11 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   pointer-events: none;
 }
 
-.c9 {
+.c13 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
-  background-color: transparent;
+  background-color: #f1f5f5;
   font-size: 0.75rem;
   top: 0;
   -webkit-transform: translateY(-50%);
@@ -1346,7 +1344,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -1649,9 +1646,9 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                   className="css-tntsk8"
                 >
                   <div
-                    className="css-151xaom-placeholder"
+                    className="css-dvua67-singleValue"
                   >
-                    
+                    United States of America
                   </div>
                   <div
                     className="css-1g6gooi"

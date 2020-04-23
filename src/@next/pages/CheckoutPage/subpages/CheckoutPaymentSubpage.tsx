@@ -14,6 +14,7 @@ import { useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress, ICardData, IFormError } from "@types";
+import { filterNotEmptyArrayItems } from "@utils/misc";
 
 export interface ICheckoutPaymentSubpageHandles {
   submitPayment: () => void;
@@ -160,7 +161,21 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       gatewayErrors={gatewayErrors}
       billingFormId={checkoutBillingFormId}
       billingFormRef={checkoutBillingFormRef}
-      userAddresses={user?.addresses}
+      userAddresses={user?.addresses
+        ?.filter(filterNotEmptyArrayItems)
+        .map(
+          ({
+            isDefaultBillingAddress,
+            isDefaultShippingAddress,
+            phone,
+            ...address
+          }) => ({
+            ...address,
+            isDefaultBillingAddress: !!isDefaultBillingAddress,
+            isDefaultShippingAddress: !!isDefaultShippingAddress,
+            phone: phone ? phone : undefined,
+          })
+        )}
       selectedUserAddressId={selectedBillingAddressId}
       checkoutBillingAddress={checkoutBillingAddress}
       countries={countries}

@@ -37,7 +37,13 @@ describe("<AddressTileOption />", () => {
       <AddressTileOption {...DEFAULT_PROPS} onChange={onRadioChange} />
     );
 
-    wrapper.simulate("click");
+    const input = wrapper.find("input").at(0);
+    const addressId = DEFAULT_PROPS.id;
+
+    input.simulate("change", {
+      target: { value: addressId },
+    });
+
     expect(onRadioChange).toHaveBeenCalledTimes(1);
   });
 });

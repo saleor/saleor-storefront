@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { Checkbox } from "@components/atoms";
+import {
+  AddressForm,
+  AddressGridSelector,
+  DiscountForm,
+  PaymentGatewaysList,
+} from "@components/organisms";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
-import { AddressForm, AddressGridSelector, DiscountForm } from "..";
-import { PaymentGatewaysList } from "../PaymentGatewaysList";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -38,15 +42,15 @@ const CheckoutPayment: React.FC<IProps> = ({
   processPayment,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
-    !!promoCodeDiscount.voucherCode
+    !!promoCodeDiscount?.voucherCode
   );
 
   useEffect(() => {
-    const isVoucherCode = !!promoCodeDiscount.voucherCode;
+    const isVoucherCode = !!promoCodeDiscount?.voucherCode;
     if (isVoucherCode) {
-      setShowPromoCodeForm(!!promoCodeDiscount.voucherCode);
+      setShowPromoCodeForm(isVoucherCode);
     }
-  }, [promoCodeDiscount.voucherCode]);
+  }, [promoCodeDiscount?.voucherCode]);
 
   const handleChangeShowPromoCodeForm = () => {
     if (showPromoCodeForm && promoCodeDiscount?.voucherCode) {
@@ -90,6 +94,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                 formRef={billingFormRef}
                 addresses={adresses}
                 selectedAddressId={selectedUserAddressId}
+                countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
                 userId={userId}
                 errors={billingErrors}
                 onSelect={setBillingAddress}

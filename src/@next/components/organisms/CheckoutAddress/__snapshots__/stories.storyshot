@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   margin: 20px;
 }
 
-.c14 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,17 +17,47 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   box-sizing: border-box;
 }
 
-.c13 {
+.c14 {
   top: 100%;
 }
 
-.c9 {
+.c15 {
   position: absolute;
   left: 1rem;
   padding: 0 0rem;
   background-color: transparent;
   font-size: 1rem;
   top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c9 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c13 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #f1f5f5;
+  font-size: 0.75rem;
+  top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -180,6 +210,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="John"
                 />
                 <label
                   className="c9"
@@ -211,6 +242,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="Doe"
                 />
                 <label
                   className="c9"
@@ -246,6 +278,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="Mirumee"
                 />
                 <label
                   className="c9"
@@ -277,6 +310,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="555-5555"
                 />
                 <label
                   className="c9"
@@ -312,6 +346,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="St Street"
                 />
                 <label
                   className="c9"
@@ -347,6 +382,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="Second"
                 />
                 <label
                   className="c9"
@@ -382,6 +418,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="Wroclaw"
                 />
                 <label
                   className="c9"
@@ -413,6 +450,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="55-555"
                 />
                 <label
                   className="c9"
@@ -445,9 +483,9 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   className="css-tntsk8"
                 >
                   <div
-                    className="css-151xaom-placeholder"
+                    className="css-dvua67-singleValue"
                   >
-                    
+                    Poland
                   </div>
                   <div
                     className="css-1g6gooi"
@@ -525,13 +563,13 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 </div>
               </div>
               <label
-                className="c9"
+                className="c13"
               >
                 Country
               </label>
             </div>
             <div
-              className="c13"
+              className="c14"
             />
           </div>
           <div
@@ -553,6 +591,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onBlur={[Function]}
                   onChange={[Function]}
                   onFocus={[Function]}
+                  value="dolnyslask"
                 />
                 <label
                   className="c9"
@@ -590,7 +629,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onFocus={[Function]}
                 />
                 <label
-                  className="c9"
+                  className="c15"
                 >
                   Email
                 </label>
@@ -605,7 +644,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
     </form>
   </section>
   <div
-    className="c14"
+    className="c16"
   />
 </div>
 `;

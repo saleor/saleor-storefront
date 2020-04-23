@@ -1,8 +1,8 @@
 import React from "react";
 
+import { AddressForm, AddressGridSelector } from "@components/organisms";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
-import { AddressForm, AddressGridSelector } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -25,7 +25,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   return (
     <S.Section>
       <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
-      {userAddresses && userAddresses.length ? (
+      {userAddresses ? (
         <AddressGridSelector
           formId={formId}
           formRef={formRef}

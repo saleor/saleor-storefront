@@ -1,6 +1,11 @@
-import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { getShop_shop_countries } from "@temp/core/types/saleor";
-import { IAddress, ICardData, IFormError, IPaymentGateway } from "@types";
+import {
+  IAddress,
+  IAddressWithAddressType,
+  ICardData,
+  IFormError,
+  IPaymentGateway,
+} from "@types";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
@@ -9,18 +14,18 @@ export interface IPromoCodeDiscount {
 export interface IProps {
   billingErrors?: IFormError[];
   gatewayErrors?: IFormError[];
-  promoCodeErrors: IFormError[];
-  userAddresses: UserDetails_me["addresses"] | null | undefined;
+  promoCodeErrors?: IFormError[];
+  userAddresses?: IAddressWithAddressType[] | null;
   selectedUserAddressId?: string;
   billingAsShippingAddress?: boolean;
-  checkoutBillingAddress: IAddress | null | undefined;
+  checkoutBillingAddress?: IAddress | null | undefined;
   countries: Array<getShop_shop_countries | null>;
-  billingFormRef: React.RefObject<HTMLFormElement>;
-  billingFormId: string;
+  billingFormRef?: React.RefObject<HTMLFormElement>;
+  billingFormId?: string;
   paymentGateways: IPaymentGateway[];
   setBillingAddress: (address: IAddress, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
-  promoCodeDiscount: IPromoCodeDiscount;
+  promoCodeDiscount?: IPromoCodeDiscount;
   addPromoCode: (promoCode: string) => void;
   removeVoucherCode: (voucherCode: string) => void;
   /**
