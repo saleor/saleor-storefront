@@ -59,5 +59,13 @@ export class SaleorAPI {
       saleorState,
       loadOnStart.cart
     );
+
+    this.legacyAPIProxy.attachAuthListener(authenticated => {
+      if (!authenticated) {
+        repository.setCheckout({});
+        repository.setPayment({});
+        repository.setJobs(null);
+      }
+    });
   }
 }

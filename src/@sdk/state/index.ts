@@ -96,7 +96,6 @@ export class SaleorState extends NamedObservable<StateItems>
       );
 
       if (error) {
-        // this.repository.setCheckout({});
         onError(error, DataErrorCheckoutTypes.GET_CHECKOUT);
       } else if (data) {
         this.repository.setCheckout(data);

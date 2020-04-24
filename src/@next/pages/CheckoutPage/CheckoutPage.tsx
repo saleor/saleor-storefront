@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
@@ -11,6 +11,7 @@ import { useCart, useCheckout } from "@sdk/react";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 
+import * as appPaths from "../../../app/routes/paths";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -91,6 +92,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     items,
   } = useCart();
   const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+
+  if (cartLoaded && (!items || !items?.length)) {
+    return <Redirect to={appPaths.cartUrl} />;
+  }
+
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
