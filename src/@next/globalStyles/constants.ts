@@ -78,6 +78,7 @@ export const ultraBigFont = "6rem"; // 96px
 
 // spacing
 export const spacer = 1; // rem
+export const fieldSpacer = "1.875rem";
 
 // breakpoints
 export const xxxLargeScreen = 1920;

@@ -17,22 +17,22 @@ export const Section = styled.section``;
 export const Divider = styled.div`
   width: 100%;
   border-bottom: 1px solid
-    ${(props) => props.theme.colors.baseFontColorTransparent};
+    ${props => props.theme.colors.baseFontColorTransparent};
   margin: 0 0 20px 0;
 `;
 
 export const Title = styled.h3`
-  font-weight: ${(props) => props.theme.typography.boldFontWeight};
-  padding: 0 0 1.5rem 0;
+  font-weight: ${props => props.theme.typography.boldFontWeight};
+  padding: 0 0 1.6rem 0;
 `;
 
 export const SubTitle = styled.h4`
   padding: 0.6rem 0 1.4rem 0;
-  font-size: ${(props) => props.theme.typography.baseFontSize};
+  font-size: ${props => props.theme.typography.baseFontSize};
   color: rgba(50, 50, 50, 0.6);
 `;
 
 export const TextSummary = styled.p`
   line-height: 1.6;
-  font-size: ${(props) => props.theme.typography.h4FontSize};
+  font-size: ${props => props.theme.typography.h4FontSize};
 `;

@@ -134,6 +134,10 @@ export const defaultTheme = {
     /**
      * 30px in default theme
      */
+    fieldSpacer: C.fieldSpacer,
+    /**
+     * 30px in default theme
+     */
     gutter: "1.875rem",
     /**
      * 16px in default theme

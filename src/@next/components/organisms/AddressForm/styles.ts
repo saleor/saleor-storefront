@@ -15,7 +15,7 @@ export const RowWithTwoCells = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   & > div {
-    width: calc(50% - ${props => props.theme.spacing.spacer} / 2);
+    width: calc(50% - ${props => props.theme.spacing.fieldSpacer} / 2);
     ${media.smallScreen`
       width: 100%;
     `}

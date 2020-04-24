@@ -1,6 +1,8 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-bottom: ${props => props.theme.spacing.fieldSpacer};
+`;
 
 export const Indicator = styled.div<{ rotate: string }>`
   position: absolute;

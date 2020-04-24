@@ -8,7 +8,7 @@ type WrapperProps = {
 };
 
 export const Form = styled.form`
-  padding: 1rem 0;
+  padding: 2rem 0;
 `;
 
 export const Card = styled.div<WrapperProps>`
@@ -17,7 +17,7 @@ export const Card = styled.div<WrapperProps>`
     "cardNumber cardNumber cardNumber cardNumber cardNumber "
     "cardExpiry cardExpiry cardExpiry cardCvc cardCvc";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: ${props => props.theme.spacing.fieldSpacer};
 
   .StripeElement {
     padding: 0.8rem 1rem;
