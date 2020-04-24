@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Icon, IconButton, Input } from "@components/atoms";
-import { CachedImage } from "@components/molecules";
+import { Icon, IconButton } from "@components/atoms";
+import { CachedImage, TextField } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -41,6 +41,7 @@ export const CartRow: React.FC<IProps> = ({
   onRemove,
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<number | string>(quantity);
+  const [isTooMuch, setIsTooMuch] = useState(false);
 
   const handleBlurQuantityInput = () => {
     const newQuantity =
@@ -55,6 +56,8 @@ export const CartRow: React.FC<IProps> = ({
       setTempQuantity(maxQuantity);
       onQuantityChange(maxQuantity);
     }
+
+    setIsTooMuch(false);
   };
 
   useEffect(() => {
@@ -76,7 +79,21 @@ export const CartRow: React.FC<IProps> = ({
     } else {
       setTempQuantity(evt.target.value);
     }
+
+    if (newQuantity > maxQuantity) {
+      setIsTooMuch(true);
+    } else {
+      setIsTooMuch(false);
+    }
   };
+
+  const quantityErrors = isTooMuch
+    ? [
+        {
+          message: `Maximum quantity is ${maxQuantity}`,
+        },
+      ]
+    : undefined;
 
   return (
     <S.Wrapper>
@@ -105,7 +122,7 @@ export const CartRow: React.FC<IProps> = ({
         </S.Attributes>
       </S.Description>
       <S.Quantity>
-        <Input
+        <TextField
           data-cy={`cartPageItem${index}QuantityInput`}
           name="quantity"
           label="Quantity"
@@ -113,6 +130,7 @@ export const CartRow: React.FC<IProps> = ({
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
           contentRight={QuantityButtons(add, substract, index)}
+          errors={quantityErrors}
         />
       </S.Quantity>
       <S.Trash>

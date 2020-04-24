@@ -15,6 +15,7 @@ import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 import { ICheckoutModelLine } from "@sdk/repository";
 import { TaxedMoney } from "../../@next/components/containers";
 import AddToCart from "./AddToCart";
+import { QuantityTextField } from "./QuantityTextField";
 
 interface ProductDescriptionProps {
   productId: string;
@@ -118,9 +119,25 @@ class ProductDescription extends React.Component<
     this.props.addToCart(this.state.variant, this.state.quantity);
   };
 
+  getAvailableQuantity = () => {
+    const { items } = this.props;
+    const { variant, variantStock } = this.state;
+
+    const cartItem = items?.find(item => item.variant.id === variant);
+    const quantityInCart = cartItem?.quantity || 0;
+
+    return variantStock - quantityInCart;
+  };
+
+  handleQuantityChange = (quantity: number) => {
+    this.setState({
+      quantity,
+    });
+  };
+
   render() {
     const { name } = this.props;
-    const { quantity } = this.state;
+    const { variant, quantity } = this.state;
 
     return (
       <div className="product-description">
@@ -134,14 +151,11 @@ class ProductDescription extends React.Component<
           />
         </div>
         <div className="product-description__quantity-input">
-          <TextField
-            type="number"
-            label="Quantity"
-            min="1"
-            value={quantity || ""}
-            onChange={e =>
-              this.setState({ quantity: Math.max(1, Number(e.target.value)) })
-            }
+          <QuantityTextField
+            quantity={quantity}
+            maxQuantity={this.getAvailableQuantity()}
+            onQuantityChange={this.handleQuantityChange}
+            hideErrors={!variant}
           />
         </div>
         <AddToCart
