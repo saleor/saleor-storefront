@@ -68,14 +68,10 @@ const getCheckoutProgress = (activeStepIndex: number) => (
   <CheckoutProgressBar steps={CHECKOUT_STEPS} activeStep={activeStepIndex} />
 );
 
-const getButton = (text: string, isSubmit: boolean, onClick: () => void) => {
+const getButton = (text: string, onClick: () => void) => {
   if (text) {
     return (
-      <Button
-        data-cy="checkoutPageBtnNextStep"
-        onClick={onClick}
-        type={isSubmit ? "submit" : "button"}
-      >
+      <Button data-cy="checkoutPageBtnNextStep" onClick={onClick} type="submit">
         {text}
       </Button>
     );
@@ -151,10 +147,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
     }
   };
-  const shippingTaxedPrice = shippingPrice && {
-    gross: shippingPrice,
-    net: shippingPrice,
-  };
+  const shippingTaxedPrice =
+    checkout?.shippingMethod?.id && shippingPrice
+      ? {
+          gross: shippingPrice,
+          net: shippingPrice,
+        }
+      : null;
   const promoTaxedPrice = discount && {
     gross: discount,
     net: discount,
@@ -209,7 +208,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       checkout={checkoutView}
       button={getButton(
         activeStep.nextActionName.toUpperCase(),
-        activeStepIndex === 0 || activeStepIndex === 2,
         handleNextStepClick
       )}
     />

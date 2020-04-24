@@ -85,7 +85,6 @@ export interface ISaleorCheckoutAPI {
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
-  selectedShippingMethodId?: string;
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
   load: () => PromiseQueuedResponse;

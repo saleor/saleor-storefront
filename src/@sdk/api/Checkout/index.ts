@@ -32,7 +32,6 @@ export class SaleorCheckoutAPI extends ErrorListener
   selectedShippingAddressId?: string;
   selectedBillingAddressId?: string;
   availableShippingMethods?: IAvailableShippingMethods;
-  selectedShippingMethodId?: string;
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
 

@@ -83,7 +83,7 @@ export const CHECKOUT_STEPS = [
   {
     link: "/checkout/review",
     name: "Review",
-    nextActionName: "Finalize order",
+    nextActionName: "Place order",
     nextStepLink: "/order-finalized",
     step: CheckoutStep.Review,
   },
