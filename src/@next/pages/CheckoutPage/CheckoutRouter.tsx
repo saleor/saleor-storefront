@@ -7,11 +7,15 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import { useCheckoutStepFromPath } from "@hooks";
-import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
+import { useCheckoutStepFromPath, useCheckoutStepState } from "@hooks";
+import { IItems } from "@sdk/api/Cart/types";
+import { ICheckout, IPayment } from "@sdk/api/Checkout/types";
+import { CHECKOUT_STEPS } from "@temp/core/config";
 
 interface IRouterProps {
-  step: CheckoutStep;
+  items?: IItems;
+  checkout?: ICheckout;
+  payment?: IPayment;
   renderAddress: (props: RouteComponentProps<any>) => React.ReactNode;
   renderShipping: (props: RouteComponentProps<any>) => React.ReactNode;
   renderPayment: (props: RouteComponentProps<any>) => React.ReactNode;
@@ -19,13 +23,16 @@ interface IRouterProps {
 }
 
 const CheckoutRouter: React.FC<IRouterProps> = ({
-  step,
+  items,
+  checkout,
+  payment,
   renderAddress,
   renderShipping,
   renderPayment,
   renderReview,
 }: IRouterProps) => {
   const { pathname } = useLocation();
+  const step = useCheckoutStepState(items, checkout, payment);
   const stepFromPath = useCheckoutStepFromPath(pathname);
 
   const getStepLink = () =>

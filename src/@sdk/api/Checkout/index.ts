@@ -40,6 +40,9 @@ export class SaleorCheckoutAPI extends ErrorListener
   private checkoutNetworkManager: CheckoutNetworkManager;
   private checkoutJobQueue: CheckoutJobQueue;
 
+  private checkoutLoaded: boolean;
+  private paymentLoaded: boolean;
+
   constructor(
     checkoutRepositoryManager: CheckoutRepositoryManager,
     checkoutNetworkManager: CheckoutNetworkManager,
@@ -56,6 +59,8 @@ export class SaleorCheckoutAPI extends ErrorListener
       this.fireError
     );
     this.loaded = false;
+    this.checkoutLoaded = false;
+    this.paymentLoaded = false;
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -90,7 +95,8 @@ export class SaleorCheckoutAPI extends ErrorListener
           discountName: promoCodeDiscount?.discountName,
           voucherCode: promoCodeDiscount?.voucherCode,
         };
-        this.loaded = true;
+        this.checkoutLoaded = true;
+        this.loaded = this.checkoutLoaded && this.paymentLoaded;
       }
     );
     this.saleorState.subscribeToChange(
@@ -102,6 +108,8 @@ export class SaleorCheckoutAPI extends ErrorListener
           id,
           token,
         };
+        this.paymentLoaded = true;
+        this.loaded = this.paymentLoaded && this.checkoutLoaded;
       }
     );
 
