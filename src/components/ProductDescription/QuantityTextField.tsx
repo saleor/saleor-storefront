@@ -50,13 +50,14 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     }
   };
 
-  const quantityErrors = isTooMuch
-    ? [
-        {
-          message: `Maximum quantity is ${maxQuantity}`,
-        },
-      ]
-    : undefined;
+  const quantityErrors =
+    !hideErrors && isTooMuch
+      ? [
+          {
+            message: `Maximum quantity is ${maxQuantity}`,
+          },
+        ]
+      : undefined;
 
   return (
     <TextField
