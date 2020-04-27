@@ -49,7 +49,10 @@ export const InputSelect: React.FC<IProps> = ({
       const customTheme = React.useContext(ThemeContext);
       return (
         <>
-          <components.Control {...{ customTheme, ...props }} />
+          <components.Control
+            data-cy="input-select"
+            {...{ customTheme, ...props }}
+          />
           {
             <InputLabel
               labelBackground={customTheme.colors.light}

@@ -78,8 +78,8 @@ describe("Category view - filtering and sorting", () => {
       .first()
       .invoke("text")
       .then(firstTileText => {
+        cy.get("[data-cy=dropdown-select-input]").click();
         cy.get("[data-cy=dropdown-select]")
-          .click()
           .contains("Name Decreasing")
           .click()
           .wait(10000);
