@@ -81,7 +81,6 @@ exports[`Storyshots @components/molecules/AddressTileOption default 1`] = `
     <input
       checked={false}
       className="c3"
-      label="Address Option"
       name="address"
       type="radio"
       value="12345"

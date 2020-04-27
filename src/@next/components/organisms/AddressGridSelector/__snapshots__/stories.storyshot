@@ -222,7 +222,6 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
             checked={false}
             className="c8"
             data-cy="addressTileOption0"
-            label="Deliver to this address"
             name="addressTileOption"
             onChange={[Function]}
             type="radio"
