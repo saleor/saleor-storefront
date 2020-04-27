@@ -8,9 +8,5 @@ import { DEFAULT_PROPS } from "./fixtures";
 storiesOf("@components/molecules/AddressTileOption", module)
   .addParameters({ component: AddressTileOption })
   .add("default", () => (
-    <AddressTileOption
-      {...DEFAULT_PROPS}
-      label="Address Option"
-      checked={boolean("Checked", false)}
-    />
+    <AddressTileOption {...DEFAULT_PROPS} checked={boolean("Checked", false)} />
   ));

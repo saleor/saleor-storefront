@@ -76,7 +76,6 @@ const AddressGridSelector: React.FC<IProps> = ({
                         key={id}
                         id={id}
                         inputName="addressTileOption"
-                        label="Deliver to this address"
                         address={address}
                         onChange={() => setFieldValue("addressTileOption", id)}
                         checked={

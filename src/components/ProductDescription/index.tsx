@@ -3,7 +3,6 @@ import "./scss/index.scss";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
-import { TextField } from "@components/molecules";
 import { ProductVariantPicker } from "@components/organisms";
 import {
   ProductDetails_product_pricing,

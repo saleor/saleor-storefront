@@ -1,6 +1,5 @@
 import { DataErrorCheckoutTypes, ICreditCard } from "@sdk/api/Checkout/types";
 import { CheckoutNetworkManager } from "@sdk/network";
-import { ApolloErrorWithUserInput } from "@sdk/react/types";
 import { ICheckoutAddress, LocalRepository } from "@sdk/repository";
 
 import { JobQueue } from "../JobQueue";
@@ -8,22 +7,13 @@ import { PromiseCheckoutJobRunResponse } from "../types";
 
 export class CheckoutJobQueue extends JobQueue {
   private checkoutNetworkManager: CheckoutNetworkManager;
-  private onErrorListener?: (
-    error: ApolloErrorWithUserInput | any,
-    type: DataErrorCheckoutTypes
-  ) => any;
 
   constructor(
     repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager,
-    onErrorListener: (
-      error: ApolloErrorWithUserInput | any,
-      type: DataErrorCheckoutTypes
-    ) => any
+    checkoutNetworkManager: CheckoutNetworkManager
   ) {
     super(repository);
     this.checkoutNetworkManager = checkoutNetworkManager;
-    this.onErrorListener = onErrorListener;
 
     const queuePossibilities = new Map();
     this.enqueueAllSavedInRepository(queuePossibilities, "checkout");

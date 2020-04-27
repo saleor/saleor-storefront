@@ -55,8 +55,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     this.checkoutNetworkManager = checkoutNetworkManager;
     this.checkoutJobQueue = new CheckoutJobQueue(
       this.checkoutRepositoryManager.getRepository(),
-      this.checkoutNetworkManager,
-      this.fireError
+      this.checkoutNetworkManager
     );
     this.loaded = false;
     this.checkoutLoaded = false;
