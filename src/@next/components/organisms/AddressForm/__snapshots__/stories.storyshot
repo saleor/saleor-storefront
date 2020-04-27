@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   margin: 20px;
 }
 
-.c14 {
+.c15 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,11 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   box-sizing: border-box;
 }
 
-.c13 {
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c14 {
   top: 100%;
 }
 
@@ -71,7 +75,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   background-color: transparent;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -82,7 +86,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -121,7 +125,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c11 {
@@ -423,7 +427,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c12"
           >
             <div
               className="css-1pcexqc-container"
@@ -502,7 +506,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c12"
+                  className="c13"
                   rotate="false"
                 >
                   <svg
@@ -524,7 +528,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
               </label>
             </div>
             <div
-              className="c13"
+              className="c14"
             />
           </div>
           <div
@@ -563,7 +567,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
     </form>
   </div>
   <div
-    className="c14"
+    className="c15"
   />
 </div>
 `;
@@ -574,7 +578,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 20px;
 }
 
-.c17 {
+.c18 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -594,7 +598,11 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 0;
 }
 
-.c16 {
+.c15 {
+  margin-bottom: 1.875rem;
+}
+
+.c17 {
   top: 100%;
 }
 
@@ -668,7 +676,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   background-color: transparent;
 }
 
-.c15 {
+.c16 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -679,7 +687,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -718,7 +726,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c14 {
@@ -1040,7 +1048,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c15"
           >
             <div
               className="css-1pcexqc-container"
@@ -1119,7 +1127,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c15"
+                  className="c16"
                   rotate="false"
                 >
                   <svg
@@ -1141,7 +1149,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
               </label>
             </div>
             <div
-              className="c16"
+              className="c17"
             />
           </div>
           <div
@@ -1180,7 +1188,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
     </form>
   </div>
   <div
-    className="c17"
+    className="c18"
   />
 </div>
 `;
@@ -1191,7 +1199,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   margin: 20px;
 }
 
-.c15 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1202,7 +1210,11 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   box-sizing: border-box;
 }
 
-.c14 {
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c15 {
   top: 100%;
 }
 
@@ -1221,7 +1233,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   pointer-events: none;
 }
 
-.c13 {
+.c14 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -1271,7 +1283,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   background-color: transparent;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -1282,7 +1294,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -1321,7 +1333,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c11 {
@@ -1631,7 +1643,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c12"
           >
             <div
               className="css-1pcexqc-container"
@@ -1710,7 +1722,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c12"
+                  className="c13"
                   rotate="false"
                 >
                   <svg
@@ -1726,13 +1738,13 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 </div>
               </div>
               <label
-                className="c13"
+                className="c14"
               >
                 Country
               </label>
             </div>
             <div
-              className="c14"
+              className="c15"
             />
           </div>
           <div
@@ -1772,7 +1784,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
     </form>
   </div>
   <div
-    className="c15"
+    className="c16"
   />
 </div>
 `;

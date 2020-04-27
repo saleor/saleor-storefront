@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   margin: 20px;
 }
 
-.c21 {
+.c23 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   box-sizing: border-box;
 }
 
-.c17 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -42,24 +42,24 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   transition: 0.3s;
 }
 
-.c17 svg {
+.c19 svg {
   display: block;
 }
 
-.c17 svg path {
+.c19 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c17:hover {
+.c19:hover {
   background-color: rgb(33,18,94);
 }
 
-.c17:hover svg path {
+.c19:hover svg path {
   fill: #fff;
 }
 
-.c13 {
+.c14 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -74,7 +74,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   pointer-events: none;
 }
 
-.c10 {
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -86,7 +86,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   transition: all 0.3s ease;
 }
 
-.c10:hover {
+.c11:hover {
   color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
@@ -94,7 +94,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   outline-color: rgb(33,18,94);
 }
 
-.c14 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -105,12 +105,12 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   align-items: center;
 }
 
-.c11 {
+.c12 {
   position: relative;
   width: 100%;
 }
 
-.c12 {
+.c13 {
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -118,6 +118,16 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c10 {
+  margin-bottom: 1.875rem;
+  position: relative;
+}
+
+.c17 {
+  position: absolute;
+  top: 100%;
 }
 
 .c1 {
@@ -137,7 +147,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   padding: 0.8rem 0.5rem;
 }
 
-.c15 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -151,14 +161,14 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   width: 50px;
 }
 
-.c15 > div {
+.c16 > div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c15 svg {
+.c16 svg {
   cursor: pointer;
   justify-self: center;
 }
@@ -239,11 +249,11 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   color: rgba(125,125,125,0.6);
 }
 
-.c19 {
+.c21 {
   display: none;
 }
 
-.c18 {
+.c20 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -257,11 +267,11 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   grid-area: totalPrice;
 }
 
-.c18 p {
+.c20 p {
   margin: 0;
 }
 
-.c16 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -277,7 +287,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   grid-area: trash;
 }
 
-.c20 {
+.c22 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -291,7 +301,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   grid-area: unitPrice;
 }
 
-.c20 p {
+.c22 p {
   margin: 0;
 }
 
@@ -326,13 +336,13 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
 }
 
 @media (max-width:720px) {
-  .c19 {
+  .c21 {
     display: block;
   }
 }
 
 @media (max-width:720px) {
-  .c18 {
+  .c20 {
     font-weight: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -341,13 +351,13 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
 }
 
 @media (max-width:720px) {
-  .c18 p {
+  .c20 p {
     text-align: right;
   }
 }
 
 @media (max-width:720px) {
-  .c20 {
+  .c22 {
     font-weight: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -471,72 +481,79 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     >
       <div
         className="c10"
-        disabled={false}
       >
         <div
           className="c11"
-        >
-          <input
-            className="c12"
-            data-cy="cartPageItemundefinedQuantityInput"
-            disabled={false}
-            name="quantity"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            value={3}
-          />
-          <label
-            className="c13"
-          >
-            Quantity
-          </label>
-        </div>
-        <span
-          className="c14"
+          disabled={false}
         >
           <div
+            className="c12"
+          >
+            <input
+              className="c13"
+              data-cy="cartPageItemundefinedQuantityInput"
+              disabled={false}
+              name="quantity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              value={3}
+            />
+            <label
+              className="c14"
+            >
+              Quantity
+            </label>
+          </div>
+          <span
             className="c15"
           >
             <div
-              data-cy="cartPageItemundefinedQuantityBtnSubtract"
-              onClick={[Function]}
+              className="c16"
             >
-              <svg
-                height={16}
-                viewBox="0 0 32 32"
-                width={16}
+              <div
+                data-cy="cartPageItemundefinedQuantityBtnSubtract"
+                onClick={[Function]}
               >
-                <path
-                  d="M0 13.818h32v4.364h-32v-4.364z"
-                  fill="#323232"
-                />
-              </svg>
-            </div>
-            <div
-              data-cy="cartPageItemundefinedQuantityBtnAdd"
-              onClick={[Function]}
-            >
-              <svg
-                height={16}
-                viewBox="0 0 32 32"
-                width={16}
+                <svg
+                  height={16}
+                  viewBox="0 0 32 32"
+                  width={16}
+                >
+                  <path
+                    d="M0 13.818h32v4.364h-32v-4.364z"
+                    fill="#323232"
+                  />
+                </svg>
+              </div>
+              <div
+                data-cy="cartPageItemundefinedQuantityBtnAdd"
+                onClick={[Function]}
               >
-                <path
-                  d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                  fill="#21125E"
-                />
-              </svg>
+                <svg
+                  height={16}
+                  viewBox="0 0 32 32"
+                  width={16}
+                >
+                  <path
+                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                    fill="#21125E"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
-        </span>
+          </span>
+        </div>
+        <div
+          className="c17"
+        />
       </div>
     </div>
     <div
-      className="c16"
+      className="c18"
     >
       <div
-        className="c17"
+        className="c19"
         data-cy="cartPageItemundefinedBtnRemove"
         onClick={[Function]}
       >
@@ -553,10 +570,10 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
       </div>
     </div>
     <div
-      className="c18"
+      className="c20"
     >
       <p
-        className="c19"
+        className="c21"
       >
         <span
           className="c6"
@@ -569,10 +586,10 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
       </p>
     </div>
     <div
-      className="c20"
+      className="c22"
     >
       <p
-        className="c19"
+        className="c21"
       >
         <span
           className="c6"
@@ -586,7 +603,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     </div>
   </div>
   <div
-    className="c21"
+    className="c23"
   />
 </div>
 `;

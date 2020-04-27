@@ -416,12 +416,11 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           className="c15"
         >
           <span>
-            Promo Code
+            Shipping
           </span>
           <span
-            data-cy="cartSummaryCostPromoCode"
+            data-cy="cartSummaryCostShipping"
           >
-            - 
             <span>
               
             </span>
@@ -431,11 +430,12 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           className="c15"
         >
           <span>
-            Shipping
+            Promo Code
           </span>
           <span
-            data-cy="cartSummaryCostShipping"
+            data-cy="cartSummaryCostPromoCode"
           >
+            - 
             <span>
               
             </span>

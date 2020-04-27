@@ -11,7 +11,6 @@ import { IProps } from "./types";
 const AddressTileOption: React.FC<IProps> = ({
   id,
   inputName,
-  label,
   address,
   onChange,
   checked,

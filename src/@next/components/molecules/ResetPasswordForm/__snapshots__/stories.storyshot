@@ -107,7 +107,7 @@ exports[`Storyshots @components/molecules/ResetPasswordForm default 1`] = `
 }
 
 .c3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 

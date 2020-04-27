@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   margin: 20px;
 }
 
-.c16 {
+.c17 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,11 +17,15 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   box-sizing: border-box;
 }
 
-.c14 {
-  top: 100%;
+.c12 {
+  margin-bottom: 1.875rem;
 }
 
 .c15 {
+  top: 100%;
+}
+
+.c16 {
   position: absolute;
   left: 1rem;
   padding: 0 0rem;
@@ -51,7 +55,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   pointer-events: none;
 }
 
-.c13 {
+.c14 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -101,7 +105,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   background-color: transparent;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -112,7 +116,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -151,7 +155,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c11 {
@@ -160,7 +164,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
 
 .c1 {
   font-weight: 600;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 1.6rem 0;
 }
 
 @media (max-width:540px) {
@@ -468,7 +472,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c12"
           >
             <div
               className="css-1pcexqc-container"
@@ -547,7 +551,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c12"
+                  className="c13"
                   rotate="false"
                 >
                   <svg
@@ -563,13 +567,13 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 </div>
               </div>
               <label
-                className="c13"
+                className="c14"
               >
                 Country
               </label>
             </div>
             <div
-              className="c14"
+              className="c15"
             />
           </div>
           <div
@@ -629,7 +633,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                   onFocus={[Function]}
                 />
                 <label
-                  className="c15"
+                  className="c16"
                 >
                   Email
                 </label>
@@ -644,7 +648,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
     </form>
   </section>
   <div
-    className="c16"
+    className="c17"
   />
 </div>
 `;

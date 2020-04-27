@@ -31,7 +31,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
 
 .c1 {
   font-weight: 600;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 1.6rem 0;
 }
 
 .c3 {

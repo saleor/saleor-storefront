@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   margin: 20px;
 }
 
-.c22 {
+.c23 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -105,7 +105,11 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   background-color: rgb(33,18,94);
 }
 
-.c18 {
+.c16 {
+  margin-bottom: 1.875rem;
+}
+
+.c19 {
   top: 100%;
 }
 
@@ -124,7 +128,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   pointer-events: none;
 }
 
-.c17 {
+.c18 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -174,17 +178,17 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   background-color: transparent;
 }
 
-.c21 {
+.c22 {
   cursor: pointer;
 }
 
-.c21 input[type="radio"] {
+.c22 input[type="radio"] {
   opacity: 0;
   position: fixed;
   width: 0;
 }
 
-.c21 > div {
+.c22 > div {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -195,7 +199,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   vertical-align: bottom;
 }
 
-.c16 {
+.c17 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -206,7 +210,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
 }
 
 .c9 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -245,19 +249,19 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
 }
 
 .c8 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c15 {
   width: 100%;
 }
 
-.c19 {
+.c20 {
   display: grid;
   grid-gap: 20px;
 }
 
-.c20 {
+.c21 {
   display: block;
   background-color: #f1f5f5;
   padding: 20px;
@@ -272,7 +276,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
 
 .c1 {
   font-weight: 600;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 1.6rem 0;
 }
 
 @media (max-width:540px) {
@@ -610,7 +614,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
             className="c8"
           >
             <div
-              className=""
+              className="c16"
             >
               <div
                 className="css-1pcexqc-container"
@@ -689,7 +693,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c17"
                     rotate="false"
                   >
                     <svg
@@ -705,13 +709,13 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   </div>
                 </div>
                 <label
-                  className="c17"
+                  className="c18"
                 >
                   Country
                 </label>
               </div>
               <div
-                className="c18"
+                className="c19"
               />
             </div>
             <div
@@ -790,16 +794,16 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
         className="c5"
       />
       <div
-        className="c19"
+        className="c20"
       >
         <div>
           <label
             checked={false}
-            className="c20"
+            className="c21"
           >
             <div
               checked={false}
-              className="c21"
+              className="c22"
             >
               <input
                 checked={false}
@@ -824,11 +828,11 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
         <div>
           <label
             checked={false}
-            className="c20"
+            className="c21"
           >
             <div
               checked={false}
-              className="c21"
+              className="c22"
             >
               <input
                 checked={false}
@@ -854,7 +858,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
     </section>
   </div>
   <div
-    className="c22"
+    className="c23"
   />
 </div>
 `;

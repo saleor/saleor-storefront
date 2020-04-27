@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
   margin: 20px;
 }
 
-.c10 {
+.c9 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -91,27 +91,6 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
   font-weight: 600;
 }
 
-.c9 {
-  cursor: pointer;
-}
-
-.c9 input[type="radio"] {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-
-.c9 > div {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin: 0.25em 1em 0.25em 0.25em;
-  border: 0.1em solid #21125e;
-  border-radius: 0.5em;
-  background: #ffffff;
-  vertical-align: bottom;
-}
-
 .c1 {
   box-sizing: border-box;
   display: -webkit-box;
@@ -134,16 +113,19 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
   width: calc(100% / 2);
 }
 
-.c8 {
-  padding-top: 1rem;
-}
-
 .c6 {
+  height: 100%;
+  min-height: 190px;
   display: block;
   background-color: #f1f5f5;
   padding: 30px;
+  padding: 30px;
   font-size: 0.875rem;
   cursor: pointer;
+}
+
+.c8 {
+  display: none;
 }
 
 @media (max-width:540px) {
@@ -236,34 +218,22 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
              
             <br />
           </div>
-          <div
+          <input
+            checked={false}
             className="c8"
-          >
-            <div
-              checked={false}
-              className="c9"
-            >
-              <input
-                checked={false}
-                data-cy="addressTileOption0"
-                name="addressTileOption"
-                onChange={[Function]}
-                type="radio"
-                value="12345"
-              />
-               
-              <div>
-                <span />
-              </div>
-              Deliver to this address
-            </div>
-          </div>
+            data-cy="addressTileOption0"
+            label="Deliver to this address"
+            name="addressTileOption"
+            onChange={[Function]}
+            type="radio"
+            value="12345"
+          />
         </label>
       </div>
     </div>
   </form>
   <div
-    className="c10"
+    className="c9"
   />
 </div>
 `;

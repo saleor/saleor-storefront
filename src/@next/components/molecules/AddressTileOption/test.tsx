@@ -21,16 +21,6 @@ describe("<AddressTileOption />", () => {
     expect(wrapperText.includes(DEFAULT_PROPS.address.postalCode)).toBe(true);
   });
 
-  it("renders label", () => {
-    const text = "test";
-    const wrapper = mount(
-      <AddressTileOption {...DEFAULT_PROPS} label={text} />
-    );
-
-    const wrapperText = wrapper.text();
-    expect(wrapperText.includes(text)).toBe(true);
-  });
-
   it("simulates change events", () => {
     const onRadioChange = jest.fn();
     const wrapper = mount(

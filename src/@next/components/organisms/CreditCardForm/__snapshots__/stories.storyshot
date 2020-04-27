@@ -68,7 +68,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
 }
 
 .c3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -319,7 +319,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
 }
 
 .c3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -599,7 +599,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
 }
 
 .c3 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 

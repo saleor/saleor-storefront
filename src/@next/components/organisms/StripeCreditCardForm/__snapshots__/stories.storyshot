@@ -58,14 +58,14 @@ exports[`Storyshots @components/organisms/StripeCreditCardForm default 1`] = `
 }
 
 .c1 {
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
 .c2 {
   display: grid;
   grid-template-areas: "cardNumber cardNumber cardNumber cardNumber cardNumber " "cardExpiry cardExpiry cardExpiry cardCvc cardCvc";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 1.875rem;
 }
 
 .c2 .StripeElement {

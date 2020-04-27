@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
   margin: 20px;
 }
 
-.c2 {
+.c3 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -18,6 +18,10 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
 }
 
 .c1 {
+  margin-bottom: 1.875rem;
+}
+
+.c2 {
   top: 100%;
 }
 
@@ -25,7 +29,7 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
   className="c0"
 >
   <div
-    className=""
+    className="c1"
   >
     <div
       className="css-1pcexqc-container"
@@ -131,11 +135,11 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
       </div>
     </div>
     <div
-      className="c1"
+      className="c2"
     />
   </div>
   <div
-    className="c2"
+    className="c3"
   />
 </div>
 `;
