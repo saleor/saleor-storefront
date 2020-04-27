@@ -1,9 +1,9 @@
 import { ErrorListener } from "@sdk/helpers";
+import { CartJobQueue, ErrorCartTypes } from "@sdk/jobs/Cart";
 import { CheckoutNetworkManager } from "@sdk/network";
 import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
-import { CartJobQueue, ErrorCartTypes } from "@temp/@sdk/jobs/Cart";
 
 import {
   IDiscount,

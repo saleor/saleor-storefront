@@ -1,3 +1,5 @@
+import { INamedObservable } from "./types";
+
 export class NamedObservable<T> implements INamedObservable<T> {
   private observers: Array<{
     name: T;

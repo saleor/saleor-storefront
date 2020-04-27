@@ -10,7 +10,6 @@ import { useCart, useCheckout } from "@sdk/react";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 
-import * as appPaths from "../../../app/routes/paths";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -93,7 +92,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
 
   if (cartLoaded && (!items || !items?.length)) {
-    return <Redirect to={appPaths.cartUrl} />;
+    return <Redirect to="/cart/:token?/" />;
   }
 
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<

@@ -27,8 +27,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     font-size: ${props => props.theme.typography.h1FontSize};
     line-height: ${props => props.theme.typography.h1LineHeight};
 
-    ${media.smallScreen`
-      font-size: ${props => props.theme.typography.h2FontSize};
+    ${props => media.smallScreen`
+      font-size: ${props.theme.typography.h2FontSize};
     `}
   }
 

@@ -2,8 +2,6 @@ import { History } from "history";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import Breadcrumbs from "../../../components/Breadcrumbs";
-
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
@@ -11,20 +9,15 @@ import { Cart } from "@components/templates";
 import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
 import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { useCart, useUserDetails } from "@sdk/react";
-import { checkoutLoginUrl, checkoutUrl } from "@temp/app/routes";
 
 import { IProps } from "./types";
-
-const cartBreadcrumbs = (
-  <Breadcrumbs breadcrumbs={[{ value: "Cart", link: "/cart/" }]} />
-);
 
 const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
 const getButton = (history: History, user: UserDetails_me | null) => (
   <Button
     data-cy="cartPageBtnProceedToCheckout"
-    onClick={() => history.push(user ? checkoutUrl : checkoutLoginUrl)}
+    onClick={() => history.push(user ? `/checkout/` : `login`)}
   >
     PROCEED TO CHECKOUT
   </Button>
@@ -109,7 +102,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
 
   return (
     <Cart
-      breadcrumbs={cartBreadcrumbs}
       title={title}
       button={getButton(history, user)}
       cartHeader={cartHeader}

@@ -6,9 +6,9 @@ import {
 } from "apollo-client";
 import { GraphQLError } from "graphql";
 
-import { TokenAuth } from "../../components/User/types/TokenAuth";
 import { clearStorage, getAuthToken, setAuthToken } from "../auth";
 import { MUTATIONS } from "../mutations";
+import { TokenAuth } from "../mutations/types/TokenAuth";
 import { QUERIES } from "../queries";
 import { UserDetails } from "../queries/types/UserDetails";
 import { RequireAtLeastOne } from "../tsHelpers";

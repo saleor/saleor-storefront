@@ -6,7 +6,7 @@ import { StringParam, useQueryParams } from "use-query-params";
 
 import { setAuthToken } from "@sdk/auth";
 import { useSetPassword } from "@sdk/react";
-import { BASE_URL } from "../../../core/config";
+import { BASE_URL } from "@temp/core/config";
 
 import { ResetPasswordForm } from "@components/molecules";
 import * as S from "./styles";
