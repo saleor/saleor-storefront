@@ -2,7 +2,8 @@ import React from "react";
 
 import { useCreateUserAddress, useUpdateUserAddress } from "@sdk/react";
 
-import { AddressForm, Modal } from "../";
+import { AddressForm } from "../AddressForm";
+import { Modal } from "../Modal";
 
 import { IProps } from "./types";
 

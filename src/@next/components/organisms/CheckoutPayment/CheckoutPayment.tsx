@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import { Checkbox } from "@components/atoms";
-import {
-  AddressForm,
-  AddressGridSelector,
-  DiscountForm,
-  PaymentGatewaysList,
-} from "@components/organisms";
 import { filterNotEmptyArrayItems } from "@utils/misc";
+
+import { AddressForm } from "../AddressForm";
+import { AddressGridSelector } from "../AddressGridSelector";
+import { DiscountForm } from "../DiscountForm";
+import { PaymentGatewaysList } from "../PaymentGatewaysList";
 
 import * as S from "./styles";
 import { IProps } from "./types";

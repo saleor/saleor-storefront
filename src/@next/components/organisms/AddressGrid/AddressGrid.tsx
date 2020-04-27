@@ -10,12 +10,14 @@ export const AddressGrid: React.FC<IProps> = ({
   addNewAddress,
 }: IProps) => {
   const addNewTile = (
-    <AddNewTile key="0" type="address" onClick={addNewAddress} />
+    <AddNewTile key="newTile" type="address" onClick={addNewAddress} />
   );
 
   const addressTiles = addresses.reduce(
     (elements, address) => {
-      elements.push(<AddressTile key={address.id} {...address} />);
+      elements.push(
+        <AddressTile key={`addressTile-${address.id}`} {...address} />
+      );
       return elements;
     },
     [addNewTile]

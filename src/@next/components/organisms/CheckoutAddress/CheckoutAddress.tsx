@@ -1,7 +1,9 @@
 import React from "react";
 
-import { AddressForm, AddressGridSelector } from "@components/organisms";
 import { filterNotEmptyArrayItems } from "@utils/misc";
+
+import { AddressForm } from "../AddressForm";
+import { AddressGridSelector } from "../AddressGridSelector";
 
 import * as S from "./styles";
 import { IProps } from "./types";

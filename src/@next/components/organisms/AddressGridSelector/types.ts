@@ -17,5 +17,6 @@ export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
   newAddressFormId?: string;
   errors?: IFormError[];
+  addNewModalTarget?: HTMLElement | null;
   onSelect: (address: IAddressWithAddressType, id: string) => void;
 }

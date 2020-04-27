@@ -11,4 +11,8 @@ export interface IProps {
     address: IAddressWithEmail;
     id: string;
   };
+  countriesOptions?: Array<{
+    code: string;
+    country: string;
+  }>;
 }

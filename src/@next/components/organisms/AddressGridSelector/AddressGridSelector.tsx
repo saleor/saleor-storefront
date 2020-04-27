@@ -3,7 +3,8 @@ import React, { useState } from "react";
 
 import { AddNewTile, ErrorMessage, TileGrid } from "@components/atoms";
 import { AddressTileOption } from "@components/molecules";
-import { AddressFormModal } from "@components/organisms";
+
+import { AddressFormModal } from "../AddressFormModal";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -20,6 +21,7 @@ const AddressGridSelector: React.FC<IProps> = ({
   onSelect,
   formId,
   formRef,
+  addNewModalTarget,
   newAddressFormId,
 }: IProps) => {
   const [displayNewModal, setDisplayNewModal] = useState(false);
@@ -27,7 +29,7 @@ const AddressGridSelector: React.FC<IProps> = ({
   const addNewTile = (
     <AddNewTile
       data-cy="addressTileAddNew"
-      key="0"
+      key="newTile"
       type="address"
       onClick={() => setDisplayNewModal(true)}
     />
@@ -73,7 +75,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                     elements.push(
                       <AddressTileOption
                         data-cy={`addressTileOption${index}`}
-                        key={id}
+                        key={`addressTile-${id}`}
                         id={id}
                         inputName="addressTileOption"
                         address={address}
@@ -101,9 +103,10 @@ const AddressGridSelector: React.FC<IProps> = ({
           }}
           submitBtnText={"Add"}
           title={"Add new address"}
-          {...{ countriesOptions }}
+          countriesOptions={countriesOptions}
           formId={newAddressFormId}
           userId={userId}
+          target={addNewModalTarget}
         />
       )}
     </>
