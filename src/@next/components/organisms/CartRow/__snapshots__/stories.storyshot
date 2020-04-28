@@ -497,7 +497,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
-              value={3}
+              value="3"
             />
             <label
               className="c14"
