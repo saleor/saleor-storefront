@@ -9,33 +9,13 @@ import {
   StripeCardNumberElementChangeEvent,
 } from "@stripe/stripe-js";
 import React from "react";
-import ReactDOM from "react-dom";
+
+import { getBackgroundColor } from "@utils/styles";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 import { InputLabel } from "../InputLabel";
-
-// if no background color is provided then the default is rgba(0, 0, 0, 0)
-// in this case the default color to cover is white (#fff)
-const DEFAULT_COLOR = "#fff";
-const getBackgroundColor = (ref: any): string => {
-  const el = ReactDOM.findDOMNode(ref);
-  if (el && el.parentElement) {
-    if (el.nodeName === "BODY") {
-      return DEFAULT_COLOR;
-    }
-    const bgColor = window.getComputedStyle(el.parentElement, null)
-      .backgroundColor;
-
-    if (bgColor && bgColor !== "rgba(0, 0, 0, 0)") {
-      return bgColor;
-    }
-
-    return getBackgroundColor(el.parentElement);
-  }
-  return DEFAULT_COLOR;
-};
 
 /**
  * Wrapper component for Stripe input elements.
