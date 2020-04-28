@@ -15,22 +15,28 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   onQuantityChange,
   hideErrors,
 }: QuantityTextFieldProps) => {
-  const [tempQuantity, setTempQuantity] = useState<number | string>(quantity);
+  const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
 
   const handleBlurQuantityInput = () => {
-    const newQuantity =
-      typeof tempQuantity === "number"
-        ? tempQuantity
-        : parseInt(tempQuantity, 10);
-    const notEnoughQuantity = isNaN(newQuantity) || newQuantity <= 0;
-    if (notEnoughQuantity) {
-      setTempQuantity(quantity);
+    let newTempQuantity = tempQuantity;
+    let newQuantity = parseInt(tempQuantity, 10);
+
+    if (isNaN(newQuantity) || newQuantity <= 0) {
+      newTempQuantity = quantity.toString();
+      newQuantity = quantity;
+    }
+
+    if (tempQuantity !== newTempQuantity) {
+      setTempQuantity(newTempQuantity);
+    }
+    if (quantity !== newQuantity) {
+      onQuantityChange(newQuantity);
     }
   };
 
   useEffect(() => {
-    setTempQuantity(quantity);
+    setTempQuantity(quantity.toString());
   }, [quantity]);
 
   useEffect(() => {
@@ -39,11 +45,10 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
 
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
     const newQuantity = parseInt(evt.target.value, 10);
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      onQuantityChange(newQuantity);
-    } else {
-      setTempQuantity(evt.target.value);
-    }
+
+    setTempQuantity(evt.target.value);
+
+    setIsTooMuch(newQuantity > maxQuantity);
   };
 
   const quantityErrors =
