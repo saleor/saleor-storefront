@@ -123,7 +123,8 @@ export class SaleorState extends NamedObservable<StateItems>
 
     if (checkoutModel) {
       this.onCheckoutUpdate(checkoutModel);
-      return;
+    } else {
+      this.repository.setCheckout({});
     }
   };
 
@@ -138,7 +139,8 @@ export class SaleorState extends NamedObservable<StateItems>
 
     if (paymentModel) {
       this.onPaymentUpdate(paymentModel);
-      return;
+    } else {
+      this.repository.setPayment({});
     }
   };
 
