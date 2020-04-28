@@ -7,7 +7,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
- * Example component description.
+ * Thank you page after completing the checkout.
  */
 const ThankYou: React.FC<IProps> = ({
   orderNumber,
@@ -23,7 +23,6 @@ const ThankYou: React.FC<IProps> = ({
           <span>for your order!</span>
         </S.ThankYouHeader>
         <S.Paragraph>
-          {" "}
           Your order number is <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>

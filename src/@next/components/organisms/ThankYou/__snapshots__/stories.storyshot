@@ -199,7 +199,6 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
       <p
         className="c4"
       >
-         
         Your order number is 
         <span>
           #341414
