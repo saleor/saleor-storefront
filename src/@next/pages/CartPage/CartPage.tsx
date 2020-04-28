@@ -17,7 +17,7 @@ const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 const getButton = (history: History, user: UserDetails_me | null) => (
   <Button
     data-cy="cartPageBtnProceedToCheckout"
-    onClick={() => history.push(user ? `/checkout/` : `login`)}
+    onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
     PROCEED TO CHECKOUT
   </Button>
