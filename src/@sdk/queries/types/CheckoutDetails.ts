@@ -21,6 +21,10 @@ export interface CheckoutDetails_checkout_availablePaymentGateways_config {
 export interface CheckoutDetails_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;

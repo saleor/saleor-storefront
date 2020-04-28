@@ -112,6 +112,7 @@ export const checkoutFragment = gql`
   ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
     availablePaymentGateways {
+      id
       name
       config {
         field

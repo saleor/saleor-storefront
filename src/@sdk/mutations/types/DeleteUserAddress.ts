@@ -165,7 +165,7 @@ export interface DeleteUserAddress_accountAddressDelete {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: DeleteUserAddress_accountAddressDelete_errors[] | null;
+  errors: DeleteUserAddress_accountAddressDelete_errors[];
   /**
    * A user instance for which the address was deleted.
    */

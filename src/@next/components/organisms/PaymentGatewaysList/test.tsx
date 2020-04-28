@@ -36,13 +36,13 @@ describe("<PaymentGatewaysList />", () => {
       target: { value: paymentGateways[0].name },
     });
 
-    expect(selectPaymentGateway).toHaveBeenCalledWith(paymentGateways[0].name);
+    expect(selectPaymentGateway).toHaveBeenCalledWith(paymentGateways[0].id);
 
     const input2 = wrapper.find("input").at(1);
     input2.simulate("change", {
       target: { value: paymentGateways[1].name },
     });
 
-    expect(selectPaymentGateway).toHaveBeenCalledWith(paymentGateways[1].name);
+    expect(selectPaymentGateway).toHaveBeenCalledWith(paymentGateways[1].id);
   });
 });

@@ -74,5 +74,5 @@ export interface GetShop {
   /**
    * Return information about the shop.
    */
-  shop: GetShop_shop | null;
+  shop: GetShop_shop;
 }

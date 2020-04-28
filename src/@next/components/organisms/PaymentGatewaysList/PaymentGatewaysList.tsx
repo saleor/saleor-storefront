@@ -26,8 +26,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      {paymentGateways.map(({ name, config }, index) => {
-        const checked = selectedPaymentGateway === name;
+      {paymentGateways.map(({ id, name, config }, index) => {
+        const checked = selectedPaymentGateway === id;
 
         switch (name) {
           case PROVIDERS.BRAINTREE.label:
@@ -40,8 +40,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     value="credit-card"
                     checked={checked}
                     onChange={() =>
-                      selectPaymentGateway &&
-                      selectPaymentGateway(PROVIDERS.BRAINTREE.label)
+                      selectPaymentGateway && selectPaymentGateway(id)
                     }
                     customLabel={true}
                   >
@@ -64,8 +63,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     value="dummy"
                     checked={checked}
                     onChange={() =>
-                      selectPaymentGateway &&
-                      selectPaymentGateway(PROVIDERS.DUMMY.label)
+                      selectPaymentGateway && selectPaymentGateway(id)
                     }
                     customLabel={true}
                   >
@@ -78,9 +76,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <DummyPaymentGateway
                     formRef={formRef}
                     formId={formId}
-                    processPayment={token =>
-                      processPayment(PROVIDERS.DUMMY.label, token)
-                    }
+                    processPayment={token => processPayment(id, token)}
                     initialStatus={selectedPaymentGatewayToken}
                   />
                 )}
@@ -97,8 +93,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     value="stripe"
                     checked={checked}
                     onChange={() =>
-                      selectPaymentGateway &&
-                      selectPaymentGateway(PROVIDERS.STRIPE.label)
+                      selectPaymentGateway && selectPaymentGateway(id)
                     }
                     customLabel={true}
                   >
@@ -113,7 +108,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     formRef={formRef}
                     formId={formId}
                     processPayment={(token, cardData) =>
-                      processPayment(PROVIDERS.STRIPE.label, token, cardData)
+                      processPayment(id, token, cardData)
                     }
                     errors={errors}
                   />

@@ -23,6 +23,10 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_availablePaymen
 export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;
@@ -596,7 +600,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutLine_checkoutLinesUpdate_errors[] | null;
+  errors: UpdateCheckoutLine_checkoutLinesUpdate_errors[];
 }
 
 export interface UpdateCheckoutLine {

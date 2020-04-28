@@ -36,6 +36,10 @@ export interface CreateCheckout_checkoutCreate_checkout_availablePaymentGateways
 export interface CreateCheckout_checkoutCreate_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;
@@ -592,7 +596,7 @@ export interface CreateCheckout_checkoutCreate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: CreateCheckout_checkoutCreate_errors[] | null;
+  errors: CreateCheckout_checkoutCreate_errors[];
   checkout: CreateCheckout_checkoutCreate_checkout | null;
 }
 

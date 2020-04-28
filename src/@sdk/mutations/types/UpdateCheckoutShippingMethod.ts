@@ -36,6 +36,10 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;
@@ -601,7 +605,7 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
   /**
    * The error code.
    */
-  code: CheckoutErrorCode | null;
+  code: CheckoutErrorCode;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate {
@@ -609,12 +613,12 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors[];
   /**
    * An updated checkout.
    */
   checkout: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout | null;
-  checkoutErrors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors[] | null;
+  checkoutErrors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors[];
 }
 
 export interface UpdateCheckoutShippingMethod {

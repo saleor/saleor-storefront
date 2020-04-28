@@ -23,6 +23,10 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePay
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;
@@ -601,7 +605,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkoutErrors {
   /**
    * The error code.
    */
-  code: CheckoutErrorCode | null;
+  code: CheckoutErrorCode;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode {
@@ -613,8 +617,8 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: AddCheckoutPromoCode_checkoutAddPromoCode_errors[] | null;
-  checkoutErrors: AddCheckoutPromoCode_checkoutAddPromoCode_checkoutErrors[] | null;
+  errors: AddCheckoutPromoCode_checkoutAddPromoCode_errors[];
+  checkoutErrors: AddCheckoutPromoCode_checkoutAddPromoCode_checkoutErrors[];
 }
 
 export interface AddCheckoutPromoCode {

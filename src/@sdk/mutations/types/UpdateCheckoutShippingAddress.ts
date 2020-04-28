@@ -36,6 +36,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;
@@ -592,7 +596,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[];
   /**
    * An updated checkout.
    */
@@ -613,6 +617,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways {
   __typename: "PaymentGateway";
+  /**
+   * Payment gateway ID.
+   */
+  id: string;
   /**
    * Payment gateway name.
    */
@@ -1187,7 +1195,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[];
 }
 
 export interface UpdateCheckoutShippingAddress {

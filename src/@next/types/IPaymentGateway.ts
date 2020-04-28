@@ -11,6 +11,10 @@ export interface IPaymentGatewayConfig {
 
 export interface IPaymentGateway {
   /**
+   * Payment gateway ID.
+   */
+  id: string;
+  /**
    * Payment gateway name.
    */
   name: string;

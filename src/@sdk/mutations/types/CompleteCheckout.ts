@@ -474,7 +474,7 @@ export interface CompleteCheckout_checkoutComplete {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: CompleteCheckout_checkoutComplete_errors[] | null;
+  errors: CompleteCheckout_checkoutComplete_errors[];
   /**
    * Placed order.
    */

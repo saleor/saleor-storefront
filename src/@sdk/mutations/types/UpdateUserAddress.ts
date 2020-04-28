@@ -167,7 +167,7 @@ export interface UpdateUserAddress_accountAddressUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateUserAddress_accountAddressUpdate_errors[] | null;
+  errors: UpdateUserAddress_accountAddressUpdate_errors[];
   /**
    * A user object for which the address was edited.
    */

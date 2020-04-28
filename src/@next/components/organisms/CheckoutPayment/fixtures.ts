@@ -38,6 +38,7 @@ export const paymentGateways = [
         value: "false",
       },
     ],
+    id: "mirumee.payments.dummy",
     name: "Dummy",
   },
   {
@@ -51,6 +52,7 @@ export const paymentGateways = [
         value: "false",
       },
     ],
+    id: "mirumee.payments.stripe",
     name: "Stripe",
   },
 ];

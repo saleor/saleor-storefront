@@ -43,7 +43,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const getPaymentMethodDescription = () => {
-    if (payment?.gateway === "Dummy") {
+    if (payment?.gateway === "mirumee.payments.dummy") {
       return `Dummy: ${
         dummyStatuses.find(
           status => status.token === selectedPaymentGatewayToken
