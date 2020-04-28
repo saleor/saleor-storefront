@@ -34,11 +34,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   }, [quantity]);
 
   useEffect(() => {
-    if (quantity > maxQuantity) {
-      setIsTooMuch(true);
-    } else {
-      setIsTooMuch(false);
-    }
+    setIsTooMuch(quantity > maxQuantity);
   }, [quantity, maxQuantity]);
 
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {

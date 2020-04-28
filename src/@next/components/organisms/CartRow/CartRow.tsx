@@ -40,20 +40,17 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
 }: IProps) => {
-  const [tempQuantity, setTempQuantity] = useState<number | string>(quantity);
+  const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
 
   const handleBlurQuantityInput = () => {
-    const newQuantity =
-      typeof tempQuantity === "number"
-        ? tempQuantity
-        : parseInt(tempQuantity, 10);
+    const newQuantity = parseInt(tempQuantity, 10);
     const notEnoughQuantity = isNaN(newQuantity) || newQuantity <= 0;
     const tooMuchQuantity = newQuantity > maxQuantity;
     if (notEnoughQuantity && !tooMuchQuantity) {
-      setTempQuantity(quantity);
+      setTempQuantity(quantity.toString());
     } else if (!notEnoughQuantity && tooMuchQuantity) {
-      setTempQuantity(maxQuantity);
+      setTempQuantity(maxQuantity.toString());
       onQuantityChange(maxQuantity);
     }
 
@@ -61,7 +58,7 @@ export const CartRow: React.FC<IProps> = ({
   };
 
   useEffect(() => {
-    setTempQuantity(quantity);
+    setTempQuantity(quantity.toString());
   }, [quantity]);
 
   const add = React.useCallback(
@@ -80,11 +77,7 @@ export const CartRow: React.FC<IProps> = ({
       setTempQuantity(evt.target.value);
     }
 
-    if (newQuantity > maxQuantity) {
-      setIsTooMuch(true);
-    } else {
-      setIsTooMuch(false);
-    }
+    setIsTooMuch(newQuantity > maxQuantity);
   };
 
   const quantityErrors = isTooMuch
