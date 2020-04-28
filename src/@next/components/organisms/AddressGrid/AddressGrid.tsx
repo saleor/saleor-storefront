@@ -5,6 +5,9 @@ import { AddressTile } from "@components/molecules";
 
 import { IProps } from "./types";
 
+/**
+ * Addresses tiles with add new address tile opening address form addition modal.
+ */
 export const AddressGrid: React.FC<IProps> = ({
   addresses,
   addNewAddress,

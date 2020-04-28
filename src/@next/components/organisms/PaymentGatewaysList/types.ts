@@ -14,9 +14,9 @@ export interface IProps {
    */
   selectedPaymentGatewayToken?: string;
   /**
-   * Called when selected payment gateway with passed the payment gateway name attribute.
+   * Called when selected payment gateway is changed.
    */
-  selectPaymentGateway?: (paymentGateway: string) => void;
+  selectPaymentGateway: (paymentGateway: string) => void;
   /**
    * Form reference on which payment might be submitted.
    */
@@ -30,7 +30,7 @@ export interface IProps {
    */
   errors?: IFormError[];
   /**
-   * Method called after the form is submitted. Passed gateway name and token attribute will be used to create payment.
+   * Method called after the form is submitted. Passed gateway id and token attribute will be used to create payment.
    */
   processPayment: (
     gateway: string,

@@ -92,7 +92,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
 
   if (cartLoaded && (!items || !items?.length)) {
-    return <Redirect to="/cart/:token?/" />;
+    return <Redirect to="/cart/" />;
   }
 
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<

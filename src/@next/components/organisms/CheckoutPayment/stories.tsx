@@ -18,6 +18,7 @@ const setBillingAsShippingAddress = action(
 );
 const addPromoCode = action("addPromoCode has been called");
 const removeVoucherCode = action("removeVoucherCode has been called");
+const selectPaymentGateway = action("selectPaymentGateway has been called");
 const processPayment = action("processPayment has been called");
 
 storiesOf("@components/organisms/CheckoutPayment", module)
@@ -29,6 +30,7 @@ storiesOf("@components/organisms/CheckoutPayment", module)
       setBillingAsShippingAddress={setBillingAsShippingAddress}
       addPromoCode={addPromoCode}
       removeVoucherCode={removeVoucherCode}
+      selectPaymentGateway={selectPaymentGateway}
       processPayment={processPayment}
     />
   ))
@@ -39,6 +41,7 @@ storiesOf("@components/organisms/CheckoutPayment", module)
       setBillingAsShippingAddress={setBillingAsShippingAddress}
       addPromoCode={addPromoCode}
       removeVoucherCode={removeVoucherCode}
+      selectPaymentGateway={selectPaymentGateway}
       processPayment={processPayment}
     />
   ));

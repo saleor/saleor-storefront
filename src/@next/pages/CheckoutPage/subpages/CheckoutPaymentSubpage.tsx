@@ -22,7 +22,7 @@ export interface ICheckoutPaymentSubpageHandles {
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGateway?: string;
   selectedPaymentGatewayToken?: string;
-  selectPaymentGateway?: (paymentGateway: string) => void;
+  selectPaymentGateway: (paymentGateway: string) => void;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<

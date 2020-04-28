@@ -2,11 +2,8 @@ import React from "react";
 
 import * as S from "./styles";
 
-/**
- * Example component description.
- */
 const BraintreePaymentGateway: React.FC = () => {
-  return <S.Wrapper>{/* --- here --- */}</S.Wrapper>;
+  return <S.Wrapper></S.Wrapper>;
 };
 
 export { BraintreePaymentGateway };

@@ -8,10 +8,12 @@ import { paymentGateways } from "./fixtures";
 describe("<PaymentGatewaysList />", () => {
   it("renders payment gateways", () => {
     const processPayment = jest.fn();
+    const selectPaymentGateway = jest.fn();
     const wrapper = mount(
       <PaymentGatewaysList
         paymentGateways={paymentGateways}
         processPayment={processPayment}
+        selectPaymentGateway={selectPaymentGateway}
       />
     );
 

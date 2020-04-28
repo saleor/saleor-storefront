@@ -13,6 +13,7 @@ describe("<CheckoutPayment />", () => {
     const setBillingAsShippingAddress = jest.fn();
     const addPromoCode = jest.fn();
     const removeVoucherCode = jest.fn();
+    const selectPaymentGateway = jest.fn();
     const processPayment = jest.fn();
     const wrapper = mount(
       <CheckoutPayment
@@ -21,6 +22,7 @@ describe("<CheckoutPayment />", () => {
         setBillingAsShippingAddress={setBillingAsShippingAddress}
         addPromoCode={addPromoCode}
         removeVoucherCode={removeVoucherCode}
+        selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
       />
     );
@@ -41,6 +43,7 @@ describe("<CheckoutPayment />", () => {
     const addPromoCode = jest.fn();
     const removeVoucherCode = jest.fn();
     const processPayment = jest.fn();
+    const selectPaymentGateway = jest.fn();
     const wrapper = mount(
       <CheckoutPayment
         {...ANONYMOUS_USER_PROPS}
@@ -48,6 +51,7 @@ describe("<CheckoutPayment />", () => {
         setBillingAsShippingAddress={setBillingAsShippingAddress}
         addPromoCode={addPromoCode}
         removeVoucherCode={removeVoucherCode}
+        selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
       />
     );

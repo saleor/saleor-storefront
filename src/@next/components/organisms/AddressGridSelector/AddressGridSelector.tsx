@@ -10,7 +10,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
- * Example component description.
+ * Addresses tiles to select with add new address tile opening address form addition modal.
  */
 const AddressGridSelector: React.FC<IProps> = ({
   addresses,
