@@ -1,4 +1,6 @@
-import { ICardData, IFormError } from "@types";
+import { Stripe, StripeElements } from "@stripe/stripe-js";
+
+import { IFormError } from "@types";
 
 export interface IProps {
   /**
@@ -10,11 +12,14 @@ export interface IProps {
    */
   formId?: string;
   /**
-   * Method called when the form is submitted. Passed token attribute might be used to create payment.
+   * Method called when the form is submitted. Passed token attribute will be used to create payment.
    */
   errors?: IFormError[];
   /**
-   * Method called when the form is submitted. Passed gateway name and token attribute might be used to create payment.
+   * Called when values provided in Stripe elements are submitted.
    */
-  processPayment: (token: string, cardData: ICardData) => void;
+  onSubmit: (
+    stripe: Stripe | null,
+    elements: StripeElements | null
+  ) => Promise<void>;
 }

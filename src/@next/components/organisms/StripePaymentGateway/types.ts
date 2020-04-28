@@ -14,15 +14,11 @@ export interface IProps {
    */
   formId?: string;
   /**
-   * Method called when the form is submitted. Passed token attribute might be used to create payment.
+   * Errors returned by the payment gateway.
    */
   errors?: IFormError[];
   /**
-   * Method called when the form is submitted. Passed token attribute might be used to create payment.
+   * Method called after the form is submitted. Passed token attribute will be used to create payment.
    */
   processPayment: (token: string, cardData: ICardData) => void;
-  /**
-   * Initially selected status/token
-   */
-  initialStatus?: string;
 }

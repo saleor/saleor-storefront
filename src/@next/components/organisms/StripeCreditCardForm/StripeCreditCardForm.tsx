@@ -1,8 +1,4 @@
-import {
-  CardNumberElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { Formik } from "formik";
 import React, { useState } from "react";
 
@@ -18,39 +14,13 @@ import { IProps } from "./types";
 const StripeCreditCardForm: React.FC<IProps> = ({
   formRef,
   formId,
-  processPayment,
   errors = [],
+  onSubmit,
 }: IProps) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [stripeErrors, setStripeErrors] = useState<IFormError[]>([]);
-
-  const handleFormSubmit = async () => {
-    const cartNumberElement = elements?.getElement(CardNumberElement);
-
-    if (cartNumberElement) {
-      const payload = await stripe?.createPaymentMethod({
-        card: cartNumberElement,
-        type: "card",
-      });
-      if (payload?.error) {
-        const error = {
-          ...payload.error,
-          message: payload.error.message || "",
-        };
-        setStripeErrors([error]);
-      } else if (payload?.paymentMethod) {
-        const { card, id } = payload.paymentMethod;
-        processPayment(id, {
-          brand: card?.brand,
-          expMonth: card?.exp_month,
-          expYear: card?.exp_year,
-          lastDigits: card?.last4,
-        });
-      }
-    }
-  };
 
   const allErrors = [...errors, ...stripeErrors];
 
@@ -58,7 +28,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
     <Formik
       initialValues={null}
       onSubmit={async (values, { setSubmitting }) => {
-        await handleFormSubmit();
+        await onSubmit(stripe, elements);
         setSubmitting(false);
       }}
     >

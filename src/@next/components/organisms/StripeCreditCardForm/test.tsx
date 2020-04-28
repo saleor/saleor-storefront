@@ -10,10 +10,10 @@ const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 describe("<StripeCreditCardForm />", () => {
   it("renders", () => {
-    const processPayment = jest.fn();
+    const onSubmit = jest.fn();
     const wrapper = shallow(
       <Elements stripe={stripePromise}>
-        <StripeCreditCardForm processPayment={processPayment} />
+        <StripeCreditCardForm onSubmit={onSubmit} />
       </Elements>
     );
 

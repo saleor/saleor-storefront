@@ -8,12 +8,12 @@ import { StripeCreditCardForm } from ".";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
-const processPayment = action("processPayment");
+const onSubmit = action("onSubmit");
 
 storiesOf("@components/organisms/StripeCreditCardForm", module)
   .addParameters({ component: StripeCreditCardForm })
   .add("default", () => (
     <Elements stripe={stripePromise}>
-      <StripeCreditCardForm processPayment={processPayment} />
+      <StripeCreditCardForm onSubmit={async () => onSubmit()} />
     </Elements>
   ));
