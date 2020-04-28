@@ -5,16 +5,26 @@ import { useHistory } from "react-router-dom";
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
-import { Cart } from "@components/templates";
+import { Cart, CartEmpty } from "@components/templates";
 import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
 import { UserDetails_me } from "@sdk/queries/types/UserDetails";
 import { useCart, useUserDetails } from "@sdk/react";
+import { BASE_URL } from "@temp/core/config";
 
 import { IProps } from "./types";
 
 const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
-const getButton = (history: History, user: UserDetails_me | null) => (
+const getShoppingButton = (history: History) => (
+  <Button
+    data-cy="cartPageBtnContinueShopping"
+    onClick={() => history.push(BASE_URL)}
+  >
+    CONTINUE SHOPPING
+  </Button>
+);
+
+const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
   <Button
     data-cy="cartPageBtnProceedToCheckout"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
@@ -93,6 +103,7 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
   const {
+    loaded,
     removeItem,
     updateItem,
     items,
@@ -100,13 +111,17 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     subtotalPrice,
   } = useCart();
 
-  return (
-    <Cart
-      title={title}
-      button={getButton(history, user)}
-      cartHeader={cartHeader}
-      cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
-      cart={items && generateCart(items, removeItem, updateItem)}
-    />
-  );
+  if (loaded && items?.length) {
+    return (
+      <Cart
+        title={title}
+        button={getCheckoutButton(history, user)}
+        cartHeader={cartHeader}
+        cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
+        cart={items && generateCart(items, removeItem, updateItem)}
+      />
+    );
+  } else {
+    return <CartEmpty button={getShoppingButton(history)} />;
+  }
 };

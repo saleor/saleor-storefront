@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Container } from "@components/templates";
+import { Container } from "../Container";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
- * Example component description.
+ * Template for checkout page.
  */
 const Checkout: React.FC<IProps> = ({
   navigation,

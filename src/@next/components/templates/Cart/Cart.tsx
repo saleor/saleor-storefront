@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Container } from "..";
+import { Container } from "../Container";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
- * Cart with list of products added by user.
+ * Cart template for cart page with list of products added by user.
  */
 const Cart: React.FC<IProps> = ({
   breadcrumbs,
