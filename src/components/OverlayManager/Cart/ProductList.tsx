@@ -14,13 +14,15 @@ const ProductList: React.SFC<{
   remove(variantId: string): void;
 }> = ({ lines, remove }) => (
   <ul className="cart__list">
-    {lines.map(line => {
+    {lines.map((line, index) => {
       const productUrl = generateProductUrl(
         line.variant.product.id,
         line.variant.product.name
       );
+      const key = line.id ? `id-${line.id}` : `idx-${index}`;
+
       return (
-        <li key={line.id} className="cart__list__item">
+        <li key={key} className="cart__list__item">
           <Link to={productUrl}>
             <Thumbnail source={line.variant.product} />
           </Link>

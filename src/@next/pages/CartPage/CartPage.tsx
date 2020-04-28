@@ -46,7 +46,7 @@ const generateCart = (
 ) => {
   return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
-      key={id}
+      key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       name={variant?.product?.name || ""}
       maxQuantity={variant.stockQuantity || quantity}
