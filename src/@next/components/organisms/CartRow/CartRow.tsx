@@ -44,25 +44,25 @@ export const CartRow: React.FC<IProps> = ({
   const [isTooMuch, setIsTooMuch] = useState(false);
 
   const handleBlurQuantityInput = () => {
-    let newTempQuantity = tempQuantity;
     let newQuantity = parseInt(tempQuantity, 10);
+    let newTempQuantity = newQuantity.toString(); // To make newTempQuantity consistent with newQuantity
 
     if (isNaN(newQuantity) || newQuantity <= 0) {
-      newTempQuantity = quantity.toString();
       newQuantity = quantity;
+      newTempQuantity = quantity.toString();
     } else if (newQuantity > maxQuantity) {
-      newTempQuantity = maxQuantity.toString();
       newQuantity = maxQuantity;
+      newTempQuantity = maxQuantity.toString();
     }
 
-    if (tempQuantity !== newTempQuantity) {
-      setTempQuantity(newTempQuantity);
-    }
     if (quantity !== newQuantity) {
       onQuantityChange(newQuantity);
     }
+    if (tempQuantity !== newTempQuantity) {
+      setTempQuantity(newTempQuantity);
+    }
 
-    setIsTooMuch(false);
+    setIsTooMuch(false); // It was set to maxQuantity when newQuantity > maxQuantity, thus always false.
   };
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export const CartRow: React.FC<IProps> = ({
 
     setTempQuantity(evt.target.value);
 
-    setIsTooMuch(newQuantity > maxQuantity);
+    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
 
   const quantityErrors = isTooMuch

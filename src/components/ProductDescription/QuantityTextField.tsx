@@ -19,8 +19,8 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   const [isTooMuch, setIsTooMuch] = useState(false);
 
   const handleBlurQuantityInput = () => {
-    let newTempQuantity = tempQuantity;
     let newQuantity = parseInt(tempQuantity, 10);
+    let newTempQuantity = newQuantity.toString(); // To make newTempQuantity consistent with newQuantity
 
     if (isNaN(newQuantity) || newQuantity <= 0) {
       newTempQuantity = quantity.toString();
@@ -33,6 +33,8 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     if (quantity !== newQuantity) {
       onQuantityChange(newQuantity);
     }
+
+    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   }, [quantity]);
 
   useEffect(() => {
-    setIsTooMuch(quantity > maxQuantity);
+    setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
   }, [quantity, maxQuantity]);
 
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
@@ -48,7 +50,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
 
     setTempQuantity(evt.target.value);
 
-    setIsTooMuch(newQuantity > maxQuantity);
+    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
 
   const quantityErrors =
