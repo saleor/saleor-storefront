@@ -23,7 +23,8 @@ export interface IProps {
   billingFormRef?: React.RefObject<HTMLFormElement>;
   billingFormId?: string;
   paymentGateways: IPaymentGateway[];
-  setBillingAddress: (address: IAddress, id?: string) => void;
+  setBillingAddress: (address: IAddress, email?: string, id?: string) => void;
+  billingAsShippingPossible: boolean;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
   promoCodeDiscount?: IPromoCodeDiscount;
   addPromoCode: (promoCode: string) => void;

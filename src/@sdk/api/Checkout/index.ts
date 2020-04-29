@@ -42,6 +42,7 @@ export class SaleorCheckoutAPI extends ErrorListener
 
   private checkoutLoaded: boolean;
   private paymentLoaded: boolean;
+  private paymentGatewaysLoaded: boolean;
 
   constructor(
     checkoutRepositoryManager: CheckoutRepositoryManager,
@@ -60,6 +61,7 @@ export class SaleorCheckoutAPI extends ErrorListener
     this.loaded = false;
     this.checkoutLoaded = false;
     this.paymentLoaded = false;
+    this.paymentGatewaysLoaded = false;
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -74,7 +76,6 @@ export class SaleorCheckoutAPI extends ErrorListener
         billingAsShipping,
         availableShippingMethods,
         shippingMethod,
-        availablePaymentGateways,
         promoCodeDiscount,
       }: ICheckoutModel) => {
         this.checkout = {
@@ -88,14 +89,16 @@ export class SaleorCheckoutAPI extends ErrorListener
         this.selectedShippingAddressId = selectedShippingAddressId;
         this.selectedBillingAddressId = selectedBillingAddressId;
         this.availableShippingMethods = availableShippingMethods;
-        this.availablePaymentGateways = availablePaymentGateways;
         this.billingAsShipping = billingAsShipping;
         this.promoCodeDiscount = {
           discountName: promoCodeDiscount?.discountName,
           voucherCode: promoCodeDiscount?.voucherCode,
         };
         this.checkoutLoaded = true;
-        this.loaded = this.checkoutLoaded && this.paymentLoaded;
+        this.loaded =
+          this.checkoutLoaded &&
+          this.paymentLoaded &&
+          this.paymentGatewaysLoaded;
       }
     );
     this.saleorState.subscribeToChange(
@@ -108,7 +111,21 @@ export class SaleorCheckoutAPI extends ErrorListener
           token,
         };
         this.paymentLoaded = true;
-        this.loaded = this.paymentLoaded && this.checkoutLoaded;
+        this.loaded =
+          this.paymentLoaded &&
+          this.checkoutLoaded &&
+          this.paymentGatewaysLoaded;
+      }
+    );
+    this.saleorState.subscribeToChange(
+      StateItems.PAYMENT_GATEWAYS,
+      (paymentGateways: IAvailablePaymentGateways) => {
+        this.availablePaymentGateways = paymentGateways;
+        this.paymentGatewaysLoaded = true;
+        this.loaded =
+          this.paymentGatewaysLoaded &&
+          this.paymentLoaded &&
+          this.checkoutLoaded;
       }
     );
 
@@ -120,6 +137,7 @@ export class SaleorCheckoutAPI extends ErrorListener
   load = async () => {
     await this.saleorState.provideCheckout(this.fireError, true);
     await this.saleorState.providePayment(true);
+    await this.saleorState.providePaymentGateways(this.fireError);
     return {
       pending: false,
     };
@@ -171,7 +189,7 @@ export class SaleorCheckoutAPI extends ErrorListener
           error: new Error(
             "You need to add items to cart before setting shipping address."
           ),
-          type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+          type: FunctionErrorCheckoutTypes.ITEMS_NOT_ADDED_TO_CART,
         },
         pending: false,
       };
@@ -179,12 +197,24 @@ export class SaleorCheckoutAPI extends ErrorListener
   };
 
   setBillingAddress = async (
-    billingAddress: IAddress
+    billingAddress: IAddress,
+    email?: string
   ): PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes> => {
     await this.saleorState.provideCheckout(this.fireError);
     const checkoutId = this.saleorState.checkout?.id;
+    const isShippingRequiredForProducts = this.saleorState.checkout?.lines
+      ?.filter(line => line.quantity > 0)
+      .some(({ variant }) => variant.product?.productType.isShippingRequired);
+    const alteredLines = this.saleorState.checkout?.lines?.map(item => ({
+      quantity: item!.quantity,
+      variantId: item?.variant!.id,
+    }));
 
-    if (checkoutId && this.checkout?.shippingAddress) {
+    if (
+      isShippingRequiredForProducts &&
+      checkoutId &&
+      this.checkout?.shippingAddress
+    ) {
       const {
         data,
         dataError,
@@ -194,18 +224,75 @@ export class SaleorCheckoutAPI extends ErrorListener
         false,
         billingAddress.id
       );
+
       return {
         data,
         dataError,
         pending: false,
       };
-    } else {
+    } else if (isShippingRequiredForProducts) {
       return {
         functionError: {
           error: new Error(
             "You need to set shipping address before setting billing address."
           ),
           type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+        },
+        pending: false,
+      };
+    } else if (
+      !isShippingRequiredForProducts &&
+      email &&
+      checkoutId &&
+      alteredLines
+    ) {
+      const {
+        data,
+        dataError,
+      } = await this.checkoutJobQueue.runSetBillingAddressWithEmail(
+        checkoutId,
+        email,
+        billingAddress,
+        billingAddress.id
+      );
+
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    } else if (!isShippingRequiredForProducts && email && alteredLines) {
+      const { data, dataError } = await this.checkoutJobQueue.runCreateCheckout(
+        email,
+        alteredLines,
+        undefined,
+        undefined,
+        billingAddress,
+        billingAddress.id
+      );
+
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    } else if (!isShippingRequiredForProducts && !email) {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to provide email when products do not require shipping before setting billing address."
+          ),
+          type: FunctionErrorCheckoutTypes.EMAIL_NOT_SET,
+        },
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error(
+            "You need to add items to cart before setting billing address."
+          ),
+          type: FunctionErrorCheckoutTypes.ITEMS_NOT_ADDED_TO_CART,
         },
         pending: false,
       };

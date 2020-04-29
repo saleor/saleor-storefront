@@ -8,34 +8,6 @@ import { CheckoutErrorCode } from "./../../types/globalTypes";
 // GraphQL mutation operation: AddCheckoutPromoCode
 // ====================================================
 
-export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways_config {
-  __typename: "GatewayConfigLine";
-  /**
-   * Gateway config key.
-   */
-  field: string;
-  /**
-   * Gateway config value for key.
-   */
-  value: string | null;
-}
-
-export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways {
-  __typename: "PaymentGateway";
-  /**
-   * Payment gateway ID.
-   */
-  id: string;
-  /**
-   * Payment gateway name.
-   */
-  name: string;
-  /**
-   * Payment gateway client configuration.
-   */
-  config: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways_config[];
-}
-
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -532,10 +504,6 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_discount {
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout {
   __typename: "Checkout";
-  /**
-   * List of available payment gateways.
-   */
-  availablePaymentGateways: (AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

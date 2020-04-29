@@ -22,14 +22,18 @@ export class CheckoutJobQueue extends JobQueue {
   runCreateCheckout = async (
     email: string,
     lines: Array<{ variantId: string; quantity: number }>,
-    shippingAddress: ICheckoutAddress,
-    selectedShippingAddressId?: string
+    shippingAddress?: ICheckoutAddress,
+    selectedShippingAddressId?: string,
+    billingAddress?: ICheckoutAddress,
+    selectedBillingAddressId?: string
   ): PromiseCheckoutJobRunResponse => {
     return this.createCheckout(
       email,
       lines,
       shippingAddress,
-      selectedShippingAddressId
+      selectedShippingAddressId,
+      billingAddress,
+      selectedBillingAddressId
     );
   };
 
@@ -57,6 +61,20 @@ export class CheckoutJobQueue extends JobQueue {
       checkoutId,
       billingAddress,
       billingAsShipping,
+      selectedBillingAddressId
+    );
+  };
+
+  runSetBillingAddressWithEmail = async (
+    checkoutId: string,
+    email: string,
+    billingAddress: ICheckoutAddress,
+    selectedBillingAddressId?: string
+  ): PromiseCheckoutJobRunResponse => {
+    return this.setBillingAddressWithEmail(
+      checkoutId,
+      email,
+      billingAddress,
       selectedBillingAddressId
     );
   };
@@ -109,13 +127,16 @@ export class CheckoutJobQueue extends JobQueue {
   private createCheckout = async (
     email: string,
     lines: Array<{ variantId: string; quantity: number }>,
-    shippingAddress: ICheckoutAddress,
-    selectedShippingAddressId?: string
+    shippingAddress?: ICheckoutAddress,
+    selectedShippingAddressId?: string,
+    billingAddress?: ICheckoutAddress,
+    selectedBillingAddressId?: string
   ): PromiseCheckoutJobRunResponse => {
     const { data, error } = await this.checkoutNetworkManager.createCheckout(
       email,
       lines,
-      shippingAddress
+      shippingAddress,
+      billingAddress
     );
 
     if (error) {
@@ -132,6 +153,7 @@ export class CheckoutJobQueue extends JobQueue {
     } else {
       this.repository.setCheckout({
         ...data,
+        selectedBillingAddressId,
         selectedShippingAddressId,
       });
       return {
@@ -201,6 +223,42 @@ export class CheckoutJobQueue extends JobQueue {
         ...checkout,
         billingAddress: data?.billingAddress,
         billingAsShipping: !!billingAsShipping,
+        selectedBillingAddressId,
+      });
+      return { data };
+    }
+  };
+
+  private setBillingAddressWithEmail = async (
+    checkoutId: string,
+    email: string,
+    billingAddress: ICheckoutAddress,
+    selectedBillingAddressId?: string
+  ) => {
+    const checkout = this.repository.getCheckout();
+
+    const {
+      data,
+      error,
+    } = await this.checkoutNetworkManager.setBillingAddressWithEmail(
+      billingAddress,
+      email,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_BILLING_ADDRESS,
+        },
+      };
+    } else {
+      this.repository.setCheckout({
+        ...checkout,
+        billingAddress: data?.billingAddress,
+        billingAsShipping: false,
+        email: data?.email,
         selectedBillingAddressId,
       });
       return { data };

@@ -1,5 +1,4 @@
 import {
-  Checkout_availablePaymentGateways,
   Checkout_availableShippingMethods,
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
@@ -110,7 +109,6 @@ export interface ICheckoutModel {
   lines?: ICheckoutModelLine[] | null;
   availableShippingMethods?: Checkout_availableShippingMethods[];
   shippingMethod?: ICheckoutModelShippingMethod | null;
-  availablePaymentGateways?: Checkout_availablePaymentGateways[];
 }
 
 export interface IPaymentModel {

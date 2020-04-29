@@ -10,7 +10,7 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
-import { useCheckout, useUserDetails } from "@sdk/react";
+import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress, ICardData, IFormError } from "@types";
@@ -51,7 +51,14 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     removePromoCode,
     createPayment,
   } = useCheckout();
+  const { items } = useCart();
   const { countries } = useContext(ShopContext);
+
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
 
   const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
   const [gatewayErrors, setGatewayErrors] = useState<IFormError[]>([]);
@@ -113,17 +120,30 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   };
   const handleSetBillingAddress = async (
     address?: IAddress,
+    email?: string,
     userAddressId?: string
   ) => {
+    let billingEmail;
+    if (user && userAddressId) {
+      billingEmail = user?.email;
+    } else if (email) {
+      billingEmail = email;
+    } else {
+      billingEmail = "";
+    }
+
     let errors;
-    if (billingAsShippingState) {
+    if (billingAsShippingState && isShippingRequiredForProducts) {
       const { dataError } = await setBillingAsShippingAddress();
       errors = dataError?.error.extraInfo.userInputErrors;
     } else {
-      const { dataError } = await setBillingAddress({
-        ...address,
-        id: userAddressId,
-      });
+      const { dataError } = await setBillingAddress(
+        {
+          ...address,
+          id: userAddressId,
+        },
+        billingEmail
+      );
       errors = dataError?.error.extraInfo.userInputErrors;
     }
     if (errors) {
@@ -184,6 +204,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       selectedPaymentGatewayToken={selectedPaymentGatewayToken}
       selectPaymentGateway={selectPaymentGateway}
       setBillingAddress={handleSetBillingAddress}
+      billingAsShippingPossible={!!isShippingRequiredForProducts}
       billingAsShippingAddress={billingAsShippingState}
       setBillingAsShippingAddress={setBillingAsShippingState}
       promoCodeDiscount={{

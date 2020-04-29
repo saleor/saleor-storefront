@@ -1,3 +1,4 @@
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/types/GetShopPaymentGateways";
 import {
   ICheckoutModel,
   ICheckoutModelPrice,
@@ -10,6 +11,7 @@ export enum StateItems {
   SUMMARY_PRICES,
   PROMO_CODE,
   PAYMENT,
+  PAYMENT_GATEWAYS,
 }
 
 export interface ISaleorStateSummeryPrices {
@@ -25,4 +27,6 @@ export interface ISaleorState {
   selectedBillingAddressId?: string;
   summaryPrices?: ISaleorStateSummeryPrices;
   payment?: IPaymentModel;
+  // Should be changed it in future to shop object containing payment gateways besides all the shop data
+  availablePaymentGateways?: GetShopPaymentGateways_shop_availablePaymentGateways[];
 }

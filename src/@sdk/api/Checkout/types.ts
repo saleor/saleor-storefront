@@ -1,7 +1,5 @@
-import {
-  Checkout_availablePaymentGateways,
-  Checkout_availableShippingMethods,
-} from "@sdk/fragments/types/Checkout";
+import { Checkout_availableShippingMethods } from "@sdk/fragments/types/Checkout";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "@sdk/queries/types/GetShopPaymentGateways";
 import {
   ICheckoutModelPrice,
   ICheckoutModelPriceValue,
@@ -31,7 +29,7 @@ export interface IAddress {
 }
 
 export type IAvailableShippingMethods = Checkout_availableShippingMethods[];
-export type IAvailablePaymentGateways = Checkout_availablePaymentGateways[];
+export type IAvailablePaymentGateways = GetShopPaymentGateways_shop_availablePaymentGateways[];
 
 export interface IShippingMethod {
   id: string;
@@ -65,6 +63,7 @@ export interface ICheckout {
 export enum FunctionErrorCheckoutTypes {
   "SHIPPING_ADDRESS_NOT_SET",
   "ITEMS_NOT_ADDED_TO_CART",
+  "EMAIL_NOT_SET",
 }
 export enum DataErrorCheckoutTypes {
   "SET_SHIPPING_ADDRESS",
@@ -75,6 +74,7 @@ export enum DataErrorCheckoutTypes {
   "CREATE_PAYMENT",
   "COMPLETE_CHECKOUT",
   "GET_CHECKOUT",
+  "GET_PAYMENT_GATEWAYS",
 }
 
 export interface ISaleorCheckoutAPI {
@@ -89,7 +89,8 @@ export interface ISaleorCheckoutAPI {
   payment?: IPayment;
   load: () => PromiseQueuedResponse;
   setBillingAddress: (
-    billingAddress: IAddress
+    billingAddress: IAddress,
+    email?: string
   ) => PromiseRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>;
   setShippingAddress: (
     shippingAddress: IAddress,

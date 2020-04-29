@@ -3,6 +3,7 @@ import { round } from "lodash";
 import { DataErrorCheckoutTypes } from "../api/Checkout/types";
 import { NamedObservable } from "../helpers";
 import { CheckoutNetworkManager } from "../network";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/types/GetShopPaymentGateways";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
   ICheckoutModel,
@@ -20,6 +21,8 @@ export class SaleorState extends NamedObservable<StateItems>
   selectedBillingAddressId?: string;
   payment?: IPaymentModel;
   summaryPrices?: ISaleorStateSummeryPrices;
+  // Should be changed it in future to shop object containing payment gateways besides all the shop data
+  availablePaymentGateways?: GetShopPaymentGateways_shop_availablePaymentGateways[];
 
   private repository: LocalRepository;
   private checkoutNetworkManager: CheckoutNetworkManager;
@@ -68,6 +71,15 @@ export class SaleorState extends NamedObservable<StateItems>
     return;
   };
 
+  providePaymentGateways = async (
+    onError: (
+      error: ApolloErrorWithUserInput | any,
+      type: DataErrorCheckoutTypes
+    ) => any
+  ) => {
+    this.providePaymentGatewaysOnline(onError);
+  };
+
   private onCheckoutUpdate = (checkout: ICheckoutModel) => {
     this.checkout = checkout;
     this.summaryPrices = this.calculateSummaryPrices(checkout);
@@ -77,6 +89,15 @@ export class SaleorState extends NamedObservable<StateItems>
   private onPaymentUpdate = (payment: IPaymentModel) => {
     this.payment = payment;
     this.notifyChange(StateItems.PAYMENT, this.payment);
+  };
+  private onPaymentGatewaysUpdate = (
+    paymentGateways?: GetShopPaymentGateways_shop_availablePaymentGateways[]
+  ) => {
+    this.availablePaymentGateways = paymentGateways;
+    this.notifyChange(
+      StateItems.PAYMENT_GATEWAYS,
+      this.availablePaymentGateways
+    );
   };
 
   private isCheckoutCreatedOnline = () => this.checkout?.id;
@@ -142,6 +163,24 @@ export class SaleorState extends NamedObservable<StateItems>
     } else {
       this.repository.setPayment({});
     }
+  };
+
+  private providePaymentGatewaysOnline = async (
+    onError: (
+      error: ApolloErrorWithUserInput | any,
+      type: DataErrorCheckoutTypes
+    ) => any
+  ) => {
+    const {
+      data,
+      error,
+    } = await this.checkoutNetworkManager.getPaymentGateways();
+
+    if (error) {
+      onError(error, DataErrorCheckoutTypes.GET_PAYMENT_GATEWAYS);
+    }
+
+    this.onPaymentGatewaysUpdate(data);
   };
 
   private calculateSummaryPrices(

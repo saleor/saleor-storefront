@@ -57,14 +57,14 @@ const generateProgressBar = (
 };
 
 const generateSteps = (steps: IStep[], currentActive: number) => {
-  return steps?.map((step, index) => {
+  return steps?.map(step => {
     return (
-      <S.Step key={index}>
+      <S.Step key={step.index}>
         <Link to={step.link}>
-          {generateDot(index, currentActive)}
-          {generateLabel(index, step.name, steps.length)}
+          {generateDot(step.index, currentActive)}
+          {generateLabel(step.index, step.name, steps.length)}
         </Link>
-        {generateProgressBar(index, currentActive, steps.length)}
+        {generateProgressBar(step.index, currentActive, steps.length)}
       </S.Step>
     );
   });

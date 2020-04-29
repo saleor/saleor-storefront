@@ -34,6 +34,37 @@ export const createCheckoutMutation = gql`
   }
 `;
 
+export const updateCheckoutBillingAddressWithEmailMutation = gql`
+  ${checkoutFragment}
+  mutation UpdateCheckoutBillingAddressWithEmail(
+    $checkoutId: ID!
+    $billingAddress: AddressInput!
+    $email: String!
+  ) {
+    checkoutBillingAddressUpdate(
+      checkoutId: $checkoutId
+      billingAddress: $billingAddress
+    ) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+    }
+    checkoutEmailUpdate(checkoutId: $checkoutId, email: $email) {
+      checkout {
+        ...Checkout
+      }
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 export const updateCheckoutBillingAddressMutation = gql`
   ${checkoutFragment}
   mutation UpdateCheckoutBillingAddress(

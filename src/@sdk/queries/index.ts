@@ -33,6 +33,7 @@ import {
 } from "./types/CategoryDetails";
 
 import { GetShop } from "./types/GetShop";
+import { GetShopPaymentGateways } from "./types/GetShopPaymentGateways";
 
 import {
   CheckoutProductVariants,
@@ -101,6 +102,16 @@ export const QUERIES = {
     client.watchQuery({
       query: gql`
         ${Shop.getShop}
+      `,
+      ...options,
+    }),
+  GetShopPaymentGateways: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: QueryOptions<null>
+  ): ObservableQuery<GetShopPaymentGateways, any> =>
+    client.watchQuery({
+      query: gql`
+        ${Shop.getShopPaymentGateways}
       `,
       ...options,
     }),

@@ -1,4 +1,5 @@
 export interface IStep {
+  index: number;
   link: string;
   name: string;
 }

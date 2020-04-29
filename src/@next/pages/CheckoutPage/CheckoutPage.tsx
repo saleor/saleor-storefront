@@ -63,9 +63,21 @@ const prepareCartSummary = (
   );
 };
 
-const getCheckoutProgress = (activeStepIndex: number) => (
-  <CheckoutProgressBar steps={CHECKOUT_STEPS} activeStep={activeStepIndex} />
-);
+const getCheckoutProgress = (
+  loaded: boolean,
+  activeStepIndex: number,
+  isShippingRequired: boolean
+) => {
+  const steps = isShippingRequired
+    ? CHECKOUT_STEPS
+    : CHECKOUT_STEPS.filter(
+        ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
+      );
+
+  return loaded ? (
+    <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
+  ) : null;
+};
 
 const getButton = (text: string, onClick: () => void) => {
   if (text) {
@@ -199,9 +211,19 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       <Loader />
     );
 
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
+
   return (
     <Checkout
-      navigation={getCheckoutProgress(activeStepIndex)}
+      navigation={getCheckoutProgress(
+        cartLoaded && checkoutLoaded,
+        activeStepIndex,
+        !!isShippingRequiredForProducts
+      )}
       cartSummary={prepareCartSummary(
         totalPrice,
         subtotalPrice,

@@ -28,6 +28,11 @@ export interface ICheckoutNetworkManager {
     billingAddress: ICheckoutAddress,
     checkoutId: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  setBillingAddressWithEmail: (
+    billingAddress: ICheckoutAddress,
+    email: string,
+    checkoutId: string
+  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingAddress: (
     shippingAddress: ICheckoutAddress,
     email: string,

@@ -3,6 +3,7 @@ import { Checkout } from "@sdk/fragments/types/Checkout";
 import { OrderDetail } from "@sdk/fragments/types/OrderDetail";
 import { Payment } from "@sdk/fragments/types/Payment";
 import { CheckoutProductVariants_productVariants } from "@sdk/queries/types/CheckoutProductVariants";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "@sdk/queries/types/GetShopPaymentGateways";
 import {
   ICheckoutAddress,
   ICheckoutModel,
@@ -173,35 +174,63 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     };
   };
 
+  getPaymentGateways = async () => {
+    let paymentGateways:
+      | GetShopPaymentGateways_shop_availablePaymentGateways[]
+      | null;
+    try {
+      paymentGateways = await new Promise((resolve, reject) => {
+        this.apiProxy.getShopPaymentGateways(null, {
+          fetchPolicy: "cache-and-network",
+          onError: error => {
+            reject(error);
+          },
+          onUpdate: data => {
+            resolve(data);
+          },
+        });
+      });
+
+      if (paymentGateways) {
+        return {
+          data: paymentGateways,
+        };
+      }
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+    return {};
+  };
+
   createCheckout = async (
     email: string,
     lines: Array<{ variantId: string; quantity: number }>,
-    shippingAddress: ICheckoutAddress,
+    shippingAddress?: ICheckoutAddress,
     billingAddress?: ICheckoutAddress
   ) => {
     try {
       const { data } = await this.apiProxy.setCreateCheckout({
         checkoutInput: {
-          billingAddress: billingAddress
-            ? {
-                city: billingAddress.city,
-                companyName: billingAddress.companyName,
-                country:
-                  CountryCode[
-                    billingAddress?.country?.code as keyof typeof CountryCode
-                  ],
-                countryArea: billingAddress.countryArea,
-                firstName: billingAddress.firstName,
-                lastName: billingAddress.lastName,
-                phone: billingAddress.phone,
-                postalCode: billingAddress.postalCode,
-                streetAddress1: billingAddress.streetAddress1,
-                streetAddress2: billingAddress.streetAddress2,
-              }
-            : undefined,
+          billingAddress: billingAddress && {
+            city: billingAddress.city,
+            companyName: billingAddress.companyName,
+            country:
+              CountryCode[
+                billingAddress?.country?.code as keyof typeof CountryCode
+              ],
+            countryArea: billingAddress.countryArea,
+            firstName: billingAddress.firstName,
+            lastName: billingAddress.lastName,
+            phone: billingAddress.phone,
+            postalCode: billingAddress.postalCode,
+            streetAddress1: billingAddress.streetAddress1,
+            streetAddress2: billingAddress.streetAddress2,
+          },
           email,
           lines,
-          shippingAddress: {
+          shippingAddress: shippingAddress && {
             city: shippingAddress.city,
             companyName: shippingAddress.companyName,
             country:
@@ -324,6 +353,46 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           streetAddress2: billingAddress.streetAddress2,
         },
         checkoutId,
+      });
+
+      if (data?.checkout) {
+        return {
+          data: this.constructCheckoutModel(data.checkout),
+        };
+      } else {
+        return {};
+      }
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  setBillingAddressWithEmail = async (
+    billingAddress: ICheckoutAddress,
+    email: string,
+    checkoutId: string
+  ) => {
+    try {
+      const { data } = await this.apiProxy.setCheckoutBillingAddressWithEmail({
+        billingAddress: {
+          city: billingAddress.city,
+          companyName: billingAddress.companyName,
+          country:
+            CountryCode[
+              billingAddress?.country?.code as keyof typeof CountryCode
+            ],
+          countryArea: billingAddress.countryArea,
+          firstName: billingAddress.firstName,
+          lastName: billingAddress.lastName,
+          phone: billingAddress.phone,
+          postalCode: billingAddress.postalCode,
+          streetAddress1: billingAddress.streetAddress1,
+          streetAddress2: billingAddress.streetAddress2,
+        },
+        checkoutId,
+        email,
       });
 
       if (data?.checkout) {
@@ -481,11 +550,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     lines,
     availableShippingMethods,
     shippingMethod,
-    availablePaymentGateways,
   }: Checkout): ICheckoutModel => ({
-    availablePaymentGateways: availablePaymentGateways
-      ? availablePaymentGateways.filter(filterNotEmptyArrayItems)
-      : [],
     availableShippingMethods: availableShippingMethods
       ? availableShippingMethods.filter(filterNotEmptyArrayItems)
       : [],

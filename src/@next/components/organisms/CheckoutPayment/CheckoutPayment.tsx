@@ -27,6 +27,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   billingFormId,
   paymentGateways,
   setBillingAddress,
+  billingAsShippingPossible,
   setBillingAsShippingAddress,
   promoCodeDiscount,
   addPromoCode,
@@ -74,19 +75,23 @@ const CheckoutPayment: React.FC<IProps> = ({
     <S.Wrapper>
       <S.Section>
         <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
-        <Checkbox
-          data-cy="checkoutPaymentBillingAsShippingCheckbox"
-          name="billing-same-as-shipping"
-          checked={billingAsShippingAddress}
-          onChange={() =>
-            setBillingAsShippingAddress(!billingAsShippingAddress)
-          }
-        >
-          Same as shipping address
-        </Checkbox>
+        {billingAsShippingPossible && (
+          <>
+            <Checkbox
+              data-cy="checkoutPaymentBillingAsShippingCheckbox"
+              name="billing-same-as-shipping"
+              checked={billingAsShippingAddress}
+              onChange={() =>
+                setBillingAsShippingAddress(!billingAsShippingAddress)
+              }
+            >
+              Same as shipping address
+            </Checkbox>
+            <S.Divider />
+          </>
+        )}
         {!billingAsShippingAddress && (
           <>
-            <S.Divider />
             {userAddresses ? (
               <AddressGridSelector
                 formId={billingFormId}
@@ -96,7 +101,9 @@ const CheckoutPayment: React.FC<IProps> = ({
                 countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
                 userId={userId}
                 errors={billingErrors}
-                onSelect={setBillingAddress}
+                onSelect={(address, id) =>
+                  setBillingAddress(address, undefined, id)
+                }
                 newAddressFormId={newAddressFormId}
               />
             ) : (
@@ -105,7 +112,10 @@ const CheckoutPayment: React.FC<IProps> = ({
                 formRef={billingFormRef}
                 countriesOptions={countries.filter(filterNotEmptyArrayItems)}
                 address={checkoutBillingAddress || undefined}
-                handleSubmit={address => address && setBillingAddress(address)}
+                handleSubmit={address =>
+                  address && setBillingAddress(address, address.email)
+                }
+                includeEmail={!billingAsShippingPossible}
                 errors={billingErrors}
               />
             )}

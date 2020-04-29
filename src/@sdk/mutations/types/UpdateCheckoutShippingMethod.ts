@@ -21,34 +21,6 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_error
   message: string | null;
 }
 
-export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_availablePaymentGateways_config {
-  __typename: "GatewayConfigLine";
-  /**
-   * Gateway config key.
-   */
-  field: string;
-  /**
-   * Gateway config value for key.
-   */
-  value: string | null;
-}
-
-export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_availablePaymentGateways {
-  __typename: "PaymentGateway";
-  /**
-   * Payment gateway ID.
-   */
-  id: string;
-  /**
-   * Payment gateway name.
-   */
-  name: string;
-  /**
-   * Payment gateway client configuration.
-   */
-  config: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_availablePaymentGateways_config[];
-}
-
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -545,10 +517,6 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout {
   __typename: "Checkout";
-  /**
-   * List of available payment gateways.
-   */
-  availablePaymentGateways: (UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

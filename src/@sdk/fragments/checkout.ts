@@ -111,14 +111,6 @@ export const checkoutFragment = gql`
   ${checkoutPriceFragment}
   ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
-    availablePaymentGateways {
-      id
-      name
-      config {
-        field
-        value
-      }
-    }
     token
     id
     totalPrice {

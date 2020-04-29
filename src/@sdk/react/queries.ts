@@ -7,6 +7,9 @@ export const useShopDetails = queryFactory("getShopDetails");
 
 export const useUserDetails = queryFactory("getUserDetails");
 
+/**
+ * @deprecated Use useCheckout hook instead
+ */
 export const useUserCheckout = queryFactory("getUserCheckout");
 
 /**

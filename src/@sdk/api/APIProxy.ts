@@ -71,6 +71,11 @@ export class APIProxy {
 
   getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
 
+  getShopPaymentGateways = this.watchQuery(
+    QUERIES.GetShopPaymentGateways,
+    data => data.shop.availablePaymentGateways
+  );
+
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.accountSetDefaultAddress
@@ -128,6 +133,11 @@ export class APIProxy {
 
   setCheckoutBillingAddress = this.fireQuery(
     MUTATIONS.UpdateCheckoutBillingAddress,
+    data => data!.checkoutBillingAddressUpdate
+  );
+
+  setCheckoutBillingAddressWithEmail = this.fireQuery(
+    MUTATIONS.UpdateCheckoutBillingAddressWithEmail,
     data => data!.checkoutBillingAddressUpdate
   );
 
