@@ -43,13 +43,11 @@ const AddressGridSelector: React.FC<IProps> = ({
         }}
         enableReinitialize={true}
         onSubmit={(values, { setSubmitting }) => {
-          if (onSelect && values.addressTileOption) {
+          if (onSelect) {
             const address = addresses.find(
               addr => addr.id === values.addressTileOption
             );
-            if (address) {
-              onSelect(address.address, values.addressTileOption);
-            }
+            onSelect(address?.address, values.addressTileOption);
           }
           setSubmitting(false);
         }}

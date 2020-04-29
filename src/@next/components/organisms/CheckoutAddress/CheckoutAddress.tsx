@@ -48,9 +48,7 @@ const CheckoutAddress: React.FC<IProps> = ({
             ...checkoutAddress,
             email,
           }}
-          handleSubmit={address =>
-            address && setShippingAddress(address, address.email)
-          }
+          handleSubmit={address => setShippingAddress(address, address?.email)}
           includeEmail={true}
           errors={errors}
         />

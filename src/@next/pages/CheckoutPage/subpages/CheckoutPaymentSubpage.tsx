@@ -125,13 +125,22 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     email?: string,
     userAddressId?: string
   ) => {
-    let billingEmail;
-    if (user && userAddressId) {
-      billingEmail = user?.email;
-    } else if (email) {
-      billingEmail = email;
-    } else {
-      billingEmail = "";
+    if (!address && !billingAsShippingState) {
+      setBillingErrors([{ message: "Please provide billing address." }]);
+      return;
+    }
+
+    const billingEmail = user?.email || email;
+
+    if (
+      !billingEmail &&
+      !billingAsShippingState &&
+      !isShippingRequiredForProducts
+    ) {
+      setBillingErrors([
+        { field: "email", message: "Please provide email address." },
+      ]);
+      return;
     }
 
     let errors;
@@ -152,9 +161,17 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
-      promoCodeDiscountFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
+      if (promoCodeDiscountFormRef.current) {
+        promoCodeDiscountFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else if (checkoutGatewayFormRef.current) {
+        checkoutGatewayFormRef.current.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        setGatewayErrors([{ message: "Please choose payment method." }]);
+      }
     }
   };
   const handleAddPromoCode = async (promoCode: string) => {
@@ -164,9 +181,13 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
-      checkoutGatewayFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
+      if (checkoutGatewayFormRef.current) {
+        checkoutGatewayFormRef.current.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        setGatewayErrors([{ message: "Please choose payment method." }]);
+      }
     }
   };
   const handleRemovePromoCode = async (promoCode: string) => {
@@ -176,15 +197,23 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
-      checkoutGatewayFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
+      if (checkoutGatewayFormRef.current) {
+        checkoutGatewayFormRef.current.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      } else {
+        setGatewayErrors([{ message: "Please choose payment method." }]);
+      }
     }
   };
   const handleSubmitUnchangedDiscount = () => {
-    checkoutGatewayFormRef.current?.dispatchEvent(
-      new Event("submit", { cancelable: true })
-    );
+    if (checkoutGatewayFormRef.current) {
+      checkoutGatewayFormRef.current.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+    } else {
+      setGatewayErrors([{ message: "Please choose payment method." }]);
+    }
   };
 
   return (

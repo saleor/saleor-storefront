@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Radio } from "@components/atoms";
+import { ErrorMessage, Radio } from "@components/atoms";
 import { PROVIDERS } from "@temp/core/config";
 
 import {
@@ -117,6 +117,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
             );
         }
       })}
+      {!selectedPaymentGateway && errors && <ErrorMessage errors={errors} />}
     </S.Wrapper>
   );
 };

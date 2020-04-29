@@ -61,17 +61,20 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const handleSetShippingAddress = async (
-    address: IAddress,
+    address?: IAddress,
     email?: string,
     userAddressId?: string
   ) => {
-    let shippingEmail;
-    if (user && userAddressId) {
-      shippingEmail = user?.email;
-    } else if (email) {
-      shippingEmail = email;
-    } else {
-      shippingEmail = "";
+    if (!address) {
+      setErrors([{ message: "Please provide shipping address." }]);
+      return;
+    }
+
+    const shippingEmail = user?.email || email || "";
+
+    if (!shippingEmail) {
+      setErrors([{ field: "email", message: "Please provide email address." }]);
+      return;
     }
 
     const { dataError } = await setShippingAddress(

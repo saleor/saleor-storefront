@@ -90,22 +90,20 @@ const CheckoutPayment: React.FC<IProps> = ({
       <S.Section>
         <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
         {billingAsShippingPossible && (
-          <>
-            <Checkbox
-              data-cy="checkoutPaymentBillingAsShippingCheckbox"
-              name="billing-same-as-shipping"
-              checked={billingAsShippingAddress}
-              onChange={() =>
-                setBillingAsShippingAddress(!billingAsShippingAddress)
-              }
-            >
-              Same as shipping address
-            </Checkbox>
-            <S.Divider />
-          </>
+          <Checkbox
+            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            name="billing-same-as-shipping"
+            checked={billingAsShippingAddress}
+            onChange={() =>
+              setBillingAsShippingAddress(!billingAsShippingAddress)
+            }
+          >
+            Same as shipping address
+          </Checkbox>
         )}
         {!billingAsShippingAddress && (
           <>
+            {billingAsShippingPossible && <S.Divider />}
             {userAddresses ? (
               <AddressGridSelector
                 formId={billingFormId}
@@ -127,7 +125,7 @@ const CheckoutPayment: React.FC<IProps> = ({
                 countriesOptions={countries.filter(filterNotEmptyArrayItems)}
                 address={checkoutBillingAddress || undefined}
                 handleSubmit={address =>
-                  address && setBillingAddress(address, address.email)
+                  setBillingAddress(address, address?.email)
                 }
                 includeEmail={!billingAsShippingPossible}
                 errors={billingErrors}

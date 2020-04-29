@@ -17,5 +17,5 @@ export interface IProps {
   formId?: string;
   newAddressFormId?: string;
   errors?: IFormError[];
-  setShippingAddress: (address: IAddress, email?: string, id?: string) => void;
+  setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
 }
