@@ -7,19 +7,23 @@ import { CheckoutProgressBar } from ".";
 
 const steps = [
   {
+    index: 0,
     link: "#",
     name: "Shipping",
   },
 
   {
+    index: 1,
     link: "#",
     name: "Billing",
   },
   {
+    index: 2,
     link: "#",
     name: "Payment",
   },
   {
+    index: 3,
     link: "#",
     name: "Review",
   },

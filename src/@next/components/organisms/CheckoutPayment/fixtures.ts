@@ -58,6 +58,7 @@ export const paymentGateways = [
 ];
 
 export const LOGGED_IN_USER_PROPS = {
+  billingAsShippingPossible: true,
   countries,
   paymentGateways,
   userAddresses: [
@@ -68,6 +69,7 @@ export const LOGGED_IN_USER_PROPS = {
 };
 
 export const ANONYMOUS_USER_PROPS = {
+  billingAsShippingPossible: true,
   checkoutBillingAddress: address,
   countries,
   paymentGateways,

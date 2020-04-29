@@ -20,18 +20,18 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
 
   const handleBlurQuantityInput = () => {
     let newQuantity = parseInt(tempQuantity, 10);
-    let newTempQuantity = newQuantity.toString(); // To make newTempQuantity consistent with newQuantity
 
     if (isNaN(newQuantity) || newQuantity <= 0) {
-      newTempQuantity = quantity.toString();
       newQuantity = quantity;
     }
 
-    if (tempQuantity !== newTempQuantity) {
-      setTempQuantity(newTempQuantity);
-    }
     if (quantity !== newQuantity) {
       onQuantityChange(newQuantity);
+    }
+
+    const newTempQuantity = newQuantity.toString();
+    if (tempQuantity !== newTempQuantity) {
+      setTempQuantity(newTempQuantity);
     }
 
     setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);

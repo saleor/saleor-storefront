@@ -142,8 +142,9 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
 <div
   className="c0"
 >
-  <div
+  <form
     className=""
+    onSubmit={[Function]}
   >
     <div
       className="c1"
@@ -165,6 +166,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
                 className="c6"
                 data-cy="checkoutPaymentPromoCodeInput"
                 disabled={false}
+                name="inputCode"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -187,6 +189,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
             data-cy="checkoutPaymentPromoCodeBtn"
             onClick={[Function]}
             size="md"
+            type="button"
           >
             <span
               className="c10"
@@ -198,7 +201,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
         </div>
       </div>
     </div>
-  </div>
+  </form>
   <div
     className="c11"
   />
