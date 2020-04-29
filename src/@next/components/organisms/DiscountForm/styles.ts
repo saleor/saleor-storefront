@@ -1,6 +1,6 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const DiscountForm = styled.form``;
 
 export const Input = styled.div`
   margin-bottom: ${props => props.theme.spacing.spacer};

@@ -86,6 +86,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   const checkoutGatewayFormId = "gateway-form";
   const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
   const checkoutNewAddressFormId = "new-address-form";
+  const promoCodeDiscountFormId = "discount-form";
+  const promoCodeDiscountFormRef = useRef<HTMLFormElement>(null);
 
   useImperativeHandle(ref, () => ({
     submitPayment: () => {
@@ -150,7 +152,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
-      checkoutGatewayFormRef.current?.dispatchEvent(
+      promoCodeDiscountFormRef.current?.dispatchEvent(
         new Event("submit", { cancelable: true })
       );
     }
@@ -162,6 +164,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
+      checkoutGatewayFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
     }
   };
   const handleRemovePromoCode = async (promoCode: string) => {
@@ -171,7 +176,15 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
+      checkoutGatewayFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
     }
+  };
+  const handleSubmitUnchangedDiscount = () => {
+    checkoutGatewayFormRef.current?.dispatchEvent(
+      new Event("submit", { cancelable: true })
+    );
   };
 
   return (
@@ -207,11 +220,14 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       billingAsShippingPossible={!!isShippingRequiredForProducts}
       billingAsShippingAddress={billingAsShippingState}
       setBillingAsShippingAddress={setBillingAsShippingState}
+      promoCodeDiscountFormId={promoCodeDiscountFormId}
+      promoCodeDiscountFormRef={promoCodeDiscountFormRef}
       promoCodeDiscount={{
         voucherCode: promoCodeDiscount?.voucherCode,
       }}
       addPromoCode={handleAddPromoCode}
       removeVoucherCode={handleRemovePromoCode}
+      submitUnchangedDiscount={handleSubmitUnchangedDiscount}
       promoCodeErrors={promoCodeErrors}
       gatewayFormId={checkoutGatewayFormId}
       gatewayFormRef={checkoutGatewayFormRef}

@@ -6,6 +6,7 @@ import { filterNotEmptyArrayItems } from "@utils/misc";
 import { AddressForm } from "../AddressForm";
 import { AddressGridSelector } from "../AddressGridSelector";
 import { DiscountForm } from "../DiscountForm";
+import { IDiscountFormData } from "../DiscountForm/types";
 import { PaymentGatewaysList } from "../PaymentGatewaysList";
 
 import * as S from "./styles";
@@ -29,9 +30,12 @@ const CheckoutPayment: React.FC<IProps> = ({
   setBillingAddress,
   billingAsShippingPossible,
   setBillingAsShippingAddress,
+  promoCodeDiscountFormId,
+  promoCodeDiscountFormRef,
   promoCodeDiscount,
   addPromoCode,
   removeVoucherCode,
+  submitUnchangedDiscount,
   selectedPaymentGateway,
   selectedPaymentGatewayToken,
   selectPaymentGateway,
@@ -53,10 +57,20 @@ const CheckoutPayment: React.FC<IProps> = ({
   }, [promoCodeDiscount?.voucherCode]);
 
   const handleChangeShowPromoCodeForm = () => {
-    if (showPromoCodeForm && promoCodeDiscount?.voucherCode) {
-      removeVoucherCode(promoCodeDiscount?.voucherCode);
-    }
     setShowPromoCodeForm(!showPromoCodeForm);
+  };
+
+  const handleSubmitPromoCode = (discountForm?: IDiscountFormData) => {
+    const newPromoCode = discountForm?.promoCode;
+    const savedPromoCode = promoCodeDiscount?.voucherCode;
+
+    if ((!newPromoCode || !showPromoCodeForm) && savedPromoCode) {
+      removeVoucherCode(savedPromoCode);
+    } else if (newPromoCode && newPromoCode !== savedPromoCode) {
+      addPromoCode(newPromoCode);
+    } else {
+      submitUnchangedDiscount();
+    }
   };
 
   const adresses =
@@ -137,11 +151,9 @@ const CheckoutPayment: React.FC<IProps> = ({
           <S.DiscountField>
             <DiscountForm
               discount={{ promoCode: promoCodeDiscount?.voucherCode }}
-              handleApplyDiscount={addPromoCode}
-              handleRemovePromoCode={() =>
-                promoCodeDiscount?.voucherCode &&
-                removeVoucherCode(promoCodeDiscount?.voucherCode)
-              }
+              formId={promoCodeDiscountFormId}
+              formRef={promoCodeDiscountFormRef}
+              handleSubmit={handleSubmitPromoCode}
               errors={promoCodeErrors}
             />
           </S.DiscountField>

@@ -27,8 +27,11 @@ export interface IProps {
   billingAsShippingPossible: boolean;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
   promoCodeDiscount?: IPromoCodeDiscount;
+  promoCodeDiscountFormRef?: React.RefObject<HTMLFormElement>;
+  promoCodeDiscountFormId?: string;
   addPromoCode: (promoCode: string) => void;
   removeVoucherCode: (voucherCode: string) => void;
+  submitUnchangedDiscount: () => void;
   /**
    * Selected payment gateway.
    */
