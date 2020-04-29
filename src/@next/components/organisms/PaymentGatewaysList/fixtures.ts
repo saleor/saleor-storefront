@@ -1,4 +1,6 @@
-export const paymentGateways = [
+import { IPaymentGateway } from "@types";
+
+export const paymentGateways: IPaymentGateway[] = [
   {
     config: [
       {

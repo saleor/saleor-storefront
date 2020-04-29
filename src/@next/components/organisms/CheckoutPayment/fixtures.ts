@@ -1,4 +1,6 @@
-const address = {
+import { IAddressWithAddressType, IPaymentGateway } from "@types";
+
+const address: IAddressWithAddressType = {
   city: "Wroclaw",
   companyName: "Mirumee",
   country: {
@@ -30,7 +32,7 @@ const countries = [
   { code: "GB", country: "Great Britain" },
 ];
 
-export const paymentGateways = [
+export const paymentGateways: IPaymentGateway[] = [
   {
     config: [
       {

@@ -19,7 +19,7 @@ const CheckoutShipping: React.FC<IProps> = ({
   formRef,
 }: IProps) => {
   return (
-    <S.Section>
+    <section>
       <S.Title data-cy="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
       <Formik
         initialValues={{
@@ -85,7 +85,7 @@ const CheckoutShipping: React.FC<IProps> = ({
           );
         }}
       </Formik>
-    </S.Section>
+    </section>
   );
 };
 

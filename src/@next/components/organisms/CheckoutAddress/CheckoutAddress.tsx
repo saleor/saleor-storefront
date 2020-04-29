@@ -25,7 +25,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   newAddressFormId,
 }: IProps) => {
   return (
-    <S.Section>
+    <section>
       <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
       {userAddresses ? (
         <AddressGridSelector
@@ -53,7 +53,7 @@ const CheckoutAddress: React.FC<IProps> = ({
           errors={errors}
         />
       )}
-    </S.Section>
+    </section>
   );
 };
 

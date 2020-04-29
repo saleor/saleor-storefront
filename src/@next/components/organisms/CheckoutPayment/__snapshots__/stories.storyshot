@@ -291,9 +291,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   <div
     className=""
   >
-    <section
-      className=""
-    >
+    <section>
       <h3
         className="c1"
         data-cy="checkoutPageSubtitle"
@@ -757,9 +755,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
     <div
       className="c5"
     />
-    <section
-      className=""
-    >
+    <section>
       <h3
         className="c1"
         data-cy="checkoutPageSubtitle"
@@ -1141,9 +1137,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
   <div
     className=""
   >
-    <section
-      className=""
-    >
+    <section>
       <h3
         className="c1"
         data-cy="checkoutPageSubtitle"
@@ -1178,7 +1172,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
         className="c5"
       />
       <form
-        className=""
         onSubmit={[Function]}
       >
         <div
@@ -1269,9 +1262,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
     <div
       className="c5"
     />
-    <section
-      className=""
-    >
+    <section>
       <h3
         className="c1"
         data-cy="checkoutPageSubtitle"

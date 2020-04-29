@@ -1,4 +1,6 @@
-const shippingMethods = [
+import { IShippingMethod } from "./types";
+
+const shippingMethods: IShippingMethod[] = [
   {
     id: "1",
     name: "Basic",

@@ -1,4 +1,8 @@
-const formAddress = {
+import { IAddressWithAddressType } from "@types";
+
+import { Address } from "./types";
+
+const formAddress: IAddressWithAddressType = {
   city: "Wroclaw",
   companyName: "Mirumee",
   country: {
@@ -17,7 +21,7 @@ const formAddress = {
   streetAddress2: "Second",
 };
 
-const userAddress = {
+const userAddress: Address = {
   address: {
     city: "Wroclaw",
     companyName: "Mirumee",

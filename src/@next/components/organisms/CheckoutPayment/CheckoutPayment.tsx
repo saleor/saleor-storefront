@@ -87,7 +87,7 @@ const CheckoutPayment: React.FC<IProps> = ({
 
   return (
     <S.Wrapper>
-      <S.Section>
+      <section>
         <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
         {billingAsShippingPossible && (
           <Checkbox
@@ -133,9 +133,9 @@ const CheckoutPayment: React.FC<IProps> = ({
             )}
           </>
         )}
-      </S.Section>
+      </section>
       <S.Divider />
-      <S.Section>
+      <section>
         <S.Title data-cy="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
         <Checkbox
           data-cy="checkoutPaymentPromoCodeCheckbox"
@@ -167,7 +167,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           selectedPaymentGatewayToken={selectedPaymentGatewayToken}
           selectPaymentGateway={selectPaymentGateway}
         />
-      </S.Section>
+      </section>
     </S.Wrapper>
   );
 };

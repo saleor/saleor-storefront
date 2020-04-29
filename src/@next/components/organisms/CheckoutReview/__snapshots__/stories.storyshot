@@ -66,9 +66,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
     <div
       className="c2"
     >
-      <section
-        className=""
-      >
+      <section>
         <h4
           className="c3"
           data-cy="checkoutReviewSectionTitle"
@@ -79,9 +77,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
           className="c4"
         />
       </section>
-      <section
-        className=""
-      >
+      <section>
         <h4
           className="c3"
           data-cy="checkoutReviewSectionTitle"
@@ -92,9 +88,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
           className="c4"
         />
       </section>
-      <section
-        className=""
-      >
+      <section>
         <h4
           className="c3"
           data-cy="checkoutReviewSectionTitle"
@@ -108,9 +102,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
           className="c5"
         />
       </section>
-      <section
-        className=""
-      >
+      <section>
         <h4
           className="c3"
           data-cy="checkoutReviewSectionTitle"

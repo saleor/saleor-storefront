@@ -1,7 +1,7 @@
 import { getShop_shop_countries } from "@temp/core/types/saleor";
 import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 
-declare type Address = {
+export declare type Address = {
   id: string;
   address: IAddressWithAddressType;
 };

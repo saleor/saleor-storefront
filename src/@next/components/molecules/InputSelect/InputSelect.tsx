@@ -1,5 +1,8 @@
 import React from "react";
 import { components } from "react-select";
+import { ControlProps } from "react-select/lib/components/Control";
+import { InputProps } from "react-select/lib/components/Input";
+import { OptionProps } from "react-select/lib/components/Option";
 import { ThemeContext } from "styled-components";
 
 import { Icon, InputLabel, Select } from "@components/atoms";
@@ -45,7 +48,7 @@ export const InputSelect: React.FC<IProps> = ({
   };
 
   const customComponents = {
-    Control: (props: any) => {
+    Control: (props: ControlProps<any>) => {
       const customTheme = React.useContext(ThemeContext);
       return (
         <>
@@ -86,10 +89,10 @@ export const InputSelect: React.FC<IProps> = ({
         );
       }
     },
-    Input: (props: any) => {
+    Input: (props: InputProps) => {
       return <components.Input {...{ ...props, ...inputProps }} />;
     },
-    Option: (props: any) => {
+    Option: (props: OptionProps<any>) => {
       const customTheme = React.useContext(ThemeContext);
       return <components.Option {...{ customTheme, ...props }} />;
     },

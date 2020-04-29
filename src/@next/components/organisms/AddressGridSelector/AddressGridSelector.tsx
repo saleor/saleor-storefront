@@ -6,7 +6,6 @@ import { AddressTileOption } from "@components/molecules";
 
 import { AddressFormModal } from "../AddressFormModal";
 
-import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
@@ -61,11 +60,7 @@ const AddressGridSelector: React.FC<IProps> = ({
           setFieldTouched,
         }) => {
           return (
-            <S.AddressGridForm
-              id={formId}
-              ref={formRef}
-              onSubmit={handleSubmit}
-            >
+            <form id={formId} ref={formRef} onSubmit={handleSubmit}>
               <TileGrid
                 columns={2}
                 elements={addresses.reduce(
@@ -90,7 +85,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                 )}
               />
               <ErrorMessage errors={errors} />
-            </S.AddressGridForm>
+            </form>
           );
         }}
       </Formik>

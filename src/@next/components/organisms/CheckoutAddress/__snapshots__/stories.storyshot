@@ -176,9 +176,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
 <div
   className="c0"
 >
-  <section
-    className=""
-  >
+  <section>
     <h3
       className="c1"
       data-cy="checkoutPageSubtitle"
@@ -801,9 +799,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
 <div
   className="c0"
 >
-  <section
-    className=""
-  >
+  <section>
     <h3
       className="c1"
       data-cy="checkoutPageSubtitle"
@@ -811,7 +807,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
       SHIPPING ADDRESS
     </h3>
     <form
-      className=""
       onSubmit={[Function]}
     >
       <div

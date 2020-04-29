@@ -63,9 +63,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
 <div
   className="c0"
 >
-  <section
-    className=""
-  >
+  <section>
     <h3
       className="c1"
       data-cy="checkoutPageSubtitle"

@@ -2,8 +2,6 @@ import { media, styled } from "@styles";
 
 export const Wrapper = styled.div``;
 
-export const Section = styled.section``;
-
 export const Divider = styled.div`
   width: 100%;
   border-bottom: 1px solid

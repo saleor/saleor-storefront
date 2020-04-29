@@ -144,7 +144,6 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
   className="c0"
 >
   <form
-    className=""
     onSubmit={[Function]}
   >
     <div
