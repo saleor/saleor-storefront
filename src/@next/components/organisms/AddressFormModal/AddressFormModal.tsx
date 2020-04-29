@@ -72,7 +72,7 @@ export const AddressFormModal: React.FC<IProps> = ({
             setCreatUserAddress({
               input: {
                 ...data,
-                country: data!.country!.code as CountryCode,
+                country: data?.country?.code as CountryCode,
               },
             });
           } else {
@@ -80,7 +80,7 @@ export const AddressFormModal: React.FC<IProps> = ({
               id: address!.id,
               input: {
                 ...data,
-                country: data!.country!.code as CountryCode,
+                country: data?.country?.code as CountryCode,
               },
             });
           }
