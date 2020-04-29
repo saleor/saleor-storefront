@@ -31,7 +31,7 @@ export class JobQueue implements IJobQueue {
       func();
       return onFinish();
     } else {
-      if (this.queue.has(name)) {
+      if (!this.queue.has(name)) {
         this.queue.set(name, { func, onFinish });
       }
       return onPending();
@@ -80,11 +80,11 @@ export class JobQueue implements IJobQueue {
     }
   }
 
-  private onOnline() {
+  private onOnline = () => {
     this.queue.forEach(({ func, onFinish }, name) => {
       func();
       onFinish();
     });
     this.queue = new Map();
-  }
+  };
 }
