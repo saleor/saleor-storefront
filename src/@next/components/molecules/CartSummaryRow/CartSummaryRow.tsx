@@ -7,7 +7,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 /**
- * Example component description.
+ * Row with product to display in cart summary.
  */
 const CartSummaryRow: React.FC<IProps> = ({
   index,

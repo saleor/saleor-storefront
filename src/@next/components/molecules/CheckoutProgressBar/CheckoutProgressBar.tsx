@@ -45,14 +45,8 @@ const generateProgressBar = (
   currentActive: number,
   numberOfSteps: number
 ) => {
-  if (currentActive > index) {
-    return <S.ProgressBar done={true} />;
-  }
-  if (index === numberOfSteps - 1) {
-    return;
-  }
-  if (index >= currentActive) {
-    return <S.ProgressBar />;
+  if (index !== numberOfSteps - 1) {
+    return <S.ProgressBar done={currentActive > index} />;
   }
 };
 
