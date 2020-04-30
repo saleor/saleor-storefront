@@ -20,7 +20,7 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 .c1 {
   display: grid;
   font-size: 1.125rem;
-  grid-template-areas: ". subtotalText subtotalPrice ." ". totalText totalPrice .";
+  grid-template-areas: ". subtotalText subtotalPrice ."   ". totalText totalPrice .";
   grid-template-columns: 4fr 1.1fr 0.9fr 0.5fr;
   grid-gap: 2rem;
   padding: 2rem 0;
@@ -47,7 +47,7 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 
 @media (max-width:720px) {
   .c1 {
-    grid-template-areas: ". subtotalText subtotalPrice" ". totalText totalPrice";
+    grid-template-areas: ". subtotalText subtotalPrice"   ". totalText totalPrice";
     grid-template-columns: 0.5fr 3.5fr 2fr;
   }
 }
