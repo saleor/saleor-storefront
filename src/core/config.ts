@@ -5,17 +5,17 @@ export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
   BRAINTREE: {
-    label: "Braintree",
     id: "mirumee.payments.braintree",
+    label: "Braintree",
   },
   DUMMY: {
-    label: "Dummy",
     id: "Stmirumee.payments.dummy",
+    label: "Dummy",
   },
   STRIPE: {
     href: "https://js.stripe.com/v3/",
-    label: "Stripe",
     id: "mirumee.payments.stripe",
+    label: "Stripe",
   },
 };
 export const STATIC_PAGES = [
