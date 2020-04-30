@@ -6,13 +6,16 @@ export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
   BRAINTREE: {
     label: "Braintree",
+    id: "mirumee.payments.braintree",
   },
   DUMMY: {
     label: "Dummy",
+    id: "Stmirumee.payments.dummy",
   },
   STRIPE: {
     href: "https://js.stripe.com/v3/",
     label: "Stripe",
+    id: "mirumee.payments.stripe",
   },
 };
 export const STATIC_PAGES = [
