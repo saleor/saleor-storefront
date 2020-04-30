@@ -29,7 +29,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
       checkout = await new Promise((resolve, reject) => {
         if (this.apiProxy.isLoggedIn()) {
           this.apiProxy.getUserCheckout(null, {
-            fetchPolicy: "cache-and-network",
+            fetchPolicy: "network-only",
             onError: error => {
               reject(error);
             },
@@ -43,7 +43,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               token: checkoutToken,
             },
             {
-              fetchPolicy: "cache-and-network",
+              fetchPolicy: "network-only",
               onError: error => {
                 reject(error);
               },
