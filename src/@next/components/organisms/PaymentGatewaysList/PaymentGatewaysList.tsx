@@ -49,7 +49,17 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     </span>
                   </Radio>
                 </S.Tile>
-                {checked && <BraintreePaymentGateway />}
+                {checked && (
+                  <BraintreePaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    formId={formId}
+                    processPayment={(token, cardData) =>
+                      processPayment(id, token, cardData)
+                    }
+                    errors={errors}
+                  />
+                )}
               </div>
             );
 

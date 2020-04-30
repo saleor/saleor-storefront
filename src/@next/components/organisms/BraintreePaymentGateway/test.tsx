@@ -4,9 +4,17 @@ import React from "react";
 
 import { BraintreePaymentGateway } from ".";
 
+const config = [{ field: "client_token", value: "token_test_1234567890" }];
+
 describe("<BraintreePaymentGateway />", () => {
   it("exists", () => {
-    const wrapper = shallow(<BraintreePaymentGateway />);
+    const processPayment = jest.fn();
+    const wrapper = shallow(
+      <BraintreePaymentGateway
+        config={config}
+        processPayment={processPayment}
+      />
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });

@@ -77,7 +77,7 @@ export class SaleorState extends NamedObservable<StateItems>
       type: DataErrorCheckoutTypes
     ) => any
   ) => {
-    this.providePaymentGatewaysOnline(onError);
+    await this.providePaymentGatewaysOnline(onError);
   };
 
   private onCheckoutUpdate = (checkout: ICheckoutModel) => {

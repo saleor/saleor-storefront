@@ -20,6 +20,7 @@ const getInputProps = (
 
 export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   formRef,
+  formId,
   cardErrors: {
     number: cardNumberError,
     cvv: ccCscError,
@@ -38,7 +39,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   ]);
 
   return (
-    <S.PaymentForm ref={formRef} onSubmit={handleSubmit}>
+    <S.PaymentForm ref={formRef} id={formId} onSubmit={handleSubmit}>
       <S.PaymentInput>
         <NumberFormat
           autoFocus
