@@ -4,6 +4,8 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 2.10.0
+
 - Account confirmation mechanism - #565 by @tomaszszymanski129
 - Add missing product attributes on product page - #536 by @orzechdev
 - Change register mutation to accountRegister - #549 by @tomaszszymanski129
@@ -11,7 +13,26 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix not working storefront when no data in saleor database exist - #551 by @orzechdev
 - Make checkout working without shipping if it is not required - #571 by @orzechdev
 - Add ability to apply a promo code in checkout - #582 by @orzechdev
+- Refactor product list - #591 by @orzechdev
+- Add chips of selected filter attributes values and fix product list filtering - #602 by @orzechdev
+- Refactor FilterAttribute to AttributeValuesChecklist - #610 by @orzechdev
+- Clear cache on logout - #623 by @orzechdev
+- Add missing Cypress functional tests - #624 by @mateuszkula
+- Add lighthouse config - #627 by @mateuszkula
+- Load Stripe asynchronously - #629 by @orzechdev
+- Fix crash address book on logout - #630 by @orzechdev
+- Preload css for Inter font - #631 by @orzechdev
+- Use sdk for fetching shop details - #632 by @mateuszkula
+- Preconnect to Graphql API_URI - #634 by @mateuszkula
+- Upgrade typescript to 3.8.2 - #635 by @mateuszkula
+- Remove linguijs usage - #637 by @mateuszkula
+- Remove old storybook - #638 by @mateuszkula
 - Add docs to storybook - #614 by @orzechdev
+- Create new UI for product page - #605 by @mateuszkula
+- Use new pricing on product page with TaxedMoney component to display prices - #584 by @orzechdev
+- Update GraphQL schema - #567 by @orzechdev
+- Completely recreate checkout and cart, with new checkout nad cart SDK - #639 by @orzechdev, @mateuszkula
+- Hide payment options - #678 by @orzechdev
 
 ## 0.7.0
 
