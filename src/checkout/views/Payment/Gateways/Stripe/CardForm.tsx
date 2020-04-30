@@ -36,7 +36,7 @@ const CardForm = ({
           token: id,
         },
       });
-      processPayment(id, PROVIDERS.STRIPE.label);
+      processPayment(id, PROVIDERS.STRIPE.id);
     }
     setLoadingState(false);
   };

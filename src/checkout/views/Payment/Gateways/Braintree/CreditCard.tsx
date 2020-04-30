@@ -75,7 +75,7 @@ const CreditCard = ({
         number: removeEmptySpaces(maybe(() => formData.ccNumber, "")),
       };
       const token = await tokenizeCcCard(creditCard);
-      processPayment(token, PROVIDERS.BRAINTREE.label);
+      processPayment(token, PROVIDERS.BRAINTREE.id);
       setLoadingState(false);
     };
 
