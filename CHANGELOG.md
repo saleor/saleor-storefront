@@ -12,6 +12,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Make checkout working without shipping if it is not required - #571 by @orzechdev
 - Add ability to apply a promo code in checkout - #582 by @orzechdev
 - Add docs to storybook - #614 by @orzechdev
+- Send ID instead Name of plugin on CreatePayment request - #680 by @gabmartinez
 
 ## 0.7.0
 
@@ -89,4 +90,3 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add OpenGraph and Meta tags - #191 by @piotrgrundas
 - Add `tslint` check on CI; add the ability to change cart quantity - #194 by @piotrgrundas
 - Update placeholder for missing image - #198 by @piotrgrundas
-- Send ID instead Name of plugin on CreatePayment request - #680 by @gabmartinez
