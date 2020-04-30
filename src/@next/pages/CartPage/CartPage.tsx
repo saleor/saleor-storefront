@@ -6,10 +6,11 @@ import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
-import { IItems, ISubtotalPrice, ITotalPrice } from "@sdk/api/Cart/types";
+import { IItems } from "@sdk/api/Cart/types";
 import { UserDetails_me } from "@sdk/queries/types/UserDetails";
-import { useCart, useUserDetails } from "@sdk/react";
+import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { BASE_URL } from "@temp/core/config";
+import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
@@ -36,8 +37,10 @@ const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
 const cartHeader = <CartHeader />;
 
 const prepareCartFooter = (
-  totalPrice: ITotalPrice,
-  subtotalPrice: ISubtotalPrice
+  totalPrice?: ITaxedMoney | null,
+  shippingTaxedPrice?: ITaxedMoney | null,
+  promoTaxedPrice?: ITaxedMoney | null,
+  subtotalPrice?: ITaxedMoney | null
 ) => (
   <CartFooter
     subtotalPrice={
@@ -45,6 +48,24 @@ const prepareCartFooter = (
     }
     totalPrice={
       <TaxedMoney data-cy="cartPageTotalPrice" taxedMoney={totalPrice} />
+    }
+    shippingPrice={
+      shippingTaxedPrice &&
+      shippingTaxedPrice.gross.amount !== 0 && (
+        <TaxedMoney
+          data-cy="cartPageShippingPrice"
+          taxedMoney={shippingTaxedPrice}
+        />
+      )
+    }
+    discountPrice={
+      promoTaxedPrice &&
+      promoTaxedPrice.gross.amount !== 0 && (
+        <TaxedMoney
+          data-cy="cartPageShippingPrice"
+          taxedMoney={promoTaxedPrice}
+        />
+      )
     }
   />
 );
@@ -102,6 +123,7 @@ const generateCart = (
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
+  const { checkout } = useCheckout();
   const {
     loaded,
     removeItem,
@@ -109,7 +131,21 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     items,
     totalPrice,
     subtotalPrice,
+    shippingPrice,
+    discount,
   } = useCart();
+
+  const shippingTaxedPrice =
+    checkout?.shippingMethod?.id && shippingPrice
+      ? {
+          gross: shippingPrice,
+          net: shippingPrice,
+        }
+      : null;
+  const promoTaxedPrice = discount && {
+    gross: discount,
+    net: discount,
+  };
 
   if (loaded && items?.length) {
     return (
@@ -117,7 +153,12 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
         title={title}
         button={getCheckoutButton(history, user)}
         cartHeader={cartHeader}
-        cartFooter={prepareCartFooter(totalPrice, subtotalPrice)}
+        cartFooter={prepareCartFooter(
+          totalPrice,
+          shippingTaxedPrice,
+          promoTaxedPrice,
+          subtotalPrice
+        )}
         cart={items && generateCart(items, removeItem, updateItem)}
       />
     );

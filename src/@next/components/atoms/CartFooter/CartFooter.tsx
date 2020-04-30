@@ -8,12 +8,26 @@ import { IProps } from "./types";
  */
 const CartFooter: React.FC<IProps> = ({
   subtotalPrice,
+  shippingPrice,
+  discountPrice,
   totalPrice,
 }: IProps) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper showShipping={!!shippingPrice} showDiscount={!!discountPrice}>
       <S.SubtotalText>Subtotal</S.SubtotalText>
       <S.SubtotalPrice>{subtotalPrice}</S.SubtotalPrice>
+      {shippingPrice && (
+        <>
+          <S.ShippingText>Shipping</S.ShippingText>
+          <S.ShippingPrice>{shippingPrice}</S.ShippingPrice>
+        </>
+      )}
+      {discountPrice && (
+        <>
+          <S.DiscountText>Promo Code</S.DiscountText>
+          <S.DiscountPrice>{discountPrice}</S.DiscountPrice>
+        </>
+      )}
       <S.TotalText>Total</S.TotalText>
       <S.TotalPrice>{totalPrice}</S.TotalPrice>
     </S.Wrapper>
