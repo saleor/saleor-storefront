@@ -89,3 +89,4 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add OpenGraph and Meta tags - #191 by @piotrgrundas
 - Add `tslint` check on CI; add the ability to change cart quantity - #194 by @piotrgrundas
 - Update placeholder for missing image - #198 by @piotrgrundas
+- Send ID instead Name of plugin on CreatePayment request - #680 by @gabmartinez
