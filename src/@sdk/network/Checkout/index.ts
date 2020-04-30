@@ -181,7 +181,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
     try {
       paymentGateways = await new Promise((resolve, reject) => {
         this.apiProxy.getShopPaymentGateways(null, {
-          fetchPolicy: "cache-and-network",
+          fetchPolicy: "network-only",
           onError: error => {
             reject(error);
           },
