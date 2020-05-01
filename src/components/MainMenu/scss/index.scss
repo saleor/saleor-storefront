@@ -3,12 +3,17 @@
 .main-menu {
   align-items: center;
   align-items: stretch;
-  background-color: $white;
-  border-bottom: 1px solid $gray-light;
+  //background-color: $white;
+  //border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
   height: 3.55rem;
   position: relative;
+
+  @media (max-width: $small-screen) {
+    display: flex;
+    justify-content: flex-end;
+  }
 
   &__left {
     flex-basis: calc(50% - 2rem);

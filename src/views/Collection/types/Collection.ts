@@ -370,11 +370,12 @@ export interface Collection {
 }
 
 export interface CollectionVariables {
-  id: string;
+  id?: string;
   attributes?: (AttributeInput | null)[] | null;
   after?: string | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  slug?: string;
 }
