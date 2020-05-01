@@ -40,8 +40,8 @@ export const Routes: React.FC = () => (
     <Route path={paths.addressBookUrl} component={Account} />
     <Route path={paths.paymentOptionsUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
-    <Route path={paths.browseCollection} component={BrowseCabinets} />
-    <Route path={paths.cabinetCollection} component={CollectionImageSlider} />
+    <Route exact path={paths.browseCollection} component={BrowseCabinets} />
+    <Route exact path={paths.cabinetCollection} component={CollectionImageSlider} />
     <Route component={NotFound} />
   </Switch>
 );
