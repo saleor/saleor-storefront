@@ -51,6 +51,7 @@
     "register-service-worker": "^1.6.2",
     "reset-css": "^4.0.1",
     "styled-components": "^4.3.0",
+    "tslint-no-commented-code-rule": "^0.1.0",
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0",
     "use-query-params": "^0.4.1",
