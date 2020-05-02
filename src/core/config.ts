@@ -9,7 +9,7 @@ export const PROVIDERS = {
     label: "Braintree",
   },
   DUMMY: {
-    id: "Stmirumee.payments.dummy",
+    id: "mirumee.payments.dummy",
     label: "Dummy",
   },
   STRIPE: {
