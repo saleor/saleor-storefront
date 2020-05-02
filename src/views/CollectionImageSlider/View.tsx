@@ -2,6 +2,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Page from "./Page";
 import { TypedCollectionSlugQuery } from "./queries";
+import './scss/index.scss'
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
@@ -12,7 +13,7 @@ const View: React.FC<ViewProps> = ({ match }) => {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page slider-page">
       <TypedCollectionSlugQuery errorPolicy="all" variables={variables}>
         {({ data }) => {
           return (
