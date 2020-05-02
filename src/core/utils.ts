@@ -38,8 +38,7 @@ export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
   Base64.encode(`${schema}:${id}`);
 
 export const getCollectionFromSlug = (slug: string, schema: string): string =>
-  // This is temporary solution, we will use slugs in the future
-  Base64.encode(`${schema}:${slug}`);
+   `${schema}:${slug}`;
 
 export const priceToString = (
   price: { amount: number; currency: string },

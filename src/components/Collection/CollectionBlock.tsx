@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 import ReactSVG from "react-svg";
 import heartFillIcon from "../../images/favorite-fill.svg";
-import heartIcon from "../../images/favorite_empty.svg";
+import heartIcon from "../../images/favorite.svg";
 
 export const CollectionBlock = (props) => {
   const { collect } = props
@@ -21,7 +22,9 @@ export const CollectionBlock = (props) => {
     <div className="block">
       <div className="block-img">
         <ReactSVG path={heart} className="block-img__heartIcon" onClick={handleWishlist}/>
+        <Link to={`/collections/cabinets/${collect.id}/${collect.slug}`}>
           <img src={collect.backgroundImage.url}/>
+        </Link>
       </div>
     </div>
   );
