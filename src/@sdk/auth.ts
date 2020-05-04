@@ -22,6 +22,11 @@ export function removeAuthToken() {
   dispatchEvent(authEvent);
 }
 
+export function clearStorage(): void {
+  localStorage.clear();
+  dispatchEvent(authEvent);
+}
+
 interface ResponseError extends ErrorResponse {
   networkError?: Error & {
     statusCode?: number;

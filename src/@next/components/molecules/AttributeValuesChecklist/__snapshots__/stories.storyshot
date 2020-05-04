@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/AttributeValuesChecklist default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c10 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c8 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(33,18,94);
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+.c8:hover {
+  color: #513CA3;
+}
+
+.c5 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c6 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c6 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c6 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+.c4:hover .c6 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c6 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c6 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
+}
+
+.c2 {
+  width: 80%;
+  padding-bottom: 2rem;
+}
+
+.c3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding-bottom: 1.5rem;
+}
+
+.c9 {
+  border-bottom: 1px solid #f1f5f5;
+  width: 95%;
+}
+
+.c7 {
+  padding-bottom: 1.25rem;
+}
+
+.c1 {
+  width: 350px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        Size
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
+        <label
+          className="c6"
+        >
+          <input
+            checked={true}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        41
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
+        <label
+          className="c6"
+        >
+          <input
+            checked={false}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        42
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
+        <label
+          className="c6"
+        >
+          <input
+            checked={false}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        43
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
+        <label
+          className="c6"
+        >
+          <input
+            checked={false}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        44
+      </div>
+      <div
+        className="c4 c5"
+        onClick={[Function]}
+      >
+        <label
+          className="c6"
+        >
+          <input
+            checked={false}
+            name="size"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        45
+      </div>
+      <div
+        className="c7"
+      >
+        <button
+          className="c8"
+          color="secondary"
+          onClick={[Function]}
+          size="sm"
+        >
+          VIEW ALL OPTIONS
+        </button>
+      </div>
+      <div
+        className="c9"
+      />
+    </div>
+  </div>
+  <div
+    className="c10"
+  />
+</div>
+`;

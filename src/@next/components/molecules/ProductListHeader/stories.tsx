@@ -6,9 +6,11 @@ import { ProductListHeader } from ".";
 
 const DEFAULT_PROPS = {
   activeFilters: 0,
+  activeFiltersAttributes: [],
   clearFilters: action("clearFilters"),
   numberOfProducts: 255,
   onChange: action("onChange"),
+  onCloseFilterAttribute: action("onAttributeFiltersChange"),
   openFiltersMenu: action("openFiltersMenu"),
   sortOptions: [
     {
@@ -23,6 +25,7 @@ const DEFAULT_PROPS = {
 };
 
 storiesOf("@components/molecules/ProductListHeader", module)
+  .addParameters({ component: ProductListHeader })
   .add("default", () => <ProductListHeader {...DEFAULT_PROPS} />)
   .add("with active filters", () => (
     <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />

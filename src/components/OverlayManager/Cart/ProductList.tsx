@@ -4,38 +4,43 @@ import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
+import { ICheckoutModelLine } from "@sdk/repository";
 
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
-import { LineI } from "../../CartTable/ProductRow";
 
 const ProductList: React.SFC<{
-  lines: LineI[];
+  lines: ICheckoutModelLine[];
   remove(variantId: string): void;
 }> = ({ lines, remove }) => (
   <ul className="cart__list">
-    {lines.map(line => {
-      const productUrl = generateProductUrl(line.product.id, line.product.name);
+    {lines.map((line, index) => {
+      const productUrl = generateProductUrl(
+        line.variant.product.id,
+        line.variant.product.name
+      );
+      const key = line.id ? `id-${line.id}` : `idx-${index}`;
+
       return (
-        <li key={line.id} className="cart__list__item">
+        <li key={key} className="cart__list__item">
           <Link to={productUrl}>
-            <Thumbnail source={line.product} />
+            <Thumbnail source={line.variant.product} />
           </Link>
           <div className="cart__list__item__details">
             <p>
-              <TaxedMoney taxedMoney={line.pricing.price} />
+              <TaxedMoney taxedMoney={line.variant.pricing.price} />
             </p>
             <Link to={productUrl}>
-              <p>{line.product.name}</p>
+              <p>{line.variant.product.name}</p>
             </Link>
             <span className="cart__list__item__details__variant">
-              <span>{line.name}</span>
+              <span>{line.variant.name}</span>
               <span>{`Qty: ${line.quantity}`}</span>
             </span>
             <ReactSVG
               path={removeImg}
               className="cart__list__item__details__delete-icon"
-              onClick={() => remove(line.id)}
+              onClick={() => remove(line.variant.id)}
             />
           </div>
         </li>

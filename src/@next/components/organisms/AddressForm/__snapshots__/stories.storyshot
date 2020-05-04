@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   margin: 20px;
 }
 
-.c13 {
+.c15 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -15,6 +15,14 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   left: 0;
   pointer-events: none;
   box-sizing: border-box;
+}
+
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c14 {
+  top: 100%;
 }
 
 .c9 {
@@ -67,7 +75,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   background-color: transparent;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -78,7 +86,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -117,7 +125,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c11 {
@@ -140,7 +148,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -164,6 +171,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
+                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -194,6 +202,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
+                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -228,6 +237,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
+                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -258,6 +268,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
+                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -292,6 +303,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
+                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -326,6 +338,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
+                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -360,6 +373,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
+                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -390,6 +404,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
+                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -412,7 +427,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c12"
           >
             <div
               className="css-1pcexqc-container"
@@ -447,6 +462,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
+                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-7-input"
                         onBlur={[Function]}
@@ -490,7 +506,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c12"
+                  className="c13"
                   rotate="false"
                 >
                   <svg
@@ -511,6 +527,9 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 Country
               </label>
             </div>
+            <div
+              className="c14"
+            />
           </div>
           <div
             className="c5"
@@ -525,6 +544,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
+                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -547,7 +567,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
     </form>
   </div>
   <div
-    className="c13"
+    className="c15"
   />
 </div>
 `;
@@ -558,7 +578,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   margin: 20px;
 }
 
-.c16 {
+.c18 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -576,6 +596,14 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 
 .c12 {
   margin: 0;
+}
+
+.c15 {
+  margin-bottom: 1.875rem;
+}
+
+.c17 {
+  top: 100%;
 }
 
 .c9 {
@@ -648,7 +676,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   background-color: transparent;
 }
 
-.c15 {
+.c16 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -659,7 +687,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -698,7 +726,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c14 {
@@ -721,7 +749,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -745,6 +772,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
+                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -785,6 +813,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
+                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -829,6 +858,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
+                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -859,6 +889,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
+                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -893,6 +924,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
+                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -927,6 +959,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
+                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -961,6 +994,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
+                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -991,6 +1025,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
+                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -1013,7 +1048,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c15"
           >
             <div
               className="css-1pcexqc-container"
@@ -1048,6 +1083,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
+                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-8-input"
                         onBlur={[Function]}
@@ -1091,7 +1127,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c15"
+                  className="c16"
                   rotate="false"
                 >
                   <svg
@@ -1112,6 +1148,9 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 Country
               </label>
             </div>
+            <div
+              className="c17"
+            />
           </div>
           <div
             className="c5"
@@ -1126,6 +1165,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
+                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -1148,7 +1188,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
     </form>
   </div>
   <div
-    className="c16"
+    className="c18"
   />
 </div>
 `;
@@ -1159,7 +1199,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   margin: 20px;
 }
 
-.c14 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1170,13 +1210,21 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   box-sizing: border-box;
 }
 
-.c13 {
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c15 {
+  top: 100%;
+}
+
+.c9 {
   position: absolute;
-  left: 1rem;
-  padding: 0 0rem;
+  left: 0.5rem;
+  padding: 0 0.5rem;
   background-color: transparent;
-  font-size: 1rem;
-  top: 50%;
+  font-size: 0.75rem;
+  top: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1185,11 +1233,11 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   pointer-events: none;
 }
 
-.c9 {
+.c14 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
-  background-color: transparent;
+  background-color: #f1f5f5;
   font-size: 0.75rem;
   top: 0;
   -webkit-transform: translateY(-50%);
@@ -1235,7 +1283,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   background-color: transparent;
 }
 
-.c12 {
+.c13 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -1246,7 +1294,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c5 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -1285,7 +1333,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
 }
 
 .c4 > div {
-  width: calc(50% - 1rem / 2);
+  width: calc(50% - 1.875rem / 2);
 }
 
 .c11 {
@@ -1308,7 +1356,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   <div
     className="c1"
   >
-     
     <form
       className="c2"
       onSubmit={[Function]}
@@ -1332,6 +1379,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
+                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -1363,6 +1411,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
+                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -1398,6 +1447,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
+                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -1429,6 +1479,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
+                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -1464,6 +1515,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
+                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -1499,6 +1551,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
+                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -1534,6 +1587,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
+                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -1565,6 +1619,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
+                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -1588,7 +1643,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
           className="c4"
         >
           <div
-            className=""
+            className="c12"
           >
             <div
               className="css-1pcexqc-container"
@@ -1603,9 +1658,9 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                   className="css-tntsk8"
                 >
                   <div
-                    className="css-151xaom-placeholder"
+                    className="css-dvua67-singleValue"
                   >
-                    
+                    United States of America
                   </div>
                   <div
                     className="css-1g6gooi"
@@ -1623,6 +1678,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
+                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-9-input"
                         onBlur={[Function]}
@@ -1666,7 +1722,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                   </div>
                 </div>
                 <div
-                  className="c12"
+                  className="c13"
                   rotate="false"
                 >
                   <svg
@@ -1682,11 +1738,14 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 </div>
               </div>
               <label
-                className="c13"
+                className="c14"
               >
                 Country
               </label>
             </div>
+            <div
+              className="c15"
+            />
           </div>
           <div
             className="c5"
@@ -1701,6 +1760,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
+                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -1724,7 +1784,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
     </form>
   </div>
   <div
-    className="c14"
+    className="c16"
   />
 </div>
 `;

@@ -24,7 +24,7 @@ export interface PasswordChange_passwordChange {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: PasswordChange_passwordChange_errors[] | null;
+  errors: PasswordChange_passwordChange_errors[];
 }
 
 export interface PasswordChange {

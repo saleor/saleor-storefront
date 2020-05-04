@@ -8,6 +8,7 @@ import { eightImages, oneImage, threeImages } from "./fixtures";
 
 const Container = styled.div``;
 storiesOf("@components/organisms/ProductGallery", module)
+  .addParameters({ component: ProductGallery })
   .add("default", () => <ProductGallery images={oneImage} />)
   .add("three Images", () => (
     <Container>

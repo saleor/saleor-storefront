@@ -1,8 +1,10 @@
 {
   "baseUrl": "http://localhost:3000",
   "env": {
-    "API_URI": "http://localhost:8000/graphql/"
+    "API_URI": "https://pwa.demo.saleor.rocks/graphql/"
   },
+  "defaultCommandTimeout": 15000,
+  "requestTimeout": 15000,
   "viewportWidth": 1400,
   "viewportHeight": 660,
   "projectId": "ftxg4w"

@@ -167,7 +167,7 @@ export interface AccountUpdate_accountUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: AccountUpdate_accountUpdate_errors[] | null;
+  errors: AccountUpdate_accountUpdate_errors[];
   user: AccountUpdate_accountUpdate_user | null;
 }
 

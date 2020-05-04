@@ -167,7 +167,7 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: SetCustomerDefaultAddress_accountSetDefaultAddress_errors[] | null;
+  errors: SetCustomerDefaultAddress_accountSetDefaultAddress_errors[];
   /**
    * An updated user instance.
    */

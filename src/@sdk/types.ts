@@ -25,3 +25,10 @@ export type WatchQueryData<T extends (...args: any) => any> = ReturnType<
 > extends ObservableQuery<infer R>
   ? R
   : never;
+
+export interface Config {
+  loadOnStart: {
+    checkout: boolean;
+    cart: boolean;
+  };
+}

@@ -10,7 +10,7 @@ export function CredentialsProvider({
   const [signIn] = useSignIn();
 
   const autoSignIn = async () => {
-    const credentials = await navigator.credentials.get({
+    const credentials = await (navigator.credentials as any).get({
       password: true,
     });
 
@@ -23,7 +23,7 @@ export function CredentialsProvider({
   };
 
   React.useEffect(() => {
-    if (!saleor.isLoggedIn() && window.PasswordCredential) {
+    if (!saleor.legacyAPIProxy.isLoggedIn() && window.PasswordCredential) {
       autoSignIn();
     }
   }, []);

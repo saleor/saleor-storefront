@@ -1,7 +1,8 @@
 import React from "react";
 import ReactSelect from "react-select";
-
 import { ThemeContext } from "styled-components";
+
+import { ErrorMessage } from "../ErrorMessage";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -50,6 +51,8 @@ export const Select: React.FC<IProps> = ({
   customStyles,
   optionLabelKey = "label",
   optionValueKey = "value",
+  errors,
+  ...props
 }: IProps) => {
   const customTheme = React.useContext(ThemeContext);
   const handleChange = (value: any) => {
@@ -77,7 +80,11 @@ export const Select: React.FC<IProps> = ({
         placeholder={""}
         components={customComponents}
         isClearable={clearable}
+        {...props}
       ></ReactSelect>
+      <S.ErrorMessages>
+        <ErrorMessage errors={errors} />
+      </S.ErrorMessages>
     </S.Wrapper>
   );
 };

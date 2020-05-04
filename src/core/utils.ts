@@ -3,7 +3,6 @@ import { Base64 } from "js-base64";
 import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import { FetchResult } from "react-apollo";
-import { generatePath } from "react-router";
 
 import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
 import { IFilterAttributes } from "../@next/types";
@@ -70,7 +69,9 @@ export const convertToAttributeScalar = (
   attributes: AttributeDict | IFilterAttributes
 ) =>
   Object.entries(attributes)
-    .map(([key, value]) => value.map((attribute: any) => `${key}:${attribute}`))
+    .map(([key, value]) =>
+      value.map((attribute: any) => ({ slug: key, value: attribute }))
+    )
     .reduce((prev, curr) => [...prev, ...curr], []);
 
 interface QueryString {
@@ -130,7 +131,7 @@ export const parseQueryString = (
   location: LocationState
 ): { [key: string]: string } => {
   const query = {
-    ...parseQs(location.search.substr(1)),
+    ...parseQs((location as any).search.substr(1)),
   };
   each(query, (value, key) => {
     if (Array.isArray(value)) {
@@ -155,9 +156,6 @@ export const updateQueryString = (
     history.replace("?" + stringifyQs(querystring));
   };
 };
-
-export const isPath = (pathname: string, url: string) =>
-  pathname.indexOf(generatePath(url, { token: "" })) !== -1;
 
 export const findFormErrors = (result: void | FetchResult): FormError[] => {
   if (result) {

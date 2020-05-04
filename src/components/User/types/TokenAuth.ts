@@ -50,6 +50,14 @@ export interface TokenAuth_tokenCreate_user_defaultShippingAddress {
   country: TokenAuth_tokenCreate_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface TokenAuth_tokenCreate_user_defaultBillingAddress_country {
@@ -83,6 +91,14 @@ export interface TokenAuth_tokenCreate_user_defaultBillingAddress {
   country: TokenAuth_tokenCreate_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface TokenAuth_tokenCreate_user_addresses_country {
@@ -116,6 +132,14 @@ export interface TokenAuth_tokenCreate_user_addresses {
   country: TokenAuth_tokenCreate_user_addresses_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface TokenAuth_tokenCreate_user {

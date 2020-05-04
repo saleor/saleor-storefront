@@ -23,6 +23,6 @@ const Container = () => {
   return <DropdownSelect options={options} value={value} onChange={setValue} />;
 };
 
-storiesOf("@components/atoms/DropdownSelect", module).add("default", () => (
-  <Container />
-));
+storiesOf("@components/atoms/DropdownSelect", module)
+  .addParameters({ component: DropdownSelect })
+  .add("default", () => <Container />);

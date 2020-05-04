@@ -42,3 +42,9 @@ export const mergeEdges = (prevEdges: any[], newEdges: any[]) => [
   ...prevEdges,
   ...newEdges.filter(edge => !prevEdges.some(e => e.node.id === edge.node.id)),
 ];
+
+export function filterNotEmptyArrayItems<TValue>(
+  value: TValue | null | undefined
+): value is TValue {
+  return value !== null && value !== undefined;
+}

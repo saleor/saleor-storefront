@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:10.7.0
+      - image: circleci/node:10.7.0-browsers
     steps:
       - checkout
       - run:
@@ -26,11 +26,50 @@ jobs:
           command: npm run test
       - run:
           name: Package lock security test
-          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn --validate-https
+          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
+      - run:
+          name: lhci autorun
+          command: npx lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
       - persist_to_workspace:
           root: ~/app
           paths:
             - dist/*
+  cypress/run:
+    docker:
+      - image: cypress/base:10
+        environment:
+          TERM: xterm
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Npm CI
+          command: npm ci
+      - run:
+          command: npx cypress verify
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+            - .cache/Cypress
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Running E2E tests
+          command: npm run test:e2e:run
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+
   deploy:
     working_directory: ~/app
     docker:
@@ -60,3 +99,4 @@ workflows:
               only: /^v.*/
             branches:
               ignore: /.*/
+      - cypress/run

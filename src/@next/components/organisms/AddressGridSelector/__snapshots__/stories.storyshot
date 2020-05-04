@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c9 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  color: rgb(33,18,94);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c3:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: rgb(33,18,94);
+}
+
+.c3:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  padding: 1rem 1.25rem;
+}
+
+.c5 {
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  text-align: center;
+  vertical-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 p {
+  margin: 0;
+  margin-bottom: calc(1rem / 3);
+  font-weight: 600;
+}
+
+.c7 {
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+}
+
+.c1 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
+}
+
+.c2 {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 2);
+}
+
+.c6 {
+  height: 100%;
+  min-height: 190px;
+  display: block;
+  background-color: #f1f5f5;
+  padding: 30px;
+  padding: 30px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.c8 {
+  display: none;
+}
+
+@media (max-width:540px) {
+  .c2 {
+    width: 100%;
+  }
+}
+
+@media (max-width:540px) {
+  .c6 {
+    padding: 30px 20px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+          data-cy="addressTileAddNew"
+          onClick={[Function]}
+        >
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <p>
+                <svg
+                  height={24}
+                  viewBox="0 0 32 32"
+                  width={24}
+                >
+                  <path
+                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                    fill="#21125E"
+                  />
+                </svg>
+              </p>
+              <p>
+                Add new 
+                address
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c2"
+      >
+        <label
+          checked={false}
+          className="c6"
+        >
+          <div>
+            <span
+              className="c7"
+            >
+              John Doe
+            </span>
+            Mirumee
+             
+            <br />
+            St Street
+            <br />
+            Second
+             
+            <br />
+            55-555,
+             
+            Wroclaw
+            <br />
+            dolnyslask
+            , 
+            Poland
+            <br />
+            Phone number: 
+            555-5555
+             
+            <br />
+          </div>
+          <input
+            checked={false}
+            className="c8"
+            data-cy="addressTileOption0"
+            name="addressTileOption"
+            onChange={[Function]}
+            type="radio"
+            value="12345"
+          />
+        </label>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c9"
+  />
+</div>
+`;

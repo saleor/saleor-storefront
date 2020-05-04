@@ -6,7 +6,7 @@ const createUser = () => {
     .request({
       body: user,
       method: "POST",
-      url: `${Cypress.env("API_URI")}`
+      url: `${Cypress.env("API_URI")}`,
     })
     .then(response => response.body.user);
 };
@@ -20,7 +20,7 @@ const loginOrRegisterUser = (type = "login", user) => {
       : ".login__tabs span:not(.active-tab)";
 
   return cy
-    .getByTestId("login-btn")
+    .findByTestId("login-btn")
     .click()
     .get(tabSelector)
     .click()
@@ -38,8 +38,9 @@ Cypress.Commands.add("registerUser", user =>
 Cypress.Commands.add("loginUser", user => loginOrRegisterUser("login", user));
 Cypress.Commands.add("logoutUser", () =>
   cy
-    .getByTestId("user-btn", { timeout: 3000 })
+    .wait(10000)
+    .findByTestId("user-btn", { timeout: 3000 })
     .trigger("mouseover")
-    .getByTestId("logout-link")
+    .findByTestId("logout-link")
     .click()
 );

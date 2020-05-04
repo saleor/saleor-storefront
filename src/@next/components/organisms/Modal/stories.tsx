@@ -30,6 +30,7 @@ const renderModal = (props: IProps) => (
   </Modal>
 );
 storiesOf("@components/organisms/Modal", module)
+  .addParameters({ component: Modal })
   .add("Modal Form", () =>
     renderModal({
       ...DEFAULT_PROPS,

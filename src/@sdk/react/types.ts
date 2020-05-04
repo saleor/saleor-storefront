@@ -1,5 +1,5 @@
 import { ApolloError } from "apollo-client";
-import { SaleorAPI } from "..";
+import { APIProxy } from "../api/APIProxy";
 
 export interface ApolloErrorWithUserInput extends ApolloError {
   extraInfo: {
@@ -7,21 +7,21 @@ export interface ApolloErrorWithUserInput extends ApolloError {
   };
 }
 
-export type Variables<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
+export type Variables<T extends keyof APIProxy> = APIProxy[T] extends (
   variables: infer V,
   _: any
 ) => any
   ? V
   : never;
 
-export type Options<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
+export type Options<T extends keyof APIProxy> = APIProxy[T] extends (
   _: any,
   options: infer V
 ) => any
   ? V
   : never;
 
-export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
+export type ReturnData<T extends keyof APIProxy> = APIProxy[T] extends (
   ...args: any
 ) => Promise<infer V>
   ? V extends { data: any }
@@ -30,8 +30,8 @@ export type ReturnData<T extends keyof SaleorAPI> = SaleorAPI[T] extends (
   : never;
 
 export type WatchQueryReturnData<
-  T extends keyof SaleorAPI
-> = SaleorAPI[T] extends (_: any, options: infer O) => any
+  T extends keyof APIProxy
+> = APIProxy[T] extends (_: any, options: infer O) => any
   ? O extends { onUpdate: (data: infer V) => any }
     ? V
     : never

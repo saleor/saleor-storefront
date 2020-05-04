@@ -167,7 +167,7 @@ export interface CreateUserAddress_accountAddressCreate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: CreateUserAddress_accountAddressCreate_errors[] | null;
+  errors: CreateUserAddress_accountAddressCreate_errors[];
   /**
    * A user instance for which the address was created.
    */

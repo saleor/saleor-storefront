@@ -14,8 +14,8 @@ import {
   OverlayContextInterface,
   OverlayType,
 } from "../..";
+import { searchUrl } from "../../../app/routes";
 import { maybe } from "../../../core/utils";
-import { searchUrl } from "../../../routes";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";

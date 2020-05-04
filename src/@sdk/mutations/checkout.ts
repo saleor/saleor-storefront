@@ -1,28 +1,15 @@
 import gql from "graphql-tag";
 
-import {
-  checkoutFragment,
-  checkoutLineFragment,
-  checkoutPriceFragment,
-} from "../fragments/checkout";
+import { checkoutFragment } from "../fragments/checkout";
+import { paymentFragment } from "../fragments/payment";
+import { orderDetailFragment } from "../fragments/user";
 
-export const updateCheckoutLineQuery = gql`
-  ${checkoutLineFragment}
-  ${checkoutPriceFragment}
+export const updateCheckoutLineMutation = gql`
+  ${checkoutFragment}
   mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
-        id
-        lines {
-          ...CheckoutLine
-        }
-        totalPrice {
-          ...Price
-        }
-        subtotalPrice {
-          ...Price
-        }
-        isShippingRequired
+        ...Checkout
       }
       errors {
         field
@@ -42,6 +29,37 @@ export const createCheckoutMutation = gql`
       }
       checkout {
         ...Checkout
+      }
+    }
+  }
+`;
+
+export const updateCheckoutBillingAddressWithEmailMutation = gql`
+  ${checkoutFragment}
+  mutation UpdateCheckoutBillingAddressWithEmail(
+    $checkoutId: ID!
+    $billingAddress: AddressInput!
+    $email: String!
+  ) {
+    checkoutBillingAddressUpdate(
+      checkoutId: $checkoutId
+      billingAddress: $billingAddress
+    ) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+    }
+    checkoutEmailUpdate(checkoutId: $checkoutId, email: $email) {
+      checkout {
+        ...Checkout
+      }
+      errors {
+        field
+        message
       }
     }
   }
@@ -99,6 +117,32 @@ export const updateCheckoutShippingAddressMutation = gql`
   }
 `;
 
+export const updateCheckoutShippingMethodMutation = gql`
+  ${checkoutFragment}
+  mutation UpdateCheckoutShippingMethod(
+    $checkoutId: ID!
+    $shippingMethodId: ID!
+  ) {
+    checkoutShippingMethodUpdate(
+      checkoutId: $checkoutId
+      shippingMethodId: $shippingMethodId
+    ) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+      checkoutErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
   mutation AddCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
@@ -134,6 +178,48 @@ export const removeCheckoutPromoCode = gql`
         field
         message
         code
+      }
+    }
+  }
+`;
+
+export const createCheckoutPaymentMutation = gql`
+  ${checkoutFragment}
+  ${paymentFragment}
+  mutation CreateCheckoutPayment(
+    $checkoutId: ID!
+    $paymentInput: PaymentInput!
+  ) {
+    checkoutPaymentCreate(checkoutId: $checkoutId, input: $paymentInput) {
+      errors {
+        field
+        message
+      }
+      checkout {
+        ...Checkout
+      }
+      payment {
+        ...Payment
+      }
+      paymentErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
+export const completeCheckoutMutation = gql`
+  ${orderDetailFragment}
+  mutation CompleteCheckout($checkoutId: ID!) {
+    checkoutComplete(checkoutId: $checkoutId) {
+      errors {
+        field
+        message
+      }
+      order {
+        ...OrderDetail
       }
     }
   }

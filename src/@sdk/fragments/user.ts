@@ -29,6 +29,7 @@ export const orderDetailFragment = gql`
     status
     statusDisplay
     id
+    token
     number
     shippingAddress {
       ...Address

@@ -14,6 +14,7 @@ if (!portalRoot) {
 }
 
 storiesOf("@components/organisms/SelectSidebar", module)
+  .addParameters({ component: SelectSidebar })
   .add("default", () => (
     <SelectSidebar
       title="PLEASE SELECT SIZE"

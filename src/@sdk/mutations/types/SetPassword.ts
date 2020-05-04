@@ -176,21 +176,21 @@ export interface SetPassword_setPassword_accountErrors {
   /**
    * The error code.
    */
-  code: AccountErrorCode | null;
+  code: AccountErrorCode;
 }
 
 export interface SetPassword_setPassword {
   __typename: "SetPassword";
-  errors: (SetPassword_setPassword_errors | null)[];
+  errors: SetPassword_setPassword_errors[];
   token: string | null;
   /**
-   * A user instance with new password.
+   * A user instance.
    */
   user: SetPassword_setPassword_user | null;
   /**
    * List of errors that occurred executing the mutation.
    */
-  accountErrors: SetPassword_setPassword_accountErrors[] | null;
+  accountErrors: SetPassword_setPassword_accountErrors[];
 }
 
 export interface SetPassword {

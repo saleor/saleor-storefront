@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
     background-color: ${props => props.theme.colors.hoverLightBackground};
   }
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     padding: 1.8rem;
   `}
 `;

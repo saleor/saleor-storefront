@@ -1,0 +1,1367 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c23 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c4 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c4 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c4 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+.c2:hover .c4 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c4 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c4 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
+}
+
+.c16 {
+  margin-bottom: 1.875rem;
+}
+
+.c19 {
+  top: 100%;
+}
+
+.c13 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c18 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #f1f5f5;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c10:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c11 {
+  position: relative;
+  width: 100%;
+}
+
+.c12 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c22 {
+  cursor: pointer;
+}
+
+.c22 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c22 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c17 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c9 {
+  margin-bottom: 1.875rem;
+  position: relative;
+}
+
+.c14 {
+  position: absolute;
+  top: 100%;
+}
+
+.c6 {
+  width: 100%;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c8 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c8 > div {
+  width: calc(50% - 1.875rem / 2);
+}
+
+.c15 {
+  width: 100%;
+}
+
+.c20 {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.c21 {
+  display: block;
+  background-color: #f1f5f5;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.c5 {
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin: 30px 0;
+}
+
+.c1 {
+  font-weight: 600;
+  padding: 0 0 1.6rem 0;
+}
+
+@media (max-width:540px) {
+  .c8 > div {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <section>
+      <h3
+        className="c1"
+        data-cy="checkoutPageSubtitle"
+      >
+        BILLING ADDRESS
+      </h3>
+      <div
+        className="c2 c3"
+        onClick={[Function]}
+      >
+        <label
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            name="billing-same-as-shipping"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Same as shipping address
+      </div>
+      <div
+        className="c5"
+      />
+      <form
+        className="c6"
+        onSubmit={[Function]}
+      >
+        <div
+          className="c7"
+        >
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="given-name"
+                    className="c12"
+                    data-cy="addressFormFirstName"
+                    disabled={false}
+                    name="firstName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="John"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    First Name
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="family-name"
+                    className="c12"
+                    data-cy="addressFormLastName"
+                    disabled={false}
+                    name="lastName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Doe"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    Last Name
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="organization"
+                    className="c12"
+                    data-cy="addressFormCompanyName"
+                    disabled={false}
+                    name="companyName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Mirumee"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    Company Name (Optional)
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="tel"
+                    className="c12"
+                    data-cy="addressFormPhone"
+                    disabled={false}
+                    name="phone"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="555-5555"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    Phone
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+          <div
+            className="c15"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="address-line1"
+                    className="c12"
+                    data-cy="addressFormStreetAddress1"
+                    disabled={false}
+                    name="streetAddress1"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="St Street"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    Address line 1
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+          <div
+            className="c15"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="address-line2"
+                    className="c12"
+                    data-cy="addressFormStreetAddress2"
+                    disabled={false}
+                    name="streetAddress2"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Second"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    Address line 2
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="address-level1"
+                    className="c12"
+                    data-cy="addressFormCity"
+                    disabled={false}
+                    name="city"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Wroclaw"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    City
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="postal-code"
+                    className="c12"
+                    data-cy="addressFormPostalCode"
+                    disabled={false}
+                    name="postalCode"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="55-555"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    ZIP/Postal Code
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c16"
+            >
+              <div
+                className="css-1pcexqc-container"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="css-133ddnz-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="css-tntsk8"
+                  >
+                    <div
+                      className="css-dvua67-singleValue"
+                    >
+                      Poland
+                    </div>
+                    <div
+                      className="css-1g6gooi"
+                    >
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "display": "inline-block",
+                          }
+                        }
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          autoCapitalize="none"
+                          autoComplete="off"
+                          autoCorrect="off"
+                          data-cy="addressFormCountry"
+                          disabled={false}
+                          id="react-select-11-input"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          spellCheck="false"
+                          style={
+                            Object {
+                              "background": 0,
+                              "border": 0,
+                              "boxSizing": "content-box",
+                              "color": "inherit",
+                              "fontSize": "inherit",
+                              "label": "input",
+                              "opacity": 1,
+                              "outline": 0,
+                              "padding": 0,
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex="0"
+                          type="text"
+                          value=""
+                        />
+                        <div
+                          style={
+                            Object {
+                              "height": 0,
+                              "left": 0,
+                              "overflow": "scroll",
+                              "position": "absolute",
+                              "top": 0,
+                              "visibility": "hidden",
+                              "whiteSpace": "pre",
+                            }
+                          }
+                        >
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="c17"
+                    rotate="false"
+                  >
+                    <svg
+                      height={10}
+                      viewBox="0 0 32 32"
+                      width={10}
+                    >
+                      <path
+                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <label
+                  className="c18"
+                >
+                  Country
+                </label>
+              </div>
+              <div
+                className="c19"
+              />
+            </div>
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+                disabled={false}
+              >
+                <div
+                  className="c11"
+                >
+                  <input
+                    autoComplete="address-level2"
+                    className="c12"
+                    data-cy="addressFormCountryArea"
+                    disabled={false}
+                    name="countryArea"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="dolnyslask"
+                  />
+                  <label
+                    className="c13"
+                  >
+                    State/province
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c14"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+    <div
+      className="c5"
+    />
+    <section>
+      <h3
+        className="c1"
+        data-cy="checkoutPageSubtitle"
+      >
+        PAYMENT METHOD
+      </h3>
+      <div
+        className="c2 c3"
+        onClick={[Function]}
+      >
+        <label
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentPromoCodeCheckbox"
+            name="payment-promo-code"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Do you have a gift card voucher or discount code?
+      </div>
+      <div
+        className="c5"
+      />
+      <div
+        className="c20"
+      >
+        <div>
+          <label
+            checked={false}
+            className="c21"
+          >
+            <div
+              checked={false}
+              className="c22"
+            >
+              <input
+                checked={false}
+                data-cy="checkoutPaymentGatewayDummyInput"
+                name="payment-method"
+                onChange={[Function]}
+                type="radio"
+                value="dummy"
+              />
+               
+              <div>
+                <span />
+              </div>
+              <span
+                data-cy="checkoutPaymentGatewayDummyName"
+              >
+                Dummy
+              </span>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label
+            checked={false}
+            className="c21"
+          >
+            <div
+              checked={false}
+              className="c22"
+            >
+              <input
+                checked={false}
+                data-cy="checkoutPaymentGatewayStripeInput"
+                name="payment-method"
+                onChange={[Function]}
+                type="radio"
+                value="stripe"
+              />
+               
+              <div>
+                <span />
+              </div>
+              <span
+                data-cy="checkoutPaymentGatewayStripeName"
+              >
+                Stripe
+              </span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    className="c23"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c17 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c8 {
+  background-color: #f1f5f5;
+  border: 1px transparent solid;
+  overflow: auto;
+  height: 100%;
+  padding: 0;
+  -webkit-transition: all 0.3s,color 0s,fill 0s;
+  transition: all 0.3s,color 0s,fill 0s;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  color: rgb(33,18,94);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c8:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: rgb(33,18,94);
+}
+
+.c8:hover svg path {
+  fill: #fff;
+}
+
+.c9 {
+  padding: 1rem 1.25rem;
+}
+
+.c10 {
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  text-align: center;
+  vertical-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c10 p {
+  margin: 0;
+  margin-bottom: calc(1rem / 3);
+  font-weight: 600;
+}
+
+.c12 {
+  display: block;
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+}
+
+.c3 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c4 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c4 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c4 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+.c2:hover .c4 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c4 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c4 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
+}
+
+.c16 {
+  cursor: pointer;
+}
+
+.c16 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c16 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c6 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-top: -1.875rem;
+  margin-left: -1.875rem;
+}
+
+.c7 {
+  margin: 0;
+  padding: 0;
+  padding-top: 1.875rem;
+  padding-left: 1.875rem;
+  width: calc(100% / 2);
+}
+
+.c11 {
+  height: 100%;
+  min-height: 190px;
+  display: block;
+  background-color: #f1f5f5;
+  padding: 30px;
+  padding: 30px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.c13 {
+  display: none;
+}
+
+.c14 {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.c15 {
+  display: block;
+  background-color: #f1f5f5;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.c5 {
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin: 30px 0;
+}
+
+.c1 {
+  font-weight: 600;
+  padding: 0 0 1.6rem 0;
+}
+
+@media (max-width:540px) {
+  .c7 {
+    width: 100%;
+  }
+}
+
+@media (max-width:540px) {
+  .c11 {
+    padding: 30px 20px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className=""
+  >
+    <section>
+      <h3
+        className="c1"
+        data-cy="checkoutPageSubtitle"
+      >
+        BILLING ADDRESS
+      </h3>
+      <div
+        className="c2 c3"
+        onClick={[Function]}
+      >
+        <label
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            name="billing-same-as-shipping"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Same as shipping address
+      </div>
+      <div
+        className="c5"
+      />
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="c6"
+        >
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+              data-cy="addressTileAddNew"
+              onClick={[Function]}
+            >
+              <div
+                className="c9"
+              >
+                <div
+                  className="c10"
+                >
+                  <p>
+                    <svg
+                      height={24}
+                      viewBox="0 0 32 32"
+                      width={24}
+                    >
+                      <path
+                        d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </p>
+                  <p>
+                    Add new 
+                    address
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c7"
+          >
+            <label
+              checked={false}
+              className="c11"
+            >
+              <div>
+                <span
+                  className="c12"
+                >
+                  John Doe
+                </span>
+                Mirumee
+                 
+                <br />
+                St Street
+                <br />
+                Second
+                 
+                <br />
+                55-555,
+                 
+                Wroclaw
+                <br />
+                dolnyslask
+                , 
+                Poland
+                <br />
+                Phone number: 
+                555-5555
+                 
+                <br />
+              </div>
+              <input
+                checked={false}
+                className="c13"
+                data-cy="addressTileOption0"
+                name="addressTileOption"
+                onChange={[Function]}
+                type="radio"
+                value="12345"
+              />
+            </label>
+          </div>
+        </div>
+      </form>
+    </section>
+    <div
+      className="c5"
+    />
+    <section>
+      <h3
+        className="c1"
+        data-cy="checkoutPageSubtitle"
+      >
+        PAYMENT METHOD
+      </h3>
+      <div
+        className="c2 c3"
+        onClick={[Function]}
+      >
+        <label
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentPromoCodeCheckbox"
+            name="payment-promo-code"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Do you have a gift card voucher or discount code?
+      </div>
+      <div
+        className="c5"
+      />
+      <div
+        className="c14"
+      >
+        <div>
+          <label
+            checked={false}
+            className="c15"
+          >
+            <div
+              checked={false}
+              className="c16"
+            >
+              <input
+                checked={false}
+                data-cy="checkoutPaymentGatewayDummyInput"
+                name="payment-method"
+                onChange={[Function]}
+                type="radio"
+                value="dummy"
+              />
+               
+              <div>
+                <span />
+              </div>
+              <span
+                data-cy="checkoutPaymentGatewayDummyName"
+              >
+                Dummy
+              </span>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label
+            checked={false}
+            className="c15"
+          >
+            <div
+              checked={false}
+              className="c16"
+            >
+              <input
+                checked={false}
+                data-cy="checkoutPaymentGatewayStripeInput"
+                name="payment-method"
+                onChange={[Function]}
+                type="radio"
+                value="stripe"
+              />
+               
+              <div>
+                <span />
+              </div>
+              <span
+                data-cy="checkoutPaymentGatewayStripeName"
+              >
+                Stripe
+              </span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    className="c17"
+  />
+</div>
+`;

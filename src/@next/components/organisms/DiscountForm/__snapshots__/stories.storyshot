@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   margin: 20px;
 }
 
-.c10 {
+.c11 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   box-sizing: border-box;
 }
 
-.c8 {
+.c9 {
   background-color: #13bebb;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -29,26 +29,26 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   width: auto;
 }
 
-.c8:hover {
+.c9:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c8:active {
+.c9:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c8:disabled {
+.c9:disabled {
   background-color: #7d7d7d;
 }
 
-.c8:disabled,
-.c8:disabled:hover {
+.c9:disabled,
+.c9:disabled:hover {
   cursor: default;
 }
 
-.c9 {
+.c10 {
   display: inline-block;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -123,8 +123,17 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   flex: 1;
 }
 
+.c8 {
+  width: auto;
+  min-width: 110px;
+}
+
+.c8 button {
+  padding: 0.8rem 1rem;
+}
+
 @media (max-width:540px) {
-  .c8 {
+  .c9 {
     padding: 0.9rem 1rem;
     width: 88%;
   }
@@ -133,8 +142,9 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
 <div
   className="c0"
 >
-  <div
+  <form
     className=""
+    onSubmit={[Function]}
   >
     <div
       className="c1"
@@ -154,7 +164,9 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
             >
               <input
                 className="c6"
+                data-cy="checkoutPaymentPromoCodeInput"
                 disabled={false}
+                name="inputCode"
                 onBlur={[Function]}
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -168,24 +180,30 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
             </div>
           </div>
         </div>
-        <button
+        <div
           className="c8"
-          color="primary"
-          onClick={[Function]}
-          size="md"
         >
-          <span
+          <button
             className="c9"
+            color="primary"
+            data-cy="checkoutPaymentPromoCodeBtn"
+            onClick={[Function]}
             size="md"
+            type="button"
           >
-            Apply
-          </span>
-        </button>
+            <span
+              className="c10"
+              size="md"
+            >
+              Apply
+            </span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
   <div
-    className="c10"
+    className="c11"
   />
 </div>
 `;

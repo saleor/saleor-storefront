@@ -39,6 +39,9 @@ export const checkoutProductVariantFragment = gql`
   fragment ProductVariant on ProductVariant {
     id
     name
+    sku
+    stockQuantity
+    isAvailable
     pricing {
       onSale
       priceUndiscounted {
@@ -46,6 +49,17 @@ export const checkoutProductVariantFragment = gql`
       }
       price {
         ...Price
+      }
+    }
+    attributes {
+      attribute {
+        id
+        name
+      }
+      values {
+        id
+        name
+        value: name
       }
     }
     product {
@@ -57,6 +71,9 @@ export const checkoutProductVariantFragment = gql`
       }
       thumbnail2x: thumbnail(size: 510) {
         url
+      }
+      productType {
+        isShippingRequired
       }
     }
   }
@@ -83,10 +100,8 @@ export const checkoutLineFragment = gql`
       ...Price
     }
     variant {
-      stockQuantity
       ...ProductVariant
     }
-    quantity
   }
 `;
 
@@ -96,13 +111,6 @@ export const checkoutFragment = gql`
   ${checkoutPriceFragment}
   ${checkoutShippingMethodFragment}
   fragment Checkout on Checkout {
-    availablePaymentGateways {
-      name
-      config {
-        field
-        value
-      }
-    }
     token
     id
     totalPrice {

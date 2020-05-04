@@ -23,7 +23,10 @@ export const DropdownSelect: React.FC<IProps> = ({
 
   const customComponents = {
     Control: () => (
-      <S.SortLine onClick={() => setMenuIsOpen(!menuIsOpen)}>
+      <S.SortLine
+        data-cy="dropdown-select-input"
+        onClick={() => setMenuIsOpen(!menuIsOpen)}
+      >
         <Label>Sort by:</Label>
         <S.Value>{` ${value ? value.label : ""}`}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
@@ -40,7 +43,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   };
 
   return (
-    <S.Wrapper ref={setElementRef()}>
+    <S.Wrapper data-cy="dropdown-select" ref={setElementRef()}>
       <Select
         options={options}
         value={value}

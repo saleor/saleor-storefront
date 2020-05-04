@@ -1,9 +1,0 @@
-{
-   "localeDir": "src/locales/",
-   "srcPathDirs": ["src/"],
-   "format": "po",
-   "sourceLocale": "en",
-   "extractBabelOptions": {
-      "plugins": ["@babel/plugin-syntax-dynamic-import"]
-   }
-}

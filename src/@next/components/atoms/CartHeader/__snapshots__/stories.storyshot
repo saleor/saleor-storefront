@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/CartHeader default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  min-height: 60px;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
+  max-height: min-content;
+  width: 100%;
+  grid-template-areas: "products price quantity totalPrice";
+  grid-template-columns: 2.5fr 1.1fr 1.1fr 1.3fr;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgba(40,35,74,0.6);
+}
+
+.c2 {
+  padding: 0.5rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Products
+    </div>
+    <div
+      className="c2"
+    >
+      Price
+    </div>
+    <div
+      className="c2"
+    >
+      Quantity
+    </div>
+    <div
+      className="c2"
+    >
+      Total Price
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;

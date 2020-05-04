@@ -1,5 +1,5 @@
 import React from "react";
 
-import { SaleorAPI } from "../index";
+import { SaleorAPI } from "../api";
 
-export const SaleorContext = React.createContext<null | SaleorAPI>(null);
+export const SaleorContext = React.createContext<SaleorAPI | null>(null);

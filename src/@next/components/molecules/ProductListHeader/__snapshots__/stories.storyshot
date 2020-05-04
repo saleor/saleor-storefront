@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   margin: 20px;
 }
 
-.c13 {
+.c18 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,13 +17,21 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   box-sizing: border-box;
 }
 
-.c10 {
+.c13 {
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
 }
 
-.c8 {
+.c11 {
+  margin-bottom: 1.875rem;
+}
+
+.c16 {
+  top: 100%;
+}
+
+.c10 {
   width: auto;
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,7 +43,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   font-size: 0.875rem;
 }
 
-.c9 {
+.c12 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,13 +63,13 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   padding-bottom: 0.5rem;
 }
 
-.c11 {
+.c14 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.c12 {
+.c15 {
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -71,6 +79,10 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
 }
 
 .c1 {
+  margin-bottom: 1.4rem;
+}
+
+.c2 {
   height: 5rem;
   background-color: #f1f5f5;
   display: -webkit-box;
@@ -88,10 +100,10 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   padding: 0 2rem;
   font-size: 0.875rem;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -102,7 +114,11 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   align-items: center;
 }
 
-.c3 {
+.c6 {
+  height: 1.2rem;
+}
+
+.c4 {
   font-size: 0.875rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -115,22 +131,26 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   cursor: pointer;
 }
 
-.c5 {
+.c7 {
   padding-left: 2rem;
 }
 
-.c4 {
+.c5 {
   font-weight: 600;
   padding: 0 0.6rem;
 }
 
-.c6 {
+.c8 {
   color: #7d7d7d;
 }
 
-.c7 {
+.c9 {
   width: 12rem;
   display: inline-block;
+}
+
+.c17 > div {
+  margin: 0.4rem;
 }
 
 <div
@@ -142,95 +162,110 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
     <div
       className="c2"
     >
-      <button
+      <div
         className="c3"
-        onClick={[Function]}
       >
-        <svg
-          height={24}
-          viewBox="0 0 32 32"
-          width={24}
-        >
-          <path
-            d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
-            fill="#323232"
-          />
-        </svg>
-        <span
+        <button
           className="c4"
+          data-cy="filters__button"
+          onClick={[Function]}
         >
-          FILTERS
-           
-        </span>
-      </button>
-    </div>
-    <div>
-      <span
-        className="c5"
+          <svg
+            height={24}
+            viewBox="0 0 32 32"
+            width={24}
+          >
+            <path
+              d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
+              fill="#323232"
+            />
+          </svg>
+          <span
+            className="c5"
+          >
+            FILTERS
+             
+          </span>
+        </button>
+      </div>
+      <div
+        className="c6"
       >
         <span
-          className="c6"
+          className="c7"
+          data-cy="no-of-products-found_label"
         >
-          Products found: 
+          <span
+            className="c8"
+          >
+            Products found: 
+          </span>
+          255
         </span>
-         
-        255
-      </span>
-      <span
-        className="c5"
-      >
-        <div
+        <span
           className="c7"
         >
           <div
-            className="c8"
+            className="c9"
           >
             <div
-              className=""
+              className="c10"
+              data-cy="dropdown-select"
             >
               <div
-                className="css-1pcexqc-container"
-                onKeyDown={[Function]}
+                className="c11"
               >
                 <div
-                  className="c9"
-                  onClick={[Function]}
+                  className="css-1pcexqc-container"
+                  onKeyDown={[Function]}
                 >
-                  <span
-                    className="c10"
-                  >
-                    Sort by:
-                  </span>
-                  <div
-                    className="c11"
-                  >
-                     
-                  </div>
                   <div
                     className="c12"
-                    rotate="false"
+                    data-cy="dropdown-select-input"
+                    onClick={[Function]}
                   >
-                    <svg
-                      height={10}
-                      viewBox="0 0 32 32"
-                      width={10}
+                    <span
+                      className="c13"
                     >
-                      <path
-                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
-                        fill="#21125E"
-                      />
-                    </svg>
+                      Sort by:
+                    </span>
+                    <div
+                      className="c14"
+                    >
+                       
+                    </div>
+                    <div
+                      className="c15"
+                      rotate="false"
+                    >
+                      <svg
+                        height={10}
+                        viewBox="0 0 32 32"
+                        width={10}
+                      >
+                        <path
+                          d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                          fill="#21125E"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
+                <div
+                  className="c16"
+                />
               </div>
             </div>
           </div>
-        </div>
-      </span>
+        </span>
+      </div>
     </div>
+    <div
+      className="c17"
+    />
   </div>
   <div
-    className="c13"
+    className="c18"
   />
 </div>
 `;
@@ -241,7 +276,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   margin: 20px;
 }
 
-.c14 {
+.c19 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -252,13 +287,21 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   box-sizing: border-box;
 }
 
-.c11 {
+.c14 {
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
 }
 
-.c9 {
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c17 {
+  top: 100%;
+}
+
+.c11 {
   width: auto;
   display: -webkit-box;
   display: -webkit-flex;
@@ -270,7 +313,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   font-size: 0.875rem;
 }
 
-.c10 {
+.c13 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -290,13 +333,13 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   padding-bottom: 0.5rem;
 }
 
-.c12 {
+.c15 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.c13 {
+.c16 {
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -306,6 +349,10 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
 }
 
 .c1 {
+  margin-bottom: 1.4rem;
+}
+
+.c2 {
   height: 5rem;
   background-color: #f1f5f5;
   display: -webkit-box;
@@ -323,21 +370,25 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   padding: 0 2rem;
   font-size: 0.875rem;
   margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  margin-bottom: 1.4rem;
 }
 
 .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c7 {
+  height: 1.2rem;
+}
+
+.c4 {
   font-size: 0.875rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -348,31 +399,35 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-}
-
-.c5 {
-  padding-left: 2rem;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: #7d7d7d;
 }
 
 .c6 {
   padding-left: 2rem;
-}
-
-.c4 {
-  font-weight: 600;
-  padding: 0 0.6rem;
-}
-
-.c7 {
+  cursor: pointer;
+  font-size: 0.875rem;
   color: #7d7d7d;
 }
 
 .c8 {
+  padding-left: 2rem;
+}
+
+.c5 {
+  font-weight: 600;
+  padding: 0 0.6rem;
+}
+
+.c9 {
+  color: #7d7d7d;
+}
+
+.c10 {
   width: 12rem;
   display: inline-block;
+}
+
+.c18 > div {
+  margin: 0.4rem;
 }
 
 <div
@@ -384,106 +439,121 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
     <div
       className="c2"
     >
-      <button
+      <div
         className="c3"
-        onClick={[Function]}
       >
-        <svg
-          height={24}
-          viewBox="0 0 32 32"
-          width={24}
-        >
-          <path
-            d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
-            fill="#323232"
-          />
-        </svg>
-        <span
+        <button
           className="c4"
+          data-cy="filters__button"
+          onClick={[Function]}
         >
-          FILTERS
-           
-          <span>
-            (
-            3
-            )
+          <svg
+            height={24}
+            viewBox="0 0 32 32"
+            width={24}
+          >
+            <path
+              d="M 14.25 18.679688 L 4.054688 2.261719 L 27.945312 2.261719 L 17.75 18.679688 L 17.75 24.902344 L 14.25 27.507812 Z M 12 19.324219 L 12 31.996094 L 20 26.039062 L 20 19.324219 L 31.996094 0.00390625 L 0.00390625 0.00390625 Z M 12 19.324219 "
+              fill="#323232"
+            />
+          </svg>
+          <span
+            className="c5"
+          >
+            FILTERS
+             
+            <span>
+              (
+              3
+              )
+            </span>
           </span>
-        </span>
-      </button>
-      <button
-        className="c5"
-        onClick={[Function]}
-      >
-        CLEAR FILTERS
-      </button>
-    </div>
-    <div>
-      <span
-        className="c6"
+        </button>
+        <button
+          className="c6"
+          onClick={[Function]}
+        >
+          CLEAR FILTERS
+        </button>
+      </div>
+      <div
+        className="c7"
       >
         <span
-          className="c7"
+          className="c8"
+          data-cy="no-of-products-found_label"
         >
-          Products found: 
+          <span
+            className="c9"
+          >
+            Products found: 
+          </span>
+          255
         </span>
-         
-        255
-      </span>
-      <span
-        className="c6"
-      >
-        <div
+        <span
           className="c8"
         >
           <div
-            className="c9"
+            className="c10"
           >
             <div
-              className=""
+              className="c11"
+              data-cy="dropdown-select"
             >
               <div
-                className="css-1pcexqc-container"
-                onKeyDown={[Function]}
+                className="c12"
               >
                 <div
-                  className="c10"
-                  onClick={[Function]}
+                  className="css-1pcexqc-container"
+                  onKeyDown={[Function]}
                 >
-                  <span
-                    className="c11"
-                  >
-                    Sort by:
-                  </span>
-                  <div
-                    className="c12"
-                  >
-                     
-                  </div>
                   <div
                     className="c13"
-                    rotate="false"
+                    data-cy="dropdown-select-input"
+                    onClick={[Function]}
                   >
-                    <svg
-                      height={10}
-                      viewBox="0 0 32 32"
-                      width={10}
+                    <span
+                      className="c14"
                     >
-                      <path
-                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
-                        fill="#21125E"
-                      />
-                    </svg>
+                      Sort by:
+                    </span>
+                    <div
+                      className="c15"
+                    >
+                       
+                    </div>
+                    <div
+                      className="c16"
+                      rotate="false"
+                    >
+                      <svg
+                        height={10}
+                        viewBox="0 0 32 32"
+                        width={10}
+                      >
+                        <path
+                          d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                          fill="#21125E"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
+                <div
+                  className="c17"
+                />
               </div>
             </div>
           </div>
-        </div>
-      </span>
+        </span>
+      </div>
     </div>
+    <div
+      className="c18"
+    />
   </div>
   <div
-    className="c14"
+    className="c19"
   />
 </div>
 `;

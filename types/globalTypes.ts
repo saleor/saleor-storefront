@@ -346,6 +346,20 @@ export enum PaymentChargeStatusEnum {
   PARTIALLY_REFUNDED = "PARTIALLY_REFUNDED",
 }
 
+/**
+ * An enumeration.
+ */
+export enum PaymentErrorCode {
+  BILLING_ADDRESS_NOT_SET = "BILLING_ADDRESS_NOT_SET",
+  GRAPHQL_ERROR = "GRAPHQL_ERROR",
+  INVALID = "INVALID",
+  NOT_FOUND = "NOT_FOUND",
+  PARTIAL_PAYMENT_NOT_ALLOWED = "PARTIAL_PAYMENT_NOT_ALLOWED",
+  PAYMENT_ERROR = "PAYMENT_ERROR",
+  REQUIRED = "REQUIRED",
+  UNIQUE = "UNIQUE",
+}
+
 export enum ProductOrderField {
   DATE = "DATE",
   MINIMAL_PRICE = "MINIMAL_PRICE",
@@ -353,17 +367,6 @@ export enum ProductOrderField {
   PRICE = "PRICE",
   PUBLISHED = "PUBLISHED",
   TYPE = "TYPE",
-}
-
-/**
- * An enumeration.
- */
-export enum WishlistErrorCode {
-  GRAPHQL_ERROR = "GRAPHQL_ERROR",
-  INVALID = "INVALID",
-  NOT_FOUND = "NOT_FOUND",
-  REQUIRED = "REQUIRED",
-  UNIQUE = "UNIQUE",
 }
 
 export interface AccountInput {

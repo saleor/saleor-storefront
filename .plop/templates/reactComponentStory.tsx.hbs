@@ -2,6 +2,8 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { {{> p_componentName}} } from ".";
+
 storiesOf("@components/{{> p_componentGroup}}/{{> p_componentName}}", module)
+.addParameters({ component: {{> p_componentName}} })
 .add("default", () =>
 <{{> p_componentName}} />);

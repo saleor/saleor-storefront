@@ -13,11 +13,10 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl
-} from "../../routes";
+} from "../../app/routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@components/views";
+import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
 
 const returnTab: any = (path: string, userDetails, history) => {
@@ -42,12 +41,7 @@ const returnTab: any = (path: string, userDetails, history) => {
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { data: user, loading } = useUserDetails();
 
-  const links = [
-    accountUrl,
-    orderHistoryUrl,
-    addressBookUrl,
-    paymentOptionsUrl,
-  ];
+  const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
   if (loading) {
     return <Loader />;
@@ -72,7 +66,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
           </div>
         </Media>
         <div className="account__content">
-          {returnTab(match.path, user, history)}
+          {user && returnTab(match.path, user, history)}
         </div>
       </div>
     </div>

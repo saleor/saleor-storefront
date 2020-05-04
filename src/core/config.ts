@@ -4,9 +4,16 @@ export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
-  BRAINTREE: "Braintree",
-  DUMMY: "Dummy",
-  STRIPE: "Stripe",
+  BRAINTREE: {
+    label: "Braintree",
+  },
+  DUMMY: {
+    label: "Dummy",
+  },
+  STRIPE: {
+    href: "https://js.stripe.com/v3/",
+    label: "Stripe",
+  },
 };
 export const STATIC_PAGES = [
   {
@@ -38,9 +45,54 @@ export const SOCIAL_MEDIA = [
 ];
 export const META_DEFAULTS = {
   custom: [],
-  description: "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
+  description:
+    "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
   title: "Demo PWA Storefront – Saleor Commerce",
   type: "website",
   url: window.location.origin,
 };
+export enum CheckoutStep {
+  Address = 1,
+  Shipping,
+  Payment,
+  Review,
+}
+export const CHECKOUT_STEPS = [
+  {
+    index: 0,
+    link: "/checkout/address",
+    name: "Address",
+    nextActionName: "Continue to Shipping",
+    nextStepLink: "/checkout/shipping",
+    onlyIfShippingRequired: true,
+    step: CheckoutStep.Address,
+  },
+  {
+    index: 1,
+    link: "/checkout/shipping",
+    name: "Shipping",
+    nextActionName: "Continue to Payment",
+    nextStepLink: "/checkout/payment",
+    onlyIfShippingRequired: true,
+    step: CheckoutStep.Shipping,
+  },
+  {
+    index: 2,
+    link: "/checkout/payment",
+    name: "Payment",
+    nextActionName: "Continue to Review",
+    nextStepLink: "/checkout/review",
+    onlyIfShippingRequired: false,
+    step: CheckoutStep.Payment,
+  },
+  {
+    index: 3,
+    link: "/checkout/review",
+    name: "Review",
+    nextActionName: "Place order",
+    nextStepLink: "/order-finalized",
+    onlyIfShippingRequired: false,
+    step: CheckoutStep.Review,
+  },
+];

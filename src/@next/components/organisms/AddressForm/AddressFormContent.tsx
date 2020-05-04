@@ -13,9 +13,10 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   errors,
   handleSubmit,
   values,
-  options,
+  countriesOptions,
   defaultValue,
   setFieldValue,
+  includeEmail = false,
 }) => {
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
@@ -37,6 +38,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormFirstName"
             name="firstName"
             label="First Name"
             value={values!.firstName}
@@ -45,6 +47,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormLastName"
             name="lastName"
             label="Last Name"
             value={values!.lastName}
@@ -55,6 +58,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormCompanyName"
             name="companyName"
             label="Company Name (Optional)"
             value={values!.companyName}
@@ -63,6 +67,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormPhone"
             name="phone"
             label="Phone"
             value={values!.phone}
@@ -73,6 +78,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithOneCell>
           <TextField
+            data-cy="addressFormStreetAddress1"
             name="streetAddress1"
             label="Address line 1"
             value={values!.streetAddress1}
@@ -83,6 +89,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithOneCell>
           <TextField
+            data-cy="addressFormStreetAddress2"
             name="streetAddress2"
             label="Address line 2"
             value={values!.streetAddress2}
@@ -93,6 +100,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormCity"
             name="city"
             label="City"
             value={values!.city}
@@ -101,6 +109,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormPostalCode"
             name="postalCode"
             label="ZIP/Postal Code"
             value={values!.postalCode}
@@ -111,20 +120,27 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <InputSelect
+            inputProps={{
+              "data-cy": "addressFormCountry",
+            }}
             defaultValue={defaultValue}
             label="Country"
             name="country"
-            options={options}
+            options={countriesOptions}
             value={
               values!.country &&
-              options &&
-              options!.find(option => option.code === values!.country!.code)
+              countriesOptions &&
+              countriesOptions!.find(
+                option => option.code === values!.country!.code
+              )
             }
             onChange={(value: any, name: any) => setFieldValue(name, value)}
             optionLabelKey="country"
             optionValueKey="code"
+            errors={fieldErrors!.country}
           />
           <TextField
+            data-cy="addressFormCountryArea"
             name="countryArea"
             label="State/province"
             value={values!.countryArea}
@@ -133,6 +149,19 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
         </S.RowWithTwoCells>
+        {includeEmail && (
+          <S.RowWithTwoCells>
+            <TextField
+              data-cy="addressFormEmail"
+              name="email"
+              label="Email"
+              value={values!.email}
+              autoComplete="email"
+              errors={fieldErrors!.email}
+              {...basicInputProps()}
+            />
+          </S.RowWithTwoCells>
+        )}
       </S.Wrapper>
     </S.AddressForm>
   );

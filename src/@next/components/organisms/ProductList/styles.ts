@@ -5,7 +5,7 @@ export const List = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.5rem;
   `}
