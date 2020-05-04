@@ -13,7 +13,6 @@ import {
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
-  paymentOptionsUrl,
 } from "../../app/routes";
 
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
@@ -42,12 +41,7 @@ const returnTab: any = (path: string, userDetails, history) => {
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { data: user, loading } = useUserDetails();
 
-  const links = [
-    accountUrl,
-    orderHistoryUrl,
-    addressBookUrl,
-    paymentOptionsUrl,
-  ];
+  const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
   if (loading) {
     return <Loader />;

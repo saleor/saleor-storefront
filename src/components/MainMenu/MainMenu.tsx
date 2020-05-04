@@ -135,11 +135,6 @@ const MainMenu: React.FC = () => {
                                   Address book
                                 </Link>
                               </li>
-                              <li data-testid="payment_options__link">
-                                <Link to={appPaths.paymentOptionsUrl}>
-                                  Payment options
-                                </Link>
-                              </li>
                               <li
                                 onClick={handleSignOut}
                                 data-testid="logout-link"
