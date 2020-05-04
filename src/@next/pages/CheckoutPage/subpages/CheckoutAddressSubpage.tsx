@@ -19,10 +19,14 @@ export interface ICheckoutAddressSubpageHandles {
   submitAddress: () => void;
 }
 
+interface IProps extends RouteComponentProps<any> {
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+}
+
 const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   ICheckoutAddressSubpageHandles,
-  RouteComponentProps<any>
-> = ({ ...props }: RouteComponentProps<any>, ref) => {
+  IProps
+> = ({ changeSubmitProgress, ...props }: IProps, ref) => {
   const checkoutAddressFormId = "address-form";
   const checkoutAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutNewAddressFormId = "new-address-form";
@@ -77,6 +81,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       return;
     }
 
+    changeSubmitProgress(true);
     const { dataError } = await setShippingAddress(
       {
         ...address,
@@ -85,6 +90,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       shippingEmail
     );
     const errors = dataError?.error.extraInfo.userInputErrors;
+    changeSubmitProgress(false);
     if (errors) {
       setErrors(errors);
     } else {

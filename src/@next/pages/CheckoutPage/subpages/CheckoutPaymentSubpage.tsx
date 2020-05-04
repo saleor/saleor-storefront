@@ -23,6 +23,7 @@ interface IProps extends RouteComponentProps<any> {
   selectedPaymentGateway?: string;
   selectedPaymentGatewayToken?: string;
   selectPaymentGateway: (paymentGateway: string) => void;
+  changeSubmitProgress: (submitInProgress: boolean) => void;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
@@ -32,6 +33,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   {
     selectedPaymentGateway,
     selectedPaymentGatewayToken,
+    changeSubmitProgress,
     selectPaymentGateway,
     ...props
   }: IProps,
@@ -113,12 +115,16 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   ) => {
     const { dataError } = await createPayment(gateway, token, cardData);
     const errors = dataError?.error.extraInfo.userInputErrors;
+    changeSubmitProgress(false);
     if (errors) {
       setGatewayErrors(errors);
     } else {
       setGatewayErrors([]);
       history.push(CHECKOUT_STEPS[2].nextStepLink);
     }
+  };
+  const handlePaymentGatewayError = () => {
+    changeSubmitProgress(false);
   };
   const handleSetBillingAddress = async (
     address?: IAddress,
@@ -144,6 +150,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     }
 
     let errors;
+    changeSubmitProgress(true);
     if (billingAsShippingState && isShippingRequiredForProducts) {
       const { dataError } = await setBillingAsShippingAddress();
       errors = dataError?.error.extraInfo.userInputErrors;
@@ -158,6 +165,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       errors = dataError?.error.extraInfo.userInputErrors;
     }
     if (errors) {
+      changeSubmitProgress(false);
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
@@ -170,6 +178,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
           new Event("submit", { cancelable: true })
         );
       } else {
+        changeSubmitProgress(false);
         setGatewayErrors([{ message: "Please choose payment method." }]);
       }
     }
@@ -178,6 +187,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     const { dataError } = await addPromoCode(promoCode);
     const errors = dataError?.error.extraInfo.userInputErrors;
     if (errors) {
+      changeSubmitProgress(false);
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
@@ -186,6 +196,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
           new Event("submit", { cancelable: true })
         );
       } else {
+        changeSubmitProgress(false);
         setGatewayErrors([{ message: "Please choose payment method." }]);
       }
     }
@@ -194,6 +205,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     const { dataError } = await removePromoCode(promoCode);
     const errors = dataError?.error.extraInfo.userInputErrors;
     if (errors) {
+      changeSubmitProgress(false);
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
@@ -202,6 +214,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
           new Event("submit", { cancelable: true })
         );
       } else {
+        changeSubmitProgress(false);
         setGatewayErrors([{ message: "Please choose payment method." }]);
       }
     }
@@ -212,6 +225,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         new Event("submit", { cancelable: true })
       );
     } else {
+      changeSubmitProgress(false);
       setGatewayErrors([{ message: "Please choose payment method." }]);
     }
   };
@@ -263,6 +277,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       userId={user?.id}
       newAddressFormId={checkoutNewAddressFormId}
       processPayment={handleProcessPayment}
+      onGatewayError={handlePaymentGatewayError}
     />
   );
 };

@@ -37,4 +37,8 @@ export interface IProps {
     token: string,
     cardData?: ICardData
   ) => void;
+  /**
+   * Method called when gateway error occured.
+   */
+  onError: (errors: IFormError[]) => void;
 }

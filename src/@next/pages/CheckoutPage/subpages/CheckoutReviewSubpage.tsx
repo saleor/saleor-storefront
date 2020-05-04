@@ -17,12 +17,16 @@ export interface ICheckoutReviewSubpageHandles {
 }
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
+  changeSubmitProgress: (submitInProgress: boolean) => void;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   ICheckoutReviewSubpageHandles,
   IProps
-> = ({ selectedPaymentGatewayToken, ...props }: IProps, ref) => {
+> = (
+  { selectedPaymentGatewayToken, changeSubmitProgress, ...props }: IProps,
+  ref
+) => {
   const history = useHistory();
   const { checkout, payment, completeCheckout } = useCheckout();
 
@@ -57,7 +61,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 
   useImperativeHandle(ref, () => ({
     complete: async () => {
+      changeSubmitProgress(true);
       const { data, dataError } = await completeCheckout();
+      changeSubmitProgress(false);
       if (dataError) {
         setErrors(dataError.error);
       } else {
