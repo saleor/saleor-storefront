@@ -11,8 +11,13 @@ const config = [
 describe("<StripePaymentGateway />", () => {
   it("exists", () => {
     const processPayment = jest.fn();
+    const onError = jest.fn();
     const wrapper = shallow(
-      <StripePaymentGateway config={config} processPayment={processPayment} />
+      <StripePaymentGateway
+        config={config}
+        processPayment={processPayment}
+        onError={onError}
+      />
     );
 
     expect(wrapper.exists()).toEqual(true);

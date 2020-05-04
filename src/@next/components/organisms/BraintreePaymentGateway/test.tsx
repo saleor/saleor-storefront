@@ -9,10 +9,12 @@ const config = [{ field: "client_token", value: "token_test_1234567890" }];
 describe("<BraintreePaymentGateway />", () => {
   it("exists", () => {
     const processPayment = jest.fn();
+    const onError = jest.fn();
     const wrapper = shallow(
       <BraintreePaymentGateway
         config={config}
         processPayment={processPayment}
+        onError={onError}
       />
     );
 

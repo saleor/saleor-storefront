@@ -8,9 +8,14 @@ const config = [
   { field: "api_key", value: "pk_test_6pRNASCoBOKtIshFeQd4XMUh" },
 ];
 const processPayment = action("processPayment");
+const onError = action("onError");
 
 storiesOf("@components/organisms/StripePaymentGateway", module)
   .addParameters({ component: StripePaymentGateway })
   .add("default", () => (
-    <StripePaymentGateway config={config} processPayment={processPayment} />
+    <StripePaymentGateway
+      config={config}
+      processPayment={processPayment}
+      onError={onError}
+    />
   ));
