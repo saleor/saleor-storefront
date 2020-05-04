@@ -68,7 +68,7 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
 }
 
 .c1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -194,7 +194,7 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
 }
 
 .c1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -327,7 +327,7 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
 }
 
 .c1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 
@@ -458,7 +458,7 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
 }
 
 .c1 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.875rem;
   position: relative;
 }
 

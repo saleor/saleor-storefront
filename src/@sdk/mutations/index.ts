@@ -41,9 +41,23 @@ import {
   UpdateCheckoutBillingAddressVariables,
 } from "./types/UpdateCheckoutBillingAddress";
 import {
+  UpdateCheckoutLine,
+  UpdateCheckoutLineVariables,
+} from "./types/UpdateCheckoutLine";
+import {
   UpdateCheckoutShippingAddress,
   UpdateCheckoutShippingAddressVariables,
 } from "./types/UpdateCheckoutShippingAddress";
+
+import {
+  UpdateCheckoutBillingAddressWithEmail,
+  UpdateCheckoutBillingAddressWithEmailVariables,
+} from "./types/UpdateCheckoutBillingAddressWithEmail";
+
+import {
+  UpdateCheckoutShippingMethod,
+  UpdateCheckoutShippingMethodVariables,
+} from "./types/UpdateCheckoutShippingMethod";
 
 import {
   PasswordChange,
@@ -59,6 +73,16 @@ import {
   RemoveCheckoutPromoCode,
   RemoveCheckoutPromoCodeVariables,
 } from "./types/RemoveCheckoutPromoCode";
+
+import {
+  CreateCheckoutPayment,
+  CreateCheckoutPaymentVariables,
+} from "./types/CreateCheckoutPayment";
+
+import {
+  CompleteCheckout,
+  CompleteCheckoutVariables,
+} from "./types/CompleteCheckout";
 
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
 
@@ -105,6 +129,16 @@ export const MUTATIONS = {
       `,
       ...options,
     }),
+  CompleteCheckout: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<CompleteCheckout, CompleteCheckoutVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.completeCheckoutMutation}
+      `,
+      ...options,
+    }),
   CreateCheckout: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<CreateCheckout, CreateCheckoutVariables>
@@ -112,6 +146,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.createCheckoutMutation}
+      `,
+      ...options,
+    }),
+  CreateCheckoutPayment: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      CreateCheckoutPayment,
+      CreateCheckoutPaymentVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.createCheckoutPaymentMutation}
       `,
       ...options,
     }),
@@ -191,6 +238,29 @@ export const MUTATIONS = {
       `,
       ...options,
     }),
+  UpdateCheckoutBillingAddressWithEmail: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      UpdateCheckoutBillingAddressWithEmail,
+      UpdateCheckoutBillingAddressWithEmailVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutBillingAddressWithEmailMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutLine: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<UpdateCheckoutLine, UpdateCheckoutLineVariables>
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutLineMutation}
+      `,
+      ...options,
+    }),
   UpdateCheckoutShippingAddress: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<
@@ -201,6 +271,19 @@ export const MUTATIONS = {
     client.mutate({
       mutation: gql`
         ${Checkout.updateCheckoutShippingAddressMutation}
+      `,
+      ...options,
+    }),
+  UpdateCheckoutShippingMethod: <TCacheShape>(
+    client: ApolloClient<TCacheShape>,
+    options: MutationOptions<
+      UpdateCheckoutShippingMethod,
+      UpdateCheckoutShippingMethodVariables
+    >
+  ) =>
+    client.mutate({
+      mutation: gql`
+        ${Checkout.updateCheckoutShippingMethodMutation}
       `,
       ...options,
     }),

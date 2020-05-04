@@ -105,7 +105,6 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
   width: 14px;
   height: 14px;
   display: inline-block;
-  z-index: 10;
 }
 
 .c8:hover .c10 div {

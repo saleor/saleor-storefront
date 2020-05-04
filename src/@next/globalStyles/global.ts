@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { DefaultTheme } from ".";
+import { DefaultTheme, media } from ".";
 
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   html {
@@ -26,6 +26,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   h1 {
     font-size: ${props => props.theme.typography.h1FontSize};
     line-height: ${props => props.theme.typography.h1LineHeight};
+
+    ${props => media.smallScreen`
+      font-size: ${props.theme.typography.h2FontSize};
+    `}
   }
 
   h3 {

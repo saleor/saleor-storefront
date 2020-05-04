@@ -7,6 +7,7 @@ const openFilterSidebar = () => {
 
 const openCategory = (index = 0) => {
   return cy
+    .wait(5000)
     .get("[data-cy=main-menu__item]")
     .eq(index)
     .click();

@@ -4,8 +4,12 @@ import * as C from "./constants";
 
 export const defaultTheme = {
   breakpoints: {
-    mediumScreen: "992px",
+    largeScreen: "992px",
+    mediumScreen: "720px",
     smallScreen: "540px",
+    xLargeScreen: "1280px",
+    xxLargeScreen: "1600px",
+    xxxLargeScreen: "1920px",
   },
   button: {
     animation: {
@@ -87,7 +91,10 @@ export const defaultTheme = {
   input: {
     border: C.grayDark,
     labelColor: C.grayDark,
-    labelFontSize: "0.75rem", // 12px
+    /**
+     * 12px in default theme
+     */
+    labelFontSize: "0.75rem",
     selectMenuShadow: "0px 6px 10px 0px rgba(0, 0, 0, 0.15)",
   },
   link: {
@@ -124,8 +131,18 @@ export const defaultTheme = {
     productItemTitleTextTransform: "uppercase",
   },
   spacing: {
-    gutter: "1.875rem", // 30px
-    spacer: `${C.spacer}rem`, // 16px
+    /**
+     * 30px in default theme
+     */
+    fieldSpacer: C.fieldSpacer,
+    /**
+     * 30px in default theme
+     */
+    gutter: "1.875rem",
+    /**
+     * 16px in default theme
+     */
+    spacer: `${C.spacer}rem`,
   },
   tile: {
     backgroundColor: C.grayLight,
@@ -134,15 +151,41 @@ export const defaultTheme = {
   },
   typography: {
     baseFontFamily: C.baseFontFamily,
-    baseFontSize: C.baseFontSize, // 16px
-    baseLineHeight: C.baseLineHeight, // 20px
+    /**
+     * 16px in default theme
+     */
+    baseFontSize: C.baseFontSize,
+    /**
+     * 20px in default theme
+     */
+    baseLineHeight: C.baseLineHeight,
     boldFontWeight: C.boldFontWeight,
     extraBoldFontWeight: C.extraBoldFontWeight,
-    h1FontSize: C.h1FontSize, // 64px
+    /**
+     * 64px in default theme
+     */
+    h1FontSize: C.h1FontSize,
     h1LineHeight: C.h1LineHeight,
-    h3FontSize: C.h3FontSize, // 24px
-    h4FontSize: C.h4FontSize, // 18px
-    smallFontSize: C.smallFontSize, // 14px
+    /**
+     * 48px in default theme
+     */
+    h2FontSize: C.h2FontSize,
+    /**
+     * 24px in default theme
+     */
+    h3FontSize: C.h3FontSize,
+    /**
+     * 18px in default theme
+     */
+    h4FontSize: C.h4FontSize,
+    /**
+     * 14px in default theme
+     */
+    smallFontSize: C.smallFontSize,
+    /**
+     * 96px in default theme
+     */
+    ultraBigFontSize: C.ultraBigFont,
   },
 };
 

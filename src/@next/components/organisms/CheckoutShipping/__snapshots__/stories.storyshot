@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c4 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c2 {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.c1 {
+  font-weight: 600;
+  padding: 0 0 1.6rem 0;
+}
+
+.c3 {
+  display: block;
+  background-color: #f1f5f5;
+  padding: 20px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.c5 {
+  color: #21125e;
+}
+
+<div
+  className="c0"
+>
+  <section>
+    <h3
+      className="c1"
+      data-cy="checkoutPageSubtitle"
+    >
+      SHIPPING METHOD
+    </h3>
+    <form
+      className="c2"
+      onSubmit={[Function]}
+    >
+      <label
+        checked={false}
+        className="c3"
+      >
+        <div
+          checked={false}
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutShippingMethodOption0Input"
+            name="shippingMethod"
+            onChange={[Function]}
+            type="radio"
+            value="1"
+          />
+           
+          <div>
+            <span />
+          </div>
+          <span
+            data-cy="checkoutShippingMethodOption0Name"
+          >
+            Basic
+          </span>
+          <span
+            className="c5"
+          >
+             
+            | +
+            <span
+              data-cy="checkoutShippingMethodOption0Price"
+            >
+              
+            </span>
+          </span>
+        </div>
+      </label>
+      <label
+        checked={false}
+        className="c3"
+      >
+        <div
+          checked={false}
+          className="c4"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutShippingMethodOption1Input"
+            name="shippingMethod"
+            onChange={[Function]}
+            type="radio"
+            value="2"
+          />
+           
+          <div>
+            <span />
+          </div>
+          <span
+            data-cy="checkoutShippingMethodOption1Name"
+          >
+            Extra
+          </span>
+          <span
+            className="c5"
+          >
+             
+            | +
+            <span
+              data-cy="checkoutShippingMethodOption1Price"
+            >
+              
+            </span>
+          </span>
+        </div>
+      </label>
+    </form>
+  </section>
+  <div
+    className="c6"
+  />
+</div>
+`;

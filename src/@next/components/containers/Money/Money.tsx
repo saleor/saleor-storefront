@@ -1,16 +1,22 @@
 import React from "react";
 import { IProps } from "./types";
 
-export const Money: React.FC<IProps> = ({ money, defaultValue }: IProps) => {
+export const Money: React.FC<IProps> = ({
+  money,
+  defaultValue,
+  ...props
+}: IProps) => {
   if (!money) {
-    return <span>{defaultValue}</span>;
+    return <span {...props}>{defaultValue}</span>;
   }
   return (
-    <span>
-      {money.amount.toLocaleString(undefined, {
-        currency: money.currency,
-        style: "currency",
-      })}
+    <span {...props}>
+      {money.currency && money.currency !== ""
+        ? money.amount.toLocaleString(undefined, {
+            currency: money.currency,
+            style: "currency",
+          })
+        : money.amount.toString()}
     </span>
   );
 };

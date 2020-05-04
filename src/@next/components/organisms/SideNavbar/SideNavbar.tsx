@@ -3,7 +3,7 @@ import Media from "react-responsive";
 import { Transition } from "react-transition-group";
 
 import { Icon } from "@components/atoms";
-import { mediumScreen } from "@styles/constants";
+import { largeScreen } from "@styles/constants";
 import LogoSmall from "images/logo-small.svg";
 
 import { Overlay } from "../";
@@ -92,7 +92,7 @@ export const SideNavbar: React.FC<IProps> = ({
               <S.NavLink fullWidth type="side" item={item} />
             )
           )}
-          <Media maxWidth={mediumScreen}>
+          <Media maxWidth={largeScreen}>
             <S.Item>
               <S.Link to="/wishlist">
                 <S.IconWrapper>

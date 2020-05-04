@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 
-import { checkoutAddressFragment } from "../../checkout/queries";
+import { checkoutAddressFragment } from "@sdk/fragments/checkout";
+
 import { TypedMutation } from "../../core/mutations";
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 

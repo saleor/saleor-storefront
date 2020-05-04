@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  cursor: pointer;
+}
+
+.c3 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c3 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c1 {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.c2 {
+  display: block;
+  background-color: #f1f5f5;
+  padding: 20px;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div>
+      <label
+        checked={false}
+        className="c2"
+      >
+        <div
+          checked={false}
+          className="c3"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentGatewayDummyInput"
+            name="payment-method"
+            onChange={[Function]}
+            type="radio"
+            value="dummy"
+          />
+           
+          <div>
+            <span />
+          </div>
+          <span
+            data-cy="checkoutPaymentGatewayDummyName"
+          >
+            Dummy
+          </span>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label
+        checked={false}
+        className="c2"
+      >
+        <div
+          checked={false}
+          className="c3"
+        >
+          <input
+            checked={false}
+            data-cy="checkoutPaymentGatewayStripeInput"
+            name="payment-method"
+            onChange={[Function]}
+            type="radio"
+            value="stripe"
+          />
+           
+          <div>
+            <span />
+          </div>
+          <span
+            data-cy="checkoutPaymentGatewayStripeName"
+          >
+            Stripe
+          </span>
+        </div>
+      </label>
+    </div>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;

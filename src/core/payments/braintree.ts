@@ -14,6 +14,15 @@ export interface ICardInputs {
 
 export type CardError = { field?: string; message: string } | null;
 
+export interface ICardPaymentInput {
+  billingAddress: {
+    postalCode?: string;
+  };
+  number: string;
+  cvv: string;
+  expirationDate: string;
+}
+
 export interface ICardErrors {
   cvv: CardError;
   expirationMonth: CardError;

@@ -36,7 +36,7 @@ export const ProductListHeader: React.FC<IProps> = ({
           )}
         </S.LeftSide>
 
-        <div>
+        <S.RightSide>
           <S.Element data-cy="no-of-products-found_label">
             <S.Label>Products found: </S.Label>
             {numberOfProducts}
@@ -52,7 +52,7 @@ export const ProductListHeader: React.FC<IProps> = ({
               />
             </S.Sort>
           </S.Element>
-        </div>
+        </S.RightSide>
       </S.Bar>
       <S.FiltersChipsWrapper>
         {activeFiltersAttributes.map(

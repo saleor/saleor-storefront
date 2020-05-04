@@ -1,6 +1,9 @@
 import gql from "graphql-tag";
 
-import { checkoutFragment } from "../fragments/checkout";
+import {
+  checkoutFragment,
+  checkoutProductVariantFragment,
+} from "../fragments/checkout";
 
 export const checkoutDetails = gql`
   ${checkoutFragment}
@@ -18,6 +21,20 @@ export const userCheckoutDetails = gql`
       id
       checkout {
         ...Checkout
+      }
+    }
+  }
+`;
+
+export const checkoutProductVariants = gql`
+  ${checkoutProductVariantFragment}
+  query CheckoutProductVariants($ids: [ID]) {
+    productVariants(ids: $ids, first: 100) {
+      edges {
+        node {
+          stockQuantity
+          ...ProductVariant
+        }
       }
     }
   }

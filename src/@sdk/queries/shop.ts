@@ -21,3 +21,18 @@ export const getShop = gql`
     }
   }
 `;
+
+export const getShopPaymentGateways = gql`
+  query GetShopPaymentGateways {
+    shop {
+      availablePaymentGateways {
+        id
+        name
+        config {
+          field
+          value
+        }
+      }
+    }
+  }
+`;

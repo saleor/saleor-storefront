@@ -6,15 +6,13 @@ import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
-import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
-import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
-import { PasswordReset } from "@pages";
+import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
 
 import * as paths from "./paths";
 
@@ -31,12 +29,13 @@ export const Routes: React.FC = () => (
     <Route path={accountPaths.baseUrl} component={UserAccount} />
     <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
     <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
-    <Route path={paths.orderConfirmationUrl} component={OrderConfirmation} />
     <Route path={paths.accountUrl} component={Account} />
     <Route path={paths.accountConfirmUrl} component={AccountConfirm} />
     <Route path={paths.orderHistoryUrl} component={Account} />
     <Route path={paths.addressBookUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
+    <Route path={paths.checkoutUrl} component={CheckoutPage} />
+    <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -61,7 +61,7 @@ const AddressBook: React.FC<{
           {...{ defaultValue: defaultCountry ? defaultCountry : {} }}
           submitBtnText={"Add"}
           title={"Add new address"}
-          {...{ options: countries }}
+          {...{ countriesOptions: countries }}
           formId="address-form"
         />
       )}
@@ -73,7 +73,7 @@ const AddressBook: React.FC<{
           address={addressData}
           submitBtnText={"Save"}
           title={"Edit address"}
-          {...{ options: countries }}
+          {...{ countriesOptions: countries }}
           formId="address-form"
         />
       )}

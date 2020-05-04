@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/templates/CartEmpty default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 1140px;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.c2 {
+  margin: 100px 0 100px 0;
+}
+
+.c3 {
+  font-size: 4rem;
+}
+
+.c4 {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.c5 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgba(50,50,50,0.1);
+  margin: 40px 0;
+  padding: 0;
+}
+
+.c6 {
+  margin: 40px 0;
+}
+
+@media (max-width:992px) {
+  .c1 {
+    width: 100%;
+  }
+}
+
+@media (max-width:720px) {
+  .c2 {
+    margin: 80px 0 80px 0;
+  }
+}
+
+@media (max-width:720px) {
+  .c3 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width:720px) {
+  .c4 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width:720px) {
+  .c5 {
+    margin: 30px 0;
+  }
+}
+
+@media (max-width:720px) {
+  .c6 {
+    margin: 30px 0;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <h1
+        className="c3"
+      >
+        Your Cart
+      </h1>
+      <h1
+        className="c4"
+      >
+        looks empty
+      </h1>
+      <hr
+        className="c5"
+      />
+      <p
+        className="c6"
+      >
+        Maybe you haven’t made your choices yet
+      </p>
+      <div
+        className=""
+      />
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;

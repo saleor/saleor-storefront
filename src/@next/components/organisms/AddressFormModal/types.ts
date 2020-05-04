@@ -1,4 +1,4 @@
-import { IAddress } from "@types";
+import { IAddressWithEmail } from "@types";
 
 export interface IProps {
   hideModal: () => void;
@@ -8,7 +8,11 @@ export interface IProps {
   title: string;
   userId?: string;
   address?: {
-    address: IAddress;
+    address: IAddressWithEmail;
     id: string;
   };
+  countriesOptions?: Array<{
+    code: string;
+    country: string;
+  }>;
 }

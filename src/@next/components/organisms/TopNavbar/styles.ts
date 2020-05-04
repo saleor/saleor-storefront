@@ -18,7 +18,7 @@ export const Tile = styled.div`
   flex-basis: calc(50% - 3rem);
   overflow: hidden;
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     flex-basis: calc(50% - 2rem);
   `}
 `;
@@ -42,11 +42,11 @@ export const LogoWrapper = styled(ReactSVG)`
   svg {
     width: 6rem;
 
-    ${media.mediumScreen`
+    ${media.largeScreen`
       width: 4rem;
     `}
 
-    ${media.mediumScreen`
+    ${media.largeScreen`
       height: 30px;
     `}
   }

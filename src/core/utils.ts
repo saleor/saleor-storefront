@@ -3,7 +3,6 @@ import { Base64 } from "js-base64";
 import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import { FetchResult } from "react-apollo";
-import { generatePath } from "react-router";
 
 import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
 import { IFilterAttributes } from "../@next/types";
@@ -157,9 +156,6 @@ export const updateQueryString = (
     history.replace("?" + stringifyQs(querystring));
   };
 };
-
-export const isPath = (pathname: string, url: string) =>
-  pathname.indexOf(generatePath(url, { token: "" })) !== -1;
 
 export const findFormErrors = (result: void | FetchResult): FormError[] => {
   if (result) {

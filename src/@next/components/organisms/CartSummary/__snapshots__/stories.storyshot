@@ -1,0 +1,465 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CartSummary default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c17 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c8 {
+  display: grid;
+  grid-row-gap: 6px;
+  grid-column-gap: 20px;
+  grid-template-columns: 60px auto auto;
+  grid-template-areas: "photo name name" "photo sku ." "photo . ." "photo quantity price";
+}
+
+.c13 {
+  grid-area: photo;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.c13 img {
+  height: auto;
+  max-width: 60px;
+}
+
+.c10 {
+  grid-area: sku;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
+.c9 {
+  grid-area: name;
+  font-size: 1.125rem;
+}
+
+.c12 {
+  grid-area: price;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.c11 {
+  grid-area: quantity;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
+.c1 {
+  background-color: #f1f5f5;
+}
+
+.c4 {
+  padding: 0 20px 30px 20px;
+}
+
+.c7 {
+  padding: 30px 0;
+}
+
+.c6 {
+  margin-bottom: 30px;
+}
+
+.c5 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid rgba(50,50,50,0.1);
+  margin: 0;
+  padding: 0;
+}
+
+.c2 {
+  padding: 30px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.c3 {
+  display: none;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-weight: normal;
+}
+
+.c15 span {
+  display: inline-block;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.c16 span {
+  display: inline-block;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c14 div {
+  margin-bottom: 20px;
+}
+
+.c14 div:last-of-type {
+  margin-bottom: 0px;
+}
+
+@media (max-width:720px) {
+  .c1 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: calc(100% - 86px);
+    left: 0%;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+  }
+}
+
+@media (max-width:720px) {
+  .c2 {
+    font-size: 1.125rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width:720px) {
+  .c3 {
+    display: unset;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      data-cy="cartSummaryTitle"
+      onClick={[Function]}
+    >
+      Cart Summary
+      <div
+        className="c3"
+      >
+        <svg
+          height={24}
+          viewBox="0 0 32 32"
+          width={24}
+        >
+          <path
+            d="M16.4951 8.31701L13.5055 11.6804L8.2503 7.00908L2.99512 11.6803L0.00547949 8.31701L8.2503 0.988281L16.4951 8.31701Z"
+            fill="#323232"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="c4"
+    >
+      <hr
+        className="c5"
+      />
+      <div
+        className="c6"
+      >
+        <div>
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+            >
+              <div
+                className="c9"
+                data-cy="cartSummaryItem0Name"
+              >
+                The Great Square Table
+              </div>
+              <div
+                className="c10"
+              >
+                SKU: 
+                <span
+                  data-cy="cartSummaryItem0SKU"
+                >
+                  TGS-122A
+                </span>
+              </div>
+              <div
+                className="c11"
+              >
+                Quantity:
+                 
+                <span
+                  data-cy="cartSummaryItem0Quantity"
+                >
+                  2
+                </span>
+              </div>
+              <div
+                className="c12"
+                data-cy="cartSummaryItem0Price"
+              >
+                <span>
+                  
+                </span>
+              </div>
+              <div
+                className="c13"
+              >
+                <img
+                  alt="product image"
+                  data-cy="cartSummaryItem0Image"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </div>
+          </div>
+          <hr
+            className="c5"
+          />
+        </div>
+        <div>
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+            >
+              <div
+                className="c9"
+                data-cy="cartSummaryItem1Name"
+              >
+                The Great Square Table
+              </div>
+              <div
+                className="c10"
+              >
+                SKU: 
+                <span
+                  data-cy="cartSummaryItem1SKU"
+                >
+                  TGS-122A
+                </span>
+              </div>
+              <div
+                className="c11"
+              >
+                Quantity:
+                 
+                <span
+                  data-cy="cartSummaryItem1Quantity"
+                >
+                  2
+                </span>
+              </div>
+              <div
+                className="c12"
+                data-cy="cartSummaryItem1Price"
+              >
+                <span>
+                  
+                </span>
+              </div>
+              <div
+                className="c13"
+              >
+                <img
+                  alt="product image"
+                  data-cy="cartSummaryItem1Image"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </div>
+          </div>
+          <hr
+            className="c5"
+          />
+        </div>
+        <div>
+          <div
+            className="c7"
+          >
+            <div
+              className="c8"
+            >
+              <div
+                className="c9"
+                data-cy="cartSummaryItem2Name"
+              >
+                The Great Square Table
+              </div>
+              <div
+                className="c10"
+              >
+                SKU: 
+                <span
+                  data-cy="cartSummaryItem2SKU"
+                >
+                  TGS-122A
+                </span>
+              </div>
+              <div
+                className="c11"
+              >
+                Quantity:
+                 
+                <span
+                  data-cy="cartSummaryItem2Quantity"
+                >
+                  2
+                </span>
+              </div>
+              <div
+                className="c12"
+                data-cy="cartSummaryItem2Price"
+              >
+                <span>
+                  
+                </span>
+              </div>
+              <div
+                className="c13"
+              >
+                <img
+                  alt="product image"
+                  data-cy="cartSummaryItem2Image"
+                  onError={[Function]}
+                  src="test-file-stub"
+                  srcSet="test-file-stub 1x"
+                />
+              </div>
+            </div>
+          </div>
+          <hr
+            className="c5"
+          />
+        </div>
+      </div>
+      <div
+        className="c14"
+      >
+        <div
+          className="c15"
+        >
+          <span>
+            Subtotal
+          </span>
+          <span
+            data-cy="cartSummaryCostSubtotal"
+          >
+            <span>
+              
+            </span>
+          </span>
+        </div>
+        <div
+          className="c15"
+        >
+          <span>
+            Shipping
+          </span>
+          <span
+            data-cy="cartSummaryCostShipping"
+          >
+            <span>
+              
+            </span>
+          </span>
+        </div>
+        <div
+          className="c15"
+        >
+          <span>
+            Promo Code
+          </span>
+          <span
+            data-cy="cartSummaryCostPromoCode"
+          >
+            - 
+            <span>
+              
+            </span>
+          </span>
+        </div>
+        <div
+          className="c16"
+        >
+          <span>
+            Total
+          </span>
+          <span
+            data-cy="cartSummaryCostTotal"
+          >
+            <span>
+              
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c17"
+  />
+</div>
+`;

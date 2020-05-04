@@ -34,7 +34,6 @@ export const Label = styled.label`
       width: 14px;
       height: 14px;
       display: inline-block;
-      z-index: 10;
     }
 
     ${Checkbox}:hover & {

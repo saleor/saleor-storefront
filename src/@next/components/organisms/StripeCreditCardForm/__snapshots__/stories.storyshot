@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/StripeCreditCardForm default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c9 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c6 {
+  position: absolute;
+  left: 1rem;
+  padding: 0 0rem;
+  background-color: transparent;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c4:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c5 {
+  position: relative;
+  width: 100%;
+}
+
+.c1 {
+  padding: 2rem 0;
+}
+
+.c2 {
+  display: grid;
+  grid-template-areas: "cardNumber cardNumber cardNumber cardNumber cardNumber " "cardExpiry cardExpiry cardExpiry cardCvc cardCvc";
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1.875rem;
+}
+
+.c2 .StripeElement {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c2 .StripeElement::-webkit-input-placeholder {
+  font-size: 0;
+  visibility: hidden;
+}
+
+.c2 .StripeElement::-moz-placeholder {
+  font-size: 0;
+  visibility: hidden;
+}
+
+.c2 .StripeElement:-ms-input-placeholder {
+  font-size: 0;
+  visibility: hidden;
+}
+
+.c2 .StripeElement::placeholder {
+  font-size: 0;
+  visibility: hidden;
+}
+
+.c2 .StripeElement--empty {
+  font-size: 0;
+}
+
+.c3 {
+  grid-area: cardNumber;
+}
+
+.c7 {
+  grid-area: cardExpiry;
+}
+
+.c8 {
+  grid-area: cardCvc;
+}
+
+<div
+  className="c0"
+>
+  <form
+    className="c1"
+    onSubmit={[Function]}
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <label
+              className="c6"
+            >
+              Card number
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <label
+              className="c6"
+            >
+              Expiration date
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        className="c8"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <label
+              className="c6"
+            >
+              CVC
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div
+    className="c9"
+  />
+</div>
+`;

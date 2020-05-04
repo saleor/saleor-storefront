@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SaleorAPI } from "../";
+import { SaleorAPI } from "../api";
 import { getAuthToken } from "../auth";
 import { SaleorContext } from "./context";
 
@@ -13,6 +13,7 @@ export function useSaleorClient(): SaleorAPI {
         "Did you forget to wrap the root component in a <SaleorProvider>?"
     );
   }
+
   return saleor;
 }
 

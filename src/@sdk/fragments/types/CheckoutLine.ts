@@ -130,6 +130,46 @@ export interface CheckoutLine_variant_pricing {
   price: CheckoutLine_variant_pricing_price | null;
 }
 
+export interface CheckoutLine_variant_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface CheckoutLine_variant_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface CheckoutLine_variant_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: CheckoutLine_variant_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (CheckoutLine_variant_attributes_values | null)[];
+}
+
 export interface CheckoutLine_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -150,6 +190,11 @@ export interface CheckoutLine_variant_product_thumbnail2x {
   url: string;
 }
 
+export interface CheckoutLine_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface CheckoutLine_variant_product {
   __typename: "Product";
   /**
@@ -165,23 +210,33 @@ export interface CheckoutLine_variant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: CheckoutLine_variant_product_thumbnail2x | null;
+  productType: CheckoutLine_variant_product_productType;
 }
 
 export interface CheckoutLine_variant {
   __typename: "ProductVariant";
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * The ID of the object.
    */
   id: string;
   name: string;
+  sku: string;
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: CheckoutLine_variant_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: CheckoutLine_variant_attributes[];
   product: CheckoutLine_variant_product;
 }
 

@@ -58,6 +58,8 @@ const addresses = [DEFAULT_PROPS, addressSimple, DEFAULT_PROPS, DEFAULT_PROPS];
 storiesOf("@components/organisms/AddressGrid", module)
   .addParameters({ component: AddressGrid })
   .add("default", () => (
-    // tslint:disable-next-line: no-empty
-    <AddressGrid addNewAddress={() => {}} addresses={addresses} />
+    <AddressGrid
+      addNewAddress={action("addNewAddress")}
+      addresses={addresses}
+    />
   ));

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AccountErrorCode } from "./../../../../types/globalTypes";
+import { AccountErrorCode } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: SetPassword
@@ -52,6 +52,14 @@ export interface SetPassword_setPassword_user_defaultShippingAddress {
   country: SetPassword_setPassword_user_defaultShippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user_defaultBillingAddress_country {
@@ -85,6 +93,14 @@ export interface SetPassword_setPassword_user_defaultBillingAddress {
   country: SetPassword_setPassword_user_defaultBillingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user_addresses_country {
@@ -118,6 +134,14 @@ export interface SetPassword_setPassword_user_addresses {
   country: SetPassword_setPassword_user_addresses_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface SetPassword_setPassword_user {
@@ -152,21 +176,21 @@ export interface SetPassword_setPassword_accountErrors {
   /**
    * The error code.
    */
-  code: AccountErrorCode | null;
+  code: AccountErrorCode;
 }
 
 export interface SetPassword_setPassword {
   __typename: "SetPassword";
-  errors: (SetPassword_setPassword_errors | null)[];
+  errors: SetPassword_setPassword_errors[];
   token: string | null;
   /**
-   * A user instance with new password.
+   * A user instance.
    */
   user: SetPassword_setPassword_user | null;
   /**
    * List of errors that occurred executing the mutation.
    */
-  accountErrors: SetPassword_setPassword_accountErrors[] | null;
+  accountErrors: SetPassword_setPassword_accountErrors[];
 }
 
 export interface SetPassword {

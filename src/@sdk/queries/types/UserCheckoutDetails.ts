@@ -6,30 +6,6 @@
 // GraphQL query operation: UserCheckoutDetails
 // ====================================================
 
-export interface UserCheckoutDetails_me_checkout_availablePaymentGateways_config {
-  __typename: "GatewayConfigLine";
-  /**
-   * Gateway config key.
-   */
-  field: string;
-  /**
-   * Gateway config value for key.
-   */
-  value: string | null;
-}
-
-export interface UserCheckoutDetails_me_checkout_availablePaymentGateways {
-  __typename: "PaymentGateway";
-  /**
-   * Payment gateway name.
-   */
-  name: string;
-  /**
-   * Payment gateway client configuration.
-   */
-  config: UserCheckoutDetails_me_checkout_availablePaymentGateways_config[];
-}
-
 export interface UserCheckoutDetails_me_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -133,6 +109,14 @@ export interface UserCheckoutDetails_me_checkout_billingAddress {
   country: UserCheckoutDetails_me_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_shippingAddress_country {
@@ -166,6 +150,14 @@ export interface UserCheckoutDetails_me_checkout_shippingAddress {
   country: UserCheckoutDetails_me_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UserCheckoutDetails_me_checkout_availableShippingMethods_price {
@@ -372,6 +364,46 @@ export interface UserCheckoutDetails_me_checkout_lines_variant_pricing {
   price: UserCheckoutDetails_me_checkout_lines_variant_pricing_price | null;
 }
 
+export interface UserCheckoutDetails_me_checkout_lines_variant_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface UserCheckoutDetails_me_checkout_lines_variant_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface UserCheckoutDetails_me_checkout_lines_variant_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: UserCheckoutDetails_me_checkout_lines_variant_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (UserCheckoutDetails_me_checkout_lines_variant_attributes_values | null)[];
+}
+
 export interface UserCheckoutDetails_me_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -392,6 +424,11 @@ export interface UserCheckoutDetails_me_checkout_lines_variant_product_thumbnail
   url: string;
 }
 
+export interface UserCheckoutDetails_me_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UserCheckoutDetails_me_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -407,23 +444,33 @@ export interface UserCheckoutDetails_me_checkout_lines_variant_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: UserCheckoutDetails_me_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UserCheckoutDetails_me_checkout_lines_variant_product_productType;
 }
 
 export interface UserCheckoutDetails_me_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * The ID of the object.
    */
   id: string;
   name: string;
+  sku: string;
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: UserCheckoutDetails_me_checkout_lines_variant_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: UserCheckoutDetails_me_checkout_lines_variant_attributes[];
   product: UserCheckoutDetails_me_checkout_lines_variant_product;
 }
 
@@ -455,10 +502,6 @@ export interface UserCheckoutDetails_me_checkout_discount {
 
 export interface UserCheckoutDetails_me_checkout {
   __typename: "Checkout";
-  /**
-   * List of available payment gateways.
-   */
-  availablePaymentGateways: (UserCheckoutDetails_me_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.

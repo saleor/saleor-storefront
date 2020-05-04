@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { FormAddressType } from "../ShippingAddressForm/types";
+import { FormAddressType } from "./types";
 
 const AddressSummary: React.FC<{
   address?: FormAddressType;

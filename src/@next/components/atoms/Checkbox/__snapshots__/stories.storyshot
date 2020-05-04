@@ -82,7 +82,6 @@ exports[`Storyshots @components/atoms/Checkbox default 1`] = `
   width: 14px;
   height: 14px;
   display: inline-block;
-  z-index: 10;
 }
 
 .c1:hover .c3 div {

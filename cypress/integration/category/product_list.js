@@ -24,7 +24,8 @@ describe("Product list view", () => {
       },
     });
 
-    cy.get("[data-cy=main-menu__item]")
+    cy.wait(5000)
+      .get("[data-cy=main-menu__item]")
       .first()
       .click();
   });

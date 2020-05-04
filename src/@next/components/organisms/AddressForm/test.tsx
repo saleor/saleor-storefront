@@ -2,25 +2,15 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { Input } from "@components/atoms";
+import { Input, Select } from "@components/atoms";
 
 import { AddressForm } from ".";
+import { address, countries } from "./fixtures";
 
 const PROPS = {
+  countriesOptions: countries,
   errors: [],
   handleSubmit: jest.fn(),
-  options: [
-    { code: "PL", country: "Poland" },
-    { code: "PT", country: "Portugal" },
-    { code: "US", country: "United States of America" },
-    { code: "DE", country: "Germany" },
-    { code: "BE", country: "Belarus" },
-    { code: "SE", country: "Sweden" },
-    { code: "FR", country: "France" },
-    { code: "CZ", country: "Czech Republic" },
-    { code: "FI", country: "Finland" },
-    { code: "GB", country: "Great Britain" },
-  ],
 };
 
 const errorMessage = "This is an error";
@@ -34,21 +24,7 @@ const ERRORS = {
 };
 
 const INITIAL_DATA = {
-  address: {
-    city: "New York",
-    companyName: "Mirumee",
-    country: {
-      code: "US",
-      country: "United States of America",
-    },
-    countryArea: "NY",
-    firstName: "John",
-    lastName: "Doe",
-    phone: "555-55555",
-    postalCode: "90210",
-    streetAddress1: "Street line 1",
-    streetAddress2: "Street line 2",
-  },
+  address,
 };
 
 describe("<AddressForm />", () => {
@@ -79,7 +55,12 @@ describe("<AddressForm />", () => {
     expect(getValue(5)).toEqual(INITIAL_DATA.address.streetAddress2);
     expect(getValue(6)).toEqual(INITIAL_DATA.address.city);
     expect(getValue(7)).toEqual(INITIAL_DATA.address.postalCode);
-    expect(wrapper.text()).toContain(INITIAL_DATA.address.country.country);
+    expect(
+      wrapper
+        .find(Select)
+        .at(0)
+        .prop("value")
+    ).toEqual(INITIAL_DATA.address.country);
     expect(getValue(8)).toEqual(INITIAL_DATA.address.countryArea);
   });
 });

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput } from "./../../../../types/globalTypes";
+import { AddressInput } from "./../../types/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingAddress
@@ -19,30 +19,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_err
    * The error message.
    */
   message: string | null;
-}
-
-export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways_config {
-  __typename: "GatewayConfigLine";
-  /**
-   * Gateway config key.
-   */
-  field: string;
-  /**
-   * Gateway config value for key.
-   */
-  value: string | null;
-}
-
-export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways {
-  __typename: "PaymentGateway";
-  /**
-   * Payment gateway name.
-   */
-  name: string;
-  /**
-   * Payment gateway client configuration.
-   */
-  config: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways_config[];
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_totalPrice_gross {
@@ -148,6 +124,14 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country {
@@ -181,6 +165,14 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   country: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availableShippingMethods_price {
@@ -387,6 +379,46 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   price: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing_price | null;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values | null)[];
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -407,6 +439,11 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   url: string;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -422,23 +459,33 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * The main thumbnail for a product.
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_productType;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * The ID of the object.
    */
   id: string;
   name: string;
+  sku: string;
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product;
 }
 
@@ -470,10 +517,6 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
-  /**
-   * List of available payment gateways.
-   */
-  availablePaymentGateways: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -521,35 +564,11 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[];
   /**
    * An updated checkout.
    */
   checkout: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout | null;
-}
-
-export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways_config {
-  __typename: "GatewayConfigLine";
-  /**
-   * Gateway config key.
-   */
-  field: string;
-  /**
-   * Gateway config value for key.
-   */
-  value: string | null;
-}
-
-export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways {
-  __typename: "PaymentGateway";
-  /**
-   * Payment gateway name.
-   */
-  name: string;
-  /**
-   * Payment gateway client configuration.
-   */
-  config: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways_config[];
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_totalPrice_gross {
@@ -655,6 +674,14 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_bill
   country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_billingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country {
@@ -688,6 +715,14 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_ship
   country: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_shippingAddress_country;
   countryArea: string;
   phone: string | null;
+  /**
+   * Address is user's default billing address.
+   */
+  isDefaultBillingAddress: boolean | null;
+  /**
+   * Address is user's default shipping address.
+   */
+  isDefaultShippingAddress: boolean | null;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availableShippingMethods_price {
@@ -894,6 +929,46 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   price: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing_price | null;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  value: string | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values | null)[];
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail {
   __typename: "Image";
   /**
@@ -914,6 +989,11 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   url: string;
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_productType {
+  __typename: "ProductType";
+  isShippingRequired: boolean;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product {
   __typename: "Product";
   /**
@@ -929,23 +1009,33 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * The main thumbnail for a product.
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
+  productType: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_productType;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * The ID of the object.
    */
   id: string;
   name: string;
+  sku: string;
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
+  /**
+   * Whether the variant is in stock and visible or not.
+   */
+  isAvailable: boolean | null;
   /**
    * Lists the storefront variant's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_pricing | null;
+  /**
+   * List of attributes assigned to this variant.
+   */
+  attributes: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product;
 }
 
@@ -977,10 +1067,6 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_disc
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
-  /**
-   * List of available payment gateways.
-   */
-  availablePaymentGateways: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways | null)[];
   token: any;
   /**
    * The ID of the object.
@@ -1045,7 +1131,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[] | null;
+  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[];
 }
 
 export interface UpdateCheckoutShippingAddress {

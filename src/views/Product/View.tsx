@@ -3,6 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
+import { useCart } from "@sdk/react";
+
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
@@ -44,39 +46,43 @@ const extractMeta = (product: ProductDetails_product) => ({
   url: window.location.href,
 });
 
-const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => (
-  <TypedProductDetailsQuery
-    loaderFull
-    variables={{
-      id: getGraphqlIdFromDBId(match.params.id, "Product"),
-    }}
-    errorPolicy="all"
-    key={match.params.id}
-  >
-    {({ data }) => (
-      <NetworkStatus>
-        {isOnline => {
-          const { product } = data;
+const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+  const { addItem, items } = useCart();
 
-          if (canDisplay(product)) {
-            return (
-              <MetaWrapper meta={extractMeta(product)}>
-                <Page product={product} />
-              </MetaWrapper>
-            );
-          }
+  return (
+    <TypedProductDetailsQuery
+      loaderFull
+      variables={{
+        id: getGraphqlIdFromDBId(match.params.id, "Product"),
+      }}
+      errorPolicy="all"
+      key={match.params.id}
+    >
+      {({ data }) => (
+        <NetworkStatus>
+          {isOnline => {
+            const { product } = data;
 
-          if (product === null) {
-            return <NotFound />;
-          }
+            if (canDisplay(product)) {
+              return (
+                <MetaWrapper meta={extractMeta(product)}>
+                  <Page product={product} add={addItem} items={items} />
+                </MetaWrapper>
+              );
+            }
 
-          if (!isOnline) {
-            return <OfflinePlaceholder />;
-          }
-        }}
-      </NetworkStatus>
-    )}
-  </TypedProductDetailsQuery>
-);
+            if (product === null) {
+              return <NotFound />;
+            }
+
+            if (!isOnline) {
+              return <OfflinePlaceholder />;
+            }
+          }}
+        </NetworkStatus>
+      )}
+    </TypedProductDetailsQuery>
+  );
+};
 
 export default View;
