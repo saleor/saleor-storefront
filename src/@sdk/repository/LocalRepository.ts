@@ -1,7 +1,6 @@
 import { Repository } from "./Repository";
 import {
   ICheckoutModel,
-  IJobsModel,
   ILocalRepository,
   IPaymentModel,
   LocalStorageItems,
@@ -20,10 +19,12 @@ export class LocalRepository extends Repository implements ILocalRepository {
   setPayment(payment: IPaymentModel | null): void {
     this.saveObject(LocalStorageItems.PAYMENT, payment);
   }
-  getJobs(): IJobsModel | null {
+  getJobs(): {
+    [key: string]: { [key: string]: boolean };
+  } | null {
     return this.retrieveObject(LocalStorageItems.JOB_QUEUE_CHECKOUT);
   }
-  setJobs(jobs: IJobsModel | null): void {
+  setJobs(jobs: { [key: string]: { [key: string]: boolean } } | null): void {
     return this.saveObject(LocalStorageItems.JOB_QUEUE_CHECKOUT, jobs);
   }
 }

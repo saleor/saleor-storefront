@@ -1,11 +1,6 @@
 import { ErrorListener } from "@sdk/helpers";
-import { CheckoutJobQueue } from "@sdk/jobs";
-import { CheckoutNetworkManager } from "@sdk/network";
-import {
-  CheckoutRepositoryManager,
-  ICheckoutModel,
-  IPaymentModel,
-} from "@sdk/repository";
+import { JobsManager } from "@sdk/jobs";
+import { ICheckoutModel, IPaymentModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
@@ -35,29 +30,22 @@ export class SaleorCheckoutAPI extends ErrorListener
   availablePaymentGateways?: IAvailablePaymentGateways;
   payment?: IPayment;
 
-  private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
-  private checkoutNetworkManager: CheckoutNetworkManager;
-  private checkoutJobQueue: CheckoutJobQueue;
+  private jobsManager: JobsManager;
 
   private checkoutLoaded: boolean;
   private paymentLoaded: boolean;
   private paymentGatewaysLoaded: boolean;
 
   constructor(
-    checkoutRepositoryManager: CheckoutRepositoryManager,
-    checkoutNetworkManager: CheckoutNetworkManager,
     saleorState: SaleorState,
-    loadOnStart: boolean
+    loadOnStart: boolean,
+    jobsManager: JobsManager
   ) {
     super();
     this.saleorState = saleorState;
-    this.checkoutRepositoryManager = checkoutRepositoryManager;
-    this.checkoutNetworkManager = checkoutNetworkManager;
-    this.checkoutJobQueue = new CheckoutJobQueue(
-      this.checkoutRepositoryManager.getRepository(),
-      this.checkoutNetworkManager
-    );
+    this.jobsManager = jobsManager;
+
     this.loaded = false;
     this.checkoutLoaded = false;
     this.paymentLoaded = false;
@@ -155,14 +143,15 @@ export class SaleorCheckoutAPI extends ErrorListener
     }));
 
     if (alteredLines && checkoutId) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runSetShippingAddress(
-        checkoutId,
-        shippingAddress,
-        email,
-        shippingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setShippingAddress",
+        {
+          checkoutId,
+          email,
+          selectedShippingAddressId: shippingAddress.id,
+          shippingAddress,
+        }
       );
 
       return {
@@ -171,11 +160,15 @@ export class SaleorCheckoutAPI extends ErrorListener
         pending: false,
       };
     } else if (alteredLines) {
-      const { data, dataError } = await this.checkoutJobQueue.runCreateCheckout(
-        email,
-        alteredLines,
-        shippingAddress,
-        shippingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "createCheckout",
+        {
+          email,
+          lines: alteredLines,
+          selectedShippingAddressId: shippingAddress.id,
+          shippingAddress,
+        }
       );
 
       return {
@@ -215,14 +208,15 @@ export class SaleorCheckoutAPI extends ErrorListener
       checkoutId &&
       this.checkout?.shippingAddress
     ) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runSetBillingAddress(
-        checkoutId,
-        billingAddress,
-        false,
-        billingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setBillingAddress",
+        {
+          billingAddress,
+          billingAsShipping: false,
+          checkoutId,
+          selectedBillingAddressId: billingAddress.id,
+        }
       );
 
       return {
@@ -246,14 +240,15 @@ export class SaleorCheckoutAPI extends ErrorListener
       checkoutId &&
       alteredLines
     ) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runSetBillingAddressWithEmail(
-        checkoutId,
-        email,
-        billingAddress,
-        billingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setBillingAddressWithEmail",
+        {
+          billingAddress,
+          checkoutId,
+          email,
+          selectedBillingAddressId: billingAddress.id,
+        }
       );
 
       return {
@@ -262,13 +257,15 @@ export class SaleorCheckoutAPI extends ErrorListener
         pending: false,
       };
     } else if (!isShippingRequiredForProducts && email && alteredLines) {
-      const { data, dataError } = await this.checkoutJobQueue.runCreateCheckout(
-        email,
-        alteredLines,
-        undefined,
-        undefined,
-        billingAddress,
-        billingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "createCheckout",
+        {
+          billingAddress,
+          email,
+          lines: alteredLines,
+          selectedBillingAddressId: billingAddress.id,
+        }
       );
 
       return {
@@ -307,15 +304,17 @@ export class SaleorCheckoutAPI extends ErrorListener
     const checkoutId = this.saleorState.checkout?.id;
 
     if (checkoutId && this.checkout?.shippingAddress) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runSetBillingAddress(
-        checkoutId,
-        this.checkout.shippingAddress,
-        true,
-        this.checkout?.shippingAddress.id
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setBillingAddress",
+        {
+          billingAddress: this.checkout.shippingAddress,
+          billingAsShipping: true,
+          checkoutId,
+          selectedBillingAddressId: this.checkout?.shippingAddress.id,
+        }
       );
+
       return {
         data,
         dataError,
@@ -341,12 +340,13 @@ export class SaleorCheckoutAPI extends ErrorListener
     const checkoutId = this.saleorState.checkout?.id;
 
     if (checkoutId) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runSetShippingMethod(
-        checkoutId,
-        shippingMethodId
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setShippingMethod",
+        {
+          checkoutId,
+          shippingMethodId,
+        }
       );
       return {
         data,
@@ -373,10 +373,15 @@ export class SaleorCheckoutAPI extends ErrorListener
     const checkoutId = this.saleorState.checkout?.id;
 
     if (checkoutId) {
-      const { data, dataError } = await this.checkoutJobQueue.runAddPromoCode(
-        checkoutId,
-        promoCode
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "addPromoCode",
+        {
+          checkoutId,
+          promoCode,
+        }
       );
+
       return {
         data,
         dataError,
@@ -402,10 +407,12 @@ export class SaleorCheckoutAPI extends ErrorListener
     const checkoutId = this.saleorState.checkout?.id;
 
     if (checkoutId) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runRemovePromoCode(checkoutId, promoCode);
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "removePromoCode",
+        { checkoutId, promoCode }
+      );
+
       return {
         data,
         dataError,
@@ -441,13 +448,17 @@ export class SaleorCheckoutAPI extends ErrorListener
       amount !== null &&
       amount !== undefined
     ) {
-      const { data, dataError } = await this.checkoutJobQueue.runCreatePayment(
-        checkoutId,
-        amount,
-        gateway,
-        token,
-        billingAddress,
-        creditCard
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "createPayment",
+        {
+          amount,
+          billingAddress,
+          checkoutId,
+          creditCard,
+          paymentGateway: gateway,
+          paymentToken: token,
+        }
       );
       return {
         data,
@@ -475,10 +486,11 @@ export class SaleorCheckoutAPI extends ErrorListener
     const checkoutId = this.saleorState.checkout?.id;
 
     if (checkoutId) {
-      const {
-        data,
-        dataError,
-      } = await this.checkoutJobQueue.runCompleteCheckout(checkoutId);
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "completeCheckout",
+        { checkoutId }
+      );
       return {
         data,
         dataError,

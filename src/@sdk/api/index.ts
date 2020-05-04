@@ -1,4 +1,5 @@
 import { defaultConfig } from "../config";
+import { JobsManager } from "../jobs";
 import { CheckoutNetworkManager } from "../network";
 import { CheckoutRepositoryManager, LocalRepository } from "../repository";
 import { SaleorState } from "../state";
@@ -42,22 +43,23 @@ export class SaleorAPI {
       repository,
       saleorState
     );
+    const jobsManager = new JobsManager(repository, checkoutNetworkManager);
 
     if (onStateUpdate) {
       saleorState.subscribeToNotifiedChanges(onStateUpdate);
     }
 
     this.checkout = new SaleorCheckoutAPI(
-      checkoutRepositoryManager,
-      checkoutNetworkManager,
       saleorState,
-      loadOnStart.checkout
+      loadOnStart.checkout,
+      jobsManager
     );
     this.cart = new SaleorCartAPI(
       checkoutRepositoryManager,
       checkoutNetworkManager,
       saleorState,
-      loadOnStart.cart
+      loadOnStart.cart,
+      jobsManager
     );
 
     this.legacyAPIProxy.attachAuthListener(authenticated => {

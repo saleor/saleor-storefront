@@ -1,5 +1,5 @@
 import { DataErrorCheckoutTypes } from "@sdk/api/Checkout/types";
-import { ErrorCartTypes } from "@sdk/jobs";
+import { ErrorCartTypes } from "@sdk/jobs/Cart";
 import { ApolloErrorWithUserInput } from "@sdk/react/types";
 
 import { IErrorListener } from "./types";

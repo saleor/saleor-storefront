@@ -124,23 +124,23 @@ export interface IOrderModel {
   number?: string | null;
 }
 
-export interface IJobsModel {
-  cart: {
-    setCartItem?: boolean;
-  };
-  checkout: {
-    setPromoCode?: boolean;
-  };
-}
+// export interface IJobsModel {
+//   cart: {
+//     setCartItem?: boolean;
+//   };
+//   checkout: {
+//     setPromoCode?: boolean;
+//   };
+// }
 
-export const JobsModelInitialState: IJobsModel = {
-  cart: {
-    setCartItem: false,
-  },
-  checkout: {
-    setPromoCode: false,
-  },
-};
+// export const JobsModelInitialState: IJobsModel = {
+//   cart: {
+//     setCartItem: false,
+//   },
+//   checkout: {
+//     setPromoCode: false,
+//   },
+// };
 
 export interface ILocalRepository {
   getCheckout(): ICheckoutModel | null;

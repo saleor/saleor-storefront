@@ -1,5 +1,6 @@
 import { ErrorListener } from "@sdk/helpers";
-import { CartJobQueue, ErrorCartTypes } from "@sdk/jobs/Cart";
+import { JobsManager } from "@sdk/jobs";
+import { ErrorCartTypes } from "@sdk/jobs/Cart";
 import { CheckoutNetworkManager } from "@sdk/network";
 import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
@@ -28,26 +29,26 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
   private checkoutNetworkManager: CheckoutNetworkManager;
-  private cartJobQueue: CartJobQueue;
+  private jobsManager: JobsManager;
 
   constructor(
     checkoutRepositoryManager: CheckoutRepositoryManager,
     checkoutNetworkManager: CheckoutNetworkManager,
     saleorState: SaleorState,
-    loadOnStart: boolean
+    loadOnStart: boolean,
+    jobsManager: JobsManager
   ) {
     super();
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
     this.checkoutNetworkManager = checkoutNetworkManager;
-    this.cartJobQueue = new CartJobQueue(
-      this.checkoutRepositoryManager.getRepository(),
-      this.checkoutNetworkManager,
-      this.fireError
-    );
+    this.jobsManager = jobsManager;
+
     this.loaded = false;
     this.checkoutLoaded = false;
     this.summaryPricesLoaded = false;
+
+    this.jobsManager.attachErrorListener("cart", this.fireError);
 
     this.saleorState.subscribeToChange(
       StateItems.CHECKOUT,
@@ -123,7 +124,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.cartJobQueue.enqueueSetCartItem();
+      this.jobsManager.addToQueue("cart", "setCartItem");
       return {
         pending: true,
       };
@@ -157,7 +158,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.cartJobQueue.enqueueSetCartItem();
+      this.jobsManager.addToQueue("cart", "setCartItem");
       return {
         pending: true,
       };
@@ -192,7 +193,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.cartJobQueue.enqueueSetCartItem();
+      this.jobsManager.addToQueue("cart", "setCartItem");
       return {
         pending: true,
       };
@@ -227,7 +228,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       }
     }
     if (this.saleorState.checkout?.id) {
-      this.cartJobQueue.enqueueSetCartItem();
+      this.jobsManager.addToQueue("cart", "setCartItem");
       return {
         pending: true,
       };
