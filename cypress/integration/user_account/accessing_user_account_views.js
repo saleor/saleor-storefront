@@ -40,7 +40,6 @@ describe("Accessing user account views", () => {
       { classId: "my_account__link", url: "/account/" },
       { classId: "order_history__link", url: "/order-history/" },
       { classId: "address_book__link", url: "/address-book/" },
-      { classId: "payment_options__link", url: "/payment-options/" },
     ].forEach(accountView => {
       cy.openAccountMenu(accountView.classId).wait(3000);
       cy.location("pathname").should("eq", accountView.url);
