@@ -80,9 +80,10 @@
     bottom: 0;
     width: 25rem;
 
-    &__subtotoal {
+    &__price {
       display: flex;
       padding-bottom: $spacer;
+      margin-bottom: $spacer;
       text-transform: uppercase;
       font-weight: $bold-font-weight;
       justify-content: space-between;
