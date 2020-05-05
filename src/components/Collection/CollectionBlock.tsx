@@ -11,7 +11,7 @@ export const CollectionBlock = (props) => {
   const handleWishlist = (e) => {
     const img = e.target.getAttribute("data-src");
 
-    if (img === "/images/favorite_empty.svg") {
+    if (img === "/images/favorite.svg") {
       setWishlist(heartFillIcon);
     } else {
       setWishlist(heartIcon);
