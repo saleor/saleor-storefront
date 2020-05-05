@@ -67,7 +67,10 @@ const StripePaymentGateway: React.FC<IProps> = ({
         });
       } else {
         const stripePayloadErrors = [
-          { message: "Stripe returns no payment method in payload." },
+          {
+            message:
+              "Payment submission error. Stripe gateway returned no payment method in payload.",
+          },
         ];
         setSubmitErrors(stripePayloadErrors);
         onError(stripePayloadErrors);

@@ -97,7 +97,10 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
       });
     } else {
       const braintreePayloadErrors = [
-        { message: "Braintree returns no token in payload." },
+        {
+          message:
+            "Payment submission error. Braintree gateway returned no token in payload.",
+        },
       ];
       setSubmitErrors(braintreePayloadErrors);
       onError(braintreePayloadErrors);
