@@ -4,8 +4,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-// import { useUserDetails } from "@sdk/react";
-
 import {
   Button,
   Offline,
@@ -25,13 +23,11 @@ import { ShopContext } from "../../ShopProvider/context";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
-// import cartImg from "../../../images/cart.svg";
-// import chevronDownImg from "../../../images/chevron-down.svg";
 import chevronUpImg from "../../../images/chevron-up.svg";
 import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
-  // const { data: user } = useUserDetails();
+
   return (
     <Overlay context={overlay}>
       <Online>

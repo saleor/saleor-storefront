@@ -3,6 +3,11 @@ import { Route, Switch } from "react-router-dom";
 
 import { PasswordReset } from "@pages";
 import { CheckoutLogin, NotFound } from "../../components";
+import { AvailableColors } from "../../components/Collection/AvailableColors";
+import { CollectionItems } from "../../components/Collection/CollectionItems";
+import { CollectionSamples } from "../../components/Collection/CollectionSamples";
+import { CollectionSpecification } from "../../components/Collection/CollectionSpecification";
+import { ViewDetails } from "../../components/Collection/ViewDetails";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
 import { Account, AccountConfirm } from "../../views/Account";
@@ -11,7 +16,7 @@ import { BrowseCabinets } from "../../views/BrowseCabinets";
 import { CartPage } from "../../views/Cart";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
-import { CollectionImageSlider } from "../../views/CollectionImageSlider";
+import { CollectionIndex } from "../../views/CollectionIndex";
 import { HomePage } from "../../views/Home";
 import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
@@ -41,7 +46,12 @@ export const Routes: React.FC = () => (
     <Route path={paths.paymentOptionsUrl} component={Account} />
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route exact path={paths.browseCollection} component={BrowseCabinets} />
-    <Route exact path={paths.cabinetCollection} component={CollectionImageSlider} />
+    <Route exact path={paths.cabinetCollection} component={CollectionIndex} />
+    <Route exact path={paths.collectionAvailableColors} component={AvailableColors} />
+    <Route path={paths.collectionViewDetails} component={ViewDetails} />
+    <Route path={paths.collectionSpecification} component={CollectionSpecification} />
+    <Route path={paths.collectionItemsIncluded} component={CollectionItems} />
+    <Route path={paths.collectionSamples} component={CollectionSamples} />
     <Route component={NotFound} />
   </Switch>
 );
