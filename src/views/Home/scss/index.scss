@@ -14,15 +14,15 @@
     }
 
     @media (max-width: $small-screen) {
+      background-color: transparent;
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 56px);
-      justify-content: space-between;
-      padding: $spacer;
+      height: calc(100vh - 118px);
+      justify-content: space-around;
+      padding: 0;
 
       &-text {
-        margin-top: $spacer * 5;
         width: 100%;
       }
 
@@ -33,35 +33,66 @@
     }
 
     &__title {
-      background-color: $white;
       display: inline-block;
-      transform: skew(45deg);
       padding: $spacer $spacer * 3;
       margin-bottom: $spacer / 2;
 
       @media (max-width: $small-screen) {
-        padding: 0.6rem $spacer;
         width: calc(100% - 4rem);
+        padding: 0;
+        margin-bottom: 13px;
       }
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
         font-weight: $bold-font-weight;
-        text-transform: uppercase;
         color: $blue;
         font-size: $h1-font-size;
         font-weight: 900;
 
         @media (max-width: $small-screen) {
-          font-size: $h4-font-size;
+          font-size: 25px;
+          color: #ffffff;
         }
 
         @media (min-width: $small-screen) and (max-width: $medium-screen) {
           font-size: 48px;
         }
       }
+
+      span {
+        @media (max-width: $small-screen) {
+          font-size: 18px;
+          color: #ffffff;
+        }
+      }
     }
+
+    &-btn {
+      width: 200px;
+      height: calc(100% - 75px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      & a {
+        width: 100%;
+        &:not(:last-child) {
+          margin-bottom: 50px;
+        }
+      }
+      & .home-page__btn {
+        background: #BFAD71;
+        padding: 16px 35px;
+        font-size: 14px;
+        border-radius: 7px;
+        box-shadow: 0px 3px 6px #00000029;
+        color: white;
+        width: 100%;
+      }
+    }
+
   }
 
   &__categories {

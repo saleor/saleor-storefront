@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16.394" viewBox="0 0 17 16.394">
+  <g id="filter-icon" transform="translate(-18 -514.25)">
+    <path id="line1" d="M-1006.651,373v14.894" transform="translate(1027.151 142)" fill="none" stroke="#b09a51" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="line2" d="M-1006.651,373v14.894" transform="translate(1033.151 142)" fill="none" stroke="#b09a51" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="line3" d="M-1006.651,373v14.894" transform="translate(1039.151 142)" fill="none" stroke="#b09a51" stroke-linecap="round" stroke-width="1.5"/>
+    <g id="circle1" transform="translate(18 523)" fill="#fff" stroke="#b09a51" stroke-width="1.5">
+      <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+      <circle cx="2.5" cy="2.5" r="1.75" fill="none"/>
+    </g>
+    <g id="circle2" transform="translate(30 523)" fill="#fff" stroke="#b09a51" stroke-width="1.5">
+      <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+      <circle cx="2.5" cy="2.5" r="1.75" fill="none"/>
+    </g>
+    <g id="circle3" transform="translate(24 517)" fill="#fff" stroke="#b09a51" stroke-width="1.5">
+      <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+      <circle cx="2.5" cy="2.5" r="1.75" fill="none"/>
+    </g>
+  </g>
+</svg>

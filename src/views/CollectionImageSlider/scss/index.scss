@@ -1,0 +1,12 @@
+@import "../../../globalStyles/scss/variables";
+
+.slider-page {
+  height: 100vh;
+  & > div {
+    height: 100%;
+  }
+}
+.home-page__root {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
