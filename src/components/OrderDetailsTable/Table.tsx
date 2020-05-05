@@ -30,7 +30,7 @@ const Table: React.FC<TableProps> = ({
       <table className="cart-table">
         <thead>
           <tr>
-            <th>Products</th>
+            <th>Product</th>
             {mediumScreen && <th>Price</th>}
             <th>Variant</th>
             <th className="cart-table__quantity-header">Quantity</th>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { TaxedMoney } from "@components/containers";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
-import { LineI } from "../../../components/CartTable/ProductRow";
+import { ILine } from "../../../components/CartTable/ProductRow";
 import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
 import {
   OrderByToken_orderByToken,
@@ -15,7 +15,7 @@ import { orderHistoryUrl } from "../../../app/routes";
 
 const extractOrderLines = (
   lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>
-): LineI[] => {
+): ILine[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,

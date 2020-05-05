@@ -9,10 +9,13 @@ import { OrderByToken_orderByToken_lines_unitPrice } from "@sdk/queries/types/Or
 
 import { generateProductUrl } from "../../core/utils";
 
+
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "stockQuantity" | "isAvailable"
+  "__typename" | "sku" | "stockQuantity" | "isAvailable" | "attributes"
 > & {
+  productName: string;
+  varinatName: string;
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
   stockQuantity?: number;
@@ -57,9 +60,17 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
         </td>
       )}
 
-      <td>
-        {line.attributes.map(({ attribute, values }, attributeIndex) => (
-        <p>{attribute.name}: {values.map(value => value.name).join(", ")}</p>))}
+      <td>{line.varinatName}???
+          {/* {line.attributes.map(({ attribute, values }, attributeIndex) => (
+            <S.SingleAttribute key={attribute.id}>
+              <span
+                data-cy={`cartPageItem${index}SingleAttribute${attributeIndex}`}
+              >
+                <S.LightFont>{attribute.name}:</S.LightFont>{" "}
+                {values.map(value => value.name).join(", ")}
+              </span>
+            </S.SingleAttribute>
+          ))} */}
       </td>
 
       <td className="cart-table__quantity-cell">
