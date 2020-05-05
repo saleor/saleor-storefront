@@ -1,12 +1,14 @@
 import "./scss/index.scss";
 
-import classNames from "classnames";
+// import classNames from "classnames";
 import * as React from "react";
 
-import { Button, Form, Select, TextField } from "..";
+import { Form, Select, TextField } from "..";
 import { ShopContext } from "../ShopProvider/context";
 import { FormAddressType, IShippingAddressFormProps } from "./types";
 import { getFormData } from "./utils";
+
+import { CheckoutNextButton } from "../Button";
 
 const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
   data,
@@ -31,8 +33,8 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
           data={getFormData(geolocalization, defaultCountry, data)}
         >
           {children}
-          <fieldset disabled={shippingAsBilling}>
-            <div className="address-form__grid">
+          <fieldset className="form-fieldset" disabled={shippingAsBilling}>
+            {/* <div className="address-form__grid">
               <TextField
                 label="First Name"
                 type="given-name"
@@ -47,28 +49,12 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
                 autoComplete="family-name"
                 required
               />
-            </div>
-            <div className="address-form__grid">
+            </div> */}
               <TextField
                 label="Street Name"
                 type="address-line1"
                 name="streetAddress1"
                 autoComplete="address-line1"
-                required
-              />
-              <TextField
-                label="Company name (optional)"
-                type="organization"
-                name="companyName"
-                autoComplete="organization"
-              />
-            </div>
-            <div className="address-form__grid address-form__grid--uneven">
-              <TextField
-                label="ZIP Code"
-                type="postal-code"
-                name="postalCode"
-                autoComplete="postal-code"
                 required
               />
               <TextField
@@ -78,14 +64,21 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
                 autoComplete="address-level2"
                 required
               />
-            </div>
-            <div className="address-form__grid">
-              <TextField
-                label="State/Province"
-                type="state"
-                name="countryArea"
-                autoComplete="address-level1"
-              />
+              <div className="field-row">
+                <TextField half
+                  label="State/Province"
+                  type="state"
+                  name="countryArea"
+                  autoComplete="address-level1"
+                />
+                <TextField half
+                  label="ZIP Code"
+                  type="postal-code"
+                  name="postalCode"
+                  autoComplete="postal-code"
+                  required
+                />
+              </div>
               <Select
                 label="Country"
                 name="country"
@@ -95,34 +88,10 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
                 }))}
                 autoComplete="country"
               />
-            </div>
-            <div
-              className={classNames("address-form__grid", {
-                "address-form__grid--full": type === "billing",
-              })}
-            >
-              {(type === "shipping" || noShipping) && (
-                <TextField
-                  label="Email Address"
-                  type="email"
-                  autoComplete="email"
-                  name="email"
-                  required
-                />
-              )}
-
-              <TextField
-                label="Phone number"
-                type="tel"
-                name="phone"
-                autoComplete="phone"
-                required
-              />
-            </div>
           </fieldset>
-          <Button type="submit" disabled={loading}>
+          <CheckoutNextButton className="btn-checkout-continue" type="submit" disabled={loading}>
             {loading ? "Loading" : buttonText}
-          </Button>
+          </CheckoutNextButton>
         </Form>
       )}
     </ShopContext.Consumer>

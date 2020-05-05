@@ -9,7 +9,8 @@
     position: relative;
     cursor: pointer;
     width: 100%;
-    border: 1px solid $blue;
+    border: 1px solid #909090;
+    border-radius: 4px;
 
     input {
       display: block;
@@ -47,9 +48,9 @@
   }
 
   &__options {
-    border-radius: 0;
-    box-shadow: 0 0 0 1px $blue;
-    border: 1px solid $blue;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px #909090;
+    border: 1px solid #909090;
     background-color: $white;
     position: absolute;
     left: 0;

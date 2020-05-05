@@ -29,6 +29,7 @@ const Footer: React.FC = () => (
         <span className="footer-small__icon-name">More</span>
       </div>
     </div>
+
   </div>
 );
 

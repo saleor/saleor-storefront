@@ -1,27 +1,32 @@
 @import "../../../../globalStyles/scss/variables.scss";
 
 .cart {
-  width: 25rem;
+  width: 100vw;
   max-width: 100vw;
+  background: $gray-light;
 
   .overlay__header {
     justify-content: initial;
 
     &__close-icon {
-      margin-left: auto;
+      margin-right: auto;
     }
   }
 
   &__list {
-    padding: 0 $spacer;
+    padding: 2rem 1.5rem;
     height: calc(100vh - 17.5rem);
     overflow: auto;
 
     &__item {
       padding: $spacer 0;
       border-bottom: 1px solid $gray-light;
+      border-radius: 4px;
       display: flex;
       align-content: stretch;
+      background: #fff;
+      box-shadow: 0px 4px 8px #aaa;
+      margin-bottom: $spacer * 2;
 
       img {
         max-width: 6.25rem;
@@ -33,19 +38,31 @@
         padding: 0 $spacer;
 
         p {
-          font-weight: $bold-font-weight;
-          text-transform: uppercase;
           line-height: 1.5;
+          color: $background-tan;
         }
 
         &__variant {
           display: flex;
+          flex-flow: column;
           justify-content: space-between;
           margin-top: $spacer / 2;
+          margin-bottom: $spacer * 2;
 
           span {
             color: $gray;
             font-size: $small-font-size;
+          }
+        }
+
+        &__pricing {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-between;
+
+          span {
+            font-size: 1.2rem;
+            font-weight: 600;
           }
         }
 
@@ -74,28 +91,40 @@
   }
 
   &__footer {
-    background-color: $gray-light;
+    display: flex;
+    flex-direction: row nowrap;
+    background-color: #fff;
     padding: $spacer;
     position: absolute;
     bottom: 0;
-    width: 25rem;
+    width: 100vw;
+    box-shadow: 2px 2px 12px #909090;
 
     &__subtotoal {
       display: flex;
       padding-bottom: $spacer;
-      text-transform: uppercase;
-      font-weight: $bold-font-weight;
       justify-content: space-between;
-      border-bottom: 1px solid $gray;
+      align-items: center;
+      width: 50%;
     }
 
     &__button {
-      margin: 1.3rem auto 1.3rem;
+      margin: .5rem 1.3rem;
       text-align: center;
 
       button {
-        width: 85%;
+        width: 100%;
       }
+    }
+
+    &__price-label {
+      font-weight: 400;
+    }
+
+    &__price {
+      color: $background-tan;
+      font-weight: 600;
+      margin: 0 .5rem;
     }
   }
 
@@ -116,5 +145,30 @@
       text-align: center;
       margin-top: $spacer;
     }
+  }
+}
+
+.quantselect {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+
+  button {
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: $background-tan;
+    color: #fff;
+    border: 2px solid #f5f5f5;
+    border-radius: 50%;
+    text-align:center;
+    font-size: 20px;
+  }
+
+  span {
+    font-size: 1rem;
+    font-weight: 400;
   }
 }

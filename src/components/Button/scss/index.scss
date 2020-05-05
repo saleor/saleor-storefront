@@ -1,34 +1,30 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 button.button {
-  background-color: $turquoise;
-  transform: $button-transform;
+  background-color: $background-tan;
   padding: $button-padding;
   border: none;
-  box-shadow: $button-box-shadow;
-  transition: $button-transition;
+  border-radius: .5rem;
   outline: none;
   font-family: $base-font-family;
   cursor: pointer;
 
   @media (max-width: $small-screen) {
-    padding: $button-padding-small-screen;
-    width: 88%;
-    max-width: 88%;
+    width: 100%;
+    max-width: 100%;
   }
 
   > span {
     display: inline-block;
     color: $white;
     font-size: $button-font-size;
-    text-transform: $button-text-transform;
     font-weight: $button-font-weight;
     line-height: $button-line-height;
-    transform: $button-content-transform;
+    text-transform: uppercase;
   }
 
   &:hover {
-    background-color: $turquoise-dark;
+    background-color: $background-tan;
   }
 
   &:active {
@@ -66,4 +62,32 @@ button.button {
       cursor: default;
     }
   }
+}
+
+button.btn-checkout-continue {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  background-color: transparent;
+  width: 45% !important;
+  border: 1px solid $background-tan;
+  color: $background-tan;
+  padding: .5rem;
+  border-radius: .8rem;
+
+  > span {
+    display: inline-block;
+    color: $background-tan;
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: $button-line-height;
+  }
+
+  > i {
+    font-size: 1.8rem;
+    vertical-align: sub;
+    margin-left: 1rem;
+    font-weight: 100;
+  }
+
 }

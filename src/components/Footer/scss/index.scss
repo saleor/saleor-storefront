@@ -55,8 +55,14 @@
   }
 
   &-nav {
-    background-color: $gray-light;
-    padding: $spacer * 3 0 $spacer * 2;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: #333;
+    color: #eee;
+    padding: $spacer $spacer * 2;
+    height: 5rem;
+    width: 100vw;
 
     .container {
       display: flex;
@@ -112,6 +118,5 @@
       border-radius: 50% 50% 0 0;
 
     }
-
   }
 }

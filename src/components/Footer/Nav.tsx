@@ -1,35 +1,39 @@
 import * as React from "react";
 
-import { NavLink } from "..";
-import { TypedSecondaryMenuQuery } from "./queries";
-
 import "./scss/index.scss";
+
+import { Link } from "@temp/@next/components/atoms/SocialMediaIcon/styles";
+
+const MAIN_MENU = [{
+  href: '/',
+  title: 'Home',
+}, {
+  href: '/cart',
+  title: 'Cart',
+}, {
+  href: '/account',
+  title: 'Account',
+}, {
+  href: '/more',
+  title: 'More',
+}];
 
 class Nav extends React.PureComponent {
   render() {
     return (
       <footer className="footer-nav">
-        <div className="container">
-          <TypedSecondaryMenuQuery>
-            {({ data }) => {
-              return data.shop.navigation.secondary.items.map(item => (
-                <div className="footer-nav__section" key={item.id}>
-                  <h4 className="footer-nav__section-header">
-                    <NavLink item={item} />
-                  </h4>
-                  <div className="footer-nav__section-content">
-                    {item.children.map(subItem => (
-                      <p key={subItem.id}><NavLink item={subItem} /></p>
-                    ))}
-                  </div>
-                </div>
-              ));
-            }}
-          </TypedSecondaryMenuQuery>
-        </div>
+        {MAIN_MENU.map(item => {
+          return  <MenuItem item={item} />
+        })}
       </footer>
     );
   }
+}
+
+function MenuItem({item}) {
+  return <Link className="menu-item" href={item.href}>
+    <span>{item.title}</span>
+  </Link>
 }
 
 export default Nav;

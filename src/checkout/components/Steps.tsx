@@ -1,5 +1,5 @@
 import * as React from "react";
-import { generatePath, Link } from "react-router-dom";
+import { styled } from '@styles';
 
 import { useVariantsProducts } from "@sdk/react";
 
@@ -57,7 +57,7 @@ const getAvailableSteps = (
   return steps;
 };
 
-const getSummary = (
+export const getSummary = (
   step: CheckoutStep,
   checkout: Checkout
 ): React.ReactNode => {
@@ -103,41 +103,28 @@ const Steps: React.FC<{
 
   const availableSteps = getAvailableSteps(checkout, variantsProducts);
 
-  const currentStepIndex = availableSteps.findIndex(
-    ({ step }) => step === currentStep
-  );
-
   return (
     <>
       {availableSteps.map(({ header, step, path }, index) => (
         <React.Fragment key={step}>
-          {currentStepIndex > index ? (
-            <>
-              <Link
-                to={generatePath(path, {
-                  token,
-                })}
-              >
-                <div className="checkout__step checkout__step--inactive">
-                  <span>{index + 1}</span>
-                  <h4 className="checkout__header">{header}</h4>
-                </div>
-              </Link>
-              {checkout && getSummary(step, checkout)}
-            </>
-          ) : (
-            <div className="checkout__step">
-              <span>{index + 1}</span>
-              <h4 className="checkout__header">{header}</h4>
-            </div>
-          )}
           {currentStep === step && (
-            <div className="checkout__content">{children}</div>
+            <>
+              <div className="checkout__step">
+                <H4>{header}</H4>
+              </div>
+              <div className="checkout__content">{children}</div>
+            </>
           )}
         </React.Fragment>
       ))}
     </>
   );
 };
+
+const H4 = styled.h4`
+  color: #af9a50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+`;
 
 export default Steps;

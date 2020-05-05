@@ -1,10 +1,10 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { generatePath, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
-import { useUserDetails } from "@sdk/react";
+// import { useUserDetails } from "@sdk/react";
 
 import {
   Button,
@@ -14,7 +14,6 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import { cartUrl, checkoutLoginUrl } from "../../../app/routes";
 import { baseUrl as checkoutUrl } from "../../../checkout/routes";
 import { maybe } from "../../../core/utils";
 import { TypedProductVariantsQuery } from "../../../views/Product/queries";
@@ -26,11 +25,13 @@ import { ShopContext } from "../../ShopProvider/context";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
-import cartImg from "../../../images/cart.svg";
+// import cartImg from "../../../images/cart.svg";
+// import chevronDownImg from "../../../images/chevron-down.svg";
+import chevronUpImg from "../../../images/chevron-up.svg";
 import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
-  const { data: user } = useUserDetails();
+  // const { data: user } = useUserDetails();
   return (
     <Overlay context={overlay}>
       <Online>
@@ -65,16 +66,6 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       <div className="cart">
                         <div className="overlay__header">
                           <ReactSVG
-                            path={cartImg}
-                            className="overlay__header__cart-icon"
-                          />
-                          <div className="overlay__header-text">
-                            My bag,{" "}
-                            <span className="overlay__header-text-items">
-                              {cart.getQuantity() || 0} items
-                            </span>
-                          </div>
-                          <ReactSVG
                             path={closeImg}
                             onClick={overlay.hide}
                             className="overlay__header__close-icon"
@@ -88,26 +79,21 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                             />
                             <div className="cart__footer">
                               <div className="cart__footer__subtotoal">
-                                <span>Subtotal</span>
-
-                                <span>
+                                <span className="cart__footer__price-label">
+                                  Total
+                                  <br />
+                                  (X items)
+                                </span>
+                                <span className="cart__footer__price">
                                   {getTotal(data, cart.lines, locale)}
                                 </span>
-                              </div>
-
-                              <div className="cart__footer__button">
-                                <Link
-                                  to={generatePath(cartUrl, {
-                                    token: null,
-                                  })}
-                                >
-                                  <Button secondary>Go to my bag</Button>
-                                </Link>
+                                <ReactSVG
+                                  path={chevronUpImg}
+                                  className="cart__footer__chevron-icon"
+                                />
                               </div>
                               <div className="cart__footer__button">
-                                <Link
-                                  to={user ? checkoutUrl : checkoutLoginUrl}
-                                >
+                                <Link to={checkoutUrl}>
                                   <Button>Checkout</Button>
                                 </Link>
                               </div>

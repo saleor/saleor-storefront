@@ -2,8 +2,12 @@
 
 @mixin focusedLabel {
   font-size: $label-font-size;
-  left: 17px;
+  left: 15px;
   top: 0;
+}
+
+.half {
+  width: 49%;
 }
 
 .input {
@@ -17,20 +21,17 @@
   &__field {
     display: block;
     width: 100%;
-    border-radius: 0;
-    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    padding: 1rem 1rem .5rem;
     font-size: $base-font-size;
     color: $base-font-color;
-    border: 1px solid $blue;
+    border: 1px solid #aaa;
     outline: none;
-    box-shadow: 0 0 0 1px $white;
     background-color: transparent;
 
     &:focus,
     &:not([value=""]) {
-      box-shadow: 0 0 0 1px $blue;
       & + .input__label {
-        background-color: $white;
         @include focusedLabel();
       }
     }
@@ -67,22 +68,11 @@
       }
     }
     &:hover {
-      box-shadow: 0 0 0 1px $blue;
+      box-shadow: 0 0 0 1px $background-tan;
       color: $blue;
       transition: all 0.3s ease;
       & + .input__label {
         color: $blue;
-      }
-    }
-
-    &--error {
-      border: 1px solid $rose;
-      & + .input__label {
-        color: $rose;
-      }
-
-      &:focus {
-        box-shadow: 0 0 0 1px $rose;
       }
     }
 
@@ -97,13 +87,11 @@
     color: $label-color;
     top: 50%;
     left: 0.8rem;
-    transform: translate(0, -50%);
     padding: 0 6px;
     z-index: 1;
     pointer-events: none;
     transition: all 0.4s ease;
     &--focus {
-      background-color: $white;
       @include focusedLabel();
     }
   }

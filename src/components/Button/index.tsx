@@ -26,4 +26,22 @@ const Button: React.FC<ButtonProps> = ({
   </button>
 );
 
+export const CheckoutNextButton: React.FC<any> = ({
+  children,
+  btnRef,
+  type,
+  contextTypes,
+  otherProps,
+}) => (
+  <button
+    className="btn-checkout-continue"
+    ref={btnRef}
+    type={type as ButtonType}
+    {...otherProps}
+  >
+    <span>{children}</span>
+    <i>›</i>
+  </button>
+);
+
 export default Button;
