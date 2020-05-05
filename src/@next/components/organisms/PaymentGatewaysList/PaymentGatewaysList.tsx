@@ -23,6 +23,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   formId,
   processPayment,
   errors,
+  onError,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -58,6 +59,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                       processPayment(id, token, cardData)
                     }
                     errors={errors}
+                    onError={onError}
                   />
                 )}
               </div>
@@ -121,6 +123,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                       processPayment(id, token, cardData)
                     }
                     errors={errors}
+                    onError={onError}
                   />
                 )}
               </div>

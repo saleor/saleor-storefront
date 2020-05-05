@@ -7,6 +7,7 @@ import { paymentGateways } from "./fixtures";
 
 const processPayment = action("processPayment");
 const selectPaymentGateway = action("selectPaymentGateway");
+const onError = action("onError");
 
 storiesOf("@components/organisms/PaymentGatewaysList", module)
   .addParameters({ component: PaymentGatewaysList })
@@ -15,5 +16,6 @@ storiesOf("@components/organisms/PaymentGatewaysList", module)
       paymentGateways={paymentGateways}
       processPayment={processPayment}
       selectPaymentGateway={selectPaymentGateway}
+      onError={onError}
     />
   ));

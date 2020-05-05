@@ -16,6 +16,7 @@ describe("<CheckoutPayment />", () => {
     const submitUnchangedDiscount = jest.fn();
     const selectPaymentGateway = jest.fn();
     const processPayment = jest.fn();
+    const onGatewayError = jest.fn();
     const wrapper = mount(
       <CheckoutPayment
         {...LOGGED_IN_USER_PROPS}
@@ -26,6 +27,7 @@ describe("<CheckoutPayment />", () => {
         submitUnchangedDiscount={submitUnchangedDiscount}
         selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
+        onGatewayError={onGatewayError}
       />
     );
 
@@ -47,6 +49,7 @@ describe("<CheckoutPayment />", () => {
     const submitUnchangedDiscount = jest.fn();
     const processPayment = jest.fn();
     const selectPaymentGateway = jest.fn();
+    const onGatewayError = jest.fn();
     const wrapper = mount(
       <CheckoutPayment
         {...ANONYMOUS_USER_PROPS}
@@ -57,6 +60,7 @@ describe("<CheckoutPayment />", () => {
         submitUnchangedDiscount={submitUnchangedDiscount}
         selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
+        onGatewayError={onGatewayError}
       />
     );
 

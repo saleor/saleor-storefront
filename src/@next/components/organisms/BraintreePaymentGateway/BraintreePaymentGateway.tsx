@@ -34,6 +34,7 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
   formId,
   errors = [],
   postalCode,
+  onError,
 }: IProps) => {
   const [submitErrors, setSubmitErrors] = useState<IFormError[]>([]);
 
@@ -64,10 +65,18 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
         )) as PaymentData;
         return cardData;
       } else {
-        setSubmitErrors([{ message: "Braintree client token not provided." }]);
+        const braintreeTokenErrors = [
+          {
+            message:
+              "Braintree gateway misconfigured. Client token not provided.",
+          },
+        ];
+        setSubmitErrors(braintreeTokenErrors);
+        onError(braintreeTokenErrors);
       }
     } catch (errors) {
       setCardErrorsHelper(errors);
+      onError(errors);
       return null;
     }
   };
@@ -87,9 +96,14 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
         lastDigits: payment?.lastDigits,
       });
     } else {
-      setSubmitErrors([
-        { message: "Braintree client error occured during payment." },
-      ]);
+      const braintreePayloadErrors = [
+        {
+          message:
+            "Payment submission error. Braintree gateway returned no token in payload.",
+        },
+      ];
+      setSubmitErrors(braintreePayloadErrors);
+      onError(braintreePayloadErrors);
     }
   };
 

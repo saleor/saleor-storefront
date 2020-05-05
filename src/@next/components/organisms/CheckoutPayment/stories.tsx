@@ -23,6 +23,7 @@ const submitUnchangedDiscount = action(
 );
 const selectPaymentGateway = action("selectPaymentGateway has been called");
 const processPayment = action("processPayment has been called");
+const onGatewayError = action("onGatewayError has been called");
 
 storiesOf("@components/organisms/CheckoutPayment", module)
   .addParameters({ component: CheckoutPayment })
@@ -36,6 +37,7 @@ storiesOf("@components/organisms/CheckoutPayment", module)
       submitUnchangedDiscount={submitUnchangedDiscount}
       selectPaymentGateway={selectPaymentGateway}
       processPayment={processPayment}
+      onGatewayError={onGatewayError}
     />
   ))
   .add("with addresses", () => (
@@ -48,5 +50,6 @@ storiesOf("@components/organisms/CheckoutPayment", module)
       submitUnchangedDiscount={submitUnchangedDiscount}
       selectPaymentGateway={selectPaymentGateway}
       processPayment={processPayment}
+      onGatewayError={onGatewayError}
     />
   ));

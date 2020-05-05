@@ -44,6 +44,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   userId,
   newAddressFormId,
   processPayment,
+  onGatewayError,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
     !!promoCodeDiscount?.voucherCode
@@ -166,6 +167,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           selectedPaymentGateway={selectedPaymentGateway}
           selectedPaymentGatewayToken={selectedPaymentGatewayToken}
           selectPaymentGateway={selectPaymentGateway}
+          onError={onGatewayError}
         />
       </section>
     </S.Wrapper>
