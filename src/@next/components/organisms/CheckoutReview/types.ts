@@ -1,4 +1,4 @@
-import { IAddress } from "@types";
+import { IAddress, IFormError } from "@types";
 
 export interface IProps {
   shippingAddress?: IAddress | null;
@@ -6,5 +6,5 @@ export interface IProps {
   shippingMethodName?: string;
   paymentMethodName?: string;
   email?: string;
-  errors?: any;
+  errors?: IFormError[];
 }
