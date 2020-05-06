@@ -60,9 +60,9 @@ describe("Category view - filtering and sorting", () => {
       .first()
       .click()
       .get("[data-cy=no-of-products-found_label]")
-      .should("have.text", "Products found: 2")
+      .should("have.text", "Products found: 5")
       .get("[data-cy=product-tile")
-      .should("have.length", 2);
+      .should("have.length", 5);
   });
 
   it("should change order of items after changing sorting option", () => {
