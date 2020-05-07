@@ -33,6 +33,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update GraphQL schema - #567 by @orzechdev
 - Completely recreate checkout and cart, with new checkout nad cart SDK - #639 by @orzechdev, @mateuszkula
 - Hide payment options - #678 by @orzechdev
+- Fix unhandled JWT token expiration - #696 by @orzechdev
 
 ## 0.7.0
 
