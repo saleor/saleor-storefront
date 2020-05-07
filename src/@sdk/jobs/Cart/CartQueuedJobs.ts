@@ -33,6 +33,7 @@ export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
         this.repository.setCheckout({
           ...checkout,
           lines: data.lines,
+          promoCodeDiscount: data.promoCodeDiscount,
         });
       }
     }

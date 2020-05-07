@@ -16,10 +16,14 @@ export interface ICheckoutShippingSubpageHandles {
   submitShipping: () => void;
 }
 
+interface IProps extends RouteComponentProps<any> {
+  changeSubmitProgress: (submitInProgress: boolean) => void;
+}
+
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   ICheckoutShippingSubpageHandles,
-  RouteComponentProps<any>
-> = ({ ...props }: RouteComponentProps<any>, ref) => {
+  IProps
+> = ({ changeSubmitProgress, ...props }: IProps, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
 
@@ -45,8 +49,10 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   }));
 
   const handleSetShippingMethod = async (shippingMethodId: string) => {
+    changeSubmitProgress(true);
     const { dataError } = await setShippingMethod(shippingMethodId);
     const errors = dataError?.error.extraInfo.userInputErrors;
+    changeSubmitProgress(false);
     if (errors) {
       setErrors(errors);
     } else {

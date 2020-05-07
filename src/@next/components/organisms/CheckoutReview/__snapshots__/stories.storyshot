@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -43,6 +43,10 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
 .c5 {
   line-height: 1.6;
   font-size: 1.125rem;
+}
+
+.c6 {
+  margin-top: 30px;
 }
 
 @media (max-width:540px) {
@@ -117,9 +121,12 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
         />
       </section>
     </div>
+    <div
+      className="c6"
+    />
   </div>
   <div
-    className="c6"
+    className="c7"
   />
 </div>
 `;

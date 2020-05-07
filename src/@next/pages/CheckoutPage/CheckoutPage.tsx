@@ -107,6 +107,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     return <Redirect to="/cart/" />;
   }
 
+  const [submitInProgress, setSubmitInProgress] = useState(false);
+
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
@@ -182,11 +184,16 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         checkout={checkout}
         payment={payment}
         renderAddress={props => (
-          <CheckoutAddressSubpage ref={checkoutAddressSubpageRef} {...props} />
+          <CheckoutAddressSubpage
+            ref={checkoutAddressSubpageRef}
+            changeSubmitProgress={setSubmitInProgress}
+            {...props}
+          />
         )}
         renderShipping={props => (
           <CheckoutShippingSubpage
             ref={checkoutShippingSubpageRef}
+            changeSubmitProgress={setSubmitInProgress}
             {...props}
           />
         )}
@@ -195,6 +202,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             ref={checkoutPaymentSubpageRef}
             selectedPaymentGateway={selectedPaymentGateway}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            changeSubmitProgress={setSubmitInProgress}
             selectPaymentGateway={setSelectedPaymentGateway}
             {...props}
           />
@@ -203,6 +211,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutReviewSubpage
             ref={checkoutReviewSubpageRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            changeSubmitProgress={setSubmitInProgress}
             {...props}
           />
         )}
@@ -219,6 +228,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
   return (
     <Checkout
+      loading={submitInProgress}
       navigation={getCheckoutProgress(
         cartLoaded && checkoutLoaded,
         activeStepIndex,
