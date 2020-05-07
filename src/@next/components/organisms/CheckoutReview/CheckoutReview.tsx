@@ -50,7 +50,9 @@ const CheckoutReview: React.FC<IProps> = ({
           <S.TextSummary>{paymentMethodName}</S.TextSummary>
         </section>
       </S.Grid>
-      <ErrorMessage errors={errors} />
+      <S.ErrorMessages>
+        <ErrorMessage errors={errors} />
+      </S.ErrorMessages>
     </S.Wrapper>
   );
 };
