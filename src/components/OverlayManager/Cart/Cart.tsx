@@ -5,7 +5,7 @@ import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { useCart, useUserDetails } from "@sdk/react";
+import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 
 import {
   Button,
@@ -24,7 +24,27 @@ import closeImg from "../../../images/x.svg";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { data: user } = useUserDetails();
-  const { items, removeItem, subtotalPrice } = useCart();
+  const { checkout } = useCheckout();
+  const {
+    items,
+    removeItem,
+    subtotalPrice,
+    shippingPrice,
+    discount,
+    totalPrice,
+  } = useCart();
+
+  const shippingTaxedPrice =
+    checkout?.shippingMethod?.id && shippingPrice
+      ? {
+          gross: shippingPrice,
+          net: shippingPrice,
+        }
+      : null;
+  const promoTaxedPrice = discount && {
+    gross: discount,
+    net: discount,
+  };
 
   return (
     <Overlay context={overlay}>
@@ -52,13 +72,46 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
             <>
               <ProductList lines={items} remove={removeItem} />
               <div className="cart__footer">
-                <div className="cart__footer__subtotoal">
+                <div className="cart__footer__price">
                   <span>Subtotal</span>
-
                   <span>
                     <TaxedMoney
                       data-cy="cartPageSubtotalPrice"
                       taxedMoney={subtotalPrice}
+                    />
+                  </span>
+                </div>
+
+                {shippingTaxedPrice && shippingTaxedPrice.gross.amount !== 0 && (
+                  <div className="cart__footer__price">
+                    <span>Shipping</span>
+                    <span>
+                      <TaxedMoney
+                        data-cy="cartPageShippingPrice"
+                        taxedMoney={shippingTaxedPrice}
+                      />
+                    </span>
+                  </div>
+                )}
+
+                {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
+                  <div className="cart__footer__price">
+                    <span>Promo code</span>
+                    <span>
+                      <TaxedMoney
+                        data-cy="cartPagePromoCodePrice"
+                        taxedMoney={promoTaxedPrice}
+                      />
+                    </span>
+                  </div>
+                )}
+
+                <div className="cart__footer__price">
+                  <span>Total</span>
+                  <span>
+                    <TaxedMoney
+                      data-cy="cartPageTotalPrice"
+                      taxedMoney={totalPrice}
                     />
                   </span>
                 </div>
