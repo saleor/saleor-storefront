@@ -34,3 +34,7 @@ export const TextSummary = styled.p`
   line-height: 1.6;
   font-size: ${props => props.theme.typography.h4FontSize};
 `;
+
+export const ErrorMessages = styled.div`
+  margin-top: 30px;
+`;

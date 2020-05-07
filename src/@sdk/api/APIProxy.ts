@@ -6,7 +6,7 @@ import {
 } from "apollo-client";
 import { GraphQLError } from "graphql";
 
-import { clearStorage, getAuthToken, setAuthToken } from "../auth";
+import { fireSignOut, getAuthToken, setAuthToken } from "../auth";
 import { MUTATIONS } from "../mutations";
 import { TokenAuth } from "../mutations/types/TokenAuth";
 import { QUERIES } from "../queries";
@@ -230,14 +230,7 @@ export class APIProxy {
   signOut = () =>
     new Promise(async (resolve, reject) => {
       try {
-        clearStorage();
-        if (
-          navigator.credentials &&
-          navigator.credentials.preventSilentAccess
-        ) {
-          navigator.credentials.preventSilentAccess();
-        }
-        this.client.resetStore();
+        fireSignOut(this.client);
 
         resolve();
       } catch (e) {

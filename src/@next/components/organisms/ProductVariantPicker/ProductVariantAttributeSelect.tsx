@@ -113,6 +113,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           value={selectedValue ? selectedValue.value : ""}
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
+          readOnly={true}
         />
         <SelectSidebar
           options={attributeOptions}

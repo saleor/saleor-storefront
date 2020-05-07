@@ -52,7 +52,7 @@ cd saleor-storefront
 To use the official stable release, checkout to a release tag:
 
 ```
-$ git checkout v0.7.0
+$ git checkout 2.10.0-rc.2
 ```
 
 See the list of all releases here: https://github.com/mirumee/saleor-storefront/releases/

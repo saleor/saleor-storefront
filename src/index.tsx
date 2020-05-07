@@ -9,12 +9,13 @@ import {
 import { SaleorProvider, useAuth } from "@sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
-import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
+import {
+  defaultDataIdFromObject,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { BatchHttpLink } from "apollo-link-batch-http";
-import { RetryLink } from "apollo-link-retry";
 import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
@@ -26,25 +27,16 @@ import { App } from "./app";
 import { apiUrl, serviceWorkerTimeout } from "./constants";
 import { history } from "./history";
 
-import { OverlayProvider, UserProvider } from "./components";
+import { OverlayProvider } from "./components";
 
 import ShopProvider from "./components/ShopProvider";
 
+import { createSaleorClient } from "./@sdk";
 import {
   authLink,
-  invalidTokenLinkWithTokenHandlerComponent,
-} from "./core/auth";
-
-const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandlerComponent(
-  UserProvider
-);
-
-const link = ApolloLink.from([
-  invalidTokenLink,
-  authLink,
-  new RetryLink(),
-  new BatchHttpLink({ uri: apiUrl }),
-]);
+  fireSignOut,
+  invalidTokenLinkWithTokenHandler,
+} from "./@sdk/auth";
 
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
@@ -61,14 +53,30 @@ const startApp = async () => {
     storage: window.localStorage,
   });
 
-  const apolloClient = new ApolloClient({
-    cache,
-    link,
-  });
-
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
+  };
+
+  /**
+   * This is temporary adapter for queries and mutations not included in SDK to handle invalid token error for them.
+   * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
+   */
+  const ApolloClentInvalidTokenLinkAdapter = ({ children }) => {
+    const tokenExpirationCallback = () => {
+      fireSignOut(apolloClient);
+    };
+
+    const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandler(
+      tokenExpirationCallback
+    );
+
+    const apolloClient = React.useMemo(
+      () => createSaleorClient(apiUrl, invalidTokenLink, authLink, cache),
+      []
+    );
+
+    return children(apolloClient);
   };
 
   const Root = hot(module)(() => {
@@ -120,16 +128,22 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
-          <ApolloProvider client={apolloClient}>
-            <SaleorProvider client={apolloClient}>
-              <ShopProvider>
-                <OverlayProvider>
-                  <App />
-                  <Notifications />
-                </OverlayProvider>
-              </ShopProvider>
-            </SaleorProvider>
-          </ApolloProvider>
+          <ApolloClentInvalidTokenLinkAdapter>
+            {(apolloClient: ApolloClient<NormalizedCacheObject>) =>
+              apolloClient && (
+                <ApolloProvider client={apolloClient}>
+                  <SaleorProvider client={apolloClient}>
+                    <ShopProvider>
+                      <OverlayProvider>
+                        <App />
+                        <Notifications />
+                      </OverlayProvider>
+                    </ShopProvider>
+                  </SaleorProvider>
+                </ApolloProvider>
+              )
+            }
+          </ApolloClentInvalidTokenLinkAdapter>
         </QueryParamProvider>
       </Router>
     );
