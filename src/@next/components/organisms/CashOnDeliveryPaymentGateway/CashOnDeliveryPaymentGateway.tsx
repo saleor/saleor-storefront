@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import React from "react";
 
-import { Radio } from "@components/atoms";
+// import { Radio } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
