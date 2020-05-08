@@ -25,8 +25,10 @@ const loginOrRegisterUser = (type = "login", user) => {
     .get(tabSelector)
     .click()
     .get(".login__content input[name='email']")
+    .clear()
     .type(user.email)
     .get(".login__content input[name='password']")
+    .clear()
     .type(user.password)
     .get(".login__content button[type='submit']")
     .click();
