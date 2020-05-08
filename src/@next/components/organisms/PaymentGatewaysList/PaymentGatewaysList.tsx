@@ -5,6 +5,7 @@ import { PROVIDERS } from "@temp/core/config";
 
 import {
   BraintreePaymentGateway,
+  CashOnDeliveryPaymentGateway,
   DummyPaymentGateway,
   StripePaymentGateway,
 } from "..";
@@ -94,7 +95,34 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 )}
               </div>
             );
-
+            case PROVIDERS.CASHONDELIVERY.label:
+              return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-cy="checkoutPaymentGatewayDummyInput"
+                      name="payment-method"
+                      value="dummy"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel={true}
+                    >
+                      <span data-cy="checkoutPaymentGatewayDummyName">
+                        {name}
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <CashOnDeliveryPaymentGateway
+                      formRef={formRef}
+                      formId={formId}
+                      processPayment={token => processPayment(id, token)}
+                    />
+                  )}
+                </div>
+              );
           case PROVIDERS.STRIPE.label:
             return (
               <div key={index}>

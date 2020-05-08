@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c3 {
+  cursor: pointer;
+}
+
+.c3 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c3 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c2 {
+  color: #21125E;
+  cursor: pointer;
+}
+
+.c2 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c2 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+.c2 > div > span {
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0.125em;
+  border-radius: 0.25em;
+  background: #21125e;
+}
+
+.c1 {
+  display: block;
+  margin: 18px;
+}
+
+<div
+  className="c0"
+>
+  <form
+    className=""
+    onSubmit={[Function]}
+  >
+    <div
+      className="c1"
+    >
+      <label
+        checked={true}
+        className="c2"
+      >
+        <input
+          checked={true}
+          data-cy="checkoutPaymentGatewayDummyStatuschargedInput"
+          name="status"
+          onChange={[Function]}
+          type="radio"
+          value="charged"
+        />
+         
+        <div>
+          <span />
+        </div>
+        <span
+          data-cy="checkoutPaymentGatewayDummyStatuschargedLabel"
+        >
+          Charged
+        </span>
+      </label>
+    </div>
+    <div
+      className="c1"
+    >
+      <label
+        checked={false}
+        className="c3"
+      >
+        <input
+          checked={false}
+          data-cy="checkoutPaymentGatewayDummyStatusfully-refundedInput"
+          name="status"
+          onChange={[Function]}
+          type="radio"
+          value="fully-refunded"
+        />
+         
+        <div>
+          <span />
+        </div>
+        <span
+          data-cy="checkoutPaymentGatewayDummyStatusfully-refundedLabel"
+        >
+          Fully refunded
+        </span>
+      </label>
+    </div>
+    <div
+      className="c1"
+    >
+      <label
+        checked={false}
+        className="c3"
+      >
+        <input
+          checked={false}
+          data-cy="checkoutPaymentGatewayDummyStatusnot-chargedInput"
+          name="status"
+          onChange={[Function]}
+          type="radio"
+          value="not-charged"
+        />
+         
+        <div>
+          <span />
+        </div>
+        <span
+          data-cy="checkoutPaymentGatewayDummyStatusnot-chargedLabel"
+        >
+          Not charged
+        </span>
+      </label>
+    </div>
+  </form>
+  <div
+    className="c4"
+  />
+</div>
+`;
