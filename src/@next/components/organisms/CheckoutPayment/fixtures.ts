@@ -46,6 +46,16 @@ export const paymentGateways: IPaymentGateway[] = [
   {
     config: [
       {
+        field: "store_customer_card",
+        value: "false",
+      },
+    ],
+    id: "wael.payments.cashOnDelivery",
+    name: "Cash On Delivery",
+  },
+  {
+    config: [
+      {
         field: "api_key",
         value: "pk_test_6pRNASCoBOKtIshFeQd4XMUh",
       },

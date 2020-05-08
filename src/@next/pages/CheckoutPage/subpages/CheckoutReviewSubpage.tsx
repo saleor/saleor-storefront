@@ -47,7 +47,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const getPaymentMethodDescription = () => {
-    if (payment?.gateway === "mirumee.payments.dummy") {
+    if (payment?.gateway === "wael.payments.cashOnDelivery") {
+      return `Cash On Delivery`
+    } else if (payment?.gateway === "mirumee.payments.dummy") {
       return `Dummy: ${
         dummyStatuses.find(
           status => status.token === selectedPaymentGatewayToken

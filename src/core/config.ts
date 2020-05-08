@@ -7,6 +7,9 @@ export const PROVIDERS = {
   BRAINTREE: {
     label: "Braintree",
   },
+  CASHONDELIVERY: {
+    label: "Cash On Delivery",
+  },
   DUMMY: {
     label: "Dummy",
   },
