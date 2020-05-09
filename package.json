@@ -23,6 +23,7 @@
     "apollo-link-error": "^1.1.1",
     "apollo-link-http": "^1.5.4",
     "apollo-link-retry": "^2.2.5",
+    "babel-plugin-react-intl": "^7.5.7",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "braintree-web": "^3.38.1",
     "classnames": "^2.2.6",
@@ -52,6 +53,7 @@
     "react-svg": "^5.0.6",
     "register-service-worker": "^1.6.2",
     "reset-css": "^4.0.1",
+    "rimraf": "^3.0.2",
     "styled-components": "^4.3.0",
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0",
@@ -178,6 +180,9 @@
     "cy:open": "cypress open",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:run:record": "start-server-and-test start http://localhost:3000 cy:run:record",
-    "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open"
+    "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open",
+    "extract-json-messages": "rimraf build/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o dist/storefront.bundle.js",
+    "transpile-messages": "node scripts/transpile-tx.js",
+    "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
   }
 }
