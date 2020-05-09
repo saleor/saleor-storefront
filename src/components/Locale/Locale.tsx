@@ -42,7 +42,8 @@ import locale_UK from "@locale/uk.json";
 import locale_VI from "@locale/vi.json";
 import locale_ZH_HANS from "@locale/zh-Hans.json";
 import locale_ZH_HANT from "@locale/zh-Hant.json";
-import useLocalStorage from "@saleor/hooks/useLocalStorage";
+
+import { useLocalStorage } from "../../hooks";
 
 export enum Locale {
   AR = "ar",
@@ -86,7 +87,7 @@ export enum Locale {
   UK = "uk",
   VI = "vi",
   ZH_HANS = "zh-hans",
-  ZH_HANT = "zh-hant"
+  ZH_HANT = "zh-hant",
 }
 
 interface StructuredMessage {
@@ -137,7 +138,7 @@ const localeData: Record<Locale, LocaleMessages> = {
   [Locale.UK]: locale_UK,
   [Locale.VI]: locale_VI,
   [Locale.ZH_HANS]: locale_ZH_HANS,
-  [Locale.ZH_HANT]: locale_ZH_HANT
+  [Locale.ZH_HANT]: locale_ZH_HANT,
 };
 
 export const localeNames: Record<Locale, string> = {
@@ -182,7 +183,7 @@ export const localeNames: Record<Locale, string> = {
   [Locale.UK]: "Українська",
   [Locale.VI]: "Tiếng Việt",
   [Locale.ZH_HANS]: "简体中文",
-  [Locale.ZH_HANT]: "繁體中文"
+  [Locale.ZH_HANT]: "繁體中文",
 };
 
 const dotSeparator = "_dot_";
@@ -220,7 +221,7 @@ export interface LocaleContextType {
 }
 export const LocaleContext = React.createContext<LocaleContextType>({
   locale: defaultLocale,
-  setLocale: () => undefined
+  setLocale: () => undefined,
 });
 
 const { Consumer: LocaleConsumer, Provider: RawLocaleProvider } = LocaleContext;
@@ -237,7 +238,7 @@ const LocaleProvider: React.FC = ({ children }) => {
       locale={locale}
       messages={getKeyValueJson(localeData[locale])}
       onError={err => {
-        if (!err.includes("[React Intl] Missing message: ")) {
+        if (!err.message.includes("[React Intl] Missing message: ")) {
           console.error(err);
         }
       }}
@@ -246,7 +247,7 @@ const LocaleProvider: React.FC = ({ children }) => {
       <RawLocaleProvider
         value={{
           locale,
-          setLocale
+          setLocale,
         }}
       >
         {children}

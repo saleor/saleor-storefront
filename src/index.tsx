@@ -38,6 +38,8 @@ import {
   invalidTokenLinkWithTokenHandler,
 } from "./@sdk/auth";
 
+import { LocaleProvider } from "./components/Locale";
+
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
     if (obj.__typename === "Shop") {
@@ -156,8 +158,11 @@ const startApp = async () => {
         {...notificationOptions}
       >
         <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+          <LocaleProvider>
+
           <GlobalStyle />
           <Root />
+          </LocaleProvider>
         </ServiceWorkerProvider>
       </AlertProvider>
     </ThemeProvider>,

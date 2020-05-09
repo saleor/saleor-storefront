@@ -7,3 +7,5 @@ export * from "./useProductVariantsAttributesValuesSelection";
 export * from "./useSelectableProductVariantsAttributeValues";
 export * from "./useCheckoutStepState";
 export * from "./useCheckoutStepFromPath";
+export * from "./useLocalStorage"
+export * from "./useLocale"
