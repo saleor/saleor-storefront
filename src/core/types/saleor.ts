@@ -2109,7 +2109,6 @@ export interface User {
 
 export enum GatewaysEnum {
   BRAINTREE = "BRAINTREE",
-  CASHONDELIVERY = "CASHONDELIVERY",
   DUMMY = "DUMMY",
 }
 
