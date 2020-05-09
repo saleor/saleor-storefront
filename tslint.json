@@ -12,6 +12,7 @@
     }],
     "ordered-imports": false,
     "interface-name": false,
+    "object-literal-sort-keys": false,
     "member-access": [true, "no-public"],
     "no-console": [true, "log"],
     "max-classes-per-file": false,
@@ -20,6 +21,7 @@
     "no-submodule-imports": [false],
     "no-var-requires": false,
     "interface-over-type-literal": false,
+    "no-object-literal-type-assertion": true,
     "variable-name": {
       "options": [
         "ban-keywords",

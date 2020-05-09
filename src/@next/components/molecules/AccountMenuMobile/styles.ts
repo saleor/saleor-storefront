@@ -1,7 +1,7 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
-  background-color: ${props => props.theme.colors.light};
+  background-color: #f2f2f2;
   padding: 1.25rem;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   display: flex;
@@ -36,7 +36,9 @@ export const MenuItem = styled.div<{
   display: flex;
   justify-content: space-between;
   padding-bottom: 1.5rem;
-  color: ${props => (props.active ? props.theme.colors.activeMenuOption : "")};
+  color: #444;
+  margin-bottom: 2rem;
+  font-weight: 200;
 
   svg {
     transform: rotate(-90deg);

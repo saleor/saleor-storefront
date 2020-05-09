@@ -7,6 +7,7 @@
   flex-direction: row;
   height: 3.55rem;
   position: relative;
+  justify-content: space-between;
 
   @media (max-width: $small-screen) {
     display: flex;

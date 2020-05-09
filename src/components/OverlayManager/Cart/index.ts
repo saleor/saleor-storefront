@@ -1,1 +1,4 @@
-export { default } from "./Cart";
+export {
+  default,
+  CartBasic
+} from "./Cart";

@@ -24,6 +24,7 @@ export const turquoiseTransparent = "rgba(6, 132, 123, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
+export const cabinetTan = "#af9a50";
 
 // theme colors
 export const theme = {

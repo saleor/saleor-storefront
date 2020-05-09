@@ -22,21 +22,6 @@ describe("<Button />", () => {
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
 
-  it("uses correct theme based on color prop", () => {
-    const PrimaryButton = mount(<Button />);
-    const SecondaryButton = mount(<Button color="secondary" />);
-
-    expect(PrimaryButton).toHaveStyleRule(
-      "background-color",
-      defaultTheme.button.colors.primary.background
-    );
-
-    expect(SecondaryButton).toHaveStyleRule(
-      "background-color",
-      defaultTheme.button.colors.secondary.background
-    );
-  });
-
   it("uses correct theme based on size prop", () => {
     const NormalButtonText = mount(<Button size="md" />).find(S.Text);
     const SmallButtonText = mount(<Button size="sm" />).find(S.Text);

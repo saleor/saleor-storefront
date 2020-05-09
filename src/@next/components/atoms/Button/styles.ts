@@ -16,25 +16,20 @@ export const Primary = styled.button<{
   fullWidth?: boolean;
   size: Size;
 }>`
-  background-color: ${props =>
-    props.theme.button.colors[props.color].background};
+  background-color: #bfad71;
   padding: ${props => padding[props.size]};
   border: none;
-  transition: 0.3s;
+  border-radius: 12px;
   outline: none;
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
   width: ${props => (props.fullWidth ? "100%" : "auto")}
 
   &:hover {
-    background-color: ${props =>
-      props.theme.button.colors[props.color].hoverBackground};
     color: ${props => props.theme.button.colors[props.color].hoverColor};
   }
 
   &:active {
-    background-color: ${props =>
-      props.theme.button.colors[props.color].activeBackground};
     box-shadow: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
   }
 
@@ -55,10 +50,14 @@ export const Primary = styled.button<{
 `;
 
 export const Secondary = styled(Primary)`
-  box-shadow: inset 0px 0px 0px 3px
+  background-color: transparent;
     ${props => props.theme.button.colors.secondary.color};
-  border-left: 1px solid ${props => props.theme.button.colors.secondary.color};
-  border-right: 1px solid ${props => props.theme.button.colors.secondary.color};
+  border: 2px solid #bfad71;
+  color: #bfad71;
+
+  &:hover {
+    color: #bfad71;
+  }
 `;
 
 export const Text = styled.span<{ size: Size }>`
@@ -69,7 +68,6 @@ export const Text = styled.span<{ size: Size }>`
       button: { typography },
     },
   }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
-  text-transform: uppercase;
-  font-weight: ${props => props.theme.typography.boldFontWeight};
+  font-weight: 400;
   line-height: ${props => props.theme.typography.baseLineHeight};
 `;

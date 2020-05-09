@@ -1,4 +1,5 @@
 export { default as Billing } from "./Billing/View";
+export { default as Contact } from "./Contact/View";
 export { default as Payment } from "./Payment/View";
 export { default as Review } from "./Review/View";
 export { default as Shipping } from "./Shipping/View";

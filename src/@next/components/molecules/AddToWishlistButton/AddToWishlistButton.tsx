@@ -29,14 +29,13 @@ export const AddToWishlistButton: React.FC<IProps> = ({
       {/* S.WishlistIcon component is reapeted for two icons - it should to prevent flashing css */}
       {added || hover ? (
         <S.WishlistIcon>
-          <Icon name="heart_filled" size={28} />
+          <Icon color="#fff" name="heart_filled" size={28} />
         </S.WishlistIcon>
       ) : (
         <S.WishlistIcon>
-          <Icon name="heart" size={38} />
+          <Icon color="#fff" name="heart" size={38} />
         </S.WishlistIcon>
       )}
-      {added ? `Remove from wishlist` : `Add to wishlist`}
     </S.Wrapper>
   );
 };

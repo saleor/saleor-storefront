@@ -4,20 +4,37 @@ import { Link } from "react-router-dom";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const L = [
+  {
+    label: "Account Details",
+    link: "/account-details",
+    icon: "profile",
+  },
+  {
+    label: "Password",
+    link: "/password",
+    icon: "password",
+  },
+  {
+    label: "Shipping & Billing Details",
+    link: "/shipping-and-billing",
+    icon: "icon",
+  },
+];
+
 export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
   return (
     <S.Wrapper>
-      <S.MenuHeader>MY ACCOUNT</S.MenuHeader>
-      {links.map(link => {
-        const menuItem = link
-          .replace(/\//g, "")
-          .replace("-", " ")
-          .split(" ")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ");
+      <S.MenuHeader>Account Information</S.MenuHeader>
+      {L.map(item => {
         return (
-          <Link to={link} key={link} data-testid="account_menu__link">
-            <S.MenuItem active={active === link}>{menuItem}</S.MenuItem>
+          <Link
+            to={item.link}
+            key={item.label}
+            data-testid="account_menu__link"
+          >
+            <span>{item.icon}</span>
+            <S.MenuItem active={active === item.link}>{}</S.MenuItem>
           </Link>
         );
       })}

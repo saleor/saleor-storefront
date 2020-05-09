@@ -4,9 +4,11 @@ import { VariantsProducts_productVariants } from "@sdk/queries/types/VariantsPro
 
 import { CardData } from "../types/CardData";
 import { Checkout } from "../types/Checkout";
+import { useLocalStorage } from "@temp/@next/hooks";
 
 export enum CheckoutStep {
-  ShippingAddress = 1,
+  Contact = 1,
+  ShippingAddress,
   ShippingOption,
   BillingAddress,
   Payment,
@@ -20,15 +22,21 @@ export const useCheckoutStepState = (
   dummyStatus: string
 ): CheckoutStep => {
   const isShippingRequiredForProducts = () => {
-    return (
-      variantsProducts.edges &&
-      variantsProducts.edges.some(
-        ({ node }) => node.product.productType.isShippingRequired
-      )
-    );
+    // Shipping is always required
+    return true;
   };
 
+  const { storedValue: contactFields } = useLocalStorage(
+    "contactFields"
+  );
+
   const getStep = () => {
+    // console.log('contactFields >> ', contactFields);
+    const { firstName, phone, email } = contactFields || {};
+    if (!firstName || !phone || !email) {
+      return CheckoutStep.Contact;
+    }
+
     if (!checkout && variantsProducts && isShippingRequiredForProducts()) {
       return CheckoutStep.ShippingAddress;
     } else if (!checkout && variantsProducts) {

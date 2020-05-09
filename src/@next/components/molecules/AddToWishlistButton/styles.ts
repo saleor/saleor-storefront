@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ added: boolean }>`
       left: 0.4rem;
 
       path {
-        fill: ${props => props.theme.colors.activeMenuOption};
+        fill: #fff;
       }
     }
   }

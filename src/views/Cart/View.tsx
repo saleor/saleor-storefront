@@ -15,8 +15,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   return (
-    <div className="container cart-page">
-      <h1 className="checkout__header cart-page__header">Shopping bag</h1>
+    <>
       <CheckoutContext.Consumer>
         {checkout => (
           <CartContext.Consumer>
@@ -39,7 +38,7 @@ const View: React.SFC<RouteComponentProps<{ token?: string }>> = ({
           </CartContext.Consumer>
         )}
       </CheckoutContext.Consumer>
-    </div>
+    </>
   );
 };
 

@@ -34,22 +34,6 @@ const ShippingAddressForm: React.FC<IShippingAddressFormProps> = ({
         >
           {children}
           <fieldset className="form-fieldset" disabled={shippingAsBilling}>
-            {/* <div className="address-form__grid">
-              <TextField
-                label="First Name"
-                type="given-name"
-                name="firstName"
-                autoComplete="given-name"
-                required
-              />
-              <TextField
-                label="Last Name"
-                type="family-name"
-                name="lastName"
-                autoComplete="family-name"
-                required
-              />
-            </div> */}
               <TextField
                 label="Street Name"
                 type="address-line1"

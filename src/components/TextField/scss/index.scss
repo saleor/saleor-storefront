@@ -21,11 +21,11 @@
   &__field {
     display: block;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 1rem 1rem .5rem;
     font-size: $base-font-size;
     color: $base-font-color;
-    border: 1px solid #aaa;
+    border: 2px solid #aaa;
     outline: none;
     background-color: transparent;
 
@@ -85,7 +85,7 @@
     display: inline-block;
     position: absolute;
     color: $label-color;
-    top: 50%;
+    top: 30%;
     left: 0.8rem;
     padding: 0 6px;
     z-index: 1;

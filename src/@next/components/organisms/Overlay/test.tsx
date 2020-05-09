@@ -71,7 +71,7 @@ describe("<Overlay />", () => {
   it("should render <S.Overlay> with [open, position, state, onClick] props", () => {
     const SHOW = true;
     const STATE = "entered";
-    const overlayProps = renderOverlayContent(
+    const overlayProps: any = renderOverlayContent(
       { ...DEFAULT_PROPS, show: SHOW },
       STATE
     )
@@ -87,7 +87,7 @@ describe("<Overlay />", () => {
   it("should render <S.Lightbox> with [open, position, state, onClick] props", () => {
     const SHOW = true;
     const STATE = "entered";
-    const lightboxProps = renderOverlayContent(
+    const lightboxProps: any = renderOverlayContent(
       { ...DEFAULT_PROPS, show: SHOW },
       STATE
     )

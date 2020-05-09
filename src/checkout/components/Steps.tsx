@@ -4,14 +4,18 @@ import { styled } from '@styles';
 import { useVariantsProducts } from "@sdk/react";
 
 import { VariantsProducts_productVariants } from "@sdk/queries/types/VariantsProducts";
-import { ShippingOptionSummary } from ".";
-import { AddressSummary } from "../../components";
 import { CartContext } from "../../components/CartProvider/context";
 import { CheckoutStep } from "../context";
-import { billingUrl, shippingAddressUrl, shippingOptionsUrl } from "../routes";
+import { billingUrl, shippingAddressUrl, shippingOptionsUrl, contactUrl } from "../routes";
 import { Checkout } from "../types/Checkout";
 
 const steps = [
+  {
+    header: "Contact Details",
+    path: contactUrl,
+    step: CheckoutStep.Contact,
+    type: 'contact',
+  },
   {
     header: "Shipping Address",
     path: shippingAddressUrl,
@@ -55,40 +59,6 @@ const getAvailableSteps = (
     return steps.filter(({ type }) => type !== "shipping");
   }
   return steps;
-};
-
-export const getSummary = (
-  step: CheckoutStep,
-  checkout: Checkout
-): React.ReactNode => {
-  let summary;
-
-  switch (step) {
-    case CheckoutStep.ShippingAddress:
-      summary = (
-        <AddressSummary
-          email={checkout.email}
-          address={checkout.shippingAddress}
-        />
-      );
-      break;
-
-    case CheckoutStep.BillingAddress:
-      summary = (
-        <AddressSummary
-          email={checkout.email}
-          address={checkout.billingAddress}
-        />
-      );
-      break;
-
-    case CheckoutStep.ShippingOption:
-      summary = checkout.shippingMethod && (
-        <ShippingOptionSummary shippingMethod={checkout.shippingMethod} />
-      );
-  }
-
-  return summary ? <div className="checkout__content">{summary}</div> : null;
 };
 
 const Steps: React.FC<{

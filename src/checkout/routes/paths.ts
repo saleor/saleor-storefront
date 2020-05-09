@@ -1,9 +1,11 @@
 export const baseUrl = "/checkout/";
+export const contactBaseUrl = `contact/`;
 export const shippingAddressBaseUrl = `shipping-address/`;
 export const shippingOptionsBaseUrl = `shipping-options/`;
 export const billingBaseUrl = `billing-address/`;
 export const paymentBaseUrl = `payment/`;
 export const reviewBaseUrl = `review/`;
+export const contactUrl = `${baseUrl}${contactBaseUrl}:token?/`;
 export const shippingAddressUrl = `${baseUrl}${shippingAddressBaseUrl}:token?/`;
 export const shippingOptionsUrl = `${baseUrl}${shippingOptionsBaseUrl}:token?/`;
 export const billingUrl = `${baseUrl}${billingBaseUrl}:token?/`;

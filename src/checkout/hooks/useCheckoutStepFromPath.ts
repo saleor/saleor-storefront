@@ -8,6 +8,7 @@ import {
   reviewBaseUrl,
   shippingAddressBaseUrl,
   shippingOptionsBaseUrl,
+  contactBaseUrl,
 } from "../routes";
 
 /**
@@ -19,6 +20,10 @@ export const useCheckoutStepFromPath = (
 ): CheckoutStep => {
   const getStep = () => {
     const pathList = [
+      {
+        basePath: `${baseUrl}${contactBaseUrl}`,
+        step: CheckoutStep.Contact,
+      },
       {
         basePath: `${baseUrl}${shippingAddressBaseUrl}`,
         step: CheckoutStep.ShippingAddress,

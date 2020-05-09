@@ -41,7 +41,7 @@ export const useProductVariantsAttributesValuesSelection = (
             if (
               productVariantsAttributeId === selectedProductVariantsAttributeId
             ) {
-              let selectedValue = null;
+              let selectedValue: any = null;
               if (selectedProductVariantsAttributeValue) {
                 selectedValue =
                   productVariantsAttributes[

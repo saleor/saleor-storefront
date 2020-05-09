@@ -21,6 +21,7 @@ import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
 import { TypedProductVariantsQuery } from "../Product/queries";
+import { CartBasic } from "@temp/components/OverlayManager/Cart";
 
 interface PageProps {
   checkout: CheckoutContextInterface;
@@ -97,20 +98,9 @@ const Page: React.FC<PageProps> = ({
             ids: lines.map(line => line.variantId),
           }}
         >
-          {({ data }) => (
-            <CartTable
-              {...productTableProps}
-              lines={extractCartLines(data, lines, locale)}
-              subtotal={getTotal(data, lines, locale)}
-            />
-          )}
+          {({ data }) => <CartBasic cartData={data} overlay={null} />}
         </TypedProductVariantsQuery>
       )}
-      <div className="cart-page__checkout-action">
-        <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-          <Button disabled={cartLoading}>Proceed to Checkout</Button>
-        </Link>
-      </div>
     </>
   );
 };

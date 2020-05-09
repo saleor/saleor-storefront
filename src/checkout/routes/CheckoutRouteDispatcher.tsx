@@ -43,6 +43,8 @@ export const CheckoutRouteDispatcher: React.FC<RouteComponentProps<{
   }
 
   switch (step) {
+    case CheckoutStep.Contact:
+      return <Redirect to={generatePath(paths.contactUrl, { token })} />
     case CheckoutStep.BillingAddress:
       return <Redirect to={generatePath(paths.billingUrl, { token })} />;
     case CheckoutStep.ShippingAddress:

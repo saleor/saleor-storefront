@@ -25,27 +25,4 @@ describe("<InputLabel />", () => {
 
     expect(wrapper.text()).toContain(message);
   });
-
-  it("should have transparent background if not active", () => {
-    const wrapper = mount(
-      <InputLabel labelBackground={"#FFF"} active={false}>
-        Text
-      </InputLabel>
-    );
-
-    expect(wrapper.find("label")).toHaveStyleRule(
-      "background-color",
-      "transparent"
-    );
-  });
-
-  it("should use passed background color if active", () => {
-    const wrapper = mount(
-      <InputLabel labelBackground={"#ABC"} active={true}>
-        Text
-      </InputLabel>
-    );
-
-    expect(wrapper.find("label")).toHaveStyleRule("background-color", "#ABC");
-  });
 });
