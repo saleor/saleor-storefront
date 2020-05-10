@@ -25,8 +25,12 @@
       "@utils/*": ["./src/@next/utils/*"],
       "@hooks": ["./src/@next/hooks/index.ts"],
       "@hooks/*": ["./src/@next/hooks/*"],
-      "@types": ["./src/@next/types/index.ts"]
+      "@types": ["./src/@next/types/index.ts"],
+      "@assets/*": ["assets/*"],
+      "@locale/*": ["locale/*"],
+      "@saleor/*": ["src/*"],
     },
+    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules"]
