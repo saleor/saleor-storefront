@@ -17,6 +17,8 @@ import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
+import { FormattedMessage } from "react-intl";
+
 const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
@@ -63,7 +65,12 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button>Shop sale</Button>
+                <Button>
+                  <FormattedMessage
+                    description="button discover home page collection"
+                    defaultMessage="discover"
+                  />
+                </Button>
               </Link>
             )
           )}
