@@ -9,7 +9,7 @@ const sortKeys = true;
 const translationsDirectory = "locale";
 
 manageTranslations({
-  messagesDirectory: "build/locale/src",
+  messagesDirectory: "dist/locale/src",
   overrideCoreMethods: {
     outputSingleFile: combinedFiles => {
       const msgDescriptors = combinedFiles.reduce(

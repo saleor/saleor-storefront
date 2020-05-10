@@ -10,16 +10,20 @@ module.exports = api => {
   const presets = [
     "@babel/preset-env",
     "@babel/preset-react",
-    "@babel/preset-typescript",
-  ]
+    [
+      '@babel/preset-typescript', 
+      {
+        allowNamespaces: true,
+      }
+    ]  
+]
   const plugins = [
     "@babel/plugin-syntax-dynamic-import",
     "transform-class-properties",
     "@babel/transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-proposal-object-rest-spread",
     "react-intl-auto"
-  ],
+  ]
   if (isExtract) {
     plugins.push([
       "react-intl",
