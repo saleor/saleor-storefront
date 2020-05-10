@@ -41,6 +41,14 @@ module.exports = ({ sourceDir, distDir }) => ({
         },
       },
       {
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: {
+          configFile: "./babel.config.js"
+        },
+        test: /\.(jsx?|tsx?)$/
+      },
+      {
         test: /\.(woff2?|ttf|eot)$/,
         use: [
           {
