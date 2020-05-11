@@ -24,7 +24,7 @@ export interface RegisterAccount_accountRegister {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: RegisterAccount_accountRegister_errors[] | null;
+  errors: RegisterAccount_accountRegister_errors[];
   /**
    * Informs whether users need to confirm their email address.
    */

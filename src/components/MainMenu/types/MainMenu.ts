@@ -181,5 +181,5 @@ export interface MainMenu {
   /**
    * Return information about the shop.
    */
-  shop: MainMenu_shop | null;
+  shop: MainMenu_shop;
 }
