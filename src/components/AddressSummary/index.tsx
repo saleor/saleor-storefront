@@ -18,8 +18,8 @@ const AddressSummary: React.FC<{
       <p className="address-summary" ref={paragraphRef}>
         <strong> 
           {intl.formatMessage({
-            description: "full name address summary title",
             defaultMessage: "{firstName} {lastName}",
+            description: "full name address summary title",
           },
           {
             firstName: address.firstName,

@@ -10,6 +10,8 @@ import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/types/Category";
 
+import { useIntl } from "react-intl";
+
 export interface Breadcrumb {
   value: string;
   link: string;
@@ -41,36 +43,49 @@ const getBackLink = (breadcrumbs: Breadcrumb[]) =>
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];
-}> = ({ breadcrumbs }) => (
-  <Media
-    query={{
-      minWidth: smallScreen,
-    }}
-  >
-    {matches =>
-      matches ? (
-        <ul className="breadcrumbs">
-          <li>
-            <Link to={baseUrl}>Home</Link>
-          </li>
-          {breadcrumbs.map((breadcrumb, index) => (
-            <li
-              key={breadcrumb.value}
-              className={classNames({
-                breadcrumbs__active: index === breadcrumbs.length - 1,
+}> = ({ breadcrumbs }) => {
+  const intl = useIntl();
+
+  return(
+    <Media
+      query={{
+        minWidth: smallScreen,
+      }}
+    >
+      {matches =>
+        matches ? (
+          <ul className="breadcrumbs">
+            <li>
+              <Link to={baseUrl}>
+              {
+                intl.formatMessage({
+                defaultMessage: "Home",
+                description: "home link breadcrumbs title",
               })}
-            >
-              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+              </Link>
             </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>Back</Link>
-        </div>
-      )
-    }
-  </Media>
-);
+            {breadcrumbs.map((breadcrumb, index) => (
+              <li
+                key={breadcrumb.value}
+                className={classNames({
+                  breadcrumbs__active: index === breadcrumbs.length - 1,
+                })}
+              >
+                <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="breadcrumbs">
+            <Link to={getBackLink(breadcrumbs)}>     {
+                intl.formatMessage({
+                defaultMessage: "Back",
+                description: "back link breadcrumbs title",
+              })}</Link>
+          </div>
+        )
+      }
+    </Media>
+  )}
 
 export default Breadcrumbs;
