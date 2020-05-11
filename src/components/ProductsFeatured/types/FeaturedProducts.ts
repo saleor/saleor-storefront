@@ -217,8 +217,12 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ca
    */
   id: string;
   name: string;
+  translation: Category_translation | null;
 }
-
+export interface Category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
   __typename: "Product";
   /**
@@ -239,8 +243,13 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
    */
   pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing | null;
   category: FeaturedProducts_shop_homepageCollection_products_edges_node_category | null;
+  translation: Product_translation | null;
 }
 
+export interface Product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+}
 export interface FeaturedProducts_shop_homepageCollection_products_edges {
   __typename: "ProductCountableEdge";
   /**
@@ -279,4 +288,7 @@ export interface FeaturedProducts {
    * Return information about the shop.
    */
   shop: FeaturedProducts_shop;
+}
+export interface FeaturedProductsVariables {
+  locale: string;
 }

@@ -34,6 +34,14 @@ export const basicProductFragment = gql`
   }
 `;
 
+export const productNameTranslationFragment = gql`
+  fragment ProductNameTranslationFields on Product {
+    translation(languageCode:$locale){
+      name
+    }  
+  }
+`;
+
 export const productPricingFragment = gql`
   ${priceFragment}
   fragment ProductPricingField on Product {

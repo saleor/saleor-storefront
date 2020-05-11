@@ -3,14 +3,18 @@ import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
 import {
   basicProductFragment,
-  productPricingFragment
+  productNameTranslationFragment,
+  productPricingFragment,
 } from "../../views/Product/queries";
-import { FeaturedProducts } from "./types/FeaturedProducts";
+import { FeaturedProducts, FeaturedProductsVariables } from "./types/FeaturedProducts";
 
 export const featuredProducts = gql`
   ${basicProductFragment}
   ${productPricingFragment}
-  query FeaturedProducts {
+  ${productNameTranslationFragment}
+  query FeaturedProducts(
+    $locale:LanguageCodeEnum!
+  ) {
     shop {
       homepageCollection {
         id
@@ -19,9 +23,11 @@ export const featuredProducts = gql`
             node {
               ...BasicProductFields
               ...ProductPricingField
+              ...ProductNameTranslationFields
               category {
                 id
                 name
+                translation(languageCode:$locale){name}
               }
             }
           }
@@ -31,6 +37,6 @@ export const featuredProducts = gql`
   }
 `;
 
-export const TypedFeaturedProductsQuery = TypedQuery<FeaturedProducts, {}>(
+export const TypedFeaturedProductsQuery = TypedQuery<FeaturedProducts, FeaturedProductsVariables>(
   featuredProducts
 );

@@ -5,6 +5,8 @@ import { Carousel, ProductListItem } from "..";
 import { generateProductUrl, maybe } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
 import "./scss/index.scss";
 
 interface ProductsFeaturedProps {
@@ -12,8 +14,12 @@ interface ProductsFeaturedProps {
 }
 
 const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
+  const { locale } = useLocale();
+  const variables = {locale:locale.toUpperCase()}
   return (
-    <TypedFeaturedProductsQuery displayError={false}>
+    <TypedFeaturedProductsQuery       
+      variables={variables}
+      displayError={false}>
       {({ data }) => {
         const products = maybe(
           () => data.shop.homepageCollection.products.edges,
