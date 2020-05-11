@@ -2,7 +2,7 @@ import { round } from "lodash";
 
 import { DataErrorCheckoutTypes } from "../api/Checkout/types";
 import { NamedObservable } from "../helpers";
-import { CheckoutNetworkManager } from "../network";
+import { NetworkManager } from "../network";
 import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/types/GetShopPaymentGateways";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
@@ -25,15 +25,12 @@ export class SaleorState extends NamedObservable<StateItems>
   availablePaymentGateways?: GetShopPaymentGateways_shop_availablePaymentGateways[];
 
   private repository: LocalRepository;
-  private checkoutNetworkManager: CheckoutNetworkManager;
+  private networkManager: NetworkManager;
 
-  constructor(
-    repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
-  ) {
+  constructor(repository: LocalRepository, networkManager: NetworkManager) {
     super();
     this.repository = repository;
-    this.checkoutNetworkManager = checkoutNetworkManager;
+    this.networkManager = networkManager;
 
     repository.subscribeToChange(
       LocalStorageItems.CHECKOUT,
@@ -112,7 +109,7 @@ export class SaleorState extends NamedObservable<StateItems>
     const checkout = this.repository.getCheckout();
 
     if (checkout?.token) {
-      const { data, error } = await this.checkoutNetworkManager.getCheckout(
+      const { data, error } = await this.networkManager.getCheckout(
         checkout?.token
       );
 
@@ -171,10 +168,7 @@ export class SaleorState extends NamedObservable<StateItems>
       type: DataErrorCheckoutTypes
     ) => any
   ) => {
-    const {
-      data,
-      error,
-    } = await this.checkoutNetworkManager.getPaymentGateways();
+    const { data, error } = await this.networkManager.getPaymentGateways();
 
     if (error) {
       onError(error, DataErrorCheckoutTypes.GET_PAYMENT_GATEWAYS);

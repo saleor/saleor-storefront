@@ -21,7 +21,7 @@ export const useUpdateCheckoutBillingAddress = mutationFactory(
   "setCheckoutBillingAddress"
 );
 /**
- * @deprecated Use useCheckout hook instead
+ * @deprecated Use useCart hook instead
  */
 export const useUpdateCheckoutLine = mutationFactory("setCheckoutLine");
 /**
