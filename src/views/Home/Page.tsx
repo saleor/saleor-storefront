@@ -50,7 +50,9 @@ const Page: React.FC<{
             {loading && !shop ? (
             <Loader />
           ) : (
-            homeCollectionExist() && <h1>{shop.homepageCollection.name}</h1>
+            homeCollectionExist() && <h1>{
+              shop.homepageCollection.translation?
+              shop.homepageCollection.translation.name : shop.homepageCollection.name}</h1>
         
           )}
             </span>
@@ -110,7 +112,7 @@ const Page: React.FC<{
                         })`,
                       }}
                     />
-                    <h3>{category.name}</h3>
+                    <h3>{category.translation? category.translation.name : category.name}</h3>
                   </Link>
                 </div>
               ))}
