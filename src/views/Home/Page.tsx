@@ -5,7 +5,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
-import { generateCategoryUrl } from "../../core/utils";
+import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
@@ -28,7 +28,9 @@ const Page: React.FC<{
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
-
+  const homeCollectionExist = () => {
+    return shop && shop.homepageCollection && shop.homepageCollection.id && shop.homepageCollection.name;
+  };
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -42,27 +44,27 @@ const Page: React.FC<{
             : null
         }
       >
-        <div className="home-page__hero-text">
+         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
-              <h1>Final reduction</h1>
-            </span>
-          </div>
-          <div>
-            <span className="home-page__hero__title">
-              <h1>Up to 70% off sale</h1>
+            {loading && !shop ? (
+            <Loader />
+          ) : (
+            homeCollectionExist() && <h1>{shop.homepageCollection.name}</h1>
+        
+          )}
             </span>
           </div>
         </div>
         <div className="home-page__hero-action">
-          {loading && !categories ? (
+          {loading && !shop ? (
             <Loader />
           ) : (
-            categoriesExist() && (
+            homeCollectionExist() && (
               <Link
-                to={generateCategoryUrl(
-                  categories.edges[0].node.id,
-                  categories.edges[0].node.name
+              to={generateCollectionUrl(
+                shop.homepageCollection.id,
+                shop.homepageCollection.name
                 )}
               >
                 <Button>
@@ -80,7 +82,12 @@ const Page: React.FC<{
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>Shop by category</h3>
+            <h3>
+            <FormattedMessage
+                    description="title home page shop by category "
+                    defaultMessage="Shop by category"
+                  />
+            </h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>
