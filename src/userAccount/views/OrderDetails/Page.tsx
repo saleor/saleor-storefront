@@ -13,6 +13,8 @@ import {
 
 import { orderHistoryUrl } from "../../../app/routes";
 
+import { useIntl } from "react-intl";
+
 const extractOrderLines = (
   lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>
 ): ILine[] => {
@@ -40,15 +42,29 @@ const extractOrderLines = (
 const Page: React.FC<{
   guest: boolean;
   order: OrderById_order | OrderByToken_orderByToken;
-}> = ({ guest, order }) =>
-  order ? (
+}> = ({ guest, order }) => {
+  const intl = useIntl();
+
+  return(order ? (
     <>
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
-          Go back to Order History
+          {intl.formatMessage({
+            defaultMessage: "Go back to Order History",
+            description: "return to order history link",
+          })}
         </Link>
       )}
-      <h3>Your order nr: {order.number}</h3>
+      <h3>
+        {intl.formatMessage({
+          defaultMessage: "Your order nr: {number}",
+          description: "order number order history",
+        },
+        {
+          number: order.number,
+        }
+        )}
+      </h3>
       <p className="order-details__status">
         {order.paymentStatusDisplay} / {order.statusDisplay}
       </p>
@@ -60,7 +76,12 @@ const Page: React.FC<{
       />
       <div className="order-details__summary">
         <div>
-          <h4>Shipping Address</h4>
+          <h4>
+          {intl.formatMessage({
+            defaultMessage: "Shipping Address",
+            description: "Shipping Address order history",
+          })}
+          </h4>
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
@@ -71,6 +92,6 @@ const Page: React.FC<{
     </>
   ) : (
     <NotFound />
-  );
+  ))}
 
 export default Page;
