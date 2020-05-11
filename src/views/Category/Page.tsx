@@ -17,6 +17,8 @@ import { maybe } from "../../core/utils";
 
 import { Category_category, Category_products } from "./types/Category";
 
+import { useIntl } from "react-intl";
+
 interface SortItem {
   label: string;
   value?: string;
@@ -55,6 +57,8 @@ const Page: React.FC<PageProps> = ({
   sortOptions,
   onAttributeFiltersChange,
 }) => {
+  const intl = useIntl();
+
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
   );
@@ -114,7 +118,10 @@ const Page: React.FC<PageProps> = ({
         )}
       </div>
 
-      {!hasProducts && <ProductsFeatured title="You might like" />}
+      {!hasProducts && <ProductsFeatured title={intl.formatMessage({
+          defaultMessage: "You might like",
+          description: "ProductsFeatured category section name",
+       })}/>}
     </div>
   );
 };
