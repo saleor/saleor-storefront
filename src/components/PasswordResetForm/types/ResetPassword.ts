@@ -24,7 +24,7 @@ export interface ResetPassword_requestPasswordReset {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: ResetPassword_requestPasswordReset_errors[] | null;
+  errors: ResetPassword_requestPasswordReset_errors[];
 }
 
 export interface ResetPassword {

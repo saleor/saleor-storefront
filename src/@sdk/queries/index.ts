@@ -3,7 +3,6 @@ import {
   ObservableQuery,
   QueryOptions as ApolloQueryOptions,
 } from "apollo-client";
-import gql from "graphql-tag";
 
 import { RequireOnlyOne } from "../tsHelpers";
 import * as AttributesList from "./attributes";
@@ -60,9 +59,7 @@ export const QUERIES = {
     options: QueryOptions<AttributesVariables>
   ): ObservableQuery<Attributes, any> =>
     client.watchQuery({
-      query: gql`
-        ${AttributesList.attributes}
-      `,
+      query: AttributesList.attributes,
       ...options,
     }),
   CategoryDetails: <TCacheShape>(
@@ -70,9 +67,7 @@ export const QUERIES = {
     options: QueryOptions<CategoryDetailsVariables>
   ): ObservableQuery<CategoryDetails, any> =>
     client.watchQuery({
-      query: gql`
-        ${Category.categoryQuery}
-      `,
+      query: Category.categoryQuery,
       ...options,
     }),
   CheckoutDetails: <TCacheShape>(
@@ -80,9 +75,7 @@ export const QUERIES = {
     options: QueryOptions<CheckoutDetailsVariables>
   ): ObservableQuery<CheckoutDetails, any> =>
     client.watchQuery({
-      query: gql`
-        ${Checkout.checkoutDetails}
-      `,
+      query: Checkout.checkoutDetails,
       ...options,
     }),
   CheckoutProductVariants: <TCacheShape>(
@@ -90,9 +83,7 @@ export const QUERIES = {
     options: QueryOptions<CheckoutProductVariantsVariables>
   ): ObservableQuery<CheckoutProductVariants, any> =>
     client.watchQuery({
-      query: gql`
-        ${Checkout.checkoutProductVariants}
-      `,
+      query: Checkout.checkoutProductVariants,
       ...options,
     }),
   GetShopDetails: <TCacheShape>(
@@ -100,9 +91,7 @@ export const QUERIES = {
     options: QueryOptions<null>
   ): ObservableQuery<GetShop, any> =>
     client.watchQuery({
-      query: gql`
-        ${Shop.getShop}
-      `,
+      query: Shop.getShop,
       ...options,
     }),
   GetShopPaymentGateways: <TCacheShape>(
@@ -110,9 +99,7 @@ export const QUERIES = {
     options: QueryOptions<null>
   ): ObservableQuery<GetShopPaymentGateways, any> =>
     client.watchQuery({
-      query: gql`
-        ${Shop.getShopPaymentGateways}
-      `,
+      query: Shop.getShopPaymentGateways,
       ...options,
     }),
   OrderDetails: <TCacheShape>(
@@ -120,9 +107,7 @@ export const QUERIES = {
     options: QueryOptions<OrderByTokenVariables>
   ): ObservableQuery<OrderByToken, any> =>
     client.watchQuery({
-      query: gql`
-        ${User.orderDetailsByTokenQuery}
-      `,
+      query: User.orderDetailsByTokenQuery,
       ...options,
     }),
   OrdersByUser: <TCacheShape>(
@@ -130,9 +115,7 @@ export const QUERIES = {
     options: QueryOptions<OrdersByUserVariables>
   ): ObservableQuery<OrdersByUser, any> =>
     client.watchQuery({
-      query: gql`
-        ${Orders.ordersByUser}
-      `,
+      query: Orders.ordersByUser,
       ...options,
     }),
   ProductDetails: <TCacheShape>(
@@ -140,9 +123,7 @@ export const QUERIES = {
     options: QueryOptions<ProductDetailsVariables>
   ): ObservableQuery<ProductDetails, any> =>
     client.watchQuery({
-      query: gql`
-        ${Product.productDetails}
-      `,
+      query: Product.productDetails,
       ...options,
     }),
   ProductList: <TCacheShape>(
@@ -150,9 +131,7 @@ export const QUERIES = {
     options: QueryOptions<ProductListVariables>
   ): ObservableQuery<ProductList, any> =>
     client.watchQuery({
-      query: gql`
-        ${Product.productListDetails}
-      `,
+      query: Product.productListDetails,
       ...options,
     }),
   UserCheckoutDetails: <TCacheShape>(
@@ -160,9 +139,7 @@ export const QUERIES = {
     options: QueryOptions<null>
   ): ObservableQuery<UserCheckoutDetails, any> =>
     client.watchQuery({
-      query: gql`
-        ${Checkout.userCheckoutDetails}
-      `,
+      query: Checkout.userCheckoutDetails,
       ...options,
     }),
   UserDetails: <TCacheShape>(
@@ -170,9 +147,7 @@ export const QUERIES = {
     options: QueryOptions<null>
   ): ObservableQuery<UserDetails, any> =>
     client.watchQuery({
-      query: gql`
-        ${User.getUserDetailsQuery}
-      `,
+      query: User.getUserDetailsQuery,
       ...options,
     }),
   VariantsProducts: <TCacheShape>(
@@ -180,9 +155,7 @@ export const QUERIES = {
     options: QueryOptions<VariantsProductsVariables>
   ): ObservableQuery<VariantsProducts, any> =>
     client.watchQuery({
-      query: gql`
-        ${Product.variantsProducts}
-      `,
+      query: Product.variantsProducts,
       ...options,
     }),
 };

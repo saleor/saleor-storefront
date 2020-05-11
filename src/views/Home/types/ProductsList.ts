@@ -75,7 +75,7 @@ export interface ProductsList {
   /**
    * Return information about the shop.
    */
-  shop: ProductsList_shop | null;
+  shop: ProductsList_shop;
   /**
    * List of the shop's categories.
    */
