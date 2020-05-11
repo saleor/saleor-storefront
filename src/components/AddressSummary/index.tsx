@@ -16,7 +16,16 @@ const AddressSummary: React.FC<{
   if (address) {
     return (
       <p className="address-summary" ref={paragraphRef}>
-        <strong>{`${address.firstName} ${address.lastName}`}</strong>
+        <strong> 
+          {intl.formatMessage({
+            description: "full name address summary title",
+            defaultMessage: "{firstName} {lastName}",
+          },
+          {
+            firstName: address.firstName,
+            lastName: address.lastName,
+          })}
+          </strong>
         <br />
         {address.companyName && (
           <>
