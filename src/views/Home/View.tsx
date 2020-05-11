@@ -6,9 +6,18 @@ import { MetaWrapper } from "../../components";
 import Page from "./Page";
 import { TypedHomePageQuery } from "./queries";
 
-const View: React.FC = () => (
+import useLocale from "@saleor/@next/hooks/useLocale";
+
+const View: React.FC = () => {
+  const { locale } = useLocale();
+  const variables = {locale:locale.toUpperCase()}
+  return(
   <div className="home-page">
-    <TypedHomePageQuery alwaysRender displayLoader={false} errorPolicy="all">
+    <TypedHomePageQuery
+      variables={variables}
+      alwaysRender
+      displayLoader={false}
+      errorPolicy="all">
       {({ data, loading }) => {
         return (
           <MetaWrapper
@@ -32,6 +41,6 @@ const View: React.FC = () => (
       }}
     </TypedHomePageQuery>
   </div>
-);
+)};
 
 export default View;

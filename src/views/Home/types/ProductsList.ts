@@ -22,6 +22,7 @@ export interface ProductsList_shop_homepageCollection {
   id: string;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage | null;
   name: string;
+  translation: ProductsList_categories_edges_node_translation | null;
 }
 
 export interface ProductsList_shop {
@@ -56,6 +57,12 @@ export interface ProductsList_categories_edges_node {
   id: string;
   name: string;
   backgroundImage: ProductsList_categories_edges_node_backgroundImage | null;
+  translation: ProductsList_categories_edges_node_translation | null;
+}
+
+export interface ProductsList_categories_edges_node_translation {
+  __typename: "CategoryTranslation";
+  name: string;
 }
 
 export interface ProductsList_categories_edges {
@@ -80,4 +87,7 @@ export interface ProductsList {
    * List of the shop's categories.
    */
   categories: ProductsList_categories | null;
+}
+export interface ProductsListVariables {
+  locale: string;
 }

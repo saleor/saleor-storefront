@@ -1,10 +1,12 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { ProductsList } from "./types/ProductsList";
+import { ProductsList, ProductsListVariables } from "./types/ProductsList";
 
 export const homePageQuery = gql`
-  query ProductsList {
+  query ProductsList(
+    $locale:LanguageCodeEnum!
+  ) {
     shop {
       description
       name
@@ -14,6 +16,7 @@ export const homePageQuery = gql`
           url
         }
         name
+        translation(languageCode:$locale){name}
       }
     }
     categories(level: 0, first: 4) {
@@ -24,10 +27,11 @@ export const homePageQuery = gql`
           backgroundImage {
             url
           }
+          translation(languageCode:$locale){name}
         }
       }
     }
   }
 `;
 
-export const TypedHomePageQuery = TypedQuery<ProductsList, {}>(homePageQuery);
+export const TypedHomePageQuery = TypedQuery<ProductsList, ProductsListVariables>(homePageQuery);
