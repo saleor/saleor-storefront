@@ -59,6 +59,7 @@ export interface SecondaryMenu_shop_navigation_secondary_items_children {
    */
   id: string;
   name: string;
+  translation: SecondaryMenu_shop_navigation_secondary_items_children_translation | null;
   category: SecondaryMenu_shop_navigation_secondary_items_children_category | null;
   /**
    * URL to the menu item.
@@ -68,6 +69,11 @@ export interface SecondaryMenu_shop_navigation_secondary_items_children {
   page: SecondaryMenu_shop_navigation_secondary_items_children_page | null;
 }
 
+export interface SecondaryMenu_shop_navigation_secondary_items_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
+
 export interface SecondaryMenu_shop_navigation_secondary_items {
   __typename: "MenuItem";
   /**
@@ -75,6 +81,7 @@ export interface SecondaryMenu_shop_navigation_secondary_items {
    */
   id: string;
   name: string;
+  translation: SecondaryMenu_shop_navigation_secondary_items_translation | null;
   category: SecondaryMenu_shop_navigation_secondary_items_category | null;
   /**
    * URL to the menu item.
@@ -83,6 +90,11 @@ export interface SecondaryMenu_shop_navigation_secondary_items {
   collection: SecondaryMenu_shop_navigation_secondary_items_collection | null;
   page: SecondaryMenu_shop_navigation_secondary_items_page | null;
   children: (SecondaryMenu_shop_navigation_secondary_items_children | null)[] | null;
+}
+
+export interface SecondaryMenu_shop_navigation_secondary_items_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
 }
 
 export interface SecondaryMenu_shop_navigation_secondary {
@@ -111,4 +123,8 @@ export interface SecondaryMenu {
    * Return information about the shop.
    */
   shop: SecondaryMenu_shop;
+}
+
+export interface SecondaryMenuVariables {
+  locale: string;
 }

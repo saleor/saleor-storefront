@@ -5,12 +5,17 @@ import { TypedSecondaryMenuQuery } from "./queries";
 
 import "./scss/index.scss";
 
-class Nav extends React.PureComponent {
-  render() {
+import useLocale from "@saleor/@next/hooks/useLocale";
+
+const Nav : React.FC = () => {
+ 
+    const { locale } = useLocale()
+    const variables = {locale:locale.toUpperCase()}
+
     return (
       <footer className="footer-nav">
         <div className="container">
-          <TypedSecondaryMenuQuery>
+          <TypedSecondaryMenuQuery variables={variables}>
             {({ data }) => {
               return data.shop.navigation.secondary.items.map(item => (
                 <div className="footer-nav__section" key={item.id}>
@@ -29,7 +34,6 @@ class Nav extends React.PureComponent {
         </div>
       </footer>
     );
-  }
 }
 
 export default Nav;

@@ -36,6 +36,7 @@ export interface SecondaryMenuSubItem {
    */
   id: string;
   name: string;
+  translation: SecondaryMenuSubItem_translation | null;
   category: SecondaryMenuSubItem_category | null;
   /**
    * URL to the menu item.
@@ -43,4 +44,9 @@ export interface SecondaryMenuSubItem {
   url: string | null;
   collection: SecondaryMenuSubItem_collection | null;
   page: SecondaryMenuSubItem_page | null;
+}
+
+export interface SecondaryMenuSubItem_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
 }

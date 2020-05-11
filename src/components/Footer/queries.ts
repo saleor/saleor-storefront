@@ -1,12 +1,13 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { SecondaryMenu } from "./types/SecondaryMenu";
+import { SecondaryMenu, SecondaryMenuVariables} from "./types/SecondaryMenu";
 
 const secondaryMenu = gql`
   fragment SecondaryMenuSubItem on MenuItem {
     id
     name
+    translation(languageCode:$locale){name}
     category {
       id
       name
@@ -21,7 +22,9 @@ const secondaryMenu = gql`
     }
   }
 
-  query SecondaryMenu {
+  query SecondaryMenu(
+    $locale:LanguageCodeEnum!
+  ) {
     shop {
       navigation {
         secondary {
@@ -37,4 +40,4 @@ const secondaryMenu = gql`
   }
 `;
 
-export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, {}>(secondaryMenu);
+export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, SecondaryMenuVariables>(secondaryMenu);

@@ -44,6 +44,7 @@ export interface MainMenuSubItem {
    */
   id: string;
   name: string;
+  translation: MainMenuSubItem_translation | null;
   category: MainMenuSubItem_category | null;
   /**
    * URL to the menu item.
@@ -53,3 +54,9 @@ export interface MainMenuSubItem {
   page: MainMenuSubItem_page | null;
   parent: MainMenuSubItem_parent | null;
 }
+
+export interface MainMenuSubItem_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
+

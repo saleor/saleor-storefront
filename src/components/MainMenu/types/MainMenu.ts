@@ -106,6 +106,7 @@ export interface MainMenu_shop_navigation_main_items_children_children {
    */
   id: string;
   name: string;
+  translation: MainMenu_shop_navigation_main_items_children_children_translation | null;
   category: MainMenu_shop_navigation_main_items_children_children_category | null;
   /**
    * URL to the menu item.
@@ -116,6 +117,11 @@ export interface MainMenu_shop_navigation_main_items_children_children {
   parent: MainMenu_shop_navigation_main_items_children_children_parent | null;
 }
 
+export interface MainMenu_shop_navigation_main_items_children_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
+
 export interface MainMenu_shop_navigation_main_items_children {
   __typename: "MenuItem";
   /**
@@ -123,6 +129,7 @@ export interface MainMenu_shop_navigation_main_items_children {
    */
   id: string;
   name: string;
+  translation: MainMenu_shop_navigation_main_items_children_translation | null;
   category: MainMenu_shop_navigation_main_items_children_category | null;
   /**
    * URL to the menu item.
@@ -134,6 +141,10 @@ export interface MainMenu_shop_navigation_main_items_children {
   children: (MainMenu_shop_navigation_main_items_children_children | null)[] | null;
 }
 
+export interface MainMenu_shop_navigation_main_items_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
 export interface MainMenu_shop_navigation_main_items {
   __typename: "MenuItem";
   /**
@@ -141,6 +152,7 @@ export interface MainMenu_shop_navigation_main_items {
    */
   id: string;
   name: string;
+  translation: MainMenu_shop_navigation_main_items_translation | null;
   category: MainMenu_shop_navigation_main_items_category | null;
   /**
    * URL to the menu item.
@@ -150,6 +162,10 @@ export interface MainMenu_shop_navigation_main_items {
   page: MainMenu_shop_navigation_main_items_page | null;
   parent: MainMenu_shop_navigation_main_items_parent | null;
   children: (MainMenu_shop_navigation_main_items_children | null)[] | null;
+}
+export interface MainMenu_shop_navigation_main_items_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
 }
 
 export interface MainMenu_shop_navigation_main {
@@ -182,4 +198,7 @@ export interface MainMenu {
    * Return information about the shop.
    */
   shop: MainMenu_shop;
+}
+export interface MainMenuVariables {
+  locale: string;
 }
