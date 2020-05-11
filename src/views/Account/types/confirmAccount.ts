@@ -24,12 +24,12 @@ export interface confirmAccount_confirmAccount {
   /**
    * List of errors that occurred executing the mutation.
    */
-  errors: confirmAccount_confirmAccount_errors[] | null;
+  errors: confirmAccount_confirmAccount_errors[];
 }
 
 export interface confirmAccount {
   /**
-   * Confirm user account by token sent by email during registration
+   * Confirm user account with token sent by email during registration.
    */
   confirmAccount: confirmAccount_confirmAccount | null;
 }
