@@ -52,7 +52,7 @@ export interface Article {
   /**
    * Return information about the shop.
    */
-  shop: Article_shop | null;
+  shop: Article_shop;
 }
 
 export interface ArticleVariables {

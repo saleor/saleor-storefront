@@ -2,7 +2,6 @@ import {
   ApolloClient,
   MutationOptions as ApolloMutationOptions,
 } from "apollo-client";
-import gql from "graphql-tag";
 
 import * as Address from "./address";
 import * as Auth from "./auth";
@@ -98,9 +97,7 @@ export const MUTATIONS = {
     options: MutationOptions<AccountUpdate, AccountUpdateVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${User.accountUpdate}
-      `,
+      mutation: User.accountUpdate,
       ...options,
     }),
   AddCheckoutPromoCode: <TCacheShape>(
@@ -111,9 +108,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.addCheckoutPromoCode}
-      `,
+      mutation: Checkout.addCheckoutPromoCode,
       ...options,
     }),
   AddressTypeUpdate: <TCacheShape>(
@@ -124,9 +119,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Address.setCustomerDefaultAddress}
-      `,
+      mutation: Address.setCustomerDefaultAddress,
       ...options,
     }),
   CompleteCheckout: <TCacheShape>(
@@ -134,9 +127,7 @@ export const MUTATIONS = {
     options: MutationOptions<CompleteCheckout, CompleteCheckoutVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.completeCheckoutMutation}
-      `,
+      mutation: Checkout.completeCheckoutMutation,
       ...options,
     }),
   CreateCheckout: <TCacheShape>(
@@ -144,9 +135,7 @@ export const MUTATIONS = {
     options: MutationOptions<CreateCheckout, CreateCheckoutVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.createCheckoutMutation}
-      `,
+      mutation: Checkout.createCheckoutMutation,
       ...options,
     }),
   CreateCheckoutPayment: <TCacheShape>(
@@ -157,9 +146,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.createCheckoutPaymentMutation}
-      `,
+      mutation: Checkout.createCheckoutPaymentMutation,
       ...options,
     }),
   CreateUserAddress: <TCacheShape>(
@@ -167,9 +154,7 @@ export const MUTATIONS = {
     options: MutationOptions<CreateUserAddress, CreateUserAddressVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Address.createUserAddress}
-      `,
+      mutation: Address.createUserAddress,
       ...options,
     }),
   DeleteUserAddress: <TCacheShape>(
@@ -177,9 +162,7 @@ export const MUTATIONS = {
     options: MutationOptions<DeleteUserAddress, DeleteUserAddressVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Address.deleteUserAddress}
-      `,
+      mutation: Address.deleteUserAddress,
       ...options,
     }),
   PasswordChange: <TCacheShape>(
@@ -187,9 +170,7 @@ export const MUTATIONS = {
     options: MutationOptions<PasswordChange, PasswordChangeVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${User.changeUserPassword}
-      `,
+      mutation: User.changeUserPassword,
       ...options,
     }),
   RemoveCheckoutPromoCode: <TCacheShape>(
@@ -200,9 +181,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.removeCheckoutPromoCode}
-      `,
+      mutation: Checkout.removeCheckoutPromoCode,
       ...options,
     }),
   SetPassword: <TCacheShape>(
@@ -210,9 +189,7 @@ export const MUTATIONS = {
     options: MutationOptions<SetPassword, SetPasswordVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${User.setPassword}
-      `,
+      mutation: User.setPassword,
       ...options,
     }),
   TokenAuth: <TCacheShape>(
@@ -220,9 +197,7 @@ export const MUTATIONS = {
     options: MutationOptions<TokenAuth, TokenAuthVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Auth.tokenAuthMutation}
-      `,
+      mutation: Auth.tokenAuthMutation,
       ...options,
     }),
   UpdateCheckoutBillingAddress: <TCacheShape>(
@@ -233,9 +208,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.updateCheckoutBillingAddressMutation}
-      `,
+      mutation: Checkout.updateCheckoutBillingAddressMutation,
       ...options,
     }),
   UpdateCheckoutBillingAddressWithEmail: <TCacheShape>(
@@ -246,9 +219,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.updateCheckoutBillingAddressWithEmailMutation}
-      `,
+      mutation: Checkout.updateCheckoutBillingAddressWithEmailMutation,
       ...options,
     }),
   UpdateCheckoutLine: <TCacheShape>(
@@ -256,9 +227,7 @@ export const MUTATIONS = {
     options: MutationOptions<UpdateCheckoutLine, UpdateCheckoutLineVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.updateCheckoutLineMutation}
-      `,
+      mutation: Checkout.updateCheckoutLineMutation,
       ...options,
     }),
   UpdateCheckoutShippingAddress: <TCacheShape>(
@@ -269,9 +238,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.updateCheckoutShippingAddressMutation}
-      `,
+      mutation: Checkout.updateCheckoutShippingAddressMutation,
       ...options,
     }),
   UpdateCheckoutShippingMethod: <TCacheShape>(
@@ -282,9 +249,7 @@ export const MUTATIONS = {
     >
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Checkout.updateCheckoutShippingMethodMutation}
-      `,
+      mutation: Checkout.updateCheckoutShippingMethodMutation,
       ...options,
     }),
   UpdateUserAddress: <TCacheShape>(
@@ -292,9 +257,7 @@ export const MUTATIONS = {
     options: MutationOptions<UpdateUserAddress, UpdateUserAddressVariables>
   ) =>
     client.mutate({
-      mutation: gql`
-        ${Address.updateUserAddress}
-      `,
+      mutation: Address.updateUserAddress,
       ...options,
     }),
 };

@@ -11,9 +11,6 @@ import { SaleorCheckoutAPI } from "./Checkout";
 export * from "./Checkout";
 export * from "./Cart";
 
-// SaleorAPI.checkout....
-// SaleorAPI.cart....
-
 export class SaleorAPI {
   checkout: SaleorCheckoutAPI;
   cart: SaleorCartAPI;
