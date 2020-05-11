@@ -13,6 +13,11 @@
     padding: $spacer;
     width: 15rem;
 
+    &__rightdown{
+      right: 0rem!important;
+      left: 1rem!important;
+    }
+    
     &--visible {
       display: block;
       z-index: 2;
