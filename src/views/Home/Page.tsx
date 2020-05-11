@@ -17,7 +17,7 @@ import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
 
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Page: React.FC<{
   loading: boolean;
@@ -25,12 +25,15 @@ const Page: React.FC<{
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
   shop: ProductsList_shop;
 }> = ({ loading, categories, backgroundImage, shop }) => {
+
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
   const homeCollectionExist = () => {
     return shop && shop.homepageCollection && shop.homepageCollection.id && shop.homepageCollection.name;
   };
+  const intl = useIntl();
+
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -79,7 +82,11 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      <ProductsFeatured />
+      <ProductsFeatured 
+        title={intl.formatMessage({
+          defaultMessage: "Featured",
+          description: "ProductsFeatured home page section name"
+       })}/>
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
