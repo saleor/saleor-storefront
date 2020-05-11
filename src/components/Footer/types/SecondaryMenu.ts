@@ -110,5 +110,5 @@ export interface SecondaryMenu {
   /**
    * Return information about the shop.
    */
-  shop: SecondaryMenu_shop | null;
+  shop: SecondaryMenu_shop;
 }
