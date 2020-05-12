@@ -10,8 +10,10 @@ import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
 
+import { useIntl } from "react-intl";
 
 const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
+  const intl = useIntl();
 
   const [query] = useQueryParams({
     email: StringParam,
@@ -25,8 +27,19 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
       {
         content: anyErrors.length > 0 ? anyErrors.map(
           error => error.message
-        ).join(" "): "You can now log in",
-        title: anyErrors.length > 0 ? "Error": "Account confirmed",
+        ).join(" "): intl.formatMessage({
+          defaultMessage: "You can now log in",
+          description: "no error AccountConfirm message",
+       }),
+        title: anyErrors.length > 0 ? 
+        intl.formatMessage({
+          defaultMessage: "Error",
+          description: "error AccountConfirm message",
+       }):
+       intl.formatMessage({
+        defaultMessage: "Account confirmed",
+        description: "account confirmed AccountConfirm message",
+      }),
       },
       { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
     );
@@ -40,7 +53,10 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
       displayConfirmationAlert(possibleErrors);
     }).catch(() => {
       const errors = [{
-        message: "Something went wrong while activating your account.",
+        message: intl.formatMessage({
+          defaultMessage: "Something went wrong while activating your account.",
+          description: "something went wrong AccountConfirm message",
+       }),
       }];
       displayConfirmationAlert(errors);
     }).finally(() => {
