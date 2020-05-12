@@ -2,7 +2,10 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutLineInput } from "./../../gqlTypes/globalTypes";
+import {
+  CheckoutLineInput,
+  CheckoutErrorCode,
+} from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutLine
@@ -535,7 +538,9 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (UpdateCheckoutLine_checkoutLinesUpdate_checkout_lines | null)[]
+    | null;
   /**
    * Returns True, if checkout requires shipping.
    */
@@ -546,8 +551,12 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
   voucherCode: string | null;
 }
 
-export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
-  __typename: "Error";
+export interface UpdateCheckoutLine_checkoutLinesUpdate_checkoutErrors {
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -565,10 +574,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
    * An updated checkout.
    */
   checkout: UpdateCheckoutLine_checkoutLinesUpdate_checkout | null;
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: UpdateCheckoutLine_checkoutLinesUpdate_errors[];
+  checkoutErrors: UpdateCheckoutLine_checkoutLinesUpdate_checkoutErrors[];
 }
 
 export interface UpdateCheckoutLine {

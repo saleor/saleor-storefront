@@ -159,7 +159,9 @@ export interface UpdateUserAddress_accountAddressUpdate_user {
   /**
    * List of all user's addresses.
    */
-  addresses: (UpdateUserAddress_accountAddressUpdate_user_addresses | null)[] | null;
+  addresses:
+    | (UpdateUserAddress_accountAddressUpdate_user_addresses | null)[]
+    | null;
 }
 
 export interface UpdateUserAddress_accountAddressUpdate {

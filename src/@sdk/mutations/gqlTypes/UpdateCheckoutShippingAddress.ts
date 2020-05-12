@@ -2,14 +2,18 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput } from "./../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutShippingAddress
 // ====================================================
 
-export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors {
-  __typename: "Error";
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkoutErrors {
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -548,7 +552,9 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines | null)[]
+    | null;
   /**
    * Returns True, if checkout requires shipping.
    */
@@ -561,10 +567,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
   __typename: "CheckoutShippingAddressUpdate";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_errors[];
+  checkoutErrors: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkoutErrors[];
   /**
    * An updated checkout.
    */
@@ -1098,7 +1101,9 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines | null)[]
+    | null;
   /**
    * Returns True, if checkout requires shipping.
    */
@@ -1109,8 +1114,12 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   voucherCode: string | null;
 }
 
-export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {
-  __typename: "Error";
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkoutErrors {
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -1128,10 +1137,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate {
    * An updated checkout.
    */
   checkout: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout | null;
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors[];
+  checkoutErrors: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkoutErrors[];
 }
 
 export interface UpdateCheckoutShippingAddress {

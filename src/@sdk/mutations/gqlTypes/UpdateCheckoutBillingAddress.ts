@@ -2,14 +2,18 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AddressInput } from "./../../gqlTypes/globalTypes";
+import { AddressInput, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateCheckoutBillingAddress
 // ====================================================
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors {
-  __typename: "Error";
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkoutErrors {
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -548,7 +552,9 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines: (UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[] | null;
+  lines:
+    | (UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines | null)[]
+    | null;
   /**
    * Returns True, if checkout requires shipping.
    */
@@ -561,10 +567,7 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate {
   __typename: "CheckoutBillingAddressUpdate";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[];
+  checkoutErrors: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkoutErrors[];
   /**
    * An updated checkout.
    */

@@ -2,14 +2,21 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CheckoutCreateInput } from "./../../gqlTypes/globalTypes";
+import {
+  CheckoutCreateInput,
+  CheckoutErrorCode,
+} from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateCheckout
 // ====================================================
 
-export interface CreateCheckout_checkoutCreate_errors {
-  __typename: "Error";
+export interface CreateCheckout_checkoutCreate_checkoutErrors {
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -561,10 +568,7 @@ export interface CreateCheckout_checkoutCreate_checkout {
 
 export interface CreateCheckout_checkoutCreate {
   __typename: "CheckoutCreate";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: CreateCheckout_checkoutCreate_errors[];
+  checkoutErrors: CreateCheckout_checkoutCreate_checkoutErrors[];
   checkout: CreateCheckout_checkoutCreate_checkout | null;
 }
 

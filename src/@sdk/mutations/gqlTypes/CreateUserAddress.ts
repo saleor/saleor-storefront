@@ -159,7 +159,9 @@ export interface CreateUserAddress_accountAddressCreate_user {
   /**
    * List of all user's addresses.
    */
-  addresses: (CreateUserAddress_accountAddressCreate_user_addresses | null)[] | null;
+  addresses:
+    | (CreateUserAddress_accountAddressCreate_user_addresses | null)[]
+    | null;
 }
 
 export interface CreateUserAddress_accountAddressCreate {

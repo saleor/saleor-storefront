@@ -342,9 +342,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutCreate?.errors.length) {
+      } else if (data?.checkoutCreate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutCreate?.errors,
+          error: data?.checkoutCreate?.checkoutErrors,
         };
       } else if (data?.checkoutCreate?.checkout) {
         return {
@@ -385,9 +385,9 @@ export class NetworkManager implements INetworkManager {
           return {
             error: errors,
           };
-        } else if (data?.checkoutLinesUpdate?.errors.length) {
+        } else if (data?.checkoutLinesUpdate?.checkoutErrors.length) {
           return {
-            error: data?.checkoutLinesUpdate?.errors,
+            error: data?.checkoutLinesUpdate?.checkoutErrors,
           };
         } else if (data?.checkoutLinesUpdate?.checkout) {
           return {
@@ -442,13 +442,13 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutEmailUpdate?.errors.length) {
+      } else if (data?.checkoutEmailUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutEmailUpdate?.errors,
+          error: data?.checkoutEmailUpdate?.checkoutErrors,
         };
-      } else if (data?.checkoutShippingAddressUpdate?.errors.length) {
+      } else if (data?.checkoutShippingAddressUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutShippingAddressUpdate?.errors,
+          error: data?.checkoutShippingAddressUpdate?.checkoutErrors,
         };
       } else if (data?.checkoutShippingAddressUpdate?.checkout) {
         return {
@@ -501,9 +501,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutBillingAddressUpdate?.errors.length) {
+      } else if (data?.checkoutBillingAddressUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutBillingAddressUpdate?.errors,
+          error: data?.checkoutBillingAddressUpdate?.checkoutErrors,
         };
       } else if (data?.checkoutBillingAddressUpdate?.checkout) {
         return {
@@ -559,13 +559,13 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutEmailUpdate?.errors.length) {
+      } else if (data?.checkoutEmailUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutEmailUpdate?.errors,
+          error: data?.checkoutEmailUpdate?.checkoutErrors,
         };
-      } else if (data?.checkoutBillingAddressUpdate?.errors.length) {
+      } else if (data?.checkoutBillingAddressUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutBillingAddressUpdate?.errors,
+          error: data?.checkoutBillingAddressUpdate?.checkoutErrors,
         };
       } else if (data?.checkoutBillingAddressUpdate?.checkout) {
         return {
@@ -600,9 +600,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutShippingMethodUpdate?.errors.length) {
+      } else if (data?.checkoutShippingMethodUpdate?.checkoutErrors.length) {
         return {
-          error: data?.checkoutShippingMethodUpdate?.errors,
+          error: data?.checkoutShippingMethodUpdate?.checkoutErrors,
         };
       } else if (data?.checkoutShippingMethodUpdate?.checkout) {
         return {
@@ -634,9 +634,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutAddPromoCode?.errors.length) {
+      } else if (data?.checkoutAddPromoCode?.checkoutErrors.length) {
         return {
-          error: data?.checkoutAddPromoCode?.errors,
+          error: data?.checkoutAddPromoCode?.checkoutErrors,
         };
       } else if (data?.checkoutAddPromoCode?.checkout) {
         return {
@@ -666,9 +666,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutRemovePromoCode?.errors.length) {
+      } else if (data?.checkoutRemovePromoCode?.checkoutErrors.length) {
         return {
-          error: data?.checkoutRemovePromoCode?.errors,
+          error: data?.checkoutRemovePromoCode?.checkoutErrors,
         };
       } else if (data?.checkoutRemovePromoCode?.checkout) {
         return {
@@ -729,9 +729,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutPaymentCreate?.errors.length) {
+      } else if (data?.checkoutPaymentCreate?.paymentErrors.length) {
         return {
-          error: data?.checkoutPaymentCreate?.errors,
+          error: data?.checkoutPaymentCreate?.paymentErrors,
         };
       } else if (data?.checkoutPaymentCreate?.payment) {
         return {
@@ -761,9 +761,9 @@ export class NetworkManager implements INetworkManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutComplete?.errors.length) {
+      } else if (data?.checkoutComplete?.checkoutErrors.length) {
         return {
-          error: data?.checkoutComplete?.errors,
+          error: data?.checkoutComplete?.checkoutErrors,
         };
       } else if (data?.checkoutComplete?.order) {
         return {
