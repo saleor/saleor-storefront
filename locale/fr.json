@@ -1,0 +1,22 @@
+{
+  "src_dot_components_dot_AddressSummary_dot_856437708": {
+    "context": "phone number AddressSummary title",
+    "string": "Numéro de téléphone: "
+  },
+  "src_dot_views_dot_Home_dot_3813745889": {
+    "context": "title home page shop by category ",
+    "string": "Magasinez par catégorie"
+  },
+  "src_dot_views_dot_Home_dot_1618696306": {
+    "context": "button discover home page collection",
+    "string": "découvrir"
+  },
+  "src_dot_views_dot_Category_dot_3952745901": {
+    "context": "ProductsFeatured category section name",
+    "string": "Vous pourriez aussi aimer"
+  },
+  "src_dot_views_dot_Home_dot_2812648978": {
+    "context": "ProductsFeatured home page section name",
+    "string": "En vedette"
+  }
+}

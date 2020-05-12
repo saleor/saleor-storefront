@@ -1,0 +1,266 @@
+{
+    "src_dot_accept": {
+      "context": "button",
+      "string": "Accept"
+    },
+    "src_dot_attributes": {
+      "context": "attributes section name",
+      "string": "Attributes"
+    },
+    "src_dot_availability": {
+      "string": "Availability"
+    },
+    "src_dot_back": {
+      "context": "button",
+      "string": "Back"
+    },
+    "src_dot_cancel": {
+      "context": "button",
+      "string": "Cancel"
+    },
+    "src_dot_catalog": {
+      "string": "Catalog"
+    },
+    "src_dot_categories": {
+      "context": "categories section name",
+      "string": "Categories"
+    },
+    "src_dot_clear": {
+      "context": "button",
+      "string": "Clear"
+    },
+    "src_dot_collections": {
+      "context": "collections section name",
+      "string": "Collections"
+    },
+    "src_dot_components_dot_AddressSummary_dot_856437708": {
+      "context": "phone number AddressSummary title",
+      "string": "Phone number: "
+    },
+    "src_dot_configuration": {
+      "context": "configuration section name",
+      "string": "Configuration"
+    },
+    "src_dot_confirm": {
+      "context": "button",
+      "string": "Confirm"
+    },
+    "src_dot_create": {
+      "context": "button",
+      "string": "Create"
+    },
+    "src_dot_customers": {
+      "context": "customers section name",
+      "string": "Customers"
+    },
+    "src_dot_dashboard": {
+      "string": "Dashboard"
+    },
+    "src_dot_delete": {
+      "context": "button",
+      "string": "Delete"
+    },
+    "src_dot_description": {
+      "string": "Description"
+    },
+    "src_dot_discounts": {
+      "string": "Discounts"
+    },
+    "src_dot_done": {
+      "context": "button",
+      "string": "Done"
+    },
+    "src_dot_draftOrders": {
+      "context": "draft orders section name",
+      "string": "Draft Orders"
+    },
+    "src_dot_drafts": {
+      "string": "Drafts"
+    },
+    "src_dot_edit": {
+      "context": "button",
+      "string": "Edit"
+    },
+    "src_dot_email": {
+      "string": "E-mail Address"
+    },
+    "src_dot_endDate": {
+      "string": "End Date"
+    },
+    "src_dot_endHour": {
+      "string": "End Hour"
+    },
+    "src_dot_firstName": {
+      "string": "First Name"
+    },
+    "src_dot_generalInformations": {
+      "string": "General Informations"
+    },
+    "src_dot_home": {
+      "context": "home section name",
+      "string": "Home"
+    },
+    "src_dot_lastName": {
+      "string": "Last Name"
+    },
+    "src_dot_manage": {
+      "context": "button",
+      "string": "Manage"
+    },
+    "src_dot_navigation": {
+      "context": "navigation section name",
+      "string": "Navigation"
+    },
+    "src_dot_no": {
+      "string": "No"
+    },
+    "src_dot_ok": {
+      "context": "button",
+      "string": "OK"
+    },
+    "src_dot_optionalField": {
+      "context": "field is optional",
+      "string": "Optional"
+    },
+    "src_dot_orders": {
+      "context": "orders section name",
+      "string": "Orders"
+    },
+    "src_dot_pages": {
+      "context": "pages section name",
+      "string": "Pages"
+    },
+    "src_dot_permissionGroups": {
+      "context": "permission groups section name",
+      "string": "Permission Groups"
+    },
+    "src_dot_plugins": {
+      "context": "plugins section name",
+      "string": "Plugins"
+    },
+    "src_dot_productTypes": {
+      "context": "product types section name",
+      "string": "Product Types"
+    },
+    "src_dot_products": {
+      "context": "products section name",
+      "string": "Products"
+    },
+    "src_dot_properties": {
+      "string": "Properties"
+    },
+    "src_dot_readOnly": {
+      "string": "The site runs in read-only mode. Changes not saved."
+    },
+    "src_dot_remove": {
+      "context": "button",
+      "string": "Remove"
+    },
+    "src_dot_requiredField": {
+      "string": "This field is required"
+    },
+    "src_dot_sales": {
+      "context": "sales section name",
+      "string": "Sales"
+    },
+    "src_dot_save": {
+      "context": "button",
+      "string": "Save"
+    },
+    "src_dot_savedChanges": {
+      "string": "Saved changes"
+    },
+    "src_dot_serviceAccounts": {
+      "context": "service accounts section name",
+      "string": "Service Accounts"
+    },
+    "src_dot_sessionExpired": {
+      "string": "Your session has expired. Please log in again to continue."
+    },
+    "src_dot_shipping": {
+      "context": "shipping section name",
+      "string": "Shipping Methods"
+    },
+    "src_dot_show": {
+      "context": "button",
+      "string": "Show"
+    },
+    "src_dot_siteSettings": {
+      "context": "site settings section name",
+      "string": "Site Settings"
+    },
+    "src_dot_somethingWentWrong": {
+      "string": "The site ran into an unexpected problem"
+    },
+    "src_dot_staff": {
+      "context": "staff section name",
+      "string": "Staff Members"
+    },
+    "src_dot_startDate": {
+      "string": "Start Date"
+    },
+    "src_dot_startHour": {
+      "string": "Start Hour"
+    },
+    "src_dot_status": {
+      "string": "Status"
+    },
+    "src_dot_summary": {
+      "string": "Summary"
+    },
+    "src_dot_taxes": {
+      "context": "taxes section name",
+      "string": "Taxes"
+    },
+    "src_dot_translations": {
+      "context": "translations section name",
+      "string": "Translations"
+    },
+    "src_dot_undo": {
+      "context": "button",
+      "string": "Undo"
+    },
+    "src_dot_uploadImage": {
+      "context": "button",
+      "string": "Upload image"
+    },
+    "src_dot_views_dot_Category_dot_3952745901": {
+      "context": "ProductsFeatured category section name",
+      "string": "You might like"
+    },
+    "src_dot_views_dot_Collection_dot_3952745901": {
+      "context": "ProductsFeatured collection section name",
+      "string": "You might like"
+    },
+    "src_dot_views_dot_Home_dot_1618696306": {
+      "context": "button discover home page collection",
+      "string": "discover"
+    },
+    "src_dot_views_dot_Home_dot_2812648978": {
+      "context": "ProductsFeatured home page section name",
+      "string": "Featured"
+    },
+    "src_dot_views_dot_Home_dot_3813745889": {
+      "context": "title home page shop by category ",
+      "string": "Shop by category"
+    },
+    "src_dot_views_dot_Search_dot_3952745901": {
+      "context": "ProductsFeatured collection section name",
+      "string": "You might like"
+    },
+    "src_dot_vouchers": {
+      "context": "vouchers section name",
+      "string": "Vouchers"
+    },
+    "src_dot_warehouses": {
+      "context": "warehouses section name",
+      "string": "Warehouses"
+    },
+    "src_dot_webhooks": {
+      "context": "webhooks section name",
+      "string": "Webhooks"
+    },
+    "src_dot_yes": {
+      "string": "Yes"
+    }
+  }
