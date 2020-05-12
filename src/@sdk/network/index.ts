@@ -109,8 +109,8 @@ export class NetworkManager implements INetworkManager {
           observable.subscribe(
             result => {
               const { data, errors } = result;
-              if (errors) {
-                reject(errors.length);
+              if (errors?.length) {
+                reject(errors);
               } else {
                 resolve(data.checkout);
               }
