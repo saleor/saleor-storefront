@@ -7,9 +7,14 @@ import { OrderTabel } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { buttonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
 const ORDERS_PER_APICALL = 5;
 
 export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
+  const intl = useIntl();
+
   const { data, loading, loadMore } = useOrdersByUser(
     {
       perPage: ORDERS_PER_APICALL,
@@ -35,8 +40,8 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
               });
             }}
           >
-            Load more
-          </Button>
+          {intl.formatMessage(buttonMessages.loadMore)}   
+       </Button>
         </S.Wrapper>
       )}
     </>

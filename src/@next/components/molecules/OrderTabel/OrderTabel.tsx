@@ -10,17 +10,44 @@ import { generateProductUrl } from "../../../../core/utils";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 const header = (matches: boolean) => (
   <S.HeaderRow>
-    <S.IndexNumber>Index Number</S.IndexNumber>
+    <S.IndexNumber>
+      <FormattedMessage
+          defaultMessage="Index Number" 
+          description= "index number th"
+      />
+    </S.IndexNumber>
     {matches && (
       <>
-        <S.ProductsOrdered>Products Ordered</S.ProductsOrdered>
-        <S.DateOfOrder>Date of Order</S.DateOfOrder>
-        <S.Value>Value</S.Value>
+        <S.ProductsOrdered>
+          <FormattedMessage
+            defaultMessage="Products Ordered" 
+            description= "Products Ordered order table th"
+          />
+        </S.ProductsOrdered>
+        <S.DateOfOrder>
+          <FormattedMessage
+            defaultMessage="Date of Order" 
+            description= "Date of Order order table th"
+          />
+        </S.DateOfOrder>
+        <S.Value>
+          <FormattedMessage
+            defaultMessage="Value" 
+            description= "Value order table th"
+          />
+        </S.Value>
       </>
     )}
-    <S.Status>Status</S.Status>
+    <S.Status>
+      <FormattedMessage
+        defaultMessage="Status" 
+        description= "Status order table th"
+      />
+    </S.Status>
   </S.HeaderRow>
 );
 
