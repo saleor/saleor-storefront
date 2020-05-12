@@ -61,7 +61,7 @@ export const Page: React.FC<PageProps> = ({
         <div className="article-page__content">
         <RichTextContent
           descriptionJson={
-            page.translation?.contentJson.toString() == "{}" ?
+            page.translation?.contentJson.toString() === "{}" ?
             page.contentJson : page.translation?.contentJson || page.contentJson
         }
         />
