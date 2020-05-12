@@ -5,6 +5,8 @@ import { ButtonLink, Checkbox } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 export const AttributeValuesChecklist: React.FC<IProps> = ({
   title,
   name,
@@ -13,13 +15,15 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
   valuesShowLimitNumber = 5,
   onValueClick,
 }: IProps) => {
+  const intl = useIntl();
+
   const [viewAllOptions, setViewAllOptions] = React.useState(!valuesShowLimit);
 
   return (
     <S.Wrapper>
       {title && <S.Header>{title}</S.Header>}
       {values &&
-        values.map((value, index) => {
+        values.map((value, index, translation) => {
           if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
             return <></>;
           } else {
@@ -29,7 +33,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
                 checked={!!value.selected}
                 onChange={() => onValueClick(value)}
               >
-                {value && value.name}
+                {value && (value.translation?.name || value.name)}
               </Checkbox>
             );
           }
@@ -41,7 +45,12 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
             color="secondary"
             onClick={() => setViewAllOptions(true)}
           >
-            VIEW ALL OPTIONS
+            {
+              intl.formatMessage({
+                defaultMessage: "VIEW ALL OPTIONS",
+                description: "view all options button",
+             })
+            }
           </ButtonLink>
         </S.ViewMoreButton>
       )}

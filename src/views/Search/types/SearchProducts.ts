@@ -276,6 +276,7 @@ export interface SearchProducts_products {
   pageInfo: SearchProducts_products_pageInfo;
 }
 
+
 export interface SearchProducts_attributes_edges_node_values {
   __typename: "AttributeValue";
   /**
@@ -290,6 +291,11 @@ export interface SearchProducts_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  translation: SearchProducts_products_translation;
+}
+
+export interface SearchProducts_products_translation {
+  name: string;
 }
 
 export interface SearchProducts_attributes_edges_node {
@@ -310,6 +316,12 @@ export interface SearchProducts_attributes_edges_node {
    * List of attribute's values.
    */
   values: (SearchProducts_attributes_edges_node_values | null)[] | null;
+  translation: SearchProducts_attributes_edges_node_translation | null; 
+}
+
+export interface SearchProducts_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface SearchProducts_attributes_edges {

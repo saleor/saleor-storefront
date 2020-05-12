@@ -319,7 +319,13 @@ export interface Collection_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  translation: Collection_attributes_edges_node_values_translation;
 }
+
+export interface Collection_attributes_edges_node_values_translation {
+  name: string;
+}
+
 
 export interface Collection_attributes_edges_node {
   __typename: "Attribute";
@@ -339,6 +345,12 @@ export interface Collection_attributes_edges_node {
    * List of attribute's values.
    */
   values: (Collection_attributes_edges_node_values | null)[] | null;
+  translation: Collection_attributes_edges_node_translation | null; 
+}
+
+export interface Collection_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface Collection_attributes_edges {

@@ -344,7 +344,13 @@ export interface Category_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  translation: Category_attributes_edges_node_values_translation;
 }
+
+export interface Category_attributes_edges_node_values_translation {
+  name: string;
+}
+
 
 export interface Category_attributes_edges_node {
   __typename: "Attribute";
@@ -364,6 +370,12 @@ export interface Category_attributes_edges_node {
    * List of attribute's values.
    */
   values: (Category_attributes_edges_node_values | null)[] | null;
+  translation: Category_attributes_edges_node_translation | null; 
+}
+
+export interface Category_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface Category_attributes_edges {
@@ -402,4 +414,5 @@ export interface CategoryVariables {
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  locale: any;
 }

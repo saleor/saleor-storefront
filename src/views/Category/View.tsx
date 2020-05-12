@@ -15,6 +15,8 @@ import {
 import Page from "./Page";
 import { TypedCategoryProductsQuery } from "./queries";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
 type ViewProps = RouteComponentProps<{
   id: string;
 }>;
@@ -40,6 +42,8 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
+  const { locale } = useLocale();
+
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
@@ -129,7 +133,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     <NetworkStatus>
       {isOnline => (
         <TypedCategoryProductsQuery
-          variables={variables}
+          variables={{...variables, locale: locale.toUpperCase()}}
           errorPolicy="all"
           loaderFull
         >

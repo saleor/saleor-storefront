@@ -9,6 +9,8 @@ import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 const checkIfAttributeIsChecked = (
   filters: IFilters,
   value: ISingleFilterAttribute,
@@ -33,6 +35,8 @@ export const FilterSidebar: React.FC<IProps> = ({
   target,
   onAttributeFiltersChange,
 }: IProps) => {
+  const intl = useIntl();
+
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
@@ -47,14 +51,21 @@ export const FilterSidebar: React.FC<IProps> = ({
     >
       <S.Wrapper ref={setElementRef()} data-cy="filter-sidebar">
         <S.Header>
-          <span>FILTERS</span>
+          <span>
+            {
+              intl.formatMessage({
+                defaultMessage: "FILTERS",
+                description: "FILTERS title",
+             })
+            }
+             </span>
           <IconButton onClick={hide} name="x" size={18} color="000" />
         </S.Header>
-        {attributes.map(({ id, name, slug, values }) => {
+        {attributes.map(({ id, name, slug, values, translation}) => {
           return (
             <AttributeValuesChecklist
               key={id}
-              title={name}
+              title={translation?.name || name}
               name={slug}
               values={values.map(value => ({
                 ...value,
