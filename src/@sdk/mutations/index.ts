@@ -5,13 +5,8 @@ import {
 
 import * as Address from "./address";
 import * as Auth from "./auth";
-import * as Checkout from "./checkout";
 import * as User from "./user";
 
-import {
-  CreateCheckout,
-  CreateCheckoutVariables,
-} from "./types/CreateCheckout";
 import {
   DeleteUserAddress,
   DeleteUserAddressVariables,
@@ -35,53 +30,11 @@ import {
 import { SetPassword, SetPasswordVariables } from "./types/SetPassword";
 
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
-import {
-  UpdateCheckoutBillingAddress,
-  UpdateCheckoutBillingAddressVariables,
-} from "./types/UpdateCheckoutBillingAddress";
-import {
-  UpdateCheckoutLine,
-  UpdateCheckoutLineVariables,
-} from "./types/UpdateCheckoutLine";
-import {
-  UpdateCheckoutShippingAddress,
-  UpdateCheckoutShippingAddressVariables,
-} from "./types/UpdateCheckoutShippingAddress";
-
-import {
-  UpdateCheckoutBillingAddressWithEmail,
-  UpdateCheckoutBillingAddressWithEmailVariables,
-} from "./types/UpdateCheckoutBillingAddressWithEmail";
-
-import {
-  UpdateCheckoutShippingMethod,
-  UpdateCheckoutShippingMethodVariables,
-} from "./types/UpdateCheckoutShippingMethod";
 
 import {
   PasswordChange,
   PasswordChangeVariables,
 } from "./types/PasswordChange";
-
-import {
-  AddCheckoutPromoCode,
-  AddCheckoutPromoCodeVariables,
-} from "./types/AddCheckoutPromoCode";
-
-import {
-  RemoveCheckoutPromoCode,
-  RemoveCheckoutPromoCodeVariables,
-} from "./types/RemoveCheckoutPromoCode";
-
-import {
-  CreateCheckoutPayment,
-  CreateCheckoutPaymentVariables,
-} from "./types/CreateCheckoutPayment";
-
-import {
-  CompleteCheckout,
-  CompleteCheckoutVariables,
-} from "./types/CompleteCheckout";
 
 import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
 
@@ -100,17 +53,6 @@ export const MUTATIONS = {
       mutation: User.accountUpdate,
       ...options,
     }),
-  AddCheckoutPromoCode: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      AddCheckoutPromoCode,
-      AddCheckoutPromoCodeVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.addCheckoutPromoCode,
-      ...options,
-    }),
   AddressTypeUpdate: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<
@@ -120,33 +62,6 @@ export const MUTATIONS = {
   ) =>
     client.mutate({
       mutation: Address.setCustomerDefaultAddress,
-      ...options,
-    }),
-  CompleteCheckout: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<CompleteCheckout, CompleteCheckoutVariables>
-  ) =>
-    client.mutate({
-      mutation: Checkout.completeCheckoutMutation,
-      ...options,
-    }),
-  CreateCheckout: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<CreateCheckout, CreateCheckoutVariables>
-  ) =>
-    client.mutate({
-      mutation: Checkout.createCheckoutMutation,
-      ...options,
-    }),
-  CreateCheckoutPayment: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      CreateCheckoutPayment,
-      CreateCheckoutPaymentVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.createCheckoutPaymentMutation,
       ...options,
     }),
   CreateUserAddress: <TCacheShape>(
@@ -173,17 +88,6 @@ export const MUTATIONS = {
       mutation: User.changeUserPassword,
       ...options,
     }),
-  RemoveCheckoutPromoCode: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      RemoveCheckoutPromoCode,
-      RemoveCheckoutPromoCodeVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.removeCheckoutPromoCode,
-      ...options,
-    }),
   SetPassword: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: MutationOptions<SetPassword, SetPasswordVariables>
@@ -198,58 +102,6 @@ export const MUTATIONS = {
   ) =>
     client.mutate({
       mutation: Auth.tokenAuthMutation,
-      ...options,
-    }),
-  UpdateCheckoutBillingAddress: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      UpdateCheckoutBillingAddress,
-      UpdateCheckoutBillingAddressVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.updateCheckoutBillingAddressMutation,
-      ...options,
-    }),
-  UpdateCheckoutBillingAddressWithEmail: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      UpdateCheckoutBillingAddressWithEmail,
-      UpdateCheckoutBillingAddressWithEmailVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.updateCheckoutBillingAddressWithEmailMutation,
-      ...options,
-    }),
-  UpdateCheckoutLine: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<UpdateCheckoutLine, UpdateCheckoutLineVariables>
-  ) =>
-    client.mutate({
-      mutation: Checkout.updateCheckoutLineMutation,
-      ...options,
-    }),
-  UpdateCheckoutShippingAddress: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      UpdateCheckoutShippingAddress,
-      UpdateCheckoutShippingAddressVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.updateCheckoutShippingAddressMutation,
-      ...options,
-    }),
-  UpdateCheckoutShippingMethod: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: MutationOptions<
-      UpdateCheckoutShippingMethod,
-      UpdateCheckoutShippingMethodVariables
-    >
-  ) =>
-    client.mutate({
-      mutation: Checkout.updateCheckoutShippingMethodMutation,
       ...options,
     }),
   UpdateUserAddress: <TCacheShape>(
