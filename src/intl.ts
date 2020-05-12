@@ -98,6 +98,37 @@ export const commonMessages = defineMessages({
   },
 });
 
+
+export const sortLabelsMessages = defineMessages({
+  clear: {
+    defaultMessage: "Clear...",
+    description: "label",
+  },
+  priceLowHigh: {
+    defaultMessage: "Price Low-High",
+    description: "label",
+  },
+  priceHighLow: {
+    defaultMessage: "Price High-Low",
+    description: "label",
+  },
+  nameInc: {
+    defaultMessage: "Name Increasing",
+    description: "label",
+  },
+  nameDec: {
+    defaultMessage: "Name Decreasing",
+    description: "label",
+  },
+  lastUpdateAsc: {
+    defaultMessage: "Last updated Ascending",
+    description: "label",
+  },
+  lastupdateDes: {
+    defaultMessage: "Last updated Descending",
+    description: "label",
+  },
+});
 export const buttonMessages = defineMessages({
   accept: {
     defaultMessage: "Accept",
@@ -164,7 +195,6 @@ export const buttonMessages = defineMessages({
     description: "button",
   },
 });
-
 export const sectionNames = defineMessages({
   attributes: {
     defaultMessage: "Attributes",

@@ -17,6 +17,9 @@ import { TypedCategoryProductsQuery } from "./queries";
 
 import useLocale from "@saleor/@next/hooks/useLocale";
 
+import { sortLabelsMessages } from "@saleor/intl"
+import { useIntl } from "react-intl";
+
 type ViewProps = RouteComponentProps<{
   id: string;
 }>;
@@ -43,6 +46,8 @@ export const FilterQuerySet = {
 
 export const View: React.FC<ViewProps> = ({ match }) => {
   const { locale } = useLocale();
+
+  const intl = useIntl();
 
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
@@ -100,31 +105,31 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: intl.formatMessage(sortLabelsMessages.clear),
       value: null,
     },
     {
-      label: "Price Low-High",
+      label: intl.formatMessage(sortLabelsMessages.priceLowHigh),
       value: "price",
     },
     {
-      label: "Price High-Low",
+      label: intl.formatMessage(sortLabelsMessages.priceHighLow),
       value: "-price",
     },
     {
-      label: "Name Increasing",
+      label: intl.formatMessage(sortLabelsMessages.nameInc),
       value: "name",
     },
     {
-      label: "Name Decreasing",
+      label: intl.formatMessage(sortLabelsMessages.nameDec),
       value: "-name",
     },
     {
-      label: "Last updated Ascending",
+      label: intl.formatMessage(sortLabelsMessages.lastUpdateAsc),
       value: "updated_at",
     },
     {
-      label: "Last updated Descending",
+      label: intl.formatMessage(sortLabelsMessages.lastupdateDes),
       value: "-updated_at",
     },
   ];

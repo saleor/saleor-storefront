@@ -10,6 +10,8 @@ import { Icon } from "../Icon";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 export const DropdownSelect: React.FC<IProps> = ({
   options,
   name,
@@ -20,6 +22,7 @@ export const DropdownSelect: React.FC<IProps> = ({
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     setMenuIsOpen(false);
   });
+  const intl = useIntl();
 
   const customComponents = {
     Control: () => (
@@ -27,7 +30,14 @@ export const DropdownSelect: React.FC<IProps> = ({
         data-cy="dropdown-select-input"
         onClick={() => setMenuIsOpen(!menuIsOpen)}
       >
-        <Label>Sort by:</Label>
+        <Label> 
+          {
+            intl.formatMessage({
+              defaultMessage: "Sort by:",
+              description: "sort by label",
+            })
+          }
+        </Label>
         <S.Value>{` ${value ? value.label : ""}`}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
           <Icon name="select_arrow" size={10} />
