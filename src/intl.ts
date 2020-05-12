@@ -1,11 +1,20 @@
 import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
+  address: {
+    defaultMessage: "Address",
+  },
   availability: {
     defaultMessage: "Availability",
   },
   catalog: {
     defaultMessage: "Catalog",
+  },
+  city: {
+    defaultMessage: "City",
+  },
+  country: {
+    defaultMessage: "Country",
   },
   dashboard: {
     defaultMessage: "Dashboard",
@@ -46,6 +55,9 @@ export const commonMessages = defineMessages({
   },
   passwordsDoNotMatch: {
     defaultMessage: "Passwords do not match",
+  },
+  phone: {
+    defaultMessage: "Phone",
   },
   properties: {
     defaultMessage: "Properties",
@@ -121,6 +133,10 @@ export const buttonMessages = defineMessages({
   },
   edit: {
     defaultMessage: "Edit",
+    description: "button",
+  },
+  loadMore: {
+    defaultMessage: "Load more",
     description: "button",
   },
   manage: {

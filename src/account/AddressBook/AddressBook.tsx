@@ -6,9 +6,14 @@ import { useDefaultUserAddress, useDeleteUserAddresss } from "@sdk/react";
 import { AddressTypeEnum } from "@sdk/types/globalTypes";
 import { ShopContext } from "../../components/ShopProvider/context";
 
+import { buttonMessages } from "@saleor/intl"
+import { useIntl } from "react-intl";
+
 const AddressBook: React.FC<{
   user: any;
 }> = ({ user }) => {
+  const intl = useIntl();
+
   const { defaultCountry, countries } = React.useContext(ShopContext);
   const [displayNewModal, setDisplayNewModal] = React.useState(false);
   const [displayEditModal, setDisplayEditModal] = React.useState(false);
@@ -60,7 +65,12 @@ const AddressBook: React.FC<{
           userId={user.id}
           {...{ defaultValue: defaultCountry ? defaultCountry : {} }}
           submitBtnText={"Add"}
-          title={"Add new address"}
+          title={
+            intl.formatMessage({
+              defaultMessage: "Add new address",
+              description: "add new address title",
+            })
+          }
           {...{ countriesOptions: countries }}
           formId="address-form"
         />
@@ -71,8 +81,13 @@ const AddressBook: React.FC<{
             setDisplayEditModal(false);
           }}
           address={addressData}
-          submitBtnText={"Save"}
-          title={"Edit address"}
+          submitBtnText={intl.formatMessage(buttonMessages.save)}
+          title={
+            intl.formatMessage({
+              defaultMessage: "Edit address",
+              description: "edit address title",
+            })
+          }
           {...{ countriesOptions: countries }}
           formId="address-form"
         />
