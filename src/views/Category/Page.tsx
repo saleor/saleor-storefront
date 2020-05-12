@@ -66,19 +66,21 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
+    const value = attributes
+    .find(({ slug }) => attributeSlug === slug)
+    .values.find(({ slug }) => valueSlug === slug)
     return {
       attributeSlug,
-      valueName: attributes
-        .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
+      valueName: value.name,
+      valueNameTranslation: value.translation?.name,
       valueSlug,
     };
   };
 
   const activeFiltersAttributes =
     filters &&
-    filters.attributes &&
-    Object.keys(filters.attributes).reduce(
+    filters.attributes 
+    && Object.keys(filters.attributes).reduce(
       (acc, key) =>
         acc.concat(
           filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))

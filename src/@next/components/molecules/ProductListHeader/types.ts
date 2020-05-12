@@ -7,6 +7,7 @@ interface ActiveFiltersAttribute {
   attributeSlug: string;
   valueSlug: string;
   valueName: string;
+  valueNameTranslation: string | null;
 }
 
 export interface IProps {

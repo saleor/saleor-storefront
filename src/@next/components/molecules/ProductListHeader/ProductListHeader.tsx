@@ -5,6 +5,8 @@ import { Chip, DropdownSelect, Icon } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 export const ProductListHeader: React.FC<IProps> = ({
   numberOfProducts = 0,
   openFiltersMenu,
@@ -16,6 +18,8 @@ export const ProductListHeader: React.FC<IProps> = ({
   onChange,
   onCloseFilterAttribute,
 }: IProps) => {
+  const intl = useIntl();
+
   return (
     <S.Wrapper>
       <S.Bar>
@@ -23,7 +27,12 @@ export const ProductListHeader: React.FC<IProps> = ({
           <S.FiltersButton onClick={openFiltersMenu} data-cy="filters__button">
             <Icon name="filter" size={24} />
             <S.Filters>
-              FILTERS{" "}
+            {
+              intl.formatMessage({
+                defaultMessage: "FILTERS",
+                description: "FILTERS title",
+              })
+            }{" "}
               {activeFilters > 0 && (
                 <>
                   <span>({activeFilters})</span>
@@ -32,13 +41,27 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Filters>
           </S.FiltersButton>
           {activeFilters > 0 && (
-            <S.Clear onClick={clearFilters}>CLEAR FILTERS</S.Clear>
+            <S.Clear onClick={clearFilters}>
+              {
+                intl.formatMessage({
+                  defaultMessage: "CLEAR FILTERS",
+                  description: "CLEAR FILTERS button",
+                })
+              }
+            </S.Clear>
           )}
         </S.LeftSide>
 
         <S.RightSide>
           <S.Element data-cy="no-of-products-found_label">
-            <S.Label>Products found: </S.Label>
+            <S.Label>
+              {
+                intl.formatMessage({
+                  defaultMessage: "Products found: ",
+                  description: "products found label",
+                })
+              }
+            </S.Label>
             {numberOfProducts}
           </S.Element>
           <S.Element>
@@ -56,11 +79,11 @@ export const ProductListHeader: React.FC<IProps> = ({
       </S.Bar>
       <S.FiltersChipsWrapper>
         {activeFiltersAttributes.map(
-          ({ attributeSlug, valueName, valueSlug }) => (
+          ({ attributeSlug, valueName, valueSlug, valueNameTranslation }) => (
             <Chip
               onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
             >
-              {valueName}
+              {valueNameTranslation || valueName}
             </Chip>
           )
         )}
