@@ -2,247 +2,247 @@ import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
   availability: {
-    defaultMessage: "Availability"
+    defaultMessage: "Availability",
   },
   catalog: {
-    defaultMessage: "Catalog"
+    defaultMessage: "Catalog",
   },
   dashboard: {
-    defaultMessage: "Dashboard"
+    defaultMessage: "Dashboard",
   },
   description: {
-    defaultMessage: "Description"
+    defaultMessage: "Description",
   },
   discounts: {
-    defaultMessage: "Discounts"
+    defaultMessage: "Discounts",
   },
   drafts: {
-    defaultMessage: "Drafts"
+    defaultMessage: "Drafts",
   },
   email: {
-    defaultMessage: "E-mail Address"
+    defaultMessage: "E-mail Address",
   },
   endDate: {
-    defaultMessage: "End Date"
+    defaultMessage: "End Date",
   },
   endHour: {
-    defaultMessage: "End Hour"
+    defaultMessage: "End Hour",
   },
   firstName: {
-    defaultMessage: "First Name"
+    defaultMessage: "First Name",
   },
   generalInformations: {
-    defaultMessage: "General Informations"
+    defaultMessage: "General Informations",
   },
   lastName: {
-    defaultMessage: "Last Name"
+    defaultMessage: "Last Name",
   },
   no: {
-    defaultMessage: "No"
+    defaultMessage: "No",
   },
   optionalField: {
     defaultMessage: "Optional",
-    description: "field is optional"
+    description: "field is optional",
   },
   properties: {
-    defaultMessage: "Properties"
+    defaultMessage: "Properties",
   },
   readOnly: {
-    defaultMessage: "The site runs in read-only mode. Changes not saved."
+    defaultMessage: "The site runs in read-only mode. Changes not saved.",
   },
   requiredField: {
-    defaultMessage: "This field is required"
+    defaultMessage: "This field is required",
   },
   savedChanges: {
-    defaultMessage: "Saved changes"
+    defaultMessage: "Saved changes",
   },
   sessionExpired: {
-    defaultMessage: "Your session has expired. Please log in again to continue."
+    defaultMessage: "Your session has expired. Please log in again to continue.",
   },
   somethingWentWrong: {
-    defaultMessage: "The site ran into an unexpected problem"
+    defaultMessage: "The site ran into an unexpected problem",
   },
   startDate: {
-    defaultMessage: "Start Date"
+    defaultMessage: "Start Date",
   },
   startHour: {
-    defaultMessage: "Start Hour"
+    defaultMessage: "Start Hour",
   },
   status: {
-    defaultMessage: "Status"
+    defaultMessage: "Status",
   },
   summary: {
-    defaultMessage: "Summary"
+    defaultMessage: "Summary",
   },
   uploadImage: {
     defaultMessage: "Upload image",
-    description: "button"
+    description: "button",
   },
   yes: {
-    defaultMessage: "Yes"
-  }
+    defaultMessage: "Yes",
+  },
 });
 
 export const buttonMessages = defineMessages({
   accept: {
     defaultMessage: "Accept",
-    description: "button"
+    description: "button",
   },
   back: {
     defaultMessage: "Back",
-    description: "button"
+    description: "button",
   },
   cancel: {
     defaultMessage: "Cancel",
-    description: "button"
+    description: "button",
   },
   clear: {
     defaultMessage: "Clear",
-    description: "button"
+    description: "button",
   },
   confirm: {
     defaultMessage: "Confirm",
-    description: "button"
+    description: "button",
   },
   create: {
     defaultMessage: "Create",
-    description: "button"
+    description: "button",
   },
   delete: {
     defaultMessage: "Delete",
-    description: "button"
+    description: "button",
   },
   done: {
     defaultMessage: "Done",
-    description: "button"
+    description: "button",
   },
   edit: {
     defaultMessage: "Edit",
-    description: "button"
+    description: "button",
   },
   manage: {
     defaultMessage: "Manage",
-    description: "button"
+    description: "button",
   },
   ok: {
     defaultMessage: "OK",
-    description: "button"
+    description: "button",
   },
   remove: {
     defaultMessage: "Remove",
-    description: "button"
+    description: "button",
   },
   save: {
     defaultMessage: "Save",
-    description: "button"
+    description: "button",
   },
   show: {
     defaultMessage: "Show",
-    description: "button"
+    description: "button",
   },
   undo: {
     defaultMessage: "Undo",
-    description: "button"
-  }
+    description: "button",
+  },
 });
 
 export const sectionNames = defineMessages({
   attributes: {
     defaultMessage: "Attributes",
-    description: "attributes section name"
+    description: "attributes section name",
   },
   categories: {
     defaultMessage: "Categories",
-    description: "categories section name"
+    description: "categories section name",
   },
   collections: {
     defaultMessage: "Collections",
-    description: "collections section name"
+    description: "collections section name",
   },
   configuration: {
     defaultMessage: "Configuration",
-    description: "configuration section name"
+    description: "configuration section name",
   },
   customers: {
     defaultMessage: "Customers",
-    description: "customers section name"
+    description: "customers section name",
   },
   draftOrders: {
     defaultMessage: "Draft Orders",
-    description: "draft orders section name"
+    description: "draft orders section name",
   },
   home: {
     defaultMessage: "Home",
-    description: "home section name"
+    description: "home section name",
   },
   navigation: {
     defaultMessage: "Navigation",
-    description: "navigation section name"
+    description: "navigation section name",
   },
   orders: {
     defaultMessage: "Orders",
-    description: "orders section name"
+    description: "orders section name",
   },
   pages: {
     defaultMessage: "Pages",
-    description: "pages section name"
+    description: "pages section name",
   },
   permissionGroups: {
     defaultMessage: "Permission Groups",
-    description: "permission groups section name"
+    description: "permission groups section name",
   },
   plugins: {
     defaultMessage: "Plugins",
-    description: "plugins section name"
+    description: "plugins section name",
   },
   productTypes: {
     defaultMessage: "Product Types",
-    description: "product types section name"
+    description: "product types section name",
   },
   products: {
     defaultMessage: "Products",
-    description: "products section name"
+    description: "products section name",
   },
   sales: {
     defaultMessage: "Sales",
-    description: "sales section name"
+    description: "sales section name",
   },
   serviceAccounts: {
     defaultMessage: "Service Accounts",
-    description: "service accounts section name"
+    description: "service accounts section name",
   },
   shipping: {
     defaultMessage: "Shipping Methods",
-    description: "shipping section name"
+    description: "shipping section name",
   },
   siteSettings: {
     defaultMessage: "Site Settings",
-    description: "site settings section name"
+    description: "site settings section name",
   },
   staff: {
     defaultMessage: "Staff Members",
-    description: "staff section name"
+    description: "staff section name",
   },
   taxes: {
     defaultMessage: "Taxes",
-    description: "taxes section name"
+    description: "taxes section name",
   },
   translations: {
     defaultMessage: "Translations",
-    description: "translations section name"
+    description: "translations section name",
   },
   vouchers: {
     defaultMessage: "Vouchers",
-    description: "vouchers section name"
+    description: "vouchers section name",
   },
   warehouses: {
     defaultMessage: "Warehouses",
-    description: "warehouses section name"
+    description: "warehouses section name",
   },
   webhooks: {
     defaultMessage: "Webhooks",
-    description: "webhooks section name"
-  }
+    description: "webhooks section name",
+  },
 });
 
 export function translateBoolean(value: boolean, intl: IntlShape): string {
