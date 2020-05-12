@@ -19,6 +19,8 @@ import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
 
+import { useIntl } from "react-intl";
+
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
   switch (path) {
@@ -39,6 +41,8 @@ const returnTab: any = (path: string, userDetails, history) => {
 };
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
+  const intl = useIntl();
+
   const { data: user, loading } = useUserDetails();
 
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
@@ -53,7 +57,10 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "My Account" }]} />
+      <Breadcrumbs breadcrumbs={[{ link: match.path, value: intl.formatMessage({
+          defaultMessage: "My Account",
+          description: "myaccount breadcrumb value",
+       })}]} />
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
