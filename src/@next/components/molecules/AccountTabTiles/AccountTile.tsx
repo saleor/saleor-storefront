@@ -7,6 +7,7 @@ import { Attribute, IconButton, Tile } from "@components/atoms";
 import { AccountUpdateForm } from "./AccountUpdateForm";
 import * as S from "./styles";
 
+import { commonMessages } from "@saleor/intl";
 import { useIntl } from "react-intl";
 
 export const AccountTile: React.FC = () => {
@@ -61,19 +62,11 @@ export const AccountTile: React.FC = () => {
             ) : (
               <S.ContentOneLine>
                 <Attribute
-                  description=
-                  {intl.formatMessage({
-                    defaultMessage: "First Name",
-                    description: "first name account attribute",
-                  })}
+                  description={intl.formatMessage(commonMessages.firstName)}
                   attributeValue={(user && user.firstName) || "-"}
                 />
                 <Attribute
-                  description=
-                  {intl.formatMessage({
-                    defaultMessage: "Last Name",
-                    description: "last name account attribute",
-                  })}
+                  description={intl.formatMessage(commonMessages.lastName)}
                   attributeValue={(user && user.lastName) || "-"}
                 />
               </S.ContentOneLine>
