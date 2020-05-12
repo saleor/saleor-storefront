@@ -5,6 +5,9 @@ import { InputSelect, TextField } from "@components/molecules";
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
 
+import { commonMessages } from "@saleor/intl"
+import { useIntl } from "react-intl";
+
 export const AddressFormContent: React.FC<PropsWithFormik> = ({
   formRef,
   handleChange,
@@ -18,6 +21,8 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   setFieldValue,
   includeEmail = false,
 }) => {
+  const intl = useIntl();
+
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
     [handleChange, handleBlur]
@@ -40,7 +45,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormFirstName"
             name="firstName"
-            label="First Name"
+            label={intl.formatMessage(commonMessages.firstName)}
             value={values!.firstName}
             autoComplete="given-name"
             errors={fieldErrors!.firstName}
@@ -49,7 +54,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormLastName"
             name="lastName"
-            label="Last Name"
+            label={intl.formatMessage(commonMessages.lastName)}
             value={values!.lastName}
             autoComplete="family-name"
             errors={fieldErrors!.lastName}
@@ -60,7 +65,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormCompanyName"
             name="companyName"
-            label="Company Name (Optional)"
+            label=
+            {
+              intl.formatMessage({
+                defaultMessage: "Company Name (Optional)",
+                description: "company name label",
+              })
+            }
             value={values!.companyName}
             autoComplete="organization"
             errors={fieldErrors!.companyName}
@@ -69,7 +80,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormPhone"
             name="phone"
-            label="Phone"
+            label={intl.formatMessage(commonMessages.phone)}
             value={values!.phone}
             autoComplete="tel"
             errors={fieldErrors!.phone}
@@ -80,7 +91,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormStreetAddress1"
             name="streetAddress1"
-            label="Address line 1"
+            label=
+            {
+              intl.formatMessage({
+                defaultMessage: "Address line 1",
+                description: "Address line 1 label",
+              })
+            }
             value={values!.streetAddress1}
             autoComplete="address-line1"
             errors={fieldErrors!.streetAddress1}
@@ -91,7 +108,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormStreetAddress2"
             name="streetAddress2"
-            label="Address line 2"
+            label=
+            {
+              intl.formatMessage({
+                defaultMessage: "Address line 2",
+                description: "Address line 2 label",
+              })
+            }
             value={values!.streetAddress2}
             autoComplete="address-line2"
             errors={fieldErrors!.streetAddress2}
@@ -102,7 +125,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormCity"
             name="city"
-            label="City"
+            label={intl.formatMessage(commonMessages.city)}
             value={values!.city}
             autoComplete="address-level1"
             errors={fieldErrors!.city}
@@ -111,7 +134,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormPostalCode"
             name="postalCode"
-            label="ZIP/Postal Code"
+            label=
+            {
+              intl.formatMessage({
+                defaultMessage: "ZIP/Postal Code",
+                description: "ZIP/Postal Code label",
+              })
+            }
             value={values!.postalCode}
             autoComplete="postal-code"
             errors={fieldErrors!.postalCode}
@@ -124,7 +153,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
               "data-cy": "addressFormCountry",
             }}
             defaultValue={defaultValue}
-            label="Country"
+            label={intl.formatMessage(commonMessages.country)}
             name="country"
             options={countriesOptions}
             value={
@@ -142,7 +171,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormCountryArea"
             name="countryArea"
-            label="State/province"
+            label=
+            {
+              intl.formatMessage({
+                defaultMessage: "State/province",
+                description: "State/province label",
+              })
+            }
             value={values!.countryArea}
             autoComplete="address-level2"
             errors={fieldErrors!.countryArea}
@@ -154,7 +189,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             <TextField
               data-cy="addressFormEmail"
               name="email"
-              label="Email"
+              label={intl.formatMessage(commonMessages.email)}
               value={values!.email}
               autoComplete="email"
               errors={fieldErrors!.email}
