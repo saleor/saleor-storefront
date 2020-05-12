@@ -1,7 +1,9 @@
 import "./scss/index.scss";
 
+import queryString from "query-string";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
+import { useLocation } from "react-router-dom";
 
 import { useCart } from "@sdk/react";
 
@@ -49,6 +51,9 @@ const extractMeta = (product: ProductDetails_product) => ({
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
 
+  const search = useLocation().search;
+  const searchVariants = queryString.parse(search);
+
   return (
     <TypedProductDetailsQuery
       loaderFull
@@ -62,11 +67,16 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
-
+            // console.log("prod", product);
             if (canDisplay(product)) {
               return (
                 <MetaWrapper meta={extractMeta(product)}>
-                  <Page product={product} add={addItem} items={items} />
+                  <Page
+                    product={product}
+                    add={addItem}
+                    items={items}
+                    searchVariants={searchVariants}
+                  />
                 </MetaWrapper>
               );
             }

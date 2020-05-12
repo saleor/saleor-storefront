@@ -117,6 +117,10 @@ export interface VariantList_productVariants_edges_node_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
 }
 
 export interface VariantList_productVariants_edges_node_attributes_values {
