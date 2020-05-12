@@ -104,28 +104,28 @@ export const sortLabelsMessages = defineMessages({
     defaultMessage: "Clear...",
     description: "label",
   },
-  priceLowHigh: {
-    defaultMessage: "Price Low-High",
-    description: "label",
-  },
-  priceHighLow: {
-    defaultMessage: "Price High-Low",
-    description: "label",
-  },
-  nameInc: {
-    defaultMessage: "Name Increasing",
-    description: "label",
-  },
-  nameDec: {
-    defaultMessage: "Name Decreasing",
-    description: "label",
-  },
   lastUpdateAsc: {
     defaultMessage: "Last updated Ascending",
     description: "label",
   },
   lastupdateDes: {
     defaultMessage: "Last updated Descending",
+    description: "label",
+  },
+  nameDec: {
+    defaultMessage: "Name Decreasing",
+    description: "label",
+  },
+  nameInc: {
+    defaultMessage: "Name Increasing",
+    description: "label",
+  },
+  priceHighLow: {
+    defaultMessage: "Price High-Low",
+    description: "label",
+  },
+  priceLowHigh: {
+    defaultMessage: "Price Low-High",
     description: "label",
   },
 });
