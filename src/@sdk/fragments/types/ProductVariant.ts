@@ -104,6 +104,12 @@ export interface ProductVariant_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: ProductVariant_attributes_attribute_translation | null;
+}
+
+export interface ProductVariant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface ProductVariant_attributes_values {
@@ -120,6 +126,11 @@ export interface ProductVariant_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: ProductVariant_attributes_values_translation | null;
+}
+export interface ProductVariant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface ProductVariant_attributes {
@@ -166,6 +177,7 @@ export interface ProductVariant_product {
    */
   id: string;
   name: string;
+  translation: ProductVariant_product_translation | null;
   /**
    * The main thumbnail for a product.
    */
@@ -176,6 +188,10 @@ export interface ProductVariant_product {
   thumbnail2x: ProductVariant_product_thumbnail2x | null;
   productType: ProductVariant_product_productType;
 }
+export interface ProductVariant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+}
 
 export interface ProductVariant {
   __typename: "ProductVariant";
@@ -184,6 +200,7 @@ export interface ProductVariant {
    */
   id: string;
   name: string;
+  translation: ProductVariant_translation | null;
   sku: string;
   /**
    * Quantity of a product available for sale.
@@ -202,4 +219,9 @@ export interface ProductVariant {
    */
   attributes: ProductVariant_attributes[];
   product: ProductVariant_product;
+}
+
+export interface ProductVariant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }

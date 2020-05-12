@@ -104,8 +104,12 @@ export interface Order_orderByToken_lines_variant {
    */
   price: Order_orderByToken_lines_variant_price | null;
   product: Order_orderByToken_lines_variant_product;
+  translation: Order_orderByToken_lines_variant_translation | null;
 }
-
+export interface Order_orderByToken_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
+}
 export interface Order_orderByToken_lines {
   __typename: "OrderLine";
   productName: string;

@@ -8,12 +8,18 @@ import { useOrderDetails, useUserDetails } from "@sdk/react";
 
 import Page from "./Page";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
     params: { token },
   },
 }) => {
-  const { data: order, loading } = useOrderDetails({ token });
+  const { locale } = useLocale();
+  const { data: order, loading } = useOrderDetails({ 
+    locale:locale.toUpperCase(), 
+    token, 
+  });
   const { data: user } = useUserDetails();
   const guest = !user;
 

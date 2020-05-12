@@ -42,6 +42,7 @@ export const checkoutProductVariantFragment = gql`
     sku
     stockQuantity
     isAvailable
+    translation(languageCode:$locale){name}
     pricing {
       onSale
       priceUndiscounted {
@@ -55,16 +56,19 @@ export const checkoutProductVariantFragment = gql`
       attribute {
         id
         name
+        translation(languageCode:$locale){name}
       }
       values {
         id
         name
         value: name
+        translation(languageCode:$locale){name}
       }
     }
     product {
       id
       name
+      translation(languageCode:$locale){name}
       thumbnail {
         url
         alt

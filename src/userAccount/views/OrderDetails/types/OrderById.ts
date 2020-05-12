@@ -147,6 +147,12 @@ export interface OrderById_order_lines_variant_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: OrderById_order_lines_variant_attributes_attribute_translation | null;
+}
+
+export interface OrderById_order_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface OrderById_order_lines_variant_attributes_values {
@@ -163,6 +169,12 @@ export interface OrderById_order_lines_variant_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: OrderById_order_lines_variant_attributes_values_translation | null;
+}
+
+export interface OrderById_order_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface OrderById_order_lines_variant_attributes {
@@ -209,6 +221,7 @@ export interface OrderById_order_lines_variant_product {
    */
   id: string;
   name: string;
+  translation: OrderById_order_lines_variant_product_translation | null;
   /**
    * The main thumbnail for a product.
    */
@@ -218,6 +231,11 @@ export interface OrderById_order_lines_variant_product {
    */
   thumbnail2x: OrderById_order_lines_variant_product_thumbnail2x | null;
   productType: OrderById_order_lines_variant_product_productType;
+}
+
+export interface OrderById_order_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface OrderById_order_lines_variant {
@@ -245,6 +263,12 @@ export interface OrderById_order_lines_variant {
    */
   attributes: OrderById_order_lines_variant_attributes[];
   product: OrderById_order_lines_variant_product;
+  translation: OrderById_order_lines_variant_translation | null;
+}
+
+export interface OrderById_order_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface OrderById_order_lines_unitPrice_gross {

@@ -5,7 +5,10 @@ import { orderDetailFragment } from "../fragments/user";
 
 export const orderDetailsByTokenQuery = gql`
   ${orderDetailFragment}
-  query OrderByToken($token: UUID!) {
+  query OrderByToken(
+    $token: UUID!
+    $locale:LanguageCodeEnum!
+  ) {
     orderByToken(token: $token) {
       ...OrderDetail
     }
