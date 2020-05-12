@@ -6,7 +6,11 @@ import { usePasswordChange } from "@sdk/react";
 import { PasswordChangeForm } from "./PasswordChangeForm";
 import * as S from "./styles";
 
+import { useIntl } from "react-intl";
+
 export const PasswordTile: React.FC = () => {
+  const intl = useIntl();
+
   const [isEditing, setIsEditing] = React.useState(false);
   const [setPasswordChange, { data, error }] = usePasswordChange();
 
@@ -20,7 +24,12 @@ export const PasswordTile: React.FC = () => {
       <Tile>
         <S.Wrapper>
           <S.Header>
-            MY PASSWORD
+            {
+              intl.formatMessage({
+                defaultMessage: "MY PASSWORD",
+                description: "my password title",
+              })
+            }
             {!isEditing && (
               <IconButton
                 name="edit"
@@ -44,7 +53,13 @@ export const PasswordTile: React.FC = () => {
               </S.ContentEdit>
             ) : (
               <Attribute
-                description="Password"
+                description=
+                {
+                  intl.formatMessage({
+                    defaultMessage: "Password",
+                    description: "password title",
+                  })
+                }
                 attributeValue="**************"
               />
             )}
