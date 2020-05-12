@@ -17,6 +17,12 @@ export interface Article_page {
   seoTitle: string | null;
   slug: string;
   title: string;
+  translation: Article_page_translation | null;
+}
+export interface Article_page_translation {
+  __typename: "PageTranslation";
+  contentJson: any;
+  title: string;
 }
 
 export interface Article_shop_homepageCollection_backgroundImage {
@@ -57,4 +63,5 @@ export interface Article {
 
 export interface ArticleVariables {
   slug: string;
+  locale:string;
 }

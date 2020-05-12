@@ -18,6 +18,10 @@ interface PageProps {
   page: {
     contentJson: any;
     title: string;
+    translation: {
+      contentJson: any;
+      title: string;
+    }
   };
 }
 export const Page: React.FC<PageProps> = ({
@@ -32,7 +36,7 @@ export const Page: React.FC<PageProps> = ({
       style={headerImage ? { backgroundImage: `url(${headerImage})` } : null}
     >
       <span className="article-page__header__title">
-        <h1>{page.title}</h1>
+        <h1>{page.translation?.title || page.title}</h1>
       </span>
     </div>
     <div className="container">
@@ -56,7 +60,10 @@ export const Page: React.FC<PageProps> = ({
         </div>
         <div className="article-page__content">
         <RichTextContent
-          descriptionJson={page.contentJson}
+          descriptionJson={
+            page.translation?.contentJson.toString() == "{}" ?
+            page.contentJson : page.translation?.contentJson || page.contentJson
+        }
         />
         </div>
       </div>
