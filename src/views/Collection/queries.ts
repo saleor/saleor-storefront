@@ -1,14 +1,16 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import {
+import { 
   basicProductFragment,
+  productNameTranslationFragment,
   productPricingFragment,
 } from "../Product/queries";
 import { Collection, CollectionVariables } from "./types/Collection";
 
 export const collectionProductsQuery = gql`
   ${basicProductFragment}
+  ${productNameTranslationFragment}
   ${productPricingFragment}
   query Collection(
     $id: ID!
@@ -18,6 +20,7 @@ export const collectionProductsQuery = gql`
     $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
+    $locale:LanguageCodeEnum!
   ) {
     collection(id: $id) {
       id
@@ -28,6 +31,7 @@ export const collectionProductsQuery = gql`
       backgroundImage {
         url
       }
+      translation(languageCode:$locale){name}
     }
     products(
       after: $after
@@ -44,9 +48,11 @@ export const collectionProductsQuery = gql`
         node {
           ...BasicProductFields
           ...ProductPricingField
+          ...ProductNameTranslationFields
           category {
             id
             name
+            translation(languageCode:$locale){name}
           }
         }
       }
@@ -63,10 +69,12 @@ export const collectionProductsQuery = gql`
           id
           name
           slug
+          translation(languageCode:$locale){name}
           values {
             id
             name
             slug
+            translation(languageCode:$locale){name}
           }
         }
       }

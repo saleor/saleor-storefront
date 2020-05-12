@@ -389,4 +389,5 @@ export interface CollectionVariables {
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  locale: any;
 }

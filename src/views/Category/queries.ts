@@ -66,6 +66,7 @@ export const categoryProductsQuery = gql`
           node {
             id
             name
+            translation(languageCode:$locale){name}
           }
         }
       }
