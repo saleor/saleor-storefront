@@ -6,11 +6,16 @@ import { Button, ButtonLink } from "@components/atoms";
 import { IFormError } from "@types";
 import * as S from "./styles";
 
+import { buttonMessages, commonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
 export const PasswordChangeForm: React.FC<{
   handleSubmit: (data: any) => void;
   hide: () => void;
   error?: IFormError[];
 }> = ({ handleSubmit, hide, error }) => {
+  const intl = useIntl();
+
   const fieldErrors: any = {};
 
   if (error) {
@@ -45,17 +50,17 @@ export const PasswordChangeForm: React.FC<{
             newPassword?: string;
           } = {};
           if (!values.confirmPassword) {
-            errors.confirmPassword = "Required field";
+            errors.confirmPassword = intl.formatMessage(commonMessages.requiredField);
           }
           if (!values.newPassword) {
-            errors.newPassword = "Required field";
+            errors.newPassword = intl.formatMessage(commonMessages.requiredField);
           }
           if (!values.oldPassword) {
-            errors.oldPassword = "Required field";
+            errors.oldPassword = intl.formatMessage(commonMessages.requiredField);
           }
           if (values.confirmPassword !== values.newPassword) {
-            errors.confirmPassword = "Passwords do not match";
-            errors.newPassword = "Passwords do not match";
+            errors.confirmPassword = intl.formatMessage(commonMessages.passwordsDoNotMatch);
+            errors.newPassword = intl.formatMessage(commonMessages.passwordsDoNotMatch);
           }
           return errors;
         }}
@@ -74,7 +79,11 @@ export const PasswordChangeForm: React.FC<{
             <S.Form onSubmit={handleSubmit}>
               <TextField
                 name="oldPassword"
-                label="Old Password"
+                label=
+                {intl.formatMessage({
+                  defaultMessage: "Old Password",
+                  description: "old password label",
+                })}
                 type="password"
                 value={values.oldPassword}
                 onBlur={handleBlur}
@@ -87,7 +96,11 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="newPassword"
-                label="New Password"
+                label=
+                {intl.formatMessage({
+                  defaultMessage: "New Password",
+                  description: "new password label",
+                })}
                 type="password"
                 value={values.newPassword}
                 onBlur={handleBlur}
@@ -100,7 +113,11 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="confirmPassword"
-                label="Confirm Password"
+                label=
+                {intl.formatMessage({
+                  defaultMessage: "Confirm Password",
+                  description: "confirm password label",
+                })}
                 type="password"
                 value={values.confirmPassword}
                 onBlur={handleBlur}
@@ -113,14 +130,14 @@ export const PasswordChangeForm: React.FC<{
               />
               <S.FormButtons>
                 <ButtonLink type="button" color="secondary" onClick={hide}>
-                  Cancel
+                 {intl.formatMessage(buttonMessages.cancel)}
                 </ButtonLink>
                 <Button
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  Save
+                  {intl.formatMessage(buttonMessages.save)}
                 </Button>
               </S.FormButtons>
             </S.Form>

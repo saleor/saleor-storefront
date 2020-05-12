@@ -44,6 +44,9 @@ export const commonMessages = defineMessages({
     defaultMessage: "Optional",
     description: "field is optional",
   },
+  passwordsDoNotMatch: {
+    defaultMessage: "Passwords do not match",
+  },
   properties: {
     defaultMessage: "Properties",
   },
@@ -51,7 +54,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "The site runs in read-only mode. Changes not saved.",
   },
   requiredField: {
-    defaultMessage: "This field is required",
+    defaultMessage: "Required field",
   },
   savedChanges: {
     defaultMessage: "Saved changes",
