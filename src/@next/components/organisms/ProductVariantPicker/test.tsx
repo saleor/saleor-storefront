@@ -16,7 +16,7 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
-const PROPS = { productVariants };
+const PROPS = { productVariants, queryAttributes: {} };
 
 describe("<ProductVariantPicker />", () => {
   it("exists", () => {

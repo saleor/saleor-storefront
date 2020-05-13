@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Icon, Input } from "@components/atoms";
 import { InputSelect } from "@components/molecules";
@@ -21,6 +21,8 @@ export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributesSelectedValues: IProductVariantsAttributesSelectedValues;
   onChangeSelection: (value: any, name?: any) => void;
   onClearSelection: () => void;
+  updateUrlWithAttributes: any;
+  defaultValue?: string;
 }> = ({
   selectSidebar = false,
   selectSidebarTarget,
@@ -30,36 +32,33 @@ export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributesSelectedValues,
   onChangeSelection,
   onClearSelection,
+  defaultValue,
 }) => {
   const [showSelectSidebar, setShowSelectSidebar] = React.useState(false);
-
   const selectableProductVariantsAttributeValues = useSelectableProductVariantsAttributeValues(
     productVariantsAttributeId,
     productVariants,
     productVariantsAttributesSelectedValues
   );
 
-  const selectedValue = productVariantsAttributesSelectedValues &&
-    productVariantsAttributesSelectedValues[productVariantsAttributeId] && {
-      disabled: false,
-      id: productVariantsAttributesSelectedValues[productVariantsAttributeId]!
-        .id,
-      label: productVariantsAttributesSelectedValues[
-        productVariantsAttributeId
-      ]!.name!,
-      value: productVariantsAttributesSelectedValues[
-        productVariantsAttributeId
-      ]!.value!,
-    };
+  const selectedAttribute =
+    productVariantsAttributesSelectedValues &&
+    productVariantsAttributesSelectedValues[productVariantsAttributeId];
+
+  const selectedValue = selectedAttribute && {
+    disabled: false,
+    id: selectedAttribute.id,
+    label: selectedAttribute.name!,
+    value: selectedAttribute.value!,
+  };
 
   const attributeOptions = productVariantsAttribute.values
     .filter(value => value)
     .map(value => {
+      const selectableAttribute =
+        selectableProductVariantsAttributeValues[productVariantsAttributeId];
       const isOptionDisabled =
-        selectableProductVariantsAttributeValues[productVariantsAttributeId] &&
-        !selectableProductVariantsAttributeValues[
-          productVariantsAttributeId
-        ].values.includes(value);
+        selectableAttribute && !selectableAttribute.values.includes(value);
 
       return {
         disabled: isOptionDisabled,
@@ -69,9 +68,7 @@ export const ProductVariantAttributeSelect: React.FC<{
       };
     });
 
-  const selectLabel = productVariantsAttribute.attribute.name
-    ? productVariantsAttribute.attribute.name!
-    : "";
+  const selectLabel = productVariantsAttribute.attribute.name || "";
 
   const selectedValuesList = selectedValue ? [selectedValue.value] : [];
 
@@ -79,14 +76,19 @@ export const ProductVariantAttributeSelect: React.FC<{
     .filter(optionValue => optionValue.disabled)
     .map(optionValue => optionValue.value);
 
-  const handleSelectValueInSidebar = (optionValue: string) => {
+  const onSelectValueHandler = (optionValue: string, callback?: () => void) => {
     if (
       disabledValuesList.every(disabledValue => disabledValue !== optionValue)
     ) {
       onChangeSelection(optionValue);
-      setShowSelectSidebar(false);
+      if (callback) {
+        callback();
+      }
     }
   };
+
+  const handleSelectValueInSidebar = (optionValue: string) =>
+    onSelectValueHandler(optionValue, () => setShowSelectSidebar(false));
 
   const getRightInputContent = (isInputFilled: boolean) => {
     if (isInputFilled) {
@@ -103,6 +105,12 @@ export const ProductVariantAttributeSelect: React.FC<{
       );
     }
   };
+
+  useEffect(() => {
+    if (defaultValue) {
+      onSelectValueHandler(defaultValue);
+    }
+  }, [defaultValue]);
 
   if (selectSidebar) {
     return (
@@ -135,9 +143,7 @@ export const ProductVariantAttributeSelect: React.FC<{
         value={selectedValue}
         options={attributeOptions}
         isOptionDisabled={optionValue => optionValue.disabled}
-        onChange={optionValue =>
-          onChangeSelection(optionValue && optionValue.value)
-        }
+        onChange={optionValue => onChangeSelection(optionValue?.value)}
         clearable={true}
         clearValue={onClearSelection}
       />

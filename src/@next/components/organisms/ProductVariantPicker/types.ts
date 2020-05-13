@@ -10,6 +10,5 @@ export interface IProps {
   ) => void;
   selectSidebar?: boolean;
   selectSidebarTarget?: HTMLElement | null;
-  queryVariants?: { [key: string]: string };
-  updateUrlWithAttributes: (slug: string, value: string) => void;
+  queryAttributes: Record<string, string>;
 }

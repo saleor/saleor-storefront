@@ -1,10 +1,10 @@
 import "./scss/index.scss";
 
-import queryString from "query-string";
-import * as React from "react";
+import { isEmpty } from "lodash";
+import React, { useEffect, useMemo } from "react";
 import { RouteComponentProps } from "react-router";
-import { useLocation } from "react-router-dom";
 
+import { useSearchQueryAttributes } from "@hooks";
 import { useCart } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
@@ -13,6 +13,7 @@ import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
+import { IProps } from "./types";
 
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
@@ -48,11 +49,53 @@ const extractMeta = (product: ProductDetails_product) => ({
   url: window.location.href,
 });
 
+const PageWithQueryAttributes: React.FC<IProps> = props => {
+  const { product } = props;
+  const { clearUrl, searchQueryAttributes } = useSearchQueryAttributes();
+
+  const queryAttributes = useMemo(() => {
+    let queryAttributes = {};
+    if (!isEmpty(searchQueryAttributes)) {
+      product.variants.forEach(({ attributes }) => {
+        attributes.map(({ attribute, values }) => {
+          const attributeId = attribute.id;
+          const selectedAttributeValue = searchQueryAttributes[attribute.slug];
+          if (selectedAttributeValue) {
+            values.map(({ value }) => {
+              if (value === selectedAttributeValue) {
+                if (
+                  isEmpty(queryAttributes) ||
+                  attributes.some(
+                    ({ attribute, values }) =>
+                      queryAttributes[attribute.id] &&
+                      queryAttributes[attribute.id] === values[0].value
+                  )
+                ) {
+                  queryAttributes = {
+                    ...queryAttributes,
+                    [attributeId]: selectedAttributeValue,
+                  };
+                }
+              }
+            });
+          }
+        });
+      });
+    }
+    return queryAttributes;
+  }, [product.variants]);
+
+  useEffect(() => {
+    if (!isEmpty(queryAttributes)) {
+      clearUrl();
+    }
+  }, [queryAttributes]);
+
+  return <Page {...props} queryAttributes={queryAttributes} />;
+};
+
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
-
-  const search = useLocation().search;
-  const searchVariants = queryString.parse(search);
 
   return (
     <TypedProductDetailsQuery
@@ -67,15 +110,13 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
-            // console.log("prod", product);
             if (canDisplay(product)) {
               return (
                 <MetaWrapper meta={extractMeta(product)}>
-                  <Page
+                  <PageWithQueryAttributes
                     product={product}
                     add={addItem}
                     items={items}
-                    searchVariants={searchVariants}
                   />
                 </MetaWrapper>
               );

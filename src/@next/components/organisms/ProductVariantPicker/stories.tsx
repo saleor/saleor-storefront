@@ -25,6 +25,7 @@ const PRODUCT_VARIANTS = productVariants;
 const PROPS = {
   onChange: action("onChange"),
   productVariants: PRODUCT_VARIANTS,
+  queryAttributes: {},
 };
 
 storiesOf("@components/organisms/ProductVariantPicker", module)

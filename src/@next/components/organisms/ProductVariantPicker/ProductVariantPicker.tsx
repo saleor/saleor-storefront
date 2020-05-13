@@ -3,17 +3,18 @@ import React, { useEffect } from "react";
 import {
   useProductVariantsAttributes,
   useProductVariantsAttributesValuesSelection,
+  useSearchQueryAttributes,
 } from "@hooks";
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";
 import { IProps } from "./types";
+
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
-  queryVariants = {},
+  queryAttributes = {},
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
-  updateUrlWithAttributes,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
@@ -22,12 +23,12 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     productVariantsAttributesSelectedValues,
     selectProductVariantsAttributesValue,
   ] = useProductVariantsAttributesValuesSelection(productVariantsAttributes);
+  const { updateUrlWithAttributes } = useSearchQueryAttributes();
 
   useEffect(() => {
     const selectedVariant = productVariants.find(productVariant => {
       return productVariant.attributes.every(productVariantAttribute => {
         const productVariantAttributeId = productVariantAttribute.attribute.id;
-
         if (
           productVariantAttribute.values[0] &&
           productVariantsAttributesSelectedValues[productVariantAttributeId] &&
@@ -45,21 +46,20 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     }
   }, [productVariantsAttributesSelectedValues]);
 
-  useEffect(() => {
-    if (onChange) {
-      for (const id of Object.keys(queryVariants)) {
-        selectProductVariantsAttributesValue(id, queryVariants[id]);
-      }
+  const onAttributeChange = (id: string, value: any, slug?: string) => {
+    selectProductVariantsAttributesValue(id, value);
+    if (slug) {
+      updateUrlWithAttributes(slug, value);
     }
-  }, [queryVariants]);
+  };
 
   return (
     <S.Wrapper>
       {Object.keys(productVariantsAttributes).map(
         productVariantsAttributeId => {
-          const slug =
-            productVariantsAttributes[productVariantsAttributeId].attribute
-              .slug;
+          const productVariantsAttribute =
+            productVariantsAttributes[productVariantsAttributeId];
+          const slug = productVariantsAttribute.attribute.slug;
 
           return (
             <ProductVariantAttributeSelect
@@ -68,27 +68,18 @@ export const ProductVariantPicker: React.FC<IProps> = ({
               selectSidebarTarget={selectSidebarTarget}
               productVariants={productVariants}
               productVariantsAttributeId={productVariantsAttributeId}
-              productVariantsAttribute={
-                productVariantsAttributes[productVariantsAttributeId]
-              }
+              productVariantsAttribute={productVariantsAttribute}
+              defaultValue={queryAttributes[productVariantsAttributeId]}
               productVariantsAttributesSelectedValues={
                 productVariantsAttributesSelectedValues
               }
-              onChangeSelection={optionValue => {
-                selectProductVariantsAttributesValue(
-                  productVariantsAttributeId,
-                  optionValue
-                );
-
-                slug && updateUrlWithAttributes(slug, optionValue);
-              }}
-              onClearSelection={() => {
-                selectProductVariantsAttributesValue(
-                  productVariantsAttributeId,
-                  null
-                );
-                updateUrlWithAttributes(slug, "");
-              }}
+              updateUrlWithAttributes={updateUrlWithAttributes}
+              onChangeSelection={optionValue =>
+                onAttributeChange(productVariantsAttributeId, optionValue, slug)
+              }
+              onClearSelection={() =>
+                onAttributeChange(productVariantsAttributeId, null, slug)
+              }
             />
           );
         }
