@@ -2,6 +2,8 @@ import * as React from "react";
 
 import "./scss/index.scss";
 
-const ContentPage: React.FC = () => <div>Content Page</div>;
+import { FormattedMessage } from "react-intl";
+
+const ContentPage: React.FC = () => <div><FormattedMessage defaultMessage="Content Page"/></div>;
 
 export default ContentPage;
