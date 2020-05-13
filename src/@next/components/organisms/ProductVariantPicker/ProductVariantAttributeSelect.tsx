@@ -21,7 +21,6 @@ export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributesSelectedValues: IProductVariantsAttributesSelectedValues;
   onChangeSelection: (value: any, name?: any) => void;
   onClearSelection: () => void;
-  updateUrlWithAttributes: any;
   defaultValue?: string;
 }> = ({
   selectSidebar = false,
