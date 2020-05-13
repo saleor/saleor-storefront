@@ -33,7 +33,14 @@ export interface SearchResults_products_edges_node_category {
    */
   id: string;
   name: string;
+  translation: SearchResults_products_edges_node_category_translation | null;
 }
+
+export interface SearchResults_products_edges_node_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 
 export interface SearchResults_products_edges_node {
   __typename: "Product";
@@ -55,6 +62,12 @@ export interface SearchResults_products_edges_node {
    */
   url: string;
   category: SearchResults_products_edges_node_category | null;
+  translation: SearchResults_products_edges_node_translation | null;
+}
+
+export interface SearchResults_products_edges_node_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface SearchResults_products_edges {
@@ -103,4 +116,5 @@ export interface SearchResults {
 
 export interface SearchResultsVariables {
   query: string;
+  locale: string;
 }

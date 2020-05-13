@@ -23,7 +23,7 @@ const OverlayManager: React.FC = () => (
           return <Cart overlay={overlay} />;
 
         case OverlayType.search:
-          return <Search overlay={overlay} />;
+          return <Search overlay={overlay}/>;
 
         case OverlayType.login:
           return <Login overlay={overlay} />;

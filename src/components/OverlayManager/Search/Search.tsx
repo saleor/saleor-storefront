@@ -27,8 +27,13 @@ import { SearchResults } from "./types/SearchResults";
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
 
+import { IntlShape } from "react-intl";
+import withLocale from "../withLocale"
+
 interface SearchProps extends RouteComponentProps {
   overlay: OverlayContextInterface;
+  locale: string;
+  intl: IntlShape;
 }
 
 interface SearchState {
@@ -80,6 +85,8 @@ class Search extends React.Component<SearchProps, SearchState> {
   }
 
   render() {
+    const intl = this.props.intl;
+
     return (
       <Overlay context={this.props.overlay} className="overlay--no-background">
         <form
@@ -98,7 +105,11 @@ class Search extends React.Component<SearchProps, SearchState> {
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}
-              placeholder="Search"
+              placeholder={
+                intl.formatMessage({
+                  defaultMessage: "Search",
+                  id:"search",
+              })}
               onBlur={this.handleInputBlur}
             />
           </div>
@@ -116,7 +127,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{ query: this.state.search }}
+                      variables={{ query: this.state.search, locale: this.props.locale}}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {
@@ -138,7 +149,11 @@ class Search extends React.Component<SearchProps, SearchState> {
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >
-                                    Show all results
+                                    {
+                                      intl.formatMessage({
+                                        defaultMessage: "Show all results",
+                                        id:"showAllResults",
+                                    })}
                                   </Button>
                                 )}
                               </div>
@@ -171,8 +186,8 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 // Workaround ATM for:
 // withRouter(Search): Function components do not support contextType
-export default withRouter(
-  (props: RouteComponentProps & { overlay: OverlayContextInterface }) => (
-    <Search {...props} />
-  )
+export default 
+  withRouter(
+    (props: RouteComponentProps & { overlay: OverlayContextInterface}) => 
+      withLocale(Search)(props)
 );
