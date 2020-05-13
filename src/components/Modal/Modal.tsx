@@ -7,6 +7,9 @@ import ReactSVG from "react-svg";
 import { Button } from "..";
 import closeImg from "../../images/modal-close.svg";
 
+import { commonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
 interface IModalProps {
   target?: HTMLElement | null;
   title: string;
@@ -30,7 +33,10 @@ const Modal: React.FC<IModalProps> = ({
   show,
   title,
 }) =>
-  target && show
+  {
+    const intl = useIntl();
+
+    return(target && show
     ? ReactDOM.createPortal(
         <div className="overlay overlay--modal">
           <div className="overlay__modal">
@@ -57,7 +63,7 @@ const Modal: React.FC<IModalProps> = ({
                     disabled={loading}
                     className="modal__button"
                   >
-                    {loading ? "Loading" : submitBtnText}
+                    {loading ? intl.formatMessage(commonMessages.loading) : submitBtnText}
                   </Button>
                 )}
               </div>
@@ -66,6 +72,7 @@ const Modal: React.FC<IModalProps> = ({
         </div>,
         target
       )
-    : null;
+    : null
+    )};
 
 export default Modal;
