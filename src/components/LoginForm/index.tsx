@@ -7,11 +7,16 @@ import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
 
+import { commonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
 interface ILoginForm {
   hide?: () => void;
 }
 
 const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
+  const intl = useIntl();
+
   const [signIn, { loading, error }] = useSignIn();
 
   const handleOnSubmit = async (evt, { email, password }) => {
@@ -31,20 +36,21 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         <TextField
           name="email"
           autoComplete="email"
-          label="Email Address"
+          label={intl.formatMessage(commonMessages.email)}
           type="email"
           required
         />
         <TextField
           name="password"
           autoComplete="password"
-          label="Password"
+          label={intl.formatMessage(commonMessages.password)}
           type="password"
           required
         />
         <div className="login-form__button">
           <Button type="submit" {...(loading && { disabled: true })}>
-            {loading ? "Loading" : "Sign in"}
+            {loading ? intl.formatMessage(commonMessages.loading) : 
+              intl.formatMessage(commonMessages.signIn)}
           </Button>
         </div>
       </Form>

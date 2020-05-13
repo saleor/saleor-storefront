@@ -8,11 +8,20 @@ import { TypedPasswordResetMutation } from "./queries";
 
 import { passwordResetUrl } from "../../app/routes";
 
-const PasswordResetForm: React.FC = () => (
+import { commonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
+const PasswordResetForm: React.FC = () => {
+  const intl = useIntl();
+
+  return(
   <div className="password-reset-form">
     <p>
-      Please provide us your email address so we can share you a link to reset
-      your password
+      {
+        intl.formatMessage({
+        defaultMessage: "Please provide us your email address so we can share you a link to reset your password",
+        description: "password p",
+      })}
     </p>
     <TypedPasswordResetMutation>
       {(passwordReset, { loading, data }) => {
@@ -32,13 +41,17 @@ const PasswordResetForm: React.FC = () => (
             <TextField
               name="email"
               autoComplete="email"
-              label="Email Address"
+              label={intl.formatMessage(commonMessages.email)}
               type="email"
               required
             />
             <div className="password-reset-form__button">
               <Button type="submit" {...(loading && { disabled: true })}>
-                {loading ? "Loading" : "Reset password"}
+                {loading ? intl.formatMessage(commonMessages.loading) :
+                          intl.formatMessage({
+                          defaultMessage: "Reset password",
+                          description: "reset password button",
+                        })}
               </Button>
             </div>
           </Form>
@@ -46,6 +59,6 @@ const PasswordResetForm: React.FC = () => (
       }}
     </TypedPasswordResetMutation>
   </div>
-);
+)};
 
 export default PasswordResetForm;

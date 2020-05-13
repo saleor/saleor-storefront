@@ -46,12 +46,18 @@ export const commonMessages = defineMessages({
   lastName: {
     defaultMessage: "Last Name",
   },
+  loading: {
+    defaultMessage: "Loading",
+  },
   no: {
     defaultMessage: "No",
   },
   optionalField: {
     defaultMessage: "Optional",
     description: "field is optional",
+  },
+  password: {
+    defaultMessage: "Password",
   },
   passwordsDoNotMatch: {
     defaultMessage: "Passwords do not match",
@@ -73,6 +79,9 @@ export const commonMessages = defineMessages({
   },
   sessionExpired: {
     defaultMessage: "Your session has expired. Please log in again to continue.",
+  },
+  signIn: {
+    defaultMessage: "Sign in",
   },
   somethingWentWrong: {
     defaultMessage: "The site ran into an unexpected problem",

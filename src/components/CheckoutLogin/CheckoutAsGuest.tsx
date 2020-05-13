@@ -4,30 +4,58 @@ import { Link } from "react-router-dom";
 import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
 
+import { useIntl } from "react-intl";
+
 const CheckoutAsGuest: React.FC<{
   overlay: OverlayContextInterface;
   checkoutUrl: string;
-}> = ({ overlay, checkoutUrl }) => (
+}> = ({ overlay, checkoutUrl }) => {
+  const intl = useIntl();
+  return(
   <div className="checkout-login__guest">
-    <h3 className="checkout__header">Continue as a guest</h3>
+    <h3 className="checkout__header">
+      {
+        intl.formatMessage({
+          defaultMessage: "Continue as a guest",
+          description: "checkout guest title",
+      })}
+    </h3>
     <p>
-      If you don’t wish to register an account, don’t worry. You can checkout as
-      a guest. We care about you just as much as any registered user.
+      {
+        intl.formatMessage({
+          defaultMessage: `If you don’t wish to register an account, don’t worry. You can checkout as a guest. We care about you just as much as any registered user.`,
+          description: "checkout guest paragraph",
+      })}
     </p>
     <Link to={checkoutUrl}>
-      <Button>Continue as a guest</Button>
+      <Button>
+      {
+        intl.formatMessage({
+          defaultMessage: "Continue as a guest",
+          description: "continue as a guest guest button",
+      })}
+      </Button>
     </Link>
 
     <p>
-      or you can{" "}
+      {
+        intl.formatMessage({
+          defaultMessage: "or you can ",
+          description: "continue as a guest guest paragraph",
+      })}
       <span
         className="u-link"
         onClick={() => overlay.show(OverlayType.register, OverlayTheme.right)}
       >
-        create an account
+        {
+        intl.formatMessage({
+          defaultMessage: "create an account",
+          description: "continue as a guest guest paragraph",
+      })}
+        
       </span>
     </p>
   </div>
-);
+)};
 
 export default CheckoutAsGuest;
