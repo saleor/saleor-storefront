@@ -4,6 +4,7 @@ import { getAuthToken } from "@sdk/auth";
 import { Checkout } from "@sdk/fragments/gqlTypes/Checkout";
 import { OrderDetail } from "@sdk/fragments/gqlTypes/OrderDetail";
 import { Payment } from "@sdk/fragments/gqlTypes/Payment";
+import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 import * as CheckoutMutations from "@sdk/mutations/checkout";
 import {
   AddCheckoutPromoCode,
@@ -46,7 +47,6 @@ import {
   UpdateCheckoutShippingMethodVariables,
 } from "@sdk/mutations/gqlTypes/UpdateCheckoutShippingMethod";
 import * as CheckoutQueries from "@sdk/queries/checkout";
-import * as ShopQueries from "@sdk/queries/shop";
 import { CheckoutDetails } from "@sdk/queries/gqlTypes/CheckoutDetails";
 import {
   CheckoutProductVariants,
@@ -57,6 +57,7 @@ import {
   GetShopPaymentGateways_shop_availablePaymentGateways,
 } from "@sdk/queries/gqlTypes/GetShopPaymentGateways";
 import { UserCheckoutDetails } from "@sdk/queries/gqlTypes/UserCheckoutDetails";
+import * as ShopQueries from "@sdk/queries/shop";
 import {
   ICheckoutAddress,
   ICheckoutModel,
@@ -64,7 +65,6 @@ import {
   IOrderModel,
   IPaymentModel,
 } from "@sdk/repository";
-import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 import { filterNotEmptyArrayItems } from "@sdk/utils";
 
 import { INetworkManager } from "./types";

@@ -1,3 +1,4 @@
+import { GetShop_shop_countries } from "@sdk/queries/gqlTypes/GetShop";
 import {
   IAddress,
   IAddressWithAddressType,
@@ -5,7 +6,6 @@ import {
   IFormError,
   IPaymentGateway,
 } from "@types";
-import { GetShop_shop_countries } from "@sdk/queries/gqlTypes/GetShop";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
