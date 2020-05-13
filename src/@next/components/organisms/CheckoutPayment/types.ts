@@ -1,4 +1,3 @@
-import { getShop_shop_countries } from "@temp/core/types/saleor";
 import {
   IAddress,
   IAddressWithAddressType,
@@ -6,6 +5,7 @@ import {
   IFormError,
   IPaymentGateway,
 } from "@types";
+import { GetShop_shop_countries } from "@sdk/queries/gqlTypes/GetShop";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
@@ -19,7 +19,7 @@ export interface IProps {
   selectedUserAddressId?: string;
   billingAsShippingAddress?: boolean;
   checkoutBillingAddress?: IAddress | null | undefined;
-  countries: Array<getShop_shop_countries | null>;
+  countries: Array<GetShop_shop_countries | null>;
   billingFormRef?: React.RefObject<HTMLFormElement>;
   billingFormId?: string;
   paymentGateways: IPaymentGateway[];

@@ -6,8 +6,7 @@ import { AddressForm } from "../AddressForm";
 import { Modal } from "../Modal";
 
 import { IProps } from "./types";
-
-import { CountryCode } from "types/globalTypes";
+import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 
 export const AddressFormModal: React.FC<IProps> = ({
   hideModal,

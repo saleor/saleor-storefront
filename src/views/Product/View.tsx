@@ -10,7 +10,7 @@ import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
-import { ProductDetails_product } from "./types/ProductDetails";
+import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
