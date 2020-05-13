@@ -14,6 +14,8 @@ import {
 
 import closeImg from "../../../images/x.svg";
 
+import { FormattedMessage } from "react-intl";
+
 const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay,
 }) => (
@@ -21,7 +23,12 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
     <div className="password-reset">
       <Online>
         <div className="overlay__header">
-          <p className="overlay__header-text">Reset your password</p>
+          <p className="overlay__header-text">
+            
+            <FormattedMessage 
+              defaultMessage={"Reset your password"}
+            />
+          </p>
           <ReactSVG
             path={closeImg}
             onClick={overlay.hide}
