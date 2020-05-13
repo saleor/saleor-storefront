@@ -191,6 +191,9 @@ export interface ProductVariant_product {
 export interface ProductVariant_product_translation {
   __typename: "ProductTranslation";
   name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 
 export interface ProductVariant {

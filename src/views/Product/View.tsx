@@ -12,6 +12,8 @@ import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
 import { ProductDetails_product } from "./types/ProductDetails";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
     () =>
@@ -47,6 +49,8 @@ const extractMeta = (product: ProductDetails_product) => ({
 });
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+  const { locale } = useLocale();
+
   const { addItem, items } = useCart();
 
   return (
@@ -54,6 +58,7 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
       loaderFull
       variables={{
         id: getGraphqlIdFromDBId(match.params.id, "Product"),
+        locale: locale.toUpperCase(),
       }}
       errorPolicy="all"
       key={match.params.id}

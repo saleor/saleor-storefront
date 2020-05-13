@@ -9,12 +9,16 @@ import { generateProductUrl } from "../../../../core/utils";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl"
+
 export const ProductList: React.FC<IProps> = ({
   products,
   canLoadMore = false,
   loading = false,
   onLoadMore = () => null,
 }: IProps) => {
+  const intl = useIntl();
+
   return (
     <>
       <S.List>
@@ -37,7 +41,12 @@ export const ProductList: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              More +
+              {
+                intl.formatMessage({
+                defaultMessage: "More +",
+                })
+              }
+             
             </Button>
           )
         )}

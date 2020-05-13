@@ -249,6 +249,9 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
 export interface Product_translation {
   __typename: "ProductTranslation";
   name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 export interface FeaturedProducts_shop_homepageCollection_products_edges {
   __typename: "ProductCountableEdge";

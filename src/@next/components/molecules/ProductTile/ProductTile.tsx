@@ -16,7 +16,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
 
   return (
     <S.Wrapper data-cy="product-tile">
-      <S.Title>{product.name}</S.Title>
+      <S.Title>{product.translation?.name || product.name}</S.Title>
       <S.Price>
         <TaxedMoney taxedMoney={price} />
       </S.Price>

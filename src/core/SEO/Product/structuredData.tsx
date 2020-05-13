@@ -18,11 +18,15 @@ export const structuredData = product => {
   return JSON.stringify({
     "@context": "https://schema.org/",
     "@type": "Product",
-    description: !product.seoDescription
-      ? `${product.description}`
-      : `${product.seoDescription}`,
+    description: product.translation?.seoDescription 
+      || product.translation?.description 
+      || product.seoDescription 
+      || product.description,
     image: images,
-    name: !product.seoTitle ? `${product.name}` : `${product.seoTitle}`,
+    name: product.translation?.seoTitle 
+      || product.translation?.name 
+      || product.seoTitle 
+      || product.name,
     offers: getVariantsStructuredData(variants),
     url: location.href,
   });

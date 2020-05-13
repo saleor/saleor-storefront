@@ -7,6 +7,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==1",
     name: "Apple Juice",
@@ -83,6 +87,13 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
   {
     __typename: "Product",
@@ -90,6 +101,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==2",
     name: "Apple Juice",
@@ -166,6 +181,13 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
   {
     __typename: "Product",
@@ -173,6 +195,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==3",
     name: "Apple Juice",
@@ -249,6 +275,13 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
   {
     __typename: "Product",
@@ -256,6 +289,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==4",
     name: "Apple Juice",
@@ -332,6 +369,13 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
   {
     __typename: "Product",
@@ -339,6 +383,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==5",
     name: "Apple Juice",
@@ -415,6 +463,13 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
   {
     __typename: "Product",
@@ -422,6 +477,10 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       __typename: "Category",
       id: "Q2F0ZWdvcnk6MTQ=",
       name: "Juices",
+      translation: {
+  __typename: "CategoryTranslation",
+        name: "t",
+      },
     },
     id: "UHJvZHVjdDo3Mg==6",
     name: "Apple Juice",
@@ -498,5 +557,12 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
       url:
         "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
     },
+    translation: {
+      __typename: "ProductTranslation",
+      descriptionJson: "",
+            name: "t",
+    seoDescription: "",
+    seoTitle: "",
+          },
   },
 ];

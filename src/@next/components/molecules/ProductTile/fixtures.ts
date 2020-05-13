@@ -6,6 +6,10 @@ export const PRODUCT: ProductList_products_edges_node = {
     __typename: "Category",
     id: "Q2F0ZWdvcnk6MTQ=",
     name: "Juices",
+    translation: {
+      __typename: "CategoryTranslation",
+            name: "t",
+          },
   },
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",
@@ -82,4 +86,11 @@ export const PRODUCT: ProductList_products_edges_node = {
     url:
       "http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png",
   },
+  translation: {
+    __typename: "ProductTranslation",
+    descriptionJson: "",
+          name: "t",
+  seoDescription: "",
+  seoTitle: "",
+        },
 };

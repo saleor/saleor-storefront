@@ -236,6 +236,9 @@ export interface OrderByToken_orderByToken_lines_variant_product {
 export interface OrderByToken_orderByToken_lines_variant_product_translation {
   __typename: "ProductTranslation";
   name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 
 export interface OrderByToken_orderByToken_lines_variant {

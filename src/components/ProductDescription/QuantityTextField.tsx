@@ -9,12 +9,16 @@ interface QuantityTextFieldProps {
   hideErrors: boolean;
 }
 
+import { useIntl } from "react-intl"
+
 export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   quantity,
   maxQuantity,
   onQuantityChange,
   hideErrors,
 }: QuantityTextFieldProps) => {
+  const intl = useIntl();
+
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
 
@@ -57,7 +61,11 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     !hideErrors && isTooMuch
       ? [
           {
-            message: `Maximum quantity is ${maxQuantity}`,
+            message: intl.formatMessage({
+                        defaultMessage: "Maximum quantity is {maxQuantity}",
+                      },
+                      {maxQuantity,
+                      }), 
           },
         ]
       : undefined;
@@ -65,7 +73,11 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   return (
     <TextField
       type="number"
-      label="Quantity"
+      label={
+        intl.formatMessage({
+          defaultMessage: "Quantity",
+        })
+      }
       min="1"
       value={tempQuantity || ""}
       onBlur={handleBlurQuantityInput}

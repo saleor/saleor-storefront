@@ -46,4 +46,7 @@ export interface BasicProductFields {
 export interface Product_translation {
   __typename: "ProductTranslation";
   name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }

@@ -92,7 +92,7 @@ class Page extends React.PureComponent<
       <ProductDescription
         items={this.props.items}
         productId={product.id}
-        name={product.name}
+        name={product.translation?.name || product.name}
         productVariants={product.variants}
         pricing={product.pricing}
         addToCart={this.props.add}
@@ -147,7 +147,7 @@ class Page extends React.PureComponent<
         <div className="container">
           <div className="product-page__product__description">
             <NewProductDescription
-              descriptionJson={product.descriptionJson}
+              descriptionJson={product.translation?.descriptionJson || product.descriptionJson}
               attributes={product.attributes}
             />
           </div>

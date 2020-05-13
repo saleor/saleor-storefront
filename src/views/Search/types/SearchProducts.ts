@@ -219,6 +219,12 @@ export interface SearchProducts_products_edges_node_category {
    */
   id: string;
   name: string;
+  translation: SearchProducts_products_edges_node_category_translation | null;
+}
+
+export interface SearchProducts_products_edges_node_category_translation{
+  __typename: "CategoryTranslation";
+  name: string;
 }
 
 export interface SearchProducts_products_edges_node {
@@ -241,6 +247,15 @@ export interface SearchProducts_products_edges_node {
    */
   thumbnail2x: SearchProducts_products_edges_node_thumbnail2x | null;
   category: SearchProducts_products_edges_node_category | null;
+  translation: SearchProducts_products_edges_node_translation | null;
+}
+
+export interface SearchProducts_products_edges_node_translation{
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 
 export interface SearchProducts_products_edges {

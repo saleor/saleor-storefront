@@ -237,4 +237,5 @@ export interface VariantList {
 
 export interface VariantListVariables {
   ids?: string[] | null;
+  locale:string;
 }

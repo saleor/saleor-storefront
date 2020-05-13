@@ -443,6 +443,15 @@ export interface ProductDetails_product_category_products_edges_node {
    */
   pricing: ProductDetails_product_category_products_edges_node_pricing | null;
   category: ProductDetails_product_category_products_edges_node_category | null;
+  translation: ProductDetails_product_category_products_edges_node_translation | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_translation{
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 
 export interface ProductDetails_product_category_products_edges {
@@ -493,6 +502,12 @@ export interface ProductDetails_product_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: ProductDetails_product_attributes_attribute_translation | null;
+}
+
+export interface ProductDetails_product_attributes_attribute_translation{
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_attributes_values {
@@ -505,6 +520,12 @@ export interface ProductDetails_product_attributes_values {
    * Name of a value displayed in the interface.
    */
   name: string | null;
+  translation: ProductDetails_product_attributes_values_translation | null;
+}
+
+export interface ProductDetails_product_attributes_values_translation{
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_attributes {
@@ -617,6 +638,12 @@ export interface ProductDetails_product_variants_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: ProductDetails_product_variants_attributes_attribute_translation | null;
+}
+
+export interface ProductDetails_product_variants_attributes_attribute_translation{
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_variants_attributes_values {
@@ -633,7 +660,14 @@ export interface ProductDetails_product_variants_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: ProductDetails_product_variants_attributes_values_translation | null;
 }
+
+export interface ProductDetails_product_variants_attributes_values_translation{
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 
 export interface ProductDetails_product_variants_attributes {
   __typename: "SelectedAttribute";
@@ -671,6 +705,12 @@ export interface ProductDetails_product_variants {
    * List of attributes assigned to this variant.
    */
   attributes: ProductDetails_product_variants_attributes[];
+  translation: ProductDetails_product_variants_translation | null;
+}
+
+export interface ProductDetails_product_variants_translation{
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product {
@@ -712,6 +752,15 @@ export interface ProductDetails_product {
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  translation: ProductDetails_product_translation | null;
+}
+
+export interface ProductDetails_product_translation{
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string;
+  seoTitle: string;
 }
 
 export interface ProductDetails {

@@ -5,6 +5,8 @@ import { RichTextContent } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl"
+
 enum TABS {
   DESCRIPTION,
   ATTRIBUTES,
@@ -15,6 +17,8 @@ export const ProductDescription: React.FC<IProps> = ({
   descriptionJson = "",
   attributes,
 }: IProps) => {
+  const intl = useIntl();
+
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
 
   return (
@@ -31,7 +35,12 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.DESCRIPTION);
           }}
         >
-          DESCRIPTION
+          {
+            intl.formatMessage({
+            defaultMessage: "DESCRIPTION",
+            })
+          }
+          
         </S.TabTitle>
         <S.TabTitle
           active={activeTab === TABS.ATTRIBUTES}
@@ -44,7 +53,12 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.ATTRIBUTES);
           }}
         >
-          ATTRIBUTES
+          {
+            intl.formatMessage({
+            defaultMessage: "ATTRIBUTES",
+            })
+          }
+        
         </S.TabTitle>
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&
@@ -58,8 +72,8 @@ export const ProductDescription: React.FC<IProps> = ({
           {attributes &&
             attributes.map((attribute, index) => (
               <li key={index}>
-                <S.AttributeName>{attribute.attribute.name}: </S.AttributeName>{" "}
-                {attribute.values.map(value => value.name).join(", ")}
+                <S.AttributeName>{attribute.attribute.translation?.name || attribute.attribute.name}: </S.AttributeName>{" "}
+                {attribute.values.map(value => value.translation?.name || value.name).join(", ")}
               </li>
             ))}
         </S.AttributeList>

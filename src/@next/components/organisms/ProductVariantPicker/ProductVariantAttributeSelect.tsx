@@ -12,6 +12,8 @@ import {
 import { SelectSidebar } from "../SelectSidebar";
 import * as S from "./styles";
 
+import { useIntl } from "react-intl"
+
 export const ProductVariantAttributeSelect: React.FC<{
   selectSidebar: boolean;
   selectSidebarTarget?: HTMLElement | null;
@@ -31,6 +33,7 @@ export const ProductVariantAttributeSelect: React.FC<{
   onChangeSelection,
   onClearSelection,
 }) => {
+  const intl = useIntl();
   const [showSelectSidebar, setShowSelectSidebar] = React.useState(false);
 
   const selectableProductVariantsAttributeValues = useSelectableProductVariantsAttributeValues(
@@ -45,6 +48,8 @@ export const ProductVariantAttributeSelect: React.FC<{
       id: productVariantsAttributesSelectedValues[productVariantsAttributeId]!
         .id,
       label: productVariantsAttributesSelectedValues[
+        productVariantsAttributeId
+      ]!.translation?.name || productVariantsAttributesSelectedValues[
         productVariantsAttributeId
       ]!.name!,
       value: productVariantsAttributesSelectedValues[
@@ -65,13 +70,14 @@ export const ProductVariantAttributeSelect: React.FC<{
         disabled: isOptionDisabled,
         id: value.id,
         label: value.name!,
+        translation: value.translation,
         value: value.value!,
       };
     });
 
-  const selectLabel = productVariantsAttribute.attribute.name
-    ? productVariantsAttribute.attribute.name!
-    : "";
+  const selectLabel = productVariantsAttribute.attribute.translation?.name
+    || productVariantsAttribute.attribute.name!
+    ||"";
 
   const selectedValuesList = selectedValue ? [selectedValue.value] : [];
 
@@ -110,7 +116,7 @@ export const ProductVariantAttributeSelect: React.FC<{
         <Input
           onFocus={() => setShowSelectSidebar(true)}
           label={selectLabel}
-          value={selectedValue ? selectedValue.value : ""}
+          value={selectedValue ? selectedValue.label : ""}
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
           readOnly={true}
@@ -119,7 +125,14 @@ export const ProductVariantAttributeSelect: React.FC<{
           options={attributeOptions}
           selectedOptions={selectedValuesList}
           disabledOptions={disabledValuesList}
-          title={`Please select ${selectLabel}`}
+          title={
+            intl.formatMessage({
+              defaultMessage: "Please select {selectLabel}",
+            },
+            {
+              selectLabel,
+            })
+          }
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}

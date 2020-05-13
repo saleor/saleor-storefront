@@ -6,6 +6,10 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MjAy",
     sku: "93855755",
     name: "1l / cotton / yellow",
+    translation: {
+      __typename: "ProductVariantTranslation",
+      name: "T 1l / cotton / yellow",
+    },
     stockQuantity: 50,
     isAvailable: true,
     pricing: {
@@ -44,6 +48,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "T Material",
+          },
         },
         values: [
           {
@@ -51,6 +59,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "cotton",
             value: "cotton",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T cotton",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -60,6 +72,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Couleur",
+          },
         },
         values: [
           {
@@ -67,6 +83,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "yellow",
             value: "yellow",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "Jaune",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -76,6 +96,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Taille",
+          },
         },
         values: [
           {
@@ -83,6 +107,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "1l",
             value: "1l",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T 1l",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -94,6 +122,10 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MjA0",
     sku: "80884671",
     name: "2l / wool / red",
+    translation: {
+      __typename: "ProductVariantTranslation",
+      name: "T 2l / wool / red",
+    },
     stockQuantity: 50,
     isAvailable: true,
     pricing: {
@@ -132,6 +164,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "T 1Materiall",
+          },
         },
         values: [
           {
@@ -139,6 +175,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "wool",
             value: "wool",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T wool",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -148,6 +188,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Couleur",
+          },
         },
         values: [
           {
@@ -155,6 +199,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "red",
             value: "red",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "Rouge",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -164,6 +212,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Taille",
+          },
         },
         values: [
           {
@@ -171,6 +223,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "2l",
             value: "2l",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T 2L",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -182,6 +238,10 @@ export const productVariants: ProductDetails_product_variants[] = [
     id: "UHJvZHVjdFZhcmlhbnQ6MzE2",
     sku: "100",
     name: "500ml / wool / turquoise",
+    translation: {
+      __typename: "ProductVariantTranslation",
+      name: "T 500ml / wool / turquoise",
+    },
     stockQuantity: 50,
     isAvailable: true,
     pricing: {
@@ -220,6 +280,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "T material",
+          },
         },
         values: [
           {
@@ -227,6 +291,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "wool",
             value: "wool",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T wool",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -236,6 +304,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Couleur",
+          },
         },
         values: [
           {
@@ -243,6 +315,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "turquoise",
             value: "turquoise",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T turquoise",
+            },
           },
         ],
         __typename: "SelectedAttribute",
@@ -252,6 +328,10 @@ export const productVariants: ProductDetails_product_variants[] = [
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
           __typename: "Attribute",
+          translation: {
+            __typename: "AttributeTranslation",
+            name: "Taille",
+          },
         },
         values: [
           {
@@ -259,6 +339,10 @@ export const productVariants: ProductDetails_product_variants[] = [
             name: "500ml",
             value: "500ml",
             __typename: "AttributeValue",
+            translation: {
+              __typename: "AttributeValueTranslation",
+              name: "T500ml",
+            },
           },
         ],
         __typename: "SelectedAttribute",

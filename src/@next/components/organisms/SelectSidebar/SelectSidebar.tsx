@@ -53,7 +53,7 @@ export const SelectSidebar: React.FC<IProps> = ({
                   disabled={isDisabled}
                   onClick={() => onSelect(option.value)}
                 >
-                  {option.label}
+                  {option.translation?.name || option.label}
                 </OverlayItem>
               </S.Option>
             );
