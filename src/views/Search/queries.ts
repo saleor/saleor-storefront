@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { productPricingFragment } from "../Product/queries";
+import { productNameTranslationFragment, productPricingFragment } from "../Product/queries";
 import {
   SearchProducts,
   SearchProductsVariables,
@@ -9,12 +9,14 @@ import {
 
 export const searchProductsQuery = gql`
   ${productPricingFragment}
+  ${productNameTranslationFragment}
   query SearchProducts(
     $query: String!
     $attributes: [AttributeInput]
     $pageSize: Int
     $sortBy: ProductOrder
     $after: String
+    $locale:LanguageCodeEnum!
   ) {
     products(
       filter: { search: $query, attributes: $attributes }
@@ -28,6 +30,8 @@ export const searchProductsQuery = gql`
           ...ProductPricingField
           id
           name
+          ...ProductNameTranslationFields
+          ...ProductNameTranslationFields
           thumbnail {
             url
             alt
@@ -38,6 +42,7 @@ export const searchProductsQuery = gql`
           category {
             id
             name
+            translation(languageCode:$locale){name}
           }
         }
       }
@@ -52,10 +57,12 @@ export const searchProductsQuery = gql`
           id
           name
           slug
+          translation(languageCode:$locale){name}
           values {
             id
             name
             slug
+            translation(languageCode:$locale){name}
           }
         }
       }

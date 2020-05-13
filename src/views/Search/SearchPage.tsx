@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { TextField } from "../../components";
 
+import { useIntl } from "react-intl";
+
 interface SearchPageProps {
   query: string;
   onQueryChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,6 +16,8 @@ export const SearchPage: React.FC<SearchPageProps> = ({
   query,
   onQueryChange,
 }) => {
+  const intl = useIntl();
+
   return (
     <>
       <div className="search-page">
@@ -21,7 +25,11 @@ export const SearchPage: React.FC<SearchPageProps> = ({
           <div className="search-page__header__input container">
             <TextField
               autoFocus
-              label="Search term:"
+              label={
+                intl.formatMessage({
+                  defaultMessage: "Search term:",
+               })
+              }
               onChange={onQueryChange}
               value={query}
             />
