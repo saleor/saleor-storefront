@@ -1,4 +1,4 @@
-import { CheckoutNetworkManager } from "@sdk/network";
+import { NetworkManager } from "@sdk/network";
 import { LocalRepository } from "@sdk/repository";
 
 import { QueuedJobsHandler } from "../QueuedJobsHandler";
@@ -8,25 +8,20 @@ export enum ErrorCartTypes {
 }
 
 export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
-  private checkoutNetworkManager: CheckoutNetworkManager;
+  private networkManager: NetworkManager;
   private repository: LocalRepository;
 
-  constructor(
-    repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
-  ) {
+  constructor(repository: LocalRepository, networkManager: NetworkManager) {
     super();
     this.repository = repository;
-    this.checkoutNetworkManager = checkoutNetworkManager;
+    this.networkManager = networkManager;
   }
 
   setCartItem = async () => {
     const checkout = this.repository.getCheckout();
 
     if (checkout) {
-      const { data, error } = await this.checkoutNetworkManager.setCartItem(
-        checkout
-      );
+      const { data, error } = await this.networkManager.setCartItem(checkout);
       if (error && this.onErrorListener) {
         this.onErrorListener(error, ErrorCartTypes.SET_CART_ITEM);
       } else if (data) {

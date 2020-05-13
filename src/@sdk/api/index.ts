@@ -1,6 +1,8 @@
+import ApolloClient from "apollo-client";
+
 import { defaultConfig } from "../config";
 import { JobsManager } from "../jobs";
-import { CheckoutNetworkManager } from "../network";
+import { NetworkManager } from "../network";
 import { CheckoutRepositoryManager, LocalRepository } from "../repository";
 import { SaleorState } from "../state";
 import { Config } from "../types";
@@ -10,9 +12,6 @@ import { SaleorCheckoutAPI } from "./Checkout";
 
 export * from "./Checkout";
 export * from "./Cart";
-
-// SaleorAPI.checkout....
-// SaleorAPI.cart....
 
 export class SaleorAPI {
   checkout: SaleorCheckoutAPI;
@@ -24,7 +23,12 @@ export class SaleorAPI {
    */
   legacyAPIProxy: APIProxy;
 
-  constructor(apiProxy: APIProxy, config?: Config, onStateUpdate?: () => any) {
+  constructor(
+    client: ApolloClient<any>,
+    apiProxy: APIProxy,
+    config?: Config,
+    onStateUpdate?: () => any
+  ) {
     this.legacyAPIProxy = apiProxy;
     const finalConfig = {
       ...defaultConfig,
@@ -37,13 +41,13 @@ export class SaleorAPI {
     const { loadOnStart } = finalConfig;
 
     const repository = new LocalRepository();
-    const checkoutNetworkManager = new CheckoutNetworkManager(apiProxy);
-    const saleorState = new SaleorState(repository, checkoutNetworkManager);
+    const networkManager = new NetworkManager(client);
+    const saleorState = new SaleorState(repository, networkManager);
     const checkoutRepositoryManager = new CheckoutRepositoryManager(
       repository,
       saleorState
     );
-    const jobsManager = new JobsManager(repository, checkoutNetworkManager);
+    const jobsManager = new JobsManager(repository, networkManager);
 
     if (onStateUpdate) {
       saleorState.subscribeToNotifiedChanges(onStateUpdate);
@@ -56,7 +60,7 @@ export class SaleorAPI {
     );
     this.cart = new SaleorCartAPI(
       checkoutRepositoryManager,
-      checkoutNetworkManager,
+      networkManager,
       saleorState,
       loadOnStart.cart,
       jobsManager

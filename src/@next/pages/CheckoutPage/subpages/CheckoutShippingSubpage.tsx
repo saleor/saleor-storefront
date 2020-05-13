@@ -51,7 +51,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
     const { dataError } = await setShippingMethod(shippingMethodId);
-    const errors = dataError?.error.extraInfo.userInputErrors;
+    const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
       setErrors(errors);

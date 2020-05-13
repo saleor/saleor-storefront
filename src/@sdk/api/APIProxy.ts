@@ -29,11 +29,6 @@ import {
 export class APIProxy {
   getAttributes = this.watchQuery(QUERIES.Attributes, data => data.attributes);
 
-  getCheckoutDetails = this.watchQuery(
-    QUERIES.CheckoutDetails,
-    data => data.checkout
-  );
-
   getProductDetails = this.watchQuery(
     QUERIES.ProductDetails,
     data => data.product
@@ -55,65 +50,16 @@ export class APIProxy {
     data => data.orderByToken
   );
 
-  getUserCheckout = this.watchQuery(QUERIES.UserCheckoutDetails, data =>
-    data.me ? data.me.checkout : null
-  );
-
   getVariantsProducts = this.watchQuery(
     QUERIES.VariantsProducts,
     data => data.productVariants
   );
 
-  getCheckoutProductVariants = this.watchQuery(
-    QUERIES.CheckoutProductVariants,
-    data => data.productVariants
-  );
-
   getShopDetails = this.watchQuery(QUERIES.GetShopDetails, data => data);
-
-  getShopPaymentGateways = this.watchQuery(
-    QUERIES.GetShopPaymentGateways,
-    data => data.shop.availablePaymentGateways
-  );
 
   setUserDefaultAddress = this.fireQuery(
     MUTATIONS.AddressTypeUpdate,
     data => data!.accountSetDefaultAddress
-  );
-
-  setCreateCheckout = this.fireQuery(
-    MUTATIONS.CreateCheckout,
-    data => data!.checkoutCreate
-  );
-
-  setCompleteCheckout = this.fireQuery(
-    MUTATIONS.CompleteCheckout,
-    data => data!.checkoutComplete
-  );
-
-  setCheckoutLine = this.fireQuery(
-    MUTATIONS.UpdateCheckoutLine,
-    data => data!.checkoutLinesUpdate
-  );
-
-  setCheckoutShippingAddress = this.fireQuery(
-    MUTATIONS.UpdateCheckoutShippingAddress,
-    data => data!.checkoutShippingAddressUpdate
-  );
-
-  setCheckoutShippingMethod = this.fireQuery(
-    MUTATIONS.UpdateCheckoutShippingMethod,
-    data => data!.checkoutShippingMethodUpdate
-  );
-
-  setAddCheckoutPromoCode = this.fireQuery(
-    MUTATIONS.AddCheckoutPromoCode,
-    data => data!.checkoutAddPromoCode
-  );
-
-  setRemoveCheckoutPromoCode = this.fireQuery(
-    MUTATIONS.RemoveCheckoutPromoCode,
-    data => data!.checkoutRemovePromoCode
   );
 
   setDeleteUserAddress = this.fireQuery(
@@ -129,21 +75,6 @@ export class APIProxy {
   setUpdateuserAddress = this.fireQuery(
     MUTATIONS.UpdateUserAddress,
     data => data!.accountAddressUpdate
-  );
-
-  setCheckoutBillingAddress = this.fireQuery(
-    MUTATIONS.UpdateCheckoutBillingAddress,
-    data => data!.checkoutBillingAddressUpdate
-  );
-
-  setCheckoutBillingAddressWithEmail = this.fireQuery(
-    MUTATIONS.UpdateCheckoutBillingAddressWithEmail,
-    data => data!.checkoutBillingAddressUpdate
-  );
-
-  setCreateCheckoutPayment = this.fireQuery(
-    MUTATIONS.CreateCheckoutPayment,
-    data => data!.checkoutPaymentCreate
   );
 
   setAccountUpdate = this.fireQuery(

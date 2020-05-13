@@ -38,7 +38,12 @@ export class SaleorManager {
 
   constructor(client: ApolloClient<any>, config?: Config) {
     this.apiProxy = new APIProxy(client);
-    this.api = new SaleorAPI(this.apiProxy, config, this.onSaleorAPIChange);
+    this.api = new SaleorAPI(
+      client,
+      this.apiProxy,
+      config,
+      this.onSaleorAPIChange
+    );
   }
 
   /**

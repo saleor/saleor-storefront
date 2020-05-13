@@ -89,7 +89,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       },
       shippingEmail
     );
-    const errors = dataError?.error.extraInfo.userInputErrors;
+    const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
       setErrors(errors);

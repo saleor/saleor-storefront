@@ -1,18 +1,15 @@
 import { DataErrorCheckoutTypes, ICreditCard } from "@sdk/api/Checkout/types";
-import { CheckoutNetworkManager } from "@sdk/network";
+import { NetworkManager } from "@sdk/network";
 import { ICheckoutAddress, LocalRepository } from "@sdk/repository";
 
 import { PromiseCheckoutJobRunResponse } from "../types";
 
 export class CheckoutJobs {
-  private checkoutNetworkManager: CheckoutNetworkManager;
+  private networkManager: NetworkManager;
   private repository: LocalRepository;
 
-  constructor(
-    repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
-  ) {
-    this.checkoutNetworkManager = checkoutNetworkManager;
+  constructor(repository: LocalRepository, networkManager: NetworkManager) {
+    this.networkManager = networkManager;
     this.repository = repository;
   }
 
@@ -31,7 +28,7 @@ export class CheckoutJobs {
     billingAddress?: ICheckoutAddress;
     selectedBillingAddressId?: string;
   }): PromiseCheckoutJobRunResponse => {
-    const { data, error } = await this.checkoutNetworkManager.createCheckout(
+    const { data, error } = await this.networkManager.createCheckout(
       email,
       lines,
       shippingAddress,
@@ -74,10 +71,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    const {
-      data,
-      error,
-    } = await this.checkoutNetworkManager.setShippingAddress(
+    const { data, error } = await this.networkManager.setShippingAddress(
       shippingAddress,
       email,
       checkoutId
@@ -115,7 +109,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    const { data, error } = await this.checkoutNetworkManager.setBillingAddress(
+    const { data, error } = await this.networkManager.setBillingAddress(
       billingAddress,
       checkoutId
     );
@@ -154,7 +148,7 @@ export class CheckoutJobs {
     const {
       data,
       error,
-    } = await this.checkoutNetworkManager.setBillingAddressWithEmail(
+    } = await this.networkManager.setBillingAddressWithEmail(
       billingAddress,
       email,
       checkoutId
@@ -188,7 +182,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    const { data, error } = await this.checkoutNetworkManager.setShippingMethod(
+    const { data, error } = await this.networkManager.setShippingMethod(
       shippingMethodId,
       checkoutId
     );
@@ -219,7 +213,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    const { data, error } = await this.checkoutNetworkManager.addPromoCode(
+    const { data, error } = await this.networkManager.addPromoCode(
       promoCode,
       checkoutId
     );
@@ -249,7 +243,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const checkout = this.repository.getCheckout();
 
-    const { data, error } = await this.checkoutNetworkManager.removePromoCode(
+    const { data, error } = await this.networkManager.removePromoCode(
       promoCode,
       checkoutId
     );
@@ -287,7 +281,7 @@ export class CheckoutJobs {
   }): PromiseCheckoutJobRunResponse => {
     const payment = this.repository.getPayment();
 
-    const { data, error } = await this.checkoutNetworkManager.createPayment(
+    const { data, error } = await this.networkManager.createPayment(
       amount,
       checkoutId,
       paymentGateway,
@@ -319,7 +313,7 @@ export class CheckoutJobs {
   }: {
     checkoutId: string;
   }): PromiseCheckoutJobRunResponse => {
-    const { data, error } = await this.checkoutNetworkManager.completeCheckout(
+    const { data, error } = await this.networkManager.completeCheckout(
       checkoutId
     );
 
