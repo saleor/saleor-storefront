@@ -1,5 +1,5 @@
-import { NetworkManager } from "../network";
-import { LocalRepository } from "../repository";
+import { ApolloClientManager } from "../data/ApolloClientManager";
+import { LocalStorageHandler } from "../helpers/LocalStorageHandler";
 import { IJobs, Jobs } from "./Jobs";
 import { IQueuedJobs, QueuedJobs } from "./QueuedJobs";
 import { JobFunctionParameters, QueuedJobFunctionParameters } from "./types";
@@ -9,20 +9,26 @@ export class JobsManager {
     jobGroup: string;
     jobName: string;
   }>;
-  private repository: LocalRepository;
+  private localStorageHandler: LocalStorageHandler;
 
   private jobs: IJobs;
   private queuedJobs: IQueuedJobs;
 
-  constructor(repository: LocalRepository, networkManager: NetworkManager) {
+  constructor(
+    localStorageHandler: LocalStorageHandler,
+    apolloClientManager: ApolloClientManager
+  ) {
     this.queue = new Array<{
       jobGroup: string;
       jobName: string;
     }>();
-    this.repository = repository;
+    this.localStorageHandler = localStorageHandler;
 
-    this.jobs = new Jobs(this.repository, networkManager);
-    this.queuedJobs = new QueuedJobs(this.repository, networkManager);
+    this.jobs = new Jobs(this.localStorageHandler, apolloClientManager);
+    this.queuedJobs = new QueuedJobs(
+      this.localStorageHandler,
+      apolloClientManager
+    );
 
     this.enqueueAllSavedInRepository();
 
@@ -138,7 +144,7 @@ export class JobsManager {
     G extends keyof IQueuedJobs,
     J extends keyof IQueuedJobs[G]
   >(jobGroup: G, jobName: J, state: boolean) {
-    let jobs = this.repository.getJobs();
+    let jobs = this.localStorageHandler.getJobs();
 
     if (!jobs) {
       jobs = null;
@@ -149,7 +155,7 @@ export class JobsManager {
 
     const jobGroupObject = jobs ? jobs[jobGroupString] : null;
 
-    this.repository.setJobs({
+    this.localStorageHandler.setJobs({
       ...jobs,
       [jobGroupString]: {
         ...jobGroupObject,
@@ -159,7 +165,7 @@ export class JobsManager {
   }
 
   private enqueueAllSavedInRepository() {
-    const jobs = this.repository.getJobs();
+    const jobs = this.localStorageHandler.getJobs();
 
     if (jobs) {
       Object.keys(jobs).forEach(jobGroupString => {

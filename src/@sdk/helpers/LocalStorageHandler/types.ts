@@ -3,7 +3,7 @@ import {
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
-} from "../fragments/gqlTypes/Checkout";
+} from "../../fragments/gqlTypes/Checkout";
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
@@ -124,25 +124,7 @@ export interface IOrderModel {
   number?: string | null;
 }
 
-// export interface IJobsModel {
-//   cart: {
-//     setCartItem?: boolean;
-//   };
-//   checkout: {
-//     setPromoCode?: boolean;
-//   };
-// }
-
-// export const JobsModelInitialState: IJobsModel = {
-//   cart: {
-//     setCartItem: false,
-//   },
-//   checkout: {
-//     setPromoCode: false,
-//   },
-// };
-
-export interface ILocalRepository {
+export interface ILocalStorageHandler {
   getCheckout(): ICheckoutModel | null;
   setCheckout(checkout: ICheckoutModel | null): void;
   getPayment(): IPaymentModel | null;

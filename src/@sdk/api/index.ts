@@ -1,9 +1,10 @@
 import ApolloClient from "apollo-client";
 
 import { defaultConfig } from "../config";
+import { LocalStorageManager } from "../data";
+import { ApolloClientManager } from "../data/ApolloClientManager";
+import { LocalStorageHandler } from "../helpers/LocalStorageHandler";
 import { JobsManager } from "../jobs";
-import { NetworkManager } from "../network";
-import { CheckoutRepositoryManager, LocalRepository } from "../repository";
 import { SaleorState } from "../state";
 import { Config } from "../types";
 import { APIProxy } from "./APIProxy";
@@ -40,14 +41,20 @@ export class SaleorAPI {
     };
     const { loadOnStart } = finalConfig;
 
-    const repository = new LocalRepository();
-    const networkManager = new NetworkManager(client);
-    const saleorState = new SaleorState(repository, networkManager);
-    const checkoutRepositoryManager = new CheckoutRepositoryManager(
-      repository,
+    const localStorageHandler = new LocalStorageHandler();
+    const apolloClientManager = new ApolloClientManager(client);
+    const saleorState = new SaleorState(
+      localStorageHandler,
+      apolloClientManager
+    );
+    const localStorageManager = new LocalStorageManager(
+      localStorageHandler,
       saleorState
     );
-    const jobsManager = new JobsManager(repository, networkManager);
+    const jobsManager = new JobsManager(
+      localStorageHandler,
+      apolloClientManager
+    );
 
     if (onStateUpdate) {
       saleorState.subscribeToNotifiedChanges(onStateUpdate);
@@ -59,8 +66,8 @@ export class SaleorAPI {
       jobsManager
     );
     this.cart = new SaleorCartAPI(
-      checkoutRepositoryManager,
-      networkManager,
+      localStorageManager,
+      apolloClientManager,
       saleorState,
       loadOnStart.cart,
       jobsManager
@@ -68,9 +75,9 @@ export class SaleorAPI {
 
     this.legacyAPIProxy.attachAuthListener(authenticated => {
       if (!authenticated) {
-        repository.setCheckout({});
-        repository.setPayment({});
-        repository.setJobs(null);
+        localStorageHandler.setCheckout({});
+        localStorageHandler.setPayment({});
+        localStorageHandler.setJobs(null);
       }
     });
   }

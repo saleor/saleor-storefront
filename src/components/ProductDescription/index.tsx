@@ -11,7 +11,7 @@ import {
 } from "@sdk/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
-import { ICheckoutModelLine } from "@sdk/repository";
+import { ICheckoutModelLine } from "@sdk/helpers";
 import { TaxedMoney } from "../../@next/components/containers";
 import AddToCart from "./AddToCart";
 import { QuantityTextField } from "./QuantityTextField";

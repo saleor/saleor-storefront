@@ -1,16 +1,22 @@
 import { DataErrorCheckoutTypes, ICreditCard } from "@sdk/api/Checkout/types";
-import { NetworkManager } from "@sdk/network";
-import { ICheckoutAddress, LocalRepository } from "@sdk/repository";
+import { ApolloClientManager } from "@temp/@sdk/data/ApolloClientManager";
+import {
+  ICheckoutAddress,
+  LocalStorageHandler,
+} from "@temp/@sdk/helpers/LocalStorageHandler";
 
 import { PromiseCheckoutJobRunResponse } from "../types";
 
 export class CheckoutJobs {
-  private networkManager: NetworkManager;
-  private repository: LocalRepository;
+  private apolloClientManager: ApolloClientManager;
+  private localStorageHandler: LocalStorageHandler;
 
-  constructor(repository: LocalRepository, networkManager: NetworkManager) {
-    this.networkManager = networkManager;
-    this.repository = repository;
+  constructor(
+    localStorageHandler: LocalStorageHandler,
+    apolloClientManager: ApolloClientManager
+  ) {
+    this.apolloClientManager = apolloClientManager;
+    this.localStorageHandler = localStorageHandler;
   }
 
   createCheckout = async ({
@@ -28,7 +34,7 @@ export class CheckoutJobs {
     billingAddress?: ICheckoutAddress;
     selectedBillingAddressId?: string;
   }): PromiseCheckoutJobRunResponse => {
-    const { data, error } = await this.networkManager.createCheckout(
+    const { data, error } = await this.apolloClientManager.createCheckout(
       email,
       lines,
       shippingAddress,
@@ -47,7 +53,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...data,
         selectedBillingAddressId,
         selectedShippingAddressId,
@@ -69,9 +75,9 @@ export class CheckoutJobs {
     email: string;
     selectedShippingAddressId?: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
-    const { data, error } = await this.networkManager.setShippingAddress(
+    const { data, error } = await this.apolloClientManager.setShippingAddress(
       shippingAddress,
       email,
       checkoutId
@@ -85,7 +91,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         billingAsShipping: false,
         email: data?.email,
@@ -107,9 +113,9 @@ export class CheckoutJobs {
     billingAsShipping?: boolean;
     selectedBillingAddressId?: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
-    const { data, error } = await this.networkManager.setBillingAddress(
+    const { data, error } = await this.apolloClientManager.setBillingAddress(
       billingAddress,
       checkoutId
     );
@@ -122,7 +128,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         billingAddress: data?.billingAddress,
         billingAsShipping: !!billingAsShipping,
@@ -143,12 +149,12 @@ export class CheckoutJobs {
     billingAddress: ICheckoutAddress;
     selectedBillingAddressId?: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
     const {
       data,
       error,
-    } = await this.networkManager.setBillingAddressWithEmail(
+    } = await this.apolloClientManager.setBillingAddressWithEmail(
       billingAddress,
       email,
       checkoutId
@@ -162,7 +168,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         billingAddress: data?.billingAddress,
         billingAsShipping: false,
@@ -180,9 +186,9 @@ export class CheckoutJobs {
     checkoutId: string;
     shippingMethodId: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
-    const { data, error } = await this.networkManager.setShippingMethod(
+    const { data, error } = await this.apolloClientManager.setShippingMethod(
       shippingMethodId,
       checkoutId
     );
@@ -195,7 +201,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         promoCodeDiscount: data?.promoCodeDiscount,
         shippingMethod: data?.shippingMethod,
@@ -211,9 +217,9 @@ export class CheckoutJobs {
     checkoutId: string;
     promoCode: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
-    const { data, error } = await this.networkManager.addPromoCode(
+    const { data, error } = await this.apolloClientManager.addPromoCode(
       promoCode,
       checkoutId
     );
@@ -226,7 +232,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         promoCodeDiscount: data?.promoCodeDiscount,
       });
@@ -241,9 +247,9 @@ export class CheckoutJobs {
     checkoutId: string;
     promoCode: string;
   }): PromiseCheckoutJobRunResponse => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
-    const { data, error } = await this.networkManager.removePromoCode(
+    const { data, error } = await this.apolloClientManager.removePromoCode(
       promoCode,
       checkoutId
     );
@@ -256,7 +262,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setCheckout({
+      this.localStorageHandler.setCheckout({
         ...checkout,
         promoCodeDiscount: data?.promoCodeDiscount,
       });
@@ -279,9 +285,9 @@ export class CheckoutJobs {
     billingAddress: ICheckoutAddress;
     creditCard?: ICreditCard;
   }): PromiseCheckoutJobRunResponse => {
-    const payment = this.repository.getPayment();
+    const payment = this.localStorageHandler.getPayment();
 
-    const { data, error } = await this.networkManager.createPayment(
+    const { data, error } = await this.apolloClientManager.createPayment(
       amount,
       checkoutId,
       paymentGateway,
@@ -297,7 +303,7 @@ export class CheckoutJobs {
         },
       };
     } else {
-      this.repository.setPayment({
+      this.localStorageHandler.setPayment({
         ...payment,
         creditCard,
         gateway: data?.gateway,
@@ -313,7 +319,7 @@ export class CheckoutJobs {
   }: {
     checkoutId: string;
   }): PromiseCheckoutJobRunResponse => {
-    const { data, error } = await this.networkManager.completeCheckout(
+    const { data, error } = await this.apolloClientManager.completeCheckout(
       checkoutId
     );
 
@@ -325,9 +331,9 @@ export class CheckoutJobs {
         },
       };
     } else {
-      // this.repository.setOrder(data);
-      this.repository.setCheckout({});
-      this.repository.setPayment({});
+      // this.localStorageHandler.setOrder(data);
+      this.localStorageHandler.setCheckout({});
+      this.localStorageHandler.setPayment({});
       return { data };
     }
   };

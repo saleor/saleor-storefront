@@ -1,5 +1,5 @@
-import { NetworkManager } from "../network";
-import { LocalRepository } from "../repository";
+import { ApolloClientManager } from "../data/ApolloClientManager";
+import { LocalStorageHandler } from "../helpers/LocalStorageHandler";
 import { CartQueuedJobs } from "./Cart";
 import { CheckoutQueuedJobs } from "./Checkout";
 
@@ -12,8 +12,11 @@ export class QueuedJobs implements IQueuedJobs {
   cart: CartQueuedJobs;
   checkout: CheckoutQueuedJobs;
 
-  constructor(repository: LocalRepository, networkManager: NetworkManager) {
-    this.cart = new CartQueuedJobs(repository, networkManager);
+  constructor(
+    localStorageHandler: LocalStorageHandler,
+    apolloClientManager: ApolloClientManager
+  ) {
+    this.cart = new CartQueuedJobs(localStorageHandler, apolloClientManager);
     this.checkout = new CheckoutQueuedJobs();
   }
 }
