@@ -31,7 +31,13 @@ import logoImg from "../../images/logo.svg";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+import { FormattedMessage } from "react-intl";
+
 const MainMenu: React.FC = () => {
+  const { locale } = useLocale()
+  const variables = {locale:locale.toUpperCase()}
+
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
   const { items } = useCart();
@@ -50,7 +56,7 @@ const MainMenu: React.FC = () => {
       {overlayContext => (
         <nav className="main-menu" id="header">
           <div className="main-menu__left">
-            <TypedMainMenuQuery renderOnError displayLoader={false}>
+            <TypedMainMenuQuery variables={variables} renderOnError displayLoader={false}>
               {({ data }) => {
                 const items = maybe(() => data.shop.navigation.main.items, []);
 
@@ -110,23 +116,33 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-testid="my_account__link">
-                                <Link to={appPaths.accountUrl}>My Account</Link>
+                                <Link to={appPaths.accountUrl}>
+                                  <FormattedMessage 
+                                    defaultMessage={"My Account"}
+                                    description={"main menu link"}/>
+                                </Link>
                               </li>
                               <li data-testid="order_history__link">
                                 <Link to={appPaths.orderHistoryUrl}>
-                                  Order history
+                                  <FormattedMessage 
+                                    defaultMessage={"Order history"}
+                                    description={"main menu link"}/>
                                 </Link>
                               </li>
                               <li data-testid="address_book__link">
                                 <Link to={appPaths.addressBookUrl}>
-                                  Address book
+                                  <FormattedMessage 
+                                    defaultMessage={"Address book"}
+                                    description={"main menu link"}/>
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
                                 data-testid="logout-link"
                               >
-                                Log Out
+                                <FormattedMessage 
+                                    defaultMessage={"Log Out"}
+                                    description={"main menu link"}/>
                               </li>
                             </ul>
                           }
@@ -178,23 +194,33 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-testid="my_account__link">
-                                <Link to={appPaths.accountUrl}>My Account</Link>
+                                <Link to={appPaths.accountUrl}>
+                                  <FormattedMessage 
+                                    defaultMessage={"My Account"}
+                                    description={"main menu link"}/>
+                                </Link>
                               </li>
                               <li data-testid="order_history__link">
                                 <Link to={appPaths.orderHistoryUrl}>
-                                  Order history
+                                  <FormattedMessage 
+                                    defaultMessage={"Order history"}
+                                    description={"main menu link"}/>
                                 </Link>
                               </li>
                               <li data-testid="address_book__link">
                                 <Link to={appPaths.addressBookUrl}>
-                                  Address book
+                                  <FormattedMessage 
+                                    defaultMessage={"Address book"}
+                                    description={"main menu link"}/>
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
                                 data-testid="logout-link"
                               >
-                                Log Out
+                                <FormattedMessage 
+                                    defaultMessage={"Log Out"}
+                                    description={"main menu link"}/>
                               </li>
                             </ul>
                           }
@@ -246,7 +272,11 @@ const MainMenu: React.FC = () => {
               >
                 <Media
                   query={{ minWidth: mediumScreen }}
-                  render={() => <span>Search</span>}
+                  render={() => <span>
+                    <FormattedMessage 
+                      defaultMessage={"Search"}
+                      description={"main menu link"}/>
+                  </span>}
                 />
                 <ReactSVG path={searchImg} />
               </li>
