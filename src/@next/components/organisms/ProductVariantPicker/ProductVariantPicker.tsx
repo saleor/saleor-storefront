@@ -73,7 +73,6 @@ export const ProductVariantPicker: React.FC<IProps> = ({
               productVariantsAttributesSelectedValues={
                 productVariantsAttributesSelectedValues
               }
-              updateUrlWithAttributes={updateUrlWithAttributes}
               onChangeSelection={optionValue =>
                 onAttributeChange(productVariantsAttributeId, optionValue, slug)
               }
