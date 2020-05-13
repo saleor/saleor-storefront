@@ -64,7 +64,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       changeSubmitProgress(true);
       const { data, dataError } = await completeCheckout();
       changeSubmitProgress(false);
-      const errors = dataError?.error.extraInfo.userInputErrors;
+      const errors = dataError?.error;
       if (errors) {
         setErrors(errors);
       } else {

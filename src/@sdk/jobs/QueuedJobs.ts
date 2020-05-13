@@ -1,4 +1,4 @@
-import { CheckoutNetworkManager } from "../network";
+import { NetworkManager } from "../network";
 import { LocalRepository } from "../repository";
 import { CartQueuedJobs } from "./Cart";
 import { CheckoutQueuedJobs } from "./Checkout";
@@ -12,11 +12,8 @@ export class QueuedJobs implements IQueuedJobs {
   cart: CartQueuedJobs;
   checkout: CheckoutQueuedJobs;
 
-  constructor(
-    repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
-  ) {
-    this.cart = new CartQueuedJobs(repository, checkoutNetworkManager);
+  constructor(repository: LocalRepository, networkManager: NetworkManager) {
+    this.cart = new CartQueuedJobs(repository, networkManager);
     this.checkout = new CheckoutQueuedJobs();
   }
 }
