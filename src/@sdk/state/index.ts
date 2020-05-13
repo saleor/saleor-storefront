@@ -3,7 +3,7 @@ import { round } from "lodash";
 import { DataErrorCheckoutTypes } from "../api/Checkout/types";
 import { NamedObservable } from "../helpers";
 import { NetworkManager } from "../network";
-import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/types/GetShopPaymentGateways";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/gqlTypes/GetShopPaymentGateways";
 import { ApolloErrorWithUserInput } from "../react/types";
 import {
   ICheckoutModel,

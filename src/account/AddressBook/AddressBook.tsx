@@ -3,7 +3,7 @@ import "./scss/index.scss";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
 import { useDefaultUserAddress, useDeleteUserAddresss } from "@sdk/react";
-import { AddressTypeEnum } from "@sdk/types/globalTypes";
+import { AddressTypeEnum } from "@sdk/gqlTypes/globalTypes";
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{

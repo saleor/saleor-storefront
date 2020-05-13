@@ -10,33 +10,36 @@ import * as User from "./user";
 import {
   DeleteUserAddress,
   DeleteUserAddressVariables,
-} from "./types/DeleteUserAddress";
+} from "./gqlTypes/DeleteUserAddress";
 
 import {
   CreateUserAddress,
   CreateUserAddressVariables,
-} from "./types/CreateUserAddress";
+} from "./gqlTypes/CreateUserAddress";
 
 import {
   SetCustomerDefaultAddress,
   SetCustomerDefaultAddressVariables,
-} from "./types/SetCustomerDefaultAddress";
+} from "./gqlTypes/SetCustomerDefaultAddress";
 
 import {
   UpdateUserAddress,
   UpdateUserAddressVariables,
-} from "./types/UpdateUserAddress";
+} from "./gqlTypes/UpdateUserAddress";
 
-import { SetPassword, SetPasswordVariables } from "./types/SetPassword";
+import { SetPassword, SetPasswordVariables } from "./gqlTypes/SetPassword";
 
-import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
+import { TokenAuth, TokenAuthVariables } from "./gqlTypes/TokenAuth";
 
 import {
   PasswordChange,
   PasswordChangeVariables,
-} from "./types/PasswordChange";
+} from "./gqlTypes/PasswordChange";
 
-import { AccountUpdate, AccountUpdateVariables } from "./types/AccountUpdate";
+import {
+  AccountUpdate,
+  AccountUpdateVariables,
+} from "./gqlTypes/AccountUpdate";
 
 export type MutationOptions<TData, TVariables> = Omit<
   ApolloMutationOptions<TData, TVariables>,

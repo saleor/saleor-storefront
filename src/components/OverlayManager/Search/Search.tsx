@@ -22,7 +22,7 @@ import NetworkStatus from "../../NetworkStatus";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
-import { SearchResults } from "./types/SearchResults";
+import { SearchResults } from "./gqlTypes/SearchResults";
 
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";

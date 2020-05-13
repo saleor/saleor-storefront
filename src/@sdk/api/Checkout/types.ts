@@ -1,5 +1,5 @@
-import { Checkout_availableShippingMethods } from "@sdk/fragments/types/Checkout";
-import { GetShopPaymentGateways_shop_availablePaymentGateways } from "@sdk/queries/types/GetShopPaymentGateways";
+import { Checkout_availableShippingMethods } from "@sdk/fragments/gqlTypes/Checkout";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "@sdk/queries/gqlTypes/GetShopPaymentGateways";
 import {
   ICheckoutModelPrice,
   ICheckoutModelPriceValue,

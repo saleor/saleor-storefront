@@ -8,7 +8,7 @@ import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
-import { Article_shop } from "./types/Article";
+import { Article_shop } from "./gqlTypes/Article";
 
 const canDisplay = page =>
   maybe(() => !!page && !!page.title && !!page.contentJson);

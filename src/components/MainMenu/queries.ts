@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
-import { MainMenu } from "./types/MainMenu";
+import { MainMenu } from "./gqlTypes/MainMenu";
 
 export const mainMenu = gql`
   fragment MainMenuSubItem on MenuItem {
