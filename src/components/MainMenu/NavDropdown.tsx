@@ -7,8 +7,8 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
-import NavItem from "./NavItem";
 import { MainMenu_shop_navigation_main_items } from "./gqlTypes/MainMenu";
+import NavItem from "./NavItem";
 
 import "./scss/index.scss";
 

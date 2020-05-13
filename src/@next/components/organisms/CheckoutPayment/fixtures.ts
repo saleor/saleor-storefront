@@ -1,5 +1,5 @@
-import { IAddressWithAddressType, IPaymentGateway } from "@types";
 import { GetShop_shop_countries } from "@temp/@sdk/queries/gqlTypes/GetShop";
+import { IAddressWithAddressType, IPaymentGateway } from "@types";
 
 const address: IAddressWithAddressType = {
   city: "Wroclaw",

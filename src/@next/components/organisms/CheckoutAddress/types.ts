@@ -1,5 +1,5 @@
-import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 import { GetShop_shop_countries } from "@temp/@sdk/queries/gqlTypes/GetShop";
+import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 
 export declare type Address = {
   id: string;
