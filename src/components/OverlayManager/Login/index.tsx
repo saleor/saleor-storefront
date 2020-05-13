@@ -18,6 +18,8 @@ import RegisterForm from "./RegisterForm";
 import closeImg from "../../../images/x.svg";
 import ForgottenPassword from "./ForgottenPassword";
 
+import { FormattedMessage } from "react-intl";
+
 class Login extends React.Component<
   { overlay: OverlayContextInterface; active?: "login" | "register" },
   { active: "login" | "register" }
@@ -57,13 +59,17 @@ class Login extends React.Component<
                 onClick={() => this.changeActiveTab("login")}
                 className={this.state.active === "login" ? "active-tab" : ""}
               >
-                Sign in to account
+                <FormattedMessage
+                  defaultMessage={"Sign in to account"}
+                />
               </span>
               <span
                 onClick={() => this.changeActiveTab("register")}
                 className={this.state.active === "register" ? "active-tab" : ""}
               >
-                Register new account
+                <FormattedMessage
+                  defaultMessage={"Register new account"}
+                />
               </span>
             </div>
             <div className="login__content">

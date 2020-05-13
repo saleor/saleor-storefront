@@ -11,10 +11,15 @@ import { RegisterAccount } from "./types/RegisterAccount";
 
 import { AlertManager, useAlert } from "react-alert";
 
+import { commonMessages } from "@saleor/intl";
+import { useIntl } from "react-intl";
+
 const showSuccessNotification = (
   data: RegisterAccount,
   hide: () => void,
-  alert: AlertManager
+  alert: AlertManager,
+  errorMessage: string,
+  successMessage: string
 ) => {
   const successful = maybe(() => !data.accountRegister.errors.length);
 
@@ -23,8 +28,8 @@ const showSuccessNotification = (
     alert.show(
       {
         title: data.accountRegister.requiresConfirmation
-          ? "Please check your e-mail for further instructions"
-          : "New user has been created",
+          ? errorMessage
+          : successMessage,
       },
       { type: "success", timeout: 5000 }
     );
@@ -32,11 +37,15 @@ const showSuccessNotification = (
 };
 
 const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
+  const intl = useIntl();
+
   const alert = useAlert();
 
   return (
     <TypedAccountRegisterMutation
-      onCompleted={data => showSuccessNotification(data, hide, alert)}
+      onCompleted={data => showSuccessNotification(data, hide, alert,
+        intl.formatMessage({defaultMessage: "Please check your e-mail for further instructions"}),
+        intl.formatMessage({defaultMessage: "New user has been created"}) )}
     >
       {(registerCustomer, { loading, data }) => {
         return (
@@ -51,20 +60,21 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             <TextField
               name="email"
               autoComplete="email"
-              label="Email Address"
+              label={intl.formatMessage(commonMessages.email)}
               type="email"
               required
             />
             <TextField
               name="password"
               autoComplete="password"
-              label="Password"
+              label={intl.formatMessage(commonMessages.password)}
               type="password"
               required
             />
             <div className="login__content__button">
               <Button type="submit" {...(loading && { disabled: true })}>
-                {loading ? "Loading" : "Register"}
+                {loading ? intl.formatMessage(commonMessages.loading)
+                  : intl.formatMessage({defaultMessage: "Registre"})}
               </Button>
             </div>
           </Form>
