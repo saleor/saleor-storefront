@@ -10,6 +10,8 @@ import NavItem, { INavItem } from "./NavItem";
 import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
 
+import { FormattedMessage } from "react-intl";
+
 interface NavListProps {
   items: INavItem[];
   hideOverlay(): void;
@@ -89,7 +91,8 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-link"
                 onClick={hideOverlay}
               >
-                Home
+                <FormattedMessage defaultMessage="Home"
+                  description={"home page link mobile nav list"}/>
               </Link>
             </li>
           </>
