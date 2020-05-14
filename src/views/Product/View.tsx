@@ -5,14 +5,14 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 
 import { useSearchQueryAttributes } from "@hooks";
-import { useCart } from "@sdk/react";
+import { ProductDetails_product } from "@sdk/queries/types/ProductDetails";
+import { useCart, useProductDetails } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
-import { TypedProductDetailsQuery } from "./queries";
 import { IProps } from "./types";
 
 const canDisplay = (product: ProductDetails_product) =>
@@ -94,43 +94,34 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
+  const { data: product } = useProductDetails({
+    id: getGraphqlIdFromDBId(match.params.id, "Product"),
+  });
 
   return (
-    <TypedProductDetailsQuery
-      loaderFull
-      variables={{
-        id: getGraphqlIdFromDBId(match.params.id, "Product"),
+    <NetworkStatus>
+      {isOnline => {
+        if (canDisplay(product)) {
+          return (
+            <MetaWrapper meta={extractMeta(product)}>
+              <PageWithQueryAttributes
+                product={product}
+                add={addItem}
+                items={items}
+              />
+            </MetaWrapper>
+          );
+        }
+
+        if (product === null) {
+          return <NotFound />;
+        }
+
+        if (!isOnline) {
+          return <OfflinePlaceholder />;
+        }
       }}
-      errorPolicy="all"
-      key={match.params.id}
-    >
-      {({ data }) => (
-        <NetworkStatus>
-          {isOnline => {
-            const { product } = data;
-            if (canDisplay(product)) {
-              return (
-                <MetaWrapper meta={extractMeta(product)}>
-                  <PageWithQueryAttributes
-                    product={product}
-                    add={addItem}
-                    items={items}
-                  />
-                </MetaWrapper>
-              );
-            }
-
-            if (product === null) {
-              return <NotFound />;
-            }
-
-            if (!isOnline) {
-              return <OfflinePlaceholder />;
-            }
-          }}
-        </NetworkStatus>
-      )}
-    </TypedProductDetailsQuery>
+    </NetworkStatus>
   );
 };
 

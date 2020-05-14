@@ -1,9 +1,9 @@
 import queryString from "query-string";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const useSearchQueryAttributes = () => {
   const history = useHistory();
-  const search = useLocation().search;
+  const search = history.location.search;
   const searchQueryAttributes = queryString.parse(search);
 
   const updateUrlWithAttributes = (slug: string, value: string) => {
@@ -17,6 +17,7 @@ export const useSearchQueryAttributes = () => {
       )
     );
   };
+
   const clearUrlAttribute = (slug: string) => updateUrlWithAttributes(slug, "");
   const clearUrl = () => history.replace(history.location.pathname);
 

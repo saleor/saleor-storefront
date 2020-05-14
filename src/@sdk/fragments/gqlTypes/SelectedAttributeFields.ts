@@ -16,6 +16,10 @@ export interface SelectedAttributeFields_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
 }
 
 export interface SelectedAttributeFields_values {

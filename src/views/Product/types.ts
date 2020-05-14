@@ -1,5 +1,5 @@
+import { ProductDetails_product } from "@sdk/queries/types/ProductDetails";
 import { ICheckoutModelLine } from "@sdk/repository";
-import { ProductDetails_product } from "./types/ProductDetails";
 
 export interface IProps {
   product: ProductDetails_product;

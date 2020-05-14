@@ -20,6 +20,7 @@ export const selectedAttributeFragment = gql`
     attribute {
       id
       name
+      slug
     }
     values {
       id
@@ -36,6 +37,11 @@ export const productVariantFragment = gql`
     name
     stockQuantity
     isAvailable
+    images {
+      id
+      url
+      alt
+    }
     pricing {
       onSale
       priceUndiscounted {
@@ -49,6 +55,7 @@ export const productVariantFragment = gql`
       attribute {
         id
         name
+        slug
       }
       values {
         id
