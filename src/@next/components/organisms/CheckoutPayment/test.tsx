@@ -86,8 +86,8 @@ describe("<CheckoutPayment />", () => {
       wrapper
         .find(Select)
         .at(0)
-        .prop("value")
-    ).toEqual(address.country);
+        .prop("value").code
+    ).toEqual(address.country?.code);
     expect(getValue(8)).toEqual(address.countryArea);
   });
 });
