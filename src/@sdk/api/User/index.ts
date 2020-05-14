@@ -5,7 +5,8 @@ import { JobsManager } from "@sdk/jobs";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
-import { IUserAPI } from "./types";
+import { PromiseRunResponse } from "../types";
+import { DataErrorUserTypes, FunctionErrorUserTypes, IUserAPI } from "./types";
 
 export class UserAPI extends ErrorListener implements IUserAPI {
   loaded: boolean;
@@ -43,4 +44,22 @@ export class UserAPI extends ErrorListener implements IUserAPI {
       this.loaded = this.userLoaded && this.tokenLoaded;
     });
   }
+
+  signIn = async (
+    email: string,
+    password: string
+  ): PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes> => {
+    return {
+      pending: false,
+    };
+  };
+
+  signOut = async (): PromiseRunResponse<
+    DataErrorUserTypes,
+    FunctionErrorUserTypes
+  > => {
+    return {
+      pending: false,
+    };
+  };
 }

@@ -16,11 +16,11 @@ export interface IUserAPI {
   orders?: OrderDetail[];
   // loadUser: () => PromiseQueuedResponse;
   // loadOrders: () => PromiseQueuedResponse;
-  // signIn: (
-  //   email: string,
-  //   password: string
-  // ) => PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes>;
-  // signOut: () => PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes>;
+  signIn: (
+    email: string,
+    password: string
+  ) => PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes>;
+  signOut: () => PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes>;
   // updateAccount: () => PromiseRunResponse<
   //   DataErrorUserTypes,
   //   FunctionErrorUserTypes
