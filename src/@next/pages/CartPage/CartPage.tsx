@@ -1,4 +1,4 @@
-import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
+import { useCart, useCheckout, useUser, useUserDetails } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -112,6 +112,8 @@ const generateCart = (
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { data: user } = useUserDetails();
+  const newUser = useUser();
+  console.log(newUser);
   const { checkout } = useCheckout();
   const {
     loaded,
