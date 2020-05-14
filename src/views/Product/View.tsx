@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import { isEmpty } from "lodash";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 
 import { useSearchQueryAttributes } from "@hooks";
@@ -52,43 +52,41 @@ const extractMeta = (product: ProductDetails_product) => ({
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
   const { clearUrl, searchQueryAttributes } = useSearchQueryAttributes();
+  const [queryAttributes, setQueryAttributes] = useState({});
 
-  const queryAttributes = useMemo(() => {
-    let queryAttributes = {};
+  useEffect(() => {
     if (!isEmpty(searchQueryAttributes)) {
+      let queryAttributes: Record<string, string> = {};
       product.variants.forEach(({ attributes }) => {
-        attributes.map(({ attribute, values }) => {
+        attributes.forEach(({ attribute, values }) => {
           const attributeId = attribute.id;
           const selectedAttributeValue = searchQueryAttributes[attribute.slug];
           if (selectedAttributeValue) {
-            values.map(({ value }) => {
-              if (value === selectedAttributeValue) {
-                if (
-                  isEmpty(queryAttributes) ||
-                  attributes.some(
-                    ({ attribute, values }) =>
-                      queryAttributes[attribute.id] &&
-                      queryAttributes[attribute.id] === values[0].value
-                  )
-                ) {
-                  queryAttributes = {
-                    ...queryAttributes,
-                    [attributeId]: selectedAttributeValue,
-                  };
-                }
+            values.forEach(({ value }) => {
+              if (
+                (value === selectedAttributeValue &&
+                  isEmpty(queryAttributes)) ||
+                attributes.some(
+                  ({ attribute: { id }, values }) =>
+                    queryAttributes[id] &&
+                    queryAttributes[id] === values[0].value
+                )
+              ) {
+                queryAttributes = {
+                  ...queryAttributes,
+                  [attributeId]: selectedAttributeValue,
+                };
               }
             });
           }
         });
       });
+      setQueryAttributes(queryAttributes);
     }
-    return queryAttributes;
-  }, [product.variants]);
+  }, [product.variants.length]);
 
   useEffect(() => {
-    if (!isEmpty(queryAttributes)) {
-      clearUrl();
-    }
+    clearUrl();
   }, [queryAttributes]);
 
   return <Page {...props} queryAttributes={queryAttributes} />;
