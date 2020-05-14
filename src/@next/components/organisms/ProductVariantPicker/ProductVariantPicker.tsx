@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import {
   useProductVariantsAttributes,
   useProductVariantsAttributesValuesSelection,
-  useSearchQueryAttributes,
 } from "@hooks";
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";
@@ -15,6 +14,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
+  updateUrlWithAttributes,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
@@ -23,7 +23,6 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     productVariantsAttributesSelectedValues,
     selectProductVariantsAttributesValue,
   ] = useProductVariantsAttributesValuesSelection(productVariantsAttributes);
-  const { updateUrlWithAttributes } = useSearchQueryAttributes();
 
   useEffect(() => {
     const selectedVariant = productVariants.find(productVariant => {

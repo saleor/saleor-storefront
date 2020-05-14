@@ -1,10 +1,11 @@
 import "./scss/index.scss";
 
 import { isEmpty } from "lodash";
+import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
+import { useHistory } from "react-router-dom";
 
-import { useSearchQueryAttributes } from "@hooks";
 import { ProductDetails_product } from "@sdk/queries/types/ProductDetails";
 import { useCart, useProductDetails } from "@sdk/react";
 
@@ -51,7 +52,21 @@ const extractMeta = (product: ProductDetails_product) => ({
 
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
-  const { clearUrl, searchQueryAttributes } = useSearchQueryAttributes();
+  const history = useHistory();
+  const search = history.location.search;
+  const searchQueryAttributes = queryString.parse(search);
+
+  const updateUrlWithAttributes = (slug: string, value: string) => {
+    history.replace(
+      queryString.stringifyUrl(
+        {
+          query: { [slug]: value },
+          url: `${history.location.pathname}${history.location.search}`,
+        },
+        { skipEmptyString: true }
+      )
+    );
+  };
   const [queryAttributes, setQueryAttributes] = useState({});
 
   useEffect(() => {
@@ -86,10 +101,16 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   }, [product.variants.length]);
 
   useEffect(() => {
-    clearUrl();
+    history.replace(history.location.pathname);
   }, [queryAttributes]);
 
-  return <Page {...props} queryAttributes={queryAttributes} />;
+  return (
+    <Page
+      {...props}
+      queryAttributes={queryAttributes}
+      updateUrlWithAttributes={updateUrlWithAttributes}
+    />
+  );
 };
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {

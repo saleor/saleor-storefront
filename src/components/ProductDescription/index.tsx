@@ -25,6 +25,7 @@ interface ProductDescriptionProps {
   queryAttributes: Record<string, string>;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
+  updateUrlWithAttributes(slug: string, value: string): void;
 }
 
 interface ProductDescriptionState {
@@ -149,6 +150,7 @@ class ProductDescription extends React.Component<
             onChange={this.onVariantPickerChange}
             selectSidebar={true}
             queryAttributes={this.props.queryAttributes}
+            updateUrlWithAttributes={this.props.updateUrlWithAttributes}
           />
         </div>
         <div className="product-description__quantity-input">

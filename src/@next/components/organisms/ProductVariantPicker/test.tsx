@@ -16,7 +16,11 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
-const PROPS = { productVariants, queryAttributes: {} };
+const PROPS = {
+  productVariants,
+  queryAttributes: {},
+  updateUrlWithAttributes: jest.fn(),
+};
 
 describe("<ProductVariantPicker />", () => {
   it("exists", () => {
