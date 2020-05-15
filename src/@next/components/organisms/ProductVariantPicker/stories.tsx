@@ -26,7 +26,7 @@ const PROPS = {
   onChange: action("onChange"),
   productVariants: PRODUCT_VARIANTS,
   queryAttributes: {},
-  updateUrlWithAttributes: action("update url params"),
+  onAttributeChangeHandler: action("attribute change"),
 };
 
 storiesOf("@components/organisms/ProductVariantPicker", module)

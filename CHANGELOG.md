@@ -34,11 +34,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Completely recreate checkout and cart, with new checkout nad cart SDK - #639 by @orzechdev, @mateuszkula
 - Hide payment options - #678 by @orzechdev
 - Fix unhandled JWT token expiration - #696 by @orzechdev
-<<<<<<< HEAD
 - Regenerate types - #712 by @dominik-zeglen
-=======
-- Implement PDP url for product variant - #708 by @AlicjaSzu
->>>>>>> update changelog
+- Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
 
 ## 0.7.0
 

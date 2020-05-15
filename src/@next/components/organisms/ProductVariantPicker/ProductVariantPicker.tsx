@@ -14,7 +14,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
-  updateUrlWithAttributes,
+  onAttributeChangeHandler,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
@@ -47,9 +47,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
 
   const onAttributeChange = (id: string, value: any, slug: string | null) => {
     selectProductVariantsAttributesValue(id, value);
-    if (slug) {
-      updateUrlWithAttributes(slug, value);
-    }
+    onAttributeChangeHandler(slug, value);
   };
 
   return (

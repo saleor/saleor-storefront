@@ -56,7 +56,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   const search = history.location.search;
   const searchQueryAttributes = queryString.parse(search);
 
-  const updateUrlWithAttributes = (slug: string, value: string) => {
+  const onAttributeChangeHandler = (slug: string | null, value: string) => {
     history.replace(
       queryString.stringifyUrl(
         {
@@ -74,22 +74,19 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
       let queryAttributes: Record<string, string> = {};
       product.variants.forEach(({ attributes }) => {
         attributes.forEach(({ attribute, values }) => {
-          const attributeId = attribute.id;
           const selectedAttributeValue = searchQueryAttributes[attribute.slug];
-          if (selectedAttributeValue) {
+          if (
+            selectedAttributeValue &&
+            values[0].value === selectedAttributeValue
+          ) {
             if (
-              (values[0].value === selectedAttributeValue &&
-                isEmpty(queryAttributes)) ||
-              attributes.some(
+              isEmpty(queryAttributes) ||
+              !attributes.filter(
                 ({ attribute: { id }, values }) =>
-                  !!queryAttributes[id] &&
-                  queryAttributes[id] === values[0].value
-              )
+                  queryAttributes[id] && queryAttributes[id] !== values[0].value
+              ).length
             ) {
-              queryAttributes = {
-                ...queryAttributes,
-                [attributeId]: selectedAttributeValue,
-              };
+              queryAttributes[attribute.id] = selectedAttributeValue;
             }
           }
         });
@@ -106,7 +103,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
     <Page
       {...props}
       queryAttributes={queryAttributes}
-      updateUrlWithAttributes={updateUrlWithAttributes}
+      onAttributeChangeHandler={onAttributeChangeHandler}
     />
   );
 };
