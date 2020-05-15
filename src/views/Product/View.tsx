@@ -77,22 +77,20 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
           const attributeId = attribute.id;
           const selectedAttributeValue = searchQueryAttributes[attribute.slug];
           if (selectedAttributeValue) {
-            values.forEach(({ value }) => {
-              if (
-                (value === selectedAttributeValue &&
-                  isEmpty(queryAttributes)) ||
-                attributes.some(
-                  ({ attribute: { id }, values }) =>
-                    queryAttributes[id] &&
-                    queryAttributes[id] === values[0].value
-                )
-              ) {
-                queryAttributes = {
-                  ...queryAttributes,
-                  [attributeId]: selectedAttributeValue,
-                };
-              }
-            });
+            if (
+              (values[0].value === selectedAttributeValue &&
+                isEmpty(queryAttributes)) ||
+              attributes.some(
+                ({ attribute: { id }, values }) =>
+                  !!queryAttributes[id] &&
+                  queryAttributes[id] === values[0].value
+              )
+            ) {
+              queryAttributes = {
+                ...queryAttributes,
+                [attributeId]: selectedAttributeValue,
+              };
+            }
           }
         });
       });
@@ -115,9 +113,12 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
-  const { data: product } = useProductDetails({
-    id: getGraphqlIdFromDBId(match.params.id, "Product"),
-  });
+  const { data: product } = useProductDetails(
+    {
+      id: getGraphqlIdFromDBId(match.params.id, "Product"),
+    },
+    { errorPolicy: "all" }
+  );
 
   return (
     <NetworkStatus>
