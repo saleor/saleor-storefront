@@ -71,7 +71,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
   useEffect(() => {
     if (!isEmpty(searchQueryAttributes)) {
-      let queryAttributes: Record<string, string> = {};
+      const queryAttributes: Record<string, string> = {};
       product.variants.forEach(({ attributes }) => {
         attributes.forEach(({ attribute, values }) => {
           const selectedAttributeValue = searchQueryAttributes[attribute.slug];

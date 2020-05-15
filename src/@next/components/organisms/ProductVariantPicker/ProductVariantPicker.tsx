@@ -11,10 +11,10 @@ import { IProps } from "./types";
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
   queryAttributes = {},
+  onAttributeChangeHandler,
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
-  onAttributeChangeHandler,
 }: IProps) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants

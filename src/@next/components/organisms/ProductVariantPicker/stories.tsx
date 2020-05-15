@@ -23,10 +23,10 @@ const withContainer = (children: ReactNode) => (
 
 const PRODUCT_VARIANTS = productVariants;
 const PROPS = {
+  onAttributeChangeHandler: action("attribute change"),
   onChange: action("onChange"),
   productVariants: PRODUCT_VARIANTS,
   queryAttributes: {},
-  onAttributeChangeHandler: action("attribute change"),
 };
 
 storiesOf("@components/organisms/ProductVariantPicker", module)

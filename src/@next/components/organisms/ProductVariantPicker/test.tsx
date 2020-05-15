@@ -17,9 +17,9 @@ if (!portalRoot) {
 }
 
 const PROPS = {
+  onAttributeChangeHandler: jest.fn(),
   productVariants,
   queryAttributes: {},
-  onAttributeChangeHandler: jest.fn(),
 };
 
 describe("<ProductVariantPicker />", () => {
