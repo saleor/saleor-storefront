@@ -86,6 +86,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
           this.apiProxy.getCheckoutProductVariants(
             {
               ids: idsOfMissingVariants,
+              locale: "FR",
             },
             {
               onError: error => {
@@ -138,6 +139,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
               product: edge.node.product,
               sku: edge.node.sku,
               stockQuantity: edge.node.stockQuantity,
+              translation: edge.node.translation,
             },
           };
         })
@@ -575,6 +577,7 @@ export class CheckoutNetworkManager implements ICheckoutNetworkManager {
             product: itemVariant?.product,
             sku: itemVariant?.sku,
             stockQuantity: itemVariant?.stockQuantity,
+            translation: itemVariant?.translation,
           },
         };
       }),

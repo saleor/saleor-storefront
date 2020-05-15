@@ -389,7 +389,14 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: CreateCheckout_checkoutCreate_checkout_lines_variant_attributes_attribute_translation | null;
 }
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes_values {
   __typename: "AttributeValue";
@@ -405,6 +412,12 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: CreateCheckout_checkoutCreate_checkout_lines_variant_attributes_values_translation | null;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant_attributes {
@@ -460,6 +473,12 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product {
    */
   thumbnail2x: CreateCheckout_checkoutCreate_checkout_lines_variant_product_thumbnail2x | null;
   productType: CreateCheckout_checkoutCreate_checkout_lines_variant_product_productType;
+  translation: CreateCheckout_checkoutCreate_checkout_lines_variant_product_translation | null;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines_variant {
@@ -487,6 +506,12 @@ export interface CreateCheckout_checkoutCreate_checkout_lines_variant {
    */
   attributes: CreateCheckout_checkoutCreate_checkout_lines_variant_attributes[];
   product: CreateCheckout_checkoutCreate_checkout_lines_variant_product;
+  translation: CreateCheckout_checkoutCreate_checkout_lines_variant_translation | null;
+}
+
+export interface CreateCheckout_checkoutCreate_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface CreateCheckout_checkoutCreate_checkout_lines {

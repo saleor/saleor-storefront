@@ -31,6 +31,9 @@ export class CheckoutRepositoryManager implements ICheckoutRepositoryManager {
         quantity,
         variant: {
           id: variantId,
+          translation: {
+            name: "",
+          },
         },
       };
       alteredLines.push(variant);

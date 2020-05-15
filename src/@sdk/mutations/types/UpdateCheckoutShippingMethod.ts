@@ -389,6 +389,12 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_attribute_translation | null;
+}
+
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_values {
@@ -405,6 +411,11 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_values_translation | null;
+}
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes {
@@ -460,6 +471,12 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    */
   thumbnail2x: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_thumbnail2x | null;
   productType: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_productType;
+  translation: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_translation | null;
+}
+
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant {
@@ -487,6 +504,12 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    */
   attributes: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_product;
+  translation: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_translation | null;
+}
+
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_lines {

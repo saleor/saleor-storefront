@@ -374,6 +374,12 @@ export interface CheckoutDetails_checkout_lines_variant_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: CheckoutDetails_checkout_lines_variant_attributes_attribute_translation | null;
+}
+
+export interface CheckoutDetails_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_attributes_values {
@@ -390,6 +396,12 @@ export interface CheckoutDetails_checkout_lines_variant_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: CheckoutDetails_checkout_lines_variant_attributes_values_translation | null;
+}
+
+export interface CheckoutDetails_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_attributes {
@@ -445,7 +457,14 @@ export interface CheckoutDetails_checkout_lines_variant_product {
    */
   thumbnail2x: CheckoutDetails_checkout_lines_variant_product_thumbnail2x | null;
   productType: CheckoutDetails_checkout_lines_variant_product_productType;
+  translation: CheckoutDetails_checkout_lines_variant_product_translation | null;
 }
+
+export interface CheckoutDetails_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+}
+
 
 export interface CheckoutDetails_checkout_lines_variant {
   __typename: "ProductVariant";
@@ -472,6 +491,12 @@ export interface CheckoutDetails_checkout_lines_variant {
    */
   attributes: CheckoutDetails_checkout_lines_variant_attributes[];
   product: CheckoutDetails_checkout_lines_variant_product;
+  translation: CheckoutDetails_checkout_lines_variant_translation | null;
+}
+
+export interface CheckoutDetails_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface CheckoutDetails_checkout_lines {

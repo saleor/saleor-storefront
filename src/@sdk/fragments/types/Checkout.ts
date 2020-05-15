@@ -374,7 +374,14 @@ export interface Checkout_lines_variant_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: ProductVariant_attributes_attribute_translation | null;
 }
+
+export interface ProductVariant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 
 export interface Checkout_lines_variant_attributes_values {
   __typename: "AttributeValue";
@@ -390,7 +397,13 @@ export interface Checkout_lines_variant_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: ProductVariant_attributes_values_translation | null;
 }
+export interface ProductVariant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 
 export interface Checkout_lines_variant_attributes {
   __typename: "SelectedAttribute";
@@ -445,8 +458,12 @@ export interface Checkout_lines_variant_product {
    */
   thumbnail2x: Checkout_lines_variant_product_thumbnail2x | null;
   productType: Checkout_lines_variant_product_productType;
+  translation: Checkout_lines_variant_product_translation | null;
 }
-
+export interface Checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+}
 export interface Checkout_lines_variant {
   __typename: "ProductVariant";
   /**
@@ -472,8 +489,12 @@ export interface Checkout_lines_variant {
    */
   attributes: Checkout_lines_variant_attributes[];
   product: Checkout_lines_variant_product;
+  translation: Checkout_lines_variant_translation | null;
 }
-
+export interface Checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
+}
 export interface Checkout_lines {
   __typename: "CheckoutLine";
   /**

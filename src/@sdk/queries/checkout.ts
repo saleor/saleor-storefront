@@ -28,7 +28,10 @@ export const userCheckoutDetails = gql`
 
 export const checkoutProductVariants = gql`
   ${checkoutProductVariantFragment}
-  query CheckoutProductVariants($ids: [ID]) {
+  query CheckoutProductVariants(
+    $ids: [ID]
+    $locale:LanguageCodeEnum!
+    ) {
     productVariants(ids: $ids, first: 100) {
       edges {
         node {

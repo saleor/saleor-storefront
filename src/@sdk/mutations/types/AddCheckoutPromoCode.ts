@@ -376,7 +376,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_attribute_translation | null;
 }
+
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_values {
   __typename: "AttributeValue";
@@ -392,7 +399,13 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_values_translation | null;
 }
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes {
   __typename: "SelectedAttribute";
@@ -447,6 +460,12 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    */
   thumbnail2x: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_thumbnail2x | null;
   productType: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_productType;
+  translation: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_productType_translation | null;
+}
+
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product_productType_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant {
@@ -474,6 +493,12 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    */
   attributes: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes[];
   product: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_product;
+  translation: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_translation | null;
+}
+
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines {

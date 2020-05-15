@@ -22,6 +22,8 @@ import ProductList from "./ProductList";
 import cartImg from "../../../images/cart.svg";
 import closeImg from "../../../images/x.svg";
 
+import { FormattedMessage } from "react-intl";
+
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { data: user } = useUserDetails();
   const { checkout } = useCheckout();
@@ -53,13 +55,17 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           <div className="overlay__header">
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
-              My bag,{" "}
+              <FormattedMessage
+                defaultMessage={"My bag, "}
+              />
               <span className="overlay__header-text-items">
                 {items?.reduce(
                   (prevVal, currVal) => prevVal + currVal.quantity,
                   0
-                ) || 0}{" "}
-                items
+                ) || 0}
+                <FormattedMessage
+                  defaultMessage={" items"}
+                />
               </span>
             </div>
             <ReactSVG
@@ -68,12 +74,17 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
               className="overlay__header__close-icon"
             />
           </div>
-          {items?.length ? (
+          {
+          items?.length ? (
             <>
               <ProductList lines={items} remove={removeItem} />
               <div className="cart__footer">
                 <div className="cart__footer__price">
-                  <span>Subtotal</span>
+                  <span>
+                    <FormattedMessage
+                      defaultMessage={"Subtotal"}
+                    />
+                  </span>
                   <span>
                     <TaxedMoney
                       data-cy="cartPageSubtotalPrice"
@@ -84,7 +95,11 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                 {shippingTaxedPrice && shippingTaxedPrice.gross.amount !== 0 && (
                   <div className="cart__footer__price">
-                    <span>Shipping</span>
+                    <span>
+                    <FormattedMessage
+                      defaultMessage={"Shipping"}
+                    />
+                    </span>
                     <span>
                       <TaxedMoney
                         data-cy="cartPageShippingPrice"
@@ -96,7 +111,11 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                 {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
                   <div className="cart__footer__price">
-                    <span>Promo code</span>
+                    <span>
+                      <FormattedMessage
+                        defaultMessage={"Promo code"}
+                      />
+                    </span>
                     <span>
                       <TaxedMoney
                         data-cy="cartPagePromoCodePrice"
@@ -107,7 +126,11 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                 )}
 
                 <div className="cart__footer__price">
-                  <span>Total</span>
+                  <span>
+                    <FormattedMessage
+                      defaultMessage={"Total"}
+                    />
+                  </span>
                   <span>
                     <TaxedMoney
                       data-cy="cartPageTotalPrice"
@@ -122,12 +145,20 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       token: null,
                     })}
                   >
-                    <Button secondary>Go to my bag</Button>
+                    <Button secondary>
+                    <FormattedMessage
+                        defaultMessage={"Go to my bag"}
+                      />
+                    </Button>
                   </Link>
                 </div>
                 <div className="cart__footer__button">
                   <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                    <Button>Checkout</Button>
+                    <Button>
+                      <FormattedMessage
+                        defaultMessage={"Checkout"}
+                      />
+                    </Button>
                   </Link>
                 </div>
               </div>

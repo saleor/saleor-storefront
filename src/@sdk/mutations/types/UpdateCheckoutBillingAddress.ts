@@ -389,7 +389,14 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_attribute_translation | null;
 }
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_values {
   __typename: "AttributeValue";
@@ -405,7 +412,13 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_values_translation | null;
 }
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes {
   __typename: "SelectedAttribute";
@@ -460,7 +473,14 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   thumbnail2x: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
   productType: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_productType;
+  translation: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_translation | null;
 }
+
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+}
+
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant {
   __typename: "ProductVariant";
@@ -487,7 +507,13 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
    */
   attributes: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_product;
+  translation: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_translation | null;
 }
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
+}
+
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkout_lines {
   __typename: "CheckoutLine";

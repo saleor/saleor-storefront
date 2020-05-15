@@ -389,6 +389,12 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_attribute_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values {
@@ -405,6 +411,11 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values_translation | null;
+}
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes {
@@ -460,6 +471,12 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_thumbnail2x | null;
   productType: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_productType;
+  translation: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant {
@@ -487,6 +504,12 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    */
   attributes: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_product;
+  translation: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_lines {
@@ -939,6 +962,12 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_attribute_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values {
@@ -955,6 +984,12 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes {
@@ -1010,6 +1045,12 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   thumbnail2x: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_thumbnail2x | null;
   productType: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_productType;
+  translation: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_translation | null;
+}
+
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant {
@@ -1037,6 +1078,11 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
    */
   attributes: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_attributes[];
   product: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_product;
+  translation: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_translation | null;
+}
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines_variant_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_lines {

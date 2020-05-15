@@ -104,6 +104,12 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes_a
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  translation: CheckoutProductVariants_productVariants_edges_node_attributes_attribute_translation | null;
+}
+
+export interface CheckoutProductVariants_productVariants_edges_node_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_attributes_values {
@@ -120,6 +126,11 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes_v
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  translation: CheckoutProductVariants_productVariants_edges_node_attributes_values_translation | null;
+}
+export interface CheckoutProductVariants_productVariants_edges_node_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_attributes {
@@ -175,6 +186,13 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
    */
   thumbnail2x: CheckoutProductVariants_productVariants_edges_node_product_thumbnail2x | null;
   productType: CheckoutProductVariants_productVariants_edges_node_product_productType;
+  translation: CheckoutProductVariants_productVariants_edges_node_product_translation | null;
+}
+
+export interface CheckoutProductVariants_productVariants_edges_node_product_translation{
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node {
@@ -202,6 +220,12 @@ export interface CheckoutProductVariants_productVariants_edges_node {
    */
   attributes: CheckoutProductVariants_productVariants_edges_node_attributes[];
   product: CheckoutProductVariants_productVariants_edges_node_product;
+  translation: CheckoutProductVariants_productVariants_edges_node_translation | null;
+}
+
+export interface CheckoutProductVariants_productVariants_edges_node_translation{
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface CheckoutProductVariants_productVariants_edges {

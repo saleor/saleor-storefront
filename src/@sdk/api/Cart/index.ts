@@ -15,6 +15,7 @@ import {
   ITotalPrice,
 } from "./types";
 
+
 export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   loaded: boolean;
   items: IItems;
