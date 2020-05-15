@@ -6,8 +6,15 @@ import { SocialMediaIcon } from "..";
 import { SOCIAL_MEDIA } from "../../core/config";
 import Nav from "./Nav";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
 
-const Footer: React.FC = () => (
+import Button from "../Button";
+import { Locale } from "../Locale/Locale";
+
+
+const Footer: React.FC = () => {
+  const { locale, setLocale } = useLocale();
+  return (
   <div className="footer" id="footer">
     <div className="footer__favicons container">
       {SOCIAL_MEDIA.map(medium => (
@@ -15,7 +22,11 @@ const Footer: React.FC = () => (
       ))}
     </div>
     <Nav />
+    <Button onClick={() => {
+      const loc = locale === Locale.FR? Locale.EN: Locale.FR;
+      setLocale(loc)
+      }}>{locale}</Button>
   </div>
-);
+)};
 
 export default Footer;
