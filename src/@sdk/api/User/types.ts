@@ -3,8 +3,12 @@ import { User } from "@sdk/fragments/types/User";
 
 import { PromiseQueuedResponse, PromiseRunResponse } from "../types";
 
-export enum FunctionErrorUserTypes {}
-export enum DataErrorUserTypes {}
+export enum FunctionErrorUserTypes {
+  "EMAIL_OR_PASSWORD_NOT_SET",
+}
+export enum DataErrorUserTypes {
+  "SIGN_IN",
+}
 
 /**
  * Not all methods are yet implemented. If they will, then respective methods from API proxy should be deleted.

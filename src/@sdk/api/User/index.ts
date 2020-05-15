@@ -43,21 +43,51 @@ export class UserAPI extends ErrorListener implements IUserAPI {
       this.tokenLoaded = true;
       this.loaded = this.userLoaded && this.tokenLoaded;
     });
+
+    if (loadOnStart) {
+      this.load();
+    }
   }
+
+  load = () => {
+    this.saleorState.provideSignInToken();
+    return {
+      pending: false,
+    };
+  };
 
   signIn = async (
     email: string,
     password: string
   ): PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes> => {
-    return {
-      pending: false,
-    };
+    if (email && password) {
+      const { data, dataError } = await this.jobsManager.run("user", "signIn", {
+        email,
+        password,
+      });
+
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    } else {
+      return {
+        functionError: {
+          error: new Error("Email and password are required for sign in."),
+          type: FunctionErrorUserTypes.EMAIL_OR_PASSWORD_NOT_SET,
+        },
+        pending: false,
+      };
+    }
   };
 
   signOut = async (): PromiseRunResponse<
     DataErrorUserTypes,
     FunctionErrorUserTypes
   > => {
+    await this.jobsManager.run("user", "signOut", undefined);
+
     return {
       pending: false,
     };
