@@ -1,4 +1,4 @@
-import { CheckoutNetworkManager } from "../network";
+import { NetworkManager } from "../network";
 import { LocalRepository } from "../repository";
 import { IJobs, Jobs } from "./Jobs";
 import { IQueuedJobs, QueuedJobs } from "./QueuedJobs";
@@ -14,18 +14,15 @@ export class JobsManager {
   private jobs: IJobs;
   private queuedJobs: IQueuedJobs;
 
-  constructor(
-    repository: LocalRepository,
-    checkoutNetworkManager: CheckoutNetworkManager
-  ) {
+  constructor(repository: LocalRepository, networkManager: NetworkManager) {
     this.queue = new Array<{
       jobGroup: string;
       jobName: string;
     }>();
     this.repository = repository;
 
-    this.jobs = new Jobs(this.repository, checkoutNetworkManager);
-    this.queuedJobs = new QueuedJobs(this.repository, checkoutNetworkManager);
+    this.jobs = new Jobs(this.repository, networkManager);
+    this.queuedJobs = new QueuedJobs(this.repository, networkManager);
 
     this.enqueueAllSavedInRepository();
 

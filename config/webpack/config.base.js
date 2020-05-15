@@ -104,7 +104,6 @@ module.exports = ({ sourceDir, distDir }) => ({
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
       exclude: "node_modules",
-      async: false,
     }),
     // PWA plugins
     new WebappWebpackPlugin({

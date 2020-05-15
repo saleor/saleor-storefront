@@ -1,7 +1,7 @@
 import { ErrorListener } from "@sdk/helpers";
 import { JobsManager } from "@sdk/jobs";
 import { ErrorCartTypes } from "@sdk/jobs/Cart";
-import { CheckoutNetworkManager } from "@sdk/network";
+import { NetworkManager } from "@sdk/network";
 import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
@@ -29,12 +29,12 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
 
   private checkoutRepositoryManager: CheckoutRepositoryManager;
   private saleorState: SaleorState;
-  private checkoutNetworkManager: CheckoutNetworkManager;
+  private networkManager: NetworkManager;
   private jobsManager: JobsManager;
 
   constructor(
     checkoutRepositoryManager: CheckoutRepositoryManager,
-    checkoutNetworkManager: CheckoutNetworkManager,
+    networkManager: NetworkManager,
     saleorState: SaleorState,
     loadOnStart: boolean,
     jobsManager: JobsManager
@@ -42,7 +42,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     super();
     this.saleorState = saleorState;
     this.checkoutRepositoryManager = checkoutRepositoryManager;
-    this.checkoutNetworkManager = checkoutNetworkManager;
+    this.networkManager = networkManager;
     this.jobsManager = jobsManager;
 
     this.loaded = false;
@@ -111,7 +111,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       const {
         data,
         error,
-      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
+      } = await this.networkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
@@ -145,7 +145,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       const {
         data,
         error,
-      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
+      } = await this.networkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
@@ -180,7 +180,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       const {
         data,
         error,
-      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
+      } = await this.networkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
@@ -215,7 +215,7 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
       const {
         data,
         error,
-      } = await this.checkoutNetworkManager.getRefreshedCheckoutLines(
+      } = await this.networkManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
