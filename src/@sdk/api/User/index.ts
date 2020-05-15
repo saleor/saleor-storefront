@@ -60,26 +60,16 @@ export class UserAPI extends ErrorListener implements IUserAPI {
     email: string,
     password: string
   ): PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes> => {
-    if (email && password) {
-      const { data, dataError } = await this.jobsManager.run("user", "signIn", {
-        email,
-        password,
-      });
+    const { data, dataError } = await this.jobsManager.run("user", "signIn", {
+      email,
+      password,
+    });
 
-      return {
-        data,
-        dataError,
-        pending: false,
-      };
-    } else {
-      return {
-        functionError: {
-          error: new Error("Email and password are required for sign in."),
-          type: FunctionErrorUserTypes.EMAIL_OR_PASSWORD_NOT_SET,
-        },
-        pending: false,
-      };
-    }
+    return {
+      data,
+      dataError,
+      pending: false,
+    };
   };
 
   signOut = async (): PromiseRunResponse<

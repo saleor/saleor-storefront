@@ -3,9 +3,7 @@ import { User } from "@sdk/fragments/types/User";
 
 import { PromiseQueuedResponse, PromiseRunResponse } from "../types";
 
-export enum FunctionErrorUserTypes {
-  "EMAIL_OR_PASSWORD_NOT_SET",
-}
+export enum FunctionErrorUserTypes {}
 export enum DataErrorUserTypes {
   "SIGN_IN",
 }
