@@ -114,7 +114,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     cardData?: ICardData
   ) => {
     const { dataError } = await createPayment(gateway, token, cardData);
-    const errors = dataError?.error.extraInfo.userInputErrors;
+    const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
       setGatewayErrors(errors);
@@ -153,7 +153,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress(true);
     if (billingAsShippingState && isShippingRequiredForProducts) {
       const { dataError } = await setBillingAsShippingAddress();
-      errors = dataError?.error.extraInfo.userInputErrors;
+      errors = dataError?.error;
     } else {
       const { dataError } = await setBillingAddress(
         {
@@ -162,7 +162,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         },
         billingEmail
       );
-      errors = dataError?.error.extraInfo.userInputErrors;
+      errors = dataError?.error;
     }
     if (errors) {
       changeSubmitProgress(false);
@@ -185,7 +185,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   };
   const handleAddPromoCode = async (promoCode: string) => {
     const { dataError } = await addPromoCode(promoCode);
-    const errors = dataError?.error.extraInfo.userInputErrors;
+    const errors = dataError?.error;
     if (errors) {
       changeSubmitProgress(false);
       setPromoCodeErrors(errors);
@@ -203,7 +203,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   };
   const handleRemovePromoCode = async (promoCode: string) => {
     const { dataError } = await removePromoCode(promoCode);
-    const errors = dataError?.error.extraInfo.userInputErrors;
+    const errors = dataError?.error;
     if (errors) {
       changeSubmitProgress(false);
       setPromoCodeErrors(errors);

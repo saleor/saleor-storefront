@@ -7,15 +7,10 @@ import {
 import { RequireOnlyOne } from "../tsHelpers";
 import * as AttributesList from "./attributes";
 import * as Category from "./category";
-import * as Checkout from "./checkout";
 import * as Orders from "./orders";
 import * as Product from "./products";
 import * as Shop from "./shop";
 
-import {
-  CheckoutDetails,
-  CheckoutDetailsVariables,
-} from "./types/CheckoutDetails";
 import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
 
 import { Attributes, AttributesVariables } from "./types/Attributes";
@@ -32,14 +27,8 @@ import {
 } from "./types/CategoryDetails";
 
 import { GetShop } from "./types/GetShop";
-import { GetShopPaymentGateways } from "./types/GetShopPaymentGateways";
 
-import {
-  CheckoutProductVariants,
-  CheckoutProductVariantsVariables,
-} from "./types/CheckoutProductVariants";
 import { OrdersByUser, OrdersByUserVariables } from "./types/OrdersByUser";
-import { UserCheckoutDetails } from "./types/UserCheckoutDetails";
 import { UserDetails } from "./types/UserDetails";
 import {
   VariantsProducts,
@@ -70,36 +59,12 @@ export const QUERIES = {
       query: Category.categoryQuery,
       ...options,
     }),
-  CheckoutDetails: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<CheckoutDetailsVariables>
-  ): ObservableQuery<CheckoutDetails, any> =>
-    client.watchQuery({
-      query: Checkout.checkoutDetails,
-      ...options,
-    }),
-  CheckoutProductVariants: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<CheckoutProductVariantsVariables>
-  ): ObservableQuery<CheckoutProductVariants, any> =>
-    client.watchQuery({
-      query: Checkout.checkoutProductVariants,
-      ...options,
-    }),
   GetShopDetails: <TCacheShape>(
     client: ApolloClient<TCacheShape>,
     options: QueryOptions<null>
   ): ObservableQuery<GetShop, any> =>
     client.watchQuery({
       query: Shop.getShop,
-      ...options,
-    }),
-  GetShopPaymentGateways: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<null>
-  ): ObservableQuery<GetShopPaymentGateways, any> =>
-    client.watchQuery({
-      query: Shop.getShopPaymentGateways,
       ...options,
     }),
   OrderDetails: <TCacheShape>(
@@ -132,14 +97,6 @@ export const QUERIES = {
   ): ObservableQuery<ProductList, any> =>
     client.watchQuery({
       query: Product.productListDetails,
-      ...options,
-    }),
-  UserCheckoutDetails: <TCacheShape>(
-    client: ApolloClient<TCacheShape>,
-    options: QueryOptions<null>
-  ): ObservableQuery<UserCheckoutDetails, any> =>
-    client.watchQuery({
-      query: Checkout.userCheckoutDetails,
       ...options,
     }),
   UserDetails: <TCacheShape>(
