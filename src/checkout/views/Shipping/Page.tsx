@@ -72,7 +72,6 @@ const Page: React.FC<IShippingPageProps> = ({
   );
 
   const onSaveShippingAddressHandler = async (formData: FormAddressType) => {
-    // console.log('contactFields >> ', contactFields);
     formData = {
       ...formData,
       firstName: contactFields.firstName,

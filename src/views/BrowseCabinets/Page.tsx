@@ -3,20 +3,24 @@ import { CollectionBlock } from "../../components/Collection/CollectionBlock";
 import { FilterCollection } from "../../components/Collection/FilterCollection";
 import { GridCollection } from "../../components/Collection/GridCollection";
 import { ListCollection } from "../../components/Collection/ListCollection";
-import { PageHeader } from "../../components/Header/PageHeader";
+import PageHeader from "../../components/Header/PageHeader";
 import "./scss/index.scss";
 
 const Page = props => {
-
-  const { data, history } = props
+  const { data, history } = props;
 
   const handleBackButton = () => {
-    history.push('/')
-  }
+    history.push("/");
+  };
 
   return (
     <div className="browse-cabinet">
-      <PageHeader back={true} cart={true} search={true} handleClick={handleBackButton}/>
+      <PageHeader
+        back={true}
+        cart={true}
+        search={true}
+        handleClick={handleBackButton}
+      />
       <div className="browse-cabinet__heading">
         <h3>Browse Cabinets</h3>
       </div>
@@ -31,13 +35,13 @@ const Page = props => {
       </div>
       <div className="collection-block">
         <div className="collection-block__wrapper">
-        { data.collections.edges.map((collection, i) => {
-          return <CollectionBlock key={i} collect={collection.node}/>
-        })}
+          {data.collections.edges.map((collection, i) => {
+            return <CollectionBlock key={i} collect={collection.node} />;
+          })}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Page;

@@ -6,10 +6,14 @@
     "tslint-no-commented-code-rule"
   ],
   "rules": {
-    "no-commented-code": [true, {
-      "minLineCount": 2,
-      "ignoredCommentRegex": "^(\\w+$|TODO|FIXME|todo|fixme)"
-    }],
+    "prettier": true,
+    "no-commented-code": [
+      true,
+      {
+        "minLineCount": 2,
+        "ignoredCommentRegex": "^(\\w+$|TODO|FIXME|todo|fixme)"
+      }
+    ],
     "ordered-imports": false,
     "interface-name": false,
     "object-literal-sort-keys": false,

@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><style>.a{fill:#4e4e4e;}.b{fill:none;}</style></defs><g transform="translate(24) rotate(90)"><path class="a" d="M7.41,8.59,12,13.17l4.59-4.58L18,10l-6,6L6,10Z"/><path class="b" d="M0,0H24V24H0Z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <filter id="Path_744" x="6" y="4" width="13.41" height="18" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.412"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="arrow-left" transform="translate(24) rotate(90)">
+    <g transform="matrix(0, -1, 1, 0, 0, 24)" filter="url(#Path_744)">
+      <path id="Path_744-2" data-name="Path 744" d="M7.41,8.59,12,13.17l4.59-4.58L18,10l-6,6L6,10Z" transform="translate(24) rotate(90)" fill="#fff"/>
+    </g>
+    <path id="Path_745" data-name="Path 745" d="M0,0H24V24H0Z" fill="none"/>
+  </g>
+</svg>

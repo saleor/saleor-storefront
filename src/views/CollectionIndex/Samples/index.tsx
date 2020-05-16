@@ -1,0 +1,1 @@
+export { default as CollectionSamples } from './View'

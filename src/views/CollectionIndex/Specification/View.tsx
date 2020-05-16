@@ -1,24 +1,23 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { TypedCollectionSlugQuery } from "../queries";
 import Page from "./Page";
-import { TypedCollectionSlugQuery } from "./queries";
-import './scss/index.scss'
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
-const View: React.FC<ViewProps> = ({ match }) => {
+const View: React.FC<ViewProps> = ({ match, history }) => {
 
   const variables = {
     "id": match.params.id,
   };
 
   return (
-    <div className="home-page slider-page">
+    <div className="home-page">
       <TypedCollectionSlugQuery errorPolicy="all" variables={variables}>
         {({ data }) => {
           return (
             <div>
-              <Page data={data} />
+              <Page data={data} history={history}/>
             </div>
           );
         }}

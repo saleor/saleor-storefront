@@ -37,9 +37,6 @@ class SitemapGenerator {
       }).toString(),
       filename
     );
-
-    // tslint:disable-next-line: no-console
-    console.log("DONE");
   }
 
   generateSitemapIndex(filename: string) {

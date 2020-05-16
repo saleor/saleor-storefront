@@ -31,7 +31,6 @@ export const useCheckoutStepState = (
   );
 
   const getStep = () => {
-    // console.log('contactFields >> ', contactFields);
     const { firstName, phone, email } = contactFields || {};
     if (!firstName || !phone || !email) {
       return CheckoutStep.Contact;

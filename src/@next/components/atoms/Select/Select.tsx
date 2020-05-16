@@ -50,6 +50,7 @@ export const Select: React.FC<IProps> = ({
   customStyles,
   optionLabelKey = "label",
   optionValueKey = "value",
+  placeholder,
 }: IProps) => {
   const customTheme = React.useContext(ThemeContext);
   const handleChange = (value: any) => {
@@ -74,7 +75,7 @@ export const Select: React.FC<IProps> = ({
         styles={{ ...optionStyle(customTheme), ...customStyles }}
         options={options}
         isOptionDisabled={isOptionDisabled}
-        placeholder={""}
+        placeholder={placeholder}
         components={customComponents}
         isClearable={clearable}
       ></ReactSelect>

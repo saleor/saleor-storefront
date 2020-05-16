@@ -1,1 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="17.952" height="19.463" viewBox="0 0 17.952 19.463"><defs><style>.a{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px;}</style></defs><g transform="translate(2 1.75)"><path class="a" d="M214.5,146.5h2.4l3.918,7.632h8.392l2.4-5.474" transform="translate(-216.5 -147.5)"/><path class="a" d="M226.987,181.5l-1.609,3.4h12.4" transform="translate(-222.671 -174.868)"/><ellipse class="a" cx="1.846" cy="1.846" rx="1.846" ry="1.846" transform="translate(1.918 13.27)"/><ellipse class="a" cx="1.846" cy="1.846" rx="1.846" ry="1.846" transform="translate(11.509 13.27)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.952" height="25.463" viewBox="0 0 23.952 25.463">
+  <defs>
+    <filter id="Path_781" x="0" y="0" width="23.793" height="15.132" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.412"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_782" x="3.523" y="8.061" width="19.583" height="10.469" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.412"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_357" x="3.169" y="14.271" width="11.192" height="11.192" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-3"/>
+      <feFlood flood-opacity="0.412"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_358" x="12.76" y="14.271" width="11.192" height="11.192" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-4"/>
+      <feFlood flood-opacity="0.412"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="cart-icon" transform="translate(2.001 2.75)">
+    <g transform="matrix(1, 0, 0, 1, -2, -2.75)" filter="url(#Path_781)">
+      <path id="Path_781-2" data-name="Path 781" d="M214.5,146.5h2.4l3.918,7.632h8.392l2.4-5.474" transform="translate(-212.5 -143.75)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -2, -2.75)" filter="url(#Path_782)">
+      <path id="Path_782-2" data-name="Path 782" d="M226.987,181.5l-1.609,3.4h12.4" transform="translate(-218.67 -171.12)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -2, -2.75)" filter="url(#Ellipse_357)">
+      <ellipse id="Ellipse_357-2" data-name="Ellipse 357" cx="1.846" cy="1.846" rx="1.846" ry="1.846" transform="translate(5.92 17.02)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -2, -2.75)" filter="url(#Ellipse_358)">
+      <ellipse id="Ellipse_358-2" data-name="Ellipse 358" cx="1.846" cy="1.846" rx="1.846" ry="1.846" transform="translate(15.51 17.02)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

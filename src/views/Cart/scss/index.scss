@@ -1,8 +1,12 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .cart-page {
+  height: 100vh;
   &__header {
     margin-top: $spacer * 3;
+  }
+  .browse-cabinet__header {
+    padding-top: 17px;
   }
 
   &__table {

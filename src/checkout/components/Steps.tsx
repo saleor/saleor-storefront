@@ -1,5 +1,5 @@
-import * as React from "react";
 import { styled } from '@styles';
+import * as React from "react";
 
 import { useVariantsProducts } from "@sdk/react";
 

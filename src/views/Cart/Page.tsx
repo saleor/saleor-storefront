@@ -2,21 +2,14 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { useAlert } from "react-alert";
-import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 import { useUserDetails } from "@sdk/react";
 
-import { checkoutLoginUrl } from "../../app/routes";
 import { CheckoutContextInterface } from "../../checkout/context";
-import { baseUrl as checkoutUrl } from "../../checkout/routes";
-import { Button, CartTable, EmptyCart, Loader } from "../../components";
+import { CartTable, EmptyCart, Loader } from "../../components";
 import { CartInterface } from "../../components/CartProvider/context";
-import {
-  extractCartLines,
-  extractCheckoutLines,
-  getTotal,
-} from "../../components/CartProvider/utils";
+import { extractCheckoutLines } from "../../components/CartProvider/utils";
 import { OverlayContextInterface } from "../../components/Overlay/context";
 import { getShop_shop } from "../../components/ShopProvider/types/getShop";
 import { maybe } from "../../core/utils";
@@ -82,8 +75,8 @@ const Page: React.FC<PageProps> = ({
     remove,
     subtract,
   };
-  const locale = maybe(() => geolocalization.country.code, defaultCountry.code);
 
+  const variantIds = lines.map(line => line.variantId);
   return (
     <>
       {checkout ? (
@@ -95,10 +88,15 @@ const Page: React.FC<PageProps> = ({
       ) : (
         <TypedProductVariantsQuery
           variables={{
-            ids: lines.map(line => line.variantId),
+            ids: variantIds,
           }}
         >
-          {({ data }) => <CartBasic cartData={data} overlay={null} />}
+          {({ data, error }) => {
+            if (error) {
+              return <span>There was an graphql error</span>;
+            }
+            return <CartBasic cartData={data} overlay={null} />;
+          }}
         </TypedProductVariantsQuery>
       )}
     </>

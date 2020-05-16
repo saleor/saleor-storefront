@@ -18,4 +18,5 @@ export interface IProps {
     IndicatorsContainer: (props?: any) => JSX.Element | null;
     Option: (props?: any) => JSX.Element | null;
   };
+  placeholder?: string;
 }

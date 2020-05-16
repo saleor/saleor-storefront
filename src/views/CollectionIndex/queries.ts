@@ -9,6 +9,7 @@ export const getCollectionBySlug = gql`
       id
       name
       description
+      descriptionJson
       slug
       backgroundImage{
         alt
