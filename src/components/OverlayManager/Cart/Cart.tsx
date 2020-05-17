@@ -15,8 +15,8 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
-import Loader from "../../../components/Loader";
 import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
+import Loader from "../../../components/Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
