@@ -15,6 +15,7 @@ import {
   Overlay,
   OverlayContextInterface,
 } from "../..";
+import Loader from "../../../components/Loader";
 import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
@@ -46,6 +47,10 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
     net: discount,
   };
 
+  const missingVariants = () => {
+    return items.find(item => !item.variant || !item.totalPrice);
+  };
+
   return (
     <Overlay context={overlay}>
       <Online>
@@ -70,67 +75,74 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           </div>
           {items?.length ? (
             <>
-              <ProductList lines={items} remove={removeItem} />
-              <div className="cart__footer">
-                <div className="cart__footer__price">
-                  <span>Subtotal</span>
-                  <span>
-                    <TaxedMoney
-                      data-cy="cartPageSubtotalPrice"
-                      taxedMoney={subtotalPrice}
-                    />
-                  </span>
-                </div>
+              {missingVariants() ? (
+                <Loader full={true} />
+              ) : (
+                <>
+                  <ProductList lines={items} remove={removeItem} />
+                  <div className="cart__footer">
+                    <div className="cart__footer__price">
+                      <span>Subtotal</span>
+                      <span>
+                        <TaxedMoney
+                          data-cy="cartPageSubtotalPrice"
+                          taxedMoney={subtotalPrice}
+                        />
+                      </span>
+                    </div>
 
-                {shippingTaxedPrice && shippingTaxedPrice.gross.amount !== 0 && (
-                  <div className="cart__footer__price">
-                    <span>Shipping</span>
-                    <span>
-                      <TaxedMoney
-                        data-cy="cartPageShippingPrice"
-                        taxedMoney={shippingTaxedPrice}
-                      />
-                    </span>
+                    {shippingTaxedPrice &&
+                      shippingTaxedPrice.gross.amount !== 0 && (
+                        <div className="cart__footer__price">
+                          <span>Shipping</span>
+                          <span>
+                            <TaxedMoney
+                              data-cy="cartPageShippingPrice"
+                              taxedMoney={shippingTaxedPrice}
+                            />
+                          </span>
+                        </div>
+                      )}
+
+                    {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
+                      <div className="cart__footer__price">
+                        <span>Promo code</span>
+                        <span>
+                          <TaxedMoney
+                            data-cy="cartPagePromoCodePrice"
+                            taxedMoney={promoTaxedPrice}
+                          />
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="cart__footer__price">
+                      <span>Total</span>
+                      <span>
+                        <TaxedMoney
+                          data-cy="cartPageTotalPrice"
+                          taxedMoney={totalPrice}
+                        />
+                      </span>
+                    </div>
+
+                    <div className="cart__footer__button">
+                      <Link
+                        to={generatePath(cartUrl, {
+                          token: null,
+                        })}
+                      >
+                        <Button secondary>Go to my bag</Button>
+                      </Link>
+                    </div>
+                    <div className="cart__footer__button">
+                      <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+                        <Button>Checkout</Button>
+                      </Link>
+                    </div>
                   </div>
-                )}
-
-                {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
-                  <div className="cart__footer__price">
-                    <span>Promo code</span>
-                    <span>
-                      <TaxedMoney
-                        data-cy="cartPagePromoCodePrice"
-                        taxedMoney={promoTaxedPrice}
-                      />
-                    </span>
-                  </div>
-                )}
-
-                <div className="cart__footer__price">
-                  <span>Total</span>
-                  <span>
-                    <TaxedMoney
-                      data-cy="cartPageTotalPrice"
-                      taxedMoney={totalPrice}
-                    />
-                  </span>
-                </div>
-
-                <div className="cart__footer__button">
-                  <Link
-                    to={generatePath(cartUrl, {
-                      token: null,
-                    })}
-                  >
-                    <Button secondary>Go to my bag</Button>
-                  </Link>
-                </div>
-                <div className="cart__footer__button">
-                  <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                    <Button>Checkout</Button>
-                  </Link>
-                </div>
-              </div>
+                </>
+              )}
             </>
           ) : (
             <Empty overlayHide={overlay.hide} />
