@@ -1,5 +1,5 @@
-import { OrderDetail } from "@sdk/fragments/types/OrderDetail";
-import { User } from "@sdk/fragments/types/User";
+import { OrderDetail } from "@sdk/fragments/gqlTypes/OrderDetail";
+import { User } from "@sdk/fragments/gqlTypes/User";
 
 import { PromiseQueuedResponse, PromiseRunResponse } from "../types";
 
