@@ -535,9 +535,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout {
   /**
    * A list of checkout lines, each containing information about an item in the checkout.
    */
-  lines:
-    | (RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines | null)[]
-    | null;
+  lines: (RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout_lines | null)[] | null;
   /**
    * Returns True, if checkout requires shipping.
    */

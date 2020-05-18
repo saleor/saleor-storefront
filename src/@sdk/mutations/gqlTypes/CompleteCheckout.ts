@@ -2,11 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import {
-  PaymentChargeStatusEnum,
-  OrderStatus,
-  CheckoutErrorCode,
-} from "./../../gqlTypes/globalTypes";
+import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CompleteCheckout

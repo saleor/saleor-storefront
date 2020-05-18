@@ -159,9 +159,7 @@ export interface SetCustomerDefaultAddress_accountSetDefaultAddress_user {
   /**
    * List of all user's addresses.
    */
-  addresses:
-    | (SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses | null)[]
-    | null;
+  addresses: (SetCustomerDefaultAddress_accountSetDefaultAddress_user_addresses | null)[] | null;
 }
 
 export interface SetCustomerDefaultAddress_accountSetDefaultAddress {
