@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
 import { commonMessages } from "@temp/intl";
-import { useUserDetails } from "@saleor/sdk";
+import { useAuth } from "@saleor/sdk";
 
 import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
@@ -42,12 +42,12 @@ const returnTab: any = (path: string, userDetails, history) => {
 };
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
-  const { data: user, loading } = useUserDetails();
   const intl = useIntl();
+  const { user, loaded } = useAuth();
 
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
-  if (loading) {
+  if (!loaded) {
     return <Loader />;
   }
 

@@ -1,4 +1,3 @@
-import { OrderDetail } from "@sdk/fragments/gqlTypes/OrderDetail";
 import { User } from "@sdk/fragments/gqlTypes/User";
 import { ErrorListener } from "@sdk/helpers";
 import { JobsManager } from "@sdk/jobs";
@@ -6,13 +5,12 @@ import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
 import { PromiseRunResponse } from "../types";
-import { DataErrorUserTypes, FunctionErrorUserTypes, IUserAPI } from "./types";
+import { DataErrorAuthTypes, FunctionErrorAuthTypes, IAuthAPI } from "./types";
 
-export class UserAPI extends ErrorListener implements IUserAPI {
+export class AuthAPI extends ErrorListener implements IAuthAPI {
   loaded: boolean;
   user?: User | null;
   token?: string;
-  orders?: OrderDetail[];
 
   private saleorState: SaleorState;
   private jobsManager: JobsManager;
@@ -46,6 +44,10 @@ export class UserAPI extends ErrorListener implements IUserAPI {
 
     if (loadOnStart) {
       this.load();
+
+      if (!this.saleorState.signInToken && window.PasswordCredential) {
+        this.autoSignIn();
+      }
     }
   }
 
@@ -59,8 +61,8 @@ export class UserAPI extends ErrorListener implements IUserAPI {
   signIn = async (
     email: string,
     password: string
-  ): PromiseRunResponse<DataErrorUserTypes, FunctionErrorUserTypes> => {
-    const { data, dataError } = await this.jobsManager.run("user", "signIn", {
+  ): PromiseRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes> => {
+    const { data, dataError } = await this.jobsManager.run("auth", "signIn", {
       email,
       password,
     });
@@ -73,13 +75,23 @@ export class UserAPI extends ErrorListener implements IUserAPI {
   };
 
   signOut = async (): PromiseRunResponse<
-    DataErrorUserTypes,
-    FunctionErrorUserTypes
+    DataErrorAuthTypes,
+    FunctionErrorAuthTypes
   > => {
-    await this.jobsManager.run("user", "signOut", undefined);
+    await this.jobsManager.run("auth", "signOut", undefined);
 
     return {
       pending: false,
     };
+  };
+
+  private autoSignIn = async () => {
+    const credentials = await (navigator.credentials as any).get({
+      password: true,
+    });
+
+    if (credentials) {
+      await this.signIn(credentials.id, credentials.password);
+    }
   };
 }

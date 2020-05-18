@@ -1,4 +1,4 @@
-import { useCart, useCheckout, useUser, useUserDetails } from "@saleor/sdk";
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -31,7 +31,7 @@ const getShoppingButton = (history: History) => (
   </Button>
 );
 
-const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
+const getCheckoutButton = (history: History, user?: UserDetails_me | null) => (
   <Button
     testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
@@ -111,9 +111,8 @@ const generateCart = (
 
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
-  const { data: user } = useUserDetails();
-  const newUser = useUser();
-  console.log(newUser);
+  const { user } = useAuth();
+  console.log(user);
   const { checkout } = useCheckout();
   const {
     loaded,

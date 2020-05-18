@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router";
 
-import { useUserDetails } from "@saleor/sdk";
+import { useAuth } from "@saleor/sdk";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
@@ -14,7 +14,7 @@ import SignInForm from "./SignInForm";
 const CheckoutLogin: React.FC<{}> = () => {
   const [resetPassword, setResetPassword] = useState(false);
   const overlay = useContext(OverlayContext);
-  const { data: user } = useUserDetails();
+  const { user } = useAuth();
   if (user) {
     return <Redirect to="/checkout/" />;
   }

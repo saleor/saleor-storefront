@@ -10,7 +10,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
-import { useCheckout, useUserDetails } from "@saleor/sdk";
+import { useAuth, useCheckout } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
@@ -49,7 +49,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   }));
 
   const history = useHistory();
-  const { data: user } = useUserDetails();
+  const { user } = useAuth();
   const {
     checkout,
     setShippingAddress,

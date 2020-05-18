@@ -1,17 +1,17 @@
-import {
-  DataErrorUserTypes,
-  FunctionErrorUserTypes,
-} from "@sdk/api/User/types";
 import { ApolloClientManager } from "@sdk/data/ApolloClientManager";
 import { LocalStorageHandler } from "@sdk/helpers/LocalStorageHandler";
+import {
+  DataErrorAuthTypes,
+  FunctionErrorAuthTypes,
+} from "@temp/@sdk/api/Auth/types";
 
 import { JobRunResponse } from "../types";
 
 export type PromiseUserJobRunResponse = Promise<
-  JobRunResponse<DataErrorUserTypes, FunctionErrorUserTypes>
+  JobRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes>
 >;
 
-export class UserJobs {
+export class AuthJobs {
   private apolloClientManager: ApolloClientManager;
   private localStorageHandler: LocalStorageHandler;
 
@@ -39,11 +39,19 @@ export class UserJobs {
       return {
         dataError: {
           error,
-          type: DataErrorUserTypes.SIGN_IN,
+          type: DataErrorAuthTypes.SIGN_IN,
         },
       };
     } else {
       this.localStorageHandler.setSignInToken(data?.token || null);
+      if (window.PasswordCredential) {
+        navigator.credentials.store(
+          new window.PasswordCredential({
+            id: email,
+            password,
+          })
+        );
+      }
       return {
         data,
       };
@@ -52,6 +60,10 @@ export class UserJobs {
 
   signOut = async (): PromiseUserJobRunResponse => {
     this.localStorageHandler.clear();
+
+    if (navigator.credentials && navigator.credentials.preventSilentAccess) {
+      navigator.credentials.preventSilentAccess();
+    }
 
     await this.apolloClientManager.signOut();
 
