@@ -8,9 +8,9 @@ import { GraphQLError } from "graphql";
 
 import { fireSignOut, getAuthToken, setAuthToken } from "../auth";
 import { MUTATIONS } from "../mutations";
-import { TokenAuth } from "../mutations/types/TokenAuth";
+import { TokenAuth } from "../mutations/gqlTypes/TokenAuth";
 import { QUERIES } from "../queries";
-import { UserDetails } from "../queries/types/UserDetails";
+import { UserDetails } from "../queries/gqlTypes/UserDetails";
 import { RequireAtLeastOne } from "../tsHelpers";
 import {
   InferOptions,

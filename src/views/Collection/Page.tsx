@@ -9,7 +9,10 @@ import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
-import { Collection_collection, Collection_products } from "./types/Collection";
+import {
+  Collection_collection,
+  Collection_products,
+} from "./gqlTypes/Collection";
 
 interface SortItem {
   label: string;

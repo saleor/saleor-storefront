@@ -11,7 +11,7 @@ import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
-import { SearchProducts_products } from "./types/SearchProducts";
+import { SearchProducts_products } from "./gqlTypes/SearchProducts";
 
 interface SortItem {
   label: string;

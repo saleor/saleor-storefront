@@ -3,7 +3,7 @@ import * as React from "react";
 import ReactSVG from "react-svg";
 
 import { NavLink } from "..";
-import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
+import { MainMenuSubItem } from "../MainMenu/gqlTypes/MainMenuSubItem";
 
 import subcategoriesImg from "../../images/subcategories.svg";
 

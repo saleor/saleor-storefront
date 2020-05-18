@@ -8,7 +8,7 @@ import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
-} from "@sdk/queries/types/ProductDetails";
+} from "@sdk/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
 import { ICheckoutModelLine } from "@sdk/repository";

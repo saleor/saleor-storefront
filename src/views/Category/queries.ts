@@ -5,7 +5,7 @@ import {
   basicProductFragment,
   productPricingFragment,
 } from "../Product/queries";
-import { Category, CategoryVariables } from "./types/Category";
+import { Category, CategoryVariables } from "./gqlTypes/Category";
 
 export const categoryProductsQuery = gql`
   ${basicProductFragment}

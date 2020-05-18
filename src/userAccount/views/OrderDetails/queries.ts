@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 import { TypedQuery } from "../../../core/queries";
 
-import { OrderById, OrderByIdVariables } from "./types/OrderById";
-import { OrderByToken, OrderByTokenVariables } from "./types/OrderByToken";
+import { OrderById, OrderByIdVariables } from "./gqlTypes/OrderById";
+import { OrderByToken, OrderByTokenVariables } from "./gqlTypes/OrderByToken";
 
 const orderPriceFragment = gql`
   fragment OrderPrice on TaxedMoney {
