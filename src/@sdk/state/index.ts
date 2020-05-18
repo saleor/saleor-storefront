@@ -120,7 +120,6 @@ export class SaleorState extends NamedObservable<StateItems>
         onError(error, DataErrorCheckoutTypes.GET_CHECKOUT);
       } else if (data) {
         this.localStorageHandler.setCheckout(data);
-        // this.updateCheckout(data);
         return;
       }
     }

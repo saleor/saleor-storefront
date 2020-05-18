@@ -331,7 +331,6 @@ export class CheckoutJobs {
         },
       };
     } else {
-      // this.localStorageHandler.setOrder(data);
       this.localStorageHandler.setCheckout({});
       this.localStorageHandler.setPayment({});
       return { data };
