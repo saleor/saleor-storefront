@@ -6,6 +6,7 @@ import { useSignIn } from "@saleor/sdk";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
+import { demoMode } from "@temp/constants";
 
 interface ILoginForm {
   hide?: () => void;
@@ -22,9 +23,15 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
     }
   };
 
+  const formData = demoMode ? {
+    email: "admin@example.com",
+    password: "admin",
+  } : {}
+
   return (
     <div className="login-form">
       <Form
+      data={formData}
         errors={maybe(() => error.extraInfo.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >

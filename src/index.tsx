@@ -10,6 +10,7 @@ import { hot } from "react-hot-loader";
 import { Route, Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { QueryParamProvider } from "use-query-params";
+import TagManager from 'react-gtm-module'
 
 import { NotificationTemplate } from "@components/atoms";
 import {
@@ -45,6 +46,8 @@ const cache = new InMemoryCache({
     return defaultDataIdFromObject(obj);
   },
 });
+
+TagManager.initialize({gtmId: 'GTM-666'})
 
 const startApp = async () => {
   if (sentryDsn !== undefined) {

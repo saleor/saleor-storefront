@@ -24,12 +24,18 @@ export const turquoiseTransparent = "rgba(6, 132, 123, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
+export const secondaryGrey = "#EBF1F6";
+export const secondaryGreyDark = "#9D9FB1";
+export const secondaryBlue = "#036DFF";
 
 // theme colors
 export const theme = {
   activeMenuOption: darkGreen,
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
+  bannerBackground: secondaryGrey,
+  bannerEdge: secondaryGreyDark,
+  bannerLink: secondaryBlue,
   baseFont: baseFontColor,
   baseFontColorSemiTransparent,
   baseFontColorTransparent,
