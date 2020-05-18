@@ -33,7 +33,7 @@ export const ProductList: React.FC<IProps> = ({
         ) : (
           canLoadMore && (
             <Button
-              data-cy="load-more_button"
+              dataCy="loadMoreProductsButton"
               color="secondary"
               onClick={onLoadMore}
             >

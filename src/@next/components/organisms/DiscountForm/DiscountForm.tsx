@@ -71,7 +71,7 @@ export const DiscountForm: React.FC<IProps> = ({
                 <S.ButtonWrapper>
                   <Button
                     type="button"
-                    data-cy="checkoutPaymentPromoCodeBtn"
+                    dataCy="checkoutPaymentApplyPromoCodeButton"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
                     Apply

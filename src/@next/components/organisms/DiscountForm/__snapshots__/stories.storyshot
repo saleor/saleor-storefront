@@ -186,7 +186,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
           <button
             className="c9"
             color="primary"
-            data-cy="checkoutPaymentPromoCodeBtn"
+            data-cy="checkoutPaymentApplyPromoCodeButton"
             onClick={[Function]}
             size="md"
             type="button"

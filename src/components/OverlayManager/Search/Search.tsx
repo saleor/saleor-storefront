@@ -135,6 +135,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <Loader />
                                 ) : (
                                   <Button
+                                    dataCy="searchProductsButton"  
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >

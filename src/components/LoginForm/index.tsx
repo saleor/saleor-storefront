@@ -43,7 +43,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           required
         />
         <div className="login-form__button">
-          <Button type="submit" {...(loading && { disabled: true })}>
+          <Button dataCy="submitLoginFormButton" type="submit" {...(loading && { disabled: true })}>
             {loading ? "Loading" : "Sign in"}
           </Button>
         </div>

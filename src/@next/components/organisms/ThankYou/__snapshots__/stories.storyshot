@@ -215,6 +215,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c6"
           color="secondary"
+          data-cy="continueShoppingButton"
           onClick={[Function]}
           size="md"
         >
@@ -228,6 +229,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c8"
           color="primary"
+          data-cy="gotoOrderDetailsButton"
           onClick={[Function]}
           size="md"
         >

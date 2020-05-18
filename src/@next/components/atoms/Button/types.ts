@@ -18,4 +18,8 @@ export interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    * Size
    */
   size?: Size;
+  /**
+   * Unique name used as selector for writing e2e tests in Cypress
+   */
+  dataCy: string;
 }

@@ -341,7 +341,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     <button
       className="c7"
       color="secondary"
-      data-cy="load-more_button"
+      data-cy="loadMoreProductsButton"
       onClick={[Function]}
       size="md"
     >

@@ -116,6 +116,7 @@ export const PasswordChangeForm: React.FC<{
                   Cancel
                 </ButtonLink>
                 <Button
+                  dataCy="submitPasswordChangeFormButton"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

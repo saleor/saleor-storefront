@@ -23,6 +23,7 @@ const renderSubmitBtn = (
 ) =>
   submitBtn && (
     <Button
+      dataCy={submitBtn.dataCy}
       {...getBtnAction(submitBtn)}
       type={formId ? "submit" : "button"}
       form={formId}

@@ -132,12 +132,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                           token: null,
                         })}
                       >
-                        <Button secondary>Go to my bag</Button>
+                        <Button dataCy="cartOverlayGotoBagViewButton" secondary>Go to my bag</Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                        <Button>Checkout</Button>
+                        <Button dataCy="cartOverlayGotoCheckoutButton">Checkout</Button>
                       </Link>
                     </div>
                   </div>

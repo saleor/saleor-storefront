@@ -27,7 +27,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
       {data!.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
-            data-testid="load_more__button"
+            dataCy="loadMoreOrdersButton"
             onClick={() => {
               loadMore({
                 after: data!.pageInfo.endCursor,

@@ -18,6 +18,7 @@ const DEFAULT_PROPS = {
   onSubmit: jest.fn(),
   show: true,
   submitBtnText: "Save",
+  submitButtonDataCy: "submitTestModalButton",
   title: "Modal title",
 };
 
@@ -71,10 +72,12 @@ describe("<Modal />", () => {
     expect(footer.prop("disabled")).toEqual(DEFAULT_PROPS.disabled);
     expect(footer.prop("submitBtn")).toEqual({
       action: DEFAULT_PROPS.onSubmit,
+      dataCy: "submitTestModalButton",
       text: DEFAULT_PROPS.submitBtnText,
     });
     expect(footer.prop("cancelBtn")).toEqual({
       action: DEFAULT_PROPS.hide,
+      dataCy: "cancelButton",
       text: DEFAULT_PROPS.cancelBtnText,
     });
     expect(footer.prop("formId")).toEqual(DEFAULT_PROPS.formId);

@@ -7,15 +7,15 @@ import { Button } from ".";
 storiesOf("@components/atoms/Button", module)
   .addParameters({ component: Button })
   .add("Primary", () => (
-    <Button fullWidth={boolean("FullWidth", false)}>Primary Button</Button>
+    <Button fullWidth={boolean("FullWidth", false)} dataCy="testButton">Primary Button</Button>
   ))
   .add("Secondary", () => (
-    <Button color="secondary" fullWidth={boolean("FullWidth", false)}>
+    <Button color="secondary" fullWidth={boolean("FullWidth", false)} dataCy="testButton">
       Secondary Button
     </Button>
   ))
   .add("Size sm", () => (
-    <Button size="sm" fullWidth={boolean("FullWidth", false)}>
+    <Button size="sm" fullWidth={boolean("FullWidth", false)} dataCy="testButton">
       Small Button
     </Button>
   ));
