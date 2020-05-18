@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { NavLink } from "..";
-import { MainMenuSubItem } from "./types/MainMenuSubItem";
+import { MainMenuSubItem } from "./gqlTypes/MainMenuSubItem";
 
 interface NavNestedItemProps extends MainMenuSubItem {
   children?: NavNestedItemProps[];

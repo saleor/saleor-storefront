@@ -1,4 +1,4 @@
-import { getShop_shop_countries } from "@temp/core/types/saleor";
+import { GetShop_shop_countries } from "@temp/@sdk/queries/gqlTypes/GetShop";
 import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 
 export declare type Address = {
@@ -11,7 +11,7 @@ export interface IProps {
   selectedUserAddressId?: string;
   checkoutAddress?: IAddress | null;
   email?: string;
-  countries?: Array<getShop_shop_countries | null>;
+  countries?: Array<GetShop_shop_countries | null>;
   userId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
   formId?: string;
