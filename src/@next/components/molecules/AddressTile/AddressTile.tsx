@@ -5,6 +5,8 @@ import { Address, DropdownMenu, IconButton, Tile } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 const defaultShippingAddress = (
   <S.MenuItem>Set as default shipping address</S.MenuItem>
 );
@@ -18,6 +20,7 @@ export const AddressTile: React.FC<IProps> = ({
   setDefault,
   address,
 }: IProps) => {
+  const intl = useIntl();
   const header = (
     <S.HeaderContent>
       <DropdownMenu
@@ -40,11 +43,19 @@ export const AddressTile: React.FC<IProps> = ({
       />
 
       {address.isDefaultBillingAddress && address.isDefaultShippingAddress
-        ? "Default Address"
+        ? intl.formatMessage({
+          defaultMessage: "Default Address"
+        })
         : address.isDefaultShippingAddress
-        ? "Default Shipping Address"
+        ? 
+        intl.formatMessage({
+          defaultMessage: "Default Shipping Address"
+        })
         : address.isDefaultBillingAddress
-        ? "Default Billing Address"
+        ? 
+        intl.formatMessage({
+          defaultMessage: "Default Billing Address"
+        })
         : null}
     </S.HeaderContent>
   );

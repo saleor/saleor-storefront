@@ -6,6 +6,8 @@ import { CachedImage } from "../CachedImage";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 /**
  * Row with product to display in cart summary.
  */
@@ -21,10 +23,15 @@ const CartSummaryRow: React.FC<IProps> = ({
     <S.Wrapper>
       <S.Name data-cy={`cartSummaryItem${index}Name`}>{name}</S.Name>
       <S.Sku>
-        SKU: <span data-cy={`cartSummaryItem${index}SKU`}>{sku}</span>
+        <FormattedMessage
+          defaultMessage="SKU: "
+        />
+        <span data-cy={`cartSummaryItem${index}SKU`}>{sku}</span>
       </S.Sku>
       <S.Quantity>
-        Quantity:{" "}
+        <FormattedMessage
+          defaultMessage="Quantity: "
+        />
         <span data-cy={`cartSummaryItem${index}Quantity`}>{quantity}</span>
       </S.Quantity>
       <S.Price data-cy={`cartSummaryItem${index}Price`}>

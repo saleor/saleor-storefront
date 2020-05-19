@@ -6,6 +6,8 @@ import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 export const CreditCardTile: React.FC<IProps> = ({
   nameOnCard,
   expirationDate,
@@ -21,9 +23,17 @@ export const CreditCardTile: React.FC<IProps> = ({
   );
   const content = (
     <>
-      <S.BoldTitle>Expires on</S.BoldTitle>
+      <S.BoldTitle>
+        <FormattedMessage
+          defaultMessage="Expires on"
+        />
+        </S.BoldTitle>
       <S.TextContent>{expirationDate}</S.TextContent>
-      <S.BoldTitle>Name on card</S.BoldTitle>
+      <S.BoldTitle>
+        <FormattedMessage
+          defaultMessage="Name on card"
+        />
+      </S.BoldTitle>
       <S.TextContent>{nameOnCard}</S.TextContent>
     </>
   );

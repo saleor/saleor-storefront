@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
   return (
     <S.Wrapper>
-      <S.MenuHeader>MY ACCOUNT</S.MenuHeader>
+      <S.MenuHeader>
+        <FormattedMessage
+            defaultMessage="MY ACCOUNT"
+        />
+      </S.MenuHeader>
       {links.map(link => {
         const menuItem = link
           .replace(/\//g, "")

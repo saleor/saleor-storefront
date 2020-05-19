@@ -6,6 +6,9 @@ import { TextField } from "../TextField";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage, useIntl } from "react-intl";
+import { commonMessages } from "@saleor/intl"
+
 export const ResetPasswordForm: React.FC<IProps> = ({
   handleBlur,
   handleChange,
@@ -15,20 +18,32 @@ export const ResetPasswordForm: React.FC<IProps> = ({
   passwordError,
   errors,
 }: IProps) => {
+  const intl = useIntl();
+
   return (
     <S.Wrapper>
-      <h3>Reset your password</h3>
+      <h3>
+        <FormattedMessage
+          defaultMessage="Reset your password"
+        />
+      </h3>
 
-      <p>Please provide new password</p>
+      <p>
+        <FormattedMessage
+          defaultMessage="Please provide new password"
+        />
+      </p>
       {tokenError && (
         <S.GeneralError>
-          It seems that token for password reset is not valid anymore.
+          <FormattedMessage
+            defaultMessage="It seems that token for password reset is not valid anymore"
+          />
         </S.GeneralError>
       )}
       <form onSubmit={handleSubmit}>
         <S.InputFields>
           <TextField
-            label="Password"
+            label={intl.formatMessage(commonMessages.password)}
             name="password"
             onBlur={handleBlur}
             onChange={handleChange}
@@ -46,7 +61,7 @@ export const ResetPasswordForm: React.FC<IProps> = ({
             }
           />
           <TextField
-            label="Retype password"
+            label={intl.formatMessage({defaultMessage: "Retype password"})}
             onBlur={handleBlur}
             name="retypedPassword"
             onChange={handleChange}
@@ -66,7 +81,9 @@ export const ResetPasswordForm: React.FC<IProps> = ({
         </S.InputFields>
 
         <Button type="submit" fullWidth={true}>
-          SET NEW PASSWORD
+          <FormattedMessage
+            defaultMessage="SET NEW PASSWORD"
+          /> 
         </Button>
       </form>
     </S.Wrapper>

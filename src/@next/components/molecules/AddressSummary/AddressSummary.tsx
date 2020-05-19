@@ -3,6 +3,8 @@ import React from "react";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 /**
  * Address summary
  */
@@ -25,12 +27,18 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.phone && (
           <>
-            Phone number: {address.phone} <br />
+            
+            <FormattedMessage
+              defaultMessage="Phone number: "
+            />{address.phone} <br />
           </>
         )}
         {email && (
           <>
-            Email: {email} <br />
+            <FormattedMessage
+              defaultMessage="Email: "
+            />
+            {email} <br />
           </>
         )}
       </S.Wrapper>

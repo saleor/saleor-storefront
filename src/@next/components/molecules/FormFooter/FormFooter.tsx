@@ -4,7 +4,9 @@ import { Button, ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 import { IButtonProps, IProps } from "./types";
 
-const LoadingText = () => <>Loading</>;
+import { FormattedMessage } from "react-intl";
+
+const LoadingText = () => <><FormattedMessage defaultMessage="Loading"/></>;
 
 const getBtnAction = (btn: IButtonProps) =>
   btn.action && { onClick: btn.action };

@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 export const AccountMenuMobile: React.FC<IProps> = ({
   links,
   active,
@@ -33,7 +35,11 @@ export const AccountMenuMobile: React.FC<IProps> = ({
       <Icon name="select_arrow" size={8} />
       {showMenu && (
         <S.Overlay>
-          <S.MenuHeader>Go to</S.MenuHeader>
+          <S.MenuHeader>
+            <FormattedMessage
+              defaultMessage="Go to"
+            />
+          </S.MenuHeader>
           {links.map(link => {
             const menuItem = link
               .replace(/\//g, "")
