@@ -60,12 +60,22 @@ export class AuthAPI extends ErrorListener implements IAuthAPI {
 
   signIn = async (
     email: string,
-    password: string
+    password: string,
+    autoSignIn: boolean = true
   ): PromiseRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes> => {
     const { data, dataError } = await this.jobsManager.run("auth", "signIn", {
       email,
       password,
     });
+
+    if (autoSignIn && !dataError?.error && window.PasswordCredential) {
+      navigator.credentials.store(
+        new window.PasswordCredential({
+          id: email,
+          password,
+        })
+      );
+    }
 
     return {
       data,
@@ -80,6 +90,10 @@ export class AuthAPI extends ErrorListener implements IAuthAPI {
   > => {
     await this.jobsManager.run("auth", "signOut", undefined);
 
+    if (navigator.credentials && navigator.credentials.preventSilentAccess) {
+      navigator.credentials.preventSilentAccess();
+    }
+
     return {
       pending: false,
     };
@@ -91,7 +105,15 @@ export class AuthAPI extends ErrorListener implements IAuthAPI {
     });
 
     if (credentials) {
-      await this.signIn(credentials.id, credentials.password);
+      const { dataError } = await this.signIn(
+        credentials.id,
+        credentials.password,
+        true
+      );
+
+      if (dataError?.error) {
+        this.fireError(dataError.error, DataErrorAuthTypes.SIGN_IN);
+      }
     }
   };
 }

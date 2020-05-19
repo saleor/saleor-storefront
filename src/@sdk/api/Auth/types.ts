@@ -13,7 +13,8 @@ export interface IAuthAPI {
   token?: string;
   signIn: (
     email: string,
-    password: string
+    password: string,
+    autoSignIn?: boolean
   ) => PromiseRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes>;
   signOut: () => PromiseRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes>;
 }

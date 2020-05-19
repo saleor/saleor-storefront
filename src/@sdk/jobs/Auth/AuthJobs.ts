@@ -44,14 +44,7 @@ export class AuthJobs {
       };
     } else {
       this.localStorageHandler.setSignInToken(data?.token || null);
-      if (window.PasswordCredential) {
-        navigator.credentials.store(
-          new window.PasswordCredential({
-            id: email,
-            password,
-          })
-        );
-      }
+
       return {
         data,
       };
@@ -60,10 +53,6 @@ export class AuthJobs {
 
   signOut = async (): PromiseUserJobRunResponse => {
     this.localStorageHandler.clear();
-
-    if (navigator.credentials && navigator.credentials.preventSilentAccess) {
-      navigator.credentials.preventSilentAccess();
-    }
 
     await this.apolloClientManager.signOut();
 
