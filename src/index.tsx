@@ -1,14 +1,5 @@
-import { hot } from "react-hot-loader";
-import { ThemeProvider } from "styled-components";
-
-import { NotificationTemplate } from "@components/atoms";
-import {
-  ServiceWorkerContext,
-  ServiceWorkerProvider,
-} from "@components/containers";
-import { SaleorProvider, useAuth } from "@sdk/react";
-import { defaultTheme, GlobalStyle } from "@styles";
-
+import { Integrations as ApmIntegrations } from "@sentry/apm";
+import * as Sentry from "@sentry/browser";
 import {
   defaultDataIdFromObject,
   InMemoryCache,
@@ -20,16 +11,29 @@ import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
+import { hot } from "react-hot-loader";
 import { Route, Router } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 import { QueryParamProvider } from "use-query-params";
 
+import { NotificationTemplate } from "@components/atoms";
+import {
+  ServiceWorkerContext,
+  ServiceWorkerProvider,
+} from "@components/containers";
+import { SaleorProvider, useAuth } from "@sdk/react";
+import { defaultTheme, GlobalStyle } from "@styles";
+
 import { App } from "./app";
-import { apiUrl, serviceWorkerTimeout } from "./constants";
-import { history } from "./history";
-
 import { OverlayProvider } from "./components";
-
 import ShopProvider from "./components/ShopProvider";
+import {
+  apiUrl,
+  sentryDsn,
+  sentrySampleRate,
+  serviceWorkerTimeout,
+} from "./constants";
+import { history } from "./history";
 
 import { createSaleorClient } from "./@sdk";
 import {
@@ -48,6 +52,14 @@ const cache = new InMemoryCache({
 });
 
 const startApp = async () => {
+  if (sentryDsn !== undefined) {
+    Sentry.init({
+      dsn: sentryDsn,
+      integrations: [new ApmIntegrations.Tracing()],
+      tracesSampleRate: sentrySampleRate,
+    });
+  }
+
   await persistCache({
     cache,
     storage: window.localStorage,
@@ -62,7 +74,7 @@ const startApp = async () => {
    * This is temporary adapter for queries and mutations not included in SDK to handle invalid token error for them.
    * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
    */
-  const ApolloClentInvalidTokenLinkAdapter = ({ children }) => {
+  const ApolloClientInvalidTokenLinkAdapter = ({ children }) => {
     const tokenExpirationCallback = () => {
       fireSignOut(apolloClient);
     };
@@ -128,7 +140,7 @@ const startApp = async () => {
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
-          <ApolloClentInvalidTokenLinkAdapter>
+          <ApolloClientInvalidTokenLinkAdapter>
             {(apolloClient: ApolloClient<NormalizedCacheObject>) =>
               apolloClient && (
                 <ApolloProvider client={apolloClient}>
@@ -143,7 +155,7 @@ const startApp = async () => {
                 </ApolloProvider>
               )
             }
-          </ApolloClentInvalidTokenLinkAdapter>
+          </ApolloClientInvalidTokenLinkAdapter>
         </QueryParamProvider>
       </Router>
     );
