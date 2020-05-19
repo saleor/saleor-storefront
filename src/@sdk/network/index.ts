@@ -138,7 +138,8 @@ export class NetworkManager implements INetworkManager {
   };
 
   getRefreshedCheckoutLines = async (
-    checkoutlines: ICheckoutModelLine[] | null
+    checkoutlines: ICheckoutModelLine[] | null,
+    locale: string = "EN"
   ) => {
     const idsOfMissingVariants = checkoutlines
       ?.filter(line => !line.variant || !line.totalPrice)
@@ -154,7 +155,7 @@ export class NetworkManager implements INetworkManager {
             query: CheckoutQueries.checkoutProductVariants,
             variables: {
               ids: idsOfMissingVariants,
-              locale: "FR",
+              locale
             },
           }
         );

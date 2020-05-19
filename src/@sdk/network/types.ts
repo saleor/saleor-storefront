@@ -31,7 +31,8 @@ export interface INetworkManager {
     checkoutToken: string | null
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   getRefreshedCheckoutLines: (
-    checkoutlines: ICheckoutModelLine[] | null
+    checkoutlines: ICheckoutModelLine[] | null,
+    locale: string,
   ) => Promise<INetworkManagerResponse<ICheckoutModelLine[]>>;
   createCheckout: (
     email: string,
