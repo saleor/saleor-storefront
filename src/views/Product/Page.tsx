@@ -7,7 +7,6 @@ import Media from "react-media";
 import { Breadcrumbs, ProductDescription } from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
-import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import OtherProducts from "./Other";
 
 import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
