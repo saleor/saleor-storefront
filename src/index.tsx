@@ -126,27 +126,38 @@ const startApp = async () => {
         }
       }, [updateAvailable]);
 
-      useAuth((authenticated: boolean) => {
-        if (authenticated) {
-          alert.show(
-            {
-              title: intl.formatMessage({
-                defaultMessage: "You are now logged in",
-              }),
-            },
-            { type: "success" }
-          );
-        } else {
-          alert.show(
-            {
-              title: intl.formatMessage({
-                defaultMessage: "You are now logged out",
-              }),
-            },
-            { type: "success" }
-          );
+      const { authenticated } = useAuth();
+      const [prevAuthenticated, setPrevAuthenticated] = React.useState<
+        boolean | undefined
+      >();
+
+      React.useEffect(() => {
+        if (prevAuthenticated !== undefined && authenticated !== undefined) {
+          if (!prevAuthenticated && authenticated) {
+            alert.show(
+              {
+                title: intl.formatMessage({
+                  defaultMessage: "You are now logged in",
+                }),
+              },
+              { type: "success" }
+            );
+          } else if (prevAuthenticated && !authenticated) {
+            alert.show(
+              {
+                title: intl.formatMessage({
+                  defaultMessage: "You are now logged out",
+                }),
+              },
+              { type: "success" }
+            );
+          }
+          setPrevAuthenticated(authenticated);
+        } else if (authenticated !== undefined) {
+          setPrevAuthenticated(authenticated);
         }
-      });
+      }, [authenticated]);
+
       return null;
     };
 
