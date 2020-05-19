@@ -112,8 +112,7 @@ const generateCart = (
 export const CartPage: React.FC<IProps> = ({}: IProps) => {
   const history = useHistory();
   const { user } = useAuth();
-  console.log(user);
-  const { checkout } = useCheckout();
+  const chObj = useCheckout();
   const {
     loaded,
     removeItem,
@@ -124,6 +123,9 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     shippingPrice,
     discount,
   } = useCart();
+
+  console.log("chObj", chObj);
+  const checkout = chObj.checkout;
 
   const shippingTaxedPrice =
     checkout?.shippingMethod?.id && shippingPrice

@@ -1,7 +1,7 @@
 import { User } from "@sdk/fragments/gqlTypes/User";
 import { ErrorListener } from "@sdk/helpers";
 import { JobsManager } from "@sdk/jobs";
-import { SaleorState } from "@sdk/state";
+import { SaleorState, SaleorStateLoaded } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
 import { PromiseRunResponse } from "../types";
@@ -28,9 +28,6 @@ export class AuthAPI extends ErrorListener {
   private saleorState: SaleorState;
   private jobsManager: JobsManager;
 
-  private userLoaded: boolean;
-  private tokenLoaded: boolean;
-
   constructor(
     saleorState: SaleorState,
     loadOnStart: boolean,
@@ -41,44 +38,44 @@ export class AuthAPI extends ErrorListener {
     this.jobsManager = jobsManager;
 
     this.loaded = false;
-    this.userLoaded = false;
-    this.tokenLoaded = false;
 
     this.saleorState.subscribeToChange(StateItems.USER, (user: User | null) => {
       this.user = user;
-      this.userLoaded = true;
-      this.loaded = this.userLoaded && this.tokenLoaded;
       if (this.loaded) {
         this.authenticated = !!this.user;
       }
     });
     this.saleorState.subscribeToChange(StateItems.SIGN_IN_TOKEN, token => {
       this.token = token;
-      this.tokenLoaded = true;
-      this.loaded = this.userLoaded && this.tokenLoaded;
-      if (this.loaded) {
-        this.authenticated = !!this.user;
-      }
     });
-
-    if (loadOnStart) {
-      this.load();
-
-      if (!this.saleorState.signInToken && window.PasswordCredential) {
-        this.autoSignIn();
+    this.saleorState.subscribeToChange(
+      StateItems.LOADED,
+      (loaded: SaleorStateLoaded) => {
+        this.loaded = loaded.user && loaded.signInToken;
+        if (this.loaded) {
+          this.authenticated = !!this.user;
+        }
       }
+    );
+
+    // if (loadOnStart) {
+    //   this.load();
+
+    if (!this.saleorState.signInToken && window.PasswordCredential) {
+      this.autoSignIn();
     }
+    // }
   }
 
-  /**
-   * Initialize data, retrieve initial cache or make initial fetches. If not changed in SDK config, called on start by default.
-   */
-  load = () => {
-    this.saleorState.provideSignInToken();
-    return {
-      pending: false,
-    };
-  };
+  // /**
+  //  * Initialize data, retrieve initial cache or make initial fetches. If not changed in SDK config, called on start by default.
+  //  */
+  // load = () => {
+  //   this.saleorState.provideSignInToken();
+  //   return {
+  //     pending: false,
+  //   };
+  // };
 
   /**
    * Tries to authenticate user with given email and password.

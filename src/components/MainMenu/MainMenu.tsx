@@ -41,8 +41,6 @@ const MainMenu: React.FC = () => {
   const { user, signOut } = useAuth();
   const { items } = useCart();
 
-  console.log(user);
-
   const handleSignOut = () => {
     signOut();
   };
