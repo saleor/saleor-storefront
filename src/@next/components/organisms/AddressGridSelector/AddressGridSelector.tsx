@@ -8,6 +8,8 @@ import { AddressFormModal } from "../AddressFormModal";
 
 import { IProps } from "./types";
 
+import { useIntl } from "react-intl";
+
 /**
  * Addresses tiles to select with add new address tile opening address form addition modal.
  */
@@ -23,6 +25,8 @@ const AddressGridSelector: React.FC<IProps> = ({
   addNewModalTarget,
   newAddressFormId,
 }: IProps) => {
+  const intl = useIntl();
+
   const [displayNewModal, setDisplayNewModal] = useState(false);
 
   const addNewTile = (
@@ -95,7 +99,10 @@ const AddressGridSelector: React.FC<IProps> = ({
             setDisplayNewModal(false);
           }}
           submitBtnText={"Add"}
-          title={"Add new address"}
+          title=
+          {intl.formatMessage({
+            defaultMessage: "Add new address",
+         })}
           countriesOptions={countriesOptions}
           formId={newAddressFormId}
           userId={userId}

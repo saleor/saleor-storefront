@@ -5,6 +5,8 @@ import { Button, Chip, ErrorMessage, Input } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage, useIntl } from "react-intl";
+
 export const DiscountForm: React.FC<IProps> = ({
   handleSubmit,
   discount,
@@ -12,6 +14,8 @@ export const DiscountForm: React.FC<IProps> = ({
   formId,
   formRef,
 }: IProps) => {
+  const intl = useIntl();
+
   const promoCode = discount && discount.promoCode;
 
   const [inputCode, setInputCode] = React.useState("");
@@ -64,7 +68,7 @@ export const DiscountForm: React.FC<IProps> = ({
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}
-                    label="Promo Code"
+                    label={intl.formatMessage({defaultMessage: "Promo Code"})}
                     onChange={handleChange}
                   />
                 </S.InputWrapper>
@@ -74,7 +78,9 @@ export const DiscountForm: React.FC<IProps> = ({
                     data-cy="checkoutPaymentPromoCodeBtn"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
-                    Apply
+                    <FormattedMessage
+                      defaultMessage={"Apply"}
+                    />
                   </Button>
                 </S.ButtonWrapper>
               </S.InputWithButton>
@@ -82,7 +88,11 @@ export const DiscountForm: React.FC<IProps> = ({
             </S.Input>
             {values.tempPromoCode && (
               <>
-                <span>Promo code:</span>
+                <span>
+                  <FormattedMessage
+                    defaultMessage={"Promo code:"}
+                  />
+                </span>
                 <S.ChipsWrapper>
                   <Chip onClose={() => handleRemoveBtnClick(values.inputCode)}>
                     <span data-cy="checkoutPaymentPromoCodeChip">

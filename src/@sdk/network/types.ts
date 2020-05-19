@@ -32,7 +32,7 @@ export interface INetworkManager {
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   getRefreshedCheckoutLines: (
     checkoutlines: ICheckoutModelLine[] | null,
-    locale: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModelLine[]>>;
   createCheckout: (
     email: string,

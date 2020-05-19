@@ -155,7 +155,7 @@ export class NetworkManager implements INetworkManager {
             query: CheckoutQueries.checkoutProductVariants,
             variables: {
               ids: idsOfMissingVariants,
-              locale
+              locale,
             },
           }
         );

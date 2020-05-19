@@ -6,8 +6,8 @@ import { TextField } from "../TextField";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-import { FormattedMessage, useIntl } from "react-intl";
 import { commonMessages } from "@saleor/intl"
+import { FormattedMessage, useIntl } from "react-intl";
 
 export const ResetPasswordForm: React.FC<IProps> = ({
   handleBlur,

@@ -6,6 +6,8 @@ import { AddressSummary } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 /**
  * Review order view showed in checkout.
  */
@@ -19,32 +21,44 @@ const CheckoutReview: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <S.Title data-cy="checkoutPageSubtitle">REVIEW ORDER</S.Title>
+      <S.Title data-cy="checkoutPageSubtitle">
+        <FormattedMessage
+          defaultMessage={"REVIEW ORDER"}
+        />
+      </S.Title>
       <S.Grid>
         <section>
           <S.SubTitle data-cy="checkoutReviewSectionTitle">
-            Shipping Address
+            <FormattedMessage
+              defaultMessage={"Shipping Address"}
+            />
           </S.SubTitle>
           <S.Divider />
           <AddressSummary address={shippingAddress} email={email} />
         </section>
         <section>
           <S.SubTitle data-cy="checkoutReviewSectionTitle">
-            Billing Address
+            <FormattedMessage
+              defaultMessage={"Billing Address"}
+            />
           </S.SubTitle>
           <S.Divider />
           <AddressSummary address={billingAddress} email={email} />
         </section>
         <section>
           <S.SubTitle data-cy="checkoutReviewSectionTitle">
-            Shipping Method
+            <FormattedMessage
+              defaultMessage={"Shipping Method"}
+            />
           </S.SubTitle>
           <S.Divider />
           <S.TextSummary>{shippingMethodName}</S.TextSummary>
         </section>
         <section>
           <S.SubTitle data-cy="checkoutReviewSectionTitle">
-            Payment Method
+            <FormattedMessage
+              defaultMessage={"Payment Method"}
+            />
           </S.SubTitle>
           <S.Divider />
           <S.TextSummary>{paymentMethodName}</S.TextSummary>

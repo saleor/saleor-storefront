@@ -12,15 +12,7 @@ import { ResetPasswordForm } from "@components/molecules";
 import * as S from "./styles";
 import { FormikProps, IProps } from "./types";
 
-const PasswordResetSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(2, "Password is to short!")
-    .required("This field is required"),
-  retypedPassword: Yup.string()
-    .min(2, "Please retype password")
-    .required("This field is required")
-    .oneOf([Yup.ref("password")], "Retyped password does not match"),
-});
+import { useIntl } from "react-intl";
 
 const initialData: FormikProps = {
   password: "",
@@ -28,6 +20,8 @@ const initialData: FormikProps = {
 };
 
 export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
+  const intl = useIntl();
+
   const [query] = useQueryParams({
     email: StringParam,
     token: StringParam,
@@ -37,7 +31,15 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   const [passwordError, setPasswordError] = React.useState("");
 
   const [setPassword, { data, error: graphqlErrors }] = useSetPassword();
-
+  const PasswordResetSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(2, intl.formatMessage({defaultMessage: "Password is to short!"}))
+      .required(intl.formatMessage({defaultMessage: "This field is required"})),
+    retypedPassword: Yup.string()
+      .min(2, intl.formatMessage({defaultMessage: "Please retype password"}))
+      .required(intl.formatMessage({defaultMessage: "This field is required"}))
+      .oneOf([Yup.ref("password")], intl.formatMessage({defaultMessage: "Retyped password does not match"})),
+  });
   React.useEffect(() => {
     if (data && data.setPassword && data.setPassword.token) {
       setAuthToken(data.setPassword.token);

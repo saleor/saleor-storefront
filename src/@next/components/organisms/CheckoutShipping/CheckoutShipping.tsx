@@ -7,6 +7,8 @@ import { Money } from "@components/containers";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 /**
  * Shipping method selector used in checkout.
  */
@@ -20,7 +22,11 @@ const CheckoutShipping: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-cy="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
+      <S.Title data-cy="checkoutPageSubtitle">
+        <FormattedMessage
+          defaultMessage={"SHIPPING METHOD"}
+        />
+      </S.Title>
       <Formik
         initialValues={{
           shippingMethod: selectedShippingMethodId,

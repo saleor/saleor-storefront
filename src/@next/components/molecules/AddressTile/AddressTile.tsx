@@ -44,17 +44,17 @@ export const AddressTile: React.FC<IProps> = ({
 
       {address.isDefaultBillingAddress && address.isDefaultShippingAddress
         ? intl.formatMessage({
-          defaultMessage: "Default Address"
+          defaultMessage: "Default Address",
         })
         : address.isDefaultShippingAddress
         ? 
         intl.formatMessage({
-          defaultMessage: "Default Shipping Address"
+          defaultMessage: "Default Shipping Address",
         })
         : address.isDefaultBillingAddress
         ? 
         intl.formatMessage({
-          defaultMessage: "Default Billing Address"
+          defaultMessage: "Default Billing Address",
         })
         : null}
     </S.HeaderContent>

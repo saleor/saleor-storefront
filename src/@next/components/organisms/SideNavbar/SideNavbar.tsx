@@ -10,6 +10,8 @@ import { Overlay } from "../";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 const TopBar: React.FC<{ onHide: () => void }> = ({ children, onHide }) => (
   <S.Bar>
     {children}
@@ -78,7 +80,11 @@ export const SideNavbar: React.FC<IProps> = ({
           <TopBar onHide={handleHide}>
             <S.LogoWrapper path={LogoSmall} />
           </TopBar>
-          <S.Link to="/">Home</S.Link>
+          <S.Link to="/">
+            <FormattedMessage
+              defaultMessage={"Home"}
+            />
+          </S.Link>
           {items.map((item, index) =>
             item.children.length > 0 ? (
               <MenuItem
@@ -98,7 +104,11 @@ export const SideNavbar: React.FC<IProps> = ({
                 <S.IconWrapper>
                   <Icon name="heart" size={24} />
                 </S.IconWrapper>
-                <span>my wishlist</span>
+                <span>
+                  <FormattedMessage
+                    defaultMessage={"my wishlist"}
+                  />
+                </span>
               </S.Link>
             </S.Item>
             <S.Item>
@@ -106,11 +116,19 @@ export const SideNavbar: React.FC<IProps> = ({
                 <S.IconWrapper>
                   <Icon name="profile" size={24} />
                 </S.IconWrapper>
-                <span>my profile</span>
+                <span>
+                  <FormattedMessage
+                    defaultMessage={"my profile"}
+                  />
+                </span>
               </S.Link>
             </S.Item>
             <S.Item>
-              <S.Link to="/">english</S.Link>
+              <S.Link to="/">       
+               <FormattedMessage
+                  defaultMessage={"english"}
+                />
+              </S.Link>
             </S.Item>
           </Media>
         </S.Menu>

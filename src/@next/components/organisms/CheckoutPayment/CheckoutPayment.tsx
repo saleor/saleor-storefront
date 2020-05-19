@@ -12,6 +12,8 @@ import { PaymentGatewaysList } from "../PaymentGatewaysList";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 /**
  * Payment options used in checkout.
  */
@@ -89,7 +91,11 @@ const CheckoutPayment: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <section>
-        <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
+        <S.Title data-cy="checkoutPageSubtitle">
+          <FormattedMessage
+              defaultMessage={"BILLING ADDRESS"}
+          />  
+        </S.Title>
         {billingAsShippingPossible && (
           <Checkbox
             data-cy="checkoutPaymentBillingAsShippingCheckbox"
@@ -99,7 +105,9 @@ const CheckoutPayment: React.FC<IProps> = ({
               setBillingAsShippingAddress(!billingAsShippingAddress)
             }
           >
-            Same as shipping address
+            <FormattedMessage
+              defaultMessage={"Same as shipping address"}
+            />
           </Checkbox>
         )}
         {!billingAsShippingAddress && (
@@ -137,14 +145,20 @@ const CheckoutPayment: React.FC<IProps> = ({
       </section>
       <S.Divider />
       <section>
-        <S.Title data-cy="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
+        <S.Title data-cy="checkoutPageSubtitle">
+          <FormattedMessage
+            defaultMessage={"PAYMENT METHOD"}
+          />  
+        </S.Title>
         <Checkbox
           data-cy="checkoutPaymentPromoCodeCheckbox"
           name="payment-promo-code"
           checked={showPromoCodeForm}
           onChange={handleChangeShowPromoCodeForm}
         >
-          Do you have a gift card voucher or discount code?
+          <FormattedMessage
+            defaultMessage={"Do you have a gift card voucher or discount code?"}
+          /> 
         </Checkbox>
         {showPromoCodeForm && (
           <S.DiscountField>

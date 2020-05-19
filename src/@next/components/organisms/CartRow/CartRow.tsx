@@ -6,6 +6,8 @@ import { CachedImage, TextField } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage, useIntl } from "react-intl";
+
 const QuantityButtons = (
   add: () => void,
   substract: () => void,
@@ -40,6 +42,8 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
 }: IProps) => {
+  const intl = useIntl();
+
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
 
@@ -87,7 +91,12 @@ export const CartRow: React.FC<IProps> = ({
   const quantityErrors = isTooMuch
     ? [
         {
-          message: `Maximum quantity is ${maxQuantity}`,
+          message: intl.formatMessage({
+              defaultMessage: "Maximum quantity is {maxQuantity}",
+            },
+            {
+            maxQuantity,
+            }),
         },
       ]
     : undefined;
@@ -101,7 +110,10 @@ export const CartRow: React.FC<IProps> = ({
         <S.Name data-cy={`cartPageItem${index}Name`}>{name}</S.Name>
         <S.Sku>
           <S.LightFont>
-            SKU:{" "}
+            <FormattedMessage
+              defaultMessage="SKU:"
+            />
+            {" "}
             <span data-cy={`cartPageItem${index}SKU`}>{sku ? sku : "-"}</span>
           </S.LightFont>
         </S.Sku>
@@ -122,7 +134,7 @@ export const CartRow: React.FC<IProps> = ({
         <TextField
           data-cy={`cartPageItem${index}QuantityInput`}
           name="quantity"
-          label="Quantity"
+          label={intl.formatMessage({defaultMessage: "Quantity"})}
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
@@ -141,13 +153,21 @@ export const CartRow: React.FC<IProps> = ({
 
       <S.TotalPrice>
         <S.PriceLabel>
-          <S.LightFont>Total Price:</S.LightFont>
+          <S.LightFont>
+            <FormattedMessage
+              defaultMessage={"Total Price:"}
+            />
+          </S.LightFont>
         </S.PriceLabel>
         <p>{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice>
         <S.PriceLabel>
-          <S.LightFont>Price:</S.LightFont>
+          <S.LightFont>
+            <FormattedMessage
+              defaultMessage={"Price:"}
+            />
+          </S.LightFont>
         </S.PriceLabel>
         <p>{unitPrice}</p>
       </S.UnitPrice>

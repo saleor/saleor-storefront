@@ -7,6 +7,8 @@ import { CartSummaryRow } from "@components/molecules";
 import * as S from "./styles";
 import { ICostLine, ICosts, IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 const CostLine = ({
   name,
   cost,
@@ -51,7 +53,9 @@ const CartSummary: React.FC<IProps> = ({
         data-cy="cartSummaryTitle"
         onClick={() => setMobileCartOpened(!mobileCartOpened)}
       >
-        Cart Summary
+        <FormattedMessage
+          defaultMessage={"Cart Summary"}
+        />
         <S.ArrowUp mobileCartOpened={mobileCartOpened}>
           <Icon name="arrow_up" size={24} />
         </S.ArrowUp>

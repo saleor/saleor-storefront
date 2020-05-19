@@ -14,25 +14,7 @@ import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
-const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
-
-const getShoppingButton = (history: History) => (
-  <Button
-    data-cy="cartPageBtnContinueShopping"
-    onClick={() => history.push(BASE_URL)}
-  >
-    CONTINUE SHOPPING
-  </Button>
-);
-
-const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
-  <Button
-    data-cy="cartPageBtnProceedToCheckout"
-    onClick={() => history.push(user ? `/checkout/` : `/login/`)}
-  >
-    PROCEED TO CHECKOUT
-  </Button>
-);
+import { FormattedMessage } from "react-intl";
 
 const cartHeader = <CartHeader />;
 
@@ -75,6 +57,7 @@ const generateCart = (
   removeItem: (variantId: string) => any,
   updateItem: (variantId: string, quantity: number) => any
 ) => {
+  
   return items?.map(({ id, variant, quantity, totalPrice }, index) => (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}
@@ -146,7 +129,33 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
     gross: discount,
     net: discount,
   };
+  const title = <h1 data-cy="cartPageTitle">
+      <FormattedMessage
+        defaultMessage={"My Cart"}
+      />
+    </h1>;
 
+  const getShoppingButton = (history: History) => (
+    <Button
+      data-cy="cartPageBtnContinueShopping"
+      onClick={() => history.push(BASE_URL)}
+    >
+      <FormattedMessage
+        defaultMessage={"CONTINUE SHOPPING"}
+      />
+    </Button>
+  );
+  
+  const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
+    <Button
+      data-cy="cartPageBtnProceedToCheckout"
+      onClick={() => history.push(user ? `/checkout/` : `/login/`)}
+    >
+      <FormattedMessage
+        defaultMessage={"PROCEED TO CHECKOUT"}
+      />
+    </Button>
+  );
   if (loaded && items?.length) {
     return (
       <Cart
