@@ -4,6 +4,8 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
+
 ## 2.10.0
 
 - Account confirmation mechanism - #565 by @tomaszszymanski129
