@@ -117,6 +117,10 @@ export interface ProductVariantFields_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
 }
 
 export interface ProductVariantFields_attributes_values {

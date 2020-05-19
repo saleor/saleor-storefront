@@ -35,6 +35,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Hide payment options - #678 by @orzechdev
 - Fix unhandled JWT token expiration - #696 by @orzechdev
 - Regenerate types - #712 by @dominik-zeglen
+- Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
 
 ## 0.7.0
 

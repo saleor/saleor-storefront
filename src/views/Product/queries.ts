@@ -98,6 +98,7 @@ export const productVariantFragment = gql`
       attribute {
         id
         name
+        slug
       }
       values {
         id

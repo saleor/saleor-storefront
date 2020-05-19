@@ -10,4 +10,6 @@ export interface IProps {
   ) => void;
   selectSidebar?: boolean;
   selectSidebarTarget?: HTMLElement | null;
+  queryAttributes: Record<string, string>;
+  onAttributeChangeHandler: (slug: string | null, value: string) => void;
 }

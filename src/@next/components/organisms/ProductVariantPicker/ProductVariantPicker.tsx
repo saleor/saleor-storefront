@@ -10,6 +10,8 @@ import { IProps } from "./types";
 
 export const ProductVariantPicker: React.FC<IProps> = ({
   productVariants = [],
+  queryAttributes = {},
+  onAttributeChangeHandler,
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
@@ -26,7 +28,6 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     const selectedVariant = productVariants.find(productVariant => {
       return productVariant.attributes.every(productVariantAttribute => {
         const productVariantAttributeId = productVariantAttribute.attribute.id;
-
         if (
           productVariantAttribute.values[0] &&
           productVariantsAttributesSelectedValues[productVariantAttributeId] &&
@@ -39,42 +40,45 @@ export const ProductVariantPicker: React.FC<IProps> = ({
         return false;
       });
     });
-
     if (onChange) {
       onChange(productVariantsAttributesSelectedValues, selectedVariant);
     }
   }, [productVariantsAttributesSelectedValues]);
 
+  const onAttributeChange = (id: string, value: any, slug: string | null) => {
+    selectProductVariantsAttributesValue(id, value);
+    onAttributeChangeHandler(slug, value);
+  };
+
   return (
     <S.Wrapper>
       {Object.keys(productVariantsAttributes).map(
-        productVariantsAttributeId => (
-          <ProductVariantAttributeSelect
-            key={productVariantsAttributeId}
-            selectSidebar={selectSidebar}
-            selectSidebarTarget={selectSidebarTarget}
-            productVariants={productVariants}
-            productVariantsAttributeId={productVariantsAttributeId}
-            productVariantsAttribute={
-              productVariantsAttributes[productVariantsAttributeId]
-            }
-            productVariantsAttributesSelectedValues={
-              productVariantsAttributesSelectedValues
-            }
-            onChangeSelection={optionValue =>
-              selectProductVariantsAttributesValue(
-                productVariantsAttributeId,
-                optionValue
-              )
-            }
-            onClearSelection={() =>
-              selectProductVariantsAttributesValue(
-                productVariantsAttributeId,
-                null
-              )
-            }
-          />
-        )
+        productVariantsAttributeId => {
+          const productVariantsAttribute =
+            productVariantsAttributes[productVariantsAttributeId];
+          const slug = productVariantsAttribute.attribute.slug;
+
+          return (
+            <ProductVariantAttributeSelect
+              key={productVariantsAttributeId}
+              selectSidebar={selectSidebar}
+              selectSidebarTarget={selectSidebarTarget}
+              productVariants={productVariants}
+              productVariantsAttributeId={productVariantsAttributeId}
+              productVariantsAttribute={productVariantsAttribute}
+              defaultValue={queryAttributes[productVariantsAttributeId]}
+              productVariantsAttributesSelectedValues={
+                productVariantsAttributesSelectedValues
+              }
+              onChangeSelection={optionValue =>
+                onAttributeChange(productVariantsAttributeId, optionValue, slug)
+              }
+              onClearSelection={() =>
+                onAttributeChange(productVariantsAttributeId, null, slug)
+              }
+            />
+          );
+        }
       )}
     </S.Wrapper>
   );
