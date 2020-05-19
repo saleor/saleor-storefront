@@ -5,7 +5,7 @@ import { productNameTranslationFragment, productPricingFragment } from "../Produ
 import {
   SearchProducts,
   SearchProductsVariables,
-} from "./types/SearchProducts";
+} from "./gqlTypes/SearchProducts";
 
 export const searchProductsQuery = gql`
   ${productPricingFragment}

@@ -15,7 +15,7 @@ import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
-import { Category_category, Category_products } from "./types/Category";
+import { Category_category, Category_products } from "./gqlTypes/Category";
 
 import { useIntl } from "react-intl";
 

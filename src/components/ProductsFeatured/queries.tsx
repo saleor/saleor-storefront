@@ -6,7 +6,8 @@ import {
   productNameTranslationFragment,
   productPricingFragment,
 } from "../../views/Product/queries";
-import { FeaturedProducts, FeaturedProductsVariables } from "./types/FeaturedProducts";
+import { FeaturedProducts, FeaturedProductsVariables } from "./gqlTypes/FeaturedProducts";
+
 
 export const featuredProducts = gql`
   ${basicProductFragment}

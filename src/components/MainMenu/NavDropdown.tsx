@@ -5,10 +5,10 @@ import {
   NavLink,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "..";
+import { MainMenu_shop_navigation_main_items } from "./gqlTypes/MainMenu";
 import NavItem from "./NavItem";
-import { MainMenu_shop_navigation_main_items } from "./types/MainMenu";
 
 import "./scss/index.scss";
 

@@ -6,9 +6,12 @@ import * as React from "react";
 import { Thumbnail } from "@components/molecules";
 
 import { TaxedMoney } from "../../@next/components/containers";
-import { BasicProductFields } from "../../views/Product/types/BasicProductFields";
+import { BasicProductFields } from "../../views/Product/gqlTypes/BasicProductFields";
 
 export interface Product extends BasicProductFields {
+  translation:{
+    name:string;
+  };
   category?: {
     id: string;
     name: string;

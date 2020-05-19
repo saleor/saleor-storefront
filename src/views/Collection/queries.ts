@@ -6,7 +6,7 @@ import {
   productNameTranslationFragment,
   productPricingFragment,
 } from "../Product/queries";
-import { Collection, CollectionVariables } from "./types/Collection";
+import { Collection, CollectionVariables } from "./gqlTypes/Collection";
 
 export const collectionProductsQuery = gql`
   ${basicProductFragment}

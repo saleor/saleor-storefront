@@ -5,9 +5,8 @@ import { useCreateUserAddress, useUpdateUserAddress } from "@sdk/react";
 import { AddressForm } from "../AddressForm";
 import { Modal } from "../Modal";
 
+import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 import { IProps } from "./types";
-
-import { CountryCode } from "types/globalTypes";
 
 export const AddressFormModal: React.FC<IProps> = ({
   hideModal,

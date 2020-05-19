@@ -5,11 +5,11 @@ import { TaxedMoney } from "@components/containers";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
-import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
+import { OrderById_order, OrderById_order_lines } from "./gqlTypes/OrderById";
 import {
   OrderByToken_orderByToken,
   OrderByToken_orderByToken_lines,
-} from "./types/OrderByToken";
+} from "./gqlTypes/OrderByToken";
 
 import { orderHistoryUrl } from "../../../app/routes";
 

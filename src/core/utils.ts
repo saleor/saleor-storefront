@@ -4,7 +4,7 @@ import { each } from "lodash";
 import { parse as parseQs, stringify as stringifyQs } from "query-string";
 import { FetchResult } from "react-apollo";
 
-import { OrderDirection, ProductOrderField } from "../../types/globalTypes";
+import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";
 import { FormError } from "./types";
 

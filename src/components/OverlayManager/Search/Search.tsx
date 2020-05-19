@@ -19,10 +19,10 @@ import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
+import { SearchResults } from "./gqlTypes/SearchResults";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
-import { SearchResults } from "./types/SearchResults";
 
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";

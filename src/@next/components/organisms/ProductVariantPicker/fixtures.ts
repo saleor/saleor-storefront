@@ -1,4 +1,4 @@
-import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
+import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
 
 // tslint:disable:object-literal-sort-keys
 export const productVariants: ProductDetails_product_variants[] = [

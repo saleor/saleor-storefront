@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { SecondaryMenu, SecondaryMenuVariables} from "./types/SecondaryMenu";
+import { SecondaryMenu } from "./gqlTypes/SecondaryMenu";
 
 const secondaryMenu = gql`
   fragment SecondaryMenuSubItem on MenuItem {
@@ -40,4 +40,6 @@ const secondaryMenu = gql`
   }
 `;
 
-export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, SecondaryMenuVariables>(secondaryMenu);
+export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, {}>(
+  secondaryMenu
+);

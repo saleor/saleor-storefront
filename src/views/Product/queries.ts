@@ -4,8 +4,8 @@ import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
   ProductDetailsVariables,
-} from "./types/ProductDetails";
-import { VariantList, VariantListVariables } from "./types/VariantList";
+} from "./gqlTypes/ProductDetails";
+import { VariantList, VariantListVariables } from "./gqlTypes/VariantList";
 
 export const priceFragment = gql`
   fragment Price on TaxedMoney {

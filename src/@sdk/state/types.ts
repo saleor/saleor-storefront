@@ -1,4 +1,4 @@
-import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/types/GetShopPaymentGateways";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/gqlTypes/GetShopPaymentGateways";
 import {
   ICheckoutModel,
   ICheckoutModelPrice,

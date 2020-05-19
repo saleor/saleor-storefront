@@ -1,6 +1,9 @@
 import gql from "graphql-tag";
 import { TypedMutation } from "../../core/mutations";
-import { ResetPassword, ResetPasswordVariables } from "./types/ResetPassword";
+import {
+  ResetPassword,
+  ResetPasswordVariables,
+} from "./gqlTypes/ResetPassword";
 
 // fixme: this will be fixed in issue https://github.com/mirumee/saleor-storefront/issues/500
 const passwordResetMutation = gql`

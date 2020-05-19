@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Thumbnail } from "@components/molecules";
 
 import { generateProductUrl } from "../../../core/utils";
-import { SearchResults_products_edges } from "./types/SearchResults";
+import { SearchResults_products_edges } from "./gqlTypes/SearchResults";
 
 const ProductItem: React.FC<SearchResults_products_edges> = ({
   node: product,

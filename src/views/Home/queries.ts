@@ -1,7 +1,8 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { ProductsList, ProductsListVariables } from "./types/ProductsList";
+
+import { ProductsList, ProductsListVariables } from "./gqlTypes/ProductsList";
 
 export const homePageQuery = gql`
   query ProductsList(

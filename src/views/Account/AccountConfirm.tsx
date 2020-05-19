@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useAlert } from "react-alert";
 
-import { StringParam, useQueryParams } from 'use-query-params';
+import { StringParam, useQueryParams } from "use-query-params";
 
 import { BASE_URL } from "../../core/config";
 
@@ -22,7 +22,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
 
   const alert = useAlert();
 
-  const displayConfirmationAlert = (anyErrors) => {
+  const displayConfirmationAlert = anyErrors => {
     alert.show(
       {
         content: anyErrors.length > 0 ? anyErrors.map(
@@ -43,7 +43,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
       },
       { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
     );
-  }
+  };
 
   React.useEffect(() => {
     this.accountManagerFn({
@@ -66,9 +66,9 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <TypedAccountConfirmMutation>
-      {(accountConfirm) => {
+      {accountConfirm => {
         this.accountManagerFn = accountConfirm;
-        return (<div></div>);
+        return <div></div>;
       }}
     </TypedAccountConfirmMutation>
   );

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import {
   generateCategoryUrl,
   generateCollectionUrl,
-  generatePageUrl
+  generatePageUrl,
 } from "../../core/utils";
 import {
   SecondaryMenu_shop_navigation_secondary_items,
-  SecondaryMenu_shop_navigation_secondary_items_children
-} from "../Footer/types/SecondaryMenu";
-import { MainMenu_shop_navigation_main_items } from "../MainMenu/types/MainMenu";
-import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
+  SecondaryMenu_shop_navigation_secondary_items_children,
+} from "../Footer/gqlTypes/SecondaryMenu";
+import { MainMenu_shop_navigation_main_items } from "../MainMenu/gqlTypes/MainMenu";
+import { MainMenuSubItem } from "../MainMenu/gqlTypes/MainMenuSubItem";
 
 interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   item:
