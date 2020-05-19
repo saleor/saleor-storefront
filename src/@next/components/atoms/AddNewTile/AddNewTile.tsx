@@ -5,6 +5,8 @@ import { Tile } from "../Tile";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
   return (
     <Tile tileType="addNew" {...props}>
@@ -12,7 +14,14 @@ export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
         <p>
           <Icon size={24} name="plus" />
         </p>
-        <p>Add new {type}</p>
+        <p>
+          <FormattedMessage
+            defaultMessage="Add new {type}"
+            values={
+              {type}
+            }
+          />
+        </p>
       </S.Content>
     </Tile>
   );

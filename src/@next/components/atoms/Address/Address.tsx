@@ -4,6 +4,8 @@ import { IAddress } from "@types";
 
 import * as S from "./styles";
 
+import { FormattedMessage } from "react-intl";
+
 export const Address: React.FC<IAddress> = ({
   firstName,
   lastName,
@@ -37,7 +39,13 @@ export const Address: React.FC<IAddress> = ({
     <br />
     {phone && (
       <>
-        Phone number: {phone} <br />
+        <FormattedMessage
+            defaultMessage="Phone number: {phone}"
+            values={
+              {phone}
+            }
+          />
+        <br />
       </>
     )}
   </div>
