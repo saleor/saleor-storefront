@@ -1,20 +1,19 @@
 import gql from "graphql-tag";
 
-import { checkoutFragment } from "../fragments/checkout";
-import { paymentFragment } from "../fragments/payment";
+import { checkoutErrorFragment, checkoutFragment } from "../fragments/checkout";
+import { paymentErrorFragment, paymentFragment } from "../fragments/payment";
 import { orderDetailFragment } from "../fragments/user";
 
 export const updateCheckoutLineMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
         ...Checkout
       }
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
     }
   }
@@ -22,12 +21,11 @@ export const updateCheckoutLineMutation = gql`
 
 export const createCheckoutMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation CreateCheckout($checkoutInput: CheckoutCreateInput!) {
     checkoutCreate(input: $checkoutInput) {
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
       checkout {
         ...Checkout
@@ -38,6 +36,7 @@ export const createCheckoutMutation = gql`
 
 export const updateCheckoutBillingAddressWithEmailMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation UpdateCheckoutBillingAddressWithEmail(
     $checkoutId: ID!
     $billingAddress: AddressInput!
@@ -48,9 +47,7 @@ export const updateCheckoutBillingAddressWithEmailMutation = gql`
       billingAddress: $billingAddress
     ) {
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
       checkout {
         ...Checkout
@@ -71,6 +68,7 @@ export const updateCheckoutBillingAddressWithEmailMutation = gql`
 
 export const updateCheckoutBillingAddressMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation UpdateCheckoutBillingAddress(
     $checkoutId: ID!
     $billingAddress: AddressInput!
@@ -80,9 +78,7 @@ export const updateCheckoutBillingAddressMutation = gql`
       billingAddress: $billingAddress
     ) {
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
       checkout {
         ...Checkout
@@ -93,6 +89,7 @@ export const updateCheckoutBillingAddressMutation = gql`
 
 export const updateCheckoutShippingAddressMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation UpdateCheckoutShippingAddress(
     $checkoutId: ID!
     $shippingAddress: AddressInput!
@@ -103,9 +100,7 @@ export const updateCheckoutShippingAddressMutation = gql`
       shippingAddress: $shippingAddress
     ) {
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
       checkout {
         ...Checkout
@@ -116,9 +111,7 @@ export const updateCheckoutShippingAddressMutation = gql`
         ...Checkout
       }
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
     }
   }
@@ -126,6 +119,7 @@ export const updateCheckoutShippingAddressMutation = gql`
 
 export const updateCheckoutShippingMethodMutation = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation UpdateCheckoutShippingMethod(
     $checkoutId: ID!
     $shippingMethodId: ID!
@@ -138,9 +132,7 @@ export const updateCheckoutShippingMethodMutation = gql`
         ...Checkout
       }
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
     }
   }
@@ -148,15 +140,14 @@ export const updateCheckoutShippingMethodMutation = gql`
 
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation AddCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
     checkoutAddPromoCode(checkoutId: $checkoutId, promoCode: $promoCode) {
       checkout {
         ...Checkout
       }
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
     }
   }
@@ -164,15 +155,14 @@ export const addCheckoutPromoCode = gql`
 
 export const removeCheckoutPromoCode = gql`
   ${checkoutFragment}
+  ${checkoutErrorFragment}
   mutation RemoveCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
     checkoutRemovePromoCode(checkoutId: $checkoutId, promoCode: $promoCode) {
       checkout {
         ...Checkout
       }
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
     }
   }
@@ -181,6 +171,7 @@ export const removeCheckoutPromoCode = gql`
 export const createCheckoutPaymentMutation = gql`
   ${checkoutFragment}
   ${paymentFragment}
+  ${paymentErrorFragment}
   mutation CreateCheckoutPayment(
     $checkoutId: ID!
     $paymentInput: PaymentInput!
@@ -193,9 +184,7 @@ export const createCheckoutPaymentMutation = gql`
         ...Payment
       }
       errors: paymentErrors {
-        code
-        field
-        message
+        ...PaymentError
       }
     }
   }
@@ -203,12 +192,11 @@ export const createCheckoutPaymentMutation = gql`
 
 export const completeCheckoutMutation = gql`
   ${orderDetailFragment}
+  ${checkoutErrorFragment}
   mutation CompleteCheckout($checkoutId: ID!) {
     checkoutComplete(checkoutId: $checkoutId) {
       errors: checkoutErrors {
-        code
-        field
-        message
+        ...CheckoutError
       }
       order {
         ...OrderDetail
