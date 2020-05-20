@@ -14,7 +14,7 @@ describe("Product list view", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
-    cy.visit("/", {
+    cy.visit("/category/accessories/7/", {
       onBeforeLoad(win) {
         delete win.fetch;
         // since the application code does not ship with a polyfill
@@ -24,10 +24,6 @@ describe("Product list view", () => {
       },
     });
 
-    cy.wait(5000)
-      .get("[data-cy=main-menu__item]")
-      .first()
-      .click();
   });
 
   it("category view should contain 6 visible products", () => {
@@ -35,9 +31,9 @@ describe("Product list view", () => {
   });
 
   it("should load more products when clicking on MORE button", () => {
-    cy.get("[data-cy=load-more_button]")
-      .click()
-      .get("[data-cy=product-tile")
-      .should("have.length", 7);
+    cy.get("[data-cy=loadMoreProductsButton]")
+      .click();
+    
+      cy.get("[data-cy=product-tile]").then((tiles)=>expect(tiles.length).to.be.at.least(6))
   });
 });

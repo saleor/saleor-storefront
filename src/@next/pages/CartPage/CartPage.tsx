@@ -18,7 +18,7 @@ const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
 
 const getShoppingButton = (history: History) => (
   <Button
-    data-cy="cartPageBtnContinueShopping"
+    dataCy="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
     CONTINUE SHOPPING
@@ -27,7 +27,7 @@ const getShoppingButton = (history: History) => (
 
 const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
   <Button
-    data-cy="cartPageBtnProceedToCheckout"
+    dataCy="cartPageProceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
     PROCEED TO CHECKOUT

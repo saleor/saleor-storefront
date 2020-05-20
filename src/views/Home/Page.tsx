@@ -63,7 +63,7 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button>Shop sale</Button>
+                <Button dataCy="homepageHeroActionButton">Shop sale</Button>
               </Link>
             )
           )}

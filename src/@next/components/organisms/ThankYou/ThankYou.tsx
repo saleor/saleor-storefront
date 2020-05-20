@@ -30,10 +30,10 @@ const ThankYou: React.FC<IProps> = ({
           order has been shipped.
         </S.Paragraph>
         <S.Buttons>
-          <Button onClick={continueShopping} color="secondary" fullWidth={true}>
+          <Button dataCy="continueShoppingButton" onClick={continueShopping} color="secondary" fullWidth={true}>
             CONTINUE SHOPPING
           </Button>
-          <Button onClick={orderDetails} fullWidth={true}>
+          <Button dataCy="gotoOrderDetailsButton" onClick={orderDetails} fullWidth={true}>
             ORDER DETAILS
           </Button>
         </S.Buttons>

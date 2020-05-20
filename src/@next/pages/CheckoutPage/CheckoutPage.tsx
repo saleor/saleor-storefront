@@ -82,7 +82,7 @@ const getCheckoutProgress = (
 const getButton = (text: string, onClick: () => void) => {
   if (text) {
     return (
-      <Button data-cy="checkoutPageBtnNextStep" onClick={onClick} type="submit">
+      <Button dataCy="checkoutPageNextStepButton" onClick={onClick} type="submit">
         {text}
       </Button>
     );

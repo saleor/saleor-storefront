@@ -8,6 +8,7 @@ const AddToCart: React.FC<{
 }> = ({ onSubmit, disabled }) => {
   return (
     <AddToCartButton
+      dataCy="detailsPageAddProductToCartButton"
       className="product-description__action"
       onClick={() => {
         onSubmit();

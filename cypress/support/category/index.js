@@ -1,14 +1,12 @@
 const openFilterSidebar = () => {
   return cy
     .get("[data-cy=filters__button]")
-    .click()
-    .wait(500);
+    .click();
 };
 
 const openCategory = (index = 0) => {
   return cy
-    .wait(5000)
-    .get("[data-cy=main-menu__item]")
+    .get("[data-cy=main-menu__item]", {timeout: 5000})
     .eq(index)
     .click();
 };

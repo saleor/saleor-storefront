@@ -62,6 +62,7 @@ export const AccountUpdateForm: React.FC<{
                   Cancel
                 </ButtonLink>
                 <Button
+                  dataCy="submitAccountUpdateFormButton"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

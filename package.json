@@ -108,7 +108,7 @@
     "babel-plugin-require-context-hook": "^1.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^1.0.0",
-    "cypress": "^4.3.0",
+    "cypress": "^4.5.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-prettier": "^2.9.0",

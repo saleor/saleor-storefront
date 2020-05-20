@@ -2,6 +2,7 @@
 
 describe("User orders histoy", () => {
   let polyfill = null;
+  let user = null;
 
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
@@ -11,6 +12,7 @@ describe("User orders histoy", () => {
   });
 
   beforeEach(() => {
+
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
@@ -23,32 +25,37 @@ describe("User orders histoy", () => {
         win.fetch = win.unfetch;
       },
     });
-  });
 
-  it("if user is logged in, when accessing order history at least 5 orders should be visible", () => {
-    const user = { email: "admin@example.com", password: "admin" };
-    cy.loginUser(user)
-      .openAccountMenu("order_history__link")
-      .findAllByTestId("order__row", { timeout: 15000 })
-      .should("have.length", 5);
-  });
+    cy.fixture('valid_user.json').then(
+      (validUser)=>{
+        user=validUser; 
+        cy.loginUser(user.email, user.password);
+      });
+
+    cy.visit("/order-history/");
+
+    });
 
   it("if user is logged in, when accessing order history and clicking load more button 10 orders should be visible", () => {
-    const user = { email: "admin@example.com", password: "admin" };
-    cy.loginUser(user)
-      .openAccountMenu("order_history__link")
-      .findByTestId("load_more__button", { timeout: 15000 })
+    cy
+      .get(".account__content", {timeout:15000})
+      .find("[data-cy=order__row]")
+      .should("have.length", 5)
+      .get("[data-cy=loadMoreOrdersButton]")
       .click()
-      .findAllByTestId("order__row", { timeout: 10000 })
+      .get(".account__content")
+      .find("[data-cy=order__row]")
       .should("have.length", 10);
   });
 
   it("if user is logged in, when accessing order history and clicking on order should move user to order view", () => {
-    const user = { email: "admin@example.com", password: "admin" };
-    cy.loginUser(user)
-      .openAccountMenu("order_history__link")
-      .findAllByTestId("order__row", { timeout: 10000 })
-      .eq(0)
+    cy
+      .get("[data-cy=order__row]:first", {timeout:15000})    
       .click();
+    
+      cy.location().should((loc) => {
+        expect(loc.pathname).to.match(/^\/order-history\/[\w]+-[\w]+-[\w]+-[\w]+-[\w]+/);
+      })
+  
   });
 });
