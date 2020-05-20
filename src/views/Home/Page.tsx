@@ -14,7 +14,6 @@ const Page: React.FC<{
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
   shop: ProductsList_shop;
 }> = ({ loading, categories, backgroundImage, shop }) => {
-
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -35,15 +34,21 @@ const Page: React.FC<{
         </div>
         <div className="home-page__hero-btn">
           <Link to="/collections/cabinets">
-            <button type="button" className="home-page__btn">Browse Cabinets</button>
+            <button type="button" className="home-page__btn">
+              Browse Cabinets
+            </button>
           </Link>
 
-          <Link to="/collection/samples">
-            <button type="button" className="home-page__btn">Order Samples</button>
+          <Link to="/collections/samples">
+            <button type="button" className="home-page__btn">
+              Order Samples
+            </button>
           </Link>
 
           <Link to="/custom-design">
-            <button type="button" className="home-page__btn">Get Custom Designs</button>
+            <button type="button" className="home-page__btn">
+              Get Custom Designs
+            </button>
           </Link>
         </div>
       </div>

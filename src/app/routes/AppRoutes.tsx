@@ -21,9 +21,9 @@ import OrderConfirmation from "../../views/OrderConfirmation/View";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 import { ViewDetails } from "../../views/CollectionIndex/ViewDetails";
+import { OrderSamples } from "../../views/Samples";
 
 import * as paths from "./paths";
-
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -47,11 +47,19 @@ export const Routes: React.FC = () => (
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route exact path={paths.browseCollection} component={BrowseCabinets} />
     <Route exact path={paths.cabinetCollection} component={CollectionIndex} />
-    <Route exact path={paths.collectionAvailableColors} component={AvailableColors} />
+    <Route
+      exact
+      path={paths.collectionAvailableColors}
+      component={AvailableColors}
+    />
     <Route path={paths.collectionViewDetails} component={ViewDetails} />
-    <Route path={paths.collectionSpecification} component={CollectionSpecification} />
+    <Route
+      path={paths.collectionSpecification}
+      component={CollectionSpecification}
+    />
     <Route path={paths.collectionItemsIncluded} component={CollectionItems} />
     <Route path={paths.collectionSamples} component={CollectionSamples} />
+    <Route path={paths.orderSamples} component={OrderSamples} />
     <Route component={NotFound} />
   </Switch>
 );
