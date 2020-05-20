@@ -1,6 +1,7 @@
 import { NamedObservable } from "../NamedObservable";
 import {
   ICheckoutModel,
+  IJobsModel,
   ILocalStorageHandler,
   IPaymentModel,
   LocalStorageItems,
@@ -77,12 +78,10 @@ export class LocalStorageHandler extends LocalStorageHandlerProxy
   setPayment(payment: IPaymentModel | null): void {
     this.saveObject(LocalStorageItems.PAYMENT, payment);
   }
-  getJobs(): {
-    [key: string]: { [key: string]: boolean };
-  } | null {
+  getJobs(): IJobsModel | null {
     return this.retrieveObject(LocalStorageItems.JOB_QUEUE_CHECKOUT);
   }
-  setJobs(jobs: { [key: string]: { [key: string]: boolean } } | null): void {
+  setJobs(jobs: IJobsModel | null): void {
     return this.saveObject(LocalStorageItems.JOB_QUEUE_CHECKOUT, jobs);
   }
 }

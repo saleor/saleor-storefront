@@ -124,6 +124,8 @@ export interface IOrderModel {
   number?: string | null;
 }
 
+export type IJobsModel = Record<string, Record<string, boolean>>;
+
 export interface ILocalStorageHandler {
   getCheckout(): ICheckoutModel | null;
   setCheckout(checkout: ICheckoutModel | null): void;
