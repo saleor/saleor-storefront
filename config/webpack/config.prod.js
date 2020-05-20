@@ -1,8 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const STATIC_URL = process.env.STATIC_URL || '/';
+
+
 module.exports = ({ sourceDir, distDir }) => ({
   output: {
-    filename: "js/[name].[contenthash].js"
+    filename: "js/[name].[contenthash].js",
+    publicPath: STATIC_URL,
   },
   module: {
     rules: [

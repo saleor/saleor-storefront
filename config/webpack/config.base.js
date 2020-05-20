@@ -8,6 +8,7 @@ const webpack = require("webpack");
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
 }
+const STATIC_URL = process.env.STATIC_URL || '/';
 
 module.exports = ({ sourceDir, distDir }) => ({
   resolve: {
@@ -26,7 +27,7 @@ module.exports = ({ sourceDir, distDir }) => ({
   },
   output: {
     path: distDir,
-    publicPath: "/",
+    publicPath: STATIC_URL,
   },
   devtool: "source-map",
   module: {
@@ -48,7 +49,7 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "fonts/",
-              publicPath: "/fonts/",
+              publicPath: STATIC_URL+"fonts/",
             },
           },
         ],
@@ -61,7 +62,7 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "images/",
-              publicPath: "/images/",
+              publicPath: STATIC_URL+"images/",
             },
           },
           {
@@ -112,8 +113,6 @@ module.exports = ({ sourceDir, distDir }) => ({
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
-      SENTRY_DSN: null,
-      SENTRY_APM: "0",
     }),
   ],
   node: {
