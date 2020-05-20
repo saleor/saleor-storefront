@@ -102,6 +102,10 @@ export class AuthAPI extends ErrorListener {
       );
     }
 
+    await this.jobsManager.run("checkout", "provideCheckout", {
+      isUserSignedIn: !!data?.user,
+    });
+
     return {
       data,
       dataError,

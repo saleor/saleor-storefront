@@ -1,3 +1,4 @@
+import { DataErrorCheckoutTypes } from "@sdk/api/Checkout/types";
 import { ApolloClientManager } from "@sdk/data/ApolloClientManager";
 import { LocalStorageHandler } from "@sdk/helpers/LocalStorageHandler";
 import {
@@ -6,7 +7,6 @@ import {
 } from "@temp/@sdk/api/Auth/types";
 
 import { JobRunResponse } from "../types";
-import { DataErrorCheckoutTypes } from "@temp/@sdk/api/Checkout/types";
 
 export type PromiseAuthJobRunResponse = Promise<
   JobRunResponse<
@@ -26,6 +26,23 @@ export class AuthJobs {
     this.apolloClientManager = apolloClientManager;
     this.localStorageHandler = localStorageHandler;
   }
+
+  provideUser = async (): PromiseAuthJobRunResponse => {
+    const { data, error } = await this.apolloClientManager.getUser();
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorAuthTypes.GET_USER,
+        },
+      };
+    }
+
+    return {
+      data,
+    };
+  };
 
   signIn = async ({
     email,
@@ -49,22 +66,6 @@ export class AuthJobs {
     }
 
     this.localStorageHandler.setSignInToken(data?.token || null);
-
-    const {
-      data: checkoutData,
-      error: checkoutError,
-    } = await this.apolloClientManager.getCheckout(true, null);
-
-    if (checkoutError) {
-      return {
-        dataError: {
-          error: checkoutError,
-          type: DataErrorCheckoutTypes.GET_CHECKOUT,
-        },
-      };
-    } else if (checkoutData) {
-      this.localStorageHandler.setCheckout(checkoutData);
-    }
 
     return {
       data,
