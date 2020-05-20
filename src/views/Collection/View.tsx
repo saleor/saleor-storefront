@@ -106,7 +106,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: intl.formatMessage(sortLabelsMessages.clear),
+      label: intl.formatMessage(sortLabelsMessages.clearSort),
       value: null,
     },
     {

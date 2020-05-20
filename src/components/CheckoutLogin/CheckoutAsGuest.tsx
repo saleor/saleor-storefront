@@ -17,7 +17,6 @@ const CheckoutAsGuest: React.FC<{
       {
         intl.formatMessage({
           defaultMessage: "Continue as a guest",
-          description: "checkout guest title",
       })}
     </h3>
     <p>
@@ -32,7 +31,6 @@ const CheckoutAsGuest: React.FC<{
       {
         intl.formatMessage({
           defaultMessage: "Continue as a guest",
-          description: "continue as a guest guest button",
       })}
       </Button>
     </Link>

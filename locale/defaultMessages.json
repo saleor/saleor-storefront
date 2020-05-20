@@ -1,266 +1,885 @@
 {
-  "src_dot_accept": {
-    "context": "button",
-    "string": "Accept"
+  "search": {
+    "string": "Search"
   },
-  "src_dot_attributes": {
-    "context": "attributes section name",
-    "string": "Attributes"
+  "showAllResults": {
+    "string": "Show all results"
   },
-  "src_dot_availability": {
-    "string": "Availability"
+  "src_dot_@next_dot_components_dot_atoms_dot_AddNewTile_dot_AddNewTile_dot_2493765518": {
+    "string": "Add new {type}"
   },
-  "src_dot_back": {
-    "context": "button",
-    "string": "Back"
+  "src_dot_@next_dot_components_dot_atoms_dot_Address_dot_Address_dot_1751339573": {
+    "string": "Phone number: {phone}"
   },
-  "src_dot_cancel": {
-    "context": "button",
-    "string": "Cancel"
+  "src_dot_@next_dot_components_dot_atoms_dot_CartFooter_dot_CartFooter_dot_1325966144": {
+    "string": "Shipping"
   },
-  "src_dot_catalog": {
-    "string": "Catalog"
+  "src_dot_@next_dot_components_dot_atoms_dot_CartFooter_dot_CartFooter_dot_3639473373": {
+    "string": "Promo Code"
   },
-  "src_dot_categories": {
-    "context": "categories section name",
-    "string": "Categories"
+  "src_dot_@next_dot_components_dot_atoms_dot_CartFooter_dot_CartFooter_dot_781550514": {
+    "string": "Subtotal"
   },
-  "src_dot_clear": {
-    "context": "button",
-    "string": "Clear"
+  "src_dot_@next_dot_components_dot_atoms_dot_CartFooter_dot_CartFooter_dot_878013594": {
+    "string": "Total"
   },
-  "src_dot_collections": {
-    "context": "collections section name",
-    "string": "Collections"
+  "src_dot_@next_dot_components_dot_atoms_dot_CartHeader_dot_CartHeader_dot_1134347598": {
+    "string": "Price"
   },
-  "src_dot_components_dot_AddressSummary_dot_856437708": {
+  "src_dot_@next_dot_components_dot_atoms_dot_CartHeader_dot_CartHeader_dot_216202846": {
+    "string": "Total Price"
+  },
+  "src_dot_@next_dot_components_dot_atoms_dot_CartHeader_dot_CartHeader_dot_2796503714": {
+    "string": "Quantity"
+  },
+  "src_dot_@next_dot_components_dot_atoms_dot_CartHeader_dot_CartHeader_dot_2968663655": {
+    "string": "Products"
+  },
+  "src_dot_@next_dot_components_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
+    "context": "sort by label",
+    "string": "Sort by:"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
+    "string": "Go to"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountMenu_dot_AccountMenu_dot_2178551369": {
+    "string": "MY ACCOUNT"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
+    "context": "personal details account title",
+    "string": "Personal details"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3843483622": {
+    "context": "my data account title",
+    "string": "MY DATA"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_1254879564": {
+    "context": "new password label",
+    "string": "New Password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2218114941": {
+    "context": "old password label",
+    "string": "Old Password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2799926859": {
+    "context": "confirm password label",
+    "string": "Confirm Password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_2237029987": {
+    "context": "password title",
+    "string": "Password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_3445609170": {
+    "context": "my password title",
+    "string": "MY PASSWORD"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AddressSummary_dot_AddressSummary_dot_2899108499": {
+    "string": "Email: "
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AddressSummary_dot_AddressSummary_dot_856437708": {
+    "string": "Phone number: "
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
+    "string": "Default Address"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1578192486": {
+    "string": "Default Billing Address"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_4109348993": {
+    "string": "Default Shipping Address"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
+    "context": "view all options button",
+    "string": "VIEW ALL OPTIONS"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_CartSummaryRow_dot_CartSummaryRow_dot_1548990852": {
+    "string": "Quantity: "
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_CartSummaryRow_dot_CartSummaryRow_dot_3360906200": {
+    "string": "SKU: "
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_CreditCardTile_dot_CreditCardTile_dot_1842669294": {
+    "string": "Name on card"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_CreditCardTile_dot_CreditCardTile_dot_4001850699": {
+    "string": "Expires on"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_FormFooter_dot_FormFooter_dot_2617450248": {
+    "string": "Loading"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1148029984": {
+    "context": "Value order table th",
+    "string": "Value"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1633831221": {
+    "context": "Date of Order order table th",
+    "string": "Date of Order"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1756106276": {
+    "context": "Status order table th",
+    "string": "Status"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_2387666633": {
+    "context": "index number th",
+    "string": "Index Number"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_724329054": {
+    "context": "Products Ordered order table th",
+    "string": "Products Ordered"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_2623707255": {
+    "string": "DESCRIPTION"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_308156425": {
+    "string": "ATTRIBUTES"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_1171036277": {
+    "context": "CLEAR FILTERS button",
+    "string": "CLEAR FILTERS"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3070017362": {
+    "context": "products found label",
+    "string": "Products found: "
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_406136781": {
+    "context": "FILTERS title",
+    "string": "FILTERS"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1865992141": {
+    "string": "Please provide new password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_2266763214": {
+    "string": "Retype password"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3145017886": {
+    "string": "It seems that token for password reset is not valid anymore"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3951836694": {
+    "string": "SET NEW PASSWORD"
+  },
+  "src_dot_@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4028609483": {
+    "string": "Reset your password"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1363074570": {
+    "context": "Address line 1 label",
+    "string": "Address line 1"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_2796540622": {
+    "context": "ZIP/Postal Code label",
+    "string": "ZIP/Postal Code"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_2950411968": {
+    "context": "company name label",
+    "string": "Company Name (Optional)"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_3121963259": {
+    "context": "Address line 2 label",
+    "string": "Address line 2"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_404705399": {
+    "context": "State/province label",
+    "string": "State/province"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_AddressGridSelector_dot_AddressGridSelector_dot_1629362045": {
+    "string": "Add new address"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartRow_dot_CartRow_dot_1311319055": {
+    "string": "Maximum quantity is {maxQuantity}"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartRow_dot_CartRow_dot_1705598759": {
+    "string": "Total Price:"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartRow_dot_CartRow_dot_2796503714": {
+    "string": "Quantity"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartRow_dot_CartRow_dot_4211936558": {
+    "string": "Price:"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartRow_dot_CartRow_dot_912666212": {
+    "string": "SKU:"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CartSummary_dot_CartSummary_dot_2088494495": {
+    "string": "Cart Summary"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_2834045642": {
+    "string": "PAYMENT METHOD"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_3382401165": {
+    "string": "Do you have a gift card voucher or discount code?"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_390583657": {
+    "string": "BILLING ADDRESS"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_3912924864": {
+    "string": "Same as shipping address"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_2758581442": {
+    "string": "Shipping Address"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_3204138633": {
+    "string": "REVIEW ORDER"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_348821000": {
+    "string": "Payment Method"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_3577164776": {
+    "string": "Shipping Method"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_4282475982": {
+    "string": "Billing Address"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_CheckoutShipping_dot_CheckoutShipping_dot_1669791871": {
+    "string": "SHIPPING METHOD"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_2325139416": {
+    "string": "Promo code:"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_3476123": {
+    "string": "Apply"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_3639473373": {
+    "string": "Promo Code"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_FilterSidebar_dot_FilterSidebar_dot_406136781": {
+    "context": "FILTERS title",
+    "string": "FILTERS"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
+    "string": "More +"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
+    "string": "Please select {selectLabel}"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_SideNavbar_dot_SideNavbar_dot_1703796690": {
+    "string": "english"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_SideNavbar_dot_SideNavbar_dot_1775987585": {
+    "string": "my wishlist"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_SideNavbar_dot_SideNavbar_dot_2571246349": {
+    "string": "my profile"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_SideNavbar_dot_SideNavbar_dot_874908955": {
+    "string": "Home"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1585811557": {
+    "string": "We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped."
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1995277831": {
+    "string": "Thank you"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2116351823": {
+    "string": "for your order!"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3188021388": {
+    "string": "Your order number is "
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_36913639": {
+    "string": "CONTINUE SHOPPING"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3752098833": {
+    "string": "ORDER DETAILS"
+  },
+  "src_dot_@next_dot_components_dot_organisms_dot_TopNavbar_dot_TopNavbar_dot_2379276147": {
+    "string": "SEARCH"
+  },
+  "src_dot_@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_2488840083": {
+    "string": "looks empty"
+  },
+  "src_dot_@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_2896212356": {
+    "string": "Maybe you haven’t made your choices yet"
+  },
+  "src_dot_@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_3578601618": {
+    "string": "Your Cart"
+  },
+  "src_dot_@next_dot_pages_dot_CartPage_dot_CartPage_dot_1304869656": {
+    "string": "PROCEED TO CHECKOUT"
+  },
+  "src_dot_@next_dot_pages_dot_CartPage_dot_CartPage_dot_3173718889": {
+    "string": "My Cart"
+  },
+  "src_dot_@next_dot_pages_dot_CartPage_dot_CartPage_dot_36913639": {
+    "string": "CONTINUE SHOPPING"
+  },
+  "src_dot_@next_dot_pages_dot_PasswordReset_dot_PasswordReset_dot_1794965170": {
+    "string": "Password is to short!"
+  },
+  "src_dot_@next_dot_pages_dot_PasswordReset_dot_PasswordReset_dot_3666244430": {
+    "string": "Please retype password"
+  },
+  "src_dot_@next_dot_pages_dot_PasswordReset_dot_PasswordReset_dot_633699947": {
+    "string": "Retyped password does not match"
+  },
+  "src_dot_@next_dot_pages_dot_PasswordReset_dot_PasswordReset_dot_806123233": {
+    "string": "This field is required"
+  },
+  "src_dot_account_dot_AddressBook_dot_AddressBook_dot_1629362045": {
+    "context": "add new address title",
+    "string": "Add new address"
+  },
+  "src_dot_account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
+    "context": "edit address title",
+    "string": "Edit address"
+  },
+  "src_dot_components_dot_AddressSummary_dot_index_dot_1273615304": {
+    "context": "full name address summary title",
+    "string": "{firstName} {lastName}"
+  },
+  "src_dot_components_dot_AddressSummary_dot_index_dot_856437708": {
     "context": "phone number AddressSummary title",
     "string": "Phone number: "
   },
-  "src_dot_configuration": {
-    "context": "configuration section name",
-    "string": "Configuration"
+  "src_dot_components_dot_Breadcrumbs_dot_index_dot_1347475195": {
+    "context": "back link breadcrumbs title",
+    "string": "Back"
   },
-  "src_dot_confirm": {
+  "src_dot_components_dot_Breadcrumbs_dot_index_dot_874908955": {
+    "context": "home link breadcrumbs title",
+    "string": "Home"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_1134347598": {
+    "context": "price table th",
+    "string": "Price"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_1603950169": {
+    "context": "delivery cost table t row",
+    "string": "Delivery Cost"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_216202846": {
+    "context": "total price table th",
+    "string": "Total Price"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_2179891060": {
+    "context": "total cost table t row",
+    "string": "Total Cost"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_2796503714": {
+    "context": "quantity table th",
+    "string": "Quantity"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_2875988277": {
+    "context": "Discount table t row",
+    "string": "Discount: {discountName}"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_2968663655": {
+    "context": "product table th",
+    "string": "Products"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_781550514": {
+    "context": "Subtotal table t row",
+    "string": "Subtotal"
+  },
+  "src_dot_components_dot_CartTable_dot_Table_dot_998917294": {
+    "context": "variant table th",
+    "string": "Variant"
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_1006283488": {
+    "string": "Continue as a guest"
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_2132450234": {
+    "context": "continue as a guest guest paragraph",
+    "string": "create an account"
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_4046258373": {
+    "context": "continue as a guest guest paragraph",
+    "string": "or you can "
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_647198093": {
+    "context": "checkout guest paragraph",
+    "string": "If you don’t wish to register an account, don’t worry. You can checkout as a guest. We care about you just as much as any registered user."
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_ResetPasswordForm_dot_2245157344": {
+    "context": "back to login button",
+    "string": "Back to login"
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_ResetPasswordForm_dot_2856837597": {
+    "context": "registered user title",
+    "string": "Registered user"
+  },
+  "src_dot_components_dot_CheckoutLogin_dot_SignInForm_dot_2856837597": {
+    "context": "sign in form title",
+    "string": "Registered user"
+  },
+  "src_dot_components_dot_ContentPage_dot_index_dot_1811708160": {
+    "string": "Content Page"
+  },
+  "src_dot_components_dot_MainMenu_dot_MainMenu_dot_1783474824": {
+    "context": "main menu link",
+    "string": "Address book"
+  },
+  "src_dot_components_dot_MainMenu_dot_MainMenu_dot_2721710627": {
+    "context": "main menu link",
+    "string": "Order history"
+  },
+  "src_dot_components_dot_MainMenu_dot_MainMenu_dot_2947231211": {
+    "context": "main menu link",
+    "string": "Log Out"
+  },
+  "src_dot_components_dot_MainMenu_dot_MainMenu_dot_3814251771": {
+    "context": "main menu link",
+    "string": "My Account"
+  },
+  "src_dot_components_dot_MainMenu_dot_MainMenu_dot_4281662478": {
+    "context": "main menu link",
+    "string": "Search"
+  },
+  "src_dot_components_dot_MobileNav_dot_NavList_dot_874908955": {
+    "context": "home page link mobile nav list",
+    "string": "Home"
+  },
+  "src_dot_components_dot_NotFound_dot_index_dot_1723676032": {
+    "context": "not found page button",
+    "string": "Back to home"
+  },
+  "src_dot_components_dot_NotFound_dot_index_dot_1782529840": {
+    "context": "not found page message",
+    "string": "You may have mistyped the address or the page may have moved."
+  },
+  "src_dot_components_dot_NotFound_dot_index_dot_3141549744": {
+    "context": "not found page message",
+    "string": "We’re sorry for the error and hope you’ll have a good day."
+  },
+  "src_dot_components_dot_NotFound_dot_index_dot_680965574": {
+    "context": "not found page message",
+    "string": "We can’t seem to find a page you are looking for!"
+  },
+  "src_dot_components_dot_OfflinePlaceholder_dot_2175471916": {
+    "string": "OFFLINE :("
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1325966144": {
+    "string": "Shipping"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1403763870": {
+    "string": "Checkout"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1902460477": {
+    "string": "My bag, "
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1936751871": {
+    "string": " items"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_2426849470": {
+    "string": "Go to my bag"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_3343536271": {
+    "string": "Promo code"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_781550514": {
+    "string": "Subtotal"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Cart_dot_878013594": {
+    "string": "Total"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Empty_dot_3515754810": {
+    "string": "Continue Shopping"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Empty_dot_4121934554": {
+    "string": "You haven’t added anything to your bag. We’re sure you’ll find something in our store"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Cart_dot_Empty_dot_966560142": {
+    "string": "Your bag is empty"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_ForgottenPassword_dot_1214263298": {
+    "context": "sforgotten password message",
+    "string": "Have you forgotten your password?"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_ForgottenPassword_dot_1781368875": {
+    "context": "forgotten password button",
+    "string": "Click Here"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_2622394113": {
+    "string": "Please check your e-mail for further instructions"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_3981314833": {
+    "string": "Registre"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_590842025": {
+    "string": "New user has been created"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_index_dot_3254057623": {
+    "string": "Register new account"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Login_dot_index_dot_3293735236": {
+    "string": "Sign in to account"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Password_dot_index_dot_4028609483": {
+    "string": "Reset your password"
+  },
+  "src_dot_components_dot_OverlayManager_dot_Search_dot_NothingFound_dot_1777769494": {
+    "string": "Don’t give up - check the spelling, think of something less specific and then use the search bar above."
+  },
+  "src_dot_components_dot_OverlayManager_dot_Search_dot_NothingFound_dot_3166222023": {
+    "string": "Sorry, but we couldn’t match any search results for: {search}"
+  },
+  "src_dot_components_dot_PasswordResetForm_dot_index_dot_2925394684": {
+    "context": "reset password button",
+    "string": "Reset password"
+  },
+  "src_dot_components_dot_PasswordResetForm_dot_index_dot_805890313": {
+    "context": "password p",
+    "string": "Please provide us your email address so we can share you a link to reset your password"
+  },
+  "src_dot_components_dot_ProductDescription_dot_AddToCart_dot_81047562": {
+    "string": "Add to basket"
+  },
+  "src_dot_components_dot_ProductDescription_dot_QuantityTextField_dot_1311319055": {
+    "string": "Maximum quantity is {maxQuantity}"
+  },
+  "src_dot_components_dot_ProductDescription_dot_QuantityTextField_dot_2796503714": {
+    "string": "Quantity"
+  },
+  "src_dot_intl_dot_buttonMessages_dot_accept": {
+    "context": "button",
+    "string": "Accept"
+  },
+  "src_dot_intl_dot_buttonMessages_dot_back": {
+    "context": "button",
+    "string": "Back"
+  },
+  "src_dot_intl_dot_buttonMessages_dot_cancel": {
+    "context": "button",
+    "string": "Cancel"
+  },
+  "src_dot_intl_dot_buttonMessages_dot_clear": {
+    "context": "button",
+    "string": "Clear"
+  },
+  "src_dot_intl_dot_buttonMessages_dot_confirm": {
     "context": "button",
     "string": "Confirm"
   },
-  "src_dot_create": {
+  "src_dot_intl_dot_buttonMessages_dot_create": {
     "context": "button",
     "string": "Create"
   },
-  "src_dot_customers": {
-    "context": "customers section name",
-    "string": "Customers"
-  },
-  "src_dot_dashboard": {
-    "string": "Dashboard"
-  },
-  "src_dot_delete": {
+  "src_dot_intl_dot_buttonMessages_dot_delete": {
     "context": "button",
     "string": "Delete"
   },
-  "src_dot_description": {
-    "string": "Description"
-  },
-  "src_dot_discounts": {
-    "string": "Discounts"
-  },
-  "src_dot_done": {
+  "src_dot_intl_dot_buttonMessages_dot_done": {
     "context": "button",
     "string": "Done"
   },
-  "src_dot_draftOrders": {
-    "context": "draft orders section name",
-    "string": "Draft Orders"
-  },
-  "src_dot_drafts": {
-    "string": "Drafts"
-  },
-  "src_dot_edit": {
+  "src_dot_intl_dot_buttonMessages_dot_edit": {
     "context": "button",
     "string": "Edit"
   },
-  "src_dot_email": {
-    "string": "E-mail Address"
+  "src_dot_intl_dot_buttonMessages_dot_loadMore": {
+    "context": "button",
+    "string": "Load more"
   },
-  "src_dot_endDate": {
-    "string": "End Date"
-  },
-  "src_dot_endHour": {
-    "string": "End Hour"
-  },
-  "src_dot_firstName": {
-    "string": "First Name"
-  },
-  "src_dot_generalInformations": {
-    "string": "General Informations"
-  },
-  "src_dot_home": {
-    "context": "home section name",
-    "string": "Home"
-  },
-  "src_dot_lastName": {
-    "string": "Last Name"
-  },
-  "src_dot_manage": {
+  "src_dot_intl_dot_buttonMessages_dot_manage": {
     "context": "button",
     "string": "Manage"
   },
-  "src_dot_navigation": {
-    "context": "navigation section name",
-    "string": "Navigation"
-  },
-  "src_dot_no": {
-    "string": "No"
-  },
-  "src_dot_ok": {
+  "src_dot_intl_dot_buttonMessages_dot_ok": {
     "context": "button",
     "string": "OK"
   },
-  "src_dot_optionalField": {
-    "context": "field is optional",
-    "string": "Optional"
-  },
-  "src_dot_orders": {
-    "context": "orders section name",
-    "string": "Orders"
-  },
-  "src_dot_pages": {
-    "context": "pages section name",
-    "string": "Pages"
-  },
-  "src_dot_permissionGroups": {
-    "context": "permission groups section name",
-    "string": "Permission Groups"
-  },
-  "src_dot_plugins": {
-    "context": "plugins section name",
-    "string": "Plugins"
-  },
-  "src_dot_productTypes": {
-    "context": "product types section name",
-    "string": "Product Types"
-  },
-  "src_dot_products": {
-    "context": "products section name",
-    "string": "Products"
-  },
-  "src_dot_properties": {
-    "string": "Properties"
-  },
-  "src_dot_readOnly": {
-    "string": "The site runs in read-only mode. Changes not saved."
-  },
-  "src_dot_remove": {
+  "src_dot_intl_dot_buttonMessages_dot_remove": {
     "context": "button",
     "string": "Remove"
   },
-  "src_dot_requiredField": {
-    "string": "This field is required"
-  },
-  "src_dot_sales": {
-    "context": "sales section name",
-    "string": "Sales"
-  },
-  "src_dot_save": {
+  "src_dot_intl_dot_buttonMessages_dot_save": {
     "context": "button",
     "string": "Save"
   },
-  "src_dot_savedChanges": {
-    "string": "Saved changes"
-  },
-  "src_dot_serviceAccounts": {
-    "context": "service accounts section name",
-    "string": "Service Accounts"
-  },
-  "src_dot_sessionExpired": {
-    "string": "Your session has expired. Please log in again to continue."
-  },
-  "src_dot_shipping": {
-    "context": "shipping section name",
-    "string": "Shipping Methods"
-  },
-  "src_dot_show": {
+  "src_dot_intl_dot_buttonMessages_dot_show": {
     "context": "button",
     "string": "Show"
   },
-  "src_dot_siteSettings": {
-    "context": "site settings section name",
-    "string": "Site Settings"
-  },
-  "src_dot_somethingWentWrong": {
-    "string": "The site ran into an unexpected problem"
-  },
-  "src_dot_staff": {
-    "context": "staff section name",
-    "string": "Staff Members"
-  },
-  "src_dot_startDate": {
-    "string": "Start Date"
-  },
-  "src_dot_startHour": {
-    "string": "Start Hour"
-  },
-  "src_dot_status": {
-    "string": "Status"
-  },
-  "src_dot_summary": {
-    "string": "Summary"
-  },
-  "src_dot_taxes": {
-    "context": "taxes section name",
-    "string": "Taxes"
-  },
-  "src_dot_translations": {
-    "context": "translations section name",
-    "string": "Translations"
-  },
-  "src_dot_undo": {
+  "src_dot_intl_dot_buttonMessages_dot_undo": {
     "context": "button",
     "string": "Undo"
   },
-  "src_dot_uploadImage": {
+  "src_dot_intl_dot_commonMessages_dot_address": {
+    "string": "Address"
+  },
+  "src_dot_intl_dot_commonMessages_dot_availability": {
+    "string": "Availability"
+  },
+  "src_dot_intl_dot_commonMessages_dot_catalog": {
+    "string": "Catalog"
+  },
+  "src_dot_intl_dot_commonMessages_dot_city": {
+    "string": "City"
+  },
+  "src_dot_intl_dot_commonMessages_dot_country": {
+    "string": "Country"
+  },
+  "src_dot_intl_dot_commonMessages_dot_dashboard": {
+    "string": "Dashboard"
+  },
+  "src_dot_intl_dot_commonMessages_dot_description": {
+    "string": "Description"
+  },
+  "src_dot_intl_dot_commonMessages_dot_discounts": {
+    "string": "Discounts"
+  },
+  "src_dot_intl_dot_commonMessages_dot_drafts": {
+    "string": "Drafts"
+  },
+  "src_dot_intl_dot_commonMessages_dot_email": {
+    "string": "E-mail Address"
+  },
+  "src_dot_intl_dot_commonMessages_dot_endDate": {
+    "string": "End Date"
+  },
+  "src_dot_intl_dot_commonMessages_dot_endHour": {
+    "string": "End Hour"
+  },
+  "src_dot_intl_dot_commonMessages_dot_firstName": {
+    "string": "First Name"
+  },
+  "src_dot_intl_dot_commonMessages_dot_generalInformations": {
+    "string": "General Informations"
+  },
+  "src_dot_intl_dot_commonMessages_dot_lastName": {
+    "string": "Last Name"
+  },
+  "src_dot_intl_dot_commonMessages_dot_loading": {
+    "string": "Loading"
+  },
+  "src_dot_intl_dot_commonMessages_dot_no": {
+    "string": "No"
+  },
+  "src_dot_intl_dot_commonMessages_dot_optionalField": {
+    "context": "field is optional",
+    "string": "Optional"
+  },
+  "src_dot_intl_dot_commonMessages_dot_password": {
+    "string": "Password"
+  },
+  "src_dot_intl_dot_commonMessages_dot_passwordsDoNotMatch": {
+    "string": "Passwords do not match"
+  },
+  "src_dot_intl_dot_commonMessages_dot_phone": {
+    "string": "Phone"
+  },
+  "src_dot_intl_dot_commonMessages_dot_properties": {
+    "string": "Properties"
+  },
+  "src_dot_intl_dot_commonMessages_dot_readOnly": {
+    "string": "The site runs in read-only mode. Changes not saved."
+  },
+  "src_dot_intl_dot_commonMessages_dot_requiredField": {
+    "string": "Required field"
+  },
+  "src_dot_intl_dot_commonMessages_dot_savedChanges": {
+    "string": "Saved changes"
+  },
+  "src_dot_intl_dot_commonMessages_dot_sessionExpired": {
+    "string": "Your session has expired. Please log in again to continue."
+  },
+  "src_dot_intl_dot_commonMessages_dot_signIn": {
+    "string": "Sign in"
+  },
+  "src_dot_intl_dot_commonMessages_dot_somethingWentWrong": {
+    "string": "The site ran into an unexpected problem"
+  },
+  "src_dot_intl_dot_commonMessages_dot_startDate": {
+    "string": "Start Date"
+  },
+  "src_dot_intl_dot_commonMessages_dot_startHour": {
+    "string": "Start Hour"
+  },
+  "src_dot_intl_dot_commonMessages_dot_status": {
+    "string": "Status"
+  },
+  "src_dot_intl_dot_commonMessages_dot_summary": {
+    "string": "Summary"
+  },
+  "src_dot_intl_dot_commonMessages_dot_uploadImage": {
     "context": "button",
     "string": "Upload image"
   },
-  "src_dot_views_dot_Category_dot_3952745901": {
-    "context": "ProductsFeatured category section name",
-    "string": "You might like"
+  "src_dot_intl_dot_commonMessages_dot_yes": {
+    "string": "Yes"
   },
-  "src_dot_views_dot_Collection_dot_3952745901": {
-    "context": "ProductsFeatured collection section name",
-    "string": "You might like"
+  "src_dot_intl_dot_sectionNames_dot_attributes": {
+    "context": "attributes section name",
+    "string": "Attributes"
   },
-  "src_dot_views_dot_Home_dot_1618696306": {
-    "context": "button discover home page collection",
-    "string": "discover"
+  "src_dot_intl_dot_sectionNames_dot_categories": {
+    "context": "categories section name",
+    "string": "Categories"
   },
-  "src_dot_views_dot_Home_dot_2812648978": {
-    "context": "ProductsFeatured home page section name",
-    "string": "Featured"
+  "src_dot_intl_dot_sectionNames_dot_collections": {
+    "context": "collections section name",
+    "string": "Collections"
   },
-  "src_dot_views_dot_Home_dot_3813745889": {
-    "context": "title home page shop by category ",
-    "string": "Shop by category"
+  "src_dot_intl_dot_sectionNames_dot_configuration": {
+    "context": "configuration section name",
+    "string": "Configuration"
   },
-  "src_dot_views_dot_Search_dot_3952745901": {
-    "context": "ProductsFeatured collection section name",
-    "string": "You might like"
+  "src_dot_intl_dot_sectionNames_dot_customers": {
+    "context": "customers section name",
+    "string": "Customers"
   },
-  "src_dot_vouchers": {
+  "src_dot_intl_dot_sectionNames_dot_draftOrders": {
+    "context": "draft orders section name",
+    "string": "Draft Orders"
+  },
+  "src_dot_intl_dot_sectionNames_dot_home": {
+    "context": "home section name",
+    "string": "Home"
+  },
+  "src_dot_intl_dot_sectionNames_dot_navigation": {
+    "context": "navigation section name",
+    "string": "Navigation"
+  },
+  "src_dot_intl_dot_sectionNames_dot_orders": {
+    "context": "orders section name",
+    "string": "Orders"
+  },
+  "src_dot_intl_dot_sectionNames_dot_pages": {
+    "context": "pages section name",
+    "string": "Pages"
+  },
+  "src_dot_intl_dot_sectionNames_dot_permissionGroups": {
+    "context": "permission groups section name",
+    "string": "Permission Groups"
+  },
+  "src_dot_intl_dot_sectionNames_dot_plugins": {
+    "context": "plugins section name",
+    "string": "Plugins"
+  },
+  "src_dot_intl_dot_sectionNames_dot_productTypes": {
+    "context": "product types section name",
+    "string": "Product Types"
+  },
+  "src_dot_intl_dot_sectionNames_dot_products": {
+    "context": "products section name",
+    "string": "Products"
+  },
+  "src_dot_intl_dot_sectionNames_dot_sales": {
+    "context": "sales section name",
+    "string": "Sales"
+  },
+  "src_dot_intl_dot_sectionNames_dot_serviceAccounts": {
+    "context": "service accounts section name",
+    "string": "Service Accounts"
+  },
+  "src_dot_intl_dot_sectionNames_dot_shipping": {
+    "context": "shipping section name",
+    "string": "Shipping Methods"
+  },
+  "src_dot_intl_dot_sectionNames_dot_siteSettings": {
+    "context": "site settings section name",
+    "string": "Site Settings"
+  },
+  "src_dot_intl_dot_sectionNames_dot_staff": {
+    "context": "staff section name",
+    "string": "Staff Members"
+  },
+  "src_dot_intl_dot_sectionNames_dot_taxes": {
+    "context": "taxes section name",
+    "string": "Taxes"
+  },
+  "src_dot_intl_dot_sectionNames_dot_translations": {
+    "context": "translations section name",
+    "string": "Translations"
+  },
+  "src_dot_intl_dot_sectionNames_dot_vouchers": {
     "context": "vouchers section name",
     "string": "Vouchers"
   },
-  "src_dot_warehouses": {
+  "src_dot_intl_dot_sectionNames_dot_warehouses": {
     "context": "warehouses section name",
     "string": "Warehouses"
   },
-  "src_dot_webhooks": {
+  "src_dot_intl_dot_sectionNames_dot_webhooks": {
     "context": "webhooks section name",
     "string": "Webhooks"
   },
-  "src_dot_yes": {
-    "string": "Yes"
+  "src_dot_intl_dot_sortLabelsMessages_dot_clearSort": {
+    "context": "label",
+    "string": "Clear..."
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_lastUpdateAsc": {
+    "context": "label",
+    "string": "Last updated Ascending"
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_lastupdateDes": {
+    "context": "label",
+    "string": "Last updated Descending"
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_nameDec": {
+    "context": "label",
+    "string": "Name Decreasing"
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_nameInc": {
+    "context": "label",
+    "string": "Name Increasing"
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_priceHighLow": {
+    "context": "label",
+    "string": "Price High-Low"
+  },
+  "src_dot_intl_dot_sortLabelsMessages_dot_priceLowHigh": {
+    "context": "label",
+    "string": "Price Low-High"
+  },
+  "src_dot_userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2758581442": {
+    "context": "Shipping Address order history",
+    "string": "Shipping Address"
+  },
+  "src_dot_userAccount_dot_views_dot_OrderDetails_dot_Page_dot_458755178": {
+    "context": "order number order history",
+    "string": "Your order nr: {number}"
+  },
+  "src_dot_userAccount_dot_views_dot_OrderDetails_dot_Page_dot_624688748": {
+    "context": "return to order history link",
+    "string": "Go back to Order History"
+  },
+  "src_dot_views_dot_Account_dot_AccountConfirm_dot_1130162625": {
+    "context": "no error AccountConfirm message",
+    "string": "You can now log in"
+  },
+  "src_dot_views_dot_Account_dot_AccountConfirm_dot_2845142593": {
+    "context": "error AccountConfirm message",
+    "string": "Error"
+  },
+  "src_dot_views_dot_Account_dot_AccountConfirm_dot_3488832390": {
+    "context": "something went wrong AccountConfirm message",
+    "string": "Something went wrong while activating your account."
+  },
+  "src_dot_views_dot_Account_dot_AccountConfirm_dot_551004452": {
+    "context": "account confirmed AccountConfirm message",
+    "string": "Account confirmed"
+  },
+  "src_dot_views_dot_Account_dot_Account_dot_3814251771": {
+    "context": "myaccount breadcrumb value",
+    "string": "My Account"
+  },
+  "src_dot_views_dot_Category_dot_Page_dot_3952745901": {
+    "context": "ProductsFeatured category section name",
+    "string": "You might like"
+  },
+  "src_dot_views_dot_Collection_dot_Page_dot_3952745901": {
+    "context": "ProductsFeatured collection section name",
+    "string": "You might like"
+  },
+  "src_dot_views_dot_Home_dot_Page_dot_1618696306": {
+    "context": "button discover home page collection",
+    "string": "discover"
+  },
+  "src_dot_views_dot_Home_dot_Page_dot_2812648978": {
+    "context": "ProductsFeatured home page section name",
+    "string": "Featured"
+  },
+  "src_dot_views_dot_Home_dot_Page_dot_3813745889": {
+    "context": "title home page shop by category ",
+    "string": "Shop by category"
+  },
+  "src_dot_views_dot_Product_dot_Other_dot_3212906417": {
+    "string": "Other products in this category"
+  },
+  "src_dot_views_dot_Search_dot_Page_dot_3952745901": {
+    "context": "ProductsFeatured collection section name",
+    "string": "You might like"
+  },
+  "src_dot_views_dot_Search_dot_SearchPage_dot_2865432515": {
+    "string": "Search term:"
   }
 }

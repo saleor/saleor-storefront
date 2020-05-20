@@ -109,7 +109,7 @@ export const commonMessages = defineMessages({
 
 
 export const sortLabelsMessages = defineMessages({
-  clear: {
+  clearSort: {
     defaultMessage: "Clear...",
     description: "label",
   },
