@@ -11,11 +11,11 @@ import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "stockQuantity" | "isAvailable"
+  "__typename" | "sku" | "quantityAvailable" | "isAvailable"
 > & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
-  stockQuantity?: number;
+  quantityAvailable?: number;
 };
 
 interface ReadProductRowProps {

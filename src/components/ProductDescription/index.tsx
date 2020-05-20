@@ -94,7 +94,7 @@ class ProductDescription extends React.Component<
       this.setState({
         variant: selectedVariant.id,
         variantPricing: selectedVariant.pricing,
-        variantStock: selectedVariant.stockQuantity,
+        variantStock: selectedVariant.quantityAvailable,
       });
       this.props.setVariantId(selectedVariant.id);
     } else {

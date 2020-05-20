@@ -1427,7 +1427,7 @@ export interface ProductDetails_product_variants_attributes {
 export interface ProductDetails_product_variants {
   id: string;
   name: string;
-  stockQuantity: number;
+  quantityAvailable: number;
   price: ProductDetails_product_variants_price | null;
   attributes: ProductDetails_product_variants_attributes[];
 }
@@ -1490,7 +1490,7 @@ export interface VariantList_productVariants_edges_node_product {
 export interface VariantList_productVariants_edges_node {
   id: string;
   name: string;
-  stockQuantity: number;
+  quantityAvailable: number;
   price: VariantList_productVariants_edges_node_price | null;
   attributes: VariantList_productVariants_edges_node_attributes[];
   product: VariantList_productVariants_edges_node_product;
@@ -2079,7 +2079,7 @@ export interface ProductVariantFields_attributes {
 export interface ProductVariantFields {
   id: string;
   name: string;
-  stockQuantity: number;
+  quantityAvailable: number;
   price: ProductVariantFields_price | null;
   attributes: ProductVariantFields_attributes[];
 }

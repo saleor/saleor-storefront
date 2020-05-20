@@ -80,7 +80,7 @@ const generateCart = (
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       name={variant?.product?.name || ""}
-      maxQuantity={variant.stockQuantity || quantity}
+      maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       onQuantityChange={quantity => updateItem(variant.id, quantity)}

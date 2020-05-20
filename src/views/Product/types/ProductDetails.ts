@@ -661,7 +661,7 @@ export interface ProductDetails_product_variants {
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */

@@ -460,7 +460,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */

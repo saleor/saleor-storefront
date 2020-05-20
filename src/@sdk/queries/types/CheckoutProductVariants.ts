@@ -182,7 +182,7 @@ export interface CheckoutProductVariants_productVariants_edges_node {
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */

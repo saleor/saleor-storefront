@@ -211,8 +211,8 @@ export class NetworkManager implements INetworkManager {
               name: edge.node.name,
               pricing: edge.node.pricing,
               product: edge.node.product,
+              quantityAvailable: edge.node.quantityAvailable,
               sku: edge.node.sku,
-              stockQuantity: edge.node.stockQuantity,
             },
           };
         })
@@ -819,7 +819,7 @@ export class NetworkManager implements INetworkManager {
             pricing: itemVariant?.pricing,
             product: itemVariant?.product,
             sku: itemVariant?.sku,
-            stockQuantity: itemVariant?.stockQuantity,
+            quantityAvailable: itemVariant?.quantityAvailable,
           },
         };
       }),

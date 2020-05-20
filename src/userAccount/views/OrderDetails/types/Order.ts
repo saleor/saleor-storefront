@@ -93,7 +93,7 @@ export interface Order_orderByToken_lines_variant {
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */

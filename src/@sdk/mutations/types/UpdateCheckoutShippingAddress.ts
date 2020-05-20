@@ -473,7 +473,7 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */
@@ -1023,7 +1023,7 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_line
   /**
    * Quantity of a product available for sale.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */

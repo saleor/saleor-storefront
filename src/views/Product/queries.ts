@@ -78,7 +78,7 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    stockQuantity
+    quantityAvailable
     isAvailable
     images {
       id
@@ -157,7 +157,7 @@ export const productVariantsQuery = gql`
       edges {
         node {
           ...ProductVariantFields
-          stockQuantity
+          quantityAvailable
           product {
             ...BasicProductFields
           }
