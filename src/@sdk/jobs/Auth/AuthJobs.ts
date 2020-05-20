@@ -6,9 +6,13 @@ import {
 } from "@temp/@sdk/api/Auth/types";
 
 import { JobRunResponse } from "../types";
+import { DataErrorCheckoutTypes } from "@temp/@sdk/api/Checkout/types";
 
-export type PromiseUserJobRunResponse = Promise<
-  JobRunResponse<DataErrorAuthTypes, FunctionErrorAuthTypes>
+export type PromiseAuthJobRunResponse = Promise<
+  JobRunResponse<
+    DataErrorAuthTypes | DataErrorCheckoutTypes,
+    FunctionErrorAuthTypes
+  >
 >;
 
 export class AuthJobs {
@@ -29,7 +33,7 @@ export class AuthJobs {
   }: {
     email: string;
     password: string;
-  }): PromiseUserJobRunResponse => {
+  }): PromiseAuthJobRunResponse => {
     const { data, error } = await this.apolloClientManager.signIn(
       email,
       password
@@ -42,16 +46,32 @@ export class AuthJobs {
           type: DataErrorAuthTypes.SIGN_IN,
         },
       };
-    } else {
-      this.localStorageHandler.setSignInToken(data?.token || null);
-
-      return {
-        data,
-      };
     }
+
+    this.localStorageHandler.setSignInToken(data?.token || null);
+
+    const {
+      data: checkoutData,
+      error: checkoutError,
+    } = await this.apolloClientManager.getCheckout(true, null);
+
+    if (checkoutError) {
+      return {
+        dataError: {
+          error: checkoutError,
+          type: DataErrorCheckoutTypes.GET_CHECKOUT,
+        },
+      };
+    } else if (checkoutData) {
+      this.localStorageHandler.setCheckout(checkoutData);
+    }
+
+    return {
+      data,
+    };
   };
 
-  signOut = async (): PromiseUserJobRunResponse => {
+  signOut = async (): PromiseAuthJobRunResponse => {
     this.localStorageHandler.clear();
 
     await this.apolloClientManager.signOut();
