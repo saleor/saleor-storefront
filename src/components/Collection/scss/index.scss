@@ -1,0 +1,29 @@
+.data-table {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+  border: 1px solid #e9e9e9;
+  background-color: #fff;
+
+  .data-box1 {
+    border-right: 1px solid #e9e9e9;
+    width: 50%;
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 12px;
+    word-break: break-word;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .data-box2 {
+    width: 50%;
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+    padding: 14px 12px;
+    word-break: break-word;
+    font-size: 13px;
+  }
+}
