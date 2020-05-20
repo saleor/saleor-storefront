@@ -546,7 +546,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate_checkout {
   voucherCode: string | null;
 }
 
-export interface UpdateCheckoutLine_checkoutLinesUpdate_checkoutErrors {
+export interface UpdateCheckoutLine_checkoutLinesUpdate_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -569,7 +569,7 @@ export interface UpdateCheckoutLine_checkoutLinesUpdate {
    * An updated checkout.
    */
   checkout: UpdateCheckoutLine_checkoutLinesUpdate_checkout | null;
-  checkoutErrors: UpdateCheckoutLine_checkoutLinesUpdate_checkoutErrors[];
+  errors: UpdateCheckoutLine_checkoutLinesUpdate_errors[];
 }
 
 export interface UpdateCheckoutLine {

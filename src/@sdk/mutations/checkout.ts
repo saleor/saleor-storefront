@@ -11,7 +11,7 @@ export const updateCheckoutLineMutation = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -24,7 +24,7 @@ export const createCheckoutMutation = gql`
   ${checkoutFragment}
   mutation CreateCheckout($checkoutInput: CheckoutCreateInput!) {
     checkoutCreate(input: $checkoutInput) {
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -47,7 +47,7 @@ export const updateCheckoutBillingAddressWithEmailMutation = gql`
       checkoutId: $checkoutId
       billingAddress: $billingAddress
     ) {
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -60,7 +60,7 @@ export const updateCheckoutBillingAddressWithEmailMutation = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -79,7 +79,7 @@ export const updateCheckoutBillingAddressMutation = gql`
       checkoutId: $checkoutId
       billingAddress: $billingAddress
     ) {
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -102,7 +102,7 @@ export const updateCheckoutShippingAddressMutation = gql`
       checkoutId: $checkoutId
       shippingAddress: $shippingAddress
     ) {
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -115,7 +115,7 @@ export const updateCheckoutShippingAddressMutation = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -137,7 +137,7 @@ export const updateCheckoutShippingMethodMutation = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -153,7 +153,7 @@ export const addCheckoutPromoCode = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -169,7 +169,7 @@ export const removeCheckoutPromoCode = gql`
       checkout {
         ...Checkout
       }
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message
@@ -192,7 +192,7 @@ export const createCheckoutPaymentMutation = gql`
       payment {
         ...Payment
       }
-      paymentErrors {
+      errors: paymentErrors {
         code
         field
         message
@@ -205,7 +205,7 @@ export const completeCheckoutMutation = gql`
   ${orderDetailFragment}
   mutation CompleteCheckout($checkoutId: ID!) {
     checkoutComplete(checkoutId: $checkoutId) {
-      checkoutErrors {
+      errors: checkoutErrors {
         code
         field
         message

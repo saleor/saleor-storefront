@@ -584,7 +584,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate_payment {
   creditCard: CreateCheckoutPayment_checkoutPaymentCreate_payment_creditCard | null;
 }
 
-export interface CreateCheckoutPayment_checkoutPaymentCreate_paymentErrors {
+export interface CreateCheckoutPayment_checkoutPaymentCreate_errors {
   __typename: "PaymentError";
   /**
    * The error code.
@@ -611,7 +611,7 @@ export interface CreateCheckoutPayment_checkoutPaymentCreate {
    * A newly created payment.
    */
   payment: CreateCheckoutPayment_checkoutPaymentCreate_payment | null;
-  paymentErrors: CreateCheckoutPayment_checkoutPaymentCreate_paymentErrors[];
+  errors: CreateCheckoutPayment_checkoutPaymentCreate_errors[];
 }
 
 export interface CreateCheckoutPayment {

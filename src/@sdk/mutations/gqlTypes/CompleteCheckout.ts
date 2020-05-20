@@ -8,7 +8,7 @@ import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus } from "./../..
 // GraphQL mutation operation: CompleteCheckout
 // ====================================================
 
-export interface CompleteCheckout_checkoutComplete_checkoutErrors {
+export interface CompleteCheckout_checkoutComplete_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -475,7 +475,7 @@ export interface CompleteCheckout_checkoutComplete_order {
 
 export interface CompleteCheckout_checkoutComplete {
   __typename: "CheckoutComplete";
-  checkoutErrors: CompleteCheckout_checkoutComplete_checkoutErrors[];
+  errors: CompleteCheckout_checkoutComplete_errors[];
   /**
    * Placed order.
    */

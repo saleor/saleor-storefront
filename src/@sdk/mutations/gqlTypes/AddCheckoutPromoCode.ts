@@ -546,7 +546,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout {
   voucherCode: string | null;
 }
 
-export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkoutErrors {
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -569,7 +569,7 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode {
    * The checkout with the added gift card or voucher.
    */
   checkout: AddCheckoutPromoCode_checkoutAddPromoCode_checkout | null;
-  checkoutErrors: AddCheckoutPromoCode_checkoutAddPromoCode_checkoutErrors[];
+  errors: AddCheckoutPromoCode_checkoutAddPromoCode_errors[];
 }
 
 export interface AddCheckoutPromoCode {

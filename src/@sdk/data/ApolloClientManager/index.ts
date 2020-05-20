@@ -342,9 +342,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutCreate?.checkoutErrors.length) {
+      } else if (data?.checkoutCreate?.errors.length) {
         return {
-          error: data?.checkoutCreate?.checkoutErrors,
+          error: data?.checkoutCreate?.errors,
         };
       } else if (data?.checkoutCreate?.checkout) {
         return {
@@ -385,9 +385,9 @@ export class ApolloClientManager implements IApolloClientManager {
           return {
             error: errors,
           };
-        } else if (data?.checkoutLinesUpdate?.checkoutErrors.length) {
+        } else if (data?.checkoutLinesUpdate?.errors.length) {
           return {
-            error: data?.checkoutLinesUpdate?.checkoutErrors,
+            error: data?.checkoutLinesUpdate?.errors,
           };
         } else if (data?.checkoutLinesUpdate?.checkout) {
           return {
@@ -442,13 +442,13 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutEmailUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutEmailUpdate?.errors.length) {
         return {
-          error: data?.checkoutEmailUpdate?.checkoutErrors,
+          error: data?.checkoutEmailUpdate?.errors,
         };
-      } else if (data?.checkoutShippingAddressUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutShippingAddressUpdate?.errors.length) {
         return {
-          error: data?.checkoutShippingAddressUpdate?.checkoutErrors,
+          error: data?.checkoutShippingAddressUpdate?.errors,
         };
       } else if (data?.checkoutShippingAddressUpdate?.checkout) {
         return {
@@ -501,9 +501,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutBillingAddressUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutBillingAddressUpdate?.errors.length) {
         return {
-          error: data?.checkoutBillingAddressUpdate?.checkoutErrors,
+          error: data?.checkoutBillingAddressUpdate?.errors,
         };
       } else if (data?.checkoutBillingAddressUpdate?.checkout) {
         return {
@@ -559,13 +559,13 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutEmailUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutEmailUpdate?.errors.length) {
         return {
-          error: data?.checkoutEmailUpdate?.checkoutErrors,
+          error: data?.checkoutEmailUpdate?.errors,
         };
-      } else if (data?.checkoutBillingAddressUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutBillingAddressUpdate?.errors.length) {
         return {
-          error: data?.checkoutBillingAddressUpdate?.checkoutErrors,
+          error: data?.checkoutBillingAddressUpdate?.errors,
         };
       } else if (data?.checkoutBillingAddressUpdate?.checkout) {
         return {
@@ -600,9 +600,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutShippingMethodUpdate?.checkoutErrors.length) {
+      } else if (data?.checkoutShippingMethodUpdate?.errors.length) {
         return {
-          error: data?.checkoutShippingMethodUpdate?.checkoutErrors,
+          error: data?.checkoutShippingMethodUpdate?.errors,
         };
       } else if (data?.checkoutShippingMethodUpdate?.checkout) {
         return {
@@ -634,9 +634,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutAddPromoCode?.checkoutErrors.length) {
+      } else if (data?.checkoutAddPromoCode?.errors.length) {
         return {
-          error: data?.checkoutAddPromoCode?.checkoutErrors,
+          error: data?.checkoutAddPromoCode?.errors,
         };
       } else if (data?.checkoutAddPromoCode?.checkout) {
         return {
@@ -666,9 +666,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutRemovePromoCode?.checkoutErrors.length) {
+      } else if (data?.checkoutRemovePromoCode?.errors.length) {
         return {
-          error: data?.checkoutRemovePromoCode?.checkoutErrors,
+          error: data?.checkoutRemovePromoCode?.errors,
         };
       } else if (data?.checkoutRemovePromoCode?.checkout) {
         return {
@@ -729,9 +729,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutPaymentCreate?.paymentErrors.length) {
+      } else if (data?.checkoutPaymentCreate?.errors.length) {
         return {
-          error: data?.checkoutPaymentCreate?.paymentErrors,
+          error: data?.checkoutPaymentCreate?.errors,
         };
       } else if (data?.checkoutPaymentCreate?.payment) {
         return {
@@ -761,9 +761,9 @@ export class ApolloClientManager implements IApolloClientManager {
         return {
           error: errors,
         };
-      } else if (data?.checkoutComplete?.checkoutErrors.length) {
+      } else if (data?.checkoutComplete?.errors.length) {
         return {
-          error: data?.checkoutComplete?.checkoutErrors,
+          error: data?.checkoutComplete?.errors,
         };
       } else if (data?.checkoutComplete?.order) {
         return {

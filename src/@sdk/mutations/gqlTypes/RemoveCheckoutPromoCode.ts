@@ -546,7 +546,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout {
   voucherCode: string | null;
 }
 
-export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkoutErrors {
+export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -569,7 +569,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode {
    * The checkout with the removed gift card or voucher.
    */
   checkout: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout | null;
-  checkoutErrors: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkoutErrors[];
+  errors: RemoveCheckoutPromoCode_checkoutRemovePromoCode_errors[];
 }
 
 export interface RemoveCheckoutPromoCode {

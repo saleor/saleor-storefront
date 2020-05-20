@@ -8,7 +8,7 @@ import { CheckoutCreateInput, CheckoutErrorCode } from "./../../gqlTypes/globalT
 // GraphQL mutation operation: CreateCheckout
 // ====================================================
 
-export interface CreateCheckout_checkoutCreate_checkoutErrors {
+export interface CreateCheckout_checkoutCreate_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -565,7 +565,7 @@ export interface CreateCheckout_checkoutCreate_checkout {
 
 export interface CreateCheckout_checkoutCreate {
   __typename: "CheckoutCreate";
-  checkoutErrors: CreateCheckout_checkoutCreate_checkoutErrors[];
+  errors: CreateCheckout_checkoutCreate_errors[];
   checkout: CreateCheckout_checkoutCreate_checkout | null;
 }
 

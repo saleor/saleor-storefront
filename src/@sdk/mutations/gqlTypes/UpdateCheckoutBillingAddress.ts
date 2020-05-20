@@ -8,7 +8,7 @@ import { AddressInput, CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 // GraphQL mutation operation: UpdateCheckoutBillingAddress
 // ====================================================
 
-export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkoutErrors {
+export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -565,7 +565,7 @@ export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_check
 
 export interface UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate {
   __typename: "CheckoutBillingAddressUpdate";
-  checkoutErrors: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_checkoutErrors[];
+  errors: UpdateCheckoutBillingAddress_checkoutBillingAddressUpdate_errors[];
   /**
    * An updated checkout.
    */

@@ -546,7 +546,7 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
   voucherCode: string | null;
 }
 
-export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors {
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors {
   __typename: "CheckoutError";
   /**
    * The error code.
@@ -569,7 +569,7 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate {
    * An updated checkout.
    */
   checkout: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout | null;
-  checkoutErrors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors[];
+  errors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors[];
 }
 
 export interface UpdateCheckoutShippingMethod {
