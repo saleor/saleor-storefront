@@ -197,13 +197,13 @@ export interface VariantList_productVariants_edges_node {
   sku: string;
   name: string;
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * List of images for the product variant.
    */
@@ -216,6 +216,10 @@ export interface VariantList_productVariants_edges_node {
    * List of attributes assigned to this variant.
    */
   attributes: VariantList_productVariants_edges_node_attributes[];
+  /**
+   * Quantity of a product available for sale.
+   */
+  stockQuantity: number;
   product: VariantList_productVariants_edges_node_product;
 }
 

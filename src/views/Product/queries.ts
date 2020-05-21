@@ -78,8 +78,8 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    stockQuantity
     isAvailable
+    quantityAvailable
     images {
       id
       url

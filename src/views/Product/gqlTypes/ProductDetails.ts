@@ -663,13 +663,13 @@ export interface ProductDetails_product_variants {
   sku: string;
   name: string;
   /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
-  /**
    * Whether the variant is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * Quantity of a product available for sale in one checkout.
+   */
+  quantityAvailable: number;
   /**
    * List of images for the product variant.
    */
