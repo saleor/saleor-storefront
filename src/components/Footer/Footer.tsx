@@ -22,10 +22,21 @@ const Footer: React.FC = () => {
       ))}
     </div>
     <Nav />
-    <Button onClick={() => {
-      const loc = locale === Locale.FR? Locale.EN: Locale.FR;
-      setLocale(loc)
-      }}>{locale}</Button>
+    {
+      locale === Locale.FR? ">" : ""
+    }
+    <a
+      onClick={() => {
+        setLocale(Locale.FR)
+        }}>Français</a>
+        {" | "} 
+    {
+      locale === Locale.EN? ">" : ""
+    }
+    <a
+      onClick={() => {
+        setLocale(Locale.EN)
+        }}>English</a>
   </div>
 )};
 

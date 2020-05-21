@@ -62,7 +62,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
               <FormattedMessage
-                defaultMessage={"My bag,"}
+                defaultMessage={"My bag, "}
               />{" "}
               <span className="overlay__header-text-items">
                 { numberOfItems() }{" "}
