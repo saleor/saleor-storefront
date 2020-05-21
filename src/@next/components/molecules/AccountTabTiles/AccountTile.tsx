@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useAccountUpdate, useUserDetails } from "@sdk/react";
+import { useAccountUpdate, useUserDetails } from "@saleor/sdk/react";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
 

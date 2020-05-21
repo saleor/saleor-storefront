@@ -1,5 +1,16 @@
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
+import { hot } from "react-hot-loader";
+import { ThemeProvider } from "styled-components";
+
+import { NotificationTemplate } from "@components/atoms";
+import {
+  ServiceWorkerContext,
+  ServiceWorkerProvider,
+} from "@components/containers";
+import { SaleorProvider, useAuth } from "@saleor/sdk/react";
+import { defaultTheme, GlobalStyle } from "@styles";
+
 import {
   defaultDataIdFromObject,
   InMemoryCache,
@@ -35,12 +46,12 @@ import {
 } from "./constants";
 import { history } from "./history";
 
-import { createSaleorClient } from "./@sdk";
+import { createSaleorClient } from "@saleor/sdk";
 import {
   authLink,
   fireSignOut,
   invalidTokenLinkWithTokenHandler,
-} from "./@sdk/auth";
+} from "@saleor/sdk/auth";
 
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
@@ -74,7 +85,11 @@ const startApp = async () => {
    * This is temporary adapter for queries and mutations not included in SDK to handle invalid token error for them.
    * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
    */
-  const ApolloClientInvalidTokenLinkAdapter = ({ children }) => {
+  const ApolloClientInvalidTokenLinkAdapter: React.FC<{
+    children: (
+      apolloClient: ApolloClient<NormalizedCacheObject>
+    ) => React.ReactElement;
+  }> = ({ children }) => {
     const tokenExpirationCallback = () => {
       fireSignOut(apolloClient);
     };
@@ -141,20 +156,18 @@ const startApp = async () => {
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
           <ApolloClientInvalidTokenLinkAdapter>
-            {(apolloClient: ApolloClient<NormalizedCacheObject>) =>
-              apolloClient && (
-                <ApolloProvider client={apolloClient}>
-                  <SaleorProvider client={apolloClient}>
-                    <ShopProvider>
-                      <OverlayProvider>
-                        <App />
-                        <Notifications />
-                      </OverlayProvider>
-                    </ShopProvider>
-                  </SaleorProvider>
-                </ApolloProvider>
-              )
-            }
+            {apolloClient => (
+              <ApolloProvider client={apolloClient}>
+                <SaleorProvider client={apolloClient}>
+                  <ShopProvider>
+                    <OverlayProvider>
+                      <App />
+                      <Notifications />
+                    </OverlayProvider>
+                  </ShopProvider>
+                </SaleorProvider>
+              </ApolloProvider>
+            )}
           </ApolloClientInvalidTokenLinkAdapter>
         </QueryParamProvider>
       </Router>

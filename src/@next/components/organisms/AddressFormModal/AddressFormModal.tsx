@@ -1,11 +1,11 @@
 import React from "react";
 
-import { useCreateUserAddress, useUpdateUserAddress } from "@sdk/react";
+import { useCreateUserAddress, useUpdateUserAddress } from "@saleor/sdk/react";
 
 import { AddressForm } from "../AddressForm";
 import { Modal } from "../Modal";
 
-import { CountryCode } from "@sdk/gqlTypes/globalTypes";
+import { CountryCode } from "@saleor/sdk/gqlTypes/globalTypes";
 import { IProps } from "./types";
 
 export const AddressFormModal: React.FC<IProps> = ({

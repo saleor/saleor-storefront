@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useUserDetails } from "@sdk/react";
+import { useUserDetails } from "@saleor/sdk/react";
 
 import { NotFound } from "../../components";
 

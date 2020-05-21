@@ -6,9 +6,9 @@ import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { UserDetails_me } from "@sdk/queries/gqlTypes/UserDetails";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { IItems } from "@saleor/sdk/api/Cart/types";
+import { UserDetails_me } from "@saleor/sdk/queries/gqlTypes/UserDetails";
+import { useCart, useCheckout, useUserDetails } from "@saleor/sdk/react";
 import { BASE_URL } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 

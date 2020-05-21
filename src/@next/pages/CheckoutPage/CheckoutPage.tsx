@@ -5,8 +5,8 @@ import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import { CartSummary } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { useCart, useCheckout } from "@sdk/react";
+import { IItems } from "@saleor/sdk/api/Cart/types";
+import { useCart, useCheckout } from "@saleor/sdk/react";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 

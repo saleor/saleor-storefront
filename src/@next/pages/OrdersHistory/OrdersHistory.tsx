@@ -1,4 +1,4 @@
-import { useOrdersByUser } from "@sdk/react/";
+import { useOrdersByUser } from "@saleor/sdk/react/";
 import React from "react";
 
 import { Button, Loader } from "@components/atoms";
