@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { CountryCode } from "./../../../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: VariantList
 // ====================================================
@@ -241,4 +243,5 @@ export interface VariantList {
 
 export interface VariantListVariables {
   ids?: string[] | null;
+  countryCode?: CountryCode | null;
 }
