@@ -216,10 +216,6 @@ export interface VariantList_productVariants_edges_node {
    * List of attributes assigned to this variant.
    */
   attributes: VariantList_productVariants_edges_node_attributes[];
-  /**
-   * Quantity of a product available for sale.
-   */
-  stockQuantity: number;
   product: VariantList_productVariants_edges_node_product;
 }
 

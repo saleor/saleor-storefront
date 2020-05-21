@@ -17,7 +17,7 @@ export interface ICheckoutModelLineTotalPrice {
 }
 
 export interface ICheckoutModelLineVariant {
-  stockQuantity?: number;
+  quantityAvailable?: number;
   id: string;
   name?: string;
   sku?: string;
