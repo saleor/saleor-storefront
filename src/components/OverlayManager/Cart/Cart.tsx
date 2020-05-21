@@ -48,6 +48,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
     net: discount,
   };
 
+  const numberOfItems = () =>{
+    return items?.reduce(
+      (prevVal, currVal) => prevVal + currVal.quantity,
+      0
+    ) || 0
+  }
   return (
     <Overlay context={overlay}>
       <Online>
@@ -56,13 +62,10 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
               <FormattedMessage
-                defaultMessage={"My bag, "}
-              />
+                defaultMessage={"My bag,"}
+              />{" "}
               <span className="overlay__header-text-items">
-                {items?.reduce(
-                  (prevVal, currVal) => prevVal + currVal.quantity,
-                  0
-                ) || 0}
+                { numberOfItems() }{" "}
                 <FormattedMessage
                   defaultMessage={" items"}
                 />
