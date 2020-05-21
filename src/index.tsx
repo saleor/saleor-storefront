@@ -1,23 +1,7 @@
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import { hot } from "react-hot-loader";
-import { ThemeProvider } from "styled-components";
-
-import { NotificationTemplate } from "@components/atoms";
-import {
-  ServiceWorkerContext,
-  ServiceWorkerProvider,
-} from "@components/containers";
-import { SaleorProvider, useAuth } from "@saleor/sdk/react";
-import { defaultTheme, GlobalStyle } from "@styles";
-
-import {
-  defaultDataIdFromObject,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "apollo-cache-inmemory";
+import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import { ApolloClient } from "apollo-client";
 import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
@@ -32,7 +16,7 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import { SaleorProvider, useAuth } from "@sdk/react";
+import { SaleorProvider, useAuth } from "@saleor/sdk/react";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
@@ -86,9 +70,7 @@ const startApp = async () => {
    * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
    */
   const ApolloClientInvalidTokenLinkAdapter: React.FC<{
-    children: (
-      apolloClient: ApolloClient<NormalizedCacheObject>
-    ) => React.ReactElement;
+    children: (apolloClient) => React.ReactElement;
   }> = ({ children }) => {
     const tokenExpirationCallback = () => {
       fireSignOut(apolloClient);
