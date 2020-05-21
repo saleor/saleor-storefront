@@ -28,11 +28,7 @@ export class AuthAPI extends ErrorListener {
   private saleorState: SaleorState;
   private jobsManager: JobsManager;
 
-  constructor(
-    saleorState: SaleorState,
-    loadOnStart: boolean,
-    jobsManager: JobsManager
-  ) {
+  constructor(saleorState: SaleorState, jobsManager: JobsManager) {
     super();
     this.saleorState = saleorState;
     this.jobsManager = jobsManager;
@@ -58,24 +54,10 @@ export class AuthAPI extends ErrorListener {
       }
     );
 
-    // if (loadOnStart) {
-    //   this.load();
-
     if (!this.saleorState.signInToken && window.PasswordCredential) {
       this.autoSignIn();
     }
-    // }
   }
-
-  // /**
-  //  * Initialize data, retrieve initial cache or make initial fetches. If not changed in SDK config, called on start by default.
-  //  */
-  // load = () => {
-  //   this.saleorState.provideSignInToken();
-  //   return {
-  //     pending: false,
-  //   };
-  // };
 
   /**
    * Tries to authenticate user with given email and password.
