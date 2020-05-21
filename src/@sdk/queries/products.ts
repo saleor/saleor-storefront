@@ -78,7 +78,7 @@ export const productDetails = gql`
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!) {
+  query ProductDetails($id: ID!, $countryCode: CountryCode) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField

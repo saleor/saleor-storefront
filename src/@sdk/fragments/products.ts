@@ -35,7 +35,7 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    quantityAvailable
+    quantityAvailable(countryCode: $countryCode)
     isAvailable
     images {
       id

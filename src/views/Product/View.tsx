@@ -117,9 +117,9 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     <TypedProductDetailsQuery
       loaderFull
       variables={{
-        id: getGraphqlIdFromDBId(match.params.id, "Product"),
         countryCode:
           (user?.defaultShippingAddress?.country?.code as CountryCode) || null,
+        id: getGraphqlIdFromDBId(match.params.id, "Product"),
       }}
       errorPolicy="all"
       key={match.params.id}

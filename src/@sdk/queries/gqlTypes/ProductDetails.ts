@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { CountryCode } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: ProductDetails
 // ====================================================
@@ -748,4 +750,5 @@ export interface ProductDetails {
 
 export interface ProductDetailsVariables {
   id: string;
+  countryCode?: CountryCode | null;
 }
