@@ -1,5 +1,4 @@
 import gql from "graphql-tag";
-
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
@@ -79,7 +78,7 @@ export const productVariantFragment = gql`
     sku
     name
     isAvailable
-    quantityAvailable
+    quantityAvailable(countryCode: $countryCode)
     images {
       id
       url
@@ -113,7 +112,7 @@ export const productDetailsQuery = gql`
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!) {
+  query ProductDetails($id: ID!, $countryCode: CountryCode) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField
@@ -157,7 +156,7 @@ export const productVariantsQuery = gql`
       edges {
         node {
           ...ProductVariantFields
-          stockQuantity
+          quantityAvailable
           product {
             ...BasicProductFields
           }

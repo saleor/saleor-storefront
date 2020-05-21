@@ -3,7 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 
-import { useCart } from "@sdk/react";
+import { CountryCode } from "@sdk/gqlTypes/globalTypes";
+import { useCart, useUserDetails } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -48,12 +49,15 @@ const extractMeta = (product: ProductDetails_product) => ({
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
+  const { data: user } = useUserDetails();
 
   return (
     <TypedProductDetailsQuery
       loaderFull
       variables={{
         id: getGraphqlIdFromDBId(match.params.id, "Product"),
+        countryCode:
+          (user?.defaultShippingAddress?.country?.code as CountryCode) || null,
       }}
       errorPolicy="all"
       key={match.params.id}

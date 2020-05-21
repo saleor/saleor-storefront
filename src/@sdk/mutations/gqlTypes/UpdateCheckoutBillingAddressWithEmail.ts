@@ -471,9 +471,9 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
   name: string;
   sku: string;
   /**
-   * Quantity of a product available for sale.
+   * Quantity of a product available for sale in one checkout.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */
@@ -1021,9 +1021,9 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
   name: string;
   sku: string;
   /**
-   * Quantity of a product available for sale.
+   * Quantity of a product available for sale in one checkout.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * Whether the variant is in stock and visible or not.
    */

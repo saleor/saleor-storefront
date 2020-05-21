@@ -180,9 +180,9 @@ export interface CheckoutProductVariants_productVariants_edges_node_product {
 export interface CheckoutProductVariants_productVariants_edges_node {
   __typename: "ProductVariant";
   /**
-   * Quantity of a product available for sale.
+   * Quantity of a product available for sale in one checkout.
    */
-  stockQuantity: number;
+  quantityAvailable: number;
   /**
    * The ID of the object.
    */
