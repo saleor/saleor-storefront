@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { CountryCode } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: CheckoutProductVariants
 // ====================================================
@@ -226,4 +228,5 @@ export interface CheckoutProductVariants {
 
 export interface CheckoutProductVariantsVariables {
   ids?: (string | null)[] | null;
+  countryCode?: CountryCode | null;
 }
