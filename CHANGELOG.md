@@ -4,7 +4,13 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Regenerate types - #712 by @dominik-zeglen
+- Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
 - Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
+
+## 2.10.1
+
+- Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
 
 ## 2.10.0
 
@@ -31,14 +37,11 @@ All notable, unreleased changes to this project will be documented in this file.
 - Remove old storybook - #638 by @mateuszkula
 - Add docs to storybook - #614 by @orzechdev
 - Create new UI for product page - #605 by @mateuszkula
-- Use new pricing on product page with TaxedMoney component to display prices - #584 by @orzechdev
+- Use new pricing on product page with TaxedMoney component to display prices - #584 by @mateuszkula
 - Update GraphQL schema - #567 by @orzechdev
 - Completely recreate checkout and cart, with new checkout nad cart SDK - #639 by @orzechdev, @mateuszkula
 - Hide payment options - #678 by @orzechdev
 - Fix unhandled JWT token expiration - #696 by @orzechdev
-- Regenerate types - #712 by @dominik-zeglen
-- Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
-- Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
 
 ## 0.7.0
 
