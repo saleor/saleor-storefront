@@ -6,9 +6,9 @@ import { RouteComponentProps } from "react-router-dom";
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
+import { Article_shop } from "./gqlTypes/Article";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
-import { Article_shop } from "./types/Article";
 
 const canDisplay = page =>
   maybe(() => !!page && !!page.title && !!page.contentJson);

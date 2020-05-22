@@ -2,8 +2,8 @@ import React from "react";
 import "./scss/index.scss";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
+import { AddressTypeEnum } from "@sdk/gqlTypes/globalTypes";
 import { useDefaultUserAddress, useDeleteUserAddresss } from "@sdk/react";
-import { AddressTypeEnum } from "@sdk/types/globalTypes";
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{

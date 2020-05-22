@@ -1,62 +1,63 @@
 import ApolloClient from "apollo-client";
 
 import { getAuthToken } from "@sdk/auth";
-import { Checkout } from "@sdk/fragments/types/Checkout";
-import { OrderDetail } from "@sdk/fragments/types/OrderDetail";
-import { Payment } from "@sdk/fragments/types/Payment";
+import { Checkout } from "@sdk/fragments/gqlTypes/Checkout";
+import { OrderDetail } from "@sdk/fragments/gqlTypes/OrderDetail";
+import { Payment } from "@sdk/fragments/gqlTypes/Payment";
+import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 import * as CheckoutMutations from "@sdk/mutations/checkout";
 import {
   AddCheckoutPromoCode,
   AddCheckoutPromoCodeVariables,
-} from "@sdk/mutations/types/AddCheckoutPromoCode";
+} from "@sdk/mutations/gqlTypes/AddCheckoutPromoCode";
 import {
   CompleteCheckout,
   CompleteCheckoutVariables,
-} from "@sdk/mutations/types/CompleteCheckout";
+} from "@sdk/mutations/gqlTypes/CompleteCheckout";
 import {
   CreateCheckout,
   CreateCheckoutVariables,
-} from "@sdk/mutations/types/CreateCheckout";
+} from "@sdk/mutations/gqlTypes/CreateCheckout";
 import {
   CreateCheckoutPayment,
   CreateCheckoutPaymentVariables,
-} from "@sdk/mutations/types/CreateCheckoutPayment";
+} from "@sdk/mutations/gqlTypes/CreateCheckoutPayment";
 import {
   RemoveCheckoutPromoCode,
   RemoveCheckoutPromoCodeVariables,
-} from "@sdk/mutations/types/RemoveCheckoutPromoCode";
+} from "@sdk/mutations/gqlTypes/RemoveCheckoutPromoCode";
 import {
   UpdateCheckoutBillingAddress,
   UpdateCheckoutBillingAddressVariables,
-} from "@sdk/mutations/types/UpdateCheckoutBillingAddress";
+} from "@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddress";
 import {
   UpdateCheckoutBillingAddressWithEmail,
   UpdateCheckoutBillingAddressWithEmailVariables,
-} from "@sdk/mutations/types/UpdateCheckoutBillingAddressWithEmail";
+} from "@sdk/mutations/gqlTypes/UpdateCheckoutBillingAddressWithEmail";
 import {
   UpdateCheckoutLine,
   UpdateCheckoutLineVariables,
-} from "@sdk/mutations/types/UpdateCheckoutLine";
+} from "@sdk/mutations/gqlTypes/UpdateCheckoutLine";
 import {
   UpdateCheckoutShippingAddress,
   UpdateCheckoutShippingAddressVariables,
-} from "@sdk/mutations/types/UpdateCheckoutShippingAddress";
+} from "@sdk/mutations/gqlTypes/UpdateCheckoutShippingAddress";
 import {
   UpdateCheckoutShippingMethod,
   UpdateCheckoutShippingMethodVariables,
-} from "@sdk/mutations/types/UpdateCheckoutShippingMethod";
+} from "@sdk/mutations/gqlTypes/UpdateCheckoutShippingMethod";
 import * as CheckoutQueries from "@sdk/queries/checkout";
-import * as ShopQueries from "@sdk/queries/shop";
-import { CheckoutDetails } from "@sdk/queries/types/CheckoutDetails";
+import { CheckoutDetails } from "@sdk/queries/gqlTypes/CheckoutDetails";
 import {
   CheckoutProductVariants,
   CheckoutProductVariants_productVariants,
-} from "@sdk/queries/types/CheckoutProductVariants";
+} from "@sdk/queries/gqlTypes/CheckoutProductVariants";
 import {
   GetShopPaymentGateways,
   GetShopPaymentGateways_shop_availablePaymentGateways,
-} from "@sdk/queries/types/GetShopPaymentGateways";
-import { UserCheckoutDetails } from "@sdk/queries/types/UserCheckoutDetails";
+} from "@sdk/queries/gqlTypes/GetShopPaymentGateways";
+import { UserCheckoutDetails } from "@sdk/queries/gqlTypes/UserCheckoutDetails";
+import * as ShopQueries from "@sdk/queries/shop";
 import {
   ICheckoutAddress,
   ICheckoutModel,
@@ -64,7 +65,6 @@ import {
   IOrderModel,
   IPaymentModel,
 } from "@sdk/repository";
-import { CountryCode } from "@sdk/types/globalTypes";
 import { filterNotEmptyArrayItems } from "@sdk/utils";
 
 import { INetworkManager } from "./types";
@@ -211,8 +211,8 @@ export class NetworkManager implements INetworkManager {
               name: edge.node.name,
               pricing: edge.node.pricing,
               product: edge.node.product,
+              quantityAvailable: edge.node.quantityAvailable,
               sku: edge.node.sku,
-              stockQuantity: edge.node.stockQuantity,
             },
           };
         })
@@ -818,8 +818,8 @@ export class NetworkManager implements INetworkManager {
             name: itemVariant?.name,
             pricing: itemVariant?.pricing,
             product: itemVariant?.product,
+            quantityAvailable: itemVariant?.quantityAvailable,
             sku: itemVariant?.sku,
-            stockQuantity: itemVariant?.stockQuantity,
           },
         };
       }),

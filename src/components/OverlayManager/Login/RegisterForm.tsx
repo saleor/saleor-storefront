@@ -6,8 +6,8 @@ import { accountConfirmUrl } from "../../../app/routes";
 
 import { Button, Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
+import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";
-import { RegisterAccount } from "./types/RegisterAccount";
 
 import { AlertManager, useAlert } from "react-alert";
 

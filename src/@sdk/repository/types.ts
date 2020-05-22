@@ -3,7 +3,7 @@ import {
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
-} from "../fragments/types/Checkout";
+} from "../fragments/gqlTypes/Checkout";
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
@@ -17,7 +17,7 @@ export interface ICheckoutModelLineTotalPrice {
 }
 
 export interface ICheckoutModelLineVariant {
-  stockQuantity?: number;
+  quantityAvailable?: number;
   id: string;
   name?: string;
   sku?: string;

@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { ProductVariant } from "@sdk/fragments/types/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@sdk/queries/types/OrderByToken";
+import { ProductVariant } from "@sdk/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@sdk/queries/gqlTypes/OrderByToken";
 
 import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "stockQuantity" | "isAvailable"
+  "__typename" | "sku" | "quantityAvailable" | "isAvailable"
 > & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
-  stockQuantity?: number;
+  quantityAvailable?: number;
 };
 
 interface ReadProductRowProps {
@@ -59,7 +59,10 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 
       <td>
         {line.attributes.map(({ attribute, values }, attributeIndex) => (
-        <p>{attribute.name}: {values.map(value => value.name).join(", ")}</p>))}
+          <p>
+            {attribute.name}: {values.map(value => value.name).join(", ")}
+          </p>
+        ))}
       </td>
 
       <td className="cart-table__quantity-cell">

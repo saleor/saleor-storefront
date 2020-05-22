@@ -7,7 +7,7 @@ import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
 import { IItems } from "@sdk/api/Cart/types";
-import { UserDetails_me } from "@sdk/queries/types/UserDetails";
+import { UserDetails_me } from "@sdk/queries/gqlTypes/UserDetails";
 import { useCart, useCheckout, useUserDetails } from "@sdk/react";
 import { BASE_URL } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
@@ -80,7 +80,7 @@ const generateCart = (
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       name={variant?.product?.name || ""}
-      maxQuantity={variant.stockQuantity || quantity}
+      maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       onQuantityChange={quantity => updateItem(variant.id, quantity)}

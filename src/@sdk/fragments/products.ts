@@ -34,7 +34,7 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    stockQuantity
+    quantityAvailable(countryCode: $countryCode)
     isAvailable
     pricing {
       onSale
