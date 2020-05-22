@@ -6,7 +6,7 @@ This directory contains components with logic that aligns with new project struc
 
 ### Components
 
-We use [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) to organise components into groups. The general rule of thumb is following:
+We use [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) to organize components into groups. The general rule of thumb is following:
 
 - Use `atoms` for smallest building blocks (think button or input)
 - Use `molecules` for things that consist of atoms (think input with labels and error/helper text)

@@ -2,25 +2,21 @@ import React, { useState } from "react";
 import PageHeader from "../../../components/Header/PageHeader";
 import { Select } from "../../../@next/components/atoms/Select";
 import { CardBlock } from "./CardBlock";
+import { CartInterface } from "@temp/components/CartProvider/context";
 
-export const Page = props => {
-  const [quantity, setQuantity] = useState(0);
+interface IPageProps {
+  history: any;
+  products: any;
+  cart: CartInterface;
+}
+
+export const Page = ({ products, history, cart }: IPageProps) => {
   const handleClick = () => {
-    props.history.goBack();
+    history.goBack();
   };
 
   const onChange = () => {
     return 1;
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(prevState => prevState - 1);
-    }
-  };
-
-  const increaseQuantity = () => {
-    setQuantity(prevState => prevState + 1);
   };
 
   return (
@@ -60,31 +56,9 @@ export const Page = props => {
           </div>
         </div>
         <div className="addcart-card-wrapper">
-          <CardBlock
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-            quantity={quantity}
-          />
-          <CardBlock
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-            quantity={quantity}
-          />
-          <CardBlock
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-            quantity={quantity}
-          />
-          <CardBlock
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-            quantity={quantity}
-          />
-          <CardBlock
-            decreaseQuantity={decreaseQuantity}
-            increaseQuantity={increaseQuantity}
-            quantity={quantity}
-          />
+          {products.map(({ node }) => {
+            return <CardBlock add={cart.add} node={node} />;
+          })}
         </div>
       </div>
     </div>
