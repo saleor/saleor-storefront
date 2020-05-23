@@ -1,0 +1,38 @@
+@import "../../../globalStyles/scss/variables";
+
+.data-table {
+  display: flex;
+  flex-direction: row;
+
+  &-info {
+    flex: 1 0 50%;
+    max-width: 50%;
+
+    &-box {
+      margin-bottom: ($spacer / 2);
+      height: calc(100% - 8px);
+      border-top: 1px solid $light-gray;
+      border-bottom: 1px solid $light-gray;
+      align-items: flex-start;
+      display: flex;
+      justify-content: flex-start;
+      padding: 0.775rem 0.75rem;
+      word-break: break-word;
+      font-size: $small-font-size;
+      background-color: $white;
+    }
+
+    &-left {
+      border-left: 1px solid $light-gray;
+      font-weight: bold;
+    }
+
+    &-right {
+      border-right: 1px solid $light-gray;
+    }
+  }
+
+  .data-left {
+    border-right: 1px solid $light-gray;
+  }
+}
