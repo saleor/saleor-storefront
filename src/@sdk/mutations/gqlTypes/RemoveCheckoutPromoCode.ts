@@ -622,4 +622,5 @@ export interface RemoveCheckoutPromoCode {
 export interface RemoveCheckoutPromoCodeVariables {
   checkoutId: string;
   promoCode: string;
+  locale: string;
 }

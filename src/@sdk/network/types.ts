@@ -28,7 +28,8 @@ export interface INetworkManagerResponse<T> {
 
 export interface INetworkManager {
   getCheckout: (
-    checkoutToken: string | null
+    checkoutToken: string | null,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   getRefreshedCheckoutLines: (
     checkoutlines: ICheckoutModelLine[] | null,
@@ -38,45 +39,55 @@ export interface INetworkManager {
     email: string,
     lines: Array<{ variantId: string; quantity: number }>,
     shippingAddress: ICheckoutAddress,
-    billingAddress?: ICheckoutAddress
+    billingAddress?: ICheckoutAddress,
+    locale?: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setCartItem: (
-    checkout: ICheckoutModel
+    checkout: ICheckoutModel,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setBillingAddress: (
     billingAddress: ICheckoutAddress,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setBillingAddressWithEmail: (
     billingAddress: ICheckoutAddress,
     email: string,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingAddress: (
     shippingAddress: ICheckoutAddress,
     email: string,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   setShippingMethod: (
     shippingMethodId: string,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   addPromoCode: (
     promoCode: string,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   removePromoCode: (
     promoCode: string,
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
   createPayment: (
     amount: number,
     checkoutId: string,
     paymentGateway: string,
     paymentToken: string,
-    billingAddress: ICheckoutAddress
+    billingAddress: ICheckoutAddress,
+    locale: string
   ) => Promise<INetworkManagerResponse<IPaymentModel>>;
   completeCheckout: (
-    checkoutId: string
+    checkoutId: string,
+    locale: string
   ) => Promise<INetworkManagerResponse<IOrderModel>>;
 }

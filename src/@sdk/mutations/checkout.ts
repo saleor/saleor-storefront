@@ -6,7 +6,11 @@ import { orderDetailFragment } from "../fragments/user";
 
 export const updateCheckoutLineMutation = gql`
   ${checkoutFragment}
-  mutation UpdateCheckoutLine($checkoutId: ID!, $lines: [CheckoutLineInput]!) {
+  mutation UpdateCheckoutLine(
+    $checkoutId: ID!,
+    $lines: [CheckoutLineInput]!
+    $locale: LanguageCodeEnum!
+) {
     checkoutLinesUpdate(checkoutId: $checkoutId, lines: $lines) {
       checkout {
         ...Checkout
@@ -21,7 +25,10 @@ export const updateCheckoutLineMutation = gql`
 
 export const createCheckoutMutation = gql`
   ${checkoutFragment}
-  mutation CreateCheckout($checkoutInput: CheckoutCreateInput!) {
+  mutation CreateCheckout(
+    $checkoutInput: CheckoutCreateInput!
+    $locale: LanguageCodeEnum!
+  ) {
     checkoutCreate(input: $checkoutInput) {
       errors {
         field
@@ -40,6 +47,7 @@ export const updateCheckoutBillingAddressWithEmailMutation = gql`
     $checkoutId: ID!
     $billingAddress: AddressInput!
     $email: String!
+    $locale: LanguageCodeEnum!
   ) {
     checkoutBillingAddressUpdate(
       checkoutId: $checkoutId
@@ -70,6 +78,7 @@ export const updateCheckoutBillingAddressMutation = gql`
   mutation UpdateCheckoutBillingAddress(
     $checkoutId: ID!
     $billingAddress: AddressInput!
+    $locale: LanguageCodeEnum!
   ) {
     checkoutBillingAddressUpdate(
       checkoutId: $checkoutId
@@ -92,6 +101,7 @@ export const updateCheckoutShippingAddressMutation = gql`
     $checkoutId: ID!
     $shippingAddress: AddressInput!
     $email: String!
+    $locale: LanguageCodeEnum!
   ) {
     checkoutShippingAddressUpdate(
       checkoutId: $checkoutId
@@ -122,6 +132,7 @@ export const updateCheckoutShippingMethodMutation = gql`
   mutation UpdateCheckoutShippingMethod(
     $checkoutId: ID!
     $shippingMethodId: ID!
+    $locale: LanguageCodeEnum!
   ) {
     checkoutShippingMethodUpdate(
       checkoutId: $checkoutId
@@ -145,7 +156,11 @@ export const updateCheckoutShippingMethodMutation = gql`
 
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
-  mutation AddCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
+  mutation AddCheckoutPromoCode(
+    $checkoutId: ID!,
+    $promoCode: String!
+    $locale: LanguageCodeEnum!
+  ) {
     checkoutAddPromoCode(checkoutId: $checkoutId, promoCode: $promoCode) {
       checkout {
         ...Checkout
@@ -165,7 +180,11 @@ export const addCheckoutPromoCode = gql`
 
 export const removeCheckoutPromoCode = gql`
   ${checkoutFragment}
-  mutation RemoveCheckoutPromoCode($checkoutId: ID!, $promoCode: String!) {
+  mutation RemoveCheckoutPromoCode(
+    $checkoutId: ID!,
+    $promoCode: String!,
+    $locale: LanguageCodeEnum!
+  ) {
     checkoutRemovePromoCode(checkoutId: $checkoutId, promoCode: $promoCode) {
       checkout {
         ...Checkout
@@ -189,6 +208,7 @@ export const createCheckoutPaymentMutation = gql`
   mutation CreateCheckoutPayment(
     $checkoutId: ID!
     $paymentInput: PaymentInput!
+    $locale: LanguageCodeEnum!
   ) {
     checkoutPaymentCreate(checkoutId: $checkoutId, input: $paymentInput) {
       errors {
@@ -212,7 +232,10 @@ export const createCheckoutPaymentMutation = gql`
 
 export const completeCheckoutMutation = gql`
   ${orderDetailFragment}
-  mutation CompleteCheckout($checkoutId: ID!) {
+  mutation CompleteCheckout(
+    $checkoutId: ID!
+    $locale: LanguageCodeEnum!
+    ) {
     checkoutComplete(checkoutId: $checkoutId) {
       errors {
         field

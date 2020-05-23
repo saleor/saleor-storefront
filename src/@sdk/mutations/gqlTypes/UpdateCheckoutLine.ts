@@ -606,4 +606,5 @@ export interface UpdateCheckoutLine {
 export interface UpdateCheckoutLineVariables {
   checkoutId: string;
   lines: (CheckoutLineInput | null)[];
+  locale: string;
 }

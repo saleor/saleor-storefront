@@ -494,4 +494,5 @@ export interface CompleteCheckout {
 
 export interface CompleteCheckoutVariables {
   checkoutId: string;
+  locale: string;
 }

@@ -622,4 +622,5 @@ export interface UpdateCheckoutShippingMethod {
 export interface UpdateCheckoutShippingMethodVariables {
   checkoutId: string;
   shippingMethodId: string;
+  locale: string;
 }

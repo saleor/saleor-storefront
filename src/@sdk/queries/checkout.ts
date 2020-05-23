@@ -7,7 +7,10 @@ import {
 
 export const checkoutDetails = gql`
   ${checkoutFragment}
-  query CheckoutDetails($token: UUID!) {
+  query CheckoutDetails(
+    $token: UUID!
+    $locale:LanguageCodeEnum!
+    ) {
     checkout(token: $token) {
       ...Checkout
     }
@@ -16,7 +19,9 @@ export const checkoutDetails = gql`
 
 export const userCheckoutDetails = gql`
   ${checkoutFragment}
-  query UserCheckoutDetails {
+  query UserCheckoutDetails(
+    $locale:LanguageCodeEnum!
+  ) {
     me {
       id
       checkout {

@@ -8,7 +8,6 @@ import Nav from "./Nav";
 
 import useLocale from "@saleor/@next/hooks/useLocale";
 
-import Button from "../Button";
 import { Locale } from "../Locale/Locale";
 
 
