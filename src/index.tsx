@@ -47,7 +47,9 @@ const cache = new InMemoryCache({
   },
 });
 
-TagManager.initialize({gtmId: 'GTM-666'})
+if (process.env.GTM_ID !== undefined){
+  TagManager.initialize({gtmId: process.env.GTM_ID})
+}
 
 const startApp = async () => {
   if (sentryDsn !== undefined) {
