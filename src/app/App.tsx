@@ -1,10 +1,10 @@
-import "../globalStyles/scss/index.scss";
 import React from "react";
 
 import { DemoBanner } from "@components/atoms";
-import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
-import { Routes } from "./routes";
 import { demoMode } from "@temp/constants";
+import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
+import "../globalStyles/scss/index.scss";
+import { Routes } from "./routes";
 
 const App: React.FC = () => {
   

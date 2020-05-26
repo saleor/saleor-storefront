@@ -6,11 +6,11 @@ import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
+import TagManager from 'react-gtm-module'
 import { hot } from "react-hot-loader";
 import { Route, Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { QueryParamProvider } from "use-query-params";
-import TagManager from 'react-gtm-module'
 
 import { NotificationTemplate } from "@components/atoms";
 import {
