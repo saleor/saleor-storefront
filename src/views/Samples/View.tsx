@@ -1,17 +1,14 @@
-import { SAMPLES_PER_PAGE } from "@temp/core/config";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import Page from "./Page";
 import { TypedAllSampleQuery } from "./queries";
-// import './scss/index.scss';
+import { SaleorCategoryIds } from "../../constants";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
-const STATIC_CAT_SAMPLE_ID = "Q2F0ZWdvcnk6MjM=";
-
-const View: React.FC<ViewProps> = ({ history }) => {
+export const View: React.FC<ViewProps> = ({ history }) => {
   const variables = {
-    catId: STATIC_CAT_SAMPLE_ID,
+    catId: SaleorCategoryIds.Sample,
     pageSize: 100,
   };
 

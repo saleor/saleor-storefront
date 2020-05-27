@@ -3,15 +3,14 @@ import { CartContext } from "../../../components/CartProvider/context";
 import { RouteComponentProps } from "react-router-dom";
 import { TypedCollectionSampleQuery } from "./queries";
 import { SAMPLES_PER_PAGE } from "../../../core/config";
+import { SaleorCategoryIds } from "../../../constants";
 import Page from "./Page";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
-const STATIC_CAT_SAMPLE_ID = "Q2F0ZWdvcnk6MjM=";
-
 const View: React.FC<ViewProps> = ({ match, history }) => {
   const variables = {
-    catId: STATIC_CAT_SAMPLE_ID,
+    catId: SaleorCategoryIds.Sample,
     id: match.params.id,
     pageSize: SAMPLES_PER_PAGE,
   };

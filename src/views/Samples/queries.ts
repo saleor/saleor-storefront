@@ -28,10 +28,7 @@ export const getAllSamples = gql`
           ...ProductPricingField
           collections {
             id
-            name
-          }
-          variants {
-            ...ProductVariantFields
+            slug
           }
           category {
             id
