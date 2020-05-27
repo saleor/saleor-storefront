@@ -6,8 +6,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 
-import { CountryCode } from "@sdk/gqlTypes/globalTypes";
-import { useCart, useUserDetails } from "@sdk/react";
+import { useCart } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -111,14 +110,11 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
-  const { data: user } = useUserDetails();
 
   return (
     <TypedProductDetailsQuery
       loaderFull
       variables={{
-        countryCode:
-          (user?.defaultShippingAddress?.country?.code as CountryCode) || null,
         id: getGraphqlIdFromDBId(match.params.id, "Product"),
       }}
       errorPolicy="all"
