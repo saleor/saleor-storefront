@@ -123,7 +123,7 @@ const orderDetailFragment = gql`
 
 const orderDetailsByIdQuery = gql`
   ${orderDetailFragment}
-  query OrderById($id: ID!) {
+  query OrderById($id: ID!, $countryCode: CountryCode) {
     order(id: $id) {
       ...OrderDetail
     }
@@ -132,7 +132,7 @@ const orderDetailsByIdQuery = gql`
 
 const orderDetailsByTokenQuery = gql`
   ${orderDetailFragment}
-  query OrderByToken($token: UUID!) {
+  query OrderByToken($token: UUID!, $countryCode: CountryCode) {
     orderByToken(token: $token) {
       ...OrderDetail
     }
