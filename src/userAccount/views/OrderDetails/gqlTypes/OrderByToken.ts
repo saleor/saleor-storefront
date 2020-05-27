@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus } from "./../../../../../gqlTypes/globalTypes";
+import { CountryCode, PaymentChargeStatusEnum, OrderStatus } from "./../../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: OrderByToken
@@ -464,4 +464,5 @@ export interface OrderByToken {
 
 export interface OrderByTokenVariables {
   token: any;
+  countryCode?: CountryCode | null;
 }
