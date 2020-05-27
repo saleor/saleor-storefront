@@ -1,8 +1,4 @@
 import gql from "graphql-tag";
-import { TypedQuery } from "../../../core/queries";
-
-import { OrderById, OrderByIdVariables } from "./gqlTypes/OrderById";
-import { OrderByToken, OrderByTokenVariables } from "./gqlTypes/OrderByToken";
 
 const orderPriceFragment = gql`
   fragment OrderPrice on TaxedMoney {
@@ -82,69 +78,3 @@ export const checkoutProductVariantFragment = gql`
     }
   }
 `;
-
-const orderDetailFragment = gql`
-  ${orderPriceFragment}
-  ${checkoutAddressFragment}
-  ${checkoutProductVariantFragment}
-  fragment OrderDetail on Order {
-    userEmail
-    paymentStatus
-    paymentStatusDisplay
-    status
-    statusDisplay
-    id
-    number
-    shippingAddress {
-      ...Address
-    }
-    lines {
-      productName
-      quantity
-      variant {
-        ...ProductVariant
-      }
-      unitPrice {
-        ...OrderPrice
-        currency
-      }
-    }
-    subtotal {
-      ...OrderPrice
-    }
-    total {
-      ...OrderPrice
-    }
-    shippingPrice {
-      ...OrderPrice
-    }
-  }
-`;
-
-const orderDetailsByIdQuery = gql`
-  ${orderDetailFragment}
-  query OrderById($id: ID!, $countryCode: CountryCode) {
-    order(id: $id) {
-      ...OrderDetail
-    }
-  }
-`;
-
-const orderDetailsByTokenQuery = gql`
-  ${orderDetailFragment}
-  query OrderByToken($token: UUID!, $countryCode: CountryCode) {
-    orderByToken(token: $token) {
-      ...OrderDetail
-    }
-  }
-`;
-
-export const TypedOrderDetailsByIdQuery = TypedQuery<
-  OrderById,
-  OrderByIdVariables
->(orderDetailsByIdQuery);
-
-export const TypedOrderDetailsByTokenQuery = TypedQuery<
-  OrderByToken,
-  OrderByTokenVariables
->(orderDetailsByTokenQuery);
