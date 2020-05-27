@@ -3,7 +3,8 @@ import {
   Checkout_lines_variant_attributes,
   Checkout_lines_variant_pricing,
   Checkout_lines_variant_product,
-} from "../fragments/gqlTypes/Checkout";
+} from "@sdk/fragments/gqlTypes/Checkout";
+import { IQueuedJobs } from "@sdk/jobs/QueuedJobs";
 
 export enum LocalStorageItems {
   JOB_QUEUE_CHECKOUT = "job_queueCheckout",
@@ -124,25 +125,18 @@ export interface IOrderModel {
   number?: string | null;
 }
 
-// export interface IJobsModel {
-//   cart: {
-//     setCartItem?: boolean;
-//   };
-//   checkout: {
-//     setPromoCode?: boolean;
-//   };
-// }
+export type IJobsGroupModel<G extends keyof IQueuedJobs> = Record<
+  keyof IQueuedJobs[G],
+  boolean
+>;
 
-// export const JobsModelInitialState: IJobsModel = {
-//   cart: {
-//     setCartItem: false,
-//   },
-//   checkout: {
-//     setPromoCode: false,
-//   },
-// };
+type IQueuedJobsState<T> = {
+  [P in keyof T]?: Partial<Record<keyof T[P], boolean>>;
+};
 
-export interface ILocalRepository {
+export type IJobsModel = IQueuedJobsState<IQueuedJobs>;
+
+export interface ILocalStorageHandler {
   getCheckout(): ICheckoutModel | null;
   setCheckout(checkout: ICheckoutModel | null): void;
   getPayment(): IPaymentModel | null;

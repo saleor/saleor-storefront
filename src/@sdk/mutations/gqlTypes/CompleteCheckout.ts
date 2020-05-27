@@ -2,14 +2,18 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTypes";
+import { CheckoutErrorCode, PaymentChargeStatusEnum, OrderStatus } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CompleteCheckout
 // ====================================================
 
 export interface CompleteCheckout_checkoutComplete_errors {
-  __typename: "Error";
+  __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -471,9 +475,6 @@ export interface CompleteCheckout_checkoutComplete_order {
 
 export interface CompleteCheckout_checkoutComplete {
   __typename: "CheckoutComplete";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: CompleteCheckout_checkoutComplete_errors[];
   /**
    * Placed order.

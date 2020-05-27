@@ -1,10 +1,11 @@
+import { LocalStorageManager } from "@sdk/data";
 import { ErrorListener } from "@sdk/helpers";
+import { ICheckoutModel } from "@sdk/helpers/LocalStorageHandler";
 import { JobsManager } from "@sdk/jobs";
 import { ErrorCartTypes } from "@sdk/jobs/Cart";
-import { NetworkManager } from "@sdk/network";
-import { CheckoutRepositoryManager, ICheckoutModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { ISaleorStateSummeryPrices, StateItems } from "@sdk/state/types";
+import { ApolloClientManager } from "@temp/@sdk/data/ApolloClientManager";
 
 import {
   IDiscount,
@@ -26,22 +27,22 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
   private checkoutLoaded: boolean;
   private summaryPricesLoaded: boolean;
 
-  private checkoutRepositoryManager: CheckoutRepositoryManager;
+  private localStorageManager: LocalStorageManager;
   private saleorState: SaleorState;
-  private networkManager: NetworkManager;
+  private apolloClientManager: ApolloClientManager;
   private jobsManager: JobsManager;
 
   constructor(
-    checkoutRepositoryManager: CheckoutRepositoryManager,
-    networkManager: NetworkManager,
+    localStorageManager: LocalStorageManager,
+    apolloClientManager: ApolloClientManager,
     saleorState: SaleorState,
     loadOnStart: boolean,
     jobsManager: JobsManager
   ) {
     super();
     this.saleorState = saleorState;
-    this.checkoutRepositoryManager = checkoutRepositoryManager;
-    this.networkManager = networkManager;
+    this.localStorageManager = localStorageManager;
+    this.apolloClientManager = apolloClientManager;
     this.jobsManager = jobsManager;
 
     this.loaded = false;
@@ -103,21 +104,21 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.addItemToCart(variantId, quantity);
+    this.localStorageManager.addItemToCart(variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
       const {
         data,
         error,
-      } = await this.networkManager.getRefreshedCheckoutLines(
+      } = await this.apolloClientManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
-        this.checkoutRepositoryManager.getRepository().setCheckout({
+        this.localStorageManager.getHandler().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
         });
@@ -138,20 +139,20 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.removeItemFromCart(variantId);
+    this.localStorageManager.removeItemFromCart(variantId);
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
       const {
         data,
         error,
-      } = await this.networkManager.getRefreshedCheckoutLines(
+      } = await this.apolloClientManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
-        this.checkoutRepositoryManager.getRepository().setCheckout({
+        this.localStorageManager.getHandler().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
         });
@@ -172,21 +173,21 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.subtractItemFromCart(variantId);
+    this.localStorageManager.subtractItemFromCart(variantId);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
       const {
         data,
         error,
-      } = await this.networkManager.getRefreshedCheckoutLines(
+      } = await this.apolloClientManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
-        this.checkoutRepositoryManager.getRepository().setCheckout({
+        this.localStorageManager.getHandler().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
         });
@@ -207,21 +208,21 @@ export class SaleorCartAPI extends ErrorListener implements ISaleorCartAPI {
     await this.saleorState.provideCheckout(this.fireError);
 
     // 1. save in local storage
-    this.checkoutRepositoryManager.updateItemInCart(variantId, quantity);
+    this.localStorageManager.updateItemInCart(variantId, quantity);
 
     // 2. save online if possible (if checkout id available)
     if (this.saleorState.checkout?.lines) {
       const {
         data,
         error,
-      } = await this.networkManager.getRefreshedCheckoutLines(
+      } = await this.apolloClientManager.getRefreshedCheckoutLines(
         this.saleorState.checkout.lines
       );
 
       if (error) {
         this.fireError(error, ErrorCartTypes.SET_CART_ITEM);
       } else {
-        this.checkoutRepositoryManager.getRepository().setCheckout({
+        this.localStorageManager.getHandler().setCheckout({
           ...this.saleorState.checkout,
           lines: data,
         });

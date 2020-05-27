@@ -1,5 +1,5 @@
-import { NetworkManager } from "@sdk/network";
-import { LocalRepository } from "@sdk/repository";
+import { ApolloClientManager } from "@temp/@sdk/data/ApolloClientManager";
+import { LocalStorageHandler } from "@temp/@sdk/helpers/LocalStorageHandler";
 
 import { QueuedJobsHandler } from "../QueuedJobsHandler";
 
@@ -8,24 +8,29 @@ export enum ErrorCartTypes {
 }
 
 export class CartQueuedJobs extends QueuedJobsHandler<ErrorCartTypes> {
-  private networkManager: NetworkManager;
-  private repository: LocalRepository;
+  private apolloClientManager: ApolloClientManager;
+  private localStorageHandler: LocalStorageHandler;
 
-  constructor(repository: LocalRepository, networkManager: NetworkManager) {
+  constructor(
+    localStorageHandler: LocalStorageHandler,
+    apolloClientManager: ApolloClientManager
+  ) {
     super();
-    this.repository = repository;
-    this.networkManager = networkManager;
+    this.localStorageHandler = localStorageHandler;
+    this.apolloClientManager = apolloClientManager;
   }
 
   setCartItem = async () => {
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
     if (checkout) {
-      const { data, error } = await this.networkManager.setCartItem(checkout);
+      const { data, error } = await this.apolloClientManager.setCartItem(
+        checkout
+      );
       if (error && this.onErrorListener) {
         this.onErrorListener(error, ErrorCartTypes.SET_CART_ITEM);
       } else if (data) {
-        this.repository.setCheckout({
+        this.localStorageHandler.setCheckout({
           ...checkout,
           lines: data.lines,
           promoCodeDiscount: data.promoCodeDiscount,

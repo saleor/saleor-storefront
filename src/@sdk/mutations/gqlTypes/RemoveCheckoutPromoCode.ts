@@ -547,33 +547,20 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout {
 }
 
 export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_errors {
-  __typename: "Error";
-  /**
-   * Name of a field that caused the error. A value of `null` indicates that the
-   * error isn't associated with a particular field.
-   */
-  field: string | null;
-  /**
-   * The error message.
-   */
-  message: string | null;
-}
-
-export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkoutErrors {
   __typename: "CheckoutError";
-  /**
-   * Name of a field that caused the error. A value of `null` indicates that the
-   * error isn't associated with a particular field.
-   */
-  field: string | null;
-  /**
-   * The error message.
-   */
-  message: string | null;
   /**
    * The error code.
    */
   code: CheckoutErrorCode;
+  /**
+   * Name of a field that caused the error. A value of `null` indicates that the
+   * error isn't associated with a particular field.
+   */
+  field: string | null;
+  /**
+   * The error message.
+   */
+  message: string | null;
 }
 
 export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode {
@@ -582,11 +569,7 @@ export interface RemoveCheckoutPromoCode_checkoutRemovePromoCode {
    * The checkout with the removed gift card or voucher.
    */
   checkout: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkout | null;
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: RemoveCheckoutPromoCode_checkoutRemovePromoCode_errors[];
-  checkoutErrors: RemoveCheckoutPromoCode_checkoutRemovePromoCode_checkoutErrors[];
 }
 
 export interface RemoveCheckoutPromoCode {

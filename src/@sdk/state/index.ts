@@ -1,16 +1,16 @@
 import { round } from "lodash";
 
 import { DataErrorCheckoutTypes } from "../api/Checkout/types";
+import { ApolloClientManager } from "../data/ApolloClientManager";
 import { NamedObservable } from "../helpers";
-import { NetworkManager } from "../network";
-import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/gqlTypes/GetShopPaymentGateways";
-import { ApolloErrorWithUserInput } from "../react/types";
 import {
   ICheckoutModel,
   IPaymentModel,
-  LocalRepository,
+  LocalStorageHandler,
   LocalStorageItems,
-} from "../repository";
+} from "../helpers/LocalStorageHandler";
+import { GetShopPaymentGateways_shop_availablePaymentGateways } from "../queries/gqlTypes/GetShopPaymentGateways";
+import { ApolloErrorWithUserInput } from "../react/types";
 import { ISaleorState, ISaleorStateSummeryPrices, StateItems } from "./types";
 
 export class SaleorState extends NamedObservable<StateItems>
@@ -24,19 +24,22 @@ export class SaleorState extends NamedObservable<StateItems>
   // Should be changed it in future to shop object containing payment gateways besides all the shop data
   availablePaymentGateways?: GetShopPaymentGateways_shop_availablePaymentGateways[];
 
-  private repository: LocalRepository;
-  private networkManager: NetworkManager;
+  private localStorageHandler: LocalStorageHandler;
+  private apolloClientManager: ApolloClientManager;
 
-  constructor(repository: LocalRepository, networkManager: NetworkManager) {
+  constructor(
+    localStorageHandler: LocalStorageHandler,
+    apolloClientManager: ApolloClientManager
+  ) {
     super();
-    this.repository = repository;
-    this.networkManager = networkManager;
+    this.localStorageHandler = localStorageHandler;
+    this.apolloClientManager = apolloClientManager;
 
-    repository.subscribeToChange(
+    localStorageHandler.subscribeToChange(
       LocalStorageItems.CHECKOUT,
       this.onCheckoutUpdate
     );
-    repository.subscribeToChange(
+    localStorageHandler.subscribeToChange(
       LocalStorageItems.PAYMENT,
       this.onPaymentUpdate
     );
@@ -106,24 +109,23 @@ export class SaleorState extends NamedObservable<StateItems>
     ) => any
   ) => {
     // 1. Try to take checkout from backend database
-    const checkout = this.repository.getCheckout();
+    const checkout = this.localStorageHandler.getCheckout();
 
     if (checkout?.token) {
-      const { data, error } = await this.networkManager.getCheckout(
+      const { data, error } = await this.apolloClientManager.getCheckout(
         checkout?.token
       );
 
       if (error) {
         onError(error, DataErrorCheckoutTypes.GET_CHECKOUT);
       } else if (data) {
-        this.repository.setCheckout(data);
-        // this.updateCheckout(data);
+        this.localStorageHandler.setCheckout(data);
         return;
       }
     }
 
     // 2. Try to take checkout from local storage
-    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
+    const checkoutModel: ICheckoutModel | null = this.localStorageHandler.getCheckout();
     if (checkoutModel) {
       this.onCheckoutUpdate(checkoutModel);
       return;
@@ -137,12 +139,12 @@ export class SaleorState extends NamedObservable<StateItems>
     }
 
     // 2. Try to take checkout from local storage
-    const checkoutModel: ICheckoutModel | null = this.repository.getCheckout();
+    const checkoutModel: ICheckoutModel | null = this.localStorageHandler.getCheckout();
 
     if (checkoutModel) {
       this.onCheckoutUpdate(checkoutModel);
     } else {
-      this.repository.setCheckout({});
+      this.localStorageHandler.setCheckout({});
     }
   };
 
@@ -153,12 +155,12 @@ export class SaleorState extends NamedObservable<StateItems>
     }
 
     // 2. Try to take checkout from local storage
-    const paymentModel: ICheckoutModel | null = this.repository.getPayment();
+    const paymentModel: ICheckoutModel | null = this.localStorageHandler.getPayment();
 
     if (paymentModel) {
       this.onPaymentUpdate(paymentModel);
     } else {
-      this.repository.setPayment({});
+      this.localStorageHandler.setPayment({});
     }
   };
 
@@ -168,7 +170,7 @@ export class SaleorState extends NamedObservable<StateItems>
       type: DataErrorCheckoutTypes
     ) => any
   ) => {
-    const { data, error } = await this.networkManager.getPaymentGateways();
+    const { data, error } = await this.apolloClientManager.getPaymentGateways();
 
     if (error) {
       onError(error, DataErrorCheckoutTypes.GET_PAYMENT_GATEWAYS);

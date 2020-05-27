@@ -54,7 +54,7 @@ export interface CategoryDetails_category {
 
 export interface CategoryDetails {
   /**
-   * Look up a category by ID.
+   * Look up a category by ID or slug.
    */
   category: CategoryDetails_category | null;
 }

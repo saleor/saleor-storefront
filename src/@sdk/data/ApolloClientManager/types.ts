@@ -6,7 +6,7 @@ import {
   ICheckoutModelLine,
   IOrderModel,
   IPaymentModel,
-} from "@sdk/repository";
+} from "@temp/@sdk/helpers/LocalStorageHandler";
 
 export enum PendingSaveItems {
   UPDATE_CART = "updateCart",
@@ -21,61 +21,61 @@ export interface ApolloErrorWithUserInput extends ApolloError {
   };
 }
 
-export interface INetworkManagerResponse<T> {
+export interface IApolloClientManagerResponse<T> {
   data?: T;
   error?: ApolloErrorWithUserInput;
 }
 
-export interface INetworkManager {
+export interface IApolloClientManager {
   getCheckout: (
     checkoutToken: string | null
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   getRefreshedCheckoutLines: (
     checkoutlines: ICheckoutModelLine[] | null
-  ) => Promise<INetworkManagerResponse<ICheckoutModelLine[]>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModelLine[]>>;
   createCheckout: (
     email: string,
     lines: Array<{ variantId: string; quantity: number }>,
     shippingAddress: ICheckoutAddress,
     billingAddress?: ICheckoutAddress
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   setCartItem: (
     checkout: ICheckoutModel
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   setBillingAddress: (
     billingAddress: ICheckoutAddress,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   setBillingAddressWithEmail: (
     billingAddress: ICheckoutAddress,
     email: string,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   setShippingAddress: (
     shippingAddress: ICheckoutAddress,
     email: string,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   setShippingMethod: (
     shippingMethodId: string,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   addPromoCode: (
     promoCode: string,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   removePromoCode: (
     promoCode: string,
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<ICheckoutModel>>;
+  ) => Promise<IApolloClientManagerResponse<ICheckoutModel>>;
   createPayment: (
     amount: number,
     checkoutId: string,
     paymentGateway: string,
     paymentToken: string,
     billingAddress: ICheckoutAddress
-  ) => Promise<INetworkManagerResponse<IPaymentModel>>;
+  ) => Promise<IApolloClientManagerResponse<IPaymentModel>>;
   completeCheckout: (
     checkoutId: string
-  ) => Promise<INetworkManagerResponse<IOrderModel>>;
+  ) => Promise<IApolloClientManagerResponse<IOrderModel>>;
 }

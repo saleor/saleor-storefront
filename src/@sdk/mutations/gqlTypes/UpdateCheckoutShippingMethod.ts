@@ -8,19 +8,6 @@ import { CheckoutErrorCode } from "./../../gqlTypes/globalTypes";
 // GraphQL mutation operation: UpdateCheckoutShippingMethod
 // ====================================================
 
-export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors {
-  __typename: "Error";
-  /**
-   * Name of a field that caused the error. A value of `null` indicates that the
-   * error isn't associated with a particular field.
-   */
-  field: string | null;
-  /**
-   * The error message.
-   */
-  message: string | null;
-}
-
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout_totalPrice_gross {
   __typename: "Money";
   /**
@@ -559,8 +546,12 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
   voucherCode: string | null;
 }
 
-export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors {
+export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors {
   __typename: "CheckoutError";
+  /**
+   * The error code.
+   */
+  code: CheckoutErrorCode;
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -570,23 +561,15 @@ export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_check
    * The error message.
    */
   message: string | null;
-  /**
-   * The error code.
-   */
-  code: CheckoutErrorCode;
 }
 
 export interface UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate {
   __typename: "CheckoutShippingMethodUpdate";
   /**
-   * List of errors that occurred executing the mutation.
-   */
-  errors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors[];
-  /**
    * An updated checkout.
    */
   checkout: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkout | null;
-  checkoutErrors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_checkoutErrors[];
+  errors: UpdateCheckoutShippingMethod_checkoutShippingMethodUpdate_errors[];
 }
 
 export interface UpdateCheckoutShippingMethod {

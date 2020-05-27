@@ -1,6 +1,9 @@
 import { ErrorListener } from "@sdk/helpers";
+import {
+  ICheckoutModel,
+  IPaymentModel,
+} from "@sdk/helpers/LocalStorageHandler";
 import { JobsManager } from "@sdk/jobs";
-import { ICheckoutModel, IPaymentModel } from "@sdk/repository";
 import { SaleorState } from "@sdk/state";
 import { StateItems } from "@sdk/state/types";
 
