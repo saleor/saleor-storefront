@@ -23,3 +23,4 @@ export const collectionSpecification = `${baseUrl}collections/cabinets/:id/:slug
 export const collectionItemsIncluded = `${baseUrl}collections/cabinets/:id/:slug/cabinet-parts`;
 export const collectionSamples = `${baseUrl}collections/cabinets/:id/:slug/samples`;
 export const orderSamples = `${baseUrl}collections/samples`;
+export const myAccount = `${baseUrl}my-account`;

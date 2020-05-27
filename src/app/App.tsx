@@ -6,7 +6,7 @@ import { RouteComponentProps } from "react-router";
 import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
 import { isPath } from "../core/utils";
 import { orderConfirmationUrl, Routes } from "./routes";
-import './scss/app.scss';
+import "./scss/app.scss";
 
 const App: React.FC<RouteComponentProps> = ({
   history: {
@@ -18,14 +18,15 @@ const App: React.FC<RouteComponentProps> = ({
   return (
     <>
       <MetaConsumer />
-      <div className={pathname === '/' ? "home-page__root" : ''}>
-        {pathname === '/' &&
+      <div className={pathname === "/" ? "home-page__root" : ""}>
+        {pathname === "/" && (
           <header>
-            <MainMenu/>
+            <MainMenu />
           </header>
-        }
+        )}
         <Routes />
-        {(!orderConfirmationPage && pathname === '/')  && <Footer />}
+        {!orderConfirmationPage &&
+          (pathname === "/" || pathname === "/my-account") && <Footer />}
         <OverlayManager />
       </div>
     </>

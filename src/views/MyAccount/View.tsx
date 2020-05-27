@@ -4,7 +4,7 @@ import Page from "./Page";
 
 type ViewProps = RouteComponentProps<{ id: string }>;
 
-const View: React.FC<ViewProps> = ({ match, history }) => {
+export const View: React.FC<ViewProps> = ({ match, history }) => {
   return (
     <div className="home-page">
       <div>

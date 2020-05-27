@@ -22,12 +22,14 @@ import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 import { ViewDetails } from "../../views/CollectionIndex/ViewDetails";
 import { OrderSamples } from "../../views/Samples";
+import { MyAccount } from "../../views/MyAccount";
 
 import * as paths from "./paths";
 
 export const Routes: React.FC = () => (
   <Switch>
     <Route exact path={paths.baseUrl} component={HomePage} />
+    <Route path={paths.myAccount} component={MyAccount} />
     <Route path={paths.searchUrl} component={SearchPage} />
     <Route path={paths.categoryUrl} component={CategoryPage} />
     <Route path={paths.collectionUrl} component={CollectionPage} />

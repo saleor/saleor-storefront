@@ -1,0 +1,35 @@
+@import "../../../globalStyles/scss/variables";
+
+.account-page-wrapper {
+  min-height: 100vh;
+  background-color: $alabaster;
+
+  .browse-cabinet__header {
+    padding: 1.0625rem;
+    height: 3.75rem;
+    .injected-svg {
+      g {
+        path {
+          fill: $dark-gray;
+        }
+      }
+    }
+  }
+  .myAccount-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &-link {
+      display: flex;
+      align-items: center;
+      padding: 1.875rem 1.25rem;
+      background-color: #f2f2f2;
+      &--btn {
+        margin-left: 1.375rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: $dark-gray;
+      }
+    }
+  }
+}
