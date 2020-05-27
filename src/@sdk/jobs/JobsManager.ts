@@ -153,7 +153,7 @@ export class JobsManager {
     const jobGroupString = jobGroup.toString();
     const jobNameString = jobName.toString();
 
-    const jobGroupObject = jobs ? jobs[jobGroupString] : null;
+    const jobGroupObject = jobs ? jobs[jobGroup] : null;
 
     this.localStorageHandler.setJobs({
       ...jobs,
@@ -169,18 +169,22 @@ export class JobsManager {
 
     if (jobs) {
       Object.keys(jobs).forEach(jobGroupString => {
-        const jobGroup = jobs[jobGroupString];
+        const jobGroupKey = jobGroupString as keyof IQueuedJobs;
+        const jobGroup = jobs[jobGroupKey];
 
-        Object.keys(jobGroup).forEach(jobNameString => {
-          const jobNameState = jobGroup[jobNameString];
+        if (jobGroup) {
+          Object.keys(jobGroup).forEach(jobNameString => {
+            const jobNameKey = jobNameString as keyof QueuedJobs[keyof IQueuedJobs];
+            const jobNameState = jobGroup[jobNameKey];
 
-          if (jobNameState) {
-            this.addToQueue(
-              jobGroupString as keyof IQueuedJobs,
-              jobNameString as keyof QueuedJobs[keyof IQueuedJobs]
-            );
-          }
-        });
+            if (jobNameState) {
+              this.addToQueue(
+                jobGroupString as keyof IQueuedJobs,
+                jobNameString as keyof QueuedJobs[keyof IQueuedJobs]
+              );
+            }
+          });
+        }
       });
     }
   }
