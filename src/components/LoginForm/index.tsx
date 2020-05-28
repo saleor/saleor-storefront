@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { useSignIn } from "@sdk/react";
+import { useSignIn } from "@saleor/sdk";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
@@ -43,7 +43,11 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           required
         />
         <div className="login-form__button">
-          <Button dataCy="submitLoginFormButton" type="submit" {...(loading && { disabled: true })}>
+          <Button
+            dataCy="submitLoginFormButton"
+            type="submit"
+            {...(loading && { disabled: true })}
+          >
             {loading ? "Loading" : "Sign in"}
           </Button>
         </div>

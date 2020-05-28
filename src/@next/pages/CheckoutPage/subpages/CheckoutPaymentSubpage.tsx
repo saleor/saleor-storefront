@@ -10,7 +10,7 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress, ICardData, IFormError } from "@types";

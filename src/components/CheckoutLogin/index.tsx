@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router";
 
-import { useUserDetails } from "@sdk/react";
+import { useUserDetails } from "@saleor/sdk";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 

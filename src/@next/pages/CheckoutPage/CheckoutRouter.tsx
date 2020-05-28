@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 
 import { useCheckoutStepFromPath, useCheckoutStepState } from "@hooks";
-import { IItems } from "@sdk/api/Cart/types";
-import { ICheckout, IPayment } from "@sdk/api/Checkout/types";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 
 interface IRouterProps {

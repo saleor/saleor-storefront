@@ -5,7 +5,7 @@ import {
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
-import { useCart, useSignOut, useUserDetails } from "@sdk/react";
+import { useCart, useSignOut, useUserDetails } from "@saleor/sdk";
 
 import Media from "react-media";
 import { Link } from "react-router-dom";
@@ -96,60 +96,62 @@ const MainMenu: React.FC = () => {
                       }
                     />
                     <Online>
-                <Media
-                  query={{ maxWidth: smallScreen }}
-                  render={() => (
-                    <>
-                      {user ? (
-                        <MenuDropdown
-                          suffixClass={'__rightdown'}
-                          head={
-                            <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userImg} />
-                            </li>
-                          }
-                          content={
-                            <ul className="main-menu__dropdown">
-                              <li data-cy="mobileMenuMyAccountLink">
-                                <Link to={appPaths.accountUrl}>My Account</Link>
-                              </li>
-                              <li data-cy="mobileMenuOrderHistoryLink">
-                                <Link to={appPaths.orderHistoryUrl}>
-                                  Order history
-                                </Link>
-                              </li>
-                              <li data-cy="mobileMenuAddressBookLink">
-                                <Link to={appPaths.addressBookUrl}>
-                                  Address book
-                                </Link>
-                              </li>
+                      <Media
+                        query={{ maxWidth: smallScreen }}
+                        render={() => (
+                          <>
+                            {user ? (
+                              <MenuDropdown
+                                suffixClass={"__rightdown"}
+                                head={
+                                  <li className="main-menu__icon main-menu__user--active">
+                                    <ReactSVG path={userImg} />
+                                  </li>
+                                }
+                                content={
+                                  <ul className="main-menu__dropdown">
+                                    <li data-cy="mobileMenuMyAccountLink">
+                                      <Link to={appPaths.accountUrl}>
+                                        My Account
+                                      </Link>
+                                    </li>
+                                    <li data-cy="mobileMenuOrderHistoryLink">
+                                      <Link to={appPaths.orderHistoryUrl}>
+                                        Order history
+                                      </Link>
+                                    </li>
+                                    <li data-cy="mobileMenuAddressBookLink">
+                                      <Link to={appPaths.addressBookUrl}>
+                                        Address book
+                                      </Link>
+                                    </li>
+                                    <li
+                                      onClick={handleSignOut}
+                                      data-cy="mobileMenuLogoutLink"
+                                    >
+                                      Log Out
+                                    </li>
+                                  </ul>
+                                }
+                              />
+                            ) : (
                               <li
-                                onClick={handleSignOut}
-                                data-cy="mobileMenuLogoutLink"
+                                data-cy="mobileMenuLoginLink"
+                                className="main-menu__icon"
+                                onClick={() =>
+                                  overlayContext.show(
+                                    OverlayType.login,
+                                    OverlayTheme.left
+                                  )
+                                }
                               >
-                                Log Out
+                                <ReactSVG path={userImg} />
                               </li>
-                            </ul>
-                          }
-                        />
-                      ) : (
-                        <li
-                          data-cy="mobileMenuLoginLink"
-                          className="main-menu__icon"
-                          onClick={() =>
-                            overlayContext.show(
-                              OverlayType.login,
-                              OverlayTheme.left
-                            )
-                          }
-                        >
-                          <ReactSVG path={userImg} />
-                        </li>
-                      )}
-                    </>
-                  )}
-                />
-              </Online>
+                            )}
+                          </>
+                        )}
+                      />
+                    </Online>
                   </ul>
                 );
               }}

@@ -1,11 +1,10 @@
+import { setAuthToken, useSetPassword } from "@saleor/sdk";
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { setAuthToken } from "@sdk/auth";
-import { useSetPassword } from "@sdk/react";
 import { BASE_URL } from "@temp/core/config";
 
 import { ResetPasswordForm } from "@components/molecules";

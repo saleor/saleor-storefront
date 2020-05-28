@@ -1,4 +1,4 @@
-import { ICheckoutModelLine } from "@sdk/helpers";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 

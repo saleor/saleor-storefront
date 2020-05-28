@@ -1,4 +1,4 @@
-import { ProductList_products_edges_node } from "@sdk/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 

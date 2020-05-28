@@ -1,3 +1,4 @@
+import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -6,9 +7,8 @@ import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { UserDetails_me } from "@sdk/queries/gqlTypes/UserDetails";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { BASE_URL } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 

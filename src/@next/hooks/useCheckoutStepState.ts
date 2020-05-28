@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { IItems } from "@sdk/api/Cart/types";
-import { ICheckout, IPayment } from "@sdk/api/Checkout/types";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CheckoutStep } from "@temp/core/config";
 
 export const useCheckoutStepState = (

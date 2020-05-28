@@ -2,7 +2,7 @@ import * as React from "react";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
 
-import { useUserDetails } from "@sdk/react";
+import { useUserDetails } from "@saleor/sdk";
 import { smallScreen } from "@styles/constants";
 import AddressBook from "../../account/AddressBook/AddressBook";
 

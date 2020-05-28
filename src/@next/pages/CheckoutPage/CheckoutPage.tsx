@@ -5,8 +5,8 @@ import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import { CartSummary } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { useCart, useCheckout } from "@sdk/react";
+import { useCart, useCheckout } from "@saleor/sdk";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { ITaxedMoney } from "@types";
 
@@ -82,7 +82,11 @@ const getCheckoutProgress = (
 const getButton = (text: string, onClick: () => void) => {
   if (text) {
     return (
-      <Button dataCy="checkoutPageNextStepButton" onClick={onClick} type="submit">
+      <Button
+        dataCy="checkoutPageNextStepButton"
+        onClick={onClick}
+        type="submit"
+      >
         {text}
       </Button>
     );

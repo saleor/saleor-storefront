@@ -11,7 +11,6 @@
     "paths": {
       "@temp/*": ["./src/*"],
       "@app/*": ["./src/@next/*"],
-      "@sdk/*": ["./src/@sdk/*"],
       "@components/*": ["./src/@next/components/*"],
       "@components/atoms": ["./src/@next/components/atoms/index.ts"],
       "@components/molecules": ["./src/@next/components/molecules/index.ts"],
