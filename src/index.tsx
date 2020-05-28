@@ -17,12 +17,12 @@ import {
   ServiceWorkerProvider,
 } from "@components/containers";
 import {
-  SaleorProvider,
-  useAuth,
-  createSaleorClient,
   authLink,
+  createSaleorClient,
   fireSignOut,
   invalidTokenLinkWithTokenHandler,
+  SaleorProvider,
+  useAuth,
 } from "@saleor/sdk";
 import { defaultTheme, GlobalStyle } from "@styles";
 
