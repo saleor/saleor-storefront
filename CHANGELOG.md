@@ -4,6 +4,10 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 2.10.2
+
+- Fix fetching `quantityAvailable` field - #738 by @AlicjaSzu
+
 ## 2.10.1
 
 - Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
