@@ -3,10 +3,10 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { useSignIn } from "@saleor/sdk";
+import { demoMode } from "@temp/constants";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
-import { demoMode } from "@temp/constants";
 
 interface ILoginForm {
   hide?: () => void;
