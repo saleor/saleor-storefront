@@ -7,6 +7,10 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
 - Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
 
+## 2.10.2
+
+- Fix fetching `quantityAvailable` field - #738 by @AlicjaSzu
+
 ## 2.10.1
 
 - Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
