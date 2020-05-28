@@ -294,7 +294,6 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
     >
       <div
         className="c3"
-        data-cy="filter-sidebar"
       >
         <div
           className="c4"

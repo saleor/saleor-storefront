@@ -79,6 +79,7 @@ exports[`Storyshots @components/atoms/Input default 1`] = `
     >
       <input
         className="c3"
+        data-cy="test"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -176,6 +177,7 @@ exports[`Storyshots @components/atoms/Input disabled 1`] = `
     >
       <input
         className="c3"
+        data-cy="test"
         disabled={true}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -273,6 +275,7 @@ exports[`Storyshots @components/atoms/Input error 1`] = `
     >
       <input
         className="c3"
+        data-cy="test"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}
@@ -381,6 +384,7 @@ exports[`Storyshots @components/atoms/Input with value 1`] = `
     >
       <input
         className="c3"
+        data-cy="test"
         disabled={false}
         onBlur={[Function]}
         onFocus={[Function]}

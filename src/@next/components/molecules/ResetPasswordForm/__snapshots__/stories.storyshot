@@ -197,6 +197,7 @@ exports[`Storyshots @components/molecules/ResetPasswordForm default 1`] = `
             >
               <input
                 className="c6"
+                data-cy="resetPasswordFormPasswordField"
                 disabled={false}
                 name="password"
                 onBlur={[Function]}
@@ -228,6 +229,7 @@ exports[`Storyshots @components/molecules/ResetPasswordForm default 1`] = `
             >
               <input
                 className="c6"
+                data-cy="resetPasswordFormRetypedPasswordField"
                 disabled={false}
                 name="retypedPassword"
                 onBlur={[Function]}

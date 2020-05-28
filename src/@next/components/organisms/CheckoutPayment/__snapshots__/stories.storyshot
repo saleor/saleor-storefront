@@ -348,7 +348,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="given-name"
                     className="c12"
-                    data-cy="addressFormFirstName"
+                    data-cy="addressFormFirstNameField"
                     disabled={false}
                     name="firstName"
                     onBlur={[Function]}
@@ -380,7 +380,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="family-name"
                     className="c12"
-                    data-cy="addressFormLastName"
+                    data-cy="addressFormLastNameField"
                     disabled={false}
                     name="lastName"
                     onBlur={[Function]}
@@ -416,7 +416,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="organization"
                     className="c12"
-                    data-cy="addressFormCompanyName"
+                    data-cy="addressFormCompanyNameField"
                     disabled={false}
                     name="companyName"
                     onBlur={[Function]}
@@ -448,7 +448,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="tel"
                     className="c12"
-                    data-cy="addressFormPhone"
+                    data-cy="addressFormPhoneField"
                     disabled={false}
                     name="phone"
                     onBlur={[Function]}
@@ -484,7 +484,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-line1"
                     className="c12"
-                    data-cy="addressFormStreetAddress1"
+                    data-cy="addressFormStreetAddress1Field"
                     disabled={false}
                     name="streetAddress1"
                     onBlur={[Function]}
@@ -520,7 +520,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-line2"
                     className="c12"
-                    data-cy="addressFormStreetAddress2"
+                    data-cy="addressFormStreetAddress2Field"
                     disabled={false}
                     name="streetAddress2"
                     onBlur={[Function]}
@@ -556,7 +556,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-level1"
                     className="c12"
-                    data-cy="addressFormCity"
+                    data-cy="addressFormCityField"
                     disabled={false}
                     name="city"
                     onBlur={[Function]}
@@ -588,7 +588,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="postal-code"
                     className="c12"
-                    data-cy="addressFormPostalCode"
+                    data-cy="addressFormPostalCodeField"
                     disabled={false}
                     name="postalCode"
                     onBlur={[Function]}

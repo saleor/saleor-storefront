@@ -46,6 +46,7 @@ exports[`Storyshots @components/molecules/OverlayItem default 1`] = `
 >
   <div
     className="c1"
+    data-cy="test"
     disabled={false}
     selected={false}
   >
@@ -104,6 +105,7 @@ exports[`Storyshots @components/molecules/OverlayItem selected 1`] = `
 >
   <div
     className="c1"
+    data-cy="test"
     disabled={false}
     selected={true}
   >

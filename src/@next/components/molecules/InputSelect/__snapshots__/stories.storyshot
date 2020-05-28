@@ -96,6 +96,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
                   autoCapitalize="none"
                   autoComplete="off"
                   autoCorrect="off"
+                  data-cy="test"
                   disabled={false}
                   id="react-select-4-input"
                   onBlur={[Function]}

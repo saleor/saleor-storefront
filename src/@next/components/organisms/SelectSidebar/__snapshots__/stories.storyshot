@@ -288,6 +288,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -301,6 +302,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c10"
+              data-cy="variantPickerSidebar7 1/8Option"
               disabled={false}
               onClick={[Function]}
               selected={true}
@@ -324,6 +326,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 1/4Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -337,6 +340,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 3/84Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -350,6 +354,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c12"
+              data-cy="variantPickerSidebar7 1/2Option"
               disabled={true}
               onClick={[Function]}
               selected={false}
@@ -363,6 +368,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 5/8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -376,6 +382,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 3/4Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -389,6 +396,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 7/8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -402,6 +410,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -735,6 +744,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -748,6 +758,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c10"
+              data-cy="variantPickerSidebar7 1/8Option"
               disabled={false}
               onClick={[Function]}
               selected={true}
@@ -771,6 +782,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 1/4Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -784,6 +796,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 3/84Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -797,6 +810,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c12"
+              data-cy="variantPickerSidebar7 1/2Option"
               disabled={true}
               onClick={[Function]}
               selected={false}
@@ -810,6 +824,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 5/8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -823,6 +838,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 3/4Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -836,6 +852,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar7 7/8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -849,6 +866,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-cy="variantPickerSidebar8Option"
               disabled={false}
               onClick={[Function]}
               selected={false}
