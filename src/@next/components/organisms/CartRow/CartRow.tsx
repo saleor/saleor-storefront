@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Icon, IconButton } from "@components/atoms";
 import { CachedImage, TextField } from "@components/molecules";
+
+import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -39,6 +42,7 @@ export const CartRow: React.FC<IProps> = ({
   thumbnail,
   attributes = [],
   onRemove,
+  id,
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
@@ -92,13 +96,19 @@ export const CartRow: React.FC<IProps> = ({
       ]
     : undefined;
 
+  const productUrl = generateProductUrl(id, name);
+
   return (
     <S.Wrapper>
       <S.Photo>
-        <CachedImage data-cy={`cartPageItem${index}Image`} {...thumbnail} />
+        <Link to={productUrl}>
+          <CachedImage data-cy={`cartPageItem${index}Image`} {...thumbnail} />
+        </Link>
       </S.Photo>
       <S.Description>
-        <S.Name data-cy={`cartPageItem${index}Name`}>{name}</S.Name>
+        <Link to={productUrl}>
+          <S.Name data-cy={`cartPageItem${index}Name`}>{name}</S.Name>
+        </Link>
         <S.Sku>
           <S.LightFont>
             SKU:{" "}
