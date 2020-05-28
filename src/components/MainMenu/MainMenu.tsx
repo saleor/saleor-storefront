@@ -129,7 +129,7 @@ const MainMenu: React.FC = () => {
                                       onClick={handleSignOut}
                                       data-cy="mobileMenuLogoutLink"
                                     >
-                                      <ReactSVG path={userImg} />
+                                      Log Out
                                     </li>
                                   </ul>
                                 }
