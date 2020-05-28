@@ -8,12 +8,27 @@ module.exports = ({ sourceDir, distDir }) => ({
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /^((?!\.module).)*(scss|css)$/,
         use: [
           "style-loader",
           {
             loader: "css-loader",
             options: { sourceMap: true }
+          },
+          { loader: "sass-loader" }
+        ]
+      },
+      {
+        test: /\.module.(scss|css)$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: true,
+              localIdentName: "[name]__[local]___[hash:base64:5]"
+            }
           },
           { loader: "sass-loader" }
         ]
