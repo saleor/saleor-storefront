@@ -83,7 +83,6 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
 >
   <div
     className="c1"
-    data-cy="dropdown-select"
   >
     <div
       className="c2"
@@ -94,7 +93,6 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
       >
         <div
           className="c3"
-          data-cy="dropdown-select-input"
           onClick={[Function]}
         >
           <span

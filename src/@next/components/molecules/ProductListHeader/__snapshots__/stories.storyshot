@@ -167,7 +167,6 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       >
         <button
           className="c4"
-          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -210,7 +209,6 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
           >
             <div
               className="c10"
-              data-cy="dropdown-select"
             >
               <div
                 className="c11"
@@ -221,7 +219,6 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                 >
                   <div
                     className="c12"
-                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span
@@ -444,7 +441,6 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       >
         <button
           className="c4"
-          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -498,7 +494,6 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
           >
             <div
               className="c11"
-              data-cy="dropdown-select"
             >
               <div
                 className="c12"
@@ -509,7 +504,6 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                 >
                   <div
                     className="c13"
-                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span

@@ -116,6 +116,7 @@ exports[`Storyshots @components/atoms/Checkbox default 1`] = `
       className="c3"
     >
       <input
+        data-cy="test"
         name="default-checkbox"
         readOnly={true}
         tabIndex={-1}

@@ -20,7 +20,7 @@ export const ProductListHeader: React.FC<IProps> = ({
     <S.Wrapper>
       <S.Bar>
         <S.LeftSide>
-          <S.FiltersButton onClick={openFiltersMenu} data-cy="filters__button">
+          <S.FiltersButton onClick={openFiltersMenu} data-cy="productListFiltersButton">
             <Icon name="filter" size={24} />
             <S.Filters>
               FILTERS{" "}

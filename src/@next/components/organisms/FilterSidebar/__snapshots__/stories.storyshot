@@ -335,6 +335,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             >
               <input
                 checked={true}
+                data-cy="filtersize41Checkbox"
                 name="size"
                 readOnly={true}
                 tabIndex={-1}
@@ -358,6 +359,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             >
               <input
                 checked={false}
+                data-cy="filtersize42Checkbox"
                 name="size"
                 readOnly={true}
                 tabIndex={-1}
@@ -381,6 +383,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             >
               <input
                 checked={false}
+                data-cy="filtersize43Checkbox"
                 name="size"
                 readOnly={true}
                 tabIndex={-1}
@@ -404,6 +407,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             >
               <input
                 checked={false}
+                data-cy="filtersize44Checkbox"
                 name="size"
                 readOnly={true}
                 tabIndex={-1}
@@ -427,6 +431,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             >
               <input
                 checked={false}
+                data-cy="filtersize45Checkbox"
                 name="size"
                 readOnly={true}
                 tabIndex={-1}
