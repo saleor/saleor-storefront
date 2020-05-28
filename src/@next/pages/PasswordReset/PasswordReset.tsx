@@ -4,8 +4,8 @@ import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { setAuthToken } from "@saleor/sdk/auth";
-import { useSetPassword } from "@saleor/sdk/react";
+import { setAuthToken } from "@saleor/sdk";
+import { useSetPassword } from "@saleor/sdk";
 import { BASE_URL } from "@temp/core/config";
 
 import { ResetPasswordForm } from "@components/molecules";

@@ -5,7 +5,7 @@ import {
 } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
 
-import { useCart, useSignOut, useUserDetails } from "@saleor/sdk/react";
+import { useCart, useSignOut, useUserDetails } from "@saleor/sdk";
 
 import Media from "react-media";
 import { Link } from "react-router-dom";

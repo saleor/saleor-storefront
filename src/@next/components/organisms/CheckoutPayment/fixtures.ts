@@ -1,4 +1,4 @@
-import { GetShop_shop_countries } from "@saleor/sdk/queries/gqlTypes/GetShop";
+import { GetShop_shop_countries } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
 import { IAddressWithAddressType, IPaymentGateway } from "@types";
 
 const address: IAddressWithAddressType = {

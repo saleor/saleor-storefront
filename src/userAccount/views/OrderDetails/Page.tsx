@@ -5,7 +5,7 @@ import { TaxedMoney } from "@components/containers";
 import {
   OrderDetail,
   OrderDetail_lines,
-} from "@sdk/fragments/gqlTypes/OrderDetail";
+} from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";

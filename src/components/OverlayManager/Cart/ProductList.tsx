@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { ICheckoutModelLine } from "@saleor/sdk/helpers";
 
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";

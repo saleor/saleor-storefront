@@ -16,7 +16,14 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import { SaleorProvider, useAuth } from "@saleor/sdk/react";
+import {
+  SaleorProvider,
+  useAuth,
+  createSaleorClient,
+  authLink,
+  fireSignOut,
+  invalidTokenLinkWithTokenHandler,
+} from "@saleor/sdk";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
@@ -29,13 +36,6 @@ import {
   serviceWorkerTimeout,
 } from "./constants";
 import { history } from "./history";
-
-import { createSaleorClient } from "@saleor/sdk";
-import {
-  authLink,
-  fireSignOut,
-  invalidTokenLinkWithTokenHandler,
-} from "@saleor/sdk/auth";
 
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
