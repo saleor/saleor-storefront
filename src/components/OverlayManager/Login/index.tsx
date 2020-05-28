@@ -47,6 +47,7 @@ class Login extends React.Component<
             <div className="overlay__header">
               <p className="overlay__header-text">Saleor account</p>
               <ReactSVG
+                data-cy="loginOverlayCloseButton"
                 path={closeImg}
                 onClick={hide}
                 className="overlay__header__close-icon"

@@ -21,6 +21,7 @@ const Message: React.FC<MessageProps> = ({
     <p className="message__title">{title}</p>
     {children ? <div className="message__content">{children}</div> : null}
     <ReactSVG
+      data-cy="messageCloseButton"
       path={closeImg}
       className="message__close-icon"
       onClick={onClose}

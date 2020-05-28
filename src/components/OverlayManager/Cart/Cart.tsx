@@ -68,6 +68,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
               </span>
             </div>
             <ReactSVG
+              data-cy="cartOverlayCloseButton"
               path={closeImg}
               onClick={overlay.hide}
               className="overlay__header__close-icon"

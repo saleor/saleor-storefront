@@ -23,6 +23,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
         <div className="overlay__header">
           <p className="overlay__header-text">Reset your password</p>
           <ReactSVG
+            data-cy="passwordResetOverlayCloseButton"
             path={closeImg}
             onClick={overlay.hide}
             className="overlay__header__close-icon"

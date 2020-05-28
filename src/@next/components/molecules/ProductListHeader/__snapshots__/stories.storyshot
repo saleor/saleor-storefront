@@ -167,6 +167,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       >
         <button
           className="c4"
+          data-cy="productListFiltersButton"
           onClick={[Function]}
         >
           <svg
@@ -441,6 +442,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       >
         <button
           className="c4"
+          data-cy="productListFiltersButton"
           onClick={[Function]}
         >
           <svg
