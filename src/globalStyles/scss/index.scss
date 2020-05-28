@@ -38,6 +38,14 @@ body {
     line-height: 1.5rem;
   }
 
+  strong {
+    font-weight: $bold-font-weight;
+  }
+
+  em {
+    font-style: italic;
+  }
+
   #root {
     display: flex;
     min-height: 100vh;
