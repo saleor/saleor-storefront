@@ -100,6 +100,7 @@ export const InputSelect: React.FC<IProps> = ({
 
   return (
     <Select
+      dataCy={dataCy}
       customComponents={customComponents}
       {...props}
       customStyles={customStyles}

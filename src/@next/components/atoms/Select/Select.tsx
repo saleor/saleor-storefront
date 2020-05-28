@@ -38,6 +38,7 @@ const optionStyle = (customTheme: any) => ({
 });
 
 export const Select: React.FC<IProps> = ({
+  dataCy,
   value,
   onChange,
   clearable,
@@ -64,6 +65,7 @@ export const Select: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <ReactSelect
+        data-cy={dataCy}
         defaultValue={defaultValue}
         onChange={handleChange}
         value={value}

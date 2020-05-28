@@ -3,4 +3,5 @@ export interface IProps {
   checked?: boolean;
   onChange?: (event: React.SyntheticEvent) => void;
   children?: React.ReactNode;
+  dataCy: string;
 }

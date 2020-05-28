@@ -7,6 +7,7 @@ import { DropdownSelect } from ".";
 import * as S from "./styles";
 
 const DEFAULT_PROPS = {
+  dataCy: "test",
   options: [
     {
       label: "Alphabetically",

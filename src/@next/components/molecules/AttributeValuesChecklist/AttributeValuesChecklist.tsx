@@ -25,6 +25,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
           } else {
             return (
               <Checkbox
+                dataCy={`filter${name}${value.name}Checkbox`}
                 name={name}
                 checked={!!value.selected}
                 onChange={() => onValueClick(value)}

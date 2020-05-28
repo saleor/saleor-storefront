@@ -25,7 +25,8 @@ const Container = () => {
   const [value, setValue] = React.useState();
   return (
     <Select
-      value={value}
+    dataCy="test"  
+    value={value}
       onChange={value => setValue(value)}
       {...DEFAULT_PROPS}
     />

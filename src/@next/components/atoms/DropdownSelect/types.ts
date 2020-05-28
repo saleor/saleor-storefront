@@ -3,4 +3,5 @@ export interface IProps {
   value: any;
   options: any;
   name?: any;
+  dataCy: string;
 }

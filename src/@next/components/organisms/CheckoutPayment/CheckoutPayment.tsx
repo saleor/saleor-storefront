@@ -92,7 +92,7 @@ const CheckoutPayment: React.FC<IProps> = ({
         <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
         {billingAsShippingPossible && (
           <Checkbox
-            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            dataCy="checkoutPaymentBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
             checked={billingAsShippingAddress}
             onChange={() =>
@@ -139,7 +139,7 @@ const CheckoutPayment: React.FC<IProps> = ({
       <section>
         <S.Title data-cy="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
         <Checkbox
-          data-cy="checkoutPaymentPromoCodeCheckbox"
+          dataCy="checkoutPaymentPromoCodeCheckbox"
           name="payment-promo-code"
           checked={showPromoCodeForm}
           onChange={handleChangeShowPromoCodeForm}

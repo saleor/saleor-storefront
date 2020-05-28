@@ -44,6 +44,7 @@ export const ProductListHeader: React.FC<IProps> = ({
           <S.Element>
             <S.Sort>
               <DropdownSelect
+                dataCy="productListSortByDropdownSelect"
                 onChange={onChange}
                 options={sortOptions}
                 value={sortOptions.find(

@@ -7,6 +7,7 @@ const ENTER_KEY: number = 13;
 const SPACE_KEY: number = 32;
 
 export const Checkbox: React.FC<IProps> = ({
+  dataCy,
   name,
   checked,
   onChange = () => null,
@@ -29,6 +30,7 @@ export const Checkbox: React.FC<IProps> = ({
       <S.Label>
         <input
           {...props}
+          data-cy={dataCy}
           tabIndex={-1}
           type="checkbox"
           name={name}

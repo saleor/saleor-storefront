@@ -20,7 +20,7 @@ const options = [
 
 const Container = () => {
   const [value, setValue] = React.useState();
-  return <DropdownSelect options={options} value={value} onChange={setValue} />;
+  return <DropdownSelect dataCy="test" options={options} value={value} onChange={setValue} />;
 };
 
 storiesOf("@components/atoms/DropdownSelect", module)

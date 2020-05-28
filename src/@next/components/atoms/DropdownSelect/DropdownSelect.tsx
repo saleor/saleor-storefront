@@ -11,6 +11,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const DropdownSelect: React.FC<IProps> = ({
+  dataCy,
   options,
   name,
   value,
@@ -24,7 +25,6 @@ export const DropdownSelect: React.FC<IProps> = ({
   const customComponents = {
     Control: () => (
       <S.SortLine
-        data-cy="dropdown-select-input"
         onClick={() => setMenuIsOpen(!menuIsOpen)}
       >
         <Label>Sort by:</Label>
@@ -43,8 +43,9 @@ export const DropdownSelect: React.FC<IProps> = ({
   };
 
   return (
-    <S.Wrapper data-cy="dropdown-select" ref={setElementRef()}>
+    <S.Wrapper ref={setElementRef()}>
       <Select
+        dataCy={dataCy}
         options={options}
         value={value}
         onChange={value => {

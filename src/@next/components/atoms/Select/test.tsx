@@ -5,6 +5,7 @@ import React from "react";
 import { Select } from "..";
 
 const DEFAULT_PROPS = {
+  dataCy: "test",
   defaultValue: { code: "PL", country: "Poland" },
   label: "label",
   name: "name",
