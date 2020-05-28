@@ -1,0 +1,37 @@
+.video-background {
+  background: #000;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: unsafe center;
+}
+
+.video-foreground,
+.video-background iframe {
+  min-height: 57vw;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 1920px) {
+  .video-background {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .video-background {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 800px) {
+  .video-background {
+    max-height: 190px;
+  }
+
+  .video-background iframe {
+    display: none;
+  }
+}
