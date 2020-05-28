@@ -2,7 +2,7 @@
 
 .footer {
   @media (max-width: $small-screen) {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 62px;
     background: #2a3330;
