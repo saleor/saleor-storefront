@@ -28,6 +28,7 @@ export const ResetPasswordForm: React.FC<IProps> = ({
       <form onSubmit={handleSubmit}>
         <S.InputFields>
           <TextField
+            dataCy="resetPasswordFormPasswordField"
             label="Password"
             name="password"
             onBlur={handleBlur}
@@ -46,6 +47,7 @@ export const ResetPasswordForm: React.FC<IProps> = ({
             }
           />
           <TextField
+            dataCy="resetPasswordFormRetypedPasswordField"
             label="Retype password"
             onBlur={handleBlur}
             name="retypedPassword"

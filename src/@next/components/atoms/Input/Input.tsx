@@ -8,6 +8,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const Input: React.FC<IProps> = ({
+  dataCy,
   onBlur,
   onFocus,
   contentLeft = null,
@@ -61,6 +62,7 @@ export const Input: React.FC<IProps> = ({
       <S.InputWrapper>
         <S.Input
           {...props}
+          data-cy={dataCy}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}

@@ -11,6 +11,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const InputSelect: React.FC<IProps> = ({
+  dataCy,
   label,
   inputProps,
   ...props
@@ -53,7 +54,6 @@ export const InputSelect: React.FC<IProps> = ({
       return (
         <>
           <components.Control
-            data-cy="input-select"
             {...{ customTheme, ...props }}
           />
           {
@@ -90,7 +90,7 @@ export const InputSelect: React.FC<IProps> = ({
       }
     },
     Input: (props: InputProps) => {
-      return <components.Input {...{ ...props, ...inputProps }} />;
+      return <components.Input data-cy={dataCy} {...{ ...props, ...inputProps }} />;
     },
     Option: (props: OptionProps<any>) => {
       const customTheme = React.useContext(ThemeContext);

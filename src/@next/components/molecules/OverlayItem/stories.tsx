@@ -5,5 +5,5 @@ import { OverlayItem } from ".";
 
 storiesOf("@components/molecules/OverlayItem", module)
   .addParameters({ component: OverlayItem })
-  .add("default", () => <OverlayItem>Item</OverlayItem>)
-  .add("selected", () => <OverlayItem selected>Item</OverlayItem>);
+  .add("default", () => <OverlayItem dataCy="test">Item</OverlayItem>)
+  .add("selected", () => <OverlayItem  dataCy="test" selected>Item</OverlayItem>);

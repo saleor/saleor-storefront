@@ -60,7 +60,7 @@ export const DiscountForm: React.FC<IProps> = ({
               <S.InputWithButton>
                 <S.InputWrapper>
                   <Input
-                    data-cy="checkoutPaymentPromoCodeInput"
+                    dataCy="checkoutPaymentPromoCodeInput"
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}

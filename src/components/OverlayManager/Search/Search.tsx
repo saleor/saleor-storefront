@@ -91,6 +91,7 @@ class Search extends React.Component<SearchProps, SearchState> {
         >
           <div className="search__input">
             <DebouncedTextField
+              dataCy="sidebarSearchField"
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={

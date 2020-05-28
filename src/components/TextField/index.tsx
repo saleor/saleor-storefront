@@ -20,6 +20,7 @@ export interface TextFieldProps
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   styleType?: Style;
+  dataCy: string;
 }
 
 const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
@@ -31,6 +32,7 @@ const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
   return baseClass.concat(errorsClass, iconLeftClass, styleTypeClass);
 };
 const TextField: React.FC<TextFieldProps> = ({
+  dataCy,
   label = "",
   iconLeft,
   iconRight,
@@ -44,6 +46,7 @@ const TextField: React.FC<TextFieldProps> = ({
     {iconRight ? <span className="input__icon-right">{iconRight}</span> : null}
     <div className="input__content">
       <input
+        data-cy={dataCy}
         {...rest}
         className={generateClassName({ errors, iconLeft, styleType })}
       />

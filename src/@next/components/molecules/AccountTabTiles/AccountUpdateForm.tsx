@@ -38,6 +38,7 @@ export const AccountUpdateForm: React.FC<{
               <S.ContentEditOneLine>
                 <S.ContentExtendInput>
                   <TextField
+                    dataCy="updateAccountFirstNameField"
                     name="firstName"
                     label="First Name"
                     type="text"
@@ -48,6 +49,7 @@ export const AccountUpdateForm: React.FC<{
                 </S.ContentExtendInput>
                 <S.ContentExtendInput>
                   <TextField
+                    dataCy="updateAccountLastNameField"
                     name="lastName"
                     label="Last Name"
                     type="text"

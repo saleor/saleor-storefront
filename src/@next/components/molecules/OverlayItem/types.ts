@@ -3,4 +3,5 @@ export interface IProps {
   selected?: boolean;
   disabled?: boolean;
   onClick?: () => void;
+  dataCy: string;
 }

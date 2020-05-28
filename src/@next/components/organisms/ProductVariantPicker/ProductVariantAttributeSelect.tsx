@@ -115,6 +115,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     return (
       <>
         <Input
+          dataCy={`variantPicker${productVariantsAttributeId}Field`}
           onFocus={() => setShowSelectSidebar(true)}
           label={selectLabel}
           value={selectedValue ? selectedValue.value : ""}
@@ -137,6 +138,7 @@ export const ProductVariantAttributeSelect: React.FC<{
   } else {
     return (
       <InputSelect
+        dataCy={`variantPicker${productVariantsAttributeId}Field`}
         name={productVariantsAttribute.attribute.id}
         label={selectLabel}
         value={selectedValue}

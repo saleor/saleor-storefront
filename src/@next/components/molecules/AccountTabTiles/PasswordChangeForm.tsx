@@ -73,6 +73,7 @@ export const PasswordChangeForm: React.FC<{
           return (
             <S.Form onSubmit={handleSubmit}>
               <TextField
+                dataCy="passwordChangeFormOldPasswordField"
                 name="oldPassword"
                 label="Old Password"
                 type="password"
@@ -86,6 +87,7 @@ export const PasswordChangeForm: React.FC<{
                 }
               />
               <TextField
+                dataCy="passwordChangeFormNewPasswordField"
                 name="newPassword"
                 label="New Password"
                 type="password"
@@ -99,6 +101,7 @@ export const PasswordChangeForm: React.FC<{
                 }
               />
               <TextField
+                dataCy="passwordChangeFormConfirmPasswordField"
                 name="confirmPassword"
                 label="Confirm Password"
                 type="password"

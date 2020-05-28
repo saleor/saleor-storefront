@@ -6,6 +6,7 @@ import { components } from "react-select";
 import { InputSelect } from ".";
 
 const DEFAULT_PROPS = {
+  dataCy: "testField",
   label: "Country",
   name: "country",
   onChange: jest.fn(),

@@ -38,7 +38,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField
-            data-cy="addressFormFirstName"
+            dataCy="addressFormFirstNameField"
             name="firstName"
             label="First Name"
             value={values!.firstName}
@@ -47,7 +47,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
-            data-cy="addressFormLastName"
+            dataCy="addressFormLastNameField"
             name="lastName"
             label="Last Name"
             value={values!.lastName}
@@ -58,7 +58,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <TextField
-            data-cy="addressFormCompanyName"
+            dataCy="addressFormCompanyNameField"
             name="companyName"
             label="Company Name (Optional)"
             value={values!.companyName}
@@ -67,7 +67,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
-            data-cy="addressFormPhone"
+            dataCy="addressFormPhoneField"
             name="phone"
             label="Phone"
             value={values!.phone}
@@ -78,7 +78,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithOneCell>
           <TextField
-            data-cy="addressFormStreetAddress1"
+            dataCy="addressFormStreetAddress1Field"
             name="streetAddress1"
             label="Address line 1"
             value={values!.streetAddress1}
@@ -89,7 +89,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithOneCell>
           <TextField
-            data-cy="addressFormStreetAddress2"
+            dataCy="addressFormStreetAddress2Field"
             name="streetAddress2"
             label="Address line 2"
             value={values!.streetAddress2}
@@ -100,7 +100,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithTwoCells>
           <TextField
-            data-cy="addressFormCity"
+            dataCy="addressFormCityField"
             name="city"
             label="City"
             value={values!.city}
@@ -109,7 +109,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             {...basicInputProps()}
           />
           <TextField
-            data-cy="addressFormPostalCode"
+            dataCy="addressFormPostalCodeField"
             name="postalCode"
             label="ZIP/Postal Code"
             value={values!.postalCode}
@@ -120,9 +120,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <InputSelect
-            inputProps={{
-              "data-cy": "addressFormCountry",
-            }}
+            dataCy="addressFormCountry"
             defaultValue={defaultValue}
             label="Country"
             name="country"
@@ -140,7 +138,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             errors={fieldErrors!.country}
           />
           <TextField
-            data-cy="addressFormCountryArea"
+            dataCy="addressFormCountryArea"
             name="countryArea"
             label="State/province"
             value={values!.countryArea}
@@ -152,7 +150,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         {includeEmail && (
           <S.RowWithTwoCells>
             <TextField
-              data-cy="addressFormEmail"
+              dataCy="addressFormEmailField"
               name="email"
               label="Email"
               value={values!.email}

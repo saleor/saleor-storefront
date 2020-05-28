@@ -93,12 +93,14 @@ class PriceRangeFilter extends React.Component<
           }`}
         >
           <TextField
+            dataCy="priceFilterPriceFromField"
             type="number"
             placeholder="From"
             onChange={event => onChange("priceGte", event.target.value as any)}
             value={getValueOrEmpty(from)}
           />
           <TextField
+            dataCy="priceFilterPriceToField"
             type="number"
             placeholder="To"
             onChange={event => onChange("priceLte", event.target.value as any)}

@@ -49,6 +49,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             }}
           >
             <TextField
+              dataCy="registerFormEmailField"
               name="email"
               autoComplete="email"
               label="Email Address"
@@ -56,6 +57,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
               required
             />
             <TextField
+              dataCy="registerFormPasswordField"
               name="password"
               autoComplete="password"
               label="Password"

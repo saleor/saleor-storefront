@@ -98,6 +98,7 @@ const Page: React.FC<PageProps> = ({
               {({ change, value }) => {
                 return (
                   <TextField
+                    dataCy="searchPageSearchField"
                     autoFocus
                     label="Search term:"
                     onChange={change}

@@ -130,7 +130,7 @@ export const CartRow: React.FC<IProps> = ({
       </S.Description>
       <S.Quantity>
         <TextField
-          data-cy={`cartPageItem${index}QuantityInput`}
+          dataCy={`cartPageItem${index}QuantityInput`}
           name="quantity"
           label="Quantity"
           value={tempQuantity}

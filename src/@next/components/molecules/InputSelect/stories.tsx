@@ -30,6 +30,7 @@ const Container = () => {
   const [value, setValue] = React.useState();
   return (
     <InputSelect
+      dataCy="test"
       value={value}
       onChange={value => setValue(value)}
       {...DEFAULT_PROPS}

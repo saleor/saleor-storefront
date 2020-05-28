@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { TextField } from ".";
 
 const DEFAULT_PROPS = {
+  dataCy: "testField",
   errors: [],
   label: "Label",
   onChange: action("onChange"),

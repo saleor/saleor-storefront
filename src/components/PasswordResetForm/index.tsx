@@ -30,6 +30,7 @@ const PasswordResetForm: React.FC = () => (
             }}
           >
             <TextField
+              dataCy="passwordResetFormEmailField"
               name="email"
               autoComplete="email"
               label="Email Address"

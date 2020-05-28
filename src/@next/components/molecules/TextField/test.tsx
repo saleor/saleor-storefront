@@ -9,6 +9,7 @@ import { IProps } from "./types";
 
 describe("<TextField />", () => {
   const DEFAULT_PROPS = {
+    dataCy: "testField",
     errors: [],
     label: "Label",
     value: "Value",

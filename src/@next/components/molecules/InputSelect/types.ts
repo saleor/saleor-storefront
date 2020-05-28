@@ -5,4 +5,5 @@ export interface IProps extends ISelect {
   label: string;
   inputProps?: object;
   errors?: IFormError[];
+  dataCy: string;
 }

@@ -49,6 +49,7 @@ export const SelectSidebar: React.FC<IProps> = ({
             return (
               <S.Option key={option.value} disabled={isDisabled}>
                 <OverlayItem
+                  dataCy={`variantPickerSidebar${option.value}Option`}
                   selected={isSelected}
                   disabled={isDisabled}
                   onClick={() => onSelect(option.value)}

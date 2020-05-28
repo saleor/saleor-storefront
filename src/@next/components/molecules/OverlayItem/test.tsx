@@ -11,6 +11,7 @@ describe("<OverlayItem />", () => {
   const children = "Item";
   const DEFAULT_PROPS = {
     children,
+    dataCy: "test",
   };
 
   const renderOverlayItem = (props: IProps) =>
