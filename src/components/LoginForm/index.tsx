@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { useSignIn } from "@saleor/sdk";
+import { demoMode } from "@temp/constants";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
@@ -22,9 +23,15 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
     }
   };
 
+  const formData = demoMode ? {
+    email: "admin@example.com",
+    password: "admin",
+  } : {}
+
   return (
     <div className="login-form">
       <Form
+      data={formData}
         errors={maybe(() => error.extraInfo.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >

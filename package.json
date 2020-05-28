@@ -46,6 +46,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-alert": "^5.5.0",
     "react-dom": "^16.9.0",
+    "react-gtm-module": "^2.0.8",
     "react-helmet": "^5.2.0",
     "react-intersection-observer": "^8.25.2",
     "react-media": "^1.8.0",
