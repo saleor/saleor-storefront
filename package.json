@@ -40,7 +40,6 @@
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.4.8",
     "lodash": "^4.17.15",
-    "mlx90363": "github:cinderblock/node-MLX90363#bfef7be",
     "nuka-carousel": "^4.6.0",
     "react": "^16.9.9",
     "react-addons-css-transition-group": "^15.6.2",
