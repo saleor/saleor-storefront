@@ -1,4 +1,4 @@
-import { ProductDetails_product_variants } from "@sdk/queries/types/ProductDetails";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
@@ -10,4 +10,6 @@ export interface IProps {
   ) => void;
   selectSidebar?: boolean;
   selectSidebarTarget?: HTMLElement | null;
+  queryAttributes: Record<string, string>;
+  onAttributeChangeHandler: (slug: string | null, value: string) => void;
 }

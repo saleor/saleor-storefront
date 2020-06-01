@@ -3,9 +3,9 @@ import gql from "graphql-tag";
 import { TypedQuery } from "../../core/queries";
 import {
   basicProductFragment,
-  productPricingFragment
+  productPricingFragment,
 } from "../../views/Product/queries";
-import { FeaturedProducts } from "./types/FeaturedProducts";
+import { FeaturedProducts } from "./gqlTypes/FeaturedProducts";
 
 export const featuredProducts = gql`
   ${basicProductFragment}

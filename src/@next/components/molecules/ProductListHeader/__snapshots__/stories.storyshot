@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   margin: 20px;
 }
 
-.c15 {
+.c18 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,13 +17,21 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   box-sizing: border-box;
 }
 
-.c11 {
+.c13 {
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
 }
 
-.c9 {
+.c11 {
+  margin-bottom: 1.875rem;
+}
+
+.c16 {
+  top: 100%;
+}
+
+.c10 {
   width: auto;
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,7 +43,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   font-size: 0.875rem;
 }
 
-.c10 {
+.c12 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,13 +63,13 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   padding-bottom: 0.5rem;
 }
 
-.c12 {
+.c14 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.c13 {
+.c15 {
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -106,6 +114,10 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   align-items: center;
 }
 
+.c6 {
+  height: 1.2rem;
+}
+
 .c4 {
   font-size: 0.875rem;
   display: -webkit-box;
@@ -119,7 +131,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   cursor: pointer;
 }
 
-.c6 {
+.c7 {
   padding-left: 2rem;
 }
 
@@ -128,16 +140,16 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
   padding: 0 0.6rem;
 }
 
-.c7 {
+.c8 {
   color: #7d7d7d;
 }
 
-.c8 {
+.c9 {
   width: 12rem;
   display: inline-block;
 }
 
-.c14 > div {
+.c17 > div {
   margin: 0.4rem;
 }
 
@@ -155,6 +167,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       >
         <button
           className="c4"
+          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -175,50 +188,54 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
           </span>
         </button>
       </div>
-      <div>
+      <div
+        className="c6"
+      >
         <span
-          className="c6"
+          className="c7"
+          data-cy="no-of-products-found_label"
         >
           <span
-            className="c7"
+            className="c8"
           >
             Products found: 
           </span>
-           
           255
         </span>
         <span
-          className="c6"
+          className="c7"
         >
           <div
-            className="c8"
+            className="c9"
           >
             <div
-              className="c9"
+              className="c10"
+              data-cy="dropdown-select"
             >
               <div
-                className=""
+                className="c11"
               >
                 <div
                   className="css-1pcexqc-container"
                   onKeyDown={[Function]}
                 >
                   <div
-                    className="c10"
+                    className="c12"
+                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span
-                      className="c11"
+                      className="c13"
                     >
                       Sort by:
                     </span>
                     <div
-                      className="c12"
+                      className="c14"
                     >
                        
                     </div>
                     <div
-                      className="c13"
+                      className="c15"
                       rotate="false"
                     >
                       <svg
@@ -234,6 +251,9 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                     </div>
                   </div>
                 </div>
+                <div
+                  className="c16"
+                />
               </div>
             </div>
           </div>
@@ -241,11 +261,11 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       </div>
     </div>
     <div
-      className="c14"
+      className="c17"
     />
   </div>
   <div
-    className="c15"
+    className="c18"
   />
 </div>
 `;
@@ -256,7 +276,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   margin: 20px;
 }
 
-.c16 {
+.c19 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -267,13 +287,21 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   box-sizing: border-box;
 }
 
-.c12 {
+.c14 {
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
 }
 
-.c10 {
+.c12 {
+  margin-bottom: 1.875rem;
+}
+
+.c17 {
+  top: 100%;
+}
+
+.c11 {
   width: auto;
   display: -webkit-box;
   display: -webkit-flex;
@@ -285,7 +313,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   font-size: 0.875rem;
 }
 
-.c11 {
+.c13 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -305,13 +333,13 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   padding-bottom: 0.5rem;
 }
 
-.c13 {
+.c15 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.c14 {
+.c16 {
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -356,6 +384,10 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   align-items: center;
 }
 
+.c7 {
+  height: 1.2rem;
+}
+
 .c4 {
   font-size: 0.875rem;
   display: -webkit-box;
@@ -376,7 +408,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   color: #7d7d7d;
 }
 
-.c7 {
+.c8 {
   padding-left: 2rem;
 }
 
@@ -385,16 +417,16 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
   padding: 0 0.6rem;
 }
 
-.c8 {
+.c9 {
   color: #7d7d7d;
 }
 
-.c9 {
+.c10 {
   width: 12rem;
   display: inline-block;
 }
 
-.c15 > div {
+.c18 > div {
   margin: 0.4rem;
 }
 
@@ -412,6 +444,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       >
         <button
           className="c4"
+          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -443,50 +476,54 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
           CLEAR FILTERS
         </button>
       </div>
-      <div>
+      <div
+        className="c7"
+      >
         <span
-          className="c7"
+          className="c8"
+          data-cy="no-of-products-found_label"
         >
           <span
-            className="c8"
+            className="c9"
           >
             Products found: 
           </span>
-           
           255
         </span>
         <span
-          className="c7"
+          className="c8"
         >
           <div
-            className="c9"
+            className="c10"
           >
             <div
-              className="c10"
+              className="c11"
+              data-cy="dropdown-select"
             >
               <div
-                className=""
+                className="c12"
               >
                 <div
                   className="css-1pcexqc-container"
                   onKeyDown={[Function]}
                 >
                   <div
-                    className="c11"
+                    className="c13"
+                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span
-                      className="c12"
+                      className="c14"
                     >
                       Sort by:
                     </span>
                     <div
-                      className="c13"
+                      className="c15"
                     >
                        
                     </div>
                     <div
-                      className="c14"
+                      className="c16"
                       rotate="false"
                     >
                       <svg
@@ -502,6 +539,9 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                     </div>
                   </div>
                 </div>
+                <div
+                  className="c17"
+                />
               </div>
             </div>
           </div>
@@ -509,11 +549,11 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       </div>
     </div>
     <div
-      className="c15"
+      className="c18"
     />
   </div>
   <div
-    className="c16"
+    className="c19"
   />
 </div>
 `;

@@ -6,7 +6,7 @@ export const AttributeList = styled.ul`
   columns: 2;
   column-width: 50%;
 
-  ${media.mediumScreen`
+  ${media.largeScreen`
     column-width: 100%;
     columns: 1;
   `};

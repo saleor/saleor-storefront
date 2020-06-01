@@ -1,7 +1,7 @@
 import { styled } from "@styles";
 
 export const TextField = styled.div`
-  margin-bottom: ${props => props.theme.spacing.spacer};
+  margin-bottom: ${props => props.theme.spacing.fieldSpacer};
   position: relative;
 `;
 TextField.displayName = "S.TextField";

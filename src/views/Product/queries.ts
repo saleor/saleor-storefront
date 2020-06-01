@@ -1,11 +1,10 @@
 import gql from "graphql-tag";
-
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,
   ProductDetailsVariables,
-} from "./types/ProductDetails";
-import { VariantList, VariantListVariables } from "./types/VariantList";
+} from "./gqlTypes/ProductDetails";
+import { VariantList, VariantListVariables } from "./gqlTypes/VariantList";
 
 export const priceFragment = gql`
   fragment Price on TaxedMoney {
@@ -78,8 +77,8 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    stockQuantity
     isAvailable
+    quantityAvailable(countryCode: $countryCode)
     images {
       id
       url
@@ -98,6 +97,7 @@ export const productVariantFragment = gql`
       attribute {
         id
         name
+        slug
       }
       values {
         id
@@ -113,7 +113,7 @@ export const productDetailsQuery = gql`
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!) {
+  query ProductDetails($id: ID!, $countryCode: CountryCode) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField
@@ -126,10 +126,6 @@ export const productDetailsQuery = gql`
             node {
               ...BasicProductFields
               ...ProductPricingField
-              category {
-                id
-                name
-              }
             }
           }
         }
@@ -156,12 +152,11 @@ export const productDetailsQuery = gql`
 export const productVariantsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
-  query VariantList($ids: [ID!]) {
+  query VariantList($ids: [ID!], $countryCode: CountryCode) {
     productVariants(ids: $ids, first: 100) {
       edges {
         node {
           ...ProductVariantFields
-          stockQuantity
           product {
             ...BasicProductFields
           }

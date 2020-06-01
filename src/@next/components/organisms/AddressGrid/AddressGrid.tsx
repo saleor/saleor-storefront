@@ -5,17 +5,22 @@ import { AddressTile } from "@components/molecules";
 
 import { IProps } from "./types";
 
+/**
+ * Addresses tiles with add new address tile opening address form addition modal.
+ */
 export const AddressGrid: React.FC<IProps> = ({
   addresses,
   addNewAddress,
 }: IProps) => {
   const addNewTile = (
-    <AddNewTile key="0" type="address" onClick={addNewAddress} />
+    <AddNewTile key="newTile" type="address" onClick={addNewAddress} />
   );
 
   const addressTiles = addresses.reduce(
     (elements, address) => {
-      elements.push(<AddressTile key={address.id} {...address} />);
+      elements.push(
+        <AddressTile key={`addressTile-${address.id}`} {...address} />
+      );
       return elements;
     },
     [addNewTile]

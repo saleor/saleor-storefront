@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/react";
 import React from "react";
 
 import { IAddress } from "@types";
@@ -38,7 +37,7 @@ export const Address: React.FC<IAddress> = ({
     <br />
     {phone && (
       <>
-        <Trans id="Phone number" />: {phone} <br />
+        Phone number: {phone} <br />
       </>
     )}
   </div>

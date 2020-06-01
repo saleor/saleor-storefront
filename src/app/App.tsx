@@ -1,27 +1,22 @@
-import "../globalStyles/scss/index.scss";
-
 import React from "react";
-import { RouteComponentProps } from "react-router";
 
+import { DemoBanner } from "@components/atoms";
+import { demoMode } from "@temp/constants";
 import { Footer, MainMenu, MetaConsumer, OverlayManager } from "../components";
-import { isPath } from "../core/utils";
-import { orderConfirmationUrl, Routes } from "../routes";
+import "../globalStyles/scss/index.scss";
+import { Routes } from "./routes";
 
-const App: React.FC<RouteComponentProps> = ({
-  history: {
-    location: { pathname },
-  },
-}) => {
-  const orderConfirmationPage = isPath(pathname, orderConfirmationUrl);
-
+const App: React.FC = () => {
+  
   return (
     <>
       <MetaConsumer />
+      {demoMode && <DemoBanner />}
       <header>
         <MainMenu />
       </header>
       <Routes />
-      {!orderConfirmationPage && <Footer />}
+      <Footer />
       <OverlayManager />
     </>
   );

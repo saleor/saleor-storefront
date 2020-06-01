@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";
-import { Article, ArticleVariables } from "./types/Article";
+import { Article, ArticleVariables } from "./gqlTypes/Article";
 
 const articleQuery = gql`
   query Article($slug: String!) {

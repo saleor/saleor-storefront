@@ -22,6 +22,7 @@ const items = [
 ];
 
 storiesOf("@components/atoms/DropdownMenu", module)
+  .addParameters({ component: DropdownMenu })
   .add("hoverable", () => (
     <Container>
       <DropdownMenu type="hoverable" header={header} items={items} />

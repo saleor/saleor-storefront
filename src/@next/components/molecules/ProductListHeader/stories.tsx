@@ -25,6 +25,7 @@ const DEFAULT_PROPS = {
 };
 
 storiesOf("@components/molecules/ProductListHeader", module)
+  .addParameters({ component: ProductListHeader })
   .add("default", () => <ProductListHeader {...DEFAULT_PROPS} />)
   .add("with active filters", () => (
     <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />

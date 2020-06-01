@@ -1,6 +1,6 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
+export const DiscountForm = styled.form``;
 
 export const Input = styled.div`
   margin-bottom: ${props => props.theme.spacing.spacer};
@@ -12,6 +12,15 @@ export const InputWithButton = styled.div`
 
 export const InputWrapper = styled.div`
   flex: 1;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: auto;
+  min-width: 110px;
+
+  button {
+    padding: 0.8rem 1rem;
+  }
 `;
 
 export const ChipsWrapper = styled.div`

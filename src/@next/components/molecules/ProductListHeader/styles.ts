@@ -21,6 +21,10 @@ export const LeftSide = styled.div`
   align-items: center;
 `;
 
+export const RightSide = styled.div`
+  height: 1.2rem;
+`;
+
 export const FiltersButton = styled.button`
   font-size: ${props => props.theme.typography.smallFontSize};
   display: flex;

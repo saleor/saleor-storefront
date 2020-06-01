@@ -6,7 +6,7 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c8 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,10 +17,18 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   box-sizing: border-box;
 }
 
-.c3 {
+.c4 {
   color: #7d7d7d;
   display: inline-block;
   white-space: pre;
+}
+
+.c2 {
+  margin-bottom: 1.875rem;
+}
+
+.c7 {
+  top: 100%;
 }
 
 .c1 {
@@ -35,7 +43,7 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   font-size: 0.875rem;
 }
 
-.c2 {
+.c3 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -55,13 +63,13 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
   padding-bottom: 0.5rem;
 }
 
-.c4 {
+.c5 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.c5 {
+.c6 {
   right: 1rem;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -75,30 +83,32 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
 >
   <div
     className="c1"
+    data-cy="dropdown-select"
   >
     <div
-      className=""
+      className="c2"
     >
       <div
         className="css-1pcexqc-container"
         onKeyDown={[Function]}
       >
         <div
-          className="c2"
+          className="c3"
+          data-cy="dropdown-select-input"
           onClick={[Function]}
         >
           <span
-            className="c3"
+            className="c4"
           >
             Sort by:
           </span>
           <div
-            className="c4"
+            className="c5"
           >
              
           </div>
           <div
-            className="c5"
+            className="c6"
             rotate="false"
           >
             <svg
@@ -114,10 +124,13 @@ exports[`Storyshots @components/atoms/DropdownSelect default 1`] = `
           </div>
         </div>
       </div>
+      <div
+        className="c7"
+      />
     </div>
   </div>
   <div
-    className="c6"
+    className="c8"
   />
 </div>
 `;

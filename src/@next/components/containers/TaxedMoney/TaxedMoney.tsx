@@ -8,6 +8,7 @@ import { ShopContext } from "../../../../components/ShopProvider/context";
 export const TaxedMoney: React.FC<IProps> = ({
   taxedMoney,
   defaultValue,
+  ...props
 }: IProps) => {
   const { displayGrossPrices } = React.useContext(ShopContext);
   const money = taxedMoney
@@ -15,7 +16,7 @@ export const TaxedMoney: React.FC<IProps> = ({
       ? taxedMoney.gross
       : taxedMoney.net
     : undefined;
-  return <Money money={money} defaultValue={defaultValue} />;
+  return <Money {...props} money={money} defaultValue={defaultValue} />;
 };
 
 TaxedMoney.displayName = "TaxedMoney";

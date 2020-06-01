@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/CartSummaryRow default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  grid-row-gap: 6px;
+  grid-column-gap: 20px;
+  grid-template-columns: 60px auto auto;
+  grid-template-areas: "photo name name" "photo sku ." "photo . ." "photo quantity price";
+}
+
+.c6 {
+  grid-area: photo;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.c6 img {
+  height: auto;
+  max-width: 60px;
+}
+
+.c3 {
+  grid-area: sku;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
+.c2 {
+  grid-area: name;
+  font-size: 1.125rem;
+}
+
+.c5 {
+  grid-area: price;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.c4 {
+  grid-area: quantity;
+  color: rgba(50,50,50,0.6);
+  font-size: 0.875rem;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      data-cy="cartSummaryItemundefinedName"
+    >
+      The Great Square Table
+    </div>
+    <div
+      className="c3"
+    >
+      SKU: 
+      <span
+        data-cy="cartSummaryItemundefinedSKU"
+      >
+        TGS-122A
+      </span>
+    </div>
+    <div
+      className="c4"
+    >
+      Quantity:
+       
+      <span
+        data-cy="cartSummaryItemundefinedQuantity"
+      >
+        2
+      </span>
+    </div>
+    <div
+      className="c5"
+      data-cy="cartSummaryItemundefinedPrice"
+    >
+      <span>
+        PLN 123.00
+      </span>
+    </div>
+    <div
+      className="c6"
+    >
+      <img
+        alt="Product image"
+        data-cy="cartSummaryItemundefinedImage"
+        onError={[Function]}
+        src="test-file-stub"
+        srcSet="test-file-stub 1x"
+      />
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;

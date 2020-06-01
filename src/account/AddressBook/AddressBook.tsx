@@ -2,8 +2,8 @@ import React from "react";
 import "./scss/index.scss";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
-import { useDefaultUserAddress, useDeleteUserAddresss } from "@sdk/react";
-import { AddressTypeEnum } from "@sdk/types/globalTypes";
+import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
+import { AddressTypeEnum } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{
@@ -61,7 +61,7 @@ const AddressBook: React.FC<{
           {...{ defaultValue: defaultCountry ? defaultCountry : {} }}
           submitBtnText={"Add"}
           title={"Add new address"}
-          {...{ options: countries }}
+          {...{ countriesOptions: countries }}
           formId="address-form"
         />
       )}
@@ -73,7 +73,7 @@ const AddressBook: React.FC<{
           address={addressData}
           submitBtnText={"Save"}
           title={"Edit address"}
-          {...{ options: countries }}
+          {...{ countriesOptions: countries }}
           formId="address-form"
         />
       )}

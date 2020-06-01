@@ -2,20 +2,17 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
+import {
+  OrderDetail,
+  OrderDetail_lines,
+} from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
-import { LineI } from "../../../components/CartTable/ProductRow";
-import { OrderById_order, OrderById_order_lines } from "./types/OrderById";
-import {
-  OrderByToken_orderByToken,
-  OrderByToken_orderByToken_lines,
-} from "./types/OrderByToken";
+import { ILine } from "../../../components/CartTable/ProductRow";
 
-import { orderHistoryUrl } from "../../../routes";
+import { orderHistoryUrl } from "../../../app/routes";
 
-const extractOrderLines = (
-  lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>
-): LineI[] => {
+const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,
@@ -39,7 +36,7 @@ const extractOrderLines = (
 
 const Page: React.FC<{
   guest: boolean;
-  order: OrderById_order | OrderByToken_orderByToken;
+  order: OrderDetail;
 }> = ({ guest, order }) =>
   order ? (
     <>

@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
+const path = require("path");
 
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
@@ -12,6 +13,10 @@ if (!process.env.API_URI) {
 module.exports = ({ sourceDir, distDir }) => ({
   resolve: {
     alias: {
+      // Explicitely set react's path here because npm-link doesn't do well
+      // when it comes to peer dependencies, and we need to somehow develop
+      // @saleor/sdk package
+      react: path.resolve("./node_modules/react"),
       "react-dom": "@hot-loader/react-dom",
     },
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -91,11 +96,11 @@ module.exports = ({ sourceDir, distDir }) => ({
     new HtmlWebpackPlugin({
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
+      API_URI: process.env.API_URI,
     }),
     new ForkTsCheckerWebpackPlugin({
       tslint: true,
       exclude: "node_modules",
-      async: false,
     }),
     // PWA plugins
     new WebappWebpackPlugin({
@@ -112,7 +117,10 @@ module.exports = ({ sourceDir, distDir }) => ({
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
-      SERVICE_WORKER_TIMEOUT: "60000",
+      SENTRY_DSN: null,
+      SENTRY_APM: "0",
+      DEMO_MODE: false,
+      GTM_ID: undefined,
     }),
   ],
   node: {

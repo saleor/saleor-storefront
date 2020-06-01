@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/StripeInputElement cart cvc input 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c1:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c2 {
+  position: relative;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div />
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/StripeInputElement cart expiry input 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c1:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c2 {
+  position: relative;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div />
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/atoms/StripeInputElement cart number input 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c1:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c2 {
+  position: relative;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div />
+    </div>
+  </div>
+  <div
+    className="c3"
+  />
+</div>
+`;

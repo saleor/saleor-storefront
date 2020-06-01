@@ -1,5 +1,8 @@
 import React from "react";
 import { components } from "react-select";
+import { ControlProps } from "react-select/lib/components/Control";
+import { InputProps } from "react-select/lib/components/Input";
+import { OptionProps } from "react-select/lib/components/Option";
 import { ThemeContext } from "styled-components";
 
 import { Icon, InputLabel, Select } from "@components/atoms";
@@ -7,7 +10,11 @@ import { Icon, InputLabel, Select } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
+export const InputSelect: React.FC<IProps> = ({
+  label,
+  inputProps,
+  ...props
+}: IProps) => {
   const customTheme = React.useContext(ThemeContext);
   const secondaryColor = customTheme.colors.secondary;
   const borderColor = customTheme.input.border;
@@ -41,11 +48,14 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
   };
 
   const customComponents = {
-    Control: (props: any) => {
+    Control: (props: ControlProps<any>) => {
       const customTheme = React.useContext(ThemeContext);
       return (
         <>
-          <components.Control {...{ customTheme, ...props }} />
+          <components.Control
+            data-cy="input-select"
+            {...{ customTheme, ...props }}
+          />
           {
             <InputLabel
               labelBackground={customTheme.colors.light}
@@ -79,7 +89,10 @@ export const InputSelect: React.FC<IProps> = ({ label, ...props }: IProps) => {
         );
       }
     },
-    Option: (props: any) => {
+    Input: (props: InputProps) => {
+      return <components.Input {...{ ...props, ...inputProps }} />;
+    },
+    Option: (props: OptionProps<any>) => {
       const customTheme = React.useContext(ThemeContext);
       return <components.Option {...{ customTheme, ...props }} />;
     },

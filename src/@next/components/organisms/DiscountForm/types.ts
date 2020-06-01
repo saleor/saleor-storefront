@@ -5,8 +5,6 @@ export interface IDiscountFormData {
 
 export interface IProps {
   discount?: IDiscountFormData;
-  handleApplyDiscount?: (inputCode: string) => void;
-  handleRemovePromoCode?: () => void;
   defaultValue?: any;
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;

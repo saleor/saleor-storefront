@@ -24,13 +24,21 @@ export const turquoiseTransparent = "rgba(6, 132, 123, 0.1)";
 export const white = "#fff";
 export const tabelGray = "#eaeaea";
 export const darkGreen = "#06847B";
+export const secondaryGrey = "#EBF1F6";
+export const secondaryGreyDark = "#9D9FB1";
+export const secondaryBlue = "#036DFF";
 
 // theme colors
 export const theme = {
   activeMenuOption: darkGreen,
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
+  bannerBackground: secondaryGrey,
+  bannerEdge: secondaryGreyDark,
+  bannerLink: secondaryBlue,
   baseFont: baseFontColor,
+  baseFontColorSemiTransparent,
+  baseFontColorTransparent,
   dark: black,
   disabled: gray,
   divider: grayLight,
@@ -66,15 +74,22 @@ export const baseLineHeight = "1.25rem"; // 20px
 export const boldFontWeight = 600;
 export const extraBoldFontWeight = 800;
 export const h1FontSize = "4rem"; // 64px
+export const h2FontSize = "3rem"; // 48px
 export const h1LineHeight = 1;
 export const h3FontSize = "1.5rem"; // 24px
 export const h4FontSize = "1.125rem"; // 18px
 export const labelFontSize = "0.75rem"; // 12px
 export const smallFontSize = "0.875rem"; // 14px
+export const ultraBigFont = "6rem"; // 96px
 
 // spacing
 export const spacer = 1; // rem
+export const fieldSpacer = "1.875rem";
 
 // breakpoints
-export const mediumScreen = 992;
+export const xxxLargeScreen = 1920;
+export const xxLargeScreen = 1600;
+export const xLargeScreen = 1280;
+export const largeScreen = 992;
+export const mediumScreen = 720;
 export const smallScreen = 540;

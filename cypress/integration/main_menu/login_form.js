@@ -1,6 +1,4 @@
 // <reference types="cypress" />
-import { userBuilder } from "../../support/generate";
-
 describe("User login, logout and registration", () => {
   let user = null;
   let polyfill = null;
@@ -16,55 +14,53 @@ describe("User login, logout and registration", () => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
-    cy.setup(polyfill);
-    cy.wait("@graphqlQuery");
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        delete win.fetch;
+        // since the application code does not ship with a polyfill
+        // load a polyfilled "fetch" from the test
+        win.eval(polyfill);
+        win.fetch = win.unfetch;
+      },
+    });
   });
 
   it("should open overlay with a sign in and register form", () => {
-    cy.getByTestId("login-btn")
+    cy.get("[data-cy=desktopMenuLoginOverlayLink]")
       .click()
       .get(".overlay")
       .should("exist");
   });
 
-  // describe("Registration", () => {
-  //   it("should register a new user", () => {
-  //     user = userBuilder();
-  //     cy.registerUser(user)
-  //       .get(".message__title")
-  //       .should("contain", "New user has been created");
-  //   });
-  //   it("should display an error if user exists", () => {
-  //     cy.registerUser(user)
-  //       .get(".login__content .input")
-  //       .first()
-  //       .get(".input__error")
-  //       .should("contain", "User with this Email already exists.");
-  //   });
-  // });
-
   describe("Login", () => {
-    // it("should successfully log in an user", () => {
-    //   cy.loginUser(user)
-    //     .get(".message__title")
-    //     .should("contain", "You are now logged in");
-    // });
+    it("should successfully log in an user", () => {
+      cy.loginUser("admin@example.com", "admin")
+        .get("[data-cy=alert]")
+        .should("contain", "You are now logged in");
+    });
+
     it("should display an error if user does not exist", () => {
-      const notRegisteredUser = userBuilder();
-      cy.loginUser(notRegisteredUser)
-        .get(".login__content .form-error")
+      cy
+        .get("[data-cy=desktopMenuLoginOverlayLink]")
+        .click()
+        .get(".login__content input[name='email']")
+        .type("thisUserIsNotRegistered@example.com")
+        .get(".login__content input[name='password']")
+        .type("thisisnotavalidpassword")
+        .get("[data-cy=submitLoginFormButton]")
+        .click()
+      .get(".login__content .form-error", {timeoout: 20000})
         .should("contain", "Please, enter valid credentials");
     });
   });
 
-  // describe("Logout", () => {
-  //   it("should successfully log out an user", () => {
-  //     const user = userBuilder();
-  //     cy.registerUser(user).loginUser(user);
-  //     cy.wait(500);
-  //     cy.logoutUser()
-  //       .get(".message__title")
-  //       .should("contain", "You are now logged out");
-  //   });
-  // });
+  describe("Logout", () => {
+    it("should successfully log out an user", () => {
+      cy.loginUser("admin@example.com", "admin");
+      cy.wait(2000);  // wait for reloading UI
+      cy.logoutUser()
+        .get("[data-cy=alert]")
+        .should("contain", "You are now logged out");
+    });
+  });
 });

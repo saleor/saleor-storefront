@@ -309,6 +309,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}
@@ -386,6 +387,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}
@@ -463,6 +465,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}

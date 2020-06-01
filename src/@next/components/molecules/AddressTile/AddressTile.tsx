@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/react";
 import React from "react";
 
 import { Address, DropdownMenu, IconButton, Tile } from "@components/atoms";
@@ -7,14 +6,10 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 const defaultShippingAddress = (
-  <S.MenuItem>
-    <Trans id="Set as default shipping address" />
-  </S.MenuItem>
+  <S.MenuItem>Set as default shipping address</S.MenuItem>
 );
 const defaultBillingAddress = (
-  <S.MenuItem>
-    <Trans id="Set as default billing address" />
-  </S.MenuItem>
+  <S.MenuItem>Set as default billing address</S.MenuItem>
 );
 
 export const AddressTile: React.FC<IProps> = ({
@@ -44,13 +39,13 @@ export const AddressTile: React.FC<IProps> = ({
         ]}
       />
 
-      {address.isDefaultBillingAddress && address.isDefaultShippingAddress ? (
-        <Trans id="Default Address" />
-      ) : address.isDefaultShippingAddress ? (
-        <Trans id="Default Shipping Address" />
-      ) : address.isDefaultBillingAddress ? (
-        <Trans id="Default Billing Address" />
-      ) : null}
+      {address.isDefaultBillingAddress && address.isDefaultShippingAddress
+        ? "Default Address"
+        : address.isDefaultShippingAddress
+        ? "Default Shipping Address"
+        : address.isDefaultBillingAddress
+        ? "Default Billing Address"
+        : null}
     </S.HeaderContent>
   );
   const footer = (

@@ -1,0 +1,609 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CartRow default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c23 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c19 svg {
+  display: block;
+}
+
+.c19 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c19:hover {
+  background-color: rgb(33,18,94);
+}
+
+.c19:hover svg path {
+  fill: #fff;
+}
+
+.c14 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c11:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  position: relative;
+  width: 100%;
+}
+
+.c13 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c10 {
+  margin-bottom: 1.875rem;
+  position: relative;
+}
+
+.c17 {
+  position: absolute;
+  top: 100%;
+}
+
+.c1 {
+  display: grid;
+  min-height: 140px;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
+  max-height: min-content;
+  width: 100%;
+  grid-template-areas: "photo description unitPrice quantity totalPrice trash";
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  padding: 0.8rem 0.5rem;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 15px 0 0;
+  width: 50px;
+}
+
+.c16 > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c16 svg {
+  cursor: pointer;
+  justify-self: center;
+}
+
+.c2 {
+  grid-area: photo;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-align-self: top;
+  -ms-flex-item-align: top;
+  align-self: top;
+  width: 70px;
+  height: 90px;
+  background-color: #f1f5f5;
+}
+
+.c2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.c3 {
+  grid-area: description;
+  height: 100%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.c5 {
+  margin: 6px 0;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.c7 {
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-template-columns: repeat(auto-fit,minmax(166px,500px));
+  margin-left: -15px;
+}
+
+.c8 {
+  margin: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  white-space: nowrap;
+  background-color: white;
+  padding: 0px 15px;
+}
+
+.c4 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.c6 {
+  font-size: 0.875rem;
+  color: rgba(125,125,125,0.6);
+}
+
+.c21 {
+  display: none;
+}
+
+.c20 {
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  grid-area: totalPrice;
+}
+
+.c20 p {
+  margin: 0;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  grid-area: trash;
+}
+
+.c22 {
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  grid-area: unitPrice;
+}
+
+.c22 p {
+  margin: 0;
+}
+
+.c9 {
+  grid-area: quantity;
+  min-width: 120px;
+  margin: 0 15px;
+}
+
+@media (max-width:720px) {
+  .c1 {
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-row-gap: 15px;
+    grid-column-gap: 20px;
+    grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
+    padding: 1rem 0rem;
+  }
+}
+
+@media (max-width:720px) {
+  .c3 {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width:720px) {
+  .c7 {
+    -webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+  }
+}
+
+@media (max-width:720px) {
+  .c21 {
+    display: block;
+  }
+}
+
+@media (max-width:720px) {
+  .c20 {
+    font-weight: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (max-width:720px) {
+  .c20 p {
+    text-align: right;
+  }
+}
+
+@media (max-width:720px) {
+  .c22 {
+    font-weight: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <img
+        alt="product image"
+        data-cy="cartPageItemundefinedImage"
+        onError={[Function]}
+        src="test-file-stub"
+        srcSet="test-file-stub 1x"
+      />
+    </div>
+    <div
+      className="c3"
+    >
+      <p
+        className="c4"
+        data-cy="cartPageItemundefinedName"
+      >
+        The Great Square Table
+      </p>
+      <p
+        className="c5"
+      >
+        <span
+          className="c6"
+        >
+          SKU:
+           
+          <span
+            data-cy="cartPageItemundefinedSKU"
+          >
+            R4ND-0M-5KU
+          </span>
+        </span>
+      </p>
+      <div
+        className="c7"
+        data-cy="cartPageItemundefinedAttributes"
+      >
+        <p
+          className="c8"
+        >
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute0"
+          >
+            <span
+              className="c6"
+            >
+              Color
+              :
+            </span>
+             
+            Yellow
+          </span>
+        </p>
+        <p
+          className="c8"
+        >
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute1"
+          >
+            <span
+              className="c6"
+            >
+              Size
+              :
+            </span>
+             
+            Large
+          </span>
+        </p>
+        <p
+          className="c8"
+        >
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute2"
+          >
+            <span
+              className="c6"
+            >
+              Legs
+              :
+            </span>
+             
+            Square
+          </span>
+        </p>
+        <p
+          className="c8"
+        >
+          <span
+            data-cy="cartPageItemundefinedSingleAttribute3"
+          >
+            <span
+              className="c6"
+            >
+              Armrest
+              :
+            </span>
+             
+            None
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="c9"
+    >
+      <div
+        className="c10"
+      >
+        <div
+          className="c11"
+          disabled={false}
+        >
+          <div
+            className="c12"
+          >
+            <input
+              className="c13"
+              data-cy="cartPageItemundefinedQuantityInput"
+              disabled={false}
+              name="quantity"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              value="3"
+            />
+            <label
+              className="c14"
+            >
+              Quantity
+            </label>
+          </div>
+          <span
+            className="c15"
+          >
+            <div
+              className="c16"
+            >
+              <div
+                data-cy="cartPageItemundefinedQuantityBtnSubtract"
+                onClick={[Function]}
+              >
+                <svg
+                  height={16}
+                  viewBox="0 0 32 32"
+                  width={16}
+                >
+                  <path
+                    d="M0 13.818h32v4.364h-32v-4.364z"
+                    fill="#323232"
+                  />
+                </svg>
+              </div>
+              <div
+                data-cy="cartPageItemundefinedQuantityBtnAdd"
+                onClick={[Function]}
+              >
+                <svg
+                  height={16}
+                  viewBox="0 0 32 32"
+                  width={16}
+                >
+                  <path
+                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                    fill="#21125E"
+                  />
+                </svg>
+              </div>
+            </div>
+          </span>
+        </div>
+        <div
+          className="c17"
+        />
+      </div>
+    </div>
+    <div
+      className="c18"
+    >
+      <div
+        className="c19"
+        data-cy="cartPageItemundefinedBtnRemove"
+        onClick={[Function]}
+      >
+        <svg
+          height={22}
+          viewBox="0 0 32 32"
+          width={22}
+        >
+          <path
+            d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+            fill="#323232"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="c20"
+    >
+      <p
+        className="c21"
+      >
+        <span
+          className="c6"
+        >
+          Total Price:
+        </span>
+      </p>
+      <p>
+        150$
+      </p>
+    </div>
+    <div
+      className="c22"
+    >
+      <p
+        className="c21"
+      >
+        <span
+          className="c6"
+        >
+          Price:
+        </span>
+      </p>
+      <p>
+        50$
+      </p>
+    </div>
+  </div>
+  <div
+    className="c23"
+  />
+</div>
+`;

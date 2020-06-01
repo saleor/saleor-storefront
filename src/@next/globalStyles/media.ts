@@ -1,10 +1,21 @@
 import { css } from "styled-components";
 
-import { mediumScreen, smallScreen } from "./constants";
-
-const breakpoints = {
+import {
+  largeScreen,
   mediumScreen,
   smallScreen,
+  xLargeScreen,
+  xxLargeScreen,
+  xxxLargeScreen,
+} from "./constants";
+
+const breakpoints = {
+  largeScreen,
+  mediumScreen,
+  smallScreen,
+  xLargeScreen,
+  xxLargeScreen,
+  xxxLargeScreen,
 };
 
 type Breakpoints = keyof typeof breakpoints;

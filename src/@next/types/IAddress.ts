@@ -1,4 +1,5 @@
 export interface IAddress {
+  id?: string;
   firstName?: string;
   lastName?: string;
   companyName?: string;

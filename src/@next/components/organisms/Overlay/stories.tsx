@@ -29,6 +29,7 @@ const DEFAULT_PROPS = {
 };
 
 storiesOf("@components/organisms/Overlay", module)
+  .addParameters({ component: Overlay })
   .add("Position center", () => (
     <Overlay {...DEFAULT_PROPS}>
       <Children />

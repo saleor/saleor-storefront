@@ -1,7 +1,7 @@
 import {
   CardError,
   ICardErrors,
-  ICardInputs
+  ICardInputs,
 } from "src/core/payments/braintree";
 
 interface ILabelsText {
@@ -17,6 +17,7 @@ export interface IFormikProps {
 
 export interface IProps {
   formRef?: React.RefObject<HTMLFormElement>;
+  formId?: string;
   cardErrors: ICardErrors;
   labelsText: ILabelsText;
   handleSubmit: (formData: ICardInputs) => void;

@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/react";
 import React from "react";
 
 import { ButtonLink } from "@components/atoms";
@@ -62,9 +61,7 @@ export const SelectSidebar: React.FC<IProps> = ({
         </S.Content>
         {footerTitle && (
           <S.Footer onClick={onClickFooter}>
-            <ButtonLink color="secondary">
-              <Trans id={footerTitle} />
-            </ButtonLink>
+            <ButtonLink color="secondary">{footerTitle}</ButtonLink>
           </S.Footer>
         )}
       </S.Wrapper>

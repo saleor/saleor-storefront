@@ -5,10 +5,10 @@ import * as React from "react";
 import Media from "react-media";
 
 import CostRow from "./CostRow";
-import ProductRow, { EditableProductRowProps, LineI } from "./ProductRow";
+import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
 
 interface TableProps extends EditableProductRowProps {
-  lines: LineI[];
+  lines: ILine[];
   subtotal: React.ReactNode;
   deliveryCost?: React.ReactNode;
   totalCost?: React.ReactNode;
@@ -32,7 +32,7 @@ const Table: React.FC<TableProps> = ({
           <tr>
             <th>Products</th>
             {mediumScreen && <th>Price</th>}
-            <th>Size</th>
+            <th>Variant</th>
             <th className="cart-table__quantity-header">Quantity</th>
             <th colSpan={2}>{mediumScreen ? "Total Price" : "Price"}</th>
           </tr>

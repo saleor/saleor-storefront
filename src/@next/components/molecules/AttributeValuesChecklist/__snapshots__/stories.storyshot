@@ -105,7 +105,6 @@ exports[`Storyshots @components/molecules/AttributeValuesChecklist default 1`] =
   width: 14px;
   height: 14px;
   display: inline-block;
-  z-index: 10;
 }
 
 .c4:hover .c6 div {

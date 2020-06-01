@@ -64,6 +64,76 @@
     img {
       max-width: 100%;
     }
+
+    ol,
+    ul {
+      margin: 1.875rem auto;
+      padding-left: 0;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      list-style: none;
+      li {
+        padding-left: 1.3rem;
+        margin-left: 0.3rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    ol {
+      position: relative;
+      counter-reset: my-awesome-counter;
+      li {
+        counter-increment: my-awesome-counter;
+        &:before {
+          content: counter(my-awesome-counter) ".";
+          color: $darkGreen;
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+
+    ul {
+      list-style: none;
+      li {
+        position: relative;
+        &:before {
+          position: absolute;
+          top: 0.7rem;
+          left: 0;
+          content: "";
+          display: inline-block;
+          width: 0.375rem;
+          height: 0.375rem;
+          border-radius: 50%;
+          background-color: $darkGreen;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    blockquote {
+      position: relative;
+      font-size: 1.125rem;
+      font-style: italic;
+      background-color: $turquoise-light;
+      border-left: 0.5rem solid $darkGreen;
+      margin: 1.875rem auto;
+      padding: 3.75rem 2.5rem 3rem 2.5rem;
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 1.5rem;
+        width: 1.44rem;
+        top: 1.56rem;
+        background-image: url("../../../images/quote-icon.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
   }
 
   &__navigation {

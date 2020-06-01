@@ -17,6 +17,7 @@ const ADDRESS_FIELDS = [
   "postalCode",
   "streetAddress1",
   "streetAddress2",
+  "email",
 ];
 
 export const AddressForm: React.FC<IProps> = ({
@@ -24,6 +25,7 @@ export const AddressForm: React.FC<IProps> = ({
   handleSubmit,
   formId,
   defaultValue,
+  countriesOptions,
   ...props
 }: IProps) => {
   let addressWithPickedFields: Partial<IAddress> = {};
@@ -36,6 +38,7 @@ export const AddressForm: React.FC<IProps> = ({
   return (
     <Formik
       initialValues={addressWithPickedFields}
+      enableReinitialize={true}
       onSubmit={(values, { setSubmitting }) => {
         if (handleSubmit) {
           handleSubmit(values);
@@ -54,6 +57,7 @@ export const AddressForm: React.FC<IProps> = ({
         return (
           <AddressFormContent
             {...{
+              countriesOptions,
               defaultValue,
               formId,
               handleBlur,

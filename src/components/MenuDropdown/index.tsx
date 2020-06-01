@@ -6,9 +6,13 @@ class MenuDropdown extends React.Component<
   {
     head: React.ReactElement<{}>;
     content: React.ReactElement<{}>;
+    suffixClass: string;
   },
   { active: boolean }
 > {
+  static defaultProps = {
+    suffixClass: "",
+  };
   constructor(props) {
     super(props);
     this.state = { active: false };
@@ -16,7 +20,7 @@ class MenuDropdown extends React.Component<
   render() {
     return (
       <div
-        data-testid="user-btn"
+        data-cy="userButton"
         className="menu-dropdown"
         onMouseOver={() => this.setState({ active: true })}
         onMouseLeave={() => this.setState({ active: false })}
@@ -24,7 +28,7 @@ class MenuDropdown extends React.Component<
         {this.props.head}
 
         <div
-          className={`menu-dropdown__body${
+          className={`menu-dropdown__body${" menu-dropdown__body"+this.props.suffixClass}${
             this.state.active ? " menu-dropdown__body--visible" : ""
           }`}
         >

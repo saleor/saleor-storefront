@@ -6,7 +6,7 @@ import React from "react";
 import Media from "react-responsive";
 
 import { Icon, NavLink } from "@components/atoms";
-import { mediumScreen, smallScreen } from "@styles/constants";
+import { largeScreen, smallScreen } from "@styles/constants";
 import { maybe } from "@utils/misc";
 
 import LogoSmall from "images/logo-small.svg";
@@ -119,7 +119,7 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
           </Media>
         </S.Center>
         <S.Actions>
-          <Media minWidth={mediumScreen}>
+          <Media minWidth={largeScreen}>
             <S.IconWrapper>
               <Icon name="profile" size={24} />
             </S.IconWrapper>

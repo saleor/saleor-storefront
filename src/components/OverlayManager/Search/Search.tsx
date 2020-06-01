@@ -14,15 +14,15 @@ import {
   OverlayContextInterface,
   OverlayType,
 } from "../..";
+import { searchUrl } from "../../../app/routes";
 import { maybe } from "../../../core/utils";
-import { searchUrl } from "../../../routes";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
+import { SearchResults } from "./gqlTypes/SearchResults";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
-import { SearchResults } from "./types/SearchResults";
 
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
@@ -94,7 +94,7 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
+                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} className="search__input__close-btn" />
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}
@@ -135,6 +135,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <Loader />
                                 ) : (
                                   <Button
+                                    dataCy="searchProductsButton"  
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >

@@ -15,12 +15,13 @@ const CheckoutAsGuest: React.FC<{
       a guest. We care about you just as much as any registered user.
     </p>
     <Link to={checkoutUrl}>
-      <Button>Continue as a guest</Button>
+      <Button dataCy="checkoutLoginContinueAsGuestButton">Continue as a guest</Button>
     </Link>
 
     <p>
       or you can{" "}
       <span
+        data-cy="showRegisterOverlay"
         className="u-link"
         onClick={() => overlay.show(OverlayType.register, OverlayTheme.right)}
       >

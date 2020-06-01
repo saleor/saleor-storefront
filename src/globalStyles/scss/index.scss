@@ -1,5 +1,4 @@
 @import url("~reset-css");
-@import url("https://rsms.me/inter/inter.css");
 
 @import "./variables";
 @import "./utils";
@@ -37,6 +36,14 @@ body {
 
   p {
     line-height: 1.5rem;
+  }
+
+  strong {
+    font-weight: $bold-font-weight;
+  }
+
+  em {
+    font-style: italic;
   }
 
   #root {

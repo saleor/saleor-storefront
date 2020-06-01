@@ -15,6 +15,7 @@ describe("<FormFooter />", () => {
   const DEFAULT_PROPS = {
     submitBtn: {
       action: onSubmit,
+      dataCy: "footerTestButton",
       text: submitBtnText,
     },
   };
@@ -42,6 +43,7 @@ describe("<FormFooter />", () => {
     const PROPS = {
       formId: FORM_ID,
       submitBtn: {
+        dataCy: "footerTestButton",
         text: "Submit",
       },
     };
@@ -68,7 +70,11 @@ describe("<FormFooter />", () => {
     const cancelBtnText = "Cancel";
     const button = renderFormFooter({
       ...DEFAULT_PROPS,
-      cancelBtn: { action: onCancel, text: cancelBtnText },
+      cancelBtn: { 
+        action: onCancel,     
+        dataCy: "footerTestButton",
+        text: cancelBtnText,
+      },
     }).find(ButtonLink);
 
     expect(button.exists()).toEqual(true);

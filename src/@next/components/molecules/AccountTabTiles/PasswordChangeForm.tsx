@@ -3,7 +3,7 @@ import React from "react";
 import { TextField } from "../TextField";
 
 import { Button, ButtonLink } from "@components/atoms";
-import { IFormError } from "../../atoms/ErrorMessage/types";
+import { IFormError } from "@types";
 import * as S from "./styles";
 
 export const PasswordChangeForm: React.FC<{
@@ -116,6 +116,7 @@ export const PasswordChangeForm: React.FC<{
                   Cancel
                 </ButtonLink>
                 <Button
+                  dataCy="submitPasswordChangeFormButton"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

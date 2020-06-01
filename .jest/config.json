@@ -1,7 +1,9 @@
 {
   "rootDir": "../",
   "setupFiles": ["<rootDir>/.jest/register-context.js"],
+  "//": "Please remove 'react-syntax-highlighter/dist/esm/(.*)' from moduleNameMapper when storybook is upgraded to v.6.0.0 or higher - there is a fix https://github.com/storybookjs/storybook/issues/9470",
   "moduleNameMapper": {
+    "@temp/([^\\.]*)$": "<rootDir>/src/$1",
     "@styles/([^\\.]*)$": "<rootDir>/src/@next/globalStyles/$1",
     "@styles": "<rootDir>/src/@next/globalStyles/index.ts",
     "@app/([^\\.]*)$": "<rootDir>/src/@next/$1",
@@ -14,12 +16,15 @@
     "@components/organisms": "<rootDir>/src/@next/components/organisms/index.ts",
     "@components/views": "<rootDir>/src/@next/components/views/index.ts",
     "@components/containers": "<rootDir>/src/@next/components/containers/index.ts",
+    "@components/templates": "<rootDir>/src/@next/components/templates/index.ts",
     "@types": "<rootDir>/src/@next/types/index.ts",
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    "react-syntax-highlighter/dist/esm/(.*)": "react-syntax-highlighter/dist/cjs/$1"
   },
   "setupFilesAfterEnv": ["<rootDir>/.jest/setupTests.js"],
   "transform": {
     "^.+\\.(j|t)sx?$": "babel-jest",
+    "^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx",
     "^.+\\.svg$": "jest-svg-transformer"
   },
   "transformIgnorePatterns": [

@@ -11,7 +11,7 @@ import {
   ProductsList_categories,
   ProductsList_shop,
   ProductsList_shop_homepageCollection_backgroundImage,
-} from "./types/ProductsList";
+} from "./gqlTypes/ProductsList";
 
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
@@ -63,7 +63,7 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button>Shop sale</Button>
+                <Button dataCy="homepageHeroActionButton">Shop sale</Button>
               </Link>
             )
           )}

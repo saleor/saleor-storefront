@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/CartFooter default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: grid;
+  font-size: 1.125rem;
+  grid-template-areas: ". subtotalText subtotalPrice ."   ". totalText totalPrice .";
+  grid-template-columns: 4fr 1.1fr 0.9fr 0.5fr;
+  grid-gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c2 {
+  grid-area: subtotalText;
+}
+
+.c3 {
+  grid-area: subtotalPrice;
+}
+
+.c4 {
+  grid-area: totalText;
+  font-weight: bold;
+}
+
+.c5 {
+  grid-area: totalPrice;
+  font-weight: bold;
+}
+
+@media (max-width:720px) {
+  .c1 {
+    grid-template-areas: ". subtotalText subtotalPrice"   ". totalText totalPrice";
+    grid-template-columns: 0.5fr 3.5fr 2fr;
+  }
+}
+
+@media (max-width:720px) {
+  .c3 {
+    text-align: right;
+  }
+}
+
+@media (max-width:720px) {
+  .c5 {
+    text-align: right;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Subtotal
+    </div>
+    <div
+      className="c3"
+    >
+      150$
+    </div>
+    <div
+      className="c4"
+    >
+      Total
+    </div>
+    <div
+      className="c5"
+    >
+      180$
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;

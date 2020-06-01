@@ -4,7 +4,12 @@
     <meta charset="UTF-8" />
     <title>Saleor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="preconnect" href="<%= htmlWebpackPlugin.options.API_URI %>" />
+    <link
+      rel="preconnect"
+      href="https://rsms.me/inter/inter.css"
+      rel="stylesheet"
+    />
     <script>
       if (window.Cypress) {
         window.__REACT_DEVTOOLS_GLOBAL_HOOK__ =

@@ -252,6 +252,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -288,6 +289,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           <button
             className="c10"
             color="primary"
+            data-cy="submitTestModalButton"
             disabled={false}
             form="form-id"
             size="sm"
@@ -539,6 +541,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -566,6 +569,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           <button
             className="c9"
             color="primary"
+            data-cy="submitTestModalButton"
             disabled={true}
             form="modal-submit"
             size="sm"
@@ -817,6 +821,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           </h4>
           <div
             className="c6"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -844,6 +849,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           <button
             className="c9"
             color="primary"
+            data-cy="submitTestModalButton"
             disabled={false}
             form="modal-submit"
             onClick={[Function]}

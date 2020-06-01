@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
   margin: 20px;
 }
 
-.c4 {
+.c6 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,15 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
   box-sizing: border-box;
 }
 
-.c3 {
+.c2 {
+  margin-bottom: 1.875rem;
+}
+
+.c5 {
+  top: 100%;
+}
+
+.c4 {
   position: absolute;
   left: 1rem;
   padding: 0 0rem;
@@ -32,7 +40,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
   pointer-events: none;
 }
 
-.c2 {
+.c3 {
   position: absolute;
   right: 1rem;
   -webkit-transition-duration: 0.3s;
@@ -53,7 +61,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
     className="c1"
   >
     <div
-      className=""
+      className="c2"
     >
       <div
         className="css-1pcexqc-container"
@@ -131,7 +139,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
             </div>
           </div>
           <div
-            className="c2"
+            className="c3"
             rotate="false"
           >
             <svg
@@ -147,15 +155,18 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
           </div>
         </div>
         <label
-          className="c3"
+          className="c4"
         >
           Country
         </label>
       </div>
+      <div
+        className="c5"
+      />
     </div>
   </div>
   <div
-    className="c4"
+    className="c6"
   />
 </div>
 `;

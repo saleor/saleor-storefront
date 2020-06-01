@@ -23,11 +23,14 @@ const withContainer = (children: ReactNode) => (
 
 const PRODUCT_VARIANTS = productVariants;
 const PROPS = {
+  onAttributeChangeHandler: action("attribute change"),
   onChange: action("onChange"),
   productVariants: PRODUCT_VARIANTS,
+  queryAttributes: {},
 };
 
 storiesOf("@components/organisms/ProductVariantPicker", module)
+  .addParameters({ component: ProductVariantPicker })
   .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
   .add("with sidebar", () =>
     withContainer(

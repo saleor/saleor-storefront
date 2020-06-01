@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/atoms/Radio default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  cursor: pointer;
+}
+
+.c1 input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.c1 > div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.25em 1em 0.25em 0.25em;
+  border: 0.1em solid #21125e;
+  border-radius: 0.5em;
+  background: #ffffff;
+  vertical-align: bottom;
+}
+
+<div
+  className="c0"
+>
+  <label
+    checked={false}
+    className="c1"
+  >
+    <input
+      checked={false}
+      name="name"
+      type="radio"
+      value="value"
+    />
+     
+    <div>
+      <span />
+    </div>
+    Radio with label
+  </label>
+  <div
+    className="c2"
+  />
+</div>
+`;

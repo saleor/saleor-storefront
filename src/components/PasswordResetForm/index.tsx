@@ -6,7 +6,7 @@ import { Button, Form, TextField } from "..";
 import { maybe } from "../../core/utils";
 import { TypedPasswordResetMutation } from "./queries";
 
-import { passwordResetUrl } from "../../routes/";
+import { passwordResetUrl } from "../../app/routes";
 
 const PasswordResetForm: React.FC = () => (
   <div className="password-reset-form">
@@ -37,7 +37,7 @@ const PasswordResetForm: React.FC = () => (
               required
             />
             <div className="password-reset-form__button">
-              <Button type="submit" {...(loading && { disabled: true })}>
+              <Button dataCy="submitPasswordResetFormButton" type="submit" {...(loading && { disabled: true })}>
                 {loading ? "Loading" : "Reset password"}
               </Button>
             </div>

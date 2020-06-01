@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/templates/Checkout default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c7 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 1140px;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.c2 {
+  margin: 45px 0;
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  grid-template-rows: 85px auto auto;
+  grid-column-gap: 30px;
+  grid-template-areas: "navigation cartSummary" "checkout cartSummary" "button cartSummary";
+}
+
+.c3 {
+  grid-area: navigation;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  padding-bottom: 43px;
+  height: 85px;
+}
+
+.c4 {
+  grid-area: checkout;
+  padding: 3rem 0;
+}
+
+.c5 {
+  grid-area: cartSummary;
+}
+
+.c6 {
+  grid-area: button;
+}
+
+@media (max-width:992px) {
+  .c1 {
+    width: 100%;
+  }
+}
+
+@media (max-width:720px) {
+  .c2 {
+    grid-template-columns: 1fr;
+    grid-template-areas: "navigation" "checkout" "button";
+  }
+}
+
+@media (max-width:720px) {
+  .c5 {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      />
+      <div
+        className="c4"
+      />
+      <div
+        className="c5"
+      />
+      <div
+        className="c6"
+      />
+    </div>
+  </div>
+  <div
+    className="c7"
+  />
+</div>
+`;
