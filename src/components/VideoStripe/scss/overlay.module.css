@@ -4,6 +4,7 @@
   left: 15%;
   font-size: 45px;
   line-height: normal;
+  pointer-events: all;
 }
 
 .InfoCard * {
