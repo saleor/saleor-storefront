@@ -1,0 +1,16 @@
+name: Lint
+
+on:
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate lock file
+      run: |
+        npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
