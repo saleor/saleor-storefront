@@ -5,7 +5,7 @@ import Overlay from './overlay';
 const videoStripe = props => (
     <div className={classes.VideoBackground}>
         <div className={classes.VideoForeground}>
-            <Overlay title="V12 Athelete Craig" subtitle="Swiss Summer '19" buttonDestination="https://youtube.com" />
+            <Overlay title="V12 Athlete Craig" subtitle="Swiss Summer '19" buttonDestination="https://youtube.com" />
             <iframe
                 width="100%"
                 height="100%"
