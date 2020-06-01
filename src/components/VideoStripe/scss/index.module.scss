@@ -1,37 +1,41 @@
-.video-background {
-  background: #000;
+.VideoBackground {
+  Background: #000;
   max-height: 600px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: unsafe center;
+  margin: 2rem 0 4rem;
 }
 
-.video-foreground,
-.video-background iframe {
+.VideoForeground {
+  position: relative;
+}
+
+.VideoForeground,
+.VideoBackground iframe {
   min-height: 57vw;
   pointer-events: none;
-  z-index: 0;
 }
 
 @media (max-width: 1920px) {
-  .video-background {
+  .VideoBackground {
     max-height: 500px;
   }
 }
 
 @media (max-width: 1280px) {
-  .video-background {
+  .VideoBackground {
     max-height: 400px;
   }
 }
 
 @media (max-width: 800px) {
-  .video-background {
+  .VideoBackground {
     max-height: 190px;
   }
 
-  .video-background iframe {
+  .VideoBackground iframe {
     display: none;
   }
 }

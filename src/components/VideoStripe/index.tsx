@@ -1,18 +1,18 @@
 import React from 'react';
-import './scss/index.scss';
+import classes from './scss/index.module.scss';
 import Overlay from './overlay';
 
 const videoStripe = props => (
-    <div className="video-background">
-        <div className="video-foreground">
-            <Overlay title="" subtitle=""/>
+    <div className={classes.VideoBackground}>
+        <div className={classes.VideoForeground}>
+            <Overlay title="V12 Athelete Craig" subtitle="Swiss Summer '19"/>
             <iframe
                 width="100%"
                 height="100%"
                 src="https://www.youtube-nocookie.com/embed/QVkZcHPHkc8?controls=0&autoplay=1&modestbranding=1&mute=1&loop=1&playlist=QVkZcHPHkc8"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
+                allowFullScreen>
             </iframe>
         </div>
     </div>
