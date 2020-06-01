@@ -47,7 +47,7 @@ export const DEFAULT_PROPS = {
       ],
     },
   ],
-  id: "2",
+  id: "UHJvZHVjdDoz",
   maxQuantity: 5,
   name: "The Great Square Table",
   quantity: 3,
