@@ -14,3 +14,8 @@ jobs:
     - name: Validate lock file
       run: |
         npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
+
+    - name: Run tsc
+      run: |
+        npm ci
+        npm run tsc
