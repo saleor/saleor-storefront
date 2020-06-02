@@ -10,6 +10,10 @@ All notable, unreleased changes to this project will be documented in this file.
 - Use sdk as a standalone package - #724 by @dominik-zeglen
 - Fix CartRow tests - #749 by @dominik-zeglen
 
+## 2.10.2
+
+- Fix fetching `quantityAvailable` field - #738 by @AlicjaSzu
+
 ## 2.10.1
 
 - Replace stockQuantity field with quantityAvailable - #723 by @AlicjaSzu
