@@ -1,4 +1,4 @@
-name: Lint
+name: QA
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  check-lock:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,7 +15,22 @@ jobs:
       run: |
         npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
 
+  tsc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
     - name: Run tsc
       run: |
         npm ci
         npm run tsc
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run tsc
+      run: |
+        npm ci
+        npm run test
