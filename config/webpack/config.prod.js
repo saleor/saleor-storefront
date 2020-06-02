@@ -7,7 +7,7 @@ module.exports = ({ sourceDir, distDir }) => ({
   module: {
     rules: [
       {
-        test: /^((?!\.module).)(scss|css)$/,
+        test: /^((?!\.module).)*(scss|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
