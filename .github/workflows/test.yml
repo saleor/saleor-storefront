@@ -34,12 +34,15 @@ jobs:
           ${{ runner.os }}-qa-
           ${{ runner.os }}-
 
-    - name: Run tsc
+    - name: Install deps
       run: |
         npm ci
+
+    - name: Run tsc
+      run: |
         npm run tsc
 
-  test:
+  jest-tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -57,7 +60,10 @@ jobs:
           ${{ runner.os }}-qa-
           ${{ runner.os }}-
 
-    - name: Run jest
+    - name: Install deps
       run: |
         npm ci
+
+    - name: Run jest
+      run: |
         npm run test
