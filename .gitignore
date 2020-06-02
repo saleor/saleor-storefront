@@ -3,6 +3,7 @@
 !.storybook
 !.circle
 !.gitignore
+!.github
 !.babelrc
 !.plop
 !.jest

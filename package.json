@@ -8,7 +8,7 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@lhci/cli": "^0.3.9",
+    "@lhci/cli": "^0.4.1",
     "@saleor/sdk": "github:mirumee/saleor-sdk#649e0ba",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
@@ -174,7 +174,7 @@
     "codegen-sdk": "apollo codegen:generate --target=typescript gqlTypes --config src/@sdk/apollo.config.js --globalTypesFile src/@sdk/gqlTypes/globalTypes.ts",
     "codegen-watch": "npm run codegen -- --watch",
     "tslint": "tslint 'src/**/*.ts?(x)'",
-    "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@sdk & npx tsc --noEmit -p src/@next",
+    "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@next",
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
     "generate": "npx plop --plopfile ./.plop/index.js",
