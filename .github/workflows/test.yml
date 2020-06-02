@@ -16,7 +16,7 @@ jobs:
       run: |
         npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
 
-  tsc:
+  tsc-and-linters:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -41,6 +41,10 @@ jobs:
     - name: Run tsc
       run: |
         npm run tsc
+
+    - name: Run tslint
+      run: |
+        npm run tslint
 
   jest-tests:
     runs-on: ubuntu-latest

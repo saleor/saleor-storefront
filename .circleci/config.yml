@@ -13,20 +13,11 @@ jobs:
           name: Install dependencies
           command: npm ci
       - run:
-          name: Run typescript checker
-          command: npx tsc --noEmit & npx tsc --noEmit -p src/@sdk & npx tsc --noEmit -p src/@next
-      - run:
-          name: Run tslint
-          command: npm run tslint
-      - run:
           name: Build application
           command: npm run build
       - run:
           name: Run tests
           command: npm run test
-      - run:
-          name: Package lock security test
-          command: npx lockfile-lint --path package-lock.json --allowed-hosts npm yarn
       - run:
           name: lhci autorun
           command: npx lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
