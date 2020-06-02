@@ -374,23 +374,33 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     <div
       className="c2"
     >
-      <img
-        alt="product image"
-        data-cy="cartPageItemundefinedImage"
-        onError={[Function]}
-        src="test-file-stub"
-        srcSet="test-file-stub 1x"
-      />
+      <a
+        href="/product/the-great-square-table/3/"
+        onClick={[Function]}
+      >
+        <img
+          alt="product image"
+          data-cy="cartPageItemundefinedImage"
+          onError={[Function]}
+          src="test-file-stub"
+          srcSet="test-file-stub 1x"
+        />
+      </a>
     </div>
     <div
       className="c3"
     >
-      <p
-        className="c4"
-        data-cy="cartPageItemundefinedName"
+      <a
+        href="/product/the-great-square-table/3/"
+        onClick={[Function]}
       >
-        The Great Square Table
-      </p>
+        <p
+          className="c4"
+          data-cy="cartPageItemundefinedName"
+        >
+          The Great Square Table
+        </p>
+      </a>
       <p
         className="c5"
       >
