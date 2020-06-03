@@ -125,16 +125,12 @@ const startApp = async () => {
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
           <SaleorProvider config={SALEOR_CONFIG}>
-            {(client: ApolloClient<any>) => (
-              <ApolloProvider client={client}>
-                <ShopProvider>
-                  <OverlayProvider>
-                    <App />
-                    <Notifications />
-                  </OverlayProvider>
-                </ShopProvider>
-              </ApolloProvider>
-            )}
+            <ShopProvider>
+              <OverlayProvider>
+                <App />
+                <Notifications />
+              </OverlayProvider>
+            </ShopProvider>
           </SaleorProvider>
         </QueryParamProvider>
       </Router>
