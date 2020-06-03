@@ -1,13 +1,6 @@
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import {
-  defaultDataIdFromObject,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "apollo-cache-inmemory";
-import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
@@ -24,12 +17,8 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import {
-  authLink,
-  createSaleorClient,
-  SaleorProvider,
-  useAuth,
-} from "@saleor/sdk";
+import { SaleorProvider, useAuth } from "@saleor/sdk";
+import { CustomConfig } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
@@ -43,6 +32,10 @@ import {
   serviceWorkerTimeout,
 } from "./constants";
 import { history } from "./history";
+
+const SALEOR_CONFIG: CustomConfig = {
+  apiUrl,
+};
 
 const Notifications: React.FC = () => {
   const alert = useAlert();
@@ -109,15 +102,6 @@ const Notifications: React.FC = () => {
   return null;
 };
 
-const cache = new InMemoryCache({
-  dataIdFromObject: obj => {
-    if (obj.__typename === "Shop") {
-      return "shop";
-    }
-    return defaultDataIdFromObject(obj);
-  },
-});
-
 if (process.env.GTM_ID !== undefined) {
   TagManager.initialize({ gtmId: process.env.GTM_ID });
 }
@@ -131,39 +115,18 @@ const startApp = async () => {
     });
   }
 
-  await persistCache({
-    cache,
-    storage: window.localStorage,
-  });
-
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
   };
 
   const Root = hot(module)(() => {
-    const [apolloClient, setApolloClient] = React.useState<
-      ApolloClient<NormalizedCacheObject>
-    >();
-
-    const attachApolloClientToSaleor = (invalidTokenLink: ApolloLink) => {
-      const client = createSaleorClient(
-        apiUrl,
-        invalidTokenLink,
-        authLink,
-        cache
-      );
-      setApolloClient(client);
-
-      return client;
-    };
-
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
-          <SaleorProvider attachApolloClient={attachApolloClientToSaleor}>
-            {apolloClient && (
-              <ApolloProvider client={apolloClient}>
+          <SaleorProvider config={SALEOR_CONFIG}>
+            {(client: ApolloClient<any>) => (
+              <ApolloProvider client={client}>
                 <ShopProvider>
                   <OverlayProvider>
                     <App />
