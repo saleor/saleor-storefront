@@ -27,29 +27,29 @@ describe("Category view - filtering and sorting", () => {
 
   it("should show correct number of products in category if no filtering applied", () => {
     cy
-      .get("[data-cy=no-of-products-found_label]")
+      .get("[data-test=productsFoundCounter]")
       .should("have.text", "Products found: 7");
   });
 
   it("should show filter sidebar after clicking on filter menu", () => {
     cy
-      .get("[data-cy=filter-sidebar]")
+      .get("[data-test=filterSidebar]")
       .should("have.length", 0)
       .openFilterSidebar()
-      .get("[data-cy=filter-sidebar]")
+      .get("[data-test=filterSidebar]")
       .should("have.length", 1);
   });
 
   it("should hide filter sidebar after clicking on close icon button", () => {
     cy
-      .get("[data-cy=filter-sidebar]")
+      .get("[data-test=filterSidebar]")
       .should("have.length", 0)
       .openFilterSidebar()
-      .get("[data-cy=filter-sidebar]")
+      .get("[data-test=filterSidebar]")
       .should("have.length", 1)
-      .get("[data-cy=icon_button]")
+      .get("[data-test=hideFilters]")
       .click()
-      .get("[data-cy=filter-sidebar]")
+      .get("[data-test=filterSidebar]")
       .should("have.length", 0);
   });
 
@@ -59,9 +59,9 @@ describe("Category view - filtering and sorting", () => {
       .get("label")
       .first()
       .click()
-      .get("[data-cy=no-of-products-found_label]")
+      .get("[data-test=productsFoundCounter]")
       .should("have.text", "Products found: 5")
-      .get("[data-cy=product-tile")
+      .get("[data-test=productTile")
       .should("have.length", 5);
   });
 
