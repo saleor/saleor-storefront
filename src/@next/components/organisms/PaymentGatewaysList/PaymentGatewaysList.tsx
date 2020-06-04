@@ -36,7 +36,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayBraintreeInput"
+                    data-test="checkoutPaymentGatewayBraintreeInput"
                     name="payment-method"
                     value="credit-card"
                     checked={checked}
@@ -45,7 +45,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    <span data-cy="checkoutPaymentGatewayBraintreeName">
+                    <span data-test="checkoutPaymentGatewayBraintreeName">
                       {name}
                     </span>
                   </Radio>
@@ -70,7 +70,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayDummyInput"
+                    data-test="checkoutPaymentGatewayDummyInput"
                     name="payment-method"
                     value="dummy"
                     checked={checked}
@@ -79,7 +79,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    <span data-cy="checkoutPaymentGatewayDummyName">
+                    <span data-test="checkoutPaymentGatewayDummyName">
                       {name}
                     </span>
                   </Radio>
@@ -100,7 +100,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayStripeInput"
+                    data-test="checkoutPaymentGatewayStripeInput"
                     name="payment-method"
                     value="stripe"
                     checked={checked}
@@ -109,7 +109,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     }
                     customLabel={true}
                   >
-                    <span data-cy="checkoutPaymentGatewayStripeName">
+                    <span data-test="checkoutPaymentGatewayStripeName">
                       {name}
                     </span>
                   </Radio>

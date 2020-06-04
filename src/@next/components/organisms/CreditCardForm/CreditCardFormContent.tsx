@@ -39,7 +39,7 @@ export const CreditCardFormContent: React.FC<PropsWithFormik> = ({
   ]);
 
   return (
-    <S.PaymentForm ref={formRef} id={formId} onSubmit={handleSubmit}>
+    <S.PaymentForm ref={formRef} id={formId} onSubmit={handleSubmit} data-test="creditCardForm">
       <S.PaymentInput>
         <NumberFormat
           autoFocus

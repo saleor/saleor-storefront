@@ -6,20 +6,23 @@ type ButtonType = "submit" | "reset" | "button";
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   secondary?: boolean;
   btnRef?: React.RefObject<HTMLButtonElement>;
-  dataCy: string;
+  /**
+   * Used as marker for writing e2e tests
+   */
+  testingContext: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   className = "",
   children,
-  dataCy,
+  testingContext,
   secondary,
   btnRef,
   type,
   ...otherProps
 }) => (
   <button
-    data-cy={dataCy}
+    data-test={testingContext}
     className={`button ${secondary ? "secondary" : ""} ${className}`}
     ref={btnRef}
     type={type as ButtonType}

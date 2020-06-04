@@ -18,36 +18,36 @@ const CheckoutReview: React.FC<IProps> = ({
   errors,
 }: IProps) => {
   return (
-    <S.Wrapper>
-      <S.Title data-cy="checkoutPageSubtitle">REVIEW ORDER</S.Title>
+    <S.Wrapper data-test="checkoutReviewSectionTitle">
+      <S.Title data-test="checkoutPageSubtitle">REVIEW ORDER</S.Title>
       <S.Grid>
         <section>
-          <S.SubTitle data-cy="checkoutReviewSectionTitle">
+          <S.SubTitle data-test="checkoutReviewSectionTitle">
             Shipping Address
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={shippingAddress} email={email} />
+          <AddressSummary testingContext="shippingAddress" address={shippingAddress} email={email} />
         </section>
         <section>
-          <S.SubTitle data-cy="checkoutReviewSectionTitle">
+          <S.SubTitle data-test="checkoutReviewSectionTitle">
             Billing Address
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={billingAddress} email={email} />
+          <AddressSummary testingContext="billingAddress" address={billingAddress} email={email} />
         </section>
         <section>
-          <S.SubTitle data-cy="checkoutReviewSectionTitle">
+          <S.SubTitle>
             Shipping Method
           </S.SubTitle>
           <S.Divider />
-          <S.TextSummary>{shippingMethodName}</S.TextSummary>
+          <S.TextSummary data-test="shippingMethodName">{shippingMethodName}</S.TextSummary>
         </section>
         <section>
-          <S.SubTitle data-cy="checkoutReviewSectionTitle">
+          <S.SubTitle>
             Payment Method
           </S.SubTitle>
           <S.Divider />
-          <S.TextSummary>{paymentMethodName}</S.TextSummary>
+          <S.TextSummary data-test="paymentMethodName">{paymentMethodName}</S.TextSummary>
         </section>
       </S.Grid>
       <S.ErrorMessages>

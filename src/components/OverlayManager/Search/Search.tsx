@@ -81,7 +81,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   render() {
     return (
-      <Overlay context={this.props.overlay} className="overlay--no-background">
+      <Overlay testingContext="searchOverlay" context={this.props.overlay} className="overlay--no-background">
         <form
           className={classNames("search", {
             "search--has-results": this.hasSearchPhrase,
@@ -135,7 +135,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <Loader />
                                 ) : (
                                   <Button
-                                    dataCy="searchProductsButton"  
+                                    testingContext="searchProductsButton"  
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >

@@ -110,7 +110,7 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
   const allErrors = [...errors, ...submitErrors];
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-test="braintreePaymentGateway">
       <CreditCardForm
         formRef={formRef}
         formId={formId}

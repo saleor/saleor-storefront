@@ -53,7 +53,7 @@ export const InputSelect: React.FC<IProps> = ({
       return (
         <>
           <components.Control
-            data-cy="input-select"
+            data-test="inputSelect"
             {...{ customTheme, ...props }}
           />
           {

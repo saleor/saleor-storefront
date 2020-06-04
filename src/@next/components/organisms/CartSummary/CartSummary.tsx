@@ -15,7 +15,7 @@ const CostLine = ({
 }: ICostLine) => (
   <S.CostLine last={last}>
     <span>{name}</span>
-    <span data-cy={`cartSummaryCost${name.replace(/\s/g, "")}`}>
+    <span data-test={`cartSummaryCost${name.replace(/\s/g, "")}`}>
       {negative && "- "}
       <TaxedMoney taxedMoney={cost} />
     </span>
@@ -48,7 +48,7 @@ const CartSummary: React.FC<IProps> = ({
   return (
     <S.Wrapper mobileCartOpened={mobileCartOpened}>
       <S.Title
-        data-cy="cartSummaryTitle"
+        data-test="cartSummaryTitle"
         onClick={() => setMobileCartOpened(!mobileCartOpened)}
       >
         Cart Summary

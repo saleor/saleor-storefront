@@ -20,7 +20,7 @@ const CheckoutShipping: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-cy="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
+      <S.Title data-test="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
       <Formik
         initialValues={{
           shippingMethod: selectedShippingMethodId,
@@ -52,9 +52,8 @@ const CheckoutShipping: React.FC<IProps> = ({
                   !!values.shippingMethod && values.shippingMethod === id;
 
                 return (
-                  <S.Tile checked={checked} key={id}>
+                  <S.Tile checked={checked} key={id} data-test="shippingMethodTile" data-test-id={id}>
                     <Radio
-                      data-cy={`checkoutShippingMethodOption${index}Input`}
                       name="shippingMethod"
                       value={id}
                       checked={checked}
@@ -62,7 +61,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
                       <span
-                        data-cy={`checkoutShippingMethodOption${index}Name`}
+                        data-test={`checkoutShippingMethodOptionName`}
                       >
                         {name}
                       </span>
@@ -71,7 +70,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                         | +
                         {
                           <Money
-                            data-cy={`checkoutShippingMethodOption${index}Price`}
+                            data-test={`checkoutShippingMethodOptionPrice`}
                             money={price}
                           />
                         }

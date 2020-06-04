@@ -43,6 +43,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
 
   return (
     <TextField
+      name="quantity"
       type="number"
       label="Quantity"
       min="1"

@@ -42,7 +42,7 @@ describe("<CartRow />", () => {
     expect(onRemoveMock).toHaveBeenCalled();
   });
 
-  it("should call mock when clicking on substract quantity icon", () => {
+  it("should call mock when clicking on subtract quantity icon", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(

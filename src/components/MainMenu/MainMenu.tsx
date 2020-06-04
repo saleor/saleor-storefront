@@ -60,7 +60,7 @@ const MainMenu: React.FC = () => {
                       query={{ maxWidth: mediumScreen }}
                       render={() => (
                         <li
-                          data-cy="toggleSideMenuLink"
+                          data-test="toggleSideMenuLink"
                           className="main-menu__hamburger"
                           onClick={() =>
                             overlayContext.show(
@@ -86,7 +86,7 @@ const MainMenu: React.FC = () => {
                       render={() =>
                         items.map(item => (
                           <li
-                            data-cy="mainMenuItem"
+                            data-test="mainMenuItem"
                             className="main-menu__item"
                             key={item.id}
                           >
@@ -110,24 +110,24 @@ const MainMenu: React.FC = () => {
                                 }
                                 content={
                                   <ul className="main-menu__dropdown">
-                                    <li data-cy="mobileMenuMyAccountLink">
+                                    <li data-test="mobileMenuMyAccountLink">
                                       <Link to={appPaths.accountUrl}>
                                         My Account
                                       </Link>
                                     </li>
-                                    <li data-cy="mobileMenuOrderHistoryLink">
+                                    <li data-test="mobileMenuOrderHistoryLink">
                                       <Link to={appPaths.orderHistoryUrl}>
                                         Order history
                                       </Link>
                                     </li>
-                                    <li data-cy="mobileMenuAddressBookLink">
+                                    <li data-test="mobileMenuAddressBookLink">
                                       <Link to={appPaths.addressBookUrl}>
                                         Address book
                                       </Link>
                                     </li>
                                     <li
                                       onClick={handleSignOut}
-                                      data-cy="mobileMenuLogoutLink"
+                                      data-test="mobileMenuLogoutLink"
                                     >
                                       Log Out
                                     </li>
@@ -136,7 +136,7 @@ const MainMenu: React.FC = () => {
                               />
                             ) : (
                               <li
-                                data-cy="mobileMenuLoginLink"
+                                data-test="mobileMenuLoginLink"
                                 className="main-menu__icon"
                                 onClick={() =>
                                   overlayContext.show(
@@ -180,22 +180,22 @@ const MainMenu: React.FC = () => {
                           }
                           content={
                             <ul className="main-menu__dropdown">
-                              <li data-cy="desktopMenuMyAccountLink">
+                              <li data-test="desktopMenuMyAccountLink">
                                 <Link to={appPaths.accountUrl}>My Account</Link>
                               </li>
-                              <li data-cy="desktopMenuOrderHistoryLink">
+                              <li data-test="desktopMenuOrderHistoryLink">
                                 <Link to={appPaths.orderHistoryUrl}>
                                   Order history
                                 </Link>
                               </li>
-                              <li data-cy="desktopMenuAddressBookLink">
+                              <li data-test="desktopMenuAddressBookLink">
                                 <Link to={appPaths.addressBookUrl}>
                                   Address book
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
-                                data-cy="desktopMenuLogoutLink"
+                                data-test="desktopMenuLogoutLink"
                               >
                                 Log Out
                               </li>
@@ -204,7 +204,7 @@ const MainMenu: React.FC = () => {
                         />
                       ) : (
                         <li
-                          data-cy="desktopMenuLoginOverlayLink"
+                          data-test="desktopMenuLoginOverlayLink"
                           className="main-menu__icon"
                           onClick={() =>
                             overlayContext.show(
@@ -220,7 +220,7 @@ const MainMenu: React.FC = () => {
                   )}
                 />
                 <li
-                  data-cy="menuCartOverlayLink"
+                  data-test="menuCartOverlayLink"
                   className="main-menu__icon main-menu__cart"
                   onClick={() => {
                     overlayContext.show(OverlayType.cart, OverlayTheme.right);
@@ -243,7 +243,7 @@ const MainMenu: React.FC = () => {
                 </li>
               </Offline>
               <li
-                data-cy="menuSearchOverlayLink"
+                data-test="menuSearchOverlayLink"
                 className="main-menu__search"
                 onClick={() =>
                   overlayContext.show(OverlayType.search, OverlayTheme.right)

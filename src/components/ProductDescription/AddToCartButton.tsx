@@ -44,7 +44,7 @@ class AddToCartButton extends React.PureComponent<
 
     return (
       <Button
-        dataCy={this.props.dataCy}
+        testingContext={this.props.testingContext}
         fullWidth={true}
         className={classNames(this.props.className, {
           "product-description__action--fade": animate,

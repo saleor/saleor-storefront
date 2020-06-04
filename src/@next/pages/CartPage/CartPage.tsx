@@ -14,11 +14,11 @@ import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
-const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
+const title = <h1 data-test="cartPageTitle">My Cart</h1>;
 
 const getShoppingButton = (history: History) => (
   <Button
-    dataCy="cartPageContinueShoppingButton"
+    testingContext="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
     CONTINUE SHOPPING
@@ -27,7 +27,7 @@ const getShoppingButton = (history: History) => (
 
 const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
   <Button
-    dataCy="cartPageProceedToCheckoutButton"
+    testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
     PROCEED TO CHECKOUT
@@ -44,16 +44,16 @@ const prepareCartFooter = (
 ) => (
   <CartFooter
     subtotalPrice={
-      <TaxedMoney data-cy="cartPageSubtotalPrice" taxedMoney={subtotalPrice} />
+      <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
     }
     totalPrice={
-      <TaxedMoney data-cy="cartPageTotalPrice" taxedMoney={totalPrice} />
+      <TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />
     }
     shippingPrice={
       shippingTaxedPrice &&
       shippingTaxedPrice.gross.amount !== 0 && (
         <TaxedMoney
-          data-cy="cartPageShippingPrice"
+          data-test="shippingPrice"
           taxedMoney={shippingTaxedPrice}
         />
       )
@@ -62,7 +62,7 @@ const prepareCartFooter = (
       promoTaxedPrice &&
       promoTaxedPrice.gross.amount !== 0 && (
         <TaxedMoney
-          data-cy="cartPageShippingPrice"
+          data-test="discountPrice"
           taxedMoney={promoTaxedPrice}
         />
       )
@@ -91,13 +91,11 @@ const generateCart = (
       }}
       totalPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${index}TotalPrice`}
           taxedMoney={totalPrice}
         />
       }
       unitPrice={
         <TaxedMoney
-          data-cy={`cartPageItem${index}UnitPrice`}
           taxedMoney={variant?.pricing?.price}
         />
       }

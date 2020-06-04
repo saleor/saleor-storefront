@@ -83,7 +83,7 @@ const getButton = (text: string, onClick: () => void) => {
   if (text) {
     return (
       <Button
-        dataCy="checkoutPageNextStepButton"
+        testingContext="checkoutPageNextStepButton"
         onClick={onClick}
         type="submit"
       >

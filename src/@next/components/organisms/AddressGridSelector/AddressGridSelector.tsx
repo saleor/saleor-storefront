@@ -27,7 +27,7 @@ const AddressGridSelector: React.FC<IProps> = ({
 
   const addNewTile = (
     <AddNewTile
-      data-cy="addressTileAddNew"
+      data-test="addressTileAddNew"
       key="newTile"
       type="address"
       onClick={() => setDisplayNewModal(true)}
@@ -67,7 +67,8 @@ const AddressGridSelector: React.FC<IProps> = ({
                   (elements, { id, address }, index) => {
                     elements.push(
                       <AddressTileOption
-                        data-cy={`addressTileOption${index}`}
+                        data-test="addressTileOption"
+                        data-test-id={index}
                         key={`addressTile-${id}`}
                         id={id}
                         inputName="addressTileOption"

@@ -10,7 +10,8 @@ export const Button: React.FC<IProps> = ({
   color = "primary",
   btnRef,
   children,
-  dataCy,
+  testingContext,
+  testingContextId,
   fullWidth = false,
   size = "md",
   ...props
@@ -19,7 +20,8 @@ export const Button: React.FC<IProps> = ({
 
   return (
     <ButtonWithTheme  
-      data-cy={dataCy}
+      data-test={testingContext}
+      data-test-id={testingContextId}
       color={color}
       fullWidth={fullWidth}
       size={size}

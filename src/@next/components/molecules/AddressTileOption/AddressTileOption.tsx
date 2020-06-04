@@ -17,7 +17,7 @@ const AddressTileOption: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.Label checked={!!checked}>
+    <S.Label checked={!!checked} data-test="addressTile" data-test-id={id}>
       <Address {...address} />
       <S.Input
         {...props}
