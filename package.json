@@ -26,6 +26,7 @@
     "apollo-link-error": "^1.1.1",
     "apollo-link-http": "^1.5.4",
     "apollo-link-retry": "^2.2.5",
+    "babel-plugin-react-intl": "^7.5.17",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "braintree-web": "^3.38.1",
     "classnames": "^2.2.6",
@@ -48,6 +49,7 @@
     "react-gtm-module": "^2.0.8",
     "react-helmet": "^5.2.0",
     "react-intersection-observer": "^8.25.2",
+    "react-intl": "^4.6.5",
     "react-media": "^1.8.0",
     "react-responsive": "^7.0.0",
     "react-router": "^5.1.2",
@@ -56,6 +58,7 @@
     "react-transition-group": "^4.4.1",
     "register-service-worker": "^1.6.2",
     "reset-css": "^4.0.1",
+    "rimraf": "^3.0.2",
     "styled-components": "^4.3.0",
     "typeface-montserrat": "0.0.54",
     "url-join": "^4.0.0",
@@ -63,6 +66,7 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.5.5",
@@ -109,6 +113,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-react-intl-auto": "^3.3.0",
     "babel-plugin-require-context-hook": "^1.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^1.0.0",
@@ -136,6 +141,7 @@
     "react-apollo": "^2.5.1",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-hot-loader": "^4.9.0",
+    "react-intl-translations-manager": "^5.0.3",
     "react-is": "^16.12.0",
     "react-number-format": "^3.6.2",
     "react-select": "^2.4.4",
@@ -183,6 +189,9 @@
     "cy:open": "cypress open",
     "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
     "test:e2e:run:record": "start-server-and-test start http://localhost:3000 cy:run:record",
-    "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open"
+    "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open",
+    "extract-json-messages": "rimraf build/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null",
+    "transpile-messages": "node scripts/transpile-tx.js",
+    "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
   }
 }
