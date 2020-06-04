@@ -18,22 +18,22 @@ const CheckoutReview: React.FC<IProps> = ({
   errors,
 }: IProps) => {
   return (
-    <S.Wrapper data-test="checkoutReviewSectionTitle">
+    <S.Wrapper data-test="sectionTitle">
       <S.Title data-test="checkoutPageSubtitle">REVIEW ORDER</S.Title>
       <S.Grid>
-        <section>
-          <S.SubTitle data-test="checkoutReviewSectionTitle">
+        <section data-test="shippingAddressSection">
+          <S.SubTitle>
             Shipping Address
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary testingContext="shippingAddress" address={shippingAddress} email={email} />
+          <AddressSummary address={shippingAddress} email={email} />
         </section>
-        <section>
-          <S.SubTitle data-test="checkoutReviewSectionTitle">
+        <section data-test="billingAddressSection">
+          <S.SubTitle>
             Billing Address
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary testingContext="billingAddress" address={billingAddress} email={email} />
+          <AddressSummary address={billingAddress} email={email} />
         </section>
         <section>
           <S.SubTitle>

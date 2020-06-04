@@ -60,7 +60,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
 >
   <div
     className=""
-    data-test="checkoutReviewSectionTitle"
+    data-test="sectionTitle"
   >
     <h3
       className="c1"
@@ -71,10 +71,11 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
     <div
       className="c2"
     >
-      <section>
+      <section
+        data-test="shippingAddressSection"
+      >
         <h4
           className="c3"
-          data-test="checkoutReviewSectionTitle"
         >
           Shipping Address
         </h4>
@@ -82,10 +83,11 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
           className="c4"
         />
       </section>
-      <section>
+      <section
+        data-test="billingAddressSection"
+      >
         <h4
           className="c3"
-          data-test="checkoutReviewSectionTitle"
         >
           Billing Address
         </h4>
