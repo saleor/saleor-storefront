@@ -171,7 +171,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
-                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -202,7 +201,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
-                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -237,7 +235,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
-                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -268,7 +265,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
-                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -303,7 +299,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
-                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -338,7 +333,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
-                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -373,7 +367,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
-                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -404,7 +397,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
-                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -462,7 +454,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
-                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-7-input"
                         onBlur={[Function]}
@@ -544,7 +535,6 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
-                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -772,7 +762,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
-                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -791,9 +780,11 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
             >
               <div
                 className="c11"
+                data-test="errorMessage"
               >
                 <p
                   className="c12"
+                  data-test-id={0}
                 >
                   This is error
                 </p>
@@ -813,7 +804,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
-                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -832,9 +822,11 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
             >
               <div
                 className="c11"
+                data-test="errorMessage"
               >
                 <p
                   className="c12"
+                  data-test-id={0}
                 >
                   This is error
                 </p>
@@ -858,7 +850,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
-                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -889,7 +880,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
-                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -924,7 +914,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
-                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -959,7 +948,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
-                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -994,7 +982,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
-                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -1025,7 +1012,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
-                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -1083,7 +1069,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
-                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-8-input"
                         onBlur={[Function]}
@@ -1165,7 +1150,6 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
-                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -1379,7 +1363,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
-                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -1411,7 +1394,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
-                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -1447,7 +1429,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
-                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -1479,7 +1460,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
-                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -1515,7 +1495,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
-                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -1551,7 +1530,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
-                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -1587,7 +1565,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
-                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -1619,7 +1596,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
-                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -1678,7 +1654,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
-                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-9-input"
                         onBlur={[Function]}
@@ -1760,7 +1735,6 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
-                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}

@@ -74,15 +74,16 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
   >
     <div
       className="c1"
-      data-cy="product-tile"
     >
       <h4
         className="c2"
+        data-test="productTile"
       >
         Apple Juice
       </h4>
       <p
         className="c3"
+        data-test="productPrice"
       >
         <span>
           
@@ -90,6 +91,7 @@ exports[`Storyshots @components/molecules/ProductTile default 1`] = `
       </p>
       <div
         className="c4"
+        data-test="productThumbnail"
       >
         <img
           alt=""

@@ -122,6 +122,7 @@ exports[`Storyshots @components/organisms/StripeCreditCardForm default 1`] = `
   >
     <div
       className="c2"
+      data-test="stripeForm"
     >
       <div
         className="c3"

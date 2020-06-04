@@ -189,7 +189,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
   >
     <div
       className="c2"
-      data-cy="cartSummaryTitle"
+      data-test="cartSummaryTitle"
       onClick={[Function]}
     >
       Cart Summary
@@ -223,10 +223,12 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           >
             <div
               className="c8"
+              data-test="cartSummary"
+              data-test-id="TGS-122A"
             >
               <div
                 className="c9"
-                data-cy="cartSummaryItem0Name"
+                data-test="name"
               >
                 The Great Square Table
               </div>
@@ -235,7 +237,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 SKU: 
                 <span
-                  data-cy="cartSummaryItem0SKU"
+                  data-test="sku"
                 >
                   TGS-122A
                 </span>
@@ -246,14 +248,14 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
                 Quantity:
                  
                 <span
-                  data-cy="cartSummaryItem0Quantity"
+                  data-test="quantity"
                 >
                   2
                 </span>
               </div>
               <div
                 className="c12"
-                data-cy="cartSummaryItem0Price"
+                data-test="price"
               >
                 <span>
                   
@@ -264,7 +266,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 <img
                   alt="product image"
-                  data-cy="cartSummaryItem0Image"
+                  data-test="image"
                   onError={[Function]}
                   src="test-file-stub"
                   srcSet="test-file-stub 1x"
@@ -282,10 +284,12 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           >
             <div
               className="c8"
+              data-test="cartSummary"
+              data-test-id="TGS-122A"
             >
               <div
                 className="c9"
-                data-cy="cartSummaryItem1Name"
+                data-test="name"
               >
                 The Great Square Table
               </div>
@@ -294,7 +298,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 SKU: 
                 <span
-                  data-cy="cartSummaryItem1SKU"
+                  data-test="sku"
                 >
                   TGS-122A
                 </span>
@@ -305,14 +309,14 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
                 Quantity:
                  
                 <span
-                  data-cy="cartSummaryItem1Quantity"
+                  data-test="quantity"
                 >
                   2
                 </span>
               </div>
               <div
                 className="c12"
-                data-cy="cartSummaryItem1Price"
+                data-test="price"
               >
                 <span>
                   
@@ -323,7 +327,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 <img
                   alt="product image"
-                  data-cy="cartSummaryItem1Image"
+                  data-test="image"
                   onError={[Function]}
                   src="test-file-stub"
                   srcSet="test-file-stub 1x"
@@ -341,10 +345,12 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           >
             <div
               className="c8"
+              data-test="cartSummary"
+              data-test-id="TGS-122A"
             >
               <div
                 className="c9"
-                data-cy="cartSummaryItem2Name"
+                data-test="name"
               >
                 The Great Square Table
               </div>
@@ -353,7 +359,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 SKU: 
                 <span
-                  data-cy="cartSummaryItem2SKU"
+                  data-test="sku"
                 >
                   TGS-122A
                 </span>
@@ -364,14 +370,14 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
                 Quantity:
                  
                 <span
-                  data-cy="cartSummaryItem2Quantity"
+                  data-test="quantity"
                 >
                   2
                 </span>
               </div>
               <div
                 className="c12"
-                data-cy="cartSummaryItem2Price"
+                data-test="price"
               >
                 <span>
                   
@@ -382,7 +388,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               >
                 <img
                   alt="product image"
-                  data-cy="cartSummaryItem2Image"
+                  data-test="image"
                   onError={[Function]}
                   src="test-file-stub"
                   srcSet="test-file-stub 1x"
@@ -405,7 +411,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
             Subtotal
           </span>
           <span
-            data-cy="cartSummaryCostSubtotal"
+            data-test="cartSummaryCostSubtotal"
           >
             <span>
               
@@ -419,7 +425,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
             Shipping
           </span>
           <span
-            data-cy="cartSummaryCostShipping"
+            data-test="cartSummaryCostShipping"
           >
             <span>
               
@@ -433,7 +439,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
             Promo Code
           </span>
           <span
-            data-cy="cartSummaryCostPromoCode"
+            data-test="cartSummaryCostPromoCode"
           >
             - 
             <span>
@@ -448,7 +454,7 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
             Total
           </span>
           <span
-            data-cy="cartSummaryCostTotal"
+            data-test="cartSummaryCostTotal"
           >
             <span>
               

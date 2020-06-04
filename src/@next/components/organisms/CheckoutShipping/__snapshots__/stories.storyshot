@@ -66,7 +66,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
   <section>
     <h3
       className="c1"
-      data-cy="checkoutPageSubtitle"
+      data-test="checkoutPageSubtitle"
     >
       SHIPPING METHOD
     </h3>
@@ -77,6 +77,8 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
       <label
         checked={false}
         className="c3"
+        data-test="shippingMethodTile"
+        data-test-id="1"
       >
         <div
           checked={false}
@@ -84,7 +86,6 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutShippingMethodOption0Input"
             name="shippingMethod"
             onChange={[Function]}
             type="radio"
@@ -95,7 +96,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
             <span />
           </div>
           <span
-            data-cy="checkoutShippingMethodOption0Name"
+            data-test="checkoutShippingMethodOptionName"
           >
             Basic
           </span>
@@ -105,7 +106,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
              
             | +
             <span
-              data-cy="checkoutShippingMethodOption0Price"
+              data-test="checkoutShippingMethodOptionPrice"
             >
               
             </span>
@@ -115,6 +116,8 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
       <label
         checked={false}
         className="c3"
+        data-test="shippingMethodTile"
+        data-test-id="2"
       >
         <div
           checked={false}
@@ -122,7 +125,6 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutShippingMethodOption1Input"
             name="shippingMethod"
             onChange={[Function]}
             type="radio"
@@ -133,7 +135,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
             <span />
           </div>
           <span
-            data-cy="checkoutShippingMethodOption1Name"
+            data-test="checkoutShippingMethodOptionName"
           >
             Extra
           </span>
@@ -143,7 +145,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
              
             | +
             <span
-              data-cy="checkoutShippingMethodOption1Price"
+              data-test="checkoutShippingMethodOptionPrice"
             >
               
             </span>

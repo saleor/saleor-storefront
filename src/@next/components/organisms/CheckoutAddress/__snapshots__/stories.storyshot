@@ -179,12 +179,13 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   <section>
     <h3
       className="c1"
-      data-cy="checkoutPageSubtitle"
+      data-test="checkoutPageSubtitle"
     >
       SHIPPING ADDRESS
     </h3>
     <form
       className="c2"
+      data-test="shippingAddressForm"
       onSubmit={[Function]}
     >
       <div
@@ -206,7 +207,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="given-name"
                   className="c8"
-                  data-cy="addressFormFirstName"
                   disabled={false}
                   name="firstName"
                   onBlur={[Function]}
@@ -238,7 +238,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="family-name"
                   className="c8"
-                  data-cy="addressFormLastName"
                   disabled={false}
                   name="lastName"
                   onBlur={[Function]}
@@ -274,7 +273,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="organization"
                   className="c8"
-                  data-cy="addressFormCompanyName"
                   disabled={false}
                   name="companyName"
                   onBlur={[Function]}
@@ -306,7 +304,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="tel"
                   className="c8"
-                  data-cy="addressFormPhone"
                   disabled={false}
                   name="phone"
                   onBlur={[Function]}
@@ -342,7 +339,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="address-line1"
                   className="c8"
-                  data-cy="addressFormStreetAddress1"
                   disabled={false}
                   name="streetAddress1"
                   onBlur={[Function]}
@@ -378,7 +374,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="address-line2"
                   className="c8"
-                  data-cy="addressFormStreetAddress2"
                   disabled={false}
                   name="streetAddress2"
                   onBlur={[Function]}
@@ -414,7 +409,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="address-level1"
                   className="c8"
-                  data-cy="addressFormCity"
                   disabled={false}
                   name="city"
                   onBlur={[Function]}
@@ -446,7 +440,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="postal-code"
                   className="c8"
-                  data-cy="addressFormPostalCode"
                   disabled={false}
                   name="postalCode"
                   onBlur={[Function]}
@@ -505,7 +498,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                         autoCapitalize="none"
                         autoComplete="off"
                         autoCorrect="off"
-                        data-cy="addressFormCountry"
                         disabled={false}
                         id="react-select-10-input"
                         onBlur={[Function]}
@@ -587,7 +579,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="address-level2"
                   className="c8"
-                  data-cy="addressFormCountryArea"
                   disabled={false}
                   name="countryArea"
                   onBlur={[Function]}
@@ -623,7 +614,6 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 <input
                   autoComplete="email"
                   className="c8"
-                  data-cy="addressFormEmail"
                   disabled={false}
                   name="email"
                   onBlur={[Function]}
@@ -802,7 +792,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
   <section>
     <h3
       className="c1"
-      data-cy="checkoutPageSubtitle"
+      data-test="checkoutPageSubtitle"
     >
       SHIPPING ADDRESS
     </h3>
@@ -817,7 +807,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
         >
           <div
             className="c4"
-            data-cy="addressTileAddNew"
+            data-test="addressTileAddNew"
             onClick={[Function]}
           >
             <div
@@ -852,6 +842,8 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
           <label
             checked={false}
             className="c7"
+            data-test="addressTile"
+            data-test-id="12345"
           >
             <div>
               <span
@@ -883,7 +875,8 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
             <input
               checked={false}
               className="c9"
-              data-cy="addressTileOption0"
+              data-test="addressTileOption"
+              data-test-id={0}
               name="addressTileOption"
               onChange={[Function]}
               type="radio"

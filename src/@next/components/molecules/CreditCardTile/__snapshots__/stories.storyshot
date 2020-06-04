@@ -124,6 +124,8 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
 >
   <div
     className="c1"
+    data-test="creditCardTile"
+    data-test-id={9876}
   >
     <div
       className="c2"
@@ -156,6 +158,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
       </div>
       <div
         className="c7"
+        data-test="expirationDate"
       >
         05/2019
       </div>
@@ -166,6 +169,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
       </div>
       <div
         className="c7"
+        data-test="nameOnCard"
       >
         John Doe
       </div>
@@ -179,7 +183,7 @@ exports[`Storyshots @components/molecules/CreditCardTile default 1`] = `
         <div>
           <div
             className="c10"
-            data-cy="icon_button"
+            data-test="removeCardButton"
             onClick={[Function]}
           >
             <svg

@@ -240,6 +240,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
 >
   <div
     className="c1"
+    data-test="attributeSelection"
     onClick={[Function]}
     open={true}
   >
@@ -264,7 +265,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           </h4>
           <div
             className="c6"
-            data-cy="icon_button"
+            data-test="closeOverlayButton"
             onClick={[Function]}
           >
             <svg
@@ -288,6 +289,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -301,6 +304,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c10"
+              data-test="attributeOption"
+              data-test-id="7 1/8"
               disabled={false}
               onClick={[Function]}
               selected={true}
@@ -324,6 +329,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 1/4"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -337,6 +344,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 3/84"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -350,6 +359,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c12"
+              data-test="attributeOption"
+              data-test-id="7 1/2"
               disabled={true}
               onClick={[Function]}
               selected={false}
@@ -363,6 +374,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 5/8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -376,6 +389,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 3/4"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -389,6 +404,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 7/8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -402,6 +419,8 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -687,6 +706,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
 >
   <div
     className="c1"
+    data-test="attributeSelection"
     onClick={[Function]}
     open={true}
   >
@@ -711,7 +731,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           </h4>
           <div
             className="c6"
-            data-cy="icon_button"
+            data-test="closeOverlayButton"
             onClick={[Function]}
           >
             <svg
@@ -735,6 +755,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -748,6 +770,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c10"
+              data-test="attributeOption"
+              data-test-id="7 1/8"
               disabled={false}
               onClick={[Function]}
               selected={true}
@@ -771,6 +795,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 1/4"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -784,6 +810,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 3/84"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -797,6 +825,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c12"
+              data-test="attributeOption"
+              data-test-id="7 1/2"
               disabled={true}
               onClick={[Function]}
               selected={false}
@@ -810,6 +840,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 5/8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -823,6 +855,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 3/4"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -836,6 +870,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="7 7/8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -849,6 +885,8 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           >
             <div
               className="c9"
+              data-test="attributeOption"
+              data-test-id="8"
               disabled={false}
               onClick={[Function]}
               selected={false}
@@ -864,6 +902,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           <button
             className="c14"
             color="secondary"
+            data-test="footerActionButton"
             size="md"
           >
             SHOW SIZE TABLE

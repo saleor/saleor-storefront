@@ -183,6 +183,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
 >
   <div
     className="c1"
+    data-test="thankYouView"
   >
     <div
       className="c2"
@@ -215,7 +216,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c6"
           color="secondary"
-          data-cy="continueShoppingButton"
+          data-test="continueShoppingButton"
           onClick={[Function]}
           size="md"
         >
@@ -229,7 +230,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c8"
           color="primary"
-          data-cy="gotoOrderDetailsButton"
+          data-test="gotoOrderDetailsButton"
           onClick={[Function]}
           size="md"
         >

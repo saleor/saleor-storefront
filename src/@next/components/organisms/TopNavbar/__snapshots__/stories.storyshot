@@ -210,6 +210,7 @@ exports[`Storyshots @components/organisms/TopNavbar default 1`] = `
 >
   <div
     className="c1"
+    data-test="topNavigation"
   >
     <div
       className="c2"

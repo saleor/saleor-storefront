@@ -50,6 +50,8 @@ exports[`Storyshots @components/molecules/AddressTileOption default 1`] = `
   <label
     checked={false}
     className="c1"
+    data-test="addressTile"
+    data-test-id="12345"
   >
     <div>
       <span

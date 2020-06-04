@@ -154,7 +154,7 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
       >
         <div
           className="c3"
-          data-cy="addressTileAddNew"
+          data-test="addressTileAddNew"
           onClick={[Function]}
         >
           <div
@@ -189,6 +189,8 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
         <label
           checked={false}
           className="c6"
+          data-test="addressTile"
+          data-test-id="12345"
         >
           <div>
             <span
@@ -220,7 +222,8 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
           <input
             checked={false}
             className="c8"
-            data-cy="addressTileOption0"
+            data-test="addressTileOption"
+            data-test-id={0}
             name="addressTileOption"
             onChange={[Function]}
             type="radio"

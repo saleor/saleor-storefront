@@ -123,6 +123,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -374,6 +375,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -654,6 +656,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -695,9 +698,11 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
         >
           <div
             className="c9"
+            data-test="errorMessage"
           >
             <p
               className="c10"
+              data-test-id={0}
             >
               Wrong number
             </p>

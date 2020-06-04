@@ -294,7 +294,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
     <section>
       <h3
         className="c1"
-        data-cy="checkoutPageSubtitle"
+        data-test="checkoutPageSubtitle"
       >
         BILLING ADDRESS
       </h3>
@@ -307,7 +307,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            data-test="checkoutPaymentBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
             readOnly={true}
             tabIndex={-1}
@@ -327,6 +327,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
       />
       <form
         className="c6"
+        data-test="billingAddressForm"
         onSubmit={[Function]}
       >
         <div
@@ -348,7 +349,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="given-name"
                     className="c12"
-                    data-cy="addressFormFirstName"
                     disabled={false}
                     name="firstName"
                     onBlur={[Function]}
@@ -380,7 +380,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="family-name"
                     className="c12"
-                    data-cy="addressFormLastName"
                     disabled={false}
                     name="lastName"
                     onBlur={[Function]}
@@ -416,7 +415,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="organization"
                     className="c12"
-                    data-cy="addressFormCompanyName"
                     disabled={false}
                     name="companyName"
                     onBlur={[Function]}
@@ -448,7 +446,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="tel"
                     className="c12"
-                    data-cy="addressFormPhone"
                     disabled={false}
                     name="phone"
                     onBlur={[Function]}
@@ -484,7 +481,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-line1"
                     className="c12"
-                    data-cy="addressFormStreetAddress1"
                     disabled={false}
                     name="streetAddress1"
                     onBlur={[Function]}
@@ -520,7 +516,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-line2"
                     className="c12"
-                    data-cy="addressFormStreetAddress2"
                     disabled={false}
                     name="streetAddress2"
                     onBlur={[Function]}
@@ -556,7 +551,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-level1"
                     className="c12"
-                    data-cy="addressFormCity"
                     disabled={false}
                     name="city"
                     onBlur={[Function]}
@@ -588,7 +582,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="postal-code"
                     className="c12"
-                    data-cy="addressFormPostalCode"
                     disabled={false}
                     name="postalCode"
                     onBlur={[Function]}
@@ -647,7 +640,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                           autoCapitalize="none"
                           autoComplete="off"
                           autoCorrect="off"
-                          data-cy="addressFormCountry"
                           disabled={false}
                           id="react-select-11-input"
                           onBlur={[Function]}
@@ -729,7 +721,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                   <input
                     autoComplete="address-level2"
                     className="c12"
-                    data-cy="addressFormCountryArea"
                     disabled={false}
                     name="countryArea"
                     onBlur={[Function]}
@@ -758,7 +749,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
     <section>
       <h3
         className="c1"
-        data-cy="checkoutPageSubtitle"
+        data-test="checkoutPageSubtitle"
       >
         PAYMENT METHOD
       </h3>
@@ -771,7 +762,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentPromoCodeCheckbox"
+            data-test="checkoutPaymentPromoCodeCheckbox"
             name="payment-promo-code"
             readOnly={true}
             tabIndex={-1}
@@ -803,7 +794,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
             >
               <input
                 checked={false}
-                data-cy="checkoutPaymentGatewayDummyInput"
+                data-test="checkoutPaymentGatewayDummyInput"
                 name="payment-method"
                 onChange={[Function]}
                 type="radio"
@@ -814,7 +805,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                 <span />
               </div>
               <span
-                data-cy="checkoutPaymentGatewayDummyName"
+                data-test="checkoutPaymentGatewayDummyName"
               >
                 Dummy
               </span>
@@ -832,7 +823,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
             >
               <input
                 checked={false}
-                data-cy="checkoutPaymentGatewayStripeInput"
+                data-test="checkoutPaymentGatewayStripeInput"
                 name="payment-method"
                 onChange={[Function]}
                 type="radio"
@@ -843,7 +834,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
                 <span />
               </div>
               <span
-                data-cy="checkoutPaymentGatewayStripeName"
+                data-test="checkoutPaymentGatewayStripeName"
               >
                 Stripe
               </span>
@@ -1140,7 +1131,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
     <section>
       <h3
         className="c1"
-        data-cy="checkoutPageSubtitle"
+        data-test="checkoutPageSubtitle"
       >
         BILLING ADDRESS
       </h3>
@@ -1153,7 +1144,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            data-test="checkoutPaymentBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
             readOnly={true}
             tabIndex={-1}
@@ -1182,7 +1173,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
           >
             <div
               className="c8"
-              data-cy="addressTileAddNew"
+              data-test="addressTileAddNew"
               onClick={[Function]}
             >
               <div
@@ -1217,6 +1208,8 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
             <label
               checked={false}
               className="c11"
+              data-test="addressTile"
+              data-test-id="12345"
             >
               <div>
                 <span
@@ -1248,7 +1241,8 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
               <input
                 checked={false}
                 className="c13"
-                data-cy="addressTileOption0"
+                data-test="addressTileOption"
+                data-test-id={0}
                 name="addressTileOption"
                 onChange={[Function]}
                 type="radio"
@@ -1265,7 +1259,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
     <section>
       <h3
         className="c1"
-        data-cy="checkoutPageSubtitle"
+        data-test="checkoutPageSubtitle"
       >
         PAYMENT METHOD
       </h3>
@@ -1278,7 +1272,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentPromoCodeCheckbox"
+            data-test="checkoutPaymentPromoCodeCheckbox"
             name="payment-promo-code"
             readOnly={true}
             tabIndex={-1}
@@ -1310,7 +1304,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
             >
               <input
                 checked={false}
-                data-cy="checkoutPaymentGatewayDummyInput"
+                data-test="checkoutPaymentGatewayDummyInput"
                 name="payment-method"
                 onChange={[Function]}
                 type="radio"
@@ -1321,7 +1315,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
                 <span />
               </div>
               <span
-                data-cy="checkoutPaymentGatewayDummyName"
+                data-test="checkoutPaymentGatewayDummyName"
               >
                 Dummy
               </span>
@@ -1339,7 +1333,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
             >
               <input
                 checked={false}
-                data-cy="checkoutPaymentGatewayStripeInput"
+                data-test="checkoutPaymentGatewayStripeInput"
                 name="payment-method"
                 onChange={[Function]}
                 type="radio"
@@ -1350,7 +1344,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
                 <span />
               </div>
               <span
-                data-cy="checkoutPaymentGatewayStripeName"
+                data-test="checkoutPaymentGatewayStripeName"
               >
                 Stripe
               </span>

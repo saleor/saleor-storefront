@@ -269,6 +269,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
 >
   <div
     className="c1"
+    data-test="navigationMenu"
     onClick={[Function]}
     open={true}
   >

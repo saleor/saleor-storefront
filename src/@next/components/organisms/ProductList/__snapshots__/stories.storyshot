@@ -141,6 +141,8 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
 >
   <div
     className="c1"
+    data-test="productList"
+    data-test-id="testCategory"
   >
     <a
       href="/product/apple-juice/72/"
@@ -148,15 +150,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -164,6 +167,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -180,15 +184,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -196,6 +201,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -212,15 +218,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -228,6 +235,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -244,15 +252,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -260,6 +269,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -276,15 +286,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -292,6 +303,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -308,15 +320,16 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     >
       <div
         className="c2"
-        data-cy="product-tile"
       >
         <h4
           className="c3"
+          data-test="productTile"
         >
           Apple Juice
         </h4>
         <p
           className="c4"
+          data-test="productPrice"
         >
           <span>
             
@@ -324,6 +337,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
         </p>
         <div
           className="c5"
+          data-test="productThumbnail"
         >
           <img
             alt=""
@@ -341,7 +355,7 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     <button
       className="c7"
       color="secondary"
-      data-cy="loadMoreProductsButton"
+      data-test="loadMoreProductsButton"
       onClick={[Function]}
       size="md"
     >

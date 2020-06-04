@@ -95,7 +95,7 @@ exports[`Storyshots @components/atoms/DropdownMenu clickable 1`] = `
     >
       <div
         className="c3"
-        data-cy="icon_button"
+        data-test="editButton"
         onClick={[Function]}
       >
         <svg
@@ -212,7 +212,7 @@ exports[`Storyshots @components/atoms/DropdownMenu hoverable 1`] = `
     >
       <div
         className="c3"
-        data-cy="icon_button"
+        data-test="editButton"
         onClick={[Function]}
       >
         <svg
