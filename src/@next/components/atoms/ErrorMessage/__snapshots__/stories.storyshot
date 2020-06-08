@@ -31,9 +31,11 @@ exports[`Storyshots @components/atoms/ErrorMessage default 1`] = `
 >
   <div
     className="c1"
+    data-test="errorMessage"
   >
     <p
       className="c2"
+      data-test-id={0}
     >
       Error Message
     </p>
@@ -75,14 +77,17 @@ exports[`Storyshots @components/atoms/ErrorMessage with multiple errors 1`] = `
 >
   <div
     className="c1"
+    data-test="errorMessage"
   >
     <p
       className="c2"
+      data-test-id={0}
     >
       Error Message
     </p>
     <p
       className="c2"
+      data-test-id={1}
     >
       Error Message
     </p>

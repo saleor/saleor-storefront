@@ -65,7 +65,7 @@ export const ResetPasswordForm: React.FC<IProps> = ({
           />
         </S.InputFields>
 
-        <Button dataCy="submitNewPasswordFormButton" type="submit" fullWidth={true}>
+        <Button testingContext="submit" type="submit" fullWidth={true}>
           SET NEW PASSWORD
         </Button>
       </form>

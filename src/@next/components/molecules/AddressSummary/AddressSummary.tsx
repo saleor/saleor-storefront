@@ -9,7 +9,7 @@ import { IProps } from "./types";
 const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
   if (address) {
     return (
-      <S.Wrapper>
+      <S.Wrapper data-test="addressTile">
         <strong>{`${address.firstName} ${address.lastName}`}</strong>
         <br />
         {address.companyName && (
@@ -36,7 +36,7 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
       </S.Wrapper>
     );
   } else if (email) {
-    return <S.Wrapper>{email}</S.Wrapper>;
+    return <S.Wrapper data-test="emailTile">{email}</S.Wrapper>;
   }
   return null;
 };

@@ -18,20 +18,20 @@ const CartSummaryRow: React.FC<IProps> = ({
   thumbnail,
 }: IProps) => {
   return (
-    <S.Wrapper>
-      <S.Name data-cy={`cartSummaryItem${index}Name`}>{name}</S.Name>
+    <S.Wrapper data-test="cartSummary" data-test-id={sku}>
+      <S.Name data-test="name">{name}</S.Name>
       <S.Sku>
-        SKU: <span data-cy={`cartSummaryItem${index}SKU`}>{sku}</span>
+        SKU: <span data-test="sku">{sku}</span>
       </S.Sku>
       <S.Quantity>
         Quantity:{" "}
-        <span data-cy={`cartSummaryItem${index}Quantity`}>{quantity}</span>
+        <span data-test="quantity">{quantity}</span>
       </S.Quantity>
-      <S.Price data-cy={`cartSummaryItem${index}Price`}>
+      <S.Price data-test="price">
         <TaxedMoney taxedMoney={price} />
       </S.Price>
       <S.Photo>
-        <CachedImage data-cy={`cartSummaryItem${index}Image`} {...thumbnail} />
+        <CachedImage data-test="image" {...thumbnail} />
       </S.Photo>
     </S.Wrapper>
   );

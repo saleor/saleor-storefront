@@ -37,7 +37,7 @@ const PasswordResetForm: React.FC = () => (
               required
             />
             <div className="password-reset-form__button">
-              <Button dataCy="submitPasswordResetFormButton" type="submit" {...(loading && { disabled: true })}>
+              <Button testingContext="submit" type="submit" {...(loading && { disabled: true })}>
                 {loading ? "Loading" : "Reset password"}
               </Button>
             </div>

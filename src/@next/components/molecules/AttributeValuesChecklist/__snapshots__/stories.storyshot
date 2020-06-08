@@ -287,6 +287,7 @@ exports[`Storyshots @components/molecules/AttributeValuesChecklist default 1`] =
         <button
           className="c8"
           color="secondary"
+          data-test="viewAllButton"
           onClick={[Function]}
           size="sm"
         >

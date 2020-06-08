@@ -15,7 +15,7 @@ describe("<FormFooter />", () => {
   const DEFAULT_PROPS = {
     submitBtn: {
       action: onSubmit,
-      dataCy: "footerTestButton",
+      testingContext: "footerTestButton",
       text: submitBtnText,
     },
   };
@@ -43,7 +43,7 @@ describe("<FormFooter />", () => {
     const PROPS = {
       formId: FORM_ID,
       submitBtn: {
-        dataCy: "footerTestButton",
+        testingContext: "footerTestButton",
         text: "Submit",
       },
     };
@@ -72,7 +72,7 @@ describe("<FormFooter />", () => {
       ...DEFAULT_PROPS,
       cancelBtn: { 
         action: onCancel,     
-        dataCy: "footerTestButton",
+        testingContext: "footerTestButton",
         text: cancelBtnText,
       },
     }).find(ButtonLink);

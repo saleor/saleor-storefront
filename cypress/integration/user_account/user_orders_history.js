@@ -39,18 +39,18 @@ describe("User orders histoy", () => {
   it("if user is logged in, when accessing order history and clicking load more button 10 orders should be visible", () => {
     cy
       .get(".account__content", {timeout:15000})
-      .find("[data-cy=order__row]")
+      .find("[data-test=orderEntry]")
       .should("have.length", 5)
-      .get("[data-cy=loadMoreOrdersButton]")
+      .get("[data-test=loadMoreOrdersButton]")
       .click()
       .get(".account__content")
-      .find("[data-cy=order__row]")
+      .find("[data-test=orderEntry]")
       .should("have.length", 10);
   });
 
   it("if user is logged in, when accessing order history and clicking on order should move user to order view", () => {
     cy
-      .get("[data-cy=order__row]:first", {timeout:15000})    
+      .get("[data-test=orderEntry]:first", {timeout:15000})    
       .click();
     
       cy.location().should((loc) => {

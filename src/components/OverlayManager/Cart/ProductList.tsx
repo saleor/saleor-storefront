@@ -22,24 +22,25 @@ const ProductList: React.SFC<{
       const key = line.id ? `id-${line.id}` : `idx-${index}`;
 
       return (
-        <li key={key} className="cart__list__item">
+        <li key={key} className="cart__list__item" data-test="cartRow" data-test-id={line.variant.sku}>
           <Link to={productUrl}>
             <Thumbnail source={line.variant.product} />
           </Link>
           <div className="cart__list__item__details">
-            <p>
+            <p data-test="price">
               <TaxedMoney taxedMoney={line.variant.pricing.price} />
             </p>
             <Link to={productUrl}>
-              <p>{line.variant.product.name}</p>
+              <p data-test="name">{line.variant.product.name}</p>
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.variant.name}</span>
-              <span>{`Qty: ${line.quantity}`}</span>
+              <span data-test="quantity">{`Qty: ${line.quantity}`}</span>
             </span>
             <ReactSVG
               path={removeImg}
               className="cart__list__item__details__delete-icon"
+              data-test="deleteButton"
               onClick={() => remove(line.variant.id)}
             />
           </div>

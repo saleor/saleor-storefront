@@ -52,7 +52,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   };
 
   return (
-    <Overlay context={overlay}>
+    <Overlay testingContext="cartOverlay" context={overlay}>
       <Online>
         <div className="cart">
           <div className="overlay__header">
@@ -85,7 +85,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       <span>Subtotal</span>
                       <span>
                         <TaxedMoney
-                          data-cy="cartPageSubtotalPrice"
+                          data-test="subtotalPrice"
                           taxedMoney={subtotalPrice}
                         />
                       </span>
@@ -97,7 +97,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                           <span>Shipping</span>
                           <span>
                             <TaxedMoney
-                              data-cy="cartPageShippingPrice"
+                              data-test="shippingPrice"
                               taxedMoney={shippingTaxedPrice}
                             />
                           </span>
@@ -109,7 +109,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                         <span>Promo code</span>
                         <span>
                           <TaxedMoney
-                            data-cy="cartPagePromoCodePrice"
+                            data-test="promoCodePrice"
                             taxedMoney={promoTaxedPrice}
                           />
                         </span>
@@ -120,7 +120,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                       <span>Total</span>
                       <span>
                         <TaxedMoney
-                          data-cy="cartPageTotalPrice"
+                          data-test="totalPrice"
                           taxedMoney={totalPrice}
                         />
                       </span>
@@ -132,14 +132,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                           token: null,
                         })}
                       >
-                        <Button dataCy="cartOverlayGotoBagViewButton" secondary>
+                        <Button testingContext="gotoBagViewButton" secondary>
                           Go to my bag
                         </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                        <Button dataCy="cartOverlayGotoCheckoutButton">
+                        <Button testingContext="gotoCheckoutButton">
                           Checkout
                         </Button>
                       </Link>

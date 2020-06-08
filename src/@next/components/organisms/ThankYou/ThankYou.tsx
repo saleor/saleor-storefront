@@ -15,7 +15,7 @@ const ThankYou: React.FC<IProps> = ({
   orderDetails,
 }: IProps) => {
   return (
-    <Container>
+    <Container data-test="thankYouView">
       <S.Wrapper>
         <S.ThankYouHeader>
           Thank you
@@ -30,10 +30,10 @@ const ThankYou: React.FC<IProps> = ({
           order has been shipped.
         </S.Paragraph>
         <S.Buttons>
-          <Button dataCy="continueShoppingButton" onClick={continueShopping} color="secondary" fullWidth={true}>
+          <Button testingContext="continueShoppingButton" onClick={continueShopping} color="secondary" fullWidth={true}>
             CONTINUE SHOPPING
           </Button>
-          <Button dataCy="gotoOrderDetailsButton" onClick={orderDetails} fullWidth={true}>
+          <Button testingContext="gotoOrderDetailsButton" onClick={orderDetails} fullWidth={true}>
             ORDER DETAILS
           </Button>
         </S.Buttons>

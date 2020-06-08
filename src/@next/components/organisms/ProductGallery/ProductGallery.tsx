@@ -58,7 +58,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   };
 
   return (
-    <S.Wrapper>
+    <S.Wrapper data-test="productPhotosGallery">
       <S.ThumbnailsContainer>
         {!topImageInView && displayButtons && (
           <S.TopButton
@@ -96,7 +96,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               images.length > 0 &&
               images.map((image, index) => {
                 return (
-                  <li key={index}>
+                  <li key={index} data-test="galleryThumbnail" data-test-id={index}>
                     <S.Thumbnail
                       ref={setIntersectionObserver(index, images.length)}
                       onClick={() => setImageIndex(index)}
@@ -112,7 +112,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         </S.ThumbnailList>
       </S.ThumbnailsContainer>
 
-      <S.Preview>
+      <S.Preview data-test="imagePreview">
         {images && images.length > 0 && imageIndex < images.length && (
           <CachedImage
             alt={images[imageIndex].alt}

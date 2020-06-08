@@ -51,7 +51,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         />
         <div className="login-form__button">
           <Button
-            dataCy="submitLoginFormButton"
+            testingContext="submit"
             type="submit"
             {...(loading && { disabled: true })}
           >

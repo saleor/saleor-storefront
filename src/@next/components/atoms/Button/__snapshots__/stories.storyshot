@@ -69,7 +69,7 @@ exports[`Storyshots @components/atoms/Button Primary 1`] = `
   <button
     className="c1"
     color="primary"
-    data-cy="testButton"
+    data-test="testButton"
     size="md"
   >
     <span
@@ -157,7 +157,7 @@ exports[`Storyshots @components/atoms/Button Secondary 1`] = `
   <button
     className="c1"
     color="secondary"
-    data-cy="testButton"
+    data-test="testButton"
     size="md"
   >
     <span
@@ -242,7 +242,7 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
   <button
     className="c1"
     color="primary"
-    data-cy="testButton"
+    data-test="testButton"
     size="sm"
   >
     <span

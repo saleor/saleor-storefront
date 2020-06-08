@@ -67,7 +67,7 @@ describe("<CardHeader />", () => {
   });
 
   it("should render custom icon when `customIcon` prop is defined", () => {
-    const customIcon = <IconButton name="edit" />;
+    const customIcon = <IconButton testingContext="test" name="edit" />;
     const icon = renderHeader({ ...DEFAULT_PROPS, customIcon }).find(
       IconButton
     );

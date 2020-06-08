@@ -86,7 +86,7 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
 
   return (
     <>
-      <S.Wrapper>
+      <S.Wrapper data-test="topNavigation">
         <S.Navigation ref={setRef}>
           {!navVisible && (
             <S.Mobile>

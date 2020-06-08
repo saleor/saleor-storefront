@@ -169,7 +169,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
               >
                 <div
                   className="c8"
-                  data-cy="icon_button"
+                  data-test="expandButton"
                 >
                   <svg
                     height={24}
@@ -227,7 +227,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             <div>
               <div
                 className="c8"
-                data-cy="icon_button"
+                data-test="editButton"
                 onClick={[Function]}
               >
                 <svg
@@ -245,7 +245,7 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
             <div>
               <div
                 className="c8"
-                data-cy="icon_button"
+                data-test="removeButton"
                 onClick={[Function]}
               >
                 <svg
@@ -440,7 +440,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
               >
                 <div
                   className="c8"
-                  data-cy="icon_button"
+                  data-test="expandButton"
                 >
                   <svg
                     height={24}
@@ -497,7 +497,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             <div>
               <div
                 className="c8"
-                data-cy="icon_button"
+                data-test="editButton"
                 onClick={[Function]}
               >
                 <svg
@@ -515,7 +515,7 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
             <div>
               <div
                 className="c8"
-                data-cy="icon_button"
+                data-test="removeButton"
                 onClick={[Function]}
               >
                 <svg

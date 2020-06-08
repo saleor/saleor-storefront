@@ -106,6 +106,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
     <button
       className="c2"
       color="secondary"
+      data-test="cancelButton"
       onClick={[Function]}
       size="md"
       type="button"
@@ -115,7 +116,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
     <button
       className="c3"
       color="primary"
-      data-cy="footerTestButton"
+      data-test="footerTestButton"
       disabled={false}
       onClick={[Function]}
       size="sm"
@@ -218,7 +219,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
     <button
       className="c2"
       color="primary"
-      data-cy="footerTestButton"
+      data-test="footerTestButton"
       disabled={false}
       onClick={[Function]}
       size="sm"
@@ -322,7 +323,7 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
     <button
       className="c2"
       color="primary"
-      data-cy="footerTestButton"
+      data-test="footerTestButton"
       disabled={false}
       onClick={[Function]}
       size="sm"

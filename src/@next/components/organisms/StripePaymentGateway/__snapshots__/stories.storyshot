@@ -116,69 +116,74 @@ exports[`Storyshots @components/organisms/StripePaymentGateway default 1`] = `
 <div
   className="c0"
 >
-  <form
-    className="c1"
-    onSubmit={[Function]}
+  <div
+    data-test="stripeGateway"
   >
-    <div
-      className="c2"
+    <form
+      className="c1"
+      onSubmit={[Function]}
     >
       <div
-        className="c3"
+        className="c2"
+        data-test="stripeForm"
       >
         <div
-          className="c4"
+          className="c3"
         >
           <div
-            className="c5"
+            className="c4"
           >
-            <div />
-            <label
-              className="c6"
+            <div
+              className="c5"
             >
-              Card number
-            </label>
+              <div />
+              <label
+                className="c6"
+              >
+                Card number
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c7"
+        >
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div />
+              <label
+                className="c6"
+              >
+                Expiration date
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div />
+              <label
+                className="c6"
+              >
+                CVC
+              </label>
+            </div>
           </div>
         </div>
       </div>
-      <div
-        className="c7"
-      >
-        <div
-          className="c4"
-        >
-          <div
-            className="c5"
-          >
-            <div />
-            <label
-              className="c6"
-            >
-              Expiration date
-            </label>
-          </div>
-        </div>
-      </div>
-      <div
-        className="c8"
-      >
-        <div
-          className="c4"
-        >
-          <div
-            className="c5"
-          >
-            <div />
-            <label
-              className="c6"
-            >
-              CVC
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
   <div
     className="c9"
   />

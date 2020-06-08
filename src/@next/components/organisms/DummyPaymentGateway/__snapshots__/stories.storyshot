@@ -79,6 +79,7 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
 >
   <form
     className=""
+    data-test="dummyPaymentGatewayForm"
     onSubmit={[Function]}
   >
     <div
@@ -90,7 +91,6 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
       >
         <input
           checked={true}
-          data-cy="checkoutPaymentGatewayDummyStatuschargedInput"
           name="status"
           onChange={[Function]}
           type="radio"
@@ -100,9 +100,7 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
         <div>
           <span />
         </div>
-        <span
-          data-cy="checkoutPaymentGatewayDummyStatuschargedLabel"
-        >
+        <span>
           Charged
         </span>
       </label>
@@ -116,7 +114,6 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
       >
         <input
           checked={false}
-          data-cy="checkoutPaymentGatewayDummyStatusfully-refundedInput"
           name="status"
           onChange={[Function]}
           type="radio"
@@ -126,9 +123,7 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
         <div>
           <span />
         </div>
-        <span
-          data-cy="checkoutPaymentGatewayDummyStatusfully-refundedLabel"
-        >
+        <span>
           Fully refunded
         </span>
       </label>
@@ -142,7 +137,6 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
       >
         <input
           checked={false}
-          data-cy="checkoutPaymentGatewayDummyStatusnot-chargedInput"
           name="status"
           onChange={[Function]}
           type="radio"
@@ -152,9 +146,7 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
         <div>
           <span />
         </div>
-        <span
-          data-cy="checkoutPaymentGatewayDummyStatusnot-chargedLabel"
-        >
+        <span>
           Not charged
         </span>
       </label>

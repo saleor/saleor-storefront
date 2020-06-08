@@ -22,7 +22,7 @@ export const CardHeader: React.FC<IProps> = ({
       ) : (
         <S.Paragraph>{children}</S.Paragraph>
       )}
-      {withCloseIcon && <IconButton name="x" size={19} onClick={onHide} />}
+      {withCloseIcon && <IconButton name="x" size={19} onClick={onHide} testingContext="closeOverlayButton"/>}
       {customIcon}
     </S.Header>
   );

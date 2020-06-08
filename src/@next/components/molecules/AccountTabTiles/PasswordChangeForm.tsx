@@ -71,7 +71,7 @@ export const PasswordChangeForm: React.FC<{
           isValid,
         }) => {
           return (
-            <S.Form onSubmit={handleSubmit}>
+            <S.Form onSubmit={handleSubmit} data-test="changePasswordForm">
               <TextField
                 name="oldPassword"
                 label="Old Password"
@@ -112,11 +112,11 @@ export const PasswordChangeForm: React.FC<{
                 }
               />
               <S.FormButtons>
-                <ButtonLink type="button" color="secondary" onClick={hide}>
+                <ButtonLink testingContext="cancelButton" type="button" color="secondary" onClick={hide}>
                   Cancel
                 </ButtonLink>
                 <Button
-                  dataCy="submitPasswordChangeFormButton"
+                  testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

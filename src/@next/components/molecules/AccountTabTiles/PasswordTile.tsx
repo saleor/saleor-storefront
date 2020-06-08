@@ -23,6 +23,7 @@ export const PasswordTile: React.FC = () => {
             MY PASSWORD
             {!isEditing && (
               <IconButton
+                testingContext="editPasswordButton"
                 name="edit"
                 size={22}
                 onClick={() => setIsEditing(isEditing => !isEditing)}

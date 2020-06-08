@@ -89,10 +89,10 @@ const CheckoutPayment: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <section>
-        <S.Title data-cy="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
+        <S.Title data-test="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
         {billingAsShippingPossible && (
           <Checkbox
-            data-cy="checkoutPaymentBillingAsShippingCheckbox"
+            data-test="checkoutPaymentBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
             checked={billingAsShippingAddress}
             onChange={() =>
@@ -121,6 +121,7 @@ const CheckoutPayment: React.FC<IProps> = ({
               />
             ) : (
               <AddressForm
+                testingContext="billingAddressForm"
                 formId={billingFormId}
                 formRef={billingFormRef}
                 countriesOptions={countries.filter(filterNotEmptyArrayItems)}
@@ -137,9 +138,9 @@ const CheckoutPayment: React.FC<IProps> = ({
       </section>
       <S.Divider />
       <section>
-        <S.Title data-cy="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
+        <S.Title data-test="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
         <Checkbox
-          data-cy="checkoutPaymentPromoCodeCheckbox"
+          data-test="checkoutPaymentPromoCodeCheckbox"
           name="payment-promo-code"
           checked={showPromoCodeForm}
           onChange={handleChangeShowPromoCodeForm}
