@@ -116,7 +116,7 @@ export const PasswordChangeForm: React.FC<{
                   Cancel
                 </ButtonLink>
                 <Button
-                  testingContext="submitFormButton"
+                  testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

@@ -62,7 +62,7 @@ export const AccountUpdateForm: React.FC<{
                   Cancel
                 </ButtonLink>
                 <Button
-                  testingContext="submitButton"
+                  testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"

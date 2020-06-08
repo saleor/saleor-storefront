@@ -47,7 +47,7 @@ describe("User login, logout and registration", () => {
         .type("thisUserIsNotRegistered@example.com")
         .get(".login__content input[name='password']")
         .type("thisisnotavalidpassword")
-        .get("[data-test=submitLoginFormButton]")
+        .get("[data-test=submit]")
         .click()
       .get(".login__content .form-error", {timeoout: 20000})
         .should("contain", "Please, enter valid credentials");

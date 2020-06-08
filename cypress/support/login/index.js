@@ -20,7 +20,7 @@ Cypress.Commands.add("loginUser", (email, password) => {
     .type(email)
     .get("[data-test=loginOverlay] input[name='password']")
     .type(password)
-    .get("[data-test=submitLoginFormButton]")
+    .get("[data-test=submit]")
     .click()
     .get("[data-test=alert]")
     .should("contain", "You are now logged in", {timeoout: 20000});
