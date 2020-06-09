@@ -63,7 +63,11 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
               required
             />
             <div className="login__content__button">
-              <Button testingContext="submitRegisterFormButton" type="submit" {...(loading && { disabled: true })}>
+              <Button
+                testingContext="submitRegisterFormButton"
+                type="submit"
+                {...(loading && { disabled: true })}
+              >
                 {loading ? "Loading" : "Register"}
               </Button>
             </div>

@@ -6,7 +6,7 @@ import * as React from "react";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
-import TagManager from 'react-gtm-module'
+import TagManager from "react-gtm-module";
 import { hot } from "react-hot-loader";
 import { Route, Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -47,8 +47,8 @@ const cache = new InMemoryCache({
   },
 });
 
-if (process.env.GTM_ID !== undefined){
-  TagManager.initialize({gtmId: process.env.GTM_ID})
+if (process.env.GTM_ID !== undefined) {
+  TagManager.initialize({ gtmId: process.env.GTM_ID });
 }
 
 const startApp = async () => {

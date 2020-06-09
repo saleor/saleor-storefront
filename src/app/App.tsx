@@ -7,7 +7,6 @@ import "../globalStyles/scss/index.scss";
 import { Routes } from "./routes";
 
 const App: React.FC = () => {
-  
   return (
     <>
       <MetaConsumer />

@@ -30,12 +30,22 @@ export const CreditCardTile: React.FC<IProps> = ({
   const footer = (
     <S.FooterContent>
       <div>
-        <IconButton name="trash" onClick={onRemove} size={22} testingContext="removeCardButton" />
+        <IconButton
+          name="trash"
+          onClick={onRemove}
+          size={22}
+          testingContext="removeCardButton"
+        />
       </div>
     </S.FooterContent>
   );
   return (
-    <Tile header={header} footer={footer} data-test="creditCardTile" data-test-id={last4Digits}>
+    <Tile
+      header={header}
+      footer={footer}
+      data-test="creditCardTile"
+      data-test-id={last4Digits}
+    >
       {content}
     </Tile>
   );

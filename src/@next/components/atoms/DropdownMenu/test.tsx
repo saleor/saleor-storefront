@@ -69,10 +69,7 @@ describe("<DropdownMenu /> hoverable", () => {
     );
 
     wrapper.simulate("mouseenter");
-    wrapper
-      .find("li")
-      .first()
-      .simulate("click");
+    wrapper.find("li").first().simulate("click");
 
     expect(wrapper.find("li").length).toEqual(0);
   });
@@ -121,10 +118,7 @@ describe("<DropdownMenu /> clickable", () => {
     );
 
     wrapper.simulate("click");
-    wrapper
-      .find("li")
-      .first()
-      .simulate("click");
+    wrapper.find("li").first().simulate("click");
 
     expect(wrapper.find("li").length).toEqual(0);
   });

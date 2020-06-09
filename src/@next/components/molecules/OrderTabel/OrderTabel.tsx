@@ -74,8 +74,9 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                               ))}
                           </S.ProductsOrdered>
                           <S.DateOfOrder>
-                            {`${date.getMonth() +
-                              1}/${date.getDate()}/${date.getFullYear()}`}
+                            {`${
+                              date.getMonth() + 1
+                            }/${date.getDate()}/${date.getFullYear()}`}
                           </S.DateOfOrder>
                           <S.Value>
                             <TaxedMoney taxedMoney={order.node.total} />

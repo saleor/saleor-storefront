@@ -12,9 +12,10 @@ export interface IModal {
   testingContext: string;
 }
 
-const Modal: React.FC<IModal> = ({
-  overlay,
-  testingContext,
-}) => <Overlay testingContext={testingContext} context={overlay}>{overlay.context.content}</Overlay>;
+const Modal: React.FC<IModal> = ({ overlay, testingContext }) => (
+  <Overlay testingContext={testingContext} context={overlay}>
+    {overlay.context.content}
+  </Overlay>
+);
 
 export default Modal;

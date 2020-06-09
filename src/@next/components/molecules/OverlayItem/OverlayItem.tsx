@@ -13,9 +13,15 @@ export const OverlayItem: React.FC<IProps> = ({
   onClick,
 }: IProps) => {
   return (
-    <S.Wrapper selected={!!selected} disabled={!!disabled} onClick={onClick} data-test="attributeOption" data-test-id={testingContextId}>
+    <S.Wrapper
+      selected={!!selected}
+      disabled={!!disabled}
+      onClick={onClick}
+      data-test="attributeOption"
+      data-test-id={testingContextId}
+    >
       {children}
-      {selected && <Icon name="tick" size={16} data-test="chosenIcon"/>}
+      {selected && <Icon name="tick" size={16} data-test="chosenIcon" />}
     </S.Wrapper>
   );
 };

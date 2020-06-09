@@ -24,8 +24,7 @@ const CartSummaryRow: React.FC<IProps> = ({
         SKU: <span data-test="sku">{sku}</span>
       </S.Sku>
       <S.Quantity>
-        Quantity:{" "}
-        <span data-test="quantity">{quantity}</span>
+        Quantity: <span data-test="quantity">{quantity}</span>
       </S.Quantity>
       <S.Price data-test="price">
         <TaxedMoney taxedMoney={price} />

@@ -25,10 +25,12 @@ const populateBreadcrumbs = product => [
   },
 ];
 
-const Page: React.FC<IProps & {
-  queryAttributes: Record<string, string>;
-  onAttributeChangeHandler: (slug: string | null, value: string) => void;
-}> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
+const Page: React.FC<
+  IProps & {
+    queryAttributes: Record<string, string>;
+    onAttributeChangeHandler: (slug: string | null, value: string) => void;
+  }
+> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
   const [variantId, setVariantId] = React.useState("");

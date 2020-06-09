@@ -9,7 +9,7 @@ import {
   IFilteredListArgs,
   ISelectChange,
   ISelectItem,
-  ISelectProps
+  ISelectProps,
 } from "./customTypes";
 import SelectOptionsList from "./SelectOptionsList";
 

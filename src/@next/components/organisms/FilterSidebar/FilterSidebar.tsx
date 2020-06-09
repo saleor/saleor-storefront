@@ -48,7 +48,13 @@ export const FilterSidebar: React.FC<IProps> = ({
       <S.Wrapper ref={setElementRef()} data-test="filterSidebar">
         <S.Header>
           <span>FILTERS</span>
-          <IconButton testingContext="hideFilters" onClick={hide} name="x" size={18} color="000" />
+          <IconButton
+            testingContext="hideFilters"
+            onClick={hide}
+            name="x"
+            size={18}
+            color="000"
+          />
         </S.Header>
         {attributes.map(({ id, name, slug, values }) => {
           return (

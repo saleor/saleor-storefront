@@ -131,7 +131,9 @@ export interface MainMenu_shop_navigation_main_items_children {
   collection: MainMenu_shop_navigation_main_items_children_collection | null;
   page: MainMenu_shop_navigation_main_items_children_page | null;
   parent: MainMenu_shop_navigation_main_items_children_parent | null;
-  children: (MainMenu_shop_navigation_main_items_children_children | null)[] | null;
+  children:
+    | (MainMenu_shop_navigation_main_items_children_children | null)[]
+    | null;
 }
 
 export interface MainMenu_shop_navigation_main_items {

@@ -9,7 +9,7 @@ import {
   Online,
   Overlay,
   OverlayContextInterface,
-  PasswordResetForm
+  PasswordResetForm,
 } from "../..";
 
 import closeImg from "../../../images/x.svg";

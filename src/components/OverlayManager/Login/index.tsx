@@ -11,7 +11,7 @@ import {
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "../..";
 import RegisterForm from "./RegisterForm";
 

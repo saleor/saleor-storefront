@@ -18,7 +18,7 @@ export const Checkbox: React.FC<IProps> = ({
   return (
     <S.Checkbox
       ref={ref}
-      onClick={(evt) => {
+      onClick={evt => {
         evt.preventDefault();
         onChange(evt);
         if (ref.current) {
@@ -38,7 +38,7 @@ export const Checkbox: React.FC<IProps> = ({
         <div
           ref={ref}
           tabIndex={0}
-          onKeyDown={(evt) => {
+          onKeyDown={evt => {
             if (evt.which === SPACE_KEY || evt.which === ENTER_KEY) {
               evt.preventDefault();
               onChange(evt);

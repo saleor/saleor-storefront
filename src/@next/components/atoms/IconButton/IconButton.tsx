@@ -15,7 +15,12 @@ export const IconButton: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.Wrapper data-test={testingContext} data-test-id={testingContextId} onClick={onClick} {...props}>
+    <S.Wrapper
+      data-test={testingContext}
+      data-test-id={testingContextId}
+      onClick={onClick}
+      {...props}
+    >
       <Icon name={name} size={size} color={color} />
     </S.Wrapper>
   );

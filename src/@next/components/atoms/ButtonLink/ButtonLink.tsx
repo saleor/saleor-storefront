@@ -12,7 +12,13 @@ export const ButtonLink: React.FC<IProps> = ({
   ...props
 }: IProps) => {
   return (
-    <S.ButtonLink data-test={testingContext} data-test-id={testingContextId} color={color} size={size} {...props}>
+    <S.ButtonLink
+      data-test={testingContext}
+      data-test-id={testingContextId}
+      color={color}
+      size={size}
+      {...props}
+    >
       {children}
     </S.ButtonLink>
   );

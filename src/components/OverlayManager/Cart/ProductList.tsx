@@ -22,7 +22,12 @@ const ProductList: React.SFC<{
       const key = line.id ? `id-${line.id}` : `idx-${index}`;
 
       return (
-        <li key={key} className="cart__list__item" data-test="cartRow" data-test-id={line.variant.sku}>
+        <li
+          key={key}
+          className="cart__list__item"
+          data-test="cartRow"
+          data-test-id={line.variant.sku}
+        >
           <Link to={productUrl}>
             <Thumbnail source={line.variant.product} />
           </Link>

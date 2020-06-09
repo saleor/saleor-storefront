@@ -36,10 +36,7 @@ describe("<Overlay />", () => {
   const renderOverlayContent = (
     props: IProps,
     state: TransitionState = DEFAULT_STATE
-  ) =>
-    renderOverlay(props)
-      .find(Transition)
-      .renderProp("children")(state);
+  ) => renderOverlay(props).find(Transition).renderProp("children")(state);
 
   it("exists", () => {
     const overlay = renderOverlay(DEFAULT_PROPS);
