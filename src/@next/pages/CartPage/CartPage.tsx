@@ -46,25 +46,17 @@ const prepareCartFooter = (
     subtotalPrice={
       <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
     }
-    totalPrice={
-      <TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />
-    }
+    totalPrice={<TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />}
     shippingPrice={
       shippingTaxedPrice &&
       shippingTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-test="shippingPrice"
-          taxedMoney={shippingTaxedPrice}
-        />
+        <TaxedMoney data-test="shippingPrice" taxedMoney={shippingTaxedPrice} />
       )
     }
     discountPrice={
       promoTaxedPrice &&
       promoTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-test="discountPrice"
-          taxedMoney={promoTaxedPrice}
-        />
+        <TaxedMoney data-test="discountPrice" taxedMoney={promoTaxedPrice} />
       )
     }
   />
@@ -89,16 +81,8 @@ const generateCart = (
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
       }}
-      totalPrice={
-        <TaxedMoney
-          taxedMoney={totalPrice}
-        />
-      }
-      unitPrice={
-        <TaxedMoney
-          taxedMoney={variant?.pricing?.price}
-        />
-      }
+      totalPrice={<TaxedMoney taxedMoney={totalPrice} />}
+      unitPrice={<TaxedMoney taxedMoney={variant?.pricing?.price} />}
       sku={variant.sku}
       attributes={variant.attributes?.map(attribute => {
         return {

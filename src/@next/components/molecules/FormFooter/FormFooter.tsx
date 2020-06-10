@@ -11,7 +11,12 @@ const getBtnAction = (btn: IButtonProps) =>
 
 const renderCancelBtn = (cancelBtn?: IButtonProps) =>
   cancelBtn && (
-    <ButtonLink {...getBtnAction(cancelBtn)} testingContext="cancelButton" type="button" color="secondary">
+    <ButtonLink
+      {...getBtnAction(cancelBtn)}
+      testingContext="cancelButton"
+      type="button"
+      color="secondary"
+    >
       {cancelBtn.text}
     </ButtonLink>
   );

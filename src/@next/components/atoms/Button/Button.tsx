@@ -19,7 +19,7 @@ export const Button: React.FC<IProps> = ({
   const ButtonWithTheme = color === "primary" ? S.Primary : S.Secondary;
 
   return (
-    <ButtonWithTheme  
+    <ButtonWithTheme
       data-test={testingContext}
       data-test-id={testingContextId}
       color={color}

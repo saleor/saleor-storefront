@@ -15,10 +15,7 @@ const QuantityButtons = (
   index?: number
 ) => (
   <S.QuantityButtons data-test="quantityControls">
-    <div
-      onClick={subtract}
-      data-test="subtractButton"
-    >
+    <div onClick={subtract} data-test="subtractButton">
       <Icon size={16} name="horizontal_line" />
     </div>
     <div onClick={add} data-test="increaseButton">
@@ -111,15 +108,15 @@ export const CartRow: React.FC<IProps> = ({
         </Link>
         <S.Sku>
           <S.LightFont>
-            SKU:{" "}
-            <span data-test="itemSKU">{sku ? sku : "-"}</span>
+            SKU: <span data-test="itemSKU">{sku ? sku : "-"}</span>
           </S.LightFont>
         </S.Sku>
         <S.Attributes data-test="itemAttributes">
           {attributes.map(({ attribute, values }, attributeIndex) => (
             <S.SingleAttribute key={attribute.id}>
               <span
-                data-test="itemSingleAttribute" data-test-id={attributeIndex}
+                data-test="itemSingleAttribute"
+                data-test-id={attributeIndex}
               >
                 <S.LightFont>{attribute.name}:</S.LightFont>{" "}
                 {values.map(value => value.name).join(", ")}

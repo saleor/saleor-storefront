@@ -32,7 +32,9 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Filters>
           </S.FiltersButton>
           {activeFilters > 0 && (
-            <S.Clear onClick={clearFilters} data-test="clearFiltersButton">CLEAR FILTERS</S.Clear>
+            <S.Clear onClick={clearFilters} data-test="clearFiltersButton">
+              CLEAR FILTERS
+            </S.Clear>
           )}
         </S.LeftSide>
 

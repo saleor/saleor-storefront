@@ -9,7 +9,12 @@ export const NotificationTemplate: React.FC<IProps> = ({
   close,
 }) => {
   return (
-    <Message actionText={message.actionText} status={options.type} title={message.title} onClick={close}>
+    <Message
+      actionText={message.actionText}
+      status={options.type}
+      title={message.title}
+      onClick={close}
+    >
       {message.content}
     </Message>
   );

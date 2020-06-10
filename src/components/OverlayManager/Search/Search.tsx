@@ -81,7 +81,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
   render() {
     return (
-      <Overlay testingContext="searchOverlay" context={this.props.overlay} className="overlay--no-background">
+      <Overlay
+        testingContext="searchOverlay"
+        context={this.props.overlay}
+        className="overlay--no-background"
+      >
         <form
           className={classNames("search", {
             "search--has-results": this.hasSearchPhrase,
@@ -94,7 +98,11 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} className="search__input__close-btn" />
+                <ReactSVG
+                  path={closeImg}
+                  onClick={this.props.overlay.hide}
+                  className="search__input__close-btn"
+                />
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus={true}
@@ -135,7 +143,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <Loader />
                                 ) : (
                                   <Button
-                                    testingContext="searchProductsButton"  
+                                    testingContext="searchProductsButton"
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >

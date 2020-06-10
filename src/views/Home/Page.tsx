@@ -63,7 +63,9 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button testingContext="homepageHeroActionButton">Shop sale</Button>
+                <Button testingContext="homepageHeroActionButton">
+                  Shop sale
+                </Button>
               </Link>
             )
           )}

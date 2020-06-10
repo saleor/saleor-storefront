@@ -28,9 +28,9 @@ class MenuDropdown extends React.Component<
         {this.props.head}
 
         <div
-          className={`menu-dropdown__body${" menu-dropdown__body"+this.props.suffixClass}${
-            this.state.active ? " menu-dropdown__body--visible" : ""
-          }`}
+          className={`menu-dropdown__body${
+            " menu-dropdown__body" + this.props.suffixClass
+          }${this.state.active ? " menu-dropdown__body--visible" : ""}`}
         >
           {this.props.content}
         </div>

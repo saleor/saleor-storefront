@@ -42,10 +42,7 @@ describe("<AddressTile />", () => {
   it("should run onRemove function for clicking on trash button", () => {
     const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(IconButton)
-      .last()
-      .simulate("click");
+    wrapper.find(IconButton).last().simulate("click");
 
     expect(onRemove).toHaveBeenCalled();
   });
@@ -53,10 +50,7 @@ describe("<AddressTile />", () => {
   it("should run onEdit function for clicking on edit button", () => {
     const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(IconButton)
-      .at(1)
-      .simulate("click");
+    wrapper.find(IconButton).at(1).simulate("click");
 
     expect(onEdit).toHaveBeenCalled();
   });
@@ -64,14 +58,8 @@ describe("<AddressTile />", () => {
   it("should run setDefault method for clicking on Set default billing address", () => {
     const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(IconButton)
-      .first()
-      .simulate("click");
-    wrapper
-      .find("li")
-      .first()
-      .simulate("click");
+    wrapper.find(IconButton).first().simulate("click");
+    wrapper.find("li").first().simulate("click");
 
     expect(setDefault).toHaveBeenCalledWith("BILLING");
   });
@@ -79,14 +67,8 @@ describe("<AddressTile />", () => {
   it("should run setDefault method for clicking on Set default shipping address", () => {
     const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(IconButton)
-      .first()
-      .simulate("click");
-    wrapper
-      .find("li")
-      .last()
-      .simulate("click");
+    wrapper.find(IconButton).first().simulate("click");
+    wrapper.find("li").last().simulate("click");
 
     expect(setDefault).toHaveBeenCalledWith("SHIPPING");
   });

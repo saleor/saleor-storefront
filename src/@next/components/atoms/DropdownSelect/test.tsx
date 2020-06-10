@@ -36,10 +36,7 @@ describe("<DropdownSelect />", () => {
   it("should open select menu on click", () => {
     const wrapper = mount(<DropdownSelect {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(S.SortLine)
-      .at(0)
-      .simulate("click");
+    wrapper.find(S.SortLine).at(0).simulate("click");
 
     expect(wrapper.find(components.Option).length).toEqual(3);
   });
@@ -47,14 +44,8 @@ describe("<DropdownSelect />", () => {
   it("should close menu when clicking on option", () => {
     const wrapper = mount(<DropdownSelect {...DEFAULT_PROPS} />);
 
-    wrapper
-      .find(S.SortLine)
-      .at(0)
-      .simulate("click");
-    wrapper
-      .find(components.Option)
-      .at(0)
-      .simulate("click");
+    wrapper.find(S.SortLine).at(0).simulate("click");
+    wrapper.find(components.Option).at(0).simulate("click");
 
     expect(wrapper.find(components.Option).length).toEqual(0);
   });
@@ -66,14 +57,8 @@ describe("<DropdownSelect />", () => {
       <DropdownSelect {...DEFAULT_PROPS} value={DEFAULT_PROPS.options[0]} />
     );
 
-    wrapper
-      .find(S.SortLine)
-      .at(0)
-      .simulate("click");
-    wrapper
-      .find(components.Option)
-      .at(0)
-      .simulate("click");
+    wrapper.find(S.SortLine).at(0).simulate("click");
+    wrapper.find(components.Option).at(0).simulate("click");
 
     expect(wrapper.text()).toContain(DEFAULT_PROPS.options[0].label);
     expect(DEFAULT_PROPS.onChange).toHaveBeenCalledTimes(1);

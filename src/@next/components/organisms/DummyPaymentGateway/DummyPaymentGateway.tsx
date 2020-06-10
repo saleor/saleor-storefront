@@ -37,7 +37,12 @@ const DummyPaymentGateway: React.FC<IProps> = ({
         isSubmitting,
         isValid,
       }) => (
-        <S.Form id={formId} ref={formRef} onSubmit={handleSubmit} data-test="dummyPaymentGatewayForm">
+        <S.Form
+          id={formId}
+          ref={formRef}
+          onSubmit={handleSubmit}
+          data-test="dummyPaymentGatewayForm"
+        >
           {statuses.map(({ token, label }) => {
             return (
               <S.Status key={token}>
@@ -49,9 +54,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
                   checked={values.status === token}
                   onChange={handleChange}
                 >
-                  <span>
-                    {label}
-                  </span>
+                  <span>{label}</span>
                 </Radio>
               </S.Status>
             );

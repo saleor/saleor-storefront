@@ -15,7 +15,9 @@ const CheckoutAsGuest: React.FC<{
       a guest. We care about you just as much as any registered user.
     </p>
     <Link to={checkoutUrl}>
-      <Button testingContext="continueAsGuestButton">Continue as a guest</Button>
+      <Button testingContext="continueAsGuestButton">
+        Continue as a guest
+      </Button>
     </Link>
 
     <p>

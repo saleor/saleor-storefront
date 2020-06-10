@@ -4,6 +4,5 @@ import React from "react";
 import { CartHeader } from ".";
 
 storiesOf("@components/atoms/CartHeader", module)
-.addParameters({ component: CartHeader })
-.add("default", () =>
-<CartHeader />);
+  .addParameters({ component: CartHeader })
+  .add("default", () => <CartHeader />);

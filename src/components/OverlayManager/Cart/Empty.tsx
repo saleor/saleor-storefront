@@ -10,7 +10,11 @@ const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
       in our store
     </p>
     <div className="cart__empty__action">
-      <Button testingContext="emptyCartHideOverlayButton" secondary onClick={overlayHide}>
+      <Button
+        testingContext="emptyCartHideOverlayButton"
+        secondary
+        onClick={overlayHide}
+      >
         Continue Shopping
       </Button>
     </div>

@@ -5,7 +5,7 @@ import {
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "./context";
 
 class Provider extends React.Component<

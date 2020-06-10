@@ -5,18 +5,18 @@ import { addSerializer } from "jest-specific-snapshot";
 
 jest.mock("react-dom", () => ({
   createPortal: node => node,
-  findDOMNode: () => {}
+  findDOMNode: () => {},
 }));
 
-global.matchMedia = media => ({
+(global as any).matchMedia = () => ({
   addListener: jest.fn(),
   matches: true,
-  removeListener: jest.fn()
+  removeListener: jest.fn(),
 });
 
 addSerializer(styleSheetSerializer);
 
 initStoryshots({
   framework: "react",
-  test: multiSnapshotWithOptions({})
+  test: multiSnapshotWithOptions({}),
 });

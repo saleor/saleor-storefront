@@ -96,7 +96,11 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               images.length > 0 &&
               images.map((image, index) => {
                 return (
-                  <li key={index} data-test="galleryThumbnail" data-test-id={index}>
+                  <li
+                    key={index}
+                    data-test="galleryThumbnail"
+                    data-test-id={index}
+                  >
                     <S.Thumbnail
                       ref={setIntersectionObserver(index, images.length)}
                       onClick={() => setImageIndex(index)}

@@ -58,7 +58,12 @@ export const AccountUpdateForm: React.FC<{
                 </S.ContentExtendInput>
               </S.ContentEditOneLine>
               <S.FormButtons>
-                <ButtonLink testingContext="cancelButton" type="button" color="secondary" onClick={hide}>
+                <ButtonLink
+                  testingContext="cancelButton"
+                  type="button"
+                  color="secondary"
+                  onClick={hide}
+                >
                   Cancel
                 </ButtonLink>
                 <Button

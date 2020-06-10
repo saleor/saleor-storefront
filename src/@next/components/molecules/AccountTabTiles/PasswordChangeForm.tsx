@@ -112,7 +112,12 @@ export const PasswordChangeForm: React.FC<{
                 }
               />
               <S.FormButtons>
-                <ButtonLink testingContext="cancelButton" type="button" color="secondary" onClick={hide}>
+                <ButtonLink
+                  testingContext="cancelButton"
+                  type="button"
+                  color="secondary"
+                  onClick={hide}
+                >
                   Cancel
                 </ButtonLink>
                 <Button

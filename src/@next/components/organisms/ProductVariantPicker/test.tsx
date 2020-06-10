@@ -40,14 +40,8 @@ describe("<ProductVariantPicker />", () => {
       />
     );
 
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("focus");
-    wrapper
-      .find(components.Option)
-      .at(1)
-      .simulate("click");
+    wrapper.find("input").at(0).simulate("focus");
+    wrapper.find(components.Option).at(1).simulate("click");
 
     expect(wrapper.text()).toContain("wool");
 
@@ -60,38 +54,16 @@ describe("<ProductVariantPicker />", () => {
     );
 
     // Select value for first attribute
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("focus");
-    wrapper
-      .find(components.Option)
-      .at(1)
-      .simulate("click");
+    wrapper.find("input").at(0).simulate("focus");
+    wrapper.find(components.Option).at(1).simulate("click");
 
     // Check if values are possible to select (disable or not) for another attribute
-    wrapper
-      .find("input")
-      .at(1)
-      .simulate("focus");
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(0)
-        .prop("isDisabled")
-    ).toBe(true);
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(1)
-        .prop("isDisabled")
-    ).toBe(false);
-    expect(
-      wrapper
-        .find(components.Option)
-        .at(2)
-        .prop("isDisabled")
-    ).toBe(true);
+    wrapper.find("input").at(1).simulate("focus");
+    expect(wrapper.find(components.Option).at(0).prop("isDisabled")).toBe(true);
+    expect(wrapper.find(components.Option).at(1).prop("isDisabled")).toBe(
+      false
+    );
+    expect(wrapper.find(components.Option).at(2).prop("isDisabled")).toBe(true);
   });
 
   it("should select variant attribute value with sidebar", () => {
@@ -106,21 +78,10 @@ describe("<ProductVariantPicker />", () => {
       />
     );
 
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("focus");
-    wrapper
-      .find(OverlayItem)
-      .at(1)
-      .simulate("click");
+    wrapper.find("input").at(0).simulate("focus");
+    wrapper.find(OverlayItem).at(1).simulate("click");
 
-    expect(
-      wrapper
-        .find("input")
-        .at(0)
-        .props().value
-    ).toEqual("wool");
+    expect(wrapper.find("input").at(0).props().value).toEqual("wool");
 
     expect(onChangeVariantPicker).toHaveBeenCalled();
   });
@@ -135,43 +96,19 @@ describe("<ProductVariantPicker />", () => {
     );
 
     // Select value for first attribute
-    wrapper
-      .find("input")
-      .at(0)
-      .simulate("focus");
-    wrapper
-      .find(OverlayItem)
-      .at(1)
-      .simulate("click");
+    wrapper.find("input").at(0).simulate("focus");
+    wrapper.find(OverlayItem).at(1).simulate("click");
 
     // Check if values are possible to select (disable or not) for another attribute
-    wrapper
-      .find("input")
-      .at(1)
-      .simulate("focus");
+    wrapper.find("input").at(1).simulate("focus");
     expect(
-      wrapper
-        .find(SelectSidebar)
-        .at(1)
-        .find(OverlayItem)
-        .at(0)
-        .prop("disabled")
+      wrapper.find(SelectSidebar).at(1).find(OverlayItem).at(0).prop("disabled")
     ).toBe(true);
     expect(
-      wrapper
-        .find(SelectSidebar)
-        .at(1)
-        .find(OverlayItem)
-        .at(1)
-        .prop("disabled")
+      wrapper.find(SelectSidebar).at(1).find(OverlayItem).at(1).prop("disabled")
     ).toBe(false);
     expect(
-      wrapper
-        .find(SelectSidebar)
-        .at(1)
-        .find(OverlayItem)
-        .at(2)
-        .prop("disabled")
+      wrapper.find(SelectSidebar).at(1).find(OverlayItem).at(2).prop("disabled")
     ).toBe(true);
   });
 });

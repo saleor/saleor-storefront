@@ -23,15 +23,17 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
     }
   };
 
-  const formData = demoMode ? {
-    email: "admin@example.com",
-    password: "admin",
-  } : {}
+  const formData = demoMode
+    ? {
+        email: "admin@example.com",
+        password: "admin",
+      }
+    : {};
 
   return (
     <div className="login-form">
       <Form
-      data={formData}
+        data={formData}
         errors={maybe(() => error.extraInfo.userInputErrors, [])}
         onSubmit={handleOnSubmit}
       >

@@ -69,11 +69,7 @@ describe("<CheckoutPayment />", () => {
     expect(wrapperText).toContain(ANONYMOUS_USER_PROPS.paymentGateways[1].name);
 
     const address = ANONYMOUS_USER_PROPS.checkoutBillingAddress;
-    const getValue = (n: number) =>
-      wrapper
-        .find(Input)
-        .at(n)
-        .prop("value");
+    const getValue = (n: number) => wrapper.find(Input).at(n).prop("value");
     expect(getValue(0)).toEqual(address.firstName);
     expect(getValue(1)).toEqual(address.lastName);
     expect(getValue(2)).toEqual(address.companyName);
@@ -82,12 +78,9 @@ describe("<CheckoutPayment />", () => {
     expect(getValue(5)).toEqual(address.streetAddress2);
     expect(getValue(6)).toEqual(address.city);
     expect(getValue(7)).toEqual(address.postalCode);
-    expect(
-      wrapper
-        .find(Select)
-        .at(0)
-        .prop("value").code
-    ).toEqual(address.country?.code);
+    expect(wrapper.find(Select).at(0).prop("value").code).toEqual(
+      address.country?.code
+    );
     expect(getValue(8)).toEqual(address.countryArea);
   });
 });

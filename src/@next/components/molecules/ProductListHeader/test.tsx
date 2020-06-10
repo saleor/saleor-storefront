@@ -84,10 +84,7 @@ describe("<ProductListHeader />", () => {
       <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
     );
 
-    wrapper
-      .find("button")
-      .at(0)
-      .simulate("click");
+    wrapper.find("button").at(0).simulate("click");
 
     expect(openFiltersMenuMock).toHaveBeenCalledTimes(1);
   });

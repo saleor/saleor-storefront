@@ -121,7 +121,11 @@ export const ProductVariantAttributeSelect: React.FC<{
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
           readOnly={true}
-          name={productVariantsAttribute.attribute.slug ? productVariantsAttribute.attribute.slug : ""}
+          name={
+            productVariantsAttribute.attribute.slug
+              ? productVariantsAttribute.attribute.slug
+              : ""
+          }
         />
         <SelectSidebar
           options={attributeOptions}
@@ -132,7 +136,11 @@ export const ProductVariantAttributeSelect: React.FC<{
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}
           target={selectSidebarTarget}
-          testingContextId={productVariantsAttribute.attribute.slug ? productVariantsAttribute.attribute.slug : ""}
+          testingContextId={
+            productVariantsAttribute.attribute.slug
+              ? productVariantsAttribute.attribute.slug
+              : ""
+          }
         />
       </>
     );

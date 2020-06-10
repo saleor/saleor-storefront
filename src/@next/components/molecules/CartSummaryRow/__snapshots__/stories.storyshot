@@ -87,8 +87,7 @@ exports[`Storyshots @components/molecules/CartSummaryRow default 1`] = `
     <div
       className="c4"
     >
-      Quantity:
-       
+      Quantity: 
       <span
         data-test="quantity"
       >

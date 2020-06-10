@@ -55,7 +55,12 @@ export const DiscountForm: React.FC<IProps> = ({
         const hasErrors = !!(values.errors && values.errors.length);
 
         return (
-          <S.DiscountForm id={formId} ref={formRef} onSubmit={handleSubmit} data-test="discountForm">
+          <S.DiscountForm
+            id={formId}
+            ref={formRef}
+            onSubmit={handleSubmit}
+            data-test="discountForm"
+          >
             <S.Input>
               <S.InputWithButton>
                 <S.InputWrapper>

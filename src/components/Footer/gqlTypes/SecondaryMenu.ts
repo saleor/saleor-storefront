@@ -82,7 +82,9 @@ export interface SecondaryMenu_shop_navigation_secondary_items {
   url: string | null;
   collection: SecondaryMenu_shop_navigation_secondary_items_collection | null;
   page: SecondaryMenu_shop_navigation_secondary_items_page | null;
-  children: (SecondaryMenu_shop_navigation_secondary_items_children | null)[] | null;
+  children:
+    | (SecondaryMenu_shop_navigation_secondary_items_children | null)[]
+    | null;
 }
 
 export interface SecondaryMenu_shop_navigation_secondary {

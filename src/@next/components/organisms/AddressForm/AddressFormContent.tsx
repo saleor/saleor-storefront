@@ -35,7 +35,12 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   }
 
   return (
-    <S.AddressForm id={formId} ref={formRef} onSubmit={handleSubmit} data-test={testingContext}>
+    <S.AddressForm
+      id={formId}
+      ref={formRef}
+      onSubmit={handleSubmit}
+      data-test={testingContext}
+    >
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField

@@ -52,7 +52,12 @@ const CheckoutShipping: React.FC<IProps> = ({
                   !!values.shippingMethod && values.shippingMethod === id;
 
                 return (
-                  <S.Tile checked={checked} key={id} data-test="shippingMethodTile" data-test-id={id}>
+                  <S.Tile
+                    checked={checked}
+                    key={id}
+                    data-test="shippingMethodTile"
+                    data-test-id={id}
+                  >
                     <Radio
                       name="shippingMethod"
                       value={id}
@@ -60,9 +65,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                       customLabel={true}
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
-                      <span
-                        data-test={`checkoutShippingMethodOptionName`}
-                      >
+                      <span data-test={`checkoutShippingMethodOptionName`}>
                         {name}
                       </span>
                       <S.Price>

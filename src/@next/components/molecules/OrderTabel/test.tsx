@@ -109,10 +109,7 @@ describe("<OrderTabel />", () => {
     const wrapper = mount(<OrderTabel history={history} orders={ORDERS} />);
     const historySpy = jest.spyOn(history, "push");
 
-    wrapper
-      .find(S.Row)
-      .at(1)
-      .simulate("click");
+    wrapper.find(S.Row).at(1).simulate("click");
 
     expect(historySpy).toHaveBeenCalledWith(
       `/order-history/${ORDERS[0].node.token}`
@@ -124,10 +121,7 @@ describe("<OrderTabel />", () => {
     const historySpy = jest.spyOn(history, "push");
     historySpy.mockClear();
 
-    wrapper
-      .find(Thumbnail)
-      .first()
-      .simulate("click");
+    wrapper.find(Thumbnail).first().simulate("click");
 
     expect(historySpy).toHaveBeenCalledWith("/product/apple-juice/72/");
   });

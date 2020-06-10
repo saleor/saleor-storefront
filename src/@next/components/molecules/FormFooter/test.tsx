@@ -70,8 +70,8 @@ describe("<FormFooter />", () => {
     const cancelBtnText = "Cancel";
     const button = renderFormFooter({
       ...DEFAULT_PROPS,
-      cancelBtn: { 
-        action: onCancel,     
+      cancelBtn: {
+        action: onCancel,
         testingContext: "footerTestButton",
         text: cancelBtnText,
       },
