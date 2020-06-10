@@ -25,7 +25,7 @@ const CheckoutShipping: React.FC<IProps> = ({
         initialValues={{
           shippingMethod: selectedShippingMethodId,
         }}
-        enableReinitialize={true}
+        enableReinitialize
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
             selectShippingMethod(values.shippingMethod);
@@ -62,21 +62,19 @@ const CheckoutShipping: React.FC<IProps> = ({
                       name="shippingMethod"
                       value={id}
                       checked={checked}
-                      customLabel={true}
+                      customLabel
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
-                      <span data-test={`checkoutShippingMethodOptionName`}>
+                      <span data-test="checkoutShippingMethodOptionName">
                         {name}
                       </span>
                       <S.Price>
                         {" "}
                         | +
-                        {
-                          <Money
-                            data-test={`checkoutShippingMethodOptionPrice`}
-                            money={price}
-                          />
-                        }
+                        <Money
+                          data-test="checkoutShippingMethodOptionPrice"
+                          money={price}
+                        />
                       </S.Price>
                     </Radio>
                   </S.Tile>

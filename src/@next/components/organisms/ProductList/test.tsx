@@ -12,7 +12,7 @@ describe("<ProductList />", () => {
       <BrowserRouter>
         <ProductList
           products={PRODUCTS}
-          canLoadMore={true}
+          canLoadMore
           loading={false}
           onLoadMore={jest.fn()}
         />
@@ -26,8 +26,8 @@ describe("<ProductList />", () => {
       <BrowserRouter>
         <ProductList
           products={PRODUCTS}
-          canLoadMore={true}
-          loading={true}
+          canLoadMore
+          loading
           onLoadMore={jest.fn()}
         />
       </BrowserRouter>
@@ -42,7 +42,7 @@ describe("<ProductList />", () => {
       <BrowserRouter>
         <ProductList
           products={PRODUCTS}
-          canLoadMore={true}
+          canLoadMore
           loading={false}
           onLoadMore={handleLoadMore}
         />

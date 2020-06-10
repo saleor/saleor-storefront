@@ -72,7 +72,7 @@ describe("<ProductVariantPicker />", () => {
     const wrapper = mount(
       <ProductVariantPicker
         {...PROPS}
-        selectSidebar={true}
+        selectSidebar
         selectSidebarTarget={portalRoot}
         onChange={onChangeVariantPicker}
       />
@@ -89,7 +89,7 @@ describe("<ProductVariantPicker />", () => {
   it("should disable possible selection of other variant attribute values after selection of one variant attribute values with sidebar", () => {
     const wrapper = mount(
       <ProductVariantPicker
-        selectSidebar={true}
+        selectSidebar
         selectSidebarTarget={portalRoot}
         {...PROPS}
       />

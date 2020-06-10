@@ -1,8 +1,8 @@
 import { Formik } from "formik";
 import React from "react";
+import { Button, ButtonLink } from "@components/atoms";
 import { TextField } from "../TextField";
 
-import { Button, ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 
 export const AccountUpdateForm: React.FC<{

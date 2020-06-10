@@ -36,9 +36,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     setShippingMethod,
   } = useCheckout();
 
-  const shippingMethods = availableShippingMethods
-    ? availableShippingMethods
-    : [];
+  const shippingMethods = availableShippingMethods || [];
 
   useImperativeHandle(ref, () => ({
     submitShipping: () => {

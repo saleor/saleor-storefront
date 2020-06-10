@@ -13,6 +13,7 @@ class Provider extends React.Component<
   OverlayContextInterface
 > {
   notificationCloseDelay = 2500;
+
   constructor(props) {
     super(props);
     this.state = {

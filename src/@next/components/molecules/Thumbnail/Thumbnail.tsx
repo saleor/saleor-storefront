@@ -3,7 +3,7 @@ import React from "react";
 import { maybe } from "@utils/misc";
 
 import { PlaceholderImage } from "@components/atoms";
-import { CachedImage } from "../";
+import { CachedImage } from "..";
 import { IProps } from "./types";
 
 export const Thumbnail: React.FC<IProps> = ({

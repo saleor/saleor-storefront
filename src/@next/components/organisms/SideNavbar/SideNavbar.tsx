@@ -6,7 +6,7 @@ import { Icon } from "@components/atoms";
 import { largeScreen } from "@styles/constants";
 import LogoSmall from "images/logo-small.svg";
 
-import { Overlay } from "../";
+import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
 

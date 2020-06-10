@@ -16,7 +16,7 @@ import {
   OverlayContextInterface,
 } from "../..";
 import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
-import Loader from "../../../components/Loader";
+import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
@@ -76,7 +76,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           {items?.length ? (
             <>
               {missingVariants() ? (
-                <Loader full={true} />
+                <Loader full />
               ) : (
                 <>
                   <ProductList lines={items} remove={removeItem} />

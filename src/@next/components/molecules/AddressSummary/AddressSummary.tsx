@@ -35,7 +35,8 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         )}
       </S.Wrapper>
     );
-  } else if (email) {
+  }
+  if (email) {
     return <S.Wrapper data-test="emailTile">{email}</S.Wrapper>;
   }
   return null;

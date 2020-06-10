@@ -46,9 +46,8 @@ export const priceToString = (
       currency: price.currency,
       style: "currency",
     });
-  } else {
-    return `${price.currency} ${amount.toFixed(2)}`;
   }
+  return `${price.currency} ${amount.toFixed(2)}`;
 };
 
 export const generateProductUrl = (id: string, name: string) =>
@@ -153,7 +152,7 @@ export const updateQueryString = (
     } else {
       querystring[key] = value || key;
     }
-    history.replace("?" + stringifyQs(querystring));
+    history.replace(`?${stringifyQs(querystring)}`);
   };
 };
 

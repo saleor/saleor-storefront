@@ -52,7 +52,7 @@ const extractMeta = (product: ProductDetails_product) => ({
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
   const history = useHistory();
-  const search = history.location.search;
+  const { search } = history.location;
   const searchQueryAttributes = queryString.parse(search);
 
   const onAttributeChangeHandler = (slug: string | null, value: string) => {

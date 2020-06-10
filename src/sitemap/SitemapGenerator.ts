@@ -5,12 +5,19 @@ import { buildSitemapIndex, createSitemap } from "sitemap";
 
 class SitemapGenerator {
   urls: [object?];
+
   chunks: object[][];
+
   sitemapSize: number;
+
   sitemapName: string;
+
   hostname: string;
+
   cacheTime: number;
+
   destinationDir: string;
+
   sitemaps: [string?];
 
   constructor(options) {

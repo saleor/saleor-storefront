@@ -6,11 +6,11 @@ import { IProps, IStep } from "./types";
 
 const activeDot = (
   <S.ActiveDot>
-    <S.Dot done={true} />
+    <S.Dot done />
   </S.ActiveDot>
 );
 
-const doneDot = <S.Dot done={true} />;
+const doneDot = <S.Dot done />;
 
 const inactiveDot = <S.Dot />;
 

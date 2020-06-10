@@ -37,7 +37,7 @@ describe("<DummyPaymentGateway />", () => {
 
     const input = wrapper.find("input").at(0);
     const form = wrapper.find("form");
-    const token = statuses[0].token;
+    const { token } = statuses[0];
 
     input.simulate("change", {
       target: { value: token },

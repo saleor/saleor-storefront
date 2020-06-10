@@ -72,11 +72,11 @@ const MainMenu: React.FC = () => {
                         >
                           <ReactSVG
                             path={hamburgerImg}
-                            className={"main-menu__hamburger--icon"}
+                            className="main-menu__hamburger--icon"
                           />
                           <ReactSVG
                             path={hamburgerHoverImg}
-                            className={"main-menu__hamburger--hover"}
+                            className="main-menu__hamburger--hover"
                           />
                         </li>
                       )}
@@ -102,7 +102,7 @@ const MainMenu: React.FC = () => {
                           <>
                             {user ? (
                               <MenuDropdown
-                                suffixClass={"__rightdown"}
+                                suffixClass="__rightdown"
                                 head={
                                   <li className="main-menu__icon main-menu__user--active">
                                     <ReactSVG path={userImg} />

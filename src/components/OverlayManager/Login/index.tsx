@@ -25,6 +25,7 @@ class Login extends React.Component<
   static defaultProps = {
     active: "login",
   };
+
   constructor(props) {
     super(props);
     this.state = {

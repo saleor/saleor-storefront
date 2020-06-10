@@ -38,6 +38,7 @@ interface SearchState {
 
 class Search extends React.Component<SearchProps, SearchState> {
   state = { search: "", inputFocused: false };
+
   submitBtnRef = React.createRef<HTMLButtonElement>();
 
   get hasSearchPhrase() {
@@ -105,15 +106,15 @@ class Search extends React.Component<SearchProps, SearchState> {
                 />
               }
               iconRight={<ReactSVG path={searchImg} />}
-              autoFocus={true}
+              autoFocus
               placeholder="Search"
               onBlur={this.handleInputBlur}
             />
           </div>
           <div
             className={classNames({
-              ["search__products"]: true,
-              ["search__products--expanded"]: this.hasSearchPhrase,
+              search__products: true,
+              "search__products--expanded": this.hasSearchPhrase,
             })}
           >
             <NetworkStatus>

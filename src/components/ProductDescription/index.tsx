@@ -66,27 +66,25 @@ class ProductDescription extends React.Component<
     if (variantPricing) {
       if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
         return <TaxedMoney taxedMoney={variantPricing.price} />;
-      } else {
-        return (
-          <>
-            <span className="product-description__undiscounted_price">
-              <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <TaxedMoney taxedMoney={variantPricing.price} />
-          </>
-        );
       }
-    }
-    if (isEqual(min, max)) {
-      return <TaxedMoney taxedMoney={min} />;
-    } else {
       return (
         <>
-          <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
+          <span className="product-description__undiscounted_price">
+            <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
+          </span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <TaxedMoney taxedMoney={variantPricing.price} />
         </>
       );
     }
+    if (isEqual(min, max)) {
+      return <TaxedMoney taxedMoney={min} />;
+    }
+    return (
+      <>
+        <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
+      </>
+    );
   };
 
   onVariantPickerChange = (
@@ -168,7 +166,7 @@ class ProductDescription extends React.Component<
           <ProductVariantPicker
             productVariants={this.props.productVariants}
             onChange={this.onVariantPickerChange}
-            selectSidebar={true}
+            selectSidebar
             queryAttributes={this.props.queryAttributes}
             onAttributeChangeHandler={this.props.onAttributeChangeHandler}
           />

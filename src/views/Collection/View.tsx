@@ -23,7 +23,7 @@ export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
     Object.keys(valueObj).forEach(value => {
-      str.push(value + "_" + valueObj[value].join("_"));
+      str.push(`${value}_${valueObj[value].join("_")}`);
     });
     return str.join(".");
   },

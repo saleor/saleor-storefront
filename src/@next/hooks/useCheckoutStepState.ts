@@ -18,7 +18,8 @@ export const useCheckoutStepState = (
   const getStep = () => {
     if (!checkout?.id && items && isShippingRequiredForProducts) {
       return CheckoutStep.Address;
-    } else if (!checkout?.id && items) {
+    }
+    if (!checkout?.id && items) {
       return CheckoutStep.Payment;
     }
 
@@ -32,13 +33,14 @@ export const useCheckoutStepState = (
 
     if (isReviewStep) {
       return CheckoutStep.Review;
-    } else if (isPaymentStep) {
-      return CheckoutStep.Payment;
-    } else if (isShippingStep) {
-      return CheckoutStep.Shipping;
-    } else {
-      return CheckoutStep.Address;
     }
+    if (isPaymentStep) {
+      return CheckoutStep.Payment;
+    }
+    if (isShippingStep) {
+      return CheckoutStep.Shipping;
+    }
+    return CheckoutStep.Address;
   };
 
   const [step, setStep] = useState(getStep());

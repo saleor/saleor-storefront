@@ -45,7 +45,7 @@ export const Checkbox: React.FC<IProps> = ({
             }
           }}
         >
-          <span></span>
+          <span />
         </div>
       </S.Label>
       {children}

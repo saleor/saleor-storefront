@@ -34,11 +34,14 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
         {name}
       </a>
     );
-  } else if (category) {
+  }
+  if (category) {
     return link(generateCategoryUrl(category.id, category.name));
-  } else if (collection) {
+  }
+  if (collection) {
     return link(generateCollectionUrl(collection.id, collection.name));
-  } else if (page) {
+  }
+  if (page) {
     return link(generatePageUrl(page.slug));
   }
 

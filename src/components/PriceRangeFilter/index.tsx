@@ -51,14 +51,15 @@ class PriceRangeFilter extends React.Component<
   createLabel() {
     const { from, to } = this.props;
     if (!!from && !!to) {
-      return from + " - " + to;
-    } else if (!!from) {
-      return "from " + from;
-    } else if (!!to) {
-      return "to " + to;
-    } else {
-      return undefined;
+      return `${from} - ${to}`;
     }
+    if (from) {
+      return `from ${from}`;
+    }
+    if (to) {
+      return `to ${to}`;
+    }
+    return undefined;
   }
 
   render() {

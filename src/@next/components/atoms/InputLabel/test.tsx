@@ -7,7 +7,7 @@ import { InputLabel } from ".";
 describe("<InputLabel />", () => {
   it("exists", () => {
     const wrapper = shallow(
-      <InputLabel labelBackground={"#FFF"} active={false}>
+      <InputLabel labelBackground="#FFF" active={false}>
         This is input - check knobs
       </InputLabel>
     );
@@ -18,7 +18,7 @@ describe("<InputLabel />", () => {
   it("contains text", () => {
     const message = "This is message";
     const wrapper = shallow(
-      <InputLabel labelBackground={"#FFF"} active={false}>
+      <InputLabel labelBackground="#FFF" active={false}>
         {message}
       </InputLabel>
     );
@@ -28,7 +28,7 @@ describe("<InputLabel />", () => {
 
   it("should have transparent background if not active", () => {
     const wrapper = mount(
-      <InputLabel labelBackground={"#FFF"} active={false}>
+      <InputLabel labelBackground="#FFF" active={false}>
         Text
       </InputLabel>
     );
@@ -41,7 +41,7 @@ describe("<InputLabel />", () => {
 
   it("should use passed background color if active", () => {
     const wrapper = mount(
-      <InputLabel labelBackground={"#ABC"} active={true}>
+      <InputLabel labelBackground="#ABC" active>
         Text
       </InputLabel>
     );

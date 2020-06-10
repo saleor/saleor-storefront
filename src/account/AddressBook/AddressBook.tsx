@@ -58,9 +58,9 @@ const AddressBook: React.FC<{
             setDisplayNewModal(false);
           }}
           userId={user.id}
-          {...{ defaultValue: defaultCountry ? defaultCountry : {} }}
-          submitBtnText={"Add"}
-          title={"Add new address"}
+          {...{ defaultValue: defaultCountry || {} }}
+          submitBtnText="Add"
+          title="Add new address"
           {...{ countriesOptions: countries }}
           formId="address-form"
         />
@@ -71,8 +71,8 @@ const AddressBook: React.FC<{
             setDisplayEditModal(false);
           }}
           address={addressData}
-          submitBtnText={"Save"}
-          title={"Edit address"}
+          submitBtnText="Save"
+          title="Edit address"
           {...{ countriesOptions: countries }}
           formId="address-form"
         />

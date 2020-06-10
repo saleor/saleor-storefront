@@ -40,7 +40,7 @@ const AddressGridSelector: React.FC<IProps> = ({
         initialValues={{
           addressTileOption: selectedAddressId,
         }}
-        enableReinitialize={true}
+        enableReinitialize
         onSubmit={(values, { setSubmitting }) => {
           if (onSelect) {
             const address = addresses.find(
@@ -95,8 +95,8 @@ const AddressGridSelector: React.FC<IProps> = ({
           hideModal={() => {
             setDisplayNewModal(false);
           }}
-          submitBtnText={"Add"}
-          title={"Add new address"}
+          submitBtnText="Add"
+          title="Add new address"
           countriesOptions={countriesOptions}
           formId={newAddressFormId}
           userId={userId}

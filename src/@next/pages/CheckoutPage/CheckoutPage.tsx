@@ -90,9 +90,8 @@ const getButton = (text: string, onClick: () => void) => {
         {text}
       </Button>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {

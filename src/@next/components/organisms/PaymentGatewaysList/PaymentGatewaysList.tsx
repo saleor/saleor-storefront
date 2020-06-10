@@ -43,7 +43,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
                     <span data-test="checkoutPaymentGatewayBraintreeName">
                       {name}
@@ -77,7 +77,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
                     <span data-test="checkoutPaymentGatewayDummyName">
                       {name}
@@ -107,7 +107,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
                     <span data-test="checkoutPaymentGatewayStripeName">
                       {name}
