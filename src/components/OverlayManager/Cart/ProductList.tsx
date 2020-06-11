@@ -35,7 +35,7 @@ const ProductList: React.SFC<{
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.variant.name}</span>
-              <span>{`Qty: ${line.quantity}`}</span>
+              <span>{`Ilość: ${line.quantity}`}</span>
             </span>
             <ReactSVG
               path={removeImg}

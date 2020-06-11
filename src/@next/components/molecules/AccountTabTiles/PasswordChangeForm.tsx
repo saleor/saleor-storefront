@@ -45,17 +45,17 @@ export const PasswordChangeForm: React.FC<{
             newPassword?: string;
           } = {};
           if (!values.confirmPassword) {
-            errors.confirmPassword = "Required field";
+            errors.confirmPassword = "Wymagane pole";
           }
           if (!values.newPassword) {
-            errors.newPassword = "Required field";
+            errors.newPassword = "Wymagane pole";
           }
           if (!values.oldPassword) {
-            errors.oldPassword = "Required field";
+            errors.oldPassword = "Wymagane pole";
           }
           if (values.confirmPassword !== values.newPassword) {
-            errors.confirmPassword = "Passwords do not match";
-            errors.newPassword = "Passwords do not match";
+            errors.confirmPassword = "Hasła do siebie nie pasują";
+            errors.newPassword = "Hasła do siebie nie pasują";
           }
           return errors;
         }}
@@ -74,7 +74,7 @@ export const PasswordChangeForm: React.FC<{
             <S.Form onSubmit={handleSubmit}>
               <TextField
                 name="oldPassword"
-                label="Old Password"
+                label="Stare Hasło"
                 type="password"
                 value={values.oldPassword}
                 onBlur={handleBlur}
@@ -87,7 +87,7 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="newPassword"
-                label="New Password"
+                label="Nowe Hasło"
                 type="password"
                 value={values.newPassword}
                 onBlur={handleBlur}
@@ -100,7 +100,7 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="confirmPassword"
-                label="Confirm Password"
+                label="Potwierdź Hasło"
                 type="password"
                 value={values.confirmPassword}
                 onBlur={handleBlur}
@@ -113,7 +113,7 @@ export const PasswordChangeForm: React.FC<{
               />
               <S.FormButtons>
                 <ButtonLink type="button" color="secondary" onClick={hide}>
-                  Cancel
+                  Anuluj
                 </ButtonLink>
                 <Button
                   dataCy="submitPasswordChangeFormButton"
@@ -121,7 +121,7 @@ export const PasswordChangeForm: React.FC<{
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  Save
+                  Zapisz
                 </Button>
               </S.FormButtons>
             </S.Form>

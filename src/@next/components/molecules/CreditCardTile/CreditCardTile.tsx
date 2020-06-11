@@ -21,9 +21,9 @@ export const CreditCardTile: React.FC<IProps> = ({
   );
   const content = (
     <>
-      <S.BoldTitle>Expires on</S.BoldTitle>
+      <S.BoldTitle>Wygasa</S.BoldTitle>
       <S.TextContent>{expirationDate}</S.TextContent>
-      <S.BoldTitle>Name on card</S.BoldTitle>
+      <S.BoldTitle>Imię i nazwisko na karcie</S.BoldTitle>
       <S.TextContent>{nameOnCard}</S.TextContent>
     </>
   );

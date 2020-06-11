@@ -53,7 +53,7 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "My Account" }]} />
+      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "Moje konto" }]} />
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">

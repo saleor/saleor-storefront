@@ -59,7 +59,7 @@ export const AccountUpdateForm: React.FC<{
               </S.ContentEditOneLine>
               <S.FormButtons>
                 <ButtonLink type="button" color="secondary" onClick={hide}>
-                  Cancel
+                  Anuluj
                 </ButtonLink>
                 <Button
                   dataCy="submitAccountUpdateFormButton"
@@ -67,7 +67,7 @@ export const AccountUpdateForm: React.FC<{
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  Save
+                  Zapisz
                 </Button>
               </S.FormButtons>
             </S.Form>

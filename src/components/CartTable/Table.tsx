@@ -30,11 +30,11 @@ const Table: React.FC<TableProps> = ({
       <table className="cart-table">
         <thead>
           <tr>
-            <th>Products</th>
-            {mediumScreen && <th>Price</th>}
-            <th>Variant</th>
-            <th className="cart-table__quantity-header">Quantity</th>
-            <th colSpan={2}>{mediumScreen ? "Total Price" : "Price"}</th>
+            <th>Produkty</th>
+            {mediumScreen && <th>Cena</th>}
+            <th>Warianty</th>
+            <th className="cart-table__quantity-header">Ilość</th>
+            <th colSpan={2}>{mediumScreen ? "Razem" : "Cena"}</th>
           </tr>
         </thead>
         <tbody>

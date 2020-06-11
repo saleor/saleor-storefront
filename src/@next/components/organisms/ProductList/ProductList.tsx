@@ -37,7 +37,7 @@ export const ProductList: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              More +
+              Więcej +
             </Button>
           )
         )}

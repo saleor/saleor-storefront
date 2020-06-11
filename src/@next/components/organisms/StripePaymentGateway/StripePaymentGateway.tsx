@@ -29,7 +29,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
     }
     const stripeApiKeyErrors = [
       {
-        message: "Stripe gateway misconfigured. Api key not provided.",
+        message: "Bramka Stripe nie skonfigurowana. Klucz api nie ustawiony.",
       },
     ];
     setSubmitErrors(stripeApiKeyErrors);
@@ -69,7 +69,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
         const stripePayloadErrors = [
           {
             message:
-              "Payment submission error. Stripe gateway returned no payment method in payload.",
+              "Błąd płatności. Bramka Stripe nie zwróciła żadnej metody płatności.",
           },
         ];
         setSubmitErrors(stripePayloadErrors);
@@ -79,7 +79,7 @@ const StripePaymentGateway: React.FC<IProps> = ({
       const stripeElementsErrors = [
         {
           message:
-            "Stripe gateway improperly rendered. Stripe elements were not provided.",
+            "Bramka Stripe gateway niepoprawnie renderowana. Elementy Stripe nie ustawione.",
         },
       ];
       setSubmitErrors(stripeElementsErrors);

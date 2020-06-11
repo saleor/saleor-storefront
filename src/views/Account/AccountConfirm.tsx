@@ -24,8 +24,8 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
         content:
           anyErrors.length > 0
             ? anyErrors.map(error => error.message).join(" ")
-            : "You can now log in",
-        title: anyErrors.length > 0 ? "Error" : "Account confirmed",
+            : "Możesz teraz się zalogować",
+        title: anyErrors.length > 0 ? "Błąd" : "Konto potwierdzone",
       },
       { type: anyErrors.length > 0 ? "error" : "success", timeout: 5000 }
     );
@@ -42,7 +42,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
       .catch(() => {
         const errors = [
           {
-            message: "Something went wrong while activating your account.",
+            message: "Coś poszło nie tak podczas aktywacji Twojego konta.",
           },
         ];
         displayConfirmationAlert(errors);

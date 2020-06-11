@@ -45,7 +45,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
             <S.CardNumberField>
               <StripeInputElement
                 type="CardNumber"
-                label="Card number"
+                label="Numer karty"
                 onChange={event => {
                   handleChange(event);
                   setStripeErrors([]);
@@ -55,7 +55,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
             <S.CardExpiryField>
               <StripeInputElement
                 type="CardExpiry"
-                label="Expiration date"
+                label="Data ważności"
                 onChange={event => {
                   handleChange(event);
                   setStripeErrors([]);
@@ -65,7 +65,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
             <S.CardCvcField>
               <StripeInputElement
                 type="CardCvc"
-                label="CVC"
+                label="kod CVC"
                 onChange={event => {
                   handleChange(event);
                   setStripeErrors([]);

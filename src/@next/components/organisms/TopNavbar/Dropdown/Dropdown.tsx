@@ -25,7 +25,7 @@ export const Dropdown: React.FC<any> = ({ onHide, item }) => {
       </S.Rows>
       <S.Side>
         <S.RowItem>
-          <NavLink item={{ ...item, name: "view all products" }} />
+          <NavLink item={{ ...item, name: "zobacz wszystkie produkty" }} />
         </S.RowItem>
       </S.Side>
       <ShadowBox />

@@ -96,31 +96,31 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: "Wyczyść...",
       value: null,
     },
     {
-      label: "Price Low-High",
+      label: "Cena od najniższej",
       value: "price",
     },
     {
-      label: "Price High-Low",
+      label: "Cena od najwyższej",
       value: "-price",
     },
     {
-      label: "Name Increasing",
+      label: "Nazwa A-Z",
       value: "name",
     },
     {
-      label: "Name Decreasing",
+      label: "Nazwa Z-A",
       value: "-name",
     },
     {
-      label: "Last updated Ascending",
+      label: "Ostatnia aktualizacja - rosnąco",
       value: "updated_at",
     },
     {
-      label: "Last updated Descending",
+      label: "Ostatnia aktualizacja - malejąco",
       value: "-updated_at",
     },
   ];

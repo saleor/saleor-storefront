@@ -24,7 +24,7 @@ const CartSummaryRow: React.FC<IProps> = ({
         SKU: <span data-cy={`cartSummaryItem${index}SKU`}>{sku}</span>
       </S.Sku>
       <S.Quantity>
-        Quantity:{" "}
+        Ilość:{" "}
         <span data-cy={`cartSummaryItem${index}Quantity`}>{quantity}</span>
       </S.Quantity>
       <S.Price data-cy={`cartSummaryItem${index}Price`}>

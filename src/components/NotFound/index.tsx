@@ -14,13 +14,13 @@ const NotFound: React.FC<NotFoundProps> = () => (
     <h2 className="not-found-page__header">404</h2>
     <div className="not-found-page__ruler" />
     <div className="not-found-page__message">
-      <p>We can’t seem to find a page you are looking for! </p>
-      <p>You may have mistyped the address or the page may have moved. </p>
-      <p>We’re sorry for the error and hope you’ll have a good day.</p>
+      <p>Nie możemy znaleźć strony której szukasz! </p>
+      <p>Być może pomyliłeś adres, bądź strona została przeniesiona. </p>
+      <p>Przepraszamy za błąd i życzymy miłego dnia.</p>
     </div>
     <div className="not-found-page__button">
       <Link to={BASE_URL}>
-        <Button dataCy="404pageGotoHomeButton" secondary>Back to home</Button>
+        <Button dataCy="404pageGotoHomeButton" secondary>Powrót do strony głównej</Button>
       </Link>
     </div>
   </div>

@@ -64,7 +64,7 @@ export const DiscountForm: React.FC<IProps> = ({
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}
-                    label="Promo Code"
+                    label="Kod promo"
                     onChange={handleChange}
                   />
                 </S.InputWrapper>
@@ -74,7 +74,7 @@ export const DiscountForm: React.FC<IProps> = ({
                     dataCy="checkoutPaymentApplyPromoCodeButton"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
-                    Apply
+                    Akceptuj
                   </Button>
                 </S.ButtonWrapper>
               </S.InputWithButton>
@@ -82,7 +82,7 @@ export const DiscountForm: React.FC<IProps> = ({
             </S.Input>
             {values.tempPromoCode && (
               <>
-                <span>Promo code:</span>
+                <span>Kod promo:</span>
                 <S.ChipsWrapper>
                   <Chip onClose={() => handleRemoveBtnClick(values.inputCode)}>
                     <span data-cy="checkoutPaymentPromoCodeChip">

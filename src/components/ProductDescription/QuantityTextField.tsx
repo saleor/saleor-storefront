@@ -36,7 +36,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     !hideErrors && isTooMuch
       ? [
           {
-            message: `Maximum quantity is ${maxQuantity}`,
+            message: `Maksymalna ilość to ${maxQuantity}`,
           },
         ]
       : undefined;
@@ -44,7 +44,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   return (
     <TextField
       type="number"
-      label="Quantity"
+      label="Ilość"
       min="1"
       value={quantity.toString()}
       disabled={disabled}

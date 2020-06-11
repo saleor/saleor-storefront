@@ -6,7 +6,7 @@ const SignInForm: React.FC<{
   onClick: () => void;
 }> = ({ onClick }) => (
   <>
-    <h3 className="checkout__header">Registered user</h3>
+    <h3 className="checkout__header">Zarejestrowany użytkownik</h3>
     <LoginForm />
     <ForgottenPassword onClick={onClick} />
   </>

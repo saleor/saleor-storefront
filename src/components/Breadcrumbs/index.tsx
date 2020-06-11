@@ -51,7 +51,7 @@ const Breadcrumbs: React.FC<{
       matches ? (
         <ul className="breadcrumbs">
           <li>
-            <Link to={baseUrl}>Home</Link>
+            <Link to={baseUrl}>Strona główna</Link>
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
             <li
@@ -66,7 +66,7 @@ const Breadcrumbs: React.FC<{
         </ul>
       ) : (
         <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>Back</Link>
+          <Link to={getBackLink(breadcrumbs)}>Wróć</Link>
         </div>
       )
     }

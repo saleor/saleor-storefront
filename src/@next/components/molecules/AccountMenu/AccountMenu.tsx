@@ -7,7 +7,7 @@ import { IProps } from "./types";
 export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
   return (
     <S.Wrapper>
-      <S.MenuHeader>MY ACCOUNT</S.MenuHeader>
+      <S.MenuHeader>MOJE KONTO</S.MenuHeader>
       {links.map(link => {
         const menuItem = link
           .replace(/\//g, "")

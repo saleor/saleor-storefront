@@ -23,7 +23,7 @@ export const ProductListHeader: React.FC<IProps> = ({
           <S.FiltersButton onClick={openFiltersMenu} data-cy="filters__button">
             <Icon name="filter" size={24} />
             <S.Filters>
-              FILTERS{" "}
+              FILTRY{" "}
               {activeFilters > 0 && (
                 <>
                   <span>({activeFilters})</span>
@@ -32,13 +32,13 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Filters>
           </S.FiltersButton>
           {activeFilters > 0 && (
-            <S.Clear onClick={clearFilters}>CLEAR FILTERS</S.Clear>
+            <S.Clear onClick={clearFilters}>WYCZYŚĆ FILTRY</S.Clear>
           )}
         </S.LeftSide>
 
         <S.RightSide>
           <S.Element data-cy="no-of-products-found_label">
-            <S.Label>Products found: </S.Label>
+            <S.Label>Znalezione produkty: </S.Label>
             {numberOfProducts}
           </S.Element>
           <S.Element>

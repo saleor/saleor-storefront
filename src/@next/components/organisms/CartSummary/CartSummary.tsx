@@ -24,12 +24,12 @@ const CostLine = ({
 
 const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => (
   <S.Costs>
-    {subtotal && <CostLine name="Subtotal" cost={subtotal} />}
-    {shipping && <CostLine name="Shipping" cost={shipping} />}
+    {subtotal && <CostLine name="Wartość zamówienia" cost={subtotal} />}
+    {shipping && <CostLine name="Koszt dostawy" cost={shipping} />}
     {promoCode && promoCode.gross.amount > 0 && (
       <CostLine name="Promo Code" cost={promoCode} negative={true} />
     )}
-    {total && <CostLine name="Total" cost={total} last={true} />}
+    {total && <CostLine name="Razem" cost={total} last={true} />}
   </S.Costs>
 );
 

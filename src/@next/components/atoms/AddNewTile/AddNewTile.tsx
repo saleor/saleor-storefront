@@ -12,7 +12,7 @@ export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
         <p>
           <Icon size={24} name="plus" />
         </p>
-        <p>Add new {type}</p>
+        <p>Dodaj nowy typ: {type}</p>
       </S.Content>
     </Tile>
   );

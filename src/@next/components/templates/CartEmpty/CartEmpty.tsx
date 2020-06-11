@@ -12,10 +12,10 @@ const CartEmpty: React.FC<IProps> = ({ button }: IProps) => {
   return (
     <Container>
       <S.Wrapper>
-        <S.TitleFirstLine>Your Cart</S.TitleFirstLine>
-        <S.TitleSecondLine>looks empty</S.TitleSecondLine>
+        <S.TitleFirstLine>Twój koszyk</S.TitleFirstLine>
+        <S.TitleSecondLine>wygląda na pusty</S.TitleSecondLine>
         <S.HR />
-        <S.Subtitle>Maybe you haven’t made your choices yet</S.Subtitle>
+        <S.Subtitle>Być może nie podjąłeś jeszcze wyboru</S.Subtitle>
         <S.ContinueButton>{button}</S.ContinueButton>
       </S.Wrapper>
     </Container>

@@ -43,12 +43,12 @@ const Page: React.FC<{
         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
-              <h1>Final reduction</h1>
+              <h1>Zacznij z nami!</h1>
             </span>
           </div>
           <div>
             <span className="home-page__hero__title">
-              <h1>Up to 70% off sale</h1>
+              <h1>Zniżki do 70%</h1>
             </span>
           </div>
         </div>
@@ -63,7 +63,7 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button dataCy="homepageHeroActionButton">Shop sale</Button>
+                <Button dataCy="homepageHeroActionButton">Przejdź do wyprzedaży</Button>
               </Link>
             )
           )}
@@ -73,7 +73,7 @@ const Page: React.FC<{
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>Shop by category</h3>
+            <h3>Kategorie</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>

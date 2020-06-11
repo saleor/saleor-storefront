@@ -20,7 +20,7 @@ export const PasswordTile: React.FC = () => {
       <Tile>
         <S.Wrapper>
           <S.Header>
-            MY PASSWORD
+            MOJE HASŁO
             {!isEditing && (
               <IconButton
                 name="edit"
@@ -44,7 +44,7 @@ export const PasswordTile: React.FC = () => {
               </S.ContentEdit>
             ) : (
               <Attribute
-                description="Password"
+                description="Hasło"
                 attributeValue="**************"
               />
             )}

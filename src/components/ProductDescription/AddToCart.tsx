@@ -15,7 +15,7 @@ const AddToCart: React.FC<{
       }}
       disabled={disabled}
     >
-      Add to basket
+      Dodaj do koszyka
     </AddToCartButton>
   );
 };

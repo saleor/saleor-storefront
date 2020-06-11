@@ -11,8 +11,7 @@ import { passwordResetUrl } from "../../app/routes";
 const PasswordResetForm: React.FC = () => (
   <div className="password-reset-form">
     <p>
-      Please provide us your email address so we can share you a link to reset
-      your password
+      Podaj adres email na który prześlemy Ci link do zresetowania Twojego hasła
     </p>
     <TypedPasswordResetMutation>
       {(passwordReset, { loading, data }) => {
@@ -32,13 +31,13 @@ const PasswordResetForm: React.FC = () => (
             <TextField
               name="email"
               autoComplete="email"
-              label="Email Address"
+              label="Adres Email"
               type="email"
               required
             />
             <div className="password-reset-form__button">
               <Button dataCy="submitPasswordResetFormButton" type="submit" {...(loading && { disabled: true })}>
-                {loading ? "Loading" : "Reset password"}
+                {loading ? "Ładowanie" : "Resetuj Hasło"}
               </Button>
             </div>
           </Form>

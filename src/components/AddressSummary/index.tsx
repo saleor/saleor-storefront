@@ -37,7 +37,7 @@ const AddressSummary: React.FC<{
         <br />
         {address.phone && (
           <>
-            Phone number: {address.phone} <br />
+            Numer telefonu: {address.phone} <br />
           </>
         )}
         {email && (

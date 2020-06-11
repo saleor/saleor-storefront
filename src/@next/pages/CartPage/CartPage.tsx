@@ -14,14 +14,14 @@ import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
-const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
+const title = <h1 data-cy="cartPageTitle">Mój koszyk</h1>;
 
 const getShoppingButton = (history: History) => (
   <Button
     dataCy="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
-    CONTINUE SHOPPING
+    KONTYNUUJ ZAKUPY
   </Button>
 );
 
@@ -30,7 +30,7 @@ const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
     dataCy="cartPageProceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
-    PROCEED TO CHECKOUT
+    PRZEJDŹ DO REALIZACJI ZAMÓWIENIA
   </Button>
 );
 

@@ -40,11 +40,11 @@ export const AddressTile: React.FC<IProps> = ({
       />
 
       {address.isDefaultBillingAddress && address.isDefaultShippingAddress
-        ? "Default Address"
+        ? "Domyślny adres"
         : address.isDefaultShippingAddress
-        ? "Default Shipping Address"
+        ? "Domyślny adres dostawy"
         : address.isDefaultBillingAddress
-        ? "Default Billing Address"
+        ? "Domyślny adres płatności"
         : null}
     </S.HeaderContent>
   );

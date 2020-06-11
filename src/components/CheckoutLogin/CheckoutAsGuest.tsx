@@ -9,23 +9,23 @@ const CheckoutAsGuest: React.FC<{
   checkoutUrl: string;
 }> = ({ overlay, checkoutUrl }) => (
   <div className="checkout-login__guest">
-    <h3 className="checkout__header">Continue as a guest</h3>
+    <h3 className="checkout__header">Kontynuuj jako gość</h3>
     <p>
-      If you don’t wish to register an account, don’t worry. You can checkout as
-      a guest. We care about you just as much as any registered user.
+      Jeżeli nie chcesz zakładać konta, nie ma sprawy. Możesz kontynować zamówienie jako gość. 
+      Dbamy o Twoje zamówienie, tak jak o każdego zalogowanego użytkownika.
     </p>
     <Link to={checkoutUrl}>
-      <Button dataCy="checkoutLoginContinueAsGuestButton">Continue as a guest</Button>
+      <Button dataCy="checkoutLoginContinueAsGuestButton">Kontynuuj jako gość</Button>
     </Link>
 
     <p>
-      or you can{" "}
+      możesz również{" "}
       <span
         data-cy="showRegisterOverlay"
         className="u-link"
         onClick={() => overlay.show(OverlayType.register, OverlayTheme.right)}
       >
-        create an account
+        stworzyć nowe konto użytkownika
       </span>
     </p>
   </div>

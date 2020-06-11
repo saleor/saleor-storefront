@@ -51,20 +51,20 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             <TextField
               name="email"
               autoComplete="email"
-              label="Email Address"
+              label="Adres Email"
               type="email"
               required
             />
             <TextField
               name="password"
               autoComplete="password"
-              label="Password"
+              label="Hasło"
               type="password"
               required
             />
             <div className="login__content__button">
               <Button dataCy="submitRegisterFormButton" type="submit" {...(loading && { disabled: true })}>
-                {loading ? "Loading" : "Register"}
+                {loading ? "Loading" : "Zarejestruj się"}
               </Button>
             </div>
           </Form>

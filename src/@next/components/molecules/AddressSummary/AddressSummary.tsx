@@ -25,7 +25,7 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.phone && (
           <>
-            Phone number: {address.phone} <br />
+            Numer telefonu: {address.phone} <br />
           </>
         )}
         {email && (

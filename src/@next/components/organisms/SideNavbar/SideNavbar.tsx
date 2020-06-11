@@ -98,7 +98,7 @@ export const SideNavbar: React.FC<IProps> = ({
                 <S.IconWrapper>
                   <Icon name="heart" size={24} />
                 </S.IconWrapper>
-                <span>my wishlist</span>
+                <span>moja lista zakupów</span>
               </S.Link>
             </S.Item>
             <S.Item>
@@ -106,11 +106,11 @@ export const SideNavbar: React.FC<IProps> = ({
                 <S.IconWrapper>
                   <Icon name="profile" size={24} />
                 </S.IconWrapper>
-                <span>my profile</span>
+                <span>mój profil</span>
               </S.Link>
             </S.Item>
             <S.Item>
-              <S.Link to="/">english</S.Link>
+              <S.Link to="/">angielski</S.Link>
             </S.Item>
           </Media>
         </S.Menu>

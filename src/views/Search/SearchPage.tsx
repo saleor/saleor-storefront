@@ -21,7 +21,7 @@ export const SearchPage: React.FC<SearchPageProps> = ({
           <div className="search-page__header__input container">
             <TextField
               autoFocus
-              label="Search term:"
+              label="Wyszukiwana fraza:"
               onChange={onQueryChange}
               value={query}
             />

@@ -6,9 +6,9 @@ const ForgottenPassword: React.FC<{
   <>
     <div className="login__content__password-reminder">
       <p>
-        Have you forgotten your password?&nbsp;
+        Zapomniałeś swoje hasło?&nbsp;
         <span className="u-link" onClick={onClick} data-cy="accountOverlayForgottenPasswordLink">
-          Click Here
+          Kliknij tutaj
         </span>
       </p>
     </div>

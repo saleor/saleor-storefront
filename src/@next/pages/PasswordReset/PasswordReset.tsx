@@ -13,12 +13,12 @@ import { FormikProps, IProps } from "./types";
 
 const PasswordResetSchema = Yup.object().shape({
   password: Yup.string()
-    .min(2, "Password is to short!")
-    .required("This field is required"),
+    .min(2, "Hasło powinno składać się z minimum 3 znaków!")
+    .required("To pole jest wymagane"),
   retypedPassword: Yup.string()
-    .min(2, "Please retype password")
-    .required("This field is required")
-    .oneOf([Yup.ref("password")], "Retyped password does not match"),
+    .min(2, "Powtórz hasło")
+    .required("To pole jest wymagane")
+    .oneOf([Yup.ref("password")], "Potwierdzenie hasła nie pasuje do hasła"),
 });
 
 const initialData: FormikProps = {

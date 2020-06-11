@@ -67,8 +67,7 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
       } else {
         const braintreeTokenErrors = [
           {
-            message:
-              "Braintree gateway misconfigured. Client token not provided.",
+            message: "Bramka Braintree nie skonfigurowana. Klucz api nie ustawiony.",
           },
         ];
         setSubmitErrors(braintreeTokenErrors);
@@ -98,8 +97,7 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
     } else {
       const braintreePayloadErrors = [
         {
-          message:
-            "Payment submission error. Braintree gateway returned no token in payload.",
+          message: "Błąd płatności. Bramka Braintree nie zwróciła żadnej metody płatności.",
         },
       ];
       setSubmitErrors(braintreePayloadErrors);

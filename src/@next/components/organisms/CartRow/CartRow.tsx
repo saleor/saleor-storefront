@@ -132,7 +132,7 @@ export const CartRow: React.FC<IProps> = ({
         <TextField
           data-cy={`cartPageItem${index}QuantityInput`}
           name="quantity"
-          label="Quantity"
+          label="Ilość"
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}

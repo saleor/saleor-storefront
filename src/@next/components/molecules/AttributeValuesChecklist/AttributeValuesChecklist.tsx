@@ -41,7 +41,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
             color="secondary"
             onClick={() => setViewAllOptions(true)}
           >
-            VIEW ALL OPTIONS
+            ZOBACZ WSZYSTKIE OPCJE
           </ButtonLink>
         </S.ViewMoreButton>
       )}

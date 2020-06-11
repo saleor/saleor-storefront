@@ -89,7 +89,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-link"
                 onClick={hideOverlay}
               >
-                Home
+                Strona główna
               </Link>
             </li>
           </>

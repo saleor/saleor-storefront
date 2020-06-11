@@ -58,13 +58,13 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           <div className="overlay__header">
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
-              My bag,{" "}
+              Mój koszyk,{" "}
               <span className="overlay__header-text-items">
                 {items?.reduce(
                   (prevVal, currVal) => prevVal + currVal.quantity,
                   0
                 ) || 0}{" "}
-                items
+                element
               </span>
             </div>
             <ReactSVG
@@ -82,7 +82,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                   <ProductList lines={items} remove={removeItem} />
                   <div className="cart__footer">
                     <div className="cart__footer__price">
-                      <span>Subtotal</span>
+                      <span>Kwota zamówienia</span>
                       <span>
                         <TaxedMoney
                           data-cy="cartPageSubtotalPrice"
@@ -94,7 +94,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     {shippingTaxedPrice &&
                       shippingTaxedPrice.gross.amount !== 0 && (
                         <div className="cart__footer__price">
-                          <span>Shipping</span>
+                          <span>Dostawa</span>
                           <span>
                             <TaxedMoney
                               data-cy="cartPageShippingPrice"
@@ -106,7 +106,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                     {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
                       <div className="cart__footer__price">
-                        <span>Promo code</span>
+                        <span>Kod promo</span>
                         <span>
                           <TaxedMoney
                             data-cy="cartPagePromoCodePrice"
@@ -117,7 +117,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     )}
 
                     <div className="cart__footer__price">
-                      <span>Total</span>
+                      <span>Wartość</span>
                       <span>
                         <TaxedMoney
                           data-cy="cartPageTotalPrice"
@@ -133,14 +133,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                         })}
                       >
                         <Button dataCy="cartOverlayGotoBagViewButton" secondary>
-                          Go to my bag
+                          Idź do mojego koszyka
                         </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
                         <Button dataCy="cartOverlayGotoCheckoutButton">
-                          Checkout
+                          Zrealizuj zamówienie
                         </Button>
                       </Link>
                     </div>

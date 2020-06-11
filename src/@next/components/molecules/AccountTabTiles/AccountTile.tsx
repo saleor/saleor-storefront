@@ -21,10 +21,10 @@ export const AccountTile: React.FC = () => {
     <S.TileWrapper>
       <Tile>
         <S.Wrapper>
-          <S.Header>MY DATA</S.Header>
+          <S.Header>MOJE DANE</S.Header>
           <S.Content>
             <S.HeaderSmall>
-              Personal details
+              Szczegóły osobowe
               {!isEditing && (
                 <IconButton
                   name="edit"
@@ -49,11 +49,11 @@ export const AccountTile: React.FC = () => {
             ) : (
               <S.ContentOneLine>
                 <Attribute
-                  description="First Name"
+                  description="Imię"
                   attributeValue={(user && user.firstName) || "-"}
                 />
                 <Attribute
-                  description="Last Name"
+                  description="Nazwisko"
                   attributeValue={(user && user.lastName) || "-"}
                 />
               </S.ContentOneLine>

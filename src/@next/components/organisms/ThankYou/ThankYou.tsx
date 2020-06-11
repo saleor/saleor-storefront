@@ -18,23 +18,23 @@ const ThankYou: React.FC<IProps> = ({
     <Container>
       <S.Wrapper>
         <S.ThankYouHeader>
-          Thank you
+          Dziękujemy
           <br />
-          <span>for your order!</span>
+          <span>za Twoje zamówienie!</span>
         </S.ThankYouHeader>
         <S.Paragraph>
-          Your order number is <span>{orderNumber}</span>
+          Twój numer zamówienia to: <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
-          We’ve emailed you an order confirmation, and we’ll notify you the when
-          order has been shipped.
+          Wysłaliśmy potwierdzenia zamówienia na Twoją skrzynkę mailową. Powiadomimy Cię kiedy 
+          zamówienie zostanie  wysłane.
         </S.Paragraph>
         <S.Buttons>
           <Button dataCy="continueShoppingButton" onClick={continueShopping} color="secondary" fullWidth={true}>
-            CONTINUE SHOPPING
+            KONTYNUUJ ZAKUPY
           </Button>
           <Button dataCy="gotoOrderDetailsButton" onClick={orderDetails} fullWidth={true}>
-            ORDER DETAILS
+            SZCZEGÓŁY ZAMÓWIENIA
           </Button>
         </S.Buttons>
       </S.Wrapper>

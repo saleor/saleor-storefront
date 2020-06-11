@@ -123,14 +123,14 @@ const startApp = async () => {
         if (authenticated) {
           alert.show(
             {
-              title: "You are now logged in",
+              title: "Jesteś teraz zalogowany",
             },
             { type: "success" }
           );
         } else {
           alert.show(
             {
-              title: "You are now logged out",
+              title: "Zostałeś wylogowany",
             },
             { type: "success" }
           );

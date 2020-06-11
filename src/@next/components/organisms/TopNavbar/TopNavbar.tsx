@@ -132,7 +132,7 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
           </S.IconWrapper>
           <S.SearchButton>
             <Media minWidth={smallScreen}>
-              <S.Text>SEARCH</S.Text>
+              <S.Text>SZUKAJ</S.Text>
             </Media>
             <Icon name="search" size={24} />
           </S.SearchButton>

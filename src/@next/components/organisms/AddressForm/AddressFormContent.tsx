@@ -40,7 +40,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormFirstName"
             name="firstName"
-            label="First Name"
+            label="Imię"
             value={values!.firstName}
             autoComplete="given-name"
             errors={fieldErrors!.firstName}
@@ -49,7 +49,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormLastName"
             name="lastName"
-            label="Last Name"
+            label="Nazwisko"
             value={values!.lastName}
             autoComplete="family-name"
             errors={fieldErrors!.lastName}
@@ -60,7 +60,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormCompanyName"
             name="companyName"
-            label="Company Name (Optional)"
+            label="Nazwa firmy (Opcjonalne)"
             value={values!.companyName}
             autoComplete="organization"
             errors={fieldErrors!.companyName}
@@ -69,7 +69,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormPhone"
             name="phone"
-            label="Phone"
+            label="Telefon"
             value={values!.phone}
             autoComplete="tel"
             errors={fieldErrors!.phone}
@@ -80,7 +80,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormStreetAddress1"
             name="streetAddress1"
-            label="Address line 1"
+            label="Ulica"
             value={values!.streetAddress1}
             autoComplete="address-line1"
             errors={fieldErrors!.streetAddress1}
@@ -91,7 +91,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormStreetAddress2"
             name="streetAddress2"
-            label="Address line 2"
+            label="Numer lokalu"
             value={values!.streetAddress2}
             autoComplete="address-line2"
             errors={fieldErrors!.streetAddress2}
@@ -111,7 +111,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormPostalCode"
             name="postalCode"
-            label="ZIP/Postal Code"
+            label="Kod pocztowy"
             value={values!.postalCode}
             autoComplete="postal-code"
             errors={fieldErrors!.postalCode}
@@ -124,7 +124,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
               "data-cy": "addressFormCountry",
             }}
             defaultValue={defaultValue}
-            label="Country"
+            label="Kraj"
             name="country"
             options={countriesOptions}
             value={
@@ -142,7 +142,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             data-cy="addressFormCountryArea"
             name="countryArea"
-            label="State/province"
+            label="Województwo"
             value={values!.countryArea}
             autoComplete="address-level2"
             errors={fieldErrors!.countryArea}
@@ -154,7 +154,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             <TextField
               data-cy="addressFormEmail"
               name="email"
-              label="Email"
+              label="Adres email"
               value={values!.email}
               autoComplete="email"
               errors={fieldErrors!.email}

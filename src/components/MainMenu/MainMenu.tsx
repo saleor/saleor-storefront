@@ -112,24 +112,24 @@ const MainMenu: React.FC = () => {
                                   <ul className="main-menu__dropdown">
                                     <li data-cy="mobileMenuMyAccountLink">
                                       <Link to={appPaths.accountUrl}>
-                                        My Account
+                                        Moje konto
                                       </Link>
                                     </li>
                                     <li data-cy="mobileMenuOrderHistoryLink">
                                       <Link to={appPaths.orderHistoryUrl}>
-                                        Order history
+                                        Historia zamówień
                                       </Link>
                                     </li>
                                     <li data-cy="mobileMenuAddressBookLink">
                                       <Link to={appPaths.addressBookUrl}>
-                                        Address book
+                                        Książka adresowa
                                       </Link>
                                     </li>
                                     <li
                                       onClick={handleSignOut}
                                       data-cy="mobileMenuLogoutLink"
                                     >
-                                      Log Out
+                                      Wyloguj
                                     </li>
                                   </ul>
                                 }
@@ -181,23 +181,23 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-cy="desktopMenuMyAccountLink">
-                                <Link to={appPaths.accountUrl}>My Account</Link>
+                                <Link to={appPaths.accountUrl}>Moje Konto</Link>
                               </li>
                               <li data-cy="desktopMenuOrderHistoryLink">
                                 <Link to={appPaths.orderHistoryUrl}>
-                                  Order history
+                                  Historia zamówień
                                 </Link>
                               </li>
                               <li data-cy="desktopMenuAddressBookLink">
                                 <Link to={appPaths.addressBookUrl}>
-                                  Address book
+                                  Książka adresowa
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
                                 data-cy="desktopMenuLogoutLink"
                               >
-                                Log Out
+                                Wyloguj
                               </li>
                             </ul>
                           }
@@ -251,7 +251,7 @@ const MainMenu: React.FC = () => {
               >
                 <Media
                   query={{ minWidth: mediumScreen }}
-                  render={() => <span>Search</span>}
+                  render={() => <span>Szukaj</span>}
                 />
                 <ReactSVG path={searchImg} />
               </li>

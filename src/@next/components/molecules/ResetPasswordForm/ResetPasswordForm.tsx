@@ -17,12 +17,12 @@ export const ResetPasswordForm: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <h3>Reset your password</h3>
+      <h3>Resetuj swoje hasło</h3>
 
-      <p>Please provide new password</p>
+      <p>Podaj nowe hasło</p>
       {tokenError && (
         <S.GeneralError>
-          It seems that token for password reset is not valid anymore.
+          Wygląda na to, że token do resetowania hasła nie jest już poprawny.
         </S.GeneralError>
       )}
       <form onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ export const ResetPasswordForm: React.FC<IProps> = ({
         </S.InputFields>
 
         <Button dataCy="submitNewPasswordFormButton" type="submit" fullWidth={true}>
-          SET NEW PASSWORD
+          USTAW NOWE HASŁO
         </Button>
       </form>
     </S.Wrapper>

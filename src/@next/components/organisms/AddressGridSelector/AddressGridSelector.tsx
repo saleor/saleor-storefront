@@ -94,8 +94,8 @@ const AddressGridSelector: React.FC<IProps> = ({
           hideModal={() => {
             setDisplayNewModal(false);
           }}
-          submitBtnText={"Add"}
-          title={"Add new address"}
+          submitBtnText={"Dodaj"}
+          title={"Dodaj nowy adres"}
           countriesOptions={countriesOptions}
           formId={newAddressFormId}
           userId={userId}
