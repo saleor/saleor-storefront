@@ -24,7 +24,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page, translation } = item;
   const link = (url: string) => (
     <Link to={url} {...props}>
-      {name}
+      {translation?.name || name}
     </Link>
   );
 
@@ -42,5 +42,5 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
     return link(generatePageUrl(page.slug));
   }
 
-  return <span {...props}>{translation?.name || name}</span>;
+  return <span {...props}>{translation?.name || name}</span>;
 };
