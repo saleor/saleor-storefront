@@ -42,9 +42,9 @@ jobs:
       run: |
         npm run tsc
 
-    - name: Run tslint
+    - name: Run linters
       run: |
-        npm run tslint
+        npm run lint
 
   jest-tests:
     runs-on: ubuntu-latest
