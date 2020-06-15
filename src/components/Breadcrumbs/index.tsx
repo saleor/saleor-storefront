@@ -1,6 +1,3 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
 import classNames from "classnames";
 import * as React from "react";
 import Media from "react-media";
@@ -9,6 +6,9 @@ import { Link } from "react-router-dom";
 import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/gqlTypes/Category";
+
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 export interface Breadcrumb {
   value: string;

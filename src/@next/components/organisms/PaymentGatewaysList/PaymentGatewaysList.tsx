@@ -128,6 +128,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 )}
               </div>
             );
+
+          default:
+            throw new Error("Unsupported payment gateway");
         }
       })}
       {!selectedPaymentGateway && errors && <ErrorMessage errors={errors} />}

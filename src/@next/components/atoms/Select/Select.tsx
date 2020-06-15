@@ -57,7 +57,8 @@ export const Select: React.FC<IProps> = ({
   const customTheme = React.useContext(ThemeContext);
   const handleChange = (value: any) => {
     if (onChange) {
-      name ? onChange(value, name) : onChange(value);
+      if (name) onChange(value, name);
+      else onChange(value);
     }
   };
 

@@ -18,7 +18,11 @@ class AddToCartButton extends React.PureComponent<
 
   animationTimeout = 800;
 
-  timeout;
+  timeout: number = null;
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
   handleAnimation = (evt: React.MouseEvent<HTMLButtonElement>) => {
     if (!this.state.disabled) {
@@ -36,10 +40,6 @@ class AddToCartButton extends React.PureComponent<
       });
     }
   };
-
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
-  }
 
   render() {
     const { animate } = this.state;

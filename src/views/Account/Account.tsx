@@ -1,23 +1,21 @@
 import * as React from "react";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
-
 import { useUserDetails } from "@saleor/sdk";
+
 import { smallScreen } from "@styles/constants";
+import { AccountMenu, AccountMenuMobile } from "@components/molecules";
+import { AccountTab, OrdersHistory } from "@pages";
 import AddressBook from "../../account/AddressBook/AddressBook";
-
-import "./scss/index.scss";
-
 import {
   accountUrl,
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
 } from "../../app/routes";
-
-import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
+
+import "./scss/index.scss";
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
@@ -34,6 +32,9 @@ const returnTab: any = (path: string, userDetails, history) => {
       tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
+    default:
+      tabContent = <AccountTab />;
+      break;
   }
   return tabContent;
 };

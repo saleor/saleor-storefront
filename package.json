@@ -59,6 +59,7 @@
     "react-svg": "^5.0.6",
     "react-transition-group": "^4.4.1",
     "register-service-worker": "^1.6.2",
+    "react-hot-loader": "^4.9.0",
     "reset-css": "^4.0.1",
     "styled-components": "^4.3.0",
     "typeface-montserrat": "0.0.54",
@@ -151,7 +152,6 @@
     "postcss-preset-env": "^5.3.0",
     "prettier": "^2.0.5",
     "react-docgen-typescript-loader": "^3.6.0",
-    "react-hot-loader": "^4.9.0",
     "react-is": "^16.12.0",
     "react-test-renderer": "^16.9.0",
     "sass-loader": "^7.1.0",
@@ -181,7 +181,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts}": [
+    "*.{jsx?,tsx?}": [
       "eslint --fix",
       "prettier --write",
       "git add"

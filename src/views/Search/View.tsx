@@ -47,38 +47,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     FilterQuerySet
   );
 
-  const clearFilters = () => {
-    setAttributeFilters({});
-  };
-
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
-          const att = { ...attributeFilters };
-          delete att[`${name}`];
-          setAttributeFilters({
-            ...att,
-          });
-        } else {
-          setAttributeFilters({
-            ...attributeFilters,
-            [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
-            ),
-          });
-        }
-      } else {
-        setAttributeFilters({
-          ...attributeFilters,
-          [`${name}`]: [...attributeFilters[`${name}`], value],
-        });
-      }
-    } else {
-      setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
-    }
-  };
-
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
@@ -126,6 +94,38 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       value: "-updated_at",
     },
   ];
+
+  const clearFilters = () => {
+    setAttributeFilters({});
+  };
+
+  const onFiltersChange = (name, value) => {
+    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
+      if (attributeFilters[name].includes(value)) {
+        if (filters.attributes[`${name}`].length === 1) {
+          const att = { ...attributeFilters };
+          delete att[`${name}`];
+          setAttributeFilters({
+            ...att,
+          });
+        } else {
+          setAttributeFilters({
+            ...attributeFilters,
+            [`${name}`]: attributeFilters[`${name}`].filter(
+              item => item !== value
+            ),
+          });
+        }
+      } else {
+        setAttributeFilters({
+          ...attributeFilters,
+          [`${name}`]: [...attributeFilters[`${name}`], value],
+        });
+      }
+    } else {
+      setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
+    }
+  };
 
   return (
     <NetworkStatus>

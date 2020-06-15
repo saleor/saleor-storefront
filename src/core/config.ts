@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import { generatePageUrl } from "./utils";
 
 export const BASE_URL = "/";

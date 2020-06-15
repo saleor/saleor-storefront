@@ -145,6 +145,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const checkoutReviewSubpageRef = useRef<ICheckoutReviewSubpageHandles>(null);
 
   const handleNextStepClick = () => {
+    // Some magic above and below ensures that the activeStepIndex will always
+    // be in 0-3 range
+    /* eslint-disable default-case */
     switch (activeStepIndex) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {

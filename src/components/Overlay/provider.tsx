@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import {

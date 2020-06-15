@@ -33,13 +33,21 @@ interface SearchProps extends RouteComponentProps {
 
 interface SearchState {
   search: string;
-  inputFocused: boolean;
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
-  state = { search: "", inputFocused: false };
+  state = { search: "" };
 
   submitBtnRef = React.createRef<HTMLButtonElement>();
+
+  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
+    if (
+      !!prevState.search.length &&
+      this.props.overlay.type !== OverlayType.search
+    ) {
+      this.setState({ search: "" });
+    }
+  }
 
   get hasSearchPhrase() {
     return this.state.search.length > 0;
@@ -70,15 +78,6 @@ class Search extends React.Component<SearchProps, SearchState> {
       this.props.overlay.hide();
     }
   };
-
-  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
-    if (
-      !!prevState.search.length &&
-      this.props.overlay.type !== OverlayType.search
-    ) {
-      this.setState({ search: "" });
-    }
-  }
 
   render() {
     return (

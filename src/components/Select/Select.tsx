@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import "./scss/index.scss";
 
 import classNames from "classnames";

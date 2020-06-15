@@ -16,7 +16,7 @@ if (!portalRoot) {
 
 describe("<Overlay />", () => {
   const DEFAULT_STATE = "exited";
-  const Children = () => <div>"Some content"</div>;
+  const Children = () => <div>Some content</div>;
   const position: Position = "center";
 
   const DEFAULT_PROPS = {
