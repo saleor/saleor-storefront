@@ -365,7 +365,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level1"
+                  autoComplete="address-level2"
                   className="c8"
                   disabled={false}
                   name="city"
@@ -533,7 +533,7 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level2"
+                  autoComplete="address-level1"
                   className="c8"
                   disabled={false}
                   name="countryArea"
@@ -980,7 +980,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level1"
+                  autoComplete="address-level2"
                   className="c8"
                   disabled={false}
                   name="city"
@@ -1148,7 +1148,7 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level2"
+                  autoComplete="address-level1"
                   className="c8"
                   disabled={false}
                   name="countryArea"
@@ -1563,7 +1563,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level1"
+                  autoComplete="address-level2"
                   className="c8"
                   disabled={false}
                   name="city"
@@ -1733,7 +1733,7 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level2"
+                  autoComplete="address-level1"
                   className="c8"
                   disabled={false}
                   name="countryArea"
