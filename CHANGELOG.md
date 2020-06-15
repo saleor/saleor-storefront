@@ -10,6 +10,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Use sdk as a standalone package - #724 by @dominik-zeglen
 - Fix CartRow tests - #749 by @dominik-zeglen
 - Add prettier to precommit - #766 by @dominik-zeglen
+- Do not use prettier on generated files - #773 by @dominik-zeglen
 
 ## 2.10.2
 
