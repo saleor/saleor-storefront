@@ -9,6 +9,7 @@
 !.jest
 !.linguirc
 !.prettierrc
+!.prettierignore
 dist
 node_modules
 src/locales/_build
