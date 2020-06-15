@@ -407,7 +407,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level1"
+                  autoComplete="address-level2"
                   className="c8"
                   disabled={false}
                   name="city"
@@ -577,7 +577,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 className="c7"
               >
                 <input
-                  autoComplete="address-level2"
+                  autoComplete="address-level1"
                   className="c8"
                   disabled={false}
                   name="countryArea"
