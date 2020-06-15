@@ -103,7 +103,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             name="city"
             label="City"
             value={values!.city}
-            autoComplete="address-level1"
+            autoComplete="address-level2"
             errors={fieldErrors!.city}
             {...basicInputProps()}
           />
@@ -133,12 +133,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             optionLabelKey="country"
             optionValueKey="code"
             errors={fieldErrors!.country}
+            autoComplete="country"
           />
           <TextField
             name="countryArea"
             label="State/province"
             value={values!.countryArea}
-            autoComplete="address-level2"
+            autoComplete="address-level1"
             errors={fieldErrors!.countryArea}
             {...basicInputProps()}
           />
