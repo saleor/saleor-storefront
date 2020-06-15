@@ -2,10 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import {
-  AttributeInput,
-  ProductOrder,
-} from "./../../../../gqlTypes/globalTypes";
+import { AttributeInput, ProductOrder } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Category
@@ -388,7 +385,7 @@ export interface Category {
    */
   products: Category_products | null;
   /**
-   * Look up a category by ID.
+   * Look up a category by ID or slug.
    */
   category: Category_category | null;
   /**
