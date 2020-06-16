@@ -108,7 +108,7 @@ export const CartRow: React.FC<IProps> = ({
         </Link>
         <S.Sku>
           <S.LightFont>
-            SKU: <span data-test="itemSKU">{sku ? sku : "-"}</span>
+            SKU: <span data-test="itemSKU">{sku || "-"}</span>
           </S.LightFont>
         </S.Sku>
         <S.Attributes data-test="itemAttributes">

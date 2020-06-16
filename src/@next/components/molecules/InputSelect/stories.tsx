@@ -3,6 +3,8 @@ import React from "react";
 
 import { styled } from "@styles";
 
+import { InputSelect } from ".";
+
 const DEFAULT_PROPS = {
   label: "Country",
   name: "country",
@@ -36,8 +38,6 @@ const Container = () => {
     />
   );
 };
-
-import { InputSelect } from ".";
 storiesOf("@components/molecules/InputSelect", module)
   .addParameters({ component: InputSelect })
   .add("default", () => (

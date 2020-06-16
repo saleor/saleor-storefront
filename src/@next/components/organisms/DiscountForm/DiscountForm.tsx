@@ -34,7 +34,7 @@ export const DiscountForm: React.FC<IProps> = ({
         inputCode,
         tempPromoCode,
       }}
-      enableReinitialize={true}
+      enableReinitialize
       onSubmit={(values, { setSubmitting }) => {
         if (handleSubmit) {
           handleSubmit({

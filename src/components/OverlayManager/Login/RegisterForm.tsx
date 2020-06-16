@@ -2,14 +2,13 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { AlertManager, useAlert } from "react-alert";
 import { accountConfirmUrl } from "../../../app/routes";
 
 import { Button, Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
 import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";
-
-import { AlertManager, useAlert } from "react-alert";
 
 const showSuccessNotification = (
   data: RegisterAccount,

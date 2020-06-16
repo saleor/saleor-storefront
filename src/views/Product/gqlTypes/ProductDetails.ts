@@ -469,6 +469,7 @@ export interface ProductDetails_product_images {
    * The ID of the object.
    */
   id: string;
+  alt: string;
   /**
    * The URL of the image.
    */

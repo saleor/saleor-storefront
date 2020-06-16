@@ -17,7 +17,7 @@ describe("<CheckoutAddress />", () => {
       />
     );
 
-    const address = LOGGED_IN_USER_PROPS.userAddresses[0].address;
+    const { address } = LOGGED_IN_USER_PROPS.userAddresses[0];
     const wrapperText = wrapper.text();
     expect(wrapperText).toContain(address.firstName);
     expect(wrapperText).toContain(address.lastName);

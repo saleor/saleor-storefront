@@ -33,12 +33,21 @@ interface SearchProps extends RouteComponentProps {
 
 interface SearchState {
   search: string;
-  inputFocused: boolean;
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
-  state = { search: "", inputFocused: false };
+  state = { search: "" };
+
   submitBtnRef = React.createRef<HTMLButtonElement>();
+
+  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
+    if (
+      !!prevState.search.length &&
+      this.props.overlay.type !== OverlayType.search
+    ) {
+      this.setState({ search: "" });
+    }
+  }
 
   get hasSearchPhrase() {
     return this.state.search.length > 0;
@@ -70,15 +79,6 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
   };
 
-  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
-    if (
-      !!prevState.search.length &&
-      this.props.overlay.type !== OverlayType.search
-    ) {
-      this.setState({ search: "" });
-    }
-  }
-
   render() {
     return (
       <Overlay
@@ -105,15 +105,15 @@ class Search extends React.Component<SearchProps, SearchState> {
                 />
               }
               iconRight={<ReactSVG path={searchImg} />}
-              autoFocus={true}
+              autoFocus
               placeholder="Search"
               onBlur={this.handleInputBlur}
             />
           </div>
           <div
             className={classNames({
-              ["search__products"]: true,
-              ["search__products--expanded"]: this.hasSearchPhrase,
+              search__products: true,
+              "search__products--expanded": this.hasSearchPhrase,
             })}
           >
             <NetworkStatus>

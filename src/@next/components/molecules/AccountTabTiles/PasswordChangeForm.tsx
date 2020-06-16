@@ -1,9 +1,9 @@
 import { Formik } from "formik";
 import React from "react";
-import { TextField } from "../TextField";
 
 import { Button, ButtonLink } from "@components/atoms";
 import { IFormError } from "@types";
+import { TextField } from "../TextField";
 import * as S from "./styles";
 
 export const PasswordChangeForm: React.FC<{

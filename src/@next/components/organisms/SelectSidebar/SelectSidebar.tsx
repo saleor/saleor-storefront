@@ -4,7 +4,7 @@ import { ButtonLink } from "@components/atoms";
 import { CardHeader, OverlayItem } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
-import { Overlay } from "../";
+import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 

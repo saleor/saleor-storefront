@@ -1,11 +1,11 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
 import * as React from "react";
 import Media from "react-media";
 
 import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, ILine } from "./ProductRow";
+
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 interface TableProps extends EditableProductRowProps {
   lines: ILine[];

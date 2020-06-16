@@ -57,7 +57,8 @@ export const Select: React.FC<IProps> = ({
   const customTheme = React.useContext(ThemeContext);
   const handleChange = (value: any) => {
     if (onChange) {
-      name ? onChange(value, name) : onChange(value);
+      if (name) onChange(value, name);
+      else onChange(value);
     }
   };
 
@@ -69,19 +70,19 @@ export const Select: React.FC<IProps> = ({
         value={value}
         clearValue={clearValue}
         menuIsOpen={menuIsOpen}
-        menuShouldScrollIntoView={true}
+        menuShouldScrollIntoView
         tabSelectsValue={false}
         getOptionLabel={option => option[optionLabelKey]}
         getOptionValue={option => option[optionValueKey]}
-        openMenuOnFocus={true}
+        openMenuOnFocus
         styles={{ ...optionStyle(customTheme), ...customStyles }}
         options={options}
         isOptionDisabled={isOptionDisabled}
-        placeholder={""}
+        placeholder=""
         components={customComponents}
         isClearable={clearable}
         {...props}
-      ></ReactSelect>
+      />
       <S.ErrorMessages>
         <ErrorMessage errors={errors} />
       </S.ErrorMessages>

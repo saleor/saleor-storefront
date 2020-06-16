@@ -46,9 +46,8 @@ export const priceToString = (
       currency: price.currency,
       style: "currency",
     });
-  } else {
-    return `${price.currency} ${amount.toFixed(2)}`;
   }
+  return `${price.currency} ${amount.toFixed(2)}`;
 };
 
 export const generateProductUrl = (id: string, name: string) =>
@@ -130,15 +129,17 @@ export const maybe = <T>(exp: () => T, d?: T) => {
 export const parseQueryString = (
   location: LocationState
 ): { [key: string]: string } => {
-  const query = {
-    ...parseQs((location as any).search.substr(1)),
-  };
+  let query: Record<string, string> = parseQs(window.location.search.substr(1));
+
   each(query, (value, key) => {
     if (Array.isArray(value)) {
-      query[key] = value[0];
+      query = {
+        ...query,
+        [key]: value[0],
+      };
     }
   });
-  return query as { [key: string]: string };
+  return query;
 };
 
 export const updateQueryString = (
@@ -153,7 +154,7 @@ export const updateQueryString = (
     } else {
       querystring[key] = value || key;
     }
-    history.replace("?" + stringifyQs(querystring));
+    history.replace(`?${stringifyQs(querystring)}`);
   };
 };
 

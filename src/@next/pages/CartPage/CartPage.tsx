@@ -145,7 +145,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
         cart={items && generateCart(items, removeItem, updateItem)}
       />
     );
-  } else {
-    return <CartEmpty button={getShoppingButton(history)} />;
   }
+  return <CartEmpty button={getShoppingButton(history)} />;
 };

@@ -64,16 +64,15 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
           creditCard
         )) as PaymentData;
         return cardData;
-      } else {
-        const braintreeTokenErrors = [
-          {
-            message:
-              "Braintree gateway misconfigured. Client token not provided.",
-          },
-        ];
-        setSubmitErrors(braintreeTokenErrors);
-        onError(braintreeTokenErrors);
       }
+      const braintreeTokenErrors = [
+        {
+          message:
+            "Braintree gateway misconfigured. Client token not provided.",
+        },
+      ];
+      setSubmitErrors(braintreeTokenErrors);
+      onError(braintreeTokenErrors);
     } catch (errors) {
       setCardErrorsHelper(errors);
       onError(errors);

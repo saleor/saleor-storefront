@@ -1,9 +1,9 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-const TEXT = "Text";
-
 import { ButtonLink } from ".";
+
+const TEXT = "Text";
 storiesOf("@components/atoms/ButtonLink", module)
   .addParameters({ component: ButtonLink })
   .add("Base", () => <ButtonLink testingContext="test">{TEXT}</ButtonLink>)

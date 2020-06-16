@@ -2,6 +2,7 @@
 !.dockerignore
 !.storybook
 !.circle
+!.eslintrc
 !.gitignore
 !.github
 !.babelrc

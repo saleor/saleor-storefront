@@ -56,7 +56,7 @@ export const ProductVariantPicker: React.FC<IProps> = ({
         productVariantsAttributeId => {
           const productVariantsAttribute =
             productVariantsAttributes[productVariantsAttributeId];
-          const slug = productVariantsAttribute.attribute.slug;
+          const { slug } = productVariantsAttribute.attribute;
 
           return (
             <ProductVariantAttributeSelect

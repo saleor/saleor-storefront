@@ -96,13 +96,12 @@ export const ProductVariantAttributeSelect: React.FC<{
           <Icon name="select_x" size={10} />
         </S.SelectIndicator>
       );
-    } else {
-      return (
-        <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
-          <Icon name="subcategories" size={10} />
-        </S.SelectIndicator>
-      );
     }
+    return (
+      <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
+        <Icon name="subcategories" size={10} />
+      </S.SelectIndicator>
+    );
   };
 
   useEffect(() => {
@@ -120,7 +119,7 @@ export const ProductVariantAttributeSelect: React.FC<{
           value={selectedValue ? selectedValue.value : ""}
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
-          readOnly={true}
+          readOnly
           name={
             productVariantsAttribute.attribute.slug
               ? productVariantsAttribute.attribute.slug
@@ -144,18 +143,17 @@ export const ProductVariantAttributeSelect: React.FC<{
         />
       </>
     );
-  } else {
-    return (
-      <InputSelect
-        name={productVariantsAttribute.attribute.id}
-        label={selectLabel}
-        value={selectedValue}
-        options={attributeOptions}
-        isOptionDisabled={optionValue => optionValue.disabled}
-        onChange={optionValue => onChangeSelection(optionValue?.value)}
-        clearable={true}
-        clearValue={onClearSelection}
-      />
-    );
   }
+  return (
+    <InputSelect
+      name={productVariantsAttribute.attribute.id}
+      label={selectLabel}
+      value={selectedValue}
+      options={attributeOptions}
+      isOptionDisabled={optionValue => optionValue.disabled}
+      onChange={optionValue => onChangeSelection(optionValue?.value)}
+      clearable
+      clearValue={onClearSelection}
+    />
+  );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginForm } from "../";
+import { LoginForm } from "..";
 import ForgottenPassword from "../OverlayManager/Login/ForgottenPassword";
 
 const SignInForm: React.FC<{

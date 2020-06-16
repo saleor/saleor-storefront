@@ -1,4 +1,5 @@
 import { IImage, ITaxedMoney } from "@types";
+
 export interface ICostLine {
   name: string;
   cost: ITaxedMoney;

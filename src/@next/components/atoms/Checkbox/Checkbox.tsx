@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from "react";
 
 import * as S from "./styles";
@@ -45,7 +46,7 @@ export const Checkbox: React.FC<IProps> = ({
             }
           }}
         >
-          <span></span>
+          <span />
         </div>
       </S.Label>
       {children}

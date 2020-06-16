@@ -11,7 +11,7 @@ storiesOf("@components/organisms/ProductList", module)
     <BrowserRouter>
       <ProductList
         products={PRODUCTS}
-        canLoadMore={true}
+        canLoadMore
         loading={false}
         onLoadMore={() => null}
         testingContextId="testCategory"

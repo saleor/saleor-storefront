@@ -4,7 +4,7 @@ import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 
-import { Overlay } from "../";
+import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -17,12 +17,10 @@ const checkIfAttributeIsChecked = (
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
     if (filters.attributes[slug].find(filter => filter === value.slug)) {
       return true;
-    } else {
-      return false;
     }
-  } else {
     return false;
   }
+  return false;
 };
 
 export const FilterSidebar: React.FC<IProps> = ({

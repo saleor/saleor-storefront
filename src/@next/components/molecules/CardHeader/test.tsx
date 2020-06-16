@@ -77,7 +77,7 @@ describe("<CardHeader />", () => {
   });
 
   it("should render border-bottom when `divider` prop is set to true", () => {
-    const header = mount(<CardHeader {...DEFAULT_PROPS} divider={true} />).find(
+    const header = mount(<CardHeader {...DEFAULT_PROPS} divider />).find(
       S.Header
     );
 

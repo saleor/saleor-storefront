@@ -47,7 +47,8 @@ const AddressSummary: React.FC<{
         )}
       </p>
     );
-  } else if (email) {
+  }
+  if (email) {
     return (
       <p className="address-summary" ref={paragraphRef}>
         {email}

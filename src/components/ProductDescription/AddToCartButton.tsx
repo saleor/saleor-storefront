@@ -15,8 +15,14 @@ class AddToCartButton extends React.PureComponent<
   AddToCartButtonState
 > {
   state = { animate: false, disabled: false };
+
   animationTimeout = 800;
-  timeout;
+
+  timeout: number = null;
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
   handleAnimation = (evt: React.MouseEvent<HTMLButtonElement>) => {
     if (!this.state.disabled) {
@@ -35,17 +41,13 @@ class AddToCartButton extends React.PureComponent<
     }
   };
 
-  componentWillUnmount() {
-    clearTimeout(this.timeout);
-  }
-
   render() {
     const { animate } = this.state;
 
     return (
       <Button
         testingContext={this.props.testingContext}
-        fullWidth={true}
+        fullWidth
         className={classNames(this.props.className, {
           "product-description__action--fade": animate,
         })}

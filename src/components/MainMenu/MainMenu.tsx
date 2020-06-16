@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  mediumScreen,
-  smallScreen,
-} from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
 import { useCart, useSignOut, useUserDetails } from "@saleor/sdk";
-
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -30,6 +23,11 @@ import hamburgerImg from "../../images/hamburger.svg";
 import logoImg from "../../images/logo.svg";
 import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
+import {
+  mediumScreen,
+  smallScreen,
+} from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 const MainMenu: React.FC = () => {
   const { data: user } = useUserDetails();
@@ -72,11 +70,11 @@ const MainMenu: React.FC = () => {
                         >
                           <ReactSVG
                             path={hamburgerImg}
-                            className={"main-menu__hamburger--icon"}
+                            className="main-menu__hamburger--icon"
                           />
                           <ReactSVG
                             path={hamburgerHoverImg}
-                            className={"main-menu__hamburger--hover"}
+                            className="main-menu__hamburger--hover"
                           />
                         </li>
                       )}
@@ -102,7 +100,7 @@ const MainMenu: React.FC = () => {
                           <>
                             {user ? (
                               <MenuDropdown
-                                suffixClass={"__rightdown"}
+                                suffixClass="__rightdown"
                                 head={
                                   <li className="main-menu__icon main-menu__user--active">
                                     <ReactSVG path={userImg} />

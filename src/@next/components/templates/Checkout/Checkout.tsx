@@ -21,7 +21,7 @@ const Checkout: React.FC<IProps> = ({
     <Container>
       {loading && (
         <S.Loader>
-          <Loader fullScreen={true} />
+          <Loader fullScreen />
         </S.Loader>
       )}
       <S.Wrapper>

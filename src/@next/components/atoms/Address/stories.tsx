@@ -1,6 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
+import { Address } from ".";
+
 const DEFAULT_PROPS = {
   city: "Wroclaw",
   companyName: "Mirumee",
@@ -16,8 +18,6 @@ const DEFAULT_PROPS = {
   streetAddress1: "St Street",
   streetAddress2: "Second",
 };
-
-import { Address } from ".";
 storiesOf("@components/atoms/Address", module)
   .addParameters({ component: Address })
   .add("default", () => <Address {...DEFAULT_PROPS} />);

@@ -53,7 +53,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           status => status.token === selectedPaymentGatewayToken
         )?.label
       }`;
-    } else if (payment?.creditCard) {
+    }
+    if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
     }
     return ``;

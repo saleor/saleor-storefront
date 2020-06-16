@@ -3,7 +3,7 @@ import "jest-styled-components";
 import React from "react";
 
 import { Attribute, IconButton } from "@components/atoms";
-import { TextField } from "../";
+import { TextField } from "..";
 import { AccountTile } from "./AccountTile";
 import { PasswordTile } from "./PasswordTile";
 

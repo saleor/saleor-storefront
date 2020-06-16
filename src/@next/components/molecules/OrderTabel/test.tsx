@@ -3,7 +3,7 @@ import { createBrowserHistory } from "history";
 import "jest-styled-components";
 import React from "react";
 
-import { Thumbnail } from "../";
+import { Thumbnail } from "..";
 
 import { OrderTabel } from ".";
 import * as S from "./styles";

@@ -22,17 +22,16 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
         values.map((value, index) => {
           if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
             return <></>;
-          } else {
-            return (
-              <Checkbox
-                name={name}
-                checked={!!value.selected}
-                onChange={() => onValueClick(value)}
-              >
-                {value && value.name}
-              </Checkbox>
-            );
           }
+          return (
+            <Checkbox
+              name={name}
+              checked={!!value.selected}
+              onChange={() => onValueClick(value)}
+            >
+              {value && value.name}
+            </Checkbox>
+          );
         })}
       {!viewAllOptions && values.length > valuesShowLimitNumber && (
         <S.ViewMoreButton>

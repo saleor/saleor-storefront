@@ -132,6 +132,7 @@ export const productDetailsQuery = gql`
       }
       images {
         id
+        alt
         url
       }
       attributes {

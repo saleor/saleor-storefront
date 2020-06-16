@@ -79,9 +79,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         phone: checkout?.billingAddress?.phone || undefined,
       }
     : undefined;
-  const paymentGateways = availablePaymentGateways
-    ? availablePaymentGateways
-    : [];
+  const paymentGateways = availablePaymentGateways || [];
 
   const checkoutBillingFormId = "billing-form";
   const checkoutBillingFormRef = useRef<HTMLFormElement>(null);
@@ -249,7 +247,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
             ...address,
             isDefaultBillingAddress: !!isDefaultBillingAddress,
             isDefaultShippingAddress: !!isDefaultShippingAddress,
-            phone: phone ? phone : undefined,
+            phone: phone || undefined,
           })
         )}
       selectedUserAddressId={selectedBillingAddressId}

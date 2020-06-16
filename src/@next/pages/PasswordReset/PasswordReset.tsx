@@ -47,11 +47,11 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
       graphqlErrors.extraInfo &&
       graphqlErrors.extraInfo.userInputErrors
     ) {
-      graphqlErrors.extraInfo.userInputErrors.filter(error => {
-        error.field === "token" ? setTokenError(true) : setTokenError(false);
-        error.field === "password"
-          ? setPasswordError(error.message)
-          : setPasswordError("");
+      graphqlErrors.extraInfo.userInputErrors.forEach(error => {
+        if (error.field === "token") setTokenError(true);
+        else setTokenError(false);
+        if (error.field === "password") setPasswordError(error.message);
+        else setPasswordError("");
       });
     }
   }, [data, graphqlErrors]);

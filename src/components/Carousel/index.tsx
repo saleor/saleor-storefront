@@ -1,15 +1,14 @@
-import {
-  mediumScreen,
-  smallScreen,
-} from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
 import arrowImg from "../../images/carousel-arrow.svg";
+import {
+  mediumScreen,
+  smallScreen,
+} from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;

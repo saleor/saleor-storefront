@@ -34,14 +34,14 @@ const ThankYou: React.FC<IProps> = ({
             testingContext="continueShoppingButton"
             onClick={continueShopping}
             color="secondary"
-            fullWidth={true}
+            fullWidth
           >
             CONTINUE SHOPPING
           </Button>
           <Button
             testingContext="gotoOrderDetailsButton"
             onClick={orderDetails}
-            fullWidth={true}
+            fullWidth
           >
             ORDER DETAILS
           </Button>

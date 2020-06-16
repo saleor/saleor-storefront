@@ -3,9 +3,9 @@ import { useAlert } from "react-alert";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
+import { RouteComponentProps } from "react-router";
 import { BASE_URL } from "../../core/config";
 
-import { RouteComponentProps } from "react-router";
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
@@ -56,7 +56,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
     <TypedAccountConfirmMutation>
       {accountConfirm => {
         this.accountManagerFn = accountConfirm;
-        return <div></div>;
+        return <div />;
       }}
     </TypedAccountConfirmMutation>
   );

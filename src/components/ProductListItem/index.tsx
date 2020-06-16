@@ -53,17 +53,16 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
   const getProductPrice = () => {
     if (isEqual(price, priceUndiscounted)) {
       return <TaxedMoney taxedMoney={price} />;
-    } else {
-      return (
-        <>
-          <span className="product-list-item__undiscounted_price">
-            <TaxedMoney taxedMoney={priceUndiscounted} />
-          </span>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <TaxedMoney taxedMoney={price} />
-        </>
-      );
     }
+    return (
+      <>
+        <span className="product-list-item__undiscounted_price">
+          <TaxedMoney taxedMoney={priceUndiscounted} />
+        </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <TaxedMoney taxedMoney={price} />
+      </>
+    );
   };
   return (
     <div className="product-list-item">
