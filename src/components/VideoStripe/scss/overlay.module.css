@@ -1,6 +1,6 @@
 .InfoCard {
   position: absolute;
-  top: calc(50% - 140px);
+  top: calc(50% - 70px);
   left: 15%;
   font-size: 45px;
   line-height: normal;
@@ -24,21 +24,21 @@
 
 @media (max-width: 1920px) {
   .InfoCard {
-    top: calc(50% - 120px);
+    top: calc(50% - 55px);
     font-size: 35px;
   }
 }
 
 @media (max-width: 1280px) {
   .InfoCard {
-    top: calc(50% - 100px);
+    top: calc(50% - 50px);
     font-size: 30px;
   }
 }
 
 @media (max-width: 800px) {
   .InfoCard {
-    top: calc(50% - 80px);
+    top: calc(50% - 35px);
     font-size: 15px;
   }
 }
