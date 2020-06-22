@@ -5,18 +5,18 @@ export const activeLabelStyles = (
   labelBackground: string | null
 ) => `
   left: 0.5rem;
-  padding: 0  0.5rem;
+  padding: 0 0.5rem;
+  background-color: ${labelBackground};
   font-size: ${theme.input.labelFontSize};
   top: 0;
-  background-color: ${labelBackground};
 `;
 
 const labelStyles = (theme: DefaultTheme) => `
   left: 1rem;
-  padding: 0rem;
+  padding: 0 0rem;
+  background-color: transparent;
   font-size: ${theme.typography.baseFontSize};
   top: 50%;
-  background-color: transparent;
 `;
 
 export const Label = styled.label<{
