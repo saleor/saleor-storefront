@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useIntl } from "react-intl";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
+import { commonMessages } from "@temp/intl";
 import { useUserDetails } from "@saleor/sdk";
 
 import { smallScreen } from "@styles/constants";
@@ -41,6 +43,7 @@ const returnTab: any = (path: string, userDetails, history) => {
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { data: user, loading } = useUserDetails();
+  const intl = useIntl();
 
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
@@ -54,7 +57,14 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "My Account" }]} />
+      <Breadcrumbs
+        breadcrumbs={[
+          {
+            link: match.path,
+            value: intl.formatMessage(commonMessages.myAccount),
+          },
+        ]}
+      />
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
