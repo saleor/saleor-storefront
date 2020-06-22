@@ -67,6 +67,14 @@ exports[`Storyshots @components/organisms/BraintreePaymentGateway default 1`] = 
   background-color: transparent;
 }
 
+.c7:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c4 {
   margin-bottom: 1.875rem;
   position: relative;

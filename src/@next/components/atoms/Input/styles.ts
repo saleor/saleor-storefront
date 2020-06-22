@@ -1,5 +1,5 @@
 import { DefaultTheme, styled } from "@styles";
-import { activeLabelStyles } from "@components/atoms/InputLabel";
+import { activeLabelStyles } from "../InputLabel";
 
 type WrapperProps = {
   active: boolean;
