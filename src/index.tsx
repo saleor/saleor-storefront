@@ -3,6 +3,7 @@ import * as Sentry from "@sentry/browser";
 import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import * as React from "react";
+import { useIntl } from "react-intl";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
@@ -97,6 +98,7 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     const Notifications = () => {
       const alert = useAlert();
+      const intl = useIntl();
 
       const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
@@ -104,10 +106,14 @@ const startApp = async () => {
         if (updateAvailable) {
           alert.show(
             {
-              actionText: "Refresh",
-              content:
-                "To update the application to the latest version, please refresh the page!",
-              title: "New version is available!",
+              actionText: intl.formatMessage({ defaultMessage: "Refresh" }),
+              content: intl.formatMessage({
+                defaultMessage:
+                  "To update the application to the latest version, please refresh the page!",
+              }),
+              title: intl.formatMessage({
+                defaultMessage: "New version is available!",
+              }),
             },
             {
               onClose: () => {
@@ -124,14 +130,18 @@ const startApp = async () => {
         if (authenticated) {
           alert.show(
             {
-              title: "You are now logged in",
+              title: intl.formatMessage({
+                defaultMessage: "You are now logged in",
+              }),
             },
             { type: "success" }
           );
         } else {
           alert.show(
             {
-              title: "You are now logged out",
+              title: intl.formatMessage({
+                defaultMessage: "You are now logged out",
+              }),
             },
             { type: "success" }
           );
