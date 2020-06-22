@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
+import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
@@ -45,6 +47,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  const intl = useIntl();
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -96,31 +99,33 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: "Clear...",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
       value: null,
     },
     {
-      label: "Price Low-High",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPrice),
       value: "price",
     },
     {
-      label: "Price High-Low",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPriceDsc),
       value: "-price",
     },
     {
-      label: "Name Increasing",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsName),
       value: "name",
     },
     {
-      label: "Name Decreasing",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
       value: "-name",
     },
     {
-      label: "Last updated Ascending",
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
       value: "updated_at",
     },
     {
-      label: "Last updated Descending",
+      label: intl.formatMessage(
+        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
+      ),
       value: "-updated_at",
     },
   ];
