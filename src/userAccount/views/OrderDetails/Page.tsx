@@ -1,7 +1,9 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
+import { checkoutMessages } from "@temp/intl";
 import {
   OrderDetail,
   OrderDetail_lines,
@@ -42,10 +44,15 @@ const Page: React.FC<{
     <>
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
-          Go back to Order History
+          <FormattedMessage defaultMessage="Go back to Order History" />
         </Link>
       )}
-      <h3>Your order nr: {order.number}</h3>
+      <h3>
+        <FormattedMessage
+          defaultMessage="Your order nr: {orderNum}"
+          values={{ orderNum: order.number }}
+        />
+      </h3>
       <p className="order-details__status">
         {order.paymentStatusDisplay} / {order.statusDisplay}
       </p>
@@ -57,7 +64,9 @@ const Page: React.FC<{
       />
       <div className="order-details__summary">
         <div>
-          <h4>Shipping Address</h4>
+          <h4>
+            <FormattedMessage {...checkoutMessages.shippingAddress} />
+          </h4>
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
