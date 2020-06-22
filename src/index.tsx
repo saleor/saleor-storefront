@@ -29,6 +29,7 @@ import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
 import { OverlayProvider } from "./components";
+import { LocaleProvider } from "./components/Locale";
 import ShopProvider from "./components/ShopProvider";
 import {
   apiUrl,
@@ -168,8 +169,10 @@ const startApp = async () => {
         {...notificationOptions}
       >
         <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <GlobalStyle />
-          <Root />
+          <LocaleProvider>
+            <GlobalStyle />
+            <Root />
+          </LocaleProvider>
         </ServiceWorkerProvider>
       </AlertProvider>
     </ThemeProvider>,
