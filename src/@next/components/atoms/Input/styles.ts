@@ -62,7 +62,6 @@ export const Input = styled.input<{ labelBackground: string | null }>`
   font-size: ${props => props.theme.typography.baseFontSize};
   outline: none;
   background-color: transparent;
-  background: gold;
   &:-webkit-autofill {
     & + label {
       ${props => activeLabelStyles(props.theme, props.labelBackground)};
