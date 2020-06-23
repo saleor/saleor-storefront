@@ -1,6 +1,8 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { TaxedMoney } from "@components/containers";
+import { commonMessages } from "@temp/intl";
 import { CachedImage } from "../CachedImage";
 
 import * as S from "./styles";
@@ -21,10 +23,14 @@ const CartSummaryRow: React.FC<IProps> = ({
     <S.Wrapper data-test="cartSummary" data-test-id={sku}>
       <S.Name data-test="name">{name}</S.Name>
       <S.Sku>
-        SKU: <span data-test="sku">{sku}</span>
+        <FormattedMessage {...commonMessages.sku} />
+        {": "}
+        <span data-test="sku">{sku}</span>
       </S.Sku>
       <S.Quantity>
-        Quantity: <span data-test="quantity">{quantity}</span>
+        <FormattedMessage {...commonMessages.quantity} />
+        {": "}
+        <span data-test="quantity">{quantity}</span>
       </S.Quantity>
       <S.Price data-test="price">
         <TaxedMoney taxedMoney={price} />
