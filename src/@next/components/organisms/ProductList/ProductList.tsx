@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
@@ -38,7 +39,7 @@ export const ProductList: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              More +
+              <FormattedMessage defaultMessage="More +" />
             </Button>
           )
         )}
