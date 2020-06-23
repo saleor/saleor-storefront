@@ -64,6 +64,9 @@ export const commonMessages = defineMessages({
   eMail: {
     defaultMessage: "Email Address",
   },
+  shortEmail: {
+    defaultMessage: "Email",
+  },
   loading: {
     defaultMessage: "Loading",
   },
@@ -75,6 +78,9 @@ export const commonMessages = defineMessages({
   },
   variant: {
     defaultMessage: "Variant",
+  },
+  phone: {
+    defaultMessage: "Phone",
   },
   phoneNumber: {
     defaultMessage: "Phone number: {phone}",
