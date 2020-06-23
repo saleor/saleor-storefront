@@ -133,6 +133,9 @@ export const checkoutMessages = defineMessages({
   shippingAddress: {
     defaultMessage: "Shipping Address",
   },
+  continueShopping: {
+    defaultMessage: "CONTINUE SHOPPING",
+  },
 });
 
 export const prodListHeaderCommonMsg = defineMessages({

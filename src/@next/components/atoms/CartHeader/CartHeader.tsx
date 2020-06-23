@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 
@@ -8,10 +10,18 @@ import * as S from "./styles";
 const CartHeader: React.FC = () => {
   return (
     <S.Wrapper>
-      <S.Column>Products</S.Column>
-      <S.Column>Price</S.Column>
-      <S.Column>Quantity</S.Column>
-      <S.Column>Total Price</S.Column>
+      <S.Column>
+        <FormattedMessage {...commonMessages.products} />
+      </S.Column>
+      <S.Column>
+        <FormattedMessage {...commonMessages.price} />
+      </S.Column>
+      <S.Column>
+        <FormattedMessage {...commonMessages.qty} />
+      </S.Column>
+      <S.Column>
+        <FormattedMessage {...commonMessages.totalPrice} />
+      </S.Column>
     </S.Wrapper>
   );
 };
