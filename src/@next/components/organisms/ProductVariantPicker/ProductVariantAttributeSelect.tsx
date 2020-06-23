@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useIntl } from "react-intl";
 
 import { Icon, Input } from "@components/atoms";
 import { InputSelect } from "@components/molecules";
@@ -39,6 +40,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     productVariants,
     productVariantsAttributesSelectedValues
   );
+  const intl = useIntl();
 
   const selectedAttribute =
     productVariantsAttributesSelectedValues &&
@@ -130,7 +132,12 @@ export const ProductVariantAttributeSelect: React.FC<{
           options={attributeOptions}
           selectedOptions={selectedValuesList}
           disabledOptions={disabledValuesList}
-          title={`Please select ${selectLabel}`}
+          title={intl.formatMessage(
+            {
+              defaultMessage: "Please select {selectLabel}",
+            },
+            { selectLabel }
+          )}
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}
