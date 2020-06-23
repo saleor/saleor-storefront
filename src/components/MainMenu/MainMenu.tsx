@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+import { commonMessages } from "@temp/intl";
 import { useCart, useSignOut, useUserDetails } from "@saleor/sdk";
 import Media from "react-media";
 import { Link } from "react-router-dom";
@@ -110,24 +112,32 @@ const MainMenu: React.FC = () => {
                                   <ul className="main-menu__dropdown">
                                     <li data-test="mobileMenuMyAccountLink">
                                       <Link to={appPaths.accountUrl}>
-                                        My Account
+                                        <FormattedMessage
+                                          {...commonMessages.myAccount}
+                                        />
                                       </Link>
                                     </li>
                                     <li data-test="mobileMenuOrderHistoryLink">
                                       <Link to={appPaths.orderHistoryUrl}>
-                                        Order history
+                                        <FormattedMessage
+                                          {...commonMessages.orderHistory}
+                                        />
                                       </Link>
                                     </li>
                                     <li data-test="mobileMenuAddressBookLink">
                                       <Link to={appPaths.addressBookUrl}>
-                                        Address book
+                                        <FormattedMessage
+                                          {...commonMessages.addressBook}
+                                        />
                                       </Link>
                                     </li>
                                     <li
                                       onClick={handleSignOut}
                                       data-test="mobileMenuLogoutLink"
                                     >
-                                      Log Out
+                                      <FormattedMessage
+                                        {...commonMessages.logOut}
+                                      />
                                     </li>
                                   </ul>
                                 }
@@ -179,23 +189,31 @@ const MainMenu: React.FC = () => {
                           content={
                             <ul className="main-menu__dropdown">
                               <li data-test="desktopMenuMyAccountLink">
-                                <Link to={appPaths.accountUrl}>My Account</Link>
+                                <Link to={appPaths.accountUrl}>
+                                  <FormattedMessage
+                                    {...commonMessages.myAccount}
+                                  />
+                                </Link>
                               </li>
                               <li data-test="desktopMenuOrderHistoryLink">
                                 <Link to={appPaths.orderHistoryUrl}>
-                                  Order history
+                                  <FormattedMessage
+                                    {...commonMessages.orderHistory}
+                                  />
                                 </Link>
                               </li>
                               <li data-test="desktopMenuAddressBookLink">
                                 <Link to={appPaths.addressBookUrl}>
-                                  Address book
+                                  <FormattedMessage
+                                    {...commonMessages.addressBook}
+                                  />
                                 </Link>
                               </li>
                               <li
                                 onClick={handleSignOut}
                                 data-test="desktopMenuLogoutLink"
                               >
-                                Log Out
+                                <FormattedMessage {...commonMessages.logOut} />
                               </li>
                             </ul>
                           }
@@ -249,7 +267,11 @@ const MainMenu: React.FC = () => {
               >
                 <Media
                   query={{ minWidth: mediumScreen }}
-                  render={() => <span>Search</span>}
+                  render={() => (
+                    <span>
+                      <FormattedMessage {...commonMessages.search} />
+                    </span>
+                  )}
                 />
                 <ReactSVG path={searchImg} />
               </li>
