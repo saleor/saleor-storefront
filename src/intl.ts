@@ -37,6 +37,12 @@ export const commonMessages = defineMessages({
   sku: {
     defaultMessage: "SKU",
   },
+  maxQtyIs: {
+    defaultMessage: "Maximum quantity is {maxQuantity}",
+  },
+  qty: {
+    defaultMessage: "Quantity",
+  },
 });
 
 export const checkoutMessages = defineMessages({

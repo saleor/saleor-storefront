@@ -2,8 +2,10 @@ import "./scss/index.scss";
 
 import isEqual from "lodash/isEqual";
 import * as React from "react";
+import { injectIntl, WrappedComponentProps } from "react-intl";
 
 import { ProductVariantPicker } from "@components/organisms";
+import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
@@ -17,7 +19,7 @@ import AddToCart from "./AddToCart";
 import { QuantityTextField } from "./QuantityTextField";
 
 const LOW_STOCK_QUANTITY = 5;
-interface ProductDescriptionProps {
+interface ProductDescriptionProps extends WrappedComponentProps {
   productId: string;
   productVariants: ProductDetails_product_variants[];
   name: string;
@@ -156,11 +158,16 @@ class ProductDescription extends React.Component<
       <div className="product-description">
         <h3>{name}</h3>
         {isOutOfStock ? (
-          this.renderErrorMessage("Out of stock")
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.outOfStock)
+          )
         ) : (
           <h4>{this.getProductPrice()}</h4>
         )}
-        {isLowStock && this.renderErrorMessage("Low stock")}
+        {isLowStock &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.lowStock)
+          )}
         {isNoItemsAvailable && this.renderErrorMessage("No items available")}
         <div className="product-description__variant-picker">
           <ProductVariantPicker
@@ -189,4 +196,4 @@ class ProductDescription extends React.Component<
   }
 }
 
-export default ProductDescription;
+export default injectIntl(ProductDescription);

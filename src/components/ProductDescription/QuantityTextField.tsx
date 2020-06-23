@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useIntl } from "react-intl";
 
 import { TextField } from "@components/molecules";
+import { commonMessages } from "@temp/intl";
 
 interface QuantityTextFieldProps {
   quantity: number;
@@ -18,6 +20,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   hideErrors,
 }: QuantityTextFieldProps) => {
   const [isTooMuch, setIsTooMuch] = useState(false);
+  const intl = useIntl();
 
   useEffect(() => {
     setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
@@ -36,7 +39,9 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     !hideErrors && isTooMuch
       ? [
           {
-            message: `Maximum quantity is ${maxQuantity}`,
+            message: intl.formatMessage(commonMessages.maxQtyIs, {
+              maxQuantity,
+            }),
           },
         ]
       : undefined;
@@ -45,7 +50,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     <TextField
       name="quantity"
       type="number"
-      label="Quantity"
+      label={intl.formatMessage(commonMessages.qty)}
       min="1"
       value={quantity.toString()}
       disabled={disabled}
