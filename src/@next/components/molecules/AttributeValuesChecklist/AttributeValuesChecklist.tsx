@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ButtonLink, Checkbox } from "@components/atoms";
 
@@ -41,7 +42,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
             color="secondary"
             onClick={() => setViewAllOptions(true)}
           >
-            VIEW ALL OPTIONS
+            <FormattedMessage defaultMessage="VIEW ALL OPTIONS" />
           </ButtonLink>
         </S.ViewMoreButton>
       )}
