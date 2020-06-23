@@ -9,6 +9,7 @@ import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
@@ -234,6 +235,20 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       ({ variant }) => variant.product?.productType.isShippingRequired
     );
 
+  let buttonText = activeStep.nextActionName;
+  /* eslint-disable default-case */
+  switch (activeStep.nextActionName) {
+    case "Continue to Shipping":
+      buttonText = intl.formatMessage(checkoutMessages.addressNextActionName);
+      break;
+    case "Continue to Payment":
+      buttonText = intl.formatMessage(checkoutMessages.shippingNextActionName);
+      break;
+    case "Continue to Review":
+      buttonText = intl.formatMessage(checkoutMessages.paymentNextActionName);
+      break;
+  }
+
   return (
     <Checkout
       loading={submitInProgress}
@@ -250,10 +265,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items
       )}
       checkout={checkoutView}
-      button={getButton(
-        intl.formatMessage(activeStep.nextActionName).toUpperCase(),
-        handleNextStepClick
-      )}
+      button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
     />
   );
 };
