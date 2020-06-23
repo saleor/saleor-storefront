@@ -1,9 +1,11 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { useIntl } from "react-intl";
 
 import { useSignIn } from "@saleor/sdk";
 import { demoMode } from "@temp/constants";
+import { commonMessages } from "@temp/intl";
 import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
@@ -30,6 +32,8 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
       }
     : {};
 
+  const intl = useIntl();
+
   return (
     <div className="login-form">
       <Form
@@ -40,14 +44,14 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         <TextField
           name="email"
           autoComplete="email"
-          label="Email Address"
+          label={intl.formatMessage(commonMessages.eMail)}
           type="email"
           required
         />
         <TextField
           name="password"
           autoComplete="password"
-          label="Password"
+          label={intl.formatMessage(commonMessages.password)}
           type="password"
           required
         />
@@ -57,7 +61,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
             type="submit"
             {...(loading && { disabled: true })}
           >
-            {loading ? "Loading" : "Sign in"}
+            {loading
+              ? intl.formatMessage(commonMessages.loading)
+              : intl.formatMessage({ defaultMessage: "Sign in" })}
           </Button>
         </div>
       </Form>
