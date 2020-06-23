@@ -55,6 +55,9 @@ export const commonMessages = defineMessages({
   total: {
     defaultMessage: "Total",
   },
+  totalPrice: {
+    defaultMessage: "Total Price",
+  },
   checkout: {
     defaultMessage: "Checkout",
   },
@@ -63,6 +66,15 @@ export const commonMessages = defineMessages({
   },
   loading: {
     defaultMessage: "Loading",
+  },
+  products: {
+    defaultMessage: "Products",
+  },
+  price: {
+    defaultMessage: "Price",
+  },
+  variant: {
+    defaultMessage: "Variant",
   },
 });
 
