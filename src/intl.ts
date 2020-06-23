@@ -91,6 +91,9 @@ export const commonMessages = defineMessages({
   filterHeader: {
     defaultMessage: "FILTERS",
   },
+  clearFilterHeader: {
+    defaultMessage: "CLEAR FILTERS",
+  },
 });
 
 export const checkoutMessages = defineMessages({
