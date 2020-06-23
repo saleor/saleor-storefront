@@ -82,6 +82,12 @@ export const commonMessages = defineMessages({
   showEmail: {
     defaultMessage: "Email: {email}",
   },
+  save: {
+    defaultMessage: "Save",
+  },
+  add: {
+    defaultMessage: "Add",
+  },
 });
 
 export const checkoutMessages = defineMessages({
