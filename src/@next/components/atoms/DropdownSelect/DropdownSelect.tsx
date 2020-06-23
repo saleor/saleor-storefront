@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { components } from "react-select";
 import { ThemeContext } from "styled-components";
 
@@ -24,7 +25,9 @@ export const DropdownSelect: React.FC<IProps> = ({
   const customComponents = {
     Control: () => (
       <S.SortLine onClick={() => setMenuIsOpen(!menuIsOpen)}>
-        <Label>Sort by:</Label>
+        <Label>
+          <FormattedMessage defaultMessage="Sort by:" />{" "}
+        </Label>
         <S.Value>{` ${value ? value.label : ""}`}</S.Value>
         <S.Indicator rotate={String(menuIsOpen)}>
           <Icon name="select_arrow" size={10} />
