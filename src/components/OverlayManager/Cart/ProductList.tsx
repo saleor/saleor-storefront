@@ -1,5 +1,6 @@
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
@@ -40,7 +41,12 @@ const ProductList: React.SFC<{
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.variant.name}</span>
-              <span data-test="quantity">{`Qty: ${line.quantity}`}</span>
+              <span data-test="quantity">
+                <FormattedMessage
+                  defaultMessage="Qty: {quantity}"
+                  values={{ quantity: line.quantity }}
+                />
+              </span>
             </span>
             <ReactSVG
               path={removeImg}

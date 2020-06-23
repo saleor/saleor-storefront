@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import {
@@ -46,7 +47,9 @@ class Login extends React.Component<
         <div className="login">
           <Online>
             <div className="overlay__header">
-              <p className="overlay__header-text">Saleor account</p>
+              <p className="overlay__header-text">
+                <FormattedMessage defaultMessage="Saleor account" />
+              </p>
               <ReactSVG
                 path={closeImg}
                 onClick={hide}
@@ -59,14 +62,14 @@ class Login extends React.Component<
                 onClick={() => this.changeActiveTab("login")}
                 className={this.state.active === "login" ? "active-tab" : ""}
               >
-                Sign in to account
+                <FormattedMessage defaultMessage="Sign in to account" />
               </span>
               <span
                 data-test="registerTab"
                 onClick={() => this.changeActiveTab("register")}
                 className={this.state.active === "register" ? "active-tab" : ""}
               >
-                Register new account
+                <FormattedMessage defaultMessage="Register new account" />
               </span>
             </div>
             <div className="login__content">

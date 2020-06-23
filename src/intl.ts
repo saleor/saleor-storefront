@@ -43,6 +43,27 @@ export const commonMessages = defineMessages({
   qty: {
     defaultMessage: "Quantity",
   },
+  subtotal: {
+    defaultMessage: "Subtotal",
+  },
+  shipping: {
+    defaultMessage: "Shipping",
+  },
+  promoCode: {
+    defaultMessage: "Promo code",
+  },
+  total: {
+    defaultMessage: "Total",
+  },
+  checkout: {
+    defaultMessage: "Checkout",
+  },
+  eMail: {
+    defaultMessage: "Email Address",
+  },
+  loading: {
+    defaultMessage: "Loading",
+  },
 });
 
 export const checkoutMessages = defineMessages({

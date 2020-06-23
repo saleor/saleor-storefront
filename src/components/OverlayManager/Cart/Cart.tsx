@@ -1,10 +1,12 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
+import { commonMessages } from "@temp/intl";
 import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 
 import {
@@ -58,13 +60,13 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           <div className="overlay__header">
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
-              My bag,{" "}
+              <FormattedMessage defaultMessage="My bag," />{" "}
               <span className="overlay__header-text-items">
                 {items?.reduce(
                   (prevVal, currVal) => prevVal + currVal.quantity,
                   0
                 ) || 0}{" "}
-                items
+                <FormattedMessage defaultMessage="items" />
               </span>
             </div>
             <ReactSVG
@@ -82,7 +84,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                   <ProductList lines={items} remove={removeItem} />
                   <div className="cart__footer">
                     <div className="cart__footer__price">
-                      <span>Subtotal</span>
+                      <span>
+                        <FormattedMessage {...commonMessages.subtotal} />
+                      </span>
                       <span>
                         <TaxedMoney
                           data-test="subtotalPrice"
@@ -94,7 +98,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     {shippingTaxedPrice &&
                       shippingTaxedPrice.gross.amount !== 0 && (
                         <div className="cart__footer__price">
-                          <span>Shipping</span>
+                          <span>
+                            <FormattedMessage {...commonMessages.shipping} />
+                          </span>
                           <span>
                             <TaxedMoney
                               data-test="shippingPrice"
@@ -106,7 +112,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                     {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
                       <div className="cart__footer__price">
-                        <span>Promo code</span>
+                        <span>
+                          <FormattedMessage {...commonMessages.promoCode} />
+                        </span>
                         <span>
                           <TaxedMoney
                             data-test="promoCodePrice"
@@ -117,7 +125,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     )}
 
                     <div className="cart__footer__price">
-                      <span>Total</span>
+                      <span>
+                        <FormattedMessage {...commonMessages.total} />
+                      </span>
                       <span>
                         <TaxedMoney
                           data-test="totalPrice"
@@ -133,14 +143,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                         })}
                       >
                         <Button testingContext="gotoBagViewButton" secondary>
-                          Go to my bag
+                          <FormattedMessage defaultMessage="Go to my bag" />
                         </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
                         <Button testingContext="gotoCheckoutButton">
-                          Checkout
+                          <FormattedMessage {...commonMessages.checkout} />
                         </Button>
                       </Link>
                     </div>
