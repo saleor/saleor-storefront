@@ -1,13 +1,17 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
+import { commonMessages } from "@temp/intl";
 import * as S from "./styles";
 import { IProps } from "./types";
 
 export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
   return (
     <S.Wrapper>
-      <S.MenuHeader>MY ACCOUNT</S.MenuHeader>
+      <S.MenuHeader>
+        <FormattedMessage {...commonMessages.myAccount} />
+      </S.MenuHeader>
       {links.map(link => {
         const menuItem = link
           .replace(/\//g, "")
