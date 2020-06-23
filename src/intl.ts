@@ -76,6 +76,12 @@ export const commonMessages = defineMessages({
   variant: {
     defaultMessage: "Variant",
   },
+  phoneNumber: {
+    defaultMessage: "Phone number: {phone}",
+  },
+  showEmail: {
+    defaultMessage: "Email: {email}",
+  },
 });
 
 export const checkoutMessages = defineMessages({

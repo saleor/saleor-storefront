@@ -1,4 +1,6 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
+import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -25,12 +27,20 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.phone && (
           <>
-            Phone number: {address.phone} <br />
+            <FormattedMessage
+              {...commonMessages.phoneNumber}
+              values={{ phone: address.phone }}
+            />{" "}
+            <br />
           </>
         )}
         {email && (
           <>
-            Email: {email} <br />
+            <FormattedMessage
+              {...commonMessages.showEmail}
+              values={{ email }}
+            />{" "}
+            <br /> <br />
           </>
         )}
       </S.Wrapper>
