@@ -1,6 +1,9 @@
 import { Formik } from "formik";
 import React from "react";
+import { useIntl, FormattedMessage } from "react-intl";
 import { Button, ButtonLink } from "@components/atoms";
+import { commonMessages } from "@temp/intl";
+
 import { TextField } from "../TextField";
 
 import * as S from "./styles";
@@ -13,6 +16,7 @@ export const AccountUpdateForm: React.FC<{
     lastName: string;
   };
 }> = ({ handleSubmit, hide, initialValues }) => {
+  const intl = useIntl();
   return (
     <>
       <Formik
@@ -39,7 +43,7 @@ export const AccountUpdateForm: React.FC<{
                 <S.ContentExtendInput>
                   <TextField
                     name="firstName"
-                    label="First Name"
+                    label={intl.formatMessage(commonMessages.firstName)}
                     type="text"
                     value={values.firstName}
                     onBlur={handleBlur}
@@ -49,7 +53,7 @@ export const AccountUpdateForm: React.FC<{
                 <S.ContentExtendInput>
                   <TextField
                     name="lastName"
-                    label="Last Name"
+                    label={intl.formatMessage(commonMessages.lastName)}
                     type="text"
                     value={values.lastName}
                     onBlur={handleBlur}
@@ -64,7 +68,7 @@ export const AccountUpdateForm: React.FC<{
                   color="secondary"
                   onClick={hide}
                 >
-                  Cancel
+                  <FormattedMessage {...commonMessages.cancel} />
                 </ButtonLink>
                 <Button
                   testingContext="submit"
@@ -72,7 +76,7 @@ export const AccountUpdateForm: React.FC<{
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  Save
+                  <FormattedMessage {...commonMessages.save} />
                 </Button>
               </S.FormButtons>
             </S.Form>

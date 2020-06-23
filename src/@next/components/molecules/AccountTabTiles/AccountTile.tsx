@@ -1,5 +1,7 @@
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
+import { commonMessages } from "@temp/intl";
 import { useAccountUpdate, useUserDetails } from "@saleor/sdk";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
@@ -11,6 +13,7 @@ export const AccountTile: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [setAccountUpdate, { data, error }] = useAccountUpdate();
   const { data: user } = useUserDetails();
+  const intl = useIntl();
 
   React.useEffect(() => {
     if (data && !error) {
@@ -21,10 +24,12 @@ export const AccountTile: React.FC = () => {
     <S.TileWrapper>
       <Tile>
         <S.Wrapper>
-          <S.Header>MY DATA</S.Header>
+          <S.Header>
+            <FormattedMessage defaultMessage="MY DATA" />
+          </S.Header>
           <S.Content>
             <S.HeaderSmall>
-              Personal details
+              <FormattedMessage defaultMessage="Personal details" />
               {!isEditing && (
                 <IconButton
                   testingContext="editDetailsButton"
@@ -50,11 +55,11 @@ export const AccountTile: React.FC = () => {
             ) : (
               <S.ContentOneLine>
                 <Attribute
-                  description="First Name"
+                  description={intl.formatMessage(commonMessages.firstName)}
                   attributeValue={(user && user.firstName) || "-"}
                 />
                 <Attribute
-                  description="Last Name"
+                  description={intl.formatMessage(commonMessages.lastName)}
                   attributeValue={(user && user.lastName) || "-"}
                 />
               </S.ContentOneLine>
