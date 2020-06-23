@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useIntl } from "react-intl";
 import { Redirect, useLocation } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
@@ -105,6 +106,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     items,
   } = useCart();
   const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect to="/cart/" />;
@@ -249,7 +251,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       )}
       checkout={checkoutView}
       button={getButton(
-        activeStep.nextActionName.toUpperCase(),
+        intl.formatMessage(activeStep.nextActionName).toUpperCase(),
         handleNextStepClick
       )}
     />
