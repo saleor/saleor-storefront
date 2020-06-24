@@ -110,8 +110,7 @@ exports[`Storyshots @components/atoms/AddNewTile default 1`] = `
           </svg>
         </p>
         <p>
-          Add new 
-          card
+          Add new card
         </p>
       </div>
     </div>
