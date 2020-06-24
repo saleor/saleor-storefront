@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router";
 
 import { Icon, IconButton } from "@components/atoms";
@@ -12,12 +13,17 @@ describe("<CartRow />", () => {
   it("exists", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
-    const wrapper = shallow(
-      <CartRow
-        {...DEFAULT_PROPS}
-        onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
-      />
+    const wrapper = mount(
+      <MemoryRouter>
+        <CartRow
+          {...DEFAULT_PROPS}
+          onRemove={onRemoveMock}
+          onQuantityChange={onQuantityChangeMock}
+        />
+      </MemoryRouter>,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -26,16 +32,20 @@ describe("<CartRow />", () => {
   it("should call mock when clicking on trash icon", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
-    const wrapper = shallow(
-      <CartRow
-        {...DEFAULT_PROPS}
-        onRemove={onRemoveMock}
-        onQuantityChange={onQuantityChangeMock}
-      />
+    const wrapper = mount(
+      <MemoryRouter>
+        <CartRow
+          {...DEFAULT_PROPS}
+          onRemove={onRemoveMock}
+          onQuantityChange={onQuantityChangeMock}
+        />
+      </MemoryRouter>,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
-
     wrapper
-      .find(IconButton)
+      .find(Icon)
       .findWhere(wrapper => wrapper.props().name === "trash")
       .simulate("click");
 
@@ -52,7 +62,10 @@ describe("<CartRow />", () => {
           onRemove={onRemoveMock}
           onQuantityChange={onQuantityChangeMock}
         />
-      </MemoryRouter>
+      </MemoryRouter>,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     wrapper
@@ -75,7 +88,10 @@ describe("<CartRow />", () => {
           onRemove={onRemoveMock}
           onQuantityChange={onQuantityChangeMock}
         />
-      </MemoryRouter>
+      </MemoryRouter>,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     wrapper
@@ -100,7 +116,10 @@ describe("<CartRow />", () => {
           onRemove={onRemoveMock}
           onQuantityChange={onQuantityChangeMock}
         />
-      </MemoryRouter>
+      </MemoryRouter>,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     wrapper
