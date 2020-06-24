@@ -106,6 +106,14 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
   background-color: transparent;
 }
 
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c1 {
   margin-bottom: 1rem;
 }

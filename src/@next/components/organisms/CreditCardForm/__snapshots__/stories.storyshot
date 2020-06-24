@@ -67,6 +67,14 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
   background-color: transparent;
 }
 
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c3 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -317,6 +325,14 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
 }
 
 .c3 {
@@ -598,6 +614,14 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
 }
 
 .c3 {

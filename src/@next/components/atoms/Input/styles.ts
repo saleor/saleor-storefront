@@ -1,4 +1,5 @@
 import { DefaultTheme, styled } from "@styles";
+import { activeLabelStyles } from "../InputLabel";
 
 type WrapperProps = {
   active: boolean;
@@ -53,7 +54,7 @@ export const InputWrapper = styled.div`
   width: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ labelBackground: string | null }>`
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -61,4 +62,9 @@ export const Input = styled.input`
   font-size: ${props => props.theme.typography.baseFontSize};
   outline: none;
   background-color: transparent;
+  &:-webkit-autofill {
+    & + label {
+      ${props => activeLabelStyles(props.theme, props.labelBackground)};
+    }
+  }
 `;

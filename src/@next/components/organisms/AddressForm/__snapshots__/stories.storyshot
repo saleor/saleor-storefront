@@ -75,6 +75,14 @@ exports[`Storyshots @components/organisms/AddressForm default 1`] = `
   background-color: transparent;
 }
 
+.c8:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c13 {
   position: absolute;
   right: 1rem;
@@ -664,6 +672,14 @@ exports[`Storyshots @components/organisms/AddressForm with errors 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c8:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
 }
 
 .c16 {
@@ -1265,6 +1281,14 @@ exports[`Storyshots @components/organisms/AddressForm with partial data 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c8:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
 }
 
 .c13 {
