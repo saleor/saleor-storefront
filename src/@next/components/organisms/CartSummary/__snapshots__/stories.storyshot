@@ -235,7 +235,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c10"
               >
-                SKU: 
+                SKU
+                : 
                 <span
                   data-test="sku"
                 >
@@ -245,7 +246,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c11"
               >
-                Quantity: 
+                Quantity
+                : 
                 <span
                   data-test="quantity"
                 >
@@ -295,7 +297,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c10"
               >
-                SKU: 
+                SKU
+                : 
                 <span
                   data-test="sku"
                 >
@@ -305,7 +308,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c11"
               >
-                Quantity: 
+                Quantity
+                : 
                 <span
                   data-test="quantity"
                 >
@@ -355,7 +359,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c10"
               >
-                SKU: 
+                SKU
+                : 
                 <span
                   data-test="sku"
                 >
@@ -365,7 +370,8 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
               <div
                 className="c11"
               >
-                Quantity: 
+                Quantity
+                : 
                 <span
                   data-test="quantity"
                 >

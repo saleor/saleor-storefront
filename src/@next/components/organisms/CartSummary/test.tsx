@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { CartSummaryRow } from "@components/molecules";
 
@@ -38,7 +39,9 @@ describe("<CartSummary />", () => {
   });
 
   it("should show shipping price", () => {
-    const wrapper = mount(<CartSummary shipping={money} />);
+    const wrapper = mount(<CartSummary shipping={money} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.text()).toContain("123");
   });
