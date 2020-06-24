@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { Input, Select } from "@components/atoms";
 
@@ -28,7 +29,10 @@ describe("<CheckoutPayment />", () => {
         selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
         onGatewayError={onGatewayError}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     const address = LOGGED_IN_USER_PROPS.userAddresses[0];
@@ -61,7 +65,10 @@ describe("<CheckoutPayment />", () => {
         selectPaymentGateway={selectPaymentGateway}
         processPayment={processPayment}
         onGatewayError={onGatewayError}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     const wrapperText = wrapper.text();

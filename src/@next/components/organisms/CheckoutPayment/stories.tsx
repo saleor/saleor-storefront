@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { CheckoutPayment } from ".";
 import { ANONYMOUS_USER_PROPS, LOGGED_IN_USER_PROPS } from "./fixtures";
@@ -28,28 +29,32 @@ const onGatewayError = action("onGatewayError has been called");
 storiesOf("@components/organisms/CheckoutPayment", module)
   .addParameters({ component: CheckoutPayment })
   .add("default", () => (
-    <CheckoutPayment
-      {...ANONYMOUS_USER_PROPS}
-      setBillingAddress={setBillingAddress}
-      setBillingAsShippingAddress={setBillingAsShippingAddress}
-      addPromoCode={addPromoCode}
-      removeVoucherCode={removeVoucherCode}
-      submitUnchangedDiscount={submitUnchangedDiscount}
-      selectPaymentGateway={selectPaymentGateway}
-      processPayment={processPayment}
-      onGatewayError={onGatewayError}
-    />
+    <IntlProvider>
+      <CheckoutPayment
+        {...ANONYMOUS_USER_PROPS}
+        setBillingAddress={setBillingAddress}
+        setBillingAsShippingAddress={setBillingAsShippingAddress}
+        addPromoCode={addPromoCode}
+        removeVoucherCode={removeVoucherCode}
+        submitUnchangedDiscount={submitUnchangedDiscount}
+        selectPaymentGateway={selectPaymentGateway}
+        processPayment={processPayment}
+        onGatewayError={onGatewayError}
+      />
+    </IntlProvider>
   ))
   .add("with addresses", () => (
-    <CheckoutPayment
-      {...LOGGED_IN_USER_PROPS}
-      setBillingAddress={setBillingAddress}
-      setBillingAsShippingAddress={setBillingAsShippingAddress}
-      addPromoCode={addPromoCode}
-      removeVoucherCode={removeVoucherCode}
-      submitUnchangedDiscount={submitUnchangedDiscount}
-      selectPaymentGateway={selectPaymentGateway}
-      processPayment={processPayment}
-      onGatewayError={onGatewayError}
-    />
+    <IntlProvider>
+      <CheckoutPayment
+        {...LOGGED_IN_USER_PROPS}
+        setBillingAddress={setBillingAddress}
+        setBillingAsShippingAddress={setBillingAsShippingAddress}
+        addPromoCode={addPromoCode}
+        removeVoucherCode={removeVoucherCode}
+        submitUnchangedDiscount={submitUnchangedDiscount}
+        selectPaymentGateway={selectPaymentGateway}
+        processPayment={processPayment}
+        onGatewayError={onGatewayError}
+      />
+    </IntlProvider>
   ));
