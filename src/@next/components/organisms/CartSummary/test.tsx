@@ -39,9 +39,11 @@ describe("<CartSummary />", () => {
   });
 
   it("should show shipping price", () => {
-    const wrapper = mount(<CartSummary shipping={money} />, {
-      wrappingComponent: IntlProvider,
-    });
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary shipping={money} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain("123");
   });

@@ -35,17 +35,21 @@ describe("<AddressForm />", () => {
   });
 
   it("should contain error provided as prop", () => {
-    const wrapper = mount(<AddressForm {...PROPS} {...ERRORS} />, {
-      wrappingComponent: IntlProvider,
-    });
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <AddressForm {...PROPS} {...ERRORS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(errorMessage);
   });
 
   it("should contain partial data if provided", () => {
-    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />, {
-      wrappingComponent: IntlProvider,
-    });
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <AddressForm {...PROPS} {...INITIAL_DATA} />
+      </IntlProvider>
+    );
 
     const getValue = (n: number) => wrapper.find(Input).at(n).prop("value");
     expect(getValue(0)).toEqual(INITIAL_DATA.address.firstName);

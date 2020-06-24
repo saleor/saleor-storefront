@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const withContainer = (children: ReactNode) => (
-  <IntlProvider>
+  <IntlProvider locale="en">
     <Container>{children}</Container>
   </IntlProvider>
 );

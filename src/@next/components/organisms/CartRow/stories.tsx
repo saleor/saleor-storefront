@@ -16,7 +16,7 @@ const STORY_PROPS = {
 storiesOf("@components/organisms/CartRow", module)
   .addParameters({ component: CartRow })
   .add("default", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <MemoryRouter>
         <CartRow {...STORY_PROPS} />
       </MemoryRouter>

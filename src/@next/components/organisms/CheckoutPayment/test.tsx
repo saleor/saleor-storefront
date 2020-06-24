@@ -19,20 +19,19 @@ describe("<CheckoutPayment />", () => {
     const processPayment = jest.fn();
     const onGatewayError = jest.fn();
     const wrapper = mount(
-      <CheckoutPayment
-        {...LOGGED_IN_USER_PROPS}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-        addPromoCode={addPromoCode}
-        removeVoucherCode={removeVoucherCode}
-        submitUnchangedDiscount={submitUnchangedDiscount}
-        selectPaymentGateway={selectPaymentGateway}
-        processPayment={processPayment}
-        onGatewayError={onGatewayError}
-      />,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <CheckoutPayment
+          {...LOGGED_IN_USER_PROPS}
+          setBillingAddress={setBillingAddress}
+          setBillingAsShippingAddress={setBillingAsShippingAddress}
+          addPromoCode={addPromoCode}
+          removeVoucherCode={removeVoucherCode}
+          submitUnchangedDiscount={submitUnchangedDiscount}
+          selectPaymentGateway={selectPaymentGateway}
+          processPayment={processPayment}
+          onGatewayError={onGatewayError}
+        />
+      </IntlProvider>
     );
 
     const address = LOGGED_IN_USER_PROPS.userAddresses[0];
@@ -55,20 +54,19 @@ describe("<CheckoutPayment />", () => {
     const selectPaymentGateway = jest.fn();
     const onGatewayError = jest.fn();
     const wrapper = mount(
-      <CheckoutPayment
-        {...ANONYMOUS_USER_PROPS}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-        addPromoCode={addPromoCode}
-        removeVoucherCode={removeVoucherCode}
-        submitUnchangedDiscount={submitUnchangedDiscount}
-        selectPaymentGateway={selectPaymentGateway}
-        processPayment={processPayment}
-        onGatewayError={onGatewayError}
-      />,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <CheckoutPayment
+          {...ANONYMOUS_USER_PROPS}
+          setBillingAddress={setBillingAddress}
+          setBillingAsShippingAddress={setBillingAsShippingAddress}
+          addPromoCode={addPromoCode}
+          removeVoucherCode={removeVoucherCode}
+          submitUnchangedDiscount={submitUnchangedDiscount}
+          selectPaymentGateway={selectPaymentGateway}
+          processPayment={processPayment}
+          onGatewayError={onGatewayError}
+        />
+      </IntlProvider>
     );
 
     const wrapperText = wrapper.text();

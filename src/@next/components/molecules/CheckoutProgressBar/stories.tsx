@@ -44,7 +44,7 @@ storiesOf("@components/molecules/CheckoutProgressBar", module)
   .add("default", () => {
     const value = number(label, defaultValue, options);
     return (
-      <IntlProvider>
+      <IntlProvider locale="en">
         <MemoryRouter>
           <CheckoutProgressBar steps={steps} activeStep={value} />
         </MemoryRouter>

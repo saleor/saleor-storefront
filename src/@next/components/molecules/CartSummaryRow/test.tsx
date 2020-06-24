@@ -40,9 +40,11 @@ describe("<CartSummaryRow />", () => {
   });
 
   it("should display product quantity", () => {
-    const wrapper = mount(<CartSummaryRow {...DEFAULT_PROPS} />, {
-      wrappingComponent: IntlProvider,
-    });
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummaryRow {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain(`Quantity: ${DEFAULT_PROPS.quantity}`);
   });

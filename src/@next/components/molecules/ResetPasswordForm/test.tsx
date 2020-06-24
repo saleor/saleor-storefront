@@ -19,9 +19,11 @@ describe("<ResetPasswordForm />", () => {
     },
   };
   it("exists", () => {
-    const wrapper = mount(<ResetPasswordForm {...DEFAULT_PROPS} />, {
-      wrappingComponent: IntlProvider,
-    });
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ResetPasswordForm {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });

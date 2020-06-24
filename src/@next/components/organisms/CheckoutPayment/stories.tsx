@@ -29,7 +29,7 @@ const onGatewayError = action("onGatewayError has been called");
 storiesOf("@components/organisms/CheckoutPayment", module)
   .addParameters({ component: CheckoutPayment })
   .add("default", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <CheckoutPayment
         {...ANONYMOUS_USER_PROPS}
         setBillingAddress={setBillingAddress}
@@ -44,7 +44,7 @@ storiesOf("@components/organisms/CheckoutPayment", module)
     </IntlProvider>
   ))
   .add("with addresses", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <CheckoutPayment
         {...LOGGED_IN_USER_PROPS}
         setBillingAddress={setBillingAddress}

@@ -1,4 +1,4 @@
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
@@ -27,12 +27,11 @@ const steps = [
 describe("<CheckoutProgressBar />", () => {
   it("exists", () => {
     const wrapper = mount(
-      <MemoryRouter>
-        <CheckoutProgressBar steps={steps} activeStep={0} />
-      </MemoryRouter>,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <MemoryRouter>
+          <CheckoutProgressBar steps={steps} activeStep={0} />
+        </MemoryRouter>
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -40,12 +39,11 @@ describe("<CheckoutProgressBar />", () => {
 
   it("exists", () => {
     const wrapper = mount(
-      <MemoryRouter>
-        <CheckoutProgressBar steps={steps} activeStep={0} />
-      </MemoryRouter>,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <MemoryRouter>
+          <CheckoutProgressBar steps={steps} activeStep={0} />
+        </MemoryRouter>
+      </IntlProvider>
     );
 
     expect(wrapper.find("a").length).toEqual(steps.length);

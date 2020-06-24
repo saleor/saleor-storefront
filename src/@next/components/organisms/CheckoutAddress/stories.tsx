@@ -16,7 +16,7 @@ if (!portalRoot) {
 storiesOf("@components/organisms/CheckoutAddress", module)
   .addParameters({ component: CheckoutAddress })
   .add("default", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <CheckoutAddress
         {...ANONYMOUS_USER_PROPS}
         setShippingAddress={action("setShippingAddress has been called")}
@@ -24,7 +24,7 @@ storiesOf("@components/organisms/CheckoutAddress", module)
     </IntlProvider>
   ))
   .add("with addresses", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <CheckoutAddress
         {...LOGGED_IN_USER_PROPS}
         setShippingAddress={action("setShippingAddress has been called")}

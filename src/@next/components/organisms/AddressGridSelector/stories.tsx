@@ -16,7 +16,7 @@ if (!portalRoot) {
 storiesOf("@components/organisms/AddressGridSelector", module)
   .addParameters({ component: AddressGridSelector })
   .add("default", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <AddressGridSelector
         {...DEFAULT_PROPS}
         onSelect={action("onSelect has been called")}

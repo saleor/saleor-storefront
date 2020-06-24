@@ -82,7 +82,7 @@ storiesOf("@components/molecules/OrderTabel", module)
     /* eslint-disable-next-line no-extend-native */
     Number.prototype.toLocaleString = () => "";
     return (
-      <IntlProvider>
+      <IntlProvider locale="en">
         <OrderTabel history={history} orders={ORDERS} />
       </IntlProvider>
     );

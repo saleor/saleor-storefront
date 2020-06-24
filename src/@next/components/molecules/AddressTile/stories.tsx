@@ -40,7 +40,7 @@ const DEFAULT_PROPS = {
 storiesOf("@components/molecules/AddressTile", module)
   .addParameters({ component: AddressTile })
   .add("default", () => (
-    <IntlProvider>
+    <IntlProvider locale="en">
       <Container>
         <AddressTile {...DEFAULT_PROPS} />
       </Container>
@@ -51,7 +51,7 @@ storiesOf("@components/molecules/AddressTile", module)
     CHANGED_DEFAULT_ADDRESSES.address.isDefaultBillingAddress = false;
     CHANGED_DEFAULT_ADDRESSES.address.isDefaultShippingAddress = false;
     return (
-      <IntlProvider>
+      <IntlProvider locale="en">
         <Container>
           <AddressTile {...CHANGED_DEFAULT_ADDRESSES} />
         </Container>

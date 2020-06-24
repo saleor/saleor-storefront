@@ -12,13 +12,12 @@ describe("<CheckoutAddress />", () => {
   it("renders user addresses", () => {
     const setShippingAddress = jest.fn();
     const wrapper = mount(
-      <CheckoutAddress
-        {...LOGGED_IN_USER_PROPS}
-        setShippingAddress={setShippingAddress}
-      />,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <CheckoutAddress
+          {...LOGGED_IN_USER_PROPS}
+          setShippingAddress={setShippingAddress}
+        />
+      </IntlProvider>
     );
 
     const { address } = LOGGED_IN_USER_PROPS.userAddresses[0];
@@ -32,13 +31,12 @@ describe("<CheckoutAddress />", () => {
   it("renders address form", () => {
     const setShippingAddress = jest.fn();
     const wrapper = mount(
-      <CheckoutAddress
-        {...ANONYMOUS_USER_PROPS}
-        setShippingAddress={setShippingAddress}
-      />,
-      {
-        wrappingComponent: IntlProvider,
-      }
+      <IntlProvider locale="en">
+        <CheckoutAddress
+          {...ANONYMOUS_USER_PROPS}
+          setShippingAddress={setShippingAddress}
+        />
+      </IntlProvider>
     );
 
     const address = ANONYMOUS_USER_PROPS.checkoutAddress;
