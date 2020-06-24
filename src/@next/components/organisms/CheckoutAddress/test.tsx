@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { Input, Select } from "@components/atoms";
 
@@ -14,7 +15,10 @@ describe("<CheckoutAddress />", () => {
       <CheckoutAddress
         {...LOGGED_IN_USER_PROPS}
         setShippingAddress={setShippingAddress}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     const { address } = LOGGED_IN_USER_PROPS.userAddresses[0];
@@ -31,7 +35,10 @@ describe("<CheckoutAddress />", () => {
       <CheckoutAddress
         {...ANONYMOUS_USER_PROPS}
         setShippingAddress={setShippingAddress}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     const address = ANONYMOUS_USER_PROPS.checkoutAddress;

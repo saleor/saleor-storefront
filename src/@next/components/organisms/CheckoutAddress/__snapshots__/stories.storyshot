@@ -181,7 +181,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
       className="c1"
       data-test="checkoutPageSubtitle"
     >
-      SHIPPING ADDRESS
+      Shipping Address
     </h3>
     <form
       className="c2"
@@ -499,7 +499,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                         autoComplete="off"
                         autoCorrect="off"
                         disabled={false}
-                        id="react-select-10-input"
+                        id="react-select-7-input"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onFocus={[Function]}
@@ -794,7 +794,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
       className="c1"
       data-test="checkoutPageSubtitle"
     >
-      SHIPPING ADDRESS
+      Shipping Address
     </h3>
     <form
       onSubmit={[Function]}
@@ -829,8 +829,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
                   </svg>
                 </p>
                 <p>
-                  Add new 
-                  address
+                  Add new address
                 </p>
               </div>
             </div>
