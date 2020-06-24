@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { IconButton } from "@components/atoms";
 import { AddressTile } from ".";
@@ -34,13 +35,17 @@ const DEFAULT_PROPS = {
 
 describe("<AddressTile />", () => {
   it("exists", () => {
-    const wrapper = shallow(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should run onRemove function for clicking on trash button", () => {
-    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     wrapper.find(IconButton).last().simulate("click");
 
@@ -48,7 +53,9 @@ describe("<AddressTile />", () => {
   });
 
   it("should run onEdit function for clicking on edit button", () => {
-    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     wrapper.find(IconButton).at(1).simulate("click");
 
@@ -56,7 +63,9 @@ describe("<AddressTile />", () => {
   });
 
   it("should run setDefault method for clicking on Set default billing address", () => {
-    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     wrapper.find(IconButton).first().simulate("click");
     wrapper.find("li").first().simulate("click");
@@ -65,7 +74,9 @@ describe("<AddressTile />", () => {
   });
 
   it("should run setDefault method for clicking on Set default shipping address", () => {
-    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     wrapper.find(IconButton).first().simulate("click");
     wrapper.find("li").last().simulate("click");
@@ -74,7 +85,9 @@ describe("<AddressTile />", () => {
   });
 
   it("should present Default address if address is default shipping and billing", () => {
-    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />);
+    const wrapper = mount(<AddressTile {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.text()).toContain("Default Address");
   });
@@ -84,7 +97,9 @@ describe("<AddressTile />", () => {
     CUSTOM_PROPS.address.isDefaultBillingAddress = false;
     CUSTOM_PROPS.address.isDefaultShippingAddress = true;
 
-    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />);
+    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.text()).toContain("Default Shipping Address");
   });
@@ -94,7 +109,9 @@ describe("<AddressTile />", () => {
     CUSTOM_PROPS.address.isDefaultBillingAddress = true;
     CUSTOM_PROPS.address.isDefaultShippingAddress = false;
 
-    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />);
+    const wrapper = mount(<AddressTile {...CUSTOM_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.text()).toContain("Default Billing Address");
   });
