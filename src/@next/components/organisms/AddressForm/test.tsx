@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { Input, Select } from "@components/atoms";
 
@@ -34,13 +35,17 @@ describe("<AddressForm />", () => {
   });
 
   it("should contain error provided as prop", () => {
-    const wrapper = mount(<AddressForm {...PROPS} {...ERRORS} />);
+    const wrapper = mount(<AddressForm {...PROPS} {...ERRORS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.text()).toContain(errorMessage);
   });
 
   it("should contain partial data if provided", () => {
-    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />);
+    const wrapper = mount(<AddressForm {...PROPS} {...INITIAL_DATA} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     const getValue = (n: number) => wrapper.find(Input).at(n).prop("value");
     expect(getValue(0)).toEqual(INITIAL_DATA.address.firstName);
