@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { components } from "react-select";
 
 import { OverlayItem } from "@components/molecules";
@@ -24,7 +25,9 @@ const PROPS = {
 
 describe("<ProductVariantPicker />", () => {
   it("exists", () => {
-    const wrapper = mount(<ProductVariantPicker {...PROPS} />);
+    const wrapper = mount(<ProductVariantPicker {...PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.exists()).toEqual(true);
   });
@@ -37,7 +40,10 @@ describe("<ProductVariantPicker />", () => {
         {...PROPS}
         selectSidebar={false}
         onChange={onChangeVariantPicker}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     wrapper.find("input").at(0).simulate("focus");
@@ -50,7 +56,10 @@ describe("<ProductVariantPicker />", () => {
 
   it("should disable possible selection of other variant attribute values after selection of one variant attribute values", () => {
     const wrapper = mount(
-      <ProductVariantPicker selectSidebar={false} {...PROPS} />
+      <ProductVariantPicker selectSidebar={false} {...PROPS} />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     // Select value for first attribute
@@ -75,7 +84,10 @@ describe("<ProductVariantPicker />", () => {
         selectSidebar
         selectSidebarTarget={portalRoot}
         onChange={onChangeVariantPicker}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     wrapper.find("input").at(0).simulate("focus");
@@ -92,7 +104,10 @@ describe("<ProductVariantPicker />", () => {
         selectSidebar
         selectSidebarTarget={portalRoot}
         {...PROPS}
-      />
+      />,
+      {
+        wrappingComponent: IntlProvider,
+      }
     );
 
     // Select value for first attribute
