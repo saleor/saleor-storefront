@@ -1,6 +1,7 @@
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { ResetPasswordForm } from ".";
 
@@ -18,7 +19,9 @@ describe("<ResetPasswordForm />", () => {
     },
   };
   it("exists", () => {
-    const wrapper = shallow(<ResetPasswordForm {...DEFAULT_PROPS} />);
+    const wrapper = mount(<ResetPasswordForm {...DEFAULT_PROPS} />, {
+      wrappingComponent: IntlProvider,
+    });
 
     expect(wrapper.exists()).toEqual(true);
   });
