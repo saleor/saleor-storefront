@@ -50,10 +50,6 @@ export interface SearchResults_products_edges_node {
    * The main thumbnail for a product.
    */
   thumbnail2x: SearchResults_products_edges_node_thumbnail2x | null;
-  /**
-   * The storefront URL for the product.
-   */
-  url: string;
   category: SearchResults_products_edges_node_category | null;
 }
 
