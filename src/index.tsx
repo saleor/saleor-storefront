@@ -93,73 +93,71 @@ const startApp = async () => {
     return children(apolloClient);
   };
 
-  const Root = hot(module)(() => {
-    const Notifications = () => {
-      const alert = useAlert();
+  const Notifications = () => {
+    const alert = useAlert();
 
-      const { updateAvailable } = React.useContext(ServiceWorkerContext);
+    const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
-      React.useEffect(() => {
-        if (updateAvailable) {
-          alert.show(
-            {
-              actionText: "Refresh",
-              content:
-                "To update the application to the latest version, please refresh the page!",
-              title: "New version is available!",
+    React.useEffect(() => {
+      if (updateAvailable) {
+        alert.show(
+          {
+            actionText: "Refresh",
+            content:
+              "To update the application to the latest version, please refresh the page!",
+            title: "New version is available!",
+          },
+          {
+            onClose: () => {
+              location.reload();
             },
-            {
-              onClose: () => {
-                location.reload();
-              },
-              timeout: 0,
-              type: "success",
-            }
-          );
-        }
-      }, [updateAvailable]);
+            timeout: 0,
+            type: "success",
+          }
+        );
+      }
+    }, [updateAvailable]);
 
-      useAuth((authenticated: boolean) => {
-        if (authenticated) {
-          alert.show(
-            {
-              title: "You are now logged in",
-            },
-            { type: "success" }
-          );
-        } else {
-          alert.show(
-            {
-              title: "You are now logged out",
-            },
-            { type: "success" }
-          );
-        }
-      });
-      return null;
-    };
+    useAuth((authenticated: boolean) => {
+      if (authenticated) {
+        alert.show(
+          {
+            title: "You are now logged in",
+          },
+          { type: "success" }
+        );
+      } else {
+        alert.show(
+          {
+            title: "You are now logged out",
+          },
+          { type: "success" }
+        );
+      }
+    });
+    return null;
+  };
 
-    return (
-      <Router history={history}>
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <ApolloClientInvalidTokenLinkAdapter>
-            {apolloClient => (
-              <ApolloProvider client={apolloClient}>
-                <SaleorProvider client={apolloClient}>
-                  <ShopProvider>
-                    <OverlayProvider>
-                      <App />
-                      <Notifications />
-                    </OverlayProvider>
-                  </ShopProvider>
-                </SaleorProvider>
-              </ApolloProvider>
-            )}
-          </ApolloClientInvalidTokenLinkAdapter>
-        </QueryParamProvider>
-      </Router>
-    );
-  });
+  const Root = hot(module)(() => (
+    <Router history={history}>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <ApolloClientInvalidTokenLinkAdapter>
+          {apolloClient => (
+            <ApolloProvider client={apolloClient}>
+              <SaleorProvider client={apolloClient}>
+                <ShopProvider>
+                  <OverlayProvider>
+                    <App />
+                    <Notifications />
+                  </OverlayProvider>
+                </ShopProvider>
+              </SaleorProvider>
+            </ApolloProvider>
+          )}
+        </ApolloClientInvalidTokenLinkAdapter>
+      </QueryParamProvider>
+    </Router>
+  ));
 
   render(
     <ThemeProvider theme={defaultTheme}>
