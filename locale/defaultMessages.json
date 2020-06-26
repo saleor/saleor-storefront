@@ -5,6 +5,9 @@
   "@next_dot_components_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
     "string": "Sort by:"
   },
+  "@next_dot_components_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
+    "string": "Go to"
+  },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
     "string": "Personal details"
   },
@@ -125,6 +128,9 @@
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_4282475982": {
     "string": "Billing Address"
   },
+  "@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_3476123": {
+    "string": "Apply"
+  },
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "More +"
   },
@@ -161,11 +167,14 @@
   "@next_dot_pages_dot_CartPage_dot_CartPage_dot_3173718889": {
     "string": "My Cart"
   },
-  "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_3879029924": {
-    "string": "Please provide email address."
-  },
   "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_929802659": {
     "string": "Please provide shipping address."
+  },
+  "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutPaymentSubpage_dot_2558335134": {
+    "string": "Please provide billing address."
+  },
+  "@next_dot_pages_dot_OrdersHistory_dot_OrdersHistory_dot_1138265409": {
+    "string": "Load more"
   },
   "account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
     "string": "Edit address"
@@ -202,6 +211,21 @@
   },
   "components_dot_LoginForm_dot_index_dot_1405865627": {
     "string": "Sign in"
+  },
+  "components_dot_NotFound_dot_index_dot_1723676032": {
+    "string": "Back to home"
+  },
+  "components_dot_NotFound_dot_index_dot_1782529840": {
+    "string": "You may have mistyped the address or the page may have moved."
+  },
+  "components_dot_NotFound_dot_index_dot_3141549744": {
+    "string": "We’re sorry for the error and hope you’ll have a good day."
+  },
+  "components_dot_NotFound_dot_index_dot_3478767873": {
+    "string": "404"
+  },
+  "components_dot_NotFound_dot_index_dot_680965574": {
+    "string": "We can’t seem to find a page you are looking for!"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1316031908": {
     "string": "My bag,"
@@ -260,11 +284,11 @@
   "components_dot_OverlayManager_dot_Search_dot_Search_dot_4112727608": {
     "string": "Show all results"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_1103897688": {
-    "string": "Please provide us your email address so we can share you a link to reset\n      your password"
-  },
   "components_dot_PasswordResetForm_dot_index_dot_2925394684": {
     "string": "Reset password"
+  },
+  "components_dot_PasswordResetForm_dot_index_dot_805890313": {
+    "string": "Please provide us your email address so we can share you a link to reset your password"
   },
   "components_dot_ProductDescription_dot_AddToCartButton_dot_1362724042": {
     "string": "Added"
@@ -332,6 +356,9 @@
   "intl_dot_checkoutMessages_dot_stepNameShipping": {
     "string": "Shipping"
   },
+  "intl_dot_commonMessages_dot_account": {
+    "string": "Account"
+  },
   "intl_dot_commonMessages_dot_add": {
     "string": "Add"
   },
@@ -343,6 +370,9 @@
   },
   "intl_dot_commonMessages_dot_checkout": {
     "string": "Checkout"
+  },
+  "intl_dot_commonMessages_dot_choosePaymentMethod": {
+    "string": "Please choose payment method."
   },
   "intl_dot_commonMessages_dot_clearFilterHeader": {
     "string": "CLEAR FILTERS"
@@ -374,6 +404,9 @@
   "intl_dot_commonMessages_dot_myAccount": {
     "string": "My Account"
   },
+  "intl_dot_commonMessages_dot_noItemsAvailable": {
+    "string": "No items available"
+  },
   "intl_dot_commonMessages_dot_orderHistory": {
     "string": "Order history"
   },
@@ -397,6 +430,9 @@
   },
   "intl_dot_commonMessages_dot_promoCode": {
     "string": "Promo code"
+  },
+  "intl_dot_commonMessages_dot_provideEmailAddress": {
+    "string": "Please provide email address."
   },
   "intl_dot_commonMessages_dot_qty": {
     "string": "Quantity"
@@ -436,6 +472,39 @@
   },
   "intl_dot_commonMessages_dot_variant": {
     "string": "Variant"
+  },
+  "intl_dot_commonMessages_dot_youMightLike": {
+    "string": "You might like"
+  },
+  "intl_dot_orderStatusMessages_dot_canceled": {
+    "string": "Canceled"
+  },
+  "intl_dot_orderStatusMessages_dot_draft": {
+    "string": "Draft"
+  },
+  "intl_dot_orderStatusMessages_dot_fulfilled": {
+    "string": "Fulfilled"
+  },
+  "intl_dot_orderStatusMessages_dot_partiallyFulfilled": {
+    "string": "Partially fulfilled"
+  },
+  "intl_dot_orderStatusMessages_dot_unfulfilled": {
+    "string": "Unfulfilled"
+  },
+  "intl_dot_paymentStatusMessages_dot_fullyCharged": {
+    "string": "Fully charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_fullyRefunded": {
+    "string": "Fully refunded"
+  },
+  "intl_dot_paymentStatusMessages_dot_notCharged": {
+    "string": "Not charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_partiallyCharged": {
+    "string": "Partially charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_partiallyRefunded": {
+    "string": "Partially refunded"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsClear": {
     "string": "Clear..."
