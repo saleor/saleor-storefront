@@ -1,4 +1,4 @@
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
@@ -21,19 +21,31 @@ const money = {
 
 describe("<CartSummary />", () => {
   it("exists", () => {
-    const wrapper = shallow(<CartSummary />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should show subtotal price", () => {
-    const wrapper = mount(<CartSummary subtotal={money} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary subtotal={money} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show promo price", () => {
-    const wrapper = mount(<CartSummary promoCode={money} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary promoCode={money} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain("123");
   });
@@ -49,13 +61,21 @@ describe("<CartSummary />", () => {
   });
 
   it("should show total price", () => {
-    const wrapper = mount(<CartSummary total={money} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary total={money} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show correct number of product rows", () => {
-    const wrapper = shallow(<CartSummary {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <CartSummary {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.find(CartSummaryRow).length).toEqual(
       DEFAULT_PROPS.products.length

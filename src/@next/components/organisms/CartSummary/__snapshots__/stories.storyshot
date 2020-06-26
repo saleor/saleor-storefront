@@ -439,10 +439,10 @@ exports[`Storyshots @components/organisms/CartSummary default 1`] = `
           className="c15"
         >
           <span>
-            Promo Code
+            Promo code
           </span>
           <span
-            data-test="cartSummaryCostPromoCode"
+            data-test="cartSummaryCostPromocode"
           >
             - 
             <span>
