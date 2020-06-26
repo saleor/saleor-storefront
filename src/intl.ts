@@ -13,6 +13,9 @@ export const commonMessages = defineMessages({
   youMightLike: {
     defaultMessage: "You might like",
   },
+  provideEmailAddress: {
+    defaultMessage: "Please provide email address.",
+  },
   myAccount: {
     defaultMessage: "My Account",
   },
