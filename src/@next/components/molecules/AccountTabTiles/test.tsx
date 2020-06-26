@@ -1,6 +1,7 @@
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { Attribute, IconButton } from "@components/atoms";
 import { TextField } from "..";
@@ -15,19 +16,31 @@ jest.mock("@saleor/sdk", () => ({
 
 describe("<PasswordTile />", () => {
   it("exists", () => {
-    const wrapper = shallow(<PasswordTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <PasswordTile />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should show basic view on load", () => {
-    const wrapper = mount(<PasswordTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <PasswordTile />
+      </IntlProvider>
+    );
 
     expect(wrapper.find(Attribute)).toHaveLength(1);
   });
 
   it("should change view to password change view when clicked on edit icon", () => {
-    const wrapper = mount(<PasswordTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <PasswordTile />
+      </IntlProvider>
+    );
 
     wrapper.find(IconButton).simulate("click");
 
@@ -37,19 +50,31 @@ describe("<PasswordTile />", () => {
 
 describe("<AccountTile />", () => {
   it("exists", () => {
-    const wrapper = shallow(<AccountTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <AccountTile />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should show basic view on load", () => {
-    const wrapper = mount(<AccountTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <AccountTile />
+      </IntlProvider>
+    );
 
     expect(wrapper.find(Attribute)).toHaveLength(2);
   });
 
   it("should change view to password change view when clicked on edit icon", () => {
-    const wrapper = mount(<AccountTile />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <AccountTile />
+      </IntlProvider>
+    );
 
     wrapper.find(IconButton).simulate("click");
 

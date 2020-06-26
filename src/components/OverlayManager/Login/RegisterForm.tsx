@@ -3,6 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { AlertManager, useAlert } from "react-alert";
+import { useIntl, IntlShape } from "react-intl";
+import { commonMessages } from "@temp/intl";
 import { accountConfirmUrl } from "../../../app/routes";
 
 import { Button, Form, TextField } from "../..";
@@ -13,7 +15,8 @@ import { TypedAccountRegisterMutation } from "./queries";
 const showSuccessNotification = (
   data: RegisterAccount,
   hide: () => void,
-  alert: AlertManager
+  alert: AlertManager,
+  intl: IntlShape
 ) => {
   const successful = maybe(() => !data.accountRegister.errors.length);
 
@@ -22,8 +25,11 @@ const showSuccessNotification = (
     alert.show(
       {
         title: data.accountRegister.requiresConfirmation
-          ? "Please check your e-mail for further instructions"
-          : "New user has been created",
+          ? intl.formatMessage({
+              defaultMessage:
+                "Please check your e-mail for further instructions",
+            })
+          : intl.formatMessage({ defaultMessage: "New user has been created" }),
       },
       { type: "success", timeout: 5000 }
     );
@@ -32,10 +38,11 @@ const showSuccessNotification = (
 
 const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
   const alert = useAlert();
+  const intl = useIntl();
 
   return (
     <TypedAccountRegisterMutation
-      onCompleted={data => showSuccessNotification(data, hide, alert)}
+      onCompleted={data => showSuccessNotification(data, hide, alert, intl)}
     >
       {(registerCustomer, { loading, data }) => {
         return (
@@ -50,14 +57,14 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             <TextField
               name="email"
               autoComplete="email"
-              label="Email Address"
+              label={intl.formatMessage(commonMessages.eMail)}
               type="email"
               required
             />
             <TextField
               name="password"
               autoComplete="password"
-              label="Password"
+              label={intl.formatMessage(commonMessages.password)}
               type="password"
               required
             />
@@ -67,7 +74,9 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
                 type="submit"
                 {...(loading && { disabled: true })}
               >
-                {loading ? "Loading" : "Register"}
+                {loading
+                  ? intl.formatMessage(commonMessages.loading)
+                  : intl.formatMessage({ defaultMessage: "Register" })}
               </Button>
             </div>
           </Form>

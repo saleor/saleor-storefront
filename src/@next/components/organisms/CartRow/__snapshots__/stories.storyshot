@@ -417,7 +417,9 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          SKU: 
+          SKU
+          :
+           
           <span
             data-test="itemSKU"
           >
@@ -602,7 +604,8 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          Total Price:
+          Total Price
+          :
         </span>
       </p>
       <p
@@ -620,7 +623,8 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          Price:
+          Price
+          :
         </span>
       </p>
       <p

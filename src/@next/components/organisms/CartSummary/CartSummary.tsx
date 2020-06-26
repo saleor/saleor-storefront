@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Icon } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
@@ -51,7 +52,7 @@ const CartSummary: React.FC<IProps> = ({
         data-test="cartSummaryTitle"
         onClick={() => setMobileCartOpened(!mobileCartOpened)}
       >
-        Cart Summary
+        <FormattedMessage defaultMessage="Cart Summary" />
         <S.ArrowUp mobileCartOpened={mobileCartOpened}>
           <Icon name="arrow_up" size={24} />
         </S.ArrowUp>

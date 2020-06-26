@@ -1,8 +1,10 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
+import { commonMessages } from "@temp/intl";
 
 import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
@@ -45,7 +47,9 @@ export const FilterSidebar: React.FC<IProps> = ({
     >
       <S.Wrapper ref={setElementRef()} data-test="filterSidebar">
         <S.Header>
-          <span>FILTERS</span>
+          <span>
+            <FormattedMessage {...commonMessages.filterHeader} />
+          </span>
           <IconButton
             testingContext="hideFilters"
             onClick={hide}

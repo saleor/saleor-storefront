@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { useIntl } from "react-intl";
 
 import { IFilterAttributes, IFilters } from "@types";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
@@ -61,6 +62,7 @@ const Page: React.FC<PageProps> = ({
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
+  const intl = useIntl();
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
@@ -99,7 +101,9 @@ const Page: React.FC<PageProps> = ({
                 return (
                   <TextField
                     autoFocus
-                    label="Search term:"
+                    label={intl.formatMessage({
+                      defaultMessage: "Search term:",
+                    })}
                     onChange={change}
                     value={value}
                   />

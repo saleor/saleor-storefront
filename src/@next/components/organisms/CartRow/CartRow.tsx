@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Icon, IconButton } from "@components/atoms";
 import { CachedImage, TextField } from "@components/molecules";
+import { commonMessages } from "@temp/intl";
 
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -43,6 +45,7 @@ export const CartRow: React.FC<IProps> = ({
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
+  const intl = useIntl();
 
   const handleBlurQuantityInput = () => {
     let newQuantity = parseInt(tempQuantity, 10);
@@ -88,7 +91,7 @@ export const CartRow: React.FC<IProps> = ({
   const quantityErrors = isTooMuch
     ? [
         {
-          message: `Maximum quantity is ${maxQuantity}`,
+          message: intl.formatMessage(commonMessages.maxQtyIs, { maxQuantity }),
         },
       ]
     : undefined;
@@ -108,7 +111,8 @@ export const CartRow: React.FC<IProps> = ({
         </Link>
         <S.Sku>
           <S.LightFont>
-            SKU: <span data-test="itemSKU">{sku || "-"}</span>
+            <FormattedMessage {...commonMessages.sku} />:{" "}
+            <span data-test="itemSKU">{sku || "-"}</span>
           </S.LightFont>
         </S.Sku>
         <S.Attributes data-test="itemAttributes">
@@ -128,7 +132,7 @@ export const CartRow: React.FC<IProps> = ({
       <S.Quantity>
         <TextField
           name="quantity"
-          label="Quantity"
+          label={intl.formatMessage(commonMessages.qty)}
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
@@ -148,13 +152,17 @@ export const CartRow: React.FC<IProps> = ({
 
       <S.TotalPrice>
         <S.PriceLabel>
-          <S.LightFont>Total Price:</S.LightFont>
+          <S.LightFont>
+            <FormattedMessage {...commonMessages.totalPrice} />:
+          </S.LightFont>
         </S.PriceLabel>
         <p data-test="totalPrice">{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice>
         <S.PriceLabel>
-          <S.LightFont>Price:</S.LightFont>
+          <S.LightFont>
+            <FormattedMessage {...commonMessages.price} />:
+          </S.LightFont>
         </S.PriceLabel>
         <p data-test="unitPrice">{unitPrice}</p>
       </S.UnitPrice>

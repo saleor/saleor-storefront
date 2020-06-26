@@ -1203,8 +1203,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment with addresses 1`] = `
                     </svg>
                   </p>
                   <p>
-                    Add new 
-                    address
+                    Add new address
                   </p>
                 </div>
               </div>

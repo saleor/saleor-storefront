@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { components } from "react-select";
 
 import { OverlayItem } from "@components/molecules";
@@ -24,7 +25,11 @@ const PROPS = {
 
 describe("<ProductVariantPicker />", () => {
   it("exists", () => {
-    const wrapper = mount(<ProductVariantPicker {...PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ProductVariantPicker {...PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.exists()).toEqual(true);
   });
@@ -33,11 +38,13 @@ describe("<ProductVariantPicker />", () => {
     const onChangeVariantPicker = jest.fn();
 
     const wrapper = mount(
-      <ProductVariantPicker
-        {...PROPS}
-        selectSidebar={false}
-        onChange={onChangeVariantPicker}
-      />
+      <IntlProvider locale="en">
+        <ProductVariantPicker
+          {...PROPS}
+          selectSidebar={false}
+          onChange={onChangeVariantPicker}
+        />
+      </IntlProvider>
     );
 
     wrapper.find("input").at(0).simulate("focus");
@@ -50,7 +57,9 @@ describe("<ProductVariantPicker />", () => {
 
   it("should disable possible selection of other variant attribute values after selection of one variant attribute values", () => {
     const wrapper = mount(
-      <ProductVariantPicker selectSidebar={false} {...PROPS} />
+      <IntlProvider locale="en">
+        <ProductVariantPicker selectSidebar={false} {...PROPS} />,
+      </IntlProvider>
     );
 
     // Select value for first attribute
@@ -70,12 +79,14 @@ describe("<ProductVariantPicker />", () => {
     const onChangeVariantPicker = jest.fn();
 
     const wrapper = mount(
-      <ProductVariantPicker
-        {...PROPS}
-        selectSidebar
-        selectSidebarTarget={portalRoot}
-        onChange={onChangeVariantPicker}
-      />
+      <IntlProvider locale="en">
+        <ProductVariantPicker
+          {...PROPS}
+          selectSidebar
+          selectSidebarTarget={portalRoot}
+          onChange={onChangeVariantPicker}
+        />
+      </IntlProvider>
     );
 
     wrapper.find("input").at(0).simulate("focus");
@@ -88,11 +99,13 @@ describe("<ProductVariantPicker />", () => {
 
   it("should disable possible selection of other variant attribute values after selection of one variant attribute values with sidebar", () => {
     const wrapper = mount(
-      <ProductVariantPicker
-        selectSidebar
-        selectSidebarTarget={portalRoot}
-        {...PROPS}
-      />
+      <IntlProvider locale="en">
+        <ProductVariantPicker
+          selectSidebar
+          selectSidebarTarget={portalRoot}
+          {...PROPS}
+        />
+      </IntlProvider>
     );
 
     // Select value for first attribute

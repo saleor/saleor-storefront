@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import classNames from "classnames";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
@@ -61,7 +62,9 @@ class AddToCartButton extends React.PureComponent<
           transitionLeaveTimeout={this.animationTimeout}
         >
           {animate ? (
-            <span key="text">Added</span>
+            <span key="text">
+              <FormattedMessage defaultMessage="Added" />
+            </span>
           ) : (
             <span key="children">{this.props.children}</span>
           )}

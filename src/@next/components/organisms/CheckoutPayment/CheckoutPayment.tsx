@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Checkbox } from "@components/atoms";
+import { checkoutMessages } from "@temp/intl";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 import { AddressForm } from "../AddressForm";
@@ -89,7 +91,9 @@ const CheckoutPayment: React.FC<IProps> = ({
   return (
     <S.Wrapper>
       <section>
-        <S.Title data-test="checkoutPageSubtitle">BILLING ADDRESS</S.Title>
+        <S.Title data-test="checkoutPageSubtitle">
+          <FormattedMessage {...checkoutMessages.billingAddress} />
+        </S.Title>
         {billingAsShippingPossible && (
           <Checkbox
             data-test="checkoutPaymentBillingAsShippingCheckbox"
@@ -99,7 +103,7 @@ const CheckoutPayment: React.FC<IProps> = ({
               setBillingAsShippingAddress(!billingAsShippingAddress)
             }
           >
-            Same as shipping address
+            <FormattedMessage defaultMessage="Same as shipping address" />
           </Checkbox>
         )}
         {!billingAsShippingAddress && (
@@ -138,14 +142,16 @@ const CheckoutPayment: React.FC<IProps> = ({
       </section>
       <S.Divider />
       <section>
-        <S.Title data-test="checkoutPageSubtitle">PAYMENT METHOD</S.Title>
+        <S.Title data-test="checkoutPageSubtitle">
+          <FormattedMessage {...checkoutMessages.paymentMethod} />
+        </S.Title>
         <Checkbox
           data-test="checkoutPaymentPromoCodeCheckbox"
           name="payment-promo-code"
           checked={showPromoCodeForm}
           onChange={handleChangeShowPromoCodeForm}
         >
-          Do you have a gift card voucher or discount code?
+          <FormattedMessage defaultMessage="Do you have a gift card voucher or discount code?" />
         </Checkbox>
         {showPromoCodeForm && (
           <S.DiscountField>

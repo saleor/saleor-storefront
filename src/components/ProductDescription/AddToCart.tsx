@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import AddToCartButton from "./AddToCartButton";
 
@@ -15,7 +16,7 @@ const AddToCart: React.FC<{
       }}
       disabled={disabled}
     >
-      Add to basket
+      <FormattedMessage defaultMessage="Add to basket" />
     </AddToCartButton>
   );
 };

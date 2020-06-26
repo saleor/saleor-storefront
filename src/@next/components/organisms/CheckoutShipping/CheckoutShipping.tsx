@@ -1,8 +1,10 @@
 import { Formik } from "formik";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { Money } from "@components/containers";
+import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -20,7 +22,9 @@ const CheckoutShipping: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-test="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
+      <S.Title data-test="checkoutPageSubtitle">
+        <FormattedMessage {...checkoutMessages.shippingMethod} />
+      </S.Title>
       <Formik
         initialValues={{
           shippingMethod: selectedShippingMethodId,

@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Icon } from "../Icon";
 import { Tile } from "../Tile";
@@ -12,7 +13,9 @@ export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
         <p>
           <Icon size={24} name="plus" />
         </p>
-        <p>Add new {type}</p>
+        <p>
+          <FormattedMessage defaultMessage="Add new {type}" values={{ type }} />
+        </p>
       </S.Content>
     </Tile>
   );

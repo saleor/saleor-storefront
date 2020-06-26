@@ -198,7 +198,8 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
           <span
             className="c8"
           >
-            Products found: 
+            Products found:
+             
           </span>
           255
         </span>
@@ -227,6 +228,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                       className="c13"
                     >
                       Sort by:
+                       
                     </span>
                     <div
                       className="c14"
@@ -486,7 +488,8 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
           <span
             className="c9"
           >
-            Products found: 
+            Products found:
+             
           </span>
           255
         </span>
@@ -515,6 +518,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                       className="c14"
                     >
                       Sort by:
+                       
                     </span>
                     <div
                       className="c15"

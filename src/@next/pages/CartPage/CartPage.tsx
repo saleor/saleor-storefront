@@ -1,6 +1,7 @@
 import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router-dom";
 
 import { Button, CartFooter, CartHeader } from "@components/atoms";
@@ -10,18 +11,23 @@ import { Cart, CartEmpty } from "@components/templates";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { BASE_URL } from "@temp/core/config";
+import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
-const title = <h1 data-test="cartPageTitle">My Cart</h1>;
+const title = (
+  <h1 data-test="cartPageTitle">
+    <FormattedMessage defaultMessage="My Cart" />
+  </h1>
+);
 
 const getShoppingButton = (history: History) => (
   <Button
     testingContext="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
-    CONTINUE SHOPPING
+    <FormattedMessage {...checkoutMessages.continueShopping} />
   </Button>
 );
 
@@ -30,7 +36,7 @@ const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
     testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
-    PROCEED TO CHECKOUT
+    <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
   </Button>
 );
 

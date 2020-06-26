@@ -260,8 +260,7 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
               </svg>
             </p>
             <p>
-              Add new 
-              address
+              Add new address
             </p>
           </div>
         </div>

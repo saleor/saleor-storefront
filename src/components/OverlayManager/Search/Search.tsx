@@ -3,8 +3,15 @@ import "./scss/index.scss";
 import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
+import {
+  injectIntl,
+  WrappedComponentProps,
+  FormattedMessage,
+} from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
+
+import { commonMessages } from "@temp/intl";
 
 import {
   Button,
@@ -27,7 +34,7 @@ import { TypedSearchResults } from "./queries";
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
 
-interface SearchProps extends RouteComponentProps {
+interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
 }
 
@@ -106,7 +113,7 @@ class Search extends React.Component<SearchProps, SearchState> {
               }
               iconRight={<ReactSVG path={searchImg} />}
               autoFocus
-              placeholder="Search"
+              placeholder={this.props.intl.formatMessage(commonMessages.search)}
               onBlur={this.handleInputBlur}
             />
           </div>
@@ -147,7 +154,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >
-                                    Show all results
+                                    <FormattedMessage defaultMessage="Show all results" />
                                   </Button>
                                 )}
                               </div>
@@ -180,8 +187,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 // Workaround ATM for:
 // withRouter(Search): Function components do not support contextType
-export default withRouter(
-  (props: RouteComponentProps & { overlay: OverlayContextInterface }) => (
-    <Search {...props} />
+export default injectIntl(
+  withRouter(
+    (
+      props: WrappedComponentProps &
+        RouteComponentProps & { overlay: OverlayContextInterface }
+    ) => <Search {...props} />
   )
 );
