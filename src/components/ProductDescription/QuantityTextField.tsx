@@ -50,7 +50,7 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     <TextField
       name="quantity"
       type="number"
-      label={intl.formatMessage(commonMessages.qty)}
+      label={intl.formatMessage(commonMessages.quantity)}
       min="1"
       value={quantity.toString()}
       disabled={disabled}
