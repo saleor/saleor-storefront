@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { Icon } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartSummaryRow } from "@components/molecules";
+import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { ICostLine, ICosts, IProps } from "./types";
@@ -23,16 +24,39 @@ const CostLine = ({
   </S.CostLine>
 );
 
-const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => (
-  <S.Costs>
-    {subtotal && <CostLine name="Subtotal" cost={subtotal} />}
-    {shipping && <CostLine name="Shipping" cost={shipping} />}
-    {promoCode && promoCode.gross.amount > 0 && (
-      <CostLine name="Promo Code" cost={promoCode} negative />
-    )}
-    {total && <CostLine name="Total" cost={total} last />}
-  </S.Costs>
-);
+const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => {
+  const intl = useIntl();
+  return (
+    <S.Costs>
+      {subtotal && (
+        <CostLine
+          name={intl.formatMessage(commonMessages.subtotal)}
+          cost={subtotal}
+        />
+      )}
+      {shipping && (
+        <CostLine
+          name={intl.formatMessage(commonMessages.shipping)}
+          cost={shipping}
+        />
+      )}
+      {promoCode && promoCode.gross.amount > 0 && (
+        <CostLine
+          name={intl.formatMessage(commonMessages.promoCode)}
+          cost={promoCode}
+          negative
+        />
+      )}
+      {total && (
+        <CostLine
+          name={intl.formatMessage(commonMessages.total)}
+          cost={total}
+          last
+        />
+      )}
+    </S.Costs>
+  );
+};
 
 /**
  * Cart summary displayed in checkout page
