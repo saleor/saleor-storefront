@@ -10,6 +10,9 @@ export const commonMessages = defineMessages({
   lowStock: {
     defaultMessage: "Low stock",
   },
+  noItemsAvailable: {
+    defaultMessage: "No items available",
+  },
   youMightLike: {
     defaultMessage: "You might like",
   },
