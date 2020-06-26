@@ -7,12 +7,14 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useIntl } from "react-intl";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
 import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { commonMessages } from "@temp/intl";
 import { IAddress, ICardData, IFormError } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
@@ -88,6 +90,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   const checkoutNewAddressFormId = "new-address-form";
   const promoCodeDiscountFormId = "discount-form";
   const promoCodeDiscountFormRef = useRef<HTMLFormElement>(null);
+  const intl = useIntl();
 
   useImperativeHandle(ref, () => ({
     submitPayment: () => {
@@ -130,7 +133,13 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     userAddressId?: string
   ) => {
     if (!address && !billingAsShippingState) {
-      setBillingErrors([{ message: "Please provide billing address." }]);
+      setBillingErrors([
+        {
+          message: intl.formatMessage({
+            defaultMessage: "Please provide billing address.",
+          }),
+        },
+      ]);
       return;
     }
 
@@ -142,7 +151,10 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       !isShippingRequiredForProducts
     ) {
       setBillingErrors([
-        { field: "email", message: "Please provide email address." },
+        {
+          field: "email",
+          message: intl.formatMessage(commonMessages.provideEmailAddress),
+        },
       ]);
       return;
     }
@@ -177,7 +189,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         );
       } else {
         changeSubmitProgress(false);
-        setGatewayErrors([{ message: "Please choose payment method." }]);
+        setGatewayErrors([
+          { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
+        ]);
       }
     }
   };
@@ -195,7 +209,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         );
       } else {
         changeSubmitProgress(false);
-        setGatewayErrors([{ message: "Please choose payment method." }]);
+        setGatewayErrors([
+          { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
+        ]);
       }
     }
   };
@@ -213,7 +229,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         );
       } else {
         changeSubmitProgress(false);
-        setGatewayErrors([{ message: "Please choose payment method." }]);
+        setGatewayErrors([
+          { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
+        ]);
       }
     }
   };
@@ -224,7 +242,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       );
     } else {
       changeSubmitProgress(false);
-      setGatewayErrors([{ message: "Please choose payment method." }]);
+      setGatewayErrors([
+        { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
+      ]);
     }
   };
 
