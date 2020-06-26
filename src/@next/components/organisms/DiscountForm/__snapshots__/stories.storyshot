@@ -183,7 +183,7 @@ exports[`Storyshots @components/organisms/DiscountForm default 1`] = `
               <label
                 className="c7"
               >
-                Promo Code
+                Promo code
               </label>
             </div>
           </div>
