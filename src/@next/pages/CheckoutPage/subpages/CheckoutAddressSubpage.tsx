@@ -13,6 +13,7 @@ import { CheckoutAddress } from "@components/organisms";
 import { useCheckout, useUserDetails } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
@@ -89,9 +90,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setErrors([
         {
           field: "email",
-          message: intl.formatMessage({
-            defaultMessage: "Please provide email address.",
-          }),
+          message: intl.formatMessage(commonMessages.provideEmailAddress),
         },
       ]);
       return;
