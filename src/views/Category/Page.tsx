@@ -1,7 +1,9 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { useIntl } from "react-intl";
 
+import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import {
   Breadcrumbs,
@@ -60,6 +62,7 @@ const Page: React.FC<PageProps> = ({
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
+  const intl = useIntl();
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
@@ -114,7 +117,11 @@ const Page: React.FC<PageProps> = ({
         )}
       </div>
 
-      {!hasProducts && <ProductsFeatured title="You might like" />}
+      {!hasProducts && (
+        <ProductsFeatured
+          title={intl.formatMessage(commonMessages.youMightLike)}
+        />
+      )}
     </div>
   );
 };
