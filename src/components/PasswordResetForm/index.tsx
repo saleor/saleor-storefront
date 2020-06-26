@@ -15,10 +15,7 @@ const PasswordResetForm: React.FC = () => {
   return (
     <div className="password-reset-form">
       <p>
-        <FormattedMessage
-          defaultMessage="Please provide us your email address so we can share you a link to reset
-      your password"
-        />
+        <FormattedMessage defaultMessage="Please provide us your email address so we can share you a link to reset your password" />
       </p>
       <TypedPasswordResetMutation>
         {(passwordReset, { loading, data }) => {
