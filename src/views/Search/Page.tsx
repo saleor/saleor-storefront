@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 
@@ -142,7 +143,11 @@ const Page: React.FC<PageProps> = ({
         )}
       </div>
 
-      {!hasProducts && <ProductsFeatured title="You might like" />}
+      {!hasProducts && (
+        <ProductsFeatured
+          title={intl.formatMessage(commonMessages.youMightLike)}
+        />
+      )}
     </div>
   );
 };
