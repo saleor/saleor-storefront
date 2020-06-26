@@ -247,6 +247,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     case "Continue to Review":
       buttonText = intl.formatMessage(checkoutMessages.paymentNextActionName);
       break;
+    case "Place order":
+      buttonText = intl.formatMessage(checkoutMessages.reviewNextActionName);
+      break;
   }
 
   return (
