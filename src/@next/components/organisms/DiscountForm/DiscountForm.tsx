@@ -1,7 +1,9 @@
 import { Formik } from "formik";
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, Chip, ErrorMessage, Input } from "@components/atoms";
+import { commonMessages } from "@temp/intl";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -16,6 +18,7 @@ export const DiscountForm: React.FC<IProps> = ({
 
   const [inputCode, setInputCode] = React.useState("");
   const [tempPromoCode, setTempPromoCode] = React.useState(promoCode);
+  const intl = useIntl();
 
   const handleApplyBtnClick = (newInputCode: string) => {
     setTempPromoCode(newInputCode);
@@ -68,7 +71,7 @@ export const DiscountForm: React.FC<IProps> = ({
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}
-                    label="Promo Code"
+                    label={intl.formatMessage(commonMessages.promoCode)}
                     onChange={handleChange}
                   />
                 </S.InputWrapper>
@@ -78,7 +81,7 @@ export const DiscountForm: React.FC<IProps> = ({
                     testingContext="applyPromoCodeButton"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
-                    Apply
+                    <FormattedMessage defaultMessage="Apply" />
                   </Button>
                 </S.ButtonWrapper>
               </S.InputWithButton>
@@ -86,7 +89,9 @@ export const DiscountForm: React.FC<IProps> = ({
             </S.Input>
             {values.tempPromoCode && (
               <>
-                <span>Promo code:</span>
+                <span>
+                  <FormattedMessage {...commonMessages.promoCode} />:
+                </span>
                 <S.ChipsWrapper>
                   <Chip onClose={() => handleRemoveBtnClick(values.inputCode)}>
                     <span data-test="promoCodeChip">
