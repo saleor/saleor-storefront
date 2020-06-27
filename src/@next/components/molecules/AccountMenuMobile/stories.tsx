@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import { styled } from "@styles";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router";
 
 import { AccountMenuMobile } from ".";
@@ -23,10 +24,14 @@ const DEFAULT_PROPS = { ...{ links, active } };
 storiesOf("@components/molecules/AccountMenuMobile", module)
   .addParameters({ component: AccountMenuMobile })
   .addDecorator(story => (
-    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    <IntlProvider locale="en">
+      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    </IntlProvider>
   ))
   .add("default", () => (
-    <Wrapper>
-      <AccountMenuMobile {...DEFAULT_PROPS} />
-    </Wrapper>
+    <IntlProvider locale="en">
+      <Wrapper>
+        <AccountMenuMobile {...DEFAULT_PROPS} />
+      </Wrapper>
+    </IntlProvider>
   ));
