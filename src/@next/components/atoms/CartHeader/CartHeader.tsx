@@ -17,7 +17,7 @@ const CartHeader: React.FC = () => {
         <FormattedMessage {...commonMessages.price} />
       </S.Column>
       <S.Column>
-        <FormattedMessage {...commonMessages.qty} />
+        <FormattedMessage {...commonMessages.quantity} />
       </S.Column>
       <S.Column>
         <FormattedMessage {...commonMessages.totalPrice} />
