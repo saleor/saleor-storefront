@@ -81,7 +81,7 @@ exports[`Storyshots @components/molecules/AccountMenu default 1`] = `
         <div
           className="c5"
         >
-          Address Book
+          Address book
         </div>
       </a>
       <a
@@ -93,7 +93,7 @@ exports[`Storyshots @components/molecules/AccountMenu default 1`] = `
         <div
           className="c4"
         >
-          Order History
+          Order history
         </div>
       </a>
       <a

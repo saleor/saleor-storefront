@@ -52,7 +52,7 @@ exports[`Storyshots @components/molecules/AccountMenuMobile default 1`] = `
       className="c2"
       onClick={[Function]}
     >
-      Address Book
+      Address book
       <svg
         height={8}
         viewBox="0 0 32 32"
