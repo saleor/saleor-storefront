@@ -17,13 +17,6 @@ class NetworkStatus extends React.Component<
     online: "onLine" in navigator ? navigator.onLine : true,
   };
 
-  updateOnlineStatus = () => {
-    if (this.props.cb) {
-      this.props.cb(navigator.onLine);
-    }
-    this.setState({ online: navigator.onLine });
-  };
-
   componentDidMount() {
     addEventListener("offline", this.updateOnlineStatus);
     addEventListener("online", this.updateOnlineStatus);
@@ -34,6 +27,13 @@ class NetworkStatus extends React.Component<
     removeEventListener("offline", this.updateOnlineStatus);
     removeEventListener("online", this.updateOnlineStatus);
   }
+
+  updateOnlineStatus = () => {
+    if (this.props.cb) {
+      this.props.cb(navigator.onLine);
+    }
+    this.setState({ online: navigator.onLine });
+  };
 
   render() {
     return this.props.children(this.state.online);

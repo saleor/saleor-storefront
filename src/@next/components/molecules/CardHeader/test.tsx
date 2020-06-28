@@ -67,7 +67,7 @@ describe("<CardHeader />", () => {
   });
 
   it("should render custom icon when `customIcon` prop is defined", () => {
-    const customIcon = <IconButton name="edit" />;
+    const customIcon = <IconButton testingContext="test" name="edit" />;
     const icon = renderHeader({ ...DEFAULT_PROPS, customIcon }).find(
       IconButton
     );
@@ -77,7 +77,7 @@ describe("<CardHeader />", () => {
   });
 
   it("should render border-bottom when `divider` prop is set to true", () => {
-    const header = mount(<CardHeader {...DEFAULT_PROPS} divider={true} />).find(
+    const header = mount(<CardHeader {...DEFAULT_PROPS} divider />).find(
       S.Header
     );
 

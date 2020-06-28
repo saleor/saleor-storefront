@@ -1,8 +1,7 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import { Breadcrumbs, ProductDescription } from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
@@ -10,7 +9,7 @@ import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 
 import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
-import { ProductGallery } from "../../@next/components/organisms/";
+import { ProductGallery } from "../../@next/components/organisms";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
 
@@ -25,10 +24,12 @@ const populateBreadcrumbs = product => [
   },
 ];
 
-const Page: React.FC<IProps & {
-  queryAttributes: Record<string, string>;
-  onAttributeChangeHandler: (slug: string | null, value: string) => void;
-}> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
+const Page: React.FC<
+  IProps & {
+    queryAttributes: Record<string, string>;
+    onAttributeChangeHandler: (slug: string | null, value: string) => void;
+  }
+> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
   const [variantId, setVariantId] = React.useState("");
@@ -40,12 +41,10 @@ const Page: React.FC<IProps & {
         .pop();
       if (variant.images.length > 0) {
         return variant.images;
-      } else {
-        return product.images;
       }
-    } else {
       return product.images;
     }
+    return product.images;
   };
 
   const productDescription = (

@@ -1,21 +1,20 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
+import { checkoutMessages } from "@temp/intl";
+import {
+  OrderDetail,
+  OrderDetail_lines,
+} from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
-import { OrderById_order, OrderById_order_lines } from "./gqlTypes/OrderById";
-import {
-  OrderByToken_orderByToken,
-  OrderByToken_orderByToken_lines,
-} from "./gqlTypes/OrderByToken";
 
 import { orderHistoryUrl } from "../../../app/routes";
 
-const extractOrderLines = (
-  lines: Array<OrderById_order_lines | OrderByToken_orderByToken_lines>
-): ILine[] => {
+const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,
@@ -39,16 +38,21 @@ const extractOrderLines = (
 
 const Page: React.FC<{
   guest: boolean;
-  order: OrderById_order | OrderByToken_orderByToken;
+  order: OrderDetail;
 }> = ({ guest, order }) =>
   order ? (
     <>
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
-          Go back to Order History
+          <FormattedMessage defaultMessage="Go back to Order History" />
         </Link>
       )}
-      <h3>Your order nr: {order.number}</h3>
+      <h3>
+        <FormattedMessage
+          defaultMessage="Your order nr: {orderNum}"
+          values={{ orderNum: order.number }}
+        />
+      </h3>
       <p className="order-details__status">
         {order.paymentStatusDisplay} / {order.statusDisplay}
       </p>
@@ -60,7 +64,9 @@ const Page: React.FC<{
       />
       <div className="order-details__summary">
         <div>
-          <h4>Shipping Address</h4>
+          <h4>
+            <FormattedMessage {...checkoutMessages.shippingAddress} />
+          </h4>
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}

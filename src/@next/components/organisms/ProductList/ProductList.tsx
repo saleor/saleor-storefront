@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
@@ -13,11 +14,12 @@ export const ProductList: React.FC<IProps> = ({
   products,
   canLoadMore = false,
   loading = false,
+  testingContextId,
   onLoadMore = () => null,
 }: IProps) => {
   return (
     <>
-      <S.List>
+      <S.List data-test="productList" data-test-id={testingContextId}>
         {products.map(product => (
           <Link
             to={generateProductUrl(product.id, product.name)}
@@ -33,11 +35,11 @@ export const ProductList: React.FC<IProps> = ({
         ) : (
           canLoadMore && (
             <Button
-              dataCy="loadMoreProductsButton"
+              testingContext="loadMoreProductsButton"
               color="secondary"
               onClick={onLoadMore}
             >
-              More +
+              <FormattedMessage defaultMessage="More +" />
             </Button>
           )
         )}

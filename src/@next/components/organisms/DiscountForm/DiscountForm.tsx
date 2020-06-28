@@ -34,7 +34,7 @@ export const DiscountForm: React.FC<IProps> = ({
         inputCode,
         tempPromoCode,
       }}
-      enableReinitialize={true}
+      enableReinitialize
       onSubmit={(values, { setSubmitting }) => {
         if (handleSubmit) {
           handleSubmit({
@@ -55,12 +55,16 @@ export const DiscountForm: React.FC<IProps> = ({
         const hasErrors = !!(values.errors && values.errors.length);
 
         return (
-          <S.DiscountForm id={formId} ref={formRef} onSubmit={handleSubmit}>
+          <S.DiscountForm
+            id={formId}
+            ref={formRef}
+            onSubmit={handleSubmit}
+            data-test="discountForm"
+          >
             <S.Input>
               <S.InputWithButton>
                 <S.InputWrapper>
                   <Input
-                    data-cy="checkoutPaymentPromoCodeInput"
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}
@@ -71,7 +75,7 @@ export const DiscountForm: React.FC<IProps> = ({
                 <S.ButtonWrapper>
                   <Button
                     type="button"
-                    dataCy="checkoutPaymentApplyPromoCodeButton"
+                    testingContext="applyPromoCodeButton"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
                     Apply
@@ -85,7 +89,7 @@ export const DiscountForm: React.FC<IProps> = ({
                 <span>Promo code:</span>
                 <S.ChipsWrapper>
                   <Chip onClose={() => handleRemoveBtnClick(values.inputCode)}>
-                    <span data-cy="checkoutPaymentPromoCodeChip">
+                    <span data-test="promoCodeChip">
                       {values.tempPromoCode}
                     </span>
                   </Chip>

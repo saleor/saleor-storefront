@@ -67,6 +67,14 @@ exports[`Storyshots @components/molecules/TextField default 1`] = `
   background-color: transparent;
 }
 
+.c4:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c1 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -191,6 +199,14 @@ exports[`Storyshots @components/molecules/TextField with content left 1`] = `
   font-size: 1rem;
   outline: none;
   background-color: transparent;
+}
+
+.c5:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
 }
 
 .c1 {
@@ -326,6 +342,14 @@ exports[`Storyshots @components/molecules/TextField with content right 1`] = `
   background-color: transparent;
 }
 
+.c4:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c1 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -457,6 +481,14 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
   background-color: transparent;
 }
 
+.c4:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c1 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -500,9 +532,11 @@ exports[`Storyshots @components/molecules/TextField with errors 1`] = `
     >
       <div
         className="c7"
+        data-test="errorMessage"
       >
         <p
           className="c8"
+          data-test-id={0}
         >
           Some error
         </p>

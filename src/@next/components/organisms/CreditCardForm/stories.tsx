@@ -33,4 +33,4 @@ const PROPS_ERRORS = {
 storiesOf(`@components/organisms/CreditCardForm`, module)
   .add("default", () => <CreditCardForm {...PROPS} />)
   .add("error", () => <CreditCardForm {...PROPS_ERRORS} />)
-  .add("disabled", () => <CreditCardForm {...PROPS} disabled={true} />);
+  .add("disabled", () => <CreditCardForm {...PROPS} disabled />);

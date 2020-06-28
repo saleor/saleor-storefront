@@ -4,6 +4,5 @@ import React from "react";
 import { CheckoutReview } from ".";
 
 storiesOf("@components/organisms/CheckoutReview", module)
-.addParameters({ component: CheckoutReview })
-.add("default", () =>
-<CheckoutReview />);
+  .addParameters({ component: CheckoutReview })
+  .add("default", () => <CheckoutReview />);

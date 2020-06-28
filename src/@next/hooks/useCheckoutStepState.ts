@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { IItems } from "@sdk/api/Cart/types";
-import { ICheckout, IPayment } from "@sdk/api/Checkout/types";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CheckoutStep } from "@temp/core/config";
 
 export const useCheckoutStepState = (
@@ -18,7 +18,8 @@ export const useCheckoutStepState = (
   const getStep = () => {
     if (!checkout?.id && items && isShippingRequiredForProducts) {
       return CheckoutStep.Address;
-    } else if (!checkout?.id && items) {
+    }
+    if (!checkout?.id && items) {
       return CheckoutStep.Payment;
     }
 
@@ -32,13 +33,14 @@ export const useCheckoutStepState = (
 
     if (isReviewStep) {
       return CheckoutStep.Review;
-    } else if (isPaymentStep) {
-      return CheckoutStep.Payment;
-    } else if (isShippingStep) {
-      return CheckoutStep.Shipping;
-    } else {
-      return CheckoutStep.Address;
     }
+    if (isPaymentStep) {
+      return CheckoutStep.Payment;
+    }
+    if (isShippingStep) {
+      return CheckoutStep.Shipping;
+    }
+    return CheckoutStep.Address;
   };
 
   const [step, setStep] = useState(getStep());

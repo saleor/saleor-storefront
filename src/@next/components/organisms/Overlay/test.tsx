@@ -16,7 +16,7 @@ if (!portalRoot) {
 
 describe("<Overlay />", () => {
   const DEFAULT_STATE = "exited";
-  const Children = () => <div>"Some content"</div>;
+  const Children = () => <div>Some content</div>;
   const position: Position = "center";
 
   const DEFAULT_PROPS = {
@@ -36,10 +36,7 @@ describe("<Overlay />", () => {
   const renderOverlayContent = (
     props: IProps,
     state: TransitionState = DEFAULT_STATE
-  ) =>
-    renderOverlay(props)
-      .find(Transition)
-      .renderProp("children")(state);
+  ) => renderOverlay(props).find(Transition).renderProp("children")(state);
 
   it("exists", () => {
     const overlay = renderOverlay(DEFAULT_PROPS);

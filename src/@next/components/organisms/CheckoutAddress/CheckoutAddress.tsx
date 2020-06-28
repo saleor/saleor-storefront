@@ -1,5 +1,7 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
+import { checkoutMessages } from "@temp/intl";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 import { AddressForm } from "../AddressForm";
@@ -26,7 +28,9 @@ const CheckoutAddress: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-cy="checkoutPageSubtitle">SHIPPING ADDRESS</S.Title>
+      <S.Title data-test="checkoutPageSubtitle">
+        <FormattedMessage {...checkoutMessages.shippingAddress} />
+      </S.Title>
       {userAddresses ? (
         <AddressGridSelector
           formId={formId}
@@ -41,6 +45,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         />
       ) : (
         <AddressForm
+          testingContext="shippingAddressForm"
           formId={formId}
           formRef={formRef}
           countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
@@ -49,7 +54,7 @@ const CheckoutAddress: React.FC<IProps> = ({
             email,
           }}
           handleSubmit={address => setShippingAddress(address, address?.email)}
-          includeEmail={true}
+          includeEmail
           errors={errors}
         />
       )}

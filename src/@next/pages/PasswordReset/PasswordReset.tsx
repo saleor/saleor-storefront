@@ -1,11 +1,10 @@
+import { setAuthToken, useSetPassword } from "@saleor/sdk";
 import { Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { setAuthToken } from "@sdk/auth";
-import { useSetPassword } from "@sdk/react";
 import { BASE_URL } from "@temp/core/config";
 
 import { ResetPasswordForm } from "@components/molecules";
@@ -48,11 +47,11 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
       graphqlErrors.extraInfo &&
       graphqlErrors.extraInfo.userInputErrors
     ) {
-      graphqlErrors.extraInfo.userInputErrors.filter(error => {
-        error.field === "token" ? setTokenError(true) : setTokenError(false);
-        error.field === "password"
-          ? setPasswordError(error.message)
-          : setPasswordError("");
+      graphqlErrors.extraInfo.userInputErrors.forEach(error => {
+        if (error.field === "token") setTokenError(true);
+        else setTokenError(false);
+        if (error.field === "password") setPasswordError(error.message);
+        else setPasswordError("");
       });
     }
   }, [data, graphqlErrors]);

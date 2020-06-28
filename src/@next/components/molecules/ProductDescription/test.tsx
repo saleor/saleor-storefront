@@ -28,10 +28,7 @@ describe("<ProductDescription />", () => {
       <ProductDescription attributes={attributes} description={description} />
     );
 
-    wrapper
-      .find(S.TabTitle)
-      .at(1)
-      .simulate("click");
+    wrapper.find(S.TabTitle).at(1).simulate("click");
 
     attributes.forEach(attribute =>
       expect(wrapper.text()).toContain(attribute.attribute.name)

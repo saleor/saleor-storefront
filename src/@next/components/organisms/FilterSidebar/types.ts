@@ -1,4 +1,5 @@
 import { IFilterAttributes, IFilters } from "@types";
+
 export interface IProps {
   attributes: IFilterAttributes[];
   filters: IFilters;

@@ -4,7 +4,7 @@ import React from "react";
 
 import { AddressFormModal } from ".";
 
-jest.mock("@sdk/react", () => ({
+jest.mock("@saleor/sdk", () => ({
   useCreateUserAddress: () => [jest.fn(), { data: null, error: null }],
   useUpdateUserAddress: () => [jest.fn(), { data: null, error: null }],
 }));

@@ -1,45 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useIntl } from "react-intl";
 
 import { TextField } from "@components/molecules";
+import { commonMessages } from "@temp/intl";
 
 interface QuantityTextFieldProps {
   quantity: number;
   maxQuantity: number;
+  disabled: boolean;
   onQuantityChange: (value: number) => void;
   hideErrors: boolean;
 }
 
 export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
+  disabled,
   quantity,
   maxQuantity,
   onQuantityChange,
   hideErrors,
 }: QuantityTextFieldProps) => {
-  const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
-
-  const handleBlurQuantityInput = () => {
-    let newQuantity = parseInt(tempQuantity, 10);
-
-    if (isNaN(newQuantity) || newQuantity <= 0) {
-      newQuantity = quantity;
-    }
-
-    if (quantity !== newQuantity) {
-      onQuantityChange(newQuantity);
-    }
-
-    const newTempQuantity = newQuantity.toString();
-    if (tempQuantity !== newTempQuantity) {
-      setTempQuantity(newTempQuantity);
-    }
-
-    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
-  };
-
-  useEffect(() => {
-    setTempQuantity(quantity.toString());
-  }, [quantity]);
+  const intl = useIntl();
 
   useEffect(() => {
     setIsTooMuch(!isNaN(quantity) && quantity > maxQuantity);
@@ -48,8 +29,9 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
   const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
     const newQuantity = parseInt(evt.target.value, 10);
 
-    setTempQuantity(evt.target.value);
-
+    if (quantity !== newQuantity) {
+      onQuantityChange(newQuantity);
+    }
     setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
   };
 
@@ -57,18 +39,21 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     !hideErrors && isTooMuch
       ? [
           {
-            message: `Maximum quantity is ${maxQuantity}`,
+            message: intl.formatMessage(commonMessages.maxQtyIs, {
+              maxQuantity,
+            }),
           },
         ]
       : undefined;
 
   return (
     <TextField
+      name="quantity"
       type="number"
-      label="Quantity"
+      label={intl.formatMessage(commonMessages.qty)}
       min="1"
-      value={tempQuantity || ""}
-      onBlur={handleBlurQuantityInput}
+      value={quantity.toString()}
+      disabled={disabled}
       onChange={handleQuantityChange}
       errors={quantityErrors}
     />

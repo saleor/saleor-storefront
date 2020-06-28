@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { ProductVariant } from "@sdk/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@sdk/queries/gqlTypes/OrderByToken";
+import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 
 import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "stockQuantity" | "isAvailable"
+  "__typename" | "sku" | "quantityAvailable" | "isAvailable"
 > & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
-  stockQuantity?: number;
+  quantityAvailable?: number;
 };
 
 interface ReadProductRowProps {

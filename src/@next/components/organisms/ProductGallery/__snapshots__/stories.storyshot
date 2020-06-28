@@ -92,6 +92,7 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
 >
   <div
     className="c1"
+    data-test="productPhotosGallery"
   >
     <div
       className="c2"
@@ -100,7 +101,10 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
         className="c3"
       >
         <ul>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={0}
+          >
             <div
               className="c4"
               onClick={[Function]}
@@ -119,6 +123,7 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
     </div>
     <div
       className="c5"
+      data-test="imagePreview"
     >
       <img
         alt="product"
@@ -297,6 +302,7 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
 >
   <div
     className="c1"
+    data-test="productPhotosGallery"
   >
     <div
       className="c2"
@@ -335,7 +341,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
         className="c5"
       >
         <ul>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={0}
+          >
             <div
               className="c6"
               onClick={[Function]}
@@ -349,7 +358,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={1}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -363,7 +375,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={2}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -377,7 +392,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={3}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -391,7 +409,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={4}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -405,7 +426,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={5}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -419,7 +443,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={6}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -433,7 +460,10 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
               />
             </div>
           </li>
-          <li>
+          <li
+            data-test="galleryThumbnail"
+            data-test-id={7}
+          >
             <div
               className="c7"
               onClick={[Function]}
@@ -452,6 +482,7 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
     </div>
     <div
       className="c8"
+      data-test="imagePreview"
     >
       <img
         alt="product"
@@ -586,6 +617,7 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
   >
     <div
       className="c1"
+      data-test="productPhotosGallery"
     >
       <div
         className="c2"
@@ -594,7 +626,10 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
           className="c3"
         >
           <ul>
-            <li>
+            <li
+              data-test="galleryThumbnail"
+              data-test-id={0}
+            >
               <div
                 className="c4"
                 onClick={[Function]}
@@ -608,7 +643,10 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
                 />
               </div>
             </li>
-            <li>
+            <li
+              data-test="galleryThumbnail"
+              data-test-id={1}
+            >
               <div
                 className="c5"
                 onClick={[Function]}
@@ -622,7 +660,10 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
                 />
               </div>
             </li>
-            <li>
+            <li
+              data-test="galleryThumbnail"
+              data-test-id={2}
+            >
               <div
                 className="c5"
                 onClick={[Function]}
@@ -641,6 +682,7 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
       </div>
       <div
         className="c6"
+        data-test="imagePreview"
       >
         <img
           alt="product"

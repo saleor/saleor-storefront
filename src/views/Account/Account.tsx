@@ -1,23 +1,23 @@
 import * as React from "react";
+import { useIntl } from "react-intl";
 import Media from "react-responsive";
 import { RouteComponentProps, withRouter } from "react-router";
+import { commonMessages } from "@temp/intl";
+import { useUserDetails } from "@saleor/sdk";
 
-import { useUserDetails } from "@sdk/react";
 import { smallScreen } from "@styles/constants";
+import { AccountMenu, AccountMenuMobile } from "@components/molecules";
+import { AccountTab, OrdersHistory } from "@pages";
 import AddressBook from "../../account/AddressBook/AddressBook";
-
-import "./scss/index.scss";
-
 import {
   accountUrl,
   addressBookUrl,
   baseUrl,
   orderHistoryUrl,
 } from "../../app/routes";
-
-import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory } from "@pages";
 import { Breadcrumbs, Loader } from "../../components";
+
+import "./scss/index.scss";
 
 const returnTab: any = (path: string, userDetails, history) => {
   let tabContent = <></>;
@@ -34,12 +34,16 @@ const returnTab: any = (path: string, userDetails, history) => {
       tabContent = <OrdersHistory {...{ history }} />;
       break;
     }
+    default:
+      tabContent = <AccountTab />;
+      break;
   }
   return tabContent;
 };
 
 const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
   const { data: user, loading } = useUserDetails();
+  const intl = useIntl();
 
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
@@ -53,7 +57,14 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
 
   return (
     <div className="container">
-      <Breadcrumbs breadcrumbs={[{ link: match.path, value: "My Account" }]} />
+      <Breadcrumbs
+        breadcrumbs={[
+          {
+            link: match.path,
+            value: intl.formatMessage(commonMessages.myAccount),
+          },
+        ]}
+      />
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">

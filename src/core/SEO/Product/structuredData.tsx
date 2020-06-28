@@ -13,7 +13,7 @@ const getVariantsStructuredData = variants => {
 
 export const structuredData = product => {
   const images = product.images.map(image => new URL(image.url).pathname);
-  const variants = product.variants;
+  const { variants } = product;
 
   return JSON.stringify({
     "@context": "https://schema.org/",

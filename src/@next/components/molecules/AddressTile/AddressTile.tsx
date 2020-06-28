@@ -1,4 +1,5 @@
 import React from "react";
+import { useIntl, FormattedMessage } from "react-intl";
 
 import { Address, DropdownMenu, IconButton, Tile } from "@components/atoms";
 
@@ -6,10 +7,14 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 const defaultShippingAddress = (
-  <S.MenuItem>Set as default shipping address</S.MenuItem>
+  <S.MenuItem>
+    <FormattedMessage defaultMessage="Set as default shipping address" />
+  </S.MenuItem>
 );
 const defaultBillingAddress = (
-  <S.MenuItem>Set as default billing address</S.MenuItem>
+  <S.MenuItem>
+    <FormattedMessage defaultMessage="Set as default billing address" />
+  </S.MenuItem>
 );
 
 export const AddressTile: React.FC<IProps> = ({
@@ -18,11 +23,14 @@ export const AddressTile: React.FC<IProps> = ({
   setDefault,
   address,
 }: IProps) => {
+  const intl = useIntl();
   const header = (
     <S.HeaderContent>
       <DropdownMenu
         type="clickable"
-        header={<IconButton name="expand" size={24} />}
+        header={
+          <IconButton testingContext="expandButton" name="expand" size={24} />
+        }
         items={[
           {
             content: defaultBillingAddress,
@@ -40,21 +48,31 @@ export const AddressTile: React.FC<IProps> = ({
       />
 
       {address.isDefaultBillingAddress && address.isDefaultShippingAddress
-        ? "Default Address"
+        ? intl.formatMessage({ defaultMessage: "Default Address" })
         : address.isDefaultShippingAddress
-        ? "Default Shipping Address"
+        ? intl.formatMessage({ defaultMessage: "Default Shipping Address" })
         : address.isDefaultBillingAddress
-        ? "Default Billing Address"
+        ? intl.formatMessage({ defaultMessage: "Default Billing Address" })
         : null}
     </S.HeaderContent>
   );
   const footer = (
     <S.FooterContent>
       <div>
-        <IconButton name="edit" onClick={onEdit} size={22} />
+        <IconButton
+          testingContext="editButton"
+          name="edit"
+          onClick={onEdit}
+          size={22}
+        />
       </div>
       <div>
-        <IconButton name="trash" onClick={onRemove} size={19} />
+        <IconButton
+          testingContext="removeButton"
+          name="trash"
+          onClick={onRemove}
+          size={19}
+        />
       </div>
     </S.FooterContent>
   );

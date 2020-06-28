@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
+import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { NotFound, OfflinePlaceholder } from "../../components";
@@ -23,7 +25,7 @@ export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
     Object.keys(valueObj).forEach(value => {
-      str.push(value + "_" + valueObj[value].join("_"));
+      str.push(`${value}_${valueObj[value].join("_")}`);
     });
     return str.join(".");
   },
@@ -46,6 +48,57 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
+  const intl = useIntl();
+
+  const filters: IFilters = {
+    attributes: attributeFilters,
+    pageSize: PRODUCTS_PER_PAGE,
+    priceGte: null,
+    priceLte: null,
+    sortBy: sort || null,
+  };
+  const variables = {
+    ...filters,
+    attributes: filters.attributes
+      ? convertToAttributeScalar(filters.attributes)
+      : {},
+    id: getGraphqlIdFromDBId(match.params.id, "Category"),
+    query: search || null,
+    sortBy: convertSortByFromString(filters.sortBy),
+  };
+
+  const sortOptions = [
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
+      value: null,
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPrice),
+      value: "price",
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPriceDsc),
+      value: "-price",
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsName),
+      value: "name",
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
+      value: "-name",
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
+      value: "updated_at",
+    },
+    {
+      label: intl.formatMessage(
+        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
+      ),
+      value: "-updated_at",
+    },
+  ];
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -78,54 +131,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
     }
   };
-
-  const filters: IFilters = {
-    attributes: attributeFilters,
-    pageSize: PRODUCTS_PER_PAGE,
-    priceGte: null,
-    priceLte: null,
-    sortBy: sort || null,
-  };
-  const variables = {
-    ...filters,
-    attributes: filters.attributes
-      ? convertToAttributeScalar(filters.attributes)
-      : {},
-    id: getGraphqlIdFromDBId(match.params.id, "Category"),
-    query: search || null,
-    sortBy: convertSortByFromString(filters.sortBy),
-  };
-
-  const sortOptions = [
-    {
-      label: "Clear...",
-      value: null,
-    },
-    {
-      label: "Price Low-High",
-      value: "price",
-    },
-    {
-      label: "Price High-Low",
-      value: "-price",
-    },
-    {
-      label: "Name Increasing",
-      value: "name",
-    },
-    {
-      label: "Name Decreasing",
-      value: "-name",
-    },
-    {
-      label: "Last updated Ascending",
-      value: "updated_at",
-    },
-    {
-      label: "Last updated Descending",
-      value: "-updated_at",
-    },
-  ];
 
   return (
     <NetworkStatus>

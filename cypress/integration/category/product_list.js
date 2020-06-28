@@ -27,13 +27,13 @@ describe("Product list view", () => {
   });
 
   it("category view should contain 6 visible products", () => {
-    cy.get("[data-cy=product-tile").should("have.length", 6);
+    cy.get("[data-test=productTile").should("have.length", 6);
   });
 
   it("should load more products when clicking on MORE button", () => {
-    cy.get("[data-cy=loadMoreProductsButton]")
+    cy.get("[data-test=loadMoreProductsButton]")
       .click();
     
-      cy.get("[data-cy=product-tile]").then((tiles)=>expect(tiles.length).to.be.at.least(6))
+      cy.get("[data-test=productTile]").then((tiles)=>expect(tiles.length).to.be.at.least(6))
   });
 });

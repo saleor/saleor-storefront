@@ -20,7 +20,7 @@ storiesOf("@components/organisms/SelectSidebar", module)
       title="PLEASE SELECT SIZE"
       target={portalRoot}
       {...DEFAULT_PROPS}
-      show={true}
+      show
       hide={action("hide")}
       onSelect={action("onSelect")}
     />
@@ -32,7 +32,7 @@ storiesOf("@components/organisms/SelectSidebar", module)
       onClickFooter={action("onClickFooter")}
       target={portalRoot}
       {...DEFAULT_PROPS}
-      show={true}
+      show
       hide={action("hide")}
       onSelect={action("onSelect")}
     />

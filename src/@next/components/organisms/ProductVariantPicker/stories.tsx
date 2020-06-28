@@ -35,7 +35,7 @@ storiesOf("@components/organisms/ProductVariantPicker", module)
   .add("with sidebar", () =>
     withContainer(
       <ProductVariantPicker
-        selectSidebar={true}
+        selectSidebar
         selectSidebarTarget={portalRoot}
         {...PROPS}
       />

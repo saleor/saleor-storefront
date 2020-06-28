@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { useIntl } from "react-intl";
 
 import { Icon, Input } from "@components/atoms";
 import { InputSelect } from "@components/molecules";
 import { useSelectableProductVariantsAttributeValues } from "@hooks";
-import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import {
   IProductVariantsAttribute,
   IProductVariantsAttributesSelectedValues,
@@ -39,6 +40,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     productVariants,
     productVariantsAttributesSelectedValues
   );
+  const intl = useIntl();
 
   const selectedAttribute =
     productVariantsAttributesSelectedValues &&
@@ -96,13 +98,12 @@ export const ProductVariantAttributeSelect: React.FC<{
           <Icon name="select_x" size={10} />
         </S.SelectIndicator>
       );
-    } else {
-      return (
-        <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
-          <Icon name="subcategories" size={10} />
-        </S.SelectIndicator>
-      );
     }
+    return (
+      <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
+        <Icon name="subcategories" size={10} />
+      </S.SelectIndicator>
+    );
   };
 
   useEffect(() => {
@@ -120,32 +121,46 @@ export const ProductVariantAttributeSelect: React.FC<{
           value={selectedValue ? selectedValue.value : ""}
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
-          readOnly={true}
+          readOnly
+          name={
+            productVariantsAttribute.attribute.slug
+              ? productVariantsAttribute.attribute.slug
+              : ""
+          }
         />
         <SelectSidebar
           options={attributeOptions}
           selectedOptions={selectedValuesList}
           disabledOptions={disabledValuesList}
-          title={`Please select ${selectLabel}`}
+          title={intl.formatMessage(
+            {
+              defaultMessage: "Please select {selectLabel}",
+            },
+            { selectLabel }
+          )}
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}
           target={selectSidebarTarget}
+          testingContextId={
+            productVariantsAttribute.attribute.slug
+              ? productVariantsAttribute.attribute.slug
+              : ""
+          }
         />
       </>
     );
-  } else {
-    return (
-      <InputSelect
-        name={productVariantsAttribute.attribute.id}
-        label={selectLabel}
-        value={selectedValue}
-        options={attributeOptions}
-        isOptionDisabled={optionValue => optionValue.disabled}
-        onChange={optionValue => onChangeSelection(optionValue?.value)}
-        clearable={true}
-        clearValue={onClearSelection}
-      />
-    );
   }
+  return (
+    <InputSelect
+      name={productVariantsAttribute.attribute.id}
+      label={selectLabel}
+      value={selectedValue}
+      options={attributeOptions}
+      isOptionDisabled={optionValue => optionValue.disabled}
+      onChange={optionValue => onChangeSelection(optionValue?.value)}
+      clearable
+      clearValue={onClearSelection}
+    />
+  );
 };

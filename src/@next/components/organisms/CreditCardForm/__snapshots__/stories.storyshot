@@ -67,6 +67,14 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
   background-color: transparent;
 }
 
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c3 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -123,6 +131,7 @@ exports[`Storyshots @components/organisms/CreditCardForm default 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -318,6 +327,14 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
   background-color: transparent;
 }
 
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c3 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -374,6 +391,7 @@ exports[`Storyshots @components/organisms/CreditCardForm disabled 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -598,6 +616,14 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
   background-color: transparent;
 }
 
+.c6:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
 .c3 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -654,6 +680,7 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
 >
   <form
     className="c1"
+    data-test="creditCardForm"
     onSubmit={[Function]}
   >
     <div
@@ -695,9 +722,11 @@ exports[`Storyshots @components/organisms/CreditCardForm error 1`] = `
         >
           <div
             className="c9"
+            data-test="errorMessage"
           >
             <p
               className="c10"
+              data-test-id={0}
             >
               Wrong number
             </p>

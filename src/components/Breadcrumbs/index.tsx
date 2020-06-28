@@ -1,14 +1,15 @@
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
-
 import classNames from "classnames";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import { Link } from "react-router-dom";
 
 import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/gqlTypes/Category";
+
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import "./scss/index.scss";
 
 export interface Breadcrumb {
   value: string;
@@ -51,7 +52,9 @@ const Breadcrumbs: React.FC<{
       matches ? (
         <ul className="breadcrumbs">
           <li>
-            <Link to={baseUrl}>Home</Link>
+            <Link to={baseUrl}>
+              <FormattedMessage defaultMessage="Home" />
+            </Link>
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
             <li
@@ -66,7 +69,9 @@ const Breadcrumbs: React.FC<{
         </ul>
       ) : (
         <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>Back</Link>
+          <Link to={getBackLink(breadcrumbs)}>
+            <FormattedMessage defaultMessage="Back" />
+          </Link>
         </div>
       )
     }

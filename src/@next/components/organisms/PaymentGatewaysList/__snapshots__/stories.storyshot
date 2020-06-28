@@ -67,7 +67,7 @@ exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentGatewayDummyInput"
+            data-test="checkoutPaymentGatewayDummyInput"
             name="payment-method"
             onChange={[Function]}
             type="radio"
@@ -78,7 +78,7 @@ exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
             <span />
           </div>
           <span
-            data-cy="checkoutPaymentGatewayDummyName"
+            data-test="checkoutPaymentGatewayDummyName"
           >
             Dummy
           </span>
@@ -96,7 +96,7 @@ exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
         >
           <input
             checked={false}
-            data-cy="checkoutPaymentGatewayStripeInput"
+            data-test="checkoutPaymentGatewayStripeInput"
             name="payment-method"
             onChange={[Function]}
             type="radio"
@@ -107,7 +107,7 @@ exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
             <span />
           </div>
           <span
-            data-cy="checkoutPaymentGatewayStripeName"
+            data-test="checkoutPaymentGatewayStripeName"
           >
             Stripe
           </span>

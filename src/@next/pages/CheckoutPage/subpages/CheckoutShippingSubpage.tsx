@@ -8,7 +8,7 @@ import React, {
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
-import { useCheckout } from "@sdk/react";
+import { useCheckout } from "@saleor/sdk";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IFormError } from "@types";
 
@@ -36,9 +36,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     setShippingMethod,
   } = useCheckout();
 
-  const shippingMethods = availableShippingMethods
-    ? availableShippingMethods
-    : [];
+  const shippingMethods = availableShippingMethods || [];
 
   useImperativeHandle(ref, () => ({
     submitShipping: () => {

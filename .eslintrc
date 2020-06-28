@@ -1,0 +1,76 @@
+{
+  "extends": [
+    "airbnb-typescript",
+    "prettier",
+    "prettier/react",
+    "plugin:import/errors",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "import", "react", "prettier"],
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/quotes": "off",
+    "comma-spacing": "off",
+    "import/no-cycle": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/stories.tsx",
+          "**/test.ts",
+          "**/*.test.ts",
+          "**/test.tsx",
+          "**/tests.tsx",
+          "config/**/*",
+          "*.config.js",
+          "src/@next/pages/baseStory.ts"
+        ]
+      }
+    ],
+    "import/no-internal-modules": "off",
+    "import/no-named-as-default": "off",
+    "import/order": "error",
+    "import/prefer-default-export": "off",
+    "no-nested-ternary": "off",
+    "prettier/prettier": ["error"],
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/prop-types": "off",
+    "sort-imports": "off",
+    "no-underscore-dangle": "off",
+    "react/state-in-constructor": "off",
+    "react/static-property-placement": "off",
+
+    "sort-keys": "off",
+    "no-prototype-builtins": "off",
+    "no-shadow": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "consistent-return": "off",
+    "react/no-this-in-sfc": "off",
+    "array-callback-return": "off",
+    "no-plusplus": "off",
+    "react/no-did-update-set-state": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "react/destructuring-assignment": "off",
+    "react/button-has-type": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-useless-escape": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/no-array-index-key": "off",
+    "no-param-reassign": "off",
+    "no-empty-pattern": "off",
+    "no-restricted-globals": "off",
+    "@typescript-eslint/no-unused-vars": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

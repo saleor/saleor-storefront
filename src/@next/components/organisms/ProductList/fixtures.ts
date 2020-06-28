@@ -1,4 +1,4 @@
-import { ProductList_products_edges_node } from "@sdk/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 
 export const PRODUCTS: ProductList_products_edges_node[] = [
   {

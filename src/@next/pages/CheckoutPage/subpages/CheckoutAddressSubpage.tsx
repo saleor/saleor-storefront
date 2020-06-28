@@ -6,10 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useIntl } from "react-intl";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
-import { useCheckout, useUserDetails } from "@sdk/react";
+import { useCheckout, useUserDetails } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IAddress, IFormError } from "@types";
@@ -57,6 +58,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
   const [errors, setErrors] = useState<IFormError[]>([]);
 
+  const intl = useIntl();
+
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
         ...checkout?.shippingAddress,
@@ -70,14 +73,27 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     userAddressId?: string
   ) => {
     if (!address) {
-      setErrors([{ message: "Please provide shipping address." }]);
+      setErrors([
+        {
+          message: intl.formatMessage({
+            defaultMessage: "Please provide shipping address.",
+          }),
+        },
+      ]);
       return;
     }
 
     const shippingEmail = user?.email || email || "";
 
     if (!shippingEmail) {
-      setErrors([{ field: "email", message: "Please provide email address." }]);
+      setErrors([
+        {
+          field: "email",
+          message: intl.formatMessage({
+            defaultMessage: "Please provide email address.",
+          }),
+        },
+      ]);
       return;
     }
 

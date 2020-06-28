@@ -15,12 +15,12 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       : undefined;
 
   return (
-    <S.Wrapper data-cy="product-tile">
-      <S.Title>{product.name}</S.Title>
-      <S.Price>
+    <S.Wrapper>
+      <S.Title data-test="productTile">{product.name}</S.Title>
+      <S.Price data-test="productPrice">
         <TaxedMoney taxedMoney={price} />
       </S.Price>
-      <S.Image>
+      <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
       </S.Image>
     </S.Wrapper>

@@ -1,8 +1,10 @@
 import { Formik } from "formik";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { Money } from "@components/containers";
+import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -20,12 +22,14 @@ const CheckoutShipping: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <section>
-      <S.Title data-cy="checkoutPageSubtitle">SHIPPING METHOD</S.Title>
+      <S.Title data-test="checkoutPageSubtitle">
+        <FormattedMessage {...checkoutMessages.shippingMethod} />
+      </S.Title>
       <Formik
         initialValues={{
           shippingMethod: selectedShippingMethodId,
         }}
-        enableReinitialize={true}
+        enableReinitialize
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
             selectShippingMethod(values.shippingMethod);
@@ -52,29 +56,29 @@ const CheckoutShipping: React.FC<IProps> = ({
                   !!values.shippingMethod && values.shippingMethod === id;
 
                 return (
-                  <S.Tile checked={checked} key={id}>
+                  <S.Tile
+                    checked={checked}
+                    key={id}
+                    data-test="shippingMethodTile"
+                    data-test-id={id}
+                  >
                     <Radio
-                      data-cy={`checkoutShippingMethodOption${index}Input`}
                       name="shippingMethod"
                       value={id}
                       checked={checked}
-                      customLabel={true}
+                      customLabel
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
-                      <span
-                        data-cy={`checkoutShippingMethodOption${index}Name`}
-                      >
+                      <span data-test="checkoutShippingMethodOptionName">
                         {name}
                       </span>
                       <S.Price>
                         {" "}
                         | +
-                        {
-                          <Money
-                            data-cy={`checkoutShippingMethodOption${index}Price`}
-                            money={price}
-                          />
-                        }
+                        <Money
+                          data-test="checkoutShippingMethodOptionPrice"
+                          money={price}
+                        />
                       </S.Price>
                     </Radio>
                   </S.Tile>

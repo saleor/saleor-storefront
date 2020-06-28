@@ -1,11 +1,13 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { commonMessages } from "@temp/intl";
+import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 
 import {
   Button,
@@ -16,7 +18,7 @@ import {
   OverlayContextInterface,
 } from "../..";
 import { cartUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
-import Loader from "../../../components/Loader";
+import Loader from "../../Loader";
 import Empty from "./Empty";
 import ProductList from "./ProductList";
 
@@ -52,19 +54,19 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   };
 
   return (
-    <Overlay context={overlay}>
+    <Overlay testingContext="cartOverlay" context={overlay}>
       <Online>
         <div className="cart">
           <div className="overlay__header">
             <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
             <div className="overlay__header-text">
-              My bag,{" "}
+              <FormattedMessage defaultMessage="My bag," />{" "}
               <span className="overlay__header-text-items">
                 {items?.reduce(
                   (prevVal, currVal) => prevVal + currVal.quantity,
                   0
                 ) || 0}{" "}
-                items
+                <FormattedMessage defaultMessage="items" />
               </span>
             </div>
             <ReactSVG
@@ -76,16 +78,18 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
           {items?.length ? (
             <>
               {missingVariants() ? (
-                <Loader full={true} />
+                <Loader full />
               ) : (
                 <>
                   <ProductList lines={items} remove={removeItem} />
                   <div className="cart__footer">
                     <div className="cart__footer__price">
-                      <span>Subtotal</span>
+                      <span>
+                        <FormattedMessage {...commonMessages.subtotal} />
+                      </span>
                       <span>
                         <TaxedMoney
-                          data-cy="cartPageSubtotalPrice"
+                          data-test="subtotalPrice"
                           taxedMoney={subtotalPrice}
                         />
                       </span>
@@ -94,10 +98,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     {shippingTaxedPrice &&
                       shippingTaxedPrice.gross.amount !== 0 && (
                         <div className="cart__footer__price">
-                          <span>Shipping</span>
+                          <span>
+                            <FormattedMessage {...commonMessages.shipping} />
+                          </span>
                           <span>
                             <TaxedMoney
-                              data-cy="cartPageShippingPrice"
+                              data-test="shippingPrice"
                               taxedMoney={shippingTaxedPrice}
                             />
                           </span>
@@ -106,10 +112,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
 
                     {promoTaxedPrice && promoTaxedPrice.gross.amount !== 0 && (
                       <div className="cart__footer__price">
-                        <span>Promo code</span>
+                        <span>
+                          <FormattedMessage {...commonMessages.promoCode} />
+                        </span>
                         <span>
                           <TaxedMoney
-                            data-cy="cartPagePromoCodePrice"
+                            data-test="promoCodePrice"
                             taxedMoney={promoTaxedPrice}
                           />
                         </span>
@@ -117,10 +125,12 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     )}
 
                     <div className="cart__footer__price">
-                      <span>Total</span>
+                      <span>
+                        <FormattedMessage {...commonMessages.total} />
+                      </span>
                       <span>
                         <TaxedMoney
-                          data-cy="cartPageTotalPrice"
+                          data-test="totalPrice"
                           taxedMoney={totalPrice}
                         />
                       </span>
@@ -132,12 +142,16 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                           token: null,
                         })}
                       >
-                        <Button dataCy="cartOverlayGotoBagViewButton" secondary>Go to my bag</Button>
+                        <Button testingContext="gotoBagViewButton" secondary>
+                          <FormattedMessage defaultMessage="Go to my bag" />
+                        </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
                       <Link to={user ? checkoutUrl : checkoutLoginUrl}>
-                        <Button dataCy="cartOverlayGotoCheckoutButton">Checkout</Button>
+                        <Button testingContext="gotoCheckoutButton">
+                          <FormattedMessage {...commonMessages.checkout} />
+                        </Button>
                       </Link>
                     </div>
                   </div>

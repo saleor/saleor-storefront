@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { ProductListHeader } from ".";
 
@@ -26,7 +27,13 @@ const DEFAULT_PROPS = {
 
 storiesOf("@components/molecules/ProductListHeader", module)
   .addParameters({ component: ProductListHeader })
-  .add("default", () => <ProductListHeader {...DEFAULT_PROPS} />)
+  .add("default", () => (
+    <IntlProvider locale="en">
+      <ProductListHeader {...DEFAULT_PROPS} />
+    </IntlProvider>
+  ))
   .add("with active filters", () => (
-    <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+    <IntlProvider locale="en">
+      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+    </IntlProvider>
   ));

@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { CheckoutAddress } from "./CheckoutAddress";
 import { ANONYMOUS_USER_PROPS, LOGGED_IN_USER_PROPS } from "./fixtures";
@@ -15,14 +16,18 @@ if (!portalRoot) {
 storiesOf("@components/organisms/CheckoutAddress", module)
   .addParameters({ component: CheckoutAddress })
   .add("default", () => (
-    <CheckoutAddress
-      {...ANONYMOUS_USER_PROPS}
-      setShippingAddress={action("setShippingAddress has been called")}
-    />
+    <IntlProvider locale="en">
+      <CheckoutAddress
+        {...ANONYMOUS_USER_PROPS}
+        setShippingAddress={action("setShippingAddress has been called")}
+      />
+    </IntlProvider>
   ))
   .add("with addresses", () => (
-    <CheckoutAddress
-      {...LOGGED_IN_USER_PROPS}
-      setShippingAddress={action("setShippingAddress has been called")}
-    />
+    <IntlProvider locale="en">
+      <CheckoutAddress
+        {...LOGGED_IN_USER_PROPS}
+        setShippingAddress={action("setShippingAddress has been called")}
+      />
+    </IntlProvider>
   ));

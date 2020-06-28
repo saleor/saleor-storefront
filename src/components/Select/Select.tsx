@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import "./scss/index.scss";
 
 import classNames from "classnames";
@@ -9,7 +11,7 @@ import {
   IFilteredListArgs,
   ISelectChange,
   ISelectItem,
-  ISelectProps
+  ISelectProps,
 } from "./customTypes";
 import SelectOptionsList from "./SelectOptionsList";
 

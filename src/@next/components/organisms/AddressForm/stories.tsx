@@ -1,6 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React, { ReactNode } from "react";
+import { IntlProvider } from "react-intl";
 import styled from "styled-components";
 
 import { AddressForm } from ".";
@@ -11,7 +12,9 @@ const Container = styled.div`
 `;
 
 const withContainer = (children: ReactNode) => (
-  <Container>{children}</Container>
+  <IntlProvider locale="en">
+    <Container>{children}</Container>
+  </IntlProvider>
 );
 
 const NO_ERRORS: any = [];

@@ -1,11 +1,11 @@
 import React from "react";
 
-import { useCreateUserAddress, useUpdateUserAddress } from "@sdk/react";
+import { useCreateUserAddress, useUpdateUserAddress } from "@saleor/sdk";
 
+import { CountryCode } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import { AddressForm } from "../AddressForm";
 import { Modal } from "../Modal";
 
-import { CountryCode } from "@sdk/gqlTypes/globalTypes";
 import { IProps } from "./types";
 
 export const AddressFormModal: React.FC<IProps> = ({
@@ -50,7 +50,8 @@ export const AddressFormModal: React.FC<IProps> = ({
 
   return (
     <Modal
-      submitButtonDataCy="submitAddressFormModalButton"  
+      submitButtonTestingContext="submitAddressFormModalButton"
+      testingContext="submitAddressFormModal"
       title={title}
       hide={() => {
         hideModal();
@@ -68,7 +69,7 @@ export const AddressFormModal: React.FC<IProps> = ({
         formId={formId}
         address={address ? address.address : undefined}
         handleSubmit={data => {
-          if (!!userId) {
+          if (userId) {
             setCreatUserAddress({
               input: {
                 ...data,

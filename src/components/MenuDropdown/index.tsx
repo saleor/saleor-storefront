@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import * as React from "react";
 
 import "./scss/index.scss";
@@ -13,14 +14,16 @@ class MenuDropdown extends React.Component<
   static defaultProps = {
     suffixClass: "",
   };
+
   constructor(props) {
     super(props);
     this.state = { active: false };
   }
+
   render() {
     return (
       <div
-        data-cy="userButton"
+        data-test="userButton"
         className="menu-dropdown"
         onMouseOver={() => this.setState({ active: true })}
         onMouseLeave={() => this.setState({ active: false })}
@@ -28,7 +31,7 @@ class MenuDropdown extends React.Component<
         {this.props.head}
 
         <div
-          className={`menu-dropdown__body${" menu-dropdown__body"+this.props.suffixClass}${
+          className={`menu-dropdown__body${` menu-dropdown__body${this.props.suffixClass}`}${
             this.state.active ? " menu-dropdown__body--visible" : ""
           }`}
         >

@@ -8,7 +8,7 @@ import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { useCheckout } from "@sdk/react";
+import { useCheckout } from "@saleor/sdk";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IFormError } from "@types";
 
@@ -53,7 +53,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           status => status.token === selectedPaymentGatewayToken
         )?.label
       }`;
-    } else if (payment?.creditCard) {
+    }
+    if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
     }
     return ``;

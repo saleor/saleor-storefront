@@ -4,8 +4,18 @@ import * as React from "react";
 
 import { Overlay, OverlayContextInterface } from "../..";
 
-const Modal: React.FC<{ overlay: OverlayContextInterface }> = ({
-  overlay,
-}) => <Overlay context={overlay}>{overlay.context.content}</Overlay>;
+export interface IModal {
+  overlay: OverlayContextInterface;
+  /**
+   * Used as marker for writing e2e tests
+   */
+  testingContext: string;
+}
+
+const Modal: React.FC<IModal> = ({ overlay, testingContext }) => (
+  <Overlay testingContext={testingContext} context={overlay}>
+    {overlay.context.content}
+  </Overlay>
+);
 
 export default Modal;

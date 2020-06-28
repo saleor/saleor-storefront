@@ -7,6 +7,10 @@ export interface IProps {
    */
   index?: number;
   /**
+   * Id of the product
+   */
+  id: string;
+  /**
    * Price for single unit
    */
   unitPrice: React.ReactNode;

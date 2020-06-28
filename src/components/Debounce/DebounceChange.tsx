@@ -1,12 +1,10 @@
 import * as React from "react";
 
 export interface DebounceChangeProps<TValue> {
-  children: ((
-    props: {
-      change: (event: React.ChangeEvent<any>) => void;
-      value: TValue;
-    }
-  ) => React.ReactElement<any>);
+  children: (props: {
+    change: (event: React.ChangeEvent<any>) => void;
+    value: TValue;
+  }) => React.ReactElement<any>;
   debounce: (event: React.ChangeEvent<any>) => void;
   time?: number;
   value: TValue;

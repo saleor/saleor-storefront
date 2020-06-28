@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useIntl } from "react-intl";
 import { Redirect, useLocation } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import { CartSummary } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { useCart, useCheckout } from "@sdk/react";
+import { useCart, useCheckout } from "@saleor/sdk";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
@@ -82,13 +84,16 @@ const getCheckoutProgress = (
 const getButton = (text: string, onClick: () => void) => {
   if (text) {
     return (
-      <Button dataCy="checkoutPageNextStepButton" onClick={onClick} type="submit">
+      <Button
+        testingContext="checkoutPageNextStepButton"
+        onClick={onClick}
+        type="submit"
+      >
         {text}
       </Button>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
@@ -102,6 +107,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     items,
   } = useCart();
   const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect to="/cart/" />;
@@ -142,6 +148,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const checkoutReviewSubpageRef = useRef<ICheckoutReviewSubpageHandles>(null);
 
   const handleNextStepClick = () => {
+    // Some magic above and below ensures that the activeStepIndex will always
+    // be in 0-3 range
+    /* eslint-disable default-case */
     switch (activeStepIndex) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
@@ -226,6 +235,20 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       ({ variant }) => variant.product?.productType.isShippingRequired
     );
 
+  let buttonText = activeStep.nextActionName;
+  /* eslint-disable default-case */
+  switch (activeStep.nextActionName) {
+    case "Continue to Shipping":
+      buttonText = intl.formatMessage(checkoutMessages.addressNextActionName);
+      break;
+    case "Continue to Payment":
+      buttonText = intl.formatMessage(checkoutMessages.shippingNextActionName);
+      break;
+    case "Continue to Review":
+      buttonText = intl.formatMessage(checkoutMessages.paymentNextActionName);
+      break;
+  }
+
   return (
     <Checkout
       loading={submitInProgress}
@@ -242,10 +265,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items
       )}
       checkout={checkoutView}
-      button={getButton(
-        activeStep.nextActionName.toUpperCase(),
-        handleNextStepClick
-      )}
+      button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
     />
   );
 };

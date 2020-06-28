@@ -1,4 +1,4 @@
-import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
 import { IProductVariantsAttributesSelectedValues } from "@types";
 

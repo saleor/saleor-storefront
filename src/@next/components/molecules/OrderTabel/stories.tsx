@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import { createBrowserHistory } from "history";
 import React from "react";
+import { IntlProvider } from "react-intl";
 import { OrderTabel } from ".";
 
 const history = createBrowserHistory();
@@ -78,6 +79,11 @@ storiesOf("@components/molecules/OrderTabel", module)
   .add("default", () => {
     // this is added to fix issue when running on machines with different locales
     // so one one machine price is displayed as $42.24 and on others as US$ 42.24 etc
+    /* eslint-disable-next-line no-extend-native */
     Number.prototype.toLocaleString = () => "";
-    return <OrderTabel history={history} orders={ORDERS} />;
+    return (
+      <IntlProvider locale="en">
+        <OrderTabel history={history} orders={ORDERS} />
+      </IntlProvider>
+    );
   });

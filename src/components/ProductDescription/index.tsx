@@ -2,21 +2,24 @@ import "./scss/index.scss";
 
 import isEqual from "lodash/isEqual";
 import * as React from "react";
+import { injectIntl, WrappedComponentProps } from "react-intl";
 
 import { ProductVariantPicker } from "@components/organisms";
+import { commonMessages } from "@temp/intl";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
-} from "@sdk/queries/gqlTypes/ProductDetails";
+} from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues, ITaxedMoney } from "@types";
 
-import { ICheckoutModelLine } from "@sdk/repository";
 import { TaxedMoney } from "../../@next/components/containers";
 import AddToCart from "./AddToCart";
 import { QuantityTextField } from "./QuantityTextField";
 
-interface ProductDescriptionProps {
+const LOW_STOCK_QUANTITY = 5;
+interface ProductDescriptionProps extends WrappedComponentProps {
   productId: string;
   productVariants: ProductDetails_product_variants[];
   name: string;
@@ -65,27 +68,25 @@ class ProductDescription extends React.Component<
     if (variantPricing) {
       if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
         return <TaxedMoney taxedMoney={variantPricing.price} />;
-      } else {
-        return (
-          <>
-            <span className="product-description__undiscounted_price">
-              <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
-            </span>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <TaxedMoney taxedMoney={variantPricing.price} />
-          </>
-        );
       }
-    }
-    if (isEqual(min, max)) {
-      return <TaxedMoney taxedMoney={min} />;
-    } else {
       return (
         <>
-          <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
+          <span className="product-description__undiscounted_price">
+            <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
+          </span>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <TaxedMoney taxedMoney={variantPricing.price} />
         </>
       );
     }
+    if (isEqual(min, max)) {
+      return <TaxedMoney taxedMoney={min} />;
+    }
+    return (
+      <>
+        <TaxedMoney taxedMoney={min} /> - <TaxedMoney taxedMoney={max} />
+      </>
+    );
   };
 
   onVariantPickerChange = (
@@ -96,7 +97,7 @@ class ProductDescription extends React.Component<
       this.setState({
         variant: selectedVariant.id,
         variantPricing: selectedVariant.pricing,
-        variantStock: selectedVariant.stockQuantity,
+        variantStock: selectedVariant.quantityAvailable,
       });
       this.props.setVariantId(selectedVariant.id);
     } else {
@@ -118,6 +119,7 @@ class ProductDescription extends React.Component<
 
   handleSubmit = () => {
     this.props.addToCart(this.state.variant, this.state.quantity);
+    this.setState({ quantity: 0 });
   };
 
   getAvailableQuantity = () => {
@@ -126,7 +128,6 @@ class ProductDescription extends React.Component<
 
     const cartItem = items?.find(item => item.variant.id === variant);
     const quantityInCart = cartItem?.quantity || 0;
-
     return variantStock - quantityInCart;
   };
 
@@ -136,19 +137,43 @@ class ProductDescription extends React.Component<
     });
   };
 
+  renderErrorMessage = (message: string) => (
+    <p className="product-description__error-message">{message}</p>
+  );
+
   render() {
     const { name } = this.props;
-    const { variant, quantity } = this.state;
+    const { variant, variantStock, quantity } = this.state;
+
+    const availableQuantity = this.getAvailableQuantity();
+    const isOutOfStock = !!variant && variantStock === 0;
+    const isNoItemsAvailable = !!variant && !isOutOfStock && !availableQuantity;
+    const isLowStock =
+      !!variant &&
+      !isOutOfStock &&
+      !isNoItemsAvailable &&
+      availableQuantity < LOW_STOCK_QUANTITY;
 
     return (
       <div className="product-description">
         <h3>{name}</h3>
-        <h4>{this.getProductPrice()}</h4>
+        {isOutOfStock ? (
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.outOfStock)
+          )
+        ) : (
+          <h4>{this.getProductPrice()}</h4>
+        )}
+        {isLowStock &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.lowStock)
+          )}
+        {isNoItemsAvailable && this.renderErrorMessage("No items available")}
         <div className="product-description__variant-picker">
           <ProductVariantPicker
             productVariants={this.props.productVariants}
             onChange={this.onVariantPickerChange}
-            selectSidebar={true}
+            selectSidebar
             queryAttributes={this.props.queryAttributes}
             onAttributeChangeHandler={this.props.onAttributeChangeHandler}
           />
@@ -156,9 +181,10 @@ class ProductDescription extends React.Component<
         <div className="product-description__quantity-input">
           <QuantityTextField
             quantity={quantity}
-            maxQuantity={this.getAvailableQuantity()}
+            maxQuantity={availableQuantity}
+            disabled={isOutOfStock || isNoItemsAvailable}
             onQuantityChange={this.handleQuantityChange}
-            hideErrors={!variant}
+            hideErrors={!variant || isOutOfStock || isNoItemsAvailable}
           />
         </div>
         <AddToCart
@@ -170,4 +196,4 @@ class ProductDescription extends React.Component<
   }
 }
 
-export default ProductDescription;
+export default injectIntl(ProductDescription);

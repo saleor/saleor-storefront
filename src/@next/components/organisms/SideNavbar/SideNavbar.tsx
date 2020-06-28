@@ -6,7 +6,7 @@ import { Icon } from "@components/atoms";
 import { largeScreen } from "@styles/constants";
 import LogoSmall from "images/logo-small.svg";
 
-import { Overlay } from "../";
+import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
 
@@ -72,7 +72,13 @@ export const SideNavbar: React.FC<IProps> = ({
   const handleHide = () => onHide(false);
 
   return (
-    <Overlay position="left" show={show} hide={handleHide} target={target}>
+    <Overlay
+      position="left"
+      show={show}
+      hide={handleHide}
+      target={target}
+      testingContext="navigationMenu"
+    >
       <S.Wrapper>
         <S.Menu>
           <TopBar onHide={handleHide}>

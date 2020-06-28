@@ -1,36 +1,42 @@
+import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
 import { History } from "history";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router-dom";
 
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
-import { IItems } from "@sdk/api/Cart/types";
-import { UserDetails_me } from "@sdk/queries/gqlTypes/UserDetails";
-import { useCart, useCheckout, useUserDetails } from "@sdk/react";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { BASE_URL } from "@temp/core/config";
+import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
 import { IProps } from "./types";
 
-const title = <h1 data-cy="cartPageTitle">My Cart</h1>;
+const title = (
+  <h1 data-test="cartPageTitle">
+    <FormattedMessage defaultMessage="My Cart" />
+  </h1>
+);
 
 const getShoppingButton = (history: History) => (
   <Button
-    dataCy="cartPageContinueShoppingButton"
+    testingContext="cartPageContinueShoppingButton"
     onClick={() => history.push(BASE_URL)}
   >
-    CONTINUE SHOPPING
+    <FormattedMessage {...checkoutMessages.continueShopping} />
   </Button>
 );
 
 const getCheckoutButton = (history: History, user: UserDetails_me | null) => (
   <Button
-    dataCy="cartPageProceedToCheckoutButton"
+    testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
-    PROCEED TO CHECKOUT
+    <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
   </Button>
 );
 
@@ -44,27 +50,19 @@ const prepareCartFooter = (
 ) => (
   <CartFooter
     subtotalPrice={
-      <TaxedMoney data-cy="cartPageSubtotalPrice" taxedMoney={subtotalPrice} />
+      <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
     }
-    totalPrice={
-      <TaxedMoney data-cy="cartPageTotalPrice" taxedMoney={totalPrice} />
-    }
+    totalPrice={<TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />}
     shippingPrice={
       shippingTaxedPrice &&
       shippingTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-cy="cartPageShippingPrice"
-          taxedMoney={shippingTaxedPrice}
-        />
+        <TaxedMoney data-test="shippingPrice" taxedMoney={shippingTaxedPrice} />
       )
     }
     discountPrice={
       promoTaxedPrice &&
       promoTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney
-          data-cy="cartPageShippingPrice"
-          taxedMoney={promoTaxedPrice}
-        />
+        <TaxedMoney data-test="discountPrice" taxedMoney={promoTaxedPrice} />
       )
     }
   />
@@ -79,8 +77,9 @@ const generateCart = (
     <CartRow
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
+      id={variant?.product?.id || ""}
       name={variant?.product?.name || ""}
-      maxQuantity={variant.stockQuantity || quantity}
+      maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       onQuantityChange={quantity => updateItem(variant.id, quantity)}
@@ -88,18 +87,8 @@ const generateCart = (
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
       }}
-      totalPrice={
-        <TaxedMoney
-          data-cy={`cartPageItem${index}TotalPrice`}
-          taxedMoney={totalPrice}
-        />
-      }
-      unitPrice={
-        <TaxedMoney
-          data-cy={`cartPageItem${index}UnitPrice`}
-          taxedMoney={variant?.pricing?.price}
-        />
-      }
+      totalPrice={<TaxedMoney taxedMoney={totalPrice} />}
+      unitPrice={<TaxedMoney taxedMoney={variant?.pricing?.price} />}
       sku={variant.sku}
       attributes={variant.attributes?.map(attribute => {
         return {
@@ -162,7 +151,6 @@ export const CartPage: React.FC<IProps> = ({}: IProps) => {
         cart={items && generateCart(items, removeItem, updateItem)}
       />
     );
-  } else {
-    return <CartEmpty button={getShoppingButton(history)} />;
   }
+  return <CartEmpty button={getShoppingButton(history)} />;
 };

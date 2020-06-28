@@ -1,9 +1,11 @@
 import { Formik } from "formik";
 import React from "react";
-import { TextField } from "../TextField";
+import { useIntl, FormattedMessage } from "react-intl";
 
 import { Button, ButtonLink } from "@components/atoms";
+import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
+import { TextField } from "../TextField";
 import * as S from "./styles";
 
 export const PasswordChangeForm: React.FC<{
@@ -11,6 +13,7 @@ export const PasswordChangeForm: React.FC<{
   hide: () => void;
   error?: IFormError[];
 }> = ({ handleSubmit, hide, error }) => {
+  const intl = useIntl();
   const fieldErrors: any = {};
 
   if (error) {
@@ -45,17 +48,27 @@ export const PasswordChangeForm: React.FC<{
             newPassword?: string;
           } = {};
           if (!values.confirmPassword) {
-            errors.confirmPassword = "Required field";
+            errors.confirmPassword = intl.formatMessage({
+              defaultMessage: "Required field",
+            });
           }
           if (!values.newPassword) {
-            errors.newPassword = "Required field";
+            errors.newPassword = intl.formatMessage({
+              defaultMessage: "Required field",
+            });
           }
           if (!values.oldPassword) {
-            errors.oldPassword = "Required field";
+            errors.oldPassword = intl.formatMessage({
+              defaultMessage: "Required field",
+            });
           }
           if (values.confirmPassword !== values.newPassword) {
-            errors.confirmPassword = "Passwords do not match";
-            errors.newPassword = "Passwords do not match";
+            errors.confirmPassword = intl.formatMessage({
+              defaultMessage: "Passwords do not match",
+            });
+            errors.newPassword = intl.formatMessage({
+              defaultMessage: "Passwords do not match",
+            });
           }
           return errors;
         }}
@@ -71,10 +84,10 @@ export const PasswordChangeForm: React.FC<{
           isValid,
         }) => {
           return (
-            <S.Form onSubmit={handleSubmit}>
+            <S.Form onSubmit={handleSubmit} data-test="changePasswordForm">
               <TextField
                 name="oldPassword"
-                label="Old Password"
+                label={intl.formatMessage({ defaultMessage: "Old Password" })}
                 type="password"
                 value={values.oldPassword}
                 onBlur={handleBlur}
@@ -87,7 +100,7 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="newPassword"
-                label="New Password"
+                label={intl.formatMessage({ defaultMessage: "New Password" })}
                 type="password"
                 value={values.newPassword}
                 onBlur={handleBlur}
@@ -100,7 +113,9 @@ export const PasswordChangeForm: React.FC<{
               />
               <TextField
                 name="confirmPassword"
-                label="Confirm Password"
+                label={intl.formatMessage({
+                  defaultMessage: "Confirm Password",
+                })}
                 type="password"
                 value={values.confirmPassword}
                 onBlur={handleBlur}
@@ -112,16 +127,21 @@ export const PasswordChangeForm: React.FC<{
                 }
               />
               <S.FormButtons>
-                <ButtonLink type="button" color="secondary" onClick={hide}>
-                  Cancel
+                <ButtonLink
+                  testingContext="cancelButton"
+                  type="button"
+                  color="secondary"
+                  onClick={hide}
+                >
+                  <FormattedMessage {...commonMessages.cancel} />
                 </ButtonLink>
                 <Button
-                  dataCy="submitPasswordChangeFormButton"
+                  testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  Save
+                  <FormattedMessage {...commonMessages.save} />
                 </Button>
               </S.FormButtons>
             </S.Form>

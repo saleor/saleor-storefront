@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import {
@@ -11,7 +12,7 @@ import {
   Overlay,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "../..";
 import RegisterForm from "./RegisterForm";
 
@@ -25,6 +26,7 @@ class Login extends React.Component<
   static defaultProps = {
     active: "login",
   };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -41,11 +43,13 @@ class Login extends React.Component<
     const { show, hide } = overlay;
 
     return (
-      <Overlay context={overlay}>
+      <Overlay testingContext="loginOverlay" context={overlay}>
         <div className="login">
           <Online>
             <div className="overlay__header">
-              <p className="overlay__header-text">Saleor account</p>
+              <p className="overlay__header-text">
+                <FormattedMessage defaultMessage="Saleor account" />
+              </p>
               <ReactSVG
                 path={closeImg}
                 onClick={hide}
@@ -54,18 +58,18 @@ class Login extends React.Component<
             </div>
             <div className="login__tabs">
               <span
-                data-cy="accountOverlayLoginTab"
+                data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
                 className={this.state.active === "login" ? "active-tab" : ""}
               >
-                Sign in to account
+                <FormattedMessage defaultMessage="Sign in to account" />
               </span>
               <span
-                data-cy="accountOverlayRegisterTab"
+                data-test="registerTab"
                 onClick={() => this.changeActiveTab("register")}
                 className={this.state.active === "register" ? "active-tab" : ""}
               >
-                Register new account
+                <FormattedMessage defaultMessage="Register new account" />
               </span>
             </div>
             <div className="login__content">

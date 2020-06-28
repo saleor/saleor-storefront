@@ -1,14 +1,17 @@
 import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
+import { commonMessages } from "@temp/intl";
 
-import { usePasswordChange } from "@sdk/react";
+import { usePasswordChange } from "@saleor/sdk";
 import { PasswordChangeForm } from "./PasswordChangeForm";
 import * as S from "./styles";
 
 export const PasswordTile: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [setPasswordChange, { data, error }] = usePasswordChange();
+  const intl = useIntl();
 
   React.useEffect(() => {
     if (data && !error) {
@@ -20,9 +23,10 @@ export const PasswordTile: React.FC = () => {
       <Tile>
         <S.Wrapper>
           <S.Header>
-            MY PASSWORD
+            <FormattedMessage defaultMessage="MY PASSWORD" />
             {!isEditing && (
               <IconButton
+                testingContext="editPasswordButton"
                 name="edit"
                 size={22}
                 onClick={() => setIsEditing(isEditing => !isEditing)}
@@ -44,7 +48,7 @@ export const PasswordTile: React.FC = () => {
               </S.ContentEdit>
             ) : (
               <Attribute
-                description="Password"
+                description={intl.formatMessage(commonMessages.password)}
                 attributeValue="**************"
               />
             )}

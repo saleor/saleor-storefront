@@ -1,16 +1,13 @@
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import {
-  defaultDataIdFromObject,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "apollo-cache-inmemory";
+import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import { ApolloClient } from "apollo-client";
 import * as React from "react";
+import { useIntl } from "react-intl";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
 import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
+import TagManager from "react-gtm-module";
 import { hot } from "react-hot-loader";
 import { Route, Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -21,11 +18,19 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import { SaleorProvider, useAuth } from "@sdk/react";
+import {
+  authLink,
+  createSaleorClient,
+  fireSignOut,
+  invalidTokenLinkWithTokenHandler,
+  SaleorProvider,
+  useAuth,
+} from "@saleor/sdk";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
 import { OverlayProvider } from "./components";
+import { LocaleProvider } from "./components/Locale";
 import ShopProvider from "./components/ShopProvider";
 import {
   apiUrl,
@@ -35,13 +40,6 @@ import {
 } from "./constants";
 import { history } from "./history";
 
-import { createSaleorClient } from "./@sdk";
-import {
-  authLink,
-  fireSignOut,
-  invalidTokenLinkWithTokenHandler,
-} from "./@sdk/auth";
-
 const cache = new InMemoryCache({
   dataIdFromObject: obj => {
     if (obj.__typename === "Shop") {
@@ -50,6 +48,10 @@ const cache = new InMemoryCache({
     return defaultDataIdFromObject(obj);
   },
 });
+
+if (process.env.GTM_ID !== undefined) {
+  TagManager.initialize({ gtmId: process.env.GTM_ID });
+}
 
 const startApp = async () => {
   if (sentryDsn !== undefined) {
@@ -74,7 +76,9 @@ const startApp = async () => {
    * This is temporary adapter for queries and mutations not included in SDK to handle invalid token error for them.
    * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
    */
-  const ApolloClientInvalidTokenLinkAdapter = ({ children }) => {
+  const ApolloClientInvalidTokenLinkAdapter: React.FC<{
+    children: (apolloClient) => React.ReactElement;
+  }> = ({ children }) => {
     const tokenExpirationCallback = () => {
       fireSignOut(apolloClient);
     };
@@ -94,6 +98,7 @@ const startApp = async () => {
   const Root = hot(module)(() => {
     const Notifications = () => {
       const alert = useAlert();
+      const intl = useIntl();
 
       const { updateAvailable } = React.useContext(ServiceWorkerContext);
 
@@ -101,10 +106,14 @@ const startApp = async () => {
         if (updateAvailable) {
           alert.show(
             {
-              actionText: "Refresh",
-              content:
-                "To update the application to the latest version, please refresh the page!",
-              title: "New version is available!",
+              actionText: intl.formatMessage({ defaultMessage: "Refresh" }),
+              content: intl.formatMessage({
+                defaultMessage:
+                  "To update the application to the latest version, please refresh the page!",
+              }),
+              title: intl.formatMessage({
+                defaultMessage: "New version is available!",
+              }),
             },
             {
               onClose: () => {
@@ -121,14 +130,18 @@ const startApp = async () => {
         if (authenticated) {
           alert.show(
             {
-              title: "You are now logged in",
+              title: intl.formatMessage({
+                defaultMessage: "You are now logged in",
+              }),
             },
             { type: "success" }
           );
         } else {
           alert.show(
             {
-              title: "You are now logged out",
+              title: intl.formatMessage({
+                defaultMessage: "You are now logged out",
+              }),
             },
             { type: "success" }
           );
@@ -141,20 +154,18 @@ const startApp = async () => {
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
           <ApolloClientInvalidTokenLinkAdapter>
-            {(apolloClient: ApolloClient<NormalizedCacheObject>) =>
-              apolloClient && (
-                <ApolloProvider client={apolloClient}>
-                  <SaleorProvider client={apolloClient}>
-                    <ShopProvider>
-                      <OverlayProvider>
-                        <App />
-                        <Notifications />
-                      </OverlayProvider>
-                    </ShopProvider>
-                  </SaleorProvider>
-                </ApolloProvider>
-              )
-            }
+            {apolloClient => (
+              <ApolloProvider client={apolloClient}>
+                <SaleorProvider client={apolloClient}>
+                  <ShopProvider>
+                    <OverlayProvider>
+                      <App />
+                      <Notifications />
+                    </OverlayProvider>
+                  </ShopProvider>
+                </SaleorProvider>
+              </ApolloProvider>
+            )}
           </ApolloClientInvalidTokenLinkAdapter>
         </QueryParamProvider>
       </Router>
@@ -168,8 +179,10 @@ const startApp = async () => {
         {...notificationOptions}
       >
         <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <GlobalStyle />
-          <Root />
+          <LocaleProvider>
+            <GlobalStyle />
+            <Root />
+          </LocaleProvider>
         </ServiceWorkerProvider>
       </AlertProvider>
     </ThemeProvider>,

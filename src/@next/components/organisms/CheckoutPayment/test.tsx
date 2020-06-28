@@ -1,6 +1,7 @@
 import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { Input, Select } from "@components/atoms";
 
@@ -18,17 +19,19 @@ describe("<CheckoutPayment />", () => {
     const processPayment = jest.fn();
     const onGatewayError = jest.fn();
     const wrapper = mount(
-      <CheckoutPayment
-        {...LOGGED_IN_USER_PROPS}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-        addPromoCode={addPromoCode}
-        removeVoucherCode={removeVoucherCode}
-        submitUnchangedDiscount={submitUnchangedDiscount}
-        selectPaymentGateway={selectPaymentGateway}
-        processPayment={processPayment}
-        onGatewayError={onGatewayError}
-      />
+      <IntlProvider locale="en">
+        <CheckoutPayment
+          {...LOGGED_IN_USER_PROPS}
+          setBillingAddress={setBillingAddress}
+          setBillingAsShippingAddress={setBillingAsShippingAddress}
+          addPromoCode={addPromoCode}
+          removeVoucherCode={removeVoucherCode}
+          submitUnchangedDiscount={submitUnchangedDiscount}
+          selectPaymentGateway={selectPaymentGateway}
+          processPayment={processPayment}
+          onGatewayError={onGatewayError}
+        />
+      </IntlProvider>
     );
 
     const address = LOGGED_IN_USER_PROPS.userAddresses[0];
@@ -51,17 +54,19 @@ describe("<CheckoutPayment />", () => {
     const selectPaymentGateway = jest.fn();
     const onGatewayError = jest.fn();
     const wrapper = mount(
-      <CheckoutPayment
-        {...ANONYMOUS_USER_PROPS}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-        addPromoCode={addPromoCode}
-        removeVoucherCode={removeVoucherCode}
-        submitUnchangedDiscount={submitUnchangedDiscount}
-        selectPaymentGateway={selectPaymentGateway}
-        processPayment={processPayment}
-        onGatewayError={onGatewayError}
-      />
+      <IntlProvider locale="en">
+        <CheckoutPayment
+          {...ANONYMOUS_USER_PROPS}
+          setBillingAddress={setBillingAddress}
+          setBillingAsShippingAddress={setBillingAsShippingAddress}
+          addPromoCode={addPromoCode}
+          removeVoucherCode={removeVoucherCode}
+          submitUnchangedDiscount={submitUnchangedDiscount}
+          selectPaymentGateway={selectPaymentGateway}
+          processPayment={processPayment}
+          onGatewayError={onGatewayError}
+        />
+      </IntlProvider>
     );
 
     const wrapperText = wrapper.text();
@@ -69,11 +74,7 @@ describe("<CheckoutPayment />", () => {
     expect(wrapperText).toContain(ANONYMOUS_USER_PROPS.paymentGateways[1].name);
 
     const address = ANONYMOUS_USER_PROPS.checkoutBillingAddress;
-    const getValue = (n: number) =>
-      wrapper
-        .find(Input)
-        .at(n)
-        .prop("value");
+    const getValue = (n: number) => wrapper.find(Input).at(n).prop("value");
     expect(getValue(0)).toEqual(address.firstName);
     expect(getValue(1)).toEqual(address.lastName);
     expect(getValue(2)).toEqual(address.companyName);
@@ -82,12 +83,9 @@ describe("<CheckoutPayment />", () => {
     expect(getValue(5)).toEqual(address.streetAddress2);
     expect(getValue(6)).toEqual(address.city);
     expect(getValue(7)).toEqual(address.postalCode);
-    expect(
-      wrapper
-        .find(Select)
-        .at(0)
-        .prop("value").code
-    ).toEqual(address.country?.code);
+    expect(wrapper.find(Select).at(0).prop("value").code).toEqual(
+      address.country?.code
+    );
     expect(getValue(8)).toEqual(address.countryArea);
   });
 });

@@ -385,7 +385,7 @@ export interface Category {
    */
   products: Category_products | null;
   /**
-   * Look up a category by ID.
+   * Look up a category by ID or slug.
    */
   category: Category_category | null;
   /**

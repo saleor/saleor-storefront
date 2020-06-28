@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import { sanitize } from "dompurify";
 import draftToHtml from "draftjs-to-html";
 import React from "react";

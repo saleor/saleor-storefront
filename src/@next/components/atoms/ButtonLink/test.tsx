@@ -9,7 +9,11 @@ const TEXT = "Text";
 
 describe("<ButtonLink />", () => {
   const renderButtonLink = (props?: IProps) =>
-    shallow(<ButtonLink {...props}>{TEXT}</ButtonLink>);
+    shallow(
+      <ButtonLink testingContext="test" {...props}>
+        {TEXT}
+      </ButtonLink>
+    );
 
   it("exists", () => {
     const buttonLink = renderButtonLink();
@@ -28,6 +32,7 @@ describe("<ButtonLink />", () => {
     const PROPS = {
       children: TEXT,
       onClick: onButtonLinkClick,
+      testingContext: "test",
     };
     const buttonLink = renderButtonLink(PROPS);
 

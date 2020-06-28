@@ -1,6 +1,8 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
+import { commonMessages } from "@temp/intl";
 
 import { FormAddressType } from "./types";
 
@@ -37,7 +39,11 @@ const AddressSummary: React.FC<{
         <br />
         {address.phone && (
           <>
-            Phone number: {address.phone} <br />
+            <FormattedMessage
+              {...commonMessages.phoneNumber}
+              values={{ phone: address.phone }}
+            />{" "}
+            <br />
           </>
         )}
         {email && (
@@ -47,7 +53,8 @@ const AddressSummary: React.FC<{
         )}
       </p>
     );
-  } else if (email) {
+  }
+  if (email) {
     return (
       <p className="address-summary" ref={paragraphRef}>
         {email}

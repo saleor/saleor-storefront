@@ -9,7 +9,7 @@ import React from "react";
 import {
   generateCategoryUrl,
   generateCollectionUrl,
-  generatePageUrl
+  generatePageUrl,
 } from "@utils/core";
 import * as S from "./styles";
 import { IProps } from "./types";

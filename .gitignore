@@ -2,12 +2,15 @@
 !.dockerignore
 !.storybook
 !.circle
+!.eslintrc
 !.gitignore
+!.github
 !.babelrc
 !.plop
 !.jest
 !.linguirc
 !.prettierrc
+!.prettierignore
 dist
 node_modules
 src/locales/_build

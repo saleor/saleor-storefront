@@ -29,7 +29,7 @@ const SelectField: GenericSelectField<SelectValue> = ({
 }) => (
   <div
     className={classNames("react-select-wrapper", {
-      "react-select-wrapper--grey": styleType === "grey"
+      "react-select-wrapper--grey": styleType === "grey",
     })}
   >
     {label ? <span className="input__label">{label}</span> : null}

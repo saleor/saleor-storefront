@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { META_DEFAULTS } from "../../core/config";
-import { default as MetaConsumer } from "./consumer";
+import MetaConsumer from "./consumer";
 import { MetaContextInterface, Provider as MetaProvider } from "./context";
 
 const removeEmpty = obj => {

@@ -43,8 +43,8 @@ export const Page: React.FC<PageProps> = ({
             {navigation.map(menuElement => (
               <li
                 className={classNames({
-                  ["article-page__navigation-element"]: true,
-                  ["article-page__navigation-element--active"]:
+                  "article-page__navigation-element": true,
+                  "article-page__navigation-element--active":
                     menuElement.active,
                 })}
                 key={menuElement.url}
@@ -55,9 +55,7 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-        <RichTextContent
-          descriptionJson={page.contentJson}
-        />
+          <RichTextContent descriptionJson={page.contentJson} />
         </div>
       </div>
     </div>

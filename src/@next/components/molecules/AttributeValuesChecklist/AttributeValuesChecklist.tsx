@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ButtonLink, Checkbox } from "@components/atoms";
 
@@ -22,26 +23,26 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
         values.map((value, index) => {
           if (!viewAllOptions && index > valuesShowLimitNumber - 1) {
             return <></>;
-          } else {
-            return (
-              <Checkbox
-                name={name}
-                checked={!!value.selected}
-                onChange={() => onValueClick(value)}
-              >
-                {value && value.name}
-              </Checkbox>
-            );
           }
+          return (
+            <Checkbox
+              name={name}
+              checked={!!value.selected}
+              onChange={() => onValueClick(value)}
+            >
+              {value && value.name}
+            </Checkbox>
+          );
         })}
       {!viewAllOptions && values.length > valuesShowLimitNumber && (
         <S.ViewMoreButton>
           <ButtonLink
+            testingContext="viewAllButton"
             size="sm"
             color="secondary"
             onClick={() => setViewAllOptions(true)}
           >
-            VIEW ALL OPTIONS
+            <FormattedMessage defaultMessage="VIEW ALL OPTIONS" />
           </ButtonLink>
         </S.ViewMoreButton>
       )}

@@ -42,10 +42,7 @@ describe("<ThankYou />", () => {
       />
     );
 
-    wrapper
-      .find("button")
-      .at(1)
-      .simulate("click");
+    wrapper.find("button").at(1).simulate("click");
 
     expect(orderDetailsMock).toHaveBeenCalled();
   });
@@ -59,10 +56,7 @@ describe("<ThankYou />", () => {
       />
     );
 
-    wrapper
-      .find("button")
-      .at(0)
-      .simulate("click");
+    wrapper.find("button").at(0).simulate("click");
 
     expect(continueShoppingMock).toHaveBeenCalled();
   });

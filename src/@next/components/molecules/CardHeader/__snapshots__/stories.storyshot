@@ -160,7 +160,7 @@ exports[`Storyshots @components/molecules/CardHeader with big text size 1`] = `
     </h4>
     <div
       className="c3"
-      data-cy="icon_button"
+      data-test="test"
       onClick={[Function]}
     >
       <svg
@@ -279,7 +279,7 @@ exports[`Storyshots @components/molecules/CardHeader with close icon 1`] = `
     </h4>
     <div
       className="c3"
-      data-cy="icon_button"
+      data-test="closeOverlayButton"
       onClick={[Function]}
     >
       <svg
@@ -398,7 +398,7 @@ exports[`Storyshots @components/molecules/CardHeader with custom icon 1`] = `
     </h4>
     <div
       className="c3"
-      data-cy="icon_button"
+      data-test="test"
       onClick={[Function]}
     >
       <svg

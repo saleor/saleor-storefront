@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Icon } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
@@ -15,7 +16,7 @@ const CostLine = ({
 }: ICostLine) => (
   <S.CostLine last={last}>
     <span>{name}</span>
-    <span data-cy={`cartSummaryCost${name.replace(/\s/g, "")}`}>
+    <span data-test={`cartSummaryCost${name.replace(/\s/g, "")}`}>
       {negative && "- "}
       <TaxedMoney taxedMoney={cost} />
     </span>
@@ -27,9 +28,9 @@ const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => (
     {subtotal && <CostLine name="Subtotal" cost={subtotal} />}
     {shipping && <CostLine name="Shipping" cost={shipping} />}
     {promoCode && promoCode.gross.amount > 0 && (
-      <CostLine name="Promo Code" cost={promoCode} negative={true} />
+      <CostLine name="Promo Code" cost={promoCode} negative />
     )}
-    {total && <CostLine name="Total" cost={total} last={true} />}
+    {total && <CostLine name="Total" cost={total} last />}
   </S.Costs>
 );
 
@@ -48,10 +49,10 @@ const CartSummary: React.FC<IProps> = ({
   return (
     <S.Wrapper mobileCartOpened={mobileCartOpened}>
       <S.Title
-        data-cy="cartSummaryTitle"
+        data-test="cartSummaryTitle"
         onClick={() => setMobileCartOpened(!mobileCartOpened)}
       >
-        Cart Summary
+        <FormattedMessage defaultMessage="Cart Summary" />
         <S.ArrowUp mobileCartOpened={mobileCartOpened}>
           <Icon name="arrow_up" size={24} />
         </S.ArrowUp>

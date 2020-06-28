@@ -12,7 +12,7 @@ storiesOf("@components/organisms/ThankYou", module)
 
     return (
       <ThankYou
-        orderNumber={"#341414"}
+        orderNumber="#341414"
         continueShopping={continueShopping}
         orderDetails={orderDetails}
       />

@@ -1,12 +1,11 @@
 import "./scss/index.scss";
 
+import { useCart } from "@saleor/sdk";
 import { isEmpty } from "lodash";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
-
-import { useCart } from "@sdk/react";
 
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -53,7 +52,7 @@ const extractMeta = (product: ProductDetails_product) => ({
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
   const history = useHistory();
-  const search = history.location.search;
+  const { search } = history.location;
   const searchQueryAttributes = queryString.parse(search);
 
   const onAttributeChangeHandler = (slug: string | null, value: string) => {

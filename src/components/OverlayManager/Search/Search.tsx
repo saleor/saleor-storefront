@@ -3,8 +3,15 @@ import "./scss/index.scss";
 import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
+import {
+  injectIntl,
+  WrappedComponentProps,
+  FormattedMessage,
+} from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
+
+import { commonMessages } from "@temp/intl";
 
 import {
   Button,
@@ -27,18 +34,27 @@ import { TypedSearchResults } from "./queries";
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
 
-interface SearchProps extends RouteComponentProps {
+interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
 }
 
 interface SearchState {
   search: string;
-  inputFocused: boolean;
 }
 
 class Search extends React.Component<SearchProps, SearchState> {
-  state = { search: "", inputFocused: false };
+  state = { search: "" };
+
   submitBtnRef = React.createRef<HTMLButtonElement>();
+
+  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
+    if (
+      !!prevState.search.length &&
+      this.props.overlay.type !== OverlayType.search
+    ) {
+      this.setState({ search: "" });
+    }
+  }
 
   get hasSearchPhrase() {
     return this.state.search.length > 0;
@@ -70,18 +86,13 @@ class Search extends React.Component<SearchProps, SearchState> {
     }
   };
 
-  componentDidUpdate(_prevProps: SearchProps, prevState: SearchState) {
-    if (
-      !!prevState.search.length &&
-      this.props.overlay.type !== OverlayType.search
-    ) {
-      this.setState({ search: "" });
-    }
-  }
-
   render() {
     return (
-      <Overlay context={this.props.overlay} className="overlay--no-background">
+      <Overlay
+        testingContext="searchOverlay"
+        context={this.props.overlay}
+        className="overlay--no-background"
+      >
         <form
           className={classNames("search", {
             "search--has-results": this.hasSearchPhrase,
@@ -94,18 +105,22 @@ class Search extends React.Component<SearchProps, SearchState> {
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
               iconLeft={
-                <ReactSVG path={closeImg} onClick={this.props.overlay.hide} />
+                <ReactSVG
+                  path={closeImg}
+                  onClick={this.props.overlay.hide}
+                  className="search__input__close-btn"
+                />
               }
               iconRight={<ReactSVG path={searchImg} />}
-              autoFocus={true}
-              placeholder="Search"
+              autoFocus
+              placeholder={this.props.intl.formatMessage(commonMessages.search)}
               onBlur={this.handleInputBlur}
             />
           </div>
           <div
             className={classNames({
-              ["search__products"]: true,
-              ["search__products--expanded"]: this.hasSearchPhrase,
+              search__products: true,
+              "search__products--expanded": this.hasSearchPhrase,
             })}
           >
             <NetworkStatus>
@@ -135,11 +150,11 @@ class Search extends React.Component<SearchProps, SearchState> {
                                   <Loader />
                                 ) : (
                                   <Button
-                                    dataCy="searchProductsButton"  
+                                    testingContext="searchProductsButton"
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >
-                                    Show all results
+                                    <FormattedMessage defaultMessage="Show all results" />
                                   </Button>
                                 )}
                               </div>
@@ -172,8 +187,11 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 // Workaround ATM for:
 // withRouter(Search): Function components do not support contextType
-export default withRouter(
-  (props: RouteComponentProps & { overlay: OverlayContextInterface }) => (
-    <Search {...props} />
+export default injectIntl(
+  withRouter(
+    (
+      props: WrappedComponentProps &
+        RouteComponentProps & { overlay: OverlayContextInterface }
+    ) => <Search {...props} />
   )
 );

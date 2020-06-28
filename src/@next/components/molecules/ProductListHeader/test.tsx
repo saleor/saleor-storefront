@@ -1,6 +1,7 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { ProductListHeader } from ".";
 
@@ -43,22 +44,30 @@ describe("<ProductListHeader />", () => {
   });
 
   it("should not display Clear Filters button if no active filters present", () => {
-    const wrapper = shallow(<ProductListHeader {...DEFAULT_PROPS} />);
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ProductListHeader {...DEFAULT_PROPS} />
+      </IntlProvider>
+    );
 
     expect(wrapper.text()).not.toContain("Clear Filters");
   });
 
   it("should display Clear Filters button if active filters present are present", () => {
-    const wrapper = shallow(
-      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      </IntlProvider>
     );
 
     expect(wrapper.text()).toContain("CLEAR FILTERS");
   });
 
   it("should display number of active filters if any are present", () => {
-    const wrapper = shallow(
-      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      </IntlProvider>
     );
 
     expect(wrapper.text()).toContain("FILTERS (3)");
@@ -66,13 +75,15 @@ describe("<ProductListHeader />", () => {
 
   it("should call method for clearing filters when clicking on Clear Filters button", () => {
     const wrapper = mount(
-      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      <IntlProvider locale="en">
+        <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      </IntlProvider>
     );
 
     wrapper
       .find("button")
       .filterWhere(item => {
-        return item.prop("children") === "CLEAR FILTERS";
+        return item.text() === "CLEAR FILTERS";
       })
       .simulate("click");
 
@@ -81,13 +92,12 @@ describe("<ProductListHeader />", () => {
 
   it("should call method for clearing filters when clicking on Clear Filters button", () => {
     const wrapper = mount(
-      <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      <IntlProvider locale="en">
+        <ProductListHeader {...DEFAULT_PROPS} activeFilters={3} />
+      </IntlProvider>
     );
 
-    wrapper
-      .find("button")
-      .at(0)
-      .simulate("click");
+    wrapper.find("button").at(0).simulate("click");
 
     expect(openFiltersMenuMock).toHaveBeenCalledTimes(1);
   });

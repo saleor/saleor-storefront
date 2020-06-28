@@ -1,16 +1,26 @@
+/* eslint-disable no-console */
+
 import fs from "fs";
 import { chunk } from "lodash";
 import path from "path";
+/* eslint-disable-next-line import/no-extraneous-dependencies */
 import { buildSitemapIndex, createSitemap } from "sitemap";
 
 class SitemapGenerator {
   urls: [object?];
+
   chunks: object[][];
+
   sitemapSize: number;
+
   sitemapName: string;
+
   hostname: string;
+
   cacheTime: number;
+
   destinationDir: string;
+
   sitemaps: [string?];
 
   constructor(options) {
