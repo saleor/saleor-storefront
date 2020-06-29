@@ -16,11 +16,6 @@ module.exports = ({ sourceDir, distDir }) => ({
   entry: {
     app: `${sourceDir}/index.tsx`,
   },
-  output: {
-    path: distDir,
-    publicPath: STATIC_URL,
-  },
-  devtool: "source-map",
   module: {
     rules: [
       {
@@ -90,7 +85,7 @@ module.exports = ({ sourceDir, distDir }) => ({
   },
   output: {
     path: distDir,
-    publicPath: "/",
+    publicPath: STATIC_URL,
   },
   plugins: [
     new CleanWebpackPlugin({
