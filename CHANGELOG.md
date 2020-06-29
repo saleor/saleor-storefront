@@ -12,6 +12,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add prettier to precommit - #766 by @dominik-zeglen
 - Do not use prettier on generated files - #773 by @dominik-zeglen
 - Add eslint - #776 by @dominik-zeglen
+- Fix storybook config - #789 by @dominik-zeglen
 
 ## 2.10.2
 
