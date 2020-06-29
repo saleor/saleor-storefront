@@ -43,7 +43,7 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "fonts/",
-              publicPath: STATIC_URL+"fonts/",
+              publicPath: "/fonts/",
             },
           },
         ],
@@ -56,7 +56,7 @@ module.exports = ({ sourceDir, distDir }) => ({
             options: {
               name: "[name].[ext]",
               outputPath: "images/",
-              publicPath: STATIC_URL+"images/",
+              publicPath: "/images/",
             },
           },
           {
