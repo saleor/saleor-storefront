@@ -10,10 +10,7 @@ import { fireSignOut, getAuthToken, setAuthToken } from "../auth";
 import { MUTATIONS } from "../mutations";
 import { PasswordChange } from "../mutations/gqlTypes/PasswordChange";
 import { SetPassword } from "../mutations/gqlTypes/SetPassword";
-import {
-  TokenAuth,
-  TokenAuth_tokenCreatte,
-} from "../mutations/gqlTypes/TokenAuth";
+import { TokenAuth_tokenCreate } from "../mutations/gqlTypes/TokenAuth";
 import { QUERIES } from "../queries";
 import { UserDetails } from "../queries/gqlTypes/UserDetails";
 import { RequireAtLeastOne } from "../tsHelpers";
