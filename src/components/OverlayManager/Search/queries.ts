@@ -20,7 +20,6 @@ const searchResultsQuery = gql`
           thumbnail2x: thumbnail(size: 510) {
             url
           }
-          url
           category {
             id
             name
