@@ -17,13 +17,29 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   const { data: user } = useUserDetails();
   const guest = !user;
 
+  const handleDownloadInvoice = () => {
+    if (order && "invoices" in order && order.invoices?.length) {
+      const invoice = order.invoices.reduce((a, b) => {
+        return new Date(a.createdAt) > new Date(b.createdAt) ? a : b;
+      });
+
+      if (invoice) {
+        window.open(invoice.url, "_blank");
+      }
+    }
+  };
+
   if (loading) {
     return <Loader />;
   }
 
   return (
     <div className="order-details container">
-      <Page guest={guest} order={order} />
+      <Page
+        guest={guest}
+        order={order}
+        downloadInvoice={handleDownloadInvoice}
+      />
     </div>
   );
 };
