@@ -4,6 +4,10 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 2.10.4
+
+- Fix build errors introduced in version 2.10.3 - by @dominik-zeglen
+
 ## 2.10.3
 
 - Stop storing plain text passwords in localStorage - by @dominik-zeglen
