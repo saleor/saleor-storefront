@@ -3,6 +3,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
+import useLocale from "@saleor/@next/hooks/useLocale";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
@@ -42,12 +43,15 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
+  const { locale } = useLocale();
+
+  const intl = useIntl();
+
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
-  const intl = useIntl();
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -94,6 +98,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       ? convertToAttributeScalar(filters.attributes)
       : {},
     id: getGraphqlIdFromDBId(match.params.id, "Collection"),
+    locale: locale.toUpperCase(),
     sortBy: convertSortByFromString(filters.sortBy),
   };
 

@@ -6,6 +6,7 @@ export const mainMenu = gql`
   fragment MainMenuSubItem on MenuItem {
     id
     name
+    translation(languageCode:$locale){name}
     category {
       id
       name
@@ -23,7 +24,9 @@ export const mainMenu = gql`
     }
   }
 
-  query MainMenu {
+  query MainMenu(
+    $locale:LanguageCodeEnum!
+  ) {
     shop {
       navigation {
         main {
@@ -43,4 +46,4 @@ export const mainMenu = gql`
   }
 `;
 
-export const TypedMainMenuQuery = TypedQuery<MainMenu, {}>(mainMenu);
+export const TypedMainMenuQuery = TypedQuery<MainMenu, MainMenuVariables>(mainMenu);

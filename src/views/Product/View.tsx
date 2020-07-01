@@ -109,12 +109,14 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
+const { locale } = useLocale();
 
   return (
     <TypedProductDetailsQuery
       loaderFull
       variables={{
         id: getGraphqlIdFromDBId(match.params.id, "Product"),
+        locale: locale.toUpperCase(),
       }}
       errorPolicy="all"
       key={match.params.id}

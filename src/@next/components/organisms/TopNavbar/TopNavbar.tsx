@@ -16,6 +16,8 @@ import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+import { FormattedMessage } from "react-intl";
+
 const menuVisibleRatio = 0.8;
 const getElementWidth = (node: Element) => node.scrollWidth;
 const isMenuVisible = (node: Element) => {
@@ -132,7 +134,11 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
           </S.IconWrapper>
           <S.SearchButton>
             <Media minWidth={smallScreen}>
-              <S.Text>SEARCH</S.Text>
+              <S.Text>
+                <FormattedMessage
+                  defaultMessage={"SEARCH"}
+                />
+              </S.Text>
             </Media>
             <Icon name="search" size={24} />
           </S.SearchButton>

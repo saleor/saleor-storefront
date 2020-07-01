@@ -10,6 +10,8 @@ import { Article_shop } from "./gqlTypes/Article";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
 const canDisplay = page =>
   maybe(() => !!page && !!page.title && !!page.contentJson);
 const getHeaderImage = (shop: Article_shop) =>
@@ -21,8 +23,11 @@ export const View: React.FC<ViewProps> = ({
   match: {
     params: { slug },
   },
-}) => (
-  <TypedArticleQuery loaderFull variables={{ slug }} errorPolicy="all">
+}) => {
+  const { locale } = useLocale();
+
+  return(
+  <TypedArticleQuery loaderFull variables={{ slug, locale:locale.toUpperCase()}} errorPolicy="all">
     {({ data }) => {
       const navigation = STATIC_PAGES.map(page => ({
         ...page,

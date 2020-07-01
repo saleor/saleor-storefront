@@ -33,6 +33,25 @@ export const basicProductFragment = gql`
   }
 `;
 
+export const productNameTranslationFragment = gql`
+  fragment ProductNameTranslationFields on Product {
+    translation(languageCode:$locale){
+      name
+      descriptionJson
+      seoDescription
+      seoTitle
+    }  
+  }
+`;
+
+export const productVariantTranslationFragment = gql`
+  fragment ProductVariantTranslationFields on ProductVariant {
+    translation(languageCode:$locale){
+      name
+    }  
+  }
+`;
+
 export const productPricingFragment = gql`
   ${priceFragment}
   fragment ProductPricingField on Product {
@@ -63,10 +82,12 @@ export const selectedAttributeFragment = gql`
     attribute {
       id
       name
+      translation(languageCode:$locale){name}
     }
     values {
       id
       name
+      translation(languageCode:$locale){name}
     }
   }
 `;
@@ -98,11 +119,13 @@ export const productVariantFragment = gql`
         id
         name
         slug
+        translation(languageCode:$locale){name}
       }
       values {
         id
         name
         value: name
+        translation(languageCode:$locale){name}
       }
     }
   }
@@ -111,21 +134,26 @@ export const productVariantFragment = gql`
 export const productDetailsQuery = gql`
   ${basicProductFragment}
   ${selectedAttributeFragment}
+  ${productNameTranslationFragment}
+  ${productVariantTranslationFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!, $countryCode: CountryCode) {
+  query ProductDetails($id: ID!, $countryCode: CountryCode, $locale:LanguageCodeEnum!) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField
+      ...ProductNameTranslationFields
       descriptionJson
       category {
         id
         name
+        translation(languageCode:$locale){name}
         products(first: 3) {
           edges {
             node {
               ...BasicProductFields
               ...ProductPricingField
+              ...ProductNameTranslationFields
             }
           }
         }
@@ -140,6 +168,7 @@ export const productDetailsQuery = gql`
       }
       variants {
         ...ProductVariantFields
+        ...ProductVariantTranslationFields
       }
       seoDescription
       seoTitle
@@ -152,14 +181,18 @@ export const productDetailsQuery = gql`
 // We need allow the user view  all cart items regardless of pagination.
 export const productVariantsQuery = gql`
   ${basicProductFragment}
+  ${productNameTranslationFragment}
   ${productVariantFragment}
-  query VariantList($ids: [ID!], $countryCode: CountryCode) {
+  ${productVariantTranslationFragment}
+  query VariantList($ids: [ID!], $countryCode: CountryCode, $locale:LanguageCodeEnum!) {
     productVariants(ids: $ids, first: 100) {
       edges {
         node {
           ...ProductVariantFields
+          ...ProductVariantTranslationFields
           product {
             ...BasicProductFields
+            ...ProductNameTranslationFields
           }
         }
       }

@@ -14,6 +14,8 @@ import {
   Collection_products,
 } from "./gqlTypes/Collection";
 
+import { useIntl } from "react-intl";
+
 interface SortItem {
   label: string;
   value?: string;
@@ -52,6 +54,8 @@ const Page: React.FC<PageProps> = ({
   sortOptions,
   onAttributeFiltersChange,
 }) => {
+  const intl = useIntl();
+
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
   );
@@ -70,11 +74,13 @@ const Page: React.FC<PageProps> = ({
   ];
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
+    const value = attributes
+    .find(({ slug }) => attributeSlug === slug)
+    .values.find(({ slug }) => valueSlug === slug)
     return {
       attributeSlug,
-      valueName: attributes
-        .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
+      valueName: value.name,
+      valueNameTranslation: value.translation?.name,
       valueSlug,
     };
   };

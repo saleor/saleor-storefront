@@ -36,6 +36,8 @@ import closeImg from "../../../images/x.svg";
 
 interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
+  locale: string;
+  // intl: IntlShape;
 }
 
 interface SearchState {
@@ -87,6 +89,8 @@ class Search extends React.Component<SearchProps, SearchState> {
   };
 
   render() {
+    const intl = this.props.intl;
+
     return (
       <Overlay
         testingContext="searchOverlay"
@@ -131,7 +135,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{ query: this.state.search }}
+                      variables={{ query: this.state.search, locale: this.props.locale}}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {

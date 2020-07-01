@@ -62,11 +62,11 @@ export const ProductListHeader: React.FC<IProps> = ({
       </S.Bar>
       <S.FiltersChipsWrapper>
         {activeFiltersAttributes.map(
-          ({ attributeSlug, valueName, valueSlug }) => (
+          ({ attributeSlug, valueName, valueSlug, valueNameTranslation }) => (
             <Chip
               onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
             >
-              {valueName}
+              {valueNameTranslation || valueName}
             </Chip>
           )
         )}

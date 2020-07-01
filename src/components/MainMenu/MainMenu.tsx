@@ -32,6 +32,9 @@ import {
 import "./scss/index.scss";
 
 const MainMenu: React.FC = () => {
+  const { locale } = useLocale()
+  const variables = {locale:locale.toUpperCase()}
+
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
   const { items } = useCart();
@@ -50,7 +53,7 @@ const MainMenu: React.FC = () => {
       {overlayContext => (
         <nav className="main-menu" id="header">
           <div className="main-menu__left">
-            <TypedMainMenuQuery renderOnError displayLoader={false}>
+            <TypedMainMenuQuery variables={variables} renderOnError displayLoader={false}>
               {({ data }) => {
                 const items = maybe(() => data.shop.navigation.main.items, []);
 

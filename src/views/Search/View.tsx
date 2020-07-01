@@ -17,6 +17,11 @@ import {
 import Page from "./Page";
 import { TypedSearchProductsQuery } from "./queries";
 
+import useLocale from "@saleor/@next/hooks/useLocale";
+
+import { sortLabelsMessages } from "@saleor/intl"
+import { useIntl } from "react-intl";
+
 type ViewProps = RouteComponentProps<{
   id: string;
 }>;
@@ -42,13 +47,16 @@ export const FilterQuerySet = {
 };
 
 export const View: React.FC<ViewProps> = ({ match }) => {
+  const { locale } = useLocale();
+
+  const intl = useIntl();
+
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [search, setSearch] = useQueryParam("q", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
-  const intl = useIntl();
 
   const filters: IFilters = {
     attributes: attributeFilters,
@@ -63,6 +71,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       ? convertToAttributeScalar(filters.attributes)
       : {},
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
+    locale: locale.toUpperCase(),
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
   };
