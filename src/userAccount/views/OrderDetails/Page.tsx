@@ -66,7 +66,7 @@ const Page: React.FC<{
             {translateOrderStatus(order.statusDisplay, intl)}
           </p>
         </div>
-        {order && "invoices" in order && order.invoices?.length && (
+        {"invoices" in order && order.invoices?.length && (
           <div className="order-details__header-menu">
             <DropdownMenu
               type="clickable"
