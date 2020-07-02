@@ -25,7 +25,7 @@
       "@hooks": ["./src/@next/hooks/index.ts"],
       "@hooks/*": ["./src/@next/hooks/*"],
       "@types": ["./src/@next/types/index.ts"],
-      "@locale/*": ["locale/*"]
+      "@locale/*": ["./locale/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true

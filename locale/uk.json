@@ -21,7 +21,7 @@
     "string": "Required field"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2799926859": {
-    "string": "Potwierdź hasło"
+    "string": "Підтвердіть пароль"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_4253911811": {
     "string": "Passwords do not match"
@@ -30,25 +30,25 @@
     "string": "MY PASSWORD"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
-    "string": "Domyślny adres"
+    "string": "Адреса за замовчуванням"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1578192486": {
-    "string": "Default Billing Address"
+    "string": "Платіжна адреса за замовчуванням"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_2131178753": {
-    "string": "Ustaw jako domyślny adres dostawy"
+    "string": "Set as default shipping address"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_3096438859": {
-    "string": "Ustaw jako domyślny adres do rachunku"
+    "string": "Set as default billing address"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_4109348993": {
-    "string": "Domyślny adres dostawy"
+    "string": "Адреса доставки за замовчуванням"
   },
   "@next_dot_components_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
     "string": "VIEW ALL OPTIONS"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1148029984": {
-    "string": "Wartość"
+    "string": "Значення"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1633831221": {
     "string": "Date of Order"
@@ -81,16 +81,16 @@
     "string": "SET NEW PASSWORD"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4028609483": {
-    "string": "Zresetuj hasło"
+    "string": "Reset your password"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1139500589": {
-    "string": "Kraj"
+    "string": "Країна"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1363074570": {
-    "string": "Adres linia 1"
+    "string": "Адреса 1"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_253031977": {
-    "string": "Miasto"
+    "string": "Місто"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_2796540622": {
     "string": "ZIP/Postal Code"
@@ -99,13 +99,13 @@
     "string": "Company Name (Optional)"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_3121963259": {
-    "string": "Adres linia 2"
+    "string": "Адреса 2"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_404705399": {
     "string": "State/province"
   },
   "@next_dot_components_dot_organisms_dot_AddressGridSelector_dot_AddressGridSelector_dot_2132027491": {
-    "string": "adres"
+    "string": "адреса"
   },
   "@next_dot_components_dot_organisms_dot_CartSummary_dot_CartSummary_dot_2088494495": {
     "string": "Cart Summary"
@@ -114,16 +114,16 @@
     "string": "Do you have a gift card voucher or discount code?"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_3912924864": {
-    "string": "Taki sam jak adres wysyłki"
+    "string": "Same as shipping address"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_348821000": {
-    "string": "Metoda płatności"
+    "string": "Payment Method"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_3577164776": {
     "string": "Shipping Method"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_4282475982": {
-    "string": "Billing Address"
+    "string": "Адреса виставлення рахунку"
   },
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "More +"
@@ -135,13 +135,13 @@
     "string": "We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped."
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1995277831": {
-    "string": "Dziękujemy"
+    "string": "Дякую"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2116351823": {
     "string": "for your order!"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2999163789": {
-    "string": "Your order number is"
+    "string": "Номер вашого замовлення - "
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3752098833": {
     "string": "ORDER DETAILS"
@@ -153,7 +153,7 @@
     "string": "Maybe you haven’t made your choices yet"
   },
   "@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_3578601618": {
-    "string": "Twój koszyk"
+    "string": "Ваша Корзина"
   },
   "@next_dot_pages_dot_CartPage_dot_CartPage_dot_1304869656": {
     "string": "PROCEED TO CHECKOUT"
@@ -168,13 +168,13 @@
     "string": "Please provide shipping address."
   },
   "account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
-    "string": "Edytuj adres"
+    "string": "Редагувати адресу"
   },
   "components_dot_Breadcrumbs_dot_index_dot_1347475195": {
-    "string": "Wstecz"
+    "string": "Назад"
   },
   "components_dot_Breadcrumbs_dot_index_dot_874908955": {
-    "string": "Strona główna"
+    "string": "Головна"
   },
   "components_dot_CartTable_dot_Table_dot_1603950169": {
     "string": "Delivery Cost"
@@ -231,7 +231,7 @@
     "string": "Click Here"
   },
   "components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_2556234295": {
-    "string": "Załóż konto"
+    "string": "Зареєструватися"
   },
   "components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_2622394113": {
     "string": "Please check your e-mail for further instructions"
@@ -249,7 +249,7 @@
     "string": "Sign in to account"
   },
   "components_dot_OverlayManager_dot_Password_dot_index_dot_4028609483": {
-    "string": "Zresetuj hasło"
+    "string": "Reset your password"
   },
   "components_dot_OverlayManager_dot_Search_dot_NothingFound_dot_1777769494": {
     "string": "Don’t give up - check the spelling, think of something less specific and then use the search bar above."
@@ -306,13 +306,13 @@
     "string": "Continue to Review"
   },
   "intl_dot_checkoutMessages_dot_reviewNextActionName": {
-    "string": "Złóż zamówienie"
+    "string": "Зробити замовлення "
   },
   "intl_dot_checkoutMessages_dot_reviewOrder": {
     "string": "REVIEW ORDER"
   },
   "intl_dot_checkoutMessages_dot_shippingAddress": {
-    "string": "Adres dostawy"
+    "string": "Shipping Address"
   },
   "intl_dot_checkoutMessages_dot_shippingMethod": {
     "string": "SHIPPING METHOD"
@@ -321,28 +321,28 @@
     "string": "Continue to Payment"
   },
   "intl_dot_checkoutMessages_dot_stepNameAddress": {
-    "string": "Adres"
+    "string": "Адреса"
   },
   "intl_dot_checkoutMessages_dot_stepNamePayment": {
-    "string": "Płatność"
+    "string": "Платіж"
   },
   "intl_dot_checkoutMessages_dot_stepNameReview": {
     "string": "Review"
   },
   "intl_dot_checkoutMessages_dot_stepNameShipping": {
-    "string": "Wysyłka"
+    "string": "Доставка"
   },
   "intl_dot_commonMessages_dot_add": {
-    "string": "Dodaj"
+    "string": "Додати"
   },
   "intl_dot_commonMessages_dot_addressBook": {
     "string": "Address book"
   },
   "intl_dot_commonMessages_dot_cancel": {
-    "string": "Anuluj"
+    "string": "Відмінити"
   },
   "intl_dot_commonMessages_dot_checkout": {
-    "string": "Złóż zamówienie"
+    "string": "Оформити замовлення"
   },
   "intl_dot_commonMessages_dot_clearFilterHeader": {
     "string": "CLEAR FILTERS"
@@ -354,10 +354,10 @@
     "string": "FILTERS"
   },
   "intl_dot_commonMessages_dot_firstName": {
-    "string": "Imię"
+    "string": "First Name"
   },
   "intl_dot_commonMessages_dot_lastName": {
-    "string": "Nazwisko"
+    "string": "Last Name"
   },
   "intl_dot_commonMessages_dot_loading": {
     "string": "Loading"
@@ -375,46 +375,46 @@
     "string": "My Account"
   },
   "intl_dot_commonMessages_dot_orderHistory": {
-    "string": "Historia zamówień"
+    "string": "Історія замовлень"
   },
   "intl_dot_commonMessages_dot_outOfStock": {
     "string": "Out of stock"
   },
   "intl_dot_commonMessages_dot_password": {
-    "string": "Hasło"
+    "string": "Пароль"
   },
   "intl_dot_commonMessages_dot_phone": {
-    "string": "Telefon"
+    "string": "Phone"
   },
   "intl_dot_commonMessages_dot_phoneNumber": {
     "string": "Phone number: {phone}"
   },
   "intl_dot_commonMessages_dot_price": {
-    "string": "Cena"
+    "string": "Ціна"
   },
   "intl_dot_commonMessages_dot_products": {
-    "string": "Produkty"
+    "string": "Товари"
   },
   "intl_dot_commonMessages_dot_promoCode": {
-    "string": "Kod promocyjny"
+    "string": "Промо-код"
   },
   "intl_dot_commonMessages_dot_qty": {
-    "string": "Ilość"
+    "string": "Кількість"
   },
   "intl_dot_commonMessages_dot_quantity": {
-    "string": "Ilość"
+    "string": "Кількість"
   },
   "intl_dot_commonMessages_dot_save": {
-    "string": "Zapisz"
+    "string": "Зберегти"
   },
   "intl_dot_commonMessages_dot_search": {
-    "string": "szukaj"
+    "string": "search"
   },
   "intl_dot_commonMessages_dot_shipping": {
-    "string": "Wysyłka"
+    "string": "Доставка"
   },
   "intl_dot_commonMessages_dot_shortEmail": {
-    "string": "E-mail"
+    "string": "Електронна пошта"
   },
   "intl_dot_commonMessages_dot_showEmail": {
     "string": "Email: {email}"
@@ -423,19 +423,19 @@
     "string": "SKU"
   },
   "intl_dot_commonMessages_dot_status": {
-    "string": "Status"
+    "string": "Статус"
   },
   "intl_dot_commonMessages_dot_subtotal": {
-    "string": "Suma częściowa"
+    "string": "Разом"
   },
   "intl_dot_commonMessages_dot_total": {
-    "string": "Suma"
+    "string": "Всього"
   },
   "intl_dot_commonMessages_dot_totalPrice": {
     "string": "Total Price"
   },
   "intl_dot_commonMessages_dot_variant": {
-    "string": "Wariant"
+    "string": "Варіант"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsClear": {
     "string": "Clear..."
@@ -468,7 +468,7 @@
     "string": "Final reduction"
   },
   "views_dot_Home_dot_Page_dot_2812648978": {
-    "string": "Wyróżniony"
+    "string": "Рекламовано"
   },
   "views_dot_Home_dot_Page_dot_3347022999": {
     "string": "Shop sale"

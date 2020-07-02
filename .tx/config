@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[saleor-1.storefront]
+file_filter = locale/<lang>.json
+minimum_perc = 1
+source_file = locale/defaultMessages.json
+source_lang = en
+type = STRUCTURED_JSON
+

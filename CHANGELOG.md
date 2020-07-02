@@ -14,6 +14,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add eslint - #776 by @dominik-zeglen
 - Fix storybook config - #789 by @dominik-zeglen
 - Update sdk to newest version - #795 by @dominik-zeglen
+- Use intl - #782 by @przlada
 
 ## 2.10.4
 
