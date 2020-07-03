@@ -27,9 +27,7 @@ storiesOf("@components/molecules/AccountMenu", module)
     </IntlProvider>
   ))
   .add("default", () => (
-    <IntlProvider locale="en">
-      <Wrapper>
-        <AccountMenu {...DEFAULT_PROPS} />
-      </Wrapper>
-    </IntlProvider>
+    <Wrapper>
+      <AccountMenu {...DEFAULT_PROPS} />
+    </Wrapper>
   ));

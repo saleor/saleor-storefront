@@ -29,9 +29,7 @@ storiesOf("@components/molecules/AccountMenuMobile", module)
     </IntlProvider>
   ))
   .add("default", () => (
-    <IntlProvider locale="en">
-      <Wrapper>
-        <AccountMenuMobile {...DEFAULT_PROPS} />
-      </Wrapper>
-    </IntlProvider>
+    <Wrapper>
+      <AccountMenuMobile {...DEFAULT_PROPS} />
+    </Wrapper>
   ));
