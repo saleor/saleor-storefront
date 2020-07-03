@@ -1,9 +1,13 @@
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { TaxedMoney } from "@components/containers";
-import { checkoutMessages } from "@temp/intl";
+import {
+  checkoutMessages,
+  translatePaymentStatus,
+  translateOrderStatus,
+} from "@temp/intl";
 import {
   OrderDetail,
   OrderDetail_lines,
@@ -39,8 +43,9 @@ const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
 const Page: React.FC<{
   guest: boolean;
   order: OrderDetail;
-}> = ({ guest, order }) =>
-  order ? (
+}> = ({ guest, order }) => {
+  const intl = useIntl();
+  return order ? (
     <>
       {!guest && (
         <Link className="order-details__link" to={orderHistoryUrl}>
@@ -54,7 +59,8 @@ const Page: React.FC<{
         />
       </h3>
       <p className="order-details__status">
-        {order.paymentStatusDisplay} / {order.statusDisplay}
+        {translatePaymentStatus(order.paymentStatusDisplay, intl)} /{" "}
+        {translateOrderStatus(order.statusDisplay, intl)}
       </p>
       <CartTable
         lines={extractOrderLines(order.lines)}
@@ -78,5 +84,5 @@ const Page: React.FC<{
   ) : (
     <NotFound />
   );
-
+};
 export default Page;
