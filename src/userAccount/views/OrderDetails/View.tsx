@@ -13,7 +13,10 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
     params: { token },
   },
 }) => {
-  const { data: order, loading } = useOrderDetails({ token });
+  const { data: order, loading } = useOrderDetails(
+    { token },
+    { fetchPolicy: "cache-and-network" }
+  );
   const { data: user } = useUserDetails();
   const guest = !user;
 
