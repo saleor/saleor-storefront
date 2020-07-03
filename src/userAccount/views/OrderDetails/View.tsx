@@ -18,7 +18,8 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   const guest = !user;
 
   const handleDownloadInvoice = () => {
-    if (order && "invoices" in order && order.invoices?.length) {
+    if (order && "invoices" in order && order.invoices?.length > 0) {
+      // Always download latest invoice
       const invoice = order.invoices.reduce((a, b) => {
         return new Date(a.createdAt) > new Date(b.createdAt) ? a : b;
       });
