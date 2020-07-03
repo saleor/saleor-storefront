@@ -1,4 +1,4 @@
-import { defineMessages } from "react-intl";
+import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
   search: {
@@ -194,3 +194,76 @@ export const prodListHeaderCommonMsg = defineMessages({
     defaultMessage: "Last updated Descending",
   },
 });
+
+export const paymentStatusMessages = defineMessages({
+  notCharged: {
+    defaultMessage: "Not charged",
+  },
+  partiallyCharged: {
+    defaultMessage: "Partially charged",
+  },
+  fullyCharged: {
+    defaultMessage: "Fully charged",
+  },
+  partiallyRefunded: {
+    defaultMessage: "Partially refunded",
+  },
+  fullyRefunded: {
+    defaultMessage: "Fully refunded",
+  },
+});
+
+export const orderStatusMessages = defineMessages({
+  draft: {
+    defaultMessage: "Draft",
+  },
+  unfulfilled: {
+    defaultMessage: "Unfulfilled",
+  },
+  partiallyFulfilled: {
+    defaultMessage: "Partially fulfilled",
+  },
+  fulfilled: {
+    defaultMessage: "Fulfilled",
+  },
+  canceled: {
+    defaultMessage: "Canceled",
+  },
+});
+
+export function translatePaymentStatus(
+  status: string,
+  intl: IntlShape
+): string {
+  switch (status) {
+    case "Not charged":
+      return intl.formatMessage(paymentStatusMessages.notCharged);
+    case "Partially charged":
+      return intl.formatMessage(paymentStatusMessages.partiallyCharged);
+    case "Fully charged":
+      return intl.formatMessage(paymentStatusMessages.fullyCharged);
+    case "Partially refunded":
+      return intl.formatMessage(paymentStatusMessages.partiallyRefunded);
+    case "Fully refunded":
+      return intl.formatMessage(paymentStatusMessages.fullyRefunded);
+    default:
+      return status;
+  }
+}
+
+export function translateOrderStatus(status: string, intl: IntlShape): string {
+  switch (status) {
+    case "Draft":
+      return intl.formatMessage(orderStatusMessages.draft);
+    case "Unfulfilled":
+      return intl.formatMessage(orderStatusMessages.unfulfilled);
+    case "Partially fulfilled":
+      return intl.formatMessage(orderStatusMessages.partiallyFulfilled);
+    case "Fulfilled":
+      return intl.formatMessage(orderStatusMessages.fulfilled);
+    case "Canceled":
+      return intl.formatMessage(orderStatusMessages.canceled);
+    default:
+      return status;
+  }
+}

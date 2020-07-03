@@ -1,10 +1,10 @@
 import React from "react";
-import { FormattedMessage, FormattedDate } from "react-intl";
+import { FormattedMessage, FormattedDate, useIntl } from "react-intl";
 import Media from "react-media";
 import { ThemeContext } from "styled-components";
 
 import { TaxedMoney } from "@components/containers";
-import { commonMessages } from "@temp/intl";
+import { commonMessages, translateOrderStatus } from "@temp/intl";
 
 import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
@@ -38,6 +38,7 @@ const header = (matches: boolean) => (
 
 export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
   const theme = React.useContext(ThemeContext);
+  const intl = useIntl();
   return (
     <S.Wrapper>
       <Media
@@ -95,7 +96,9 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                       ) : (
                         ""
                       )}
-                      <S.Status>{order.node.statusDisplay}</S.Status>
+                      <S.Status>
+                        {translateOrderStatus(order.node.statusDisplay, intl)}
+                      </S.Status>
                     </S.Row>
                   );
                 })}
