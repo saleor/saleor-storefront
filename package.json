@@ -9,7 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@lhci/cli": "^0.4.1",
-    "@saleor/sdk": "github:mirumee/saleor-sdk#ee25785",
+    "@saleor/sdk": "github:mirumee/saleor-sdk#1fb28a2",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
