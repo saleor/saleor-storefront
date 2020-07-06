@@ -1,5 +1,6 @@
 import { useOrdersByUser } from "@saleor/sdk/";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { Button, Loader } from "@components/atoms";
 import { OrderTabel } from "@components/molecules";
@@ -35,7 +36,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
               });
             }}
           >
-            Load more
+            <FormattedMessage defaultMessage="Load more" />
           </Button>
         </S.Wrapper>
       )}
