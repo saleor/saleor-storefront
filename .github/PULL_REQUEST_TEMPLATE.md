@@ -16,3 +16,9 @@ greatly reduce the amount of work needed to review your work. -->
 1. [ ] The changes are tested.
 1. [ ] The code is documented (docstrings, project documentation).
 1. [ ] Changes are mentioned in the changelog.
+
+### Test environment config
+
+```
+API_URI=https://master.staging.saleor.rocks/graphql/
+```
