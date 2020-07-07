@@ -2,11 +2,6 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart } from "@saleor/sdk";
-import {
-  mediumScreen,
-  smallScreen,
-} from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
 
 import Media from "react-media";
 import { Link } from "react-router-dom";

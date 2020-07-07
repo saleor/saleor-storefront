@@ -16,7 +16,7 @@ import {
   ServiceWorkerProvider,
 } from "@components/containers";
 import { SaleorProvider, useAuth } from "@saleor/sdk";
-import { CustomConfig } from "@saleor/sdk/lib/types";
+import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
@@ -31,7 +31,7 @@ import {
 } from "./constants";
 import { history } from "./history";
 
-const SALEOR_CONFIG: CustomConfig = {
+const SALEOR_CONFIG: ConfigInput = {
   apiUrl,
 };
 
