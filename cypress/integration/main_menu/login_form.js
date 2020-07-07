@@ -1,4 +1,4 @@
-// <reference types="cypress" />
+/// <reference types="cypress" />
 describe("User login, logout and registration", () => {
   let user = null;
   let polyfill = null;
@@ -49,7 +49,7 @@ describe("User login, logout and registration", () => {
         .type("thisisnotavalidpassword")
         .get("[data-test=submit]")
         .click()
-      .get(".login__content .form-error", {timeoout: 20000})
+        .get(":nth-child(1) > .input__error", { timeoout: 20000 })
         .should("contain", "Please, enter valid credentials");
     });
   });

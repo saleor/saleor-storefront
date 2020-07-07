@@ -1,6 +1,6 @@
-// <reference types="cypress" />
+/// <reference types="cypress" />
 
-describe.only("Search", () => {
+describe("Search", () => {
   const typedText = "t";
   let polyfill;
 
