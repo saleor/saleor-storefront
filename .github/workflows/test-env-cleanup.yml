@@ -1,4 +1,5 @@
 name: TEST-ENV-CLEANUP
+# Remove test instance for closed pull requests
 
 on:
   pull_request:
@@ -11,8 +12,10 @@ jobs:
     steps:
       - uses: rlespinasse/github-slug-action@master
       - name: Set domain
+        # Set test instance domain based on branch name slug
         run: |
           echo "::set-env name=domain::${{ env.GITHUB_HEAD_REF_SLUG }}.storefront.saleor.rocks"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
