@@ -14,7 +14,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
   valuesShowLimitNumber = 5,
   onValueClick,
 }: IProps) => {
-  const intl = useIntl();
+  // const intl = useIntl();
 
   const [viewAllOptions, setViewAllOptions] = React.useState(!valuesShowLimit);
 

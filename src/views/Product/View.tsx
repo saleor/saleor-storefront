@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 
+import { useLocale } from "@temp/@next/hooks";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
@@ -14,7 +15,6 @@ import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
 import { IProps } from "./types";
-import { useLocale } from "@temp/@next/hooks";
 
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
