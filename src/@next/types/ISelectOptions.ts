@@ -4,6 +4,6 @@ export interface ISelectOption {
   translation: ISelectOptionTranslation;
 }
 
-export interface ISelectOptionTranslation{
+export interface ISelectOptionTranslation {
   name: string;
 }

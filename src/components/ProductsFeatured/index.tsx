@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { useLocale } from "@temp/@next/hooks";
 import { Carousel, ProductListItem } from "..";
 import { generateProductUrl, maybe } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
-
-import useLocale from "@saleor/@next/hooks/useLocale";
 
 import "./scss/index.scss";
 
@@ -15,11 +14,9 @@ interface ProductsFeaturedProps {
 
 const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   const { locale } = useLocale();
-  const variables = {locale:locale.toUpperCase()}
+  const variables = { locale: locale.toUpperCase() };
   return (
-    <TypedFeaturedProductsQuery       
-      variables={variables}
-      displayError={false}>
+    <TypedFeaturedProductsQuery variables={variables} displayError={false}>
       {({ data }) => {
         const products = maybe(
           () => data.shop.homepageCollection.products.edges,

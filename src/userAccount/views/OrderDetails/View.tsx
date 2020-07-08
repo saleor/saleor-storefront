@@ -6,9 +6,8 @@ import { RouteComponentProps } from "react-router";
 import { Loader } from "@components/atoms";
 import { useOrderDetails, useUserDetails } from "@saleor/sdk";
 
+import { useLocale } from "@temp/@next/hooks";
 import Page from "./Page";
-
-import useLocale from "@saleor/@next/hooks/useLocale";
 
 const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   match: {
@@ -16,9 +15,9 @@ const View: React.FC<RouteComponentProps<{ token?: string }>> = ({
   },
 }) => {
   const { locale } = useLocale();
-  const { data: order, loading } = useOrderDetails({ 
-    locale:locale.toUpperCase(), 
-    token, 
+  const { data: order, loading } = useOrderDetails({
+    locale: locale.toUpperCase(),
+    token,
   });
   const { data: user } = useUserDetails();
   const guest = !user;

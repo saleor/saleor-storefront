@@ -3,9 +3,9 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
-import useLocale from "@saleor/@next/hooks/useLocale";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { useLocale } from "@temp/@next/hooks";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";

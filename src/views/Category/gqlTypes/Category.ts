@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../../../gqlTypes/globalTypes";
+import { AttributeInput, ProductOrder, LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Category
@@ -212,6 +212,19 @@ export interface Category_products_edges_node_pricing {
   priceRange: Category_products_edges_node_pricing_priceRange | null;
 }
 
+export interface Category_products_edges_node_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
+export interface Category_products_edges_node_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface Category_products_edges_node_category {
   __typename: "Category";
   /**
@@ -219,6 +232,10 @@ export interface Category_products_edges_node_category {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: Category_products_edges_node_category_translation | null;
 }
 
 export interface Category_products_edges_node {
@@ -240,6 +257,10 @@ export interface Category_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Category_products_edges_node_pricing | null;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: Category_products_edges_node_translation | null;
   category: Category_products_edges_node_category | null;
 }
 
@@ -292,6 +313,16 @@ export interface Category_category_backgroundImage {
   url: string;
 }
 
+export interface Category_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
+export interface Category_category_ancestors_edges_node_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface Category_category_ancestors_edges_node {
   __typename: "Category";
   /**
@@ -299,6 +330,10 @@ export interface Category_category_ancestors_edges_node {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: Category_category_ancestors_edges_node_translation | null;
 }
 
 export interface Category_category_ancestors_edges {
@@ -325,9 +360,23 @@ export interface Category_category {
   name: string;
   backgroundImage: Category_category_backgroundImage | null;
   /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: Category_category_translation | null;
+  /**
    * List of ancestors of the category.
    */
   ancestors: Category_category_ancestors | null;
+}
+
+export interface Category_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
+export interface Category_attributes_edges_node_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface Category_attributes_edges_node_values {
@@ -344,6 +393,10 @@ export interface Category_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: Category_attributes_edges_node_values_translation | null;
 }
 
 export interface Category_attributes_edges_node {
@@ -360,6 +413,10 @@ export interface Category_attributes_edges_node {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: Category_attributes_edges_node_translation | null;
   /**
    * List of attribute's values.
    */
@@ -402,4 +459,5 @@ export interface CategoryVariables {
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  locale: LanguageCodeEnum;
 }

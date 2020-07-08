@@ -2,9 +2,16 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: MainMenu
 // ====================================================
+
+export interface MainMenu_shop_navigation_main_items_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
 
 export interface MainMenu_shop_navigation_main_items_category {
   __typename: "Category";
@@ -37,6 +44,11 @@ export interface MainMenu_shop_navigation_main_items_parent {
   id: string;
 }
 
+export interface MainMenu_shop_navigation_main_items_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
+
 export interface MainMenu_shop_navigation_main_items_children_category {
   __typename: "Category";
   /**
@@ -66,6 +78,11 @@ export interface MainMenu_shop_navigation_main_items_children_parent {
    * The ID of the object.
    */
   id: string;
+}
+
+export interface MainMenu_shop_navigation_main_items_children_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
 }
 
 export interface MainMenu_shop_navigation_main_items_children_children_category {
@@ -106,6 +123,10 @@ export interface MainMenu_shop_navigation_main_items_children_children {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: MainMenu_shop_navigation_main_items_children_children_translation | null;
   category: MainMenu_shop_navigation_main_items_children_children_category | null;
   /**
    * URL to the menu item.
@@ -123,6 +144,10 @@ export interface MainMenu_shop_navigation_main_items_children {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: MainMenu_shop_navigation_main_items_children_translation | null;
   category: MainMenu_shop_navigation_main_items_children_category | null;
   /**
    * URL to the menu item.
@@ -141,6 +166,10 @@ export interface MainMenu_shop_navigation_main_items {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: MainMenu_shop_navigation_main_items_translation | null;
   category: MainMenu_shop_navigation_main_items_category | null;
   /**
    * URL to the menu item.
@@ -182,4 +211,8 @@ export interface MainMenu {
    * Return information about the shop.
    */
   shop: MainMenu_shop;
+}
+
+export interface MainMenuVariables {
+  locale: LanguageCodeEnum;
 }

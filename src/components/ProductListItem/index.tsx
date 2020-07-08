@@ -9,15 +9,15 @@ import { TaxedMoney } from "../../@next/components/containers";
 import { BasicProductFields } from "../../views/Product/gqlTypes/BasicProductFields";
 
 export interface Product extends BasicProductFields {
-  translation:{
-    name:string;
+  translation: {
+    name: string;
   };
   category?: {
     id: string;
     name: string;
-    translation:{
-      name:string;
-    }
+    translation: {
+      name: string;
+    };
   };
   pricing: {
     priceRange: {
@@ -75,8 +75,12 @@ const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {
       <div className="product-list-item__image">
         <Thumbnail source={product} />
       </div>
-      <h4 className="product-list-item__title">{product.translation?.name || product.name}</h4>
-      <p className="product-list-item__category">{category.translation?.name || category.name}</p>
+      <h4 className="product-list-item__title">
+        {product.translation?.name || product.name}
+      </h4>
+      <p className="product-list-item__category">
+        {category.translation?.name || category.name}
+      </p>
       <p className="product-list-item__price">{getProductPrice()}</p>
     </div>
   );

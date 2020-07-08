@@ -3,14 +3,13 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
+import { useLocale } from "@temp/@next/hooks";
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
 import { Article_shop } from "./gqlTypes/Article";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
-
-import useLocale from "@saleor/@next/hooks/useLocale";
 
 const canDisplay = page =>
   maybe(() => !!page && !!page.title && !!page.contentJson);
@@ -26,43 +25,48 @@ export const View: React.FC<ViewProps> = ({
 }) => {
   const { locale } = useLocale();
 
-  return(
-  <TypedArticleQuery loaderFull variables={{ slug, locale:locale.toUpperCase()}} errorPolicy="all">
-    {({ data }) => {
-      const navigation = STATIC_PAGES.map(page => ({
-        ...page,
-        active: page.url === window.location.pathname,
-      }));
-      const { page, shop } = data;
+  return (
+    <TypedArticleQuery
+      loaderFull
+      variables={{ slug, locale: locale.toUpperCase() }}
+      errorPolicy="all"
+    >
+      {({ data }) => {
+        const navigation = STATIC_PAGES.map(page => ({
+          ...page,
+          active: page.url === window.location.pathname,
+        }));
+        const { page, shop } = data;
 
-      if (canDisplay(page)) {
-        const breadcrumbs = [
-          {
-            link: generatePageUrl(slug),
-            value: page.title,
-          },
-        ];
-        return (
-          <MetaWrapper
-            meta={{
-              description: page.seoDescription,
-              title: page.seoTitle,
-            }}
-          >
-            <Page
-              breadcrumbs={breadcrumbs}
-              headerImage={getHeaderImage(shop)}
-              navigation={navigation}
-              page={data.page}
-            />
-          </MetaWrapper>
-        );
-      }
+        if (canDisplay(page)) {
+          const breadcrumbs = [
+            {
+              link: generatePageUrl(slug),
+              value: page.title,
+            },
+          ];
+          return (
+            <MetaWrapper
+              meta={{
+                description: page.seoDescription,
+                title: page.seoTitle,
+              }}
+            >
+              <Page
+                breadcrumbs={breadcrumbs}
+                headerImage={getHeaderImage(shop)}
+                navigation={navigation}
+                page={data.page}
+              />
+            </MetaWrapper>
+          );
+        }
 
-      if (page === null) {
-        return <NotFound />;
-      }
-    }}
-  </TypedArticleQuery>
-);
+        if (page === null) {
+          return <NotFound />;
+        }
+      }}
+    </TypedArticleQuery>
+  );
+};
 export default View;

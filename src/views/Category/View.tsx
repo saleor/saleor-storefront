@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { useLocale } from "@temp/@next/hooks";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -16,10 +17,6 @@ import {
 } from "../../core/utils";
 import Page from "./Page";
 import { TypedCategoryProductsQuery } from "./queries";
-
-import useLocale from "@saleor/@next/hooks/useLocale";
-
-import { useIntl } from "react-intl";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -141,7 +138,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     <NetworkStatus>
       {isOnline => (
         <TypedCategoryProductsQuery
-          variables={{...variables, locale: locale.toUpperCase()}}
+          variables={{ ...variables, locale: locale.toUpperCase() }}
           errorPolicy="all"
           loaderFull
         >

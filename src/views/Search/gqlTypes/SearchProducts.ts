@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../../../gqlTypes/globalTypes";
+import { AttributeInput, ProductOrder, LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: SearchProducts
@@ -192,6 +192,14 @@ export interface SearchProducts_products_edges_node_pricing {
   priceRange: SearchProducts_products_edges_node_pricing_priceRange | null;
 }
 
+export interface SearchProducts_products_edges_node_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
 export interface SearchProducts_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -212,6 +220,11 @@ export interface SearchProducts_products_edges_node_thumbnail2x {
   url: string;
 }
 
+export interface SearchProducts_products_edges_node_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface SearchProducts_products_edges_node_category {
   __typename: "Category";
   /**
@@ -219,6 +232,10 @@ export interface SearchProducts_products_edges_node_category {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: SearchProducts_products_edges_node_category_translation | null;
 }
 
 export interface SearchProducts_products_edges_node {
@@ -232,6 +249,10 @@ export interface SearchProducts_products_edges_node {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: SearchProducts_products_edges_node_translation | null;
   /**
    * The main thumbnail for a product.
    */
@@ -276,6 +297,16 @@ export interface SearchProducts_products {
   pageInfo: SearchProducts_products_pageInfo;
 }
 
+export interface SearchProducts_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
+export interface SearchProducts_attributes_edges_node_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 export interface SearchProducts_attributes_edges_node_values {
   __typename: "AttributeValue";
   /**
@@ -290,6 +321,10 @@ export interface SearchProducts_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: SearchProducts_attributes_edges_node_values_translation | null;
 }
 
 export interface SearchProducts_attributes_edges_node {
@@ -306,6 +341,10 @@ export interface SearchProducts_attributes_edges_node {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: SearchProducts_attributes_edges_node_translation | null;
   /**
    * List of attribute's values.
    */
@@ -342,4 +381,5 @@ export interface SearchProductsVariables {
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
   after?: string | null;
+  locale: LanguageCodeEnum;
 }

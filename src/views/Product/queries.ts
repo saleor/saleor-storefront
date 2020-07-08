@@ -35,20 +35,20 @@ export const basicProductFragment = gql`
 
 export const productNameTranslationFragment = gql`
   fragment ProductNameTranslationFields on Product {
-    translation(languageCode:$locale){
+    translation(languageCode: $locale) {
       name
       descriptionJson
       seoDescription
       seoTitle
-    }  
+    }
   }
 `;
 
 export const productVariantTranslationFragment = gql`
   fragment ProductVariantTranslationFields on ProductVariant {
-    translation(languageCode:$locale){
+    translation(languageCode: $locale) {
       name
-    }  
+    }
   }
 `;
 
@@ -82,12 +82,16 @@ export const selectedAttributeFragment = gql`
     attribute {
       id
       name
-      translation(languageCode:$locale){name}
+      translation(languageCode: $locale) {
+        name
+      }
     }
     values {
       id
       name
-      translation(languageCode:$locale){name}
+      translation(languageCode: $locale) {
+        name
+      }
     }
   }
 `;
@@ -119,13 +123,17 @@ export const productVariantFragment = gql`
         id
         name
         slug
-        translation(languageCode:$locale){name}
+        translation(languageCode: $locale) {
+          name
+        }
       }
       values {
         id
         name
         value: name
-        translation(languageCode:$locale){name}
+        translation(languageCode: $locale) {
+          name
+        }
       }
     }
   }
@@ -138,7 +146,11 @@ export const productDetailsQuery = gql`
   ${productVariantTranslationFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!, $countryCode: CountryCode, $locale:LanguageCodeEnum!) {
+  query ProductDetails(
+    $id: ID!
+    $countryCode: CountryCode
+    $locale: LanguageCodeEnum!
+  ) {
     product(id: $id) {
       ...BasicProductFields
       ...ProductPricingField
@@ -147,7 +159,9 @@ export const productDetailsQuery = gql`
       category {
         id
         name
-        translation(languageCode:$locale){name}
+        translation(languageCode: $locale) {
+          name
+        }
         products(first: 3) {
           edges {
             node {
@@ -184,7 +198,11 @@ export const productVariantsQuery = gql`
   ${productNameTranslationFragment}
   ${productVariantFragment}
   ${productVariantTranslationFragment}
-  query VariantList($ids: [ID!], $countryCode: CountryCode, $locale:LanguageCodeEnum!) {
+  query VariantList(
+    $ids: [ID!]
+    $countryCode: CountryCode
+    $locale: LanguageCodeEnum!
+  ) {
     productVariants(ids: $ids, first: 100) {
       edges {
         node {

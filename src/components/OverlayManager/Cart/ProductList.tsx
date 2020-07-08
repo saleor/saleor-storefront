@@ -37,7 +37,10 @@ const ProductList: React.SFC<{
               <TaxedMoney taxedMoney={line.variant.pricing.price} />
             </p>
             <Link to={productUrl}>
-              <p data-test="name">{line.variant.product.translation?.name || line.variant.product.name}</p>
+              <p data-test="name">
+                {line.variant.product.translation?.name ||
+                  line.variant.product.name}
+              </p>
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.variant.translation?.name || line.variant.name}</span>

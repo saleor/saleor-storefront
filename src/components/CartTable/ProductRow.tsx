@@ -47,7 +47,9 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
               <Thumbnail source={line.product} />
             </Link>
           )}
-          <Link to={productUrl}>{line.product.translation?.name || line.product.name}</Link>
+          <Link to={productUrl}>
+            {line.product.translation?.name || line.product.name}
+          </Link>
         </div>
       </td>
 
@@ -59,7 +61,13 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 
       <td>
         {line.attributes.map(({ attribute, values }, attributeIndex) => (
-        <p>{attribute.translation?.name || attribute.name}: {values.map(value => value.translation?.name || value.name).join(", ")}</p>))}
+          <p>
+            {attribute.translation?.name || attribute.name}:{" "}
+            {values
+              .map(value => value.translation?.name || value.name)
+              .join(", ")}
+          </p>
+        ))}
       </td>
 
       <td className="cart-table__quantity-cell">

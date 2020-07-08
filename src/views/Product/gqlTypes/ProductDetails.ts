@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CountryCode } from "./../../../../gqlTypes/globalTypes";
+import { CountryCode, LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductDetails
@@ -212,6 +212,19 @@ export interface ProductDetails_product_pricing {
   priceRange: ProductDetails_product_pricing_priceRange | null;
 }
 
+export interface ProductDetails_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
+export interface ProductDetails_product_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface ProductDetails_product_category_products_edges_node_thumbnail {
   __typename: "Image";
   /**
@@ -416,6 +429,14 @@ export interface ProductDetails_product_category_products_edges_node_pricing {
   priceRange: ProductDetails_product_category_products_edges_node_pricing_priceRange | null;
 }
 
+export interface ProductDetails_product_category_products_edges_node_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
 export interface ProductDetails_product_category_products_edges_node {
   __typename: "Product";
   /**
@@ -435,6 +456,10 @@ export interface ProductDetails_product_category_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_category_products_edges_node_pricing | null;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: ProductDetails_product_category_products_edges_node_translation | null;
 }
 
 export interface ProductDetails_product_category_products_edges {
@@ -458,6 +483,10 @@ export interface ProductDetails_product_category {
   id: string;
   name: string;
   /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: ProductDetails_product_category_translation | null;
+  /**
    * List of products in the category.
    */
   products: ProductDetails_product_category_products | null;
@@ -476,6 +505,11 @@ export interface ProductDetails_product_images {
   url: string;
 }
 
+export interface ProductDetails_product_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -486,6 +520,15 @@ export interface ProductDetails_product_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: ProductDetails_product_attributes_attribute_translation | null;
+}
+
+export interface ProductDetails_product_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_attributes_values {
@@ -498,6 +541,10 @@ export interface ProductDetails_product_attributes_values {
    * Name of a value displayed in the interface.
    */
   name: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: ProductDetails_product_attributes_values_translation | null;
 }
 
 export interface ProductDetails_product_attributes {
@@ -613,6 +660,11 @@ export interface ProductDetails_product_variants_pricing {
   price: ProductDetails_product_variants_pricing_price | null;
 }
 
+export interface ProductDetails_product_variants_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 export interface ProductDetails_product_variants_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -627,6 +679,15 @@ export interface ProductDetails_product_variants_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: ProductDetails_product_variants_attributes_attribute_translation | null;
+}
+
+export interface ProductDetails_product_variants_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_variants_attributes_values {
@@ -643,6 +704,10 @@ export interface ProductDetails_product_variants_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: ProductDetails_product_variants_attributes_values_translation | null;
 }
 
 export interface ProductDetails_product_variants_attributes {
@@ -655,6 +720,11 @@ export interface ProductDetails_product_variants_attributes {
    * Values of an attribute.
    */
   values: (ProductDetails_product_variants_attributes_values | null)[];
+}
+
+export interface ProductDetails_product_variants_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface ProductDetails_product_variants {
@@ -685,6 +755,10 @@ export interface ProductDetails_product_variants {
    * List of attributes assigned to this variant.
    */
   attributes: ProductDetails_product_variants_attributes[];
+  /**
+   * Returns translated product variant fields for the given language code.
+   */
+  translation: ProductDetails_product_variants_translation | null;
 }
 
 export interface ProductDetails_product {
@@ -706,6 +780,10 @@ export interface ProductDetails_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_pricing | null;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: ProductDetails_product_translation | null;
   descriptionJson: any;
   category: ProductDetails_product_category | null;
   /**
@@ -738,4 +816,5 @@ export interface ProductDetails {
 export interface ProductDetailsVariables {
   id: string;
   countryCode?: CountryCode | null;
+  locale: LanguageCodeEnum;
 }

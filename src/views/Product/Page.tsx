@@ -51,7 +51,7 @@ const Page: React.FC<
     <ProductDescription
       items={items}
       productId={product.id}
-      name={product.translation?.name || product.name}
+      name={product.translation?.name || product.name}
       productVariants={product.variants}
       pricing={product.pricing}
       queryAttributes={queryAttributes}
@@ -109,7 +109,9 @@ const Page: React.FC<
       <div className="container">
         <div className="product-page__product__description">
           <NewProductDescription
-            descriptionJson={product.translation?.descriptionJson || product.descriptionJson}
+            descriptionJson={
+              product.translation?.descriptionJson || product.descriptionJson
+            }
             attributes={product.attributes}
           />
         </div>

@@ -2,9 +2,17 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: Article
 // ====================================================
+
+export interface Article_page_translation {
+  __typename: "PageTranslation";
+  title: string;
+  contentJson: any;
+}
 
 export interface Article_page {
   __typename: "Page";
@@ -17,6 +25,10 @@ export interface Article_page {
   seoTitle: string | null;
   slug: string;
   title: string;
+  /**
+   * Returns translated page fields for the given language code.
+   */
+  translation: Article_page_translation | null;
 }
 
 export interface Article_shop_homepageCollection_backgroundImage {
@@ -57,4 +69,5 @@ export interface Article {
 
 export interface ArticleVariables {
   slug: string;
+  locale: LanguageCodeEnum;
 }

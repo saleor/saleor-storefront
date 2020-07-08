@@ -89,7 +89,7 @@ class Search extends React.Component<SearchProps, SearchState> {
   };
 
   render() {
-    const intl = this.props.intl;
+    // const { intl } = this.props;
 
     return (
       <Overlay
@@ -135,7 +135,10 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{ query: this.state.search, locale: this.props.locale}}
+                      variables={{
+                        query: this.state.search,
+                        locale: this.props.locale,
+                      }}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {

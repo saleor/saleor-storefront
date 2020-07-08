@@ -58,11 +58,11 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        {attributes.map(({ id, name, slug, values, translation}) => {
+        {attributes.map(({ id, name, slug, values, translation }) => {
           return (
             <AttributeValuesChecklist
               key={id}
-              title={translation?.name || name}
+              title={translation?.name || name}
               name={slug}
               values={values.map(value => ({
                 ...value,

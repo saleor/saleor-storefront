@@ -1,3 +1,4 @@
+export * from "./useLocale";
 export * from "./useLocalStorage";
 export * from "./useServiceWorker";
 export * from "./useHandlerWhenClickedOutside";

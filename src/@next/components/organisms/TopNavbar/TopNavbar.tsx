@@ -12,11 +12,10 @@ import { maybe } from "@utils/misc";
 import LogoSmall from "images/logo-small.svg";
 import Logo from "images/logo.svg";
 
+import { FormattedMessage } from "react-intl";
 import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
 import { IProps } from "./types";
-
-import { FormattedMessage } from "react-intl";
 
 const menuVisibleRatio = 0.8;
 const getElementWidth = (node: Element) => node.scrollWidth;
@@ -135,9 +134,7 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
           <S.SearchButton>
             <Media minWidth={smallScreen}>
               <S.Text>
-                <FormattedMessage
-                  defaultMessage={"SEARCH"}
-                />
+                <FormattedMessage defaultMessage="SEARCH" />
               </S.Text>
             </Media>
             <Icon name="search" size={24} />

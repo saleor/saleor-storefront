@@ -21,7 +21,7 @@ interface PageProps {
     translation: {
       contentJson: any;
       title: string;
-    }
+    };
   };
 }
 export const Page: React.FC<PageProps> = ({
@@ -59,12 +59,13 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-        <RichTextContent
-          descriptionJson={
-            page.translation?.contentJson.toString() === "{}" ?
-            page.contentJson : page.translation?.contentJson || page.contentJson
-        }
-        />
+          <RichTextContent
+            descriptionJson={
+              page.translation?.contentJson.toString() === "{}"
+                ? page.contentJson
+                : page.translation?.contentJson || page.contentJson
+            }
+          />
         </div>
       </div>
     </div>

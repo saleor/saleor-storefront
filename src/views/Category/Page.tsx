@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 
 import { IFilterAttributes, IFilters } from "@types";
+import { useIntl } from "react-intl";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
@@ -16,8 +17,6 @@ import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { maybe } from "../../core/utils";
 
 import { Category_category, Category_products } from "./gqlTypes/Category";
-
-import { useIntl } from "react-intl";
 
 interface SortItem {
   label: string;
@@ -67,8 +66,8 @@ const Page: React.FC<PageProps> = ({
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     const value = attributes
-    .find(({ slug }) => attributeSlug === slug)
-    .values.find(({ slug }) => valueSlug === slug)
+      .find(({ slug }) => attributeSlug === slug)
+      .values.find(({ slug }) => valueSlug === slug);
     return {
       attributeSlug,
       valueName: value.name,

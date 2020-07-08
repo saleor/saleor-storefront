@@ -13,7 +13,7 @@ const ProductItem: React.FC<SearchResults_products_edges> = ({
     <Link to={generateProductUrl(product.id, product.name)}>
       <Thumbnail source={product} />
       <span>
-        <h4>{product.translation?.name || product.name}</h4>
+        <h4>{product.translation?.name || product.name}</h4>
         <p>{product.category.translation?.name || product.category.name}</p>
       </span>
     </Link>

@@ -4,10 +4,7 @@ import { TypedQuery } from "../../core/queries";
 import { Article, ArticleVariables } from "./gqlTypes/Article";
 
 const articleQuery = gql`
-  query Article(
-    $slug: String!
-    $locale:LanguageCodeEnum!
-    ) {
+  query Article($slug: String!, $locale: LanguageCodeEnum!) {
     page(slug: $slug) {
       contentJson
       id
@@ -15,7 +12,7 @@ const articleQuery = gql`
       seoTitle
       slug
       title
-      translation(languageCode:$locale){
+      translation(languageCode: $locale) {
         title
         contentJson
       }

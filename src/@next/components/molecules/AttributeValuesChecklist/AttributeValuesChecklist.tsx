@@ -1,12 +1,10 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { ButtonLink, Checkbox } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-
-import { useIntl } from "react-intl";
 
 export const AttributeValuesChecklist: React.FC<IProps> = ({
   title,
@@ -29,13 +27,13 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
             return <></>;
           }
           return (
-              <Checkbox
-                name={name}
-                checked={!!value.selected}
-                onChange={() => onValueClick(value)}
-              >
-                {value && (value.translation?.name || value.name)}
-              </Checkbox>
+            <Checkbox
+              name={name}
+              checked={!!value.selected}
+              onChange={() => onValueClick(value)}
+            >
+              {value && (value.translation?.name || value.name)}
+            </Checkbox>
           );
         })}
       {!viewAllOptions && values.length > valuesShowLimitNumber && (

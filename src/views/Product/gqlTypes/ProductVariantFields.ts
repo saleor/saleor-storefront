@@ -107,6 +107,11 @@ export interface ProductVariantFields_pricing {
   price: ProductVariantFields_pricing_price | null;
 }
 
+export interface ProductVariantFields_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 export interface ProductVariantFields_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -121,6 +126,15 @@ export interface ProductVariantFields_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: ProductVariantFields_attributes_attribute_translation | null;
+}
+
+export interface ProductVariantFields_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface ProductVariantFields_attributes_values {
@@ -137,6 +151,10 @@ export interface ProductVariantFields_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: ProductVariantFields_attributes_values_translation | null;
 }
 
 export interface ProductVariantFields_attributes {

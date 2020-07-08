@@ -70,9 +70,10 @@ export const ProductVariantAttributeSelect: React.FC<{
       };
     });
 
-  const selectLabel = productVariantsAttribute.attribute.translation?.name
-    || productVariantsAttribute.attribute.name!
-    ||"";
+  const selectLabel =
+    productVariantsAttribute.attribute.translation?.name ||
+    productVariantsAttribute.attribute.name! ||
+    "";
 
   const selectedValuesList = selectedValue ? [selectedValue.value] : [];
 

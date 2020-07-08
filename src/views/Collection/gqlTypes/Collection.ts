@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { AttributeInput, ProductOrder } from "./../../../../gqlTypes/globalTypes";
+import { AttributeInput, ProductOrder, LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: Collection
@@ -16,6 +16,11 @@ export interface Collection_collection_backgroundImage {
   url: string;
 }
 
+export interface Collection_collection_translation {
+  __typename: "CollectionTranslation";
+  name: string;
+}
+
 export interface Collection_collection {
   __typename: "Collection";
   /**
@@ -27,6 +32,10 @@ export interface Collection_collection {
   seoDescription: string | null;
   seoTitle: string | null;
   backgroundImage: Collection_collection_backgroundImage | null;
+  /**
+   * Returns translated collection fields for the given language code.
+   */
+  translation: Collection_collection_translation | null;
 }
 
 export interface Collection_products_edges_node_thumbnail {
@@ -233,6 +242,19 @@ export interface Collection_products_edges_node_pricing {
   priceRange: Collection_products_edges_node_pricing_priceRange | null;
 }
 
+export interface Collection_products_edges_node_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
+export interface Collection_products_edges_node_category_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface Collection_products_edges_node_category {
   __typename: "Category";
   /**
@@ -240,6 +262,10 @@ export interface Collection_products_edges_node_category {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: Collection_products_edges_node_category_translation | null;
 }
 
 export interface Collection_products_edges_node {
@@ -261,6 +287,10 @@ export interface Collection_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: Collection_products_edges_node_pricing | null;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: Collection_products_edges_node_translation | null;
   category: Collection_products_edges_node_category | null;
 }
 
@@ -305,6 +335,16 @@ export interface Collection_products {
   pageInfo: Collection_products_pageInfo;
 }
 
+export interface Collection_attributes_edges_node_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
+export interface Collection_attributes_edges_node_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
+}
+
 export interface Collection_attributes_edges_node_values {
   __typename: "AttributeValue";
   /**
@@ -319,6 +359,10 @@ export interface Collection_attributes_edges_node_values {
    * Internal representation of a value (unique per attribute).
    */
   slug: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: Collection_attributes_edges_node_values_translation | null;
 }
 
 export interface Collection_attributes_edges_node {
@@ -335,6 +379,10 @@ export interface Collection_attributes_edges_node {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: Collection_attributes_edges_node_translation | null;
   /**
    * List of attribute's values.
    */
@@ -377,4 +425,5 @@ export interface CollectionVariables {
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  locale: LanguageCodeEnum;
 }

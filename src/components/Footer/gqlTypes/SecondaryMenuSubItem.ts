@@ -6,6 +6,11 @@
 // GraphQL fragment: SecondaryMenuSubItem
 // ====================================================
 
+export interface SecondaryMenuSubItem_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
+
 export interface SecondaryMenuSubItem_category {
   __typename: "Category";
   /**
@@ -36,6 +41,10 @@ export interface SecondaryMenuSubItem {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: SecondaryMenuSubItem_translation | null;
   category: SecondaryMenuSubItem_category | null;
   /**
    * URL to the menu item.

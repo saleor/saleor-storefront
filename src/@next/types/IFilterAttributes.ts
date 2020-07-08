@@ -9,7 +9,6 @@ export interface ISingleFilterAttributeTranslation {
   name: string;
 }
 
-
 export interface IFilterAttributes {
   id: string;
   name: string;
@@ -20,4 +19,3 @@ export interface IFilterAttributes {
 export interface IFilterAttributeTranslation {
   name: string;
 }
-

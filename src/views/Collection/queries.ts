@@ -20,7 +20,7 @@ export const collectionProductsQuery = gql`
     $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
-    $locale:LanguageCodeEnum!
+    $locale: LanguageCodeEnum!
   ) {
     collection(id: $id) {
       id
@@ -31,7 +31,9 @@ export const collectionProductsQuery = gql`
       backgroundImage {
         url
       }
-      translation(languageCode:$locale){name}
+      translation(languageCode: $locale) {
+        name
+      }
     }
     products(
       after: $after
@@ -52,7 +54,9 @@ export const collectionProductsQuery = gql`
           category {
             id
             name
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }
@@ -69,12 +73,16 @@ export const collectionProductsQuery = gql`
           id
           name
           slug
-          translation(languageCode:$locale){name}
+          translation(languageCode: $locale) {
+            name
+          }
           values {
             id
             name
             slug
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }

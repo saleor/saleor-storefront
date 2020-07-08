@@ -6,16 +6,16 @@ import {
   productNameTranslationFragment,
   productPricingFragment,
 } from "../../views/Product/queries";
-import { FeaturedProducts, FeaturedProductsVariables } from "./gqlTypes/FeaturedProducts";
-
+import {
+  FeaturedProducts,
+  FeaturedProductsVariables,
+} from "./gqlTypes/FeaturedProducts";
 
 export const featuredProducts = gql`
   ${basicProductFragment}
   ${productPricingFragment}
   ${productNameTranslationFragment}
-  query FeaturedProducts(
-    $locale:LanguageCodeEnum!
-  ) {
+  query FeaturedProducts($locale: LanguageCodeEnum!) {
     shop {
       homepageCollection {
         id
@@ -28,7 +28,9 @@ export const featuredProducts = gql`
               category {
                 id
                 name
-                translation(languageCode:$locale){name}
+                translation(languageCode: $locale) {
+                  name
+                }
               }
             }
           }
@@ -38,6 +40,7 @@ export const featuredProducts = gql`
   }
 `;
 
-export const TypedFeaturedProductsQuery = TypedQuery<FeaturedProducts, FeaturedProductsVariables>(
-  featuredProducts
-);
+export const TypedFeaturedProductsQuery = TypedQuery<
+  FeaturedProducts,
+  FeaturedProductsVariables
+>(featuredProducts);

@@ -7,16 +7,15 @@ import {
 } from "./gqlTypes/SearchResults";
 
 const searchResultsQuery = gql`
-  query SearchResults(
-    $query: String!
-    $locale:LanguageCodeEnum!
-) {
+  query SearchResults($query: String!, $locale: LanguageCodeEnum!) {
     products(filter: { search: $query }, first: 20) {
       edges {
         node {
           id
           name
-          translation(languageCode:$locale){name}
+          translation(languageCode: $locale) {
+            name
+          }
           thumbnail {
             url
             alt
@@ -27,7 +26,9 @@ const searchResultsQuery = gql`
           category {
             id
             name
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }

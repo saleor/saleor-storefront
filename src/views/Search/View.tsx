@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { useLocale } from "@temp/@next/hooks";
 import { NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -16,11 +17,6 @@ import {
 } from "../../core/utils";
 import Page from "./Page";
 import { TypedSearchProductsQuery } from "./queries";
-
-import useLocale from "@saleor/@next/hooks/useLocale";
-
-import { sortLabelsMessages } from "@saleor/intl"
-import { useIntl } from "react-intl";
 
 type ViewProps = RouteComponentProps<{
   id: string;

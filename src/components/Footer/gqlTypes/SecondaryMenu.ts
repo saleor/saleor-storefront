@@ -2,9 +2,16 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: SecondaryMenu
 // ====================================================
+
+export interface SecondaryMenu_shop_navigation_secondary_items_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
+}
 
 export interface SecondaryMenu_shop_navigation_secondary_items_category {
   __typename: "Category";
@@ -27,6 +34,11 @@ export interface SecondaryMenu_shop_navigation_secondary_items_collection {
 export interface SecondaryMenu_shop_navigation_secondary_items_page {
   __typename: "Page";
   slug: string;
+}
+
+export interface SecondaryMenu_shop_navigation_secondary_items_children_translation {
+  __typename: "MenuItemTranslation";
+  name: string;
 }
 
 export interface SecondaryMenu_shop_navigation_secondary_items_children_category {
@@ -59,6 +71,10 @@ export interface SecondaryMenu_shop_navigation_secondary_items_children {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: SecondaryMenu_shop_navigation_secondary_items_children_translation | null;
   category: SecondaryMenu_shop_navigation_secondary_items_children_category | null;
   /**
    * URL to the menu item.
@@ -75,6 +91,10 @@ export interface SecondaryMenu_shop_navigation_secondary_items {
    */
   id: string;
   name: string;
+  /**
+   * Returns translated menu item fields for the given language code.
+   */
+  translation: SecondaryMenu_shop_navigation_secondary_items_translation | null;
   category: SecondaryMenu_shop_navigation_secondary_items_category | null;
   /**
    * URL to the menu item.
@@ -111,4 +131,8 @@ export interface SecondaryMenu {
    * Return information about the shop.
    */
   shop: SecondaryMenu_shop;
+}
+
+export interface SecondaryMenuVariables {
+  locale: LanguageCodeEnum;
 }

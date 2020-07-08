@@ -20,7 +20,7 @@ export const categoryProductsQuery = gql`
     $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
-    $locale:LanguageCodeEnum!
+    $locale: LanguageCodeEnum!
   ) {
     products(
       after: $after
@@ -41,7 +41,9 @@ export const categoryProductsQuery = gql`
           category {
             id
             name
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }
@@ -60,13 +62,17 @@ export const categoryProductsQuery = gql`
       backgroundImage {
         url
       }
-      translation(languageCode:$locale){name}
+      translation(languageCode: $locale) {
+        name
+      }
       ancestors(last: 5) {
         edges {
           node {
             id
             name
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }
@@ -77,12 +83,16 @@ export const categoryProductsQuery = gql`
           id
           name
           slug
-          translation(languageCode:$locale){name}
+          translation(languageCode: $locale) {
+            name
+          }
           values {
             id
             name
             slug
-            translation(languageCode:$locale){name}
+            translation(languageCode: $locale) {
+              name
+            }
           }
         }
       }

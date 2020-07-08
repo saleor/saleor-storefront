@@ -6,6 +6,11 @@
 // GraphQL fragment: SelectedAttributeFields
 // ====================================================
 
+export interface SelectedAttributeFields_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 export interface SelectedAttributeFields_attribute {
   __typename: "Attribute";
   /**
@@ -16,6 +21,15 @@ export interface SelectedAttributeFields_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: SelectedAttributeFields_attribute_translation | null;
+}
+
+export interface SelectedAttributeFields_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface SelectedAttributeFields_values {
@@ -28,6 +42,10 @@ export interface SelectedAttributeFields_values {
    * Name of a value displayed in the interface.
    */
   name: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: SelectedAttributeFields_values_translation | null;
 }
 
 export interface SelectedAttributeFields {

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { CountryCode } from "./../../../../gqlTypes/globalTypes";
+import { CountryCode, LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: VariantList
@@ -109,6 +109,11 @@ export interface VariantList_productVariants_edges_node_pricing {
   price: VariantList_productVariants_edges_node_pricing_price | null;
 }
 
+export interface VariantList_productVariants_edges_node_attributes_attribute_translation {
+  __typename: "AttributeTranslation";
+  name: string;
+}
+
 export interface VariantList_productVariants_edges_node_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -123,6 +128,15 @@ export interface VariantList_productVariants_edges_node_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * Returns translated attribute fields for the given language code.
+   */
+  translation: VariantList_productVariants_edges_node_attributes_attribute_translation | null;
+}
+
+export interface VariantList_productVariants_edges_node_attributes_values_translation {
+  __typename: "AttributeValueTranslation";
+  name: string;
 }
 
 export interface VariantList_productVariants_edges_node_attributes_values {
@@ -139,6 +153,10 @@ export interface VariantList_productVariants_edges_node_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Returns translated attribute value fields for the given language code.
+   */
+  translation: VariantList_productVariants_edges_node_attributes_values_translation | null;
 }
 
 export interface VariantList_productVariants_edges_node_attributes {
@@ -151,6 +169,11 @@ export interface VariantList_productVariants_edges_node_attributes {
    * Values of an attribute.
    */
   values: (VariantList_productVariants_edges_node_attributes_values | null)[];
+}
+
+export interface VariantList_productVariants_edges_node_translation {
+  __typename: "ProductVariantTranslation";
+  name: string;
 }
 
 export interface VariantList_productVariants_edges_node_product_thumbnail {
@@ -173,6 +196,14 @@ export interface VariantList_productVariants_edges_node_product_thumbnail2x {
   url: string;
 }
 
+export interface VariantList_productVariants_edges_node_product_translation {
+  __typename: "ProductTranslation";
+  name: string;
+  descriptionJson: any;
+  seoDescription: string | null;
+  seoTitle: string | null;
+}
+
 export interface VariantList_productVariants_edges_node_product {
   __typename: "Product";
   /**
@@ -188,6 +219,10 @@ export interface VariantList_productVariants_edges_node_product {
    * The main thumbnail for a product.
    */
   thumbnail2x: VariantList_productVariants_edges_node_product_thumbnail2x | null;
+  /**
+   * Returns translated product fields for the given language code.
+   */
+  translation: VariantList_productVariants_edges_node_product_translation | null;
 }
 
 export interface VariantList_productVariants_edges_node {
@@ -218,6 +253,10 @@ export interface VariantList_productVariants_edges_node {
    * List of attributes assigned to this variant.
    */
   attributes: VariantList_productVariants_edges_node_attributes[];
+  /**
+   * Returns translated product variant fields for the given language code.
+   */
+  translation: VariantList_productVariants_edges_node_translation | null;
   product: VariantList_productVariants_edges_node_product;
 }
 
@@ -244,4 +283,5 @@ export interface VariantList {
 export interface VariantListVariables {
   ids?: string[] | null;
   countryCode?: CountryCode | null;
+  locale: LanguageCodeEnum;
 }

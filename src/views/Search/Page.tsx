@@ -66,8 +66,8 @@ const Page: React.FC<PageProps> = ({
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     const value = attributes
-    .find(({ slug }) => attributeSlug === slug)
-    .values.find(({ slug }) => valueSlug === slug)
+      .find(({ slug }) => attributeSlug === slug)
+      .values.find(({ slug }) => valueSlug === slug);
     return {
       attributeSlug,
       valueName: value.name,

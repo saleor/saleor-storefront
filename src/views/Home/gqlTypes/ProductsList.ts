@@ -2,6 +2,8 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
+import { LanguageCodeEnum } from "./../../../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL query operation: ProductsList
 // ====================================================
@@ -14,6 +16,11 @@ export interface ProductsList_shop_homepageCollection_backgroundImage {
   url: string;
 }
 
+export interface ProductsList_shop_homepageCollection_translation {
+  __typename: "CollectionTranslation";
+  name: string;
+}
+
 export interface ProductsList_shop_homepageCollection {
   __typename: "Collection";
   /**
@@ -22,6 +29,10 @@ export interface ProductsList_shop_homepageCollection {
   id: string;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage | null;
   name: string;
+  /**
+   * Returns translated collection fields for the given language code.
+   */
+  translation: ProductsList_shop_homepageCollection_translation | null;
 }
 
 export interface ProductsList_shop {
@@ -48,6 +59,11 @@ export interface ProductsList_categories_edges_node_backgroundImage {
   url: string;
 }
 
+export interface ProductsList_categories_edges_node_translation {
+  __typename: "CategoryTranslation";
+  name: string;
+}
+
 export interface ProductsList_categories_edges_node {
   __typename: "Category";
   /**
@@ -56,6 +72,10 @@ export interface ProductsList_categories_edges_node {
   id: string;
   name: string;
   backgroundImage: ProductsList_categories_edges_node_backgroundImage | null;
+  /**
+   * Returns translated category fields for the given language code.
+   */
+  translation: ProductsList_categories_edges_node_translation | null;
 }
 
 export interface ProductsList_categories_edges {
@@ -80,4 +100,8 @@ export interface ProductsList {
    * List of the shop's categories.
    */
   categories: ProductsList_categories | null;
+}
+
+export interface ProductsListVariables {
+  locale: LanguageCodeEnum;
 }

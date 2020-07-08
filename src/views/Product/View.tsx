@@ -14,6 +14,7 @@ import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
 import { IProps } from "./types";
+import { useLocale } from "@temp/@next/hooks";
 
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
@@ -109,7 +110,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 
 const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
   const { addItem, items } = useCart();
-const { locale } = useLocale();
+  const { locale } = useLocale();
 
   return (
     <TypedProductDetailsQuery

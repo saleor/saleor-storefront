@@ -7,7 +7,9 @@ const secondaryMenu = gql`
   fragment SecondaryMenuSubItem on MenuItem {
     id
     name
-    translation(languageCode:$locale){name}
+    translation(languageCode: $locale) {
+      name
+    }
     category {
       id
       name
@@ -22,9 +24,7 @@ const secondaryMenu = gql`
     }
   }
 
-  query SecondaryMenu(
-    $locale:LanguageCodeEnum!
-  ) {
+  query SecondaryMenu($locale: LanguageCodeEnum!) {
     shop {
       navigation {
         secondary {

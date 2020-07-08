@@ -6,6 +6,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
+import { useLocale } from "@temp/@next/hooks";
 import {
   MenuDropdown,
   Offline,
@@ -32,8 +33,8 @@ import {
 import "./scss/index.scss";
 
 const MainMenu: React.FC = () => {
-  const { locale } = useLocale()
-  const variables = {locale:locale.toUpperCase()}
+  const { locale } = useLocale();
+  const variables = { locale: locale.toUpperCase() };
 
   const { data: user } = useUserDetails();
   const [signOut] = useSignOut();
@@ -53,7 +54,11 @@ const MainMenu: React.FC = () => {
       {overlayContext => (
         <nav className="main-menu" id="header">
           <div className="main-menu__left">
-            <TypedMainMenuQuery variables={variables} renderOnError displayLoader={false}>
+            <TypedMainMenuQuery
+              variables={variables}
+              renderOnError
+              displayLoader={false}
+            >
               {({ data }) => {
                 const items = maybe(() => data.shop.navigation.main.items, []);
 
