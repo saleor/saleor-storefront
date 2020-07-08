@@ -49,7 +49,7 @@ describe("User login, logout and registration", () => {
         .type("thisisnotavalidpassword")
         .get(LOGIN_SELECTORS.signInButton)
         .click()
-        .get(LOGIN_SELECTORS.warningCredentialMessage, { timeoout: 20000 })
+        .get(LOGIN_SELECTORS.warningCredentialMessage, { timeout: 20000 })
         .should("contain", "Please, enter valid credentials");
     });
   });
