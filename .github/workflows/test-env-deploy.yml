@@ -13,13 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: start deployment
+      - name: Start deployment
         uses: bobheadxi/deployments@master
         id: deployment
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: test
+          env: integration
+          ref: ${{ github.head_ref }}
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -69,7 +70,7 @@ jobs:
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_TEST_CF_DIST_ID }} --paths "/${{ env.domain }}/*"
 
-      - name: update deployment status
+      - name: Update deployment status
         uses: bobheadxi/deployments@master
         if: always()
         with:
