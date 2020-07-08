@@ -13,13 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: rlespinasse/github-slug-action@master
+
       - name: Start deployment
         uses: bobheadxi/deployments@master
         id: deployment
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: integration
+          env: ${{ env.GITHUB_HEAD_REF_SLUG }}
           ref: ${{ github.head_ref }}
 
       - name: Cache node modules
@@ -51,7 +53,6 @@ jobs:
         run: |
           npm run build
 
-      - uses: rlespinasse/github-slug-action@master
       - name: Set domain
         # Set test instance domain based on branch name slug
         run: |
