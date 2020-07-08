@@ -1,0 +1,14 @@
+{
+  "extends": ["../.eslintrc", "plugin:cypress/recommended"],
+  "globals": {
+    "Cypress": true,
+    "cy": true,
+    "it": true,
+    "describe": true,
+    "context": true,
+    "beforeEach": true,
+    "assert": true,
+    "expect": true
+  },
+  "plugins": ["cypress"]
+}

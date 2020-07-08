@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+import { CATEGORY_SELECTORS } from "../../elements/category/category-page";
 
 describe("Product list view", () => {
   let polyfill = null;
@@ -23,17 +23,16 @@ describe("Product list view", () => {
         win.fetch = win.unfetch;
       },
     });
-
   });
 
   it("category view should contain 6 visible products", () => {
-    cy.get("[data-test=productTile").should("have.length", 6);
+    cy.get(CATEGORY_SELECTORS.productTitleText).should("have.length", 6);
   });
 
   it("should load more products when clicking on MORE button", () => {
-    cy.get("[data-test=loadMoreProductsButton]")
-      .click();
-    
-      cy.get("[data-test=productTile]").then((tiles)=>expect(tiles.length).to.be.at.least(6))
+    cy.get(CATEGORY_SELECTORS.loadMoreButton).click();
+    cy.get(CATEGORY_SELECTORS.productTitleText).then(tiles =>
+      expect(tiles.length).to.be.at.least(6)
+    );
   });
 });

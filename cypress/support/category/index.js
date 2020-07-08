@@ -1,12 +1,16 @@
+
 const openFilterSidebar = () => {
+  const filterButton = "[data-test=filtersButton]"
+
   return cy
-    .get("[data-test=filtersButton]")
+    .get(filterButton)
     .click();
 };
 
 const openCategory = (index = 0) => {
+  const leftMainMenu = "[data-test=mainMenuItem]"
   return cy
-    .get("[data-test=mainMenuItem]", {timeout: 5000})
+    .get(leftMainMenu, { timeout: 5000 })
     .eq(index)
     .click();
 };
