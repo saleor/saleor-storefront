@@ -530,6 +530,10 @@
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2508056477": {
     "string": "Your order nr: {orderNum}"
   },
+  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2670827143": {
+    "context": "action in popup menu in order view",
+    "string": "Download invoice"
+  },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_624688748": {
     "string": "Go back to Order History"
   },
