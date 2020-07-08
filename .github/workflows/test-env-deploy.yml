@@ -53,10 +53,10 @@ jobs:
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync ./dist s3://test-envs-stack-storefrontsbf9ec55f-4q9rxi8vjmo9/${{ env.domain }}
+        run: aws s3 sync ./dist s3://${{ secrets.AWS_TEST_DEPLOYMENT_BUCKET }}/${{ env.domain }}
 
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id E1CH7YXEIA2RM --paths "/${{ env.domain }}/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_TEST_CF_DIST_ID }} --paths "/${{ env.domain }}/*"
 
       - name: Print URL
         run: |
