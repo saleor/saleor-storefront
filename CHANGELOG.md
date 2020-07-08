@@ -15,7 +15,6 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix storybook config - #789 by @dominik-zeglen
 - Update sdk to newest version - #795 by @dominik-zeglen
 - Use intl - #782 by @przlada
-- Download invoice for order - #790 by @orzechdev
 
 ## 2.10.4
 
