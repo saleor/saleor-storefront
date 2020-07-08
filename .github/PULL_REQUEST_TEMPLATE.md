@@ -19,6 +19,4 @@ greatly reduce the amount of work needed to review your work. -->
 
 ### Test Environment Config
 
-```
-API_URI=https://master.staging.saleor.rocks/graphql/
-```
+> API_URI=https://master.staging.saleor.rocks/graphql/
