@@ -3,6 +3,5 @@ export const LOGIN_SELECTORS = {
   emailAddressInput: "[data-test=loginOverlay] input[name='email']",
   emailPasswordInput: "[data-test=loginOverlay] input[name='password']",
   signInButton: "[data-test=submit]",
-  warningCredentialMessage: ":nth-child(1) > .input__error"
-
-} 
+  warningCredentialMessage: ".form-error",
+};
