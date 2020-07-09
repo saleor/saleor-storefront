@@ -48,7 +48,9 @@ describe("User login, logout and registration", () => {
         .type("thisisnotavalidpassword")
         .get("[data-test=submit]")
         .click()
-        .get(":nth-child(1) > .input__error", { timeout: 30000 })
+        ///.get(":nth-child(1) > .input__error", { timeout: 30000 })
+        .get(".input__error")
+        .first()
         .should("contain", "Please, enter valid credentials");
     });
   });
