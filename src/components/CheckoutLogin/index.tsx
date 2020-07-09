@@ -29,7 +29,7 @@ const CheckoutLogin: React.FC<{}> = () => {
         <div className="checkout-login">
           <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
           <div className="checkout-login__user">
-            <SignInForm onClick={showPasswordResetOverlay} />
+            <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
           </div>
         </div>
       </Online>

@@ -5,13 +5,34 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
-import { maybe } from "../../core/utils";
 import { TypedPasswordResetMutation } from "./queries";
 
 import { passwordResetUrl } from "../../app/routes";
+import { ResetPassword } from "./gqlTypes/ResetPassword";
 
 const PasswordResetForm: React.FC = () => {
   const intl = useIntl();
+
+  const disableSubmit = (loading: boolean, data: ResetPassword) => {
+    if (loading) {
+      return true;
+    }
+    if (data?.requestPasswordReset.errors.length === 0) {
+      return true;
+    }
+    return false;
+  };
+
+  const buttonMessage = (loading: boolean, data: ResetPassword) => {
+    if (loading) {
+      return intl.formatMessage(commonMessages.loading);
+    }
+    if (data?.requestPasswordReset.errors.length === 0) {
+      return intl.formatMessage({ defaultMessage: "Check your inbox" });
+    }
+    return intl.formatMessage({ defaultMessage: "Reset password" });
+  };
+
   return (
     <div className="password-reset-form">
       <p>
@@ -21,7 +42,7 @@ const PasswordResetForm: React.FC = () => {
         {(passwordReset, { loading, data }) => {
           return (
             <Form
-              errors={maybe(() => data.requestPasswordReset.errors, [])}
+              errors={data?.requestPasswordReset.errors || []}
               onSubmit={(event, { email }) => {
                 event.preventDefault();
                 passwordReset({
@@ -43,11 +64,9 @@ const PasswordResetForm: React.FC = () => {
                 <Button
                   testingContext="submit"
                   type="submit"
-                  {...(loading && { disabled: true })}
+                  {...(disableSubmit(loading, data) && { disabled: true })}
                 >
-                  {loading
-                    ? intl.formatMessage(commonMessages.loading)
-                    : intl.formatMessage({ defaultMessage: "Reset password" })}
+                  {buttonMessage(loading, data)}
                 </Button>
               </div>
             </Form>
