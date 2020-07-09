@@ -5,15 +5,15 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
-import { TypedPasswordResetMutation } from "./queries";
+import { TypedPasswordResetRequestMutation } from "./queries";
 
 import { passwordResetUrl } from "../../app/routes";
-import { ResetPassword } from "./gqlTypes/ResetPassword";
+import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 
 const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();
 
-  const disableSubmit = (loading: boolean, data: ResetPassword) => {
+  const disableSubmit = (loading: boolean, data: ResetPasswordRequest) => {
     if (loading) {
       return true;
     }
@@ -23,7 +23,7 @@ const PasswordResetRequestForm: React.FC = () => {
     return false;
   };
 
-  const buttonMessage = (loading: boolean, data: ResetPassword) => {
+  const buttonMessage = (loading: boolean, data: ResetPasswordRequest) => {
     if (loading) {
       return intl.formatMessage(commonMessages.loading);
     }
@@ -38,7 +38,7 @@ const PasswordResetRequestForm: React.FC = () => {
       <p>
         <FormattedMessage defaultMessage="Please provide us your email address so we can share you a link to reset your password" />
       </p>
-      <TypedPasswordResetMutation>
+      <TypedPasswordResetRequestMutation>
         {(passwordReset, { loading, data }) => {
           return (
             <Form
@@ -72,7 +72,7 @@ const PasswordResetRequestForm: React.FC = () => {
             </Form>
           );
         }}
-      </TypedPasswordResetMutation>
+      </TypedPasswordResetRequestMutation>
     </div>
   );
 };

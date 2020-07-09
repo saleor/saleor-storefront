@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 import { TypedMutation } from "../../core/mutations";
 import {
-  ResetPassword,
-  ResetPasswordVariables,
-} from "./gqlTypes/ResetPassword";
+  ResetPasswordRequest,
+  ResetPasswordRequestVariables,
+} from "./gqlTypes/ResetPasswordRequest";
 
 // fixme: this will be fixed in issue https://github.com/mirumee/saleor-storefront/issues/500
-const passwordResetMutation = gql`
-  mutation ResetPassword($email: String!, $redirectUrl: String!) {
+const passwordResetRequestMutation = gql`
+  mutation ResetPasswordRequest($email: String!, $redirectUrl: String!) {
     requestPasswordReset(email: $email, redirectUrl: $redirectUrl) {
       errors {
         field
@@ -17,7 +17,7 @@ const passwordResetMutation = gql`
   }
 `;
 
-export const TypedPasswordResetMutation = TypedMutation<
-  ResetPassword,
-  ResetPasswordVariables
->(passwordResetMutation);
+export const TypedPasswordResetRequestMutation = TypedMutation<
+  ResetPasswordRequest,
+  ResetPasswordRequestVariables
+>(passwordResetRequestMutation);
