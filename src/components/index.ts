@@ -13,7 +13,7 @@ export { default as NotFound } from "./NotFound";
 export { default as Offline } from "./Offline";
 export { default as OfflinePlaceholder } from "./OfflinePlaceholder";
 export { default as Online } from "./Online";
-export { default as PasswordResetForm } from "./PasswordResetForm";
+export { default as PasswordResetRequestForm } from "./PasswordResetRequestForm";
 export { default as PriceRangeFilter } from "./PriceRangeFilter";
 export { default as ProductDescription } from "./ProductDescription";
 export { default as ProductListItem } from "./ProductListItem";

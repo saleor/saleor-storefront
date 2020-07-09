@@ -10,7 +10,7 @@ import { TypedPasswordResetMutation } from "./queries";
 import { passwordResetUrl } from "../../app/routes";
 import { ResetPassword } from "./gqlTypes/ResetPassword";
 
-const PasswordResetForm: React.FC = () => {
+const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();
 
   const disableSubmit = (loading: boolean, data: ResetPassword) => {
@@ -77,4 +77,4 @@ const PasswordResetForm: React.FC = () => {
   );
 };
 
-export default PasswordResetForm;
+export default PasswordResetRequestForm;
