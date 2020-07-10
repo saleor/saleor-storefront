@@ -14,10 +14,7 @@ const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();
 
   const disableSubmit = (loading: boolean, data: ResetPasswordRequest) => {
-    if (loading) {
-      return true;
-    }
-    if (data?.requestPasswordReset.errors.length === 0) {
+    if (loading || data?.requestPasswordReset.errors.length === 0) {
       return true;
     }
     return false;
