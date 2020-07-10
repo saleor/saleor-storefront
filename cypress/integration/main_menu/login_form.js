@@ -1,6 +1,7 @@
-// <reference types="cypress" />
+import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
+import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
+
 describe("User login, logout and registration", () => {
-  let user = null;
   let polyfill = null;
 
   before(() => {
@@ -26,7 +27,7 @@ describe("User login, logout and registration", () => {
   });
 
   it("should open overlay with a sign in and register form", () => {
-    cy.get("[data-test=desktopMenuLoginOverlayLink]")
+    cy.get(HEADER_SELECTORS.mainMenuButton)
       .click()
       .get(".overlay")
       .should("exist");
@@ -35,21 +36,20 @@ describe("User login, logout and registration", () => {
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser("admin@example.com", "admin")
-        .get("[data-test=alert]")
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged in");
     });
 
     it("should display an error if user does not exist", () => {
-      cy
-        .get("[data-test=desktopMenuLoginOverlayLink]")
+      cy.get(HEADER_SELECTORS.mainMenuButton)
         .click()
-        .get(".login__content input[name='email']")
+        .get(LOGIN_SELECTORS.emailAddressInput)
         .type("thisUserIsNotRegistered@example.com")
-        .get(".login__content input[name='password']")
+        .get(LOGIN_SELECTORS.emailPasswordInput)
         .type("thisisnotavalidpassword")
-        .get("[data-test=submit]")
+        .get(LOGIN_SELECTORS.signInButton)
         .click()
-      .get(".login__content .form-error", {timeoout: 20000})
+        .get(LOGIN_SELECTORS.warningCredentialMessage, { timeout: 20000 })
         .should("contain", "Please, enter valid credentials");
     });
   });
@@ -57,9 +57,9 @@ describe("User login, logout and registration", () => {
   describe("Logout", () => {
     it("should successfully log out an user", () => {
       cy.loginUser("admin@example.com", "admin");
-      cy.wait(2000);  // wait for reloading UI
+      cy.wait(2000); // wait for reloading UI
       cy.logoutUser()
-        .get("[data-test=alert]")
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged out");
     });
   });

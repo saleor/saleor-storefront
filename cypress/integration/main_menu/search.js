@@ -1,6 +1,6 @@
-// <reference types="cypress" />
+import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 
-describe.only("Search", () => {
+describe("Search", () => {
   const typedText = "t";
   let polyfill;
 
@@ -27,31 +27,37 @@ describe.only("Search", () => {
   });
 
   it("should show input on click", () => {
-    cy.get(".main-menu__search")
+    cy.get(HEADER_SELECTORS.mainMenuSearchButton)
       .click()
-      .get("form.search input")
+      .get(HEADER_SELECTORS.mainMenuSearchInput)
       .should("exist");
   });
 
   it("should search products", () => {
-    cy.get(".main-menu__search")
+    const searchProductsExpandedArea =
+      ".search__products.search__products--expanded";
+
+    cy.get(HEADER_SELECTORS.mainMenuSearchButton)
       .click()
-      .get("form.search input")
+      .get(HEADER_SELECTORS.mainMenuSearchInput)
       .type(typedText)
-      .get(".search__products.search__products--expanded")
+      .get(searchProductsExpandedArea)
       .should("exist");
   });
 
   it("should redirect to Search page on form submit", () => {
-    cy.get(".main-menu__search")
+    const showAllresultsButton = "form.search button[type='submit']";
+    const searchPageHeader = ".search-page";
+
+    cy.get(HEADER_SELECTORS.mainMenuSearchButton)
       .click()
-      .get("form.search input")
+      .get(HEADER_SELECTORS.mainMenuSearchInput)
       .type(typedText)
-      .get("form.search button[type='submit']")
+      .get(showAllresultsButton)
       .click();
 
     cy.url().should("include", `/search/?q=${typedText}`);
-    cy.get(".search-page").should("exist");
+    cy.get(searchPageHeader).should("exist");
     cy.focused().should("have.value", typedText);
   });
 });

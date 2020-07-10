@@ -1,4 +1,5 @@
-// <reference types="cypress" />
+import { CATEGORY_SELECTORS } from "../../elements/category/category-page";
+import { LEFT_FILTERS_SELECTORS } from "../../elements/filters-left-menu/filters-menu";
 
 describe("Category view - filtering and sorting", () => {
   let polyfill = null;
@@ -26,43 +27,43 @@ describe("Category view - filtering and sorting", () => {
   });
 
   it("should show correct number of products in category if no filtering applied", () => {
-    cy
-      .get("[data-test=productsFoundCounter]")
-      .should("have.text", "Products found: 7");
+    cy.get(CATEGORY_SELECTORS.productFoundCounter).should(
+      "have.text",
+      "Products found: 7"
+    ); // we can't be sure that there always ll be 7 items
   });
 
   it("should show filter sidebar after clicking on filter menu", () => {
-    cy
-      .get("[data-test=filterSidebar]")
+    cy.get(LEFT_FILTERS_SELECTORS.filterSidebar)
       .should("have.length", 0)
       .openFilterSidebar()
-      .get("[data-test=filterSidebar]")
+      .get(LEFT_FILTERS_SELECTORS.filterSidebar)
       .should("have.length", 1);
   });
 
   it("should hide filter sidebar after clicking on close icon button", () => {
-    cy
-      .get("[data-test=filterSidebar]")
+    cy.get(LEFT_FILTERS_SELECTORS.filterSidebar)
       .should("have.length", 0)
       .openFilterSidebar()
-      .get("[data-test=filterSidebar]")
+      .get(LEFT_FILTERS_SELECTORS.filterSidebar)
       .should("have.length", 1)
-      .get("[data-test=hideFilters]")
+      .get(LEFT_FILTERS_SELECTORS.closeFilterSidebar)
       .click()
-      .get("[data-test=filterSidebar]")
+      .get(LEFT_FILTERS_SELECTORS.filterSidebar)
       .should("have.length", 0);
   });
 
   it("should filter products after clicking on filter attribute", () => {
-    cy
-      .openFilterSidebar()
+    cy.openFilterSidebar()
       .get("label")
       .first()
       .click()
-      .get("[data-test=productsFoundCounter]")
-      .should("have.text", "Products found: 5")
-      .get("[data-test=productTile")
+      .get(CATEGORY_SELECTORS.productFoundCounter)
+      .should("have.text", "Products found: 5") // we can't be sure that there always ll be 5 items
+      .get(CATEGORY_SELECTORS.productTitleText)
       .should("have.length", 5);
   });
-
 });
+function productsFoundCounter() {
+  return CATEGORY_SELECTORS.productFoundCounter;
+}
