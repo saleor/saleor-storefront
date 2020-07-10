@@ -45,6 +45,7 @@ jobs:
     - name: Run linters
       run: |
         npm run lint
+        git diff --exit-code ./src
 
   jest-tests:
     runs-on: ubuntu-latest

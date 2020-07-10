@@ -204,7 +204,7 @@
     "codegen": "apollo codegen:generate --target=typescript gqlTypes",
     "codegen-sdk": "apollo codegen:generate --target=typescript gqlTypes --config src/@sdk/apollo.config.js --globalTypesFile src/@sdk/gqlTypes/globalTypes.ts",
     "codegen-watch": "npm run codegen -- --watch",
-    "lint": "eslint src",
+    "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; npx prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write",
     "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@next",
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
