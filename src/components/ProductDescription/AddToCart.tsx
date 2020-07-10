@@ -1,23 +1,23 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { Button } from "../../@next/components/atoms";
 
-import AddToCartButton from "./AddToCartButton";
 
 const AddToCart: React.FC<{
   disabled: boolean;
   onSubmit: () => void;
 }> = ({ onSubmit, disabled }) => {
   return (
-    <AddToCartButton
+    <Button
+      fullWidth
       testingContext="addProductToCartButton"
       className="product-description__action"
-      onClick={() => {
-        onSubmit();
-      }}
+      onClick={onSubmit}
+      color="primary"
       disabled={disabled}
     >
       <FormattedMessage defaultMessage="Add to basket" />
-    </AddToCartButton>
+    </Button>
   );
 };
 

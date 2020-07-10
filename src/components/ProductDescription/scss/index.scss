@@ -39,34 +39,6 @@
     font-weight: regular;
   }
 
-  &__action {
-    min-height: 49px;
-
-    &--fade {
-      $animation-speed: 200ms;
-      background-color: $turquoise-dark;
-
-      &-enter {
-        opacity: 0;
-
-        @at-root #{&}#{&}-active {
-          opacity: 1;
-          transition: opacity $animation-speed ease-in;
-        }
-      }
-
-      &-leave {
-        opacity: 1;
-
-        @at-root #{&}#{&}-active {
-          opacity: 0;
-          display: none;
-          transition: opacity $animation-speed ease-out;
-        }
-      }
-    }
-  }
-
   &__selected-attributes {
     font-size: $small-font-size;
     margin-top: 20px;
