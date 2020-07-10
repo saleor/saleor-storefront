@@ -25,7 +25,7 @@ describe("User orders histoy", () => {
 
     cy.fixture("valid_user.json").then(validUser => {
       user = validUser;
-      cy.loginUser(user.email, user.password).wait(3000);
+      cy.loginUser(user.email, user.password);
     });
 
     cy.visit("/order-history/");

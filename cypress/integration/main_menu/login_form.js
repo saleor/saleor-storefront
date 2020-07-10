@@ -36,7 +36,7 @@ describe("User login, logout and registration", () => {
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser("admin@example.com", "admin")
-        .get(LOGIN_SELECTORS.allertPopupMessage, { timeoout: 5000 })
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged in");
     });
 
@@ -59,7 +59,7 @@ describe("User login, logout and registration", () => {
       cy.loginUser("admin@example.com", "admin");
       cy.wait(2000); // wait for reloading UI
       cy.logoutUser()
-        .get(LOGIN_SELECTORS.allertPopupMessage, { timeoout: 5000 })
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged out");
     });
   });
