@@ -1,6 +1,8 @@
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
 
+const faker = require('faker');
+
 describe("User login, logout and registration", () => {
   let polyfill = null;
 
@@ -33,9 +35,28 @@ describe("User login, logout and registration", () => {
       .should("exist");
   });
 
+  describe("Register new account", () => {
+    it("should register a new user", () => {
+      const fakeEmailAdressText = faker.internet.email();
+      const fakePasswordText = faker.internet.password();
+
+      cy.get(HEADER_SELECTORS.mainMenuButton)
+      .click()
+      .get(LOGIN_SELECTORS.registerNewAccount)
+      .click()
+      .get(LOGIN_SELECTORS.emailAddressInput)
+      .type(fakeEmailAdressText)
+      .get(LOGIN_SELECTORS.emailPasswordInput)
+      .type(fakePasswordText)
+      .get(LOGIN_SELECTORS.registerButton)
+      .click()
+      .get(LOGIN_SELECTORS.registrationConfirmationWarning, { timeout: 20000 })
+      .should("contain", "New user has been created")
+    });
+
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      cy.loginUser("admin@example.com", "admin")
+      cy.loginUser("michalina.graczyk@mirumee.com", "michalina123")
         .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged in");
     });
@@ -56,7 +77,7 @@ describe("User login, logout and registration", () => {
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      cy.loginUser("admin@example.com", "admin");
+      cy.loginUser("michalina.graczyk@mirumee.com", "michalina123");
       cy.wait(2000); // wait for reloading UI
       cy.logoutUser()
         .get(LOGIN_SELECTORS.allertPopupMessage)

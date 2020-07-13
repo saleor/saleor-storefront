@@ -28,9 +28,7 @@ Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
 
   cy.visit(url, {
     onBeforeLoad: win => {
-      cy.stub(win, "fetch")
-        .callsFake(serverStub)
-        .as("fetch stub");
+      cy.stub(win, "fetch").callsFake(serverStub).as("fetch stub");
     },
   });
 });
