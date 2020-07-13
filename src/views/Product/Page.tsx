@@ -3,13 +3,14 @@ import React from "react";
 import Media from "react-media";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
-import { Breadcrumbs, ProductDescription } from "../../components";
+import { Breadcrumbs } from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 
-import { ProductDescription as NewProductDescription } from "../../@next/components/molecules";
+import { ProductDescription } from "../../@next/components/molecules";
 import { ProductGallery } from "../../@next/components/organisms";
+import AddToCartSection from "../../@next/components/organisms/AddToCartSection";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
 
@@ -48,12 +49,12 @@ const Page: React.FC<
   };
 
   const productDescription = (
-    <ProductDescription
+    <AddToCartSection
       items={items}
       productId={product.id}
       name={product.name}
       productVariants={product.variants}
-      pricing={product.pricing}
+      productPricing={product.pricing}
       queryAttributes={queryAttributes}
       setVariantId={setVariantId}
       onAddToCart={add}
@@ -70,12 +71,9 @@ const Page: React.FC<
       </div>
       <div className="container">
         <div className="product-page__product">
-          {/* Add script here */}
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
           </script>
-
-          {/*  */}
           <Media query={{ maxWidth: smallScreen }}>
             {matches =>
               matches ? (
@@ -110,7 +108,7 @@ const Page: React.FC<
       </div>
       <div className="container">
         <div className="product-page__product__description">
-          <NewProductDescription
+          <ProductDescription
             descriptionJson={product.descriptionJson}
             attributes={product.attributes}
           />
