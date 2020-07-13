@@ -55,8 +55,8 @@ const Page: React.FC<
       productVariants={product.variants}
       pricing={product.pricing}
       queryAttributes={queryAttributes}
-      addToCart={add}
       setVariantId={setVariantId}
+      onAddToCart={add}
       onAttributeChangeHandler={onAttributeChangeHandler}
       isAvailableForPurchase={product.isAvailableForPurchase}
       availableForPurchase={product.availableForPurchase}

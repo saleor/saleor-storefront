@@ -1,12 +1,16 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { Button } from "../../@next/components/atoms";
+import { Button } from "../../atoms";
 
-
-const AddToCart: React.FC<{
+export interface IAddToCartButton {
   disabled: boolean;
   onSubmit: () => void;
-}> = ({ onSubmit, disabled }) => {
+}
+
+export const AddToCartButton: React.FC<IAddToCartButton> = ({
+  onSubmit,
+  disabled,
+}) => {
   return (
     <Button
       fullWidth
@@ -20,5 +24,5 @@ const AddToCart: React.FC<{
     </Button>
   );
 };
-
-export default AddToCart;
+AddToCartButton.displayName = "AddToCartButton";
+export default AddToCartButton;

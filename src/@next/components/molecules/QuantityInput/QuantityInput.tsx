@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 import { TextField } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
-interface QuantityTextFieldProps {
+export interface IQuantityInput {
   quantity: number;
   maxQuantity: number;
   disabled: boolean;
@@ -12,13 +12,13 @@ interface QuantityTextFieldProps {
   hideErrors: boolean;
 }
 
-export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
+export const QuantityInput: React.FC<IQuantityInput> = ({
   disabled,
   quantity,
   maxQuantity,
   onQuantityChange,
   hideErrors,
-}: QuantityTextFieldProps) => {
+}) => {
   const [isTooMuch, setIsTooMuch] = useState(false);
   const intl = useIntl();
 
@@ -59,3 +59,5 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
     />
   );
 };
+QuantityInput.displayName = "QuantityInput";
+export default QuantityInput;
