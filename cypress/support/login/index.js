@@ -1,11 +1,11 @@
 import { userBuilder } from "../generate";
-const mainMenuButton = "[data-test=desktopMenuLoginOverlayLink]"
-const allertPopupMessage = "[data-test=alert]"
-const emailAddressInput = "[data-test=loginOverlay] input[name='email']"
-const emailPasswordInput = "[data-test=loginOverlay] input[name='password']"
-const signInButton = "[data-test=submit]"
-const loggedInMainMenuButton = "[data-test=userButton]"
-const logOutButton = "[data-test=desktopMenuLogoutLink]"
+const mainMenuButton = "[data-test=desktopMenuLoginOverlayLink]";
+const allertPopupMessage = "[data-test=alert]";
+const emailAddressInput = "[data-test=loginOverlay] input[name='email']";
+const emailPasswordInput = "[data-test=loginOverlay] input[name='password']";
+const signInButton = "[data-test=submit]";
+const loggedInMainMenuButton = "[data-test=userButton]";
+const logOutButton = "[data-test=desktopMenuLogoutLink]";
 
 const createUser = () => {
   const user = userBuilder();
@@ -29,8 +29,8 @@ Cypress.Commands.add("loginUser", (email, password) => {
     .type(password)
     .get(signInButton)
     .click()
-    .get(allertPopupMessage)
-    .should("contain", "You are now logged in", {timeoout: 20000});
+    .get(allertPopupMessage, { timeout: 3000 })
+    .should("contain", "You are now logged in", { timeoout: 20000 });
 });
 
 Cypress.Commands.add("logoutUser", () =>
@@ -39,6 +39,6 @@ Cypress.Commands.add("logoutUser", () =>
     .click()
     .get(logOutButton)
     .click()
-    .get(allertPopupMessage)
-    .should("contain", "You are now logged out", {timeoout: 20000})
+    .get(allertPopupMessage, { timeout: 3000 })
+    .should("contain", "You are now logged out", { timeoout: 20000 })
 );

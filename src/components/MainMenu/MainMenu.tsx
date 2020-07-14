@@ -1,7 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
-import { useCart, useSignOut, useUserDetails } from "@saleor/sdk";
+import { useAuth, useCart } from "@saleor/sdk";
+
 import Media from "react-media";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
@@ -32,8 +33,7 @@ import {
 import "./scss/index.scss";
 
 const MainMenu: React.FC = () => {
-  const { data: user } = useUserDetails();
-  const [signOut] = useSignOut();
+  const { user, signOut } = useAuth();
   const { items } = useCart();
 
   const handleSignOut = () => {

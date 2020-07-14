@@ -8,6 +8,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
 - Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
 - Use sdk as a standalone package - #724 by @dominik-zeglen
+- Use auth api from sdk - #727 by @orzechdev
 - Fix CartRow tests - #749 by @dominik-zeglen
 - Add prettier to precommit - #766 by @dominik-zeglen
 - Do not use prettier on generated files - #773 by @dominik-zeglen

@@ -11,7 +11,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
-import { useCart, useCheckout, useUserDetails } from "@saleor/sdk";
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
@@ -42,7 +42,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   ref
 ) => {
   const history = useHistory();
-  const { data: user } = useUserDetails();
+  const { user } = useAuth();
   const {
     checkout,
     billingAsShipping,

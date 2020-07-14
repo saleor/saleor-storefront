@@ -1,11 +1,8 @@
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import { defaultDataIdFromObject, InMemoryCache } from "apollo-cache-inmemory";
-import { persistCache } from "apollo-cache-persist";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { positions, Provider as AlertProvider, useAlert } from "react-alert";
-import { ApolloProvider } from "react-apollo";
 import { render } from "react-dom";
 import TagManager from "react-gtm-module";
 import { hot } from "react-hot-loader";
@@ -18,14 +15,8 @@ import {
   ServiceWorkerContext,
   ServiceWorkerProvider,
 } from "@components/containers";
-import {
-  authLink,
-  createSaleorClient,
-  fireSignOut,
-  invalidTokenLinkWithTokenHandler,
-  SaleorProvider,
-  useAuth,
-} from "@saleor/sdk";
+import { SaleorProvider, useAuth } from "@saleor/sdk";
+import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
 import { App } from "./app";
@@ -40,14 +31,74 @@ import {
 } from "./constants";
 import { history } from "./history";
 
-const cache = new InMemoryCache({
-  dataIdFromObject: obj => {
-    if (obj.__typename === "Shop") {
-      return "shop";
+const SALEOR_CONFIG: ConfigInput = {
+  apiUrl,
+};
+
+const Notifications: React.FC = () => {
+  const alert = useAlert();
+  const intl = useIntl();
+
+  const { updateAvailable } = React.useContext(ServiceWorkerContext);
+
+  React.useEffect(() => {
+    if (updateAvailable) {
+      alert.show(
+        {
+          actionText: intl.formatMessage({ defaultMessage: "Refresh" }),
+          content: intl.formatMessage({
+            defaultMessage:
+              "To update the application to the latest version, please refresh the page!",
+          }),
+          title: intl.formatMessage({
+            defaultMessage: "New version is available!",
+          }),
+        },
+        {
+          onClose: () => {
+            location.reload();
+          },
+          timeout: 0,
+          type: "success",
+        }
+      );
     }
-    return defaultDataIdFromObject(obj);
-  },
-});
+  }, [updateAvailable]);
+
+  const { authenticated } = useAuth();
+  const [prevAuthenticated, setPrevAuthenticated] = React.useState<
+    boolean | undefined
+  >();
+
+  React.useEffect(() => {
+    if (prevAuthenticated !== undefined && authenticated !== undefined) {
+      if (!prevAuthenticated && authenticated) {
+        alert.show(
+          {
+            title: intl.formatMessage({
+              defaultMessage: "You are now logged in",
+            }),
+          },
+          { type: "success" }
+        );
+      } else if (prevAuthenticated && !authenticated) {
+        alert.show(
+          {
+            title: intl.formatMessage({
+              defaultMessage: "You are now logged out",
+            }),
+          },
+          { type: "success" }
+        );
+      }
+      setPrevAuthenticated(authenticated);
+    } else if (authenticated !== undefined) {
+      setPrevAuthenticated(authenticated);
+    }
+  }, [authenticated]);
+
+  return null;
+};
 
 if (process.env.GTM_ID !== undefined) {
   TagManager.initialize({ gtmId: process.env.GTM_ID });
@@ -62,111 +113,23 @@ const startApp = async () => {
     });
   }
 
-  await persistCache({
-    cache,
-    storage: window.localStorage,
-  });
-
   const notificationOptions = {
     position: positions.BOTTOM_RIGHT,
     timeout: 2500,
   };
 
-  /**
-   * This is temporary adapter for queries and mutations not included in SDK to handle invalid token error for them.
-   * Note, that after all GraphQL queries and mutations will be replaced by SDK methods, this adapter is going to be removed.
-   */
-  const ApolloClientInvalidTokenLinkAdapter: React.FC<{
-    children: (apolloClient) => React.ReactElement;
-  }> = ({ children }) => {
-    const tokenExpirationCallback = () => {
-      fireSignOut(apolloClient);
-    };
-
-    const { link: invalidTokenLink } = invalidTokenLinkWithTokenHandler(
-      tokenExpirationCallback
-    );
-
-    const apolloClient = React.useMemo(
-      () => createSaleorClient(apiUrl, invalidTokenLink, authLink, cache),
-      []
-    );
-
-    return children(apolloClient);
-  };
-
   const Root = hot(module)(() => {
-    const Notifications = () => {
-      const alert = useAlert();
-      const intl = useIntl();
-
-      const { updateAvailable } = React.useContext(ServiceWorkerContext);
-
-      React.useEffect(() => {
-        if (updateAvailable) {
-          alert.show(
-            {
-              actionText: intl.formatMessage({ defaultMessage: "Refresh" }),
-              content: intl.formatMessage({
-                defaultMessage:
-                  "To update the application to the latest version, please refresh the page!",
-              }),
-              title: intl.formatMessage({
-                defaultMessage: "New version is available!",
-              }),
-            },
-            {
-              onClose: () => {
-                location.reload();
-              },
-              timeout: 0,
-              type: "success",
-            }
-          );
-        }
-      }, [updateAvailable]);
-
-      useAuth((authenticated: boolean) => {
-        if (authenticated) {
-          alert.show(
-            {
-              title: intl.formatMessage({
-                defaultMessage: "You are now logged in",
-              }),
-            },
-            { type: "success" }
-          );
-        } else {
-          alert.show(
-            {
-              title: intl.formatMessage({
-                defaultMessage: "You are now logged out",
-              }),
-            },
-            { type: "success" }
-          );
-        }
-      });
-      return null;
-    };
-
     return (
       <Router history={history}>
         <QueryParamProvider ReactRouterRoute={Route}>
-          <ApolloClientInvalidTokenLinkAdapter>
-            {apolloClient => (
-              <ApolloProvider client={apolloClient}>
-                <SaleorProvider client={apolloClient}>
-                  <ShopProvider>
-                    <OverlayProvider>
-                      <App />
-                      <Notifications />
-                    </OverlayProvider>
-                  </ShopProvider>
-                </SaleorProvider>
-              </ApolloProvider>
-            )}
-          </ApolloClientInvalidTokenLinkAdapter>
+          <SaleorProvider config={SALEOR_CONFIG}>
+            <ShopProvider>
+              <OverlayProvider>
+                <App />
+                <Notifications />
+              </OverlayProvider>
+            </ShopProvider>
+          </SaleorProvider>
         </QueryParamProvider>
       </Router>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
-import { useAccountUpdate, useUserDetails } from "@saleor/sdk";
+import { useAccountUpdate, useAuth } from "@saleor/sdk";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
 
@@ -12,8 +12,8 @@ import * as S from "./styles";
 export const AccountTile: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [setAccountUpdate, { data, error }] = useAccountUpdate();
-  const { data: user } = useUserDetails();
   const intl = useIntl();
+  const { user } = useAuth();
 
   React.useEffect(() => {
     if (data && !error) {
