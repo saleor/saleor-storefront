@@ -29,7 +29,7 @@ Cypress.Commands.add("loginUser", (email, password) => {
     .type(password)
     .get(signInButton)
     .click()
-    .get(allertPopupMessage)
+    .get(allertPopupMessage, { timeout: 3000 })
     .should("contain", "You are now logged in", { timeoout: 20000 });
 });
 
@@ -39,6 +39,6 @@ Cypress.Commands.add("logoutUser", () =>
     .click()
     .get(logOutButton)
     .click()
-    .get(allertPopupMessage)
+    .get(allertPopupMessage, { timeout: 3000 })
     .should("contain", "You are now logged out", { timeoout: 20000 })
 );
