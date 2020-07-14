@@ -10,6 +10,7 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
+import * as S from "./styles";
 import {
   OverlayType,
   OverlayTheme,
@@ -70,7 +71,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
   );
 
   const renderErrorMessage = (message: string) => (
-    <p className="product-description__error-message">{message}</p>
+    <p className="__error-message">{message}</p>
   );
 
   const onVariantPickerChange = (
@@ -89,18 +90,20 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
   };
 
   return (
-    <div className="product-description">
-      <h3>{name}</h3>
+    <S.AddToCartSelection>
+      <S.ProductNameHeader>{props.name}</S.ProductNameHeader>
       {isOutOfStock ? (
         renderErrorMessage(intl.formatMessage(commonMessages.outOfStock))
       ) : (
-        <h4>{getProductPrice(props.productPricing, variantPricing)}</h4>
+        <S.ProductPricing>
+          {getProductPrice(props.productPricing, variantPricing)}
+        </S.ProductPricing>
       )}
       {isLowStock &&
         renderErrorMessage(intl.formatMessage(commonMessages.lowStock))}
       {isNoItemsAvailable &&
         renderErrorMessage(intl.formatMessage(commonMessages.noItemsAvailable))}
-      <div className="product-description__variant-picker">
+      <S.VariantPicker>
         <ProductVariantPicker
           productVariants={props.productVariants}
           onChange={onVariantPickerChange}
@@ -108,8 +111,8 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           queryAttributes={props.queryAttributes}
           onAttributeChangeHandler={props.onAttributeChangeHandler}
         />
-      </div>
-      <div className="product-description__quantity-input">
+      </S.VariantPicker>
+      <S.QuantityInput>
         <QuantityInput
           quantity={quantity}
           maxQuantity={availableQuantity}
@@ -117,7 +120,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           onQuantityChange={setQuantity}
           hideErrors={!variantId || isOutOfStock || isNoItemsAvailable}
         />
-      </div>
+      </S.QuantityInput>
       <OverlayContext.Consumer>
         {overlayContext => (
           <AddToCartButton
@@ -129,7 +132,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           />
         )}
       </OverlayContext.Consumer>
-    </div>
+    </S.AddToCartSelection>
   );
 };
 AddToCartSection.displayName = "AddToCartSection";
