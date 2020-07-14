@@ -6,7 +6,6 @@ import { useIntl } from "react-intl";
 import { useAuth } from "@saleor/sdk";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-import { maybe } from "@utils/misc";
 
 import { Button, Form, TextField } from "..";
 
@@ -43,11 +42,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
 
   return (
     <div className="login-form">
-      <Form
-        data={formData}
-        errors={maybe(() => errors, [])}
-        onSubmit={handleOnSubmit}
-      >
+      <Form data={formData} errors={errors || []} onSubmit={handleOnSubmit}>
         <TextField
           name="email"
           autoComplete="email"
