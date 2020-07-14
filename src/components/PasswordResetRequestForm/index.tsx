@@ -13,12 +13,8 @@ import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();
 
-  const disableSubmit = (loading: boolean, data: ResetPasswordRequest) => {
-    if (loading || data?.requestPasswordReset.errors.length === 0) {
-      return true;
-    }
-    return false;
-  };
+  const disableSubmit = (loading: boolean, data: ResetPasswordRequest) =>
+    loading || data?.requestPasswordReset.errors.length === 0;
 
   const buttonMessage = (loading: boolean, data: ResetPasswordRequest) => {
     if (loading) {
