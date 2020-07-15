@@ -46,7 +46,7 @@ export const searchProductsQuery = gql`
         hasNextPage
       }
     }
-    attributes(first: 100) {
+    attributes(filter: { filterableInStorefront: true }, first: 100) {
       edges {
         node {
           id
