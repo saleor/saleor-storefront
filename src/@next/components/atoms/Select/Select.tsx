@@ -81,6 +81,7 @@ export const Select: React.FC<IProps> = ({
         placeholder=""
         components={customComponents}
         isClearable={clearable}
+        classNamePrefix={`select-${name}`}
         {...props}
       />
       <S.ErrorMessages>
