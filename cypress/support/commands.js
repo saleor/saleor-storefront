@@ -36,18 +36,19 @@ Cypress.Commands.add("loginUser", () => {
 });
 
 Cypress.Commands.add("addNewAddress", () => {
-  const fakeAdressText = () => ({
+  const fakeAdressText = {
     fakeFirstNameText: faker.name.firstName(),
     fakeLastNameInputText: faker.name.lastName(),
     fakeCompanyNameText: faker.company.companyName(),
-    fakePhoneNumText: faker.phone.phoneNumber(),
+    fakePhoneNumText: faker.phone.phoneNumberFormat(),
     fakeAddressLine1Text: faker.address.streetAddress(),
     fakeAddressLine2Text: faker.address.secondaryAddress(),
     fakeCityText: faker.address.city(),
     fakeZip_postalCodeText: faker.address.zipCode(),
     fakeCountryText: faker.address.country(),
     fakeStateText: faker.address.state(),
-  });
+  };
+  const addBtn = "[data-test=submitAddressFormModalButton]"; // TODO
 
   cy.get(CHECKOUT_SELECTORS.addNewAddress)
     .click()
@@ -65,10 +66,10 @@ Cypress.Commands.add("addNewAddress", () => {
     .type(fakeAdressText.fakePhoneNumText)
     .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine1)
     .click()
-    .type(fakeAdressText.addressLine1)
+    .type(fakeAdressText.fakeAddressLine1Text)
     .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine2)
     .click()
-    .type(fakeAdressText.addressLine2)
+    .type(fakeAdressText.fakeAddressLine2Text)
     .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.city)
     .click()
     .type(fakeAdressText.fakeCityText)
@@ -77,8 +78,12 @@ Cypress.Commands.add("addNewAddress", () => {
     .type(fakeAdressText.fakeZip_postalCodeText)
     .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.country)
     .click()
-    .type(fakeAdressText.fakeCountryText)
+    .get(".css-11unzgr") //TODO
+    .first()
+    .click()
     .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.state)
     .click()
-    .type(fakeAdressText.fakeStateText);
+    .type(fakeAdressText.fakeStateText)
+    .get(addBtn)
+    .click();
 });

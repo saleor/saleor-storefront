@@ -11,7 +11,7 @@ export const CHECKOUT_SELECTORS = {
     addressLine2: "[name='streetAddress2']",
     city: "[name='city']",
     zip_postalCode: "[name='postalCode']",
-    country: "#react-select-3-input",
+    country: "#react-select-2-input",
     state: "[name='countryArea']",
   },
 };
