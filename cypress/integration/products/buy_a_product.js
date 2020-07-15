@@ -1,5 +1,3 @@
-import faker from "faker";
-
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
@@ -20,19 +18,6 @@ describe("Buy a product as a logged user", () => {
   });
 
   it("should buy a product", () => {
-    const fakeAdressText = () => ({
-      fakeFirstNameText: faker.name.firstName(),
-      fakeLastNameInputText: faker.name.lastName(),
-      fakeCompanyNameText: faker.company.companyName(),
-      fakePhoneNumText: faker.phone.phoneNumber(),
-      fakeAddressLine1Text: faker.address.streetAddress(),
-      fakeAddressLine2Text: faker.address.secondaryAddress(),
-      fakeCityText: faker.address.city(),
-      fakeZip_postalCodeText: faker.address.zipCode(),
-      fakeCountryText: faker.address.country(),
-      fakeStateText: faker.address.state(),
-    });
-
     cy.get(PRODUCTS_SELECTORS.product_list)
       .first()
       .click()
