@@ -1,68 +1,12 @@
 // <reference types="cypress" />
+import faker from "faker";
+
 import "./login";
 import "./category";
 
-Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
-  function responseStub(result) {
-    return {
-      json() {
-        return Promise.resolve(result);
-      },
-      text() {
-        return Promise.resolve(JSON.stringify(result));
-      },
-      ok: true,
-    };
-  }
-
-  function serverStub(path, req) {
-    const body = JSON.parse(req.body);
-    const { operationName } = body[0];
-
-    if (Object.keys(operations).indexOf(operationName) !== false) {
-      return Promise.resolve(responseStub(operations[operationName]));
-    }
-
-    return Promise.reject(new Error(`Not found: ${path}`));
-  }
-
-  cy.visit(url, {
-    onBeforeLoad: win => {
-      cy.stub(win, "fetch").callsFake(serverStub).as("fetch stub");
-    },
-  });
-});
-
-Cypress.Commands.add("mockGraphQL", stubs => {
-  cy.on("window:before:load", win => {
-    cy.stub(win, "fetch", (...args) => {
-      const [url, request] = args;
-      const postBody = JSON.parse(request.body)[0];
-      let promise;
-
-      if (url.indexOf("graphql") !== -1) {
-        stubs.some(stub => {
-          if (postBody.operationName === stub.operation) {
-            promise = Promise.resolve({
-              ok: true,
-              text() {
-                return Promise.resolve(JSON.stringify(stub.response));
-              },
-            });
-            return true;
-          }
-        });
-      }
-
-      if (promise) {
-        return promise;
-      }
-
-      console.log("Could not find a stub for the operation.");
-      return false;
-    });
-  });
-});
+import { HEADER_SELECTORS } from "../elements/main-header/header-selectors";
+import { LOGIN_SELECTORS } from "../elements/saleor-account/login-selectors";
+import { CHECKOUT_SELECTORS } from "../elements/products/checkout-selectors";
 
 Cypress.on("uncaught:exception", () => {
   return false;
@@ -76,4 +20,65 @@ Cypress.Commands.add("setup", polyfill => {
       win.fetch = win.unfetch;
     },
   });
+});
+
+Cypress.Commands.add("loginUser", () => {
+  cy.get(HEADER_SELECTORS.mainMenuButton)
+    .click()
+    .get(LOGIN_SELECTORS.emailAddressInput)
+    .type(LOGIN_SELECTORS.email)
+    .get(LOGIN_SELECTORS.emailPasswordInput)
+    .type(LOGIN_SELECTORS.password)
+    .get(LOGIN_SELECTORS.signInButton)
+    .click()
+    .get(LOGIN_SELECTORS.allertPopupMessage)
+    .should("contain", "You are now logged in", { timeoout: 20000 });
+});
+
+Cypress.Commands.add("addNewAddress", () => {
+  const fakeAdressText = () => ({
+    fakeFirstNameText: faker.name.firstName(),
+    fakeLastNameInputText: faker.name.lastName(),
+    fakeCompanyNameText: faker.company.companyName(),
+    fakePhoneNumText: faker.phone.phoneNumber(),
+    fakeAddressLine1Text: faker.address.streetAddress(),
+    fakeAddressLine2Text: faker.address.secondaryAddress(),
+    fakeCityText: faker.address.city(),
+    fakeZip_postalCodeText: faker.address.zipCode(),
+    fakeCountryText: faker.address.country(),
+    fakeStateText: faker.address.state(),
+  });
+
+  cy.get(CHECKOUT_SELECTORS.addNewAddress)
+    .click()
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.firstNameInput)
+    .click()
+    .type(fakeAdressText.fakeFirstNameText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.lastNameInput)
+    .click()
+    .type(fakeAdressText.fakeLastNameInputText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.companyName)
+    .click()
+    .type(fakeAdressText.fakeCompanyNameText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.phoneNum)
+    .click()
+    .type(fakeAdressText.fakePhoneNumText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine1)
+    .click()
+    .type(fakeAdressText.addressLine1)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine2)
+    .click()
+    .type(fakeAdressText.addressLine2)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.city)
+    .click()
+    .type(fakeAdressText.fakeCityText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.zip_postalCode)
+    .click()
+    .type(fakeAdressText.fakeZip_postalCodeText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.country)
+    .click()
+    .type(fakeAdressText.fakeCountryText)
+    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.state)
+    .click()
+    .type(fakeAdressText.fakeStateText);
 });

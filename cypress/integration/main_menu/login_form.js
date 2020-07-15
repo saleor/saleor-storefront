@@ -1,7 +1,7 @@
+import faker from "faker";
+
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
-
-const faker = require("faker");
 
 describe("User login, logout and registration", () => {
   let polyfill = null;

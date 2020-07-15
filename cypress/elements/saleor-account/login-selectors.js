@@ -7,4 +7,6 @@ export const LOGIN_SELECTORS = {
   registerNewAccount: "[data-test=registerTab]",
   registerButton: "[data-test=submitRegisterFormButton]",
   registrationConfirmationWarning: "[data-test=alert]",
+  email: "michalina.graczyk@mirumee.com",
+  password: "michalina123",
 };
