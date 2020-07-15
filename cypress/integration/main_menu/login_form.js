@@ -1,7 +1,7 @@
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
 
-const faker = require('faker');
+const faker = require("faker");
 
 describe("User login, logout and registration", () => {
   let polyfill = null;
@@ -36,23 +36,26 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Register new account", () => {
-    it("should register a new user", () => {
+    xit("should register a new user", () => {
       const fakeEmailAdressText = faker.internet.email();
       const fakePasswordText = faker.internet.password();
 
       cy.get(HEADER_SELECTORS.mainMenuButton)
-      .click()
-      .get(LOGIN_SELECTORS.registerNewAccount)
-      .click()
-      .get(LOGIN_SELECTORS.emailAddressInput)
-      .type(fakeEmailAdressText)
-      .get(LOGIN_SELECTORS.emailPasswordInput)
-      .type(fakePasswordText)
-      .get(LOGIN_SELECTORS.registerButton)
-      .click()
-      .get(LOGIN_SELECTORS.registrationConfirmationWarning, { timeout: 20000 })
-      .should("contain", "New user has been created")
+        .click()
+        .get(LOGIN_SELECTORS.registerNewAccount)
+        .click()
+        .get(LOGIN_SELECTORS.emailAddressInput)
+        .type(fakeEmailAdressText)
+        .get(LOGIN_SELECTORS.emailPasswordInput)
+        .type(fakePasswordText)
+        .get(LOGIN_SELECTORS.registerButton)
+        .click()
+        .get(LOGIN_SELECTORS.registrationConfirmationWarning, {
+          timeout: 20000,
+        })
+        .should("contain", "New user has been created");
     });
+  });
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
