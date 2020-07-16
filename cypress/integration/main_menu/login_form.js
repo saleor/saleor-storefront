@@ -36,31 +36,29 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Register new account", () => {
-    xit("should register a new user", () => {
-      const fakeEmailAdressText = faker.internet.email();
-      const fakePasswordText = faker.internet.password();
+      xit("should register a new user", () => {
+        const fakeEmailAdressText = faker.internet.email();
+        const fakePasswordText = faker.internet.password();
 
-      cy.get(HEADER_SELECTORS.mainMenuButton)
-        .click()
-        .get(LOGIN_SELECTORS.registerNewAccount)
-        .click()
-        .get(LOGIN_SELECTORS.emailAddressInput)
-        .type(fakeEmailAdressText)
-        .get(LOGIN_SELECTORS.emailPasswordInput)
-        .type(fakePasswordText)
-        .get(LOGIN_SELECTORS.registerButton)
-        .click()
-        .get(LOGIN_SELECTORS.registrationConfirmationWarning, {
-          timeout: 20000,
-        })
-        .should("contain", "New user has been created");
-    });
+        cy.get(HEADER_SELECTORS.mainMenuButton)
+          .click()
+          .get(LOGIN_SELECTORS.registerNewAccount)
+          .click()
+          .get(LOGIN_SELECTORS.emailAddressInput)
+          .type(fakeEmailAdressText)
+          .get(LOGIN_SELECTORS.emailPasswordInput)
+          .type(fakePasswordText)
+          .get(LOGIN_SELECTORS.registerButton)
+          .click()
+          .get(LOGIN_SELECTORS.registrationConfirmationWarning
+          .should("contain", "New user has been created");
+      });
   });
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
       cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"))
-        .get(LOGIN_SELECTORS.allertPopupMessage, { timeout: 20000 })
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged in");
     });
 
@@ -73,7 +71,7 @@ describe("User login, logout and registration", () => {
         .type("thisisnotavalidpassword")
         .get(LOGIN_SELECTORS.signInButton)
         .click()
-        .get(LOGIN_SELECTORS.warningCredentialMessage, { timeout: 20000 })
+        .get(LOGIN_SELECTORS.warningCredentialMessage)
         .should("contain", "Please, enter valid credentials");
     });
   });
@@ -81,9 +79,9 @@ describe("User login, logout and registration", () => {
   describe("Logout", () => {
     it("should successfully log out an user", () => {
       cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"));
-      cy.wait(2000); // wait for reloading UI
+      cy.wait(1000); // wait for reloading UI
       cy.logoutUser()
-        .get(LOGIN_SELECTORS.allertPopupMessage, { timeout: 30000 })
+        .get(LOGIN_SELECTORS.allertPopupMessage)
         .should("contain", "You are now logged out");
     });
   });
