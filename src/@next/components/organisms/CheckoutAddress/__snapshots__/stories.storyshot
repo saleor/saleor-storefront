@@ -575,15 +575,15 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 onKeyDown={[Function]}
               >
                 <div
-                  className="css-133ddnz-control"
+                  className="css-133ddnz-control select-country__control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="css-tntsk8"
+                    className="css-tntsk8 select-country__value-container select-country__value-container--has-value"
                   >
                     <div
-                      className="css-dvua67-singleValue"
+                      className="css-dvua67-singleValue select-country__single-value"
                     >
                       Poland
                     </div>
@@ -591,7 +591,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                       className="css-1g6gooi"
                     >
                       <div
-                        className=""
+                        className="select-country__input"
                         style={
                           Object {
                             "display": "inline-block",
@@ -1064,15 +1064,15 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                 onKeyDown={[Function]}
               >
                 <div
-                  className="css-133ddnz-control"
+                  className="css-133ddnz-control select-country__control"
                   onMouseDown={[Function]}
                   onTouchEnd={[Function]}
                 >
                   <div
-                    className="css-tntsk8"
+                    className="css-tntsk8 select-country__value-container select-country__value-container--has-value"
                   >
                     <div
-                      className="css-dvua67-singleValue"
+                      className="css-dvua67-singleValue select-country__single-value"
                     >
                       Poland
                     </div>
@@ -1080,7 +1080,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
                       className="css-1g6gooi"
                     >
                       <div
-                        className=""
+                        className="select-country__input"
                         style={
                           Object {
                             "display": "inline-block",

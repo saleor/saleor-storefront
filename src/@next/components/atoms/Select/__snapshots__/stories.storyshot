@@ -36,15 +36,15 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
       onKeyDown={[Function]}
     >
       <div
-        className="css-bg1rzq-control"
+        className="css-bg1rzq-control select-country__control"
         onMouseDown={[Function]}
         onTouchEnd={[Function]}
       >
         <div
-          className="css-1hwfws3"
+          className="css-1hwfws3 select-country__value-container"
         >
           <div
-            className="css-151xaom-placeholder"
+            className="css-151xaom-placeholder select-country__placeholder"
           >
             
           </div>
@@ -52,7 +52,7 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
             className="css-1g6gooi"
           >
             <div
-              className=""
+              className="select-country__input"
               style={
                 Object {
                   "display": "inline-block",
@@ -107,14 +107,14 @@ exports[`Storyshots @components/atoms/Select sample select 1`] = `
           </div>
         </div>
         <div
-          className="css-1wy0on6"
+          className="css-1wy0on6 select-country__indicators"
         >
           <span
-            className="css-bgvzuu-indicatorSeparator"
+            className="css-bgvzuu-indicatorSeparator select-country__indicator-separator"
           />
           <div
             aria-hidden="true"
-            className="css-16pqwjk-indicatorContainer"
+            className="css-16pqwjk-indicatorContainer select-country__indicator select-country__dropdown-indicator"
             onMouseDown={[Function]}
             onTouchEnd={[Function]}
           >
