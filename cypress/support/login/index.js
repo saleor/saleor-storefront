@@ -26,10 +26,10 @@ Cypress.Commands.add("loginUser", (email, password) => {
     .get(emailAddressInput)
     .type(email)
     .get(emailPasswordInput)
-    .type(password)
+    .type(password, { log: false })
     .get(signInButton)
     .click()
-    .get(allertPopupMessage, { timeout: 3000 })
+    .get(allertPopupMessage, { timeout: 30000 })
     .should("contain", "You are now logged in", { timeoout: 20000 });
 });
 
@@ -39,6 +39,6 @@ Cypress.Commands.add("logoutUser", () =>
     .click()
     .get(logOutButton)
     .click()
-    .get(allertPopupMessage, { timeout: 3000 })
+    .get(allertPopupMessage, { timeout: 30000 })
     .should("contain", "You are now logged out", { timeoout: 20000 })
 );

@@ -59,8 +59,8 @@ describe("User login, logout and registration", () => {
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      cy.loginUser("michalina.graczyk@mirumee.com", "michalina123")
-        .get(LOGIN_SELECTORS.allertPopupMessage)
+      cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"))
+        .get(LOGIN_SELECTORS.allertPopupMessage, { timeout: 20000 })
         .should("contain", "You are now logged in");
     });
 
@@ -80,10 +80,10 @@ describe("User login, logout and registration", () => {
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      cy.loginUser("michalina.graczyk@mirumee.com", "michalina123");
+      cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"));
       cy.wait(2000); // wait for reloading UI
       cy.logoutUser()
-        .get(LOGIN_SELECTORS.allertPopupMessage)
+        .get(LOGIN_SELECTORS.allertPopupMessage, { timeout: 30000 })
         .should("contain", "You are now logged out");
     });
   });
