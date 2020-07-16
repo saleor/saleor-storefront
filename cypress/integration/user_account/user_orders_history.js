@@ -1,6 +1,5 @@
 describe("User orders histoy", () => {
   let polyfill = null;
-  let user = null;
 
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
