@@ -1,6 +1,5 @@
 describe("User orders histoy", () => {
   let polyfill = null;
-  let user = null;
 
   before(() => {
     const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
@@ -21,11 +20,6 @@ describe("User orders histoy", () => {
         win.eval(polyfill);
         win.fetch = win.unfetch;
       },
-    });
-
-    cy.fixture("valid_user.json").then(validUser => {
-      user = validUser;
-      cy.loginUser(user.email, user.password);
     });
 
     cy.visit("/order-history/");
