@@ -10,7 +10,7 @@ import {
   Online,
   Overlay,
   OverlayContextInterface,
-  PasswordResetForm,
+  PasswordResetRequestForm,
 } from "../..";
 
 import closeImg from "../../../images/x.svg";
@@ -32,7 +32,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
           />
         </div>
         <div className="password-reset__content">
-          <PasswordResetForm />
+          <PasswordResetRequestForm />
         </div>
       </Online>
       <Offline>
