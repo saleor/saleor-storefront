@@ -14,6 +14,7 @@ declare module "query-string";
 declare interface Window {
   PasswordCredential: any;
   Stripe: any;
+  AdyenCheckout: any;
   Cypress?: any;
 }
 

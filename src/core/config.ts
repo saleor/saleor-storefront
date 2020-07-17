@@ -16,6 +16,9 @@ export const PROVIDERS = {
     href: "https://js.stripe.com/v3/",
     label: "Stripe",
   },
+  ADYEN: {
+    label: "Adyen",
+  },
 };
 export const STATIC_PAGES = [
   {

@@ -25,4 +25,9 @@ export const paymentGateways: IPaymentGateway[] = [
     id: "mirumee.payments.stripe",
     name: "Stripe",
   },
+  {
+    config: [],
+    id: "mirumee.payments.adyen",
+    name: "Adyen",
+  },
 ];
