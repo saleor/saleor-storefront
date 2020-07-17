@@ -64,7 +64,10 @@ export const categoryProductsQuery = gql`
         }
       }
     }
-    attributes(filter: { inCategory: $id }, first: 100) {
+    attributes(
+      filter: { inCategory: $id, filterableInStorefront: true }
+      first: 100
+    ) {
       edges {
         node {
           id

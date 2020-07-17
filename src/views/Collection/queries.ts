@@ -57,7 +57,10 @@ export const collectionProductsQuery = gql`
         startCursor
       }
     }
-    attributes(filter: { inCollection: $id }, first: 100) {
+    attributes(
+      filter: { inCollection: $id, filterableInStorefront: true }
+      first: 100
+    ) {
       edges {
         node {
           id
