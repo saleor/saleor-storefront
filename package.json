@@ -39,7 +39,7 @@
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
     "js-base64": "^2.4.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "nuka-carousel": "^4.6.0",
     "query-string": "^6.12.1",
     "react": "^16.9.9",
