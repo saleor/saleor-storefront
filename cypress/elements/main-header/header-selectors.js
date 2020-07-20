@@ -3,5 +3,6 @@ export const HEADER_SELECTORS = {
   loggedInMainMenuButton: "[data-test=userButton]",
   logOutButton: "[data-test=desktopMenuLogoutLink]",
   mainMenuSearchButton: ".main-menu__search",
-  mainMenuSearchInput: "form.search input"
-} 
+  mainMenuSearchInput: "form.search input",
+  cartBtn: "[data-test='menuCartOverlayLink']",
+};

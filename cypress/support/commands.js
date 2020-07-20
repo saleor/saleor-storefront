@@ -1,8 +1,8 @@
 // <reference types="cypress" />
-import faker from "faker";
 
 import "./login";
 import "./category";
+import "./cart";
 
 import { HEADER_SELECTORS } from "../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../elements/saleor-account/login-selectors";
@@ -13,7 +13,7 @@ Cypress.on("uncaught:exception", () => {
 });
 
 Cypress.Commands.add("setup", polyfill => {
-  cy.visit("/", {
+  return cy.visit("/", {
     onBeforeLoad(win) {
       delete win.fetch;
       win.eval(polyfill);
@@ -23,7 +23,8 @@ Cypress.Commands.add("setup", polyfill => {
 });
 
 Cypress.Commands.add("loginUser", () => {
-  cy.get(HEADER_SELECTORS.mainMenuButton)
+  return cy
+    .get(HEADER_SELECTORS.mainMenuButton)
     .click()
     .get(LOGIN_SELECTORS.emailAddressInput)
     .type(Cypress.env("USER_NAME"))
@@ -32,58 +33,47 @@ Cypress.Commands.add("loginUser", () => {
     .get(LOGIN_SELECTORS.signInButton)
     .click()
     .get(LOGIN_SELECTORS.allertPopupMessage)
-    .should("contain", "You are now logged in", { timeoout: 20000 });
+    .get(LOGIN_SELECTORS.signInButton)
+    .should("not.exist");
 });
 
-Cypress.Commands.add("addNewAddress", () => {
-  const fakeAdressText = {
-    fakeFirstNameText: faker.name.firstName(),
-    fakeLastNameInputText: faker.name.lastName(),
-    fakeCompanyNameText: faker.company.companyName(),
-    fakePhoneNumText: faker.phone.phoneNumberFormat(),
-    fakeAddressLine1Text: faker.address.streetAddress(),
-    fakeAddressLine2Text: faker.address.secondaryAddress(),
-    fakeCityText: faker.address.city(),
-    fakeZip_postalCodeText: faker.address.zipCode(),
-    fakeCountryText: faker.address.country(),
-    fakeStateText: faker.address.state(),
-  };
-  const addBtn = "[data-test=submitAddressFormModalButton]"; // TODO
-
-  cy.get(CHECKOUT_SELECTORS.addNewAddress)
+Cypress.Commands.add("addNewAddress", address => {
+  return cy
+    .get(CHECKOUT_SELECTORS.addNewAddress)
     .click()
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.firstNameInput)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.firstNameInput)
     .click()
-    .type(fakeAdressText.fakeFirstNameText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.lastNameInput)
+    .type(address.fakeFirstNameText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.lastNameInput)
     .click()
-    .type(fakeAdressText.fakeLastNameInputText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.companyName)
+    .type(address.fakeLastNameInputText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.companyName)
     .click()
-    .type(fakeAdressText.fakeCompanyNameText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.phoneNum)
+    .type(address.fakeCompanyNameText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.phoneNum)
     .click()
-    .type(fakeAdressText.fakePhoneNumText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine1)
+    .type(address.phoneNum)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressLine1)
     .click()
-    .type(fakeAdressText.fakeAddressLine1Text)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.addressLine2)
+    .type(address.fakeAddressLine1Text)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressLine2)
     .click()
-    .type(fakeAdressText.fakeAddressLine2Text)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.city)
+    .type(address.fakeAddressLine2Text)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.city)
     .click()
-    .type(fakeAdressText.fakeCityText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.zip_postalCode)
+    .type(address.city)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.zip_postalCode)
     .click()
-    .type(fakeAdressText.fakeZip_postalCodeText)
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.country)
+    .type(address.zipCode)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.country)
     .click()
-    .get(".css-11unzgr") //TODO
-    .first()
+    .get(".css-1pcexqc-container") //TODO
     .click()
-    .get(CHECKOUT_SELECTORS.ADD_NEW_ADDRESS_SELECTORS.state)
+    .type(`${address.country}{enter}`)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.state)
     .click()
-    .type(fakeAdressText.fakeStateText)
-    .get(addBtn)
-    .click();
+    .type(address.state)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addBtn)
+    .click()
+    .should("not.exist");
 });

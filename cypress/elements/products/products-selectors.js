@@ -5,6 +5,6 @@ export const PRODUCTS_SELECTORS = {
   attributOptions: "[data-test='attributeOption']",
   addToBasketBtn: "[data-test=addProductToCartButton]",
   cartQuantity: ".main-menu__cart__quantity",
-  checkoutBtn: "[data-test='gotoBagViewButton']",
+  goToBagMyBagBtn: "[data-test='gotoBagViewButton']",
   procceedToCheckoutBtn: "[data-test=proceedToCheckoutButton]",
 };
