@@ -1,6 +1,6 @@
 // <reference types="cypress" />
 
-import "./login";
+import "./user";
 import "./category";
 import "./cart";
 
@@ -20,21 +20,6 @@ Cypress.Commands.add("setup", polyfill => {
       win.fetch = win.unfetch;
     },
   });
-});
-
-Cypress.Commands.add("loginUser", () => {
-  return cy
-    .get(HEADER_SELECTORS.mainMenuButton)
-    .click()
-    .get(LOGIN_SELECTORS.emailAddressInput)
-    .type(Cypress.env("USER_NAME"))
-    .get(LOGIN_SELECTORS.emailPasswordInput)
-    .type(Cypress.env("USER_PASSWORD"), { log: false })
-    .get(LOGIN_SELECTORS.signInButton)
-    .click()
-    .get(LOGIN_SELECTORS.allertPopupMessage)
-    .get(LOGIN_SELECTORS.signInButton)
-    .should("not.exist");
 });
 
 Cypress.Commands.add("addNewAddress", address => {
@@ -67,7 +52,7 @@ Cypress.Commands.add("addNewAddress", address => {
     .type(address.zipCode)
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.country)
     .click()
-    .get(".css-1pcexqc-container") //TODO
+    .get(".css-1pcexqc-container") // TODO
     .click()
     .type(`${address.country}{enter}`)
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.state)
