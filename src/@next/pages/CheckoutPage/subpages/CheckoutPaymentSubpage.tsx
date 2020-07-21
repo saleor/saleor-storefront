@@ -57,6 +57,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   } = useCheckout();
   const { items } = useCart();
   const { countries } = useContext(ShopContext);
+  console.log(availablePaymentGateways);
 
   const isShippingRequiredForProducts =
     items &&

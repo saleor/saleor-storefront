@@ -149,7 +149,18 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     </span>
                   </Radio>
                 </S.Tile>
-                {checked && <AdyenPaymentGateway />}
+                {checked && (
+                  <AdyenPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    formId={formId}
+                    processPayment={(token, cardData) =>
+                      processPayment(id, token, cardData)
+                    }
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
               </div>
             );
 
