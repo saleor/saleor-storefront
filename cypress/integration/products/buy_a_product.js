@@ -52,7 +52,7 @@ describe("Buy a product as a logged user", () => {
       .click()
       .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
       .click()
-      .get('a[href="/checkout/address"]')
+      .get('a[href="/checkout/address"]') // TO DO - will be fixed
       .click()
       .addNewAddress(address)
       .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressTiles)
@@ -83,6 +83,10 @@ describe("Buy a product as a logged user", () => {
       .and("contain", address.country)
       .and("contain", address.phoneNum.replace(/-/gi, ""))
       .and("contain", address.state)
-      .and("contain", address.zipCode);
+      .and("contain", address.zipCode)
+      .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.placeOrder)
+      .click()
+      .get(CHECKOUT_SELECTORS.ORDER_FINALIZED.confirmationView)
+      .should("be.visible");
   });
 });

@@ -26,7 +26,7 @@ describe("User orders histoy", () => {
   });
 
   xit("if user is logged in, when accessing order history and clicking load more button 10 orders should be visible", () => {
-    //xited becouse this tests need to be changed with new DB
+    // xited becouse this tests need to be changed with new DB
     cy.get(".account__content", { timeout: 15000 })
       .find("[data-test=orderEntry]")
       .should("have.length", 5)
@@ -38,7 +38,7 @@ describe("User orders histoy", () => {
   });
 
   xit("if user is logged in, when accessing order history and clicking on order should move user to order view", () => {
-    //xited becouse this tests need to be changed with new DB
+    // xited becouse this tests need to be changed with new DB
     cy.get("[data-test=orderEntry]:first", { timeout: 15000 }).click();
 
     cy.location().should(loc => {

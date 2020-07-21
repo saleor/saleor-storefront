@@ -27,5 +27,9 @@ export const CHECKOUT_SELECTORS = {
   REVIEW_SELECTORS: {
     shippingAddressTile:
       "[data-test=shippingAddressSection] > [data-test=addressTile]",
+    placeOrder: "[data-test=checkoutPageNextStepButton]",
+  },
+  ORDER_FINALIZED: {
+    confirmationView: "[data-test=thankYouView]",
   },
 };

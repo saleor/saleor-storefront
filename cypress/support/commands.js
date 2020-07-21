@@ -52,7 +52,7 @@ Cypress.Commands.add("addNewAddress", address => {
     .type(address.zipCode)
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.country)
     .click()
-    .get(".css-1pcexqc-container") // TODO
+    .get(".css-1pcexqc-container") // TODO - will change that when I ll add a better selector to it
     .click()
     .type(`${address.country}{enter}`)
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.state)
