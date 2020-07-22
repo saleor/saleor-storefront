@@ -1,9 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
+import { IFormError, IPaymentGatewayConfig } from "@types";
 import * as S from "./styles";
-import { IProps } from "./types";
 
-const AdyenPaymentGateway: React.FC<IProps> = ({ config }: IProps) => {
+export interface IProps {
+  /**
+   * Payment gateway client configuration.
+   */
+  config: IPaymentGatewayConfig[];
+  /**
+   * Form reference on which payment might be submitted.
+   */
+  formRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * Errors returned by the payment gateway.
+   */
+  errors?: IFormError[];
+  /**
+   * Method called after the form is submitted. Passed token attribute will be used to create payment.
+   */
+  processPayment: (data: any) => void;
+  /**
+   * Method called when gateway error occured.
+   */
+  onError: (errors: IFormError[]) => void;
+}
+
+const AdyenPaymentGateway: React.FC<IProps> = ({
+  config,
+  formRef,
+  processPayment,
+  onError,
+}: IProps) => {
+  const [dropin, setDropin] = useState<any>();
   const ref = useRef<HTMLDivElement>(null);
 
   const originKey = config.find(({ field }) => field === "origin_key")?.value;
@@ -12,7 +41,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({ config }: IProps) => {
   console.log(config, originKey, parsedAdyenConfig);
 
   useEffect(() => {
-    if (originKey && parsedAdyenConfig) {
+    if (originKey && parsedAdyenConfig && !dropin) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href =
@@ -28,18 +57,30 @@ const AdyenPaymentGateway: React.FC<IProps> = ({ config }: IProps) => {
     }
   }, [originKey, parsedAdyenConfig]);
 
-  // TODO: Replace configuratio with the configuration returned by Saleor backend API, when SDK will handle it.
   const initAdyenCheckout = () => {
     const configuration = {
-      locale: "en_US",
+      locale: navigator.language,
       environment: "test",
       originKey,
       paymentMethodsResponse: {
         paymentMethods: parsedAdyenConfig,
       },
-      amount: {
-        value: 1000,
-        currency: "EUR",
+      showPayButton: false,
+      onSubmit: (state, dropin) => {
+        // dropin.setStatus("loading");
+        console.log("dropin onSubmit");
+        console.log(state, dropin);
+        // makePaymentCall(state.data).then...
+
+        processPayment(state?.data);
+      },
+      onAdditionalDetails: (state, dropin) => {
+        console.log("dropin onAdditionalDetails");
+        // makeDetailsCall(state.data).then...
+      },
+      onError: error => {
+        console.log("dropin onError", error);
+        onError([error]);
       },
     };
 
@@ -49,26 +90,34 @@ const AdyenPaymentGateway: React.FC<IProps> = ({ config }: IProps) => {
     const checkout = new window.AdyenCheckout(configuration);
     // If you need to refer to the dropin externaly, you can save this inside a variable:
     // const dropin = checkout.create...
-    checkout
-      .create("dropin", {
-        onSubmit: (state, dropin) => {
-          dropin.setStatus("loading");
-          console.log(dropin);
-          // makePaymentCall(state.data).then...
-        },
-        onAdditionalDetails: (state, dropin) => {
-          // makeDetailsCall(state.data).then...
-        },
-      })
-      .mount(ref.current);
+    const dropinElement = checkout.create("dropin");
+    dropinElement.mount(ref.current);
+    console.log("dropinElement", dropinElement);
+
+    setDropin(dropinElement);
+    // ref.current?.onsubmit((_, ev) => dropin.submit());
+    // formRef?.current?.submit = dropin.submit;
   };
 
   // const dropInComponent = useMemo(() => <div ref={ref} />, []);
 
+  useEffect(() => {
+    console.log("dropin event listener useEffect", formRef, dropin);
+    (formRef?.current as any).addEventListener("submit", () => {
+      console.log("dropin event submit", dropin);
+      if (dropin) {
+        // ref.current.dispatchEvent(new Event("submit", { cancelable: true }));
+        console.log("dropin event submit dropin");
+        dropin.submit();
+      }
+    });
+  }, [formRef, dropin]);
+
   return (
     <S.Wrapper>
-      AdyenPaymentGateway
-      <div ref={ref} />
+      <div ref={formRef}>
+        <div ref={ref} />
+      </div>
     </S.Wrapper>
   );
 };

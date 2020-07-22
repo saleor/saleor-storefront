@@ -2,9 +2,9 @@ import { GetShop_shop_countries } from "@saleor/sdk/lib/queries/gqlTypes/GetShop
 import {
   IAddress,
   IAddressWithAddressType,
-  ICardData,
   IFormError,
   IPaymentGateway,
+  IPaymentData,
 } from "@types";
 
 export interface IPromoCodeDiscount {
@@ -54,11 +54,7 @@ export interface IProps {
   /**
    * Method called after the form is submitted. Passed gateway id and token attribute will be used to create payment.
    */
-  processPayment: (
-    gateway: string,
-    token: string,
-    cardData?: ICardData
-  ) => void;
+  processPayment: (paymentData: IPaymentData) => void;
   /**
    * Method called when gateway error occured.
    */

@@ -1,4 +1,4 @@
-import { ICardData, IFormError, IPaymentGateway } from "@types";
+import { IFormError, IPaymentGateway, IPaymentData } from "@types";
 
 export interface IProps {
   /**
@@ -32,11 +32,7 @@ export interface IProps {
   /**
    * Method called after the form is submitted. Passed gateway id and token attribute will be used to create payment.
    */
-  processPayment: (
-    gateway: string,
-    token: string,
-    cardData?: ICardData
-  ) => void;
+  processPayment: (paymentData: IPaymentData) => void;
   /**
    * Method called when gateway error occured.
    */

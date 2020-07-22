@@ -15,7 +15,7 @@ import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
-import { IAddress, ICardData, IFormError } from "@types";
+import { IAddress, IFormError, IPaymentData } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 export interface ICheckoutPaymentSubpageHandles {
@@ -110,12 +110,12 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     },
   }));
 
-  const handleProcessPayment = async (
-    gateway: string,
-    token: string,
-    cardData?: ICardData
-  ) => {
-    const { dataError } = await createPayment(gateway, token, cardData);
+  const handleProcessPayment = async (paymentData: IPaymentData) => {
+    const { dataError } = await createPayment(
+      paymentData.gateway,
+      paymentData.token,
+      paymentData.cardData
+    );
     const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {

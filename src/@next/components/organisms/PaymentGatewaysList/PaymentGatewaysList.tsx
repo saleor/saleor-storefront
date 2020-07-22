@@ -57,7 +57,11 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     formRef={formRef}
                     formId={formId}
                     processPayment={(token, cardData) =>
-                      processPayment(id, token, cardData)
+                      processPayment({
+                        gateway: id,
+                        token,
+                        cardData,
+                      })
                     }
                     errors={errors}
                     onError={onError}
@@ -89,7 +93,9 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <DummyPaymentGateway
                     formRef={formRef}
                     formId={formId}
-                    processPayment={token => processPayment(id, token)}
+                    processPayment={token =>
+                      processPayment({ gateway: id, token })
+                    }
                     initialStatus={selectedPaymentGatewayToken}
                   />
                 )}
@@ -121,7 +127,11 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     formRef={formRef}
                     formId={formId}
                     processPayment={(token, cardData) =>
-                      processPayment(id, token, cardData)
+                      processPayment({
+                        gateway: id,
+                        token,
+                        cardData,
+                      })
                     }
                     errors={errors}
                     onError={onError}
@@ -153,9 +163,11 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <AdyenPaymentGateway
                     config={config}
                     formRef={formRef}
-                    formId={formId}
-                    processPayment={(token, cardData) =>
-                      processPayment(id, token, cardData)
+                    processPayment={data =>
+                      processPayment({
+                        gateway: id,
+                        data,
+                      })
                     }
                     errors={errors}
                     onError={onError}
