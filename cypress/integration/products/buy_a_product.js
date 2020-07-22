@@ -5,17 +5,8 @@ import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 
 describe("Buy a product as a logged user", () => {
-  let polyfill;
-
-  before(() => {
-    const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
-    cy.request(polyfillUrl).then(response => {
-      polyfill = response.body;
-    });
-  });
-
   beforeEach(() => {
-    cy.setup(polyfill).loginUser().clearCart();
+    cy.noUILogin().clearCart();
   });
 
   it("should buy a product", () => {
@@ -34,7 +25,8 @@ describe("Buy a product as a logged user", () => {
       state: "AL",
     };
 
-    cy.get(PRODUCTS_SELECTORS.product_list)
+    cy.visit("/")
+      .get(PRODUCTS_SELECTORS.product_list)
       .first()
       .click()
       .get(PRODUCTS_SELECTORS.first_selected_product_name)
