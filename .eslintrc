@@ -28,7 +28,8 @@
           "**/tests.tsx",
           "config/**/*",
           "*.config.js",
-          "src/@next/pages/baseStory.ts"
+          "src/@next/pages/baseStory.ts",
+          "cypress/**/*"
         ]
       }
     ],

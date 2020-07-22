@@ -1,79 +1,64 @@
 // <reference types="cypress" />
-import "./login";
+
+import "./user";
 import "./category";
+import "./cart";
 
-Cypress.Commands.add("visitStubbed", (url, operations = {}) => {
-  function responseStub(result) {
-    return {
-      json() {
-        return Promise.resolve(result);
-      },
-      text() {
-        return Promise.resolve(JSON.stringify(result));
-      },
-      ok: true,
-    };
-  }
-
-  function serverStub(path, req) {
-    const body = JSON.parse(req.body);
-    const { operationName } = body[0];
-
-    if (Object.keys(operations).indexOf(operationName) !== false) {
-      return Promise.resolve(responseStub(operations[operationName]));
-    }
-
-    return Promise.reject(new Error(`Not found: ${path}`));
-  }
-
-  cy.visit(url, {
-    onBeforeLoad: win => {
-      cy.stub(win, "fetch").callsFake(serverStub).as("fetch stub");
-    },
-  });
-});
-
-Cypress.Commands.add("mockGraphQL", stubs => {
-  cy.on("window:before:load", win => {
-    cy.stub(win, "fetch", (...args) => {
-      const [url, request] = args;
-      const postBody = JSON.parse(request.body)[0];
-      let promise;
-
-      if (url.indexOf("graphql") !== -1) {
-        stubs.some(stub => {
-          if (postBody.operationName === stub.operation) {
-            promise = Promise.resolve({
-              ok: true,
-              text() {
-                return Promise.resolve(JSON.stringify(stub.response));
-              },
-            });
-            return true;
-          }
-        });
-      }
-
-      if (promise) {
-        return promise;
-      }
-
-      console.log("Could not find a stub for the operation.");
-      return false;
-    });
-  });
-});
+import { HEADER_SELECTORS } from "../elements/main-header/header-selectors";
+import { LOGIN_SELECTORS } from "../elements/saleor-account/login-selectors";
+import { CHECKOUT_SELECTORS } from "../elements/products/checkout-selectors";
 
 Cypress.on("uncaught:exception", () => {
   return false;
 });
 
 Cypress.Commands.add("setup", polyfill => {
-  cy.visit("/", {
+  return cy.visit("/", {
     onBeforeLoad(win) {
       delete win.fetch;
       win.eval(polyfill);
       win.fetch = win.unfetch;
     },
   });
+});
+
+Cypress.Commands.add("addNewAddress", address => {
+  return cy
+    .get(CHECKOUT_SELECTORS.addNewAddress)
+    .click()
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.firstNameInput)
+    .click()
+    .type(address.fakeFirstNameText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.lastNameInput)
+    .click()
+    .type(address.fakeLastNameInputText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.companyName)
+    .click()
+    .type(address.fakeCompanyNameText)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.phoneNum)
+    .click()
+    .type(address.phoneNum)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressLine1)
+    .click()
+    .type(address.fakeAddressLine1Text)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressLine2)
+    .click()
+    .type(address.fakeAddressLine2Text)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.city)
+    .click()
+    .type(address.city)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.zip_postalCode)
+    .click()
+    .type(address.zipCode)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.country)
+    .click()
+    .get(".css-1pcexqc-container") // TODO - will change that when I ll add a better selector to it
+    .click()
+    .type(`${address.country}{enter}`)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.state)
+    .click()
+    .type(address.state)
+    .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addBtn)
+    .click()
+    .should("not.exist");
 });

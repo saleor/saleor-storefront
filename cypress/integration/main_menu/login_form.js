@@ -1,7 +1,7 @@
+import faker from "faker";
+
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
-
-const faker = require("faker");
 
 describe("User login, logout and registration", () => {
   let polyfill = null;
@@ -36,29 +36,30 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Register new account", () => {
-      xit("should register a new user", () => {
-        const fakeEmailAdressText = faker.internet.email();
-        const fakePasswordText = faker.internet.password();
+    it("should register a new user", () => {
+      const randomWord = faker.random.words(2).replace(" ", "-");
+      const fakeEmailAdressText = `${randomWord}@example.com`;
+      const fakePasswordText = faker.internet.password();
 
-        cy.get(HEADER_SELECTORS.mainMenuButton)
-          .click()
-          .get(LOGIN_SELECTORS.registerNewAccount)
-          .click()
-          .get(LOGIN_SELECTORS.emailAddressInput)
-          .type(fakeEmailAdressText)
-          .get(LOGIN_SELECTORS.emailPasswordInput)
-          .type(fakePasswordText)
-          .get(LOGIN_SELECTORS.registerButton)
-          .click()
-          .get(LOGIN_SELECTORS.registrationConfirmationWarning
-          .should("contain", "New user has been created");
-      });
+      cy.get(HEADER_SELECTORS.mainMenuButton)
+        .click()
+        .get(LOGIN_SELECTORS.registerNewAccount)
+        .click()
+        .get(LOGIN_SELECTORS.emailAddressInput)
+        .type(fakeEmailAdressText)
+        .get(LOGIN_SELECTORS.emailPasswordInput)
+        .type(fakePasswordText)
+        .get(LOGIN_SELECTORS.registerButton)
+        .click()
+        .get(LOGIN_SELECTORS.registrationConfirmationWarning)
+        .should("contain", "New user has been created");
+    });
   });
 
   describe("Login", () => {
     it("should successfully log in an user", () => {
-      cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"))
-        .get(LOGIN_SELECTORS.allertPopupMessage)
+      cy.loginUser()
+        .get(LOGIN_SELECTORS.alertPopupMessage)
         .should("contain", "You are now logged in");
     });
 
@@ -78,10 +79,10 @@ describe("User login, logout and registration", () => {
 
   describe("Logout", () => {
     it("should successfully log out an user", () => {
-      cy.loginUser(Cypress.env("USER_NAME"), Cypress.env("USER_PASSWORD"));
-      cy.wait(1000); // wait for reloading UI
-      cy.logoutUser()
-        .get(LOGIN_SELECTORS.allertPopupMessage)
+      cy.loginUser()
+        .wait(2000)
+        .logoutUser()
+        .get(LOGIN_SELECTORS.alertPopupMessage)
         .should("contain", "You are now logged out");
     });
   });
