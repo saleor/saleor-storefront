@@ -118,6 +118,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
+  const [paymentData, setPaymentData] = useState<any>();
   const [
     selectedPaymentGatewayToken,
     setSelectedPaymentGatewayToken,
@@ -213,6 +214,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             changeSubmitProgress={setSubmitInProgress}
             selectPaymentGateway={setSelectedPaymentGateway}
+            setPaymentData={setPaymentData}
             {...props}
           />
         )}
@@ -220,6 +222,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutReviewSubpage
             ref={checkoutReviewSubpageRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            paymentData={paymentData}
             changeSubmitProgress={setSubmitInProgress}
             {...props}
           />

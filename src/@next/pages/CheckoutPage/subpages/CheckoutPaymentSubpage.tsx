@@ -26,6 +26,7 @@ interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   selectPaymentGateway: (paymentGateway: string) => void;
   changeSubmitProgress: (submitInProgress: boolean) => void;
+  setPaymentData: (paymentData: any) => void;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
@@ -37,6 +38,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     selectedPaymentGatewayToken,
     changeSubmitProgress,
     selectPaymentGateway,
+    setPaymentData,
     ...props
   }: IProps,
   ref
@@ -122,6 +124,9 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setGatewayErrors(errors);
     } else {
       setGatewayErrors([]);
+      if (paymentData.data) {
+        setPaymentData(paymentData.data);
+      }
       history.push(CHECKOUT_STEPS[2].nextStepLink);
     }
   };
