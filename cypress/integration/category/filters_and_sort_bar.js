@@ -2,28 +2,11 @@ import { CATEGORY_SELECTORS } from "../../elements/category/category-page";
 import { LEFT_FILTERS_SELECTORS } from "../../elements/filters-left-menu/filters-menu";
 
 describe("Category view - filtering and sorting", () => {
-  let polyfill = null;
-
-  before(() => {
-    const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
-    cy.request(polyfillUrl).then(response => {
-      polyfill = response.body;
-    });
-  });
-
   beforeEach(() => {
     cy.server();
     cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
 
-    cy.visit("/category/accessories/7/", {
-      onBeforeLoad(win) {
-        delete win.fetch;
-        // since the application code does not ship with a polyfill
-        // load a polyfilled "fetch" from the test
-        win.eval(polyfill);
-        win.fetch = win.unfetch;
-      },
-    });
+    cy.visit("/category/accessories/7/");
   });
 
   it("should show correct number of products in category if no filtering applied", () => {

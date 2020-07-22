@@ -1,7 +1,7 @@
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../../elements/saleor-account/login-selectors";
 
-Cypress.Commands.add("loginUser", () =>
+Cypress.Commands.add("loginUserViaForm", () =>
   cy
     .get(HEADER_SELECTORS.mainMenuButton)
     .click()
@@ -26,7 +26,7 @@ Cypress.Commands.add("logoutUser", () =>
     .should("contain", "You are now logged out")
 );
 
-Cypress.Commands.add("noUILogin", () =>
+Cypress.Commands.add("loginUserViaRequest", () =>
   cy
     .request({
       method: "POST",

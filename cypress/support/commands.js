@@ -12,16 +12,6 @@ Cypress.on("uncaught:exception", () => {
   return false;
 });
 
-Cypress.Commands.add("setup", polyfill => {
-  return cy.visit("/", {
-    onBeforeLoad(win) {
-      delete win.fetch;
-      win.eval(polyfill);
-      win.fetch = win.unfetch;
-    },
-  });
-});
-
 Cypress.Commands.add("addNewAddress", address => {
   return cy
     .get(CHECKOUT_SELECTORS.addNewAddress)
