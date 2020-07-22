@@ -25,8 +25,7 @@ describe("Buy a product as a logged user", () => {
       state: "AL",
     };
 
-    cy.visit("/")
-      .get(PRODUCTS_SELECTORS.product_list)
+    cy.get(PRODUCTS_SELECTORS.product_list)
       .first()
       .click()
       .get(PRODUCTS_SELECTORS.first_selected_product_name)
