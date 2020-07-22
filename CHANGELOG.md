@@ -17,6 +17,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update sdk to newest version - #795 by @dominik-zeglen
 - Use intl - #782 by @przlada
 - Download invoice for order - #790 by @orzechdev
+- Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
 
 ## 2.10.4
 
