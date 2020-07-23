@@ -51,7 +51,9 @@ describe("Buy a product as a logged user", () => {
       .click()
       .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
       .click()
-      .get(CHECKOUT_SELECTORS.SHIPPING_SELECTORS.shippingForms)
+      .get(CHECKOUT_SELECTORS.SHIPPING_SELECTORS.shippingForms, {
+        timeout: 20000,
+      })
       .first()
       .click()
       .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
@@ -78,6 +80,6 @@ describe("Buy a product as a logged user", () => {
       .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.placeOrder)
       .click()
       .get(CHECKOUT_SELECTORS.ORDER_FINALIZED.confirmationView)
-      .should("be.visible");
+      .should("be.visible", { timeout: 20000 });
   });
 });
