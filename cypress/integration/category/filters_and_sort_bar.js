@@ -12,7 +12,7 @@ describe("Category view - filtering and sorting", () => {
   it("should show correct number of products in category if no filtering applied", () => {
     cy.get(CATEGORY_SELECTORS.productFoundCounter).should(
       "have.text",
-      "Products found: 8"
+      "Products found: 7"
     ); // we can't be sure that there always ll be 8 items
   });
 
