@@ -30,7 +30,7 @@ Cypress.Commands.add("loginUserViaRequest", () =>
   cy
     .request({
       method: "POST",
-      url: Cypress.env("API_URI"),
+      url: "https://master.staging.saleor.rocks/graphql/", // Cypress.env("API_URI"),
       body: [
         {
           operationName: "TokenAuth",
