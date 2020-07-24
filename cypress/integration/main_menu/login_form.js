@@ -18,7 +18,7 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Register new account", () => {
-    it("should register a new user", () => {
+    xit("should register a new user", () => {
       const randomWord = faker.random.words(2).replace(" ", "-");
       const fakeEmailAdressText = `${randomWord}@example.com`;
       const fakePasswordText = faker.internet.password();
@@ -39,9 +39,9 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Login", () => {
-    it("should successfully log in an user", () => {
+    xit("should successfully log in an user", () => {
       cy.loginUserViaForm()
-        .get(LOGIN_SELECTORS.alertPopupMessage)
+        .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 2000 })
         .should("contain", "You are now logged in");
     });
 
