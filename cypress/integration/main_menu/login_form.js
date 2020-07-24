@@ -60,7 +60,8 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Logout", () => {
-    it("should successfully log out an user", () => {
+    xit("should successfully log out an user", () => {
+      // xited because of https://app.clickup.com/t/6uqhh0 and https://app.clickup.com/t/65zxr0
       cy.loginUserViaForm()
         // .wait(2000)
         .logoutUser()

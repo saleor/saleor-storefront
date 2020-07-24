@@ -11,9 +11,9 @@ Cypress.Commands.add("loginUserViaForm", () =>
     .type(Cypress.env("USER_PASSWORD"), { log: false })
     .get(LOGIN_SELECTORS.signInButton)
     .click()
-    .get(LOGIN_SELECTORS.alertPopupMessage)
-    .get(LOGIN_SELECTORS.signInButton)
-    .should("not.exist")
+    .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 20000 }))
+    //.get(LOGIN_SELECTORS.signInButton, { timeout: 20000 })
+    //.should("not.exist")
 );
 
 Cypress.Commands.add("logoutUser", () =>
@@ -22,7 +22,7 @@ Cypress.Commands.add("logoutUser", () =>
     .click()
     .get(HEADER_SELECTORS.logOutButton)
     .click()
-    .get(LOGIN_SELECTORS.alertPopupMessage)
+    .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 20000 })
     .should("contain", "You are now logged out")
 );
 
