@@ -29,6 +29,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   billingFormRef,
   billingFormId,
   paymentGateways,
+  paymentGatewaysHandlers,
   setBillingAddress,
   billingAsShippingPossible,
   setBillingAsShippingAddress,
@@ -168,6 +169,7 @@ const CheckoutPayment: React.FC<IProps> = ({
         <PaymentGatewaysList
           errors={gatewayErrors}
           paymentGateways={paymentGateways}
+          paymentGatewaysHandlers={paymentGatewaysHandlers}
           formRef={gatewayFormRef}
           formId={gatewayFormId}
           processPayment={processPayment}

@@ -5,6 +5,7 @@ import {
   IFormError,
   IPaymentGateway,
   IPaymentData,
+  IPaymentGatewayHandlers,
 } from "@types";
 
 export interface IPromoCodeDiscount {
@@ -23,6 +24,7 @@ export interface IProps {
   billingFormRef?: React.RefObject<HTMLFormElement>;
   billingFormId?: string;
   paymentGateways: IPaymentGateway[];
+  paymentGatewaysHandlers: IPaymentGatewayHandlers[];
   setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
   billingAsShippingPossible: boolean;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;

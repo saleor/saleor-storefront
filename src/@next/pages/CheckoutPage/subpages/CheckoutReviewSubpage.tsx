@@ -10,7 +10,7 @@ import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@saleor/sdk";
 import { CHECKOUT_STEPS } from "@temp/core/config";
-import { IFormError } from "@types";
+import { IFormError, IPaymentGatewayHandlers } from "@types";
 
 export interface ICheckoutReviewSubpageHandles {
   complete: () => void;
@@ -18,6 +18,7 @@ export interface ICheckoutReviewSubpageHandles {
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   paymentData?: any;
+  paymentGatewaysHandlers: IPaymentGatewayHandlers[];
   changeSubmitProgress: (submitInProgress: boolean) => void;
 }
 

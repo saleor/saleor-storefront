@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useIntl } from "react-intl";
 import { Redirect, useLocation } from "react-router-dom";
 
@@ -12,6 +12,7 @@ import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
+import { usePaymentGatewaysHandlers } from "@hooks/usePaymentGatewaysHandlers";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -106,7 +107,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     totalPrice,
     items,
   } = useCart();
-  const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const {
+    loaded: checkoutLoaded,
+    checkout,
+    payment,
+    availablePaymentGateways,
+    completeCheckout,
+  } = useCheckout();
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
@@ -130,6 +137,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   useEffect(() => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
+
+  const paymentGatewaysHandlers = usePaymentGatewaysHandlers({
+    availablePaymentGateways,
+    onSubmitPayment: completeCheckout,
+  });
 
   const matchingStepIndex = CHECKOUT_STEPS.findIndex(
     ({ link }) => link === pathname
@@ -212,6 +224,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             ref={checkoutPaymentSubpageRef}
             selectedPaymentGateway={selectedPaymentGateway}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            paymentGatewaysHandlers={paymentGatewaysHandlers}
             changeSubmitProgress={setSubmitInProgress}
             selectPaymentGateway={setSelectedPaymentGateway}
             setPaymentData={setPaymentData}
@@ -223,6 +236,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             ref={checkoutReviewSubpageRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             paymentData={paymentData}
+            paymentGatewaysHandlers={paymentGatewaysHandlers}
             changeSubmitProgress={setSubmitInProgress}
             {...props}
           />

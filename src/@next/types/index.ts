@@ -11,3 +11,4 @@ export * from "./IPaymentGateway";
 export * from "./ICardData";
 export * from "./IFormError";
 export * from "./IPaymentData";
+export * from "./IPaymentGatewayHandlers";

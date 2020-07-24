@@ -17,6 +17,7 @@ import { IProps } from "./types";
  */
 const PaymentGatewaysList: React.FC<IProps> = ({
   paymentGateways,
+  paymentGatewaysHandlers,
   selectedPaymentGateway,
   selectedPaymentGatewayToken,
   selectPaymentGateway,
@@ -163,14 +164,17 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <AdyenPaymentGateway
                     config={config}
                     formRef={formRef}
-                    processPayment={data =>
+                    processPayment={() =>
                       processPayment({
                         gateway: id,
-                        data,
                       })
                     }
                     errors={errors}
                     onError={onError}
+                    gatewayHandlers={paymentGatewaysHandlers.find(
+                      gatewayHandlers =>
+                        gatewayHandlers.name === PROVIDERS.ADYEN.label
+                    )}
                   />
                 )}
               </div>

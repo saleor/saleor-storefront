@@ -15,7 +15,12 @@ import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
-import { IAddress, IFormError, IPaymentData } from "@types";
+import {
+  IAddress,
+  IFormError,
+  IPaymentData,
+  IPaymentGatewayHandlers,
+} from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 export interface ICheckoutPaymentSubpageHandles {
@@ -24,6 +29,7 @@ export interface ICheckoutPaymentSubpageHandles {
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGateway?: string;
   selectedPaymentGatewayToken?: string;
+  paymentGatewaysHandlers: IPaymentGatewayHandlers[];
   selectPaymentGateway: (paymentGateway: string) => void;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   setPaymentData: (paymentData: any) => void;
@@ -36,6 +42,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   {
     selectedPaymentGateway,
     selectedPaymentGatewayToken,
+    paymentGatewaysHandlers,
     changeSubmitProgress,
     selectPaymentGateway,
     setPaymentData,
@@ -280,6 +287,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       checkoutBillingAddress={checkoutBillingAddress}
       countries={countries}
       paymentGateways={paymentGateways}
+      paymentGatewaysHandlers={paymentGatewaysHandlers}
       selectedPaymentGateway={selectedPaymentGateway}
       selectedPaymentGatewayToken={selectedPaymentGatewayToken}
       selectPaymentGateway={selectPaymentGateway}
