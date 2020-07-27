@@ -9,7 +9,7 @@ import { RouteComponentProps, useHistory } from "react-router";
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS } from "@temp/core/config";
+import { CHECKOUT_STEPS, PROVIDERS } from "@temp/core/config";
 import { IFormError, IPaymentGatewayHandlers } from "@types";
 
 export interface ICheckoutReviewSubpageHandles {
@@ -29,6 +29,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   {
     selectedPaymentGatewayToken,
     paymentData,
+    paymentGatewaysHandlers,
     changeSubmitProgress,
     ...props
   }: IProps,
@@ -70,21 +71,31 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   useImperativeHandle(ref, () => ({
     complete: async () => {
       changeSubmitProgress(true);
-      const { data, dataError } = await completeCheckout(paymentData);
-      changeSubmitProgress(false);
-      const errors = dataError?.error;
-      if (errors) {
-        setErrors(errors);
+      const submitOrder = paymentGatewaysHandlers.find(
+        handlers => PROVIDERS.ADYEN.label === handlers.name
+      )?.handlers?.submit;
+      console.log("useImperativeHandle", paymentGatewaysHandlers);
+      if (submitOrder) {
+        console.log("submitOrder", submitOrder);
+        const result = await submitOrder();
+        console.log("submitOrder result", result);
       } else {
-        setErrors([]);
-        history.push({
-          pathname: CHECKOUT_STEPS[3].nextStepLink,
-          state: {
-            id: data?.id,
-            orderNumber: data?.number,
-            token: data?.token,
-          },
-        });
+        // const { data, dataError } = await completeCheckout(paymentData);
+        changeSubmitProgress(false);
+        const errors = dataError?.error;
+        if (errors) {
+          setErrors(errors);
+        } else {
+          setErrors([]);
+          history.push({
+            pathname: CHECKOUT_STEPS[3].nextStepLink,
+            state: {
+              id: data?.id,
+              orderNumber: data?.number,
+              token: data?.token,
+            },
+          });
+        }
       }
     },
   }));

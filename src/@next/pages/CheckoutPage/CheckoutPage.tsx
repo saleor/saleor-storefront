@@ -140,7 +140,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
   const paymentGatewaysHandlers = usePaymentGatewaysHandlers({
     availablePaymentGateways,
-    onSubmitPayment: completeCheckout,
+    onSubmitPayment: state =>
+      completeCheckout(state, "http://127.0.0.1:3000/redirected/"),
   });
 
   const matchingStepIndex = CHECKOUT_STEPS.findIndex(

@@ -57,11 +57,13 @@ export const usePaymentGatewaysHandlers = ({
         // TDOD: use below functions
         onSubmit: (state, dropin) => {
           console.log("dropin onSubmit", state, dropin);
-          onSubmitPayment(state).then(value => {
+          onSubmitPayment(state?.data).then(value => {
             if (value.data) {
+              console.log("dropin onSubmitPayment", value, state, dropin);
               // somethong
             } else {
-              // dropin.handleAction();
+              console.log("dropin onSubmitPayment", value, state, dropin);
+              dropin.handleAction(value.action);
             }
           });
         },
