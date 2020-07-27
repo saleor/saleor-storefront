@@ -19,6 +19,7 @@ describe("User login, logout and registration", () => {
 
   describe("Register new account", () => {
     xit("should register a new user", () => {
+      // xit because of the email, waiting for https://github.com/mailhog/MailHog to be configured
       const randomWord = faker.random.words(2).replace(" ", "-");
       const fakeEmailAdressText = `${randomWord}@example.com`;
       const fakePasswordText = faker.internet.password();
@@ -39,7 +40,7 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Login", () => {
-    xit("should successfully log in an user", () => {
+    it("should successfully log in an user", () => {
       cy.loginUserViaForm()
         .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 2000 })
         .should("contain", "You are now logged in");
