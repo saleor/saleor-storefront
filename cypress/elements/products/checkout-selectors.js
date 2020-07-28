@@ -32,4 +32,7 @@ export const CHECKOUT_SELECTORS = {
   ORDER_FINALIZED: {
     confirmationView: "[data-test=thankYouView]",
   },
+  CHECKOUT_LINKS: {
+    address: 'a[href="/checkout/address"]',
+  },
 };

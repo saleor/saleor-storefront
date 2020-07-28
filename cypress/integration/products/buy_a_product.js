@@ -43,7 +43,7 @@ describe("Buy a product as a logged user", () => {
       .click()
       .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
       .click()
-      .get('a[href="/checkout/address"]') // TO DO - will be fixed
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
       .click()
       .addNewAddress(address)
       .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressTiles)

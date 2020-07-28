@@ -8,10 +8,6 @@ describe("Product list view", () => {
     cy.visit("/category/accessories/7/");
   });
 
-  it("category view should contain 6 visible products", () => {
-    cy.get(CATEGORY_SELECTORS.productTitleText).should("have.length", 6);
-  });
-
   it("should load more products when clicking on MORE button", () => {
     cy.get(CATEGORY_SELECTORS.loadMoreButton).click();
     cy.get(CATEGORY_SELECTORS.productTitleText).then(tiles =>

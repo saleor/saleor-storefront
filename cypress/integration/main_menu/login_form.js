@@ -18,8 +18,7 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Register new account", () => {
-    xit("should register a new user", () => {
-      // xit because of the email, waiting for https://github.com/mailhog/MailHog to be configured
+    xit("should register a new user xit because of the email, waiting for https://github.com/mailhog/MailHog to be configured", () => {
       const randomWord = faker.random.words(2).replace(" ", "-");
       const fakeEmailAdressText = `${randomWord}@example.com`;
       const fakePasswordText = faker.internet.password();
@@ -61,10 +60,8 @@ describe("User login, logout and registration", () => {
   });
 
   describe("Logout", () => {
-    xit("should successfully log out an user", () => {
-      // xited because of https://app.clickup.com/t/6uqhh0 and https://app.clickup.com/t/65zxr0
+    it("should successfully log out an user", () => {
       cy.loginUserViaForm()
-        // .wait(2000)
         .logoutUser()
         .get(LOGIN_SELECTORS.alertPopupMessage)
         .should("contain", "You are now logged out");
