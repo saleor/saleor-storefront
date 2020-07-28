@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { useIntl } from "react-intl";
 import { Redirect, useLocation } from "react-router-dom";
 
@@ -8,7 +14,7 @@ import { CartSummary } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
-import { CHECKOUT_STEPS } from "@temp/core/config";
+import { CHECKOUT_STEPS, PROVIDERS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
@@ -97,6 +103,18 @@ const getButton = (text: string, onClick: () => void) => {
   return null;
 };
 
+const GatewayComponent = ({
+  paymentGatewaysHandlers,
+  gatewayRef,
+}: {
+  paymentGatewaysHandlers: any;
+  gatewayRef: any;
+}) => {
+  const gatewayComp = useMemo(() => <div ref={gatewayRef} />, []);
+
+  return gatewayComp;
+};
+
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const { pathname } = useLocation();
   const {
@@ -137,12 +155,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   useEffect(() => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
-
-  const paymentGatewaysHandlers = usePaymentGatewaysHandlers({
-    availablePaymentGateways,
-    onSubmitPayment: state =>
-      completeCheckout(state, "http://127.0.0.1:3000/redirected/"),
-  });
 
   const matchingStepIndex = CHECKOUT_STEPS.findIndex(
     ({ link }) => link === pathname
@@ -200,6 +212,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     net: discount,
   };
 
+  const gatewayRef = useRef<HTMLDivElement>(null);
+
+  const paymentGatewaysHandlers = usePaymentGatewaysHandlers({
+    availablePaymentGateways,
+    gatewayRef,
+    onSubmitPayment: state =>
+      completeCheckout(state, "http://127.0.0.1:3000/redirected/"),
+  });
+
   const checkoutView =
     cartLoaded && checkoutLoaded ? (
       <CheckoutRouter
@@ -229,6 +250,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             changeSubmitProgress={setSubmitInProgress}
             selectPaymentGateway={setSelectedPaymentGateway}
             setPaymentData={setPaymentData}
+            gatewayRef={gatewayRef}
             {...props}
           />
         )}
@@ -239,6 +261,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             paymentData={paymentData}
             paymentGatewaysHandlers={paymentGatewaysHandlers}
             changeSubmitProgress={setSubmitInProgress}
+            gatewayRef={gatewayRef}
             {...props}
           />
         )}
@@ -271,23 +294,29 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }
 
   return (
-    <Checkout
-      loading={submitInProgress}
-      navigation={getCheckoutProgress(
-        cartLoaded && checkoutLoaded,
-        activeStepIndex,
-        !!isShippingRequiredForProducts
-      )}
-      cartSummary={prepareCartSummary(
-        totalPrice,
-        subtotalPrice,
-        shippingTaxedPrice,
-        promoTaxedPrice,
-        items
-      )}
-      checkout={checkoutView}
-      button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
-    />
+    <>
+      <GatewayComponent
+        gatewayRef={gatewayRef}
+        paymentGatewaysHandlers={paymentGatewaysHandlers}
+      />
+      <Checkout
+        loading={submitInProgress}
+        navigation={getCheckoutProgress(
+          cartLoaded && checkoutLoaded,
+          activeStepIndex,
+          !!isShippingRequiredForProducts
+        )}
+        cartSummary={prepareCartSummary(
+          totalPrice,
+          subtotalPrice,
+          shippingTaxedPrice,
+          promoTaxedPrice,
+          items
+        )}
+        checkout={checkoutView}
+        button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
+      />
+    </>
   );
 };
 

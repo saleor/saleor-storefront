@@ -51,6 +51,7 @@ export interface IProps {
    */
   gatewayFormRef?: React.RefObject<HTMLFormElement>;
   gatewayFormId?: string;
+  gatewayRef: React.RefObject<HTMLDivElement>;
   newAddressFormId?: string;
   userId?: string;
   /**

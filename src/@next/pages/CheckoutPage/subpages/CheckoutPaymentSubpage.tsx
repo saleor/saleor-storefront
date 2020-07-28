@@ -30,6 +30,7 @@ interface IProps extends RouteComponentProps<any> {
   selectedPaymentGateway?: string;
   selectedPaymentGatewayToken?: string;
   paymentGatewaysHandlers: IPaymentGatewayHandlers[];
+  gatewayRef: React.RefObject<HTMLDivElement>;
   selectPaymentGateway: (paymentGateway: string) => void;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   setPaymentData: (paymentData: any) => void;
@@ -43,6 +44,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     selectedPaymentGateway,
     selectedPaymentGatewayToken,
     paymentGatewaysHandlers,
+    gatewayRef,
     changeSubmitProgress,
     selectPaymentGateway,
     setPaymentData,
@@ -310,6 +312,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       newAddressFormId={checkoutNewAddressFormId}
       processPayment={handleProcessPayment}
       onGatewayError={handlePaymentGatewayError}
+      gatewayRef={gatewayRef}
     />
   );
 };

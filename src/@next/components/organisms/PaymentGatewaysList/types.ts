@@ -46,4 +46,5 @@ export interface IProps {
    * Method called when gateway error occured.
    */
   onError: (errors: IFormError[]) => void;
+  gatewayRef: React.RefObject<HTMLDivElement>;
 }

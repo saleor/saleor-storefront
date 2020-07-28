@@ -19,6 +19,7 @@ interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   paymentData?: any;
   paymentGatewaysHandlers: IPaymentGatewayHandlers[];
+  gatewayRef: React.RefObject<HTMLDivElement>;
   changeSubmitProgress: (submitInProgress: boolean) => void;
 }
 
@@ -30,6 +31,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     selectedPaymentGatewayToken,
     paymentData,
     paymentGatewaysHandlers,
+    gatewayRef,
     changeSubmitProgress,
     ...props
   }: IProps,
@@ -87,14 +89,15 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           setErrors(errors);
         } else {
           setErrors([]);
-          history.push({
-            pathname: CHECKOUT_STEPS[3].nextStepLink,
-            state: {
-              id: data?.id,
-              orderNumber: data?.number,
-              token: data?.token,
-            },
-          });
+          // TEMP DISABLE FOR ADYEN GATEWAY TESTS
+          // history.push({
+          //   pathname: CHECKOUT_STEPS[3].nextStepLink,
+          //   state: {
+          //     id: data?.id,
+          //     orderNumber: data?.number,
+          //     token: data?.token,
+          //   },
+          // });
         }
       }
     },

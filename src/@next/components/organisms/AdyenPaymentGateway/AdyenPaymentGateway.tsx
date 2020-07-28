@@ -29,6 +29,7 @@ export interface IProps {
    * Method called when gateway error occured.
    */
   onError: (errors: IFormError[]) => void;
+  gatewayRef: React.RefObject<HTMLDivElement>;
 }
 
 const AdyenPaymentGateway: React.FC<IProps> = ({
@@ -37,38 +38,36 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   gatewayHandlers,
   processPayment,
   onError,
+  gatewayRef,
 }: IProps) => {
   const [dropin, setDropin] = useState<any>();
-  const ref = useRef<HTMLDivElement>(null);
   const [hidden, setHidden] = useState<boolean>(false);
 
-  useEffect(() => {
-    const dropinElement = gatewayHandlers?.handlers;
-    console.log("gatewayHandlers dropinElement", gatewayHandlers);
-    if (dropinElement) {
-      dropinElement?.mount(ref.current);
-      setDropin(dropinElement);
-    }
-  }, [gatewayHandlers]);
+  // useEffect(() => {
+  //   const dropinElement = gatewayHandlers?.handlers;
+  //   console.log("gatewayHandlers dropinElement", gatewayHandlers);
+  //   if (dropinElement) {
+  //     dropinElement?.mount(gatewayRef.current);
+  //     setDropin(dropinElement);
+  //   }
+  // }, [gatewayHandlers]);
 
   useEffect(() => {
     console.log("dropin event listener useEffect", formRef, dropin);
     (formRef?.current as any).addEventListener("submit", () => {
       console.log("dropin event submit", dropin);
-      if (dropin) {
-        // ref.current.dispatchEvent(new Event("submit", { cancelable: true }));
-        console.log("dropin event submit dropin");
-        // dropin.submit();
-        processPayment();
-      }
+      // if (dropin) {
+      // ref.current.dispatchEvent(new Event("submit", { cancelable: true }));
+      console.log("dropin event submit dropin");
+      // dropin.submit();
+      processPayment();
+      // }
     });
-  }, [formRef, dropin]);
+  }, [formRef]);
 
   return (
     <S.Wrapper hidden={hidden}>
-      <div ref={formRef}>
-        <div ref={ref} />
-      </div>
+      <div ref={formRef} />
     </S.Wrapper>
   );
 };

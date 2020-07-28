@@ -26,6 +26,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   processPayment,
   errors,
   onError,
+  gatewayRef,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -164,6 +165,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <AdyenPaymentGateway
                     config={config}
                     formRef={formRef}
+                    gatewayRef={gatewayRef}
                     processPayment={() =>
                       processPayment({
                         gateway: id,
