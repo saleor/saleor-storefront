@@ -11,9 +11,7 @@ Cypress.Commands.add("loginUserViaForm", () =>
     .type(Cypress.env("USER_PASSWORD"), { log: false })
     .get(LOGIN_SELECTORS.signInButton)
     .click()
-    .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 20000 }))
-    //.get(LOGIN_SELECTORS.signInButton, { timeout: 20000 })
-    //.should("not.exist")
+    .get(LOGIN_SELECTORS.alertPopupMessage, { timeout: 20000 })
 );
 
 Cypress.Commands.add("logoutUser", () =>
