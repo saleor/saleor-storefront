@@ -10,7 +10,7 @@ import { useIntl } from "react-intl";
 import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
-import { useAuth, useCheckout } from "@saleor/sdk";
+import { useAuth, useCheckout, useCart } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
@@ -29,19 +29,21 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   ICheckoutAddressSubpageHandles,
   IProps
 > = ({ changeSubmitProgress, ...props }: IProps, ref) => {
-  const checkoutAddressFormId = "address-form";
-  const checkoutAddressFormRef = useRef<HTMLFormElement>(null);
+  const checkoutShippingAddressFormId = "shipping-address-form";
+  const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
+  const checkoutBillingAddressFormId = "billing-address-form";
+  const checkoutBillingAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutNewAddressFormId = "new-address-form";
 
   useImperativeHandle(ref, () => ({
     submitAddress: () => {
       if (user && selectedShippingAddressId) {
-        checkoutAddressFormRef.current?.dispatchEvent(
+        checkoutShippingAddressFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
       } else {
         // TODO validate form
-        checkoutAddressFormRef.current?.dispatchEvent(
+        checkoutShippingAddressFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
       }
@@ -52,12 +54,15 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const { user } = useAuth();
   const {
     checkout,
-    setShippingAddress,
     selectedShippingAddressId,
+    billingAsShipping,
+    setShippingAddress,
   } = useCheckout();
+  const { items } = useCart();
   const { countries } = useContext(ShopContext);
 
-  const [errors, setErrors] = useState<IFormError[]>([]);
+  const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
+  const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
 
   const intl = useIntl();
 
@@ -67,6 +72,12 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         phone: checkout?.shippingAddress?.phone || undefined,
       }
     : undefined;
+  const checkoutBillingAddress = checkout?.billingAddress
+    ? {
+        ...checkout?.billingAddress,
+        phone: checkout?.billingAddress?.phone || undefined,
+      }
+    : undefined;
 
   const handleSetShippingAddress = async (
     address?: IAddress,
@@ -74,7 +85,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     userAddressId?: string
   ) => {
     if (!address) {
-      setErrors([
+      setShippingErrors([
         {
           message: intl.formatMessage({
             defaultMessage: "Please provide shipping address.",
@@ -87,7 +98,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     const shippingEmail = user?.email || email || "";
 
     if (!shippingEmail) {
-      setErrors([
+      setShippingErrors([
         {
           field: "email",
           message: intl.formatMessage(commonMessages.provideEmailAddress),
@@ -107,12 +118,18 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
-      setErrors(errors);
+      setShippingErrors(errors);
     } else {
-      setErrors([]);
+      setShippingErrors([]);
       history.push(CHECKOUT_STEPS[0].nextStepLink);
     }
   };
+
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
 
   const userAdresses = user?.addresses
     ?.filter(filterNotEmptyArrayItems)
@@ -130,10 +147,16 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   return (
     <CheckoutAddress
       {...props}
-      errors={errors}
-      formId={checkoutAddressFormId}
-      formRef={checkoutAddressFormRef}
-      checkoutAddress={checkoutShippingAddress}
+      shippingErrors={shippingErrors}
+      billingErrors={billingErrors}
+      shippingFormId={checkoutShippingAddressFormId}
+      shippingFormRef={checkoutShippingAddressFormRef}
+      billingFormId={checkoutBillingAddressFormId}
+      billingFormRef={checkoutBillingAddressFormRef}
+      checkoutShippingAddress={checkoutShippingAddress}
+      checkoutBillingAddress={checkoutBillingAddress}
+      billingAsShippingAddress={billingAsShipping}
+      billingAsShippingPossible={!!isShippingRequiredForProducts}
       email={checkout?.email}
       userAddresses={userAdresses}
       selectedUserAddressId={selectedShippingAddressId}
@@ -141,6 +164,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       userId={user?.id}
       newAddressFormId={checkoutNewAddressFormId}
       setShippingAddress={handleSetShippingAddress}
+      setBillingAddress={() => undefined}
+      setBillingAsShippingAddress={() => undefined}
     />
   );
 };
