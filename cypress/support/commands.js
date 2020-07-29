@@ -3,6 +3,8 @@
 import "./user";
 import "./category";
 import "./cart";
+import "./checkout";
+import "./product";
 
 import { HEADER_SELECTORS } from "../elements/main-header/header-selectors";
 import { LOGIN_SELECTORS } from "../elements/saleor-account/login-selectors";
