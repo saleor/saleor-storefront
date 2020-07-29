@@ -1,29 +1,10 @@
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 
 describe("Search", () => {
-  const typedText = "t";
-  let polyfill;
-
-  before(() => {
-    const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
-    cy.request(polyfillUrl).then(response => {
-      polyfill = response.body;
-    });
-  });
+  const typedText = "shirt";
 
   beforeEach(() => {
-    cy.server();
-    cy.route("POST", `${Cypress.env("API_URI")}`).as("graphqlQuery");
-
-    cy.visit("/", {
-      onBeforeLoad(win) {
-        delete win.fetch;
-        // since the application code does not ship with a polyfill
-        // load a polyfilled "fetch" from the test
-        win.eval(polyfill);
-        win.fetch = win.unfetch;
-      },
-    });
+    cy.visit("/", {});
   });
 
   it("should show input on click", () => {

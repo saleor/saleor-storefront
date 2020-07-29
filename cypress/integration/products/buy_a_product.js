@@ -5,17 +5,8 @@ import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 
 describe("Buy a product as a logged user", () => {
-  let polyfill;
-
-  before(() => {
-    const polyfillUrl = "https://unpkg.com/unfetch/dist/unfetch.umd.js";
-    cy.request(polyfillUrl).then(response => {
-      polyfill = response.body;
-    });
-  });
-
   beforeEach(() => {
-    cy.setup(polyfill).loginUser().clearCart();
+    cy.loginUserViaRequest().visit("/").clearCart();
   });
 
   it("should buy a product", () => {
@@ -52,7 +43,7 @@ describe("Buy a product as a logged user", () => {
       .click()
       .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
       .click()
-      .get('a[href="/checkout/address"]') // TO DO - will be fixed
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
       .click()
       .addNewAddress(address)
       .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressTiles)
@@ -60,7 +51,9 @@ describe("Buy a product as a logged user", () => {
       .click()
       .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
       .click()
-      .get(CHECKOUT_SELECTORS.SHIPPING_SELECTORS.shippingForms)
+      .get(CHECKOUT_SELECTORS.SHIPPING_SELECTORS.shippingForms, {
+        timeout: 20000,
+      })
       .first()
       .click()
       .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
@@ -87,6 +80,6 @@ describe("Buy a product as a logged user", () => {
       .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.placeOrder)
       .click()
       .get(CHECKOUT_SELECTORS.ORDER_FINALIZED.confirmationView)
-      .should("be.visible");
+      .should("be.visible", { timeout: 20000 });
   });
 });
