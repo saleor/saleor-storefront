@@ -9,8 +9,6 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
-      "@temp/*": ["./src/*"],
-      "@app/*": ["./src/@next/*"],
       "@components/*": ["./src/@next/components/*"],
       "@components/atoms": ["./src/@next/components/atoms/index.ts"],
       "@components/molecules": ["./src/@next/components/molecules/index.ts"],
@@ -25,7 +23,10 @@
       "@hooks": ["./src/@next/hooks/index.ts"],
       "@hooks/*": ["./src/@next/hooks/*"],
       "@types": ["./src/@next/types/index.ts"],
-      "@locale/*": ["./locale/*"]
+      "@types/*": ["./src/@next/types/*"],
+      "@app/*": ["./src/@next/*"],
+      "@locale/*": ["./locale/*"],
+      "@temp/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true
