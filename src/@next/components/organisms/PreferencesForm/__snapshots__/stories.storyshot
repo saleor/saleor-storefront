@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/PreferencesForm default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c9 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c5 {
+  margin-bottom: 1.875rem;
+}
+
+.c8 {
+  top: 100%;
+}
+
+.c7 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: #f1f5f5;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c6 {
+  position: absolute;
+  right: 1rem;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.c2 {
+  width: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c4 {
+  width: 100%;
+}
+
+.c1 {
+  width: 600px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <form
+      className="c2"
+      id="preferences-form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div
+              className="css-1pcexqc-container"
+              onKeyDown={[Function]}
+            >
+              <div
+                className="css-133ddnz-control select-locale__control"
+                onMouseDown={[Function]}
+                onTouchEnd={[Function]}
+              >
+                <div
+                  className="css-tntsk8 select-locale__value-container select-locale__value-container--has-value"
+                >
+                  <div
+                    className="css-dvua67-singleValue select-locale__single-value"
+                  >
+                    English
+                  </div>
+                  <div
+                    className="css-1g6gooi"
+                  >
+                    <div
+                      className="select-locale__input"
+                      style={
+                        Object {
+                          "display": "inline-block",
+                        }
+                      }
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        autoCapitalize="none"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        disabled={false}
+                        id="react-select-12-input"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        spellCheck="false"
+                        style={
+                          Object {
+                            "background": 0,
+                            "border": 0,
+                            "boxSizing": "content-box",
+                            "color": "inherit",
+                            "fontSize": "inherit",
+                            "label": "input",
+                            "opacity": 1,
+                            "outline": 0,
+                            "padding": 0,
+                            "width": "1px",
+                          }
+                        }
+                        tabIndex="0"
+                        type="text"
+                        value=""
+                      />
+                      <div
+                        style={
+                          Object {
+                            "height": 0,
+                            "left": 0,
+                            "overflow": "scroll",
+                            "position": "absolute",
+                            "top": 0,
+                            "visibility": "hidden",
+                            "whiteSpace": "pre",
+                          }
+                        }
+                      >
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="c6"
+                  rotate="false"
+                >
+                  <svg
+                    height={10}
+                    viewBox="0 0 32 32"
+                    width={10}
+                  >
+                    <path
+                      d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                      fill="#21125E"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <label
+                className="c7"
+              >
+                Language
+              </label>
+            </div>
+            <div
+              className="c8"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    className="c9"
+  />
+</div>
+`;

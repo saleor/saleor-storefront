@@ -10,6 +10,7 @@
     "@sdk/([^\\.]*)$": "<rootDir>/src/@sdk/$1",
     "@utils/([^\\.]*)$": "<rootDir>/src/@next/utils/$1",
     "images/([^\\.]*.*)$": "<rootDir>/src/images/$1",
+    "@locale/(.*)": "<rootDir>/locale/$1",
     "@hooks": "<rootDir>/src/@next/hooks/index.ts",
     "@components/atoms": "<rootDir>/src/@next/components/atoms/index.ts",
     "@components/molecules": "<rootDir>/src/@next/components/molecules/index.ts",
