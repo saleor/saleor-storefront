@@ -121,7 +121,7 @@ export const defaultTheme = {
     width: "25rem",
   },
   modal: {
-    modalMinHeight: 455,
+    modalMinHeight: 255,
     modalWidth: 555,
   },
   productItem: {
