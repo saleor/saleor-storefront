@@ -159,7 +159,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   display: flex;
   position: relative;
   width: auto;
-  min-height: 455px;
+  min-height: 255px;
   height: 100%;
   background-color: #fff;
   right: 0;
@@ -620,7 +620,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   display: flex;
   position: relative;
   width: auto;
-  min-height: 455px;
+  min-height: 255px;
   height: 100%;
   background-color: #fff;
   right: 0;

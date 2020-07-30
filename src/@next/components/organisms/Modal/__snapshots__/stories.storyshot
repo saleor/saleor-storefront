@@ -166,7 +166,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
   display: flex;
   position: relative;
   width: 555px;
-  min-height: 455px;
+  min-height: 255px;
   height: auto;
   background-color: #fff;
 }
@@ -457,7 +457,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
   display: flex;
   position: relative;
   width: 555px;
-  min-height: 455px;
+  min-height: 255px;
   height: auto;
   background-color: #fff;
 }
@@ -738,7 +738,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
   display: flex;
   position: relative;
   width: 555px;
-  min-height: 455px;
+  min-height: 255px;
   height: auto;
   background-color: #fff;
 }
