@@ -11,7 +11,6 @@ export interface IProps {
   selectedUserAddressId?: string;
   checkoutShippingAddress?: IAddress | null;
   billingAsShippingAddress?: boolean;
-  billingAsShippingPossible: boolean;
   checkoutBillingAddress?: IAddress | null;
   email?: string;
   countries?: Array<GetShop_shop_countries | null>;
@@ -23,7 +22,7 @@ export interface IProps {
   newAddressFormId?: string;
   shippingErrors?: IFormError[];
   billingErrors?: IFormError[];
-  shippingAddressRequired?: boolean;
+  shippingAddressRequired: boolean;
   setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
