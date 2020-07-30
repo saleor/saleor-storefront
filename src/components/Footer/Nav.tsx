@@ -4,6 +4,7 @@ import { NavLink } from "..";
 import { TypedSecondaryMenuQuery } from "./queries";
 
 import "./scss/index.scss";
+import LocaleSelect from "./LocaleSelect";
 
 class Nav extends React.PureComponent {
   render() {
@@ -28,6 +29,7 @@ class Nav extends React.PureComponent {
               ));
             }}
           </TypedSecondaryMenuQuery>
+          <LocaleSelect />
         </div>
       </footer>
     );
