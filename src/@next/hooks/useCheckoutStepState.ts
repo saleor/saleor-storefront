@@ -16,11 +16,8 @@ export const useCheckoutStepState = (
     );
 
   const getStep = () => {
-    if (!checkout?.id && items && isShippingRequiredForProducts) {
-      return CheckoutStep.Address;
-    }
     if (!checkout?.id && items) {
-      return CheckoutStep.Payment;
+      return CheckoutStep.Address;
     }
 
     const isShippingStep =

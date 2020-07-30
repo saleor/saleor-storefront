@@ -28,6 +28,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   shippingFormRef,
   billingFormId,
   billingFormRef,
+  shippingAddressRequired,
   setShippingAddress,
   setBillingAddress,
   setBillingAsShippingAddress,
@@ -37,43 +38,47 @@ const CheckoutAddress: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper>
-      <section>
-        <S.Title data-test="checkoutPageSubtitle">
-          <FormattedMessage {...checkoutMessages.shippingAddress} />
-        </S.Title>
-        {userAddresses ? (
-          <AddressGridSelector
-            formId={shippingFormId}
-            formRef={shippingFormRef}
-            addresses={userAddresses}
-            selectedAddressId={selectedUserAddressId}
-            countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
-            userId={userId}
-            errors={shippingErrors}
-            onSelect={(address, id) =>
-              setShippingAddress(address, undefined, id)
-            }
-            newAddressFormId={newAddressFormId}
-          />
-        ) : (
-          <AddressForm
-            testingContext="shippingAddressForm"
-            formId={shippingFormId}
-            formRef={shippingFormRef}
-            countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
-            address={{
-              ...checkoutShippingAddress,
-              email,
-            }}
-            handleSubmit={address =>
-              setShippingAddress(address, address?.email)
-            }
-            includeEmail
-            errors={shippingErrors}
-          />
-        )}
-      </section>
-      <S.Divider />
+      {shippingAddressRequired && (
+        <>
+          <section>
+            <S.Title data-test="checkoutPageSubtitle">
+              <FormattedMessage {...checkoutMessages.shippingAddress} />
+            </S.Title>
+            {userAddresses ? (
+              <AddressGridSelector
+                formId={shippingFormId}
+                formRef={shippingFormRef}
+                addresses={userAddresses}
+                selectedAddressId={selectedUserAddressId}
+                countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
+                userId={userId}
+                errors={shippingErrors}
+                onSelect={(address, id) =>
+                  setShippingAddress(address, undefined, id)
+                }
+                newAddressFormId={newAddressFormId}
+              />
+            ) : (
+              <AddressForm
+                testingContext="shippingAddressForm"
+                formId={shippingFormId}
+                formRef={shippingFormRef}
+                countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
+                address={{
+                  ...checkoutShippingAddress,
+                  email,
+                }}
+                handleSubmit={address =>
+                  setShippingAddress(address, address?.email)
+                }
+                includeEmail
+                errors={shippingErrors}
+              />
+            )}
+          </section>
+          <S.Divider />
+        </>
+      )}
       <section>
         <S.Title data-test="checkoutPageSubtitle">
           <FormattedMessage {...checkoutMessages.billingAddress} />

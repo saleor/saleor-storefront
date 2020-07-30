@@ -67,7 +67,7 @@ export const CHECKOUT_STEPS = [
     name: "Address",
     nextActionName: "Continue to Shipping",
     nextStepLink: "/checkout/shipping",
-    onlyIfShippingRequired: true,
+    onlyIfShippingRequired: false,
     step: CheckoutStep.Address,
   },
   {
