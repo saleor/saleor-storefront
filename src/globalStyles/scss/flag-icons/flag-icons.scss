@@ -1,0 +1,39 @@
+// Variables
+@import "variables";
+// Flag icons
+span,
+i {
+    &.flag-icons {
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        display: inline-block;
+        line-height: 1em;
+        // Rectangle
+        height: 1em;
+        width: (4 / 3) * 1em;
+        // Square
+        &.square {
+            height: 1em;
+            width: 1em;
+        }
+        &.dot {
+            background-size: cover;
+            vertical-align: middle;
+            height: 1.2em;
+            width: 1.2em;
+            border-radius: 50%;
+        }
+        // Non-breaking space
+        &:before {
+            content: '\00a0';
+        }
+        // Flags
+        @each $flag in $flags {
+            &.#{$flag} {
+                background-image: url(#{$path}/#{$flag}.svg);
+            }
+        }
+    }
+}

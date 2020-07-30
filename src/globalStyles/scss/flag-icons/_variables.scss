@@ -1,0 +1,6 @@
+@import "extras";
+@import "countries";
+// Change or use as your needs.
+$path: '../../images/flag-icons' !default;
+// Load'em all!
+$flags: join($extras, $countries, comma);
