@@ -129,6 +129,11 @@ export const commonMessages = defineMessages({
   },
   home: {
     defaultMessage: "Home",
+  preferences: {
+    defaultMessage: "Preferences",
+  },
+  language: {
+    defaultMessage: "Language",
   },
 });
 
