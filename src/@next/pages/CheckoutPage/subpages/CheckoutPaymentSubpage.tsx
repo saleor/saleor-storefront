@@ -6,11 +6,10 @@ import React, {
   useState,
 } from "react";
 import { useIntl } from "react-intl";
-import { RouteComponentProps, useHistory } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutPayment } from "@components/organisms";
 import { useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
 import { ICardData, IFormError } from "@types";
 
@@ -22,6 +21,7 @@ interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   selectPaymentGateway: (paymentGateway: string) => void;
   changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
@@ -33,11 +33,11 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     selectedPaymentGatewayToken,
     changeSubmitProgress,
     selectPaymentGateway,
+    onSubmitSuccess,
     ...props
   }: IProps,
   ref
 ) => {
-  const history = useHistory();
   const {
     availablePaymentGateways,
     promoCodeDiscount,
@@ -88,7 +88,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setGatewayErrors(errors);
     } else {
       setGatewayErrors([]);
-      history.push(CHECKOUT_STEPS[2].nextStepLink);
+      onSubmitSuccess();
     }
   };
   const handlePaymentGatewayError = () => {

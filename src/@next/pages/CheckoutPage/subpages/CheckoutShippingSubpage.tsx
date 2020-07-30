@@ -5,11 +5,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { RouteComponentProps, useHistory } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
 import { useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IFormError } from "@types";
 
 export interface ICheckoutShippingSubpageHandles {
@@ -18,18 +17,18 @@ export interface ICheckoutShippingSubpageHandles {
 
 interface IProps extends RouteComponentProps<any> {
   changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
 }
 
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   ICheckoutShippingSubpageHandles,
   IProps
-> = ({ changeSubmitProgress, ...props }: IProps, ref) => {
+> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
 
   const [errors, setErrors] = useState<IFormError[]>([]);
 
-  const history = useHistory();
   const {
     checkout,
     availableShippingMethods,
@@ -55,7 +54,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       setErrors(errors);
     } else {
       setErrors([]);
-      history.push(CHECKOUT_STEPS[1].nextStepLink);
+      onSubmitSuccess();
     }
   };
 

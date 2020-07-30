@@ -8,12 +8,11 @@ import React, {
   useEffect,
 } from "react";
 import { useIntl } from "react-intl";
-import { RouteComponentProps, useHistory } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
 import { useAuth, useCheckout, useCart } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
-import { CHECKOUT_STEPS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
@@ -24,19 +23,19 @@ export interface ICheckoutAddressSubpageHandles {
 
 interface IProps extends RouteComponentProps<any> {
   changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: () => void;
 }
 
 const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   ICheckoutAddressSubpageHandles,
   IProps
-> = ({ changeSubmitProgress, ...props }: IProps, ref) => {
+> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
   const checkoutShippingAddressFormId = "shipping-address-form";
   const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutBillingAddressFormId = "billing-address-form";
   const checkoutBillingAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutNewAddressFormId = "new-address-form";
 
-  const history = useHistory();
   const { user } = useAuth();
   const {
     checkout,
@@ -195,7 +194,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
-      history.push(CHECKOUT_STEPS[0].nextStepLink);
+      onSubmitSuccess();
     }
   };
 
