@@ -10,7 +10,7 @@ import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney } from "@types";
+import { ITaxedMoney, ICheckoutStep } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -68,14 +68,8 @@ const prepareCartSummary = (
 const getCheckoutProgress = (
   loaded: boolean,
   activeStepIndex: number,
-  isShippingRequired: boolean
+  steps: ICheckoutStep[]
 ) => {
-  const steps = isShippingRequired
-    ? CHECKOUT_STEPS
-    : CHECKOUT_STEPS.filter(
-        ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
-      );
-
   return loaded ? (
     <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
   ) : null;
@@ -130,11 +124,21 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
 
-  const matchingStepIndex = CHECKOUT_STEPS.findIndex(
-    ({ link }) => link === pathname
-  );
-  const activeStepIndex = matchingStepIndex !== -1 ? matchingStepIndex : 3;
-  const activeStep = CHECKOUT_STEPS[activeStepIndex];
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
+
+  const steps = isShippingRequiredForProducts
+    ? CHECKOUT_STEPS
+    : CHECKOUT_STEPS.filter(
+        ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
+      );
+  const matchingStepIndex = steps.findIndex(({ link }) => link === pathname);
+  const activeStepIndex =
+    matchingStepIndex !== -1 ? matchingStepIndex : steps.length - 1;
+  const activeStep = steps[activeStepIndex];
 
   const checkoutAddressSubpageRef = useRef<ICheckoutAddressSubpageHandles>(
     null
@@ -229,12 +233,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       <Loader />
     );
 
-  const isShippingRequiredForProducts =
-    items &&
-    items.some(
-      ({ variant }) => variant.product?.productType.isShippingRequired
-    );
-
   let buttonText = activeStep.nextActionName;
   /* eslint-disable default-case */
   switch (activeStep.nextActionName) {
@@ -258,7 +256,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       navigation={getCheckoutProgress(
         cartLoaded && checkoutLoaded,
         activeStepIndex,
-        !!isShippingRequiredForProducts
+        steps
       )}
       cartSummary={prepareCartSummary(
         totalPrice,

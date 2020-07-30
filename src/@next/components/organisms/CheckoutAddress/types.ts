@@ -23,6 +23,7 @@ export interface IProps {
   newAddressFormId?: string;
   shippingErrors?: IFormError[];
   billingErrors?: IFormError[];
+  shippingAddressRequired?: boolean;
   setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
