@@ -222,14 +222,14 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       billingFormRef={checkoutBillingAddressFormRef}
       checkoutShippingAddress={checkoutShippingAddress}
       checkoutBillingAddress={checkoutBillingAddress}
-      billingAsShippingAddress={billingAsShipping}
-      billingAsShippingPossible={!!isShippingRequiredForProducts}
+      billingAsShippingAddress={billingAsShippingState}
       email={checkout?.email}
       userAddresses={userAdresses}
       selectedUserAddressId={selectedShippingAddressId}
       countries={countries}
       userId={user?.id}
       newAddressFormId={checkoutNewAddressFormId}
+      shippingAddressRequired={!!isShippingRequiredForProducts}
       setShippingAddress={handleSetShippingAddress}
       setBillingAddress={handleSetBillingAddress}
       setBillingAsShippingAddress={setBillingAsShippingState}

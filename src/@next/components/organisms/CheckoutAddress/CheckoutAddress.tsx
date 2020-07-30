@@ -18,7 +18,6 @@ const CheckoutAddress: React.FC<IProps> = ({
   checkoutShippingAddress,
   checkoutBillingAddress,
   billingAsShippingAddress = false,
-  billingAsShippingPossible,
   email,
   selectedUserAddressId,
   userAddresses,
@@ -83,7 +82,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         <S.Title data-test="checkoutPageSubtitle">
           <FormattedMessage {...checkoutMessages.billingAddress} />
         </S.Title>
-        {billingAsShippingPossible && (
+        {shippingAddressRequired && (
           <Checkbox
             data-test="checkoutPaymentBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
@@ -97,7 +96,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         )}
         {!billingAsShippingAddress && (
           <>
-            {billingAsShippingPossible && <S.Divider />}
+            {shippingAddressRequired && <S.Divider />}
             {userAddresses ? (
               <AddressGridSelector
                 formId={billingFormId}
@@ -122,7 +121,7 @@ const CheckoutAddress: React.FC<IProps> = ({
                 handleSubmit={address =>
                   setBillingAddress(address, address?.email)
                 }
-                includeEmail={!billingAsShippingPossible}
+                includeEmail={!shippingAddressRequired}
                 errors={billingErrors}
               />
             )}
