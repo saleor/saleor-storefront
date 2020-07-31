@@ -15,13 +15,13 @@ export const CHECKOUT_SELECTORS = {
     state: "[name='countryArea']",
     addressTiles: "[data-test=addressTile]",
     addBtn: "[data-test=submitAddressFormModalButton]",
+    sameAsShippingAddressCheckbox:
+      "[data-test='checkoutAddressBillingAsShippingCheckbox']",
   },
   SHIPPING_SELECTORS: {
     shippingForms: "#shipping-form label",
   },
   PAYMENT_SELECTORS: {
-    sameAsShippingAddressCheckbox:
-      "[data-test='checkoutPaymentBillingAsShippingCheckbox']",
     dummyPaymentMethod: "[data-test='checkoutPaymentGatewayDummyInput']",
     totalPrice: "[data-test=cartSummaryCostTotal] > span",
   },

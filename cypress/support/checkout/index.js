@@ -13,9 +13,6 @@ Cypress.Commands.add("shipping", () => {
 
 Cypress.Commands.add("payment", () => {
   return cy
-    .get(CHECKOUT_SELECTORS.PAYMENT_SELECTORS.sameAsShippingAddressCheckbox)
-    .parent()
-    .click()
     .get(CHECKOUT_SELECTORS.PAYMENT_SELECTORS.dummyPaymentMethod)
     .parent()
     .click()

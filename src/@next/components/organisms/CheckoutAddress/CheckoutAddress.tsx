@@ -84,7 +84,7 @@ const CheckoutAddress: React.FC<IProps> = ({
         </S.Title>
         {shippingAddressRequired && (
           <Checkbox
-            data-test="checkoutPaymentBillingAsShippingCheckbox"
+            data-test="checkoutAddressBillingAsShippingCheckbox"
             name="billing-same-as-shipping"
             checked={billingAsShippingAddress}
             onChange={() =>
