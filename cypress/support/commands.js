@@ -17,6 +17,7 @@ Cypress.on("uncaught:exception", () => {
 Cypress.Commands.add("addNewAddress", address => {
   return cy
     .get(CHECKOUT_SELECTORS.addNewAddress)
+    .first()
     .click()
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.firstNameInput)
     .click()
