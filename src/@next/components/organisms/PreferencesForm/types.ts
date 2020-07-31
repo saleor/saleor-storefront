@@ -8,7 +8,7 @@ export interface IProps {
   }>;
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
-  handleSubmit?: (formData: IPreferences | undefined) => void;
+  handleSubmit?: (formData: IPreferences) => void;
   handleChange?: (e: React.ChangeEvent) => void;
   handleBlur?: (e: React.FocusEvent) => void;
   testingContext?: string;

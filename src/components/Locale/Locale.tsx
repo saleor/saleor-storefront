@@ -52,7 +52,7 @@ interface StructuredMessage {
   string: string;
 }
 type LocaleMessages = Record<string, StructuredMessage>;
-const localeData: Record<Locale, LocaleMessages> = {
+const localeData: Record<Locale, LocaleMessages | undefined> = {
   // Default language
   [Locale.EN]: undefined,
   [Locale.PL]: locale_PL,
@@ -206,7 +206,9 @@ export const localesOptions = (Object.keys(localeNames) as Array<Locale>).map(
 const dotSeparator = "_dot_";
 const sepRegExp = new RegExp(dotSeparator, "g");
 
-function getKeyValueJson(messages: LocaleMessages): Record<string, string> {
+function getKeyValueJson(
+  messages: LocaleMessages | undefined
+): Record<string, string> | undefined {
   if (messages) {
     const keyValueMessages: Record<string, string> = {};
     return Object.entries(messages).reduce((acc, [id, msg]) => {

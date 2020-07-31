@@ -3,6 +3,7 @@ import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
 import { Select } from "@components/atoms";
+import { IPreferences, Locale } from "@types";
 import { PreferencesForm } from ".";
 import { preferencesEN, preferencesPL, localesOptions } from "./fixtures";
 
@@ -23,7 +24,13 @@ describe("<PreferencesForm />", () => {
   });
 
   it("should contain proper initial data", () => {
-    const checkInitialValue = (preferences, localeOption) => {
+    const checkInitialValue = (
+      preferences: IPreferences,
+      localeOption: {
+        localeCode: Locale;
+        localeName: string;
+      }
+    ) => {
       const wrapper = mount(
         <IntlProvider locale="en">
           <PreferencesForm preferences={preferences} {...PROPS} />
