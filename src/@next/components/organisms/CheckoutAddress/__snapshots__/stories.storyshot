@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   margin: 20px;
 }
 
-.c17 {
+.c21 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -15,6 +15,94 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   left: 0;
   pointer-events: none;
   box-sizing: border-box;
+}
+
+.c19 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c20 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c20 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c20 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+.c18:hover .c20 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c20 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c20 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
 }
 
 .c12 {
@@ -170,6 +258,12 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
   width: 100%;
 }
 
+.c17 {
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin: 30px 0;
+}
+
 .c1 {
   font-weight: 600;
   padding: 0 0 1.6rem 0;
@@ -184,467 +278,926 @@ exports[`Storyshots @components/organisms/CheckoutAddress default 1`] = `
 <div
   className="c0"
 >
-  <section>
-    <h3
-      className="c1"
-      data-test="checkoutPageSubtitle"
-    >
-      Shipping Address
-    </h3>
-    <form
-      className="c2"
-      data-test="shippingAddressForm"
-      onSubmit={[Function]}
-    >
-      <div
-        className="c3"
+  <div
+    className=""
+  >
+    <section>
+      <h3
+        className="c1"
+        data-test="checkoutPageSubtitle"
+      >
+        Shipping Address
+      </h3>
+      <form
+        className="c2"
+        data-test="shippingAddressForm"
+        onSubmit={[Function]}
       >
         <div
-          className="c4"
+          className="c3"
         >
           <div
-            className="c5"
+            className="c4"
           >
             <div
-              className="c6"
-              disabled={false}
+              className="c5"
             >
               <div
-                className="c7"
-              >
-                <input
-                  autoComplete="given-name"
-                  className="c8"
-                  disabled={false}
-                  name="firstName"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="John"
-                />
-                <label
-                  className="c9"
-                >
-                  First Name
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="family-name"
-                  className="c8"
-                  disabled={false}
-                  name="lastName"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="Doe"
-                />
-                <label
-                  className="c9"
-                >
-                  Last Name
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-        </div>
-        <div
-          className="c4"
-        >
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="organization"
-                  className="c8"
-                  disabled={false}
-                  name="companyName"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="Mirumee"
-                />
-                <label
-                  className="c9"
-                >
-                  Company Name (Optional)
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="tel"
-                  className="c8"
-                  disabled={false}
-                  name="phone"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="555-5555"
-                />
-                <label
-                  className="c9"
-                >
-                  Phone
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-        </div>
-        <div
-          className="c11"
-        >
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="address-line1"
-                  className="c8"
-                  disabled={false}
-                  name="streetAddress1"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="St Street"
-                />
-                <label
-                  className="c9"
-                >
-                  Address line 1
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-        </div>
-        <div
-          className="c11"
-        >
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="address-line2"
-                  className="c8"
-                  disabled={false}
-                  name="streetAddress2"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="Second"
-                />
-                <label
-                  className="c9"
-                >
-                  Address line 2
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-        </div>
-        <div
-          className="c4"
-        >
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="address-level2"
-                  className="c8"
-                  disabled={false}
-                  name="city"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="Wroclaw"
-                />
-                <label
-                  className="c9"
-                >
-                  City
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="postal-code"
-                  className="c8"
-                  disabled={false}
-                  name="postalCode"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="55-555"
-                />
-                <label
-                  className="c9"
-                >
-                  ZIP/Postal Code
-                </label>
-              </div>
-            </div>
-            <div
-              className="c10"
-            />
-          </div>
-        </div>
-        <div
-          className="c4"
-        >
-          <div
-            className="c12"
-          >
-            <div
-              className="css-1pcexqc-container"
-              onKeyDown={[Function]}
-            >
-              <div
-                className="css-133ddnz-control"
-                onMouseDown={[Function]}
-                onTouchEnd={[Function]}
+                className="c6"
+                disabled={false}
               >
                 <div
-                  className="css-tntsk8"
+                  className="c7"
+                >
+                  <input
+                    autoComplete="given-name"
+                    className="c8"
+                    disabled={false}
+                    name="firstName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="John"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    First Name
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="family-name"
+                    className="c8"
+                    disabled={false}
+                    name="lastName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Doe"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Last Name
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="organization"
+                    className="c8"
+                    disabled={false}
+                    name="companyName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Mirumee"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Company Name (Optional)
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="tel"
+                    className="c8"
+                    disabled={false}
+                    name="phone"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="555-5555"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Phone
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c11"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-line1"
+                    className="c8"
+                    disabled={false}
+                    name="streetAddress1"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="St Street"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Address line 1
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c11"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-line2"
+                    className="c8"
+                    disabled={false}
+                    name="streetAddress2"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Second"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Address line 2
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-level2"
+                    className="c8"
+                    disabled={false}
+                    name="city"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Wroclaw"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    City
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="postal-code"
+                    className="c8"
+                    disabled={false}
+                    name="postalCode"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="55-555"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    ZIP/Postal Code
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c12"
+            >
+              <div
+                className="css-1pcexqc-container"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="css-133ddnz-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
                 >
                   <div
-                    className="css-dvua67-singleValue"
-                  >
-                    Poland
-                  </div>
-                  <div
-                    className="css-1g6gooi"
+                    className="css-tntsk8"
                   >
                     <div
-                      className=""
-                      style={
-                        Object {
-                          "display": "inline-block",
-                        }
-                      }
+                      className="css-dvua67-singleValue"
                     >
-                      <input
-                        aria-autocomplete="list"
-                        autoCapitalize="none"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        disabled={false}
-                        id="react-select-10-input"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        spellCheck="false"
-                        style={
-                          Object {
-                            "background": 0,
-                            "border": 0,
-                            "boxSizing": "content-box",
-                            "color": "inherit",
-                            "fontSize": "inherit",
-                            "label": "input",
-                            "opacity": 1,
-                            "outline": 0,
-                            "padding": 0,
-                            "width": "1px",
-                          }
-                        }
-                        tabIndex="0"
-                        type="text"
-                        value=""
-                      />
+                      Poland
+                    </div>
+                    <div
+                      className="css-1g6gooi"
+                    >
                       <div
+                        className=""
                         style={
                           Object {
-                            "height": 0,
-                            "left": 0,
-                            "overflow": "scroll",
-                            "position": "absolute",
-                            "top": 0,
-                            "visibility": "hidden",
-                            "whiteSpace": "pre",
+                            "display": "inline-block",
                           }
                         }
                       >
-                        
+                        <input
+                          aria-autocomplete="list"
+                          autoCapitalize="none"
+                          autoComplete="off"
+                          autoCorrect="off"
+                          disabled={false}
+                          id="react-select-10-input"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          spellCheck="false"
+                          style={
+                            Object {
+                              "background": 0,
+                              "border": 0,
+                              "boxSizing": "content-box",
+                              "color": "inherit",
+                              "fontSize": "inherit",
+                              "label": "input",
+                              "opacity": 1,
+                              "outline": 0,
+                              "padding": 0,
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex="0"
+                          type="text"
+                          value=""
+                        />
+                        <div
+                          style={
+                            Object {
+                              "height": 0,
+                              "left": 0,
+                              "overflow": "scroll",
+                              "position": "absolute",
+                              "top": 0,
+                              "visibility": "hidden",
+                              "whiteSpace": "pre",
+                            }
+                          }
+                        >
+                          
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="c13"
-                  rotate="false"
-                >
-                  <svg
-                    height={10}
-                    viewBox="0 0 32 32"
-                    width={10}
+                  <div
+                    className="c13"
+                    rotate="false"
                   >
-                    <path
-                      d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
-                      fill="#21125E"
-                    />
-                  </svg>
+                    <svg
+                      height={10}
+                      viewBox="0 0 32 32"
+                      width={10}
+                    >
+                      <path
+                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-              <label
-                className="c14"
-              >
-                Country
-              </label>
-            </div>
-            <div
-              className="c15"
-            />
-          </div>
-          <div
-            className="c5"
-          >
-            <div
-              className="c6"
-              disabled={false}
-            >
-              <div
-                className="c7"
-              >
-                <input
-                  autoComplete="address-level1"
-                  className="c8"
-                  disabled={false}
-                  name="countryArea"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                  value="dolnyslask"
-                />
                 <label
-                  className="c9"
+                  className="c14"
                 >
-                  State/province
+                  Country
                 </label>
               </div>
+              <div
+                className="c15"
+              />
             </div>
             <div
-              className="c10"
-            />
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-level1"
+                    className="c8"
+                    disabled={false}
+                    name="countryArea"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="dolnyslask"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    State/province
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="email"
+                    className="c8"
+                    disabled={false}
+                    name="email"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                  />
+                  <label
+                    className="c16"
+                  >
+                    Email
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
           </div>
         </div>
+      </form>
+    </section>
+    <div
+      className="c17"
+    />
+    <section>
+      <h3
+        className="c1"
+        data-test="checkoutPageSubtitle"
+      >
+        BILLING ADDRESS
+      </h3>
+      <div
+        className="c18 c19"
+        onClick={[Function]}
+      >
+        <label
+          className="c20"
+        >
+          <input
+            checked={false}
+            data-test="checkoutPaymentBillingAsShippingCheckbox"
+            name="billing-same-as-shipping"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Same as shipping address
+      </div>
+      <div
+        className="c17"
+      />
+      <form
+        className="c2"
+        data-test="billingAddressForm"
+        onSubmit={[Function]}
+      >
         <div
-          className="c4"
+          className="c3"
         >
           <div
-            className="c5"
+            className="c4"
           >
             <div
-              className="c6"
-              disabled={false}
+              className="c5"
             >
               <div
-                className="c7"
+                className="c6"
+                disabled={false}
               >
-                <input
-                  autoComplete="email"
-                  className="c8"
-                  disabled={false}
-                  name="email"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onFocus={[Function]}
-                />
-                <label
-                  className="c16"
+                <div
+                  className="c7"
                 >
-                  Email
-                </label>
+                  <input
+                    autoComplete="given-name"
+                    className="c8"
+                    disabled={false}
+                    name="firstName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="John"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    First Name
+                  </label>
+                </div>
               </div>
+              <div
+                className="c10"
+              />
             </div>
             <div
-              className="c10"
-            />
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="family-name"
+                    className="c8"
+                    disabled={false}
+                    name="lastName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Doe"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Last Name
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="organization"
+                    className="c8"
+                    disabled={false}
+                    name="companyName"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Mirumee"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Company Name (Optional)
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="tel"
+                    className="c8"
+                    disabled={false}
+                    name="phone"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="555-5555"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Phone
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c11"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-line1"
+                    className="c8"
+                    disabled={false}
+                    name="streetAddress1"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="St Street"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Address line 1
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c11"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-line2"
+                    className="c8"
+                    disabled={false}
+                    name="streetAddress2"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Second"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    Address line 2
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-level2"
+                    className="c8"
+                    disabled={false}
+                    name="city"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="Wroclaw"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    City
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="postal-code"
+                    className="c8"
+                    disabled={false}
+                    name="postalCode"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="55-555"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    ZIP/Postal Code
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
+          </div>
+          <div
+            className="c4"
+          >
+            <div
+              className="c12"
+            >
+              <div
+                className="css-1pcexqc-container"
+                onKeyDown={[Function]}
+              >
+                <div
+                  className="css-133ddnz-control"
+                  onMouseDown={[Function]}
+                  onTouchEnd={[Function]}
+                >
+                  <div
+                    className="css-tntsk8"
+                  >
+                    <div
+                      className="css-dvua67-singleValue"
+                    >
+                      Poland
+                    </div>
+                    <div
+                      className="css-1g6gooi"
+                    >
+                      <div
+                        className=""
+                        style={
+                          Object {
+                            "display": "inline-block",
+                          }
+                        }
+                      >
+                        <input
+                          aria-autocomplete="list"
+                          autoCapitalize="none"
+                          autoComplete="off"
+                          autoCorrect="off"
+                          disabled={false}
+                          id="react-select-11-input"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          spellCheck="false"
+                          style={
+                            Object {
+                              "background": 0,
+                              "border": 0,
+                              "boxSizing": "content-box",
+                              "color": "inherit",
+                              "fontSize": "inherit",
+                              "label": "input",
+                              "opacity": 1,
+                              "outline": 0,
+                              "padding": 0,
+                              "width": "1px",
+                            }
+                          }
+                          tabIndex="0"
+                          type="text"
+                          value=""
+                        />
+                        <div
+                          style={
+                            Object {
+                              "height": 0,
+                              "left": 0,
+                              "overflow": "scroll",
+                              "position": "absolute",
+                              "top": 0,
+                              "visibility": "hidden",
+                              "whiteSpace": "pre",
+                            }
+                          }
+                        >
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="c13"
+                    rotate="false"
+                  >
+                    <svg
+                      height={10}
+                      viewBox="0 0 32 32"
+                      width={10}
+                    >
+                      <path
+                        d="M16 29.856l-15.999-27.712h31.999l-15.999 27.712z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <label
+                  className="c14"
+                >
+                  Country
+                </label>
+              </div>
+              <div
+                className="c15"
+              />
+            </div>
+            <div
+              className="c5"
+            >
+              <div
+                className="c6"
+                disabled={false}
+              >
+                <div
+                  className="c7"
+                >
+                  <input
+                    autoComplete="address-level1"
+                    className="c8"
+                    disabled={false}
+                    name="countryArea"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    value="dolnyslask"
+                  />
+                  <label
+                    className="c9"
+                  >
+                    State/province
+                  </label>
+                </div>
+              </div>
+              <div
+                className="c10"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-  </section>
+      </form>
+    </section>
+  </div>
   <div
-    className="c17"
+    className="c21"
   />
 </div>
 `;
@@ -655,7 +1208,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
   margin: 20px;
 }
 
-.c10 {
+.c14 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -740,6 +1293,94 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
   font-weight: 600;
 }
 
+.c12 {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  margin-left: -4px;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
+.c13 input[type="checkbox"] {
+  display: none;
+  position: relative;
+  right: -999em;
+}
+
+.c13 div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 26px;
+  width: 26px;
+}
+
+.c13 div span {
+  border: 1px solid rgb(33,18,94);
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+.c11:hover .c13 div {
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(33,18,94,0.1);
+  background-color: rgba(33,18,94,0.1);
+}
+
+.c13 div:focus {
+  border-radius: 50%;
+  border: 1px solid;
+  outline: none;
+  border-color: rgba(33,18,94,0.2);
+  background-color: rgba(33,18,94,0.2);
+}
+
+.c13 input:checked + div span {
+  background-clip: content-box;
+  padding: 2px;
+  background-color: rgb(33,18,94);
+}
+
 .c2 {
   box-sizing: border-box;
   display: -webkit-box;
@@ -777,6 +1418,12 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
   display: none;
 }
 
+.c10 {
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin: 30px 0;
+}
+
 .c1 {
   font-weight: 600;
   padding: 0 0 1.6rem 0;
@@ -797,105 +1444,236 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
 <div
   className="c0"
 >
-  <section>
-    <h3
-      className="c1"
-      data-test="checkoutPageSubtitle"
-    >
-      Shipping Address
-    </h3>
-    <form
-      onSubmit={[Function]}
-    >
-      <div
-        className="c2"
+  <div
+    className=""
+  >
+    <section>
+      <h3
+        className="c1"
+        data-test="checkoutPageSubtitle"
+      >
+        Shipping Address
+      </h3>
+      <form
+        onSubmit={[Function]}
       >
         <div
-          className="c3"
+          className="c2"
         >
           <div
-            className="c4"
-            data-test="addressTileAddNew"
-            onClick={[Function]}
+            className="c3"
           >
             <div
-              className="c5"
+              className="c4"
+              data-test="addressTileAddNew"
+              onClick={[Function]}
             >
               <div
-                className="c6"
+                className="c5"
               >
-                <p>
-                  <svg
-                    height={24}
-                    viewBox="0 0 32 32"
-                    width={24}
-                  >
-                    <path
-                      d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                      fill="#21125E"
-                    />
-                  </svg>
-                </p>
-                <p>
-                  Add new address
-                </p>
+                <div
+                  className="c6"
+                >
+                  <p>
+                    <svg
+                      height={24}
+                      viewBox="0 0 32 32"
+                      width={24}
+                    >
+                      <path
+                        d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </p>
+                  <p>
+                    Add new address
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="c3"
-        >
-          <label
-            checked={false}
-            className="c7"
-            data-test="addressTile"
-            data-test-id="12345"
+          <div
+            className="c3"
           >
-            <div>
-              <span
-                className="c8"
-              >
-                John Doe
-              </span>
-              Mirumee
-               
-              <br />
-              St Street
-              <br />
-              Second
-               
-              <br />
-              55-555,
-               
-              Wroclaw
-              <br />
-              dolnyslask
-              , 
-              Poland
-              <br />
-              Phone number: 
-              555-5555
-               
-              <br />
-            </div>
-            <input
+            <label
               checked={false}
-              className="c9"
-              data-test="addressTileOption"
-              data-test-id={0}
-              name="addressTileOption"
-              onChange={[Function]}
-              type="radio"
-              value="12345"
-            />
-          </label>
+              className="c7"
+              data-test="addressTile"
+              data-test-id="12345"
+            >
+              <div>
+                <span
+                  className="c8"
+                >
+                  John Doe
+                </span>
+                Mirumee
+                 
+                <br />
+                St Street
+                <br />
+                Second
+                 
+                <br />
+                55-555,
+                 
+                Wroclaw
+                <br />
+                dolnyslask
+                , 
+                Poland
+                <br />
+                Phone number: 
+                555-5555
+                 
+                <br />
+              </div>
+              <input
+                checked={false}
+                className="c9"
+                data-test="addressTileOption"
+                data-test-id={0}
+                name="addressTileOption"
+                onChange={[Function]}
+                type="radio"
+                value="12345"
+              />
+            </label>
+          </div>
         </div>
+      </form>
+    </section>
+    <div
+      className="c10"
+    />
+    <section>
+      <h3
+        className="c1"
+        data-test="checkoutPageSubtitle"
+      >
+        BILLING ADDRESS
+      </h3>
+      <div
+        className="c11 c12"
+        onClick={[Function]}
+      >
+        <label
+          className="c13"
+        >
+          <input
+            checked={false}
+            data-test="checkoutPaymentBillingAsShippingCheckbox"
+            name="billing-same-as-shipping"
+            readOnly={true}
+            tabIndex={-1}
+            type="checkbox"
+          />
+          <div
+            onKeyDown={[Function]}
+            tabIndex={0}
+          >
+            <span />
+          </div>
+        </label>
+        Same as shipping address
       </div>
-    </form>
-  </section>
+      <div
+        className="c10"
+      />
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+              data-test="addressTileAddNew"
+              onClick={[Function]}
+            >
+              <div
+                className="c5"
+              >
+                <div
+                  className="c6"
+                >
+                  <p>
+                    <svg
+                      height={24}
+                      viewBox="0 0 32 32"
+                      width={24}
+                    >
+                      <path
+                        d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                        fill="#21125E"
+                      />
+                    </svg>
+                  </p>
+                  <p>
+                    Add new address
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="c3"
+          >
+            <label
+              checked={false}
+              className="c7"
+              data-test="addressTile"
+              data-test-id="12345"
+            >
+              <div>
+                <span
+                  className="c8"
+                >
+                  John Doe
+                </span>
+                Mirumee
+                 
+                <br />
+                St Street
+                <br />
+                Second
+                 
+                <br />
+                55-555,
+                 
+                Wroclaw
+                <br />
+                dolnyslask
+                , 
+                Poland
+                <br />
+                Phone number: 
+                555-5555
+                 
+                <br />
+              </div>
+              <input
+                checked={false}
+                className="c9"
+                data-test="addressTileOption"
+                data-test-id={0}
+                name="addressTileOption"
+                onChange={[Function]}
+                type="radio"
+                value="12345"
+              />
+            </label>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
   <div
-    className="c10"
+    className="c14"
   />
 </div>
 `;

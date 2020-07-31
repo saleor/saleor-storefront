@@ -19,7 +19,12 @@ storiesOf("@components/organisms/CheckoutAddress", module)
     <IntlProvider locale="en">
       <CheckoutAddress
         {...ANONYMOUS_USER_PROPS}
+        shippingAddressRequired
         setShippingAddress={action("setShippingAddress has been called")}
+        setBillingAddress={action("setBillingAddress has been called")}
+        setBillingAsShippingAddress={action(
+          "setBillingAsShippingAddress has been called"
+        )}
       />
     </IntlProvider>
   ))
@@ -27,7 +32,12 @@ storiesOf("@components/organisms/CheckoutAddress", module)
     <IntlProvider locale="en">
       <CheckoutAddress
         {...LOGGED_IN_USER_PROPS}
+        shippingAddressRequired
         setShippingAddress={action("setShippingAddress has been called")}
+        setBillingAddress={action("setBillingAddress has been called")}
+        setBillingAsShippingAddress={action(
+          "setBillingAsShippingAddress has been called"
+        )}
       />
     </IntlProvider>
   ));
