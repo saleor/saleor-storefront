@@ -284,13 +284,13 @@
   "components_dot_OverlayManager_dot_Search_dot_Search_dot_4112727608": {
     "string": "Show all results"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_1587628595": {
+  "components_dot_PasswordResetRequestForm_dot_index_dot_1587628595": {
     "string": "Check your inbox"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_2925394684": {
+  "components_dot_PasswordResetRequestForm_dot_index_dot_2925394684": {
     "string": "Reset password"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_805890313": {
+  "components_dot_PasswordResetRequestForm_dot_index_dot_805890313": {
     "string": "Please provide us your email address so we can share you a link to reset your password"
   },
   "components_dot_ProductDescription_dot_AddToCartButton_dot_1362724042": {
@@ -530,8 +530,8 @@
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAtDsc": {
     "string": "Last updated Descending"
   },
-  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2508056477": {
-    "string": "Your order nr: {orderNum}"
+  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_1857586798": {
+    "string": "Your order no.: {orderNum}"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2670827143": {
     "context": "action in popup menu in order view",
