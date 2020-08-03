@@ -15,22 +15,9 @@ export interface IProps {
   removeVoucherCode: (voucherCode: string) => void;
   submitUnchangedDiscount: () => void;
   /**
-   * Selected payment gateway.
-   */
-  selectedPaymentGateway?: string;
-  /**
-   * Selected payment gateway token.
-   */
-  selectedPaymentGatewayToken?: string;
-  /**
    * Called when selected payment gateway is changed.
    */
   selectPaymentGateway: (paymentGateway: string) => void;
-  /**
-   * Gateway form reference on which payment might be submitted.
-   */
-  gatewayFormRef?: React.RefObject<HTMLFormElement>;
-  gatewayFormId?: string;
   /**
    * Method called after the form is submitted. Passed gateway id and token attribute will be used to create payment.
    */
