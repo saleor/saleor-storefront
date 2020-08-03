@@ -19,6 +19,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Download invoice for order - #790 by @orzechdev
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
 - Fix tsconfig aliases - #824 by @orzechdev
+- Set billing address in first checkout step - #822 by @orzechdev
 
 ## 2.10.4
 
