@@ -11,9 +11,6 @@ describe("<CheckoutPayment />", () => {
     const addPromoCode = jest.fn();
     const removeVoucherCode = jest.fn();
     const submitUnchangedDiscount = jest.fn();
-    const selectPaymentGateway = jest.fn();
-    const processPayment = jest.fn();
-    const onGatewayError = jest.fn();
     const wrapper = mount(
       <IntlProvider locale="en">
         <CheckoutPayment
@@ -21,9 +18,6 @@ describe("<CheckoutPayment />", () => {
           addPromoCode={addPromoCode}
           removeVoucherCode={removeVoucherCode}
           submitUnchangedDiscount={submitUnchangedDiscount}
-          selectPaymentGateway={selectPaymentGateway}
-          processPayment={processPayment}
-          onGatewayError={onGatewayError}
         />
       </IntlProvider>
     );
