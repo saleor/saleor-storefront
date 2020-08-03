@@ -17,8 +17,7 @@ export interface ICheckoutPaymentSubpageHandles {
   submitPayment: () => void;
 }
 interface IProps extends RouteComponentProps<any> {
-  selectedPaymentGateway?: string;
-  selectedPaymentGatewayToken?: string;
+  paymentGatewayFormRef?: React.RefObject<HTMLFormElement>;
   selectPaymentGateway: (paymentGateway: string) => void;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   onSubmitSuccess: () => void;
@@ -29,8 +28,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   IProps
 > = (
   {
-    selectedPaymentGateway,
-    selectedPaymentGatewayToken,
+    paymentGatewayFormRef,
     changeSubmitProgress,
     selectPaymentGateway,
     onSubmitSuccess,
@@ -51,8 +49,6 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
 
   const paymentGateways = availablePaymentGateways || [];
 
-  const checkoutGatewayFormId = "gateway-form";
-  const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
   const promoCodeDiscountFormId = "discount-form";
   const promoCodeDiscountFormRef = useRef<HTMLFormElement>(null);
   const intl = useIntl();
@@ -63,8 +59,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
         promoCodeDiscountFormRef.current?.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
-      } else if (checkoutGatewayFormRef.current) {
-        checkoutGatewayFormRef.current.dispatchEvent(
+      } else if (paymentGatewayFormRef?.current) {
+        paymentGatewayFormRef.current.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
       } else {
@@ -102,8 +98,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
-      if (checkoutGatewayFormRef.current) {
-        checkoutGatewayFormRef.current.dispatchEvent(
+      if (paymentGatewayFormRef?.current) {
+        paymentGatewayFormRef.current.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
       } else {
@@ -122,8 +118,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       setPromoCodeErrors(errors);
     } else {
       setPromoCodeErrors([]);
-      if (checkoutGatewayFormRef.current) {
-        checkoutGatewayFormRef.current.dispatchEvent(
+      if (paymentGatewayFormRef?.current) {
+        paymentGatewayFormRef.current.dispatchEvent(
           new Event("submit", { cancelable: true })
         );
       } else {
@@ -135,8 +131,8 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
     }
   };
   const handleSubmitUnchangedDiscount = () => {
-    if (checkoutGatewayFormRef.current) {
-      checkoutGatewayFormRef.current.dispatchEvent(
+    if (paymentGatewayFormRef?.current) {
+      paymentGatewayFormRef.current.dispatchEvent(
         new Event("submit", { cancelable: true })
       );
     } else {
@@ -152,8 +148,6 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       {...props}
       gatewayErrors={gatewayErrors}
       paymentGateways={paymentGateways}
-      selectedPaymentGateway={selectedPaymentGateway}
-      selectedPaymentGatewayToken={selectedPaymentGatewayToken}
       selectPaymentGateway={selectPaymentGateway}
       promoCodeDiscountFormId={promoCodeDiscountFormId}
       promoCodeDiscountFormRef={promoCodeDiscountFormRef}
@@ -164,8 +158,6 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       removeVoucherCode={handleRemovePromoCode}
       submitUnchangedDiscount={handleSubmitUnchangedDiscount}
       promoCodeErrors={promoCodeErrors}
-      gatewayFormId={checkoutGatewayFormId}
-      gatewayFormRef={checkoutGatewayFormRef}
       processPayment={handleProcessPayment}
       onGatewayError={handlePaymentGatewayError}
     />

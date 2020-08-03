@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   margin: 20px;
 }
 
-.c9 {
+.c6 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -105,39 +105,6 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
   background-color: rgb(33,18,94);
 }
 
-.c8 {
-  cursor: pointer;
-}
-
-.c8 input[type="radio"] {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-
-.c8 > div {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin: 0.25em 1em 0.25em 0.25em;
-  border: 0.1em solid #21125e;
-  border-radius: 0.5em;
-  background: #ffffff;
-  vertical-align: bottom;
-}
-
-.c6 {
-  display: grid;
-  grid-gap: 20px;
-}
-
-.c7 {
-  display: block;
-  background-color: #f1f5f5;
-  padding: 20px;
-  cursor: pointer;
-}
-
 .c5 {
   width: 100%;
   border-bottom: 1px solid rgba(50,50,50,0.1);
@@ -189,72 +156,10 @@ exports[`Storyshots @components/organisms/CheckoutPayment default 1`] = `
       <div
         className="c5"
       />
-      <div
-        className="c6"
-      >
-        <div>
-          <label
-            checked={false}
-            className="c7"
-          >
-            <div
-              checked={false}
-              className="c8"
-            >
-              <input
-                checked={false}
-                data-test="checkoutPaymentGatewayDummyInput"
-                name="payment-method"
-                onChange={[Function]}
-                type="radio"
-                value="dummy"
-              />
-               
-              <div>
-                <span />
-              </div>
-              <span
-                data-test="checkoutPaymentGatewayDummyName"
-              >
-                Dummy
-              </span>
-            </div>
-          </label>
-        </div>
-        <div>
-          <label
-            checked={false}
-            className="c7"
-          >
-            <div
-              checked={false}
-              className="c8"
-            >
-              <input
-                checked={false}
-                data-test="checkoutPaymentGatewayStripeInput"
-                name="payment-method"
-                onChange={[Function]}
-                type="radio"
-                value="stripe"
-              />
-               
-              <div>
-                <span />
-              </div>
-              <span
-                data-test="checkoutPaymentGatewayStripeName"
-              >
-                Stripe
-              </span>
-            </div>
-          </label>
-        </div>
-      </div>
     </section>
   </div>
   <div
-    className="c9"
+    className="c6"
   />
 </div>
 `;

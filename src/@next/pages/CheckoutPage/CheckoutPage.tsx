@@ -4,7 +4,7 @@ import { Redirect, useLocation, useHistory } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary } from "@components/organisms";
+import { CartSummary, PaymentGatewaysList } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
@@ -101,7 +101,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     totalPrice,
     items,
   } = useCart();
-  const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const {
+    loaded: checkoutLoaded,
+    checkout,
+    payment,
+    availablePaymentGateways,
+  } = useCheckout();
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
@@ -151,6 +156,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     null
   );
   const checkoutReviewSubpageRef = useRef<ICheckoutReviewSubpageHandles>(null);
+  const checkoutGatewayFormId = "gateway-form";
+  const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
   const handleNextStepClick = () => {
     // Some magic above and below ensures that the activeStepIndex will always
@@ -227,8 +234,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         renderPayment={props => (
           <CheckoutPaymentSubpage
             ref={checkoutPaymentSubpageRef}
-            selectedPaymentGateway={selectedPaymentGateway}
-            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             changeSubmitProgress={setSubmitInProgress}
             selectPaymentGateway={setSelectedPaymentGateway}
             onSubmitSuccess={handleStepSubmitSuccess}
@@ -248,6 +253,20 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     ) : (
       <Loader />
     );
+
+  // TODO: handle payment gateways callbacks
+  const paymentGatewaysView = availablePaymentGateways && (
+    <PaymentGatewaysList
+      paymentGateways={availablePaymentGateways}
+      processPayment={() => undefined}
+      formId={checkoutGatewayFormId}
+      formRef={checkoutGatewayFormRef}
+      selectedPaymentGateway={selectedPaymentGateway}
+      selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+      selectPaymentGateway={() => undefined}
+      onError={() => undefined}
+    />
+  );
 
   let buttonText = activeStep.nextActionName;
   /* eslint-disable default-case */
@@ -282,6 +301,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items
       )}
       checkout={checkoutView}
+      paymentGateways={paymentGatewaysView}
+      hidePaymentGateways={steps[activeStepIndex].name !== "Payment"}
       button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
     />
   );
