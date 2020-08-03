@@ -13,6 +13,12 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
+const setShippingAddress = action("setShippingAddress has been called");
+const setBillingAddress = action("setBillingAddress has been called");
+const setBillingAsShippingAddress = action(
+  "setBillingAsShippingAddress has been called"
+);
+
 storiesOf("@components/organisms/CheckoutAddress", module)
   .addParameters({ component: CheckoutAddress })
   .add("default", () => (
@@ -20,11 +26,9 @@ storiesOf("@components/organisms/CheckoutAddress", module)
       <CheckoutAddress
         {...ANONYMOUS_USER_PROPS}
         shippingAddressRequired
-        setShippingAddress={action("setShippingAddress has been called")}
-        setBillingAddress={action("setBillingAddress has been called")}
-        setBillingAsShippingAddress={action(
-          "setBillingAsShippingAddress has been called"
-        )}
+        setShippingAddress={setShippingAddress}
+        setBillingAddress={setBillingAddress}
+        setBillingAsShippingAddress={setBillingAsShippingAddress}
       />
     </IntlProvider>
   ))
@@ -33,11 +37,9 @@ storiesOf("@components/organisms/CheckoutAddress", module)
       <CheckoutAddress
         {...LOGGED_IN_USER_PROPS}
         shippingAddressRequired
-        setShippingAddress={action("setShippingAddress has been called")}
-        setBillingAddress={action("setBillingAddress has been called")}
-        setBillingAsShippingAddress={action(
-          "setBillingAsShippingAddress has been called"
-        )}
+        setShippingAddress={setShippingAddress}
+        setBillingAddress={setBillingAddress}
+        setBillingAsShippingAddress={setBillingAsShippingAddress}
       />
     </IntlProvider>
   ));
