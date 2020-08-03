@@ -136,9 +136,13 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       changeSubmitProgress(false);
     } else {
       setShippingErrors([]);
-      checkoutBillingAddressFormRef.current?.dispatchEvent(
-        new Event("submit", { cancelable: true })
-      );
+      if (billingAsShippingState) {
+        handleSetBillingAddress();
+      } else {
+        checkoutBillingAddressFormRef.current?.dispatchEvent(
+          new Event("submit", { cancelable: true })
+        );
+      }
     }
   };
 
