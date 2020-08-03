@@ -69,15 +69,14 @@ describe("Buy a product as a logged user", () => {
           .get("@totalPrice")
           .then(totalPrice => {
             return cy
-              .get(ORDER_HISTORY_SELECTORS.orderList) // Find order list
-              .get('[data-test="orderEntry"]') // Find order entry
-              .first() // get first entry
+              .get(ORDER_HISTORY_SELECTORS.orderList)
+              .get('[data-test="orderEntry"]')
+              .first()
               .within(() => {
-                // find within first entry (selectors only try to find inside result of first function (row))
                 return cy
-                  .get("div:nth-child(4) span") // get 4th div (column) and find span in there
-                  .invoke("text") // Retrieve it's text value
-                  .should("eq", totalPrice); // test
+                  .get("div:nth-child(4) span")
+                  .invoke("text")
+                  .should("eq", totalPrice);
               });
           });
       });
