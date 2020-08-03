@@ -10,7 +10,7 @@ import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney, ICheckoutStep } from "@types";
+import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -106,6 +106,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     checkout,
     payment,
     availablePaymentGateways,
+    createPayment,
   } = useCheckout();
   const intl = useIntl();
 
@@ -122,6 +123,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedPaymentGatewayToken,
     setSelectedPaymentGatewayToken,
   ] = useState<string | undefined>(payment?.token);
+  const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<
+    IFormError[]
+  >([]);
 
   useEffect(() => {
     setSelectedPaymentGateway(payment?.gateway);
@@ -163,7 +167,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
-    switch (steps[activeStepIndex].index) {
+    switch (activeStep.index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
           checkoutAddressSubpageRef.current?.submitAddress();
@@ -234,9 +238,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         renderPayment={props => (
           <CheckoutPaymentSubpage
             ref={checkoutPaymentSubpageRef}
+            paymentGatewayFormRef={checkoutGatewayFormRef}
             changeSubmitProgress={setSubmitInProgress}
-            selectPaymentGateway={setSelectedPaymentGateway}
             onSubmitSuccess={handleStepSubmitSuccess}
+            onPaymentGatewayError={setPaymentGatewayErrors}
             {...props}
           />
         )}
@@ -254,17 +259,36 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       <Loader />
     );
 
-  // TODO: handle payment gateways callbacks
+  const handleProcessPayment = async (
+    gateway: string,
+    token: string,
+    cardData?: ICardData
+  ) => {
+    const { dataError } = await createPayment(gateway, token, cardData);
+    const errors = dataError?.error;
+    setSubmitInProgress(false);
+    if (errors) {
+      setPaymentGatewayErrors(errors);
+    } else {
+      setPaymentGatewayErrors([]);
+      handleStepSubmitSuccess();
+    }
+  };
+  const handlePaymentGatewayError = () => {
+    setSubmitInProgress(false);
+  };
+
   const paymentGatewaysView = availablePaymentGateways && (
     <PaymentGatewaysList
       paymentGateways={availablePaymentGateways}
-      processPayment={() => undefined}
+      processPayment={handleProcessPayment}
       formId={checkoutGatewayFormId}
       formRef={checkoutGatewayFormRef}
       selectedPaymentGateway={selectedPaymentGateway}
       selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-      selectPaymentGateway={() => undefined}
-      onError={() => undefined}
+      selectPaymentGateway={setSelectedPaymentGateway}
+      onError={handlePaymentGatewayError}
+      errors={paymentGatewayErrors}
     />
   );
 

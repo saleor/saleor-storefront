@@ -14,18 +14,13 @@ import { IProps } from "./types";
  * Payment options used in checkout.
  */
 const CheckoutPayment: React.FC<IProps> = ({
-  gatewayErrors,
   promoCodeErrors,
-  paymentGateways,
   promoCodeDiscountFormId,
   promoCodeDiscountFormRef,
   promoCodeDiscount,
   addPromoCode,
   removeVoucherCode,
   submitUnchangedDiscount,
-  selectPaymentGateway,
-  processPayment,
-  onGatewayError,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
     !!promoCodeDiscount?.voucherCode
