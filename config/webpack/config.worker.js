@@ -13,6 +13,8 @@ module.exports = ({ sourceDir, distDir }) => ({
         /\.js.map$/,
         /\.css.map/,
         /\.xls$/,
+        /\.pdf$/,
+        /\.csv$/,
       ],
     }),
     new webpack.EnvironmentPlugin({
