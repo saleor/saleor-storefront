@@ -7,6 +7,7 @@ import {
   BraintreePaymentGateway,
   DummyPaymentGateway,
   StripePaymentGateway,
+  AdyenPaymentGateway,
 } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -123,6 +124,38 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                       processPayment(id, token, cardData)
                     }
                     errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
+
+          case PROVIDERS.ADYEN.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayAdyenInput"
+                    name="payment-method"
+                    value="adyen"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayAdyenName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <AdyenPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    scriptSrc={PROVIDERS.ADYEN.scriptSrc}
+                    styleSrc={PROVIDERS.ADYEN.styleSrc}
+                    processPayment={() => processPayment(id)}
                     onError={onError}
                   />
                 )}
