@@ -15,8 +15,6 @@ import { SearchPage } from "../../views/Search";
 
 import * as paths from "./paths";
 
-const reload = () => window.location.reload();
-
 export const Routes: React.FC = () => (
   <Switch>
     <Route exact path={paths.baseUrl} component={HomePage} />
@@ -37,7 +35,6 @@ export const Routes: React.FC = () => (
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route path={paths.checkoutUrl} component={CheckoutPage} />
     <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
-    <Route path="/media/*" onEnter={reload} />
     <Route component={NotFound} />
   </Switch>
 );
