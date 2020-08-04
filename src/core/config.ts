@@ -13,8 +13,14 @@ export const PROVIDERS = {
     label: "Dummy",
   },
   STRIPE: {
-    href: "https://js.stripe.com/v3/",
     label: "Stripe",
+  },
+  ADYEN: {
+    label: "Adyen",
+    scriptSrc:
+      "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.9.5/adyen.js",
+    styleSrc:
+      "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.9.5/adyen.css",
   },
 };
 export const STATIC_PAGES = [
