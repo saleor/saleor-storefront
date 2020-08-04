@@ -34,7 +34,7 @@ export interface IProps {
    */
   processPayment: (
     gateway: string,
-    token: string,
+    token?: string,
     cardData?: ICardData
   ) => void;
   /**

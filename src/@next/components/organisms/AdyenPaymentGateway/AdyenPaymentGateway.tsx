@@ -10,7 +10,7 @@ export interface IProps {
   /**
    * Form reference on which payment might be submitted.
    */
-  formRef?: React.RefObject<HTMLDivElement>;
+  formRef?: React.RefObject<HTMLFormElement>;
   /**
    * URL address of payment gateway script file to be used.
    */
@@ -89,9 +89,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   }, [formRef]);
 
   return (
-    <div ref={formRef}>
+    <form ref={formRef}>
       <div ref={gatewayRef} />
-    </div>
+    </form>
   );
 };
 
