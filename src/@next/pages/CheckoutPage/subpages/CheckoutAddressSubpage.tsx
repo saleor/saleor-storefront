@@ -61,15 +61,13 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
         ...checkout?.shippingAddress,
-        email: checkout?.email || user?.email || undefined,
-        phone: checkout?.shippingAddress?.phone || undefined,
+        email: checkout?.email || user?.email,
       }
     : undefined;
   const checkoutBillingAddress = checkout?.billingAddress
     ? {
         ...checkout?.billingAddress,
-        email: checkout?.email || user?.email || undefined,
-        phone: checkout?.billingAddress?.phone || undefined,
+        email: checkout?.email || user?.email,
       }
     : undefined;
 
