@@ -17,25 +17,33 @@ export const useCheckoutStepState = (
 
   const getStep = () => {
     if (!checkout?.id && items) {
+      // we are creating checkout during address set up
       return CheckoutStep.Address;
     }
 
-    const isShippingStep =
-      !!checkout?.shippingAddress || !isShippingRequiredForProducts;
-    const isPaymentStep =
-      (isShippingStep && !!checkout?.shippingMethod) ||
-      !isShippingRequiredForProducts;
-    const isReviewStep =
-      isPaymentStep && !!checkout?.billingAddress && !!payment?.id;
+    const isShippingAddressSet =
+      !isShippingRequiredForProducts || !!checkout?.shippingAddress;
+    const isBillingAddressSet = !!checkout?.billingAddress;
+    const isShippingMethodSet =
+      !isShippingRequiredForProducts || !!checkout?.shippingMethod;
+    const isPaymentMethodSet = !!payment?.id;
 
-    if (isReviewStep) {
-      return CheckoutStep.Review;
+    if (!isShippingAddressSet || !isBillingAddressSet) {
+      return CheckoutStep.Address;
     }
-    if (isPaymentStep) {
+    if (!isShippingMethodSet) {
+      return CheckoutStep.Shipping;
+    }
+    if (!isPaymentMethodSet) {
       return CheckoutStep.Payment;
     }
-    if (isShippingStep) {
-      return CheckoutStep.Shipping;
+    if (
+      isShippingAddressSet &&
+      isBillingAddressSet &&
+      isShippingMethodSet &&
+      isPaymentMethodSet
+    ) {
+      return CheckoutStep.Review;
     }
     return CheckoutStep.Address;
   };
