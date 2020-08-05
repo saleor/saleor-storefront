@@ -1,5 +1,6 @@
 export const CHECKOUT_SELECTORS = {
-  addNewAddress: "[data-test=addressTileAddNew]",
+  addNewShippingAddress: "[data-test=shippingAddressTileAddNew]",
+  addNewBillingAddress: "[data-test=billingAddressTileAddNew]",
   nextCheckoutStepBtn: "[data-test='checkoutPageNextStepButton']",
 
   ADDRESS_SELECTORS: {

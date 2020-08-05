@@ -154,7 +154,7 @@ exports[`Storyshots @components/organisms/AddressGridSelector default 1`] = `
       >
         <div
           className="c3"
-          data-test="addressTileAddNew"
+          data-test="undefinedAddressTileAddNew"
           onClick={[Function]}
         >
           <div

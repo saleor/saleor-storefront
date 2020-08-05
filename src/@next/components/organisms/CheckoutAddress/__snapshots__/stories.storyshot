@@ -1465,7 +1465,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
           >
             <div
               className="c4"
-              data-test="addressTileAddNew"
+              data-test="shippingAddressTileAddNew"
               onClick={[Function]}
             >
               <div
@@ -1592,7 +1592,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
           >
             <div
               className="c4"
-              data-test="addressTileAddNew"
+              data-test="billingAddressTileAddNew"
               onClick={[Function]}
             >
               <div

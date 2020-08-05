@@ -31,7 +31,7 @@ const AddressGridSelector: React.FC<IProps> = ({
 
   const addNewTile = (
     <AddNewTile
-      data-test="addressTileAddNew"
+      data-test={`${testingContext}AddressTileAddNew`}
       key="newTile"
       type={intl.formatMessage({ defaultMessage: "address" })}
       onClick={() => setDisplayNewModal(true)}
