@@ -81,7 +81,7 @@ Go to `http://localhost:3000` to access the storefront.
 
 ## Cypress tests
 
-If you want to run Cypress tests, make sure that all dependecies (including `cypress`) are installed by running the install command.
+If you want to run Cypress tests, make sure that all dependecies (including `Cypress`) are installed by running the install command.
 
 ```
 npm i
