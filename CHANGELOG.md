@@ -18,6 +18,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Use intl - #782 by @przlada
 - Download invoice for order - #790 by @orzechdev
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
+- Fix tsconfig aliases - #824 by @orzechdev
 
 ## 2.10.4
 
