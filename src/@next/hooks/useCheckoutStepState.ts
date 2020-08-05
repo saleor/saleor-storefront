@@ -37,15 +37,7 @@ export const useCheckoutStepState = (
     if (!isPaymentMethodSet) {
       return CheckoutStep.Payment;
     }
-    if (
-      isShippingAddressSet &&
-      isBillingAddressSet &&
-      isShippingMethodSet &&
-      isPaymentMethodSet
-    ) {
-      return CheckoutStep.Review;
-    }
-    return CheckoutStep.Address;
+    return CheckoutStep.Review;
   };
 
   const [step, setStep] = useState(getStep());
