@@ -35,8 +35,13 @@ describe("Buy a product as a logged user", () => {
           .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
           .click()
           .addNewAddress(address)
-          .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.addressTiles)
+          .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.shippingAddressTiles)
           .last()
+          .click()
+          .get(
+            CHECKOUT_SELECTORS.ADDRESS_SELECTORS.sameAsShippingAddressCheckbox
+          )
+          .parent()
           .click()
           .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
           .click()
