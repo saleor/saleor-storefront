@@ -19,6 +19,9 @@ Cypress.Commands.add("payment", () => {
     .get(CHECKOUT_SELECTORS.PAYMENT_SELECTORS.dummyPaymentMethod)
     .parent()
     .click()
+    .get(CHECKOUT_SELECTORS.PAYMENT_SELECTORS.totalPrice)
+    .invoke("text")
+    .as("totalPrice")
     .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
     .click();
 });

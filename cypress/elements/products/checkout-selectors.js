@@ -23,6 +23,7 @@ export const CHECKOUT_SELECTORS = {
     sameAsShippingAddressCheckbox:
       "[data-test='checkoutPaymentBillingAsShippingCheckbox']",
     dummyPaymentMethod: "[data-test='checkoutPaymentGatewayDummyInput']",
+    totalPrice: "[data-test=cartSummaryCostTotal] > span",
   },
   REVIEW_SELECTORS: {
     shippingAddressTile:
@@ -31,6 +32,7 @@ export const CHECKOUT_SELECTORS = {
   },
   ORDER_FINALIZED: {
     confirmationView: "[data-test=thankYouView]",
+    orderDetails: "[data-test=gotoOrderDetailsButton]",
   },
   CHECKOUT_LINKS: {
     address: 'a[href="/checkout/address"]',
