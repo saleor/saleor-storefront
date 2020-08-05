@@ -45,6 +45,7 @@ const CheckoutAddress: React.FC<IProps> = ({
             </S.Title>
             {userAddresses ? (
               <AddressGridSelector
+                testingContext="shipping"
                 formId={shippingFormId}
                 formRef={shippingFormRef}
                 addresses={userAddresses}
@@ -99,6 +100,7 @@ const CheckoutAddress: React.FC<IProps> = ({
             {shippingAddressRequired && <S.Divider />}
             {userAddresses ? (
               <AddressGridSelector
+                testingContext="billing"
                 formId={billingFormId}
                 formRef={billingFormRef}
                 addresses={userAddresses}

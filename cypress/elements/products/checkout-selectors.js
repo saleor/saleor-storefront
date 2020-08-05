@@ -13,7 +13,8 @@ export const CHECKOUT_SELECTORS = {
     zip_postalCode: "[name='postalCode']",
     country: "#react-select-2-input",
     state: "[name='countryArea']",
-    addressTiles: "[data-test=addressTile]",
+    shippingAddressTiles: "[data-test=shippingAddressTile]",
+    billingAddressTiles: "[data-test=billingAddressTile]",
     addBtn: "[data-test=submitAddressFormModalButton]",
     sameAsShippingAddressCheckbox:
       "[data-test='checkoutAddressBillingAsShippingCheckbox']",

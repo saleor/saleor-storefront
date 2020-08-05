@@ -6,4 +6,5 @@ export interface IProps {
   checked?: boolean;
   address: IAddressWithAddressType;
   inputName: string;
+  testingContext?: string;
 }

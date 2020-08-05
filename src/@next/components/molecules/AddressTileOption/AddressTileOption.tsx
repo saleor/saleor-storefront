@@ -14,10 +14,17 @@ const AddressTileOption: React.FC<IProps> = ({
   address,
   onChange,
   checked,
+  testingContext,
   ...props
 }: IProps) => {
   return (
-    <S.Label checked={!!checked} data-test="addressTile" data-test-id={id}>
+    <S.Label
+      checked={!!checked}
+      data-test={
+        testingContext ? `${testingContext}AddressTile` : `addressTile`
+      }
+      data-test-id={id}
+    >
       <Address {...address} />
       <S.Input
         {...props}

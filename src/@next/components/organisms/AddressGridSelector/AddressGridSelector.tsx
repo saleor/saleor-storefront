@@ -24,6 +24,7 @@ const AddressGridSelector: React.FC<IProps> = ({
   formRef,
   addNewModalTarget,
   newAddressFormId,
+  testingContext,
 }: IProps) => {
   const [displayNewModal, setDisplayNewModal] = useState(false);
   const intl = useIntl();
@@ -70,7 +71,8 @@ const AddressGridSelector: React.FC<IProps> = ({
                   (elements, { id, address }, index) => {
                     elements.push(
                       <AddressTileOption
-                        data-test="addressTileOption"
+                        testingContext={testingContext}
+                        data-test={`${testingContext}AddressTileOption`}
                         data-test-id={index}
                         key={`addressTile-${id}`}
                         id={id}

@@ -1499,7 +1499,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
             <label
               checked={false}
               className="c7"
-              data-test="addressTile"
+              data-test="shippingAddressTile"
               data-test-id="12345"
             >
               <div>
@@ -1532,7 +1532,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
               <input
                 checked={false}
                 className="c9"
-                data-test="addressTileOption"
+                data-test="shippingAddressTileOption"
                 data-test-id={0}
                 name="addressTileOption"
                 onChange={[Function]}
@@ -1626,7 +1626,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
             <label
               checked={false}
               className="c7"
-              data-test="addressTile"
+              data-test="billingAddressTile"
               data-test-id="12345"
             >
               <div>
@@ -1659,7 +1659,7 @@ exports[`Storyshots @components/organisms/CheckoutAddress with addresses 1`] = `
               <input
                 checked={false}
                 className="c9"
-                data-test="addressTileOption"
+                data-test="billingAddressTileOption"
                 data-test-id={0}
                 name="addressTileOption"
                 onChange={[Function]}
