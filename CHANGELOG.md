@@ -20,6 +20,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
 - Fix tsconfig aliases - #824 by @orzechdev
 - Set billing address in first checkout step - #822 by @orzechdev
+- Persist payment gateways for the whole checkout - #828 by @orzechdev
 
 ## 2.10.4
 
