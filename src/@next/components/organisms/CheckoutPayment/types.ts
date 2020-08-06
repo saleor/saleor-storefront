@@ -1,31 +1,13 @@
-import { GetShop_shop_countries } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
-import {
-  IAddress,
-  IAddressWithAddressType,
-  ICardData,
-  IFormError,
-  IPaymentGateway,
-} from "@types";
+import { ICardData, IFormError, IPaymentGateway } from "@types";
 
 export interface IPromoCodeDiscount {
   voucherCode?: string | null;
 }
 
 export interface IProps {
-  billingErrors?: IFormError[];
   gatewayErrors?: IFormError[];
   promoCodeErrors?: IFormError[];
-  userAddresses?: IAddressWithAddressType[] | null;
-  selectedUserAddressId?: string;
-  billingAsShippingAddress?: boolean;
-  checkoutBillingAddress?: IAddress | null | undefined;
-  countries: Array<GetShop_shop_countries | null>;
-  billingFormRef?: React.RefObject<HTMLFormElement>;
-  billingFormId?: string;
   paymentGateways: IPaymentGateway[];
-  setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
-  billingAsShippingPossible: boolean;
-  setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
   promoCodeDiscount?: IPromoCodeDiscount;
   promoCodeDiscountFormRef?: React.RefObject<HTMLFormElement>;
   promoCodeDiscountFormId?: string;
@@ -49,8 +31,6 @@ export interface IProps {
    */
   gatewayFormRef?: React.RefObject<HTMLFormElement>;
   gatewayFormId?: string;
-  newAddressFormId?: string;
-  userId?: string;
   /**
    * Method called after the form is submitted. Passed gateway id and token attribute will be used to create payment.
    */

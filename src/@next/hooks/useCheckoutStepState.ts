@@ -16,31 +16,28 @@ export const useCheckoutStepState = (
     );
 
   const getStep = () => {
-    if (!checkout?.id && items && isShippingRequiredForProducts) {
+    if (!checkout?.id && items) {
+      // we are creating checkout during address set up
       return CheckoutStep.Address;
     }
-    if (!checkout?.id && items) {
-      return CheckoutStep.Payment;
-    }
 
-    const isShippingStep =
-      !!checkout?.shippingAddress || !isShippingRequiredForProducts;
-    const isPaymentStep =
-      (isShippingStep && !!checkout?.shippingMethod) ||
-      !isShippingRequiredForProducts;
-    const isReviewStep =
-      isPaymentStep && !!checkout?.billingAddress && !!payment?.id;
+    const isShippingAddressSet =
+      !isShippingRequiredForProducts || !!checkout?.shippingAddress;
+    const isBillingAddressSet = !!checkout?.billingAddress;
+    const isShippingMethodSet =
+      !isShippingRequiredForProducts || !!checkout?.shippingMethod;
+    const isPaymentMethodSet = !!payment?.id;
 
-    if (isReviewStep) {
-      return CheckoutStep.Review;
+    if (!isShippingAddressSet || !isBillingAddressSet) {
+      return CheckoutStep.Address;
     }
-    if (isPaymentStep) {
-      return CheckoutStep.Payment;
-    }
-    if (isShippingStep) {
+    if (!isShippingMethodSet) {
       return CheckoutStep.Shipping;
     }
-    return CheckoutStep.Address;
+    if (!isPaymentMethodSet) {
+      return CheckoutStep.Payment;
+    }
+    return CheckoutStep.Review;
   };
 
   const [step, setStep] = useState(getStep());

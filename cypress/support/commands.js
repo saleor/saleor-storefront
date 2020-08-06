@@ -16,8 +16,6 @@ Cypress.on("uncaught:exception", () => {
 
 Cypress.Commands.add("addNewAddress", address => {
   return cy
-    .get(CHECKOUT_SELECTORS.addNewAddress)
-    .click()
     .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.firstNameInput)
     .click()
     .type(address.fakeFirstNameText)

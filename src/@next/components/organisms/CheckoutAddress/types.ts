@@ -9,13 +9,21 @@ export declare type Address = {
 export interface IProps {
   userAddresses?: Address[] | null;
   selectedUserAddressId?: string;
-  checkoutAddress?: IAddress | null;
+  checkoutShippingAddress?: IAddress | null;
+  billingAsShippingAddress?: boolean;
+  checkoutBillingAddress?: IAddress | null;
   email?: string;
   countries?: Array<GetShop_shop_countries | null>;
   userId?: string;
-  formRef?: React.RefObject<HTMLFormElement>;
-  formId?: string;
+  shippingFormRef?: React.RefObject<HTMLFormElement>;
+  shippingFormId?: string;
+  billingFormRef?: React.RefObject<HTMLFormElement>;
+  billingFormId?: string;
   newAddressFormId?: string;
-  errors?: IFormError[];
+  shippingErrors?: IFormError[];
+  billingErrors?: IFormError[];
+  shippingAddressRequired: boolean;
   setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
+  setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
+  setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
 }

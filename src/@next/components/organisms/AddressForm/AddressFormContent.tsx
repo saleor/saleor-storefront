@@ -76,7 +76,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           <TextField
             name="phone"
             label={intl.formatMessage(commonMessages.phone)}
-            value={values!.phone}
+            value={values!.phone || undefined}
             autoComplete="tel"
             errors={fieldErrors!.phone}
             {...basicInputProps()}

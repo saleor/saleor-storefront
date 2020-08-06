@@ -4,30 +4,41 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { RouteComponentProps, useHistory } from "react-router";
+import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IFormError } from "@types";
+
+export interface ISubmitCheckoutData {
+  id: string;
+  orderNumber: string;
+  token: string;
+}
 
 export interface ICheckoutReviewSubpageHandles {
   complete: () => void;
 }
+
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
   changeSubmitProgress: (submitInProgress: boolean) => void;
+  onSubmitSuccess: (data: ISubmitCheckoutData) => void;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   ICheckoutReviewSubpageHandles,
   IProps
 > = (
-  { selectedPaymentGatewayToken, changeSubmitProgress, ...props }: IProps,
+  {
+    selectedPaymentGatewayToken,
+    changeSubmitProgress,
+    onSubmitSuccess,
+    ...props
+  }: IProps,
   ref
 ) => {
-  const history = useHistory();
   const { checkout, payment, completeCheckout } = useCheckout();
 
   const [errors, setErrors] = useState<IFormError[]>([]);
@@ -70,13 +81,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        history.push({
-          pathname: CHECKOUT_STEPS[3].nextStepLink,
-          state: {
-            id: data?.id,
-            orderNumber: data?.number,
-            token: data?.token,
-          },
+        onSubmitSuccess({
+          id: data?.id,
+          orderNumber: data?.number,
+          token: data?.token,
         });
       }
     },

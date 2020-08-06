@@ -18,5 +18,6 @@ export interface IProps {
   newAddressFormId?: string;
   errors?: IFormError[];
   addNewModalTarget?: HTMLElement | null;
+  testingContext?: string;
   onSelect: (address?: IAddressWithAddressType, id?: string) => void;
 }
