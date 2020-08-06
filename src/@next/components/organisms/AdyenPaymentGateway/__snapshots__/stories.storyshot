@@ -20,9 +20,9 @@ exports[`Storyshots @components/organisms/AdyenPaymentGateway default 1`] = `
 <div
   className="c0"
 >
-  <div>
+  <form>
     <div />
-  </div>
+  </form>
   <div
     className="c1"
   />
