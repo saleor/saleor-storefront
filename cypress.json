@@ -7,5 +7,6 @@
   "requestTimeout": 15000,
   "viewportWidth": 1400,
   "viewportHeight": 660,
-  "projectId": "ftxg4w"
+  "projectId": "ftxg4w",
+  "watchForFileChanges": false
 }

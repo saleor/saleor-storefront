@@ -7,4 +7,8 @@ export interface IProps {
    * Value
    */
   attributeValue: string;
+  /**
+   * Data test for value
+   */
+  valueDataTest?: string;
 }

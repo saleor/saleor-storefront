@@ -72,7 +72,7 @@ describe("Buy a product as a logged user", () => {
 
           .get(HEADER_SELECTORS.loggedInMainMenuButton)
           .click()
-          .get(HEADER_SELECTORS.MAINMENUDROPDOWN_SELECTORS.orderHistory)
+          .get(HEADER_SELECTORS.MAIN_MENU_DROPDOWN_SELECTORS.orderHistory)
           .click()
           .get("@totalPrice")
           .then(totalPrice => {

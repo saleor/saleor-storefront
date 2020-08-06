@@ -8,7 +8,8 @@ export const HEADER_SELECTORS = {
   mainMenuDropdown: ".main-menu__dropdown",
   closeSearchToast: ".search__input__close-btn > div",
 
-  MAINMENUDROPDOWN_SELECTORS: {
+  MAIN_MENU_DROPDOWN_SELECTORS: {
     orderHistory: "[data-test='desktopMenuOrderHistoryLink']",
+    myAccount: "[data-test='desktopMenuMyAccountLink']",
   },
 };
