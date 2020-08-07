@@ -23,6 +23,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   formRef,
   formId,
   processPayment,
+  submitPayment,
+  submitPaymentSuccess,
   errors,
   onError,
 }: IProps) => {
@@ -156,6 +158,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     scriptSrc={PROVIDERS.ADYEN.scriptSrc}
                     styleSrc={PROVIDERS.ADYEN.styleSrc}
                     processPayment={() => processPayment(id)}
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
                     onError={onError}
                   />
                 )}

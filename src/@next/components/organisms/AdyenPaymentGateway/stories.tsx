@@ -22,6 +22,8 @@ const PROPS = {
   ],
 };
 const processPayment = action("processPayment");
+const submitPayment = async () => action("submitPayment");
+const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
 
 storiesOf("@components/organisms/AdyenPaymentGateway", module)
@@ -30,6 +32,8 @@ storiesOf("@components/organisms/AdyenPaymentGateway", module)
     <AdyenPaymentGateway
       {...PROPS}
       processPayment={processPayment}
+      submitPayment={submitPayment}
+      submitPaymentSuccess={submitPaymentSuccess}
       onError={onError}
     />
   ));

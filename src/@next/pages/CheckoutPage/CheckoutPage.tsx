@@ -107,6 +107,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     payment,
     availablePaymentGateways,
     createPayment,
+    completeCheckout,
   } = useCheckout();
   const intl = useIntl();
 
@@ -248,6 +249,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         renderReview={props => (
           <CheckoutReviewSubpage
             ref={checkoutReviewSubpageRef}
+            paymentGatewayFormRef={checkoutGatewayFormRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             changeSubmitProgress={setSubmitInProgress}
             onSubmitSuccess={handleStepSubmitSuccess}
@@ -261,7 +263,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
 
   const handleProcessPayment = async (
     gateway: string,
-    token: string,
+    token?: string,
     cardData?: ICardData
   ) => {
     const { dataError } = await createPayment(gateway, token, cardData);
@@ -274,6 +276,17 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       handleStepSubmitSuccess();
     }
   };
+  const handleSubmitPayment = async (paymentData?: object) => {
+    const response = await completeCheckout(paymentData);
+    return {
+      confirmationData: response.data.confirmationData,
+      confirmationNeeded: response.data.confirmationNeeded,
+    };
+  };
+  const handleSubmitPaymentSuccess = () => {
+    setSubmitInProgress(false);
+    handleStepSubmitSuccess();
+  };
   const handlePaymentGatewayError = () => {
     setSubmitInProgress(false);
   };
@@ -282,6 +295,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <PaymentGatewaysList
       paymentGateways={availablePaymentGateways}
       processPayment={handleProcessPayment}
+      submitPayment={handleSubmitPayment}
+      submitPaymentSuccess={handleSubmitPaymentSuccess}
       formId={checkoutGatewayFormId}
       formRef={checkoutGatewayFormRef}
       selectedPaymentGateway={selectedPaymentGateway}

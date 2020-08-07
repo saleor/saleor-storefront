@@ -23,6 +23,11 @@ export interface IProps {
    * Method called after the form is submitted. Passed token attribute will be used to create payment.
    */
   processPayment: () => void;
+  submitPayment: (data: {
+    confirmationData: any;
+    confirmationNeeded: boolean;
+  }) => Promise<any>;
+  submitPaymentSuccess: () => void;
   /**
    * Method called when gateway error occured.
    */
@@ -35,6 +40,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   scriptSrc,
   styleSrc,
   processPayment,
+  submitPayment,
+  submitPaymentSuccess,
   onError,
 }: IProps) => {
   const adyenOriginKey = config?.find(({ field }) => field === "origin_key")
@@ -46,6 +53,13 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   const gatewayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log(
+      "adyen state effect update",
+      adyenOriginKey,
+      parsedAdyenConfig,
+      dropin,
+      gatewayRef.current
+    );
     if (adyenOriginKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
@@ -66,10 +80,32 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         locale: navigator.language,
         environment: "test",
         originKey: adyenOriginKey,
-        paymentMethodsResponse: {
-          paymentMethods: parsedAdyenConfig,
-        },
+        paymentMethodsResponse: parsedAdyenConfig,
         showPayButton: false,
+        onSubmit: (state: any, dropin: any) => {
+          console.log("submit adyen", state, dropin);
+          submitPayment(state?.data).then(value => {
+            if (!value?.confirmationNeeded) {
+              console.log(
+                "dropin onSubmitPayment no confirmation",
+                value,
+                state,
+                dropin
+              );
+              submitPaymentSuccess();
+            } else {
+              console.log(
+                "dropin onSubmitPayment confirmation needed",
+                value,
+                state,
+                dropin
+              );
+              const paymentAction =
+                value?.confirmationData && JSON.parse(value?.confirmationData);
+              dropin.handleAction(paymentAction);
+            }
+          });
+        },
         onError,
       };
 
@@ -79,6 +115,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     if (dropinElement && !dropin && gatewayRef.current) {
       dropinElement?.mount(gatewayRef.current);
       setDropin(dropinElement);
+      console.log(dropinElement, "dropin element set");
     }
   };
 
@@ -87,6 +124,14 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
       processPayment();
     });
   }, [formRef]);
+
+  useEffect(() => {
+    if (dropin) {
+      (formRef?.current as any)?.addEventListener("submitComplete", () => {
+        dropin.submit();
+      });
+    }
+  }, [formRef, dropin]);
 
   return (
     <form ref={formRef}>

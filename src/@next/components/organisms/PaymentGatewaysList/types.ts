@@ -37,6 +37,11 @@ export interface IProps {
     token?: string,
     cardData?: ICardData
   ) => void;
+  submitPayment: (data: {
+    confirmationData: any;
+    confirmationNeeded: boolean;
+  }) => Promise<any>;
+  submitPaymentSuccess: () => void;
   /**
    * Method called when gateway error occured.
    */

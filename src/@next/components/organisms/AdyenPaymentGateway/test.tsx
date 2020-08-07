@@ -25,11 +25,15 @@ const PROPS = {
 describe("<AdyenPaymentGateway />", () => {
   it("exists", () => {
     const processPayment = jest.fn();
+    const submitPayment = jest.fn();
+    const submitPaymentSuccess = jest.fn();
     const onError = jest.fn();
     const wrapper = shallow(
       <AdyenPaymentGateway
         {...PROPS}
         processPayment={processPayment}
+        submitPayment={submitPayment}
+        submitPaymentSuccess={submitPaymentSuccess}
         onError={onError}
       />
     );
