@@ -18,9 +18,6 @@ const removeVoucherCode = action("removeVoucherCode has been called");
 const submitUnchangedDiscount = action(
   "submitUnchangedDiscount has been called"
 );
-const selectPaymentGateway = action("selectPaymentGateway has been called");
-const processPayment = action("processPayment has been called");
-const onGatewayError = action("onGatewayError has been called");
 
 storiesOf("@components/organisms/CheckoutPayment", module)
   .addParameters({ component: CheckoutPayment })
@@ -31,9 +28,6 @@ storiesOf("@components/organisms/CheckoutPayment", module)
         addPromoCode={addPromoCode}
         removeVoucherCode={removeVoucherCode}
         submitUnchangedDiscount={submitUnchangedDiscount}
-        selectPaymentGateway={selectPaymentGateway}
-        processPayment={processPayment}
-        onGatewayError={onGatewayError}
       />
     </IntlProvider>
   ));

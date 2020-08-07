@@ -4,13 +4,13 @@ import { Redirect, useLocation, useHistory } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary } from "@components/organisms";
+import { CartSummary, PaymentGatewaysList } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney, ICheckoutStep } from "@types";
+import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -101,7 +101,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     totalPrice,
     items,
   } = useCart();
-  const { loaded: checkoutLoaded, checkout, payment } = useCheckout();
+  const {
+    loaded: checkoutLoaded,
+    checkout,
+    payment,
+    availablePaymentGateways,
+    createPayment,
+  } = useCheckout();
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
@@ -117,6 +123,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     selectedPaymentGatewayToken,
     setSelectedPaymentGatewayToken,
   ] = useState<string | undefined>(payment?.token);
+  const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<
+    IFormError[]
+  >([]);
 
   useEffect(() => {
     setSelectedPaymentGateway(payment?.gateway);
@@ -151,12 +160,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     null
   );
   const checkoutReviewSubpageRef = useRef<ICheckoutReviewSubpageHandles>(null);
+  const checkoutGatewayFormId = "gateway-form";
+  const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
   const handleNextStepClick = () => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
-    switch (steps[activeStepIndex].index) {
+    switch (activeStep.index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
           checkoutAddressSubpageRef.current?.submitAddress();
@@ -227,11 +238,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         renderPayment={props => (
           <CheckoutPaymentSubpage
             ref={checkoutPaymentSubpageRef}
-            selectedPaymentGateway={selectedPaymentGateway}
-            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+            paymentGatewayFormRef={checkoutGatewayFormRef}
             changeSubmitProgress={setSubmitInProgress}
-            selectPaymentGateway={setSelectedPaymentGateway}
             onSubmitSuccess={handleStepSubmitSuccess}
+            onPaymentGatewayError={setPaymentGatewayErrors}
             {...props}
           />
         )}
@@ -248,6 +258,39 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     ) : (
       <Loader />
     );
+
+  const handleProcessPayment = async (
+    gateway: string,
+    token: string,
+    cardData?: ICardData
+  ) => {
+    const { dataError } = await createPayment(gateway, token, cardData);
+    const errors = dataError?.error;
+    setSubmitInProgress(false);
+    if (errors) {
+      setPaymentGatewayErrors(errors);
+    } else {
+      setPaymentGatewayErrors([]);
+      handleStepSubmitSuccess();
+    }
+  };
+  const handlePaymentGatewayError = () => {
+    setSubmitInProgress(false);
+  };
+
+  const paymentGatewaysView = availablePaymentGateways && (
+    <PaymentGatewaysList
+      paymentGateways={availablePaymentGateways}
+      processPayment={handleProcessPayment}
+      formId={checkoutGatewayFormId}
+      formRef={checkoutGatewayFormRef}
+      selectedPaymentGateway={selectedPaymentGateway}
+      selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+      selectPaymentGateway={setSelectedPaymentGateway}
+      onError={handlePaymentGatewayError}
+      errors={paymentGatewayErrors}
+    />
+  );
 
   let buttonText = activeStep.nextActionName;
   /* eslint-disable default-case */
@@ -282,6 +325,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items
       )}
       checkout={checkoutView}
+      paymentGateways={paymentGatewaysView}
+      hidePaymentGateways={steps[activeStepIndex].name !== "Payment"}
       button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
     />
   );

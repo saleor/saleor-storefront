@@ -6,7 +6,6 @@ import { checkoutMessages } from "@temp/intl";
 
 import { DiscountForm } from "../DiscountForm";
 import { IDiscountFormData } from "../DiscountForm/types";
-import { PaymentGatewaysList } from "../PaymentGatewaysList";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -15,22 +14,13 @@ import { IProps } from "./types";
  * Payment options used in checkout.
  */
 const CheckoutPayment: React.FC<IProps> = ({
-  gatewayErrors,
   promoCodeErrors,
-  paymentGateways,
   promoCodeDiscountFormId,
   promoCodeDiscountFormRef,
   promoCodeDiscount,
   addPromoCode,
   removeVoucherCode,
   submitUnchangedDiscount,
-  selectedPaymentGateway,
-  selectedPaymentGatewayToken,
-  selectPaymentGateway,
-  gatewayFormRef,
-  gatewayFormId,
-  processPayment,
-  onGatewayError,
 }: IProps) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
     !!promoCodeDiscount?.voucherCode
@@ -86,17 +76,6 @@ const CheckoutPayment: React.FC<IProps> = ({
           </S.DiscountField>
         )}
         <S.Divider />
-        <PaymentGatewaysList
-          errors={gatewayErrors}
-          paymentGateways={paymentGateways}
-          formRef={gatewayFormRef}
-          formId={gatewayFormId}
-          processPayment={processPayment}
-          selectedPaymentGateway={selectedPaymentGateway}
-          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-          selectPaymentGateway={selectPaymentGateway}
-          onError={onGatewayError}
-        />
       </section>
     </S.Wrapper>
   );

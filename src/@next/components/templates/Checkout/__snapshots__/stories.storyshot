@@ -6,7 +6,7 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c8 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -30,7 +30,7 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
   grid-template-columns: 8fr 4fr;
   grid-template-rows: 85px auto auto;
   grid-column-gap: 30px;
-  grid-template-areas: "navigation cartSummary" "checkout cartSummary" "button cartSummary";
+  grid-template-areas: "navigation cartSummary" "checkout cartSummary" "paymentGateways cartSummary" "button cartSummary";
 }
 
 .c3 {
@@ -42,15 +42,20 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
 
 .c4 {
   grid-area: checkout;
-  padding: 3rem 0;
+  padding: 3rem 0 0 0;
 }
 
 .c5 {
-  grid-area: cartSummary;
+  grid-area: paymentGateways;
 }
 
 .c6 {
+  grid-area: cartSummary;
+}
+
+.c7 {
   grid-area: button;
+  margin: 3rem 0 0 0;
 }
 
 @media (max-width:992px) {
@@ -62,12 +67,12 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
 @media (max-width:720px) {
   .c2 {
     grid-template-columns: 1fr;
-    grid-template-areas: "navigation" "checkout" "button";
+    grid-template-areas: "navigation" "checkout" "paymentGateways" "button";
   }
 }
 
 @media (max-width:720px) {
-  .c5 {
+  .c6 {
     position: fixed;
     bottom: 0;
   }
@@ -84,20 +89,83 @@ exports[`Storyshots @components/templates/Checkout default 1`] = `
     >
       <div
         className="c3"
-      />
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "border": "1px solid black",
+              "padding": "10px",
+            }
+          }
+        >
+          Navigation
+        </div>
+      </div>
       <div
         className="c4"
-      />
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "border": "1px solid black",
+              "padding": "10px",
+            }
+          }
+        >
+          Checkout
+        </div>
+      </div>
       <div
         className="c5"
-      />
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "border": "1px solid black",
+              "padding": "10px",
+            }
+          }
+        >
+          Payment gateways
+        </div>
+      </div>
       <div
         className="c6"
-      />
+      >
+        <div
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "border": "1px solid black",
+              "padding": "10px",
+            }
+          }
+        >
+          Cart summary
+        </div>
+      </div>
+      <div
+        className="c7"
+      >
+        <button
+          style={
+            Object {
+              "backgroundColor": "#ccc",
+              "border": "1px solid black",
+              "padding": "10px",
+            }
+          }
+        >
+          Button
+        </button>
+      </div>
     </div>
   </div>
   <div
-    className="c7"
+    className="c8"
   />
 </div>
 `;
