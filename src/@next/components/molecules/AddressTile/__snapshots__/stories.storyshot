@@ -148,6 +148,8 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
   >
     <div
       className="c2"
+      data-test-billing-default={false}
+      data-test-shipping-default={true}
     >
       <div
         className="c3"
@@ -419,6 +421,8 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
   >
     <div
       className="c2"
+      data-test-billing-default={false}
+      data-test-shipping-default={false}
     >
       <div
         className="c3"
