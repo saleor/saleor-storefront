@@ -37,12 +37,14 @@ export const AddressTile: React.FC<IProps> = ({
             onClick: () => {
               setDefault("BILLING");
             },
+            testId: "set-billing",
           },
           {
             content: defaultShippingAddress,
             onClick: () => {
               setDefault("SHIPPING");
             },
+            testId: "set-shipping",
           },
         ]}
       />
@@ -79,7 +81,10 @@ export const AddressTile: React.FC<IProps> = ({
 
   const content = <Address {...address} />;
   return (
-    <S.Wrapper>
+    <S.Wrapper
+      data-test-billing-default={address.isDefaultBillingAddress}
+      data-test-shipping-default={address.isDefaultShippingAddress}
+    >
       <Tile footer={footer} header={header}>
         {content}
       </Tile>
