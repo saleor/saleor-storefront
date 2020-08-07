@@ -92,7 +92,10 @@ const BraintreePaymentGateway: React.FC<IProps> = ({
     if (payment?.token) {
       processPayment(payment?.token, {
         brand: payment?.ccType,
+        firstDigits: null,
         lastDigits: payment?.lastDigits,
+        expMonth: null,
+        expYear: null,
       });
     } else {
       const braintreePayloadErrors = [

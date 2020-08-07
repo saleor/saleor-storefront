@@ -266,7 +266,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     token?: string,
     cardData?: ICardData
   ) => {
-    const { dataError } = await createPayment(gateway, token, cardData);
+    const { dataError } = await createPayment({
+      gateway,
+      token,
+      creditCard: cardData,
+      returnUrl: `${window.location.origin}/checkout/payment-confirm`,
+    });
     const errors = dataError?.error;
     setSubmitInProgress(false);
     if (errors) {
