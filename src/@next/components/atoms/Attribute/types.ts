@@ -8,7 +8,7 @@ export interface IProps {
    */
   attributeValue: string;
   /**
-   * Data test for value
+   * Used as marker for writing e2e tests
    */
-  valueDataTest?: string;
+  testingContext: string;
 }

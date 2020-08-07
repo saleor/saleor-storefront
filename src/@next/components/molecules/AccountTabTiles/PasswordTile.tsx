@@ -50,6 +50,7 @@ export const PasswordTile: React.FC = () => {
               <Attribute
                 description={intl.formatMessage(commonMessages.password)}
                 attributeValue="**************"
+                testingContext="passwordText"
               />
             )}
           </S.Content>
