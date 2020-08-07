@@ -68,15 +68,15 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
         onKeyDown={[Function]}
       >
         <div
-          className="css-133ddnz-control"
+          className="css-133ddnz-control select-country__control"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
           <div
-            className="css-tntsk8"
+            className="css-tntsk8 select-country__value-container"
           >
             <div
-              className="css-151xaom-placeholder"
+              className="css-151xaom-placeholder select-country__placeholder"
             >
               
             </div>
@@ -84,7 +84,7 @@ exports[`Storyshots @components/molecules/InputSelect default 1`] = `
               className="css-1g6gooi"
             >
               <div
-                className=""
+                className="select-country__input"
                 style={
                   Object {
                     "display": "inline-block",
