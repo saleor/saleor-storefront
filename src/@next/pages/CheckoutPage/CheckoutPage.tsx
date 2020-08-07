@@ -8,9 +8,10 @@ import { CartSummary, PaymentGatewaysList } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
-import { CHECKOUT_STEPS } from "@temp/core/config";
+import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
+import { parseQueryString } from "@temp/core/utils";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -91,8 +92,10 @@ const getButton = (text: string, onClick: () => void) => {
 };
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
   const history = useHistory();
+  const querystring = parseQueryString(location);
   const {
     loaded: cartLoaded,
     shippingPrice,
@@ -192,7 +195,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
   const handleStepSubmitSuccess = (data?: object) => {
-    if (activeStepIndex === steps.length - 1) {
+    if (
+      activeStepIndex === steps.length - 1 ||
+      pathname === "/checkout/payment-confirm"
+    ) {
       history.push({
         pathname: "/order-finalized",
         state: data,
@@ -328,6 +334,55 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       buttonText = intl.formatMessage(checkoutMessages.reviewNextActionName);
       break;
   }
+
+  useEffect(() => {
+    if (
+      !submitInProgress &&
+      checkout &&
+      pathname === "/checkout/payment-confirm"
+    ) {
+      handlePaymentConfirm();
+    }
+  }, [pathname, querystring, submitInProgress, checkout]);
+
+  const handlePaymentConfirm = async () => {
+    setSubmitInProgress(true);
+    if (querystring.resultCode === "Authorised") {
+      const { data, dataError } = await completeCheckout();
+      const errors = dataError?.error;
+      setSubmitInProgress(false);
+      if (errors) {
+        setPaymentGatewayErrors(errors);
+        const paymentStepLink = steps.find(
+          step => step.step === CheckoutStep.Payment
+        )?.link;
+        if (paymentStepLink) {
+          history.push(paymentStepLink);
+        }
+      } else {
+        setPaymentGatewayErrors([]);
+        handleStepSubmitSuccess({
+          id: data?.order?.id,
+          orderNumber: data?.order?.number,
+          token: data?.order?.token,
+        });
+      }
+    } else {
+      setPaymentGatewayErrors([
+        {
+          message: intl.formatMessage({
+            defaultMessage: "Payment confirmation went wrong.",
+          }),
+        },
+      ]);
+      const paymentStepLink = steps.find(
+        step => step.step === CheckoutStep.Payment
+      )?.link;
+      if (paymentStepLink) {
+        history.push(paymentStepLink);
+      }
+    }
+  };
 
   return (
     <Checkout
