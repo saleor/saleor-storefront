@@ -19,6 +19,9 @@ module.exports = ({ sourceDir, distDir }) => ({
       }
     ]
   },
+  resolve: { 
+    extensions: ['.ts', '.tsx', '.js', '.jsx'] 
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
