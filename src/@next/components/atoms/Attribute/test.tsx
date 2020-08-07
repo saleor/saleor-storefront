@@ -7,6 +7,7 @@ import { Attribute } from ".";
 const DEFAULT_PROPS = {
   attributeValue: "John",
   description: "First name",
+  testingContext: "firstNameAttribute",
 };
 
 describe("<Attribute />", () => {

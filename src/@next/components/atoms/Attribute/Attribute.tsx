@@ -9,11 +9,12 @@ import { IProps } from "./types";
 export const Attribute: React.FC<IProps> = ({
   description,
   attributeValue,
+  testingContext,
 }: IProps) => {
   return (
     <S.Wrapper>
       <S.Description>{description}</S.Description>
-      <div>{attributeValue}</div>
+      <div data-test={testingContext}>{attributeValue}</div>
     </S.Wrapper>
   );
 };

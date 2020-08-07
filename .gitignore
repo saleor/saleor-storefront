@@ -18,3 +18,4 @@ src/locales/_build
 
 cypress/videos
 cypress/screenshots
+cypress/fixtures/example.json

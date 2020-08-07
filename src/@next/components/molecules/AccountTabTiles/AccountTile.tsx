@@ -53,14 +53,16 @@ export const AccountTile: React.FC = () => {
                 }}
               />
             ) : (
-              <S.ContentOneLine>
+              <S.ContentOneLine data-test="personalDetailsSection">
                 <Attribute
                   description={intl.formatMessage(commonMessages.firstName)}
                   attributeValue={(user && user.firstName) || "-"}
+                  testingContext="firstNameText"
                 />
                 <Attribute
                   description={intl.formatMessage(commonMessages.lastName)}
                   attributeValue={(user && user.lastName) || "-"}
+                  testingContext="lastNameText"
                 />
               </S.ContentOneLine>
             )}
