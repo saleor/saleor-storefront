@@ -493,6 +493,7 @@
     "string": "Phone number: {phone}"
   },
   "intl_dot_commonMessages_dot_preferences": {
+    "context": "user preferences modal title",
     "string": "Preferences"
   },
   "intl_dot_commonMessages_dot_price": {
