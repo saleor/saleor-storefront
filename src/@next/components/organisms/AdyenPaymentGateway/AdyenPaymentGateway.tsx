@@ -47,7 +47,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   submitPaymentSuccess,
   onError,
 }: IProps) => {
-  const adyenOriginKey = config?.find(({ field }) => field === "origin_key")
+  const adyenClientKey = config?.find(({ field }) => field === "client_key")
     ?.value;
   const adyenConfig = config?.find(({ field }) => field === "config")?.value;
   const parsedAdyenConfig = adyenConfig && JSON.parse(adyenConfig);
@@ -58,12 +58,12 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   useEffect(() => {
     console.log(
       "adyen state effect update",
-      adyenOriginKey,
+      adyenClientKey,
       parsedAdyenConfig,
       dropin,
       gatewayRef.current
     );
-    if (adyenOriginKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
+    if (adyenClientKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = styleSrc;
@@ -75,14 +75,14 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
       script.onload = initAdyenGatewayHandlers; // Wait until the script is loaded before initiating AdyenCheckout
       document.body.appendChild(script);
     }
-  }, [adyenOriginKey, parsedAdyenConfig, gatewayRef.current]);
+  }, [adyenClientKey, parsedAdyenConfig, gatewayRef.current]);
 
   const initAdyenGatewayHandlers = () => {
-    const configuration = adyenOriginKey &&
+    const configuration = adyenClientKey &&
       adyenConfig && {
         locale: navigator.language,
         environment: "test",
-        originKey: adyenOriginKey,
+        clientKey: adyenClientKey,
         paymentMethodsResponse: parsedAdyenConfig,
         showPayButton: false,
         onSubmit: (state: any, dropin: any) => {
