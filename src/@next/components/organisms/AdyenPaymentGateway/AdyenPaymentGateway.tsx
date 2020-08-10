@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { IFormError, IPaymentGatewayConfig } from "@types";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
 export interface IProps {
   /**
@@ -27,7 +28,9 @@ export interface IProps {
     confirmationData: any;
     confirmationNeeded: boolean;
   }) => Promise<any>;
-  submitPaymentSuccess: () => void;
+  submitPaymentSuccess: (
+    order?: CompleteCheckout_checkoutComplete_order
+  ) => void;
   /**
    * Method called when gateway error occured.
    */
@@ -92,7 +95,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
                 state,
                 dropin
               );
-              submitPaymentSuccess();
+              submitPaymentSuccess(value?.order);
             } else {
               console.log(
                 "dropin onSubmitPayment confirmation needed",
@@ -128,6 +131,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   useEffect(() => {
     if (dropin) {
       (formRef?.current as any)?.addEventListener("submitComplete", () => {
+        console.log("event submitComplete");
         dropin.submit();
       });
     }

@@ -12,6 +12,7 @@ import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
@@ -93,7 +94,6 @@ const getButton = (text: string, onClick: () => void) => {
 
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const location = useLocation();
-  const { pathname } = location;
   const history = useHistory();
   const querystring = parseQueryString(location);
   const {
@@ -119,6 +119,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }
 
   const [submitInProgress, setSubmitInProgress] = useState(false);
+  const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
@@ -149,10 +150,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     : CHECKOUT_STEPS.filter(
         ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
       );
-  const matchingStepIndex = steps.findIndex(({ link }) => link === pathname);
-  const activeStepIndex =
-    matchingStepIndex !== -1 ? matchingStepIndex : steps.length - 1;
-  const activeStep = steps[activeStepIndex];
+  const getActiveStepIndex = () => {
+    const matchingStepIndex = steps.findIndex(
+      ({ link }) => link === location.pathname
+    );
+    return matchingStepIndex !== -1 ? matchingStepIndex : steps.length - 1;
+  };
+  const getActiveStep = () => {
+    return steps[getActiveStepIndex()];
+  };
 
   const checkoutAddressSubpageRef = useRef<ICheckoutAddressSubpageHandles>(
     null
@@ -171,7 +177,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     // Some magic above and below ensures that the activeStepIndex will always
     // be in 0-3 range
     /* eslint-disable default-case */
-    switch (activeStep.index) {
+    switch (getActiveStep().index) {
       case 0:
         if (checkoutAddressSubpageRef.current?.submitAddress) {
           checkoutAddressSubpageRef.current?.submitAddress();
@@ -194,10 +200,22 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
     }
   };
-  const handleStepSubmitSuccess = (data?: object) => {
+  const handleStepSubmitSuccess = (
+    currentStep: CheckoutStep,
+    data?: object
+  ) => {
+    const activeStepIndex = getActiveStepIndex();
+    console.log(
+      "handleStepSubmitSuccess",
+      data,
+      activeStepIndex,
+      steps,
+      location.pathname,
+      currentStep
+    );
     if (
-      activeStepIndex === steps.length - 1 ||
-      pathname === "/checkout/payment-confirm"
+      currentStep === CheckoutStep.Review ||
+      location.pathname === "/checkout/payment-confirm"
     ) {
       history.push({
         pathname: "/order-finalized",
@@ -230,7 +248,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutAddressSubpage
             ref={checkoutAddressSubpageRef}
             changeSubmitProgress={setSubmitInProgress}
-            onSubmitSuccess={handleStepSubmitSuccess}
+            onSubmitSuccess={() =>
+              handleStepSubmitSuccess(CheckoutStep.Address)
+            }
             {...props}
           />
         )}
@@ -238,7 +258,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           <CheckoutShippingSubpage
             ref={checkoutShippingSubpageRef}
             changeSubmitProgress={setSubmitInProgress}
-            onSubmitSuccess={handleStepSubmitSuccess}
+            onSubmitSuccess={() =>
+              handleStepSubmitSuccess(CheckoutStep.Shipping)
+            }
             {...props}
           />
         )}
@@ -247,7 +269,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             ref={checkoutPaymentSubpageRef}
             paymentGatewayFormRef={checkoutGatewayFormRef}
             changeSubmitProgress={setSubmitInProgress}
-            onSubmitSuccess={handleStepSubmitSuccess}
+            onSubmitSuccess={() =>
+              handleStepSubmitSuccess(CheckoutStep.Payment)
+            }
             onPaymentGatewayError={setPaymentGatewayErrors}
             {...props}
           />
@@ -258,7 +282,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             paymentGatewayFormRef={checkoutGatewayFormRef}
             selectedPaymentGatewayToken={selectedPaymentGatewayToken}
             changeSubmitProgress={setSubmitInProgress}
-            onSubmitSuccess={handleStepSubmitSuccess}
+            onSubmitSuccess={data =>
+              handleStepSubmitSuccess(CheckoutStep.Review, data)
+            }
             {...props}
           />
         )}
@@ -284,19 +310,28 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       setPaymentGatewayErrors(errors);
     } else {
       setPaymentGatewayErrors([]);
-      handleStepSubmitSuccess();
+      handleStepSubmitSuccess(CheckoutStep.Payment);
     }
   };
   const handleSubmitPayment = async (paymentData?: object) => {
+    console.log("handleSubmitPayment");
     const response = await completeCheckout(paymentData);
     return {
-      confirmationData: response.data.confirmationData,
-      confirmationNeeded: response.data.confirmationNeeded,
+      confirmationData: response.data?.confirmationData,
+      confirmationNeeded: response.data?.confirmationNeeded,
+      order: response.data?.order,
     };
   };
-  const handleSubmitPaymentSuccess = () => {
+  const handleSubmitPaymentSuccess = (
+    order?: CompleteCheckout_checkoutComplete_order
+  ) => {
+    console.log("handleSubmitPaymentSuccess");
     setSubmitInProgress(false);
-    handleStepSubmitSuccess();
+    handleStepSubmitSuccess(CheckoutStep.Review, {
+      id: order?.id,
+      orderNumber: order?.number,
+      token: order?.token,
+    });
   };
   const handlePaymentGatewayError = () => {
     setSubmitInProgress(false);
@@ -318,6 +353,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     />
   );
 
+  const activeStep = getActiveStep();
   let buttonText = activeStep.nextActionName;
   /* eslint-disable default-case */
   switch (activeStep.nextActionName) {
@@ -339,14 +375,16 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     if (
       !submitInProgress &&
       checkout &&
-      pathname === "/checkout/payment-confirm"
+      location.pathname === "/checkout/payment-confirm" &&
+      !paymentConfirmation
     ) {
       handlePaymentConfirm();
     }
-  }, [pathname, querystring, submitInProgress, checkout]);
+  }, [location.pathname, querystring, submitInProgress, checkout]);
 
   const handlePaymentConfirm = async () => {
     setSubmitInProgress(true);
+    setPaymentConfirmation(true);
     if (querystring.resultCode === "Authorised") {
       const { data, dataError } = await completeCheckout();
       const errors = dataError?.error;
@@ -361,7 +399,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         }
       } else {
         setPaymentGatewayErrors([]);
-        handleStepSubmitSuccess({
+        handleStepSubmitSuccess(CheckoutStep.Review, {
           id: data?.order?.id,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
@@ -383,6 +421,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       }
     }
   };
+
+  const activeStepIndex = getActiveStepIndex();
 
   return (
     <Checkout

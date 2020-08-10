@@ -93,9 +93,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         } else {
           setErrors([]);
           onSubmitSuccess({
-            id: data?.id,
-            orderNumber: data?.number,
-            token: data?.token,
+            id: data?.order?.id,
+            orderNumber: data?.order?.number,
+            token: data?.order?.token,
           });
         }
       }

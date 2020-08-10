@@ -1,4 +1,5 @@
 import { ICardData, IFormError, IPaymentGateway } from "@types";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
 export interface IProps {
   /**
@@ -41,7 +42,9 @@ export interface IProps {
     confirmationData: any;
     confirmationNeeded: boolean;
   }) => Promise<any>;
-  submitPaymentSuccess: () => void;
+  submitPaymentSuccess: (
+    order?: CompleteCheckout_checkoutComplete_order
+  ) => void;
   /**
    * Method called when gateway error occured.
    */
