@@ -195,12 +195,10 @@ export const localeFlag: Record<Locale, string | null> = {
 };
 
 export const localesOptions = (Object.keys(localeNames) as Array<Locale>).map(
-  locale => {
-    return {
-      localeCode: locale,
-      localeName: localeNames[locale],
-    };
-  }
+  locale => ({
+    localeCode: locale,
+    localeName: localeNames[locale],
+  })
 );
 
 const dotSeparator = "_dot_";

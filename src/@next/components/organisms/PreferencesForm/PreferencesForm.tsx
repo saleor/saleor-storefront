@@ -38,39 +38,37 @@ export const PreferencesForm: React.FC<IProps> = ({
         setSubmitting(false);
       }}
     >
-      {({ handleSubmit, values, setFieldValue }) => {
-        return (
-          <S.LocaleSelectForm
-            id={formId}
-            onSubmit={handleSubmit}
-            ref={formRef}
-            data-test={testingContext}
-          >
-            <S.Wrapper>
-              <S.RowWithOneCell>
-                <InputSelect
-                  defaultValue={preferences?.locale}
-                  label={intl.formatMessage(commonMessages.language)}
-                  name="locale"
-                  options={localesOptions}
-                  value={
-                    localesOptions &&
-                    localesOptions!.find(
-                      option => option.localeCode === values!.locale!.localeCode
-                    )
-                  }
-                  onChange={(value: Locale, name: string) =>
-                    setFieldValue(name, value)
-                  }
-                  optionLabelKey="localeName"
-                  optionValueKey="localeCode"
-                  autoComplete="locale"
-                />
-              </S.RowWithOneCell>
-            </S.Wrapper>
-          </S.LocaleSelectForm>
-        );
-      }}
+      {({ handleSubmit, values, setFieldValue }) => (
+        <S.LocaleSelectForm
+          id={formId}
+          onSubmit={handleSubmit}
+          ref={formRef}
+          data-test={testingContext}
+        >
+          <S.Wrapper>
+            <S.RowWithOneCell>
+              <InputSelect
+                defaultValue={preferences?.locale}
+                label={intl.formatMessage(commonMessages.language)}
+                name="locale"
+                options={localesOptions}
+                value={
+                  localesOptions &&
+                  localesOptions!.find(
+                    option => option.localeCode === values!.locale!.localeCode
+                  )
+                }
+                onChange={(value: Locale, name: string) =>
+                  setFieldValue(name, value)
+                }
+                optionLabelKey="localeName"
+                optionValueKey="localeCode"
+                autoComplete="locale"
+              />
+            </S.RowWithOneCell>
+          </S.Wrapper>
+        </S.LocaleSelectForm>
+      )}
     </Formik>
   );
 };
