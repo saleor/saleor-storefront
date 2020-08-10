@@ -7,12 +7,12 @@ import { adyenPaymentMethods } from "./fixtures";
 
 const PROPS = {
   scriptSrc:
-    "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.9.5/adyen.js",
+    "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.10.1/adyen.js",
   styleSrc:
-    "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.9.5/adyen.css",
+    "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.10.1/adyen.css",
   config: [
     {
-      field: "origin_key",
+      field: "client_key",
       value: "FAKE_ORIGIN_KEY",
     },
     {
