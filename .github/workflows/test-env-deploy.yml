@@ -21,7 +21,7 @@ jobs:
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: ${{ env.GITHUB_HEAD_REF_SLUG }}
+          env: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
           ref: ${{ github.head_ref }}
 
       - name: Cache node modules
@@ -60,7 +60,7 @@ jobs:
       - name: Set domain
         # Set test instance domain based on branch name slug
         run: |
-          echo "::set-env name=domain::${{ env.GITHUB_HEAD_REF_SLUG }}.storefront.saleor.rocks"
+          echo "::set-env name=domain::${{ env.GITHUB_HEAD_REF_SLUG_URL }}.storefront.saleor.rocks"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
