@@ -2,8 +2,7 @@ import React from "react";
 import { useLocalStorage } from "@hooks";
 import { IPreferences, Locale } from "@types";
 
-const defaultLocale = Locale.EN;
-const defaultPreferences: IPreferences = { locale: defaultLocale };
+const defaultPreferences: IPreferences = { locale: Locale.EN };
 
 export interface PreferencesContextType {
   preferences: IPreferences;
@@ -20,7 +19,13 @@ const {
   Provider: RawPreferencesProvider,
 } = PreferencesContext;
 
-const PreferencesProvider: React.FC = ({ children }) => {
+const PreferencesProvider: React.FC<{ defaultLocale?: string }> = ({
+  defaultLocale,
+  children,
+}) => {
+  if (defaultLocale) {
+    defaultPreferences.locale = defaultLocale as Locale;
+  }
   const [preferences, setPreferences] = useLocalStorage(
     "preferences",
     defaultPreferences
