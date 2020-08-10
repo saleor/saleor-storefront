@@ -109,6 +109,30 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
             }
           });
         },
+        onAdditionalDetails: (state: any, dropin: any) => {
+          console.log("additional details adyen", state, dropin);
+          submitPayment(state?.data).then(value => {
+            if (!value?.confirmationNeeded) {
+              console.log(
+                "dropin additionalDetails onSubmitPayment no confirmation",
+                value,
+                state,
+                dropin
+              );
+              submitPaymentSuccess(value?.order);
+            } else {
+              console.log(
+                "dropin additionalDetails onSubmitPayment confirmation needed",
+                value,
+                state,
+                dropin
+              );
+              const paymentAction =
+                value?.confirmationData && JSON.parse(value?.confirmationData);
+              dropin.handleAction(paymentAction);
+            }
+          });
+        },
         onError,
       };
 
