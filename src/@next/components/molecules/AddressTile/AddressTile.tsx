@@ -37,14 +37,14 @@ export const AddressTile: React.FC<IProps> = ({
             onClick: () => {
               setDefault("BILLING");
             },
-            testId: "set-billing",
+            testingContext: "set-billing",
           },
           {
             content: defaultShippingAddress,
             onClick: () => {
               setDefault("SHIPPING");
             },
-            testId: "set-shipping",
+            testingContext: "set-shipping",
           },
         ]}
       />

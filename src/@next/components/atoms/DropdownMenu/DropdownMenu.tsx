@@ -32,7 +32,7 @@ export const DropdownMenu: React.FC<IProps> = ({
                   setVisible(false);
                   element.onClick();
                 }}
-                data-test={element.testId}
+                data-test={element.testingContext}
               >
                 {element.content}
               </li>
