@@ -11,10 +11,8 @@ import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
-import {
-  Collection_collection,
-  Collection_products,
-} from "./gqlTypes/Collection";
+import { Collection_collection } from "./gqlTypes/Collection";
+import { CollectionProducts_products } from "./gqlTypes/CollectionProducts";
 
 interface SortItem {
   label: string;
@@ -31,7 +29,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  products: Collection_products;
+  products: CollectionProducts_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
