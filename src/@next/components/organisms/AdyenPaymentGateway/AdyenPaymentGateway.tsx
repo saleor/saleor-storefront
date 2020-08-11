@@ -88,7 +88,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onSubmit: (state: any, dropin: any) => {
           console.log("submit adyen", state, dropin);
           submitPayment(state?.data).then(value => {
-            if (!value?.confirmationNeeded) {
+            if (value.error) {
+              onError([value.error]);
+            } else if (!value?.confirmationNeeded) {
               console.log(
                 "dropin onSubmitPayment no confirmation",
                 value,
@@ -112,7 +114,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onAdditionalDetails: (state: any, dropin: any) => {
           console.log("additional details adyen", state, dropin);
           submitPayment(state?.data).then(value => {
-            if (!value?.confirmationNeeded) {
+            if (value.error) {
+              onError([value.error]);
+            } else if (!value?.confirmationNeeded) {
               console.log(
                 "dropin additionalDetails onSubmitPayment no confirmation",
                 value,
@@ -133,7 +137,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
             }
           });
         },
-        onError,
+        onError: (error: any) => {
+          onError([{ message: error.error }]);
+        },
       };
 
     const checkout = configuration && new window.AdyenCheckout(configuration);

@@ -320,6 +320,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       confirmationData: response.data?.confirmationData,
       confirmationNeeded: response.data?.confirmationNeeded,
       order: response.data?.order,
+      error: response.dataError?.error,
     };
   };
   const handleSubmitPaymentSuccess = (
@@ -335,6 +336,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   };
   const handlePaymentGatewayError = () => {
     setSubmitInProgress(false);
+    const paymentStepLink = steps.find(
+      step => step.step === CheckoutStep.Payment
+    )?.link;
+    if (paymentStepLink) {
+      history.push(paymentStepLink);
+    }
   };
 
   const paymentGatewaysView = availablePaymentGateways && (
