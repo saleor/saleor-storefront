@@ -52,12 +52,9 @@ export const PreferencesForm: React.FC<IProps> = ({
                 label={intl.formatMessage(commonMessages.language)}
                 name="locale"
                 options={localesOptions}
-                value={
-                  localesOptions &&
-                  localesOptions!.find(
-                    option => option.localeCode === values!.locale!.localeCode
-                  )
-                }
+                value={localesOptions?.find(
+                  option => option.localeCode === values.locale.localeCode
+                )}
                 onChange={(value: Locale, name: string) =>
                   setFieldValue(name, value)
                 }
