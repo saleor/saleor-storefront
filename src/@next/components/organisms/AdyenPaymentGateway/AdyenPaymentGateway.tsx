@@ -3,6 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { IFormError, IPaymentGatewayConfig } from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
+interface IResourceConfig {
+  src: string;
+  integrity: string;
+  crossOrigin: string;
+}
+
 export interface IProps {
   /**
    * Payment gateway client configuration.
@@ -13,21 +19,27 @@ export interface IProps {
    */
   formRef?: React.RefObject<HTMLFormElement>;
   /**
-   * URL address of payment gateway script file to be used.
+   * Payment gateway script resource configuration.
    */
-  scriptSrc: string;
+  scriptConfig: IResourceConfig;
   /**
-   * URL address of CSS file styling payment gateway.
+   * Payment gateway CSS styling resource configuration.
    */
-  styleSrc: string;
+  styleConfig: IResourceConfig;
   /**
-   * Method called after the form is submitted. Passed token attribute will be used to create payment.
+   * Method called after the form is submitted.
    */
   processPayment: () => void;
+  /**
+   * Method to call on gateway payment submission.
+   */
   submitPayment: (data: {
     confirmationData: any;
     confirmationNeeded: boolean;
   }) => Promise<any>;
+  /**
+   * Method called after succesful gateway payment submission. This is the case when no confirmation is needed.
+   */
   submitPaymentSuccess: (
     order?: CompleteCheckout_checkoutComplete_order
   ) => void;
@@ -40,8 +52,8 @@ export interface IProps {
 const AdyenPaymentGateway: React.FC<IProps> = ({
   config,
   formRef,
-  scriptSrc,
-  styleSrc,
+  scriptConfig,
+  styleConfig,
   processPayment,
   submitPayment,
   submitPaymentSuccess,
@@ -66,11 +78,15 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     if (adyenClientKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = styleSrc;
+      link.href = styleConfig.src;
+      link.integrity = styleConfig.integrity;
+      link.crossOrigin = styleConfig.crossOrigin;
       document.body.appendChild(link);
 
       const script = document.createElement("script");
-      script.src = scriptSrc;
+      script.src = scriptConfig.src;
+      script.integrity = scriptConfig.integrity;
+      script.crossOrigin = scriptConfig.crossOrigin;
       script.async = true;
       script.onload = initAdyenGatewayHandlers; // Wait until the script is loaded before initiating AdyenCheckout
       document.body.appendChild(script);

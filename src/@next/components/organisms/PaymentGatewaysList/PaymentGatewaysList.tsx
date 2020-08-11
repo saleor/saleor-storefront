@@ -155,8 +155,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                   <AdyenPaymentGateway
                     config={config}
                     formRef={formRef}
-                    scriptSrc={PROVIDERS.ADYEN.scriptSrc}
-                    styleSrc={PROVIDERS.ADYEN.styleSrc}
+                    scriptConfig={PROVIDERS.ADYEN.script}
+                    styleConfig={PROVIDERS.ADYEN.style}
                     processPayment={() => processPayment(id)}
                     submitPayment={submitPayment}
                     submitPaymentSuccess={submitPaymentSuccess}
