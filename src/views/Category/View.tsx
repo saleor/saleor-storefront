@@ -15,7 +15,10 @@ import {
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
-import { TypedCategoryProductsQuery } from "./queries";
+import {
+  TypedCategoryProductsQuery,
+  TypedCategoryProductsDataQuery,
+} from "./queries";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -133,76 +136,93 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCategoryProductsQuery
+        <TypedCategoryProductsDataQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
-          {({ loading, data, loadMore }) => {
-            const canDisplayFilters = maybe(
-              () => !!data.attributes.edges && !!data.category.name,
-              false
-            );
-
-            if (canDisplayFilters) {
-              const handleLoadMore = () =>
-                loadMore(
-                  (prev, next) => ({
-                    ...prev,
-                    products: {
-                      ...prev.products,
-                      edges: [...prev.products.edges, ...next.products.edges],
-                      pageInfo: next.products.pageInfo,
-                    },
-                  }),
-                  { after: data.products.pageInfo.endCursor }
-                );
-
-              return (
-                <MetaWrapper
-                  meta={{
-                    description: data.category.seoDescription,
-                    title: data.category.seoTitle,
-                    type: "product.category",
-                  }}
-                >
-                  <Page
-                    clearFilters={clearFilters}
-                    attributes={data.attributes.edges.map(edge => edge.node)}
-                    category={data.category}
-                    displayLoader={loading}
-                    hasNextPage={maybe(
-                      () => data.products.pageInfo.hasNextPage,
-                      false
-                    )}
-                    sortOptions={sortOptions}
-                    activeSortOption={filters.sortBy}
-                    filters={filters}
-                    products={data.products}
-                    onAttributeFiltersChange={onFiltersChange}
-                    onLoadMore={handleLoadMore}
-                    activeFilters={
-                      filters!.attributes
-                        ? Object.keys(filters!.attributes).length
-                        : 0
-                    }
-                    onOrder={value => {
-                      setSort(value.value);
-                    }}
-                  />
-                </MetaWrapper>
-              );
-            }
-
-            if (data && data.category === null) {
+          {categoryData => {
+            if (categoryData.data && categoryData.data.category === null) {
               return <NotFound />;
             }
 
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
+
+            const canDisplayFilters = maybe(
+              () =>
+                !!categoryData.data.attributes.edges &&
+                !!categoryData.data.category.name,
+              false
+            );
+
+            return (
+              <TypedCategoryProductsQuery variables={variables}>
+                {categoryProducts => {
+                  if (canDisplayFilters) {
+                    const handleLoadMore = () =>
+                      categoryProducts.loadMore(
+                        (prev, next) => ({
+                          ...prev,
+                          products: {
+                            ...prev.products,
+                            edges: [
+                              ...prev.products.edges,
+                              ...next.products.edges,
+                            ],
+                            pageInfo: next.products.pageInfo,
+                          },
+                        }),
+                        {
+                          after:
+                            categoryProducts.data.products.pageInfo.endCursor,
+                        }
+                      );
+
+                    return (
+                      <MetaWrapper
+                        meta={{
+                          description:
+                            categoryData.data.category.seoDescription,
+                          title: categoryData.data.category.seoTitle,
+                          type: "product.category",
+                        }}
+                      >
+                        <Page
+                          clearFilters={clearFilters}
+                          attributes={categoryData.data.attributes.edges.map(
+                            edge => edge.node
+                          )}
+                          category={categoryData.data.category}
+                          displayLoader={categoryData.loading}
+                          hasNextPage={
+                            categoryProducts.data?.products?.pageInfo
+                              .hasNextPage
+                          }
+                          sortOptions={sortOptions}
+                          activeSortOption={filters.sortBy}
+                          filters={filters}
+                          products={categoryProducts.data.products}
+                          onAttributeFiltersChange={onFiltersChange}
+                          onLoadMore={handleLoadMore}
+                          activeFilters={
+                            filters!.attributes
+                              ? Object.keys(filters!.attributes).length
+                              : 0
+                          }
+                          onOrder={value => {
+                            setSort(value.value);
+                          }}
+                        />
+                      </MetaWrapper>
+                    );
+                  }
+                }}
+              </TypedCategoryProductsQuery>
+            );
           }}
-        </TypedCategoryProductsQuery>
+        </TypedCategoryProductsDataQuery>
       )}
     </NetworkStatus>
   );
