@@ -328,14 +328,16 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   ) => {
     console.log("handleSubmitPaymentSuccess");
     setSubmitInProgress(false);
+    setPaymentGatewayErrors([]);
     handleStepSubmitSuccess(CheckoutStep.Review, {
       id: order?.id,
       orderNumber: order?.number,
       token: order?.token,
     });
   };
-  const handlePaymentGatewayError = () => {
+  const handlePaymentGatewayError = (errors: IFormError[]) => {
     setSubmitInProgress(false);
+    setPaymentGatewayErrors(errors);
     const paymentStepLink = steps.find(
       step => step.step === CheckoutStep.Payment
     )?.link;

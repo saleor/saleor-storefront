@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { IFormError, IPaymentGatewayConfig } from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
+import { ErrorMessage } from "@components/atoms";
 
 interface IResourceConfig {
   src: string;
@@ -44,6 +45,10 @@ export interface IProps {
     order?: CompleteCheckout_checkoutComplete_order
   ) => void;
   /**
+   * Errors returned by the payment gateway.
+   */
+  errors?: IFormError[];
+  /**
    * Method called when gateway error occured.
    */
   onError: (errors: IFormError[]) => void;
@@ -57,6 +62,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   processPayment,
   submitPayment,
   submitPaymentSuccess,
+  errors,
   onError,
 }: IProps) => {
   const adyenClientKey = config?.find(({ field }) => field === "client_key")
@@ -103,55 +109,73 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         showPayButton: false,
         onSubmit: (state: any, dropin: any) => {
           console.log("submit adyen", state, dropin);
-          submitPayment(state?.data).then(value => {
-            if (value.error) {
-              onError([value.error]);
-            } else if (!value?.confirmationNeeded) {
-              console.log(
-                "dropin onSubmitPayment no confirmation",
-                value,
-                state,
-                dropin
-              );
-              submitPaymentSuccess(value?.order);
-            } else {
-              console.log(
-                "dropin onSubmitPayment confirmation needed",
-                value,
-                state,
-                dropin
-              );
-              const paymentAction =
-                value?.confirmationData && JSON.parse(value?.confirmationData);
-              dropin.handleAction(paymentAction);
-            }
-          });
+          if (!state?.isValid) {
+            onError([new Error("Invalid payment submission")]);
+          } else {
+            submitPayment(state?.data)
+              .then(value => {
+                if (value.error) {
+                  onError([value.error]);
+                } else if (!value?.confirmationNeeded) {
+                  console.log(
+                    "dropin onSubmitPayment no confirmation",
+                    value,
+                    state,
+                    dropin
+                  );
+                  submitPaymentSuccess(value?.order);
+                } else {
+                  console.log(
+                    "dropin onSubmitPayment confirmation needed",
+                    value,
+                    state,
+                    dropin
+                  );
+                  const paymentAction =
+                    value?.confirmationData &&
+                    JSON.parse(value?.confirmationData);
+                  dropin.handleAction(paymentAction);
+                }
+              })
+              .catch(error => {
+                onError([new Error(error)]);
+              });
+          }
         },
         onAdditionalDetails: (state: any, dropin: any) => {
           console.log("additional details adyen", state, dropin);
-          submitPayment(state?.data).then(value => {
-            if (value.error) {
-              onError([value.error]);
-            } else if (!value?.confirmationNeeded) {
-              console.log(
-                "dropin additionalDetails onSubmitPayment no confirmation",
-                value,
-                state,
-                dropin
-              );
-              submitPaymentSuccess(value?.order);
-            } else {
-              console.log(
-                "dropin additionalDetails onSubmitPayment confirmation needed",
-                value,
-                state,
-                dropin
-              );
-              const paymentAction =
-                value?.confirmationData && JSON.parse(value?.confirmationData);
-              dropin.handleAction(paymentAction);
-            }
-          });
+          if (!state?.isValid) {
+            onError([new Error("Invalid payment submission")]);
+          } else {
+            submitPayment(state?.data)
+              .then(value => {
+                if (value.error) {
+                  onError([value.error]);
+                } else if (!value?.confirmationNeeded) {
+                  console.log(
+                    "dropin additionalDetails onSubmitPayment no confirmation",
+                    value,
+                    state,
+                    dropin
+                  );
+                  submitPaymentSuccess(value?.order);
+                } else {
+                  console.log(
+                    "dropin additionalDetails onSubmitPayment confirmation needed",
+                    value,
+                    state,
+                    dropin
+                  );
+                  const paymentAction =
+                    value?.confirmationData &&
+                    JSON.parse(value?.confirmationData);
+                  dropin.handleAction(paymentAction);
+                }
+              })
+              .catch(error => {
+                onError([new Error(error)]);
+              });
+          }
         },
         onError: (error: any) => {
           onError([{ message: error.error }]);
@@ -186,6 +210,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   return (
     <form ref={formRef}>
       <div ref={gatewayRef} />
+      <ErrorMessage errors={errors} />
     </form>
   );
 };

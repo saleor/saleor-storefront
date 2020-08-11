@@ -160,6 +160,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     processPayment={() => processPayment(id)}
                     submitPayment={submitPayment}
                     submitPaymentSuccess={submitPaymentSuccess}
+                    errors={errors}
                     onError={onError}
                   />
                 )}
