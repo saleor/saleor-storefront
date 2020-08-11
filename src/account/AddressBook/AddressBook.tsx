@@ -5,18 +5,55 @@ import "./scss/index.scss";
 import { AddressFormModal, AddressGrid } from "@components/organisms";
 import { checkoutMessages, commonMessages } from "@temp/intl";
 import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
-import { AddressTypeEnum } from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import {
+  AddressTypeEnum,
+  AccountErrorCode,
+} from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import { getUserDetailsQuery } from "@saleor/sdk/lib/queries/user";
+import { User } from "@saleor/sdk/lib/fragments/gqlTypes/User";
 import { ShopContext } from "../../components/ShopProvider/context";
 
 const AddressBook: React.FC<{
-  user: any;
+  user: User;
 }> = ({ user }) => {
   const { defaultCountry, countries } = React.useContext(ShopContext);
   const [displayNewModal, setDisplayNewModal] = React.useState(false);
   const [displayEditModal, setDisplayEditModal] = React.useState(false);
   const [addressData, setAddressData] = React.useState(null);
-  const [setDefaultUserAddress] = useDefaultUserAddress();
-  const [setDeleteUserAddress] = useDeleteUserAddresss();
+  const [setDefaultUserAddress] = useDefaultUserAddress(undefined, {
+    refetchQueries: result => {
+      if (result.data.accountSetDefaultAddress.errors.length > 0) {
+        if (
+          result.data.accountSetDefaultAddress.errors.find(
+            err => err.code === AccountErrorCode.NOT_FOUND
+          )
+        ) {
+          return [
+            {
+              query: getUserDetailsQuery,
+            },
+          ];
+        }
+      }
+    },
+  });
+  const [setDeleteUserAddress] = useDeleteUserAddresss(undefined, {
+    refetchQueries: result => {
+      if (result.data.accountAddressDelete.errors.length > 0) {
+        if (
+          result.data.accountAddressDelete.errors.find(
+            err => err.code === AccountErrorCode.NOT_FOUND
+          )
+        ) {
+          return [
+            {
+              query: getUserDetailsQuery,
+            },
+          ];
+        }
+      }
+    },
+  });
   const intl = useIntl();
 
   const userAddresses = user.addresses.map(address => {
