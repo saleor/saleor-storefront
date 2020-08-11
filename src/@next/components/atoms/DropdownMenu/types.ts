@@ -1,5 +1,6 @@
 export interface MenuItem {
   content: React.ReactNode;
+  testingContext?: string;
   onClick: () => void;
 }
 

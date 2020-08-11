@@ -271,6 +271,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
     >
       <div
         className="c6"
+        data-test-billing-default={false}
+        data-test-shipping-default={true}
       >
         <div
           className="c7"
@@ -393,6 +395,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
     >
       <div
         className="c6"
+        data-test-billing-default={false}
+        data-test-shipping-default={true}
       >
         <div
           className="c7"
@@ -511,6 +515,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
     >
       <div
         className="c6"
+        data-test-billing-default={false}
+        data-test-shipping-default={true}
       >
         <div
           className="c7"
@@ -633,6 +639,8 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
     >
       <div
         className="c6"
+        data-test-billing-default={false}
+        data-test-shipping-default={true}
       >
         <div
           className="c7"
