@@ -15,7 +15,10 @@ import {
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
-import { TypedCollectionProductsQuery } from "./queries";
+import {
+  TypedCollectionProductsDataQuery,
+  TypedCollectionProductsQuery,
+} from "./queries";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -133,76 +136,98 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCollectionProductsQuery
+        <TypedCollectionProductsDataQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
-          {({ loading, data, loadMore }) => {
+          {collectionData => {
             const canDisplayFilters = maybe(
-              () => !!data.attributes.edges && !!data.collection.name,
+              () =>
+                !!collectionData.data.attributes.edges &&
+                !!collectionData.data.collection.name,
               false
             );
 
-            if (canDisplayFilters) {
-              const handleLoadMore = () =>
-                loadMore(
-                  (prev, next) => ({
-                    ...prev,
-                    products: {
-                      ...prev.products,
-                      edges: [...prev.products.edges, ...next.products.edges],
-                      pageInfo: next.products.pageInfo,
-                    },
-                  }),
-                  { after: data.products.pageInfo.endCursor }
-                );
-
-              return (
-                <MetaWrapper
-                  meta={{
-                    description: data.collection.seoDescription,
-                    title: data.collection.seoTitle,
-                    type: "product.collection",
-                  }}
-                >
-                  <Page
-                    clearFilters={clearFilters}
-                    attributes={data.attributes.edges.map(edge => edge.node)}
-                    collection={data.collection}
-                    displayLoader={loading}
-                    hasNextPage={maybe(
-                      () => data.products.pageInfo.hasNextPage,
-                      false
-                    )}
-                    sortOptions={sortOptions}
-                    activeSortOption={filters.sortBy}
-                    filters={filters}
-                    products={data.products}
-                    onAttributeFiltersChange={onFiltersChange}
-                    onLoadMore={handleLoadMore}
-                    activeFilters={
-                      filters!.attributes
-                        ? Object.keys(filters!.attributes).length
-                        : 0
-                    }
-                    onOrder={value => {
-                      setSort(value.value);
-                    }}
-                  />
-                </MetaWrapper>
-              );
-            }
-
-            if (data && data.collection === null) {
+            if (
+              collectionData.data &&
+              collectionData.data.collection === null
+            ) {
               return <NotFound />;
             }
 
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
+
+            return (
+              <TypedCollectionProductsQuery variables={variables}>
+                {collectionProductsData => {
+                  const handleLoadMore = () =>
+                    collectionProductsData.loadMore(
+                      (prev, next) => ({
+                        ...prev,
+                        products: {
+                          ...prev.products,
+                          edges: [
+                            ...prev.products.edges,
+                            ...next.products.edges,
+                          ],
+                          pageInfo: next.products.pageInfo,
+                        },
+                      }),
+                      {
+                        after:
+                          collectionProductsData.data.products.pageInfo
+                            .endCursor,
+                      }
+                    );
+                  if (canDisplayFilters) {
+                    return (
+                      <MetaWrapper
+                        meta={{
+                          description:
+                            collectionData.data.collection.seoDescription,
+                          title: collectionData.data.collection.seoTitle,
+                          type: "product.collection",
+                        }}
+                      >
+                        <Page
+                          clearFilters={clearFilters}
+                          attributes={collectionData.data.attributes.edges.map(
+                            edge => edge.node
+                          )}
+                          collection={collectionData.data.collection}
+                          displayLoader={collectionData.loading}
+                          hasNextPage={maybe(
+                            () =>
+                              collectionProductsData.data.products.pageInfo
+                                .hasNextPage,
+                            false
+                          )}
+                          sortOptions={sortOptions}
+                          activeSortOption={filters.sortBy}
+                          filters={filters}
+                          products={collectionProductsData.data.products}
+                          onAttributeFiltersChange={onFiltersChange}
+                          onLoadMore={handleLoadMore}
+                          activeFilters={
+                            filters!.attributes
+                              ? Object.keys(filters!.attributes).length
+                              : 0
+                          }
+                          onOrder={value => {
+                            setSort(value.value);
+                          }}
+                        />
+                      </MetaWrapper>
+                    );
+                  }
+                }}
+              </TypedCollectionProductsQuery>
+            );
           }}
-        </TypedCollectionProductsQuery>
+        </TypedCollectionProductsDataQuery>
       )}
     </NetworkStatus>
   );
