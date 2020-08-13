@@ -6,19 +6,13 @@ import {
   productPricingFragment,
 } from "../Product/queries";
 import { Collection, CollectionVariables } from "./gqlTypes/Collection";
+import {
+  CollectionProducts,
+  CollectionProductsVariables,
+} from "./gqlTypes/CollectionProducts";
 
-export const collectionProductsQuery = gql`
-  ${basicProductFragment}
-  ${productPricingFragment}
-  query Collection(
-    $id: ID!
-    $attributes: [AttributeInput]
-    $after: String
-    $pageSize: Int
-    $sortBy: ProductOrder
-    $priceLte: Float
-    $priceGte: Float
-  ) {
+export const collectionProductsDataQuery = gql`
+  query Collection($id: ID!) {
     collection(id: $id) {
       id
       slug
@@ -29,6 +23,43 @@ export const collectionProductsQuery = gql`
         url
       }
     }
+    attributes(
+      filter: { inCollection: $id, filterableInStorefront: true }
+      first: 100
+    ) {
+      edges {
+        node {
+          id
+          name
+          slug
+          values {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const TypedCollectionProductsDataQuery = TypedQuery<
+  Collection,
+  CollectionVariables
+>(collectionProductsDataQuery);
+
+export const collectionProductsQuery = gql`
+  ${basicProductFragment}
+  ${productPricingFragment}
+  query CollectionProducts(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $pageSize: Int
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
     products(
       after: $after
       first: $pageSize
@@ -57,27 +88,10 @@ export const collectionProductsQuery = gql`
         startCursor
       }
     }
-    attributes(
-      filter: { inCollection: $id, filterableInStorefront: true }
-      first: 100
-    ) {
-      edges {
-        node {
-          id
-          name
-          slug
-          values {
-            id
-            name
-            slug
-          }
-        }
-      }
-    }
   }
 `;
 
 export const TypedCollectionProductsQuery = TypedQuery<
-  Collection,
-  CollectionVariables
+  CollectionProducts,
+  CollectionProductsVariables
 >(collectionProductsQuery);

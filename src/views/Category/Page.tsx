@@ -17,7 +17,8 @@ import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
-import { Category_category, Category_products } from "./gqlTypes/Category";
+import { Category_category } from "./gqlTypes/Category";
+import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
 
 interface SortItem {
   label: string;
@@ -34,7 +35,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  products: Category_products;
+  products: CategoryProducts_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;

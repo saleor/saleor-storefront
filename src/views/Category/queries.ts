@@ -6,47 +6,13 @@ import {
   productPricingFragment,
 } from "../Product/queries";
 import { Category, CategoryVariables } from "./gqlTypes/Category";
+import {
+  CategoryProducts,
+  CategoryProductsVariables,
+} from "./gqlTypes/CategoryProducts";
 
-export const categoryProductsQuery = gql`
-  ${basicProductFragment}
-  ${productPricingFragment}
-  query Category(
-    $id: ID!
-    $attributes: [AttributeInput]
-    $after: String
-    $pageSize: Int
-    $sortBy: ProductOrder
-    $priceLte: Float
-    $priceGte: Float
-  ) {
-    products(
-      after: $after
-      first: $pageSize
-      sortBy: $sortBy
-      filter: {
-        attributes: $attributes
-        categories: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
-      }
-    ) {
-      totalCount
-      edges {
-        node {
-          ...BasicProductFields
-          ...ProductPricingField
-          category {
-            id
-            name
-          }
-        }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
-      }
-    }
+export const categoryProductsDataQuery = gql`
+  query Category($id: ID!) {
     category(id: $id) {
       seoDescription
       seoTitle
@@ -84,7 +50,55 @@ export const categoryProductsQuery = gql`
   }
 `;
 
-export const TypedCategoryProductsQuery = TypedQuery<
+export const TypedCategoryProductsDataQuery = TypedQuery<
   Category,
   CategoryVariables
+>(categoryProductsDataQuery);
+
+export const categoryProductsQuery = gql`
+  ${basicProductFragment}
+  ${productPricingFragment}
+  query CategoryProducts(
+    $id: ID!
+    $attributes: [AttributeInput]
+    $after: String
+    $pageSize: Int
+    $sortBy: ProductOrder
+    $priceLte: Float
+    $priceGte: Float
+  ) {
+    products(
+      after: $after
+      first: $pageSize
+      sortBy: $sortBy
+      filter: {
+        attributes: $attributes
+        categories: [$id]
+        minimalPrice: { gte: $priceGte, lte: $priceLte }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          ...BasicProductFields
+          ...ProductPricingField
+          category {
+            id
+            name
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+`;
+
+export const TypedCategoryProductsQuery = TypedQuery<
+  CategoryProducts,
+  CategoryProductsVariables
 >(categoryProductsQuery);
