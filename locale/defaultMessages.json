@@ -2,6 +2,18 @@
   "@next_dot_components_dot_atoms_dot_AddNewTile_dot_AddNewTile_dot_2493765518": {
     "string": "Add new {type}"
   },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
+    "string": "Play with <emphasis>GraphQL API</emphasis>"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
+    "string": "API"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2844777114": {
+    "string": "Explore <emphasis>Store’s dashboard</emphasis>"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_3662390044": {
+    "string": "Dashboard"
+  },
   "@next_dot_components_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
     "string": "Sort by:"
   },
@@ -182,9 +194,6 @@
   "components_dot_Breadcrumbs_dot_index_dot_1347475195": {
     "string": "Back"
   },
-  "components_dot_Breadcrumbs_dot_index_dot_874908955": {
-    "string": "Home"
-  },
   "components_dot_CartTable_dot_Table_dot_1603950169": {
     "string": "Delivery Cost"
   },
@@ -211,6 +220,9 @@
   },
   "components_dot_LoginForm_dot_index_dot_1405865627": {
     "string": "Sign in"
+  },
+  "components_dot_MainMenu_dot_MainMenu_dot_4144939532": {
+    "string": "Offline"
   },
   "components_dot_NotFound_dot_index_dot_1723676032": {
     "string": "Back to home"
@@ -298,6 +310,9 @@
   },
   "components_dot_ProductDescription_dot_AddToCart_dot_81047562": {
     "string": "Add to basket"
+  },
+  "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
+    "string": "No Options"
   },
   "index_dot_1053546789": {
     "string": "To update the application to the latest version, please refresh the page!"
@@ -388,6 +403,9 @@
   },
   "intl_dot_commonMessages_dot_firstName": {
     "string": "First Name"
+  },
+  "intl_dot_commonMessages_dot_home": {
+    "string": "Home"
   },
   "intl_dot_commonMessages_dot_lastName": {
     "string": "Last Name"
