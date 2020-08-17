@@ -74,13 +74,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   const gatewayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(
-      "adyen state effect update",
-      adyenClientKey,
-      parsedAdyenConfig,
-      dropin,
-      gatewayRef.current
-    );
     if (adyenClientKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
@@ -108,7 +101,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         paymentMethodsResponse: parsedAdyenConfig,
         showPayButton: false,
         onSubmit: (state: any, dropin: any) => {
-          console.log("submit adyen", state, dropin);
           if (!state?.isValid) {
             onError([new Error("Invalid payment submission")]);
           } else {
@@ -117,20 +109,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
                 if (value.error) {
                   onError([value.error]);
                 } else if (!value?.confirmationNeeded) {
-                  console.log(
-                    "dropin onSubmitPayment no confirmation",
-                    value,
-                    state,
-                    dropin
-                  );
                   submitPaymentSuccess(value?.order);
                 } else {
-                  console.log(
-                    "dropin onSubmitPayment confirmation needed",
-                    value,
-                    state,
-                    dropin
-                  );
                   const paymentAction =
                     value?.confirmationData &&
                     JSON.parse(value?.confirmationData);
@@ -143,7 +123,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
           }
         },
         onAdditionalDetails: (state: any, dropin: any) => {
-          console.log("additional details adyen", state, dropin);
           if (!state?.isValid) {
             onError([new Error("Invalid payment submission")]);
           } else {
@@ -152,20 +131,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
                 if (value.error) {
                   onError([value.error]);
                 } else if (!value?.confirmationNeeded) {
-                  console.log(
-                    "dropin additionalDetails onSubmitPayment no confirmation",
-                    value,
-                    state,
-                    dropin
-                  );
                   submitPaymentSuccess(value?.order);
                 } else {
-                  console.log(
-                    "dropin additionalDetails onSubmitPayment confirmation needed",
-                    value,
-                    state,
-                    dropin
-                  );
                   const paymentAction =
                     value?.confirmationData &&
                     JSON.parse(value?.confirmationData);
@@ -188,7 +155,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     if (dropinElement && !dropin && gatewayRef.current) {
       dropinElement?.mount(gatewayRef.current);
       setDropin(dropinElement);
-      console.log(dropinElement, "dropin element set");
     }
   };
 
@@ -201,7 +167,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   useEffect(() => {
     if (dropin) {
       (formRef?.current as any)?.addEventListener("submitComplete", () => {
-        console.log("event submitComplete");
         dropin.submit();
       });
     }

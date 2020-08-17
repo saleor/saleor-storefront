@@ -205,14 +205,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     data?: object
   ) => {
     const activeStepIndex = getActiveStepIndex();
-    console.log(
-      "handleStepSubmitSuccess",
-      data,
-      activeStepIndex,
-      steps,
-      location.pathname,
-      currentStep
-    );
     if (
       currentStep === CheckoutStep.Review ||
       location.pathname === "/checkout/payment-confirm"
@@ -314,7 +306,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
   const handleSubmitPayment = async (paymentData?: object) => {
-    console.log("handleSubmitPayment");
     const response = await completeCheckout({ paymentData });
     return {
       confirmationData: response.data?.confirmationData,
@@ -326,7 +317,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const handleSubmitPaymentSuccess = (
     order?: CompleteCheckout_checkoutComplete_order
   ) => {
-    console.log("handleSubmitPaymentSuccess");
     setSubmitInProgress(false);
     setPaymentGatewayErrors([]);
     handleStepSubmitSuccess(CheckoutStep.Review, {

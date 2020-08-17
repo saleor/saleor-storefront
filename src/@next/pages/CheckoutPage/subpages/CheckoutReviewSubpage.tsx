@@ -67,6 +67,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         )?.label
       }`;
     }
+    if (payment?.gateway === "mirumee.payments.adyen") {
+      return `Adyen payments`;
+    }
     if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
     }
