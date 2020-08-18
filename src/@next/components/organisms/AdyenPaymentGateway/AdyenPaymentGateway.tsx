@@ -4,10 +4,30 @@ import { IFormError, IPaymentGatewayConfig } from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { ErrorMessage } from "@components/atoms";
 
+const ERROR_UNKNOWN_PAYMENT = "Unknown payment submission error occured.";
+const ERROR_INVALID_PAYMENT_SUBMISSION = "Invalid payment submission.";
+const ERROR_CANNOT_HANDLE_PAYMENT_CONFIRMATION =
+  "Payment gateway did not provide payment confirmation handler.";
+const ERROR_PAYMENT_MALFORMED_CONFIRMATION_DATA =
+  "Payment needs confirmation but data required for confirmation received from the server is malformed.";
+const ERROR_PAYMENT_NO_CONFIRMATION_DATA =
+  "Payment needs confirmation but data required for confirmation not received from the server.";
+
 interface IResourceConfig {
   src: string;
   integrity: string;
   crossOrigin: string;
+}
+
+interface AdyenSubmitState {
+  data?: any;
+  isValid?: boolean;
+}
+interface AdyenSubmitDropin {
+  handleAction?: (data?: any) => any;
+}
+interface AdyenError {
+  error?: string;
 }
 
 export interface IProps {
@@ -100,53 +120,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         clientKey: adyenClientKey,
         paymentMethodsResponse: parsedAdyenConfig,
         showPayButton: false,
-        onSubmit: (state: any, dropin: any) => {
-          if (!state?.isValid) {
-            onError([new Error("Invalid payment submission")]);
-          } else {
-            submitPayment(state?.data)
-              .then(value => {
-                if (value.error) {
-                  onError([value.error]);
-                } else if (!value?.confirmationNeeded) {
-                  submitPaymentSuccess(value?.order);
-                } else {
-                  const paymentAction =
-                    value?.confirmationData &&
-                    JSON.parse(value?.confirmationData);
-                  dropin.handleAction(paymentAction);
-                }
-              })
-              .catch(error => {
-                onError([new Error(error)]);
-              });
-          }
-        },
-        onAdditionalDetails: (state: any, dropin: any) => {
-          if (!state?.isValid) {
-            onError([new Error("Invalid payment submission")]);
-          } else {
-            submitPayment(state?.data)
-              .then(value => {
-                if (value.error) {
-                  onError([value.error]);
-                } else if (!value?.confirmationNeeded) {
-                  submitPaymentSuccess(value?.order);
-                } else {
-                  const paymentAction =
-                    value?.confirmationData &&
-                    JSON.parse(value?.confirmationData);
-                  dropin.handleAction(paymentAction);
-                }
-              })
-              .catch(error => {
-                onError([new Error(error)]);
-              });
-          }
-        },
-        onError: (error: any) => {
-          onError([{ message: error.error }]);
-        },
+        onSubmit: onSubmitAdyenForm,
+        onAdditionalDetails: onSubmitAdyenForm,
+        onError: onAdyenError,
       };
 
     const checkout = configuration && new window.AdyenCheckout(configuration);
@@ -155,6 +131,47 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     if (dropinElement && !dropin && gatewayRef.current) {
       dropinElement?.mount(gatewayRef.current);
       setDropin(dropinElement);
+    }
+  };
+
+  const onSubmitAdyenForm = async (
+    state?: AdyenSubmitState,
+    dropin?: AdyenSubmitDropin
+  ) => {
+    if (!state?.isValid) {
+      onError([new Error(ERROR_INVALID_PAYMENT_SUBMISSION)]);
+    } else {
+      const payment = await submitPayment(state?.data);
+
+      if (payment.error) {
+        onError([payment.error]);
+      } else if (!payment?.confirmationNeeded) {
+        submitPaymentSuccess(payment?.order);
+      } else if (!dropin?.handleAction) {
+        onError([new Error(ERROR_CANNOT_HANDLE_PAYMENT_CONFIRMATION)]);
+      } else if (!payment?.confirmationData) {
+        onError([new Error(ERROR_PAYMENT_NO_CONFIRMATION_DATA)]);
+      } else {
+        let paymentAction;
+        try {
+          paymentAction = JSON.parse(payment.confirmationData);
+        } catch (parseError) {
+          onError([new Error(ERROR_PAYMENT_MALFORMED_CONFIRMATION_DATA)]);
+        }
+        try {
+          dropin.handleAction(paymentAction);
+        } catch (error) {
+          onError([new Error(error)]);
+        }
+      }
+    }
+  };
+
+  const onAdyenError = (error?: AdyenError) => {
+    if (error?.error) {
+      onError([{ message: error.error }]);
+    } else {
+      onError([new Error(ERROR_UNKNOWN_PAYMENT)]);
     }
   };
 
