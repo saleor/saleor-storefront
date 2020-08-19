@@ -176,12 +176,6 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   };
 
   useEffect(() => {
-    (formRef?.current as any)?.addEventListener("submit", () => {
-      processPayment();
-    });
-  }, [formRef]);
-
-  useEffect(() => {
     if (dropin) {
       (formRef?.current as any)?.addEventListener("submitComplete", () => {
         dropin.submit();
@@ -190,7 +184,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   }, [formRef, dropin]);
 
   return (
-    <form ref={formRef}>
+    <form ref={formRef} onSubmit={processPayment}>
       <div ref={gatewayRef} />
       <ErrorMessage errors={errors} />
     </form>
