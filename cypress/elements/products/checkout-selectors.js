@@ -2,9 +2,12 @@ export const CHECKOUT_SELECTORS = {
   addNewShippingAddress: "[data-test=shippingAddressTileAddNew]",
   addNewBillingAddress: "[data-test=billingAddressTileAddNew]",
   nextCheckoutStepBtn: "[data-test='checkoutPageNextStepButton']",
+  continueAsAGuest: "[data-test='continueAsGuestButton']",
 
-  ADDRESS_SELECTORS: {
-    firstNameInput: "[name='firstName']",
+  SHIPPING_ADDRESS_SELECTORS: {
+    shippingModal: "[data-test='submitAddressFormModal']",
+    shippingAddressForm: "[data-test=shippingAddressForm]",
+    firstNameShippingAddressInput: "[name='firstName']",
     lastNameInput: "[name='lastName']",
     companyName: "[name='companyName']",
     phoneNum: "[name='phone']",
@@ -19,6 +22,8 @@ export const CHECKOUT_SELECTORS = {
     addBtn: "[data-test=submitAddressFormModalButton]",
     sameAsShippingAddressCheckbox:
       "[data-test='checkoutAddressBillingAsShippingCheckbox']",
+    emailInput: "[name='email']",
+    continueToShipping: "[data-test=checkoutPageNextStepButton]",
   },
   SHIPPING_SELECTORS: {
     shippingForms: "#shipping-form label",
