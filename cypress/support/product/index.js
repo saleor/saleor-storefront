@@ -1,6 +1,8 @@
 import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
+import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
+import { SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU } from "../../elements/products/search-products-selectors";
 
-Cypress.Commands.add("addItemToTheBasket", () => {
+Cypress.Commands.add("addItemWithShippingToTheBasket", () => {
   return cy
 
     .get(PRODUCTS_SELECTORS.product_list)
@@ -13,6 +15,27 @@ Cypress.Commands.add("addItemToTheBasket", () => {
     .get(PRODUCTS_SELECTORS.variantPicker)
     .click()
     .get(PRODUCTS_SELECTORS.attributOptions)
+    .first()
+    .click()
+    .get(PRODUCTS_SELECTORS.addToBasketBtn)
+    .click()
+    .get(PRODUCTS_SELECTORS.cartQuantity)
+    .should("be.visible")
+    .click()
+    .get(PRODUCTS_SELECTORS.goToBagMyBagBtn)
+    .click();
+});
+
+Cypress.Commands.add("addItemWithNoShippingToTheBasket", () => {
+  return cy
+
+    .get(HEADER_SELECTORS.mainMenuSearchButton)
+    .click()
+    .get(HEADER_SELECTORS.mainMenuSearchInput)
+    .type("E-book")
+    .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchProductsExpandedArea)
+    .should("exist")
+    .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchItems)
     .first()
     .click()
     .get(PRODUCTS_SELECTORS.addToBasketBtn)

@@ -7,6 +7,8 @@ export const CHECKOUT_SELECTORS = {
   SHIPPING_ADDRESS_SELECTORS: {
     shippingModal: "[data-test='submitAddressFormModal']",
     shippingAddressForm: "[data-test=shippingAddressForm]",
+    billingAddressForm: "[data-test='billingAddressForm']",
+
     firstNameShippingAddressInput: "[name='firstName']",
     lastNameInput: "[name='lastName']",
     companyName: "[name='companyName']",
@@ -17,6 +19,7 @@ export const CHECKOUT_SELECTORS = {
     zip_postalCode: "[name='postalCode']",
     country: "#react-select-2-input",
     state: "[name='countryArea']",
+
     shippingAddressTiles: "[data-test=shippingAddressTile]",
     billingAddressTiles: "[data-test=billingAddressTile]",
     addBtn: "[data-test=submitAddressFormModalButton]",
@@ -35,6 +38,7 @@ export const CHECKOUT_SELECTORS = {
   REVIEW_SELECTORS: {
     shippingAddressTile:
       "[data-test=shippingAddressSection] > [data-test=addressTile]",
+    billingAddressTile: "[data-test=addressTile]",
     placeOrder: "[data-test=checkoutPageNextStepButton]",
   },
   ORDER_FINALIZED: {

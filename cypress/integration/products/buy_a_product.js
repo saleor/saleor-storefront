@@ -4,6 +4,9 @@ import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 
+const randomWord = faker.random.words(2).replace(" ", "-");
+const fakeEmailAdressText = `${randomWord}@example.com`;
+
 const address = {
   fakeFirstNameText: faker.name.firstName(),
   fakeLastNameInputText: faker.name.lastName(),
@@ -19,13 +22,13 @@ const address = {
 };
 
 describe("Buy a product", () => {
-  it("should buy a product as a logged in user", () => {
+  it("should buy a shipping product as a logged in user", () => {
     const firstProductName = PRODUCTS_SELECTORS.first_selected_product_name;
 
     cy.loginUserViaRequest()
       .visit("/")
       .clearCart()
-      .addItemToTheBasket()
+      .addItemWithShippingToTheBasket()
       .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
       .click()
       .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
@@ -70,13 +73,10 @@ describe("Buy a product", () => {
       .should("be.visible", { timeout: 20000 });
   });
 
-  it("should buy a product as a not logged in user", () => {
-    const randomWord = faker.random.word();
-    const fakeEmailAdressText = `${randomWord}@example.com`;
-
+  it("should buy a shipping product as a not logged in user", () => {
     cy.visit("/")
       .clearCart()
-      .addItemToTheBasket()
+      .addItemWithShippingToTheBasket()
       .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
       .click()
       .get(CHECKOUT_SELECTORS.continueAsAGuest)
@@ -100,6 +100,87 @@ describe("Buy a product", () => {
       .shipping()
       .payment()
       .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.shippingAddressTile)
+      .should("contain", address.fakeFirstNameText)
+      .and("contain", address.fakeLastNameInputText)
+      .and("contain", address.fakeCompanyNameText)
+      .and("contain", address.fakeAddressLine1Text)
+      .and("contain", address.fakeAddressLine2Text)
+      .and("contain", address.city.toUpperCase())
+      .and("contain", address.country)
+      .and("contain", address.phoneNum.replace(/-/gi, ""))
+      .and("contain", address.state)
+      .and("contain", address.zipCode)
+      .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.placeOrder)
+      .click()
+      .get(CHECKOUT_SELECTORS.ORDER_FINALIZED.confirmationView)
+      .should("be.visible", { timeout: 20000 });
+  });
+
+  it("should buy a NOT shipping product as a logged in user", () => {
+    const firstProductName = PRODUCTS_SELECTORS.first_selected_product_name;
+
+    cy.loginUserViaRequest()
+      .visit("/")
+      .clearCart()
+      .addItemWithNoShippingToTheBasket()
+      .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
+      .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
+      .click()
+      .get(CHECKOUT_SELECTORS.addNewBillingAddress)
+      .first()
+      .click()
+      .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.shippingModal)
+      .within(() => {
+        return cy.addNewAddress(address);
+      })
+      .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.addBtn)
+      .click()
+      .should("not.exist")
+      .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.billingAddressTiles)
+      .last()
+      .click()
+      .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
+      .click()
+      .payment()
+      .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.billingAddressTile)
+      .should("contain", address.fakeFirstNameText)
+      .and("contain", address.fakeLastNameInputText)
+      .and("contain", address.fakeCompanyNameText)
+      .and("contain", address.fakeAddressLine1Text)
+      .and("contain", address.fakeAddressLine2Text)
+      .and("contain", address.city.toUpperCase())
+      .and("contain", address.country)
+      .and("contain", address.phoneNum.replace(/-/gi, ""))
+      .and("contain", address.state)
+      .and("contain", address.zipCode)
+      .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.placeOrder)
+      .click()
+      .get(CHECKOUT_SELECTORS.ORDER_FINALIZED.confirmationView)
+      .should("be.visible", { timeout: 20000 });
+  });
+
+  xit("should buy a NOT shipping product as a NOT logged in user", () => {
+    // Xited because of the exisiting issue of backend site
+    cy.visit("/")
+      .clearCart()
+      .addItemWithNoShippingToTheBasket()
+      .get(PRODUCTS_SELECTORS.procceedToCheckoutBtn)
+      .click()
+      .get(CHECKOUT_SELECTORS.continueAsAGuest)
+      .click()
+      .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
+      .click()
+      .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.billingAddressForm)
+      .within(() => {
+        return cy.addNewAddress(address);
+      })
+      .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.emailInput)
+      .type(fakeEmailAdressText)
+      .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
+      .click()
+      .payment()
+      .get(CHECKOUT_SELECTORS.REVIEW_SELECTORS.billingAddressTile)
       .should("contain", address.fakeFirstNameText)
       .and("contain", address.fakeLastNameInputText)
       .and("contain", address.fakeCompanyNameText)

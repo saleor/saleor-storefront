@@ -26,7 +26,7 @@ describe("Buy a product and check the order history", () => {
       state: "AL",
     };
 
-    cy.addItemToTheBasket()
+    cy.addItemWithShippingToTheBasket()
       .get("@productName")
       .then(productName => {
         return cy
