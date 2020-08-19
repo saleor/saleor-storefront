@@ -20,7 +20,9 @@ exports[`Storyshots @components/organisms/AdyenPaymentGateway default 1`] = `
 <div
   className="c0"
 >
-  <form>
+  <form
+    onSubmit={[Function]}
+  >
     <div />
   </form>
   <div
