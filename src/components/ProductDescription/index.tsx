@@ -114,12 +114,11 @@ class ProductDescription extends React.Component<
     const syncedQuantityWithCart = cartItem
       ? quantity + (cartItem?.quantity || 0)
       : quantity;
-    return quantity !== 0 && variant && variantStock >= syncedQuantityWithCart;
+    return quantity > 0 && variant && variantStock >= syncedQuantityWithCart;
   };
 
   handleSubmit = () => {
     this.props.addToCart(this.state.variant, this.state.quantity);
-    this.setState({ quantity: 0 });
   };
 
   getAvailableQuantity = () => {
