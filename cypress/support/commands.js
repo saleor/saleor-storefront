@@ -1,5 +1,4 @@
 // <reference types="cypress" />
-import faker from "faker";
 
 import "./user";
 import "./category";
