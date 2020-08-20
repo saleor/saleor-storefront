@@ -5,7 +5,7 @@ import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 import { ORDER_HISTORY_SELECTORS } from "../../elements/saleor-account/my-account-selectors";
 
-describe("Buy a product as a logged user", () => {
+describe("Buy a product and check the order history", () => {
   beforeEach(() => {
     cy.loginUserViaRequest().visit("/").clearCart();
   });
@@ -26,7 +26,7 @@ describe("Buy a product as a logged user", () => {
       state: "AL",
     };
 
-    cy.addItemToTheBasket()
+    cy.addItemWithShippingToTheBasket()
       .get("@productName")
       .then(productName => {
         return cy
@@ -38,11 +38,17 @@ describe("Buy a product as a logged user", () => {
           .first()
           .click()
           .addNewAddress(address)
-          .get(CHECKOUT_SELECTORS.ADDRESS_SELECTORS.shippingAddressTiles)
+          .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.addBtn)
+          .click()
+          .should("not.exist")
+          .get(
+            CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.shippingAddressTiles
+          )
           .last()
           .click()
           .get(
-            CHECKOUT_SELECTORS.ADDRESS_SELECTORS.sameAsShippingAddressCheckbox
+            CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS
+              .sameAsShippingAddressCheckbox
           )
           .parent()
           .click()

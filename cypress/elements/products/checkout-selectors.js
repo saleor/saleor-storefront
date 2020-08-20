@@ -2,9 +2,14 @@ export const CHECKOUT_SELECTORS = {
   addNewShippingAddress: "[data-test=shippingAddressTileAddNew]",
   addNewBillingAddress: "[data-test=billingAddressTileAddNew]",
   nextCheckoutStepBtn: "[data-test='checkoutPageNextStepButton']",
+  continueAsAGuest: "[data-test='continueAsGuestButton']",
 
-  ADDRESS_SELECTORS: {
-    firstNameInput: "[name='firstName']",
+  SHIPPING_ADDRESS_SELECTORS: {
+    shippingModal: "[data-test='submitAddressFormModal']",
+    shippingAddressForm: "[data-test=shippingAddressForm]",
+    billingAddressForm: "[data-test='billingAddressForm']",
+
+    firstNameShippingAddressInput: "[name='firstName']",
     lastNameInput: "[name='lastName']",
     companyName: "[name='companyName']",
     phoneNum: "[name='phone']",
@@ -14,11 +19,14 @@ export const CHECKOUT_SELECTORS = {
     zip_postalCode: "[name='postalCode']",
     country: "#react-select-2-input",
     state: "[name='countryArea']",
+
     shippingAddressTiles: "[data-test=shippingAddressTile]",
     billingAddressTiles: "[data-test=billingAddressTile]",
     addBtn: "[data-test=submitAddressFormModalButton]",
     sameAsShippingAddressCheckbox:
       "[data-test='checkoutAddressBillingAsShippingCheckbox']",
+    emailInput: "[name='email']",
+    continueToShipping: "[data-test=checkoutPageNextStepButton]",
   },
   SHIPPING_SELECTORS: {
     shippingForms: "#shipping-form label",
@@ -30,6 +38,7 @@ export const CHECKOUT_SELECTORS = {
   REVIEW_SELECTORS: {
     shippingAddressTile:
       "[data-test=shippingAddressSection] > [data-test=addressTile]",
+    billingAddressTile: "[data-test=addressTile]",
     placeOrder: "[data-test=checkoutPageNextStepButton]",
   },
   ORDER_FINALIZED: {

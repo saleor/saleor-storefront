@@ -1,4 +1,5 @@
 import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
+import { SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU } from "../../elements/products/search-products-selectors";
 
 describe("Search", () => {
   const typedText = "shirt";
@@ -15,14 +16,11 @@ describe("Search", () => {
   });
 
   it("should search products", () => {
-    const searchProductsExpandedArea =
-      ".search__products.search__products--expanded";
-
     cy.get(HEADER_SELECTORS.mainMenuSearchButton)
       .click()
       .get(HEADER_SELECTORS.mainMenuSearchInput)
       .type(typedText)
-      .get(searchProductsExpandedArea)
+      .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchProductsExpandedArea)
       .should("exist");
   });
 
