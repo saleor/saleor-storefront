@@ -40,7 +40,7 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
     CHECKOUT_STEPS[0].link;
 
   if (
-    pathname !== "/checkout/payment-confirm" &&
+    pathname !== CHECKOUT_STEPS[4].link &&
     (!stepFromPath || (stepFromPath && step < stepFromPath))
   ) {
     return <Redirect to={getStepLink()} />;
@@ -48,7 +48,7 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
 
   return (
     <Switch>
-      <Route path="/checkout/payment-confirm" render={renderReview} />
+      <Route path={CHECKOUT_STEPS[4].link} render={renderReview} />
       <Route path={CHECKOUT_STEPS[0].link} render={renderAddress} />
       <Route path={CHECKOUT_STEPS[1].link} render={renderShipping} />
       <Route path={CHECKOUT_STEPS[2].link} render={renderPayment} />

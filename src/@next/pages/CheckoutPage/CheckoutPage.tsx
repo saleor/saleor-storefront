@@ -82,7 +82,7 @@ const getCheckoutProgress = (
   ) : null;
 };
 
-const getButton = (text: string, onClick: () => void) => {
+const getButton = (text?: string, onClick?: () => void) => {
   if (text) {
     return (
       <Button
@@ -150,9 +150,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       ({ variant }) => variant.product?.productType.isShippingRequired
     );
 
+  const stepsWithViews = CHECKOUT_STEPS.filter(
+    ({ withoutOwnView }) => !withoutOwnView
+  );
   const steps = isShippingRequiredForProducts
-    ? CHECKOUT_STEPS
-    : CHECKOUT_STEPS.filter(
+    ? stepsWithViews
+    : stepsWithViews.filter(
         ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
       );
   const getActiveStepIndex = () => {
@@ -292,11 +295,14 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     token?: string,
     cardData?: ICardData
   ) => {
+    const paymentConfirmStepLink = CHECKOUT_STEPS.find(
+      step => step.step === CheckoutStep.PaymentConfirm
+    )?.link;
     const { dataError } = await createPayment({
       gateway,
       token,
       creditCard: cardData,
-      returnUrl: `${window.location.origin}/checkout/payment-confirm`,
+      returnUrl: `${window.location.origin}${paymentConfirmStepLink}`,
     });
     const errors = dataError?.error;
     setSubmitInProgress(false);
@@ -373,10 +379,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }
 
   useEffect(() => {
+    const paymentConfirmStepLink = CHECKOUT_STEPS.find(
+      step => step.step === CheckoutStep.PaymentConfirm
+    )?.link;
     if (
       !submitInProgress &&
       checkout &&
-      location.pathname === "/checkout/payment-confirm" &&
+      location.pathname === paymentConfirmStepLink &&
       !paymentConfirmation
     ) {
       handlePaymentConfirm();
@@ -464,8 +473,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       )}
       checkout={checkoutView}
       paymentGateways={paymentGatewaysView}
-      hidePaymentGateways={steps[activeStepIndex].name !== "Payment"}
-      button={getButton(buttonText.toUpperCase(), handleNextStepClick)}
+      hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
+      button={getButton(buttonText?.toUpperCase(), handleNextStepClick)}
     />
   );
 };

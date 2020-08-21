@@ -1,6 +1,7 @@
 import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { AdyenPaymentGateway } from ".";
 import { adyenPaymentMethods } from "./fixtures";
@@ -39,13 +40,15 @@ describe("<AdyenPaymentGateway />", () => {
     const submitPaymentSuccess = jest.fn();
     const onError = jest.fn();
     const wrapper = shallow(
-      <AdyenPaymentGateway
-        {...PROPS}
-        processPayment={processPayment}
-        submitPayment={submitPayment}
-        submitPaymentSuccess={submitPaymentSuccess}
-        onError={onError}
-      />
+      <IntlProvider locale="en">
+        <AdyenPaymentGateway
+          {...PROPS}
+          processPayment={processPayment}
+          submitPayment={submitPayment}
+          submitPaymentSuccess={submitPaymentSuccess}
+          onError={onError}
+        />
+      </IntlProvider>
     );
 
     expect(wrapper.exists()).toEqual(true);

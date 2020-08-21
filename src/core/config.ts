@@ -75,6 +75,7 @@ export enum CheckoutStep {
   Shipping,
   Payment,
   Review,
+  PaymentConfirm,
 }
 export const CHECKOUT_STEPS = [
   {
@@ -108,5 +109,13 @@ export const CHECKOUT_STEPS = [
     nextActionName: "Place order",
     onlyIfShippingRequired: false,
     step: CheckoutStep.Review,
+  },
+  {
+    index: 4,
+    link: "/checkout/payment-confirm",
+    name: "Payment confirm",
+    onlyIfShippingRequired: false,
+    step: CheckoutStep.PaymentConfirm,
+    withoutOwnView: true,
   },
 ];
