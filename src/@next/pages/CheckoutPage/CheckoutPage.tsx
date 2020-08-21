@@ -4,7 +4,12 @@ import { Redirect, useLocation, useHistory } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
-import { CartSummary, PaymentGatewaysList } from "@components/organisms";
+import {
+  CartSummary,
+  PaymentGatewaysList,
+  translateAdyenConfirmationError,
+  adyenNotNegativeConfirmationStatusCodes,
+} from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
@@ -205,10 +210,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     data?: object
   ) => {
     const activeStepIndex = getActiveStepIndex();
-    if (
-      currentStep === CheckoutStep.Review ||
-      location.pathname === "/checkout/payment-confirm"
-    ) {
+    if (currentStep === CheckoutStep.Review) {
       history.push({
         pathname: "/order-finalized",
         state: data,
@@ -382,9 +384,28 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   }, [location.pathname, querystring, submitInProgress, checkout]);
 
   const handlePaymentConfirm = async () => {
+    /**
+     * Prevent proceeding in confirmation flow in case of gateways that don't support it to prevent unknown bugs.
+     */
+    if (payment?.gateway !== "mirumee.payments.adyen") {
+      const paymentStepLink = steps.find(
+        step => step.step === CheckoutStep.Payment
+      )?.link;
+      if (paymentStepLink) {
+        history.push(paymentStepLink);
+      }
+    }
+
     setSubmitInProgress(true);
     setPaymentConfirmation(true);
-    if (querystring.resultCode === "Authorised") {
+    /**
+     * Saleor API creates an order for not fully authorised payments, thus we accept all non negative payment result codes,
+     * assuming the payment is completed, what means we can proceed further.
+     * https://docs.adyen.com/checkout/drop-in-web?tab=http_get_1#step-6-present-payment-result
+     */
+    if (
+      adyenNotNegativeConfirmationStatusCodes.includes(querystring.resultCode)
+    ) {
       const { data, dataError } = await completeCheckout();
       const errors = dataError?.error;
       setSubmitInProgress(false);
@@ -407,9 +428,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     } else {
       setPaymentGatewayErrors([
         {
-          message: intl.formatMessage({
-            defaultMessage: "Payment confirmation went wrong.",
-          }),
+          message: translateAdyenConfirmationError(
+            querystring.resultCode,
+            intl
+          ),
         },
       ]);
       const paymentStepLink = steps.find(
@@ -417,6 +439,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       )?.link;
       if (paymentStepLink) {
         history.push(paymentStepLink);
+        setSubmitInProgress(false);
+        setPaymentConfirmation(false);
       }
     }
   };

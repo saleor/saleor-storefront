@@ -1,17 +1,82 @@
 import React, { useEffect, useRef, useState } from "react";
+import { defineMessages, IntlShape, useIntl } from "react-intl";
 
 import { IFormError, IPaymentGatewayConfig } from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { ErrorMessage } from "@components/atoms";
 
-const ERROR_UNKNOWN_PAYMENT = "Unknown payment submission error occured.";
-const ERROR_INVALID_PAYMENT_SUBMISSION = "Invalid payment submission.";
-const ERROR_CANNOT_HANDLE_PAYMENT_CONFIRMATION =
-  "Payment gateway did not provide payment confirmation handler.";
-const ERROR_PAYMENT_MALFORMED_CONFIRMATION_DATA =
-  "Payment needs confirmation but data required for confirmation received from the server is malformed.";
-const ERROR_PAYMENT_NO_CONFIRMATION_DATA =
-  "Payment needs confirmation but data required for confirmation not received from the server.";
+export const adyenNotNegativeConfirmationStatusCodes = [
+  "Authorised",
+  "AuthenticationFinished",
+  "AuthenticationNotRequired",
+  "Pending",
+  "Received",
+  "PresentToShopper",
+];
+
+const messageDescription = "Adyen payment gateway error";
+
+export const adyenErrorMessages = defineMessages({
+  unknownPayment: {
+    defaultMessage: "Unknown payment submission error occured.",
+    description: messageDescription,
+  },
+  invalidPaymentSubmission: {
+    defaultMessage: "Invalid payment submission.",
+    description: messageDescription,
+  },
+  cannotHandlePaymentConfirmation: {
+    defaultMessage:
+      "Payment gateway did not provide payment confirmation handler.",
+    description: messageDescription,
+  },
+  paymentMalformedConfirmationData: {
+    defaultMessage:
+      "Payment needs confirmation but data required for confirmation received from the server is malformed.",
+    description: messageDescription,
+  },
+  paymentNoConfirmationData: {
+    defaultMessage:
+      "Payment needs confirmation but data required for confirmation not received from the server.",
+    description: messageDescription,
+  },
+});
+
+export const adyenConfirmationErrorMessages = defineMessages({
+  error: {
+    defaultMessage: "Error processing payment occured.",
+    description: messageDescription,
+  },
+  refused: {
+    defaultMessage:
+      "The payment was refused. Try the payment again using a different payment method or card.",
+    description: messageDescription,
+  },
+  cancelled: {
+    defaultMessage: "Payment was cancelled.",
+    description: messageDescription,
+  },
+  general: {
+    defaultMessage: "Payment confirmation went wrong.",
+    description: messageDescription,
+  },
+});
+
+export function translateAdyenConfirmationError(
+  status: string,
+  intl: IntlShape
+): string {
+  switch (status) {
+    case "Error":
+      return intl.formatMessage(adyenConfirmationErrorMessages.error);
+    case "Refused":
+      return intl.formatMessage(adyenConfirmationErrorMessages.refused);
+    case "Cancelled":
+      return intl.formatMessage(adyenConfirmationErrorMessages.cancelled);
+    default:
+      return intl.formatMessage(adyenConfirmationErrorMessages.general);
+  }
+}
 
 interface IResourceConfig {
   src: string;
@@ -85,6 +150,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   errors,
   onError,
 }: IProps) => {
+  const intl = useIntl();
+
   const adyenClientKey = config?.find(({ field }) => field === "client_key")
     ?.value;
   const adyenConfig = config?.find(({ field }) => field === "config")?.value;
@@ -139,7 +206,11 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     dropin?: AdyenSubmitDropin
   ) => {
     if (!state?.isValid) {
-      onError([new Error(ERROR_INVALID_PAYMENT_SUBMISSION)]);
+      onError([
+        new Error(
+          intl.formatMessage(adyenErrorMessages.invalidPaymentSubmission)
+        ),
+      ]);
     } else {
       const payment = await submitPayment(state?.data);
 
@@ -148,15 +219,31 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
       } else if (!payment?.confirmationNeeded) {
         submitPaymentSuccess(payment?.order);
       } else if (!dropin?.handleAction) {
-        onError([new Error(ERROR_CANNOT_HANDLE_PAYMENT_CONFIRMATION)]);
+        onError([
+          new Error(
+            intl.formatMessage(
+              adyenErrorMessages.cannotHandlePaymentConfirmation
+            )
+          ),
+        ]);
       } else if (!payment?.confirmationData) {
-        onError([new Error(ERROR_PAYMENT_NO_CONFIRMATION_DATA)]);
+        onError([
+          new Error(
+            intl.formatMessage(adyenErrorMessages.paymentNoConfirmationData)
+          ),
+        ]);
       } else {
         let paymentAction;
         try {
           paymentAction = JSON.parse(payment.confirmationData);
         } catch (parseError) {
-          onError([new Error(ERROR_PAYMENT_MALFORMED_CONFIRMATION_DATA)]);
+          onError([
+            new Error(
+              intl.formatMessage(
+                adyenErrorMessages.paymentMalformedConfirmationData
+              )
+            ),
+          ]);
         }
         try {
           dropin.handleAction(paymentAction);
@@ -171,7 +258,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     if (error?.error) {
       onError([{ message: error.error }]);
     } else {
-      onError([new Error(ERROR_UNKNOWN_PAYMENT)]);
+      onError([
+        new Error(intl.formatMessage(adyenErrorMessages.unknownPayment)),
+      ]);
     }
   };
 
