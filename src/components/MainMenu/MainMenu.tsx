@@ -254,7 +254,11 @@ const MainMenu: React.FC = () => {
                 <li className="main-menu__offline">
                   <Media
                     query={{ minWidth: mediumScreen }}
-                    render={() => <span>Offline</span>}
+                    render={() => (
+                      <span>
+                        <FormattedMessage defaultMessage="Offline" />
+                      </span>
+                    )}
                   />
                 </li>
               </Offline>

@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
 
 import { mediumScreen } from "@styles/constants";
@@ -20,23 +21,41 @@ export const DemoBanner: React.FC = () => {
               target="_blank"
               href="https://pwa.demo.saleor.rocks/graphql/"
             >
-              <S.TextEmphasis>API</S.TextEmphasis>
+              <S.TextEmphasis>
+                <FormattedMessage defaultMessage="API" />
+              </S.TextEmphasis>
             </S.Link>
             <S.Divider />
             <S.Link target="_blank" href="https://pwa.saleor.io/dashboard/">
-              <S.TextEmphasis>Dashboard</S.TextEmphasis>
+              <S.TextEmphasis>
+                <FormattedMessage defaultMessage="Dashboard" />
+              </S.TextEmphasis>
             </S.Link>
           </Media>
           <Media minWidth={mediumScreen}>
             <S.Link target="_blank" href="https://pwa.saleor.io/dashboard/">
-              Explore <S.TextEmphasis>Store’s dashboard</S.TextEmphasis>
+              <FormattedMessage
+                defaultMessage="Explore <emphasis>Store’s dashboard</emphasis>"
+                values={{
+                  emphasis: (children: any) => (
+                    <S.TextEmphasis>{children}</S.TextEmphasis>
+                  ),
+                }}
+              />
             </S.Link>
             <S.Divider />
             <S.Link
               target="_blank"
               href="https://pwa.demo.saleor.rocks/graphql/"
             >
-              Play with <S.TextEmphasis>GraphQL API</S.TextEmphasis>
+              <FormattedMessage
+                defaultMessage="Play with <emphasis>GraphQL API</emphasis>"
+                values={{
+                  emphasis: (children: any) => (
+                    <S.TextEmphasis>{children}</S.TextEmphasis>
+                  ),
+                }}
+              />
             </S.Link>
           </Media>
         </S.LinkList>

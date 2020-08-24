@@ -3,6 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import { Link } from "react-router-dom";
+import { commonMessages } from "@temp/intl";
 
 import { baseUrl } from "../../app/routes";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
@@ -53,7 +54,7 @@ const Breadcrumbs: React.FC<{
         <ul className="breadcrumbs">
           <li>
             <Link to={baseUrl}>
-              <FormattedMessage defaultMessage="Home" />
+              <FormattedMessage {...commonMessages.home} />
             </Link>
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
