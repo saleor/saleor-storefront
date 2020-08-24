@@ -214,8 +214,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     } else {
       const payment = await submitPayment(state?.data);
 
-      if (payment.error) {
-        onError([payment.error]);
+      if (payment.errors?.length) {
+        onError(payment.errors);
       } else if (!payment?.confirmationNeeded) {
         submitPaymentSuccess(payment?.order);
       } else if (!dropin?.handleAction) {

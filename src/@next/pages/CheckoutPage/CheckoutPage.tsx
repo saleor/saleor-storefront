@@ -319,7 +319,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       confirmationData: response.data?.confirmationData,
       confirmationNeeded: response.data?.confirmationNeeded,
       order: response.data?.order,
-      error: response.dataError?.error,
+      errors: response.dataError?.error,
     };
   };
   const handleSubmitPaymentSuccess = (
