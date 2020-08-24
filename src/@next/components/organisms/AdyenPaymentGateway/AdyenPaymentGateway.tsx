@@ -272,8 +272,13 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     }
   }, [formRef, dropin]);
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    processPayment();
+  };
+
   return (
-    <form ref={formRef} onSubmit={processPayment}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <div ref={gatewayRef} />
       <ErrorMessage errors={errors} />
     </form>
