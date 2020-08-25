@@ -24,6 +24,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add test tags to address book - #847 by @dominik-zeglen
 - Refresh user data if mutation fails - #854 by @dominik-zeglen
 - Fix product list data overfetching - #855 by @dominik-zeglen
+- Add Adyen payment gateway - #845 by @orzechdev
 
 ## 2.10.4
 

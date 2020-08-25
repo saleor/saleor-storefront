@@ -23,6 +23,7 @@ export interface ICheckoutReviewSubpageHandles {
 
 interface IProps extends RouteComponentProps<any> {
   selectedPaymentGatewayToken?: string;
+  paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   changeSubmitProgress: (submitInProgress: boolean) => void;
   onSubmitSuccess: (data: ISubmitCheckoutData) => void;
 }
@@ -33,6 +34,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 > = (
   {
     selectedPaymentGatewayToken,
+    paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
     ...props
@@ -65,6 +67,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         )?.label
       }`;
     }
+    if (payment?.gateway === "mirumee.payments.adyen") {
+      return `Adyen payments`;
+    }
     if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
     }
@@ -74,18 +79,28 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   useImperativeHandle(ref, () => ({
     complete: async () => {
       changeSubmitProgress(true);
-      const { data, dataError } = await completeCheckout();
-      changeSubmitProgress(false);
-      const errors = dataError?.error;
-      if (errors) {
-        setErrors(errors);
+      let data;
+      let dataError;
+      if (payment?.gateway === "mirumee.payments.adyen") {
+        paymentGatewayFormRef.current?.dispatchEvent(
+          new Event("submitComplete", { cancelable: true })
+        );
       } else {
-        setErrors([]);
-        onSubmitSuccess({
-          id: data?.id,
-          orderNumber: data?.number,
-          token: data?.token,
-        });
+        const response = await completeCheckout();
+        data = response.data;
+        dataError = response.dataError;
+        changeSubmitProgress(false);
+        const errors = dataError?.error;
+        if (errors) {
+          setErrors(errors);
+        } else {
+          setErrors([]);
+          onSubmitSuccess({
+            id: data?.order?.id,
+            orderNumber: data?.order?.number,
+            token: data?.order?.token,
+          });
+        }
       }
     },
   }));

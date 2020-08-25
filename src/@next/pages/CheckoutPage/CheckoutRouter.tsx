@@ -39,12 +39,16 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
     CHECKOUT_STEPS.find(stepObj => stepObj.step === step)?.link ||
     CHECKOUT_STEPS[0].link;
 
-  if (!stepFromPath || (stepFromPath && step < stepFromPath)) {
+  if (
+    pathname !== CHECKOUT_STEPS[4].link &&
+    (!stepFromPath || (stepFromPath && step < stepFromPath))
+  ) {
     return <Redirect to={getStepLink()} />;
   }
 
   return (
     <Switch>
+      <Route path={CHECKOUT_STEPS[4].link} render={renderReview} />
       <Route path={CHECKOUT_STEPS[0].link} render={renderAddress} />
       <Route path={CHECKOUT_STEPS[1].link} render={renderShipping} />
       <Route path={CHECKOUT_STEPS[2].link} render={renderPayment} />

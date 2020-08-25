@@ -59,12 +59,15 @@ const StripePaymentGateway: React.FC<IProps> = ({
         onError(errors);
       } else if (payload?.paymentMethod) {
         const { card, id } = payload.paymentMethod;
-        processPayment(id, {
-          brand: card?.brand,
-          expMonth: card?.exp_month,
-          expYear: card?.exp_year,
-          lastDigits: card?.last4,
-        });
+        if (card?.brand && card?.last4) {
+          processPayment(id, {
+            brand: card?.brand,
+            expMonth: card?.exp_month || null,
+            expYear: card?.exp_year || null,
+            firstDigits: null,
+            lastDigits: card?.last4,
+          });
+        }
       } else {
         const stripePayloadErrors = [
           {

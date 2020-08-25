@@ -15,6 +15,7 @@ declare interface Window {
   PasswordCredential: any;
   Stripe: any;
   Cypress?: any;
+  AdyenCheckout: any;
 }
 
 declare interface Navigator {
