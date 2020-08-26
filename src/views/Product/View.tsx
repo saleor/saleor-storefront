@@ -26,11 +26,11 @@ const canDisplay = (product: ProductDetails_product) =>
 const extractMeta = (product: ProductDetails_product) => ({
   custom: [
     {
-      content: product.pricing.priceRange.start.gross.amount.toString(),
+      content: product.pricing?.priceRange?.start?.gross.amount.toString(),
       property: "product:price:amount",
     },
     {
-      content: product.pricing.priceRange.start.gross.currency,
+      content: product.pricing?.priceRange?.start?.gross.currency,
       property: "product:price:currency",
     },
     {
@@ -38,7 +38,7 @@ const extractMeta = (product: ProductDetails_product) => ({
       property: "product:isAvailable",
     },
     {
-      content: product.category.name,
+      content: product.category?.name,
       property: "product:category",
     },
   ],

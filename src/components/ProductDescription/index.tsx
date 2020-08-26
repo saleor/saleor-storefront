@@ -54,8 +54,8 @@ class ProductDescription extends React.Component<
       variant: "",
       variantPricing: null,
       variantPricingRange: {
-        max: props.pricing.priceRange.stop,
-        min: props.pricing.priceRange.start,
+        max: props.pricing.priceRange?.stop,
+        min: props.pricing.priceRange?.start,
       },
       variantStock: null,
     };

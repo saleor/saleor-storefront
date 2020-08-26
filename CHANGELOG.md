@@ -25,6 +25,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Refresh user data if mutation fails - #854 by @dominik-zeglen
 - Fix product list data overfetching - #855 by @dominik-zeglen
 - Add Adyen payment gateway - #845 by @orzechdev
+- Fix crash on null price range - #875 by @orzechdev
 
 ## 2.10.4
 
