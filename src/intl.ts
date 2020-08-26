@@ -17,7 +17,10 @@ export const commonMessages = defineMessages({
     defaultMessage: "Not available for purchase",
   },
   purchaseAvailableOn: {
-    defaultMessage: "Available for Purchase on",
+    defaultMessage: `Available for Purchase on`,
+  },
+  dateOnTime: {
+    defaultMessage: `{date} on {time}`,
   },
   youMightLike: {
     defaultMessage: "You might like",

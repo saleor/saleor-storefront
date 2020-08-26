@@ -154,6 +154,9 @@ class ProductDescription extends React.Component<
 
     const availableQuantity = this.getAvailableQuantity();
     const isOutOfStock = !!variant && variantStock === 0;
+    const noPurchaseAvailable =
+      !isAvailableForPurchase && !availableForPurchase;
+    const purchaseAvailableOn = !isAvailableForPurchase && availableForPurchase;
     const isNoItemsAvailable = !!variant && !isOutOfStock && !availableQuantity;
     const isLowStock =
       !!variant &&
@@ -171,17 +174,22 @@ class ProductDescription extends React.Component<
         ) : (
           <h4>{this.getProductPrice()}</h4>
         )}
-        {!isAvailableForPurchase &&
-          !availableForPurchase &&
+        {noPurchaseAvailable &&
           this.renderErrorMessage(
             this.props.intl.formatMessage(commonMessages.noPurchaseAvailable)
           )}
-        {!isAvailableForPurchase &&
-          availableForPurchase &&
+        {purchaseAvailableOn &&
           this.renderErrorMessage(
             `${this.props.intl.formatMessage(
               commonMessages.purchaseAvailableOn
-            )}: ${moment(availableForPurchase).format("MM/DD/YYYY")}`
+            )}:`
+          )}
+        {purchaseAvailableOn &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.dateOnTime, {
+              date: moment(availableForPurchase).format("L"),
+              time: moment(availableForPurchase).format("HH:mm"),
+            })
           )}
         {isLowStock &&
           this.renderErrorMessage(
