@@ -144,6 +144,8 @@ export const productDetailsQuery = gql`
       seoDescription
       seoTitle
       isAvailable
+      isAvailableForPurchase
+      availableForPurchase
     }
   }
 `;

@@ -13,6 +13,12 @@ export const commonMessages = defineMessages({
   noItemsAvailable: {
     defaultMessage: "No items available",
   },
+  noPurchaseAvailable: {
+    defaultMessage: "Not available for purchase",
+  },
+  purchaseAvailableOn: {
+    defaultMessage: "Available for Purchase on",
+  },
   youMightLike: {
     defaultMessage: "You might like",
   },

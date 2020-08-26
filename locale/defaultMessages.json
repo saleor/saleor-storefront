@@ -464,6 +464,9 @@
   "intl_dot_commonMessages_dot_noItemsAvailable": {
     "string": "No items available"
   },
+  "intl_dot_commonMessages_dot_noPurchaseAvailable": {
+    "string": "Not available for purchase"
+  },
   "intl_dot_commonMessages_dot_orderHistory": {
     "string": "Order history"
   },
@@ -490,6 +493,9 @@
   },
   "intl_dot_commonMessages_dot_provideEmailAddress": {
     "string": "Please provide email address."
+  },
+  "intl_dot_commonMessages_dot_purchaseAvailableOn": {
+    "string": "Available for Purchase on"
   },
   "intl_dot_commonMessages_dot_qty": {
     "string": "Quantity"

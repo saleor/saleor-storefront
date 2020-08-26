@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 import { injectIntl, WrappedComponentProps } from "react-intl";
+import moment from "moment";
 
 import { ProductVariantPicker } from "@components/organisms";
 import { commonMessages } from "@temp/intl";
@@ -26,6 +27,8 @@ interface ProductDescriptionProps extends WrappedComponentProps {
   pricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
+  isAvailableForPurchase: boolean | null;
+  availableForPurchase: any | null;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
   onAttributeChangeHandler(slug: string | null, value: string): void;
@@ -107,14 +110,19 @@ class ProductDescription extends React.Component<
   };
 
   canAddToCart = () => {
-    const { items } = this.props;
+    const { items, isAvailableForPurchase } = this.props;
     const { variant, quantity, variantStock } = this.state;
 
     const cartItem = items?.find(item => item.variant.id === variant);
     const syncedQuantityWithCart = cartItem
       ? quantity + (cartItem?.quantity || 0)
       : quantity;
-    return quantity > 0 && variant && variantStock >= syncedQuantityWithCart;
+    return (
+      isAvailableForPurchase &&
+      quantity > 0 &&
+      variant &&
+      variantStock >= syncedQuantityWithCart
+    );
   };
 
   handleSubmit = () => {
@@ -141,7 +149,7 @@ class ProductDescription extends React.Component<
   );
 
   render() {
-    const { name } = this.props;
+    const { name, isAvailableForPurchase, availableForPurchase } = this.props;
     const { variant, variantStock, quantity } = this.state;
 
     const availableQuantity = this.getAvailableQuantity();
@@ -163,6 +171,18 @@ class ProductDescription extends React.Component<
         ) : (
           <h4>{this.getProductPrice()}</h4>
         )}
+        {!isAvailableForPurchase &&
+          !availableForPurchase &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.noPurchaseAvailable)
+          )}
+        {!isAvailableForPurchase &&
+          availableForPurchase &&
+          this.renderErrorMessage(
+            `${this.props.intl.formatMessage(
+              commonMessages.purchaseAvailableOn
+            )}: ${moment(availableForPurchase).format("MM/DD/YYYY")}`
+          )}
         {isLowStock &&
           this.renderErrorMessage(
             this.props.intl.formatMessage(commonMessages.lowStock)

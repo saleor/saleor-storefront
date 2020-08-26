@@ -58,6 +58,8 @@ const Page: React.FC<
       addToCart={add}
       setVariantId={setVariantId}
       onAttributeChangeHandler={onAttributeChangeHandler}
+      isAvailableForPurchase={product.isAvailableForPurchase}
+      availableForPurchase={product.availableForPurchase}
     />
   );
 
