@@ -28,7 +28,7 @@ interface ProductDescriptionProps extends WrappedComponentProps {
   items: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
-  availableForPurchase: any | null;
+  availableForPurchase: string | null;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
   onAttributeChangeHandler(slug: string | null, value: string): void;
