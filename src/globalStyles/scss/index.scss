@@ -9,6 +9,8 @@ body {
   font-size: $base-font-size;
   line-height: $base-line-height;
   color: $base-font-color;
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
 
   * {
     box-sizing: border-box;
