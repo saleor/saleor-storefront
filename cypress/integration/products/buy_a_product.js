@@ -4,7 +4,7 @@ import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 
-const randomWord = faker.random.words(2).replace(" ", "-");
+const randomWord = faker.random.words(2).split(" ").join("-");
 const fakeEmailAdressText = `${randomWord}@example.com`;
 
 const address = {
