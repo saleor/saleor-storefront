@@ -26,6 +26,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix product list data overfetching - #855 by @dominik-zeglen
 - Add Adyen payment gateway - #845 by @orzechdev
 - Fix crash on null price range - #875 by @orzechdev
+- Update collection products query - #879 by @orzechdev
 
 ## 2.10.4
 
