@@ -61,6 +61,7 @@ export const collectionProductsQuery = gql`
     $priceGte: Float
   ) {
     collection(id: $id) {
+      id
       products(
         after: $after
         first: $pageSize

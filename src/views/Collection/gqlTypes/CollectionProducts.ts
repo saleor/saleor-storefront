@@ -287,6 +287,10 @@ export interface CollectionProducts_collection_products {
 export interface CollectionProducts_collection {
   __typename: "Collection";
   /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
    * List of products in this collection.
    */
   products: CollectionProducts_collection_products | null;
