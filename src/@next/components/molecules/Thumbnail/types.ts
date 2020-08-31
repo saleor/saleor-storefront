@@ -1,8 +1,19 @@
+interface IThumbnail {
+  url: string;
+  alt: string | null;
+}
+
+interface IThumbnail2x {
+  url: string;
+}
+
+interface ISource {
+  thumbnail?: IThumbnail | null;
+  thumbnail2x?: IThumbnail2x | null;
+}
+
 export interface IProps {
-  source: {
-    thumbnail: { url: string; alt: string | null } | null;
-    thumbnail2x: { url: string } | null;
-  };
+  source: ISource;
   noPhotoDefault?: boolean;
   children?: any;
 }

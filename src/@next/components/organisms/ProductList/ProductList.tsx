@@ -20,14 +20,17 @@ export const ProductList: React.FC<IProps> = ({
   return (
     <>
       <S.List data-test="productList" data-test-id={testingContextId}>
-        {products.map(product => (
-          <Link
-            to={generateProductUrl(product.id, product.name)}
-            key={product.id}
-          >
-            <ProductTile product={product} />
-          </Link>
-        ))}
+        {products.map(product => {
+          const { id, name } = product;
+          return (
+            id &&
+            name && (
+              <Link to={generateProductUrl(id, name)} key={id}>
+                <ProductTile product={product} />
+              </Link>
+            )
+          );
+        })}
       </S.List>
       <S.Loader>
         {loading ? (
