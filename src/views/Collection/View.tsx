@@ -168,18 +168,18 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                       (prev, next) => ({
                         ...prev,
                         products: {
-                          ...prev.products,
+                          ...prev.collection.products,
                           edges: [
-                            ...prev.products.edges,
-                            ...next.products.edges,
+                            ...prev.collection.products.edges,
+                            ...next.collection.products.edges,
                           ],
-                          pageInfo: next.products.pageInfo,
+                          pageInfo: next.collection.products.pageInfo,
                         },
                       }),
                       {
                         after:
-                          collectionProductsData.data.products.pageInfo
-                            .endCursor,
+                          collectionProductsData.data.collection.products
+                            .pageInfo.endCursor,
                       }
                     );
                   if (canDisplayFilters) {
@@ -201,14 +201,16 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                           displayLoader={collectionData.loading}
                           hasNextPage={maybe(
                             () =>
-                              collectionProductsData.data.products.pageInfo
-                                .hasNextPage,
+                              collectionProductsData.data.collection.products
+                                .pageInfo.hasNextPage,
                             false
                           )}
                           sortOptions={sortOptions}
                           activeSortOption={filters.sortBy}
                           filters={filters}
-                          products={collectionProductsData.data.products}
+                          products={
+                            collectionProductsData.data.collection.products
+                          }
                           onAttributeFiltersChange={onFiltersChange}
                           onLoadMore={handleLoadMore}
                           activeFilters={
