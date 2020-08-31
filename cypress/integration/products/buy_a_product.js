@@ -4,9 +4,6 @@ import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { PRODUCTS_SELECTORS } from "../../elements/products/products-selectors";
 import { CHECKOUT_SELECTORS } from "../../elements/products/checkout-selectors";
 
-const randomWord = faker.random.words(2).replace(" ", "-");
-const fakeEmailAdressText = `${randomWord}@example.com`;
-
 const address = {
   fakeFirstNameText: faker.name.firstName(),
   fakeLastNameInputText: faker.name.lastName(),
@@ -25,6 +22,7 @@ describe("Buy a product", () => {
   it("should buy a shipping product as a logged in user", () => {
     const firstProductName = PRODUCTS_SELECTORS.first_selected_product_name;
 
+    cy.clearLocalStorage();
     cy.loginUserViaRequest()
       .visit("/")
       .clearCart()
@@ -74,6 +72,7 @@ describe("Buy a product", () => {
   });
 
   it("should buy a shipping product as a not logged in user", () => {
+    cy.clearLocalStorage();
     cy.visit("/")
       .clearCart()
       .addItemWithShippingToTheBasket()
@@ -88,7 +87,7 @@ describe("Buy a product", () => {
         return cy.addNewAddress(address);
       })
       .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.emailInput)
-      .type(fakeEmailAdressText)
+      .type("testers@saleor.io")
       .get(
         CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS
           .sameAsShippingAddressCheckbox
@@ -118,7 +117,7 @@ describe("Buy a product", () => {
 
   it("should buy a NOT shipping product as a logged in user", () => {
     const firstProductName = PRODUCTS_SELECTORS.first_selected_product_name;
-
+    cy.clearLocalStorage();
     cy.loginUserViaRequest()
       .visit("/")
       .clearCart()
@@ -161,7 +160,7 @@ describe("Buy a product", () => {
   });
 
   xit("should buy a NOT shipping product as a NOT logged in user", () => {
-    // Xited because of the exisiting issue of backend site
+    cy.clearLocalStorage();
     cy.visit("/")
       .clearCart()
       .addItemWithNoShippingToTheBasket()
@@ -176,7 +175,7 @@ describe("Buy a product", () => {
         return cy.addNewAddress(address);
       })
       .get(CHECKOUT_SELECTORS.SHIPPING_ADDRESS_SELECTORS.emailInput)
-      .type(fakeEmailAdressText)
+      .type("testers@saleor.io")
       .get(CHECKOUT_SELECTORS.nextCheckoutStepBtn)
       .click()
       .payment()
