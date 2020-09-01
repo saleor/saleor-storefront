@@ -3,7 +3,6 @@ import "./scss/index.scss";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 import { injectIntl, WrappedComponentProps } from "react-intl";
-import moment from "moment";
 
 import { ProductVariantPicker } from "@components/organisms";
 import { commonMessages } from "@temp/intl";
@@ -156,7 +155,10 @@ class ProductDescription extends React.Component<
     const isOutOfStock = !!variant && variantStock === 0;
     const noPurchaseAvailable =
       !isAvailableForPurchase && !availableForPurchase;
-    const purchaseAvailableOn = !isAvailableForPurchase && availableForPurchase;
+    const purchaseAvailableDate =
+      !isAvailableForPurchase &&
+      availableForPurchase &&
+      Date.parse(availableForPurchase);
     const isNoItemsAvailable = !!variant && !isOutOfStock && !availableQuantity;
     const isLowStock =
       !!variant &&
@@ -178,17 +180,24 @@ class ProductDescription extends React.Component<
           this.renderErrorMessage(
             this.props.intl.formatMessage(commonMessages.noPurchaseAvailable)
           )}
-        {purchaseAvailableOn &&
+        {purchaseAvailableDate &&
           this.renderErrorMessage(
             `${this.props.intl.formatMessage(
               commonMessages.purchaseAvailableOn
             )}:`
           )}
-        {purchaseAvailableOn &&
+        {purchaseAvailableDate &&
           this.renderErrorMessage(
             this.props.intl.formatMessage(commonMessages.dateOnTime, {
-              date: moment(availableForPurchase).format("L"),
-              time: moment(availableForPurchase).format("HH:mm"),
+              date: new Intl.DateTimeFormat("default", {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+              }).format(purchaseAvailableDate),
+              time: new Intl.DateTimeFormat("default", {
+                hour: "numeric",
+                minute: "numeric",
+              }).format(purchaseAvailableDate),
             })
           )}
         {isLowStock &&
