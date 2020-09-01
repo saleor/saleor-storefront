@@ -1,7 +1,7 @@
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 
 export interface IProps {
-  products: Array<Partial<ProductList_products_edges_node>>;
+  products: Array<ProductList_products_edges_node>;
   canLoadMore?: boolean;
   loading?: boolean;
   onLoadMore?: () => void;
