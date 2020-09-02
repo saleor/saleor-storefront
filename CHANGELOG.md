@@ -30,6 +30,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix checkout refreshing - #865 by @orzechdev
 - Add purchase availability to product details page - #878 by @orzechdev
 - Require payment recreate when payment price is wrong - #892 by @orzechdev
+- Handle JWT token refreshing - #883 by @orzechdev
 
 ## 2.10.4
 
