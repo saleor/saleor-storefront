@@ -60,32 +60,34 @@ export const collectionProductsQuery = gql`
     $priceLte: Float
     $priceGte: Float
   ) {
-    products(
-      after: $after
-      first: $pageSize
-      sortBy: $sortBy
-      filter: {
-        attributes: $attributes
-        collections: [$id]
-        minimalPrice: { gte: $priceGte, lte: $priceLte }
-      }
-    ) {
-      totalCount
-      edges {
-        node {
-          ...BasicProductFields
-          ...ProductPricingField
-          category {
-            id
-            name
+    collection(id: $id) {
+      id
+      products(
+        after: $after
+        first: $pageSize
+        sortBy: $sortBy
+        filter: {
+          attributes: $attributes
+          minimalPrice: { gte: $priceGte, lte: $priceLte }
+        }
+      ) {
+        totalCount
+        edges {
+          node {
+            ...BasicProductFields
+            ...ProductPricingField
+            category {
+              id
+              name
+            }
           }
         }
-      }
-      pageInfo {
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
       }
     }
   }
