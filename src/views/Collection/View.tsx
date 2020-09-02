@@ -5,6 +5,7 @@ import { RouteComponentProps } from "react-router";
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -142,12 +143,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {collectionData => {
-            const canDisplayFilters = maybe(
-              () =>
-                !!collectionData.data.attributes.edges &&
-                !!collectionData.data.collection.name,
-              false
-            );
+            if (collectionData.loading) {
+              return <Loader />;
+            }
 
             if (
               collectionData.data &&
@@ -160,9 +158,20 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               return <OfflinePlaceholder />;
             }
 
+            const canDisplayFilters = maybe(
+              () =>
+                !!collectionData.data.attributes.edges &&
+                !!collectionData.data.collection.name,
+              false
+            );
+
             return (
               <TypedCollectionProductsQuery variables={variables}>
                 {collectionProductsData => {
+                  if (!canDisplayFilters && collectionProductsData.loading) {
+                    return <Loader />;
+                  }
+
                   const handleLoadMore = () =>
                     collectionProductsData.loadMore(
                       (prev, next) => ({
@@ -225,6 +234,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                       </MetaWrapper>
                     );
                   }
+
+                  return null;
                 }}
               </TypedCollectionProductsQuery>
             );
