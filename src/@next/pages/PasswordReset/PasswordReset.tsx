@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { BASE_URL } from "@temp/core/config";
+import { baseUrl } from "@temp/constants";
 
 import { ResetPasswordForm } from "@components/molecules";
 import * as S from "./styles";
@@ -40,7 +40,7 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   React.useEffect(() => {
     if (data && data.setPassword && data.setPassword.token) {
       setAuthToken(data.setPassword.token);
-      history.push(BASE_URL);
+      history.push(baseUrl);
     }
     if (
       graphqlErrors &&
@@ -59,7 +59,7 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   const { email, token } = query;
 
   if (!email || !token) {
-    history.push(BASE_URL);
+    history.push(baseUrl);
   }
 
   const onSubmit = (values: FormikProps) => {

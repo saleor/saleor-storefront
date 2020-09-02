@@ -1,3 +1,5 @@
+const apiUri = process.env.API_URI;
+const baseUrl = process.env.BASE_URL || "/";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebappWebpackPlugin = require("webapp-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -6,7 +8,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
-if (!process.env.API_URI) {
+if (!apiUri) {
   throw new Error("Environment variable API_URI not set");
 }
 
@@ -84,14 +86,14 @@ module.exports = ({ sourceDir, distDir }) => ({
   },
   output: {
     path: distDir,
-    publicPath: "/",
+    publicPath: baseUrl,
   },
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: distDir,
     }),
     new HtmlWebpackPlugin({
-      API_URI: process.env.API_URI,
+      API_URI: apiUri,
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
     }),

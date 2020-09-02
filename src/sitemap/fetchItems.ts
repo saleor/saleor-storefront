@@ -2,6 +2,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-fetch";
+import { apiUri } from "@temp/constants";
 
 import {
   generateCategoryUrl,
@@ -14,12 +15,10 @@ import {
   getProductsQuery,
 } from "./queries";
 
-const API_URL = process.env.API_URI || "/graphql/";
-
 const fetchItems = async ({ query, perPage = 100 }, callback: any) => {
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: createHttpLink({ uri: API_URL, fetch }),
+    link: createHttpLink({ uri: apiUri, fetch }),
   });
   const next = async (cursor = null) => {
     const response = await client.query({

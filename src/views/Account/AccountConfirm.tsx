@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import { StringParam, useQueryParams } from "use-query-params";
 
 import { RouteComponentProps } from "react-router";
-import { BASE_URL } from "../../core/config";
+import { baseUrl } from "@temp/constants";
 
 import { TypedAccountConfirmMutation } from "./queries";
 
@@ -48,7 +48,7 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
         displayConfirmationAlert(errors);
       })
       .finally(() => {
-        history.push(BASE_URL);
+        history.push(baseUrl);
       });
   }, []);
 

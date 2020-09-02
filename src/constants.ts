@@ -1,4 +1,5 @@
-export const apiUrl = process.env.API_URI;
+export const apiUri = process.env.API_URI;
+export const baseUrl = process.env.BASE_URL || "/";
 export const sentryDsn = process.env.SENTRY_DSN;
 const sampleRate = parseFloat(process.env.SENTRY_APM);
 export const sentrySampleRate = isNaN(sampleRate) ? 0 : sampleRate;

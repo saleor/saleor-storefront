@@ -2,7 +2,6 @@
 
 import { generatePageUrl } from "./utils";
 
-export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {

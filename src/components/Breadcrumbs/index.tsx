@@ -5,7 +5,7 @@ import Media from "react-media";
 import { Link } from "react-router-dom";
 import { commonMessages } from "@temp/intl";
 
-import { baseUrl } from "../../app/routes";
+import { baseUrl } from "@temp/constants";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/gqlTypes/Category";
 

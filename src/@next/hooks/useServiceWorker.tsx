@@ -1,5 +1,6 @@
 import React from "react";
 import { register, unregister } from "register-service-worker";
+import { baseUrl } from "@temp/constants";
 
 export const useServiceWorker = ({ timeout = 1000 }) => {
   const [updateAvailable, setUpdateAvailable] = React.useState<boolean>(false);
@@ -21,7 +22,7 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
     if (window.Cypress || !process.env.SERVICE_WORKER_EXISTS) {
       unregister();
     } else {
-      register("/service-worker.js", { registered, updated });
+      register(`${baseUrl}service-worker.js`, { registered, updated });
       return () => unregister();
     }
   }, []);

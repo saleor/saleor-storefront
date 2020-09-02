@@ -13,6 +13,6 @@
 
 module.exports = (on, config) => {
   config.env.API_URI = process.env.API_URI;
-
+  config.env.BASE_URL = process.env.BASE_URL;
   return config;
 };

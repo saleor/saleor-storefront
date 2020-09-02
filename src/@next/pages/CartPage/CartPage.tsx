@@ -10,7 +10,7 @@ import { CartRow } from "@components/organisms";
 import { Cart, CartEmpty } from "@components/templates";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
-import { BASE_URL } from "@temp/core/config";
+import { baseUrl } from "@temp/constants";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
 
@@ -25,7 +25,7 @@ const title = (
 const getShoppingButton = (history: History) => (
   <Button
     testingContext="cartPageContinueShoppingButton"
-    onClick={() => history.push(BASE_URL)}
+    onClick={() => history.push(baseUrl)}
   >
     <FormattedMessage {...checkoutMessages.continueShopping} />
   </Button>

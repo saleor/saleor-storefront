@@ -1,5 +1,7 @@
 /* eslint-disable no-undef,no-restricted-globals */
 
+import { baseUrl } from "@temp/constants";
+
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 
@@ -15,7 +17,7 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerNavigationRoute(
-  workbox.precaching.getCacheKeyForURL("/index.html"),
+  workbox.precaching.getCacheKeyForURL(`${baseUrl}index.html`),
   {
     blacklist: [
       new RegExp("/graphql"),

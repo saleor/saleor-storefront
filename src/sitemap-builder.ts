@@ -8,7 +8,7 @@ import {
   SitemapGenerator,
 } from "./sitemap";
 
-const distDir = path.join(__dirname, "../dist");
+const distDir = path.join(__dirname, process.env.BUILD_DIR || "../dist");
 
 const generateSitemap = async (hostname: string) => {
   const sitemap = new SitemapGenerator({ hostname, destinationDir: distDir });

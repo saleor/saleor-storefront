@@ -19,20 +19,20 @@ import { SaleorProvider, useAuth } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle } from "@styles";
 
+import {
+  apiUri,
+  sentryDsn,
+  sentrySampleRate,
+  serviceWorkerTimeout,
+} from "@temp/constants";
 import { App } from "./app";
 import { OverlayProvider } from "./components";
 import { LocaleProvider } from "./components/Locale";
 import ShopProvider from "./components/ShopProvider";
-import {
-  apiUrl,
-  sentryDsn,
-  sentrySampleRate,
-  serviceWorkerTimeout,
-} from "./constants";
 import { history } from "./history";
 
 const SALEOR_CONFIG: ConfigInput = {
-  apiUrl,
+  apiUrl: apiUri,
 };
 
 const Notifications: React.FC = () => {

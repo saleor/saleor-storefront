@@ -6,7 +6,7 @@ module.exports = ({ sourceDir, distDir }) => ({
   plugins: [
     new WorkboxPlugin.InjectManifest({
       swSrc: `${sourceDir}/sw.js`,
-      swDest: path.join(distDir, "./service-worker.js"),
+      swDest: `${distDir}/service-worker.js`,
       exclude: [
         /\.map$/,
         /^manifest.*\.js(?:on)?$/,
