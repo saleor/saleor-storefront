@@ -26,6 +26,8 @@ interface ProductDescriptionProps extends WrappedComponentProps {
   pricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
+  isAvailableForPurchase: boolean | null;
+  availableForPurchase: string | null;
   addToCart(varinatId: string, quantity?: number): void;
   setVariantId(variantId: string);
   onAttributeChangeHandler(slug: string | null, value: string): void;
@@ -107,14 +109,19 @@ class ProductDescription extends React.Component<
   };
 
   canAddToCart = () => {
-    const { items } = this.props;
+    const { items, isAvailableForPurchase } = this.props;
     const { variant, quantity, variantStock } = this.state;
 
     const cartItem = items?.find(item => item.variant.id === variant);
     const syncedQuantityWithCart = cartItem
       ? quantity + (cartItem?.quantity || 0)
       : quantity;
-    return quantity > 0 && variant && variantStock >= syncedQuantityWithCart;
+    return (
+      isAvailableForPurchase &&
+      quantity > 0 &&
+      variant &&
+      variantStock >= syncedQuantityWithCart
+    );
   };
 
   handleSubmit = () => {
@@ -141,11 +148,17 @@ class ProductDescription extends React.Component<
   );
 
   render() {
-    const { name } = this.props;
+    const { name, isAvailableForPurchase, availableForPurchase } = this.props;
     const { variant, variantStock, quantity } = this.state;
 
     const availableQuantity = this.getAvailableQuantity();
     const isOutOfStock = !!variant && variantStock === 0;
+    const noPurchaseAvailable =
+      !isAvailableForPurchase && !availableForPurchase;
+    const purchaseAvailableDate =
+      !isAvailableForPurchase &&
+      availableForPurchase &&
+      Date.parse(availableForPurchase);
     const isNoItemsAvailable = !!variant && !isOutOfStock && !availableQuantity;
     const isLowStock =
       !!variant &&
@@ -163,6 +176,30 @@ class ProductDescription extends React.Component<
         ) : (
           <h4>{this.getProductPrice()}</h4>
         )}
+        {noPurchaseAvailable &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.noPurchaseAvailable)
+          )}
+        {purchaseAvailableDate &&
+          this.renderErrorMessage(
+            `${this.props.intl.formatMessage(
+              commonMessages.purchaseAvailableOn
+            )}:`
+          )}
+        {purchaseAvailableDate &&
+          this.renderErrorMessage(
+            this.props.intl.formatMessage(commonMessages.dateOnTime, {
+              date: new Intl.DateTimeFormat("default", {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+              }).format(purchaseAvailableDate),
+              time: new Intl.DateTimeFormat("default", {
+                hour: "numeric",
+                minute: "numeric",
+              }).format(purchaseAvailableDate),
+            })
+          )}
         {isLowStock &&
           this.renderErrorMessage(
             this.props.intl.formatMessage(commonMessages.lowStock)

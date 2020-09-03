@@ -726,6 +726,11 @@ export interface ProductDetails_product {
    * Whether the product is in stock and visible or not.
    */
   isAvailable: boolean | null;
+  /**
+   * Whether the product is available for purchase.
+   */
+  isAvailableForPurchase: boolean | null;
+  availableForPurchase: any | null;
 }
 
 export interface ProductDetails {
