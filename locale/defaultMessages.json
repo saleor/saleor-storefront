@@ -495,7 +495,7 @@
     "string": "Please provide email address."
   },
   "intl_dot_commonMessages_dot_purchaseAvailableOn": {
-    "string": "Available for Purchase on"
+    "string": "Will become available for purchase on {date} at {time}"
   },
   "intl_dot_commonMessages_dot_qty": {
     "string": "Quantity"
