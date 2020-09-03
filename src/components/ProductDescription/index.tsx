@@ -182,13 +182,7 @@ class ProductDescription extends React.Component<
           )}
         {purchaseAvailableDate &&
           this.renderErrorMessage(
-            `${this.props.intl.formatMessage(
-              commonMessages.purchaseAvailableOn
-            )}:`
-          )}
-        {purchaseAvailableDate &&
-          this.renderErrorMessage(
-            this.props.intl.formatMessage(commonMessages.dateOnTime, {
+            this.props.intl.formatMessage(commonMessages.purchaseAvailableOn, {
               date: new Intl.DateTimeFormat("default", {
                 year: "numeric",
                 month: "numeric",
