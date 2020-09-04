@@ -4,6 +4,17 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 2.11.0-rc.3
+
+- Require payment recreate when payment price is wrong - #892 by @orzechdev
+- Handle JWT token refreshing and verifying - #883 by @orzechdev
+
+## 2.11.0-rc.2
+
+- Update collection products query - #879 by @orzechdev
+- Fix checkout refreshing - #865 by @orzechdev
+- Add purchase availability to product details page - #878 by @orzechdev
+
 ## 2.11.0-rc.1
 
 - Add product hyperlink in cart page - #745 by @konstantinoschristomanos
@@ -28,11 +39,6 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix product list data overfetching - #855 by @dominik-zeglen
 - Add Adyen payment gateway - #845 by @orzechdev
 - Fix crash on null price range - #875 by @orzechdev
-- Update collection products query - #879 by @orzechdev
-- Fix checkout refreshing - #865 by @orzechdev
-- Add purchase availability to product details page - #878 by @orzechdev
-- Require payment recreate when payment price is wrong - #892 by @orzechdev
-- Handle JWT token refreshing and verifying - #883 by @orzechdev
 
 ## 2.10.4
 
