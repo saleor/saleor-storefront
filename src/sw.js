@@ -21,6 +21,7 @@ workbox.routing.registerNavigationRoute(
       new RegExp("/graphql"),
       new RegExp("/dashboard"),
       new RegExp("/media/export_files"),
+      new RegExp("/plugins"),
     ],
   }
 );
