@@ -13,7 +13,6 @@ import {
   convertSortByFromString,
   convertToAttributeScalar,
   getGraphqlIdFromDBId,
-  maybe,
 } from "../../core/utils";
 import Page from "./Page";
 import {
@@ -155,12 +154,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               return <OfflinePlaceholder />;
             }
 
-            const canDisplayFilters = maybe(
-              () =>
-                !!categoryData.data.attributes.edges &&
-                !!categoryData.data.category.name,
-              false
-            );
+            const canDisplayFilters =
+              !!categoryData.data?.attributes?.edges &&
+              !!categoryData.data?.category?.name;
 
             return (
               <TypedCategoryProductsQuery variables={variables}>

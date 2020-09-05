@@ -158,12 +158,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               return <OfflinePlaceholder />;
             }
 
-            const canDisplayFilters = maybe(
-              () =>
-                !!collectionData.data.attributes.edges &&
-                !!collectionData.data.collection.name,
-              false
-            );
+            const canDisplayFilters =
+              !!collectionData.data?.attributes?.edges &&
+              !!collectionData.data?.collection?.name;
 
             return (
               <TypedCollectionProductsQuery variables={variables}>

@@ -141,10 +141,8 @@ export const View: React.FC<ViewProps> = ({ match }) => {
           loaderFull
         >
           {({ loading, data, loadMore }) => {
-            const canDisplayFilters = maybe(
-              () => !!data.attributes.edges && !!data.products.edges,
-              false
-            );
+            const canDisplayFilters =
+              !!data?.attributes?.edges && !!data?.products?.edges;
 
             if (canDisplayFilters) {
               const handleLoadMore = () =>
