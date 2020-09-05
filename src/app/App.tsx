@@ -16,9 +16,9 @@ import { Routes } from "./routes";
 import Notifications from "./Notifications";
 
 const App: React.FC = () => {
-  const { tokenRefreshing } = useAuth();
+  const { tokenRefreshing, tokenVerifying } = useAuth();
 
-  if (tokenRefreshing) {
+  if (tokenRefreshing || tokenVerifying) {
     return <Loader />;
   }
 
