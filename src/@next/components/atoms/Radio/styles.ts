@@ -5,6 +5,8 @@ import { styled } from "@styles";
 const inputStyle = css<{ checked: boolean }>`
   ${props => props.checked && `color: #21125E;`}
 
+  display: flex;
+  align-items: center;
   cursor: pointer;
 
   input[type="radio"] {

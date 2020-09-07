@@ -69,17 +69,19 @@ const CheckoutShipping: React.FC<IProps> = ({
                       customLabel
                       onChange={() => setFieldValue("shippingMethod", id)}
                     >
-                      <span data-test="checkoutShippingMethodOptionName">
-                        {name}
-                      </span>
-                      <S.Price>
-                        {" "}
-                        | +
-                        <Money
-                          data-test="checkoutShippingMethodOptionPrice"
-                          money={price}
-                        />
-                      </S.Price>
+                      <S.TileTitle>
+                        <span data-test="checkoutShippingMethodOptionName">
+                          {name}
+                        </span>
+                        <S.Price>
+                          {" "}
+                          | +
+                          <Money
+                            data-test="checkoutShippingMethodOptionPrice"
+                            money={price}
+                          />
+                        </S.Price>
+                      </S.TileTitle>
                     </Radio>
                   </S.Tile>
                 );

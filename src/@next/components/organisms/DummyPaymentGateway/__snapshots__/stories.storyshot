@@ -18,6 +18,14 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
 }
 
 .c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -40,6 +48,14 @@ exports[`Storyshots @components/organisms/DummyPaymentGateway default 1`] = `
 
 .c2 {
   color: #21125E;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   cursor: pointer;
 }
 

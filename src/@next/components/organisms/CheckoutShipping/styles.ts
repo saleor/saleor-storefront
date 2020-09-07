@@ -15,8 +15,11 @@ export const Tile = styled.label<{ checked: boolean }>`
   background-color: ${props => props.theme.colors.light};
   padding: 20px;
   ${props => props.checked && `border: 2px solid #21125E;`}
-  font-size: ${props => props.theme.typography.smallFontSize};
   cursor: pointer;
+`;
+
+export const TileTitle = styled.span`
+  font-size: ${props => props.theme.typography.smallFontSize};
 `;
 
 export const Price = styled.span`
