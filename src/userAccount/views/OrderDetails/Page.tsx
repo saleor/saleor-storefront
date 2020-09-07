@@ -26,12 +26,12 @@ const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
         ...line.unitPrice,
         currency: line.unitPrice.currency,
         gross: {
-          amount: line.quantity * line.unitPrice.gross.amount,
           ...line.unitPrice.gross,
+          amount: line.quantity * line.unitPrice.gross.amount,
         },
         net: {
-          amount: line.quantity * line.unitPrice.net.amount,
           ...line.unitPrice.net,
+          amount: line.quantity * line.unitPrice.net.amount,
         },
       },
       ...line.variant,
