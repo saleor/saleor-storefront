@@ -22,18 +22,7 @@ const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines
     .map(line => ({
       quantity: line.quantity,
-      totalPrice: {
-        ...line.unitPrice,
-        currency: line.unitPrice.currency,
-        gross: {
-          ...line.unitPrice.gross,
-          amount: line.quantity * line.unitPrice.gross.amount,
-        },
-        net: {
-          ...line.unitPrice.net,
-          amount: line.quantity * line.unitPrice.net.amount,
-        },
-      },
+      totalPrice: line.totalPrice,
       ...line.variant,
       name: line.productName,
     }))
