@@ -29,6 +29,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Update collection products query - #879 by @orzechdev
 - Fix checkout refreshing - #865 by @orzechdev
 - Add purchase availability to product details page - #878 by @orzechdev
+- Require payment recreate when payment price is wrong - #892 by @orzechdev
 
 ## 2.10.4
 
