@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -18,6 +18,14 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
 }
 
 .c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   cursor: pointer;
 }
 
@@ -52,11 +60,14 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
   display: block;
   background-color: #f1f5f5;
   padding: 20px;
-  font-size: 0.875rem;
   cursor: pointer;
 }
 
 .c5 {
+  font-size: 0.875rem;
+}
+
+.c6 {
   color: #21125e;
 }
 
@@ -96,19 +107,23 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
             <span />
           </div>
           <span
-            data-test="checkoutShippingMethodOptionName"
-          >
-            Basic
-          </span>
-          <span
             className="c5"
           >
-             
-            | +
             <span
-              data-test="checkoutShippingMethodOptionPrice"
+              data-test="checkoutShippingMethodOptionName"
             >
-              
+              Basic
+            </span>
+            <span
+              className="c6"
+            >
+               
+              | +
+              <span
+                data-test="checkoutShippingMethodOptionPrice"
+              >
+                
+              </span>
             </span>
           </span>
         </div>
@@ -135,19 +150,23 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
             <span />
           </div>
           <span
-            data-test="checkoutShippingMethodOptionName"
-          >
-            Extra
-          </span>
-          <span
             className="c5"
           >
-             
-            | +
             <span
-              data-test="checkoutShippingMethodOptionPrice"
+              data-test="checkoutShippingMethodOptionName"
             >
-              
+              Extra
+            </span>
+            <span
+              className="c6"
+            >
+               
+              | +
+              <span
+                data-test="checkoutShippingMethodOptionPrice"
+              >
+                
+              </span>
             </span>
           </span>
         </div>
@@ -155,7 +174,7 @@ exports[`Storyshots @components/organisms/CheckoutShipping default 1`] = `
     </form>
   </section>
   <div
-    className="c6"
+    className="c7"
   />
 </div>
 `;
