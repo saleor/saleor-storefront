@@ -11,6 +11,7 @@ import { useCheckoutStepFromPath, useCheckoutStepState } from "@hooks";
 import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
+import { checkIfShippingRequiredForProducts } from "@utils/core";
 
 interface IRouterProps {
   items?: IItems;
@@ -42,13 +43,18 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
   );
   const stepFromPath = useCheckoutStepFromPath(pathname);
 
+  const isShippingRequiredForProducts = checkIfShippingRequiredForProducts(
+    items
+  );
+
   const getStepLink = () =>
     CHECKOUT_STEPS.find(stepObj => stepObj.step === recommendedStep)?.link ||
     CHECKOUT_STEPS[0].link;
 
   if (
-    pathname !== CHECKOUT_STEPS[4].link &&
-    (!stepFromPath || (stepFromPath && maxPossibleStep < stepFromPath))
+    (pathname !== CHECKOUT_STEPS[4].link &&
+      (!stepFromPath || (stepFromPath && maxPossibleStep < stepFromPath))) ||
+    (pathname === CHECKOUT_STEPS[1].link && !isShippingRequiredForProducts)
   ) {
     return <Redirect to={getStepLink()} />;
   }

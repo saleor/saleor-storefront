@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CheckoutStep } from "@temp/core/config";
+import {
+  checkIfShippingRequiredForProducts,
+  checkIfCheckoutPriceEqualPaymentPrice,
+} from "@utils/core";
 
 interface StepState {
   recommendedStep: CheckoutStep;
@@ -15,25 +19,19 @@ export const useCheckoutStepState = (
   payment?: IPayment,
   totalPrice?: ITotalPrice
 ): StepState => {
-  const checkIfCheckoutPriceEqualPaymentPrice = () => {
-    return (
-      totalPrice?.gross.amount === payment?.total?.amount &&
-      totalPrice?.gross.currency === payment?.total?.currency
-    );
-  };
+  const isShippingRequiredForProducts = checkIfShippingRequiredForProducts(
+    items
+  );
+  const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice(
+    payment,
+    totalPrice
+  );
 
   const getMaxPossibleStep = () => {
     if (!checkout?.id && items) {
       // we are creating checkout during address set up
       return CheckoutStep.Address;
     }
-
-    const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice();
-    const isShippingRequiredForProducts =
-      items &&
-      items.some(
-        ({ variant }) => variant.product?.productType.isShippingRequired
-      );
 
     const isShippingAddressSet =
       !isShippingRequiredForProducts || !!checkout?.shippingAddress;
@@ -56,13 +54,15 @@ export const useCheckoutStepState = (
   };
 
   const getRecommendedStep = (newMaxPossibleStep: CheckoutStep) => {
-    const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice();
-
-    if (
+    const isPaymentRecreateRequired =
       newMaxPossibleStep > CheckoutStep.Shipping &&
-      !isCheckoutPriceEqualPaymentPrice
-    ) {
+      !isCheckoutPriceEqualPaymentPrice;
+
+    if (isPaymentRecreateRequired && isShippingRequiredForProducts) {
       return CheckoutStep.Shipping;
+    }
+    if (isPaymentRecreateRequired) {
+      return CheckoutStep.Payment;
     }
     return newMaxPossibleStep;
   };
