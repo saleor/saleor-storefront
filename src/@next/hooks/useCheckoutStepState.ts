@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react";
 
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CheckoutStep } from "@temp/core/config";
+
+interface StepState {
+  recommendedStep: CheckoutStep;
+  maxPossibleStep: CheckoutStep;
+}
 
 export const useCheckoutStepState = (
   items?: IItems,
   checkout?: ICheckout,
-  payment?: IPayment
-): CheckoutStep => {
-  const isShippingRequiredForProducts =
-    items &&
-    items.some(
-      ({ variant }) => variant.product?.productType.isShippingRequired
+  payment?: IPayment,
+  totalPrice?: ITotalPrice
+): StepState => {
+  const checkIfCheckoutPriceEqualPaymentPrice = () => {
+    return (
+      totalPrice?.gross.amount === payment?.total?.amount &&
+      totalPrice?.gross.currency === payment?.total?.currency
     );
+  };
 
-  const getStep = () => {
+  const getMaxPossibleStep = () => {
     if (!checkout?.id && items) {
       // we are creating checkout during address set up
       return CheckoutStep.Address;
     }
+
+    const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice();
+    const isShippingRequiredForProducts =
+      items &&
+      items.some(
+        ({ variant }) => variant.product?.productType.isShippingRequired
+      );
 
     const isShippingAddressSet =
       !isShippingRequiredForProducts || !!checkout?.shippingAddress;
     const isBillingAddressSet = !!checkout?.billingAddress;
     const isShippingMethodSet =
       !isShippingRequiredForProducts || !!checkout?.shippingMethod;
-    const isPaymentMethodSet = !!payment?.id;
+    const isPaymentMethodSet =
+      !!payment?.id && isCheckoutPriceEqualPaymentPrice;
 
     if (!isShippingAddressSet || !isBillingAddressSet) {
       return CheckoutStep.Address;
@@ -40,14 +55,33 @@ export const useCheckoutStepState = (
     return CheckoutStep.Review;
   };
 
-  const [step, setStep] = useState(getStep());
+  const getRecommendedStep = (newMaxPossibleStep: CheckoutStep) => {
+    const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice();
+
+    if (
+      newMaxPossibleStep > CheckoutStep.Shipping &&
+      !isCheckoutPriceEqualPaymentPrice
+    ) {
+      return CheckoutStep.Shipping;
+    }
+    return newMaxPossibleStep;
+  };
+
+  const [maxPossibleStep, setMaxPossibleStep] = useState(getMaxPossibleStep());
+  const [recommendedStep, setRecommendedStep] = useState(
+    getRecommendedStep(maxPossibleStep)
+  );
 
   useEffect(() => {
-    const newStep = getStep();
-    if (step !== newStep) {
-      setStep(newStep);
+    const newMaxPossibleStep = getMaxPossibleStep();
+    const newRecommendedStep = getRecommendedStep(newMaxPossibleStep);
+    if (maxPossibleStep !== newMaxPossibleStep) {
+      setMaxPossibleStep(newMaxPossibleStep);
     }
-  }, [checkout, items, payment]);
+    if (recommendedStep !== newRecommendedStep) {
+      setRecommendedStep(newRecommendedStep);
+    }
+  }, [checkout, items, payment, totalPrice]);
 
-  return step;
+  return { recommendedStep, maxPossibleStep };
 };

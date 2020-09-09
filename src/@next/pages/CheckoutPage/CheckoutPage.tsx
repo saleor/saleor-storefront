@@ -241,6 +241,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         items={items}
         checkout={checkout}
         payment={payment}
+        totalPrice={totalPrice}
         renderAddress={props => (
           <CheckoutAddressSubpage
             ref={checkoutAddressSubpageRef}

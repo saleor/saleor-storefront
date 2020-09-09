@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import { useCheckoutStepFromPath, useCheckoutStepState } from "@hooks";
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 
@@ -16,6 +16,7 @@ interface IRouterProps {
   items?: IItems;
   checkout?: ICheckout;
   payment?: IPayment;
+  totalPrice?: ITotalPrice;
   renderAddress: (props: RouteComponentProps<any>) => React.ReactNode;
   renderShipping: (props: RouteComponentProps<any>) => React.ReactNode;
   renderPayment: (props: RouteComponentProps<any>) => React.ReactNode;
@@ -26,22 +27,28 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
   items,
   checkout,
   payment,
+  totalPrice,
   renderAddress,
   renderShipping,
   renderPayment,
   renderReview,
 }: IRouterProps) => {
   const { pathname } = useLocation();
-  const step = useCheckoutStepState(items, checkout, payment);
+  const { recommendedStep, maxPossibleStep } = useCheckoutStepState(
+    items,
+    checkout,
+    payment,
+    totalPrice
+  );
   const stepFromPath = useCheckoutStepFromPath(pathname);
 
   const getStepLink = () =>
-    CHECKOUT_STEPS.find(stepObj => stepObj.step === step)?.link ||
+    CHECKOUT_STEPS.find(stepObj => stepObj.step === recommendedStep)?.link ||
     CHECKOUT_STEPS[0].link;
 
   if (
     pathname !== CHECKOUT_STEPS[4].link &&
-    (!stepFromPath || (stepFromPath && step < stepFromPath))
+    (!stepFromPath || (stepFromPath && maxPossibleStep < stepFromPath))
   ) {
     return <Redirect to={getStepLink()} />;
   }
