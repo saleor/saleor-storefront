@@ -59,7 +59,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
 
       <td>
         {line.attributes.map(({ attribute, values }, attributeIndex) => (
-          <p>
+          <p key={attribute.id}>
             {attribute.name}: {values.map(value => value.name).join(", ")}
           </p>
         ))}
