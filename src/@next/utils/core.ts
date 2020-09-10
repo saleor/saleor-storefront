@@ -2,6 +2,8 @@
 // @ts-ignore
 import { Base64 } from "js-base64";
 
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+
 export const slugify = (text: string | number): string =>
   text
     .toString()
@@ -36,3 +38,6 @@ export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
 export const generateGuestOrderDetailsUrl = (token: string) =>
   `/order-history/${token}/`;
+
+export const checkIfShippingRequiredForProducts = (items?: IItems) =>
+  items?.some(({ variant }) => variant.product?.productType.isShippingRequired);
