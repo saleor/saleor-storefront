@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 
+import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
@@ -119,7 +120,7 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
       errorPolicy="all"
       key={match.params.id}
     >
-      {({ data }) => (
+      {({ data, loading }) => (
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
@@ -133,6 +134,10 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
                   />
                 </MetaWrapper>
               );
+            }
+
+            if (loading) {
+              return <Loader />;
             }
 
             if (product === null) {
