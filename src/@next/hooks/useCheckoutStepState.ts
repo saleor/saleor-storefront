@@ -3,10 +3,8 @@ import { useEffect, useState } from "react";
 import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CheckoutStep } from "@temp/core/config";
-import {
-  checkIfShippingRequiredForProducts,
-  checkIfCheckoutPriceEqualPaymentPrice,
-} from "@utils/core";
+import { checkIfShippingRequiredForProducts } from "@utils/core";
+import { isPriceEqual } from "@utils/money";
 
 interface StepState {
   recommendedStep: CheckoutStep;
@@ -22,10 +20,10 @@ export const useCheckoutStepState = (
   const isShippingRequiredForProducts = checkIfShippingRequiredForProducts(
     items
   );
-  const isCheckoutPriceEqualPaymentPrice = checkIfCheckoutPriceEqualPaymentPrice(
-    payment,
-    totalPrice
-  );
+  const isCheckoutPriceEqualPaymentPrice =
+    payment?.total &&
+    totalPrice?.gross &&
+    isPriceEqual(payment.total, totalPrice.gross);
 
   const getMaxPossibleStep = () => {
     if (!checkout?.id && items) {

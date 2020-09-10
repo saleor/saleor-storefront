@@ -2,8 +2,7 @@
 // @ts-ignore
 import { Base64 } from "js-base64";
 
-import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
-import { IPayment } from "@saleor/sdk/lib/api/Checkout/types";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 
 export const slugify = (text: string | number): string =>
   text
@@ -42,10 +41,3 @@ export const generateGuestOrderDetailsUrl = (token: string) =>
 
 export const checkIfShippingRequiredForProducts = (items?: IItems) =>
   items?.some(({ variant }) => variant.product?.productType.isShippingRequired);
-
-export const checkIfCheckoutPriceEqualPaymentPrice = (
-  payment?: IPayment,
-  totalPrice?: ITotalPrice
-) =>
-  totalPrice?.gross.amount === payment?.total?.amount &&
-  totalPrice?.gross.currency === payment?.total?.currency;
