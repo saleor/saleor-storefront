@@ -201,6 +201,7 @@
     "build": "webpack -p",
     "watch": "webpack -d --watch",
     "storybook": "start-storybook -p 9002",
+    "build-storybook": "build-storybook -o ./dist/storybook",
     "codegen": "apollo codegen:generate --target=typescript gqlTypes",
     "codegen-sdk": "apollo codegen:generate --target=typescript gqlTypes --config src/@sdk/apollo.config.js --globalTypesFile src/@sdk/gqlTypes/globalTypes.ts",
     "codegen-watch": "npm run codegen -- --watch",

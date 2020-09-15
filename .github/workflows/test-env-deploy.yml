@@ -57,6 +57,10 @@ jobs:
         run: |
           npm run build
 
+      - name: Run build storybook
+        run: |
+          npm run build-storybook
+
       - name: Set domain
         # Set test instance domain based on branch name slug
         run: |
