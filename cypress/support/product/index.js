@@ -32,7 +32,7 @@ Cypress.Commands.add("addItemWithNoShippingToTheBasket", () => {
     .get(HEADER_SELECTORS.mainMenuSearchButton)
     .click()
     .get(HEADER_SELECTORS.mainMenuSearchInput)
-    .type("songs")
+    .type("tunes")
     .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchProductsExpandedArea)
     .should("exist")
     .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchItems)
