@@ -190,8 +190,7 @@
   "lint-staged": {
     "*.{jsx?,tsx?}": [
       "eslint --fix",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "scripts": {
