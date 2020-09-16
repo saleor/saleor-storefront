@@ -83,6 +83,7 @@ jobs:
         env:
           API_URI: ${{ secrets.API_URI }}
           APP_MOUNT_URI: ${{ secrets.APP_MOUNT_URI }}
+          CYPRESS_API_URI: ${{ secrets.CYPRESS_API_URI }}
           CYPRESS_USER_NAME: ${{ secrets.CYPRESS_USER_NAME }}
           CYPRESS_USER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }}
         with:
