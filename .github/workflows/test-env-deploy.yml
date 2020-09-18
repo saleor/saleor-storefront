@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: rlespinasse/github-slug-action@2.0.0
+
       - name: Start deployment
         uses: bobheadxi/deployments@v0.4.2
         id: deployment
@@ -22,6 +23,15 @@ jobs:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
           env: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          ref: ${{ github.head_ref }}
+
+      - name: Start storybook deployment
+        uses: bobheadxi/deployments@v0.4.2
+        id: storybook-deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: storybook ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
           ref: ${{ github.head_ref }}
 
       - name: Cache node modules
@@ -57,6 +67,10 @@ jobs:
         run: |
           npm run build
 
+      - name: Run build storybook
+        run: |
+          npm run build-storybook
+
       - name: Set domain
         # Set test instance domain based on branch name slug
         run: |
@@ -84,3 +98,13 @@ jobs:
           status: ${{ job.status }}
           env_url: https://${{ env.domain }}/
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update storybook deployment status
+        uses: bobheadxi/deployments@v0.4.2
+        if: always()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          env_url: https://${{ env.domain }}/storybook/index.html
+          deployment_id: ${{ steps.storybook-deployment.outputs.deployment_id }}
