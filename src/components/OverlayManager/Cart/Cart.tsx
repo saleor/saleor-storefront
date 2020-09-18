@@ -53,6 +53,9 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
     return items.find(item => !item.variant || !item.totalPrice);
   };
 
+  const itemsQuantity =
+    items?.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0) || 0;
+
   return (
     <Overlay testingContext="cartOverlay" context={overlay}>
       <Online>
@@ -62,11 +65,13 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
             <div className="overlay__header-text">
               <FormattedMessage defaultMessage="My bag," />{" "}
               <span className="overlay__header-text-items">
-                {items?.reduce(
-                  (prevVal, currVal) => prevVal + currVal.quantity,
-                  0
-                ) || 0}{" "}
-                <FormattedMessage defaultMessage="items" />
+                <FormattedMessage
+                  defaultMessage="{itemsQuantity,plural,one{{itemsQuantity} item} other{{itemsQuantity} items}}"
+                  description="items quantity in cart"
+                  values={{
+                    itemsQuantity,
+                  }}
+                />
               </span>
             </div>
             <ReactSVG

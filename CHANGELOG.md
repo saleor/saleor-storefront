@@ -31,6 +31,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add purchase availability to product details page - #878 by @orzechdev
 - Require payment recreate when payment price is wrong - #892 by @orzechdev
 - Handle JWT token refreshing and verifying - #883 by @orzechdev
+- Fix cart sidebar style - #897 by @orzechdev
 
 ## 2.10.4
 

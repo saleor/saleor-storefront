@@ -227,6 +227,21 @@
   "account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
     "string": "Edit address"
   },
+  "app_dot_Notifications_dot_1053546789": {
+    "string": "To update the application to the latest version, please refresh the page!"
+  },
+  "app_dot_Notifications_dot_1308518649": {
+    "string": "Refresh"
+  },
+  "app_dot_Notifications_dot_1917823234": {
+    "string": "You are now logged in"
+  },
+  "app_dot_Notifications_dot_2378877294": {
+    "string": "You are now logged out"
+  },
+  "app_dot_Notifications_dot_795565": {
+    "string": "New version is available!"
+  },
   "components_dot_Breadcrumbs_dot_index_dot_1347475195": {
     "string": "Back"
   },
@@ -278,8 +293,9 @@
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1316031908": {
     "string": "My bag,"
   },
-  "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_2287516380": {
-    "string": "items"
+  "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1397761112": {
+    "context": "items quantity in cart",
+    "string": "{itemsQuantity,plural,one{{itemsQuantity} item} other{{itemsQuantity} items}}"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_2426849470": {
     "string": "Go to my bag"
@@ -349,21 +365,6 @@
   },
   "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
     "string": "No Options"
-  },
-  "index_dot_1053546789": {
-    "string": "To update the application to the latest version, please refresh the page!"
-  },
-  "index_dot_1308518649": {
-    "string": "Refresh"
-  },
-  "index_dot_1917823234": {
-    "string": "You are now logged in"
-  },
-  "index_dot_2378877294": {
-    "string": "You are now logged out"
-  },
-  "index_dot_795565": {
-    "string": "New version is available!"
   },
   "intl_dot_checkoutMessages_dot_addNewAddress": {
     "string": "Add new address"
