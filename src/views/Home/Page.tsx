@@ -5,6 +5,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
+import VideoStripe from '../../components/VideoStripe/index';
 import { generateCategoryUrl } from "../../core/utils";
 
 import {
@@ -70,6 +71,7 @@ const Page: React.FC<{
         </div>
       </div>
       <ProductsFeatured />
+      <VideoStripe />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">

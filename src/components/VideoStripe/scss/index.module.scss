@@ -1,0 +1,41 @@
+.VideoBackground {
+  Background: #000;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: unsafe center;
+  margin: 2rem 0 4rem;
+}
+
+.VideoForeground {
+  position: relative;
+}
+
+.VideoForeground,
+.VideoBackground iframe {
+  min-height: 57vw;
+  pointer-events: none;
+}
+
+@media (max-width: 1920px) {
+  .VideoBackground {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .VideoBackground {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 800px) {
+  .VideoBackground {
+    max-height: 190px;
+  }
+
+  .VideoBackground iframe {
+    display: none;
+  }
+}

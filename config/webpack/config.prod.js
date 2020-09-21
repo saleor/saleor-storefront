@@ -7,12 +7,26 @@ module.exports = ({ sourceDir, distDir }) => ({
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /^((?!\.module).)*(scss|css)$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { sourceMap: true }
+          },
+          { loader: "sass-loader" }
+        ]
+      },
+      {
+        test: /\.module.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: true
+            }
           },
           { loader: "sass-loader" }
         ]

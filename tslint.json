@@ -12,6 +12,7 @@
     "no-implicit-dependencies": false,
     "no-shadowed-variable": false,
     "no-submodule-imports": [false],
+    "ordered-imports": [false],
     "no-var-requires": false,
     "interface-over-type-literal": false,
     "variable-name": {
