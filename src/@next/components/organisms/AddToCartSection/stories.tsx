@@ -41,10 +41,12 @@ const DEFAULT_PROPS: IAddToCartSection = {
     __typename: "ProductPricingInfo",
   },
   items: [],
-  queryAttributes: undefined,
+  queryAttributes: {},
   setVariantId: variantId => undefined,
   onAddToCart: (variantId, quantity) => undefined,
   onAttributeChangeHandler: (slug, value) => undefined,
+  availableForPurchase: null,
+  isAvailableForPurchase: null,
 };
 
 storiesOf("@components/organisms/AddToCartSection", module)

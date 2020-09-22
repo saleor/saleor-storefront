@@ -34,12 +34,15 @@ export interface IAddToCartSection {
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
+  isAvailableForPurchase: boolean | null;
+  availableForPurchase: string | null;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
 export const AddToCartSection: React.FC<IAddToCartSection> = props => {
+  const { isAvailableForPurchase, availableForPurchase } = props;
   const intl = useIntl();
 
   const [quantity, setQuantity] = useState<number>(1);
@@ -56,6 +59,11 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
     variantStock
   );
   const isOutOfStock = !!variantId && variantStock === 0;
+  const noPurchaseAvailable = !isAvailableForPurchase && !availableForPurchase;
+  const purchaseAvailableDate =
+    !isAvailableForPurchase &&
+    availableForPurchase &&
+    Date.parse(availableForPurchase);
   const isNoItemsAvailable = !!variantId && !isOutOfStock && !availableQuantity;
   const isLowStock =
     !!variantId &&
@@ -65,6 +73,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
 
   const disableButton = canAddToCart(
     props.items,
+    !!isAvailableForPurchase,
     variantId,
     variantStock,
     quantity
@@ -99,6 +108,24 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           {getProductPrice(props.productPricing, variantPricing)}
         </S.ProductPricing>
       )}
+      {noPurchaseAvailable &&
+        renderErrorMessage(
+          intl.formatMessage(commonMessages.noPurchaseAvailable)
+        )}
+      {purchaseAvailableDate &&
+        renderErrorMessage(
+          intl.formatMessage(commonMessages.purchaseAvailableOn, {
+            date: new Intl.DateTimeFormat("default", {
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+            }).format(purchaseAvailableDate),
+            time: new Intl.DateTimeFormat("default", {
+              hour: "numeric",
+              minute: "numeric",
+            }).format(purchaseAvailableDate),
+          })
+        )}
       {isLowStock &&
         renderErrorMessage(intl.formatMessage(commonMessages.lowStock))}
       {isNoItemsAvailable &&

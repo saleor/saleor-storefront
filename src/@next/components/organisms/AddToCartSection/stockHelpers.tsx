@@ -47,6 +47,7 @@ export const getProductPrice = (
 
 export const canAddToCart = (
   items: ICheckoutModelLine[],
+  isAvailableForPurchase: boolean,
   variantId: string,
   variantStock: number,
   quantity: number
@@ -56,7 +57,10 @@ export const canAddToCart = (
     ? quantity + (cartItem?.quantity || 0)
     : quantity;
   return (
-    quantity !== 0 && !!variantId && variantStock >= syncedQuantityWithCart
+    isAvailableForPurchase &&
+    quantity !== 0 &&
+    !!variantId &&
+    variantStock >= syncedQuantityWithCart
   );
 };
 
