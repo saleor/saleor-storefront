@@ -13,6 +13,12 @@ export const ProductPricing = styled.h4`
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
 
+export const UndiscountedPrice = styled.span`
+  text-decoration: line-through;
+  color: ${props => props.theme.colors.baseFontColorSemiTransparent};
+  font-size: ${props => props.theme.typography.smallFontSize};
+`;
+
 export const VariantPicker = styled.div`
   display: grid;
   margin-top: 20px;

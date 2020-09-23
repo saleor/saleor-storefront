@@ -7,6 +7,8 @@ import {
 import { isEqual } from "lodash";
 import { TaxedMoney } from "../../containers";
 
+import * as S from "./styles";
+
 /**
  * Renders formatted price for chosen variant or product.
  * Price ranges and discounts are additionally formatted available.
@@ -21,9 +23,9 @@ export const getProductPrice = (
     }
     return (
       <>
-        <span className="product-description__undiscounted_price">
+        <S.UndiscountedPrice>
           <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
-        </span>
+        </S.UndiscountedPrice>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <TaxedMoney taxedMoney={variantPricing.price} />
       </>
@@ -58,7 +60,7 @@ export const canAddToCart = (
     : quantity;
   return (
     isAvailableForPurchase &&
-    quantity !== 0 &&
+    quantity > 0 &&
     !!variantId &&
     variantStock >= syncedQuantityWithCart
   );
