@@ -66,7 +66,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
     !isNoItemsAvailable &&
     availableQuantity < LOW_STOCK_QUANTITY;
 
-  const disableButton = canAddToCart(
+  const disableButton = !canAddToCart(
     props.items,
     !!isAvailableForPurchase,
     variantId,
