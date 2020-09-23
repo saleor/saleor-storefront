@@ -28,3 +28,7 @@ export const QuantityInput = styled.div`
   margin-top: 20px;
   padding-top: 20px;
 `;
+
+export const ErrorMessage = styled.p`
+  color: ${props => props.theme.colors.error};
+`;

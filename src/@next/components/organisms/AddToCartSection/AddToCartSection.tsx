@@ -75,7 +75,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
   );
 
   const renderErrorMessage = (message: string) => (
-    <p className="__error-message">{message}</p>
+    <S.ErrorMessage>{message}</S.ErrorMessage>
   );
 
   const onVariantPickerChange = (
