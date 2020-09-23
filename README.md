@@ -142,7 +142,7 @@ test:e2e:dev
     -   Can change storefront logo, favicon, or add new images here.
 -   **saleor-storefront/src/globalStyles/scss/variables.scss**  - Contains base styles like colors, font size, container width, media breakpoints and more.
 -   **saleor-storefront/src/@next/globalStyles/**  - Contains more base styles, themes, media, and constants.
--   **saleor-storefront/src/views/**  - This folder controls the views, or what is displayed for each page. The way Saleor has it setup, most views have a file named "Page.tsx" that controls the layout of the page and a file named "View.tsx" that calls the query and renders the <Page /> component with the data.
+-   **saleor-storefront/src/views/**  - This folder controls the views, or what is displayed for each page. Most views have a file named "Page.tsx" that controls the layout of the page and a file named "View.tsx" that calls the query and renders the <Page /> component with the data.
     -   Can add another view to storefront here. Requires adding a route (see routes below).
 -   saleor-storefront/src/@next/pages/  - Second spot for modifying/adding different pages. This is the recommended directory to add new pages.
 -   **saleor-storefront/src/app/routes/**  - This folder contains the paths as well as holds the <Routes /> component. Here is where you add a new path and route.
