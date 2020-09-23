@@ -12,11 +12,6 @@ import {
 
 import * as S from "./styles";
 import {
-  OverlayType,
-  OverlayTheme,
-  OverlayContext,
-} from "../../../../components/Overlay";
-import {
   getAvailableQuantity,
   getProductPrice,
   canAddToCart,
@@ -148,17 +143,10 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           hideErrors={!variantId || isOutOfStock || isNoItemsAvailable}
         />
       </S.QuantityInput>
-      <OverlayContext.Consumer>
-        {overlayContext => (
-          <AddToCartButton
-            onSubmit={() => {
-              props.onAddToCart(variantId, quantity);
-              overlayContext.show(OverlayType.cart, OverlayTheme.right);
-            }}
-            disabled={disableButton}
-          />
-        )}
-      </OverlayContext.Consumer>
+      <AddToCartButton
+        onSubmit={() => props.onAddToCart(variantId, quantity)}
+        disabled={disableButton}
+      />
     </S.AddToCartSelection>
   );
 };

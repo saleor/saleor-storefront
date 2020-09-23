@@ -3,7 +3,12 @@ import React from "react";
 import Media from "react-media";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
-import { Breadcrumbs } from "../../components";
+import {
+  Breadcrumbs,
+  OverlayContext,
+  OverlayTheme,
+  OverlayType,
+} from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
@@ -31,6 +36,8 @@ const Page: React.FC<
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
 > = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
+  const overlayContext = React.useContext(OverlayContext);
+
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
   const [variantId, setVariantId] = React.useState("");
@@ -48,6 +55,11 @@ const Page: React.FC<
     return product.images;
   };
 
+  const handleAddToCart = (variantId, quantity) => {
+    add(variantId, quantity);
+    overlayContext.show(OverlayType.cart, OverlayTheme.right);
+  };
+
   const productDescription = (
     <AddToCartSection
       items={items}
@@ -57,7 +69,7 @@ const Page: React.FC<
       productPricing={product.pricing}
       queryAttributes={queryAttributes}
       setVariantId={setVariantId}
-      onAddToCart={add}
+      onAddToCart={handleAddToCart}
       onAttributeChangeHandler={onAttributeChangeHandler}
       isAvailableForPurchase={product.isAvailableForPurchase}
       availableForPurchase={product.availableForPurchase}
