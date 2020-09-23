@@ -139,7 +139,7 @@ test:e2e:dev
     -   Can change social media links that are displayed in the footer
     -   Can change some meta options
 -   **saleor-storefront/src/images/**  - Holds all the images for logo, cart, favicon, etc.
-    -   Can change storefront logo, favicon, or add new images here. Easiest way I've found is to save saleor's logos as backups (logo-backup.svg) and insert your own and mess around till you get it looking the way you want and get rid of backups. I'm not a graphic person so not sure the best way.
+    -   Can change storefront logo, favicon, or add new images here.
 -   **saleor-storefront/src/globalStyles/scss/variables.scss**  - Contains base styles like colors, font size, container width, media breakpoints and more.
 -   **saleor-storefront/src/@next/globalStyles/**  - Contains more base styles, themes, media, and constants.
 -   **saleor-storefront/src/views/**  - This folder controls the views, or what is displayed for each page. The way Saleor has it setup, most views have a file named "Page.tsx" that controls the layout of the page and a file named "View.tsx" that calls the query and renders the <Page /> component with the data.
