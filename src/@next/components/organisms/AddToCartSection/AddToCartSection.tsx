@@ -42,7 +42,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
 
   const [quantity, setQuantity] = useState<number>(1);
   const [variantId, setVariantId] = useState<string>("");
-  const [variantStock, setVariantStock] = useState<number>(0); // TODO: check if we can use 0 instead of null
+  const [variantStock, setVariantStock] = useState<number>(0);
   const [
     variantPricing,
     setVariantPricing,
@@ -74,8 +74,13 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
     quantity
   );
 
-  const renderErrorMessage = (message: string) => (
-    <S.ErrorMessage>{message}</S.ErrorMessage>
+  const renderErrorMessage = (message: string, testingContextId: string) => (
+    <S.ErrorMessage
+      data-test="stockErrorMessage"
+      data-testId={testingContextId}
+    >
+      {message}
+    </S.ErrorMessage>
   );
 
   const onVariantPickerChange = (
@@ -95,9 +100,14 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
 
   return (
     <S.AddToCartSelection>
-      <S.ProductNameHeader>{props.name}</S.ProductNameHeader>
+      <S.ProductNameHeader data-test="productName">
+        {props.name}
+      </S.ProductNameHeader>
       {isOutOfStock ? (
-        renderErrorMessage(intl.formatMessage(commonMessages.outOfStock))
+        renderErrorMessage(
+          intl.formatMessage(commonMessages.outOfStock),
+          "outOfStock"
+        )
       ) : (
         <S.ProductPricing>
           {getProductPrice(props.productPricing, variantPricing)}
@@ -105,7 +115,8 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
       )}
       {noPurchaseAvailable &&
         renderErrorMessage(
-          intl.formatMessage(commonMessages.noPurchaseAvailable)
+          intl.formatMessage(commonMessages.noPurchaseAvailable),
+          "notAvailable"
         )}
       {purchaseAvailableDate &&
         renderErrorMessage(
@@ -119,12 +130,19 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
               hour: "numeric",
               minute: "numeric",
             }).format(purchaseAvailableDate),
-          })
+          }),
+          "timeRestrictedAvailability"
         )}
       {isLowStock &&
-        renderErrorMessage(intl.formatMessage(commonMessages.lowStock))}
+        renderErrorMessage(
+          intl.formatMessage(commonMessages.lowStock),
+          "lowStockWarning"
+        )}
       {isNoItemsAvailable &&
-        renderErrorMessage(intl.formatMessage(commonMessages.noItemsAvailable))}
+        renderErrorMessage(
+          intl.formatMessage(commonMessages.noItemsAvailable),
+          "noItemsAvailable"
+        )}
       <S.VariantPicker>
         <ProductVariantPicker
           productVariants={props.productVariants}
@@ -141,6 +159,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
           disabled={isOutOfStock || isNoItemsAvailable}
           onQuantityChange={setQuantity}
           hideErrors={!variantId || isOutOfStock || isNoItemsAvailable}
+          testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
       <AddToCartButton

@@ -60,7 +60,7 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const productDescription = (
+  const addToCartSection = (
     <AddToCartSection
       items={items}
       productId={product.id}
@@ -92,7 +92,7 @@ const Page: React.FC<
                 <>
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
-                    {productDescription}
+                    {addToCartSection}
                   </div>
                 </>
               ) : (
@@ -109,7 +109,7 @@ const Page: React.FC<
                         "product-page__product__info--fixed"
                       )}
                     >
-                      {productDescription}
+                      {addToCartSection}
                     </div>
                   </div>
                 </>
