@@ -209,7 +209,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
       <p
         className="c4"
       >
-        We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped.
+        We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.
       </p>
       <div
         className="c5"
