@@ -1,6 +1,8 @@
 import { IImage } from "@types";
 import React from "react";
 
+export type ICartRowType = "responsive" | "condense";
+
 export interface IProps {
   /**
    * Item index
@@ -53,4 +55,8 @@ export interface IProps {
     attribute: { id: string; name: string };
     values: Array<{ name: string }>;
   }>;
+  /**
+   * Visual row style
+   */
+  type?: ICartRowType;
 }

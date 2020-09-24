@@ -27,7 +27,7 @@ const QuantityButtons = (
 );
 
 /**
- * Product row displayed on cart page
+ * Product row displayed on cart page and in cart sidebar
  */
 export const CartRow: React.FC<IProps> = ({
   index,
@@ -42,6 +42,7 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
   id,
+  type = "responsive",
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
@@ -99,13 +100,13 @@ export const CartRow: React.FC<IProps> = ({
   const productUrl = generateProductUrl(id, name);
 
   return (
-    <S.Wrapper data-test="cartRow" data-test-id={sku}>
+    <S.Wrapper cartRowType={type} data-test="cartRow" data-test-id={sku}>
       <S.Photo>
         <Link to={productUrl}>
           <CachedImage data-test="itemImage" {...thumbnail} />
         </Link>
       </S.Photo>
-      <S.Description>
+      <S.Description cartRowType={type}>
         <Link to={productUrl}>
           <S.Name data-test="itemName">{name}</S.Name>
         </Link>
@@ -115,7 +116,7 @@ export const CartRow: React.FC<IProps> = ({
             <span data-test="itemSKU">{sku || "-"}</span>
           </S.LightFont>
         </S.Sku>
-        <S.Attributes data-test="itemAttributes">
+        <S.Attributes cartRowType={type} data-test="itemAttributes">
           {attributes.map(({ attribute, values }, attributeIndex) => (
             <S.SingleAttribute key={attribute.id}>
               <span
@@ -150,16 +151,16 @@ export const CartRow: React.FC<IProps> = ({
         />
       </S.Trash>
 
-      <S.TotalPrice>
-        <S.PriceLabel>
+      <S.TotalPrice cartRowType={type}>
+        <S.PriceLabel cartRowType={type}>
           <S.LightFont>
             <FormattedMessage {...commonMessages.totalPrice} />:
           </S.LightFont>
         </S.PriceLabel>
         <p data-test="totalPrice">{totalPrice}</p>
       </S.TotalPrice>
-      <S.UnitPrice>
-        <S.PriceLabel>
+      <S.UnitPrice cartRowType={type}>
+        <S.PriceLabel cartRowType={type}>
           <S.LightFont>
             <FormattedMessage {...commonMessages.price} />:
           </S.LightFont>
