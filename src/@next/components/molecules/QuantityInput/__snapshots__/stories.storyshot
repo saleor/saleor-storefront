@@ -100,6 +100,7 @@ exports[`Storyshots @components/molecules/QuantityInput default 1`] = `
       >
         <input
           className="c4"
+          data-test="QuantityInput"
           disabled={false}
           min="1"
           name="quantity"
@@ -226,6 +227,7 @@ exports[`Storyshots @components/molecules/QuantityInput disabled 1`] = `
       >
         <input
           className="c4"
+          data-test="QuantityInput"
           disabled={true}
           min="1"
           name="quantity"

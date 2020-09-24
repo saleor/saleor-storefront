@@ -175,6 +175,7 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
   >
     <h3
       className="c1"
+      data-test="productName"
     >
       Tribute
     </h3>
@@ -191,6 +192,8 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
     </h4>
     <p
       className="c3"
+      data-test="stockErrorMessage"
+      data-testId="notAvailable"
     >
       Not available for purchase
     </p>
@@ -216,6 +219,7 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
           >
             <input
               className="c10"
+              data-test="addToCartQuantity"
               disabled={false}
               min="1"
               name="quantity"

@@ -12,6 +12,7 @@ const DEFAULT_PROPS: IQuantityInput = {
   disabled: false,
   onQuantityChange: (value: number) => undefined,
   hideErrors: false,
+  testingContext: "QuantityInput",
 };
 
 storiesOf("@components/molecules/QuantityInput", module)
