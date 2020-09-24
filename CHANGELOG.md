@@ -32,6 +32,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Require payment recreate when payment price is wrong - #892 by @orzechdev
 - Handle JWT token refreshing and verifying - #883 by @orzechdev
 - Fix cart sidebar style - #897 by @orzechdev
+- Refactor variant picker components and open sidebar after adding product to cart - #809 by @krzysztofwolski
 
 ## 2.10.4
 
