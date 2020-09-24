@@ -31,7 +31,7 @@ const ThankYou: React.FC<IProps> = ({
           <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped." />
+          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped." />
         </S.Paragraph>
         <S.Buttons>
           <Button
