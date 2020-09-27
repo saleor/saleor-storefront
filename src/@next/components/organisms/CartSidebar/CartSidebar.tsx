@@ -1,8 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Button, CartFooter } from "@components/atoms";
-import { CardHeader } from "@components/molecules";
+import { Button } from "@components/atoms";
+import { CardHeader, CartSummaryCosts } from "@components/molecules";
 import { TaxedMoney } from "@components/containers";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { ITaxedMoney } from "@types";
@@ -60,7 +60,7 @@ const prepareCartFooter = (
   promoTaxedPrice?: ITaxedMoney | null,
   subtotalPrice?: ITaxedMoney | null
 ) => (
-  <CartFooter
+  <CartSummaryCosts
     subtotalPrice={
       <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
     }

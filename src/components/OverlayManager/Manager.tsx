@@ -3,7 +3,7 @@ import { useCart, useCheckout } from "@saleor/sdk";
 import * as React from "react";
 
 import { Overlay, OverlayContext, OverlayType } from "..";
-import Cart from "./Cart";
+// import Cart from "./Cart";
 import Login from "./Login";
 import MobileNav from "./MobileNav";
 import Modal from "./Modal";
