@@ -14,6 +14,8 @@ import {
 const hide = jest.fn();
 const removeItem = jest.fn();
 const updateItem = jest.fn();
+const continueShopping = jest.fn();
+const proceedToCheckout = jest.fn();
 
 describe("<CartSidebar />", () => {
   it("exists", () => {
@@ -29,6 +31,8 @@ describe("<CartSidebar />", () => {
         promoTaxedPrice={PROMO_PRICE}
         show
         hide={hide}
+        continueShopping={continueShopping}
+        proceedToCheckout={proceedToCheckout}
       />
     );
 

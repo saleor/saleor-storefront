@@ -20,6 +20,12 @@ if (!portalRoot) {
   document.body.appendChild(portalRoot);
 }
 
+const removeItem = action("remove item");
+const updateItem = action("update item");
+const hide = action("hide");
+const continueShopping = action("continue shopping");
+const proceedToCheckout = action("proceed to checkout");
+
 storiesOf("@components/organisms/CartSidebar", module)
   .addParameters({ component: CartSidebar })
   .addDecorator(story => (
@@ -31,14 +37,33 @@ storiesOf("@components/organisms/CartSidebar", module)
     <CartSidebar
       title="MY CART"
       items={ITEMS}
-      removeItem={action("remove item")}
-      updateItem={action("update item")}
+      removeItem={removeItem}
+      updateItem={updateItem}
       totalPrice={TOTAL_PRICE}
       subtotalPrice={SUBTOTAL_PRICE}
       shippingTaxedPrice={SHIPPING_PRICE}
       promoTaxedPrice={PROMO_PRICE}
       target={portalRoot}
       show
-      hide={action("hide")}
+      hide={hide}
+      continueShopping={continueShopping}
+      proceedToCheckout={proceedToCheckout}
+    />
+  ))
+  .add("empty", () => (
+    <CartSidebar
+      title="MY CART"
+      items={[]}
+      removeItem={removeItem}
+      updateItem={updateItem}
+      totalPrice={TOTAL_PRICE}
+      subtotalPrice={SUBTOTAL_PRICE}
+      shippingTaxedPrice={SHIPPING_PRICE}
+      promoTaxedPrice={PROMO_PRICE}
+      target={portalRoot}
+      show
+      hide={hide}
+      continueShopping={continueShopping}
+      proceedToCheckout={proceedToCheckout}
     />
   ));

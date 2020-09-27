@@ -58,6 +58,8 @@ const OverlayManager: React.FC = () => {
                 shippingTaxedPrice={shippingTaxedPrice}
                 promoTaxedPrice={promoTaxedPrice}
                 totalPrice={totalPrice}
+                continueShopping={() => undefined}
+                proceedToCheckout={() => undefined}
               />
             );
           // return <Cart overlay={overlay} />;

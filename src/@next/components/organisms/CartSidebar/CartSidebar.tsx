@@ -97,6 +97,8 @@ export interface ICartSidebar {
    * multiple elements in the same view from each other
    */
   testingContextId?: string;
+  continueShopping: () => void;
+  proceedToCheckout: () => void;
 }
 
 const CartSidebar: React.FC<ICartSidebar> = ({
@@ -112,6 +114,8 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   show,
   target,
   testingContextId,
+  continueShopping,
+  proceedToCheckout,
 }: ICartSidebar) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -132,32 +136,68 @@ const CartSidebar: React.FC<ICartSidebar> = ({
           <span>{title}</span>
         </CardHeader>
         <S.Content>
-          <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
-        </S.Content>
-        <S.Footer>
-          {prepareCartFooter(
-            totalPrice,
-            shippingTaxedPrice,
-            promoTaxedPrice,
-            subtotalPrice
+          {items?.length ? (
+            <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
+          ) : (
+            <S.EmptyCart>
+              <S.EmptyCartTitle>
+                <FormattedMessage
+                  defaultMessage="Your cart is empty"
+                  description="cart sidebar title"
+                />
+              </S.EmptyCartTitle>
+              <S.EmptyCartDescription>
+                <FormattedMessage
+                  defaultMessage="You haven’t added anything to your bag. We’re sure you’ll find something in our store"
+                  description="cart sidebar description"
+                />
+              </S.EmptyCartDescription>
+              <Button
+                testingContext="footerActionButton"
+                color="secondary"
+                fullWidth
+                onClick={continueShopping}
+              >
+                <FormattedMessage
+                  defaultMessage="Continue shopping"
+                  description="button"
+                />
+              </Button>
+            </S.EmptyCart>
           )}
-          <Button
-            testingContext="footerActionButton"
-            color="secondary"
-            fullWidth
-          >
-            <FormattedMessage
-              defaultMessage="Continue shopping"
-              description="button"
-            />
-          </Button>
-          <Button testingContext="footerActionButton" color="primary" fullWidth>
-            <FormattedMessage
-              defaultMessage="Proceed to Checkout"
-              description="button"
-            />
-          </Button>
-        </S.Footer>
+        </S.Content>
+        {!!items?.length && (
+          <S.Footer>
+            {prepareCartFooter(
+              totalPrice,
+              shippingTaxedPrice,
+              promoTaxedPrice,
+              subtotalPrice
+            )}
+            <Button
+              testingContext="footerActionButton"
+              color="secondary"
+              fullWidth
+              onClick={continueShopping}
+            >
+              <FormattedMessage
+                defaultMessage="Continue shopping"
+                description="button"
+              />
+            </Button>
+            <Button
+              testingContext="footerActionButton"
+              color="primary"
+              fullWidth
+              onClick={proceedToCheckout}
+            >
+              <FormattedMessage
+                defaultMessage="Proceed to Checkout"
+                description="button"
+              />
+            </Button>
+          </S.Footer>
+        )}
       </S.Wrapper>
     </Overlay>
   );
