@@ -5,8 +5,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 import { TextField } from "@components/molecules";
 import { useIntl } from "react-intl";
-import * as SI from "src/@next/components/atoms/Input/styles";
-import { Input } from "@components/atoms";
+import { Input, CreditCardInput } from "@components/atoms";
 
 export const statuses = [
   { token: "charged", label: "Charged" },
@@ -60,24 +59,13 @@ const DummyPaymentGateway: React.FC<IProps> = ({
             name="nameOnCard"
             label={intl.formatMessage({ defaultMessage: "Name on Card" })}
             value={values.nameOnCard}
+            onChange={handleChange}
           />
-          <SI.Wrapper
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "stretch",
-            }}
-          >
-            <Input
-              name="cardNumber"
-              label={intl.formatMessage({ defaultMessage: "Card number" })}
-              value={values.cardNumber}
-              // {...rest}
-              // error={hasErrors}
-            />
-            <input type="text" name="cvc" value={values.cvc} />
-            <input name="cardNumber" value={values.cardNumber} />
-          </SI.Wrapper>
+          <CreditCardInput
+            values={values}
+            onChange={handleChange}
+            label={intl.formatMessage({ defaultMessage: "Card number" })}
+          ></CreditCardInput>
         </S.Form>
       )}
     </Formik>
