@@ -128,7 +128,7 @@ All new components should follow Atomic Design Guidelines and be placed in `src/
 Files structure can be generated using `plop`:
 
 ```
-npm run plop
+npm run generate
 ```
 
 ## Modifying the Storefront
