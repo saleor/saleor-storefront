@@ -124,11 +124,6 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
   top: 100%;
 }
 
-.c5 {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
 .c1 {
   text-transform: uppercase;
   font-weight: 600;
@@ -158,6 +153,11 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
 
 .c3 {
   color: #c22d74;
+}
+
+.c5 {
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 @media (max-width:540px) {
@@ -242,7 +242,7 @@ exports[`Storyshots @components/organisms/AddToCartSection default 1`] = `
       </div>
     </div>
     <button
-      className="product-description__action c13"
+      className="c13"
       color="primary"
       data-test="addProductToCartButton"
       disabled={true}

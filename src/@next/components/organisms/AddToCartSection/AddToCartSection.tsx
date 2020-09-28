@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
 
-import { ProductVariantPicker } from "@components/organisms";
 import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
@@ -10,9 +9,10 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
-import QuantityInput from "@components/molecules/QuantityInput";
-import AddToCartButton from "@components/molecules/AddToCartButton";
 import { IProductVariantsAttributesSelectedValues } from "@types";
+import QuantityInput from "../../molecules/QuantityInput";
+import AddToCartButton from "../../molecules/AddToCartButton";
+import ProductVariantPicker from "../ProductVariantPicker";
 import * as S from "./styles";
 import {
   getAvailableQuantity,
@@ -36,8 +36,17 @@ export interface IAddToCartSection {
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
-export const AddToCartSection: React.FC<IAddToCartSection> = props => {
-  const { isAvailableForPurchase, availableForPurchase } = props;
+const AddToCartSection: React.FC<IAddToCartSection> = ({
+  availableForPurchase,
+  isAvailableForPurchase,
+  items,
+  name,
+  productPricing,
+  productVariants,
+  queryAttributes,
+  onAddToCart,
+  onAttributeChangeHandler,
+}) => {
   const intl = useIntl();
 
   const [quantity, setQuantity] = useState<number>(1);
@@ -49,7 +58,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
   ] = useState<ProductDetails_product_variants_pricing | null>(null);
 
   const availableQuantity = getAvailableQuantity(
-    props.items,
+    items,
     variantId,
     variantStock
   );
@@ -67,7 +76,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
     availableQuantity < LOW_STOCK_QUANTITY;
 
   const disableButton = !canAddToCart(
-    props.items,
+    items,
     !!isAvailableForPurchase,
     variantId,
     variantStock,
@@ -100,9 +109,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
 
   return (
     <S.AddToCartSelection>
-      <S.ProductNameHeader data-test="productName">
-        {props.name}
-      </S.ProductNameHeader>
+      <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
@@ -110,7 +117,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
         )
       ) : (
         <S.ProductPricing>
-          {getProductPrice(props.productPricing, variantPricing)}
+          {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
       )}
       {noPurchaseAvailable &&
@@ -145,11 +152,11 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
         )}
       <S.VariantPicker>
         <ProductVariantPicker
-          productVariants={props.productVariants}
+          productVariants={productVariants}
           onChange={onVariantPickerChange}
           selectSidebar
-          queryAttributes={props.queryAttributes}
-          onAttributeChangeHandler={props.onAttributeChangeHandler}
+          queryAttributes={queryAttributes}
+          onAttributeChangeHandler={onAttributeChangeHandler}
         />
       </S.VariantPicker>
       <S.QuantityInput>
@@ -163,7 +170,7 @@ export const AddToCartSection: React.FC<IAddToCartSection> = props => {
         />
       </S.QuantityInput>
       <AddToCartButton
-        onSubmit={() => props.onAddToCart(variantId, quantity)}
+        onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
       />
     </S.AddToCartSelection>

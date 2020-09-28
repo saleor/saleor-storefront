@@ -4,18 +4,31 @@ import {
   useProductVariantsAttributes,
   useProductVariantsAttributesValuesSelection,
 } from "@hooks";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+import { IProductVariantsAttributesSelectedValues } from "@types";
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";
-import { IProps } from "./types";
 
-export const ProductVariantPicker: React.FC<IProps> = ({
+export interface IProductVariantPickerProps {
+  productVariants?: ProductDetails_product_variants[];
+  onChange?: (
+    selectedAttributesValues?: IProductVariantsAttributesSelectedValues,
+    selectedVariant?: ProductDetails_product_variants | undefined
+  ) => void;
+  selectSidebar?: boolean;
+  selectSidebarTarget?: HTMLElement | null;
+  queryAttributes: Record<string, string>;
+  onAttributeChangeHandler: (slug: string | null, value: string) => void;
+}
+
+const ProductVariantPicker: React.FC<IProductVariantPickerProps> = ({
   productVariants = [],
   queryAttributes = {},
   onAttributeChangeHandler,
   onChange,
   selectSidebar = false,
   selectSidebarTarget,
-}: IProps) => {
+}) => {
   const productVariantsAttributes = useProductVariantsAttributes(
     productVariants
   );
@@ -83,3 +96,5 @@ export const ProductVariantPicker: React.FC<IProps> = ({
     </S.Wrapper>
   );
 };
+ProductVariantPicker.displayName = "ProductVariantPicker";
+export default ProductVariantPicker;

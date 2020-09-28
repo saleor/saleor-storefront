@@ -15,7 +15,6 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
     <Button
       fullWidth
       testingContext="addProductToCartButton"
-      className="product-description__action"
       onClick={onSubmit}
       color="primary"
       disabled={disabled}

@@ -3,8 +3,7 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { MemoryRouter } from "react-router";
-import { AddToCartSection } from ".";
-import { IAddToCartSection } from "./AddToCartSection";
+import AddToCartSection, { IAddToCartSection } from "./AddToCartSection";
 
 const DEFAULT_PROPS: IAddToCartSection = {
   productId: "42",
@@ -49,11 +48,13 @@ const DEFAULT_PROPS: IAddToCartSection = {
   isAvailableForPurchase: null,
 };
 
-storiesOf("@components/organisms/AddToCartSection", module)
-  .addParameters({ component: AddToCartSection })
-  .addDecorator(story => (
+storiesOf("@components/organisms/AddToCartSection", module).add(
+  "default",
+  () => (
     <IntlProvider locale="en">
-      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+      <MemoryRouter>
+        <AddToCartSection {...DEFAULT_PROPS} />
+      </MemoryRouter>
     </IntlProvider>
-  ))
-  .add("default", () => <AddToCartSection {...DEFAULT_PROPS} />);
+  )
+);

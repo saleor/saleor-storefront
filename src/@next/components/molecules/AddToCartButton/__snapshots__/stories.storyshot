@@ -67,7 +67,7 @@ exports[`Storyshots @components/molecules/AddToCartButton default 1`] = `
   className="c0"
 >
   <button
-    className="product-description__action c1"
+    className="c1"
     color="primary"
     data-test="addProductToCartButton"
     disabled={false}
@@ -154,7 +154,7 @@ exports[`Storyshots @components/molecules/AddToCartButton disabled 1`] = `
   className="c0"
 >
   <button
-    className="product-description__action c1"
+    className="c1"
     color="primary"
     data-test="addProductToCartButton"
     disabled={true}
