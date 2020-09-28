@@ -1,9 +1,11 @@
 import React from "react";
 
 export interface IProps extends React.InputHTMLAttributes<any> {
-  contentLeft?: React.ReactNode;
-  contentRight?: React.ReactNode;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: boolean;
-  value?: React.InputHTMLAttributes<any>["value"];
-  label?: string;
+  values: {
+    cardNumber: string;
+    cvc: string;
+    expirationDate: string;
+  };
 }

@@ -3,28 +3,35 @@ import React from "react";
 import { getBackgroundColor } from "@utils/styles";
 
 import { InputLabel } from "../InputLabel";
-import { useIntl } from "react-intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const ONLY_NUMBERS_REGEX = /^[0-9 ]*$/;
+
+enum Field {
+  cardNumber = "cardNumber",
+  cardCvc = "cardCvc",
+  cardExpirationDate = "cardExpirationDate",
+}
+
+const fieldLengthContraints = {
+  [Field.cardNumber]: 19,
+  [Field.cardCvc]: 3,
+  [Field.cardExpirationDate]: 4,
+};
+
 export const CreditCardInput: React.FC<IProps> = ({
   onBlur,
   onFocus,
-  contentLeft = null,
-  contentRight = null,
   error = false,
   disabled = false,
-  placeholder,
-  label,
-  value,
+  values,
   onChange,
-  ...props
 }: IProps) => {
   const elementRef = React.useRef(null);
   const [active, setActive] = React.useState(false);
   const [labelBackground, setColor] = React.useState<string>("transparent");
-  const intl = useIntl();
 
   React.useEffect(() => {
     if (elementRef) {
@@ -42,6 +49,7 @@ export const CreditCardInput: React.FC<IProps> = ({
     },
     [setActive, onFocus]
   );
+
   const handleBlur = React.useCallback(
     e => {
       setActive(false);
@@ -52,6 +60,36 @@ export const CreditCardInput: React.FC<IProps> = ({
     [setActive, onBlur]
   );
 
+  const handleChange = (field: Field) => (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value } = event.target;
+
+    if (
+      RegExp(ONLY_NUMBERS_REGEX).test(value) ||
+      value.length <= fieldLengthContraints[field]
+    ) {
+      onChange(event);
+    }
+  };
+
+  const hasAnyValues = () => {
+    const { cardNumber, cvc, expirationDate } = values;
+
+    return !!cardNumber && !!cvc && !!expirationDate;
+  };
+
+  const formattedCardNumber = () => {
+    if (!!!values?.cardNumber) {
+      return "";
+    }
+
+    return values.cardNumber
+      .replaceAll(" ", "")
+      .match(/.{1,4}/g)
+      .join(" ");
+  };
+
   return (
     <S.Wrapper
       active={active}
@@ -60,36 +98,35 @@ export const CreditCardInput: React.FC<IProps> = ({
       ref={elementRef}
     >
       <S.Input
+        onChange={handleChange(Field.cardNumber)}
         onFocus={handleFocus}
         onBlur={handleBlur}
         name="cardNumber"
-        value={values.cardNumber}
-        // error={hasErrors}
+        value={formattedCardNumber()}
       />
       <S.BareInput
+        onChange={handleChange(Field.cardExpirationDate)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        name="expirationDate"
+        value={values.expirationDate}
+        placeholder="MM/RR"
+      />
+      <S.BareInput
+        onChange={handleChange(Field.cardCvc)}
         onFocus={handleFocus}
         onBlur={handleBlur}
         type="text"
         name="cvc"
         value={values.cvc}
-        placeholder="MM/RR"
-      />
-      <S.BareInput
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        name="cardNumber"
-        value={values.cardNumber}
         placeholder="CVC"
       />
-      {label && (
-        <InputLabel
-          labelBackground={labelBackground}
-          active={active || !!value}
-        >
-          {label}
-        </InputLabel>
-      )}
-      {/* </S.InputWrapper> */}
+      <InputLabel
+        labelBackground={labelBackground}
+        active={active || hasAnyValues()}
+      >
+        Card Number
+      </InputLabel>
     </S.Wrapper>
   );
 };

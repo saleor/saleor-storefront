@@ -1,11 +1,12 @@
 import { Formik } from "formik";
 import React from "react";
+import { pick } from "lodash";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 import { TextField } from "@components/molecules";
 import { useIntl } from "react-intl";
-import { Input, CreditCardInput } from "@components/atoms";
+import { CreditCardInput } from "@components/atoms";
 
 export const statuses = [
   { token: "charged", label: "Charged" },
@@ -60,11 +61,13 @@ const DummyPaymentGateway: React.FC<IProps> = ({
             label={intl.formatMessage({ defaultMessage: "Name on Card" })}
             value={values.nameOnCard}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
           <CreditCardInput
-            values={values}
+            values={pick(values, ["cardNumber", "cvc", "expirationDate"])}
             onChange={handleChange}
             label={intl.formatMessage({ defaultMessage: "Card number" })}
+            onBlur={handleBlur}
           ></CreditCardInput>
         </S.Form>
       )}
