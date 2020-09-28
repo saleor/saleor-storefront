@@ -99,6 +99,7 @@ export interface ICartSidebar {
    */
   testingContextId?: string;
   continueShopping: () => void;
+  goToCart: () => void;
   proceedToCheckout: () => void;
 }
 
@@ -115,6 +116,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   target,
   testingContextId,
   continueShopping,
+  goToCart,
   proceedToCheckout,
 }: ICartSidebar) => {
   const { online } = useNetworkStatus();
@@ -197,10 +199,10 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               testingContext="footerActionButton"
               color="secondary"
               fullWidth
-              onClick={continueShopping}
+              onClick={goToCart}
             >
               <FormattedMessage
-                defaultMessage="Continue shopping"
+                defaultMessage="Go to my cart"
                 description="button"
               />
             </Button>

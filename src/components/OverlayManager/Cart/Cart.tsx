@@ -1,11 +1,16 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { generatePath, useHistory } from "react-router-dom";
 
 import { CartSidebar } from "@components/organisms";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
 import { OverlayContextInterface } from "../..";
-import { baseUrl, checkoutLoginUrl, checkoutUrl } from "../../../app/routes";
+import {
+  baseUrl,
+  cartUrl,
+  checkoutLoginUrl,
+  checkoutUrl,
+} from "../../../app/routes";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const history = useHistory();
@@ -49,6 +54,13 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
         history.push(baseUrl);
         overlay.hide();
       }}
+      goToCart={() =>
+        history.push(
+          generatePath(cartUrl, {
+            token: null,
+          })
+        )
+      }
       proceedToCheckout={() =>
         history.push(user ? checkoutUrl : checkoutLoginUrl)
       }

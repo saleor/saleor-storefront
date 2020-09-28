@@ -24,6 +24,7 @@ const removeItem = action("remove item");
 const updateItem = action("update item");
 const hide = action("hide");
 const continueShopping = action("continue shopping");
+const goToCart = action("go to cart");
 const proceedToCheckout = action("proceed to checkout");
 
 storiesOf("@components/organisms/CartSidebar", module)
@@ -46,6 +47,7 @@ storiesOf("@components/organisms/CartSidebar", module)
       show
       hide={hide}
       continueShopping={continueShopping}
+      goToCart={goToCart}
       proceedToCheckout={proceedToCheckout}
     />
   ))
@@ -62,6 +64,7 @@ storiesOf("@components/organisms/CartSidebar", module)
       show
       hide={hide}
       continueShopping={continueShopping}
+      goToCart={goToCart}
       proceedToCheckout={proceedToCheckout}
     />
   ));

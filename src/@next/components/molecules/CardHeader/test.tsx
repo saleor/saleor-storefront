@@ -52,7 +52,7 @@ describe("<CardHeader />", () => {
     expect(paragraph.contains(children)).toBe(true);
   });
 
-  it("should render close icon when `onHide` prop is defined and `customIcon` is not defined", () => {
+  it("should render close icon when `onHide` prop is defined and `closeIcon` is not defined", () => {
     const onHide = jest.fn();
     const closeIcon = renderHeader({
       ...DEFAULT_PROPS,
@@ -66,7 +66,7 @@ describe("<CardHeader />", () => {
     expect(onHide).toHaveBeenCalled();
   });
 
-  it("should render custom icon when `customIcon` prop is defined", () => {
+  it("should render custom close icon when `closeIcon` prop is defined", () => {
     const closeIcon = <IconButton testingContext="test" name="edit" />;
     const icon = renderHeader({ ...DEFAULT_PROPS, closeIcon }).find(IconButton);
 
@@ -76,7 +76,7 @@ describe("<CardHeader />", () => {
 
   it("should render border-bottom when `divider` prop is set to true", () => {
     const header = mount(<CardHeader {...DEFAULT_PROPS} divider />).find(
-      S.Header
+      S.Wrapper
     );
 
     expect(header).toHaveStyleRule(

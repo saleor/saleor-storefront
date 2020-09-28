@@ -15,6 +15,7 @@ const hide = jest.fn();
 const removeItem = jest.fn();
 const updateItem = jest.fn();
 const continueShopping = jest.fn();
+const goToCart = jest.fn();
 const proceedToCheckout = jest.fn();
 
 describe("<CartSidebar />", () => {
@@ -31,6 +32,7 @@ describe("<CartSidebar />", () => {
         show
         hide={hide}
         continueShopping={continueShopping}
+        goToCart={goToCart}
         proceedToCheckout={proceedToCheckout}
       />
     );
