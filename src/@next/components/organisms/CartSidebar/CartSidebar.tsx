@@ -1,14 +1,16 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import ReactSVG from "react-svg";
 
-import { Button } from "@components/atoms";
+import { Button, Loader } from "@components/atoms";
 import { CardHeader, CartSummaryCosts } from "@components/molecules";
 import { TaxedMoney } from "@components/containers";
-import { useHandlerWhenClickedOutside } from "@hooks";
+import { useHandlerWhenClickedOutside, useNetworkStatus } from "@hooks";
 import { ITaxedMoney } from "@types";
 
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 
+import cartImg from "images/cart.svg";
 import { CartRow, Overlay } from "..";
 import * as S from "./styles";
 
@@ -81,7 +83,6 @@ const prepareCartFooter = (
 );
 
 export interface ICartSidebar {
-  title: React.ReactNode;
   items: IItems;
   removeItem: (variantId: string) => any;
   updateItem: (variantId: string, quantity: number) => any;
@@ -102,7 +103,6 @@ export interface ICartSidebar {
 }
 
 const CartSidebar: React.FC<ICartSidebar> = ({
-  title,
   items,
   removeItem,
   updateItem,
@@ -117,9 +117,15 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   continueShopping,
   proceedToCheckout,
 }: ICartSidebar) => {
+  const { online } = useNetworkStatus();
+
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
   });
+
+  const missingVariants = () => {
+    return items?.find(item => !item.variant || !item.totalPrice);
+  };
 
   return (
     <Overlay
@@ -132,12 +138,25 @@ const CartSidebar: React.FC<ICartSidebar> = ({
       testingContextId={testingContextId}
     >
       <S.Wrapper ref={setElementRef()}>
-        <CardHeader divider onHide={hide}>
-          <span>{title}</span>
+        <CardHeader
+          divider
+          onHide={hide}
+          prefixIcon={<ReactSVG path={cartImg} />}
+        >
+          <span>
+            <FormattedMessage defaultMessage="My Cart" />
+          </span>
         </CardHeader>
         <S.Content>
-          {items?.length ? (
-            <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
+          {!online ? (
+            // eslint-disable-next-line react/jsx-curly-brace-presence
+            <S.EmptyCart>{"OFFLINE :("}</S.EmptyCart>
+          ) : items?.length ? (
+            missingVariants() ? (
+              <Loader />
+            ) : (
+              <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
+            )
           ) : (
             <S.EmptyCart>
               <S.EmptyCartTitle>
@@ -166,7 +185,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
             </S.EmptyCart>
           )}
         </S.Content>
-        {!!items?.length && (
+        {online && !!items?.length && (
           <S.Footer>
             {prepareCartFooter(
               totalPrice,

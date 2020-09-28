@@ -21,7 +21,6 @@ describe("<CartSidebar />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <CartSidebar
-        title="MY CART"
         items={ITEMS}
         removeItem={removeItem}
         updateItem={updateItem}

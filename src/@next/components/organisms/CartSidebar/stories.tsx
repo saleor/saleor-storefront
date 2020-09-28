@@ -35,7 +35,6 @@ storiesOf("@components/organisms/CartSidebar", module)
   ))
   .add("default", () => (
     <CartSidebar
-      title="MY CART"
       items={ITEMS}
       removeItem={removeItem}
       updateItem={updateItem}
@@ -52,7 +51,6 @@ storiesOf("@components/organisms/CartSidebar", module)
   ))
   .add("empty", () => (
     <CartSidebar
-      title="MY CART"
       items={[]}
       removeItem={removeItem}
       updateItem={updateItem}
