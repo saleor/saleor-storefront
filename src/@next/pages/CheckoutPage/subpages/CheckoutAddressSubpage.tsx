@@ -40,6 +40,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const {
     checkout,
     selectedShippingAddressId,
+    selectedBillingAddressId,
     billingAsShipping,
     setShippingAddress,
     setBillingAddress,
@@ -227,7 +228,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       billingAsShippingAddress={billingAsShippingState}
       email={checkout?.email}
       userAddresses={userAdresses}
-      selectedUserAddressId={selectedShippingAddressId}
+      selectedUserShippingAddressId={selectedShippingAddressId}
+      selectedUserBillingAddressId={selectedBillingAddressId}
       countries={countries}
       userId={user?.id}
       newAddressFormId={checkoutNewAddressFormId}
