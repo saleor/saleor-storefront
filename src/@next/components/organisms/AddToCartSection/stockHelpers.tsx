@@ -33,7 +33,7 @@ export const getProductPrice = (
   }
 
   if (!productPricingRange.priceRange) {
-    return <></>; // todo: add skeleton here
+    return <></>;
   }
 
   const { start, stop } = productPricingRange.priceRange;

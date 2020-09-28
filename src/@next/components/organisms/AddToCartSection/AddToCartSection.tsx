@@ -10,15 +10,15 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 
+import QuantityInput from "@components/molecules/QuantityInput";
+import AddToCartButton from "@components/molecules/AddToCartButton";
+import { IProductVariantsAttributesSelectedValues } from "@types";
 import * as S from "./styles";
 import {
   getAvailableQuantity,
   getProductPrice,
   canAddToCart,
 } from "./stockHelpers";
-import QuantityInput from "../../molecules/QuantityInput";
-import AddToCartButton from "../../molecules/AddToCartButton";
-import { IProductVariantsAttributesSelectedValues } from "../../../types";
 
 const LOW_STOCK_QUANTITY: number = 5;
 

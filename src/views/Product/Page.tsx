@@ -1,6 +1,9 @@
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
+import { ProductDescription } from "@components/molecules";
+import { ProductGallery } from "@components/organisms";
+import AddToCartSection from "@components/organisms/AddToCartSection";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 import {
@@ -13,9 +16,6 @@ import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 
-import { ProductDescription } from "../../@next/components/molecules";
-import { ProductGallery } from "../../@next/components/organisms";
-import AddToCartSection from "../../@next/components/organisms/AddToCartSection";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
 
