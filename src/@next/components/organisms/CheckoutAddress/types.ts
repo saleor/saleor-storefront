@@ -8,7 +8,8 @@ export declare type Address = {
 
 export interface IProps {
   userAddresses?: Address[] | null;
-  selectedUserAddressId?: string;
+  selectedUserShippingAddressId?: string;
+  selectedUserBillingAddressId?: string;
   checkoutShippingAddress?: IAddress | null;
   billingAsShippingAddress?: boolean;
   checkoutBillingAddress?: IAddress | null;
