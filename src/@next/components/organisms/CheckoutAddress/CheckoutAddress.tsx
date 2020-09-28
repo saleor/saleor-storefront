@@ -19,7 +19,8 @@ const CheckoutAddress: React.FC<IProps> = ({
   checkoutBillingAddress,
   billingAsShippingAddress = false,
   email,
-  selectedUserAddressId,
+  selectedUserShippingAddressId,
+  selectedUserBillingAddressId,
   userAddresses,
   countries,
   userId,
@@ -49,7 +50,7 @@ const CheckoutAddress: React.FC<IProps> = ({
                 formId={shippingFormId}
                 formRef={shippingFormRef}
                 addresses={userAddresses}
-                selectedAddressId={selectedUserAddressId}
+                selectedAddressId={selectedUserShippingAddressId}
                 countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
                 userId={userId}
                 errors={shippingErrors}
@@ -104,7 +105,7 @@ const CheckoutAddress: React.FC<IProps> = ({
                 formId={billingFormId}
                 formRef={billingFormRef}
                 addresses={userAddresses}
-                selectedAddressId={selectedUserAddressId}
+                selectedAddressId={selectedUserBillingAddressId}
                 countriesOptions={countries?.filter(filterNotEmptyArrayItems)}
                 userId={userId}
                 errors={billingErrors}

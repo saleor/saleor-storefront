@@ -33,6 +33,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Handle JWT token refreshing and verifying - #883 by @orzechdev
 - Fix cart sidebar style - #897 by @orzechdev
 - Refactor variant picker components and open sidebar after adding product to cart - #809 by @krzysztofwolski
+- Fix checkout address view - #909 by @konstantinoschristomanos
 
 ## 2.10.4
 
