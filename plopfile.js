@@ -40,6 +40,12 @@ module.exports = plop => {
           path: `${path}{{pascalCase name}}/stories.tsx`,
           templateFile: "plop-templates/Component/stories.tsx.hbs",
         },
+        {
+          type: "append",
+          path: `${path}index.ts`,
+          separator: "",
+          templateFile: "plop-templates/Component/exportAll.ts.hbs",
+        },
       ];
     },
   });
