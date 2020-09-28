@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { MemoryRouter } from "react-router";
 import AddToCartSection, { IAddToCartSection } from "./AddToCartSection";
 
 const DEFAULT_PROPS: IAddToCartSection = {
@@ -52,9 +51,7 @@ storiesOf("@components/organisms/AddToCartSection", module).add(
   "default",
   () => (
     <IntlProvider locale="en">
-      <MemoryRouter>
-        <AddToCartSection {...DEFAULT_PROPS} />
-      </MemoryRouter>
+      <AddToCartSection {...DEFAULT_PROPS} />
     </IntlProvider>
   )
 );

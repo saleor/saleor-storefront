@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/QuantityInput default 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c1 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,112 +17,12 @@ exports[`Storyshots @components/molecules/QuantityInput default 1`] = `
   box-sizing: border-box;
 }
 
-.c5 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #323232;
-  color: #323232;
-  outline: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c2:hover {
-  color: rgb(33,18,94);
-  outline-width: 1px;
-  outline-style: solid;
-  border-color: rgb(33,18,94);
-  outline-color: rgb(33,18,94);
-}
-
-.c3 {
-  position: relative;
-  width: 100%;
-}
-
-.c4 {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  outline: none;
-  background-color: transparent;
-}
-
-.c4:-webkit-autofill + label {
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-}
-
-.c1 {
-  margin-bottom: 1.875rem;
-  position: relative;
-}
-
-.c6 {
-  position: absolute;
-  top: 100%;
-}
-
 <div
   className="c0"
 >
+  story()
   <div
     className="c1"
-  >
-    <div
-      className="c2"
-      disabled={false}
-    >
-      <div
-        className="c3"
-      >
-        <input
-          className="c4"
-          data-test="QuantityInput"
-          disabled={false}
-          min="1"
-          name="quantity"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          type="number"
-          value="1"
-        />
-        <label
-          className="c5"
-        >
-          Quantity
-        </label>
-      </div>
-    </div>
-    <div
-      className="c6"
-    />
-  </div>
-  <div
-    className="c7"
   />
 </div>
 `;
@@ -133,7 +33,7 @@ exports[`Storyshots @components/molecules/QuantityInput disabled 1`] = `
   margin: 20px;
 }
 
-.c7 {
+.c1 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -144,112 +44,12 @@ exports[`Storyshots @components/molecules/QuantityInput disabled 1`] = `
   box-sizing: border-box;
 }
 
-.c5 {
-  position: absolute;
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  -webkit-transition: all 0.3s ease,color 0s;
-  transition: all 0.3s ease,color 0s;
-  pointer-events: none;
-}
-
-.c2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border: 1px solid #7d7d7d;
-  color: #7d7d7d;
-  outline: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c2:hover {
-  color: #7d7d7d;
-  outline-width: 0px;
-  outline-style: solid;
-  border-color: #7d7d7d;
-  outline-color: #7d7d7d;
-}
-
-.c3 {
-  position: relative;
-  width: 100%;
-}
-
-.c4 {
-  padding: 0.8rem 1rem;
-  margin: 0;
-  border: none;
-  width: 100%;
-  font-size: 1rem;
-  outline: none;
-  background-color: transparent;
-}
-
-.c4:-webkit-autofill + label {
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-}
-
-.c1 {
-  margin-bottom: 1.875rem;
-  position: relative;
-}
-
-.c6 {
-  position: absolute;
-  top: 100%;
-}
-
 <div
   className="c0"
 >
+  story()
   <div
     className="c1"
-  >
-    <div
-      className="c2"
-      disabled={true}
-    >
-      <div
-        className="c3"
-      >
-        <input
-          className="c4"
-          data-test="QuantityInput"
-          disabled={true}
-          min="1"
-          name="quantity"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          type="number"
-          value="1"
-        />
-        <label
-          className="c5"
-        >
-          Quantity
-        </label>
-      </div>
-    </div>
-    <div
-      className="c6"
-    />
-  </div>
-  <div
-    className="c7"
   />
 </div>
 `;
