@@ -33,6 +33,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Handle JWT token refreshing and verifying - #883 by @orzechdev
 - Fix cart sidebar style - #897 by @orzechdev
 - Fix checkout address view - #909 by @konstantinoschristomanos
+- Support for static url - #721 by @marianoeramirez and @dominik-zeglen
 
 ## 2.10.4
 
