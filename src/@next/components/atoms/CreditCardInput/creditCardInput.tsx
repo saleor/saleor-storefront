@@ -12,7 +12,6 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
   onBlur,
   onFocus,
   error = false,
-  disabled = false,
   values,
   onChange,
   label,
@@ -52,11 +51,10 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
     },
     [setActive, onBlur]
   );
-
   const hasAnyValues = () => {
-    const { cardNumber, cvc, expirationDate } = values;
+    const { cardNumber, cvc, expiryDate } = values;
 
-    return !!cardNumber || !!cvc || !!expirationDate;
+    return !!cardNumber || !!cvc || !!expiryDate;
   };
 
   const formattedCardNumber = () =>
@@ -67,35 +65,30 @@ export const CreditCardInput: React.FC<CreditCardInputProps> = ({
       ?.join(" ") || "";
 
   return (
-    <S.Wrapper
-      active={active}
-      error={error}
-      disabled={disabled}
-      ref={elementRef}
-    >
+    <S.Wrapper active={active} error={error} ref={elementRef}>
       <S.Input
         {...getCardNumberProps({ onChange })}
-        labelBackground={null}
         placeholder=""
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         name="cardNumber"
         value={formattedCardNumber()}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        labelBackground={null}
       />
       <S.BareInput
         {...getExpiryDateProps({ onChange })}
-        value={values.expirationDate}
+        value={values.expiryDate}
+        name="expiryDate"
+        placeholder="MM/RR"
         onFocus={handleFocus}
         onBlur={handleBlur}
-        name="expirationDate"
-        placeholder="MM/RR"
       />
       <S.BareInput
         {...getCVCProps({ onChange })}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         type="text"
         name="cvc"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         value={values.cvc}
         placeholder="CVC"
       />

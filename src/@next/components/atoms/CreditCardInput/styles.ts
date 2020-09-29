@@ -4,18 +4,13 @@ import { activeLabelStyles } from "../InputLabel";
 type WrapperProps = {
   active: boolean;
   error: boolean;
-  disabled: boolean;
   theme: DefaultTheme;
 };
 
 const getEdgeColor = (
-  { active, error, disabled, theme }: WrapperProps,
+  { active, error, theme }: WrapperProps,
   hovered = false
 ) => {
-  if (disabled) {
-    return theme.colors.disabled;
-  }
-
   if (error) {
     return theme.colors.error;
   }
@@ -40,7 +35,7 @@ export const Wrapper = styled.div<WrapperProps>`
 
   &:hover {
     color: ${props => getEdgeColor(props, true)};
-    outline-width: ${props => (props.disabled ? 0 : 1)}px;
+    outline-width: 1px;
     outline-style: solid;
     border-color: ${props => getEdgeColor(props, true)};
     outline-color: ${props => getEdgeColor(props, true)};

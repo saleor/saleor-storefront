@@ -7,12 +7,13 @@ import { IProps } from "./types";
 import { TextField } from "@components/molecules";
 import { useIntl } from "react-intl";
 import { CreditCardInput } from "@components/atoms";
+import { CreditCardField } from "@components/atoms/CreditCardInput/types";
 
-const initialValues = {
+const initialValues: Record<CreditCardField | "nameOnCard", string> = {
   nameOnCard: "",
   cardNumber: "",
   cvc: "",
-  expirationDate: "",
+  expiryDate: "",
 };
 
 /**
@@ -27,9 +28,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
   const intl = useIntl();
   return (
     <Formik
-      initialValues={{
-        ...initialValues,
-      }}
+      initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
         // processPayment(values.status);
         setSubmitting(false);
@@ -57,7 +56,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
             onBlur={handleBlur}
           />
           <CreditCardInput
-            values={pick(values, ["cardNumber", "cvc", "expirationDate"])}
+            values={pick(values, Object.values(CreditCardField))}
             onChange={handleChange}
             label={intl.formatMessage({ defaultMessage: "Card number" })}
             onBlur={handleBlur}
