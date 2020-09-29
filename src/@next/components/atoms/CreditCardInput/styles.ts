@@ -1,4 +1,3 @@
-import { IProps } from "@components/atoms/Icon/types";
 import { DefaultTheme, styled } from "@styles";
 import { activeLabelStyles } from "../InputLabel";
 
@@ -73,7 +72,7 @@ export const Input = styled.input<{ labelBackground: string | null }>`
   }
 `;
 
-export const BareInput = styled.input<IProps>`
+export const BareInput = styled.input`
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;

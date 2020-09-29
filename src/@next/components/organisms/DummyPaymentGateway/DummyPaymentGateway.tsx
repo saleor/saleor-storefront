@@ -8,12 +8,6 @@ import { TextField } from "@components/molecules";
 import { useIntl } from "react-intl";
 import { CreditCardInput } from "@components/atoms";
 
-export const statuses = [
-  { token: "charged", label: "Charged" },
-  { token: "fully-refunded", label: "Fully refunded" },
-  { token: "not-charged", label: "Not charged" },
-];
-
 const initialValues = {
   nameOnCard: "",
   cardNumber: "",
@@ -35,10 +29,9 @@ const DummyPaymentGateway: React.FC<IProps> = ({
     <Formik
       initialValues={{
         ...initialValues,
-        status: initialStatus || statuses[0].token,
       }}
       onSubmit={(values, { setSubmitting }) => {
-        processPayment(values.status);
+        // processPayment(values.status);
         setSubmitting(false);
       }}
     >
