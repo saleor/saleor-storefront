@@ -93,11 +93,6 @@ export interface ICartSidebar {
   hide: () => void;
   show: boolean;
   target?: HTMLElement | null;
-  /**
-   * Used as marker for writing e2e tests. Use unique ID to differentiate
-   * multiple elements in the same view from each other
-   */
-  testingContextId?: string;
   continueShopping: () => void;
   goToCart: () => void;
   proceedToCheckout: () => void;
@@ -114,7 +109,6 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   hide,
   show,
   target,
-  testingContextId,
   continueShopping,
   goToCart,
   proceedToCheckout,
@@ -136,8 +130,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
       show={show}
       hide={hide}
       target={target}
-      testingContext="attributeSelection"
-      testingContextId={testingContextId}
+      testingContext="cartOverlay"
     >
       <S.Wrapper ref={setElementRef()}>
         <CardHeader
@@ -174,7 +167,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                 />
               </S.EmptyCartDescription>
               <Button
-                testingContext="footerActionButton"
+                testingContext="emptyCartHideOverlayButton"
                 color="secondary"
                 fullWidth
                 onClick={continueShopping}
@@ -196,7 +189,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               subtotalPrice
             )}
             <Button
-              testingContext="footerActionButton"
+              testingContext="gotoBagViewButton"
               color="secondary"
               fullWidth
               onClick={goToCart}
@@ -207,7 +200,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               />
             </Button>
             <Button
-              testingContext="footerActionButton"
+              testingContext="gotoCheckoutButton"
               color="primary"
               fullWidth
               onClick={proceedToCheckout}

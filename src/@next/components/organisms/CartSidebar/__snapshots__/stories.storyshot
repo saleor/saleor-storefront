@@ -595,7 +595,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
 >
   <div
     className="c1"
-    data-test="attributeSelection"
+    data-test="cartOverlay"
     onClick={[Function]}
     open={true}
   >
@@ -1491,7 +1491,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
           <button
             className="c40"
             color="secondary"
-            data-test="footerActionButton"
+            data-test="gotoBagViewButton"
             onClick={[Function]}
             size="md"
           >
@@ -1505,7 +1505,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
           <button
             className="c42"
             color="primary"
-            data-test="footerActionButton"
+            data-test="gotoCheckoutButton"
             onClick={[Function]}
             size="md"
           >
@@ -1760,7 +1760,7 @@ exports[`Storyshots @components/organisms/CartSidebar empty 1`] = `
 >
   <div
     className="c1"
-    data-test="attributeSelection"
+    data-test="cartOverlay"
     onClick={[Function]}
     open={true}
   >
@@ -1824,7 +1824,7 @@ exports[`Storyshots @components/organisms/CartSidebar empty 1`] = `
             <button
               className="c12"
               color="secondary"
-              data-test="footerActionButton"
+              data-test="emptyCartHideOverlayButton"
               onClick={[Function]}
               size="md"
             >
