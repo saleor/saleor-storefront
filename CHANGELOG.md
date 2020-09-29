@@ -37,6 +37,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Handle JWT token refreshing and verifying - #883 by @orzechdev
 - Fix cart sidebar style - #897 by @orzechdev
 - Refactor variant picker components and open sidebar after adding product to cart - #809 by @krzysztofwolski
+- New cart sidebar - #907 by @orzechdev
 - Fix checkout address view - #909 by @konstantinoschristomanos
 - Support for static URL - #721 by @marianoeramirez and @dominik-zeglen
 - Fix search crashing when displaying item with no category - #928 by @mmarkusik
