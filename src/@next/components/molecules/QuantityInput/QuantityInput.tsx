@@ -4,21 +4,32 @@ import { useIntl } from "react-intl";
 import { TextField } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
-interface QuantityTextFieldProps {
+export interface IQuantityInput {
   quantity: number;
   maxQuantity: number;
   disabled: boolean;
   onQuantityChange: (value: number) => void;
   hideErrors: boolean;
+  /**
+   * Used as marker for writing e2e tests
+   */
+  testingContext: string;
+  /**
+   * Used as marker for writing e2e tests. Use unique ID to differentiate
+   * multiple elements in the same view from each other
+   */
+  testingContextId?: string;
 }
 
-export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
+export const QuantityInput: React.FC<IQuantityInput> = ({
   disabled,
   quantity,
   maxQuantity,
   onQuantityChange,
   hideErrors,
-}: QuantityTextFieldProps) => {
+  testingContext,
+  testingContextId,
+}) => {
   const [isTooMuch, setIsTooMuch] = useState(false);
   const intl = useIntl();
 
@@ -56,6 +67,10 @@ export const QuantityTextField: React.FC<QuantityTextFieldProps> = ({
       disabled={disabled}
       onChange={handleQuantityChange}
       errors={quantityErrors}
+      data-test={testingContext}
+      data-testId={testingContextId}
     />
   );
 };
+QuantityInput.displayName = "QuantityInput";
+export default QuantityInput;

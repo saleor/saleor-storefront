@@ -1,0 +1,17 @@
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { IntlProvider } from "react-intl";
+
+import { MemoryRouter } from "react-router";
+import { {{pascalCase name}} } from ".";
+import { I{{pascalCase name}}Props } from "./{{pascalCase name}}";
+
+const DEFAULT_PROPS: I{{ pascalCase name }}Props = {};
+
+storiesOf("@components/{{ componentType }}/{{pascalCase name}}", module)
+.addParameters({ component: {{pascalCase name}} })
+.addDecorator(story => (
+<IntlProvider locale="en">story()</IntlProvider>
+))
+.add("default", () =>
+<{{pascalCase name}} {...DEFAULT_PROPS} />);

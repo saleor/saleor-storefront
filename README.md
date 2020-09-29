@@ -121,6 +121,16 @@ Cypress UI mode:
 test:e2e:dev
 ```
 
+## Creating new components
+
+All new components should follow Atomic Design Guidelines and be placed in `src/@next/components` directory.
+
+Files structure can be generated using `plop`:
+
+```
+npm run generate
+```
+
 ## Modifying the Storefront
 
 [From Spectrum Post](https://spectrum.chat/saleor/saleor-storefront/modifying-the-storefront~c1955dbf-a421-4fb6-b99e-937dd2642b23)

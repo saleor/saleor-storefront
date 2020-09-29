@@ -44,7 +44,7 @@ const extractMeta = (product: ProductDetails_product) => ({
     },
   ],
   description: product.seoDescription || product.descriptionJson,
-  image: maybe(() => product.thumbnail.url, null),
+  image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
   type: "product.item",
   url: window.location.href,

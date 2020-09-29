@@ -127,6 +127,7 @@ export const ProductVariantAttributeSelect: React.FC<{
               ? productVariantsAttribute.attribute.slug
               : ""
           }
+          data-test="variantPicker"
         />
         <SelectSidebar
           options={attributeOptions}
