@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   margin: 20px;
 }
 
-.c44 {
+.c43 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   box-sizing: border-box;
 }
 
-.c43 {
+.c42 {
   background-color: #13bebb;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -29,26 +29,26 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   width: 100%;
 }
 
-.c43:hover {
+.c42:hover {
   background-color: #06a09e;
   color: #fff;
 }
 
-.c43:active {
+.c42:active {
   background-color: #06a09e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c43:disabled {
+.c42:disabled {
   background-color: #7d7d7d;
 }
 
-.c43:disabled,
-.c43:disabled:hover {
+.c42:disabled,
+.c42:disabled:hover {
   cursor: default;
 }
 
-.c41 {
+.c40 {
   background-color: #fff;
   padding: 0.9rem 3.7rem;
   border: none;
@@ -63,26 +63,26 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   border-right: 1px solid rgb(33,18,94);
 }
 
-.c41:hover {
+.c40:hover {
   background-color: rgb(33,18,94);
   color: #fff;
 }
 
-.c41:active {
+.c40:active {
   background-color: #190c4e;
   box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
 }
 
-.c41:disabled {
+.c40:disabled {
   background-color: #7d7d7d;
 }
 
-.c41:disabled,
-.c41:disabled:hover {
+.c40:disabled,
+.c40:disabled:hover {
   cursor: default;
 }
 
-.c42 {
+.c41 {
   display: inline-block;
   font-size: 1.125rem;
   text-transform: uppercase;
@@ -132,7 +132,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   fill: #fff;
 }
 
-.c23 {
+.c22 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -147,7 +147,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   pointer-events: none;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -159,7 +159,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   transition: all 0.3s ease;
 }
 
-.c20:hover {
+.c19:hover {
   color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
@@ -167,7 +167,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   outline-color: rgb(33,18,94);
 }
 
-.c24 {
+.c23 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -178,12 +178,12 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   align-items: center;
 }
 
-.c21 {
+.c20 {
   position: relative;
   width: 100%;
 }
 
-.c22 {
+.c21 {
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -193,7 +193,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   background-color: transparent;
 }
 
-.c22:-webkit-autofill + label {
+.c21:-webkit-autofill + label {
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: transparent;
@@ -239,7 +239,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   margin: 0;
 }
 
-.c32 {
+.c31 {
   width: 100%;
   display: grid;
   font-size: 1.125rem;
@@ -250,52 +250,42 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
-.c33 {
+.c32 {
   grid-area: subtotalText;
 }
 
-.c34 {
+.c33 {
   grid-area: subtotalPrice;
   text-align: right;
 }
 
-.c35 {
+.c34 {
   grid-area: shippingText;
 }
 
-.c36 {
+.c35 {
   grid-area: shippingPrice;
   text-align: right;
 }
 
-.c37 {
+.c36 {
   grid-area: discountText;
 }
 
-.c38 {
+.c37 {
   grid-area: discountPrice;
   text-align: right;
 }
 
-.c39 {
+.c38 {
   grid-area: totalText;
   font-weight: bold;
 }
 
-.c40 {
+.c39 {
   grid-area: totalPrice;
   font-weight: bold;
   text-align: right;
-}
-
-.c19 {
-  margin-bottom: 1.875rem;
-  position: relative;
-}
-
-.c26 {
-  position: absolute;
-  top: 100%;
 }
 
 .c2 {
@@ -357,7 +347,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   grid-row-gap: 15px;
   grid-column-gap: 20px;
   grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
-  padding: 1rem 0rem;
+  padding: 1.6rem 0rem;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -365,7 +355,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
-.c25 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -379,14 +369,14 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   width: 50px;
 }
 
-.c25 > div {
+.c24 > div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c25 svg {
+.c24 svg {
   cursor: pointer;
   justify-self: center;
 }
@@ -397,16 +387,17 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-align-self: top;
   -ms-flex-item-align: top;
   align-self: top;
   width: 70px;
   height: 90px;
   background-color: #f1f5f5;
+  margin: 0 auto;
 }
 
 .c11 img {
@@ -418,14 +409,12 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
 .c12 {
   grid-area: description;
   height: 100%;
-  margin-top: 20px;
-  margin-left: 0px;
+  margin: 6px 0 6px 0;
 }
 
 .c14 {
-  margin: 6px 0;
+  margin: 6px 0 22px 0;
   text-align: left;
-  margin-bottom: 10px;
 }
 
 .c16 {
@@ -455,6 +444,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   white-space: nowrap;
   background-color: white;
   padding: 0px 15px;
+  font-size: 0.875rem;
 }
 
 .c13 {
@@ -470,11 +460,11 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   color: rgba(125,125,125,0.6);
 }
 
-.c29 {
+.c28 {
   display: block;
 }
 
-.c28 {
+.c27 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -491,15 +481,15 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   grid-area: totalPrice;
 }
 
-.c28 p {
+.c27 p {
   margin: 0;
 }
 
-.c28 p {
+.c27 p {
   text-align: right;
 }
 
-.c27 {
+.c26 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -515,7 +505,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   grid-area: trash;
 }
 
-.c30 {
+.c29 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -532,14 +522,19 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   grid-area: unitPrice;
 }
 
-.c30 p {
+.c29 p {
   margin: 0;
 }
 
 .c18 {
   grid-area: quantity;
   min-width: 120px;
-  margin: 0 15px;
+  margin: 0;
+}
+
+.c25 {
+  position: absolute;
+  top: 100%;
 }
 
 .c3 {
@@ -568,7 +563,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   margin: 0 1.875rem;
 }
 
-.c31 {
+.c30 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -582,14 +577,14 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
 }
 
 @media (max-width:540px) {
-  .c43 {
+  .c42 {
     padding: 0.9rem 1rem;
     width: 100%;
   }
 }
 
 @media (max-width:540px) {
-  .c41 {
+  .c40 {
     padding: 0.9rem 1rem;
     width: 100%;
   }
@@ -782,76 +777,72 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               >
                 <div
                   className="c19"
+                  disabled={false}
                 >
                   <div
                     className="c20"
-                    disabled={false}
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
                   >
                     <div
-                      className="c21"
-                    >
-                      <input
-                        className="c22"
-                        disabled={false}
-                        name="quantity"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        value="3"
-                      />
-                      <label
-                        className="c23"
-                      >
-                        Quantity
-                      </label>
-                    </div>
-                    <span
                       className="c24"
+                      data-test="quantityControls"
                     >
                       <div
-                        className="c25"
-                        data-test="quantityControls"
+                        data-test="subtractButton"
+                        onClick={[Function]}
                       >
-                        <div
-                          data-test="subtractButton"
-                          onClick={[Function]}
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
                         >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M0 13.818h32v4.364h-32v-4.364z"
-                              fill="#323232"
-                            />
-                          </svg>
-                        </div>
-                        <div
-                          data-test="increaseButton"
-                          onClick={[Function]}
-                        >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                              fill="#21125E"
-                            />
-                          </svg>
-                        </div>
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
                       </div>
-                    </span>
-                  </div>
-                  <div
-                    className="c26"
-                  />
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
                 </div>
+                <div
+                  className="c25"
+                />
               </div>
               <div
-                className="c27"
+                className="c26"
               >
                 <div
                   className="c7"
@@ -872,10 +863,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </div>
               </div>
               <div
-                className="c28"
+                className="c27"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -893,10 +884,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </p>
               </div>
               <div
-                className="c30"
+                className="c29"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -1045,76 +1036,72 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               >
                 <div
                   className="c19"
+                  disabled={false}
                 >
                   <div
                     className="c20"
-                    disabled={false}
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
                   >
                     <div
-                      className="c21"
-                    >
-                      <input
-                        className="c22"
-                        disabled={false}
-                        name="quantity"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        value="3"
-                      />
-                      <label
-                        className="c23"
-                      >
-                        Quantity
-                      </label>
-                    </div>
-                    <span
                       className="c24"
+                      data-test="quantityControls"
                     >
                       <div
-                        className="c25"
-                        data-test="quantityControls"
+                        data-test="subtractButton"
+                        onClick={[Function]}
                       >
-                        <div
-                          data-test="subtractButton"
-                          onClick={[Function]}
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
                         >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M0 13.818h32v4.364h-32v-4.364z"
-                              fill="#323232"
-                            />
-                          </svg>
-                        </div>
-                        <div
-                          data-test="increaseButton"
-                          onClick={[Function]}
-                        >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                              fill="#21125E"
-                            />
-                          </svg>
-                        </div>
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
                       </div>
-                    </span>
-                  </div>
-                  <div
-                    className="c26"
-                  />
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
                 </div>
+                <div
+                  className="c25"
+                />
               </div>
               <div
-                className="c27"
+                className="c26"
               >
                 <div
                   className="c7"
@@ -1135,10 +1122,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </div>
               </div>
               <div
-                className="c28"
+                className="c27"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -1156,10 +1143,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </p>
               </div>
               <div
-                className="c30"
+                className="c29"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -1308,76 +1295,72 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               >
                 <div
                   className="c19"
+                  disabled={false}
                 >
                   <div
                     className="c20"
-                    disabled={false}
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
                   >
                     <div
-                      className="c21"
-                    >
-                      <input
-                        className="c22"
-                        disabled={false}
-                        name="quantity"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onFocus={[Function]}
-                        value="3"
-                      />
-                      <label
-                        className="c23"
-                      >
-                        Quantity
-                      </label>
-                    </div>
-                    <span
                       className="c24"
+                      data-test="quantityControls"
                     >
                       <div
-                        className="c25"
-                        data-test="quantityControls"
+                        data-test="subtractButton"
+                        onClick={[Function]}
                       >
-                        <div
-                          data-test="subtractButton"
-                          onClick={[Function]}
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
                         >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M0 13.818h32v4.364h-32v-4.364z"
-                              fill="#323232"
-                            />
-                          </svg>
-                        </div>
-                        <div
-                          data-test="increaseButton"
-                          onClick={[Function]}
-                        >
-                          <svg
-                            height={16}
-                            viewBox="0 0 32 32"
-                            width={16}
-                          >
-                            <path
-                              d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                              fill="#21125E"
-                            />
-                          </svg>
-                        </div>
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
                       </div>
-                    </span>
-                  </div>
-                  <div
-                    className="c26"
-                  />
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
                 </div>
+                <div
+                  className="c25"
+                />
               </div>
               <div
-                className="c27"
+                className="c26"
               >
                 <div
                   className="c7"
@@ -1398,10 +1381,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </div>
               </div>
               <div
-                className="c28"
+                className="c27"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -1419,10 +1402,10 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 </p>
               </div>
               <div
-                className="c30"
+                className="c29"
               >
                 <p
-                  className="c29"
+                  className="c28"
                 >
                   <span
                     className="c15"
@@ -1443,18 +1426,18 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
           </div>
         </div>
         <div
-          className="c31"
+          className="c30"
         >
           <div
-            className="c32"
+            className="c31"
           >
             <div
-              className="c33"
+              className="c32"
             >
               Subtotal
             </div>
             <div
-              className="c34"
+              className="c33"
             >
               <span
                 data-test="subtotalPrice"
@@ -1463,12 +1446,12 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               </span>
             </div>
             <div
-              className="c35"
+              className="c34"
             >
               Shipping
             </div>
             <div
-              className="c36"
+              className="c35"
             >
               <span
                 data-test="shippingPrice"
@@ -1477,12 +1460,12 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               </span>
             </div>
             <div
-              className="c37"
+              className="c36"
             >
               Promo code
             </div>
             <div
-              className="c38"
+              className="c37"
             >
               <span
                 data-test="discountPrice"
@@ -1491,12 +1474,12 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               </span>
             </div>
             <div
-              className="c39"
+              className="c38"
             >
               Total
             </div>
             <div
-              className="c40"
+              className="c39"
             >
               <span
                 data-test="totalPrice"
@@ -1506,28 +1489,28 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
             </div>
           </div>
           <button
-            className="c41"
+            className="c40"
             color="secondary"
             data-test="footerActionButton"
             onClick={[Function]}
             size="md"
           >
             <span
-              className="c42"
+              className="c41"
               size="md"
             >
               Go to my cart
             </span>
           </button>
           <button
-            className="c43"
+            className="c42"
             color="primary"
             data-test="footerActionButton"
             onClick={[Function]}
             size="md"
           >
             <span
-              className="c42"
+              className="c41"
               size="md"
             >
               Proceed to Checkout
@@ -1538,7 +1521,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
     </div>
   </div>
   <div
-    className="c44"
+    className="c43"
   />
 </div>
 `;

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { Icon, IconButton } from "@components/atoms";
-import { CachedImage, TextField } from "@components/molecules";
+import { ErrorMessage, Icon, IconButton, Input } from "@components/atoms";
+import { CachedImage } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import { generateProductUrl } from "../../../../core/utils";
@@ -101,7 +101,7 @@ export const CartRow: React.FC<IProps> = ({
 
   return (
     <S.Wrapper cartRowType={type} data-test="cartRow" data-test-id={sku}>
-      <S.Photo>
+      <S.Photo cartRowType={type}>
         <Link to={productUrl}>
           <CachedImage data-test="itemImage" {...thumbnail} />
         </Link>
@@ -130,16 +130,19 @@ export const CartRow: React.FC<IProps> = ({
           ))}
         </S.Attributes>
       </S.Description>
-      <S.Quantity>
-        <TextField
+      <S.Quantity cartRowType={type}>
+        <Input
           name="quantity"
           label={intl.formatMessage(commonMessages.qty)}
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
           contentRight={QuantityButtons(add, subtract, index)}
-          errors={quantityErrors}
+          error={!!quantityErrors?.length}
         />
+        <S.ErrorMessages>
+          <ErrorMessage errors={quantityErrors} />
+        </S.ErrorMessages>
       </S.Quantity>
       <S.Trash>
         <IconButton

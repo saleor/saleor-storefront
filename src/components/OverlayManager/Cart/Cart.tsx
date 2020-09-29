@@ -54,16 +54,18 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
         history.push(baseUrl);
         overlay.hide();
       }}
-      goToCart={() =>
+      goToCart={() => {
         history.push(
           generatePath(cartUrl, {
             token: null,
           })
-        )
-      }
-      proceedToCheckout={() =>
-        history.push(user ? checkoutUrl : checkoutLoginUrl)
-      }
+        );
+        overlay.hide();
+      }}
+      proceedToCheckout={() => {
+        history.push(user ? checkoutUrl : checkoutLoginUrl);
+        overlay.hide();
+      }}
     />
   );
 };

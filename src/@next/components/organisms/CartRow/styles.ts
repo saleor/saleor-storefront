@@ -13,7 +13,7 @@ const condenseWrapper = css`
     "trash description description"
     "trash unitPrice quantity"
     ". . totalPrice";
-  padding: 1rem 0rem;
+  padding: 1.6rem 0rem;
 `;
 const responsiveWrapper = css`
   grid-template-areas: "photo description unitPrice quantity totalPrice trash";
@@ -51,15 +51,27 @@ export const QuantityButtons = styled.div`
   }
 `;
 
-export const Photo = styled.div`
+const condensePhoto = css`
+  margin: 0 auto;
+`;
+const responsivePhoto = css`
+  margin: 0;
+  ${media.mediumScreen`
+    ${condensePhoto}
+`}
+`;
+export const Photo = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: photo;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   align-self: top;
   width: 70px;
   height: 90px;
 
   background-color: #f1f5f5;
+
+  ${props =>
+    props.cartRowType === "condense" ? condensePhoto : responsivePhoto}
 
   img {
     width: 100%;
@@ -69,10 +81,10 @@ export const Photo = styled.div`
 `;
 
 const condenseDescription = css`
-  margin-left: 0px;
+  margin: 6px 0 6px 0;
 `;
 const responsiveDescription = css`
-  margin-left: 20px;
+  margin: 20px 0 0 20px;
   ${media.mediumScreen`
     ${condenseDescription}
 `}
@@ -80,7 +92,6 @@ const responsiveDescription = css`
 export const Description = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: description;
   height: 100%;
-  margin-top: 20px;
   ${props =>
     props.cartRowType === "condense"
       ? condenseDescription
@@ -88,9 +99,8 @@ export const Description = styled.div<{ cartRowType: ICartRowType }>`
 `;
 
 export const Sku = styled.p`
-  margin: 6px 0;
+  margin: 6px 0 22px 0;
   text-align: left;
-  margin-bottom: 10px;
 `;
 
 const condenseAttributes = css`
@@ -120,6 +130,7 @@ export const SingleAttribute = styled.p`
   white-space: nowrap;
   background-color: white;
   padding: 0px 15px;
+  font-size: ${props => props.theme.typography.smallFontSize};
 `;
 
 export const Name = styled.p`
@@ -202,8 +213,23 @@ export const UnitPrice = styled(Price)`
   grid-area: unitPrice;
 `;
 
-export const Quantity = styled.div`
+const condenseQuantity = css`
+  margin: 0;
+`;
+const responsiveQuantity = css`
+  margin: 0 15px;
+  ${media.mediumScreen`
+    ${condenseQuantity}
+  `};
+`;
+export const Quantity = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: quantity;
   min-width: 120px;
-  margin: 0 15px;
+  ${props =>
+    props.cartRowType === "condense" ? condenseQuantity : responsiveQuantity}
+`;
+
+export const ErrorMessages = styled.div`
+  position: absolute;
+  top: 100%;
 `;

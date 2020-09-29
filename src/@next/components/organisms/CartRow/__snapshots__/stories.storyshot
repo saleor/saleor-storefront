@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   margin: 20px;
 }
 
-.c23 {
+.c22 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   box-sizing: border-box;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -42,24 +42,24 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   transition: 0.3s;
 }
 
-.c19 svg {
+.c18 svg {
   display: block;
 }
 
-.c19 svg path {
+.c18 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c19:hover {
+.c18:hover {
   background-color: rgb(33,18,94);
 }
 
-.c19:hover svg path {
+.c18:hover svg path {
   fill: #fff;
 }
 
-.c14 {
+.c13 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -74,7 +74,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   pointer-events: none;
 }
 
-.c11 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -86,7 +86,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   transition: all 0.3s ease;
 }
 
-.c11:hover {
+.c10:hover {
   color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
@@ -94,7 +94,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   outline-color: rgb(33,18,94);
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -105,12 +105,12 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   align-items: center;
 }
 
-.c12 {
+.c11 {
   position: relative;
   width: 100%;
 }
 
-.c13 {
+.c12 {
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -120,22 +120,12 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   background-color: transparent;
 }
 
-.c13:-webkit-autofill + label {
+.c12:-webkit-autofill + label {
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: transparent;
   font-size: 0.75rem;
   top: 0;
-}
-
-.c10 {
-  margin-bottom: 1.875rem;
-  position: relative;
-}
-
-.c17 {
-  position: absolute;
-  top: 100%;
 }
 
 .c1 {
@@ -149,7 +139,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   grid-row-gap: 15px;
   grid-column-gap: 20px;
   grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
-  padding: 1rem 0rem;
+  padding: 1.6rem 0rem;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -157,7 +147,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
-.c16 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -171,14 +161,14 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   width: 50px;
 }
 
-.c16 > div {
+.c15 > div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c16 svg {
+.c15 svg {
   cursor: pointer;
   justify-self: center;
 }
@@ -189,16 +179,17 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-align-self: top;
   -ms-flex-item-align: top;
   align-self: top;
   width: 70px;
   height: 90px;
   background-color: #f1f5f5;
+  margin: 0 auto;
 }
 
 .c2 img {
@@ -210,14 +201,12 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
 .c3 {
   grid-area: description;
   height: 100%;
-  margin-top: 20px;
-  margin-left: 0px;
+  margin: 6px 0 6px 0;
 }
 
 .c5 {
-  margin: 6px 0;
+  margin: 6px 0 22px 0;
   text-align: left;
-  margin-bottom: 10px;
 }
 
 .c7 {
@@ -247,6 +236,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   white-space: nowrap;
   background-color: white;
   padding: 0px 15px;
+  font-size: 0.875rem;
 }
 
 .c4 {
@@ -262,11 +252,11 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   color: rgba(125,125,125,0.6);
 }
 
-.c21 {
+.c20 {
   display: block;
 }
 
-.c20 {
+.c19 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -283,15 +273,15 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   grid-area: totalPrice;
 }
 
-.c20 p {
+.c19 p {
   margin: 0;
 }
 
-.c20 p {
+.c19 p {
   text-align: right;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -307,7 +297,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   grid-area: trash;
 }
 
-.c22 {
+.c21 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -324,14 +314,19 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
   grid-area: unitPrice;
 }
 
-.c22 p {
+.c21 p {
   margin: 0;
 }
 
 .c9 {
   grid-area: quantity;
   min-width: 120px;
-  margin: 0 15px;
+  margin: 0;
+}
+
+.c16 {
+  position: absolute;
+  top: 100%;
 }
 
 <div
@@ -467,79 +462,75 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
     >
       <div
         className="c10"
+        disabled={false}
       >
         <div
           className="c11"
-          disabled={false}
+        >
+          <input
+            className="c12"
+            disabled={false}
+            name="quantity"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            value="3"
+          />
+          <label
+            className="c13"
+          >
+            Quantity
+          </label>
+        </div>
+        <span
+          className="c14"
         >
           <div
-            className="c12"
-          >
-            <input
-              className="c13"
-              disabled={false}
-              name="quantity"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              value="3"
-            />
-            <label
-              className="c14"
-            >
-              Quantity
-            </label>
-          </div>
-          <span
             className="c15"
+            data-test="quantityControls"
           >
             <div
-              className="c16"
-              data-test="quantityControls"
+              data-test="subtractButton"
+              onClick={[Function]}
             >
-              <div
-                data-test="subtractButton"
-                onClick={[Function]}
+              <svg
+                height={16}
+                viewBox="0 0 32 32"
+                width={16}
               >
-                <svg
-                  height={16}
-                  viewBox="0 0 32 32"
-                  width={16}
-                >
-                  <path
-                    d="M0 13.818h32v4.364h-32v-4.364z"
-                    fill="#323232"
-                  />
-                </svg>
-              </div>
-              <div
-                data-test="increaseButton"
-                onClick={[Function]}
-              >
-                <svg
-                  height={16}
-                  viewBox="0 0 32 32"
-                  width={16}
-                >
-                  <path
-                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                    fill="#21125E"
-                  />
-                </svg>
-              </div>
+                <path
+                  d="M0 13.818h32v4.364h-32v-4.364z"
+                  fill="#323232"
+                />
+              </svg>
             </div>
-          </span>
-        </div>
-        <div
-          className="c17"
-        />
+            <div
+              data-test="increaseButton"
+              onClick={[Function]}
+            >
+              <svg
+                height={16}
+                viewBox="0 0 32 32"
+                width={16}
+              >
+                <path
+                  d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                  fill="#21125E"
+                />
+              </svg>
+            </div>
+          </div>
+        </span>
       </div>
+      <div
+        className="c16"
+      />
     </div>
     <div
-      className="c18"
+      className="c17"
     >
       <div
-        className="c19"
+        className="c18"
         data-test="removeButton"
         data-test-id="R4ND-0M-5KU"
         onClick={[Function]}
@@ -557,10 +548,10 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
       </div>
     </div>
     <div
-      className="c20"
+      className="c19"
     >
       <p
-        className="c21"
+        className="c20"
       >
         <span
           className="c6"
@@ -576,10 +567,10 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
       </p>
     </div>
     <div
-      className="c22"
+      className="c21"
     >
       <p
-        className="c21"
+        className="c20"
       >
         <span
           className="c6"
@@ -596,7 +587,7 @@ exports[`Storyshots @components/organisms/CartRow condense 1`] = `
     </div>
   </div>
   <div
-    className="c23"
+    className="c22"
   />
 </div>
 `;
@@ -607,7 +598,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   margin: 20px;
 }
 
-.c23 {
+.c22 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -618,7 +609,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   box-sizing: border-box;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -643,24 +634,24 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   transition: 0.3s;
 }
 
-.c19 svg {
+.c18 svg {
   display: block;
 }
 
-.c19 svg path {
+.c18 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c19:hover {
+.c18:hover {
   background-color: rgb(33,18,94);
 }
 
-.c19:hover svg path {
+.c18:hover svg path {
   fill: #fff;
 }
 
-.c14 {
+.c13 {
   position: absolute;
   left: 0.5rem;
   padding: 0 0.5rem;
@@ -675,7 +666,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   pointer-events: none;
 }
 
-.c11 {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -687,7 +678,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   transition: all 0.3s ease;
 }
 
-.c11:hover {
+.c10:hover {
   color: rgb(33,18,94);
   outline-width: 1px;
   outline-style: solid;
@@ -695,7 +686,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   outline-color: rgb(33,18,94);
 }
 
-.c15 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -706,12 +697,12 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   align-items: center;
 }
 
-.c12 {
+.c11 {
   position: relative;
   width: 100%;
 }
 
-.c13 {
+.c12 {
   padding: 0.8rem 1rem;
   margin: 0;
   border: none;
@@ -721,22 +712,12 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   background-color: transparent;
 }
 
-.c13:-webkit-autofill + label {
+.c12:-webkit-autofill + label {
   left: 0.5rem;
   padding: 0 0.5rem;
   background-color: transparent;
   font-size: 0.75rem;
   top: 0;
-}
-
-.c10 {
-  margin-bottom: 1.875rem;
-  position: relative;
-}
-
-.c17 {
-  position: absolute;
-  top: 100%;
 }
 
 .c1 {
@@ -756,7 +737,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
-.c16 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -770,14 +751,14 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   width: 50px;
 }
 
-.c16 > div {
+.c15 > div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c16 svg {
+.c15 svg {
   cursor: pointer;
   justify-self: center;
 }
@@ -788,16 +769,17 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-align-self: top;
   -ms-flex-item-align: top;
   align-self: top;
   width: 70px;
   height: 90px;
   background-color: #f1f5f5;
+  margin: 0;
 }
 
 .c2 img {
@@ -809,14 +791,12 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
 .c3 {
   grid-area: description;
   height: 100%;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin: 20px 0 0 20px;
 }
 
 .c5 {
-  margin: 6px 0;
+  margin: 6px 0 22px 0;
   text-align: left;
-  margin-bottom: 10px;
 }
 
 .c7 {
@@ -843,6 +823,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   white-space: nowrap;
   background-color: white;
   padding: 0px 15px;
+  font-size: 0.875rem;
 }
 
 .c4 {
@@ -858,11 +839,11 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   color: rgba(125,125,125,0.6);
 }
 
-.c21 {
+.c20 {
   display: none;
 }
 
-.c20 {
+.c19 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -876,11 +857,11 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   grid-area: totalPrice;
 }
 
-.c20 p {
+.c19 p {
   margin: 0;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -896,7 +877,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   grid-area: trash;
 }
 
-.c22 {
+.c21 {
   font-size: 1.125rem;
   display: -webkit-box;
   display: -webkit-flex;
@@ -910,7 +891,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   grid-area: unitPrice;
 }
 
-.c22 p {
+.c21 p {
   margin: 0;
 }
 
@@ -920,19 +901,30 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
   margin: 0 15px;
 }
 
+.c16 {
+  position: absolute;
+  top: 100%;
+}
+
 @media (max-width:720px) {
   .c1 {
     grid-template-columns: 1fr 2fr 2fr;
     grid-row-gap: 15px;
     grid-column-gap: 20px;
     grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
-    padding: 1rem 0rem;
+    padding: 1.6rem 0rem;
+  }
+}
+
+@media (max-width:720px) {
+  .c2 {
+    margin: 0 auto;
   }
 }
 
 @media (max-width:720px) {
   .c3 {
-    margin-left: 0px;
+    margin: 6px 0 6px 0;
   }
 }
 
@@ -945,13 +937,13 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
 }
 
 @media (max-width:720px) {
-  .c21 {
+  .c20 {
     display: block;
   }
 }
 
 @media (max-width:720px) {
-  .c20 {
+  .c19 {
     font-weight: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -960,17 +952,23 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
 }
 
 @media (max-width:720px) {
-  .c20 p {
+  .c19 p {
     text-align: right;
   }
 }
 
 @media (max-width:720px) {
-  .c22 {
+  .c21 {
     font-weight: normal;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+  }
+}
+
+@media (max-width:720px) {
+  .c9 {
+    margin: 0;
   }
 }
 
@@ -1107,79 +1105,75 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
     >
       <div
         className="c10"
+        disabled={false}
       >
         <div
           className="c11"
-          disabled={false}
+        >
+          <input
+            className="c12"
+            disabled={false}
+            name="quantity"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            value="3"
+          />
+          <label
+            className="c13"
+          >
+            Quantity
+          </label>
+        </div>
+        <span
+          className="c14"
         >
           <div
-            className="c12"
-          >
-            <input
-              className="c13"
-              disabled={false}
-              name="quantity"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              value="3"
-            />
-            <label
-              className="c14"
-            >
-              Quantity
-            </label>
-          </div>
-          <span
             className="c15"
+            data-test="quantityControls"
           >
             <div
-              className="c16"
-              data-test="quantityControls"
+              data-test="subtractButton"
+              onClick={[Function]}
             >
-              <div
-                data-test="subtractButton"
-                onClick={[Function]}
+              <svg
+                height={16}
+                viewBox="0 0 32 32"
+                width={16}
               >
-                <svg
-                  height={16}
-                  viewBox="0 0 32 32"
-                  width={16}
-                >
-                  <path
-                    d="M0 13.818h32v4.364h-32v-4.364z"
-                    fill="#323232"
-                  />
-                </svg>
-              </div>
-              <div
-                data-test="increaseButton"
-                onClick={[Function]}
-              >
-                <svg
-                  height={16}
-                  viewBox="0 0 32 32"
-                  width={16}
-                >
-                  <path
-                    d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
-                    fill="#21125E"
-                  />
-                </svg>
-              </div>
+                <path
+                  d="M0 13.818h32v4.364h-32v-4.364z"
+                  fill="#323232"
+                />
+              </svg>
             </div>
-          </span>
-        </div>
-        <div
-          className="c17"
-        />
+            <div
+              data-test="increaseButton"
+              onClick={[Function]}
+            >
+              <svg
+                height={16}
+                viewBox="0 0 32 32"
+                width={16}
+              >
+                <path
+                  d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                  fill="#21125E"
+                />
+              </svg>
+            </div>
+          </div>
+        </span>
       </div>
+      <div
+        className="c16"
+      />
     </div>
     <div
-      className="c18"
+      className="c17"
     >
       <div
-        className="c19"
+        className="c18"
         data-test="removeButton"
         data-test-id="R4ND-0M-5KU"
         onClick={[Function]}
@@ -1197,10 +1191,10 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
       </div>
     </div>
     <div
-      className="c20"
+      className="c19"
     >
       <p
-        className="c21"
+        className="c20"
       >
         <span
           className="c6"
@@ -1216,10 +1210,10 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
       </p>
     </div>
     <div
-      className="c22"
+      className="c21"
     >
       <p
-        className="c21"
+        className="c20"
       >
         <span
           className="c6"
@@ -1236,7 +1230,7 @@ exports[`Storyshots @components/organisms/CartRow responsive 1`] = `
     </div>
   </div>
   <div
-    className="c23"
+    className="c22"
   />
 </div>
 `;
