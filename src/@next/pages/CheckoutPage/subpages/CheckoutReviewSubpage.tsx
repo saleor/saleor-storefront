@@ -7,7 +7,6 @@ import React, {
 import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
-import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 import { takeRight } from "lodash";
