@@ -54,7 +54,7 @@ describe("<CartSidebar />", () => {
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("should display products", () => {
+  it("should display products with their prices", () => {
     const hide = jest.fn();
     const removeItem = jest.fn();
     const updateItem = jest.fn();
@@ -84,11 +84,10 @@ describe("<CartSidebar />", () => {
 
     wrapper.find(CartRow).forEach((wrapper, idx) => {
       const item = ITEMS[idx];
-      expect(wrapper.text()).toContain(item.variant.name);
-      expect(wrapper.text()).toContain(
-        item.variant.pricing?.price?.gross.amount
-      );
-      expect(wrapper.text()).toContain(
+      const cartRow = wrapper.text();
+      expect(cartRow).toContain(item.variant.name);
+      expect(cartRow).toContain(item.variant.pricing?.price?.gross.amount);
+      expect(cartRow).toContain(
         item.quantity * (item.variant.pricing?.price?.gross.amount || 0)
       );
     });
@@ -124,21 +123,15 @@ describe("<CartSidebar />", () => {
       </IntlProvider>
     );
 
-    expect(wrapper.find(CartSummaryCosts).text()).toContain(
-      TOTAL_PRICE.gross.amount
-    );
-    expect(wrapper.find(CartSummaryCosts).text()).toContain(
-      SUBTOTAL_PRICE.gross.amount
-    );
-    expect(wrapper.find(CartSummaryCosts).text()).toContain(
-      SHIPPING_PRICE.gross.amount
-    );
-    expect(wrapper.find(CartSummaryCosts).text()).toContain(
-      PROMO_PRICE.gross.amount
-    );
+    const cartSummary = wrapper.find(CartSummaryCosts).text();
+
+    expect(cartSummary).toContain(TOTAL_PRICE.gross.amount);
+    expect(cartSummary).toContain(SUBTOTAL_PRICE.gross.amount);
+    expect(cartSummary).toContain(SHIPPING_PRICE.gross.amount);
+    expect(cartSummary).toContain(PROMO_PRICE.gross.amount);
   });
 
-  it("should call mocks when clicking on continue shopping button", () => {
+  it("should call mock when clicking on continue shopping button", () => {
     const hide = jest.fn();
     const removeItem = jest.fn();
     const updateItem = jest.fn();
@@ -174,7 +167,7 @@ describe("<CartSidebar />", () => {
     expect(continueShopping).toHaveBeenCalled();
   });
 
-  it("should call mocks when clicking on go to cart button", () => {
+  it("should call mock when clicking on go to cart button", () => {
     const hide = jest.fn();
     const removeItem = jest.fn();
     const updateItem = jest.fn();
@@ -208,7 +201,7 @@ describe("<CartSidebar />", () => {
     expect(goToCart).toHaveBeenCalled();
   });
 
-  it("should call mocks when clicking on proceed to checkout button", () => {
+  it("should call mock when clicking on proceed to checkout button", () => {
     const hide = jest.fn();
     const removeItem = jest.fn();
     const updateItem = jest.fn();

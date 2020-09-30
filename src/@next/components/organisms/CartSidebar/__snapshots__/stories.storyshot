@@ -1492,6 +1492,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
             className="c40"
             color="secondary"
             data-test="gotoBagViewButton"
+            name="gotoBagView"
             onClick={[Function]}
             size="md"
           >
@@ -1506,6 +1507,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
             className="c42"
             color="primary"
             data-test="gotoCheckoutButton"
+            name="gotoCheckout"
             onClick={[Function]}
             size="md"
           >
@@ -1825,6 +1827,7 @@ exports[`Storyshots @components/organisms/CartSidebar empty 1`] = `
               className="c12"
               color="secondary"
               data-test="emptyCartHideOverlayButton"
+              name="continueShopping"
               onClick={[Function]}
               size="md"
             >
