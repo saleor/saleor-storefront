@@ -13,10 +13,10 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
+import { OfflinePlaceholder } from "@components/atoms";
 import {
   Button,
   Loader,
-  OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
   OverlayType,

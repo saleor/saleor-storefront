@@ -11,7 +11,6 @@ export { default as Message } from "./Message";
 export { default as NetworkStatus } from "./NetworkStatus";
 export { default as NotFound } from "./NotFound";
 export { default as Offline } from "./Offline";
-export { default as OfflinePlaceholder } from "./OfflinePlaceholder";
 export { default as Online } from "./Online";
 export { default as PasswordResetRequestForm } from "./PasswordResetRequestForm";
 export { default as PriceRangeFilter } from "./PriceRangeFilter";

@@ -30,3 +30,4 @@ export * from "./SocialMediaIcon";
 export * from "./StripeInputElement";
 export * from "./Tile";
 export * from "./TileGrid";
+export * from "./OfflinePlaceholder";

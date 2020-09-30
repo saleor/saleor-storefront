@@ -5,7 +5,8 @@ import { Redirect } from "react-router";
 
 import { useAuth } from "@saleor/sdk";
 
-import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
+import { OfflinePlaceholder } from "@components/atoms";
+import { Offline, Online, OverlayContext } from "..";
 
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";

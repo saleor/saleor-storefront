@@ -2,7 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
-import { Button, Loader } from "@components/atoms";
+import { Button, Loader, OfflinePlaceholder } from "@components/atoms";
 import { CardHeader, CartSummaryCosts } from "@components/molecules";
 import { TaxedMoney } from "@components/containers";
 import { useHandlerWhenClickedOutside, useNetworkStatus } from "@hooks";
@@ -144,8 +144,9 @@ const CartSidebar: React.FC<ICartSidebar> = ({
         </CardHeader>
         <S.Content>
           {!online ? (
-            // eslint-disable-next-line react/jsx-curly-brace-presence
-            <S.EmptyCart>{"OFFLINE :("}</S.EmptyCart>
+            <S.EmptyCart>
+              <OfflinePlaceholder />
+            </S.EmptyCart>
           ) : items?.length ? (
             missingVariants() ? (
               <Loader />

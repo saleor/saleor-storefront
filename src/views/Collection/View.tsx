@@ -5,8 +5,8 @@ import { RouteComponentProps } from "react-router";
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
-import { Loader } from "@components/atoms";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
