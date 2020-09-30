@@ -195,7 +195,7 @@ describe("<CartSidebar />", () => {
 
     wrapper
       .find("button")
-      .findWhere(wrapper => wrapper.props().name === "gotoBagView")
+      .findWhere(wrapper => wrapper.props().name === "gotoCartView")
       .simulate("click");
 
     expect(goToCart).toHaveBeenCalled();

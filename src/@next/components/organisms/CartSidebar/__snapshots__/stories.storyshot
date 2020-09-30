@@ -1491,8 +1491,8 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
           <button
             className="c40"
             color="secondary"
-            data-test="gotoBagViewButton"
-            name="gotoBagView"
+            data-test="gotoCartViewButton"
+            name="gotoCartView"
             onClick={[Function]}
             size="md"
           >

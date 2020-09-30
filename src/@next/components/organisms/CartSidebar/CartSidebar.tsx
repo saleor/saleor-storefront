@@ -196,8 +196,8 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               subtotalPrice
             )}
             <Button
-              name="gotoBagView"
-              testingContext="gotoBagViewButton"
+              name="gotoCartView"
+              testingContext="gotoCartViewButton"
               color="secondary"
               fullWidth
               onClick={goToCart}
