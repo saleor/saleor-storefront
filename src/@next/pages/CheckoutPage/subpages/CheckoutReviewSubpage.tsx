@@ -61,7 +61,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     : undefined;
 
   const getPaymentMethodDescription = () => {
-    if (payment?.gateway === "mirumee.payments.dummy") {
+    if (payment?.gateway === "mirumee.payments.dummy_credit_card") {
       return `Credit card ending with ${takeRight(payment.token, 4).join("")}`;
     }
     if (payment?.gateway === "mirumee.payments.adyen") {

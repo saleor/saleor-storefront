@@ -9,9 +9,18 @@ declare module "react-payment-inputs" {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }) => T;
 
-  export function usePaymentInputs(): {
+  export function usePaymentInputs(
+    Options
+  ): {
     getCardNumberProps: GetPropsFunction<CardNumberProps>;
     getExpiryDateProps: GetPropsFunction<ExpiryDateProps>;
     getCVCProps: GetPropsFunction<CVCProps>;
   };
+}
+
+interface Options {
+  onError: (onErrorsProps: {
+    message: string;
+    fields: Record<T, string | undefined>;
+  }) => void;
 }

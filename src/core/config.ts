@@ -12,6 +12,9 @@ export const PROVIDERS = {
   DUMMY: {
     label: "Dummy",
   },
+  DUMMY_CREDIT_CARD: {
+    label: "Dummy Credit Card",
+  },
   STRIPE: {
     label: "Stripe",
   },

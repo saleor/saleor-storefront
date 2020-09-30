@@ -68,7 +68,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               </div>
             );
 
-          case PROVIDERS.DUMMY.label:
+          case PROVIDERS.DUMMY_CREDIT_CARD.label:
             return (
               <div key={index}>
                 <S.Tile checked={checked}>

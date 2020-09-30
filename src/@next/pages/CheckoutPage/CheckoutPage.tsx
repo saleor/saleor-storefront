@@ -308,16 +308,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     });
 
     const errors = dataError?.error;
-    setTimeout(() => {
-      console.log("YAY");
-      setSubmitInProgress(false);
-      if (errors) {
-        setPaymentGatewayErrors(errors);
-      } else {
-        setPaymentGatewayErrors([]);
-        handleStepSubmitSuccess(CheckoutStep.Payment);
-      }
-    }, 5000);
+    setSubmitInProgress(false);
+    if (errors) {
+      setPaymentGatewayErrors(errors);
+    } else {
+      setPaymentGatewayErrors([]);
+      handleStepSubmitSuccess(CheckoutStep.Payment);
+    }
   };
   const handleSubmitPayment = async (paymentData?: object) => {
     const response = await completeCheckout({ paymentData });
