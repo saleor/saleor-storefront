@@ -167,6 +167,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                 />
               </S.EmptyCartDescription>
               <Button
+                name="continueShopping"
                 testingContext="emptyCartHideOverlayButton"
                 color="secondary"
                 fullWidth
@@ -189,6 +190,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               subtotalPrice
             )}
             <Button
+              name="gotoBagView"
               testingContext="gotoBagViewButton"
               color="secondary"
               fullWidth
@@ -200,6 +202,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               />
             </Button>
             <Button
+              name="gotoCheckout"
               testingContext="gotoCheckoutButton"
               color="primary"
               fullWidth
