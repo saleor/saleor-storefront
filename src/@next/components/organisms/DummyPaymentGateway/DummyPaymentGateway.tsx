@@ -9,7 +9,9 @@ import { useIntl } from "react-intl";
 import { CreditCardInput } from "@components/atoms";
 import { CreditCardField } from "@components/atoms/CreditCardInput/types";
 
-const initialValues: Record<CreditCardField | "nameOnCard", string> = {
+type CreditCardData = Record<CreditCardField | "nameOnCard", string>;
+
+const initialValues: CreditCardData = {
   nameOnCard: "",
   cardNumber: "",
   cvc: "",
@@ -26,11 +28,14 @@ const DummyPaymentGateway: React.FC<IProps> = ({
   initialStatus,
 }: IProps) => {
   const intl = useIntl();
+
+  const getBareValue = (value: string) => value.replaceAll(" ", "");
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values, { setSubmitting }) => {
-        // processPayment(values.status);
+        processPayment(getBareValue(values.cardNumber));
         setSubmitting(false);
       }}
     >

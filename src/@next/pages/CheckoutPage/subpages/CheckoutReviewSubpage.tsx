@@ -10,6 +10,7 @@ import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
+import { takeRight } from "lodash";
 
 export interface ISubmitCheckoutData {
   id: string;
@@ -61,11 +62,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 
   const getPaymentMethodDescription = () => {
     if (payment?.gateway === "mirumee.payments.dummy") {
-      return `Dummy: ${
-        dummyStatuses.find(
-          status => status.token === selectedPaymentGatewayToken
-        )?.label
-      }`;
+      return `Credit card ending with ${takeRight(payment.token, 4).join("")}`;
     }
     if (payment?.gateway === "mirumee.payments.adyen") {
       return `Adyen payments`;

@@ -299,20 +299,25 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(
       step => step.step === CheckoutStep.PaymentConfirm
     )?.link;
+
     const { dataError } = await createPayment({
       gateway,
       token,
       creditCard: cardData,
       returnUrl: `${window.location.origin}${paymentConfirmStepLink}`,
     });
+
     const errors = dataError?.error;
-    setSubmitInProgress(false);
-    if (errors) {
-      setPaymentGatewayErrors(errors);
-    } else {
-      setPaymentGatewayErrors([]);
-      handleStepSubmitSuccess(CheckoutStep.Payment);
-    }
+    setTimeout(() => {
+      console.log("YAY");
+      setSubmitInProgress(false);
+      if (errors) {
+        setPaymentGatewayErrors(errors);
+      } else {
+        setPaymentGatewayErrors([]);
+        handleStepSubmitSuccess(CheckoutStep.Payment);
+      }
+    }, 5000);
   };
   const handleSubmitPayment = async (paymentData?: object) => {
     const response = await completeCheckout({ paymentData });
