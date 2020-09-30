@@ -1,13 +1,13 @@
 import React from "react";
 import { getBackgroundColor } from "@utils/styles";
-import { InputLabel } from "../InputLabel";
-import * as S from "./styles";
-import { CreditCardField, CreditCardInputProps } from "./types";
 import { usePaymentInputs } from "react-payment-inputs";
 import { ErrorMessage } from "@components/atoms";
 import { reduce } from "lodash";
 import { IFormError } from "@types";
 import { useIntl } from "react-intl";
+import { CreditCardField, CreditCardInputProps } from "./types";
+import * as S from "./styles";
+import { InputLabel } from "../InputLabel";
 
 const CARD_NUMBER_MAX_LENGTH = 16;
 const CARD_SLICES_REGEX = /.{1,4}/g;

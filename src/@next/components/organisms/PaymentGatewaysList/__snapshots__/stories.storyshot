@@ -75,35 +75,6 @@ exports[`Storyshots @components/organisms/PaymentGatewaysList default 1`] = `
         >
           <input
             checked={false}
-            data-test="checkoutPaymentGatewayDummyInput"
-            name="payment-method"
-            onChange={[Function]}
-            type="radio"
-            value="dummy"
-          />
-           
-          <div>
-            <span />
-          </div>
-          <span
-            data-test="checkoutPaymentGatewayDummyName"
-          >
-            Dummy
-          </span>
-        </div>
-      </label>
-    </div>
-    <div>
-      <label
-        checked={false}
-        className="c2"
-      >
-        <div
-          checked={false}
-          className="c3"
-        >
-          <input
-            checked={false}
             data-test="checkoutPaymentGatewayStripeInput"
             name="payment-method"
             onChange={[Function]}

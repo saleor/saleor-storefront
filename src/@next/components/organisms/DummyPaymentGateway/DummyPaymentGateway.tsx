@@ -2,13 +2,13 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import { pick } from "lodash";
 
-import * as S from "./styles";
-import { IProps } from "./types";
 import { TextField } from "@components/molecules";
 import { useIntl } from "react-intl";
 import { CreditCardInput } from "@components/atoms";
 import { CreditCardField } from "@components/atoms/CreditCardInput/types";
 import { IFormError } from "@types";
+import { IProps } from "./types";
+import * as S from "./styles";
 
 const NAME_REGEX = /^[a-zA-Z\s]*$/;
 
@@ -62,7 +62,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
   };
 
   const shouldEnableProceed = (values: CreditCardData) =>
-    cardErrors.length < 1 && !!!getNameErrors(values.nameOnCard);
+    cardErrors.length < 1 && !getNameErrors(values.nameOnCard);
 
   return (
     <Formik
@@ -102,7 +102,7 @@ const DummyPaymentGateway: React.FC<IProps> = ({
             onChange={handleChange}
             label={intl.formatMessage({ defaultMessage: "Card number" })}
             onBlur={handleBlur}
-          ></CreditCardInput>
+          />
         </S.Form>
       )}
     </Formik>
