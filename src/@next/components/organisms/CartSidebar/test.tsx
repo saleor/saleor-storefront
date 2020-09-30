@@ -131,7 +131,7 @@ describe("<CartSidebar />", () => {
     expect(cartSummary).toContain(PROMO_PRICE.gross.amount);
   });
 
-  it("should call mock when clicking on continue shopping button", () => {
+  it("should call mock when clicking on continue shopping button when cart is empty", () => {
     const hide = jest.fn();
     const removeItem = jest.fn();
     const updateItem = jest.fn();

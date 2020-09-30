@@ -4,7 +4,7 @@ export type TitleSize = "md" | "lg";
 export interface IProps {
   children: React.ReactNode;
   divider?: boolean;
-  prefixIcon?: React.ReactNode;
+  prefix?: React.ReactNode;
   closeIcon?: React.ReactNode;
   onHide?: () => void;
   textStyle?: TextStyle;

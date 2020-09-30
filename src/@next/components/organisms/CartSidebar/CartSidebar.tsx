@@ -138,11 +138,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
       testingContext="cartOverlay"
     >
       <S.Wrapper ref={setElementRef()}>
-        <CardHeader
-          divider
-          onHide={hide}
-          prefixIcon={<ReactSVG path={cartImg} />}
-        >
+        <CardHeader divider onHide={hide} prefix={<ReactSVG path={cartImg} />}>
           <span>
             <FormattedMessage defaultMessage="My Cart" />
           </span>

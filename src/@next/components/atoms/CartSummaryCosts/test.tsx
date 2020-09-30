@@ -15,11 +15,11 @@ describe("<CartSummaryCosts />", () => {
   it("should display all costs", () => {
     const wrapper = shallow(<CartSummaryCosts {...ALL_POSSIBLE_COSTS} />);
 
-    const cartSummary = wrapper.text();
+    const cartSummaryCosts = wrapper.text();
 
-    expect(cartSummary).toContain(ALL_POSSIBLE_COSTS.subtotalPrice);
-    expect(cartSummary).toContain(ALL_POSSIBLE_COSTS.totalPrice);
-    expect(cartSummary).toContain(ALL_POSSIBLE_COSTS.shippingPrice);
-    expect(cartSummary).toContain(ALL_POSSIBLE_COSTS.discountPrice);
+    expect(cartSummaryCosts).toContain(ALL_POSSIBLE_COSTS.subtotalPrice);
+    expect(cartSummaryCosts).toContain(ALL_POSSIBLE_COSTS.totalPrice);
+    expect(cartSummaryCosts).toContain(ALL_POSSIBLE_COSTS.shippingPrice);
+    expect(cartSummaryCosts).toContain(ALL_POSSIBLE_COSTS.discountPrice);
   });
 });

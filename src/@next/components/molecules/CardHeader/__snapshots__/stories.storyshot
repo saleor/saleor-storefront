@@ -634,3 +634,80 @@ exports[`Storyshots @components/molecules/CardHeader with paragraph text style 1
   />
 </div>
 `;
+
+exports[`Storyshots @components/molecules/CardHeader with prefix 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c4 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <h4
+        className="c3"
+        size="md"
+      >
+        Some Title
+      </h4>
+    </div>
+  </div>
+  <div
+    className="c4"
+  />
+</div>
+`;

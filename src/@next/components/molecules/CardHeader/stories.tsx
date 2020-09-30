@@ -43,6 +43,18 @@ storiesOf("@components/molecules/CardHeader", module)
     const PROPS = { ...DEFAULT_PROPS, closeIcon: icon };
     return renderHeader(PROPS);
   })
+  .add("with prefix", () => {
+    const icon = (
+      <IconButton
+        testingContext="test"
+        name="arrow_back"
+        size={24}
+        onClick={action("onArrowBack")}
+      />
+    );
+    const PROPS = { ...DEFAULT_PROPS, prfix: icon };
+    return renderHeader(PROPS);
+  })
   .add("with paragraph text style", () => {
     const textStyle: TextStyle = "paragraph";
     const PROPS = { ...DEFAULT_PROPS, textStyle };

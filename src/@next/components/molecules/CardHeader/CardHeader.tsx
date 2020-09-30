@@ -7,7 +7,7 @@ import { IProps } from "./types";
 
 export const CardHeader: React.FC<IProps> = ({
   children,
-  prefixIcon,
+  prefix,
   closeIcon,
   divider = false,
   onHide,
@@ -19,7 +19,7 @@ export const CardHeader: React.FC<IProps> = ({
   return (
     <S.Wrapper divider={divider}>
       <S.Header>
-        {prefixIcon}
+        {prefix}
         {textStyle === "title" ? (
           <S.Title size={titleSize}>{children}</S.Title>
         ) : (
