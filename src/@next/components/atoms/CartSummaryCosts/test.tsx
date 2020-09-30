@@ -2,18 +2,18 @@ import { shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 
-import { CartFooter } from ".";
+import { CartSummaryCosts } from ".";
 import { BASIC_COSTS, ALL_POSSIBLE_COSTS } from "./fixtures";
 
-describe("<CartFooter />", () => {
+describe("<CartSummaryCosts />", () => {
   it("exists", () => {
-    const wrapper = shallow(<CartFooter {...BASIC_COSTS} />);
+    const wrapper = shallow(<CartSummaryCosts {...BASIC_COSTS} />);
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should display all costs", () => {
-    const wrapper = shallow(<CartFooter {...ALL_POSSIBLE_COSTS} />);
+    const wrapper = shallow(<CartSummaryCosts {...ALL_POSSIBLE_COSTS} />);
 
     const cartSummary = wrapper.text();
 

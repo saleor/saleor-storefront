@@ -4,7 +4,7 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router";
 
-import { CartSummaryCosts } from "@components/molecules";
+import { CartSummaryCosts } from "@components/atoms";
 import { CartSidebar } from ".";
 import {
   ITEMS,

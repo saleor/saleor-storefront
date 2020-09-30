@@ -90,6 +90,55 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   line-height: 1.25rem;
 }
 
+.c31 {
+  width: 100%;
+  display: grid;
+  font-size: 1.125rem;
+  grid-template-areas: "subtotalText subtotalPrice" "shippingText shippingPrice" "discountText discountPrice" "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c32 {
+  grid-area: subtotalText;
+}
+
+.c33 {
+  grid-area: subtotalPrice;
+  text-align: right;
+}
+
+.c34 {
+  grid-area: shippingText;
+}
+
+.c35 {
+  grid-area: shippingPrice;
+  text-align: right;
+}
+
+.c36 {
+  grid-area: discountText;
+}
+
+.c37 {
+  grid-area: discountPrice;
+  text-align: right;
+}
+
+.c38 {
+  grid-area: totalText;
+  font-weight: bold;
+}
+
+.c39 {
+  grid-area: totalPrice;
+  font-weight: bold;
+  text-align: right;
+}
+
 .c7 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -237,55 +286,6 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   text-transform: uppercase;
   padding-right: 0.6rem;
   margin: 0;
-}
-
-.c31 {
-  width: 100%;
-  display: grid;
-  font-size: 1.125rem;
-  grid-template-areas: "subtotalText subtotalPrice" "shippingText shippingPrice" "discountText discountPrice" "totalText totalPrice";
-  grid-template-columns: 1.1fr 0.9fr;
-  grid-gap: 1.4rem;
-  padding: 0 0 1.4rem 0;
-  border-bottom: 1px solid rgba(50,50,50,0.1);
-}
-
-.c32 {
-  grid-area: subtotalText;
-}
-
-.c33 {
-  grid-area: subtotalPrice;
-  text-align: right;
-}
-
-.c34 {
-  grid-area: shippingText;
-}
-
-.c35 {
-  grid-area: shippingPrice;
-  text-align: right;
-}
-
-.c36 {
-  grid-area: discountText;
-}
-
-.c37 {
-  grid-area: discountPrice;
-  text-align: right;
-}
-
-.c38 {
-  grid-area: totalText;
-  font-weight: bold;
-}
-
-.c39 {
-  grid-area: totalPrice;
-  font-weight: bold;
-  text-align: right;
 }
 
 .c2 {

@@ -2,8 +2,13 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
-import { Button, Loader, OfflinePlaceholder } from "@components/atoms";
-import { CardHeader, CartSummaryCosts } from "@components/molecules";
+import {
+  Button,
+  CartSummaryCosts,
+  Loader,
+  OfflinePlaceholder,
+} from "@components/atoms";
+import { CardHeader } from "@components/molecules";
 import { TaxedMoney } from "@components/containers";
 import { useHandlerWhenClickedOutside, useNetworkStatus } from "@hooks";
 import { ITaxedMoney } from "@types";
