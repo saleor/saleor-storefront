@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/molecules/CartSummaryCosts default 1`] = `
+exports[`Storyshots @components/molecules/CartCostsSummary default 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
@@ -62,7 +62,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts default 1`] = `
     <div
       className="c3"
     >
-      150$
+      <span
+        data-test="subtotalPrice"
+      >
+        US$ 150.00
+      </span>
     </div>
     <div
       className="c4"
@@ -72,7 +76,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts default 1`] = `
     <div
       className="c5"
     >
-      180$
+      <span
+        data-test="totalPrice"
+      >
+        US$ 180.00
+      </span>
     </div>
   </div>
   <div
@@ -81,7 +89,7 @@ exports[`Storyshots @components/molecules/CartSummaryCosts default 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/molecules/CartSummaryCosts full 1`] = `
+exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
@@ -161,7 +169,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts full 1`] = `
     <div
       className="c3"
     >
-      150$
+      <span
+        data-test="subtotalPrice"
+      >
+        US$ 150.00
+      </span>
     </div>
     <div
       className="c4"
@@ -171,7 +183,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts full 1`] = `
     <div
       className="c5"
     >
-      40$
+      <span
+        data-test="shippingPrice"
+      >
+        US$ 40.00
+      </span>
     </div>
     <div
       className="c6"
@@ -181,7 +197,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts full 1`] = `
     <div
       className="c7"
     >
-      10$
+      <span
+        data-test="discountPrice"
+      >
+        US$ 10.00
+      </span>
     </div>
     <div
       className="c8"
@@ -191,7 +211,11 @@ exports[`Storyshots @components/molecules/CartSummaryCosts full 1`] = `
     <div
       className="c9"
     >
-      180$
+      <span
+        data-test="totalPrice"
+      >
+        US$ 180.00
+      </span>
     </div>
   </div>
   <div

@@ -4,7 +4,7 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router";
 
-import { CartSummaryCosts } from "@components/atoms";
+import { CartCostsSummary } from "@components/atoms";
 import { CartSidebar } from ".";
 import {
   ITEMS,
@@ -123,7 +123,7 @@ describe("<CartSidebar />", () => {
       </IntlProvider>
     );
 
-    const cartSummary = wrapper.find(CartSummaryCosts).text();
+    const cartSummary = wrapper.find(CartCostsSummary).text();
 
     expect(cartSummary).toContain(TOTAL_PRICE.gross.amount);
     expect(cartSummary).toContain(SUBTOTAL_PRICE.gross.amount);

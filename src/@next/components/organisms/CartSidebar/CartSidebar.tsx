@@ -4,7 +4,7 @@ import ReactSVG from "react-svg";
 
 import {
   Button,
-  CartSummaryCosts,
+  CartCostsSummary,
   Loader,
   OfflinePlaceholder,
 } from "@components/atoms";
@@ -60,32 +60,6 @@ const generateCart = (
     />
   ));
 };
-
-const prepareCartFooter = (
-  totalPrice?: ITaxedMoney | null,
-  shippingTaxedPrice?: ITaxedMoney | null,
-  promoTaxedPrice?: ITaxedMoney | null,
-  subtotalPrice?: ITaxedMoney | null
-) => (
-  <CartSummaryCosts
-    subtotalPrice={
-      <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
-    }
-    totalPrice={<TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />}
-    shippingPrice={
-      shippingTaxedPrice &&
-      shippingTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney data-test="shippingPrice" taxedMoney={shippingTaxedPrice} />
-      )
-    }
-    discountPrice={
-      promoTaxedPrice &&
-      promoTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney data-test="discountPrice" taxedMoney={promoTaxedPrice} />
-      )
-    }
-  />
-);
 
 export interface ICartSidebar {
   items: IItems;
@@ -185,12 +159,12 @@ const CartSidebar: React.FC<ICartSidebar> = ({
         </S.Content>
         {online && !!items?.length && (
           <S.Footer>
-            {prepareCartFooter(
-              totalPrice,
-              shippingTaxedPrice,
-              promoTaxedPrice,
-              subtotalPrice
-            )}
+            <CartCostsSummary
+              subtotalPrice={subtotalPrice}
+              totalPrice={totalPrice}
+              shippingPrice={shippingTaxedPrice}
+              discountPrice={promoTaxedPrice}
+            />
             <Button
               name="gotoCartView"
               testingContext="gotoCartViewButton"

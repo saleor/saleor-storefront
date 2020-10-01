@@ -1,5 +1,5 @@
 import { ITaxedMoney } from "@types";
-import { CartFooterProps } from "./CartFooter";
+import { CartCostsSummaryProps } from "./CartCostsSummary";
 
 const getPrice = (amount: number): ITaxedMoney => ({
   gross: {
@@ -12,12 +12,12 @@ const getPrice = (amount: number): ITaxedMoney => ({
   },
 });
 
-export const BASIC_COSTS: CartFooterProps = {
+export const BASIC_COSTS: CartCostsSummaryProps = {
   subtotalPrice: getPrice(150),
   totalPrice: getPrice(180),
 };
 
-export const ALL_POSSIBLE_COSTS: CartFooterProps = {
+export const ALL_POSSIBLE_COSTS: CartCostsSummaryProps = {
   ...BASIC_COSTS,
   shippingPrice: getPrice(40),
   discountPrice: getPrice(10),

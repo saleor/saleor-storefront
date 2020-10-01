@@ -49,22 +49,10 @@ const prepareCartFooter = (
   subtotalPrice?: ITaxedMoney | null
 ) => (
   <CartFooter
-    subtotalPrice={
-      <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
-    }
-    totalPrice={<TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />}
-    shippingPrice={
-      shippingTaxedPrice &&
-      shippingTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney data-test="shippingPrice" taxedMoney={shippingTaxedPrice} />
-      )
-    }
-    discountPrice={
-      promoTaxedPrice &&
-      promoTaxedPrice.gross.amount !== 0 && (
-        <TaxedMoney data-test="discountPrice" taxedMoney={promoTaxedPrice} />
-      )
-    }
+    subtotalPrice={subtotalPrice}
+    totalPrice={totalPrice}
+    shippingPrice={shippingTaxedPrice}
+    discountPrice={promoTaxedPrice}
   />
 );
 
