@@ -9,6 +9,7 @@ const path = require("path");
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
 }
+const STATIC_URL = process.env.STATIC_URL || "/";
 
 module.exports = ({ sourceDir, distDir }) => ({
   devtool: "source-map",
@@ -84,7 +85,7 @@ module.exports = ({ sourceDir, distDir }) => ({
   },
   output: {
     path: distDir,
-    publicPath: "/",
+    publicPath: STATIC_URL,
   },
   plugins: [
     new CleanWebpackPlugin({
