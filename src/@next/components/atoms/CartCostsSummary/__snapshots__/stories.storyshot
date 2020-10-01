@@ -65,7 +65,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary default 1`] = `
       <span
         data-test="subtotalPrice"
       >
-        US$ 150.00
+        $150.00
       </span>
     </div>
     <div
@@ -79,7 +79,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary default 1`] = `
       <span
         data-test="totalPrice"
       >
-        US$ 180.00
+        $180.00
       </span>
     </div>
   </div>
@@ -172,7 +172,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
       <span
         data-test="subtotalPrice"
       >
-        US$ 150.00
+        $150.00
       </span>
     </div>
     <div
@@ -186,7 +186,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
       <span
         data-test="shippingPrice"
       >
-        US$ 40.00
+        $40.00
       </span>
     </div>
     <div
@@ -200,7 +200,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
       <span
         data-test="discountPrice"
       >
-        US$ 10.00
+        $10.00
       </span>
     </div>
     <div
@@ -214,7 +214,7 @@ exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
       <span
         data-test="totalPrice"
       >
-        US$ 180.00
+        $180.00
       </span>
     </div>
   </div>
