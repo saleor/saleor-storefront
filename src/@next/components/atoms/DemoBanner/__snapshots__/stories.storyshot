@@ -100,7 +100,7 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
       >
         <a
           className="c5"
-          href="https://pwa.demo.saleor.rocks/graphql/"
+          href="https://demo.saleor.io/graphql/"
           target="_blank"
         >
           <span
@@ -114,7 +114,7 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
         />
         <a
           className="c5"
-          href="https://pwa.saleor.io/dashboard/"
+          href="https://demo.saleor.io/dashboard/"
           target="_blank"
         >
           <span
@@ -125,7 +125,7 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
         </a>
         <a
           className="c5"
-          href="https://pwa.saleor.io/dashboard/"
+          href="https://demo.saleor.io/dashboard/"
           target="_blank"
         >
           Explore 
@@ -140,7 +140,7 @@ exports[`Storyshots @components/atoms/DemoBanner default 1`] = `
         />
         <a
           className="c5"
-          href="https://pwa.demo.saleor.rocks/graphql/"
+          href="https://demo.saleor.io/graphql/"
           target="_blank"
         >
           Play with 

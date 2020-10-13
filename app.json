@@ -8,7 +8,7 @@
   "env": {
     "API_URI": {
       "description": "URI of a running instance of Saleor GraphQL API",
-      "value": "https://pwa.demo.saleor.rocks/graphql/"
+      "value": "https://demo.saleor.io/graphql/"
     }
   },
   "buildpacks": [
