@@ -183,12 +183,12 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                               ],
                               pageInfo: next.collection.products.pageInfo,
                             },
-                          }
+                          },
                         }),
                         {
                           after:
-                          collectionProductsData.data.collection.products
-                            .pageInfo.endCursor,
+                            collectionProductsData.data.collection.products
+                              .pageInfo.endCursor,
                         }
                       );
 
