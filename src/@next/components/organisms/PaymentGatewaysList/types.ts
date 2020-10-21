@@ -38,6 +38,10 @@ export interface IProps {
     token?: string,
     cardData?: ICardData
   ) => void;
+  /**
+   * Method called when the gateway requires additional actions to perform.
+   */
+  processPaymentAdditionalActions: (gateway: string) => void;
   submitPayment: (data: {
     confirmationData: any;
     confirmationNeeded: boolean;

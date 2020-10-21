@@ -8,6 +8,7 @@ import { paymentGateways } from "./fixtures";
 describe("<PaymentGatewaysList />", () => {
   it("renders payment gateways", () => {
     const processPayment = jest.fn();
+    const processPaymentAdditionalActions = jest.fn();
     const submitPayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
@@ -16,6 +17,7 @@ describe("<PaymentGatewaysList />", () => {
       <PaymentGatewaysList
         paymentGateways={paymentGateways}
         processPayment={processPayment}
+        processPaymentAdditionalActions={processPaymentAdditionalActions}
         submitPayment={submitPayment}
         submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}
@@ -30,6 +32,7 @@ describe("<PaymentGatewaysList />", () => {
 
   it("simulates select payment gateway", () => {
     const processPayment = jest.fn();
+    const processPaymentAdditionalActions = jest.fn();
     const submitPayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
@@ -38,6 +41,7 @@ describe("<PaymentGatewaysList />", () => {
       <PaymentGatewaysList
         paymentGateways={paymentGateways}
         processPayment={processPayment}
+        processPaymentAdditionalActions={processPaymentAdditionalActions}
         submitPayment={submitPayment}
         submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}

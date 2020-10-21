@@ -36,6 +36,7 @@ const PROPS = {
 describe("<AdyenPaymentGateway />", () => {
   it("exists", () => {
     const processPayment = jest.fn();
+    const processPaymentAdditionalActions = jest.fn();
     const submitPayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const onError = jest.fn();
@@ -44,6 +45,7 @@ describe("<AdyenPaymentGateway />", () => {
         <AdyenPaymentGateway
           {...PROPS}
           processPayment={processPayment}
+          processPaymentAdditionalActions={processPaymentAdditionalActions}
           submitPayment={submitPayment}
           submitPaymentSuccess={submitPaymentSuccess}
           onError={onError}
