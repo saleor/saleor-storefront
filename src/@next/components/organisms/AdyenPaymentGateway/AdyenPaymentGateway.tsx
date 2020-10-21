@@ -117,6 +117,10 @@ export interface IProps {
    */
   processPayment: () => void;
   /**
+   * Method called when the gateway requires additional actions to perform.
+   */
+  processPaymentAdditionalActions: () => void;
+  /**
    * Method to call on gateway payment submission.
    */
   submitPayment: (data: {
@@ -145,6 +149,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   scriptConfig,
   styleConfig,
   processPayment,
+  processPaymentAdditionalActions,
   submitPayment,
   submitPaymentSuccess,
   errors,
@@ -244,6 +249,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
               )
             ),
           ]);
+        }
+        if (paymentAction?.type !== "redirect") {
+          processPaymentAdditionalActions();
         }
         try {
           dropin.handleAction(paymentAction);

@@ -314,6 +314,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       handleStepSubmitSuccess(CheckoutStep.Payment);
     }
   };
+  const handleProcessPaymentAdditionalActions = async (gateway: string) => {
+    setSubmitInProgress(false);
+    const paymentStepLink = steps.find(
+      step => step.step === CheckoutStep.Payment
+    )?.link;
+    if (paymentStepLink) {
+      history.push(paymentStepLink);
+    }
+  };
   const handleSubmitPayment = async (paymentData?: object) => {
     const response = await completeCheckout({ paymentData });
     return {
@@ -349,6 +358,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     <PaymentGatewaysList
       paymentGateways={availablePaymentGateways}
       processPayment={handleProcessPayment}
+      processPaymentAdditionalActions={handleProcessPaymentAdditionalActions}
       submitPayment={handleSubmitPayment}
       submitPaymentSuccess={handleSubmitPaymentSuccess}
       formId={checkoutGatewayFormId}
