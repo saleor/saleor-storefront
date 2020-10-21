@@ -205,7 +205,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     state?: AdyenSubmitState,
     dropin?: AdyenSubmitDropin
   ) => {
-    if (!state?.isValid) {
+    if (state?.isValid === false) {
       onError([
         new Error(
           intl.formatMessage(adyenErrorMessages.invalidPaymentSubmission)
