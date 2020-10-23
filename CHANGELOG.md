@@ -35,6 +35,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Refactor variant picker components and open sidebar after adding product to cart - #809 by @krzysztofwolski
 - Fix checkout address view - #909 by @konstantinoschristomanos
 - Support for static url - #721 by @marianoeramirez and @dominik-zeglen
+- Fix search crashing when displaying item with no category - #928 by @mmarkusik
 
 ## 2.10.4
 
