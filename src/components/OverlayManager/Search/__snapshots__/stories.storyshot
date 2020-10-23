@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/OverlayManager/Search/ProductItem default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+<div
+  className="c0"
+>
+  <li
+    className="search__products__item"
+  >
+    <a
+      href="/product/product-name/72/"
+      onClick={[Function]}
+    >
+      <img
+        alt="placeholder"
+        src={[Function]}
+      />
+      <span>
+        <h4>
+          Product Name
+        </h4>
+        <p>
+          Category Name
+        </p>
+      </span>
+    </a>
+  </li>
+  <div
+    className="c1"
+  />
+</div>
+`;
+
+exports[`Storyshots components/OverlayManager/Search/ProductItem without category 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+<div
+  className="c0"
+>
+  <li
+    className="search__products__item"
+  >
+    <a
+      href="/product/product-name/72/"
+      onClick={[Function]}
+    >
+      <img
+        alt="placeholder"
+        src={[Function]}
+      />
+      <span>
+        <h4>
+          Product Name
+        </h4>
+        <p>
+          -
+        </p>
+      </span>
+    </a>
+  </li>
+  <div
+    className="c1"
+  />
+</div>
+`;
