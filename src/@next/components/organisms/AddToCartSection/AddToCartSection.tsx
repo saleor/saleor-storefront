@@ -31,6 +31,7 @@ export interface IAddToCartSection {
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
+  variantId: string;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
@@ -46,11 +47,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   queryAttributes,
   onAddToCart,
   onAttributeChangeHandler,
+  setVariantId,
+  variantId,
 }) => {
   const intl = useIntl();
 
   const [quantity, setQuantity] = useState<number>(1);
-  const [variantId, setVariantId] = useState<string>("");
   const [variantStock, setVariantStock] = useState<number>(0);
   const [
     variantPricing,
