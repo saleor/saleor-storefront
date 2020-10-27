@@ -13,6 +13,10 @@ $drawer-width: 25rem;
     min-height: 100vh;
   }
 
+  .input {
+    margin-bottom: 0;
+  }
+
   &__input {
     .input__icon-right {
       svg * {
