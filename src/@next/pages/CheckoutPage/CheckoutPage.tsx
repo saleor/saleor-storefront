@@ -414,7 +414,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
      * https://docs.adyen.com/checkout/drop-in-web?tab=http_get_1#step-6-present-payment-result
      */
     if (
-      adyenNotNegativeConfirmationStatusCodes.includes(querystring.resultCode)
+      adyenNotNegativeConfirmationStatusCodes.includes(
+        querystring.resultCode as string
+      )
     ) {
       const { data, dataError } = await completeCheckout();
       const errors = dataError?.error;
@@ -439,7 +441,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       setPaymentGatewayErrors([
         {
           message: translateAdyenConfirmationError(
-            querystring.resultCode,
+            querystring.resultCode as string,
             intl
           ),
         },

@@ -1,7 +1,11 @@
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { each } from "lodash";
-import { parse as parseQs, stringify as stringifyQs } from "query-string";
+import {
+  parse as parseQs,
+  stringify as stringifyQs,
+  ParsedQuery,
+} from "query-string";
 import { FetchResult } from "react-apollo";
 
 import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
@@ -128,8 +132,8 @@ export const maybe = <T>(exp: () => T, d?: T) => {
 
 export const parseQueryString = (
   location: LocationState
-): { [key: string]: string } => {
-  let query: Record<string, string> = parseQs(window.location.search.substr(1));
+): ParsedQuery<string> => {
+  let query: ParsedQuery<string> = parseQs(window.location.search.substr(1));
 
   each(query, (value, key) => {
     if (Array.isArray(value)) {

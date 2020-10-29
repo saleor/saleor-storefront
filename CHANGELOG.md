@@ -36,6 +36,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix checkout address view - #909 by @konstantinoschristomanos
 - Support for static url - #721 by @marianoeramirez and @dominik-zeglen
 - Fix search crashing when displaying item with no category - #928 by @mmarkusik
+- Fix Generate site map - #915 by @rboixaderg
 
 ## 2.10.4
 
