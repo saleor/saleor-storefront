@@ -17,23 +17,20 @@ export const DemoBanner: React.FC = () => {
         </a>
         <S.LinkList>
           <Media maxWidth={mediumScreen}>
-            <S.Link
-              target="_blank"
-              href="https://pwa.demo.saleor.rocks/graphql/"
-            >
+            <S.Link target="_blank" href="https://demo.saleor.io/graphql/">
               <S.TextEmphasis>
                 <FormattedMessage defaultMessage="API" />
               </S.TextEmphasis>
             </S.Link>
             <S.Divider />
-            <S.Link target="_blank" href="https://pwa.saleor.io/dashboard/">
+            <S.Link target="_blank" href="https://demo.saleor.io/dashboard/">
               <S.TextEmphasis>
                 <FormattedMessage defaultMessage="Dashboard" />
               </S.TextEmphasis>
             </S.Link>
           </Media>
           <Media minWidth={mediumScreen}>
-            <S.Link target="_blank" href="https://pwa.saleor.io/dashboard/">
+            <S.Link target="_blank" href="https://demo.saleor.io/dashboard/">
               <FormattedMessage
                 defaultMessage="Explore <emphasis>Store’s dashboard</emphasis>"
                 values={{
@@ -44,10 +41,7 @@ export const DemoBanner: React.FC = () => {
               />
             </S.Link>
             <S.Divider />
-            <S.Link
-              target="_blank"
-              href="https://pwa.demo.saleor.rocks/graphql/"
-            >
+            <S.Link target="_blank" href="https://demo.saleor.io/graphql/">
               <FormattedMessage
                 defaultMessage="Play with <emphasis>GraphQL API</emphasis>"
                 values={{

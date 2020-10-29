@@ -208,7 +208,6 @@
     "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@next",
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
-    "generate": "npx plop --plopfile ./.plop/index.js",
     "cy:run": "cypress run",
     "cy:run:record": "npm run cy:run -- --record",
     "cy:open": "cypress open",

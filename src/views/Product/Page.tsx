@@ -44,14 +44,15 @@ const Page: React.FC<
 
   const getImages = () => {
     if (product.variants && variantId) {
-      const variant = product.variants
-        .filter(variant => variant.id === variantId)
-        .pop();
+      const variant = product.variants.find(
+        variant => variant.id === variantId
+      );
+
       if (variant.images.length > 0) {
         return variant.images;
       }
-      return product.images;
     }
+
     return product.images;
   };
 
@@ -69,6 +70,7 @@ const Page: React.FC<
       productPricing={product.pricing}
       queryAttributes={queryAttributes}
       setVariantId={setVariantId}
+      variantId={variantId}
       onAddToCart={handleAddToCart}
       onAttributeChangeHandler={onAttributeChangeHandler}
       isAvailableForPurchase={product.isAvailableForPurchase}
