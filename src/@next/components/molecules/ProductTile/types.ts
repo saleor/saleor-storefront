@@ -1,5 +1,5 @@
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import { IProduct } from "@types";
 
 export interface IProps {
-  product: ProductList_products_edges_node;
+  product: IProduct;
 }
