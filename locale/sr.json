@@ -1,393 +1,484 @@
 {
   "@next_dot_components_dot_atoms_dot_AddNewTile_dot_AddNewTile_dot_2493765518": {
-    "string": "Add new {type}"
+    "string": "Dodaj novi {type}"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
+    "string": "Play with <emphasis>GraphQL API</emphasis>"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
+    "string": "API"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2844777114": {
+    "string": "Explore <emphasis>Store’s dashboard</emphasis>"
+  },
+  "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_3662390044": {
+    "string": "Komandna tabla"
   },
   "@next_dot_components_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
-    "string": "Sort by:"
+    "string": "Sortiraj prema:"
+  },
+  "@next_dot_components_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
+    "string": "Go to"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
-    "string": "Personal details"
+    "string": "Lični podaci"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3843483622": {
-    "string": "MY DATA"
+    "string": "MOJI PODACI"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_1254879564": {
-    "string": "New Password"
+    "string": "Nova lozinka"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2218114941": {
-    "string": "Old Password"
+    "string": "Stara lozinka"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2369435044": {
-    "string": "Required field"
+    "string": "Obavezno polje"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2799926859": {
-    "string": "Confirm Password"
+    "string": "Potvrdite lozinku"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_4253911811": {
-    "string": "Passwords do not match"
+    "string": "Lozinke se ne podudaraju"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_3445609170": {
-    "string": "MY PASSWORD"
+    "string": "MOJA LOZINKA"
+  },
+  "@next_dot_components_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
+    "string": "Dodaj u korpu"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
-    "string": "Default Address"
+    "string": "Adresa"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1578192486": {
-    "string": "Default Billing Address"
+    "string": "Adresa za naplatu"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_2131178753": {
-    "string": "Set as default shipping address"
+    "string": "Unesite adresu za dostavu"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_3096438859": {
-    "string": "Set as default billing address"
+    "string": "Unesi adresu za naplatu"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_4109348993": {
-    "string": "Default Shipping Address"
+    "string": "Adresa za dostavu"
   },
   "@next_dot_components_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
-    "string": "VIEW ALL OPTIONS"
+    "string": "POGLEDAJTE SVE OPCIJE"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1148029984": {
     "string": "Vrednost"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_1633831221": {
-    "string": "Date of Order"
+    "string": "Datum porudžbine"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_2387666633": {
-    "string": "Index Number"
+    "string": "Redni broj"
   },
   "@next_dot_components_dot_molecules_dot_OrderTabel_dot_OrderTabel_dot_724329054": {
-    "string": "Products Ordered"
+    "string": "Poručeni proizvodi"
   },
   "@next_dot_components_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_2623707255": {
-    "string": "DESCRIPTION"
+    "string": "OPIS"
   },
   "@next_dot_components_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_308156425": {
-    "string": "ATTRIBUTES"
+    "string": "ATRIBUTI"
   },
   "@next_dot_components_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3317426832": {
-    "string": "Products found:"
+    "string": "Pronađeni proizvodi:"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1865992141": {
-    "string": "Please provide new password"
+    "string": "Unesite novu lozinku"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_2266763214": {
-    "string": "Retype password"
+    "string": "Ponovite lozinku"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_2746979176": {
-    "string": "It seems that token for password reset is not valid anymore."
+    "string": "Izgleda da token za reset lozinke nije više validan."
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3951836694": {
-    "string": "SET NEW PASSWORD"
+    "string": "DODAJ NOVU LOZINKU"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4028609483": {
-    "string": "Reset your password"
+    "string": "Postavite novu lozinku"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1139500589": {
     "string": "Država"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1363074570": {
-    "string": "Address line 1"
+    "string": "Adresa 1"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_253031977": {
     "string": "Grad"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_2796540622": {
-    "string": "ZIP/Postal Code"
+    "string": "Poštanski broj"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_2950411968": {
-    "string": "Company Name (Optional)"
+    "string": "Naziv kompanije (opciono)"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_3121963259": {
-    "string": "Address line 2"
+    "string": "Adresa 2"
   },
   "@next_dot_components_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_404705399": {
-    "string": "State/province"
+    "string": "Država"
   },
   "@next_dot_components_dot_organisms_dot_AddressGridSelector_dot_AddressGridSelector_dot_2132027491": {
-    "string": "address"
+    "string": "adresa"
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_cancelled": {
+    "context": "Adyen payment gateway error",
+    "string": "Payment was cancelled."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_error": {
+    "context": "Adyen payment gateway error",
+    "string": "Error processing payment occured."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_general": {
+    "context": "Adyen payment gateway error",
+    "string": "Payment confirmation went wrong."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_refused": {
+    "context": "Adyen payment gateway error",
+    "string": "The payment was refused. Try the payment again using a different payment method or card."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_cannotHandlePaymentConfirmation": {
+    "context": "Adyen payment gateway error",
+    "string": "Payment gateway did not provide payment confirmation handler."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_invalidPaymentSubmission": {
+    "context": "Adyen payment gateway error",
+    "string": "Invalid payment submission."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_paymentMalformedConfirmationData": {
+    "context": "Adyen payment gateway error",
+    "string": "Payment needs confirmation but data required for confirmation received from the server is malformed."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_paymentNoConfirmationData": {
+    "context": "Adyen payment gateway error",
+    "string": "Payment needs confirmation but data required for confirmation not received from the server."
+  },
+  "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_unknownPayment": {
+    "context": "Adyen payment gateway error",
+    "string": "Unknown payment submission error occured."
   },
   "@next_dot_components_dot_organisms_dot_CartSummary_dot_CartSummary_dot_2088494495": {
-    "string": "Cart Summary"
+    "string": "Kratak pregled proizvoda u korpi"
+  },
+  "@next_dot_components_dot_organisms_dot_CheckoutAddress_dot_CheckoutAddress_dot_3912924864": {
+    "string": "Isto kao adresa za dostavu"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_3382401165": {
-    "string": "Do you have a gift card voucher or discount code?"
-  },
-  "@next_dot_components_dot_organisms_dot_CheckoutPayment_dot_CheckoutPayment_dot_3912924864": {
-    "string": "Same as shipping address"
+    "string": "Da li imate poklon karticu ili kod za popust?"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_348821000": {
-    "string": "Payment Method"
+    "string": "Način plaćanja"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_3577164776": {
-    "string": "Shipping Method"
+    "string": "Način dostave"
   },
   "@next_dot_components_dot_organisms_dot_CheckoutReview_dot_CheckoutReview_dot_4282475982": {
-    "string": "Billing Address"
+    "string": "Adresa za naplatu"
+  },
+  "@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_3476123": {
+    "string": "Apply"
   },
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
-    "string": "More +"
+    "string": "Još +"
   },
   "@next_dot_components_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
-    "string": "Please select {selectLabel}"
-  },
-  "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1585811557": {
-    "string": "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped."
+    "string": "Molimo Vas izaberite {selectLabel}"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1995277831": {
-    "string": "Thank you"
+    "string": "Hvala Vam"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2116351823": {
-    "string": "for your order!"
+    "string": "za Vašu porudžbinu!"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2999163789": {
-    "string": "Your order number is"
+    "string": "Broj Vaše porudžbine je"
+  },
+  "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3364990704": {
+    "string": "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped."
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3752098833": {
-    "string": "ORDER DETAILS"
+    "string": "DETALJI PORUDŽBINE"
   },
   "@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_2488840083": {
-    "string": "looks empty"
+    "string": "izgleda da je prazna"
   },
   "@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_2896212356": {
-    "string": "Maybe you haven’t made your choices yet"
+    "string": "Možda još niste odabrali"
   },
   "@next_dot_components_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_3578601618": {
-    "string": "Your Cart"
+    "string": "Vaša korpa"
   },
   "@next_dot_pages_dot_CartPage_dot_CartPage_dot_1304869656": {
-    "string": "PROCEED TO CHECKOUT"
+    "string": "NASTAVITE NA PREGLED"
   },
   "@next_dot_pages_dot_CartPage_dot_CartPage_dot_3173718889": {
-    "string": "My Cart"
+    "string": "Moja korpa"
   },
-  "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_3879029924": {
-    "string": "Please provide email address."
+  "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_2558335134": {
+    "string": "Please provide billing address."
   },
   "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_929802659": {
-    "string": "Please provide shipping address."
+    "string": "Molimo Vas unesite svoju adresu za dostavu."
+  },
+  "@next_dot_pages_dot_OrdersHistory_dot_OrdersHistory_dot_1138265409": {
+    "string": "Load more"
   },
   "account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
-    "string": "Izmeni adresu"
+    "string": "Izmenite adresu"
+  },
+  "app_dot_Notifications_dot_1053546789": {
+    "string": "Da biste ažurirali aplikaciju na najnoviju verziju molimo Vas da osvežite stranicu!"
+  },
+  "app_dot_Notifications_dot_1308518649": {
+    "string": "Osveži"
+  },
+  "app_dot_Notifications_dot_1917823234": {
+    "string": "Ulogovani ste"
+  },
+  "app_dot_Notifications_dot_2378877294": {
+    "string": "Izlogovani ste"
+  },
+  "app_dot_Notifications_dot_795565": {
+    "string": "Nova verzija je dostupna!"
   },
   "components_dot_Breadcrumbs_dot_index_dot_1347475195": {
-    "string": "Back"
-  },
-  "components_dot_Breadcrumbs_dot_index_dot_874908955": {
-    "string": "Početna"
+    "string": "Nazad"
   },
   "components_dot_CartTable_dot_Table_dot_1603950169": {
-    "string": "Delivery Cost"
+    "string": "Cena dostave"
   },
   "components_dot_CartTable_dot_Table_dot_2179891060": {
-    "string": "Total Cost"
+    "string": "Ukupna cena"
   },
   "components_dot_CartTable_dot_Table_dot_2875988277": {
-    "string": "Discount: {discountName}"
+    "string": "Popust: {discountName}"
   },
   "components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_1006283488": {
-    "string": "Continue as a guest"
+    "string": "Nastavite kao gost"
   },
   "components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_2132450234": {
-    "string": "create an account"
+    "string": "kreirajte nalog"
   },
   "components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_3896074202": {
-    "string": "or you can"
+    "string": "ili možete da"
   },
   "components_dot_CheckoutLogin_dot_CheckoutAsGuest_dot_647198093": {
-    "string": "If you don’t wish to register an account, don’t worry. You can checkout as a guest. We care about you just as much as any registered user."
+    "string": "Nema problema ako ne želite da registrujete nalog. Možete da pregledate kao gost. Stalo nam je do Vas isto kao i do bilo kojeg registrovanog korisnika."
   },
   "components_dot_CheckoutLogin_dot_SignInForm_dot_2856837597": {
-    "string": "Registered user"
+    "string": "Registrovani korisnik"
   },
   "components_dot_LoginForm_dot_index_dot_1405865627": {
-    "string": "Sign in"
+    "string": "Ulogujte se"
+  },
+  "components_dot_MainMenu_dot_MainMenu_dot_4144939532": {
+    "string": "Offline"
+  },
+  "components_dot_NotFound_dot_index_dot_1723676032": {
+    "string": "Povratak na početnu stranicu"
+  },
+  "components_dot_NotFound_dot_index_dot_1782529840": {
+    "string": "You may have mistyped the address or the page may have moved."
+  },
+  "components_dot_NotFound_dot_index_dot_3141549744": {
+    "string": "We’re sorry for the error and hope you’ll have a good day."
+  },
+  "components_dot_NotFound_dot_index_dot_3478767873": {
+    "string": "404"
+  },
+  "components_dot_NotFound_dot_index_dot_680965574": {
+    "string": "We can’t seem to find a page you are looking for!"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1316031908": {
-    "string": "My bag,"
+    "string": "Moja torba,"
   },
-  "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_2287516380": {
-    "string": "items"
+  "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1397761112": {
+    "context": "items quantity in cart",
+    "string": "{itemsQuantity,plural,one {{itemsQuantity} item} other {{itemsQuantity} items}}"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_2426849470": {
-    "string": "Go to my bag"
+    "string": "Idi u moju torbu"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Empty_dot_3515754810": {
-    "string": "Continue Shopping"
+    "string": "Nastavite kupovinu"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Empty_dot_4121934554": {
-    "string": "You haven’t added anything to your bag. We’re sure you’ll find something in our store"
+    "string": "Niste dodali ništa u Vašu torbu. Sigurni smo da ćete pronaći nešto u našoj prodavnici"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Empty_dot_966560142": {
-    "string": "Your bag is empty"
+    "string": "Vaša torba je prazna"
   },
   "components_dot_OverlayManager_dot_Cart_dot_ProductList_dot_3897981513": {
-    "string": "Qty: {quantity}"
+    "string": "Količina: {quantity}"
   },
   "components_dot_OverlayManager_dot_Login_dot_ForgottenPassword_dot_1214263298": {
-    "string": "Have you forgotten your password?"
+    "string": "Da li ste zaboravili lozinku?"
   },
   "components_dot_OverlayManager_dot_Login_dot_ForgottenPassword_dot_1781368875": {
-    "string": "Click Here"
+    "string": "Kliknite ovde"
   },
   "components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_2556234295": {
-    "string": "Registruj se"
+    "string": "Registrujte se"
   },
   "components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_2622394113": {
-    "string": "Please check your e-mail for further instructions"
+    "string": "Molimo Vas da proverite Vaš email za dalje instrukcije"
   },
   "components_dot_OverlayManager_dot_Login_dot_RegisterForm_dot_590842025": {
-    "string": "New user has been created"
+    "string": "Kreiran je novi korisnik"
   },
   "components_dot_OverlayManager_dot_Login_dot_index_dot_282922692": {
-    "string": "Saleor account"
+    "string": "Saleor nalog"
   },
   "components_dot_OverlayManager_dot_Login_dot_index_dot_3254057623": {
-    "string": "Register new account"
+    "string": "Registrujte novi nalog"
   },
   "components_dot_OverlayManager_dot_Login_dot_index_dot_3293735236": {
-    "string": "Sign in to account"
+    "string": "Ulogujte se na nalog"
   },
   "components_dot_OverlayManager_dot_Password_dot_index_dot_4028609483": {
-    "string": "Reset your password"
+    "string": "Postavite novu lozinku"
   },
   "components_dot_OverlayManager_dot_Search_dot_NothingFound_dot_1777769494": {
-    "string": "Don’t give up - check the spelling, think of something less specific and then use the search bar above."
+    "string": "Nemojte da odustanete - proverite pravopis, smislite nešto manje specifično i zatim upotrebite gornju traku za pretragu."
   },
   "components_dot_OverlayManager_dot_Search_dot_NothingFound_dot_3166222023": {
-    "string": "Sorry, but we couldn’t match any search results for: {search}"
+    "string": "Izvinjavamo se, Vaša pretraga nije dala rezulate za: {search}"
   },
   "components_dot_OverlayManager_dot_Search_dot_Search_dot_4112727608": {
-    "string": "Show all results"
+    "string": "Pokaži sve rezultate"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_1103897688": {
-    "string": "Please provide us your email address so we can share you a link to reset\n      your password"
+  "components_dot_PasswordResetRequestForm_dot_index_dot_1587628595": {
+    "string": "Check your inbox"
   },
-  "components_dot_PasswordResetForm_dot_index_dot_2925394684": {
-    "string": "Reset password"
+  "components_dot_PasswordResetRequestForm_dot_index_dot_2925394684": {
+    "string": "Postavi novu lozinku"
   },
-  "components_dot_ProductDescription_dot_AddToCartButton_dot_1362724042": {
-    "string": "Added"
+  "components_dot_PasswordResetRequestForm_dot_index_dot_805890313": {
+    "string": "Please provide us your email address so we can share you a link to reset your password"
   },
-  "components_dot_ProductDescription_dot_AddToCart_dot_81047562": {
-    "string": "Add to basket"
-  },
-  "index_dot_1053546789": {
-    "string": "To update the application to the latest version, please refresh the page!"
-  },
-  "index_dot_1308518649": {
-    "string": "Refresh"
-  },
-  "index_dot_1917823234": {
-    "string": "You are now logged in"
-  },
-  "index_dot_2378877294": {
-    "string": "You are now logged out"
-  },
-  "index_dot_795565": {
-    "string": "New version is available!"
+  "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
+    "string": "No Options"
   },
   "intl_dot_checkoutMessages_dot_addNewAddress": {
-    "string": "Add new address"
+    "string": "Dodajte novu adresu"
   },
   "intl_dot_checkoutMessages_dot_addressNextActionName": {
-    "string": "Continue to Shipping"
+    "string": "Idite na stranicu za isporuku"
   },
   "intl_dot_checkoutMessages_dot_billingAddress": {
-    "string": "BILLING ADDRESS"
+    "string": "ADRESA ZA NAPLATU"
   },
   "intl_dot_checkoutMessages_dot_continueShopping": {
-    "string": "CONTINUE SHOPPING"
+    "string": "NASTAVITE SA KUPOVINOM"
   },
   "intl_dot_checkoutMessages_dot_paymentMethod": {
-    "string": "PAYMENT METHOD"
+    "string": "NAČIN PLAĆANJA"
   },
   "intl_dot_checkoutMessages_dot_paymentNextActionName": {
-    "string": "Continue to Review"
+    "string": "Nastavi na pregled kupovine"
   },
   "intl_dot_checkoutMessages_dot_reviewNextActionName": {
-    "string": "Place order"
+    "string": "Predajte porudžbinu"
   },
   "intl_dot_checkoutMessages_dot_reviewOrder": {
-    "string": "REVIEW ORDER"
+    "string": "PREGLEDAJTE PORDUŽBINU"
   },
   "intl_dot_checkoutMessages_dot_shippingAddress": {
-    "string": "Shipping Address"
+    "string": "Adresa za dostavu"
   },
   "intl_dot_checkoutMessages_dot_shippingMethod": {
-    "string": "SHIPPING METHOD"
+    "string": "NAČIN ISPORUKE"
   },
   "intl_dot_checkoutMessages_dot_shippingNextActionName": {
-    "string": "Continue to Payment"
+    "string": "Nastavite na stranicu za plaćanje"
   },
   "intl_dot_checkoutMessages_dot_stepNameAddress": {
     "string": "Adresa"
   },
   "intl_dot_checkoutMessages_dot_stepNamePayment": {
-    "string": "Payment"
+    "string": "Plaćanje"
   },
   "intl_dot_checkoutMessages_dot_stepNameReview": {
-    "string": "Review"
+    "string": "Pregled"
   },
   "intl_dot_checkoutMessages_dot_stepNameShipping": {
-    "string": "Poštarina"
+    "string": "Isporuka"
+  },
+  "intl_dot_commonMessages_dot_account": {
+    "string": "Account"
   },
   "intl_dot_commonMessages_dot_add": {
-    "string": "Dodaj"
+    "string": "Dodajte"
   },
   "intl_dot_commonMessages_dot_addressBook": {
-    "string": "Address book"
+    "string": "Adresar"
   },
   "intl_dot_commonMessages_dot_cancel": {
     "string": "Odustani"
   },
   "intl_dot_commonMessages_dot_checkout": {
-    "string": "Checkout"
+    "string": "Pregled"
+  },
+  "intl_dot_commonMessages_dot_choosePaymentMethod": {
+    "string": "Please choose payment method."
   },
   "intl_dot_commonMessages_dot_clearFilterHeader": {
-    "string": "CLEAR FILTERS"
+    "string": "PONIŠTI FILTERE"
   },
   "intl_dot_commonMessages_dot_eMail": {
-    "string": "Email Address"
+    "string": "Adresa elektronske pošte "
   },
   "intl_dot_commonMessages_dot_filterHeader": {
-    "string": "FILTERS"
+    "string": "FILTERI"
   },
   "intl_dot_commonMessages_dot_firstName": {
-    "string": "First Name"
+    "string": "Ime"
+  },
+  "intl_dot_commonMessages_dot_home": {
+    "string": "Početna stranica"
   },
   "intl_dot_commonMessages_dot_lastName": {
-    "string": "Last Name"
+    "string": "Prezime"
   },
   "intl_dot_commonMessages_dot_loading": {
-    "string": "Loading"
+    "string": "Učitavanje"
   },
   "intl_dot_commonMessages_dot_logOut": {
-    "string": "Log Out"
+    "string": "Odjavite se"
   },
   "intl_dot_commonMessages_dot_lowStock": {
-    "string": "Low stock"
+    "string": "Na isteku zaliha"
   },
   "intl_dot_commonMessages_dot_maxQtyIs": {
-    "string": "Maximum quantity is {maxQuantity}"
+    "string": "Maksimalna količina je {maxQuantity}"
   },
   "intl_dot_commonMessages_dot_myAccount": {
-    "string": "My Account"
+    "string": "Moj nalog"
+  },
+  "intl_dot_commonMessages_dot_noItemsAvailable": {
+    "string": "No items available"
+  },
+  "intl_dot_commonMessages_dot_noPurchaseAvailable": {
+    "string": "Not available for purchase"
   },
   "intl_dot_commonMessages_dot_orderHistory": {
-    "string": "Order history"
+    "string": "Istorija poručivanja"
   },
   "intl_dot_commonMessages_dot_outOfStock": {
-    "string": "Out of stock"
+    "string": "Nema na zalihama"
   },
   "intl_dot_commonMessages_dot_password": {
     "string": "Lozinka"
   },
   "intl_dot_commonMessages_dot_phone": {
-    "string": "Phone"
+    "string": "Telefon"
   },
   "intl_dot_commonMessages_dot_phoneNumber": {
-    "string": "Phone number: {phone}"
+    "string": "Broj telefona: {phone}"
   },
   "intl_dot_commonMessages_dot_price": {
     "string": "Cena"
@@ -396,7 +487,13 @@
     "string": "Proizvodi"
   },
   "intl_dot_commonMessages_dot_promoCode": {
-    "string": "Promo code"
+    "string": "Promo kod"
+  },
+  "intl_dot_commonMessages_dot_provideEmailAddress": {
+    "string": "Molimo Vas unesite svoju email adresu."
+  },
+  "intl_dot_commonMessages_dot_purchaseAvailableOn": {
+    "string": "Will become available for purchase on {date} at {time}"
   },
   "intl_dot_commonMessages_dot_qty": {
     "string": "Količina"
@@ -405,19 +502,19 @@
     "string": "Količina"
   },
   "intl_dot_commonMessages_dot_save": {
-    "string": "Save"
+    "string": "Sačuvaj"
   },
   "intl_dot_commonMessages_dot_search": {
-    "string": "search"
+    "string": "traži"
   },
   "intl_dot_commonMessages_dot_shipping": {
-    "string": "Poštarina"
+    "string": "Isporuka"
   },
   "intl_dot_commonMessages_dot_shortEmail": {
-    "string": "Email"
+    "string": "Elektronska adresa"
   },
   "intl_dot_commonMessages_dot_showEmail": {
-    "string": "Email: {email}"
+    "string": "Elektronska adresa: {email}"
   },
   "intl_dot_commonMessages_dot_sku": {
     "string": "SKU"
@@ -426,63 +523,100 @@
     "string": "Status"
   },
   "intl_dot_commonMessages_dot_subtotal": {
-    "string": "Subtotal"
+    "string": "Iznos"
   },
   "intl_dot_commonMessages_dot_total": {
-    "string": "Total"
+    "string": "Konačan iznos"
   },
   "intl_dot_commonMessages_dot_totalPrice": {
-    "string": "Total Price"
+    "string": "Konačna cena"
   },
   "intl_dot_commonMessages_dot_variant": {
-    "string": "Variant"
+    "string": "Varijanta"
+  },
+  "intl_dot_commonMessages_dot_youMightLike": {
+    "string": "You might like"
+  },
+  "intl_dot_orderStatusMessages_dot_canceled": {
+    "string": "Otkazano"
+  },
+  "intl_dot_orderStatusMessages_dot_draft": {
+    "string": "Priprema"
+  },
+  "intl_dot_orderStatusMessages_dot_fulfilled": {
+    "string": "Ispunjeno"
+  },
+  "intl_dot_orderStatusMessages_dot_partiallyFulfilled": {
+    "string": "Delimično realizovano"
+  },
+  "intl_dot_orderStatusMessages_dot_unfulfilled": {
+    "string": "Nerealizovano"
+  },
+  "intl_dot_paymentStatusMessages_dot_fullyCharged": {
+    "string": "Fully charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_fullyRefunded": {
+    "string": "U potpunosti refundirano"
+  },
+  "intl_dot_paymentStatusMessages_dot_notCharged": {
+    "string": "Not charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_partiallyCharged": {
+    "string": "Partially charged"
+  },
+  "intl_dot_paymentStatusMessages_dot_partiallyRefunded": {
+    "string": "Delimično refundirano"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsClear": {
-    "string": "Clear..."
+    "string": "Briši..."
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsName": {
-    "string": "Name Increasing"
+    "string": "Po imenu rastuće"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsNameDsc": {
-    "string": "Name Decreasing"
+    "string": "Po imenu opadajuće"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsPrice": {
-    "string": "Price Low-High"
+    "string": "Cena  od najniže do najviše"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsPriceDsc": {
-    "string": "Price High-Low"
+    "string": "Cena od najviše do najniže"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAt": {
-    "string": "Last updated Ascending"
+    "string": "Poslednje ažurirano rastuće"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAtDsc": {
-    "string": "Last updated Descending"
+    "string": "Poslednje ažurirano opadajuće"
   },
-  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2508056477": {
-    "string": "Your order nr: {orderNum}"
+  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_1857586798": {
+    "string": "Your order no.: {orderNum}"
+  },
+  "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2670827143": {
+    "context": "action in popup menu in order view",
+    "string": "Download invoice"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_624688748": {
-    "string": "Go back to Order History"
+    "string": "Vrati se na Istoriju poručivanja"
   },
   "views_dot_Home_dot_Page_dot_2366307429": {
-    "string": "Final reduction"
+    "string": "Konačno smanjenje"
   },
   "views_dot_Home_dot_Page_dot_2812648978": {
-    "string": "Featured"
+    "string": "Istaknuto"
   },
   "views_dot_Home_dot_Page_dot_3347022999": {
-    "string": "Shop sale"
+    "string": "Popust u prodavnici"
   },
   "views_dot_Home_dot_Page_dot_3813745889": {
-    "string": "Shop by category"
+    "string": "Kupovina po kategoriji"
   },
   "views_dot_Home_dot_Page_dot_4153800196": {
-    "string": "Up to 70% off sale"
+    "string": "Popust do 70%"
   },
   "views_dot_Product_dot_Other_dot_3212906417": {
-    "string": "Other products in this category"
+    "string": "Drugi proizvodi u ovoj kategoriji"
   },
   "views_dot_Search_dot_Page_dot_2865432515": {
-    "string": "Search term:"
+    "string": "Pretražite termin:"
   }
 }

@@ -44,6 +44,9 @@
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_3445609170": {
     "string": "MY PASSWORD"
   },
+  "@next_dot_components_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
+    "string": "Add to basket"
+  },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
     "string": "Default Address"
   },
@@ -356,12 +359,6 @@
   },
   "components_dot_PasswordResetRequestForm_dot_index_dot_805890313": {
     "string": "Please provide us your email address so we can share you a link to reset your password"
-  },
-  "components_dot_ProductDescription_dot_AddToCartButton_dot_1362724042": {
-    "string": "Added"
-  },
-  "components_dot_ProductDescription_dot_AddToCart_dot_81047562": {
-    "string": "Add to basket"
   },
   "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
     "string": "No Options"
