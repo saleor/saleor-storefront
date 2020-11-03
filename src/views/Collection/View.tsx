@@ -169,26 +169,29 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                     return <Loader />;
                   }
 
-                  const handleLoadMore = () =>
-                    collectionProductsData.loadMore(
-                      (prev, next) => ({
-                        ...prev,
-                        products: {
-                          ...prev.collection.products,
-                          edges: [
-                            ...prev.collection.products.edges,
-                            ...next.collection.products.edges,
-                          ],
-                          pageInfo: next.collection.products.pageInfo,
-                        },
-                      }),
-                      {
-                        after:
-                          collectionProductsData.data.collection.products
-                            .pageInfo.endCursor,
-                      }
-                    );
                   if (canDisplayFilters) {
+                    const handleLoadMore = () =>
+                      collectionProductsData.loadMore(
+                        (prev, next) => ({
+                          collection: {
+                            ...prev.collection,
+                            products: {
+                              ...prev.collection.products,
+                              edges: [
+                                ...prev.collection.products.edges,
+                                ...next.collection.products.edges,
+                              ],
+                              pageInfo: next.collection.products.pageInfo,
+                            },
+                          },
+                        }),
+                        {
+                          after:
+                            collectionProductsData.data.collection.products
+                              .pageInfo.endCursor,
+                        }
+                      );
+
                     return (
                       <MetaWrapper
                         meta={{
