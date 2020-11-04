@@ -16,7 +16,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Do not use prettier on generated files - #773 by @dominik-zeglen
 - Add Eslint - #776 by @dominik-zeglen
 - Fix storybook config - #789 by @dominik-zeglen
-- Update SK to newest version - #795 by @dominik-zeglen
+- Update SDK to newest version - #795 by @dominik-zeglen
 - Use intl - #782 by @przlada
 - Download invoice for order - #790 by @orzechdev
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
