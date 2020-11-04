@@ -185,6 +185,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   }, [adyenClientKey, parsedAdyenConfig, gatewayRef.current]);
 
   const initAdyenGatewayHandlers = () => {
+    console.log("WTF!!!!!")
     const configuration = adyenClientKey &&
       adyenConfig && {
         locale: navigator.language,
@@ -195,6 +196,33 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onSubmit: onSubmitAdyenForm,
         onAdditionalDetails: onSubmitAdyenForm,
         onError: onAdyenError,
+        paymentMethodsConfiguration: {
+          card: { // Example optional configuration for cards
+            hasHolderName: true,
+            holderNameRequired: true,
+            enableStoreDetails: true,
+            billingAddressRequired: true, // Set to true to show the billing address input fields.
+            name: 'Credit or debit card',
+            data : {
+                holderName: 'S. Hopper'
+            }
+          },
+          applepay: { // Required configuration for Apple Pay
+            amount: 10000,
+            currencyCode: 'EUR',
+            countryCode: "DE",
+            configuration: {
+              merchantName: 'Saleor Test merchant', // Name to be displayed on the form
+              merchantIdentifier: 'merchant.com.adyen.SaleorECOM.test' // Your Apple merchant identifier as described in https://developer.apple.com/documentation/apple_pay_on_the_web/applepayrequest/2951611-merchantidentifier
+            },
+            onValidateMerchant: (resolve, reject, validationURL) => {
+              console.log(validationURL);
+              // Call your server, passing the URL from the validationURL attribute. 
+              // Your server uses the validation URL to request a session from the Apple Pay server. In response, your server receives an opaque merchant session object, MerchantSession.   
+              // Call resolve(MERCHANTSESSION) or reject() to complete merchant validation.
+            }
+          }
+        }
       };
 
     const checkout = configuration && new window.AdyenCheckout(configuration);
