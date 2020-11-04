@@ -54,4 +54,5 @@ export interface GetProducts {
 export interface GetProductsVariables {
   cursor?: string | null;
   perPage?: number | null;
+  channel?: string | null;
 }
