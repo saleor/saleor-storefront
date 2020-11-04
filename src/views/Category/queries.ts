@@ -64,7 +64,7 @@ export const categoryProductsQuery = gql`
   ${productPricingFragment}
   query CategoryProducts(
     $id: ID!
-    $channel: String!
+    $channel: String
     $attributes: [AttributeInput]
     $after: String
     $pageSize: Int

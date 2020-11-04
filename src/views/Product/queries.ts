@@ -113,7 +113,7 @@ export const productDetailsQuery = gql`
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!, $channel: String!, $countryCode: CountryCode) {
+  query ProductDetails($id: ID!, $channel: String, $countryCode: CountryCode) {
     product(id: $id, channel: $channel) {
       ...BasicProductFields
       ...ProductPricingField
@@ -155,7 +155,7 @@ export const productDetailsQuery = gql`
 export const productVariantsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
-  query VariantList($ids: [ID!], $channel: String!, $countryCode: CountryCode) {
+  query VariantList($ids: [ID!], $channel: String, $countryCode: CountryCode) {
     productVariants(ids: $ids, first: 100, channel: $channel) {
       edges {
         node {

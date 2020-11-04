@@ -745,6 +745,6 @@ export interface ProductDetails {
 
 export interface ProductDetailsVariables {
   id: string;
-  channel: string;
+  channel?: string | null;
   countryCode?: CountryCode | null;
 }
