@@ -4,17 +4,19 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## 2.11.0
+
 - Add product hyperlink in cart page - #745 by @konstantinoschristomanos
 - Add Cypress tags to all of the buttons (also speed up tests) - #718 by @krzysztofwolski
 - Automatically choose variant attributes from url in ProductVariantPicker - #708 by @AlicjaSzu
-- Use sdk as a standalone package - #724 by @dominik-zeglen
-- Use auth api from sdk - #727 by @orzechdev
-- Fix CartRow tests - #749 by @dominik-zeglen
+- Use SDK as a standalone package - #724 by @dominik-zeglen
+- Use auth API from SDK - #727 by @orzechdev
+- Fix `CartRow` tests - #749 by @dominik-zeglen
 - Add prettier to precommit - #766 by @dominik-zeglen
 - Do not use prettier on generated files - #773 by @dominik-zeglen
-- Add eslint - #776 by @dominik-zeglen
+- Add Eslint - #776 by @dominik-zeglen
 - Fix storybook config - #789 by @dominik-zeglen
-- Update sdk to newest version - #795 by @dominik-zeglen
+- Update SDK to newest version - #795 by @dominik-zeglen
 - Use intl - #782 by @przlada
 - Download invoice for order - #790 by @orzechdev
 - Do not throw error if unsupported payment gateway found - #819 by @dominik-zeglen
@@ -34,9 +36,10 @@ All notable, unreleased changes to this project will be documented in this file.
 - Fix cart sidebar style - #897 by @orzechdev
 - Refactor variant picker components and open sidebar after adding product to cart - #809 by @krzysztofwolski
 - Fix checkout address view - #909 by @konstantinoschristomanos
-- Support for static url - #721 by @marianoeramirez and @dominik-zeglen
+- Support for static URL - #721 by @marianoeramirez and @dominik-zeglen
 - Fix search crashing when displaying item with no category - #928 by @mmarkusik
-- Fix Generate site map - #915 by @rboixaderg
+- Fix generating site map - #915 by @rboixaderg
+
 
 ## 2.10.4
 
