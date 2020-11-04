@@ -6,7 +6,7 @@
 // GraphQL query operation: FeaturedProducts
 // ====================================================
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail {
+export interface FeaturedProducts_collection_products_edges_node_thumbnail {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -18,7 +18,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_th
   alt: string | null;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail2x {
+export interface FeaturedProducts_collection_products_edges_node_thumbnail2x {
   __typename: "Image";
   /**
    * The URL of the image.
@@ -26,7 +26,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_th
   url: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -38,7 +38,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start_net {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -50,19 +50,19 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start_gross;
+  gross: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start_gross;
   /**
    * Amount of money without taxes.
    */
-  net: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start_net;
+  net: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start_net;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop_gross {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -74,7 +74,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -86,31 +86,31 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop_gross;
+  gross: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop_gross;
   /**
    * Amount of money without taxes.
    */
-  net: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop_net;
+  net: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop_net;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted {
   __typename: "TaxedMoneyRange";
   /**
    * Lower bound of a price range.
    */
-  start: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_start | null;
+  start: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_start | null;
   /**
    * Upper bound of a price range.
    */
-  stop: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted_stop | null;
+  stop: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted_stop | null;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start_gross {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_start_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -122,7 +122,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start_net {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_start_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -134,19 +134,19 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_start {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start_gross;
+  gross: FeaturedProducts_collection_products_edges_node_pricing_priceRange_start_gross;
   /**
    * Amount of money without taxes.
    */
-  net: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start_net;
+  net: FeaturedProducts_collection_products_edges_node_pricing_priceRange_start_net;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop_gross {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop_gross {
   __typename: "Money";
   /**
    * Amount of money.
@@ -158,7 +158,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop_net {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop_net {
   __typename: "Money";
   /**
    * Amount of money.
@@ -170,31 +170,31 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   currency: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop {
   __typename: "TaxedMoney";
   /**
    * Amount of money including taxes.
    */
-  gross: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop_gross;
+  gross: FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop_gross;
   /**
    * Amount of money without taxes.
    */
-  net: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop_net;
+  net: FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop_net;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange {
+export interface FeaturedProducts_collection_products_edges_node_pricing_priceRange {
   __typename: "TaxedMoneyRange";
   /**
    * Lower bound of a price range.
    */
-  start: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_start | null;
+  start: FeaturedProducts_collection_products_edges_node_pricing_priceRange_start | null;
   /**
    * Upper bound of a price range.
    */
-  stop: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange_stop | null;
+  stop: FeaturedProducts_collection_products_edges_node_pricing_priceRange_stop | null;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pricing {
+export interface FeaturedProducts_collection_products_edges_node_pricing {
   __typename: "ProductPricingInfo";
   /**
    * Whether it is in sale or not.
@@ -203,14 +203,14 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   /**
    * The undiscounted price range of the product variants.
    */
-  priceRangeUndiscounted: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRangeUndiscounted | null;
+  priceRangeUndiscounted: FeaturedProducts_collection_products_edges_node_pricing_priceRangeUndiscounted | null;
   /**
    * The discounted price range of the product variants.
    */
-  priceRange: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange | null;
+  priceRange: FeaturedProducts_collection_products_edges_node_pricing_priceRange | null;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node_category {
+export interface FeaturedProducts_collection_products_edges_node_category {
   __typename: "Category";
   /**
    * The ID of the object.
@@ -219,7 +219,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ca
   name: string;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
+export interface FeaturedProducts_collection_products_edges_node {
   __typename: "Product";
   /**
    * The ID of the object.
@@ -229,54 +229,47 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node {
   /**
    * The main thumbnail for a product.
    */
-  thumbnail: FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail | null;
+  thumbnail: FeaturedProducts_collection_products_edges_node_thumbnail | null;
   /**
    * The main thumbnail for a product.
    */
-  thumbnail2x: FeaturedProducts_shop_homepageCollection_products_edges_node_thumbnail2x | null;
+  thumbnail2x: FeaturedProducts_collection_products_edges_node_thumbnail2x | null;
   /**
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
-  pricing: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing | null;
-  category: FeaturedProducts_shop_homepageCollection_products_edges_node_category | null;
+  pricing: FeaturedProducts_collection_products_edges_node_pricing | null;
+  category: FeaturedProducts_collection_products_edges_node_category | null;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products_edges {
+export interface FeaturedProducts_collection_products_edges {
   __typename: "ProductCountableEdge";
   /**
    * The item at the end of the edge.
    */
-  node: FeaturedProducts_shop_homepageCollection_products_edges_node;
+  node: FeaturedProducts_collection_products_edges_node;
 }
 
-export interface FeaturedProducts_shop_homepageCollection_products {
+export interface FeaturedProducts_collection_products {
   __typename: "ProductCountableConnection";
-  edges: FeaturedProducts_shop_homepageCollection_products_edges[];
+  edges: FeaturedProducts_collection_products_edges[];
 }
 
-export interface FeaturedProducts_shop_homepageCollection {
+export interface FeaturedProducts_collection {
   __typename: "Collection";
-  /**
-   * The ID of the object.
-   */
-  id: string;
+  name: string;
   /**
    * List of products in this collection.
    */
-  products: FeaturedProducts_shop_homepageCollection_products | null;
-}
-
-export interface FeaturedProducts_shop {
-  __typename: "Shop";
-  /**
-   * Collection displayed on homepage.
-   */
-  homepageCollection: FeaturedProducts_shop_homepageCollection | null;
+  products: FeaturedProducts_collection_products | null;
 }
 
 export interface FeaturedProducts {
   /**
-   * Return information about the shop.
+   * Look up a collection by ID.
    */
-  shop: FeaturedProducts_shop;
+  collection: FeaturedProducts_collection | null;
+}
+
+export interface FeaturedProductsVariables {
+  channel?: string | null;
 }

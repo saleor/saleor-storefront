@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
+import { defaultChannelSlug } from "@temp/constants";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader, OfflinePlaceholder } from "@components/atoms";
 import { MetaWrapper, NotFound } from "../../components";
@@ -96,6 +97,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
+    channel: defaultChannelSlug,
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
     sortBy: convertSortByFromString(filters.sortBy),
   };

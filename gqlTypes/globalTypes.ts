@@ -272,6 +272,7 @@ export enum ProductOrderField {
   MINIMAL_PRICE = "MINIMAL_PRICE",
   NAME = "NAME",
   PRICE = "PRICE",
+  PUBLICATION_DATE = "PUBLICATION_DATE",
   PUBLISHED = "PUBLISHED",
   TYPE = "TYPE",
 }
@@ -284,6 +285,7 @@ export interface AttributeInput {
 
 export interface ProductOrder {
   direction: OrderDirection;
+  channel?: string | null;
   attributeId?: string | null;
   field?: ProductOrderField | null;
 }

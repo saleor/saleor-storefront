@@ -5,24 +5,25 @@ import {
   basicProductFragment,
   productPricingFragment,
 } from "../../views/Product/queries";
-import { FeaturedProducts } from "./gqlTypes/FeaturedProducts";
+import {
+  FeaturedProducts,
+  FeaturedProductsVariables,
+} from "./gqlTypes/FeaturedProducts";
 
 export const featuredProducts = gql`
   ${basicProductFragment}
   ${productPricingFragment}
-  query FeaturedProducts {
-    shop {
-      homepageCollection {
-        id
-        products(first: 20) {
-          edges {
-            node {
-              ...BasicProductFields
-              ...ProductPricingField
-              category {
-                id
-                name
-              }
+  query FeaturedProducts($channel: String) {
+    collection(slug: "featured-products", channel: $channel) {
+      name
+      products(first: 20) {
+        edges {
+          node {
+            ...BasicProductFields
+            ...ProductPricingField
+            category {
+              id
+              name
             }
           }
         }
@@ -31,6 +32,7 @@ export const featuredProducts = gql`
   }
 `;
 
-export const TypedFeaturedProductsQuery = TypedQuery<FeaturedProducts, {}>(
-  featuredProducts
-);
+export const TypedFeaturedProductsQuery = TypedQuery<
+  FeaturedProducts,
+  FeaturedProductsVariables
+>(featuredProducts);
