@@ -3,72 +3,49 @@
 import classNames from "classnames";
 import * as React from "react";
 
-import {
-  NavLink,
-  OverlayContextInterface,
-  OverlayTheme,
-  OverlayType,
-} from "..";
+import { NavLink, OverlayContextInterface } from "..";
 import { MainMenu_shop_navigation_main_items } from "./gqlTypes/MainMenu";
 import NavItem from "./NavItem";
 
 import "./scss/index.scss";
 
 class NavDropdown extends React.PureComponent<
-  MainMenu_shop_navigation_main_items & { overlay: OverlayContextInterface },
-  { active: boolean }
-> {
-  state = { active: false };
-
-  get hasSubNavigation() {
-    const { children } = this.props;
-    return children && !!children.length;
+  MainMenu_shop_navigation_main_items & {
+    overlay: OverlayContextInterface;
+    showDropdown: boolean;
+    onShowDropdown: () => void;
+    onHideDropdown: () => void;
   }
-
-  showOverlayHandler = () => {
-    if (this.hasSubNavigation) {
-      this.setState({ active: true });
-      this.props.overlay.show(OverlayType.mainMenuNav, OverlayTheme.modal);
-    }
-  };
-
-  hideOverlayHandler = () => {
-    if (this.state.active) {
-      this.props.overlay.hide();
-      this.setState({ active: false });
-    }
-  };
-
+> {
   render() {
-    const { children } = this.props;
-    const { active } = this.state;
-    const showDropDown = active && this.hasSubNavigation;
+    const {
+      children,
+      showDropdown,
+      onShowDropdown,
+      onHideDropdown,
+    } = this.props;
 
     return (
       <ul
         className={classNames({
           "main-menu__nav-dropdown": true,
-          "main-menu__nav-dropdown--active": showDropDown,
+          "main-menu__nav-dropdown--active": showDropdown,
         })}
-        onMouseOver={this.showOverlayHandler}
-        onMouseLeave={this.hideOverlayHandler}
+        onMouseOver={onShowDropdown}
+        onMouseLeave={onHideDropdown}
       >
         <li>
-          <NavLink item={this.props} onClick={this.hideOverlayHandler} />
+          <NavLink item={this.props} onClick={onHideDropdown} />
         </li>
         <li
           className={classNames({
             "main-menu__nav-dropdown__body": true,
-            "main-menu__nav-dropdown__body--visible": showDropDown,
+            "main-menu__nav-dropdown__body--visible": showDropdown,
           })}
         >
           <ul>
             {children.map((subItem, i) => (
-              <NavItem
-                key={i}
-                hideOverlay={this.hideOverlayHandler}
-                {...subItem}
-              />
+              <NavItem key={i} hideOverlay={onHideDropdown} {...subItem} />
             ))}
           </ul>
         </li>
