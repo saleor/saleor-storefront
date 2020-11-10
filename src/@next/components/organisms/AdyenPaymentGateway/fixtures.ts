@@ -1,3 +1,5 @@
+import { IPaymentGatewayPaymentDetails } from "@types";
+
 export const adyenPaymentMethods = {
   groups: [
     {
@@ -145,4 +147,10 @@ export const adyenPaymentMethods = {
       type: "unionpay",
     },
   ],
+};
+
+export const paymentDetails: IPaymentGatewayPaymentDetails = {
+  amount: 100,
+  countryCode: "US",
+  currencyCode: "USD",
 };

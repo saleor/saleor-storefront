@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { defineMessages, IntlShape, useIntl } from "react-intl";
 
-import { IFormError, IPaymentGatewayConfig } from "@types";
+import {
+  IFormError,
+  IPaymentGatewayConfig,
+  IPaymentGatewayPaymentDetails,
+} from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { ErrorMessage } from "@components/atoms";
 
@@ -88,9 +92,6 @@ interface AdyenSubmitState {
   data?: any;
   isValid?: boolean;
 }
-interface AdyenSubmitDropin {
-  handleAction?: (data?: any) => any;
-}
 interface AdyenError {
   error?: string;
 }
@@ -100,6 +101,10 @@ export interface IProps {
    * Payment gateway client configuration.
    */
   config: IPaymentGatewayConfig[];
+  /**
+   * Payment details.
+   */
+  paymentDetails: IPaymentGatewayPaymentDetails;
   /**
    * Form reference on which payment might be submitted.
    */
@@ -116,6 +121,10 @@ export interface IProps {
    * Method called after the form is submitted.
    */
   processPayment: () => void;
+  /**
+   * Method called to initialize payment submission.
+   */
+  initializePayment: (data: any) => Promise<any>;
   /**
    * Method to call on gateway payment submission.
    */
@@ -141,10 +150,12 @@ export interface IProps {
 
 const AdyenPaymentGateway: React.FC<IProps> = ({
   config,
+  paymentDetails,
   formRef,
   scriptConfig,
   styleConfig,
   processPayment,
+  initializePayment,
   submitPayment,
   submitPaymentSuccess,
   errors,
@@ -159,6 +170,16 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
 
   const [dropin, setDropin] = useState<any>();
   const gatewayRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (window.AdyenCheckout) {
+      initAdyenGatewayHandlers();
+    }
+  }, [
+    paymentDetails.amount,
+    paymentDetails.countryCode,
+    paymentDetails.currencyCode,
+  ]);
 
   useEffect(() => {
     if (adyenClientKey && parsedAdyenConfig && !dropin && gatewayRef.current) {
@@ -180,6 +201,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   }, [adyenClientKey, parsedAdyenConfig, gatewayRef.current]);
 
   const initAdyenGatewayHandlers = () => {
+    console.log("paymentDetails init: ", paymentDetails);
     const configuration = adyenClientKey &&
       adyenConfig && {
         locale: navigator.language,
@@ -190,6 +212,20 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         onSubmit: onSubmitAdyenForm,
         onAdditionalDetails: onSubmitAdyenForm,
         onError: onAdyenError,
+        paymentMethodsConfiguration: {
+          applepay: {
+            onChange: onSubmitAdyenForm,
+            onSubmit: onSubmitAdyenForm,
+            amount: Math.floor((paymentDetails.amount || 0) * 100),
+            currencyCode: paymentDetails.currencyCode,
+            countryCode: paymentDetails.countryCode,
+            configuration: {
+              merchantName: "Saleor Test merchant",
+              merchantIdentifier: "merchant.com.adyen.SaleorECOM.test",
+            },
+            onValidateMerchant: onValidateMerchantWithApple,
+          },
+        },
       };
 
     const checkout = configuration && new window.AdyenCheckout(configuration);
@@ -201,10 +237,37 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
     }
   };
 
-  const onSubmitAdyenForm = async (
-    state?: AdyenSubmitState,
-    dropin?: AdyenSubmitDropin
+  const onValidateMerchantWithApple = async (
+    resolve,
+    reject,
+    validationURL
   ) => {
+    console.log("onValidateMerchant");
+    console.log(`onValidateMerchant validationURL: ${validationURL}`);
+
+    const paymentInitialization = await initializePayment(
+      JSON.stringify({
+        merchantIdentifier: "merchant.com.adyen.SaleorECOM.test",
+        displayName: "Merchant ID for Saleor and Adyen",
+        domain: "f31c4e742d1e.ngrok.io", // "3b39d6f946ea.ngrok.io",
+        validationUrl:
+          "https://apple-pay-gateway.apple.com/paymentservices/startSession",
+        paymentMethod: "applepay",
+      })
+    );
+
+    if (paymentInitialization.errors?.length) {
+      onError(paymentInitialization.errors);
+      reject();
+    }
+
+    console.log(paymentInitialization.data);
+    resolve(JSON.parse(paymentInitialization.data));
+  };
+
+  const onSubmitAdyenForm = async (state?: AdyenSubmitState) => {
+    console.log("onSubmitAdyenForm: ", state);
+
     if (!state?.isValid) {
       onError([
         new Error(
@@ -212,13 +275,14 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
         ),
       ]);
     } else {
+      const paymentMethodType = state?.data?.paymentMethod?.type;
       const payment = await submitPayment(state?.data);
 
       if (payment.errors?.length) {
         onError(payment.errors);
       } else if (!payment?.confirmationNeeded) {
         submitPaymentSuccess(payment?.order);
-      } else if (!dropin?.handleAction) {
+      } else if (!dropin?.handleAction && paymentMethodType !== "applepay") {
         onError([
           new Error(
             intl.formatMessage(
@@ -232,7 +296,7 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
             intl.formatMessage(adyenErrorMessages.paymentNoConfirmationData)
           ),
         ]);
-      } else {
+      } else if (paymentMethodType !== "applepay") {
         let paymentAction;
         try {
           paymentAction = JSON.parse(payment.confirmationData);

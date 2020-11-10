@@ -23,3 +23,9 @@ export interface IPaymentGateway {
    */
   config: IPaymentGatewayConfig[];
 }
+
+export interface IPaymentGatewayPaymentDetails {
+  amount?: number;
+  currencyCode?: string;
+  countryCode?: string;
+}

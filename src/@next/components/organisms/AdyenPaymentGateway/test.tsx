@@ -4,9 +4,10 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { AdyenPaymentGateway } from ".";
-import { adyenPaymentMethods } from "./fixtures";
+import { adyenPaymentMethods, paymentDetails } from "./fixtures";
 
 const PROPS = {
+  paymentDetails,
   scriptConfig: {
     src:
       "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.10.1/adyen.js",
@@ -36,6 +37,7 @@ const PROPS = {
 describe("<AdyenPaymentGateway />", () => {
   it("exists", () => {
     const processPayment = jest.fn();
+    const initializePayment = jest.fn();
     const submitPayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const onError = jest.fn();
@@ -44,6 +46,7 @@ describe("<AdyenPaymentGateway />", () => {
         <AdyenPaymentGateway
           {...PROPS}
           processPayment={processPayment}
+          initializePayment={initializePayment}
           submitPayment={submitPayment}
           submitPaymentSuccess={submitPaymentSuccess}
           onError={onError}

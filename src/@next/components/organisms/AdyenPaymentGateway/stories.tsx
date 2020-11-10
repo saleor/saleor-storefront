@@ -4,9 +4,10 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { AdyenPaymentGateway } from ".";
-import { adyenPaymentMethods } from "./fixtures";
+import { adyenPaymentMethods, paymentDetails } from "./fixtures";
 
 const PROPS = {
+  paymentDetails,
   scriptConfig: {
     src:
       "https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.10.1/adyen.js",
@@ -33,6 +34,7 @@ const PROPS = {
   ],
 };
 const processPayment = action("processPayment");
+const initializePayment = async () => action("initializePayment");
 const submitPayment = async () => action("submitPayment");
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
@@ -44,6 +46,7 @@ storiesOf("@components/organisms/AdyenPaymentGateway", module)
     <AdyenPaymentGateway
       {...PROPS}
       processPayment={processPayment}
+      initializePayment={initializePayment}
       submitPayment={submitPayment}
       submitPaymentSuccess={submitPaymentSuccess}
       onError={onError}

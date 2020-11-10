@@ -1,4 +1,4 @@
-import { IPaymentGateway } from "@types";
+import { IPaymentGateway, IPaymentGatewayPaymentDetails } from "@types";
 
 export const paymentGateways: IPaymentGateway[] = [
   {
@@ -26,3 +26,9 @@ export const paymentGateways: IPaymentGateway[] = [
     name: "Stripe",
   },
 ];
+
+export const paymentDetails: IPaymentGatewayPaymentDetails = {
+  amount: 100,
+  countryCode: "US",
+  currencyCode: "USD",
+};

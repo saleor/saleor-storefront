@@ -3,19 +3,22 @@ import "jest-styled-components";
 import React from "react";
 
 import { PaymentGatewaysList } from ".";
-import { paymentGateways } from "./fixtures";
+import { paymentGateways, paymentDetails } from "./fixtures";
 
 describe("<PaymentGatewaysList />", () => {
   it("renders payment gateways", () => {
     const processPayment = jest.fn();
+    const initializePayment = jest.fn();
     const submitPayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
     const onError = jest.fn();
     const wrapper = mount(
       <PaymentGatewaysList
+        paymentDetails={paymentDetails}
         paymentGateways={paymentGateways}
         processPayment={processPayment}
+        initializePayment={initializePayment}
         submitPayment={submitPayment}
         submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}
@@ -31,13 +34,16 @@ describe("<PaymentGatewaysList />", () => {
   it("simulates select payment gateway", () => {
     const processPayment = jest.fn();
     const submitPayment = jest.fn();
+    const initializePayment = jest.fn();
     const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
     const onError = jest.fn();
     const wrapper = mount(
       <PaymentGatewaysList
+        paymentDetails={paymentDetails}
         paymentGateways={paymentGateways}
         processPayment={processPayment}
+        initializePayment={initializePayment}
         submitPayment={submitPayment}
         submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}

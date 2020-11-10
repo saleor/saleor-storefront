@@ -1,7 +1,16 @@
-import { ICardData, IFormError, IPaymentGateway } from "@types";
+import {
+  ICardData,
+  IFormError,
+  IPaymentGateway,
+  IPaymentGatewayPaymentDetails,
+} from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
 export interface IProps {
+  /**
+   * Payment details.
+   */
+  paymentDetails: IPaymentGatewayPaymentDetails;
   /**
    * Available payment gateways.
    */
@@ -38,6 +47,10 @@ export interface IProps {
     token?: string,
     cardData?: ICardData
   ) => void;
+  /**
+   * Method called to initialize payment submission.
+   */
+  initializePayment: (gateway: string, data: any) => Promise<any>;
   submitPayment: (data: {
     confirmationData: any;
     confirmationNeeded: boolean;

@@ -15,7 +15,13 @@ import { useCart, useCheckout } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
 import { checkoutMessages } from "@temp/intl";
-import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
+import {
+  ITaxedMoney,
+  ICheckoutStep,
+  ICardData,
+  IFormError,
+  IPaymentGatewayPaymentDetails,
+} from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
@@ -115,6 +121,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     payment,
     availablePaymentGateways,
     createPayment,
+    initializePayment,
     completeCheckout,
   } = useCheckout();
   const intl = useIntl();
@@ -314,6 +321,21 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       handleStepSubmitSuccess(CheckoutStep.Payment);
     }
   };
+  const handleInitializePayment = async (
+    gateway: string,
+    paymentData?: object
+  ) => {
+    const response = await initializePayment({
+      gateway,
+      paymentData,
+    });
+    return {
+      gateway: response.data?.gateway,
+      name: response.data?.name,
+      data: response.data?.data,
+      errors: response.dataError?.error,
+    };
+  };
   const handleSubmitPayment = async (paymentData?: object) => {
     const response = await completeCheckout({ paymentData });
     return {
@@ -345,10 +367,18 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
 
+  const paymentDetails: IPaymentGatewayPaymentDetails = {
+    amount: totalPrice?.gross.amount,
+    currencyCode: totalPrice?.gross.currency,
+    countryCode: checkout?.billingAddress?.country?.code,
+  };
+
   const paymentGatewaysView = availablePaymentGateways && (
     <PaymentGatewaysList
+      paymentDetails={paymentDetails}
       paymentGateways={availablePaymentGateways}
       processPayment={handleProcessPayment}
+      initializePayment={handleInitializePayment}
       submitPayment={handleSubmitPayment}
       submitPaymentSuccess={handleSubmitPaymentSuccess}
       formId={checkoutGatewayFormId}
