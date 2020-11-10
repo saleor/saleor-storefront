@@ -50,7 +50,9 @@ export const ProductDescription: React.FC<IProps> = ({
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (
-          <RichTextContent descriptionJson={descriptionJson} />
+          <S.Description>
+            <RichTextContent descriptionJson={descriptionJson} />
+          </S.Description>
         ) : (
           <p>{description}</p>
         ))}

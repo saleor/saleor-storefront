@@ -1,19 +1,12 @@
-/* eslint-disable react/no-danger */
-
-import { sanitize } from "dompurify";
-import draftToHtml from "draftjs-to-html";
+import Output from "editorjs-react-renderer";
 import React from "react";
 
-import { IProps } from "./types";
+export interface IProps {
+  descriptionJson: string;
+}
 
-export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) => (
-  <>
-    {descriptionJson && (
-      <div
-        dangerouslySetInnerHTML={{
-          __html: sanitize(draftToHtml(JSON.parse(descriptionJson))),
-        }}
-      />
-    )}
-  </>
-);
+export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) => {
+  return (
+    <>{descriptionJson && <Output data={JSON.parse(descriptionJson)} />}</>
+  );
+};

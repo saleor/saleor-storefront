@@ -2,6 +2,12 @@ import { media, styled } from "@styles";
 
 export const Wrapper = styled.div``;
 
+export const Description = styled.div`
+  ol {
+    list-style: initial;
+  }
+`;
+
 export const AttributeList = styled.ul`
   columns: 2;
   column-width: 50%;
@@ -20,8 +26,9 @@ export const AttributeList = styled.ul`
   }
 
   li::before {
-    content: "•";
+    // content: ";
     margin-right: 20px;
+    padding-left: 50px;
     color: ${props => props.theme.colors.listBullet};
   }
 `;

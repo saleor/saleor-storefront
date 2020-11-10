@@ -33,6 +33,7 @@
     "cross-env": "^5.2.0",
     "dompurify": "^2.0.7",
     "draftjs-to-html": "^0.8.4",
+    "editorjs-react-renderer": "^2.4.0",
     "formik": "^1.5.7",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.3",

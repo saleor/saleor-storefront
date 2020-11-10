@@ -1,52 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/atoms/RichTextContent custom 1`] = `
-.c0 {
-  position: relative;
-  margin: 20px;
-}
-
-.c1 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 3px solid rgba(0,0,0,0.2);
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  box-sizing: border-box;
-}
-
-<div
-  className="c0"
->
-  <div
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "<p><strong>bold</strong></p>
-<p><em>italic</em></p>
-<p><del>strikethrough</del></p>
-<h1>h1</h1>
-<h2>h2</h2>
-<h3>h3</h3>
-<blockquote>blockquote</blockquote>
-<ul>
-<li>ul</li>
-</ul>
-<ol>
-<li>ol</li>
-</ol>
-<p><a href=\\"#\\">link</a></p>
-",
-      }
-    }
-  />
-  <div
-    className="c1"
-  />
-</div>
-`;
-
 exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
 .c0 {
   position: relative;
@@ -67,14 +20,430 @@ exports[`Storyshots @components/atoms/RichTextContent default 1`] = `
 <div
   className="c0"
 >
-  <div
-    dangerouslySetInnerHTML={
+  <h4
+    style={
       Object {
-        "__html": "<p>They say polo is the sport of kings.Or was that stamp collecting ? Either way, this shirt is fit for a king of Saturday night.</p>
-",
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "margin": "8px 0",
+        "marginTop": "15px",
       }
     }
-  />
+  >
+    Editor.js React Renderer!
+  </h4>
+  <p
+    style={
+      Object {
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "margin": "5px 0",
+        "textAlign": "left",
+      }
+    }
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque accusantium veritatis dolorum cum amet! Ipsa ullam nisi, dolor explicabo ut nobis repudiandae saepe illo error facilis consectetur, quisquam assumenda dolorum.
+  </p>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "justifyContent": "center",
+        "margin": "5px 0",
+        "textAlign": "left",
+        "width": "100%",
+      }
+    }
+  >
+    <span
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "var(--secondary-white)",
+          "border": "1px solid var(--primary-grey)",
+          "borderRadius": "var(--default-radius)",
+          "display": "flex",
+          "flexDirection": "column",
+          "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+          "justifyContent": "space-between",
+          "margin": "5px 0",
+          "minWidth": "240px",
+          "padding": "10px",
+          "width": "80%",
+        }
+      }
+    >
+      <p
+        style={
+          Object {
+            "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+          }
+        }
+      >
+        <strong>
+          "
+        </strong>
+         
+        <b>
+          Lorem
+        </b>
+          ipsum dolor sit amet 
+        <mark
+          className="cdx-marker"
+        >
+          consectetur
+        </mark>
+         adipisicing elit. Doloremque accusantium veritatis dolorum cum amet! Ipsa ullam nisi, dolor explicabo ut nobis repudiandae saepe illo error facilis consectetur, quisquam assumenda dolorum.
+        <strong>
+          "
+        </strong>
+      </p>
+      <p
+        style={
+          Object {
+            "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+            "fontWeight": "bold",
+            "margin": "0 5px 5px 5px",
+          }
+        }
+      >
+        <strong>
+          <small>
+            Anonymous
+          </small>
+        </strong>
+      </p>
+    </span>
+  </div>
+  <table
+    style={
+      Object {
+        "borderSpacing": "1px 2px",
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "margin": "5px 0",
+      }
+    }
+  >
+    <thead>
+      <tr
+        style={Object {}}
+      >
+        <th
+          style={
+            Object {
+              "backgroundColor": "lightcoral",
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+            }
+          }
+        >
+          Name
+        </th>
+        <th
+          style={
+            Object {
+              "backgroundColor": "lightcoral",
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+            }
+          }
+        >
+          Age
+        </th>
+        <th
+          style={
+            Object {
+              "backgroundColor": "lightcoral",
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+            }
+          }
+        >
+          Position
+        </th>
+        <th
+          style={
+            Object {
+              "backgroundColor": "lightcoral",
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+            }
+          }
+        >
+          SSN
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        style={
+          Object {
+            "backgroundColor": "white",
+          }
+        }
+      >
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          Jack
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          <strong>
+            51
+          </strong>
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          All trades
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          654654414131333
+        </td>
+      </tr>
+      <tr
+        style={
+          Object {
+            "backgroundColor": "#f9f9f9",
+          }
+        }
+      >
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          John Doe
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          <strong>
+            32
+          </strong>
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          Senior Consultant
+        </td>
+        <td
+          style={
+            Object {
+              "borderRadius": "2px",
+              "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+              "minWidth": "100px",
+              "padding": "8px 15px",
+              "textAlign": "left",
+            }
+          }
+        >
+          0002145465145641
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "justifyContent": "flex-start",
+        "margin": "5px 0",
+        "width": "100%",
+      }
+    }
+  >
+    <span
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexWrap": "wrap",
+          "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+          "justifyContent": "flex-start",
+          "margin": "5px 0",
+          "minWidth": "240px",
+          "padding": "0 8px",
+        }
+      }
+    >
+      <svg
+        id="Capa_1"
+        style={
+          Object {
+            "enableBackground": "new 0 0 50 50",
+            "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+            "height": "20px",
+            "marginRight": "10px",
+            "width": "20px",
+          }
+        }
+        version="1.1"
+        viewBox="0 0 50 50"
+        x="0px"
+        xmlSpace="preserve"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        y="0px"
+      >
+        <circle
+          cx="25"
+          cy="25"
+          r="25"
+          style={
+            Object {
+              "fill": "#EFCE4A",
+            }
+          }
+        />
+        <line
+          style={
+            Object {
+              "fill": "none",
+              "stroke": "#FFFFFF",
+              "strokeLinecap": "round",
+              "strokeMiterlimit": 10,
+              "strokeWidth": 2,
+            }
+          }
+          x1="25"
+          x2="25"
+          y1="10"
+          y2="32"
+        />
+        <line
+          style={
+            Object {
+              "fill": "none",
+              "stroke": "#FFFFFF",
+              "strokeLinecap": "round",
+              "strokeMiterlimit": 10,
+              "strokeWidth": 2,
+            }
+          }
+          x1="25"
+          x2="25"
+          y1="37"
+          y2="39"
+        />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+        <g />
+      </svg>
+      <p
+        style={
+          Object {
+            "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+            "fontWeight": 400,
+          }
+        }
+      >
+        This is a warning!
+      </p>
+    </span>
+  </div>
+  <ol
+    style={
+      Object {
+        "fontFamily": "-apple-system,BlinkMacSystemFont,\\"Segoe UI\\",Roboto,\\"Helvetica Neue\\",Arial,sans-serif,\\"Apple Color Emoji\\",\\"Segoe UI Emoji\\",\\"Segoe UI Symbol\\"",
+        "margin": "5px 0",
+      }
+    }
+  >
+    <li>
+      <i>
+        Item one
+      </i>
+    </li>
+    <li>
+      Another item
+    </li>
+    <li>
+      <strong>
+        Item 3
+      </strong>
+    </li>
+  </ol>
   <div
     className="c1"
   />
