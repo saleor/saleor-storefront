@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useAuth } from "@saleor/sdk";
-import { DemoBanner, Loader } from "@components/atoms";
+import { Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
 import {
   Footer,
@@ -26,10 +26,7 @@ const App: React.FC = () => {
     <ShopProvider>
       <OverlayProvider>
         <MetaConsumer />
-        {demoMode && <DemoBanner />}
-        <header>
-          <MainMenu />
-        </header>
+        <MainMenu demoMode={demoMode} />
         <Routes />
         <Footer />
         <OverlayManager />

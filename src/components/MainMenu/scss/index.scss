@@ -1,5 +1,9 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.header-with-dropdown {
+  z-index: 3;
+}
+
 .main-menu {
   align-items: center;
   align-items: stretch;
