@@ -1,3 +1,5 @@
+/* Temporary disable no-console warning for eslint to easier debug */
+/* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from "react";
 import { defineMessages, IntlShape, useIntl } from "react-intl";
 
