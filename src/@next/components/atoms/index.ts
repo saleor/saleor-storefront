@@ -23,7 +23,7 @@ export * from "./NavLink";
 export * from "./NotificationTemplate";
 export * from "./PlaceholderImage";
 export * from "./Radio";
-export * from "./RichTextContent";
+export * from "./RichTextEditorContent";
 export * from "./Select";
 export * from "./ShadowBox";
 export * from "./SocialMediaIcon";

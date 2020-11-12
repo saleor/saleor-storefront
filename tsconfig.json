@@ -31,5 +31,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "include": ["webpack.d.ts","editorjs.d.ts"]
 }
