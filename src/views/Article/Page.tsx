@@ -2,7 +2,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import RichTextEditorContent from "@components/atoms";
+import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
