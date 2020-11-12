@@ -238,9 +238,9 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
   };
 
   const onValidateMerchantWithApple = async (
-    resolve,
-    reject,
-    validationURL
+    resolve: (result: object) => void,
+    reject: () => void,
+    validationURL: string
   ) => {
     console.log("onValidateMerchant");
     console.log(`onValidateMerchant validationURL: ${validationURL}`);
@@ -249,9 +249,8 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
       JSON.stringify({
         merchantIdentifier: "merchant.com.adyen.SaleorECOM.test",
         displayName: "Merchant ID for Saleor and Adyen",
-        domain: "f31c4e742d1e.ngrok.io", // "3b39d6f946ea.ngrok.io",
-        validationUrl:
-          "https://apple-pay-gateway.apple.com/paymentservices/startSession",
+        domain: location.hostname,
+        validationUrl: validationURL,
         paymentMethod: "applepay",
       })
     );
