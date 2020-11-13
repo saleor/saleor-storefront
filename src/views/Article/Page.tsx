@@ -55,7 +55,8 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-          <RichTextEditorContent data={JSON.parse(page.contentJson)} />
+          {page.contentJson && (
+          <RichTextEditorContent jsonData={page.contentJson} />)}
         </div>
       </div>
     </div>

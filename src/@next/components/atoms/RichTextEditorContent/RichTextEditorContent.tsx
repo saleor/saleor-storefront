@@ -12,8 +12,7 @@ import React from "react";
 import * as S from "./styles";
 
 export interface RichTextEditorContentProps {
-  data: OutputData;
-  onReady?: () => void;
+  jsonData: string;
 }
 
 export const tools: Record<string, ToolConstructable | ToolSettings> = {
@@ -37,18 +36,19 @@ export const tools: Record<string, ToolConstructable | ToolSettings> = {
 };
 
 export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
-  data,
-  onReady,
+  jsonData,
 }) => {
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
+
+  const data: OutputData = JSON.parse(jsonData);
+
   React.useEffect(
     () => {
       if (data && editorContainer.current) {
         editor.current = new EditorJS({
           data,
           holder: editorContainer.current,
-          onReady,
           readOnly: true,
           tools,
         });
@@ -59,7 +59,6 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
     // Rerender editor only if changed from undefined to defined state
     [data === undefined]
   );
-  React.useEffect(() => editor.current?.destroy, []);
 
-  return <S.Content ref={editorContainer} />;
+  return <S.Content ref={editorContainer} />
 };

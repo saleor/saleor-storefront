@@ -50,7 +50,7 @@ export const ProductDescription: React.FC<IProps> = ({
       </S.Tabs>
       <div hidden={activeTab !== TABS.DESCRIPTION}>
         {descriptionJson ? (
-          <RichTextEditorContent data={JSON.parse(descriptionJson)} />
+          <RichTextEditorContent jsonData={descriptionJson} />
         ) : (
           <p>{description}</p>
         )}

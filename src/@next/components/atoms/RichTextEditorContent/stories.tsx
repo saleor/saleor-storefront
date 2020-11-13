@@ -1,18 +1,14 @@
-import { OutputData } from "@editorjs/editorjs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import * as fixtures from "./fixtures.json";
+import * as fixtures from "./fixtures";
 import {
   RichTextEditorContent,
   RichTextEditorContentProps,
 } from "./RichTextEditorContent";
 
-export const data: OutputData = fixtures.richTextEditor;
-
 const props: RichTextEditorContentProps = {
-  data,
-  onReady: () => undefined,
+  jsonData: fixtures.jsonData,
 };
 
 storiesOf("@components/atoms/RichTextEditorContent", module)
