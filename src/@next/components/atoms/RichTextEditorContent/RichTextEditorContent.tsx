@@ -43,22 +43,18 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
 
   const data: OutputData = JSON.parse(jsonData);
 
-  React.useEffect(
-    () => {
-      if (data && editorContainer.current) {
-        editor.current = new EditorJS({
-          data,
-          holder: editorContainer.current,
-          readOnly: true,
-          tools,
-        });
-      }
+  React.useEffect(() => {
+    if (data && editorContainer.current) {
+      editor.current = new EditorJS({
+        data,
+        holder: editorContainer.current,
+        readOnly: true,
+        tools,
+      });
+    }
 
-      return editor.current?.destroy;
-    },
-    // Rerender editor only if changed from undefined to defined state
-    [data === undefined]
-  );
+    return editor.current?.destroy;
+  }, [jsonData]);
 
-  return <S.Content ref={editorContainer} />
+  return <S.Content ref={editorContainer} />;
 };
