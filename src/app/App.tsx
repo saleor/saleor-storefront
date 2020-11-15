@@ -12,10 +12,11 @@ import {
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
 import "../globalStyles/scss/index.scss";
-import { Routes } from "./routes";
 import Notifications from "./Notifications";
+import { useRouter } from "next/router";
 
-const App: React.FC = () => {
+const App: React.FC = ({ children }) => {
+  const { pathname } = useRouter();
   const { tokenRefreshing, tokenVerifying } = useAuth();
 
   if (tokenRefreshing || tokenVerifying) {
@@ -24,10 +25,10 @@ const App: React.FC = () => {
 
   return (
     <ShopProvider>
-      <OverlayProvider>
+      <OverlayProvider pathname={pathname}>
         <MetaConsumer />
         <MainMenu demoMode={demoMode} />
-        <Routes />
+        {children}
         <Footer />
         <OverlayManager />
         <Notifications />

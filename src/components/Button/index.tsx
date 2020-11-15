@@ -12,7 +12,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   testingContext: string;
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   className = "",
   children,
   testingContext,
@@ -31,5 +31,3 @@ const Button: React.FC<ButtonProps> = ({
     <span>{children}</span>
   </button>
 );
-
-export default Button;

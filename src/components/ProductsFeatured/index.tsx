@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { Carousel, ProductListItem } from "..";
 import { generateProductUrl, maybe } from "../../core/utils";
@@ -28,10 +28,12 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <Carousel>
                   {products.map(({ node: product }) => (
                     <Link
-                      to={generateProductUrl(product.id, product.name)}
+                      href={generateProductUrl(product.id, product.name)}
                       key={product.id}
                     >
-                      <ProductListItem product={product} />
+                      <a>
+                        <ProductListItem product={product} />
+                      </a>
                     </Link>
                   ))}
                 </Carousel>

@@ -4,7 +4,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../core/config";
-import Button from "../Button";
+import { Button } from "../Button";
 
 interface NotFoundProps {
   message?: string;

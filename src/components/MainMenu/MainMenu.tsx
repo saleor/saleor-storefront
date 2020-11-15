@@ -4,7 +4,7 @@ import { commonMessages } from "@temp/intl";
 import { useAuth, useCart } from "@saleor/sdk";
 
 import Media from "react-media";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import ReactSVG from "react-svg";
 
 import { DemoBanner } from "@components/atoms";
@@ -158,24 +158,30 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                               content={
                                 <ul className="main-menu__dropdown">
                                   <li data-test="mobileMenuMyAccountLink">
-                                    <Link to={appPaths.accountUrl}>
-                                      <FormattedMessage
-                                        {...commonMessages.myAccount}
-                                      />
+                                    <Link href={appPaths.accountUrl}>
+                                      <a>
+                                        <FormattedMessage
+                                          {...commonMessages.myAccount}
+                                        />
+                                      </a>
                                     </Link>
                                   </li>
                                   <li data-test="mobileMenuOrderHistoryLink">
-                                    <Link to={appPaths.orderHistoryUrl}>
-                                      <FormattedMessage
-                                        {...commonMessages.orderHistory}
-                                      />
+                                    <Link href={appPaths.orderHistoryUrl}>
+                                      <a>
+                                        <FormattedMessage
+                                          {...commonMessages.orderHistory}
+                                        />
+                                      </a>
                                     </Link>
                                   </li>
                                   <li data-test="mobileMenuAddressBookLink">
-                                    <Link to={appPaths.addressBookUrl}>
-                                      <FormattedMessage
-                                        {...commonMessages.addressBook}
-                                      />
+                                    <Link href={appPaths.addressBookUrl}>
+                                      <a>
+                                        <FormattedMessage
+                                          {...commonMessages.addressBook}
+                                        />
+                                      </a>
                                     </Link>
                                   </li>
                                   <li
@@ -214,8 +220,10 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
         </div>
 
         <div className="main-menu__center">
-          <Link to={appPaths.baseUrl}>
-            <ReactSVG path={logoImg} />
+          <Link href={appPaths.baseUrl}>
+            <a>
+              <ReactSVG path={logoImg} />
+            </a>
           </Link>
         </div>
 
@@ -236,24 +244,30 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                         content={
                           <ul className="main-menu__dropdown">
                             <li data-test="desktopMenuMyAccountLink">
-                              <Link to={appPaths.accountUrl}>
-                                <FormattedMessage
-                                  {...commonMessages.myAccount}
-                                />
+                              <Link href={appPaths.accountUrl}>
+                                <a>
+                                  <FormattedMessage
+                                    {...commonMessages.myAccount}
+                                  />
+                                </a>
                               </Link>
                             </li>
                             <li data-test="desktopMenuOrderHistoryLink">
-                              <Link to={appPaths.orderHistoryUrl}>
-                                <FormattedMessage
-                                  {...commonMessages.orderHistory}
-                                />
+                              <Link href={appPaths.orderHistoryUrl}>
+                                <a>
+                                  <FormattedMessage
+                                    {...commonMessages.orderHistory}
+                                  />
+                                </a>
                               </Link>
                             </li>
                             <li data-test="desktopMenuAddressBookLink">
-                              <Link to={appPaths.addressBookUrl}>
-                                <FormattedMessage
-                                  {...commonMessages.addressBook}
-                                />
+                              <Link href={appPaths.addressBookUrl}>
+                                <a>
+                                  <FormattedMessage
+                                    {...commonMessages.addressBook}
+                                  />
+                                </a>
                               </Link>
                             </li>
                             <li
