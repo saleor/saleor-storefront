@@ -10,7 +10,7 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - uses: rlespinasse/github-slug-action@2.0.0
+      - uses: rlespinasse/github-slug-action@3.1.0
       - name: Set domain
         id: set-domain
         # Set test instance domain based on branch name slug
