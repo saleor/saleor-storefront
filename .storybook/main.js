@@ -3,37 +3,20 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-  stories: ["../src/**/stories.tsx"],
-  addons: [
-    "@storybook/addon-actions",
-    "@storybook/addon-storysource",
-    "@storybook/addon-knobs",
-    {
-      name: "@storybook/addon-docs",
-      options: {
-        configureJSX: true,
-        babelOptions: {},
-        sourceLoaderOptions: null,
-      },
-    },
-  ],
+  stories: ["../src/@next/**/stories.tsx"],
+  addons: [{
+    name: '@storybook/addon-essentials',
+  }],
 
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,
+      exclude: /node_modules/,
       use: [
         {
           loader: "babel-loader",
           options: {
             configFile: "./babel.config.js",
-          },
-        },
-        {
-          loader: require.resolve("react-docgen-typescript-loader"),
-          options: {
-            // Providing the path to tsconfig.json so that stories can
-            // display types from outside each individual story.
-            tsconfigPath: path.resolve(__dirname, "../tsconfig.json"),
           },
         },
       ],
@@ -51,12 +34,6 @@ module.exports = {
       ],
     });
 
-    config.module.rules.push({
-      test: /stories\.tsx?$/,
-      loaders: [require.resolve("@storybook/addon-storysource/loader")],
-      enforce: "pre",
-    });
-
     config.resolve.extensions.push(".ts", ".tsx");
     config.resolve.plugins = [
       new TsconfigPathsPlugin({
@@ -71,8 +48,11 @@ module.exports = {
 
     config.plugins.push(
       new ForkTsCheckerWebpackPlugin({
-        eslint: true,
-        exclude: "node_modules",
+        typescript: true,
+        eslint: {
+          files: './src/**/*.{ts,tsx}', 
+          exclude: "node_modules"
+        }
       })
     );
 

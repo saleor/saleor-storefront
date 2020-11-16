@@ -1,4 +1,3 @@
-import { boolean } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -7,6 +6,7 @@ import { DEFAULT_PROPS } from "./fixtures";
 
 storiesOf("@components/molecules/AddressTileOption", module)
   .addParameters({ component: AddressTileOption })
-  .add("default", () => (
-    <AddressTileOption {...DEFAULT_PROPS} checked={boolean("Checked", false)} />
-  ));
+  .add("unchecked", () => (
+    <AddressTileOption {...DEFAULT_PROPS} checked={false} />
+  ))
+  .add("checked", () => <AddressTileOption {...DEFAULT_PROPS} checked />);

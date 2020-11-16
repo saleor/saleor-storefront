@@ -97,8 +97,11 @@ module.exports = ({ sourceDir, distDir }) => ({
       template: `${sourceDir}/index.html`,
     }),
     new ForkTsCheckerWebpackPlugin({
-      eslint: true,
-      exclude: "node_modules",
+      typescript: true,
+      eslint: {
+        files: "./src/**/*.{ts,tsx}",
+        exclude: "node_modules",
+      },
     }),
     // PWA plugins
     new WebappWebpackPlugin({

@@ -38,7 +38,7 @@ exports[`Storyshots @components/atoms/InputLabel active false 1`] = `
   <label
     className="c1"
   >
-    This is input - check knobs
+    This is input
   </label>
   <div
     className="c2"
@@ -84,7 +84,7 @@ exports[`Storyshots @components/atoms/InputLabel active true 1`] = `
   <label
     className="c1"
   >
-    This is input - check knobs
+    This is input
   </label>
   <div
     className="c2"
