@@ -193,7 +193,7 @@
     ]
   },
   "scripts": {
-    "test": "jest --runInBand --config .jest/config.json",
+    "test": "cross-env LANGUAGE_LOCALE=en-US jest --runInBand --config .jest/config.json",
     "start": "cross-env NODE_ENV=develop webpack-dev-server --history-api-fallback --watch --port 3000 --mode development --hotOnly",
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
@@ -207,6 +207,7 @@
     "tsc": "npx tsc --noEmit & npx tsc --noEmit -p src/@next",
     "heroku-postbuild": "npm run build",
     "sitemap": "ts-node ./src/sitemap-builder.ts",
+    "generate": "plop",
     "cy:run": "cypress run",
     "cy:run:record": "npm run cy:run -- --record",
     "cy:open": "cypress open",
@@ -215,7 +216,6 @@
     "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open",
     "extract-json-messages": "rimraf dist/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null",
     "transpile-messages": "node scripts/transpile-tx.js",
-    "extract-messages": "npm run extract-json-messages && npm run transpile-messages",
-    "generate": "plop"
+    "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
   }
 }

@@ -7,22 +7,26 @@ import { IProps } from "./types";
 
 export const CardHeader: React.FC<IProps> = ({
   children,
-  customIcon,
+  prefix,
+  closeIcon,
   divider = false,
   onHide,
   textStyle = "title",
   titleSize = "md",
 }: IProps) => {
-  const withCloseIcon = !!onHide && !customIcon;
+  const defaultCloseIcon = !!onHide && !closeIcon;
 
   return (
-    <S.Header divider={divider}>
-      {textStyle === "title" ? (
-        <S.Title size={titleSize}>{children}</S.Title>
-      ) : (
-        <S.Paragraph>{children}</S.Paragraph>
-      )}
-      {withCloseIcon && (
+    <S.Wrapper divider={divider}>
+      <S.Header>
+        {prefix}
+        {textStyle === "title" ? (
+          <S.Title size={titleSize}>{children}</S.Title>
+        ) : (
+          <S.Paragraph>{children}</S.Paragraph>
+        )}
+      </S.Header>
+      {defaultCloseIcon && (
         <IconButton
           name="x"
           size={19}
@@ -30,7 +34,7 @@ export const CardHeader: React.FC<IProps> = ({
           testingContext="closeOverlayButton"
         />
       )}
-      {customIcon}
-    </S.Header>
+      {closeIcon}
+    </S.Wrapper>
   );
 };

@@ -7,8 +7,8 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router";
 import { useHistory } from "react-router-dom";
 
-import { Loader } from "@components/atoms";
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";

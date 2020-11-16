@@ -41,7 +41,7 @@ const prepareCartSummary = (
 ) => {
   const products = items?.map(({ id, variant, totalPrice, quantity }) => ({
     id: id || "",
-    name: variant.name || "",
+    name: variant.product?.name || "",
     price: {
       gross: {
         amount: totalPrice?.gross.amount || 0,

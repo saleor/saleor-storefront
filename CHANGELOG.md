@@ -5,6 +5,7 @@ All notable, unreleased changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Add EditorJS renderer - #947 by @krzysztofwolski
+- New cart sidebar - #907 by @orzechdev
 
 ## 2.11.0
 

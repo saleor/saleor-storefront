@@ -1,0 +1,1850 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c43 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c42 {
+  background-color: #13bebb;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+}
+
+.c42:hover {
+  background-color: #06a09e;
+  color: #fff;
+}
+
+.c42:active {
+  background-color: #06a09e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c42:disabled {
+  background-color: #7d7d7d;
+}
+
+.c42:disabled,
+.c42:disabled:hover {
+  cursor: default;
+}
+
+.c40 {
+  background-color: #fff;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: rgb(33,18,94);
+  width: 100%;
+  box-shadow: inset 0px 0px 0px 3px rgb(33,18,94);
+  border-left: 1px solid rgb(33,18,94);
+  border-right: 1px solid rgb(33,18,94);
+}
+
+.c40:hover {
+  background-color: rgb(33,18,94);
+  color: #fff;
+}
+
+.c40:active {
+  background-color: #190c4e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c40:disabled {
+  background-color: #7d7d7d;
+}
+
+.c40:disabled,
+.c40:disabled:hover {
+  cursor: default;
+}
+
+.c41 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.c31 {
+  width: 100%;
+  display: grid;
+  font-size: 1.125rem;
+  grid-template-areas: "subtotalText subtotalPrice" "shippingText shippingPrice" "discountText discountPrice" "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c32 {
+  grid-area: subtotalText;
+}
+
+.c33 {
+  grid-area: subtotalPrice;
+  text-align: right;
+}
+
+.c34 {
+  grid-area: shippingText;
+}
+
+.c35 {
+  grid-area: shippingPrice;
+  text-align: right;
+}
+
+.c36 {
+  grid-area: discountText;
+}
+
+.c37 {
+  grid-area: discountPrice;
+  text-align: right;
+}
+
+.c38 {
+  grid-area: totalText;
+  font-weight: bold;
+}
+
+.c39 {
+  grid-area: totalPrice;
+  font-weight: bold;
+  text-align: right;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7 svg {
+  display: block;
+}
+
+.c7 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7:hover {
+  background-color: rgb(33,18,94);
+}
+
+.c7:hover svg path {
+  fill: #fff;
+}
+
+.c22 {
+  position: absolute;
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease,color 0s;
+  transition: all 0.3s ease,color 0s;
+  pointer-events: none;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #323232;
+  color: #323232;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c19:hover {
+  color: rgb(33,18,94);
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: rgb(33,18,94);
+  outline-color: rgb(33,18,94);
+}
+
+.c23 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c20 {
+  position: relative;
+  width: 100%;
+}
+
+.c21 {
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.c21:-webkit-autofill + label {
+  left: 0.5rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  font-size: 0.75rem;
+  top: 0;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: auto;
+  min-height: 455px;
+  height: 100%;
+  background-color: #fff;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-animation: brnJVY 0.4s both;
+  animation: brnJVY 0.4s both;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  opacity: 1;
+}
+
+.c10 {
+  display: grid;
+  min-height: 140px;
+  max-height: -webkit-min-content;
+  max-height: -moz-min-content;
+  max-height: min-content;
+  width: 100%;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-row-gap: 15px;
+  grid-column-gap: 20px;
+  grid-template-areas: "photo description description" "trash description description" "trash unitPrice quantity" ". . totalPrice";
+  padding: 1.6rem 0rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 15px 0 0;
+  width: 50px;
+}
+
+.c24 > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c24 svg {
+  cursor: pointer;
+  justify-self: center;
+}
+
+.c11 {
+  grid-area: photo;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-align-self: top;
+  -ms-flex-item-align: top;
+  align-self: top;
+  width: 70px;
+  height: 90px;
+  background-color: #f1f5f5;
+  margin: 0 auto;
+}
+
+.c11 img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.c12 {
+  grid-area: description;
+  height: 100%;
+  margin: 6px 0 6px 0;
+}
+
+.c14 {
+  margin: 6px 0 22px 0;
+  text-align: left;
+}
+
+.c16 {
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-template-columns: repeat(auto-fit,minmax(166px,500px));
+  margin-left: -15px;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+.c17 {
+  margin: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  white-space: nowrap;
+  background-color: white;
+  padding: 0px 15px;
+  font-size: 0.875rem;
+}
+
+.c13 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.c15 {
+  font-size: 0.875rem;
+  color: rgba(125,125,125,0.6);
+}
+
+.c28 {
+  display: block;
+}
+
+.c27 {
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  grid-area: totalPrice;
+}
+
+.c27 p {
+  margin: 0;
+}
+
+.c27 p {
+  text-align: right;
+}
+
+.c26 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  grid-area: trash;
+}
+
+.c29 {
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  grid-area: unitPrice;
+}
+
+.c29 p {
+  margin: 0;
+}
+
+.c18 {
+  grid-area: quantity;
+  min-width: 120px;
+  margin: 0;
+}
+
+.c25 {
+  position: absolute;
+  top: 100%;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 26rem;
+  max-width: 100vw;
+  box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
+}
+
+.c8 {
+  overflow: auto;
+  height: 100%;
+}
+
+.c9 {
+  margin: 0 1.875rem;
+}
+
+.c30 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  gap: 1rem;
+  background-color: #f1f5f5;
+  padding: 1.4rem 1.875rem 1rem 1.875rem;
+}
+
+@media (max-width:540px) {
+  .c42 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width:540px) {
+  .c40 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    data-test="cartOverlay"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <h4
+              className="c6"
+              size="md"
+            >
+              <span>
+                My Cart
+              </span>
+            </h4>
+          </div>
+          <div
+            className="c7"
+            data-test="closeOverlayButton"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <div
+            className="c9"
+          >
+            <div
+              className="c10"
+              data-test="cartRow"
+              data-test-id="R4ND-0M-5KU"
+            >
+              <div
+                className="c11"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <img
+                    __typename="Image"
+                    alt="product image"
+                    data-test="itemImage"
+                    onError={[Function]}
+                    src="test-file-stub"
+                    srcSet="test-file-stub 1x"
+                  />
+                </a>
+              </div>
+              <div
+                className="c12"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <p
+                    className="c13"
+                    data-test="itemName"
+                  >
+                    The Great Square Table
+                  </p>
+                </a>
+                <p
+                  className="c14"
+                >
+                  <span
+                    className="c15"
+                  >
+                    SKU
+                    :
+                     
+                    <span
+                      data-test="itemSKU"
+                    >
+                      R4ND-0M-5KU
+                    </span>
+                  </span>
+                </p>
+                <div
+                  className="c16"
+                  data-test="itemAttributes"
+                >
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={0}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Color
+                        :
+                      </span>
+                       
+                      Yellow
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={1}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Size
+                        :
+                      </span>
+                       
+                      Large
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={2}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Legs
+                        :
+                      </span>
+                       
+                      Square
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={3}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Armrest
+                        :
+                      </span>
+                       
+                      None
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="c18"
+              >
+                <div
+                  className="c19"
+                  disabled={false}
+                >
+                  <div
+                    className="c20"
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
+                  >
+                    <div
+                      className="c24"
+                      data-test="quantityControls"
+                    >
+                      <div
+                        data-test="subtractButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div
+                  className="c25"
+                />
+              </div>
+              <div
+                className="c26"
+              >
+                <div
+                  className="c7"
+                  data-test="removeButton"
+                  data-test-id="R4ND-0M-5KU"
+                  onClick={[Function]}
+                >
+                  <svg
+                    height={22}
+                    viewBox="0 0 32 32"
+                    width={22}
+                  >
+                    <path
+                      d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                      fill="#323232"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className="c27"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Total Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="totalPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+              <div
+                className="c29"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="unitPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              className="c10"
+              data-test="cartRow"
+              data-test-id="R4ND-0M-5KU"
+            >
+              <div
+                className="c11"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <img
+                    __typename="Image"
+                    alt="product image"
+                    data-test="itemImage"
+                    onError={[Function]}
+                    src="test-file-stub"
+                    srcSet="test-file-stub 1x"
+                  />
+                </a>
+              </div>
+              <div
+                className="c12"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <p
+                    className="c13"
+                    data-test="itemName"
+                  >
+                    The Great Square Table
+                  </p>
+                </a>
+                <p
+                  className="c14"
+                >
+                  <span
+                    className="c15"
+                  >
+                    SKU
+                    :
+                     
+                    <span
+                      data-test="itemSKU"
+                    >
+                      R4ND-0M-5KU
+                    </span>
+                  </span>
+                </p>
+                <div
+                  className="c16"
+                  data-test="itemAttributes"
+                >
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={0}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Color
+                        :
+                      </span>
+                       
+                      Yellow
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={1}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Size
+                        :
+                      </span>
+                       
+                      Large
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={2}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Legs
+                        :
+                      </span>
+                       
+                      Square
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={3}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Armrest
+                        :
+                      </span>
+                       
+                      None
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="c18"
+              >
+                <div
+                  className="c19"
+                  disabled={false}
+                >
+                  <div
+                    className="c20"
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
+                  >
+                    <div
+                      className="c24"
+                      data-test="quantityControls"
+                    >
+                      <div
+                        data-test="subtractButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div
+                  className="c25"
+                />
+              </div>
+              <div
+                className="c26"
+              >
+                <div
+                  className="c7"
+                  data-test="removeButton"
+                  data-test-id="R4ND-0M-5KU"
+                  onClick={[Function]}
+                >
+                  <svg
+                    height={22}
+                    viewBox="0 0 32 32"
+                    width={22}
+                  >
+                    <path
+                      d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                      fill="#323232"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className="c27"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Total Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="totalPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+              <div
+                className="c29"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="unitPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div
+              className="c10"
+              data-test="cartRow"
+              data-test-id="R4ND-0M-5KU"
+            >
+              <div
+                className="c11"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <img
+                    __typename="Image"
+                    alt="product image"
+                    data-test="itemImage"
+                    onError={[Function]}
+                    src="test-file-stub"
+                    srcSet="test-file-stub 1x"
+                  />
+                </a>
+              </div>
+              <div
+                className="c12"
+              >
+                <a
+                  href="/product/the-great-square-table/72/"
+                  onClick={[Function]}
+                >
+                  <p
+                    className="c13"
+                    data-test="itemName"
+                  >
+                    The Great Square Table
+                  </p>
+                </a>
+                <p
+                  className="c14"
+                >
+                  <span
+                    className="c15"
+                  >
+                    SKU
+                    :
+                     
+                    <span
+                      data-test="itemSKU"
+                    >
+                      R4ND-0M-5KU
+                    </span>
+                  </span>
+                </p>
+                <div
+                  className="c16"
+                  data-test="itemAttributes"
+                >
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={0}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Color
+                        :
+                      </span>
+                       
+                      Yellow
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={1}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Size
+                        :
+                      </span>
+                       
+                      Large
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={2}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Legs
+                        :
+                      </span>
+                       
+                      Square
+                    </span>
+                  </p>
+                  <p
+                    className="c17"
+                  >
+                    <span
+                      data-test="itemSingleAttribute"
+                      data-test-id={3}
+                    >
+                      <span
+                        className="c15"
+                      >
+                        Armrest
+                        :
+                      </span>
+                       
+                      None
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                className="c18"
+              >
+                <div
+                  className="c19"
+                  disabled={false}
+                >
+                  <div
+                    className="c20"
+                  >
+                    <input
+                      className="c21"
+                      disabled={false}
+                      name="quantity"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      value="3"
+                    />
+                    <label
+                      className="c22"
+                    >
+                      Quantity
+                    </label>
+                  </div>
+                  <span
+                    className="c23"
+                  >
+                    <div
+                      className="c24"
+                      data-test="quantityControls"
+                    >
+                      <div
+                        data-test="subtractButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M0 13.818h32v4.364h-32v-4.364z"
+                            fill="#323232"
+                          />
+                        </svg>
+                      </div>
+                      <div
+                        data-test="increaseButton"
+                        onClick={[Function]}
+                      >
+                        <svg
+                          height={16}
+                          viewBox="0 0 32 32"
+                          width={16}
+                        >
+                          <path
+                            d="M18 14v-12c0-1.104-0.896-2-2-2s-2 0.896-2 2v12h-12c-1.104 0-2 0.896-2 2s0.896 2 2 2h12v12c0 1.104 0.896 2 2 2s2-0.896 2-2v-12h12c1.104 0 2-0.896 2-2s-0.896-2-2-2h-12z"
+                            fill="#21125E"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div
+                  className="c25"
+                />
+              </div>
+              <div
+                className="c26"
+              >
+                <div
+                  className="c7"
+                  data-test="removeButton"
+                  data-test-id="R4ND-0M-5KU"
+                  onClick={[Function]}
+                >
+                  <svg
+                    height={22}
+                    viewBox="0 0 32 32"
+                    width={22}
+                  >
+                    <path
+                      d="M28.496 5.327h-6.236v-1.017c0-1.818-1.479-3.297-3.297-3.297h-5.928c-1.818 0-3.297 1.479-3.297 3.297v1.017h-6.236c-0.462 0-0.832 0.37-0.832 0.832s0.37 0.832 0.832 0.832h1.504v19.546c0 2.452 1.996 4.449 4.449 4.449h13.088c2.452 0 4.449-1.997 4.449-4.449v-19.546h1.504c0.462 0 0.832-0.37 0.832-0.832s-0.37-0.832-0.832-0.832zM11.403 4.311c0-0.9 0.733-1.633 1.633-1.633h5.928c0.9 0 1.633 0.733 1.633 1.633v1.017h-9.194v-1.017zM25.329 26.537c0 1.534-1.251 2.785-2.785 2.785h-13.088c-1.534 0-2.785-1.251-2.785-2.785v-19.546h18.665v19.546h-0.006z M16 26.341c0.462 0 0.832-0.37 0.832-0.832v-14.702c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v14.696c0 0.462 0.37 0.838 0.832 0.838z M10.571 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.376 0.832 0.832 0.832z M21.428 25.423c0.462 0 0.832-0.37 0.832-0.832v-12.872c0-0.462-0.37-0.832-0.832-0.832s-0.832 0.37-0.832 0.832v12.872c0 0.462 0.37 0.832 0.832 0.832z"
+                      fill="#323232"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                className="c27"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Total Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="totalPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+              <div
+                className="c29"
+              >
+                <p
+                  className="c28"
+                >
+                  <span
+                    className="c15"
+                  >
+                    Price
+                    :
+                  </span>
+                </p>
+                <p
+                  data-test="unitPrice"
+                >
+                  <span>
+                    
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="c30"
+        >
+          <div
+            className="c31"
+          >
+            <div
+              className="c32"
+            >
+              Subtotal
+            </div>
+            <div
+              className="c33"
+            >
+              <span
+                data-test="subtotalPrice"
+              >
+                
+              </span>
+            </div>
+            <div
+              className="c34"
+            >
+              Shipping
+            </div>
+            <div
+              className="c35"
+            >
+              <span
+                data-test="shippingPrice"
+              >
+                
+              </span>
+            </div>
+            <div
+              className="c36"
+            >
+              Promo code
+            </div>
+            <div
+              className="c37"
+            >
+              <span
+                data-test="discountPrice"
+              >
+                
+              </span>
+            </div>
+            <div
+              className="c38"
+            >
+              Total
+            </div>
+            <div
+              className="c39"
+            >
+              <span
+                data-test="totalPrice"
+              >
+                
+              </span>
+            </div>
+          </div>
+          <button
+            className="c40"
+            color="secondary"
+            data-test="gotoCartViewButton"
+            name="gotoCartView"
+            onClick={[Function]}
+            size="md"
+          >
+            <span
+              className="c41"
+              size="md"
+            >
+              Go to my cart
+            </span>
+          </button>
+          <button
+            className="c42"
+            color="primary"
+            data-test="gotoCheckoutButton"
+            name="gotoCheckout"
+            onClick={[Function]}
+            size="md"
+          >
+            <span
+              className="c41"
+              size="md"
+            >
+              Proceed to Checkout
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c43"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/CartSidebar empty 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c14 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c12 {
+  background-color: #fff;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: rgb(33,18,94);
+  width: 100%;
+  box-shadow: inset 0px 0px 0px 3px rgb(33,18,94);
+  border-left: 1px solid rgb(33,18,94);
+  border-right: 1px solid rgb(33,18,94);
+}
+
+.c12:hover {
+  background-color: rgb(33,18,94);
+  color: #fff;
+}
+
+.c12:active {
+  background-color: #190c4e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c12:disabled {
+  background-color: #7d7d7d;
+}
+
+.c12:disabled,
+.c12:disabled:hover {
+  cursor: default;
+}
+
+.c13 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7 svg {
+  display: block;
+}
+
+.c7 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7:hover {
+  background-color: rgb(33,18,94);
+}
+
+.c7:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: auto;
+  min-height: 455px;
+  height: 100%;
+  background-color: #fff;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-animation: brnJVY 0.4s both;
+  animation: brnJVY 0.4s both;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  opacity: 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 26rem;
+  max-width: 100vw;
+  box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
+}
+
+.c8 {
+  overflow: auto;
+  height: 100%;
+}
+
+.c9 {
+  margin: 1.875rem;
+}
+
+.c10 {
+  margin-bottom: 1rem;
+}
+
+.c11 {
+  color: #7d7d7d;
+  margin-bottom: 1rem;
+}
+
+@media (max-width:540px) {
+  .c12 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    data-test="cartOverlay"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <h4
+              className="c6"
+              size="md"
+            >
+              <span>
+                My Cart
+              </span>
+            </h4>
+          </div>
+          <div
+            className="c7"
+            data-test="closeOverlayButton"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <div
+            className="c9"
+          >
+            <h3
+              className="c10"
+            >
+              Your cart is empty
+            </h3>
+            <p
+              className="c11"
+            >
+              You haven’t added anything to your bag. We’re sure you’ll find something in our store
+            </p>
+            <button
+              className="c12"
+              color="secondary"
+              data-test="emptyCartHideOverlayButton"
+              name="continueShopping"
+              onClick={[Function]}
+              size="md"
+            >
+              <span
+                className="c13"
+                size="md"
+              >
+                Continue shopping
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c14"
+  />
+</div>
+`;

@@ -1,25 +1,37 @@
+import { css } from "styled-components";
+
 import { media, styled } from "@styles";
 
-export const Wrapper = styled.div`
+import { ICartRowType } from "./types";
+
+const condenseWrapper = css`
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-row-gap: 15px;
+  grid-column-gap: 20px;
+  grid-template-areas:
+    "photo description description"
+    "trash description description"
+    "trash unitPrice quantity"
+    ". . totalPrice";
+  padding: 1.6rem 0rem;
+`;
+const responsiveWrapper = css`
+  grid-template-areas: "photo description unitPrice quantity totalPrice trash";
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
+  padding: 0.8rem 0.5rem;
+  ${media.mediumScreen`
+    ${condenseWrapper}
+  `};
+`;
+export const Wrapper = styled.div<{ cartRowType: ICartRowType }>`
   display: grid;
   min-height: 140px;
   max-height: min-content;
   width: 100%;
-  grid-template-areas: "photo description unitPrice quantity totalPrice trash";
-  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
+  ${props =>
+    props.cartRowType === "condense" ? condenseWrapper : responsiveWrapper}
   align-items: center;
   border-bottom: 1px solid rgba(50, 50, 50, 0.1);
-  padding: 0.8rem 0.5rem;
-  ${media.mediumScreen`
-    grid-template-columns: 1fr 2fr 2fr;
-    grid-row-gap: 15px;
-    grid-column-gap: 20px;
-    grid-template-areas: "photo description description"
-    "trash description description"
-    "trash unitPrice quantity"
-    ". . totalPrice";
-    padding: 1rem 0rem;
-  `};
 `;
 
 export const QuantityButtons = styled.div`
@@ -39,15 +51,27 @@ export const QuantityButtons = styled.div`
   }
 `;
 
-export const Photo = styled.div`
+const condensePhoto = css`
+  margin: 0 auto;
+`;
+const responsivePhoto = css`
+  margin: 0;
+  ${media.mediumScreen`
+    ${condensePhoto}
+`}
+`;
+export const Photo = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: photo;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   align-self: top;
   width: 70px;
   height: 90px;
 
   background-color: #f1f5f5;
+
+  ${props =>
+    props.cartRowType === "condense" ? condensePhoto : responsivePhoto}
 
   img {
     width: 100%;
@@ -56,30 +80,46 @@ export const Photo = styled.div`
   }
 `;
 
-export const Description = styled.div`
+const condenseDescription = css`
+  margin: 6px 0 6px 0;
+`;
+const responsiveDescription = css`
+  margin: 20px 0 0 20px;
+  ${media.mediumScreen`
+    ${condenseDescription}
+`}
+`;
+export const Description = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: description;
   height: 100%;
-  margin-top: 20px;
-  margin-left: 20px;
-  ${media.mediumScreen`
-    margin-left: 0px;
-  `}
+  ${props =>
+    props.cartRowType === "condense"
+      ? condenseDescription
+      : responsiveDescription}
 `;
 
 export const Sku = styled.p`
-  margin: 6px 0;
+  margin: 6px 0 22px 0;
   text-align: left;
-  margin-bottom: 10px;
 `;
 
-export const Attributes = styled.div`
+const condenseAttributes = css`
+  flex-flow: column;
+`;
+const responsiveAttributes = css`
+  ${media.mediumScreen`
+    ${condenseAttributes}
+  `};
+`;
+export const Attributes = styled.div<{ cartRowType: ICartRowType }>`
   display: grid;
   grid-auto-columns: max-content;
   grid-template-columns: repeat(auto-fit, minmax(166px, 500px));
   margin-left: -15px;
-  ${media.mediumScreen`
-    flex-flow: column;
-  `};
+  ${props =>
+    props.cartRowType === "condense"
+      ? condenseAttributes
+      : responsiveAttributes}
 `;
 
 export const SingleAttribute = styled.p`
@@ -90,6 +130,7 @@ export const SingleAttribute = styled.p`
   white-space: nowrap;
   background-color: white;
   padding: 0px 15px;
+  font-size: ${props => props.theme.typography.smallFontSize};
 `;
 
 export const Name = styled.p`
@@ -105,35 +146,60 @@ export const LightFont = styled.span`
   color: rgba(125, 125, 125, 0.6);
 `;
 
-export const Price = styled.div`
+const condensePrice = css`
+  font-weight: normal;
+  flex-direction: column;
+`;
+const responsivePrice = css`
+  font-weight: bold;
+  ${media.mediumScreen`
+    ${condensePrice}
+  `};
+`;
+export const Price = styled.div<{ cartRowType: ICartRowType }>`
   font-size: ${props => props.theme.typography.h4FontSize};
   display: flex;
   justify-content: center;
-  font-weight: bold;
-  ${media.mediumScreen`
-    font-weight: normal;
-    flex-direction: column;
-  `}
+  ${props =>
+    props.cartRowType === "condense" ? condensePrice : responsivePrice}
 
   p {
     margin: 0;
   }
 `;
 
-export const PriceLabel = styled.p`
+const condensePriceLabel = css`
+  display: block;
+`;
+const responsivePriceLabel = css`
   display: none;
   ${media.mediumScreen`
-    display: block;
-  `}
+    ${condensePriceLabel}
+  `};
+`;
+export const PriceLabel = styled.p<{ cartRowType: ICartRowType }>`
+  ${props =>
+    props.cartRowType === "condense"
+      ? condensePriceLabel
+      : responsivePriceLabel}
 `;
 
-export const TotalPrice = styled(Price)`
-  grid-area: totalPrice;
+const condenseTotalPrice = css`
+  p {
+    text-align: right;
+  }
+`;
+const responsiveTotalPrice = css`
   ${media.mediumScreen`
-    p {
-      text-align: right;
-    }
-  `}
+    ${condenseTotalPrice}
+  `};
+`;
+export const TotalPrice = styled(Price)<{ cartRowType: ICartRowType }>`
+  grid-area: totalPrice;
+  ${props =>
+    props.cartRowType === "condense"
+      ? condenseTotalPrice
+      : responsiveTotalPrice}
 `;
 
 export const Trash = styled.div`
@@ -147,8 +213,23 @@ export const UnitPrice = styled(Price)`
   grid-area: unitPrice;
 `;
 
-export const Quantity = styled.div`
+const condenseQuantity = css`
+  margin: 0;
+`;
+const responsiveQuantity = css`
+  margin: 0 15px;
+  ${media.mediumScreen`
+    ${condenseQuantity}
+  `};
+`;
+export const Quantity = styled.div<{ cartRowType: ICartRowType }>`
   grid-area: quantity;
   min-width: 120px;
-  margin: 0 15px;
+  ${props =>
+    props.cartRowType === "condense" ? condenseQuantity : responsiveQuantity}
+`;
+
+export const ErrorMessages = styled.div`
+  position: absolute;
+  top: 100%;
 `;

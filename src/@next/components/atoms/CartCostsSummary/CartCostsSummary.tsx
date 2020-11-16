@@ -2,26 +2,23 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
-import { ITaxedMoney } from "@types";
 import { TaxedMoney } from "@components/containers";
+import { ITaxedMoney } from "@types";
 import * as S from "./styles";
 
-export interface CartFooterProps {
+export interface CartCostsSummaryProps {
   subtotalPrice?: ITaxedMoney | null;
   shippingPrice?: ITaxedMoney | null;
   discountPrice?: ITaxedMoney | null;
   totalPrice?: ITaxedMoney | null;
 }
 
-/**
- * Cart footer to use with conjunction of cart rows
- */
-const CartFooter: React.FC<CartFooterProps> = ({
+const CartCostsSummary: React.FC<CartCostsSummaryProps> = ({
   subtotalPrice,
   shippingPrice,
   discountPrice,
   totalPrice,
-}: CartFooterProps) => {
+}: CartCostsSummaryProps) => {
   const isShipping = !!shippingPrice?.gross && shippingPrice.gross.amount !== 0;
   const isDiscount = !!discountPrice?.gross && discountPrice.gross.amount !== 0;
 
@@ -63,4 +60,4 @@ const CartFooter: React.FC<CartFooterProps> = ({
   );
 };
 
-export { CartFooter };
+export { CartCostsSummary };

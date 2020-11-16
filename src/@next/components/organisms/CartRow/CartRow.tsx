@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
-import { Icon, IconButton } from "@components/atoms";
-import { CachedImage, TextField } from "@components/molecules";
+import { ErrorMessage, Icon, IconButton, Input } from "@components/atoms";
+import { CachedImage } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import { generateProductUrl } from "../../../../core/utils";
@@ -27,7 +27,7 @@ const QuantityButtons = (
 );
 
 /**
- * Product row displayed on cart page
+ * Product row displayed on cart page and in cart sidebar
  */
 export const CartRow: React.FC<IProps> = ({
   index,
@@ -42,6 +42,7 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
   id,
+  type = "responsive",
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
@@ -99,13 +100,13 @@ export const CartRow: React.FC<IProps> = ({
   const productUrl = generateProductUrl(id, name);
 
   return (
-    <S.Wrapper data-test="cartRow" data-test-id={sku}>
-      <S.Photo>
+    <S.Wrapper cartRowType={type} data-test="cartRow" data-test-id={sku}>
+      <S.Photo cartRowType={type}>
         <Link to={productUrl}>
           <CachedImage data-test="itemImage" {...thumbnail} />
         </Link>
       </S.Photo>
-      <S.Description>
+      <S.Description cartRowType={type}>
         <Link to={productUrl}>
           <S.Name data-test="itemName">{name}</S.Name>
         </Link>
@@ -115,7 +116,7 @@ export const CartRow: React.FC<IProps> = ({
             <span data-test="itemSKU">{sku || "-"}</span>
           </S.LightFont>
         </S.Sku>
-        <S.Attributes data-test="itemAttributes">
+        <S.Attributes cartRowType={type} data-test="itemAttributes">
           {attributes.map(({ attribute, values }, attributeIndex) => (
             <S.SingleAttribute key={attribute.id}>
               <span
@@ -129,16 +130,19 @@ export const CartRow: React.FC<IProps> = ({
           ))}
         </S.Attributes>
       </S.Description>
-      <S.Quantity>
-        <TextField
+      <S.Quantity cartRowType={type}>
+        <Input
           name="quantity"
           label={intl.formatMessage(commonMessages.qty)}
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
           contentRight={QuantityButtons(add, subtract, index)}
-          errors={quantityErrors}
+          error={!!quantityErrors?.length}
         />
+        <S.ErrorMessages>
+          <ErrorMessage errors={quantityErrors} />
+        </S.ErrorMessages>
       </S.Quantity>
       <S.Trash>
         <IconButton
@@ -150,16 +154,16 @@ export const CartRow: React.FC<IProps> = ({
         />
       </S.Trash>
 
-      <S.TotalPrice>
-        <S.PriceLabel>
+      <S.TotalPrice cartRowType={type}>
+        <S.PriceLabel cartRowType={type}>
           <S.LightFont>
             <FormattedMessage {...commonMessages.totalPrice} />:
           </S.LightFont>
         </S.PriceLabel>
         <p data-test="totalPrice">{totalPrice}</p>
       </S.TotalPrice>
-      <S.UnitPrice>
-        <S.PriceLabel>
+      <S.UnitPrice cartRowType={type}>
+        <S.PriceLabel cartRowType={type}>
           <S.LightFont>
             <FormattedMessage {...commonMessages.price} />:
           </S.LightFont>

@@ -15,10 +15,17 @@ const STORY_PROPS = {
 
 storiesOf("@components/organisms/CartRow", module)
   .addParameters({ component: CartRow })
-  .add("default", () => (
+  .add("responsive", () => (
     <IntlProvider locale="en">
       <MemoryRouter>
         <CartRow {...STORY_PROPS} />
+      </MemoryRouter>
+    </IntlProvider>
+  ))
+  .add("condense", () => (
+    <IntlProvider locale="en">
+      <MemoryRouter>
+        <CartRow {...STORY_PROPS} type="condense" />
       </MemoryRouter>
     </IntlProvider>
   ));

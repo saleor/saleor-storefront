@@ -2,8 +2,9 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CartFooter } from ".";
-import { DEFAULT_PROPS } from "./fixtures";
+import { BASIC_COSTS, ALL_POSSIBLE_COSTS } from "./fixtures";
 
 storiesOf("@components/atoms/CartFooter", module)
   .addParameters({ component: CartFooter })
-  .add("default", () => <CartFooter {...DEFAULT_PROPS} />);
+  .add("default", () => <CartFooter {...BASIC_COSTS} />)
+  .add("full", () => <CartFooter {...ALL_POSSIBLE_COSTS} />);

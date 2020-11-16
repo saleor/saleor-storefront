@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots @components/atoms/CartFooter default 1`] = `
+exports[`Storyshots @components/molecules/CartCostsSummary default 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
@@ -18,12 +18,13 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 }
 
 .c1 {
+  width: 100%;
   display: grid;
   font-size: 1.125rem;
-  grid-template-areas: ". subtotalText subtotalPrice ."   ". totalText totalPrice .";
-  grid-template-columns: 4fr 1.1fr 0.9fr 0.5fr;
-  grid-gap: 2rem;
-  padding: 2rem 0;
+  grid-template-areas: "subtotalText subtotalPrice"   "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
@@ -33,6 +34,7 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 
 .c3 {
   grid-area: subtotalPrice;
+  text-align: right;
 }
 
 .c4 {
@@ -43,25 +45,7 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 .c5 {
   grid-area: totalPrice;
   font-weight: bold;
-}
-
-@media (max-width:720px) {
-  .c1 {
-    grid-template-areas: ". subtotalText subtotalPrice"   ". totalText totalPrice";
-    grid-template-columns: 0.5fr 3.5fr 2fr;
-  }
-}
-
-@media (max-width:720px) {
-  .c3 {
-    text-align: right;
-  }
-}
-
-@media (max-width:720px) {
-  .c5 {
-    text-align: right;
-  }
+  text-align: right;
 }
 
 <div
@@ -105,7 +89,7 @@ exports[`Storyshots @components/atoms/CartFooter default 1`] = `
 </div>
 `;
 
-exports[`Storyshots @components/atoms/CartFooter full 1`] = `
+exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
 .c0 {
   position: relative;
   margin: 20px;
@@ -123,12 +107,13 @@ exports[`Storyshots @components/atoms/CartFooter full 1`] = `
 }
 
 .c1 {
+  width: 100%;
   display: grid;
   font-size: 1.125rem;
-  grid-template-areas: ". subtotalText subtotalPrice ." ". shippingText shippingPrice ." ". discountText discountPrice ." ". totalText totalPrice .";
-  grid-template-columns: 4fr 1.1fr 0.9fr 0.5fr;
-  grid-gap: 2rem;
-  padding: 2rem 0;
+  grid-template-areas: "subtotalText subtotalPrice" "shippingText shippingPrice" "discountText discountPrice" "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
   border-bottom: 1px solid rgba(50,50,50,0.1);
 }
 
@@ -138,6 +123,7 @@ exports[`Storyshots @components/atoms/CartFooter full 1`] = `
 
 .c3 {
   grid-area: subtotalPrice;
+  text-align: right;
 }
 
 .c4 {
@@ -146,6 +132,7 @@ exports[`Storyshots @components/atoms/CartFooter full 1`] = `
 
 .c5 {
   grid-area: shippingPrice;
+  text-align: right;
 }
 
 .c6 {
@@ -154,6 +141,7 @@ exports[`Storyshots @components/atoms/CartFooter full 1`] = `
 
 .c7 {
   grid-area: discountPrice;
+  text-align: right;
 }
 
 .c8 {
@@ -164,37 +152,7 @@ exports[`Storyshots @components/atoms/CartFooter full 1`] = `
 .c9 {
   grid-area: totalPrice;
   font-weight: bold;
-}
-
-@media (max-width:720px) {
-  .c1 {
-    grid-template-areas: ". subtotalText subtotalPrice" ". shippingText shippingPrice" ". discountText discountPrice" ". totalText totalPrice";
-    grid-template-columns: 0.5fr 3.5fr 2fr;
-  }
-}
-
-@media (max-width:720px) {
-  .c3 {
-    text-align: right;
-  }
-}
-
-@media (max-width:720px) {
-  .c5 {
-    text-align: right;
-  }
-}
-
-@media (max-width:720px) {
-  .c7 {
-    text-align: right;
-  }
-}
-
-@media (max-width:720px) {
-  .c9 {
-    text-align: right;
-  }
+  text-align: right;
 }
 
 <div

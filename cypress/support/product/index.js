@@ -24,7 +24,7 @@ Cypress.Commands.add("addItemWithShippingToTheBasket", () => {
     .should("be.visible")
     .get(CART_SELECTORS.cartSidebarRow)
     .should("be.visible")
-    .get(PRODUCTS_SELECTORS.goToBagMyBagBtn)
+    .get(PRODUCTS_SELECTORS.goToCartMyCartBtn)
     .click();
 });
 
@@ -51,6 +51,6 @@ Cypress.Commands.add("addItemWithNoShippingToTheBasket", () => {
     .should("be.visible")
     .get(CART_SELECTORS.cartSidebarRow)
     .should("be.visible")
-    .get(PRODUCTS_SELECTORS.goToBagMyBagBtn)
+    .get(PRODUCTS_SELECTORS.goToCartMyCartBtn)
     .click();
 });
