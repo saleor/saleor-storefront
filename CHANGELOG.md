@@ -7,6 +7,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add EditorJS renderer - #947 by @krzysztofwolski
 - New cart sidebar - #907 by @orzechdev
 - Support for multichannel - #937 by @AlicjaSzu
+- Add 3D Secure Support to Adyen Payment Gateway - #941 by @orzechdev
 
 ## 2.11.0
 
