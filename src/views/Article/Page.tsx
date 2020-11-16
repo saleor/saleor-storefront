@@ -2,7 +2,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { RichTextContent } from "@components/atoms";
+import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
@@ -55,7 +55,9 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-          <RichTextContent descriptionJson={page.contentJson} />
+          {page.contentJson && (
+            <RichTextEditorContent jsonData={page.contentJson} />
+          )}
         </div>
       </div>
     </div>
