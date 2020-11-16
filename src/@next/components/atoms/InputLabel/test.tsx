@@ -8,7 +8,7 @@ describe("<InputLabel />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <InputLabel labelBackground="#FFF" active={false}>
-        This is input - check knobs
+        This is input
       </InputLabel>
     );
 
