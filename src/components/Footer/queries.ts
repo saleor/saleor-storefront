@@ -21,16 +21,12 @@ const secondaryMenu = gql`
     }
   }
 
-  query SecondaryMenu {
-    shop {
-      navigation {
-        secondary {
-          items {
-            ...SecondaryMenuSubItem
-            children {
-              ...SecondaryMenuSubItem
-            }
-          }
+  query SecondaryMenu($channel: String!, $slug: String!) {
+    menu(channel: $channel, slug: $slug) {
+      items {
+        ...SecondaryMenuSubItem
+        children {
+          ...SecondaryMenuSubItem
         }
       }
     }
