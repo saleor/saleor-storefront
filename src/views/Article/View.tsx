@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
@@ -25,7 +25,7 @@ export const View: React.FC<ViewProps> = ({
 }) => (
   <TypedArticleQuery
     loaderFull
-    variables={{ slug, channel: defaultChannelSlug }}
+    variables={{ slug, channel: channelSlug }}
     errorPolicy="all"
   >
     {({ data }) => {

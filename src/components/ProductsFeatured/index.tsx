@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { Carousel, ProductListItem } from "..";
 import { generateProductUrl } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
@@ -16,7 +16,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   return (
     <TypedFeaturedProductsQuery
       displayError={false}
-      variables={{ channel: defaultChannelSlug }}
+      variables={{ channel: channelSlug }}
     >
       {({ data }) => {
         const products = data.collection?.products?.edges || [];

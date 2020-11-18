@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import { useCart } from "@saleor/sdk";
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { isEmpty } from "lodash";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
@@ -116,7 +116,7 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     <TypedProductDetailsQuery
       loaderFull
       variables={{
-        channel: defaultChannelSlug,
+        channel: channelSlug,
         id: getGraphqlIdFromDBId(match.params.id, "Product"),
       }}
       errorPolicy="all"

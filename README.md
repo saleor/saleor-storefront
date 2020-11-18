@@ -179,7 +179,7 @@ npm run generate
 
 ### Multichannel
 
-- **Set [DEFAULT_CHANNEL_SLUG] environment variable.**
+- **Set [SALEOR_CHANNEL_SLUG] environment variable.** - Default value: `default-channel`.
 
 ## License
 

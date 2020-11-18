@@ -6,7 +6,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { OfflinePlaceholder } from "@components/atoms";
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -64,7 +64,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
-    channel: defaultChannelSlug,
+    channel: channelSlug,
     id: getGraphqlIdFromDBId(match.params.id, "Category"),
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),

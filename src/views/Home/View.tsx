@@ -2,7 +2,7 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { MetaWrapper } from "../../components";
 import Page from "./Page";
 import { TypedHomePageQuery } from "./queries";
@@ -12,7 +12,7 @@ const View: React.FC = () => (
     <TypedHomePageQuery
       alwaysRender
       displayLoader={false}
-      variables={{ channel: defaultChannelSlug }}
+      variables={{ channel: channelSlug }}
       errorPolicy="all"
     >
       {({ data, loading }) => {

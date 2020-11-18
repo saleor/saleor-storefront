@@ -9,7 +9,7 @@ import ReactSVG from "react-svg";
 
 import { DemoBanner } from "@components/atoms";
 import classNames from "classnames";
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import {
   MenuDropdown,
   Offline,
@@ -89,7 +89,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
             renderOnError
             displayLoader={false}
             variables={{
-              channel: defaultChannelSlug,
+              channel: channelSlug,
               slug: "navbar",
             }}
           >

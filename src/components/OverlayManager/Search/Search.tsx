@@ -1,7 +1,7 @@
 import "./scss/index.scss";
 
 import classNames from "classnames";
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import { stringify } from "query-string";
 import * as React from "react";
 import {
@@ -133,7 +133,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                       displayError={false}
                       errorPolicy="all"
                       variables={{
-                        channel: defaultChannelSlug,
+                        channel: channelSlug,
                         query: this.state.search,
                       }}
                     >

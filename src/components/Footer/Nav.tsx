@@ -1,4 +1,4 @@
-import { defaultChannelSlug } from "@temp/constants";
+import { channelSlug } from "@temp/constants";
 import * as React from "react";
 
 import { NavLink } from "..";
@@ -13,7 +13,7 @@ class Nav extends React.PureComponent {
         <div className="container">
           <TypedSecondaryMenuQuery
             variables={{
-              channel: defaultChannelSlug,
+              channel: channelSlug,
               slug: "footer",
             }}
           >
