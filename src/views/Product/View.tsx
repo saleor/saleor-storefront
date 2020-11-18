@@ -4,10 +4,11 @@ import { useCart } from "@saleor/sdk";
 import { isEmpty } from "lodash";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router";
-import { useHistory } from "react-router-dom";
+import { NextPage } from "next";
 
 import { Loader } from "@components/atoms";
+import { useRouter } from "next/router";
+
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
@@ -24,7 +25,7 @@ const canDisplay = (product: ProductDetails_product) =>
       !!product.pricing &&
       !!product.variants
   );
-const extractMeta = (product: ProductDetails_product) => ({
+const extractMeta = (product: ProductDetails_product, url: string) => ({
   custom: [
     {
       content: product.pricing?.priceRange?.start?.gross.amount.toString(),
@@ -47,34 +48,28 @@ const extractMeta = (product: ProductDetails_product) => ({
   image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
   type: "product.item",
-  url: window.location.href,
+  url,
 });
 
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
-  const history = useHistory();
-  const { search } = history.location;
-  const searchQueryAttributes = queryString.parse(search);
+  const { pathname, push, query, replace, asPath, ...x } = useRouter();
 
   const onAttributeChangeHandler = (slug: string | null, value: string) => {
-    history.replace(
-      queryString.stringifyUrl(
-        {
-          query: { [slug]: value },
-          url: `${history.location.pathname}${history.location.search}`,
-        },
-        { skipEmptyString: true }
-      )
+    const newAsPath = queryString.stringifyUrl(
+      { query: { [slug]: value }, url: asPath },
+      { skipNull: true }
     );
+    push({ pathname, query }, newAsPath, { shallow: true });
   };
   const [queryAttributes, setQueryAttributes] = useState({});
 
   useEffect(() => {
-    if (!isEmpty(searchQueryAttributes)) {
+    if (!isEmpty(query)) {
       const queryAttributes: Record<string, string> = {};
       product.variants.forEach(({ attributes }) => {
         attributes.forEach(({ attribute, values }) => {
-          const selectedAttributeValue = searchQueryAttributes[attribute.slug];
+          const selectedAttributeValue = query[attribute.slug];
           if (
             selectedAttributeValue &&
             values[0].value === selectedAttributeValue
@@ -96,7 +91,8 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   }, [product.variants.length]);
 
   useEffect(() => {
-    history.replace(history.location.pathname);
+    const { url } = queryString.parseUrl(asPath);
+    replace({ pathname, query }, url);
   }, [queryAttributes]);
 
   return (
@@ -108,17 +104,19 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   );
 };
 
-const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
+const View: NextPage<{ id?: string }> = props => {
   const { addItem, items } = useCart();
+  const { query, asPath } = useRouter();
+  const id = (query.id as string) || props.id;
 
   return (
     <TypedProductDetailsQuery
       loaderFull
       variables={{
-        id: getGraphqlIdFromDBId(match.params.id, "Product"),
+        id: getGraphqlIdFromDBId(id, "Product"),
       }}
       errorPolicy="all"
-      key={match.params.id}
+      key={id}
     >
       {({ data, loading }) => (
         <NetworkStatus>
@@ -126,7 +124,9 @@ const View: React.FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
             const { product } = data;
             if (canDisplay(product)) {
               return (
-                <MetaWrapper meta={extractMeta(product)}>
+                <MetaWrapper
+                  meta={extractMeta(product, queryString.parseUrl(asPath).url)}
+                >
                   <PageWithQueryAttributes
                     product={product}
                     add={addItem}

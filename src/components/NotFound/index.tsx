@@ -2,9 +2,10 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+
 import { BASE_URL } from "../../core/config";
-import { Button } from "../Button";
+import Button from "../Button";
 
 interface NotFoundProps {
   message?: string;
@@ -28,10 +29,12 @@ const NotFound: React.FC<NotFoundProps> = () => (
       </p>
     </div>
     <div className="not-found-page__button">
-      <Link to={BASE_URL}>
-        <Button testingContext="404pageGotoHomeButton" secondary>
-          <FormattedMessage defaultMessage="Back to home" />
-        </Button>
+      <Link href={BASE_URL}>
+        <a>
+          <Button testingContext="404pageGotoHomeButton" secondary>
+            <FormattedMessage defaultMessage="Back to home" />
+          </Button>
+        </a>
       </Link>
     </div>
   </div>

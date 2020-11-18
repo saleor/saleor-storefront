@@ -19,6 +19,7 @@ module.exports = api => {
   ];
   const plugins = [
     "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-typescript",
     "transform-class-properties",
     "@babel/transform-runtime",
     "@babel/plugin-proposal-optional-chaining",

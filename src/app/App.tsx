@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 import { useAuth } from "@saleor/sdk";
 import { Loader } from "@components/atoms";
@@ -13,7 +14,6 @@ import {
 import ShopProvider from "../components/ShopProvider";
 import "../globalStyles/scss/index.scss";
 import Notifications from "./Notifications";
-import { useRouter } from "next/router";
 
 const App: React.FC = ({ children }) => {
   const { pathname } = useRouter();

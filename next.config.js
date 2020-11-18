@@ -36,6 +36,9 @@ module.exports = withPlugins(
       SENTRY_DSN: null,
       ...env,
     },
+
+    trailingSlash: true,
+
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
       config.module.rules = [
         ...config.module.rules,

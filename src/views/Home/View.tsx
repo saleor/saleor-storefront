@@ -1,12 +1,13 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { NextPage } from "next";
 
 import { MetaWrapper } from "../../components";
 import Page from "./Page";
 import { TypedHomePageQuery } from "./queries";
 
-const View: React.FC = () => (
+const View: React.FC<NextPage> = () => (
   <div className="home-page">
     <TypedHomePageQuery alwaysRender displayLoader={false} errorPolicy="all">
       {({ data, loading }) => {

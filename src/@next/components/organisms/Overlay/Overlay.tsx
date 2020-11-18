@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as ReactDOM from "react-dom";
 import { Transition } from "react-transition-group";
 
-import { ssrMode } from "@temp/constants";
 import * as S from "./styles";
 import { IProps } from "./types";
-
-const modalRoot = !ssrMode ? document.getElementById("modal-root") : null;
 
 export const Overlay: React.FC<IProps> = ({
   children,
@@ -15,16 +12,25 @@ export const Overlay: React.FC<IProps> = ({
   position = "center",
   show,
   transparent = false,
-  target = modalRoot,
+  target,
   testingContext,
   testingContextId,
 }: IProps) => {
+  const [portalTarget, setPortalTarget] = useState(
+    target || document.getElementById("modal-root")
+  );
+
   const animationProps = {
     open: show,
     position,
   };
+
+  useEffect(() => {
+    target && setPortalTarget(target);
+  }, [target]);
+
   return (
-    target &&
+    portalTarget &&
     ReactDOM.createPortal(
       <Transition in={show} timeout={duration} unmountOnExit>
         {state => (
@@ -46,7 +52,7 @@ export const Overlay: React.FC<IProps> = ({
           </S.Overlay>
         )}
       </Transition>,
-      target
+      portalTarget
     )
   );
 };

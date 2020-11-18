@@ -2,7 +2,7 @@ import classNames from "classnames";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { commonMessages } from "@temp/intl";
 
 import { baseUrl } from "../../app/routes";
@@ -53,8 +53,10 @@ const Breadcrumbs: React.FC<{
       matches ? (
         <ul className="breadcrumbs">
           <li>
-            <Link to={baseUrl}>
-              <FormattedMessage {...commonMessages.home} />
+            <Link href={baseUrl}>
+              <a>
+                <FormattedMessage {...commonMessages.home} />
+              </a>
             </Link>
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
@@ -64,14 +66,18 @@ const Breadcrumbs: React.FC<{
                 breadcrumbs__active: index === breadcrumbs.length - 1,
               })}
             >
-              <Link to={breadcrumb.link}>{breadcrumb.value}</Link>
+              <Link href={breadcrumb.link}>
+                <a>{breadcrumb.value}</a>
+              </Link>
             </li>
           ))}
         </ul>
       ) : (
         <div className="breadcrumbs">
-          <Link to={getBackLink(breadcrumbs)}>
-            <FormattedMessage defaultMessage="Back" />
+          <Link href={getBackLink(breadcrumbs)}>
+            <a>
+              <FormattedMessage defaultMessage="Back" />
+            </a>
           </Link>
         </div>
       )

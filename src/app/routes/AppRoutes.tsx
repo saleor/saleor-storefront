@@ -10,7 +10,7 @@ import { ArticlePage } from "../../views/Article";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
-import { ProductPage } from "../../views/Product";
+// import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
 import * as paths from "./paths";
@@ -21,7 +21,7 @@ export const Routes: React.FC = () => (
     <Route path={paths.searchUrl} component={SearchPage} />
     <Route path={paths.categoryUrl} component={CategoryPage} />
     <Route path={paths.collectionUrl} component={CollectionPage} />
-    <Route path={paths.productUrl} component={ProductPage} />
+    {/* <Route path={paths.productUrl} component={ProductPage} /> */}
     <Route path={paths.cartUrl} component={CartPage} />
     <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
     <Route path={paths.pageUrl} component={ArticlePage} />
