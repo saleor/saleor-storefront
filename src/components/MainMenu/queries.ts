@@ -23,19 +23,15 @@ export const mainMenu = gql`
     }
   }
 
-  query MainMenu {
-    shop {
-      navigation {
-        main {
-          id
-          items {
+  query MainMenu($channel: String!, $slug: String!) {
+    menu(channel: $channel, slug: $slug) {
+      id
+      items {
+        ...MainMenuSubItem
+        children {
+          ...MainMenuSubItem
+          children {
             ...MainMenuSubItem
-            children {
-              ...MainMenuSubItem
-              children {
-                ...MainMenuSubItem
-              }
-            }
           }
         }
       }

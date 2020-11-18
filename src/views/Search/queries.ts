@@ -11,12 +11,14 @@ export const searchProductsQuery = gql`
   ${productPricingFragment}
   query SearchProducts(
     $query: String!
+    $channel: String!
     $attributes: [AttributeInput]
     $pageSize: Int
     $sortBy: ProductOrder
     $after: String
   ) {
     products(
+      channel: $channel
       filter: { search: $query, attributes: $attributes }
       first: $pageSize
       sortBy: $sortBy

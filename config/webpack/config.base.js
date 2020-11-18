@@ -118,6 +118,7 @@ module.exports = ({ sourceDir, distDir }) => ({
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
+      SALEOR_CHANNEL_SLUG: "default-channel",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",

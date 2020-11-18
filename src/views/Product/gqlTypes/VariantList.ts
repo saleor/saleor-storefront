@@ -243,5 +243,6 @@ export interface VariantList {
 
 export interface VariantListVariables {
   ids?: string[] | null;
+  channel?: string | null;
   countryCode?: CountryCode | null;
 }

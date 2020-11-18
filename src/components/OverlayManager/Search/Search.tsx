@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import classNames from "classnames";
+import { channelSlug } from "@temp/constants";
 import { stringify } from "query-string";
 import * as React from "react";
 import {
@@ -131,7 +132,10 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{ query: this.state.search }}
+                      variables={{
+                        channel: channelSlug,
+                        query: this.state.search,
+                      }}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {

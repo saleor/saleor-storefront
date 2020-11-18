@@ -2,13 +2,19 @@ import "./scss/index.scss";
 
 import * as React from "react";
 
+import { channelSlug } from "@temp/constants";
 import { MetaWrapper } from "../../components";
 import Page from "./Page";
 import { TypedHomePageQuery } from "./queries";
 
 const View: React.FC = () => (
   <div className="home-page">
-    <TypedHomePageQuery alwaysRender displayLoader={false} errorPolicy="all">
+    <TypedHomePageQuery
+      alwaysRender
+      displayLoader={false}
+      variables={{ channel: channelSlug }}
+      errorPolicy="all"
+    >
       {({ data, loading }) => {
         return (
           <MetaWrapper
@@ -19,11 +25,7 @@ const View: React.FC = () => (
           >
             <Page
               loading={loading}
-              backgroundImage={
-                data.shop &&
-                data.shop.homepageCollection &&
-                data.shop.homepageCollection.backgroundImage
-              }
+              backgroundImage={data.collection?.backgroundImage}
               categories={data.categories}
               shop={data.shop}
             />

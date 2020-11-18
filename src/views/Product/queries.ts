@@ -113,15 +113,15 @@ export const productDetailsQuery = gql`
   ${selectedAttributeFragment}
   ${productVariantFragment}
   ${productPricingFragment}
-  query ProductDetails($id: ID!, $countryCode: CountryCode) {
-    product(id: $id) {
+  query ProductDetails($id: ID!, $channel: String, $countryCode: CountryCode) {
+    product(id: $id, channel: $channel) {
       ...BasicProductFields
       ...ProductPricingField
       descriptionJson
       category {
         id
         name
-        products(first: 3) {
+        products(first: 3, channel: $channel) {
           edges {
             node {
               ...BasicProductFields
@@ -155,8 +155,8 @@ export const productDetailsQuery = gql`
 export const productVariantsQuery = gql`
   ${basicProductFragment}
   ${productVariantFragment}
-  query VariantList($ids: [ID!], $countryCode: CountryCode) {
-    productVariants(ids: $ids, first: 100) {
+  query VariantList($ids: [ID!], $channel: String, $countryCode: CountryCode) {
+    productVariants(ids: $ids, first: 100, channel: $channel) {
       edges {
         node {
           ...ProductVariantFields

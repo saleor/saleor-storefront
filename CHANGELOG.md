@@ -6,6 +6,7 @@ All notable, unreleased changes to this project will be documented in this file.
 
 - Add EditorJS renderer - #947 by @krzysztofwolski
 - New cart sidebar - #907 by @orzechdev
+- Support for multichannel - #937 by @AlicjaSzu
 
 ## 2.11.0
 
@@ -42,7 +43,6 @@ All notable, unreleased changes to this project will be documented in this file.
 - Support for static URL - #721 by @marianoeramirez and @dominik-zeglen
 - Fix search crashing when displaying item with no category - #928 by @mmarkusik
 - Fix generating site map - #915 by @rboixaderg
-
 
 ## 2.10.4
 

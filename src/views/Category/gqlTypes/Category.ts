@@ -114,4 +114,5 @@ export interface Category {
 
 export interface CategoryVariables {
   id: string;
+  channel?: string | null;
 }

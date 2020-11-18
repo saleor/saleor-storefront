@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { channelSlug } from "@temp/constants";
 import { Carousel, ProductListItem } from "..";
-import { generateProductUrl, maybe } from "../../core/utils";
+import { generateProductUrl } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -13,12 +14,12 @@ interface ProductsFeaturedProps {
 
 const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   return (
-    <TypedFeaturedProductsQuery displayError={false}>
+    <TypedFeaturedProductsQuery
+      displayError={false}
+      variables={{ channel: channelSlug }}
+    >
       {({ data }) => {
-        const products = maybe(
-          () => data.shop.homepageCollection.products.edges,
-          []
-        );
+        const products = data.collection?.products?.edges || [];
 
         if (products.length) {
           return (

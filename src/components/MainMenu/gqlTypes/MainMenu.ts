@@ -6,7 +6,7 @@
 // GraphQL query operation: MainMenu
 // ====================================================
 
-export interface MainMenu_shop_navigation_main_items_category {
+export interface MainMenu_menu_items_category {
   __typename: "Category";
   /**
    * The ID of the object.
@@ -15,7 +15,7 @@ export interface MainMenu_shop_navigation_main_items_category {
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_collection {
+export interface MainMenu_menu_items_collection {
   __typename: "Collection";
   /**
    * The ID of the object.
@@ -24,12 +24,12 @@ export interface MainMenu_shop_navigation_main_items_collection {
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_page {
+export interface MainMenu_menu_items_page {
   __typename: "Page";
   slug: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_parent {
+export interface MainMenu_menu_items_parent {
   __typename: "MenuItem";
   /**
    * The ID of the object.
@@ -37,7 +37,7 @@ export interface MainMenu_shop_navigation_main_items_parent {
   id: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_category {
+export interface MainMenu_menu_items_children_category {
   __typename: "Category";
   /**
    * The ID of the object.
@@ -46,7 +46,7 @@ export interface MainMenu_shop_navigation_main_items_children_category {
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_collection {
+export interface MainMenu_menu_items_children_collection {
   __typename: "Collection";
   /**
    * The ID of the object.
@@ -55,12 +55,12 @@ export interface MainMenu_shop_navigation_main_items_children_collection {
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_page {
+export interface MainMenu_menu_items_children_page {
   __typename: "Page";
   slug: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_parent {
+export interface MainMenu_menu_items_children_parent {
   __typename: "MenuItem";
   /**
    * The ID of the object.
@@ -68,7 +68,7 @@ export interface MainMenu_shop_navigation_main_items_children_parent {
   id: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_children_category {
+export interface MainMenu_menu_items_children_children_category {
   __typename: "Category";
   /**
    * The ID of the object.
@@ -77,7 +77,7 @@ export interface MainMenu_shop_navigation_main_items_children_children_category 
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_children_collection {
+export interface MainMenu_menu_items_children_children_collection {
   __typename: "Collection";
   /**
    * The ID of the object.
@@ -86,12 +86,12 @@ export interface MainMenu_shop_navigation_main_items_children_children_collectio
   name: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_children_page {
+export interface MainMenu_menu_items_children_children_page {
   __typename: "Page";
   slug: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_children_parent {
+export interface MainMenu_menu_items_children_children_parent {
   __typename: "MenuItem";
   /**
    * The ID of the object.
@@ -99,87 +99,76 @@ export interface MainMenu_shop_navigation_main_items_children_children_parent {
   id: string;
 }
 
-export interface MainMenu_shop_navigation_main_items_children_children {
-  __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  name: string;
-  category: MainMenu_shop_navigation_main_items_children_children_category | null;
-  /**
-   * URL to the menu item.
-   */
-  url: string | null;
-  collection: MainMenu_shop_navigation_main_items_children_children_collection | null;
-  page: MainMenu_shop_navigation_main_items_children_children_page | null;
-  parent: MainMenu_shop_navigation_main_items_children_children_parent | null;
-}
-
-export interface MainMenu_shop_navigation_main_items_children {
+export interface MainMenu_menu_items_children_children {
   __typename: "MenuItem";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  category: MainMenu_shop_navigation_main_items_children_category | null;
+  category: MainMenu_menu_items_children_children_category | null;
   /**
    * URL to the menu item.
    */
   url: string | null;
-  collection: MainMenu_shop_navigation_main_items_children_collection | null;
-  page: MainMenu_shop_navigation_main_items_children_page | null;
-  parent: MainMenu_shop_navigation_main_items_children_parent | null;
-  children: (MainMenu_shop_navigation_main_items_children_children | null)[] | null;
+  collection: MainMenu_menu_items_children_children_collection | null;
+  page: MainMenu_menu_items_children_children_page | null;
+  parent: MainMenu_menu_items_children_children_parent | null;
 }
 
-export interface MainMenu_shop_navigation_main_items {
+export interface MainMenu_menu_items_children {
   __typename: "MenuItem";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  category: MainMenu_shop_navigation_main_items_category | null;
+  category: MainMenu_menu_items_children_category | null;
   /**
    * URL to the menu item.
    */
   url: string | null;
-  collection: MainMenu_shop_navigation_main_items_collection | null;
-  page: MainMenu_shop_navigation_main_items_page | null;
-  parent: MainMenu_shop_navigation_main_items_parent | null;
-  children: (MainMenu_shop_navigation_main_items_children | null)[] | null;
+  collection: MainMenu_menu_items_children_collection | null;
+  page: MainMenu_menu_items_children_page | null;
+  parent: MainMenu_menu_items_children_parent | null;
+  children: (MainMenu_menu_items_children_children | null)[] | null;
 }
 
-export interface MainMenu_shop_navigation_main {
+export interface MainMenu_menu_items {
+  __typename: "MenuItem";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  category: MainMenu_menu_items_category | null;
+  /**
+   * URL to the menu item.
+   */
+  url: string | null;
+  collection: MainMenu_menu_items_collection | null;
+  page: MainMenu_menu_items_page | null;
+  parent: MainMenu_menu_items_parent | null;
+  children: (MainMenu_menu_items_children | null)[] | null;
+}
+
+export interface MainMenu_menu {
   __typename: "Menu";
   /**
    * The ID of the object.
    */
   id: string;
-  items: (MainMenu_shop_navigation_main_items | null)[] | null;
-}
-
-export interface MainMenu_shop_navigation {
-  __typename: "Navigation";
-  /**
-   * Main navigation bar.
-   */
-  main: MainMenu_shop_navigation_main | null;
-}
-
-export interface MainMenu_shop {
-  __typename: "Shop";
-  /**
-   * Shop's navigation.
-   */
-  navigation: MainMenu_shop_navigation | null;
+  items: (MainMenu_menu_items | null)[] | null;
 }
 
 export interface MainMenu {
   /**
-   * Return information about the shop.
+   * Look up a navigation menu by ID or name.
    */
-  shop: MainMenu_shop;
+  menu: MainMenu_menu | null;
+}
+
+export interface MainMenuVariables {
+  channel: string;
+  slug: string;
 }

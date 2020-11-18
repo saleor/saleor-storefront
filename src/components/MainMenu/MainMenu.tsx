@@ -9,6 +9,7 @@ import ReactSVG from "react-svg";
 
 import { DemoBanner } from "@components/atoms";
 import classNames from "classnames";
+import { channelSlug } from "@temp/constants";
 import {
   MenuDropdown,
   Offline,
@@ -84,9 +85,16 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
       {demoMode && <DemoBanner />}
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
-          <TypedMainMenuQuery renderOnError displayLoader={false}>
+          <TypedMainMenuQuery
+            renderOnError
+            displayLoader={false}
+            variables={{
+              channel: channelSlug,
+              slug: "navbar",
+            }}
+          >
             {({ data }) => {
-              const items = maybe(() => data.shop.navigation.main.items, []);
+              const items = maybe(() => data.menu.items, []);
 
               return (
                 <ul>

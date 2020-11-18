@@ -12,7 +12,7 @@ import {
 } from "./gqlTypes/CategoryProducts";
 
 export const categoryProductsDataQuery = gql`
-  query Category($id: ID!) {
+  query Category($id: ID!, $channel: String) {
     category(id: $id) {
       seoDescription
       seoTitle
@@ -31,7 +31,11 @@ export const categoryProductsDataQuery = gql`
       }
     }
     attributes(
-      filter: { inCategory: $id, filterableInStorefront: true }
+      filter: {
+        inCategory: $id
+        filterableInStorefront: true
+        channel: $channel
+      }
       first: 100
     ) {
       edges {
@@ -60,6 +64,7 @@ export const categoryProductsQuery = gql`
   ${productPricingFragment}
   query CategoryProducts(
     $id: ID!
+    $channel: String
     $attributes: [AttributeInput]
     $after: String
     $pageSize: Int
@@ -75,7 +80,9 @@ export const categoryProductsQuery = gql`
         attributes: $attributes
         categories: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }
+        channel: $channel
       }
+      channel: $channel
     ) {
       totalCount
       edges {
