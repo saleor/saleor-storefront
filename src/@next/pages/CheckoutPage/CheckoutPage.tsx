@@ -324,7 +324,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
   const handleSubmitPayment = async (paymentData?: object) => {
-    const response = await completeCheckout({ paymentData });
+    const response = await completeCheckout({
+      paymentData: { ...paymentData, originUrl: window.location.origin },
+    });
     return {
       confirmationData: response.data?.confirmationData,
       confirmationNeeded: response.data?.confirmationNeeded,
