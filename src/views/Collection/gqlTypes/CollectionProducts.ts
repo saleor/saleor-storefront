@@ -311,4 +311,5 @@ export interface CollectionProductsVariables {
   sortBy?: ProductOrder | null;
   priceLte?: number | null;
   priceGte?: number | null;
+  channel: string;
 }

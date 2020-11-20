@@ -89,4 +89,5 @@ export interface Collection {
 
 export interface CollectionVariables {
   id: string;
+  channel: string;
 }
