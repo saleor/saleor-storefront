@@ -12,8 +12,8 @@ import {
 } from "./gqlTypes/CollectionProducts";
 
 export const collectionProductsDataQuery = gql`
-  query Collection($id: ID!) {
-    collection(id: $id) {
+  query Collection($id: ID!, $channel: String!) {
+    collection(id: $id, channel: $channel) {
       id
       slug
       name
@@ -24,7 +24,11 @@ export const collectionProductsDataQuery = gql`
       }
     }
     attributes(
-      filter: { inCollection: $id, filterableInStorefront: true }
+      filter: {
+        channel: $channel
+        inCollection: $id
+        filterableInStorefront: true
+      }
       first: 100
     ) {
       edges {
@@ -59,14 +63,16 @@ export const collectionProductsQuery = gql`
     $sortBy: ProductOrder
     $priceLte: Float
     $priceGte: Float
+    $channel: String!
   ) {
-    collection(id: $id) {
+    collection(id: $id, channel: $channel) {
       id
       products(
         after: $after
         first: $pageSize
         sortBy: $sortBy
         filter: {
+          channel: $channel
           attributes: $attributes
           minimalPrice: { gte: $priceGte, lte: $priceLte }
         }

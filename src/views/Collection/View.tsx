@@ -6,6 +6,7 @@ import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { channelSlug } from "@temp/constants";
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -99,6 +100,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
       : {},
     id: getGraphqlIdFromDBId(match.params.id, "Collection"),
     sortBy: convertSortByFromString(filters.sortBy),
+    channel: channelSlug,
   };
 
   const sortOptions = [
