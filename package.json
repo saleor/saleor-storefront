@@ -14,7 +14,7 @@
     "@editorjs/list": "^1.6.0",
     "@editorjs/quote": "^2.4.0",
     "@lhci/cli": "^0.4.1",
-    "@saleor/sdk": "^0.3.0-0",
+    "@saleor/sdk": "^0.3.0-2",
     "@sentry/apm": "^5.15.5",
     "@sentry/browser": "^5.15.5",
     "@stripe/react-stripe-js": "^1.1.2",
