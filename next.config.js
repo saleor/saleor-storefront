@@ -28,6 +28,21 @@ module.exports = withPlugins(
     ],
   ],
   {
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+        name: false,
+        cacheGroups: {
+          styles: {
+            name: false,
+            test: /\.css$/,
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+      runtimeChunk: true, // This line is just for you to know where I added the lines above.
+    },
     env: {
       API_URI: "http://localhost:8000/graphql/",
       DEMO_MODE: false,

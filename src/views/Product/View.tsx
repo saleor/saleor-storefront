@@ -53,7 +53,7 @@ const extractMeta = (product: ProductDetails_product, url: string) => ({
 
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
-  const { pathname, push, query, replace, asPath, ...x } = useRouter();
+  const { pathname, push, query, replace, asPath } = useRouter();
 
   const onAttributeChangeHandler = (slug: string | null, value: string) => {
     const newAsPath = queryString.stringifyUrl(
@@ -104,10 +104,13 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   );
 };
 
-const View: NextPage<{ id?: string }> = props => {
+export type ViewProps = {
+  query: { slug: string; id: string };
+};
+
+const View: NextPage<ViewProps> = ({ query: { id } }) => {
   const { addItem, items } = useCart();
-  const { query, asPath } = useRouter();
-  const id = (query.id as string) || props.id;
+  const { asPath } = useRouter();
 
   return (
     <TypedProductDetailsQuery

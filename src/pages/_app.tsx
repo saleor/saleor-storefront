@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme, GlobalStyle } from "@styles";
 import { NotificationTemplate } from "@components/atoms";
+import { QueryParamProvider } from "@temp/components";
 import { apiUrl } from "../constants";
 import { LocaleProvider } from "../components/Locale";
 import { App as StorefrontApp } from "../app";
@@ -24,13 +25,15 @@ const App = ({ Component, pageProps }: AppProps) => (
       {...notificationOptions}
     >
       <GlobalStyle />
-      <LocaleProvider>
-        <SaleorProvider config={saleorConfig}>
-          <StorefrontApp>
-            <Component {...pageProps} />
-          </StorefrontApp>
-        </SaleorProvider>
-      </LocaleProvider>
+      <QueryParamProvider>
+        <LocaleProvider>
+          <SaleorProvider config={saleorConfig}>
+            <StorefrontApp>
+              <Component {...pageProps} />
+            </StorefrontApp>
+          </SaleorProvider>
+        </LocaleProvider>
+      </QueryParamProvider>
     </AlertProvider>
   </ThemeProvider>
 );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { Icon, IconButton } from "@components/atoms";
 import { CachedImage, TextField } from "@components/molecules";
@@ -101,13 +101,17 @@ export const CartRow: React.FC<IProps> = ({
   return (
     <S.Wrapper data-test="cartRow" data-test-id={sku}>
       <S.Photo>
-        <Link to={productUrl}>
-          <CachedImage data-test="itemImage" {...thumbnail} />
+        <Link href={productUrl}>
+          <a>
+            <CachedImage data-test="itemImage" {...thumbnail} />
+          </a>
         </Link>
       </S.Photo>
       <S.Description>
-        <Link to={productUrl}>
-          <S.Name data-test="itemName">{name}</S.Name>
+        <Link href={productUrl}>
+          <a>
+            <S.Name data-test="itemName">{name}</S.Name>
+          </a>
         </Link>
         <S.Sku>
           <S.LightFont>

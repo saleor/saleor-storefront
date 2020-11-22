@@ -2,13 +2,13 @@ import "./scss/index.scss";
 
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import { generatePath, Link } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
+import Link from "next/link";
 import {
   Button,
   Offline,
@@ -142,18 +142,14 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                     </div>
 
                     <div className="cart__footer__button">
-                      <Link
-                        to={generatePath(cartUrl, {
-                          token: null,
-                        })}
-                      >
-                        <Button testingContext="gotoBagViewButton" secondary>
+                      <Link href={cartUrl}>
+                        <Button secondary testingContext="gotoBagViewButton">
                           <FormattedMessage defaultMessage="Go to my bag" />
                         </Button>
                       </Link>
                     </div>
                     <div className="cart__footer__button">
-                      <Link to={user ? checkoutUrl : checkoutLoginUrl}>
+                      <Link href={user ? checkoutUrl : checkoutLoginUrl}>
                         <Button testingContext="gotoCheckoutButton">
                           <FormattedMessage {...commonMessages.checkout} />
                         </Button>

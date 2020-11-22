@@ -14,7 +14,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Saleor</title>
           <link rel="preconnect" href={apiUrl} />
           <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
         </Head>

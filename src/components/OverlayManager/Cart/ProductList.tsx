@@ -1,7 +1,7 @@
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
@@ -10,7 +10,7 @@ import { Thumbnail } from "@components/molecules";
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
 
-const ProductList: React.SFC<{
+const ProductList: React.FC<{
   lines: ICheckoutModelLine[];
   remove(variantId: string): void;
 }> = ({ lines, remove }) => (
@@ -29,15 +29,17 @@ const ProductList: React.SFC<{
           data-test="cartRow"
           data-test-id={line.variant.sku}
         >
-          <Link to={productUrl}>
-            <Thumbnail source={line.variant.product} />
+          <Link href={productUrl}>
+            <a>
+              <Thumbnail source={line.variant.product} />
+            </a>
           </Link>
           <div className="cart__list__item__details">
             <p data-test="price">
               <TaxedMoney taxedMoney={line.variant.pricing.price} />
             </p>
-            <Link to={productUrl}>
-              <p data-test="name">{line.variant.product.name}</p>
+            <Link href={productUrl}>
+              <a data-test="name">{line.variant.product.name}</a>
             </Link>
             <span className="cart__list__item__details__variant">
               <span>{line.variant.name}</span>
