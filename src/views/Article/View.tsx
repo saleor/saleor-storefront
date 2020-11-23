@@ -1,8 +1,9 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { RouteComponentProps } from "react-router-dom";
 
+import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
@@ -15,49 +16,51 @@ const canDisplay = page =>
 const getHeaderImage = (shop: Article_shop) =>
   maybe(() => shop.homepageCollection.backgroundImage.url);
 
-type ViewProps = RouteComponentProps<{ slug: string }>;
+export type ViewProps = {
+  query: { slug: string };
+};
 
-export const View: React.FC<ViewProps> = ({
-  match: {
-    params: { slug },
-  },
-}) => (
-  <TypedArticleQuery loaderFull variables={{ slug }} errorPolicy="all">
-    {({ data }) => {
-      const navigation = STATIC_PAGES.map(page => ({
-        ...page,
-        active: page.url === window.location.pathname,
-      }));
-      const { page, shop } = data;
+export const View: NextPage<ViewProps> = ({ query: { slug } }) => {
+  const { asPath } = useRouter();
 
-      if (canDisplay(page)) {
-        const breadcrumbs = [
-          {
-            link: generatePageUrl(slug),
-            value: page.title,
-          },
-        ];
-        return (
-          <MetaWrapper
-            meta={{
-              description: page.seoDescription,
-              title: page.seoTitle,
-            }}
-          >
-            <Page
-              breadcrumbs={breadcrumbs}
-              headerImage={getHeaderImage(shop)}
-              navigation={navigation}
-              page={data.page}
-            />
-          </MetaWrapper>
-        );
-      }
+  return (
+    <TypedArticleQuery loaderFull variables={{ slug }} errorPolicy="all">
+      {({ data }) => {
+        const navigation = STATIC_PAGES.map(page => ({
+          ...page,
+          active: page.url === asPath,
+        }));
+        const { page, shop } = data;
 
-      if (page === null) {
-        return <NotFound />;
-      }
-    }}
-  </TypedArticleQuery>
-);
+        if (canDisplay(page)) {
+          const breadcrumbs = [
+            {
+              link: generatePageUrl(slug),
+              value: page.title,
+            },
+          ];
+          return (
+            <MetaWrapper
+              meta={{
+                description: page.seoDescription,
+                title: page.seoTitle,
+              }}
+            >
+              <Page
+                breadcrumbs={breadcrumbs}
+                headerImage={getHeaderImage(shop)}
+                navigation={navigation}
+                page={data.page}
+              />
+            </MetaWrapper>
+          );
+        }
+
+        if (page === null) {
+          return <NotFound />;
+        }
+      }}
+    </TypedArticleQuery>
+  );
+};
 export default View;

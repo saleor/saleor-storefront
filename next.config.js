@@ -1,48 +1,11 @@
 const { parsed: env } = require("dotenv").config();
-const sass = require("@zeit/next-sass");
-const css = require("@zeit/next-css");
-const images = require("next-images");
 const withPlugins = require("next-compose-plugins");
 const optimizedImages = require("next-optimized-images");
-const sourceMaps = require("@zeit/next-source-maps");
-
-// next-optimized-images
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = withPlugins(
-  [
-    [
-      sass,
-      {
-        sassLoaderOptions: { sourceMap: true },
-      },
-    ],
-    [
-      optimizedImages,
-      {
-        /**
-         * TODO:
-         * Plugin breaks file loader for svg, find a way to use it as a default here.
-         */
-        handleImages: ["jpeg", "png", "webp", "gif"],
-      },
-    ],
-  ],
+  [[optimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }]],
   {
-    optimization: {
-      splitChunks: {
-        chunks: "all",
-        name: false,
-        cacheGroups: {
-          styles: {
-            name: false,
-            test: /\.css$/,
-            chunks: "all",
-            enforce: true,
-          },
-        },
-      },
-      runtimeChunk: true, // This line is just for you to know where I added the lines above.
-    },
     env: {
       API_URI: "http://localhost:8000/graphql/",
       DEMO_MODE: false,
@@ -70,6 +33,29 @@ module.exports = withPlugins(
             },
           ],
         },
+      ];
+
+      if (!isServer) {
+        config.devtool = "source-map";
+        config.module.rules.push({
+          test: /\.(scss|css)$/,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: { sourceMap: true },
+            },
+            { loader: "sass-loader" },
+          ],
+        });
+      }
+
+      config.plugins = [
+        ...config.plugins,
+        new MiniCssExtractPlugin({
+          filename: "[name].css",
+          chunkFilename: "[id].css",
+        }),
       ];
 
       return config;

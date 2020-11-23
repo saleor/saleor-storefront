@@ -5,11 +5,12 @@ import * as Yup from "yup";
 
 import { StringParam, useQueryParams } from "use-query-params";
 
-import { BASE_URL } from "@temp/core/config";
-
 import { ResetPasswordForm } from "@components/molecules";
+import { useRouter } from "next/router";
+import { baseUrl } from "@temp/app/routes";
+import { NextPage } from "next";
 import * as S from "./styles";
-import { FormikProps, IProps } from "./types";
+import { FormikProps } from "./types";
 
 const PasswordResetSchema = Yup.object().shape({
   password: Yup.string()
@@ -26,11 +27,12 @@ const initialData: FormikProps = {
   retypedPassword: "",
 };
 
-export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
+export const PasswordReset: NextPage = () => {
   const [query] = useQueryParams({
     email: StringParam,
     token: StringParam,
   });
+  const { push } = useRouter();
 
   const [tokenError, setTokenError] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState("");
@@ -40,13 +42,10 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   React.useEffect(() => {
     if (data && data.setPassword && data.setPassword.token) {
       setAuthToken(data.setPassword.token);
-      history.push(BASE_URL);
+      push(baseUrl);
     }
-    if (
-      graphqlErrors &&
-      graphqlErrors.extraInfo &&
-      graphqlErrors.extraInfo.userInputErrors
-    ) {
+
+    if (graphqlErrors?.extraInfo?.userInputErrors) {
       graphqlErrors.extraInfo.userInputErrors.forEach(error => {
         if (error.field === "token") setTokenError(true);
         else setTokenError(false);
@@ -59,7 +58,7 @@ export const PasswordReset: React.FC<IProps> = ({ history }: IProps) => {
   const { email, token } = query;
 
   if (!email || !token) {
-    history.push(BASE_URL);
+    push(baseUrl);
   }
 
   const onSubmit = (values: FormikProps) => {

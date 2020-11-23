@@ -6,7 +6,6 @@ import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
 import { NextPage } from "next";
-import { useEffect } from "react";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -133,10 +132,6 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
       value: "-updated_at",
     },
   ];
-
-  useEffect(() => {
-    console.log(sort, attributeFilters);
-  }, [sort, attributeFilters]);
 
   return (
     <NetworkStatus>

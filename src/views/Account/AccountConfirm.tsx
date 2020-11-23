@@ -1,22 +1,22 @@
-import * as React from "react";
+import React, { useEffect, useRef } from "react";
 import { useAlert } from "react-alert";
-
+import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
+import { useRouter } from "next/router";
 
-import { RouteComponentProps } from "react-router";
-import { BASE_URL } from "../../core/config";
-
+import { baseUrl } from "@temp/app/routes";
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
 
-const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
+const AccountConfirm: NextPage = () => {
   const [query] = useQueryParams({
     email: StringParam,
     token: StringParam,
   });
-
+  const { push } = useRouter();
   const alert = useAlert();
+  const accountManagerFnRef = useRef(null);
 
   const displayConfirmationAlert = anyErrors => {
     alert.show(
@@ -31,31 +31,34 @@ const AccountConfirm: React.FC<RouteComponentProps> = ({ history }) => {
     );
   };
 
-  React.useEffect(() => {
-    this.accountManagerFn({
-      variables: { email: query.email, token: query.token },
-    })
-      .then(result => {
-        const possibleErrors = result.data.confirmAccount.errors;
-        displayConfirmationAlert(possibleErrors);
+  useEffect(() => {
+    const mutateFn = accountManagerFnRef.current;
+    if (mutateFn) {
+      mutateFn({
+        variables: { email: query.email, token: query.token },
       })
-      .catch(() => {
-        const errors = [
-          {
-            message: "Something went wrong while activating your account.",
-          },
-        ];
-        displayConfirmationAlert(errors);
-      })
-      .finally(() => {
-        history.push(BASE_URL);
-      });
-  }, []);
+        .then(result => {
+          const possibleErrors = result.data.confirmAccount.errors;
+          displayConfirmationAlert(possibleErrors);
+        })
+        .catch(() => {
+          const errors = [
+            {
+              message: "Something went wrong while activating your account.",
+            },
+          ];
+          displayConfirmationAlert(errors);
+        })
+        .finally(() => {
+          push(baseUrl);
+        });
+    }
+  }, [accountManagerFnRef]);
 
   return (
     <TypedAccountConfirmMutation>
       {accountConfirm => {
-        this.accountManagerFn = accountConfirm;
+        accountManagerFnRef.current = accountConfirm;
         return <div />;
       }}
     </TypedAccountConfirmMutation>
