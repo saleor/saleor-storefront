@@ -8,9 +8,8 @@ import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { useCheckout } from "@saleor/sdk";
+import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
-import { OrderStatus } from "gqlTypes/globalTypes";
 
 export interface ISubmitCheckoutData {
   id: string;

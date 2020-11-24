@@ -7,9 +7,9 @@ import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-import { OrderStatus } from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import { OrderStatus } from "@saleor/sdk";
 
-const messages = defineMessages({
+export const messages = defineMessages({
   unfulfilled: {
     defaultMessage:
       "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.",

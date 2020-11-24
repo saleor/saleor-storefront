@@ -1,4 +1,4 @@
-import { OrderStatus } from "gqlTypes/globalTypes";
+import { OrderStatus } from "@saleor/sdk";
 
 export interface IProps {
   orderStatus: OrderStatus;
