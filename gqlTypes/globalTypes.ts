@@ -279,15 +279,6 @@ export enum ProductOrderField {
   TYPE = "TYPE",
 }
 
-export enum OrderStatus {
-  CANCELED = "CANCELED",
-  DRAFT = "DRAFT",
-  FULFILLED = "FULFILLED",
-  PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",
-  UNCONFIRMED = "UNCONFIRMED",
-  UNFULFILLED = "UNFULFILLED",
-}
-
 export interface AttributeInput {
   slug: string;
   value?: string | null;

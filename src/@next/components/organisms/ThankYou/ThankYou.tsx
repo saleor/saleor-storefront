@@ -7,7 +7,7 @@ import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-import { OrderStatus } from "gqlTypes/globalTypes";
+import { OrderStatus } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 
 const messages = defineMessages({
   unfulfilled: {

@@ -16,7 +16,7 @@ export interface ISubmitCheckoutData {
   id: string;
   orderNumber: string;
   token: string;
-  status: OrderStatus;
+  orderStatus: OrderStatus;
 }
 
 export interface ICheckoutReviewSubpageHandles {
@@ -99,7 +99,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           setErrors([]);
           onSubmitSuccess({
             id: data?.order?.id,
-            status: data?.order?.status,
+            orderStatus: data?.order?.status,
             orderNumber: data?.order?.number,
             token: data?.order?.token,
           });
