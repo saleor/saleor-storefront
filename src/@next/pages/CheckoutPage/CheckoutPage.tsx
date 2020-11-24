@@ -31,6 +31,7 @@ import {
   ICheckoutShippingSubpageHandles,
 } from "./subpages";
 import { IProps } from "./types";
+import { OrderStatus } from "gqlTypes/globalTypes";
 
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
@@ -216,7 +217,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     if (currentStep === CheckoutStep.Review) {
       history.push({
         pathname: "/order-finalized",
-        state: data,
+        state: { ...data, orderStatus: OrderStatus.UNCONFIRMED },
       });
     } else {
       history.push(steps[activeStepIndex + 1].link);
