@@ -5,7 +5,7 @@ import Media from "react-media";
 import Link from "next/link";
 import { commonMessages } from "@temp/intl";
 
-import { baseUrl } from "../../app/routes";
+import { BASE_URL } from "@temp/core/config";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/gqlTypes/Category";
 
@@ -53,7 +53,7 @@ const Breadcrumbs: React.FC<{
       matches ? (
         <ul className="breadcrumbs">
           <li>
-            <Link href={baseUrl}>
+            <Link href={BASE_URL}>
               <a>
                 <FormattedMessage {...commonMessages.home} />
               </a>

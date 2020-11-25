@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { NotFound } from "../components";
 import { OrderDetails } from "./views";
 
+// TODO: is it still used?
 export const baseUrl = "/my-account/";
 export const userOrderDetailsUrl = `${baseUrl}order/:id/`;
 export const orderHistoryUrl = `${baseUrl}order/history/`;

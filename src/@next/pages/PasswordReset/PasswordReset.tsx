@@ -7,8 +7,8 @@ import { StringParam, useQueryParams } from "use-query-params";
 
 import { ResetPasswordForm } from "@components/molecules";
 import { useRouter } from "next/router";
-import { baseUrl } from "@temp/app/routes";
 import { NextPage } from "next";
+import { BASE_URL } from "@temp/core/config";
 import * as S from "./styles";
 import { FormikProps } from "./types";
 
@@ -42,7 +42,7 @@ export const PasswordReset: NextPage = () => {
   React.useEffect(() => {
     if (data && data.setPassword && data.setPassword.token) {
       setAuthToken(data.setPassword.token);
-      push(baseUrl);
+      push(BASE_URL);
     }
 
     if (graphqlErrors?.extraInfo?.userInputErrors) {
@@ -58,7 +58,7 @@ export const PasswordReset: NextPage = () => {
   const { email, token } = query;
 
   if (!email || !token) {
-    push(baseUrl);
+    push(BASE_URL);
   }
 
   const onSubmit = (values: FormikProps) => {

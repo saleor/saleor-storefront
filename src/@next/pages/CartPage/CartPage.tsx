@@ -11,8 +11,9 @@ import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
-import { checkoutLoginUrl, checkoutUrl, baseUrl } from "@temp/app/routes";
+import { checkoutLoginUrl, checkoutUrl } from "@temp/app/routes";
 import Link from "next/link";
+import { BASE_URL } from "@temp/core/config";
 
 const title = (
   <h1 data-test="cartPageTitle">
@@ -21,7 +22,7 @@ const title = (
 );
 
 const getShoppingButton = () => (
-  <Link href={baseUrl}>
+  <Link href={BASE_URL}>
     <Button testingContext="cartPageContinueShoppingButton">
       <FormattedMessage {...checkoutMessages.continueShopping} />
     </Button>

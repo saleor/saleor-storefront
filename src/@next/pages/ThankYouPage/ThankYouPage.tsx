@@ -4,10 +4,9 @@ import { useHistory, useLocation } from "react-router-dom";
 import { ThankYou } from "@components/organisms";
 import { BASE_URL } from "@temp/core/config";
 import { generateGuestOrderDetailsUrl } from "@utils/core";
+import { NextPage } from "next";
 
-import { IProps } from "./types";
-
-const ThankYouPage: React.FC<IProps> = ({}: IProps) => {
+const ThankYouPage: NextPage = () => {
   const location = useLocation();
   const history = useHistory();
   const { token, orderNumber } = location.state;

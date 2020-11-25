@@ -1,9 +1,10 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 import Media from "react-responsive";
-import { RouteComponentProps, withRouter } from "react-router";
 import { commonMessages } from "@temp/intl";
 import { useAuth } from "@saleor/sdk";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
@@ -41,26 +42,25 @@ const returnTab: any = (path: string, userDetails, history) => {
   return tabContent;
 };
 
-const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
+const Account: NextPage = () => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
-
+  const { push, asPath } = useRouter();
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
+
+  useEffect(() => {
+    !user && push(baseUrl);
+  }, []);
 
   if (!loaded) {
     return <Loader />;
   }
-
-  if (!user) {
-    history.push(baseUrl);
-  }
-
   return (
     <div className="container">
       <Breadcrumbs
         breadcrumbs={[
           {
-            link: match.path,
+            link: asPath,
             value: intl.formatMessage(commonMessages.myAccount),
           },
         ]}
@@ -68,20 +68,20 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
-            <AccountMenu links={links} active={match.path} />
+            <AccountMenu links={links} active={asPath} />
           </div>
         </Media>
         <Media maxWidth={smallScreen - 1}>
           <div className="account__menu_mobile">
-            <AccountMenuMobile links={links} active={match.path} />
+            <AccountMenuMobile links={links} active={asPath} />
           </div>
         </Media>
         <div className="account__content">
-          {user && returnTab(match.path, user, history)}
+          {user && returnTab(asPath, user, history)}
         </div>
       </div>
     </div>
   );
 };
 
-export default withRouter(Account);
+export default Account;

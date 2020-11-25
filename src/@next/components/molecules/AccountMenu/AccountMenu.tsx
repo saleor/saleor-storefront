@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { commonMessages } from "@temp/intl";
 import * as S from "./styles";
@@ -35,12 +35,14 @@ export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
         }
         return (
           <Link
-            to={link}
+            href={link}
             key={link}
             data-test="accountMenuLink"
             data-test-id={link}
           >
-            <S.MenuItem active={active === link}>{menuItemTrans}</S.MenuItem>
+            <a>
+              <S.MenuItem active={active === link}>{menuItemTrans}</S.MenuItem>
+            </a>
           </Link>
         );
       })}

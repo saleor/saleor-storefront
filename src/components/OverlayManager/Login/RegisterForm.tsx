@@ -1,11 +1,10 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-
 import { AlertManager, useAlert } from "react-alert";
 import { useIntl, IntlShape } from "react-intl";
+
 import { commonMessages } from "@temp/intl";
-import { useEffect } from "react";
 import { accountConfirmUrl } from "../../../app/routes";
 
 import { Button, Form, TextField } from "../..";

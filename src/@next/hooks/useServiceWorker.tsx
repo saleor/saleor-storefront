@@ -3,7 +3,8 @@ import React from "react";
 
 // TODO: USE next-offline
 export const useServiceWorker = ({ timeout = 1000 }) => {
-  const [updateAvailable, setUpdateAvailable] = React.useState<boolean>(false);
+  const [updateAvailable] = React.useState<boolean>(false);
+  // const [updateAvailable, setUpdateAvailable] = React.useState<boolean>(false);
   // const [registration, setRegistration] = React.useState<any>(null);
 
   // React.useEffect(() => {

@@ -9,6 +9,7 @@ import ReactSVG from "react-svg";
 
 import { DemoBanner } from "@components/atoms";
 import classNames from "classnames";
+import { BASE_URL } from "@temp/core/config";
 import {
   MenuDropdown,
   Offline,
@@ -220,7 +221,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
         </div>
 
         <div className="main-menu__center">
-          <Link href={appPaths.baseUrl}>
+          <Link href={BASE_URL}>
             <a>
               <ReactSVG path={logoImg} />
             </a>

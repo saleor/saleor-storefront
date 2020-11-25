@@ -1,5 +1,5 @@
 import "./scss/index.scss";
-
+import { NextRouter, withRouter } from "next/router";
 import classNames from "classnames";
 import { stringify } from "query-string";
 import * as React from "react";
@@ -8,7 +8,6 @@ import {
   WrappedComponentProps,
   FormattedMessage,
 } from "react-intl";
-import { RouteComponentProps, withRouter } from "react-router-dom";
 import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
@@ -34,8 +33,9 @@ import { TypedSearchResults } from "./queries";
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
 
-interface SearchProps extends WrappedComponentProps, RouteComponentProps {
+interface SearchProps extends WrappedComponentProps {
   overlay: OverlayContextInterface;
+  router: NextRouter;
 }
 
 interface SearchState {
@@ -74,7 +74,7 @@ class Search extends React.Component<SearchProps, SearchState> {
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
       this.props.overlay.hide();
-      this.props.history.push(`${searchUrl}?${this.searchQs}`);
+      this.props.router.push(`${searchUrl}?${this.searchQs}`);
     }
 
     evt.preventDefault();
@@ -187,11 +187,4 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 // Workaround ATM for:
 // withRouter(Search): Function components do not support contextType
-export default injectIntl(
-  withRouter(
-    (
-      props: WrappedComponentProps &
-        RouteComponentProps & { overlay: OverlayContextInterface }
-    ) => <Search {...props} />
-  )
-);
+export default injectIntl(withRouter(Search));

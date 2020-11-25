@@ -6,7 +6,7 @@ import Link from "next/link";
 import ReactSVG from "react-svg";
 import { commonMessages } from "@temp/intl";
 
-import { baseUrl } from "../../app/routes";
+import { BASE_URL } from "@temp/core/config";
 import NavItem, { INavItem } from "./NavItem";
 
 import backImg from "../../images/arrow-back.svg";
@@ -74,7 +74,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         ) : (
           <>
             <li className="side-nav__menu-item side-nav__menu-item--parent">
-              <Link passHref href={baseUrl}>
+              <Link passHref href={BASE_URL}>
                 <a className="side-nav__menu-item-logo" onClick={hideOverlay}>
                   <ReactSVG path={logoImg} />
                 </a>
@@ -84,7 +84,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
               </span>
             </li>
             <li className="side-nav__menu-item">
-              <Link passHref href={baseUrl}>
+              <Link passHref href={BASE_URL}>
                 <a className="side-nav__menu-item-link" onClick={hideOverlay}>
                   <FormattedMessage {...commonMessages.home} />
                 </a>

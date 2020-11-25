@@ -1,7 +1,8 @@
-const { parsed: env } = require("dotenv").config();
 const withPlugins = require("next-compose-plugins");
 const optimizedImages = require("next-optimized-images");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const { parsed: env } = require("dotenv").config();
 
 module.exports = withPlugins(
   [[optimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }]],
@@ -17,7 +18,14 @@ module.exports = withPlugins(
 
     trailingSlash: true,
 
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    webpack: (config, { isServer }) => {
+      config.devtool = "source-map";
+
+      config.node = {
+        fs: "empty",
+        module: "empty",
+      };
+
       config.module.rules = [
         ...config.module.rules,
         {
@@ -33,28 +41,28 @@ module.exports = withPlugins(
             },
           ],
         },
-      ];
-
-      if (!isServer) {
-        config.devtool = "source-map";
-        config.module.rules.push({
+        {
           test: /\.(scss|css)$/,
           use: [
-            "style-loader",
+            isServer ? MiniCssExtractPlugin.loader : "style-loader",
             {
               loader: "css-loader",
               options: { sourceMap: true },
             },
-            { loader: "sass-loader" },
+            "sass-loader",
           ],
-        });
-      }
+        },
+      ];
 
       config.plugins = [
         ...config.plugins,
         new MiniCssExtractPlugin({
           filename: "[name].css",
           chunkFilename: "[id].css",
+        }),
+        new ForkTsCheckerWebpackPlugin({
+          eslint: true,
+          exclude: "node_modules",
         }),
       ];
 

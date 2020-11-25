@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Redirect } from "react-router";
 import {
   Route,
   RouteComponentProps,
@@ -12,8 +12,6 @@ import { IItems, ITotalPrice } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckout, IPayment } from "@saleor/sdk/lib/api/Checkout/types";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkIfShippingRequiredForProducts } from "@utils/core";
-import { useRouter } from "next/router";
-import { Redirect } from "@components/atoms";
 
 interface IRouterProps {
   items?: IItems;
@@ -36,8 +34,7 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
   renderPayment,
   renderReview,
 }: IRouterProps) => {
-  // const { pathname } = useLocation();
-  const { pathname } = useRouter();
+  const { pathname } = useLocation();
   const { recommendedStep, maxPossibleStep } = useCheckoutStepState(
     items,
     checkout,
@@ -45,6 +42,7 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
     totalPrice
   );
   const stepFromPath = useCheckoutStepFromPath(pathname);
+
   const isShippingRequiredForProducts = checkIfShippingRequiredForProducts(
     items
   );
@@ -53,16 +51,14 @@ const CheckoutRouter: React.FC<IRouterProps> = ({
     CHECKOUT_STEPS.find(stepObj => stepObj.step === recommendedStep)?.link ||
     CHECKOUT_STEPS[0].link;
 
-  console.log(getStepLink(), useRouter());
   if (
     (pathname !== CHECKOUT_STEPS[4].link &&
       (!stepFromPath || (stepFromPath && maxPossibleStep < stepFromPath))) ||
     (pathname === CHECKOUT_STEPS[1].link && !isShippingRequiredForProducts)
   ) {
-    return <Redirect url={getStepLink()} />;
+    return <Redirect to={getStepLink()} />;
   }
 
-  return null;
   return (
     <Switch>
       <Route path={CHECKOUT_STEPS[4].link} render={renderReview} />

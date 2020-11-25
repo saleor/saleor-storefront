@@ -4,10 +4,10 @@ import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
 import { useRouter } from "next/router";
 
-import { baseUrl } from "@temp/app/routes";
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
+import { BASE_URL } from "@temp/core/config";
 
 const AccountConfirm: NextPage = () => {
   const [query] = useQueryParams({
@@ -43,15 +43,11 @@ const AccountConfirm: NextPage = () => {
         })
         .catch(() => {
           const errors = [
-            {
-              message: "Something went wrong while activating your account.",
-            },
+            { message: "Something went wrong while activating your account." },
           ];
           displayConfirmationAlert(errors);
         })
-        .finally(() => {
-          push(baseUrl);
-        });
+        .finally(() => push(BASE_URL));
     }
   }, [accountManagerFnRef]);
 

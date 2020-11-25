@@ -5,7 +5,7 @@ import { Icon } from "@components/atoms";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -67,11 +67,13 @@ export const AccountMenuMobile: React.FC<IProps> = ({
                 }}
                 key={link}
               >
-                <Link to={link}>
-                  <S.MenuItem active={active === link}>
-                    {menuItem}
-                    <Icon name="select_arrow" size={8} />
-                  </S.MenuItem>
+                <Link href={link}>
+                  <a>
+                    <S.MenuItem active={active === link}>
+                      {menuItem}
+                      <Icon name="select_arrow" size={8} />
+                    </S.MenuItem>
+                  </a>
                 </Link>
               </div>
             );
