@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
@@ -43,11 +43,15 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
       <td className="cart-table__thumbnail">
         <div>
           {mediumScreen && (
-            <Link to={productUrl}>
-              <Thumbnail source={line.product} />
+            <Link href={productUrl}>
+              <a>
+                <Thumbnail source={line.product} />
+              </a>
             </Link>
           )}
-          <Link to={productUrl}>{line.product.name}</Link>
+          <Link href={productUrl}>
+            <a>{line.product.name}</a>
+          </Link>
         </div>
       </td>
 

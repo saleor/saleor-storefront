@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import {
@@ -38,8 +38,10 @@ const Page: React.FC<{
   return order ? (
     <>
       {!guest && (
-        <Link className="order-details__link" to={orderHistoryUrl}>
-          <FormattedMessage defaultMessage="Go back to Order History" />
+        <Link href={orderHistoryUrl}>
+          <a className="order-details__link">
+            <FormattedMessage defaultMessage="Go back to Order History" />
+          </a>
         </Link>
       )}
       <div className="order-details__header">

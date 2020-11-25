@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useIntl } from "react-intl";
 import Media from "react-responsive";
 import { commonMessages } from "@temp/intl";
@@ -19,8 +19,9 @@ import {
 import { Breadcrumbs, Loader } from "../../components";
 
 import "./scss/index.scss";
+import { Redirect } from "@components/atoms";
 
-const returnTab: any = (path: string, userDetails, history) => {
+const returnTab: any = (path: string, userDetails) => {
   let tabContent = <></>;
   switch (path) {
     case accountUrl: {
@@ -32,7 +33,7 @@ const returnTab: any = (path: string, userDetails, history) => {
       break;
     }
     case orderHistoryUrl: {
-      tabContent = <OrdersHistory {...{ history }} />;
+      tabContent = <OrdersHistory />;
       break;
     }
     default:
@@ -45,17 +46,13 @@ const returnTab: any = (path: string, userDetails, history) => {
 const Account: NextPage = () => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
-  const { push, asPath } = useRouter();
+  const { asPath, pathname } = useRouter();
   const links = [accountUrl, orderHistoryUrl, addressBookUrl];
 
-  useEffect(() => {
-    !user && push(baseUrl);
-  }, []);
-
-  if (!loaded) {
-    return <Loader />;
+  if (!user) {
+    return <Redirect url={baseUrl} />;
   }
-  return (
+  return loaded ? (
     <div className="container">
       <Breadcrumbs
         breadcrumbs={[
@@ -68,19 +65,21 @@ const Account: NextPage = () => {
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
-            <AccountMenu links={links} active={asPath} />
+            <AccountMenu links={links} active={pathname} />
           </div>
         </Media>
         <Media maxWidth={smallScreen - 1}>
           <div className="account__menu_mobile">
-            <AccountMenuMobile links={links} active={asPath} />
+            <AccountMenuMobile links={links} active={pathname} />
           </div>
         </Media>
         <div className="account__content">
-          {user && returnTab(asPath, user, history)}
+          {user && returnTab(pathname, user)}
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 };
 

@@ -51,4 +51,4 @@ export type {
 export { default as Select } from "./Select";
 export { default as Error } from "./Error";
 export { default as NotificationTemplate } from "./NotificationTemplate";
-export * from "./QueryParamProvider";
+export * from "./NextQueryParamProvider";

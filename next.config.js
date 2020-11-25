@@ -8,7 +8,8 @@ module.exports = withPlugins(
   [[optimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }]],
   {
     env: {
-      API_URI: "http://localhost:8000/graphql/",
+      // API_URI: "http://localhost:8000/graphql/",
+      API_URI: "https://demo.saleor.io/graphql/",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",
@@ -27,6 +28,15 @@ module.exports = withPlugins(
       };
 
       config.module.rules = [
+        !isServer && {
+          exclude: /node_modules/,
+          loader: "ts-loader",
+          options: {
+            experimentalWatchApi: true,
+            transpileOnly: true,
+          },
+          test: /\.(ts|tsx)$/,
+        },
         ...config.module.rules,
         {
           test: /\.svg$/,
@@ -52,7 +62,7 @@ module.exports = withPlugins(
             "sass-loader",
           ],
         },
-      ];
+      ].filter(Boolean);
 
       config.plugins = [
         ...config.plugins,
@@ -60,11 +70,12 @@ module.exports = withPlugins(
           filename: "[name].css",
           chunkFilename: "[id].css",
         }),
-        new ForkTsCheckerWebpackPlugin({
-          eslint: true,
-          exclude: "node_modules",
-        }),
-      ];
+        !isServer &&
+          new ForkTsCheckerWebpackPlugin({
+            eslint: { mode: "write-references" },
+            exclude: "node_modules",
+          }),
+      ].filter(Boolean);
 
       return config;
     },

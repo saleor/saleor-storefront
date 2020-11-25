@@ -1,10 +1,8 @@
 import { storiesOf } from "@storybook/react";
-import { createBrowserHistory } from "history";
 import React from "react";
 import { IntlProvider } from "react-intl";
 import { OrderTabel } from ".";
 
-const history = createBrowserHistory();
 const ORDERS = [
   {
     node: {
@@ -46,7 +44,6 @@ const ORDERS = [
       lines: [
         {
           id: "T3JkZXJMaW5lOjE3NQ==",
-
           thumbnail: {
             alt: "",
             url: "https://dummyimage.com/600x400/000/fff",
@@ -83,7 +80,7 @@ storiesOf("@components/molecules/OrderTabel", module)
     Number.prototype.toLocaleString = () => "";
     return (
       <IntlProvider locale="en">
-        <OrderTabel history={history} orders={ORDERS} />
+        <OrderTabel orders={ORDERS} />
       </IntlProvider>
     );
   });

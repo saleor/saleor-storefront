@@ -3,12 +3,13 @@ import "./scss/index.scss";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
+import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
-import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   Button,
   Offline,

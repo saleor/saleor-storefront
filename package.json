@@ -199,6 +199,7 @@
   "scripts": {
     "test": "jest --runInBand --config .jest/config.json",
     "start": "next dev --port 3000",
+    "build:dev": "next build && next start",
     "start:worker": "npm run start -- --service-worker",
     "build": "webpack -p",
     "watch": "webpack -d --watch",

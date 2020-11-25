@@ -1,2 +1,2 @@
-export { FormError } from "./form";
-export { AddressInterface } from "./address";
+export type { FormError } from "./form";
+export type { AddressInterface } from "./address";

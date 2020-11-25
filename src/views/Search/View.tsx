@@ -11,7 +11,6 @@ import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  getGraphqlIdFromDBId,
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
@@ -59,8 +58,6 @@ export const View: NextPage = () => {
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
-    // TODO: Should be here? There is no path matching it
-    // id: getGraphqlIdFromDBId(match.params.id, "Category"),
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
   };

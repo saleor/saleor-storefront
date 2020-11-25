@@ -1,31 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useIntl } from "react-intl";
-import { NextPage } from "next";
-import { useRouter } from "next/router";
+import { useLocation, useHistory } from "react-router-dom";
 
-import { Loader, Redirect } from "@components/atoms";
+import { Button, Loader, Redirect } from "@components/atoms";
+import { CheckoutProgressBar } from "@components/molecules";
 import {
+  CartSummary,
   PaymentGatewaysList,
   translateAdyenConfirmationError,
   adyenNotNegativeConfirmationStatusCodes,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
-
-import { ICardData, IFormError } from "@types";
+import { checkoutMessages } from "@temp/intl";
+import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
+import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
-import { cartUrl, checkoutUrl, orderFinalizedUrl } from "@temp/app/routes";
 
-import {
-  getCheckoutProgress,
-  getStepButton,
-  getStepLink,
-  isStepCorrect,
-  prepareCartSummary,
-} from "@app/pages/CheckoutPage/utils";
-import { useCheckoutStepFromPath, useCheckoutStepState } from "@hooks";
-import { checkIfShippingRequiredForProducts } from "@utils/core";
+import { cartUrl } from "@temp/app/routes";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -37,13 +31,77 @@ import {
   ICheckoutReviewSubpageHandles,
   ICheckoutShippingSubpageHandles,
 } from "./subpages";
+import { IProps } from "./types";
 
-// FIXME:
-// Does nextjs have history state?
-const CheckoutPage: NextPage = () => {
-  // const location = useLocation();
-  // const history = useHistory();
-  const { asPath, pathname, push, query: querystring } = useRouter();
+const prepareCartSummary = (
+  totalPrice?: ITaxedMoney | null,
+  subtotalPrice?: ITaxedMoney | null,
+  shippingTaxedPrice?: ITaxedMoney | null,
+  promoTaxedPrice?: ITaxedMoney | null,
+  items?: IItems
+) => {
+  const products = items?.map(({ id, variant, totalPrice, quantity }) => ({
+    id: id || "",
+    name: variant.name || "",
+    price: {
+      gross: {
+        amount: totalPrice?.gross.amount || 0,
+        currency: totalPrice?.gross.currency || "",
+      },
+      net: {
+        amount: totalPrice?.net.amount || 0,
+        currency: totalPrice?.net.currency || "",
+      },
+    },
+    quantity,
+    sku: variant.sku || "",
+    thumbnail: {
+      alt: variant.product?.thumbnail?.alt || undefined,
+      url: variant.product?.thumbnail?.url,
+      url2x: variant.product?.thumbnail2x?.url,
+    },
+  }));
+
+  return (
+    <CartSummary
+      shipping={shippingTaxedPrice}
+      subtotal={subtotalPrice}
+      promoCode={promoTaxedPrice}
+      total={totalPrice}
+      products={products}
+    />
+  );
+};
+
+const getCheckoutProgress = (
+  loaded: boolean,
+  activeStepIndex: number,
+  steps: ICheckoutStep[]
+) => {
+  return loaded ? (
+    <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
+  ) : null;
+};
+
+const getButton = (text?: string, onClick?: () => void) => {
+  if (text) {
+    return (
+      <Button
+        testingContext="checkoutPageNextStepButton"
+        onClick={onClick}
+        type="submit"
+      >
+        {text}
+      </Button>
+    );
+  }
+  return null;
+};
+
+const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
+  const location = useLocation();
+  const history = useHistory();
+  const querystring = parseQueryString(location);
   const {
     loaded: cartLoaded,
     shippingPrice,
@@ -61,16 +119,6 @@ const CheckoutPage: NextPage = () => {
     completeCheckout,
   } = useCheckout();
   const intl = useIntl();
-  const { recommendedStep, maxPossibleStep } = useCheckoutStepState(
-    items,
-    checkout,
-    payment,
-    totalPrice
-  );
-  const stepFromPath = useCheckoutStepFromPath(pathname);
-  const isShippingRequiredForProducts = checkIfShippingRequiredForProducts(
-    items
-  );
 
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect url={cartUrl} />;
@@ -97,6 +145,12 @@ const CheckoutPage: NextPage = () => {
     setSelectedPaymentGatewayToken(payment?.token);
   }, [payment?.token]);
 
+  const isShippingRequiredForProducts =
+    items &&
+    items.some(
+      ({ variant }) => variant.product?.productType.isShippingRequired
+    );
+
   const stepsWithViews = CHECKOUT_STEPS.filter(
     ({ withoutOwnView }) => !withoutOwnView
   );
@@ -106,10 +160,14 @@ const CheckoutPage: NextPage = () => {
         ({ onlyIfShippingRequired }) => !onlyIfShippingRequired
       );
   const getActiveStepIndex = () => {
-    const matchingStepIndex = steps.findIndex(({ link }) => link === pathname);
+    const matchingStepIndex = steps.findIndex(
+      ({ link }) => link === location.pathname
+    );
     return matchingStepIndex !== -1 ? matchingStepIndex : steps.length - 1;
   };
-  const getActiveStep = () => steps[getActiveStepIndex()];
+  const getActiveStep = () => {
+    return steps[getActiveStepIndex()];
+  };
 
   const checkoutAddressSubpageRef = useRef<ICheckoutAddressSubpageHandles>(
     null
@@ -157,13 +215,12 @@ const CheckoutPage: NextPage = () => {
   ) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
-      // TODO: How to handle push state?
-      push({
-        pathname: orderFinalizedUrl,
-        // state: data,
+      history.push({
+        pathname: "/order-finalized",
+        state: data,
       });
     } else {
-      push(steps[activeStepIndex + 1].link);
+      history.push(steps[activeStepIndex + 1].link);
     }
   };
 
@@ -285,7 +342,7 @@ const CheckoutPage: NextPage = () => {
       step => step.step === CheckoutStep.Payment
     )?.link;
     if (paymentStepLink) {
-      push(paymentStepLink);
+      history.push(paymentStepLink);
     }
   };
 
@@ -306,6 +363,22 @@ const CheckoutPage: NextPage = () => {
   );
 
   const activeStep = getActiveStep();
+  let buttonText = activeStep.nextActionName;
+  /* eslint-disable default-case */
+  switch (activeStep.nextActionName) {
+    case "Continue to Shipping":
+      buttonText = intl.formatMessage(checkoutMessages.addressNextActionName);
+      break;
+    case "Continue to Payment":
+      buttonText = intl.formatMessage(checkoutMessages.shippingNextActionName);
+      break;
+    case "Continue to Review":
+      buttonText = intl.formatMessage(checkoutMessages.paymentNextActionName);
+      break;
+    case "Place order":
+      buttonText = intl.formatMessage(checkoutMessages.reviewNextActionName);
+      break;
+  }
 
   useEffect(() => {
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(
@@ -314,12 +387,12 @@ const CheckoutPage: NextPage = () => {
     if (
       !submitInProgress &&
       checkout &&
-      pathname === paymentConfirmStepLink &&
+      location.pathname === paymentConfirmStepLink &&
       !paymentConfirmation
     ) {
       handlePaymentConfirm();
     }
-  }, [asPath, submitInProgress, checkout]);
+  }, [location.pathname, querystring, submitInProgress, checkout]);
 
   const handlePaymentConfirm = async () => {
     /**
@@ -330,7 +403,7 @@ const CheckoutPage: NextPage = () => {
         step => step.step === CheckoutStep.Payment
       )?.link;
       if (paymentStepLink) {
-        push(paymentStepLink);
+        history.push(paymentStepLink);
       }
     }
 
@@ -355,7 +428,7 @@ const CheckoutPage: NextPage = () => {
           step => step.step === CheckoutStep.Payment
         )?.link;
         if (paymentStepLink) {
-          push(paymentStepLink);
+          history.push(paymentStepLink);
         }
       } else {
         setPaymentGatewayErrors([]);
@@ -378,7 +451,7 @@ const CheckoutPage: NextPage = () => {
         step => step.step === CheckoutStep.Payment
       )?.link;
       if (paymentStepLink) {
-        push(paymentStepLink);
+        history.push(paymentStepLink);
         setSubmitInProgress(false);
         setPaymentConfirmation(false);
       }
@@ -386,21 +459,6 @@ const CheckoutPage: NextPage = () => {
   };
 
   const activeStepIndex = getActiveStepIndex();
-  console.log(activeStep, activeStepIndex);
-
-  if (pathname === checkoutUrl) {
-    return <Redirect url={getStepLink(recommendedStep)} />;
-  }
-  if (
-    isStepCorrect(
-      pathname,
-      stepFromPath,
-      maxPossibleStep,
-      isShippingRequiredForProducts
-    )
-  ) {
-    return <Redirect url={getStepLink()} />;
-  }
 
   return (
     <Checkout
@@ -420,11 +478,7 @@ const CheckoutPage: NextPage = () => {
       checkout={checkoutView}
       paymentGateways={paymentGatewaysView}
       hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
-      button={getStepButton(
-        intl,
-        activeStep.nextActionName,
-        handleNextStepClick
-      )}
+      button={getButton(buttonText?.toUpperCase(), handleNextStepClick)}
     />
   );
 };

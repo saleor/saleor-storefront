@@ -6,14 +6,13 @@ import { Button, Loader } from "@components/atoms";
 import { OrderTabel } from "@components/molecules";
 
 import * as S from "./styles";
-import { IProps } from "./types";
 
-const ORDERS_PER_APICALL = 5;
+const ORDERS_PER_API_CALL = 5;
 
-export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
+export const OrdersHistory: React.FC = () => {
   const { data, loading, loadMore } = useOrdersByUser(
     {
-      perPage: ORDERS_PER_APICALL,
+      perPage: ORDERS_PER_API_CALL,
     },
     {
       fetchPolicy: "network-only",
@@ -24,7 +23,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
     <Loader />
   ) : (
     <>
-      <OrderTabel orders={data?.edges} history={history} />
+      <OrderTabel orders={data?.edges} />
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
@@ -32,7 +31,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
             onClick={() => {
               loadMore({
                 after: data!.pageInfo.endCursor,
-                perPage: ORDERS_PER_APICALL,
+                perPage: ORDERS_PER_API_CALL,
               });
             }}
           >

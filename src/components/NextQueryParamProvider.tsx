@@ -3,11 +3,13 @@ import { useRouter } from "next/router";
 import { QueryParamProvider as ContextProvider } from "use-query-params";
 import { ssrMode } from "@temp/constants";
 
-interface QueryParamProviderProps {
+interface NextQueryParamProviderProps {
   children?: React.ReactNode;
 }
 
-export const QueryParamProviderComponent = (props: QueryParamProviderProps) => {
+export const NextQueryParamProviderComponent = (
+  props: NextQueryParamProviderProps
+) => {
   const { children, ...rest } = props;
 
   const router = useRouter();
@@ -49,4 +51,4 @@ export const QueryParamProviderComponent = (props: QueryParamProviderProps) => {
   );
 };
 
-export const QueryParamProvider = memo(QueryParamProviderComponent);
+export const NextQueryParamProvider = memo(NextQueryParamProviderComponent);

@@ -2,10 +2,12 @@ import React from "react";
 import { FormattedMessage, FormattedDate, useIntl } from "react-intl";
 import Media from "react-media";
 import { ThemeContext } from "styled-components";
+import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
 
+import { guestOrderDetailsUrl } from "@temp/app/routes";
 import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -36,7 +38,7 @@ const header = (matches: boolean) => (
   </S.HeaderRow>
 );
 
-export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
+export const OrderTabel: React.FC<IProps> = ({ orders }: IProps) => {
   const theme = React.useContext(ThemeContext);
   const intl = useIntl();
   return (
@@ -54,52 +56,53 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                 orders.map(order => {
                   const date = new Date(order.node.created);
                   return (
-                    <S.Row
-                      data-test="orderEntry"
-                      data-test-id={order.node.number}
-                      key={order.node.number}
-                      onClick={evt => {
-                        evt.stopPropagation();
-                        history.push(`/order-history/${order.node.token}`);
+                    <Link
+                      href={{
+                        pathname: guestOrderDetailsUrl,
+                        query: { token: order.node.token },
                       }}
+                      key={order.node.number}
                     >
-                      <S.IndexNumber>{order.node.number}</S.IndexNumber>
-                      {matches ? (
-                        <>
-                          <S.ProductsOrdered>
-                            {order.node.lines
-                              .slice(0, 5)
-                              .map((product: any) => (
-                                <span
-                                  key={product.variant.product.id}
-                                  onClick={evt => {
-                                    evt.stopPropagation();
-                                    history.push(
-                                      generateProductUrl(
-                                        product.variant.product.id,
-                                        product.variant.product.name
-                                      )
-                                    );
-                                  }}
-                                >
-                                  <Thumbnail source={product} />
-                                </span>
-                              ))}
-                          </S.ProductsOrdered>
-                          <S.DateOfOrder>
-                            <FormattedDate value={date} />
-                          </S.DateOfOrder>
-                          <S.Value>
-                            <TaxedMoney taxedMoney={order.node.total} />
-                          </S.Value>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                      <S.Status>
-                        {translateOrderStatus(order.node.statusDisplay, intl)}
-                      </S.Status>
-                    </S.Row>
+                      <S.Row
+                        data-test="orderEntry"
+                        data-test-id={order.node.number}
+                        key={order.node.number}
+                      >
+                        <S.IndexNumber>{order.node.number}</S.IndexNumber>
+                        {matches ? (
+                          <>
+                            <S.ProductsOrdered>
+                              {order.node.lines
+                                .slice(0, 5)
+                                .map((product: any) => (
+                                  <Link
+                                    href={generateProductUrl(
+                                      product.variant.product.id,
+                                      product.variant.product.name
+                                    )}
+                                    key={product.variant.product.id}
+                                  >
+                                    <a>
+                                      <Thumbnail source={product} />
+                                    </a>
+                                  </Link>
+                                ))}
+                            </S.ProductsOrdered>
+                            <S.DateOfOrder>
+                              <FormattedDate value={date} />
+                            </S.DateOfOrder>
+                            <S.Value>
+                              <TaxedMoney taxedMoney={order.node.total} />
+                            </S.Value>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                        <S.Status>
+                          {translateOrderStatus(order.node.statusDisplay, intl)}
+                        </S.Status>
+                      </S.Row>
+                    </Link>
                   );
                 })}
             </>
