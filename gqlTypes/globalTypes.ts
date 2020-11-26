@@ -268,11 +268,14 @@ export enum OrderDirection {
 }
 
 export enum ProductOrderField {
+  COLLECTION = "COLLECTION",
   DATE = "DATE",
   MINIMAL_PRICE = "MINIMAL_PRICE",
   NAME = "NAME",
   PRICE = "PRICE",
+  PUBLICATION_DATE = "PUBLICATION_DATE",
   PUBLISHED = "PUBLISHED",
+  RATING = "RATING",
   TYPE = "TYPE",
 }
 
@@ -284,6 +287,7 @@ export interface AttributeInput {
 
 export interface ProductOrder {
   direction: OrderDirection;
+  channel?: string | null;
   attributeId?: string | null;
   field?: ProductOrderField | null;
 }

@@ -3,10 +3,10 @@ import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { Thumbnail } from "..";
+// import { Thumbnail } from "..";
 
 import { OrderTabel } from ".";
-import * as S from "./styles";
+// import * as S from "./styles";
 
 const ORDERS = [
   {

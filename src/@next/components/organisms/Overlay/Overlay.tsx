@@ -26,7 +26,9 @@ export const Overlay: React.FC<IProps> = ({
   };
 
   useEffect(() => {
-    target && setPortalTarget(target);
+    if (target) {
+      setPortalTarget(target);
+    }
   }, [target]);
 
   return (

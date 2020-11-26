@@ -4,16 +4,15 @@ import { TypedQuery } from "../../core/queries";
 import { ProductsList } from "./gqlTypes/ProductsList";
 
 export const homePageQuery = gql`
-  query ProductsList {
+  query ProductsList($channel: String) {
     shop {
       description
       name
-      homepageCollection {
-        id
-        backgroundImage {
-          url
-        }
-        name
+    }
+    collection(slug: "featured-products", channel: $channel) {
+      backgroundImage {
+        url
+        alt
       }
     }
     categories(level: 0, first: 4) {

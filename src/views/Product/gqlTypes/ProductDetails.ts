@@ -730,6 +730,9 @@ export interface ProductDetails_product {
    * Whether the product is available for purchase.
    */
   isAvailableForPurchase: boolean | null;
+  /**
+   * Date when product is available for purchase. 
+   */
   availableForPurchase: any | null;
 }
 
@@ -742,5 +745,6 @@ export interface ProductDetails {
 
 export interface ProductDetailsVariables {
   id: string;
+  channel?: string | null;
   countryCode?: CountryCode | null;
 }

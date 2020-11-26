@@ -10,7 +10,7 @@ import { generateCategoryUrl } from "../../core/utils";
 import {
   ProductsList_categories,
   ProductsList_shop,
-  ProductsList_shop_homepageCollection_backgroundImage,
+  ProductsList_collection_backgroundImage,
 } from "./gqlTypes/ProductsList";
 
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
@@ -20,7 +20,7 @@ import noPhotoImg from "../../images/no-photo.svg";
 const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
-  backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
+  backgroundImage: ProductsList_collection_backgroundImage;
   shop: ProductsList_shop;
 }> = ({ loading, categories, backgroundImage, shop }) => {
   const categoriesExist = () => {

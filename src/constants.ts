@@ -6,3 +6,4 @@ export const serviceWorkerTimeout =
   parseInt(process.env.SERVICE_WORKER_TIMEOUT, 10) || 60 * 1000;
 export const demoMode = process.env.DEMO_MODE === "true";
 export const ssrMode = typeof window === "undefined";
+export const channelSlug = process.env.SALEOR_CHANNEL_SLUG;

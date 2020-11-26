@@ -2,44 +2,63 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
+import { ITaxedMoney } from "@types";
+import { TaxedMoney } from "@components/containers";
 import * as S from "./styles";
-import { IProps } from "./types";
+
+export interface CartFooterProps {
+  subtotalPrice?: ITaxedMoney | null;
+  shippingPrice?: ITaxedMoney | null;
+  discountPrice?: ITaxedMoney | null;
+  totalPrice?: ITaxedMoney | null;
+}
 
 /**
  * Cart footer to use with conjunction of cart rows
  */
-const CartFooter: React.FC<IProps> = ({
+const CartFooter: React.FC<CartFooterProps> = ({
   subtotalPrice,
   shippingPrice,
   discountPrice,
   totalPrice,
-}: IProps) => {
+}: CartFooterProps) => {
+  const isShipping = !!shippingPrice?.gross && shippingPrice.gross.amount !== 0;
+  const isDiscount = !!discountPrice?.gross && discountPrice.gross.amount !== 0;
+
   return (
-    <S.Wrapper showShipping={!!shippingPrice} showDiscount={!!discountPrice}>
+    <S.Wrapper showShipping={isShipping} showDiscount={isDiscount}>
       <S.SubtotalText>
         <FormattedMessage {...commonMessages.subtotal} />
       </S.SubtotalText>
-      <S.SubtotalPrice>{subtotalPrice}</S.SubtotalPrice>
-      {shippingPrice && (
+      <S.SubtotalPrice>
+        <TaxedMoney data-test="subtotalPrice" taxedMoney={subtotalPrice} />
+      </S.SubtotalPrice>
+      {isShipping && (
         <>
           <S.ShippingText>
             <FormattedMessage {...commonMessages.shipping} />
           </S.ShippingText>
-          <S.ShippingPrice>{shippingPrice}</S.ShippingPrice>
+          <S.ShippingPrice>
+            <TaxedMoney data-test="shippingPrice" taxedMoney={shippingPrice} />
+          </S.ShippingPrice>
         </>
       )}
-      {discountPrice && (
+      {isDiscount && (
         <>
           <S.DiscountText>
             <FormattedMessage {...commonMessages.promoCode} />
           </S.DiscountText>
-          <S.DiscountPrice>{discountPrice}</S.DiscountPrice>
+          <S.DiscountPrice>
+            <TaxedMoney data-test="discountPrice" taxedMoney={discountPrice} />
+          </S.DiscountPrice>
         </>
       )}
       <S.TotalText>
         <FormattedMessage {...commonMessages.total} />
       </S.TotalText>
-      <S.TotalPrice>{totalPrice}</S.TotalPrice>
+      <S.TotalPrice>
+        <TaxedMoney data-test="totalPrice" taxedMoney={totalPrice} />
+      </S.TotalPrice>
     </S.Wrapper>
   );
 };

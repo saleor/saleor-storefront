@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart } from "@saleor/sdk";
-
 import Media from "react-media";
 import Link from "next/link";
+import classNames from "classnames";
 import ReactSVG from "react-svg";
 
 import { DemoBanner } from "@components/atoms";
-import classNames from "classnames";
 import { BASE_URL } from "@temp/core/config";
+import { channelSlug } from "@temp/constants";
 import {
   MenuDropdown,
   Offline,
@@ -85,9 +85,16 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
       {demoMode && <DemoBanner />}
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
-          <TypedMainMenuQuery renderOnError displayLoader={false}>
+          <TypedMainMenuQuery
+            renderOnError
+            displayLoader={false}
+            variables={{
+              channel: channelSlug,
+              slug: "navbar",
+            }}
+          >
             {({ data }) => {
-              const items = maybe(() => data.shop.navigation.main.items, []);
+              const items = maybe(() => data.menu.items, []);
 
               return (
                 <ul>

@@ -177,6 +177,10 @@ npm run generate
     - Check to see that "Less secure app access" is turned ON. Under "Manage your Google Account" > Go to the security tab. By default, the setting is off for security reasons.
     - If using 2FA make sure to set an [app password](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637355441414497566-1310044707&rd=1) and use that in place of your normal login password.
 
+### Multichannel
+
+- **Set [SALEOR_CHANNEL_SLUG] environment variable.** - Default value: `default-channel`.
+
 ## License
 
 This project is licensed under the BSD-3-Clause License - see the [LICENSE](https://github.com/mirumee/saleor-storefront/blob/master/LICENSE) file for details

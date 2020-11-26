@@ -19,6 +19,7 @@ import { App } from "./app";
 import { LocaleProvider } from "./components/Locale";
 import {
   apiUrl,
+  channelSlug,
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
@@ -27,6 +28,7 @@ import { history } from "./history";
 
 const SALEOR_CONFIG: ConfigInput = {
   apiUrl,
+  channel: channelSlug,
 };
 
 if (process.env.GTM_ID !== undefined) {

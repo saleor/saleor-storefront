@@ -9,7 +9,9 @@ module.exports = withPlugins(
   {
     env: {
       // API_URI: "http://localhost:8000/graphql/",
-      API_URI: "https://demo.saleor.io/graphql/",
+      // API_URI: "https://demo.saleor.io/graphql/",
+      API_URI: "https://master.staging.saleor.rocks/graphql/",
+      SALEOR_CHANNEL_SLUG: "default-channel",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",
@@ -72,8 +74,11 @@ module.exports = withPlugins(
         }),
         !isServer &&
           new ForkTsCheckerWebpackPlugin({
-            eslint: { mode: "write-references" },
-            exclude: "node_modules",
+            typescript: true,
+            eslint: {
+              files: "./src/**/*.{ts,tsx}",
+              exclude: "node_modules",
+            },
           }),
       ].filter(Boolean);
 

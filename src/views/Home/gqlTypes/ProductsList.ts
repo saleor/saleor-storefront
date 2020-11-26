@@ -6,24 +6,6 @@
 // GraphQL query operation: ProductsList
 // ====================================================
 
-export interface ProductsList_shop_homepageCollection_backgroundImage {
-  __typename: "Image";
-  /**
-   * The URL of the image.
-   */
-  url: string;
-}
-
-export interface ProductsList_shop_homepageCollection {
-  __typename: "Collection";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  backgroundImage: ProductsList_shop_homepageCollection_backgroundImage | null;
-  name: string;
-}
-
 export interface ProductsList_shop {
   __typename: "Shop";
   /**
@@ -34,10 +16,23 @@ export interface ProductsList_shop {
    * Shop's name.
    */
   name: string;
+}
+
+export interface ProductsList_collection_backgroundImage {
+  __typename: "Image";
   /**
-   * Collection displayed on homepage.
+   * The URL of the image.
    */
-  homepageCollection: ProductsList_shop_homepageCollection | null;
+  url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
+}
+
+export interface ProductsList_collection {
+  __typename: "Collection";
+  backgroundImage: ProductsList_collection_backgroundImage | null;
 }
 
 export interface ProductsList_categories_edges_node_backgroundImage {
@@ -77,7 +72,15 @@ export interface ProductsList {
    */
   shop: ProductsList_shop;
   /**
+   * Look up a collection by ID.
+   */
+  collection: ProductsList_collection | null;
+  /**
    * List of the shop's categories.
    */
   categories: ProductsList_categories | null;
+}
+
+export interface ProductsListVariables {
+  channel?: string | null;
 }

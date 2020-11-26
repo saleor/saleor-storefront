@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 import { NextRouter, withRouter } from "next/router";
 import classNames from "classnames";
+import { channelSlug } from "@temp/constants";
 import { stringify } from "query-string";
 import * as React from "react";
 import {
@@ -12,10 +13,10 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
+import { OfflinePlaceholder } from "@components/atoms";
 import {
   Button,
   Loader,
-  OfflinePlaceholder,
   Overlay,
   OverlayContextInterface,
   OverlayType,
@@ -131,7 +132,10 @@ class Search extends React.Component<SearchProps, SearchState> {
                       renderOnError
                       displayError={false}
                       errorPolicy="all"
-                      variables={{ query: this.state.search }}
+                      variables={{
+                        channel: channelSlug,
+                        query: this.state.search,
+                      }}
                     >
                       {({ data, error, loading }) => {
                         if (this.hasResults(data)) {

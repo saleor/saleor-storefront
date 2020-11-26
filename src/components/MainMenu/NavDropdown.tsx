@@ -4,13 +4,13 @@ import classNames from "classnames";
 import * as React from "react";
 
 import { NavLink, OverlayContextInterface } from "..";
-import { MainMenu_shop_navigation_main_items } from "./gqlTypes/MainMenu";
+import { MainMenu_menu_items } from "./gqlTypes/MainMenu";
 import NavItem from "./NavItem";
 
 import "./scss/index.scss";
 
 class NavDropdown extends React.PureComponent<
-  MainMenu_shop_navigation_main_items & {
+  MainMenu_menu_items & {
     overlay: OverlayContextInterface;
     showDropdown: boolean;
     onShowDropdown: () => void;

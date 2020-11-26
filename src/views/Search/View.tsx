@@ -5,7 +5,10 @@ import { NextPage } from "next";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
-import { NotFound, OfflinePlaceholder } from "../../components";
+import { OfflinePlaceholder } from "@components/atoms";
+import { channelSlug } from "@temp/constants";
+
+import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
@@ -58,6 +61,7 @@ export const View: NextPage = () => {
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
+    channel: channelSlug,
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
   };

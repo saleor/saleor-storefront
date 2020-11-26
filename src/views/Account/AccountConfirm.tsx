@@ -4,10 +4,10 @@ import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
 import { useRouter } from "next/router";
 
+import { BASE_URL } from "@temp/core/config";
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
-import { BASE_URL } from "@temp/core/config";
 
 const AccountConfirm: NextPage = () => {
   const [query] = useQueryParams({

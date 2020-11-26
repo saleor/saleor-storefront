@@ -1,15 +1,16 @@
 import "./scss/index.scss";
 
 import { useCart } from "@saleor/sdk";
+import { channelSlug } from "@temp/constants";
 import { isEmpty } from "lodash";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
-
-import { Loader } from "@components/atoms";
 import { useRouter } from "next/router";
 
-import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { MetaWrapper, NotFound } from "../../components";
+
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
@@ -116,6 +117,7 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
     <TypedProductDetailsQuery
       loaderFull
       variables={{
+        channel: channelSlug,
         id: getGraphqlIdFromDBId(id, "Product"),
       }}
       errorPolicy="all"

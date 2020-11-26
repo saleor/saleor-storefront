@@ -4,10 +4,10 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
+import { OfflinePlaceholder } from "@components/atoms";
 import {
   LoginForm,
   Offline,
-  OfflinePlaceholder,
   Online,
   Overlay,
   OverlayContextInterface,

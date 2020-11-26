@@ -293,6 +293,7 @@ export interface CategoryProducts {
 
 export interface CategoryProductsVariables {
   id: string;
+  channel?: string | null;
   attributes?: (AttributeInput | null)[] | null;
   after?: string | null;
   pageSize?: number | null;

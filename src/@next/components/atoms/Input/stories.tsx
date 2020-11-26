@@ -1,4 +1,3 @@
-import { text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -10,7 +9,7 @@ storiesOf("@components/atoms/Input", module)
   .add("with value", () => (
     <Input
       label="Text goes here"
-      value={text("value", "Example text")}
+      value="Example text"
       contentRight={<div>Content right</div>}
     />
   ))

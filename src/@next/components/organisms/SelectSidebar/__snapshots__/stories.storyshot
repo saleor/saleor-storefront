@@ -6,7 +6,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   margin: 20px;
 }
 
-.c13 {
+.c14 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   box-sizing: border-box;
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -42,20 +42,20 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   transition: 0.3s;
 }
 
-.c6 svg {
+.c7 svg {
   display: block;
 }
 
-.c6 svg path {
+.c7 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c6:hover {
+.c7:hover {
   background-color: rgb(33,18,94);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   fill: #fff;
 }
 
@@ -77,36 +77,24 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
 }
 
 .c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c6 {
   font-size: 1rem;
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
   padding-right: 0.6rem;
   margin: 0;
-}
-
-.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 1.1rem 1.875rem;
-  border-bottom: 1px solid #f1f5f5;
-  color: unset;
-}
-
-.c9:hover {
-  background-color: rgba(6,132,123,0.25);
-  color: #06a09e;
-  font-weight: 600;
 }
 
 .c10 {
@@ -124,7 +112,6 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   align-items: center;
   padding: 1.1rem 1.875rem;
   border-bottom: 1px solid #f1f5f5;
-  font-weight: 600;
   color: unset;
 }
 
@@ -134,7 +121,32 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   font-weight: 600;
 }
 
-.c12 {
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+  font-weight: 600;
+  color: unset;
+}
+
+.c11:hover {
+  background-color: rgba(6,132,123,0.25);
+  color: #06a09e;
+  font-weight: 600;
+}
+
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -215,7 +227,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -227,11 +239,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
   overflow: auto;
 }
 
-.c8 {
+.c9 {
   cursor: pointer;
 }
 
-.c11 {
+.c12 {
   cursor: default;
 }
 
@@ -255,16 +267,20 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
         <div
           className="c4"
         >
-          <h4
-            className="c5"
-            size="md"
-          >
-            <span>
-              PLEASE SELECT SIZE
-            </span>
-          </h4>
           <div
-            className="c6"
+            className="c5"
+          >
+            <h4
+              className="c6"
+              size="md"
+            >
+              <span>
+                PLEASE SELECT SIZE
+              </span>
+            </h4>
+          </div>
+          <div
+            className="c7"
             data-test="closeOverlayButton"
             onClick={[Function]}
           >
@@ -281,14 +297,14 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c8"
         >
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7"
               disabled={false}
@@ -299,11 +315,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c10"
+              className="c11"
               data-test="attributeOption"
               data-test-id="7 1/8"
               disabled={false}
@@ -324,11 +340,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 1/4"
               disabled={false}
@@ -339,11 +355,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 3/84"
               disabled={false}
@@ -354,11 +370,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c11"
+            className="c12"
             disabled={true}
           >
             <div
-              className="c12"
+              className="c13"
               data-test="attributeOption"
               data-test-id="7 1/2"
               disabled={true}
@@ -369,11 +385,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 5/8"
               disabled={false}
@@ -384,11 +400,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 3/4"
               disabled={false}
@@ -399,11 +415,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 7/8"
               disabled={false}
@@ -414,11 +430,11 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="8"
               disabled={false}
@@ -433,7 +449,7 @@ exports[`Storyshots @components/organisms/SelectSidebar default 1`] = `
     </div>
   </div>
   <div
-    className="c13"
+    className="c14"
   />
 </div>
 `;
@@ -444,7 +460,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   margin: 20px;
 }
 
-.c15 {
+.c16 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -455,7 +471,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   box-sizing: border-box;
 }
 
-.c14 {
+.c15 {
   font-size: 1rem;
   font-weight: 600;
   color: rgb(33,18,94);
@@ -474,11 +490,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   transition: color 0.3s ease;
 }
 
-.c14:hover {
+.c15:hover {
   color: #513CA3;
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -503,20 +519,20 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   transition: 0.3s;
 }
 
-.c6 svg {
+.c7 svg {
   display: block;
 }
 
-.c6 svg path {
+.c7 svg path {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.c6:hover {
+.c7:hover {
   background-color: rgb(33,18,94);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   fill: #fff;
 }
 
@@ -538,36 +554,24 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
 }
 
 .c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c6 {
   font-size: 1rem;
   font-weight: 600;
   color: #323232;
   text-transform: uppercase;
   padding-right: 0.6rem;
   margin: 0;
-}
-
-.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 1.1rem 1.875rem;
-  border-bottom: 1px solid #f1f5f5;
-  color: unset;
-}
-
-.c9:hover {
-  background-color: rgba(6,132,123,0.25);
-  color: #06a09e;
-  font-weight: 600;
 }
 
 .c10 {
@@ -585,7 +589,6 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   align-items: center;
   padding: 1.1rem 1.875rem;
   border-bottom: 1px solid #f1f5f5;
-  font-weight: 600;
   color: unset;
 }
 
@@ -595,7 +598,32 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   font-weight: 600;
 }
 
-.c12 {
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+  font-weight: 600;
+  color: unset;
+}
+
+.c11:hover {
+  background-color: rgba(6,132,123,0.25);
+  color: #06a09e;
+  font-weight: 600;
+}
+
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -676,7 +704,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -688,16 +716,16 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
   overflow: auto;
 }
 
-.c13 {
+.c14 {
   background-color: #f1f5f5;
   padding: 1.3rem 1.875rem 1rem 1.875rem;
 }
 
-.c8 {
+.c9 {
   cursor: pointer;
 }
 
-.c11 {
+.c12 {
   cursor: default;
 }
 
@@ -721,16 +749,20 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
         <div
           className="c4"
         >
-          <h4
-            className="c5"
-            size="md"
-          >
-            <span>
-              PLEASE SELECT SIZE
-            </span>
-          </h4>
           <div
-            className="c6"
+            className="c5"
+          >
+            <h4
+              className="c6"
+              size="md"
+            >
+              <span>
+                PLEASE SELECT SIZE
+              </span>
+            </h4>
+          </div>
+          <div
+            className="c7"
             data-test="closeOverlayButton"
             onClick={[Function]}
           >
@@ -747,14 +779,14 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           </div>
         </div>
         <div
-          className="c7"
+          className="c8"
         >
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7"
               disabled={false}
@@ -765,11 +797,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c10"
+              className="c11"
               data-test="attributeOption"
               data-test-id="7 1/8"
               disabled={false}
@@ -790,11 +822,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 1/4"
               disabled={false}
@@ -805,11 +837,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 3/84"
               disabled={false}
@@ -820,11 +852,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c11"
+            className="c12"
             disabled={true}
           >
             <div
-              className="c12"
+              className="c13"
               data-test="attributeOption"
               data-test-id="7 1/2"
               disabled={true}
@@ -835,11 +867,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 5/8"
               disabled={false}
@@ -850,11 +882,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 3/4"
               disabled={false}
@@ -865,11 +897,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="7 7/8"
               disabled={false}
@@ -880,11 +912,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
             </div>
           </div>
           <div
-            className="c8"
+            className="c9"
             disabled={false}
           >
             <div
-              className="c9"
+              className="c10"
               data-test="attributeOption"
               data-test-id="8"
               disabled={false}
@@ -896,11 +928,11 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
           </div>
         </div>
         <div
-          className="c13"
+          className="c14"
           onClick={[Function]}
         >
           <button
-            className="c14"
+            className="c15"
             color="secondary"
             data-test="footerActionButton"
             size="md"
@@ -912,7 +944,7 @@ exports[`Storyshots @components/organisms/SelectSidebar with footer 1`] = `
     </div>
   </div>
   <div
-    className="c15"
+    className="c16"
   />
 </div>
 `;

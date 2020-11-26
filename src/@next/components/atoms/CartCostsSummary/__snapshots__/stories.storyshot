@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/CartCostsSummary default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c6 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 100%;
+  display: grid;
+  font-size: 1.125rem;
+  grid-template-areas: "subtotalText subtotalPrice"   "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c2 {
+  grid-area: subtotalText;
+}
+
+.c3 {
+  grid-area: subtotalPrice;
+  text-align: right;
+}
+
+.c4 {
+  grid-area: totalText;
+  font-weight: bold;
+}
+
+.c5 {
+  grid-area: totalPrice;
+  font-weight: bold;
+  text-align: right;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Subtotal
+    </div>
+    <div
+      className="c3"
+    >
+      <span
+        data-test="subtotalPrice"
+      >
+        $150.00
+      </span>
+    </div>
+    <div
+      className="c4"
+    >
+      Total
+    </div>
+    <div
+      className="c5"
+    >
+      <span
+        data-test="totalPrice"
+      >
+        $180.00
+      </span>
+    </div>
+  </div>
+  <div
+    className="c6"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/molecules/CartCostsSummary full 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c10 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  width: 100%;
+  display: grid;
+  font-size: 1.125rem;
+  grid-template-areas: "subtotalText subtotalPrice" "shippingText shippingPrice" "discountText discountPrice" "totalText totalPrice";
+  grid-template-columns: 1.1fr 0.9fr;
+  grid-gap: 1.4rem;
+  padding: 0 0 1.4rem 0;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+}
+
+.c2 {
+  grid-area: subtotalText;
+}
+
+.c3 {
+  grid-area: subtotalPrice;
+  text-align: right;
+}
+
+.c4 {
+  grid-area: shippingText;
+}
+
+.c5 {
+  grid-area: shippingPrice;
+  text-align: right;
+}
+
+.c6 {
+  grid-area: discountText;
+}
+
+.c7 {
+  grid-area: discountPrice;
+  text-align: right;
+}
+
+.c8 {
+  grid-area: totalText;
+  font-weight: bold;
+}
+
+.c9 {
+  grid-area: totalPrice;
+  font-weight: bold;
+  text-align: right;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      Subtotal
+    </div>
+    <div
+      className="c3"
+    >
+      <span
+        data-test="subtotalPrice"
+      >
+        $150.00
+      </span>
+    </div>
+    <div
+      className="c4"
+    >
+      Shipping
+    </div>
+    <div
+      className="c5"
+    >
+      <span
+        data-test="shippingPrice"
+      >
+        $40.00
+      </span>
+    </div>
+    <div
+      className="c6"
+    >
+      Promo code
+    </div>
+    <div
+      className="c7"
+    >
+      <span
+        data-test="discountPrice"
+      >
+        $10.00
+      </span>
+    </div>
+    <div
+      className="c8"
+    >
+      Total
+    </div>
+    <div
+      className="c9"
+    >
+      <span
+        data-test="totalPrice"
+      >
+        $180.00
+      </span>
+    </div>
+  </div>
+  <div
+    className="c10"
+  />
+</div>
+`;

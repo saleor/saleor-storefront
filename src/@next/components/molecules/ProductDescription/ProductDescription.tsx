@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { RichTextContent } from "@components/atoms";
+import { RichTextEditorContent } from "@components/atoms";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -48,13 +48,14 @@ export const ProductDescription: React.FC<IProps> = ({
           <FormattedMessage defaultMessage="ATTRIBUTES" />
         </S.TabTitle>
       </S.Tabs>
-      {activeTab === TABS.DESCRIPTION &&
-        (descriptionJson ? (
-          <RichTextContent descriptionJson={descriptionJson} />
+      <div hidden={activeTab !== TABS.DESCRIPTION}>
+        {descriptionJson ? (
+          <RichTextEditorContent jsonData={descriptionJson} />
         ) : (
           <p>{description}</p>
-        ))}
-      {activeTab === TABS.ATTRIBUTES && (
+        )}
+      </div>
+      <div hidden={activeTab !== TABS.ATTRIBUTES}>
         <S.AttributeList>
           {attributes &&
             attributes.map((attribute, index) => (
@@ -64,7 +65,7 @@ export const ProductDescription: React.FC<IProps> = ({
               </li>
             ))}
         </S.AttributeList>
-      )}
+      </div>
     </S.Wrapper>
   );
 };

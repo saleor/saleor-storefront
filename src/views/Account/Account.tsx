@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
+import { Redirect } from "@components/atoms";
+
 import AddressBook from "../../account/AddressBook/AddressBook";
 import {
   accountUrl,
@@ -19,7 +21,6 @@ import {
 import { Breadcrumbs, Loader } from "../../components";
 
 import "./scss/index.scss";
-import { Redirect } from "@components/atoms";
 
 const returnTab: any = (path: string, userDetails) => {
   let tabContent = <></>;

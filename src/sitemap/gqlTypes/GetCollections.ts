@@ -54,4 +54,5 @@ export interface GetCollections {
 export interface GetCollectionsVariables {
   cursor?: string | null;
   perPage?: number | null;
+  channel?: string | null;
 }

@@ -338,6 +338,7 @@ export interface SearchProducts {
 
 export interface SearchProductsVariables {
   query: string;
+  channel: string;
   attributes?: (AttributeInput | null)[] | null;
   pageSize?: number | null;
   sortBy?: ProductOrder | null;
