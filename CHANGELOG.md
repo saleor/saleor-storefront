@@ -4,6 +4,7 @@ All notable, unreleased changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- Handle Order confirmation at Thank You page - #956 by @mmarkusik
 - Add EditorJS renderer - #947 by @krzysztofwolski
 - New cart sidebar - #907 by @orzechdev
 - Support for multichannel - #937 by @AlicjaSzu

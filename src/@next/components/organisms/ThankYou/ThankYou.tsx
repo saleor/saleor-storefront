@@ -5,9 +5,9 @@ import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
 import { checkoutMessages } from "@temp/intl";
 
+import { OrderStatus } from "@saleor/sdk";
 import * as S from "./styles";
 import { IProps } from "./types";
-import { OrderStatus } from "@saleor/sdk";
 
 export const messages = defineMessages({
   unfulfilled: {
