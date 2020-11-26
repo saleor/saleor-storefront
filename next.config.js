@@ -3,6 +3,8 @@ const optimizedImages = require("next-optimized-images");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { parsed: env } = require("dotenv").config();
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const path = require("path");
 
 module.exports = withPlugins(
   [[optimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }]],
@@ -37,7 +39,7 @@ module.exports = withPlugins(
             experimentalWatchApi: true,
             transpileOnly: true,
           },
-          test: /\.(ts|tsx)$/,
+          test: /\.tsx?$/,
         },
         ...config.module.rules,
         {
@@ -72,15 +74,35 @@ module.exports = withPlugins(
           filename: "[name].css",
           chunkFilename: "[id].css",
         }),
+
         !isServer &&
           new ForkTsCheckerWebpackPlugin({
-            typescript: true,
+            typescript: {
+              mode: "write-references",
+            },
             eslint: {
               files: "./src/**/*.{ts,tsx}",
               exclude: "node_modules",
             },
           }),
       ].filter(Boolean);
+
+      config.resolve = {
+        alias: {
+          ...config.resolve.alias,
+          // Explicitely set react's path here because npm-link doesn't do well
+          // when it comes to peer dependencies, and we need to somehow develop
+          // @saleor/sdk package
+          react: path.resolve("./node_modules/react"),
+          "react-dom": "@hot-loader/react-dom",
+        },
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        plugins: [
+          new TsconfigPathsPlugin({
+            configFile: "./tsconfig.json",
+          }),
+        ],
+      };
 
       return config;
     },
