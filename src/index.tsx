@@ -32,7 +32,7 @@ const SALEOR_CONFIG: ConfigInput = {
 };
 
 if (process.env.GTM_ID !== undefined) {
-  TagManager.initialize({ gtmId: process.env.GTM_ID });
+  TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_GTM_ID });
 }
 
 const startApp = async () => {

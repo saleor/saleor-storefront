@@ -75,18 +75,20 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
           <>
             <li className="side-nav__menu-item side-nav__menu-item--parent">
               <Link href={BASE_URL}>
-                <a className="side-nav__menu-item-logo" onClick={hideOverlay}>
-                  <ReactSVG path={logoImg} />
+                <a className="side-nav__menu-item-logo">
+                  <ReactSVG path={logoImg} onClick={hideOverlay} />
                 </a>
               </Link>
-              <span className="side-nav__menu-item-close" onClick={hideOverlay}>
+              <span className="side-nav__menu-item-close">
                 <span />
               </span>
             </li>
             <li className="side-nav__menu-item">
               <Link href={BASE_URL}>
-                <a className="side-nav__menu-item-link" onClick={hideOverlay}>
-                  <FormattedMessage {...commonMessages.home} />
+                <a className="side-nav__menu-item-link">
+                  <span onClick={hideOverlay}>
+                    <FormattedMessage {...commonMessages.home} />
+                  </span>
                 </a>
               </Link>
             </li>

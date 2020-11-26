@@ -12,6 +12,8 @@
 !.prettierrc
 !.prettierignore
 !.tx
+!.env.development
+!.env.production
 dist
 node_modules
 src/locales/_build

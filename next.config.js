@@ -2,25 +2,12 @@ const withPlugins = require("next-compose-plugins");
 const optimizedImages = require("next-optimized-images");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const { parsed: env } = require("dotenv").config();
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
 
 module.exports = withPlugins(
   [[optimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }]],
   {
-    env: {
-      // API_URI: "http://localhost:8000/graphql/",
-      // API_URI: "https://demo.saleor.io/graphql/",
-      API_URI: "https://master.staging.saleor.rocks/graphql/",
-      SALEOR_CHANNEL_SLUG: "default-channel",
-      DEMO_MODE: false,
-      GTM_ID: undefined,
-      SENTRY_APM: "0",
-      SENTRY_DSN: null,
-      ...env,
-    },
-
     trailingSlash: true,
 
     webpack: (config, { isServer }) => {
