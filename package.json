@@ -45,6 +45,7 @@
     "react": "^16.9.9",
     "react-addons-css-transition-group": "^15.6.2",
     "react-alert": "^5.5.0",
+    "react-cookie-consent": "^3.0.0",
     "react-apollo": "^2.5.1",
     "react-dom": "^16.9.0",
     "react-gtm-module": "^2.0.8",

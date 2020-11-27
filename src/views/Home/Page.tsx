@@ -70,7 +70,7 @@ const Page: React.FC<{
                 )}
               >
                 <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
+                  <FormattedMessage defaultMessage="Explore Now" />
                 </Button>
               </Link>
             )

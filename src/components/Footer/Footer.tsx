@@ -1,5 +1,7 @@
 import "./scss/index.scss";
 
+import CookieConsent from "react-cookie-consent";
+
 import * as React from "react";
 
 import { SocialMediaIcon } from "..";
@@ -14,6 +16,24 @@ const Footer: React.FC = () => (
       ))}
     </div>
     <Nav />
+    <CookieConsent
+      location="bottom"
+      buttonText="Accept"
+      cookieName="myAwesomeCookieName25"
+      style={{ background: "#fafafa", textAlign: "center" }}
+      contentStyle={{ margin: "10px" }}
+      expires={30}
+      buttonStyle={{
+        color: "#ffffff",
+        fontSize: "13px",
+        background: "#666666",
+      }}
+    >
+      <span style={{ fontSize: "0.7rem", color: "#000000" }}>
+        We use cookies to elevate your user experience. By continuing to use our
+        site, you accept our use of cookies.
+      </span>
+    </CookieConsent>
   </div>
 );
 

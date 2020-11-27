@@ -11,8 +11,12 @@
   border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
-  height: 3.55rem;
-  position: relative;
+  height: 5.55rem;
+  border-top: solid #c4c4c4;
+  box-shadow: 0 0.125rem 0.625rem 0 rgba(0,0,0,.08);
+  position: fixed;
+  width: 100%;
+  z-index: 2;
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -36,6 +40,7 @@
     }
 
     ul {
+      margin-top: 1rem;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -46,10 +51,10 @@
     align-self: center;
 
     svg {
-      width: 4rem;
+      width: 7rem;
 
       @media (min-width: $small-screen) {
-        width: 6rem;
+        width: 10rem;
       }
     }
   }
@@ -240,6 +245,8 @@
 
       &--visible {
         display: block;
+        width: 95%;
+        margin-left: 2.5%;
       }
 
       li *,
@@ -282,6 +289,7 @@
             font-weight: normal;
             padding: 6px 0;
             text-transform: capitalize;
+            font-family: "Josefin Sans", sans-serif;
           }
 
           li > ul {

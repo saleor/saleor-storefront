@@ -45,8 +45,9 @@
   }
 
   &-nav {
-    background-color: $gray-light;
+    background-color: $blue-dark;
     padding: $spacer * 3 0 $spacer * 2;
+    border-top: solid #c4c4c4;
 
     .container {
       display: flex;
@@ -62,6 +63,7 @@
         font-weight: $bold-font-weight;
         margin-bottom: $spacer;
         text-transform: uppercase;
+        color: $white;
       }
 
       &-content {
@@ -72,7 +74,11 @@
 
           a {
             text-decoration: none;
-            color: $gray;
+            color: $white;
+            letter-spacing: 0.1px;
+            text-align: justify;
+            font-family: "Josefin Sans", sans-serif;
+
           }
         }
       }
