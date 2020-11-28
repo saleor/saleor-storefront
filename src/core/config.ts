@@ -41,14 +41,14 @@ export const STATIC_PAGES = [
 ];
 export const SOCIAL_MEDIA = [
   {
-    ariaLabel: "vimeo",
-    href: "https://www.vimeo.com/storitalia",
-    path: require("../images/vimeo-icon.svg"),
-  },
-  {
     ariaLabel: "instagram",
     href: "https://www.instagram.com/storitalia",
     path: require("../images/instagram-icon.svg"),
+  },
+  {
+    ariaLabel: "vimeo",
+    href: "https://www.vimeo.com/storitalia",
+    path: require("../images/vimeo-icon.svg"),
   },
 ];
 export const META_DEFAULTS = {

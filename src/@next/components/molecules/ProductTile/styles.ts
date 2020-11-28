@@ -8,14 +8,14 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  background: ${props => props.theme.colors.light};
+  background: white;
   padding: 2.5rem;
   text-align: center;
   max-height: 30rem;
   transition: 0.3s;
 
   :hover {
-    background-color: ${props => props.theme.colors.hoverLightBackground};
+    background-color: $white;
   }
 
   ${media.largeScreen`
