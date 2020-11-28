@@ -14,6 +14,8 @@ export const Money: React.FC<IProps> = ({
       {money.currency && money.currency !== ""
         ? money.amount.toLocaleString(undefined, {
             currency: money.currency,
+            maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
             style: "currency",
           })
         : money.amount.toString()}

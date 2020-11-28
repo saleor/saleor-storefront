@@ -1,6 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .article-page {
+  margin-top: 5.5rem;
   &__container {
     column-gap: $spacer * 1.5;
     display: grid;

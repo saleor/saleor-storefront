@@ -5,7 +5,7 @@ export const Dot = styled.div<{ done?: boolean }>`
   border-radius: 50%;
   width: 12px;
   height: 12px;
-  border: 6px solid ${props => (props.done ? "#06847B" : "#c2c2c2")};
+  border: 6px solid ${props => (props.done ? "#0D233F" : "#c2c2c2")};
 `;
 
 export const ActiveDot = styled.div`
@@ -40,7 +40,7 @@ export const ProgressBar = styled.div<{ done?: boolean }>`
   z-index: -1;
   width: 100%;
   height: 4px;
-  background-color: ${props => (props.done ? "#06847B" : "#c2c2c2")};
+  background-color: ${props => (props.done ? "#0D233F" : "#c2c2c2")};
 `;
 
 export const Step = styled.div`

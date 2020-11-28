@@ -8,7 +8,7 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  background: white;
+  background: $white;
   padding: 2.5rem;
   text-align: center;
   max-height: 30rem;

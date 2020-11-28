@@ -8,6 +8,7 @@
     background-position: center;
     text-align: center;
     padding: 12rem 0;
+    margin-top: 90px;
 
     &-text {
       overflow: hidden;
@@ -33,9 +34,9 @@
     }
 
     &__title {
-      background-color: $white;
+      background-color: transparent;
       display: inline-block;
-      transform: skew(45deg);
+      transform: skew(0deg);
       padding: $spacer $spacer * 3;
       margin-bottom: $spacer / 2;
 
@@ -46,12 +47,12 @@
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
-        font-weight: $bold-font-weight;
-        text-transform: uppercase;
-        color: $blue;
+        transform: skew(0deg);
+        font-weight: $normal-font-weight;
+        text-transform: none;
+        color: $white;
         font-size: $h1-font-size;
-        font-weight: 900;
+        font-family: $des-font-family;
 
         @media (max-width: $small-screen) {
           font-size: $h4-font-size;
