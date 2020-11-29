@@ -19,7 +19,9 @@ import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
-import { cartUrl } from "@temp/app/routes";
+import { cartUrl, orderFinalizedUrl } from "@temp/app/routes";
+import { useRouter } from "next/router";
+import { ParsedUrlQueryInput } from "querystring";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -101,6 +103,7 @@ const getButton = (text?: string, onClick?: () => void) => {
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const location = useLocation();
   const history = useHistory();
+  const { push } = useRouter();
   const querystring = parseQueryString(location);
   const {
     loaded: cartLoaded,
@@ -215,10 +218,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   ) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
-      history.push({
-        pathname: "/order-finalized",
-        state: data,
-      });
+      push(
+        {
+          pathname: orderFinalizedUrl,
+          query: data as ParsedUrlQueryInput,
+        },
+        orderFinalizedUrl
+      );
     } else {
       history.push(steps[activeStepIndex + 1].link);
     }
