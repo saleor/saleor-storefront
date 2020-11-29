@@ -13,6 +13,8 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
+import CollectionItem from "./CollectionItem";
+
 import {
   Button,
   Loader,
@@ -69,7 +71,9 @@ class Search extends React.Component<SearchProps, SearchState> {
   }
 
   hasResults = (data: SearchResults) =>
-    maybe(() => !!data.products.edges.length);
+    maybe(
+      () => !!data.products.edges.length || !!data.collections.edges.length
+    );
 
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -137,6 +141,14 @@ class Search extends React.Component<SearchProps, SearchState> {
                         if (this.hasResults(data)) {
                           return (
                             <>
+                              <ul>
+                                {data.collections.edges.map(collection => (
+                                  <CollectionItem
+                                    {...collection}
+                                    key={collection.node.id}
+                                  />
+                                ))}
+                              </ul>
                               <ul>
                                 {data.products.edges.map(product => (
                                   <ProductItem

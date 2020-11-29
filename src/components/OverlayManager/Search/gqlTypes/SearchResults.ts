@@ -53,6 +53,18 @@ export interface SearchResults_products_edges_node {
   category: SearchResults_products_edges_node_category | null;
 }
 
+export interface SearchResults_collections_edges_node {
+  __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * The main thumbnail for a product.
+   */
+}
+
 export interface SearchResults_products_edges {
   __typename: "ProductCountableEdge";
   /**
@@ -61,8 +73,36 @@ export interface SearchResults_products_edges {
   node: SearchResults_products_edges_node;
 }
 
+export interface SearchResults_collections_edges {
+  __typename: "ProductCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: SearchResults_collections_edges_node;
+}
+
 export interface SearchResults_products_pageInfo {
   __typename: "PageInfo";
+  /**
+   * When paginating forwards, the cursor to continue.
+   */
+  endCursor: string | null;
+  /**
+   * When paginating forwards, are there more items?
+   */
+  hasNextPage: boolean;
+  /**
+   * When paginating backwards, are there more items?
+   */
+  hasPreviousPage: boolean;
+  /**
+   * When paginating backwards, the cursor to continue.
+   */
+  startCursor: string | null;
+}
+
+export interface SearchResults_collections_pageInfo {
+  __typename: "CollectionInfo";
   /**
    * When paginating forwards, the cursor to continue.
    */
@@ -90,11 +130,21 @@ export interface SearchResults_products {
   pageInfo: SearchResults_products_pageInfo;
 }
 
+export interface SearchResults_collections {
+  __typename: "CollectionCountableConnection";
+  edges: SearchResults_collections_edges[];
+  /**
+   * Pagination data for this connection.
+   */
+  pageInfo: SearchResults_collections_pageInfo;
+}
+
 export interface SearchResults {
   /**
    * List of the shop's products.
    */
   products: SearchResults_products | null;
+  collections: SearchResults_collections | null;
 }
 
 export interface SearchResultsVariables {

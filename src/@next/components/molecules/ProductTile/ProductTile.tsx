@@ -16,13 +16,13 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
 
   return (
     <S.Wrapper>
+      <S.Image data-test="productThumbnail">
+        <Thumbnail source={product} />
+      </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
       <S.Price data-test="productPrice">
         <TaxedMoney taxedMoney={price} />
       </S.Price>
-      <S.Image data-test="productThumbnail">
-        <Thumbnail source={product} />
-      </S.Image>
     </S.Wrapper>
   );
 };

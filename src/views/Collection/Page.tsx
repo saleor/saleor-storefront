@@ -1,4 +1,4 @@
-import "../Category/scss/index.scss";
+import "./scss/index.scss";
 
 import * as React from "react";
 import { useIntl } from "react-intl";

@@ -55,7 +55,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input<{ labelBackground: string | null }>`
-  padding: 0.8rem 1rem;
+  padding: 1.5rem 1rem;
   margin: 0;
   border: none;
   width: 100%;
