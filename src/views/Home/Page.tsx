@@ -6,10 +6,11 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
-import { generateCategoryUrl } from "../../core/utils";
+import { generateCategoryUrl, generateCollectionUrl } from "../../core/utils";
 
 import {
   ProductsList_categories,
+  ProductsList_collections,
   ProductsList_shop,
   ProductsList_shop_homepageCollection_backgroundImage,
 } from "./gqlTypes/ProductsList";
@@ -21,11 +22,15 @@ import noPhotoImg from "../../images/no-photo.svg";
 const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
+  collections: ProductsList_collections;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
   shop: ProductsList_shop;
-}> = ({ loading, categories, backgroundImage, shop }) => {
+}> = ({ loading, categories, collections, backgroundImage, shop }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
+  };
+  const collectionsExist = () => {
+    return collections && collections.edges && collections.edges.length > 0;
   };
   const intl = useIntl();
 
@@ -59,14 +64,14 @@ const Page: React.FC<{
           </div>
         </div>
         <div className="home-page__hero-action">
-          {loading && !categories ? (
+          {loading && !collections ? (
             <Loader />
           ) : (
-            categoriesExist() && (
+            collectionsExist() && (
               <Link
-                to={generateCategoryUrl(
-                  categories.edges[0].node.id,
-                  categories.edges[0].node.name
+                to={generateCollectionUrl(
+                  collections.edges[0].node.id,
+                  collections.edges[0].node.name
                 )}
               >
                 <Button testingContext="homepageHeroActionButton">
