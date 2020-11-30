@@ -2,6 +2,11 @@ import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlType
 
 export const PRODUCT: ProductList_products_edges_node = {
   __typename: "Product",
+  category: {
+    __typename: "Category",
+    id: "Q2F0ZWdvcnk6MTQ=",
+    name: "Juices",
+  },
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",
   slug: "apple-juice",

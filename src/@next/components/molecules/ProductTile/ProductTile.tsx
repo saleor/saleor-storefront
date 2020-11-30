@@ -7,6 +7,7 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
+  const { category } = product;
   const price =
     product.pricing &&
     product.pricing.priceRange &&
@@ -20,6 +21,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
         <Thumbnail source={product} />
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
+      <S.ArtisanName>{category?.name}</S.ArtisanName>
       <S.Price data-test="productPrice">
         <TaxedMoney taxedMoney={price} />
       </S.Price>

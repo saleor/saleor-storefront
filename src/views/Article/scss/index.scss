@@ -22,19 +22,20 @@
     background-blend-mode: multiply;
 
     &__title {
-      background-color: $white;
       display: inline-block;
-      transform: skew(45deg);
+      transform: skew(0deg);
       padding: 1.5vw 9vw;
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
+        text-transform: none;
+        transform: skew(0deg);
         font-weight: $bold-font-weight;
+        font-family: "Josefin Sans", sans-serif;
         text-transform: uppercase;
-        color: $blue;
+        color: $white;
         font-size: 8vw;
-        font-weight: 900;
+        font-weight: 300;
 
         @media (min-width: $small-screen) {
           font-size: 4vw;

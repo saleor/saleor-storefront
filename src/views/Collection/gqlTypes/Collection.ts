@@ -14,6 +14,13 @@ export interface Collection_collection_backgroundImage {
   url: string;
 }
 
+export interface CollectionDetails_collection_metadata {
+  __typename: "Metadata";
+
+  key: string;
+  value: string;
+}
+
 export interface Collection_collection {
   __typename: "Collection";
   /**
@@ -22,9 +29,11 @@ export interface Collection_collection {
   id: string;
   slug: string;
   name: string;
+  descriptionJson: any;
   seoDescription: string | null;
   seoTitle: string | null;
   backgroundImage: Collection_collection_backgroundImage | null;
+  metadata: (CollectionDetails_collection_metadata | null)[] | null;
 }
 
 export interface Collection_attributes_edges_node_values {

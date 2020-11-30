@@ -3,16 +3,20 @@ import "./scss/index.scss";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { RichTextContent } from "@components/atoms";
+
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
-import { Breadcrumbs, ProductsFeatured } from "../../components";
-import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
+import { ProductsFeatured } from "../../components";
+import { maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection } from "./gqlTypes/Collection";
 import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
+
+import ArtisanVideo from "./Video";
 
 interface SortItem {
   label: string;
@@ -59,17 +63,6 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
-  const breadcrumbs = [
-    {
-      link: [
-        `/collection`,
-        `/${collection.slug}`,
-        `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`,
-      ].join(""),
-      value: collection.name,
-    },
-  ];
-
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
       attributeSlug,
@@ -91,10 +84,23 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  const videoValues = !(Object.keys(collection.metadata).length === 0);
+  const srcVideo = videoValues
+    ? `https://player.vimeo.com/video/${collection.metadata[0].value}?title=0&byline=0&portrait=0&loop=1&autopause=0`
+    : "";
+
   return (
     <div className="collection">
       <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
+        <div className="collection__container">
+          <div className="collection__image">
+            <img src={collection.backgroundImage.url} alt={collection.slug} />
+          </div>
+          <div className="collection__content">
+            <h3>{collection.name}</h3>
+            <RichTextContent descriptionJson={collection.descriptionJson} />
+          </div>
+        </div>
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
@@ -113,6 +119,7 @@ const Page: React.FC<PageProps> = ({
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
+        {videoValues ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
         {canDisplayProducts && (
           <ProductList
             products={products.edges.map(edge => edge.node)}

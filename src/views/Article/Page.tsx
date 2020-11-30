@@ -1,6 +1,4 @@
-import classNames from "classnames";
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 import { RichTextContent } from "@components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
@@ -38,22 +36,7 @@ export const Page: React.FC<PageProps> = ({
     <div className="container">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="article-page__container">
-        <div className="article-page__navigation">
-          <ul>
-            {navigation.map(menuElement => (
-              <li
-                className={classNames({
-                  "article-page__navigation-element": true,
-                  "article-page__navigation-element--active":
-                    menuElement.active,
-                })}
-                key={menuElement.url}
-              >
-                <Link to={menuElement.url}>{menuElement.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="article-page__navigation" />
         <div className="article-page__content">
           <RichTextContent descriptionJson={page.contentJson} />
         </div>

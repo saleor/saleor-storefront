@@ -19,25 +19,59 @@ body {
   h1 {
     font-size: $h1-font-size;
     line-height: $h1-line-height;
+    font-family: $sub-des-font-family;
   }
 
   h3 {
     font-size: $h3-font-size;
     line-height: 1.7rem;
+    font-family: $header-font-family;
+    text-transform: none;
+    text-align: left;
   }
 
   h4 {
     font-size: $h4-font-size;
+    font-family: $title-font-family;
+    text-align: left;
+  }
+
+  h5 {
+    text-align: justify;
+    transform: none;
+    color: $black;
+    font-family: $header-font-family;
+    font-weight: 200;
+    font-size: 1.279rem;
+  }
+
+  h6 {
+    color: #fff;
+    text-align: center;
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: .6rem;
+    font-family: "Palanquin Dark", sans-serif;
+    letter-spacing: 0.04rem;
   }
 
   a {
     text-decoration: none;
     font-weight: normal;
     color: inherit;
+    font-family: $header-font-family;
+    font-size: 1rem;
   }
 
   p {
     line-height: 1.5rem;
+    letter-spacing: 0.1px;
+    text-align: justify;
+    font-family: $des-font-family;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem!important;
+    line-height: 1.8rem;
   }
 
   strong {
@@ -63,6 +97,7 @@ body {
     max-width: 100vw;
     margin: 0 auto;
     padding: 0 $spacer;
+    text-align: center;
 
     @media (max-width: $medium-screen) {
       width: 100%;

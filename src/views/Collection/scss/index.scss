@@ -2,6 +2,16 @@
 
 .collection {
   margin-top: 5.5rem;
+  &__container {
+    column-gap: $spacer * 1.5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 60px 0;
+
+    @media (max-width: $medium-screen) {
+      display: block;
+    }
+  }
   &__header {
     text-align: center;
     padding-top: $spacer * 4.5;
@@ -30,5 +40,45 @@
         }
       }
     }
+  }
+  
+  &__image {
+    @media (max-width: $medium-screen) {
+      margin-bottom: $spacer * 2;
+    }
+    
+    img {
+      width: 500px;
+    }
+  }
+
+  &__content {
+    
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.collection-page {
+  &__video {
+    --video--width: 1296;
+    --video--height: 540;
+
+    position: relative;
+    padding-bottom: calc(var(--video--height) / var(--video--width) * 100%); /* 41.66666667% */
+    overflow: hidden;
+    max-width: 100%;
+    background: black;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
   }
 }
