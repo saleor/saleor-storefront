@@ -8,13 +8,14 @@ import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { useCheckout } from "@saleor/sdk";
+import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 
 export interface ISubmitCheckoutData {
   id: string;
   orderNumber: string;
   token: string;
+  orderStatus: OrderStatus;
 }
 
 export interface ICheckoutReviewSubpageHandles {
@@ -97,6 +98,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           setErrors([]);
           onSubmitSuccess({
             id: data?.order?.id,
+            orderStatus: data?.order?.status,
             orderNumber: data?.order?.number,
             token: data?.order?.token,
           });
