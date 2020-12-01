@@ -266,17 +266,10 @@ export interface FeaturedProducts_shop_homepageCollection {
   products: FeaturedProducts_shop_homepageCollection_products | null;
 }
 
-export interface FeaturedProducts_shop {
+export interface FeaturedProducts {
   __typename: "Shop";
   /**
    * Collection displayed on homepage.
    */
-  homepageCollection: FeaturedProducts_shop_homepageCollection | null;
-}
-
-export interface FeaturedProducts {
-  /**
-   * Return information about the shop.
-   */
-  shop: FeaturedProducts_shop;
+  collection: FeaturedProducts_shop_homepageCollection | null;
 }

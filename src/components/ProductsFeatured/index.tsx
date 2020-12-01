@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Carousel, ProductListItem } from "..";
-import { generateProductUrl, maybe } from "../../core/utils";
+import { Carousel, ProductListItemCategory } from "..";
+import { generateCategoryUrl, maybe } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -15,10 +15,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
   return (
     <TypedFeaturedProductsQuery displayError={false}>
       {({ data }) => {
-        const products = maybe(
-          () => data.shop.homepageCollection.products.edges,
-          []
-        );
+        const products = maybe(() => data.collection.products.edges, []);
 
         if (products.length) {
           return (
@@ -28,10 +25,13 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <Carousel>
                   {products.map(({ node: product }) => (
                     <Link
-                      to={generateProductUrl(product.id, product.name)}
+                      to={generateCategoryUrl(
+                        product.category.id,
+                        product.category.name
+                      )}
                       key={product.id}
                     >
-                      <ProductListItem product={product} />
+                      <ProductListItemCategory product={product} />
                     </Link>
                   ))}
                 </Carousel>

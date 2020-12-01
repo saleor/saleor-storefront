@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { generateCollectionUrl } from "../../core/utils";
+import HomeVideo from "./Video";
 
 import {
   ProductsList_categories,
@@ -18,6 +19,8 @@ import {
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
+
+const srcVideo = `https://player.vimeo.com/video/441781948?title=0&byline=0&portrait=0&loop=1&autopause=0`;
 
 const Page: React.FC<{
   loading: boolean;
@@ -80,7 +83,7 @@ const Page: React.FC<{
         </div>
       </div>
       <ProductsFeatured
-        title={intl.formatMessage({ defaultMessage: "Categories" })}
+        title={intl.formatMessage({ defaultMessage: "All Categories" })}
       />
       {collectionsExist() && (
         <div className="home-page__collections">
@@ -118,6 +121,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <HomeVideo srcVideo={srcVideo} />
     </>
   );
 };
