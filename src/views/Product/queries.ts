@@ -23,6 +23,20 @@ export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
     name
+    collections {
+      id
+      name
+      seoTitle
+      seoDescription
+      backgroundImage {
+        url
+        alt
+      }
+      metadata {
+        key
+        value
+      }
+    }
     thumbnail {
       url
       alt
@@ -121,6 +135,10 @@ export const productDetailsQuery = gql`
       category {
         id
         name
+        backgroundImage {
+          url
+          alt
+        }
         products(first: 3) {
           edges {
             node {

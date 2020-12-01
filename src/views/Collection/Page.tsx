@@ -1,6 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 import { useIntl } from "react-intl";
 
 import { RichTextContent } from "@components/atoms";
@@ -135,6 +136,10 @@ const Page: React.FC<PageProps> = ({
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}
+      <ScrollUpButton
+        style={{ width: 30, backgroundColor: "#ffffff00", fill: "#c4c4c4" }}
+        ToggledStyle={{ right: 50, bottom: 50 }}
+      />
     </div>
   );
 };

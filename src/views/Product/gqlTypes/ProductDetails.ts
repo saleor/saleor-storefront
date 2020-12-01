@@ -450,6 +450,14 @@ export interface ProductDetails_product_category_products {
   edges: ProductDetails_product_category_products_edges[];
 }
 
+export interface Category_category_backgroundImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
 export interface ProductDetails_product_category {
   __typename: "Category";
   /**
@@ -460,6 +468,7 @@ export interface ProductDetails_product_category {
   /**
    * List of products in the category.
    */
+  backgroundImage: Category_category_backgroundImage | null;
   products: ProductDetails_product_category_products | null;
 }
 
@@ -657,6 +666,38 @@ export interface ProductDetails_product_variants_attributes {
   values: (ProductDetails_product_variants_attributes_values | null)[];
 }
 
+export interface Collection_collection_backgroundImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  alt: string | null;
+}
+
+export interface CollectionDetails_collection_metadata {
+  __typename: "Metadata";
+
+  key: string;
+  value: string;
+}
+
+export interface ProductDetails_product_collections {
+  __typename: "ProductCollections";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+  seoTitle: string;
+  seoDescription: string;
+  backgroundImage: Collection_collection_backgroundImage | null;
+  metadata: (CollectionDetails_collection_metadata | null)[] | null;
+}
+
 export interface ProductDetails_product_variants {
   __typename: "ProductVariant";
   /**
@@ -719,6 +760,7 @@ export interface ProductDetails_product {
   /**
    * List of variants for the product.
    */
+  collections: (ProductDetails_product_collections | null)[] | null;
   variants: (ProductDetails_product_variants | null)[] | null;
   seoDescription: string | null;
   seoTitle: string | null;

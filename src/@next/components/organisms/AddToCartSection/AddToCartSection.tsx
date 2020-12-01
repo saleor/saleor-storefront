@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
@@ -19,7 +19,6 @@ import {
   getProductPrice,
   canAddToCart,
 } from "./stockHelpers";
-import { Button } from "../../../../components";
 
 const LOW_STOCK_QUANTITY: number = 5;
 
@@ -176,9 +175,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
       />
-      <Button testingContext="gotoBagViewButton" secondary>
-        <FormattedMessage defaultMessage="Customize Product" />
-      </Button>
     </S.AddToCartSelection>
   );
 };
