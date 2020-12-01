@@ -86,6 +86,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
 
 .c4 img {
   max-width: 50px;
+  max-height: 50px;
   height: auto;
 }
 
