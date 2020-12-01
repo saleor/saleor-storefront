@@ -13,6 +13,10 @@ const searchResultsQuery = gql`
         node {
           id
           name
+          backgroundImage {
+            url
+            alt
+          }
         }
       }
       pageInfo {

@@ -53,6 +53,15 @@ export interface SearchResults_products_edges_node {
   category: SearchResults_products_edges_node_category | null;
 }
 
+export interface SearchResults_collections_backgroundImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+  alt: string | null;
+}
+
 export interface SearchResults_collections_edges_node {
   __typename: "Collection";
   /**
@@ -63,6 +72,7 @@ export interface SearchResults_collections_edges_node {
   /**
    * The main thumbnail for a product.
    */
+  backgroundImage: SearchResults_collections_backgroundImage | null;
 }
 
 export interface SearchResults_products_edges {
