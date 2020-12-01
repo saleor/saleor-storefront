@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
   background: ${props => props.theme.colors.light};
   padding: 2.5rem;
   text-align: center;
-  max-height: 30rem;
   height: 26rem;
   display: flex;
   flex-direction: column;
