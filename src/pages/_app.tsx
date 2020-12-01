@@ -12,11 +12,14 @@ import { defaultTheme, GlobalStyle } from "@styles";
 import { NotificationTemplate } from "@components/atoms";
 import { NextQueryParamProvider } from "@temp/components";
 import { history } from "@temp/history";
+import Head from "next/head";
+import { ServiceWorkerProvider } from "@components/containers";
 import {
   apiUrl,
   channelSlug,
   sentryDsn,
   sentrySampleRate,
+  serviceWorkerTimeout,
   ssrMode,
 } from "../constants";
 import { LocaleProvider } from "../components/Locale";
@@ -50,21 +53,32 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <AlertProvider
-        template={NotificationTemplate as any}
-        {...notificationConfig}
-      >
-        <LocaleProvider>
-          <GlobalStyle />
-          {ssrMode ? (
-            <StaticRouter>{app}</StaticRouter>
-          ) : (
-            <Router history={history}>{app}</Router>
-          )}
-        </LocaleProvider>
-      </AlertProvider>
-    </ThemeProvider>
+    <>
+      <Head>
+        <title>Demo PWA Storefront – Saleor Commerce</title>
+        <link rel="preconnect" href={apiUrl} />
+        <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="/favicon-36.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
+      <ThemeProvider theme={defaultTheme}>
+        <AlertProvider
+          template={NotificationTemplate as any}
+          {...notificationConfig}
+        >
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <LocaleProvider>
+              <GlobalStyle />
+              {ssrMode ? (
+                <StaticRouter>{app}</StaticRouter>
+              ) : (
+                <Router history={history}>{app}</Router>
+              )}
+            </LocaleProvider>
+          </ServiceWorkerProvider>
+        </AlertProvider>
+      </ThemeProvider>
+    </>
   );
 };
 

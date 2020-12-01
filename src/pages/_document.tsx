@@ -1,8 +1,6 @@
 import React from "react";
 
-import Document, { Html, Head, Main, NextScript } from "next/document";
-
-import { apiUrl } from "@temp/constants";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -13,10 +11,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <link rel="preconnect" href={apiUrl} />
-          <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
