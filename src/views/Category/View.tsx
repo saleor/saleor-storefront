@@ -7,12 +7,14 @@ import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
 import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
+import { Category_category } from "./gqlTypes/Category";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
   getGraphqlIdFromDBId,
+  maybe,
 } from "../../core/utils";
 import Page from "./Page";
 import {
@@ -23,6 +25,9 @@ import {
 type ViewProps = RouteComponentProps<{
   id: string;
 }>;
+
+const getHeaderImage = (category: Category_category) =>
+  maybe(() => category.backgroundImage.url);
 
 export const FilterQuerySet = {
   encode(valueObj) {
@@ -195,6 +200,9 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                         }}
                       >
                         <Page
+                          headerImage={getHeaderImage(
+                            categoryData.data.category
+                          )}
                           clearFilters={clearFilters}
                           attributes={categoryData.data.attributes.edges.map(
                             edge => edge.node

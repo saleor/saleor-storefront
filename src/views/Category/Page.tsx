@@ -36,6 +36,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
+  headerImage: string | null;
   products: CategoryProducts_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
@@ -48,6 +49,7 @@ const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
   attributes,
+  headerImage,
   category,
   displayLoader,
   hasNextPage,
@@ -89,6 +91,14 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <div className="category">
+      <div
+        className="article-page__header"
+        style={headerImage ? { backgroundImage: `url(${headerImage})` } : null}
+      >
+        <span className="article-page__header__title">
+          <h1>{category.name}</h1>
+        </span>
+      </div>
       <div className="container">
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
         <FilterSidebar
