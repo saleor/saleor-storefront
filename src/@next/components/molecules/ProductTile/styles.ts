@@ -12,6 +12,9 @@ export const Wrapper = styled.div`
   padding: 2.5rem;
   text-align: center;
   max-height: 30rem;
+  height: 26rem;
+  display: flex;
+  flex-direction: column;
   transition: 0.3s;
 
   :hover {
@@ -34,13 +37,12 @@ export const Price = styled.p`
 `;
 
 export const Image = styled.div`
-  width: auto;
-  height: auto;
-  max-width: 100%;
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
 
   > img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
+    flex-grow: 1;
+    object-fit: contain;
   }
 `;
