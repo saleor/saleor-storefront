@@ -63,7 +63,6 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   background: #f1f5f5;
   padding: 2.5rem;
   text-align: center;
-  max-height: 30rem;
   height: 26rem;
   display: -webkit-box;
   display: -webkit-flex;
