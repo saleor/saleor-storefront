@@ -4,10 +4,10 @@ import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
+import { paths } from "@paths";
 import { Button, Form, TextField } from "..";
 import { TypedPasswordResetRequestMutation } from "./queries";
 
-import { passwordResetUrl } from "../../app/routes";
 import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 
 const PasswordResetRequestForm: React.FC = () => {
@@ -41,7 +41,7 @@ const PasswordResetRequestForm: React.FC = () => {
                 passwordReset({
                   variables: {
                     email,
-                    redirectUrl: `${window.location.origin}${passwordResetUrl}`,
+                    redirectUrl: `${location.origin}${paths.passwordReset}`,
                   },
                 });
               }}

@@ -4,7 +4,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Link from "next/link";
 
-import { BASE_URL } from "../../core/config";
+import { paths } from "@paths";
 import Button from "../Button";
 
 interface NotFoundProps {
@@ -29,7 +29,7 @@ const NotFound: React.FC<NotFoundProps> = () => (
       </p>
     </div>
     <div className="not-found-page__button">
-      <Link href={BASE_URL}>
+      <Link href={paths.home}>
         <a>
           <Button testingContext="404pageGotoHomeButton" secondary>
             <FormattedMessage defaultMessage="Back to home" />

@@ -1,9 +1,9 @@
 /* eslint-disable global-require */
 
 import { ssrMode } from "@temp/constants";
+import { paths } from "@paths";
 import { generatePageUrl } from "./utils";
 
-export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
@@ -80,10 +80,11 @@ export enum CheckoutStep {
   Review,
   PaymentConfirm,
 }
+
 export const CHECKOUT_STEPS = [
   {
     index: 0,
-    link: "/checkout/address",
+    link: paths.checkoutAddress,
     name: "Address",
     nextActionName: "Continue to Shipping",
     onlyIfShippingRequired: false,
@@ -91,7 +92,7 @@ export const CHECKOUT_STEPS = [
   },
   {
     index: 1,
-    link: "/checkout/shipping",
+    link: paths.checkoutShipping,
     name: "Shipping",
     nextActionName: "Continue to Payment",
     onlyIfShippingRequired: true,
@@ -99,7 +100,7 @@ export const CHECKOUT_STEPS = [
   },
   {
     index: 2,
-    link: "/checkout/payment",
+    link: paths.checkoutPayment,
     name: "Payment",
     nextActionName: "Continue to Review",
     onlyIfShippingRequired: false,
@@ -107,7 +108,7 @@ export const CHECKOUT_STEPS = [
   },
   {
     index: 3,
-    link: "/checkout/review",
+    link: paths.checkoutReview,
     name: "Review",
     nextActionName: "Place order",
     onlyIfShippingRequired: false,
@@ -115,7 +116,7 @@ export const CHECKOUT_STEPS = [
   },
   {
     index: 4,
-    link: "/checkout/payment-confirm",
+    link: paths.checkoutPaymentConfirm,
     name: "Payment confirm",
     onlyIfShippingRequired: false,
     step: CheckoutStep.PaymentConfirm,

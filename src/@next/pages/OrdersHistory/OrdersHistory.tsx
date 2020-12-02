@@ -1,4 +1,4 @@
-import { useOrdersByUser } from "@saleor/sdk/";
+import { useAuth, useOrdersByUser } from "@saleor/sdk/";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -10,6 +10,7 @@ import * as S from "./styles";
 const ORDERS_PER_API_CALL = 5;
 
 export const OrdersHistory: React.FC = () => {
+  const { user } = useAuth();
   const { data, loading, loadMore } = useOrdersByUser(
     {
       perPage: ORDERS_PER_API_CALL,
@@ -23,7 +24,7 @@ export const OrdersHistory: React.FC = () => {
     <Loader />
   ) : (
     <>
-      <OrderTabel orders={data?.edges} />
+      <OrderTabel orders={data?.edges} isGuest={!user} />
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button

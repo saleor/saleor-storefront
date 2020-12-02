@@ -5,8 +5,8 @@ import { NextPage } from "next";
 
 import { useAuth } from "@saleor/sdk";
 import { OfflinePlaceholder, Redirect } from "@components/atoms";
-import { checkoutUrl } from "@temp/app/routes";
 
+import { paths } from "@paths";
 import { Offline, Online, OverlayContext } from "..";
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
@@ -22,7 +22,7 @@ const CheckoutLogin: NextPage = () => {
   };
 
   return user ? (
-    <Redirect url={checkoutUrl} />
+    <Redirect url={paths.checkout} />
   ) : (
     <div className="container">
       <Online>

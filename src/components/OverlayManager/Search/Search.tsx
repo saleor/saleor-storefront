@@ -14,6 +14,7 @@ import ReactSVG from "react-svg";
 import { commonMessages } from "@temp/intl";
 
 import { OfflinePlaceholder } from "@components/atoms";
+import { paths } from "@paths";
 import {
   Button,
   Loader,
@@ -21,7 +22,6 @@ import {
   OverlayContextInterface,
   OverlayType,
 } from "../..";
-import { searchUrl } from "../../../app/routes";
 import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
@@ -62,7 +62,7 @@ class Search extends React.Component<SearchProps, SearchState> {
   }
 
   get redirectTo() {
-    return { pathname: searchUrl, search: `?${this.searchQs}` };
+    return { pathname: paths.search, search: `?${this.searchQs}` };
   }
 
   get searchQs() {
@@ -75,7 +75,7 @@ class Search extends React.Component<SearchProps, SearchState> {
   handleSubmit = (evt: React.FormEvent) => {
     if (this.hasSearchPhrase && this.submitBtnRef.current) {
       this.props.overlay.hide();
-      this.props.router.push(`${searchUrl}?${this.searchQs}`);
+      this.props.router.push(`${paths.search}?${this.searchQs}`);
     }
 
     evt.preventDefault();

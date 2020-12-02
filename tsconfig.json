@@ -4,69 +4,30 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "preserve",
-    "lib": [
-      "es2017",
-      "dom",
-      "esnext"
-    ],
+    "lib": ["es2017", "dom", "esnext"],
     "sourceMap": true,
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
-      "@components/*": [
-        "./src/@next/components/*"
-      ],
-      "@components/atoms": [
-        "./src/@next/components/atoms/index.ts"
-      ],
-      "@components/molecules": [
-        "./src/@next/components/molecules/index.ts"
-      ],
-      "@components/organisms": [
-        "./src/@next/components/organisms/index.ts"
-      ],
-      "@components/templates": [
-        "./src/@next/components/templates/index.ts"
-      ],
-      "@components/containers": [
-        "./src/@next/components/containers/index.ts"
-      ],
-      "@pages": [
-        "./src/@next/pages/index.ts"
-      ],
-      "@styles": [
-        "./src/@next/globalStyles/index.ts"
-      ],
-      "@styles/*": [
-        "./src/@next/globalStyles/*"
-      ],
-      "images/*": [
-        "./src/images/*"
-      ],
-      "@utils/*": [
-        "./src/@next/utils/*"
-      ],
-      "@hooks": [
-        "./src/@next/hooks/index.ts"
-      ],
-      "@hooks/*": [
-        "./src/@next/hooks/*"
-      ],
-      "@types": [
-        "./src/@next/types/index.ts"
-      ],
-      "@types/*": [
-        "./src/@next/types/*"
-      ],
-      "@app/*": [
-        "./src/@next/*"
-      ],
-      "@locale/*": [
-        "./locale/*"
-      ],
-      "@temp/*": [
-        "./src/*"
-      ]
+      "@components/*": ["./src/@next/components/*"],
+      "@components/atoms": ["./src/@next/components/atoms/index.ts"],
+      "@components/molecules": ["./src/@next/components/molecules/index.ts"],
+      "@components/organisms": ["./src/@next/components/organisms/index.ts"],
+      "@components/templates": ["./src/@next/components/templates/index.ts"],
+      "@components/containers": ["./src/@next/components/containers/index.ts"],
+      "@paths": ["./src/paths.ts"],
+      "@pages": ["./src/@next/pages/index.ts"],
+      "@styles": ["./src/@next/globalStyles/index.ts"],
+      "@styles/*": ["./src/@next/globalStyles/*"],
+      "images/*": ["./src/images/*"],
+      "@utils/*": ["./src/@next/utils/*"],
+      "@hooks": ["./src/@next/hooks/index.ts"],
+      "@hooks/*": ["./src/@next/hooks/*"],
+      "@types": ["./src/@next/types/index.ts"],
+      "@types/*": ["./src/@next/types/*"],
+      "@app/*": ["./src/@next/*"],
+      "@locale/*": ["./locale/*"],
+      "@temp/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -77,12 +38,6 @@
     "moduleResolution": "node",
     "isolatedModules": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

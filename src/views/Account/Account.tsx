@@ -10,14 +10,9 @@ import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
 import { Redirect } from "@components/atoms";
+import { paths } from "@paths";
 
 import AddressBook from "../../account/AddressBook/AddressBook";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-} from "../../app/routes";
 import { Breadcrumbs, Loader } from "../../components";
 
 import "./scss/index.scss";
@@ -25,15 +20,15 @@ import "./scss/index.scss";
 const returnTab: any = (path: string, userDetails) => {
   let tabContent = <></>;
   switch (path) {
-    case accountUrl: {
+    case paths.account: {
       tabContent = <AccountTab />;
       break;
     }
-    case addressBookUrl: {
+    case paths.accountAddressBook: {
       tabContent = <AddressBook user={userDetails} />;
       break;
     }
-    case orderHistoryUrl: {
+    case paths.accountOrderHistory: {
       tabContent = <OrdersHistory />;
       break;
     }
@@ -48,10 +43,14 @@ const Account: NextPage = () => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
   const { asPath, pathname } = useRouter();
-  const links = [accountUrl, orderHistoryUrl, addressBookUrl];
+  const links = [
+    paths.account,
+    paths.accountOrderHistory,
+    paths.accountAddressBook,
+  ];
 
   if (!user) {
-    return <Redirect url={baseUrl} />;
+    return <Redirect url={paths.home} />;
   }
   return loaded ? (
     <div className="container">

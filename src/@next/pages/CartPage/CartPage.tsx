@@ -2,6 +2,7 @@ import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { NextPage } from "next";
+import Link from "next/link";
 
 import { Button, CartFooter, CartHeader } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
@@ -11,9 +12,7 @@ import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { checkoutMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
-import { checkoutLoginUrl, checkoutUrl } from "@temp/app/routes";
-import Link from "next/link";
-import { BASE_URL } from "@temp/core/config";
+import { paths } from "@paths";
 
 const title = (
   <h1 data-test="cartPageTitle">
@@ -22,7 +21,7 @@ const title = (
 );
 
 const getShoppingButton = () => (
-  <Link href={BASE_URL}>
+  <Link href={paths.home}>
     <Button testingContext="cartPageContinueShoppingButton">
       <FormattedMessage {...checkoutMessages.continueShopping} />
     </Button>
@@ -30,7 +29,7 @@ const getShoppingButton = () => (
 );
 
 const getCheckoutButton = (user?: UserDetails_me | null) => (
-  <Link href={user ? checkoutUrl : checkoutLoginUrl}>
+  <Link href={user ? paths.checkout : paths.login}>
     <Button testingContext="proceedToCheckoutButton">
       <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
     </Button>

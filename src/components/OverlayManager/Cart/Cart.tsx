@@ -3,14 +3,9 @@ import { useRouter } from "next/router";
 
 import { CartSidebar } from "@components/organisms";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
+import { paths } from "@paths";
 
 import { OverlayContextInterface } from "../..";
-import {
-  baseUrl,
-  cartUrl,
-  checkoutLoginUrl,
-  checkoutUrl,
-} from "../../../app/routes";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { push } = useRouter();
@@ -50,15 +45,15 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
       promoTaxedPrice={promoTaxedPrice}
       totalPrice={totalPrice}
       continueShopping={() => {
-        push(baseUrl);
+        push(paths.home);
         overlay.hide();
       }}
       goToCart={() => {
-        push(cartUrl);
+        push(paths.cart);
         overlay.hide();
       }}
       proceedToCheckout={() => {
-        push(user ? checkoutUrl : checkoutLoginUrl);
+        push(user ? paths.checkout : paths.login);
         overlay.hide();
       }}
     />

@@ -87,7 +87,7 @@ describe("<OrderTabel />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <IntlProvider locale="en">
-        <OrderTabel orders={[]} />
+        <OrderTabel isGuest orders={[]} />
       </IntlProvider>
     );
 
@@ -97,7 +97,7 @@ describe("<OrderTabel />", () => {
   it("should render passed orders array", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <OrderTabel orders={ORDERS} />
+        <OrderTabel isGuest orders={ORDERS} />
       </IntlProvider>
     );
 

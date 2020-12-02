@@ -5,9 +5,9 @@ import { ThemeContext } from "styled-components";
 import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
+import { paths } from "@paths";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
 
-import { guestOrderDetailsUrl } from "@temp/app/routes";
 import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -38,9 +38,10 @@ const header = (matches: boolean) => (
   </S.HeaderRow>
 );
 
-export const OrderTabel: React.FC<IProps> = ({ orders }: IProps) => {
+export const OrderTabel: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
   const theme = React.useContext(ThemeContext);
   const intl = useIntl();
+
   return (
     <S.Wrapper>
       <Media
@@ -58,7 +59,9 @@ export const OrderTabel: React.FC<IProps> = ({ orders }: IProps) => {
                   return (
                     <Link
                       href={{
-                        pathname: guestOrderDetailsUrl,
+                        pathname: isGuest
+                          ? paths.guestOrderDetail
+                          : paths.accountOrderDetail,
                         query: { token: order.node.token },
                       }}
                       key={order.node.number}

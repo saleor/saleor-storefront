@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
 import { useRouter } from "next/router";
 
-import { BASE_URL } from "@temp/core/config";
+import { paths } from "@paths";
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";
@@ -47,7 +47,7 @@ const AccountConfirm: NextPage = () => {
           ];
           displayConfirmationAlert(errors);
         })
-        .finally(() => push(BASE_URL));
+        .finally(() => push(paths.home));
     }
   }, [accountManagerFnRef]);
 

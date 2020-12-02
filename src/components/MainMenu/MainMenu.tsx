@@ -7,8 +7,8 @@ import Link from "next/link";
 import classNames from "classnames";
 import ReactSVG from "react-svg";
 
+import { paths } from "@paths";
 import { DemoBanner } from "@components/atoms";
-import { BASE_URL } from "@temp/core/config";
 import { channelSlug } from "@temp/constants";
 import {
   MenuDropdown,
@@ -18,7 +18,6 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
-import * as appPaths from "../../app/routes";
 import { maybe } from "../../core/utils";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
@@ -166,7 +165,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                               content={
                                 <ul className="main-menu__dropdown">
                                   <li data-test="mobileMenuMyAccountLink">
-                                    <Link href={appPaths.accountUrl}>
+                                    <Link href={paths.account}>
                                       <a>
                                         <FormattedMessage
                                           {...commonMessages.myAccount}
@@ -175,7 +174,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                                     </Link>
                                   </li>
                                   <li data-test="mobileMenuOrderHistoryLink">
-                                    <Link href={appPaths.orderHistoryUrl}>
+                                    <Link href={paths.accountOrderHistory}>
                                       <a>
                                         <FormattedMessage
                                           {...commonMessages.orderHistory}
@@ -184,7 +183,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                                     </Link>
                                   </li>
                                   <li data-test="mobileMenuAddressBookLink">
-                                    <Link href={appPaths.addressBookUrl}>
+                                    <Link href={paths.accountAddressBook}>
                                       <a>
                                         <FormattedMessage
                                           {...commonMessages.addressBook}
@@ -228,7 +227,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
         </div>
 
         <div className="main-menu__center">
-          <Link href={BASE_URL}>
+          <Link href={paths.home}>
             <a>
               <ReactSVG path={logoImg} />
             </a>
@@ -252,7 +251,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                         content={
                           <ul className="main-menu__dropdown">
                             <li data-test="desktopMenuMyAccountLink">
-                              <Link href={appPaths.accountUrl}>
+                              <Link href={paths.account}>
                                 <a>
                                   <FormattedMessage
                                     {...commonMessages.myAccount}
@@ -261,7 +260,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                               </Link>
                             </li>
                             <li data-test="desktopMenuOrderHistoryLink">
-                              <Link href={appPaths.orderHistoryUrl}>
+                              <Link href={paths.accountOrderHistory}>
                                 <a>
                                   <FormattedMessage
                                     {...commonMessages.orderHistory}
@@ -270,7 +269,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                               </Link>
                             </li>
                             <li data-test="desktopMenuAddressBookLink">
-                              <Link href={appPaths.addressBookUrl}>
+                              <Link href={paths.accountAddressBook}>
                                 <a>
                                   <FormattedMessage
                                     {...commonMessages.addressBook}

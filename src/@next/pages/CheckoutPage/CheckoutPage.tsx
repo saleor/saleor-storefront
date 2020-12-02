@@ -19,9 +19,9 @@ import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
-import { cartUrl, orderFinalizedUrl } from "@temp/app/routes";
 import { useRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
+import { paths } from "@paths";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -124,7 +124,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
-    return <Redirect url={cartUrl} />;
+    return <Redirect url={paths.cart} />;
   }
 
   const [submitInProgress, setSubmitInProgress] = useState(false);
@@ -220,10 +220,10 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     if (currentStep === CheckoutStep.Review) {
       push(
         {
-          pathname: orderFinalizedUrl,
+          pathname: paths.orderFinalized,
           query: data as ParsedUrlQueryInput,
         },
-        orderFinalizedUrl
+        paths.orderFinalized
       );
     } else {
       history.push(steps[activeStepIndex + 1].link);
