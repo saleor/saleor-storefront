@@ -1,17 +1,32 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { defineMessages, FormattedMessage } from "react-intl";
 
 import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
 import { checkoutMessages } from "@temp/intl";
 
+import { OrderStatus } from "@saleor/sdk";
 import * as S from "./styles";
 import { IProps } from "./types";
+
+export const messages = defineMessages({
+  unfulfilled: {
+    defaultMessage:
+      "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.",
+    description: "thank you subtitle",
+  },
+  unconfirmed: {
+    defaultMessage:
+      "Your order has been placed, it needs to be confirmed by the staff, we'll send you an email when it's done.",
+    description: "thank you subtitle",
+  },
+});
 
 /**
  * Thank you page after completing the checkout.
  */
 const ThankYou: React.FC<IProps> = ({
+  orderStatus,
   orderNumber,
   continueShopping,
   orderDetails,
@@ -31,7 +46,11 @@ const ThankYou: React.FC<IProps> = ({
           <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped." />
+          <FormattedMessage
+            {...(orderStatus === OrderStatus.UNCONFIRMED
+              ? messages.unconfirmed
+              : messages.unfulfilled)}
+          />
         </S.Paragraph>
         <S.Buttons>
           <Button

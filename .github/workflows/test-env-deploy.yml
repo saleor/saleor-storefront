@@ -48,7 +48,7 @@ jobs:
 
       - name: Install deps
         run: |
-          npm ci
+          npm i
 
       - name: Get custom API_URI
         id: api_uri
