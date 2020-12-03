@@ -49,7 +49,7 @@ const extractMeta = (product: ProductDetails_product, url: string) => ({
   image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
   type: "product.item",
-  url,
+  url: window.location.href,
 });
 
 const PageWithQueryAttributes: React.FC<IProps> = props => {

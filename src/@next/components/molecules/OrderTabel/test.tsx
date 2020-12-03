@@ -3,10 +3,11 @@ import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-// import { Thumbnail } from "..";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { Thumbnail } from "..";
 
-import { OrderTabel } from ".";
-// import * as S from "./styles";
+import { OrderTable } from ".";
+import * as S from "./styles";
 
 const ORDERS = [
   {
@@ -87,7 +88,7 @@ describe("<OrderTabel />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <IntlProvider locale="en">
-        <OrderTabel isGuest orders={[]} />
+        <OrderTable isGuest orders={[]} />
       </IntlProvider>
     );
 
@@ -97,7 +98,7 @@ describe("<OrderTabel />", () => {
   it("should render passed orders array", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <OrderTabel isGuest orders={ORDERS} />
+        <OrderTable isGuest orders={ORDERS} />
       </IntlProvider>
     );
 
@@ -112,33 +113,63 @@ describe("<OrderTabel />", () => {
     expect(wrapper.text()).toContain("29.24");
   });
 
-  // FIXME:
-  // it("should navigate to particular order when clicking on order row", () => {
-  //   const wrapper = mount(
-  //     <IntlProvider locale="en">
-  //       <OrderTabel orders={ORDERS} />
-  //     </IntlProvider>
-  //   );
-  //   const historySpy = jest.spyOn(history, "push");
-  //
-  //   wrapper.find(S.Row).at(1).simulate("click");
-  //
-  //   expect(historySpy).toHaveBeenCalledWith(
-  //     `/order-history/${ORDERS[0].node.token}`
-  //   );
-  // });
-  //
-  // it("should navigate to product page when clicking on product thumbnail", () => {
-  //   const wrapper = mount(
-  //     <IntlProvider locale="en">
-  //       <OrderTabel orders={ORDERS} />
-  //     </IntlProvider>
-  //   );
-  //   const historySpy = jest.spyOn(history, "push");
-  //   historySpy.mockClear();
-  //
-  //   wrapper.find(Thumbnail).first().simulate("click");
-  //
-  //   expect(historySpy).toHaveBeenCalledWith("/product/apple-juice/72/");
-  // });
+  it("should navigate to particular order when clicking on order row", () => {
+    const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
+    let wrapper = mount(
+      <IntlProvider locale="en">
+        <RouterContext.Provider value={{ push: pushSpy } as any}>
+          <OrderTable isGuest orders={ORDERS} />
+        </RouterContext.Provider>
+      </IntlProvider>
+    );
+    const { token } = ORDERS[0].node;
+
+    wrapper.find(S.Row).at(1).simulate("click");
+
+    expect(
+      pushSpy
+    ).toHaveBeenCalledWith(
+      `http://order-history/[token]?token=${token}`,
+      `/${token}`,
+      { locale: undefined, shallow: undefined }
+    );
+
+    wrapper = mount(
+      <IntlProvider locale="en">
+        <RouterContext.Provider value={{ push: pushSpy } as any}>
+          <OrderTable isGuest={false} orders={ORDERS} />
+        </RouterContext.Provider>
+      </IntlProvider>
+    );
+
+    pushSpy.mockClear();
+    wrapper.find(S.Row).at(1).simulate("click");
+
+    expect(
+      pushSpy
+    ).toHaveBeenCalledWith(
+      `/account/order-history/[token]?token=${token}`,
+      `/account/order-history/${token}`,
+      { locale: undefined, shallow: undefined }
+    );
+  });
+
+  it("should navigate to product page when clicking on product thumbnail", () => {
+    const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
+    const wrapper = mount(
+      <IntlProvider locale="en">
+        <RouterContext.Provider value={{ push: pushSpy } as any}>
+          <OrderTable isGuest orders={ORDERS} />
+        </RouterContext.Provider>
+      </IntlProvider>
+    );
+
+    wrapper.find(Thumbnail).first().simulate("click");
+
+    expect(pushSpy).toHaveBeenCalledWith(
+      "/product/apple-juice/72",
+      "/product/apple-juice/72",
+      { locale: undefined, shallow: undefined }
+    );
+  });
 });

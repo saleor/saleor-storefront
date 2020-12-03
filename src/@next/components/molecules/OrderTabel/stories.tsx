@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
-import { OrderTabel } from ".";
+import { OrderTable } from ".";
 
 const ORDERS = [
   {
@@ -72,7 +72,7 @@ const ORDERS = [
 ];
 
 storiesOf("@components/molecules/OrderTabel", module)
-  .addParameters({ component: OrderTabel })
+  .addParameters({ component: OrderTable })
   .add("default", () => {
     // this is added to fix issue when running on machines with different locales
     // so one one machine price is displayed as $42.24 and on others as US$ 42.24 etc
@@ -80,7 +80,7 @@ storiesOf("@components/molecules/OrderTabel", module)
     Number.prototype.toLocaleString = () => "";
     return (
       <IntlProvider locale="en">
-        <OrderTabel isGuest orders={ORDERS} />
+        <OrderTable isGuest orders={ORDERS} />
       </IntlProvider>
     );
   });

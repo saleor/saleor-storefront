@@ -2,6 +2,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Link from "next/link";
 
+import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -14,25 +15,16 @@ export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
         <FormattedMessage {...commonMessages.myAccount} />
       </S.MenuHeader>
       {links.map(link => {
-        const menuItem = link
-          .replace(/\//g, "")
-          .replace("-", " ")
-          .split(" ")
-          .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-          .join(" ");
-        let menuItemTrans = menuItem;
-        /* eslint-disable default-case */
-        switch (menuItem) {
-          case "Account":
-            menuItemTrans = intl.formatMessage(commonMessages.account);
-            break;
-          case "Order History":
-            menuItemTrans = intl.formatMessage(commonMessages.orderHistory);
-            break;
-          case "Address Book":
-            menuItemTrans = intl.formatMessage(commonMessages.addressBook);
-            break;
-        }
+        const text = {
+          [paths.account]: intl.formatMessage(commonMessages.account),
+          [paths.accountOrderHistory]: intl.formatMessage(
+            commonMessages.orderHistory
+          ),
+          [paths.accountAddressBook]: intl.formatMessage(
+            commonMessages.addressBook
+          ),
+        }[link];
+
         return (
           <Link
             href={link}
@@ -41,7 +33,7 @@ export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
             data-test-id={link}
           >
             <a>
-              <S.MenuItem active={active === link}>{menuItemTrans}</S.MenuItem>
+              <S.MenuItem active={active === link}>{text}</S.MenuItem>
             </a>
           </Link>
         );

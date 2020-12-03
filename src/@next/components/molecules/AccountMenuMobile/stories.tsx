@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react";
 import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
-import { MemoryRouter } from "react-router";
 
 import { AccountMenuMobile } from ".";
 

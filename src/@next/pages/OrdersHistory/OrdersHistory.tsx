@@ -3,7 +3,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Loader } from "@components/atoms";
-import { OrderTabel } from "@components/molecules";
+import { OrderTable } from "@components/molecules";
 
 import * as S from "./styles";
 
@@ -24,7 +24,7 @@ export const OrdersHistory: React.FC = () => {
     <Loader />
   ) : (
     <>
-      <OrderTabel orders={data?.edges} isGuest={!user} />
+      <OrderTable orders={data?.edges} isGuest={!user} />
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button

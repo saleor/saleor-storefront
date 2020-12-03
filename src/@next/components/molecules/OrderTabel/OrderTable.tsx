@@ -38,7 +38,7 @@ const header = (matches: boolean) => (
   </S.HeaderRow>
 );
 
-export const OrderTabel: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
+export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
   const theme = React.useContext(ThemeContext);
   const intl = useIntl();
 
