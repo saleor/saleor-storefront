@@ -2,7 +2,6 @@ import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
-import { MemoryRouter } from "react-router";
 
 import { AccountMenuMobile } from ".";
 
@@ -20,9 +19,7 @@ describe("<AccountMenuMobile />", () => {
   it("exists", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter initialEntries={["/"]}>
-          <AccountMenuMobile {...DEFAULT_PROPS} />
-        </MemoryRouter>
+        <AccountMenuMobile {...DEFAULT_PROPS} />
       </IntlProvider>
     );
 
@@ -32,9 +29,7 @@ describe("<AccountMenuMobile />", () => {
   it("should show only active tab if menu has not been clicked", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter initialEntries={["/"]}>
-          <AccountMenuMobile {...DEFAULT_PROPS} />
-        </MemoryRouter>
+        <AccountMenuMobile {...DEFAULT_PROPS} />
       </IntlProvider>
     );
 
@@ -47,9 +42,7 @@ describe("<AccountMenuMobile />", () => {
   it("should expand on click - all tabs name should be visible", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter initialEntries={["/"]}>
-          <AccountMenuMobile {...DEFAULT_PROPS} />
-        </MemoryRouter>
+        <AccountMenuMobile {...DEFAULT_PROPS} />
       </IntlProvider>
     );
 

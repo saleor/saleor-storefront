@@ -2,7 +2,6 @@ import { mount } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
-import { MemoryRouter } from "react-router";
 
 import { CartCostsSummary } from "@components/atoms";
 import { CartSidebar } from ".";
@@ -33,21 +32,19 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={ITEMS}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            totalPrice={TOTAL_PRICE}
-            subtotalPrice={SUBTOTAL_PRICE}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={ITEMS}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          totalPrice={TOTAL_PRICE}
+          subtotalPrice={SUBTOTAL_PRICE}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 
@@ -64,21 +61,19 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={ITEMS}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            totalPrice={TOTAL_PRICE}
-            subtotalPrice={SUBTOTAL_PRICE}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={ITEMS}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          totalPrice={TOTAL_PRICE}
+          subtotalPrice={SUBTOTAL_PRICE}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 
@@ -103,23 +98,21 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={ITEMS}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            totalPrice={TOTAL_PRICE}
-            subtotalPrice={SUBTOTAL_PRICE}
-            shippingTaxedPrice={SHIPPING_PRICE}
-            promoTaxedPrice={PROMO_PRICE}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={ITEMS}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          totalPrice={TOTAL_PRICE}
+          subtotalPrice={SUBTOTAL_PRICE}
+          shippingTaxedPrice={SHIPPING_PRICE}
+          promoTaxedPrice={PROMO_PRICE}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 
@@ -141,21 +134,19 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={[]}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            totalPrice={TOTAL_PRICE}
-            subtotalPrice={SUBTOTAL_PRICE}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={[]}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          totalPrice={TOTAL_PRICE}
+          subtotalPrice={SUBTOTAL_PRICE}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 
@@ -177,19 +168,17 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={ITEMS}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={ITEMS}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 
@@ -211,19 +200,17 @@ describe("<CartSidebar />", () => {
 
     const wrapper = mount(
       <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartSidebar
-            items={ITEMS}
-            removeItem={removeItem}
-            updateItem={updateItem}
-            show
-            hide={hide}
-            continueShopping={continueShopping}
-            goToCart={goToCart}
-            proceedToCheckout={proceedToCheckout}
-            target={portalRoot}
-          />
-        </MemoryRouter>
+        <CartSidebar
+          items={ITEMS}
+          removeItem={removeItem}
+          updateItem={updateItem}
+          show
+          hide={hide}
+          continueShopping={continueShopping}
+          goToCart={goToCart}
+          proceedToCheckout={proceedToCheckout}
+          target={portalRoot}
+        />
       </IntlProvider>
     );
 

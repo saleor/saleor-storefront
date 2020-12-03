@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
-import { MemoryRouter } from "react-router";
 
 import { CartSidebar } from ".";
 import {
@@ -29,11 +28,7 @@ const proceedToCheckout = action("proceed to checkout");
 
 storiesOf("@components/organisms/CartSidebar", module)
   .addParameters({ component: CartSidebar })
-  .addDecorator(story => (
-    <IntlProvider locale="en">
-      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-    </IntlProvider>
-  ))
+  .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
   .add("default", () => (
     <CartSidebar
       items={ITEMS}

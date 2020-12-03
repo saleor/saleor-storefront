@@ -23,11 +23,7 @@ const DEFAULT_PROPS = { ...{ links, active } };
 
 storiesOf("@components/molecules/AccountMenuMobile", module)
   .addParameters({ component: AccountMenuMobile })
-  .addDecorator(story => (
-    <IntlProvider locale="en">
-      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-    </IntlProvider>
-  ))
+  .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
   .add("default", () => (
     <Wrapper>
       <AccountMenuMobile {...DEFAULT_PROPS} />

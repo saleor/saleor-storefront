@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
 import { useRouter } from "next/router";
 
+import { Loader } from "@components/atoms";
 import { paths } from "@paths";
 import { TypedAccountConfirmMutation } from "./queries";
 
@@ -33,6 +34,7 @@ const AccountConfirm: NextPage = () => {
 
   useEffect(() => {
     const mutateFn = accountManagerFnRef.current;
+
     if (mutateFn) {
       mutateFn({
         variables: { email: query.email, token: query.token },
@@ -55,7 +57,7 @@ const AccountConfirm: NextPage = () => {
     <TypedAccountConfirmMutation>
       {accountConfirm => {
         accountManagerFnRef.current = accountConfirm;
-        return <div />;
+        return <Loader />;
       }}
     </TypedAccountConfirmMutation>
   );
