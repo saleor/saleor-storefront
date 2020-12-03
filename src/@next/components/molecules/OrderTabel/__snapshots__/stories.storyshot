@@ -157,6 +157,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
       data-test="orderEntry"
       data-test-id="77"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c3"
@@ -166,8 +167,10 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
       <div
         className="c4"
       >
-        <span
+        <a
+          href="/product/apple-juice/72"
           onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <img
             alt=""
@@ -175,7 +178,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
             src="https://dummyimage.com/600x400/000/fff"
             srcSet="https://dummyimage.com/600x400/000/fff 1x, https://dummyimage.com/600x400/000/fff 2x"
           />
-        </span>
+        </a>
       </div>
       <div
         className="c5"
@@ -200,6 +203,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
       data-test="orderEntry"
       data-test-id="76"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c3"
@@ -209,8 +213,10 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
       <div
         className="c4"
       >
-        <span
+        <a
+          href="/product/bean-juice/79"
           onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <img
             alt=""
@@ -218,7 +224,7 @@ exports[`Storyshots @components/molecules/OrderTabel default 1`] = `
             src="https://dummyimage.com/600x400/000/fff"
             srcSet="https://dummyimage.com/600x400/000/fff 1x, https://dummyimage.com/600x400/000/fff 2x"
           />
-        </span>
+        </a>
       </div>
       <div
         className="c5"

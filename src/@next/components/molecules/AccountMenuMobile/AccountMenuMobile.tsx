@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { paths } from "@paths";
 import { Icon } from "@components/atoms";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
@@ -20,28 +21,16 @@ export const AccountMenuMobile: React.FC<IProps> = ({
     setShowMenu(false);
   });
 
-  const linkToMenuItem = (link: string) => {
-    link = link
-      .replace(/\//g, "")
-      .replace("-", " ")
-      .split(" ")
-      .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-      .join(" ");
-    let menuItem = link;
-    /* eslint-disable default-case */
-    switch (link) {
-      case "Account":
-        menuItem = intl.formatMessage(commonMessages.account);
-        break;
-      case "Order History":
-        menuItem = intl.formatMessage(commonMessages.orderHistory);
-        break;
-      case "Address Book":
-        menuItem = intl.formatMessage(commonMessages.addressBook);
-        break;
-    }
-    return menuItem;
-  };
+  const linkToMenuItem = (link: string) =>
+    ({
+      [paths.account]: intl.formatMessage(commonMessages.account),
+      [paths.accountOrderHistory]: intl.formatMessage(
+        commonMessages.orderHistory
+      ),
+      [paths.accountAddressBook]: intl.formatMessage(
+        commonMessages.addressBook
+      ),
+    }[link]);
 
   return (
     <S.Wrapper
@@ -57,27 +46,24 @@ export const AccountMenuMobile: React.FC<IProps> = ({
           <S.MenuHeader>
             <FormattedMessage defaultMessage="Go to" />
           </S.MenuHeader>
-          {links.map(link => {
-            const menuItem = linkToMenuItem(link);
-            return (
-              <div
-                onClick={evt => {
-                  evt.stopPropagation();
-                  setShowMenu(false);
-                }}
-                key={link}
-              >
-                <Link href={link}>
-                  <a>
-                    <S.MenuItem active={active === link}>
-                      {menuItem}
-                      <Icon name="select_arrow" size={8} />
-                    </S.MenuItem>
-                  </a>
-                </Link>
-              </div>
-            );
-          })}
+          {links.map(link => (
+            <div
+              onClick={evt => {
+                evt.stopPropagation();
+                setShowMenu(false);
+              }}
+              key={link}
+            >
+              <Link href={link}>
+                <a>
+                  <S.MenuItem active={active === link}>
+                    {linkToMenuItem(link)}
+                    <Icon name="select_arrow" size={8} />
+                  </S.MenuItem>
+                </a>
+              </Link>
+            </div>
+          ))}
         </S.Overlay>
       )}
     </S.Wrapper>
