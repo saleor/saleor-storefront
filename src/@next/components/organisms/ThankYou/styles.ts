@@ -1,7 +1,7 @@
 import { DefaultTheme, media, styled } from "@styles";
 
 export const Wrapper = styled.div`
-  margin: 80px 0;
+  margin: 7rem 0;
 
   ${media.smallScreen`
     margin: 40px 0;

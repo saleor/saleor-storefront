@@ -90,7 +90,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     pageSize: PRODUCTS_PER_PAGE,
     priceGte: null,
     priceLte: null,
-    sortBy: sort || null,
+    sortBy: sort || "name",
   };
   const variables = {
     ...filters,

@@ -20,7 +20,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
         <Thumbnail source={product} />
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
-      <S.ArtisanName>{product.name}</S.ArtisanName>
+      <S.ArtisanName>{product.collections[0].name}</S.ArtisanName>
       <S.Price data-test="productPrice">
         <TaxedMoney taxedMoney={price} />
       </S.Price>

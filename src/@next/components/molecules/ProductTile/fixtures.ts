@@ -1,12 +1,16 @@
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "./gqlTypes/ProductList";
 
 export const PRODUCT: ProductList_products_edges_node = {
   __typename: "Product",
+  collections: [
+    {
+      __typename: "Collection",
+      id: "Q29sbGVjdGlvbjoyMw==",
+      name: "Lucio Liguori | Ceramist",
+    },
+  ],
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",
-  slug: "apple-juice",
-  seoDescription: "Apple Juice Description",
-  seoTitle: "Apple Juice",
   pricing: {
     __typename: "ProductPricingInfo",
     onSale: true,
