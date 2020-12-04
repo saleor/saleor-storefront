@@ -21,7 +21,7 @@
       "error",
       {
         "devDependencies": [
-          "**/stories.tsx",
+          "**/*stories.tsx",
           "**/test.ts",
           "**/*.test.ts",
           "**/test.tsx",

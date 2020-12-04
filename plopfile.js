@@ -38,7 +38,8 @@ module.exports = plop => {
         {
           type: "add",
           path: `${path}{{pascalCase name}}/stories.tsx`,
-          templateFile: "plop-templates/Component/stories.tsx.hbs",
+          templateFile:
+            "plop-templates/Component/{{pascalCase name}}.stories.tsx.hbs",
         },
         {
           type: "append",
