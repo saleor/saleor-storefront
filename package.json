@@ -171,6 +171,7 @@
     "sass-loader": "^7.1.0",
     "sitemap": "^2.2.0",
     "start-server-and-test": "^1.10.8",
+    "storybook-addon-next-router": "^2.0.0",
     "style-loader": "^0.21.0",
     "test-data-bot": "^0.8.0",
     "ts-loader": "^4.4.2",

@@ -3,15 +3,16 @@ import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
+import { paths } from "@paths";
+
 import { AccountMenuMobile } from ".";
 
 const links = [
-  "/personal-information/",
-  "/address-book/",
-  "/order-history/",
-  "/payment-options/",
+  paths.account,
+  paths.accountOrderHistory,
+  paths.accountAddressBook,
 ];
-const active = "/address-book/";
+const active = paths.accountAddressBook;
 
 const DEFAULT_PROPS = { ...{ links, active } };
 
@@ -48,9 +49,8 @@ describe("<AccountMenuMobile />", () => {
 
     wrapper.find(AccountMenuMobile).simulate("click");
 
-    expect(wrapper.text()).toContain("Personal Information");
+    expect(wrapper.text()).toContain("Account");
     expect(wrapper.text()).toContain("Address book");
     expect(wrapper.text()).toContain("Order history");
-    expect(wrapper.text()).toContain("Payment Options");
   });
 });

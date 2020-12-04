@@ -3,6 +3,8 @@ import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
+import { paths } from "@paths";
+
 import { AccountMenuMobile } from ".";
 
 const Wrapper = styled.div`
@@ -11,12 +13,11 @@ const Wrapper = styled.div`
 `;
 
 const links = [
-  "/personal-information/",
-  "/address-book/",
-  "/order-history/",
-  "/payment-options/",
+  paths.account,
+  paths.accountOrderHistory,
+  paths.accountAddressBook,
 ];
-const active = "/address-book/";
+const active = paths.accountAddressBook;
 
 const DEFAULT_PROPS = { ...{ links, active } };
 
