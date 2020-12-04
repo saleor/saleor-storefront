@@ -13,7 +13,8 @@ import { DropdownMenu, IconButton } from "@components/atoms";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 
-import { AddressSummary, CartTable, NotFound } from "../../../components";
+import { AddressSummary } from "@components/molecules";
+import { CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
 
 import { orderHistoryUrl } from "../../../app/routes";
@@ -97,7 +98,6 @@ const Page: React.FC<{
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
           />
         </div>
       </div>
