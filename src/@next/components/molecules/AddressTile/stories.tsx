@@ -2,7 +2,6 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import { styled } from "@styles";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { AddressTile } from ".";
 
@@ -40,21 +39,17 @@ const DEFAULT_PROPS = {
 storiesOf("@components/molecules/AddressTile", module)
   .addParameters({ component: AddressTile })
   .add("default", () => (
-    <IntlProvider locale="en">
-      <Container>
-        <AddressTile {...DEFAULT_PROPS} />
-      </Container>
-    </IntlProvider>
+    <Container>
+      <AddressTile {...DEFAULT_PROPS} />
+    </Container>
   ))
   .add("with default shipping and billing as false", () => {
     const CHANGED_DEFAULT_ADDRESSES = { ...DEFAULT_PROPS };
     CHANGED_DEFAULT_ADDRESSES.address.isDefaultBillingAddress = false;
     CHANGED_DEFAULT_ADDRESSES.address.isDefaultShippingAddress = false;
     return (
-      <IntlProvider locale="en">
-        <Container>
-          <AddressTile {...CHANGED_DEFAULT_ADDRESSES} />
-        </Container>
-      </IntlProvider>
+      <Container>
+        <AddressTile {...CHANGED_DEFAULT_ADDRESSES} />
+      </Container>
     );
   });

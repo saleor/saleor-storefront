@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { AddressGridSelector } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
@@ -16,11 +15,9 @@ if (!portalRoot) {
 storiesOf("@components/organisms/AddressGridSelector", module)
   .addParameters({ component: AddressGridSelector })
   .add("default", () => (
-    <IntlProvider locale="en">
-      <AddressGridSelector
-        {...DEFAULT_PROPS}
-        onSelect={action("onSelect has been called")}
-        addNewModalTarget={portalRoot}
-      />
-    </IntlProvider>
+    <AddressGridSelector
+      {...DEFAULT_PROPS}
+      onSelect={action("onSelect has been called")}
+      addNewModalTarget={portalRoot}
+    />
   ));

@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { CheckoutAddress } from "./CheckoutAddress";
 import { ANONYMOUS_USER_PROPS, LOGGED_IN_USER_PROPS } from "./fixtures";
@@ -22,24 +21,20 @@ const setBillingAsShippingAddress = action(
 storiesOf("@components/organisms/CheckoutAddress", module)
   .addParameters({ component: CheckoutAddress })
   .add("default", () => (
-    <IntlProvider locale="en">
-      <CheckoutAddress
-        {...ANONYMOUS_USER_PROPS}
-        shippingAddressRequired
-        setShippingAddress={setShippingAddress}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-      />
-    </IntlProvider>
+    <CheckoutAddress
+      {...ANONYMOUS_USER_PROPS}
+      shippingAddressRequired
+      setShippingAddress={setShippingAddress}
+      setBillingAddress={setBillingAddress}
+      setBillingAsShippingAddress={setBillingAsShippingAddress}
+    />
   ))
   .add("with addresses", () => (
-    <IntlProvider locale="en">
-      <CheckoutAddress
-        {...LOGGED_IN_USER_PROPS}
-        shippingAddressRequired
-        setShippingAddress={setShippingAddress}
-        setBillingAddress={setBillingAddress}
-        setBillingAsShippingAddress={setBillingAsShippingAddress}
-      />
-    </IntlProvider>
+    <CheckoutAddress
+      {...LOGGED_IN_USER_PROPS}
+      shippingAddressRequired
+      setShippingAddress={setShippingAddress}
+      setBillingAddress={setBillingAddress}
+      setBillingAsShippingAddress={setBillingAsShippingAddress}
+    />
   ));

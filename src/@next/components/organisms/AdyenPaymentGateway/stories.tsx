@@ -1,7 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { AdyenPaymentGateway } from ".";
 import { adyenPaymentMethods } from "./fixtures";
@@ -39,7 +38,7 @@ const onError = action("onError");
 
 storiesOf("@components/organisms/AdyenPaymentGateway", module)
   .addParameters({ component: AdyenPaymentGateway })
-  .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
+
   .add("default", () => (
     <AdyenPaymentGateway
       {...PROPS}

@@ -1,7 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { CheckoutPayment } from ".";
 import { PROPS } from "./fixtures";
@@ -22,12 +21,10 @@ const submitUnchangedDiscount = action(
 storiesOf("@components/organisms/CheckoutPayment", module)
   .addParameters({ component: CheckoutPayment })
   .add("default", () => (
-    <IntlProvider locale="en">
-      <CheckoutPayment
-        {...PROPS}
-        addPromoCode={addPromoCode}
-        removeVoucherCode={removeVoucherCode}
-        submitUnchangedDiscount={submitUnchangedDiscount}
-      />
-    </IntlProvider>
+    <CheckoutPayment
+      {...PROPS}
+      addPromoCode={addPromoCode}
+      removeVoucherCode={removeVoucherCode}
+      submitUnchangedDiscount={submitUnchangedDiscount}
+    />
   ));

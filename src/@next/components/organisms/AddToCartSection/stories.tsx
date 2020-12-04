@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import AddToCartSection, { IAddToCartSection } from "./AddToCartSection";
 
@@ -50,9 +49,5 @@ const DEFAULT_PROPS: IAddToCartSection = {
 
 storiesOf("@components/organisms/AddToCartSection", module).add(
   "default",
-  () => (
-    <IntlProvider locale="en">
-      <AddToCartSection {...DEFAULT_PROPS} />
-    </IntlProvider>
-  )
+  () => <AddToCartSection {...DEFAULT_PROPS} />
 );

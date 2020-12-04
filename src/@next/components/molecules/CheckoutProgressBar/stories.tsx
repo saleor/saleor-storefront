@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
+
 import { MemoryRouter } from "react-router";
 
 import { CheckoutProgressBar } from ".";
@@ -33,28 +33,22 @@ storiesOf("@components/molecules/CheckoutProgressBar", module)
   .addParameters({ component: CheckoutProgressBar })
   .add("first", () => {
     return (
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CheckoutProgressBar steps={steps} activeStep={1} />
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <CheckoutProgressBar steps={steps} activeStep={1} />
+      </MemoryRouter>
     );
   })
   .add("second", () => {
     return (
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CheckoutProgressBar steps={steps} activeStep={2} />
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <CheckoutProgressBar steps={steps} activeStep={2} />
+      </MemoryRouter>
     );
   })
   .add("third", () => {
     return (
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CheckoutProgressBar steps={steps} activeStep={3} />
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <CheckoutProgressBar steps={steps} activeStep={3} />
+      </MemoryRouter>
     );
   });
