@@ -22,8 +22,8 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
     config.plugins = [
       ...config.plugins,
       new MiniCssExtractPlugin({
-        filename: "[name].[hash].css",
-        chunkFilename: "[id].[hash].css",
+        filename: "static/[name].[hash].css",
+        chunkFilename: "static/[id].[hash].css",
       }),
     ];
 
