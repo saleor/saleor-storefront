@@ -63,7 +63,7 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
           holder: editorContainer.current!,
           // FIXME:
           // Causes Uncaught (in promise) TypeError: Cannot read property 'deactivate' of null
-          // Some backend wrong migration - might be fixed soon
+          // Waiting for editor.js fix - codex-team/editor.js#1380
           // readOnly: true,
           tools: await getTools(),
         });

@@ -71,7 +71,7 @@ const ORDERS = [
   },
 ];
 
-storiesOf("@components/molecules/OrderTabel", module)
+storiesOf("@components/molecules/OrderTable", module)
   .addParameters({ component: OrderTable })
   .add("default", () => {
     // this is added to fix issue when running on machines with different locales

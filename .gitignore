@@ -16,6 +16,7 @@
 !.env.development
 !.env.production
 
+out
 dist
 node_modules
 src/locales/_build

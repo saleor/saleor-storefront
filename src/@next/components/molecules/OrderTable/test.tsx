@@ -84,7 +84,7 @@ const ORDERS = [
   removeListener: jest.fn(),
 });
 
-describe("<OrderTabel />", () => {
+describe("<OrderTable />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <IntlProvider locale="en">
