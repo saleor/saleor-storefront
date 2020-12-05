@@ -12,7 +12,6 @@ export { default as Offline } from "./Offline";
 export { default as Online } from "./Online";
 export { default as PasswordResetRequestForm } from "./PasswordResetRequestForm";
 export { default as PriceRangeFilter } from "./PriceRangeFilter";
-export { default as ProductListItem } from "./ProductListItem";
 export { default as SelectField } from "./SelectField";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as TextField } from "./TextField";

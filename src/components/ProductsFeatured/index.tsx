@@ -2,7 +2,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { channelSlug } from "@temp/constants";
-import { Carousel, ProductListItem } from "..";
+import { ProductTile } from "@components/molecules";
+import { Carousel } from "..";
 import { generateProductUrl } from "../../core/utils";
 import { TypedFeaturedProductsQuery } from "./queries";
 
@@ -32,7 +33,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                       to={generateProductUrl(product.id, product.name)}
                       key={product.id}
                     >
-                      <ProductListItem product={product} />
+                      <ProductTile product={product} />
                     </Link>
                   ))}
                 </Carousel>
