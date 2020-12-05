@@ -1,11 +1,9 @@
-import EditorJS, {
+import {
   OutputData,
   ToolConstructable,
   ToolSettings,
 } from "@editorjs/editorjs";
-import Header from "@editorjs/header";
-import List from "@editorjs/list";
-import Quote from "@editorjs/quote";
+import type EditorJS from "@editorjs/editorjs";
 import createGenericInlineTool from "editorjs-inline-tool";
 import React from "react";
 
@@ -15,24 +13,36 @@ export interface RichTextEditorContentProps {
   jsonData: string;
 }
 
-export const tools: Record<string, ToolConstructable | ToolSettings> = {
-  header: {
-    class: Header,
-    config: {
-      defaultLevel: 1,
-      levels: [1, 2, 3],
+export const getTools = async (): Promise<
+  Record<string, ToolConstructable | ToolSettings>
+> => {
+  const [Header, List, Quote] = await Promise.all([
+    /* eslint-disable global-require */
+    require("@editorjs/header"),
+    require("@editorjs/list"),
+    require("@editorjs/quote"),
+    /* eslint-enable global-require */
+  ]);
+
+  return {
+    header: {
+      class: Header,
+      config: {
+        defaultLevel: 1,
+        levels: [1, 2, 3],
+      },
     },
-  },
-  list: List,
-  quote: Quote,
-  strikethrough: createGenericInlineTool({
-    sanitize: {
-      s: {},
-    },
-    shortcut: "CMD+S",
-    tagName: "s",
-    toolboxIcon: "",
-  }),
+    list: List,
+    quote: Quote,
+    strikethrough: createGenericInlineTool({
+      sanitize: {
+        s: {},
+      },
+      shortcut: "CMD+S",
+      tagName: "s",
+      toolboxIcon: "",
+    }),
+  };
 };
 
 export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
@@ -45,12 +55,19 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
 
   React.useEffect(() => {
     if (data && editorContainer.current) {
-      editor.current = new EditorJS({
-        data,
-        holder: editorContainer.current,
-        readOnly: true,
-        tools,
-      });
+      (async () => {
+        const Editor: typeof EditorJS = await require("@editorjs/editorjs"); // eslint-disable-line  global-require
+
+        editor.current = new Editor({
+          data,
+          holder: editorContainer.current!,
+          // FIXME:
+          // Causes Uncaught (in promise) TypeError: Cannot read property 'deactivate' of null
+          // Waiting for editor.js fix - codex-team/editor.js#1380
+          // readOnly: true,
+          tools: await getTools(),
+        });
+      })();
     }
 
     return editor.current?.destroy;

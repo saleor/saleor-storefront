@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import {
   generateCategoryUrl,
@@ -23,8 +23,8 @@ interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page } = item;
   const link = (url: string) => (
-    <Link to={url} {...props}>
-      {name}
+    <Link passHref href={url}>
+      <a {...props}>{name}</a>
     </Link>
   );
 

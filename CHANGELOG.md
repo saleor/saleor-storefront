@@ -8,6 +8,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add EditorJS renderer - #947 by @krzysztofwolski
 - New cart sidebar - #907 by @orzechdev
 - Support for multichannel - #937 by @AlicjaSzu
+- Add next.js to the Storefront - #955 by @piotrgrundas
 
 ## 2.11.0
 

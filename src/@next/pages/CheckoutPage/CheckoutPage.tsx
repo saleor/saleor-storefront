@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useIntl } from "react-intl";
-import { Redirect, useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
-import { Button, Loader } from "@components/atoms";
+import { Button, Loader, Redirect } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import {
   CartSummary,
@@ -19,6 +19,9 @@ import { ITaxedMoney, ICheckoutStep, ICardData, IFormError } from "@types";
 import { parseQueryString } from "@temp/core/utils";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
+import { useRouter } from "next/router";
+import { ParsedUrlQueryInput } from "querystring";
+import { paths } from "@paths";
 import { CheckoutRouter } from "./CheckoutRouter";
 import {
   CheckoutAddressSubpage,
@@ -100,6 +103,7 @@ const getButton = (text?: string, onClick?: () => void) => {
 const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const location = useLocation();
   const history = useHistory();
+  const { push } = useRouter();
   const querystring = parseQueryString(location);
   const {
     loaded: cartLoaded,
@@ -120,7 +124,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   const intl = useIntl();
 
   if (cartLoaded && (!items || !items?.length)) {
-    return <Redirect to="/cart/" />;
+    return <Redirect url={paths.cart} />;
   }
 
   const [submitInProgress, setSubmitInProgress] = useState(false);
@@ -214,10 +218,13 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   ) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
-      history.push({
-        pathname: "/order-finalized",
-        state: data,
-      });
+      push(
+        {
+          pathname: paths.orderFinalized,
+          query: data as ParsedUrlQueryInput,
+        },
+        paths.orderFinalized
+      );
     } else {
       history.push(steps[activeStepIndex + 1].link);
     }

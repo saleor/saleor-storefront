@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { RouteComponentProps } from "react-router";
+import { NextPage } from "next";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
@@ -22,10 +22,6 @@ import {
   TypedCollectionProductsQuery,
 } from "./queries";
 
-type ViewProps = RouteComponentProps<{
-  id: string;
-}>;
-
 export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
@@ -46,7 +42,11 @@ export const FilterQuerySet = {
   },
 };
 
-export const View: React.FC<ViewProps> = ({ match }) => {
+export type ViewProps = {
+  query: { slug: string; id: string };
+};
+
+export const View: NextPage<ViewProps> = ({ query: { id } }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
@@ -98,7 +98,7 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
-    id: getGraphqlIdFromDBId(match.params.id, "Collection"),
+    id: getGraphqlIdFromDBId(id, "Collection"),
     sortBy: convertSortByFromString(filters.sortBy),
     channel: channelSlug,
   };

@@ -3,7 +3,7 @@ import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { MemoryRouter } from "react-router";
+import { paths } from "@paths";
 import { AccountMenu } from ".";
 
 const Wrapper = styled.div`
@@ -11,21 +11,16 @@ const Wrapper = styled.div`
 `;
 
 const links = [
-  "/personal-information/",
-  "/address-book/",
-  "/order-history/",
-  "/payment-options/",
+  paths.account,
+  paths.accountOrderHistory,
+  paths.accountAddressBook,
 ];
-const active = "/address-book/";
+const active = paths.accountAddressBook;
 
 const DEFAULT_PROPS = { ...{ links, active } };
 storiesOf("@components/molecules/AccountMenu", module)
   .addParameters({ component: AccountMenu })
-  .addDecorator(story => (
-    <IntlProvider locale="en">
-      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
-    </IntlProvider>
-  ))
+  .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
   .add("default", () => (
     <Wrapper>
       <AccountMenu {...DEFAULT_PROPS} />

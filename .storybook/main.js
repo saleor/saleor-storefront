@@ -4,9 +4,11 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
   stories: ["../src/@next/**/stories.tsx"],
-  addons: [{
-    name: '@storybook/addon-essentials',
-  }],
+  addons: [
+    {
+      name: "@storybook/addon-essentials",
+    },
+  ],
 
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
@@ -50,9 +52,9 @@ module.exports = {
       new ForkTsCheckerWebpackPlugin({
         typescript: true,
         eslint: {
-          files: './src/**/*.{ts,tsx}', 
-          exclude: "node_modules"
-        }
+          files: "./src/**/*.{ts,tsx}",
+          exclude: "node_modules",
+        },
       })
     );
 

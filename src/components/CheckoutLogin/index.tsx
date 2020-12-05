@@ -1,18 +1,18 @@
 import "./scss/index.scss";
 
 import React, { useContext } from "react";
-import { Redirect } from "react-router";
+import { NextPage } from "next";
 
 import { useAuth } from "@saleor/sdk";
+import { OfflinePlaceholder, Redirect } from "@components/atoms";
 
-import { OfflinePlaceholder } from "@components/atoms";
+import { paths } from "@paths";
 import { Offline, Online, OverlayContext } from "..";
-
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
 import { OverlayType, OverlayTheme } from "../Overlay";
 
-const CheckoutLogin: React.FC<{}> = () => {
+const CheckoutLogin: NextPage = () => {
   const overlay = useContext(OverlayContext);
   const { user } = useAuth();
   const { show } = overlay;
@@ -21,10 +21,9 @@ const CheckoutLogin: React.FC<{}> = () => {
     show(OverlayType.password, OverlayTheme.right);
   };
 
-  if (user) {
-    return <Redirect to="/checkout/" />;
-  }
-  return (
+  return user ? (
+    <Redirect url={paths.checkout} />
+  ) : (
     <div className="container">
       <Online>
         <div className="checkout-login">
