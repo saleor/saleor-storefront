@@ -1,4 +1,3 @@
-export { default as Button, ButtonProps } from "./Button";
 export { default as Carousel } from "./Carousel";
 export { default as CheckoutLogin } from "./CheckoutLogin";
 export { default as ContentPage } from "./ContentPage";

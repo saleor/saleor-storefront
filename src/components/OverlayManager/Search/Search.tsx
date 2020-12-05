@@ -14,14 +14,8 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
-import { OfflinePlaceholder } from "@components/atoms";
-import {
-  Button,
-  Loader,
-  Overlay,
-  OverlayContextInterface,
-  OverlayType,
-} from "../..";
+import { Button, OfflinePlaceholder } from "@components/atoms";
+import { Loader, Overlay, OverlayContextInterface, OverlayType } from "../..";
 import { searchUrl } from "../../../app/routes";
 import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";

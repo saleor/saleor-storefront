@@ -5,9 +5,10 @@ import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
 import { useIntl, IntlShape } from "react-intl";
 import { commonMessages } from "@temp/intl";
+import { Button } from "@components/atoms";
 import { accountConfirmUrl } from "../../../app/routes";
 
-import { Button, Form, TextField } from "../..";
+import { Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
 import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";

@@ -1,8 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
 import { Link } from "react-router-dom";
-import { Button, OverlayTheme, OverlayType } from "..";
+
+import { Button } from "@components/atoms";
+import { OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
 
 const CheckoutAsGuest: React.FC<{

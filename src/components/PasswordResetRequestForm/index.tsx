@@ -4,7 +4,8 @@ import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { commonMessages } from "@temp/intl";
 
-import { Button, Form, TextField } from "..";
+import { Button } from "@components/atoms";
+import { Form, TextField } from "..";
 import { TypedPasswordResetRequestMutation } from "./queries";
 
 import { passwordResetUrl } from "../../app/routes";

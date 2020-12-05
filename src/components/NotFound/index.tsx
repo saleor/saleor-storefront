@@ -3,8 +3,8 @@ import "./scss/index.scss";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
+import { Button } from "@components/atoms";
 import { BASE_URL } from "../../core/config";
-import Button from "../Button";
 
 interface NotFoundProps {
   message?: string;
@@ -29,7 +29,7 @@ const NotFound: React.FC<NotFoundProps> = () => (
     </div>
     <div className="not-found-page__button">
       <Link to={BASE_URL}>
-        <Button testingContext="404pageGotoHomeButton" secondary>
+        <Button testingContext="404pageGotoHomeButton">
           <FormattedMessage defaultMessage="Back to home" />
         </Button>
       </Link>

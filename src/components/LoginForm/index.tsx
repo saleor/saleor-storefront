@@ -7,7 +7,8 @@ import { useAuth } from "@saleor/sdk";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
-import { Button, Form, TextField } from "..";
+import { Button } from "@components/atoms";
+import { Form, TextField } from "..";
 
 interface ILoginForm {
   hide?: () => void;
