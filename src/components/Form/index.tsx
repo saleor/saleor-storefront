@@ -1,7 +1,8 @@
 import * as React from "react";
 import NumberFormat from "react-number-format";
 
-import { Select, SelectField, TextField } from "..";
+import { Select } from "@components/atoms";
+import { SelectField, TextField } from "..";
 
 export const NON_FIELD_ERROR = "nonFieldError";
 
