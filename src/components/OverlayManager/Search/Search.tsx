@@ -13,6 +13,7 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
+import CategoryItem from "./CategoryItem";
 import CollectionItem from "./CollectionItem";
 
 import {
@@ -141,6 +142,14 @@ class Search extends React.Component<SearchProps, SearchState> {
                         if (this.hasResults(data)) {
                           return (
                             <>
+                              <ul>
+                                {data.categories.edges.map(category => (
+                                  <CategoryItem
+                                    {...category}
+                                    key={category.node.id}
+                                  />
+                                ))}
+                              </ul>
                               <ul>
                                 {data.collections.edges.map(collection => (
                                   <CollectionItem

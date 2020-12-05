@@ -4,6 +4,8 @@ import * as React from "react";
 import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 import { useIntl } from "react-intl";
 
+import { RichTextContent } from "@components/atoms";
+
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import {
@@ -91,15 +93,16 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <div className="category">
-      <div
-        className="article-page__header"
-        style={headerImage ? { backgroundImage: `url(${headerImage})` } : null}
-      >
-        <span className="article-page__header__title">
-          <h1>{category.name}</h1>
-        </span>
-      </div>
       <div className="container">
+        <div className="category__container">
+          <div className="category__image">
+            <img src={headerImage} alt={category.name} />
+          </div>
+          <div className="category__content">
+            <h3>{category.name}</h3>
+            <RichTextContent descriptionJson={category.descriptionJson} />
+          </div>
+        </div>
         <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
         <FilterSidebar
           show={showFilters}

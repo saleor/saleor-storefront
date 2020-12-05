@@ -8,7 +8,7 @@ import {
 
 const searchResultsQuery = gql`
   query SearchResults($query: String!) {
-    collections(filter: { search: $query }, first: 20) {
+    collections(filter: { search: $query }, first: 5) {
       edges {
         node {
           id
@@ -26,7 +26,25 @@ const searchResultsQuery = gql`
         startCursor
       }
     }
-    products(filter: { search: $query }, first: 20) {
+    categories(filter: { search: $query }, first: 5) {
+      edges {
+        node {
+          id
+          name
+          backgroundImage {
+            url
+            alt
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+    products(filter: { search: $query }, first: 15) {
       edges {
         node {
           id

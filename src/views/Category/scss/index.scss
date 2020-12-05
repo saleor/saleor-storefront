@@ -2,6 +2,16 @@
 
 .category {
   margin-top: 5.5rem;
+  &__container {
+    column-gap: $spacer * 1.5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 60px 0;
+
+    @media (max-width: $medium-screen) {
+      display: block;
+    }
+  }
   &__header {
     text-align: center;
     padding-top: $spacer * 4.5;
@@ -29,6 +39,31 @@
           font-size: 4vw;
         }
       }
+    }
+  }
+
+  &__image {
+    @media (max-width: $medium-screen) {
+      margin-bottom: $spacer * 2;
+    }
+    
+    img {
+      width: 500px;
+
+      @media (max-width: $medium-screen) {
+        margin-top: -3.5rem;
+        margin-left: -2rem;
+        margin-right: -2rem;
+        width: 100%;
+      }
+    }
+  }
+
+  &__content {
+    
+    h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
   }
 }

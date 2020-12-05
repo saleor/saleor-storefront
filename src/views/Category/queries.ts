@@ -18,6 +18,7 @@ export const categoryProductsDataQuery = gql`
       seoTitle
       id
       name
+      descriptionJson
       backgroundImage {
         url
       }

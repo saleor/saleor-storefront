@@ -8,7 +8,7 @@ import { IFilterAttributes, IFilters } from "@types";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
+import { ProductListSearch } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
@@ -134,7 +134,7 @@ const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
         {canDisplayProducts && (
-          <ProductList
+          <ProductListSearch
             products={products.edges.map(edge => edge.node)}
             canLoadMore={hasNextPage}
             loading={displayLoader}
