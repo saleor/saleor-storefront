@@ -63,7 +63,14 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
   background: #f1f5f5;
   padding: 2.5rem;
   text-align: center;
-  max-height: 30rem;
+  height: 26rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -87,15 +94,23 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
 }
 
 .c5 {
-  width: auto;
-  height: auto;
-  max-width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .c5 > img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  object-fit: contain;
 }
 
 .c1 {

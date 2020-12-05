@@ -8,6 +8,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Add EditorJS renderer - #947 by @krzysztofwolski
 - New cart sidebar - #907 by @orzechdev
 - Support for multichannel - #937 by @AlicjaSzu
+- Fixed image scaling in gallery and thumbnails - #959 by @MarekChoinski
 
 ## 2.11.0
 

@@ -34,6 +34,7 @@ export const ProductsOrdered = styled.div`
 
   img {
     max-width: 50px;
+    max-height: 50px;
     height: auto;
   }
 `;
