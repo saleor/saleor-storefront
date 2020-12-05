@@ -4,14 +4,10 @@ import Media from "react-media";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
+import Breadcrumbs from "@components/molecules/Breadcrumbs";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
-import {
-  Breadcrumbs,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType,
-} from "../../components";
+import { OverlayContext, OverlayTheme, OverlayType } from "../../components";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";

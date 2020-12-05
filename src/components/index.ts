@@ -21,11 +21,6 @@ export { default as TextField } from "./TextField";
 export { CartTable } from "./CartTable";
 export { default as ProductsFeatured } from "./ProductsFeatured";
 export { Filters, ProductFilters } from "./ProductFilters";
-export {
-  default as Breadcrumbs,
-  Breadcrumb,
-  extractBreadcrumbs,
-} from "./Breadcrumbs";
 export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { Footer } from "./Footer";
 export { MainMenu } from "./MainMenu";

@@ -1,0 +1,241 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Breadcrumbs Empty 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.c1 li:after {
+  content: url("../../../images/breadcrumbs-arrow.svg");
+  display: inline-block;
+  margin: 0 1rem / 2;
+}
+
+.c1 li a {
+  color: #7d7d7d;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1 li a:hover,
+.c1 li a:focus {
+  color: $blue;
+}
+
+.c1 .active a {
+  color: #323232;
+  font-weight: 600;
+}
+
+.c1 .active:hover {
+  color: "red";
+}
+
+.c2:after {
+  content: url("../../../images/breadcrumbs-arrow.svg");
+  display: inline-block;
+  margin: 0 1rem / 2;
+}
+
+.c2 a {
+  color: #7d7d7d;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c2 a:hover,
+.c2 a:focus {
+  color: $blue;
+}
+
+.c2:last-of-type a {
+  color: #323232;
+  font-weight: 600;
+}
+
+<div
+  className="c0"
+>
+  <ul
+    className="c1"
+  >
+    <li
+      className="c2"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </li>
+  </ul>
+  <div
+    className="c3"
+  />
+</div>
+`;
+
+exports[`Storyshots Breadcrumbs Nested Categories 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.c1 li:after {
+  content: url("../../../images/breadcrumbs-arrow.svg");
+  display: inline-block;
+  margin: 0 1rem / 2;
+}
+
+.c1 li a {
+  color: #7d7d7d;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1 li a:hover,
+.c1 li a:focus {
+  color: $blue;
+}
+
+.c1 .active a {
+  color: #323232;
+  font-weight: 600;
+}
+
+.c1 .active:hover {
+  color: "red";
+}
+
+.c2:after {
+  content: url("../../../images/breadcrumbs-arrow.svg");
+  display: inline-block;
+  margin: 0 1rem / 2;
+}
+
+.c2 a {
+  color: #7d7d7d;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c2 a:hover,
+.c2 a:focus {
+  color: $blue;
+}
+
+.c2:last-of-type a {
+  color: #323232;
+  font-weight: 600;
+}
+
+<div
+  className="c0"
+>
+  <ul
+    className="c1"
+  >
+    <li
+      className="c2"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </li>
+    <li
+      className="c2"
+    >
+      <a
+        href="/clothing"
+        onClick={[Function]}
+      >
+        Clothing
+      </a>
+    </li>
+    <li
+      className="c2"
+    >
+      <a
+        href="/shirts"
+        onClick={[Function]}
+      >
+        Shirts
+      </a>
+    </li>
+    <li
+      className="c2"
+    >
+      <a
+        href="/slim"
+        onClick={[Function]}
+      >
+        Slim
+      </a>
+    </li>
+  </ul>
+  <div
+    className="c3"
+  />
+</div>
+`;

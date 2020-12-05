@@ -5,17 +5,14 @@ import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
-import {
-  Breadcrumbs,
-  extractBreadcrumbs,
-  ProductsFeatured,
-} from "../../components";
+import Breadcrumbs from "@components/molecules/Breadcrumbs";
+import { ProductsFeatured } from "../../components";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
-import { maybe } from "../../core/utils";
+import { getDBIdFromGraphqlId, maybe, slugify } from "../../core/utils";
 
 import { Category_category } from "./gqlTypes/Category";
 import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
@@ -85,6 +82,27 @@ const Page: React.FC<PageProps> = ({
         ),
       []
     );
+
+  const extractBreadcrumbs = (category: Category_category) => {
+    const constructLink = item => ({
+      link: [
+        `/category`,
+        `/${slugify(item.name)}`,
+        `/${getDBIdFromGraphqlId(item.id, "Category")}/`,
+      ].join(""),
+      value: item.name,
+    });
+
+    let breadcrumbs = [constructLink(category)];
+
+    if (category.ancestors.edges.length) {
+      const ancestorsList = category.ancestors.edges.map(edge =>
+        constructLink(edge.node)
+      );
+      breadcrumbs = ancestorsList.concat(breadcrumbs);
+    }
+    return breadcrumbs;
+  };
 
   return (
     <div className="category">

@@ -2,8 +2,8 @@ import classNames from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import Breadcrumbs, { Breadcrumb } from "@components/molecules/Breadcrumbs";
 import { RichTextEditorContent } from "../../@next/components/atoms";
-import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
   active: boolean;

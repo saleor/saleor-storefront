@@ -3,7 +3,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
-  stories: ["../src/@next/**/stories.tsx"],
+  stories: ["../src/@next/**/*stories.tsx"],
   addons: [{
     name: '@storybook/addon-essentials',
   }],
