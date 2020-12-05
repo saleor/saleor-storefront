@@ -14,12 +14,11 @@ import ReactSVG from "react-svg";
 
 import { commonMessages } from "@temp/intl";
 
-import { Button, OfflinePlaceholder } from "@components/atoms";
+import { Button, Error, OfflinePlaceholder } from "@components/atoms";
 import { Loader, Overlay, OverlayContextInterface, OverlayType } from "../..";
 import { searchUrl } from "../../../app/routes";
 import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";
-import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import { SearchResults } from "./gqlTypes/SearchResults";
 import NothingFound from "./NothingFound";
@@ -162,7 +161,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
                         if (error) {
                           return isOnline ? (
-                            <Error error={error.message} />
+                            <Error message={error.message} />
                           ) : (
                             <OfflinePlaceholder />
                           );

@@ -32,3 +32,4 @@ export * from "./Tile";
 export * from "./TileGrid";
 export * from "./CartCostsSummary";
 export * from "./OfflinePlaceholder";
+export * from "./Error";
