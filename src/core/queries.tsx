@@ -4,7 +4,7 @@ import * as React from "react";
 import { Query, QueryProps, QueryResult } from "react-apollo";
 
 import Error from "@components/atoms/Error";
-import Loader from "../components/Loader";
+import { Loader } from "@components/atoms";
 import { RequireAtLeastOne } from "./tsUtils";
 import { maybe } from "./utils";
 
@@ -87,7 +87,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
           }
 
           if (displayLoader && loading && !hasData) {
-            return <Loader full={loaderFull} />;
+            return <Loader fullScreen={loaderFull} />;
           }
 
           if (hasData || (renderOnError && error) || alwaysRender) {

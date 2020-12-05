@@ -9,6 +9,7 @@ import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
 import Breadcrumbs from "@components/molecules/Breadcrumbs";
+import { Loader } from "@components/atoms";
 import AddressBook from "../../account/AddressBook/AddressBook";
 import {
   accountUrl,
@@ -16,7 +17,6 @@ import {
   baseUrl,
   orderHistoryUrl,
 } from "../../app/routes";
-import { Loader } from "../../components";
 
 import "./scss/index.scss";
 
