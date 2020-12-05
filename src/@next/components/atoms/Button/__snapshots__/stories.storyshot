@@ -192,7 +192,7 @@ exports[`Storyshots @components/atoms/Button Size sm 1`] = `
 
 .c1 {
   background-color: #13bebb;
-  padding: 0.1rem 2rem;
+  padding: 1.5rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;

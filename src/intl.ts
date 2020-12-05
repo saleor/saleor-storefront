@@ -4,6 +4,12 @@ export const commonMessages = defineMessages({
   search: {
     defaultMessage: "search",
   },
+  language: {
+    defaultMessage: "Language",
+  },
+  preferences: {
+    defaultMessage: "Preferences",
+  },
   outOfStock: {
     defaultMessage: "Out of stock",
   },

@@ -441,6 +441,9 @@
   "intl_dot_commonMessages_dot_home": {
     "string": "Home"
   },
+  "intl_dot_commonMessages_dot_language": {
+    "string": "Language"
+  },
   "intl_dot_commonMessages_dot_lastName": {
     "string": "Last Name"
   },

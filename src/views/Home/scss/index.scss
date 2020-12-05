@@ -55,7 +55,7 @@
         font-family: $des-font-family;
 
         @media (max-width: $small-screen) {
-          font-size: $h4-font-size;
+          font-size: 1.6rem;
         }
 
         @media (min-width: $small-screen) and (max-width: $medium-screen) {

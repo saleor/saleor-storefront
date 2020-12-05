@@ -19,7 +19,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 
 .c10 {
   background-color: #13bebb;
-  padding: 0.1rem 2rem;
+  padding: 1.5rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -333,7 +333,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 
 .c9 {
   background-color: #13bebb;
-  padding: 0.1rem 2rem;
+  padding: 1.5rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -614,7 +614,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 
 .c9 {
   background-color: #13bebb;
-  padding: 0.1rem 2rem;
+  padding: 1.5rem 2rem;
   border: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;

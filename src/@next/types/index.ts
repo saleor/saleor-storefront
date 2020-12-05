@@ -11,4 +11,5 @@ export * from "./IPaymentGateway";
 export * from "./ICardData";
 export * from "./IFormError";
 export * from "./ICheckoutStep";
+export * from "./IPreferences";
 export * from "./IProduct";

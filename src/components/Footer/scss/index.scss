@@ -56,6 +56,12 @@
       div:not(:last-of-type) {
         padding-right: $spacer * 3;
       }
+
+      .right {
+        @media (min-width: $medium-screen) {
+          margin-left: auto;
+        }
+      }
     }
 
     &__section {
@@ -71,6 +77,10 @@
           margin-bottom: $spacer;
           font-size: $small-font-size;
           color: $gray;
+
+          button {
+            color: white;
+          }
 
           a {
             text-decoration: none;

@@ -119,6 +119,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       GTM_ID: undefined,
       SENTRY_APM: "0",
       SENTRY_DSN: null,
+      DEFAULT_LOCALE: "en",
     }),
   ],
   resolve: {

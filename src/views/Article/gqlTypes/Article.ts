@@ -6,6 +6,15 @@
 // GraphQL query operation: Article
 // ====================================================
 
+export interface Article_page_translation {
+  __typename: "Translation";
+  /**
+   * The URL of the image.
+   */
+  title: string;
+  contentJson: any;
+}
+
 export interface Article_page {
   __typename: "Page";
   contentJson: any;
@@ -17,6 +26,7 @@ export interface Article_page {
   seoTitle: string | null;
   slug: string;
   title: string;
+  translation: Article_page_translation | null; 
 }
 
 export interface Article_shop_homepageCollection_backgroundImage {
