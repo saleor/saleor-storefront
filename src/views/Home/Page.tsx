@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { generateCollectionUrl } from "../../core/utils";
-import HomeVideo from "./Video";
+import ArtisanVideo from "./Video";
+
+import TrustBox from "./TrustBox";
 
 import {
   ProductsList_categories,
@@ -121,7 +123,8 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      <HomeVideo srcVideo={srcVideo} />
+      <ArtisanVideo srcVideo={srcVideo} />
+      <TrustBox />
     </>
   );
 };
