@@ -83,6 +83,7 @@ exports[`Storyshots @components/organisms/ProductGallery default 1`] = `
 }
 
 .c5 img {
+  height: 100%;
   width: 100%;
   object-fit: contain;
 }
@@ -293,6 +294,7 @@ exports[`Storyshots @components/organisms/ProductGallery eight Images 1`] = `
 }
 
 .c8 img {
+  height: 100%;
   width: 100%;
   object-fit: contain;
 }
@@ -605,6 +607,7 @@ exports[`Storyshots @components/organisms/ProductGallery three Images 1`] = `
 }
 
 .c6 img {
+  height: 100%;
   width: 100%;
   object-fit: contain;
 }
