@@ -1,5 +1,16 @@
 import "./scss/index.scss";
 
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  PinterestIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "react-share";
+
 import * as React from "react";
 import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 import { useIntl } from "react-intl";
@@ -18,6 +29,7 @@ import { Collection_collection } from "./gqlTypes/Collection";
 import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
 
 import ArtisanVideo from "./Video";
+import * as S from "./styles";
 
 interface SortItem {
   label: string;
@@ -98,6 +110,44 @@ const Page: React.FC<PageProps> = ({
             <img src={collection.backgroundImage.url} alt={collection.slug} />
           </div>
           <div className="collection__content">
+            <S.SocialShareSelection>
+              <S.SocialButton>
+                <FacebookShareButton url={window.location.href}>
+                  <FacebookIcon
+                    path="/"
+                    size={32}
+                    bgStyle={{ fill: "#0D233F" }}
+                  />
+                </FacebookShareButton>
+              </S.SocialButton>
+              <S.SocialButton>
+                <PinterestShareButton
+                  url={window.location.href}
+                  media="/images/favicons/favicon-16x16.png"
+                >
+                  <PinterestIcon
+                    path="/"
+                    size={32}
+                    bgStyle={{ fill: "#0D233F" }}
+                  />
+                </PinterestShareButton>
+              </S.SocialButton>
+              <S.SocialButton>
+                <TwitterShareButton url={window.location.href}>
+                  <TwitterIcon
+                    path="/"
+                    size={32}
+                    bgStyle={{ fill: "#0D233F" }}
+                  />
+                </TwitterShareButton>
+              </S.SocialButton>
+              <S.SocialButton>
+                <EmailShareButton url={window.location.href}>
+                  <EmailIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+                </EmailShareButton>
+              </S.SocialButton>
+            </S.SocialShareSelection>
+
             <h3>{collection.name}</h3>
             <RichTextContent descriptionJson={collection.descriptionJson} />
           </div>
