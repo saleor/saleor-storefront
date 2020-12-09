@@ -9,8 +9,6 @@ import { Button, Loader, ProductsFeatured } from "../../components";
 import { generateCollectionUrl } from "../../core/utils";
 import ArtisanVideo from "./Video";
 
-import TrustBox from "./TrustBox";
-
 import {
   ProductsList_categories,
   ProductsList_collections,
@@ -91,7 +89,7 @@ const Page: React.FC<{
         <div className="home-page__collections">
           <div className="container">
             <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
+              <FormattedMessage defaultMessage="Latest Stories" />
             </h3>
             <div className="home-page__collections__list">
               {collections.edges.map(({ node: collection }) => (
@@ -124,7 +122,6 @@ const Page: React.FC<{
         </div>
       )}
       <ArtisanVideo srcVideo={srcVideo} />
-      <TrustBox />
     </>
   );
 };

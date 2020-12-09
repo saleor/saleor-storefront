@@ -8,7 +8,16 @@ import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  PinterestIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "react-share";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
@@ -175,6 +184,31 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
       />
+      <S.SocialShareSelection>
+        <S.SocialButton>
+          <FacebookShareButton url={window.location.href}>
+            <FacebookIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </FacebookShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <PinterestShareButton
+            url={window.location.href}
+            media="/images/favicons/favicon-16x16.png"
+          >
+            <PinterestIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </PinterestShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <TwitterShareButton url={window.location.href}>
+            <TwitterIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </TwitterShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <EmailShareButton url={window.location.href}>
+            <EmailIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </EmailShareButton>
+        </S.SocialButton>
+      </S.SocialShareSelection>
     </S.AddToCartSelection>
   );
 };

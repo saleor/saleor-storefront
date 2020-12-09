@@ -27,7 +27,11 @@ export const homePageQuery = gql`
         }
       }
     }
-    collections(first: 4) {
+    collections(
+      first: 2
+      filter: { published: PUBLISHED }
+      sortBy: { field: PUBLICATION_DATE, direction: DESC }
+    ) {
       edges {
         node {
           id

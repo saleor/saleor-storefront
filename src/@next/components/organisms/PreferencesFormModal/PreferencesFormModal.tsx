@@ -37,7 +37,10 @@ export const PreferencesFormModal: React.FC<IProps> = ({
         formId={formId}
         handleSubmit={(data: IPreferences) => {
           hideModal();
+          console.log(preferences);
+          console.log(data);
           setPreferences(data);
+          console.log(preferences);
         }}
       />
     </Modal>

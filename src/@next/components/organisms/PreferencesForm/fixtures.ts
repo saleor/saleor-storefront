@@ -9,6 +9,6 @@ export const preferencesEN = {
   locale: Locale.EN,
 };
 
-export const preferencesPL = {
+export const preferencesIT = {
   locale: Locale.IT,
 };

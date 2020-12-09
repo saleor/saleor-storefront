@@ -13,6 +13,7 @@ export * from "./SelectSidebar";
 export * from "./DiscountForm";
 export * from "./ProductGallery";
 export * from "./ProductList";
+export * from "./ProductListOther";
 export * from "./ProductListSearch";
 export * from "./CartSummary";
 export * from "./CartRow";

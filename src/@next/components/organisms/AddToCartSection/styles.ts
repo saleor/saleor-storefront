@@ -2,13 +2,17 @@ import { styled } from "@styles";
 
 export const AddToCartSelection = styled.div``;
 
+export const SocialShareSelection = styled.div`
+  margin-top: 20px;
+`;
+
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
 
-export const ProductPricing = styled.h4`
+export const ProductPricing = styled.p`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
 `;
@@ -37,4 +41,8 @@ export const QuantityInput = styled.div`
 
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
+`;
+
+export const SocialButton = styled.span`
+  margin-right: 5px;
 `;

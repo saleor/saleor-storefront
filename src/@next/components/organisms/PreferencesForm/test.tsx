@@ -5,7 +5,7 @@ import { IntlProvider } from "react-intl";
 import { Select } from "@components/atoms";
 import { IPreferences, Locale } from "@types";
 import { PreferencesForm } from ".";
-import { preferencesEN, preferencesPL, localesOptions } from "./fixtures";
+import { preferencesEN, preferencesIT, localesOptions } from "./fixtures";
 
 const PROPS = {
   localesOptions,
@@ -40,6 +40,6 @@ describe("<PreferencesForm />", () => {
       expect(wrapper.find(Select).at(0).prop("value")).toEqual(localeOption);
     };
     checkInitialValue(preferencesEN, localesOptions[0]);
-    checkInitialValue(preferencesPL, localesOptions[1]);
+    checkInitialValue(preferencesIT, localesOptions[1]);
   });
 });
