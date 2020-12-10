@@ -6,6 +6,15 @@
 // GraphQL query operation: Collection
 // ====================================================
 
+export interface Collection_collection_translation {
+  __typename: "Translation";
+  /**
+   * The URL of the image.
+   */
+  name: string;
+  descriptionJson: any;
+}
+
 export interface Collection_collection_backgroundImage {
   __typename: "Image";
   /**
@@ -32,6 +41,7 @@ export interface Collection_collection {
   descriptionJson: any;
   seoDescription: string | null;
   seoTitle: string | null;
+  translation: Collection_collection_translation | null;
   backgroundImage: Collection_collection_backgroundImage | null;
   metadata: (CollectionDetails_collection_metadata | null)[] | null;
 }

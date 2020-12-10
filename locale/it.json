@@ -47,6 +47,9 @@
   "@next_dot_components_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
     "string": "Acquista"
   },
+  "@next_dot_components_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_1456701921": {
+    "string": "Acquista"
+  },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
     "string": "Indirizzo Predefinito"
   },
@@ -185,6 +188,9 @@
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "Carica Altri"
   },
+  "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_108342258": {
+    "string": "Carica Altri"
+  },
   "@next_dot_components_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
     "string": "Seleziona {selectLabel}"
   },
@@ -275,6 +281,9 @@
   "components_dot_Footer_dot_LocaleSelect_dot_3389670008": {
     "string": "Cambia Lingua"
   },
+  "components_dot_Footer_dot_LocaleSelect_dot_2560496896": {
+    "string": "Cambia"
+  },
   "components_dot_LoginForm_dot_index_dot_1405865627": {
     "string": "Accedi"
   },
@@ -361,7 +370,7 @@
     "string": "Resetta la password"
   },
   "components_dot_PasswordResetRequestForm_dot_index_dot_805890313": {
-    "string": "Per favore fornisciil tuo indirizzo email così da poterlo condividere un link per resettare la tua password"
+    "string": "Per favore fornisci il tuo indirizzo email così da poterlo condividere un link per resettare la tua password"
   },
   "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
     "string": "Nessuna Opzione"
@@ -621,6 +630,18 @@
   },
   "views_dot_Home_dot_Page_dot_4153800196": {
     "string": "Tutte le Categorie"
+  },
+  "views_dot_Home_dot_Page_dot_1051582247": {
+    "string": "Ultime Storie"
+  },
+  "views_dot_Home_dot_Page_dot_3920565939": {
+    "string": "Esplora"
+  },
+  "views_dot_Home_dot_Page_dot_1172910972": {
+    "string": "Artigianato Artistico Italiano"
+  },
+  "views_dot_Home_dot_Page_dot_1162691464": {
+    "string": "Le più belle Storie di"
   },
   "views_dot_Home_dot_Page_dot_4294878092": {
     "string": "Tutte le Categorie"

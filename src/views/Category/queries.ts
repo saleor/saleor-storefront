@@ -22,6 +22,10 @@ export const categoryProductsDataQuery = gql`
       backgroundImage {
         url
       }
+      translation(languageCode: IT) {
+        name
+        descriptionJson
+      }
       ancestors(last: 5) {
         edges {
           node {

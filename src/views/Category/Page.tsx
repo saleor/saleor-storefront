@@ -6,6 +6,7 @@ import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
+import { usePreferences } from "@hooks";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
@@ -68,6 +69,10 @@ const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
+  const {
+    preferences: { locale },
+  } = usePreferences();
+
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
       attributeSlug,
@@ -96,7 +101,11 @@ const Page: React.FC<PageProps> = ({
         style={headerImage ? { backgroundImage: `url(${headerImage})` } : null}
       >
         <span className="article-page__header__title">
-          <h1>{category.name}</h1>
+          <h1>
+            {locale === "it" && category.translation?.name
+              ? category.translation.name
+              : category.name}
+          </h1>
         </span>
       </div>
       <div className="container">

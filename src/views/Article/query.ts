@@ -12,6 +12,10 @@ const articleQuery = gql`
       seoTitle
       slug
       title
+      translation(languageCode: IT) {
+        title
+        contentJson
+      }
     }
     shop {
       homepageCollection {

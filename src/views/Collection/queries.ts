@@ -27,6 +27,10 @@ export const collectionProductsDataQuery = gql`
       backgroundImage {
         url
       }
+      translation(languageCode: IT) {
+        name
+        descriptionJson
+      }
     }
     attributes(
       filter: { inCollection: $id, filterableInStorefront: true }

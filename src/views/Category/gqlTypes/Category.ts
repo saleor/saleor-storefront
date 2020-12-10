@@ -6,6 +6,15 @@
 // GraphQL query operation: Category
 // ====================================================
 
+export interface Category_category_translation {
+  __typename: "Translation";
+  /**
+   * The URL of the image.
+   */
+  name: string;
+  descriptionJson: any;
+}
+
 export interface Category_category_backgroundImage {
   __typename: "Image";
   /**
@@ -46,6 +55,7 @@ export interface Category_category {
   id: string;
   name: string;
   descriptionJson: any;
+  translation: Category_category_translation | null;
   backgroundImage: Category_category_backgroundImage | null;
   /**
    * List of ancestors of the category.

@@ -1,8 +1,14 @@
 import React from "react";
 import { useLocalStorage } from "@hooks";
 import { IPreferences, Locale } from "@types";
+import detectBrowserLanguage from "detect-browser-language";
 
-const defaultPreferences: IPreferences = { locale: Locale.EN };
+const defaultPreferences: IPreferences =
+  detectBrowserLanguage() === "it" ||
+  detectBrowserLanguage() === "it-it" ||
+  detectBrowserLanguage() === "it-IT"
+    ? { locale: Locale.IT }
+    : { locale: Locale.EN };
 
 export interface PreferencesContextType {
   preferences: IPreferences;

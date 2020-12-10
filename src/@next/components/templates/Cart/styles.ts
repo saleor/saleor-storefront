@@ -2,7 +2,7 @@ import { media, styled } from "@styles";
 
 export const Wrapper = styled.div`
   margin: 30px 0 100px 0;
-  margin-top: 50px;
+  margin-top: 7rem;
 `;
 
 export const Breadcrumbs = styled.div``;

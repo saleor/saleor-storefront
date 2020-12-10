@@ -19,6 +19,7 @@ import { RichTextContent } from "@components/atoms";
 
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
+import { usePreferences } from "@hooks";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { ProductsFeatured } from "../../components";
@@ -75,6 +76,10 @@ const Page: React.FC<PageProps> = ({
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
+
+  const {
+    preferences: { locale },
+  } = usePreferences();
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
@@ -148,8 +153,18 @@ const Page: React.FC<PageProps> = ({
               </S.SocialButton>
             </S.SocialShareSelection>
 
-            <h3>{collection.name}</h3>
-            <RichTextContent descriptionJson={collection.descriptionJson} />
+            <h3>
+              {locale === "it" && collection.translation?.name
+                ? collection.translation.name
+                : collection.name}
+            </h3>
+            <RichTextContent
+              descriptionJson={
+                locale === "it" && collection.translation?.descriptionJson
+                  ? collection.translation.descriptionJson
+                  : collection.descriptionJson
+              }
+            />
           </div>
         </div>
         <FilterSidebar

@@ -12,7 +12,7 @@ export const List = styled.div`
 
   ${media.smallScreen`
   grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 1rem;
+    grid-gap: 0rem;
   `}
 `;
 
