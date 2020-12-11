@@ -253,7 +253,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     }
   };
 
-  useRedirectToCorrectCheckoutStep();
+  useRedirectToCorrectCheckoutStep(cartLoaded);
   useEffect(() => setSelectedPaymentGateway(payment?.gateway), [
     payment?.gateway,
   ]);
@@ -298,6 +298,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
       paymentGateways={paymentGateways}
       hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
       button={
+        cartLoaded &&
         buttonText && (
           <Button
             testingContext="checkoutPageNextStepButton"

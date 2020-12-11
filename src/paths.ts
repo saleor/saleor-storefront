@@ -5,7 +5,7 @@ const checkoutBaseUrl = `${baseUrl}checkout/`;
 
 export const paths = {
   accountConfirm: `${baseUrl}account-confirm`,
-  cart: `${baseUrl}cart/[[...token]]`,
+  cart: `${baseUrl}cart`,
   category: `${baseUrl}category/${slugUrl}`,
   collection: `${baseUrl}collection/${slugUrl}`,
   guestOrderDetail: `${baseUrl}order-history/[token]`,

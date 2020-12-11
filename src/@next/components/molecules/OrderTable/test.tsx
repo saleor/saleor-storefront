@@ -129,8 +129,8 @@ describe("<OrderTable />", () => {
     expect(
       pushSpy
     ).toHaveBeenCalledWith(
-      `http://order-history/[token]?token=${token}`,
-      `/${token}`,
+      `/order-history/[token]?token=${token}`,
+      `/order-history/${token}`,
       { locale: undefined, shallow: undefined }
     );
 

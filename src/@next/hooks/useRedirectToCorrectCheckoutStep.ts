@@ -6,7 +6,7 @@ import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkIfShippingRequiredForProducts } from "@utils/core";
 import { useCheckoutStepState } from "./useCheckoutStepState";
 
-export const useRedirectToCorrectCheckoutStep = () => {
+export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
   const { pathname, replace } = useRouter();
   const { totalPrice, items } = useCart();
   const { checkout, payment } = useCheckout();
@@ -30,8 +30,8 @@ export const useRedirectToCorrectCheckoutStep = () => {
     CHECKOUT_STEPS[0].link;
 
   useEffect(() => {
-    if (isIncorrectStep) {
+    if (cartLoaded && isIncorrectStep) {
       replace(getStepLink());
     }
-  }, [pathname]);
+  }, [pathname, cartLoaded]);
 };
