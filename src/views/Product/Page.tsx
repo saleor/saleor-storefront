@@ -6,7 +6,16 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  PinterestIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "react-share";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -27,6 +36,7 @@ import noPhotoImg from "../../images/no-photo.svg";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
+import * as S from "./styles";
 
 const populateBreadcrumbs = product => [
   {
@@ -99,6 +109,31 @@ const Page: React.FC<
       <div className="container">
         <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
       </div>
+      <S.SocialShareSelection>
+        <S.SocialButton>
+          <FacebookShareButton url={window.location.href}>
+            <FacebookIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </FacebookShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <PinterestShareButton
+            url={window.location.href}
+            media="/images/favicons/favicon-16x16.png"
+          >
+            <PinterestIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </PinterestShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <TwitterShareButton url={window.location.href}>
+            <TwitterIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </TwitterShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <EmailShareButton url={window.location.href}>
+            <EmailIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </EmailShareButton>
+        </S.SocialButton>
+      </S.SocialShareSelection>
       <div className="container">
         <div className="product-page__product">
           <script className="structured-data-list" type="application/ld+json">
@@ -111,6 +146,10 @@ const Page: React.FC<
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
                     {addToCartSection}
+                    <ProductDescription
+                      descriptionJson={product.descriptionJson}
+                      attributes={product.attributes}
+                    />
                   </div>
                 </>
               ) : (
@@ -128,20 +167,16 @@ const Page: React.FC<
                       )}
                     >
                       {addToCartSection}
+                      <ProductDescription
+                        descriptionJson={product.descriptionJson}
+                        attributes={product.attributes}
+                      />
                     </div>
                   </div>
                 </>
               )
             }
           </Media>
-        </div>
-      </div>
-      <div className="container">
-        <div className="product-page__product__description">
-          <ProductDescription
-            descriptionJson={product.descriptionJson}
-            attributes={product.attributes}
-          />
         </div>
       </div>
       {videoValues ? <ArtisanVideo srcVideo={srcVideo} /> : ""}

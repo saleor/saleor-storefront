@@ -23,6 +23,9 @@ export const basicProductFragment = gql`
   fragment BasicProductFields on Product {
     id
     name
+    translation(languageCode: IT) {
+      name
+    }
     collections {
       id
       name
@@ -135,6 +138,9 @@ export const productDetailsQuery = gql`
       category {
         id
         name
+        translation(languageCode: IT) {
+          name
+        }
         backgroundImage {
           url
           alt

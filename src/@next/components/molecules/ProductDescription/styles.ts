@@ -31,14 +31,14 @@ export const Tabs = styled.div`
   flex-wrap: none;
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
-  margin-bottom: 70px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   overflow: hidden;
 `;
 
 export const TabTitle = styled.div<{ active?: boolean }>`
   cursor: pointer;
-  min-width: 230px;
-  font-size: ${props => props.theme.typography.h3FontSize};
+  font-size: ${props => props.theme.typography.h5FontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};
   letter-spacing: 0.02em;
   color: ${props => props.active && props.theme.colors.tabTitle};
@@ -46,7 +46,7 @@ export const TabTitle = styled.div<{ active?: boolean }>`
   border-bottom-style: solid;
   border-bottom-color: ${props =>
     props.active ? props.theme.colors.tabTitle : "transparent"};
-  padding-bottom: 25px;
+  padding-bottom: 10px;
   margin-right: 60px;
 
   ${media.smallScreen`
