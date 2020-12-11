@@ -38,7 +38,7 @@ export const Tabs = styled.div`
 
 export const TabTitle = styled.div<{ active?: boolean }>`
   cursor: pointer;
-  font-size: ${props => props.theme.typography.h5FontSize};
+  font-size: ${props => props.theme.typography.h4FontSize};
   font-weight: ${props => props.theme.typography.boldFontWeight};
   letter-spacing: 0.02em;
   color: ${props => props.active && props.theme.colors.tabTitle};

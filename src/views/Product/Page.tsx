@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import {
   FacebookShareButton,
   PinterestShareButton,
@@ -16,6 +15,7 @@ import {
   TwitterIcon,
   EmailIcon,
 } from "react-share";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import {
   Breadcrumbs,
   OverlayContext,
