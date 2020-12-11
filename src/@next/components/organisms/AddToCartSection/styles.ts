@@ -46,5 +46,4 @@ export const ErrorMessage = styled.p`
 
 export const SocialButton = styled.span`
   margin-right: 5px;
-
 `;
