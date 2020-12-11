@@ -7,6 +7,8 @@ import {
   ParsedQuery,
 } from "query-string";
 import { FetchResult } from "react-apollo";
+import { UrlObject } from "url";
+import { resolveHref } from "next/dist/next-server/lib/router/router";
 
 import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";
@@ -176,3 +178,13 @@ export const findFormErrors = (result: void | FetchResult): FormError[] => {
 };
 
 export const removeEmptySpaces = (text: string) => text.replace(/\s+/g, "");
+
+/**
+ * Next `push` does not generate properly urls like `<Link />`. So use `Link` internal mechanism
+ * from the server router to generate it.
+ * Might be improved in the future?
+ * @param curentPathname - current pathname from the `useRouter`
+ * @param url - UrlObject
+ */
+export const generatePath = (curentPathname: string, url: UrlObject) =>
+  resolveHref(curentPathname, url, true)[1];

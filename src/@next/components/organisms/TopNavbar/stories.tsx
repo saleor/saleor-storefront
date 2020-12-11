@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 
 import { TopNavbar } from ".";
 
@@ -96,8 +95,4 @@ const items = [
 
 storiesOf("@components/organisms/TopNavbar", module)
   .addParameters({ component: TopNavbar })
-  .add("default", () => (
-    <BrowserRouter>
-      <TopNavbar items={items} />
-    </BrowserRouter>
-  ));
+  .add("default", () => <TopNavbar items={items} />);

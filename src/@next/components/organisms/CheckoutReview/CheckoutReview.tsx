@@ -18,7 +18,7 @@ const CheckoutReview: React.FC<IProps> = ({
   paymentMethodName,
   email,
   errors,
-}: IProps) => {
+}) => {
   return (
     <S.Wrapper data-test="sectionTitle">
       <S.Title data-test="checkoutPageSubtitle">

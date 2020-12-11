@@ -81,7 +81,17 @@ export enum CheckoutStep {
   PaymentConfirm,
 }
 
-export const CHECKOUT_STEPS = [
+export interface CheckoutStepDefinition {
+  index: number;
+  link: string;
+  name: string;
+  step: CheckoutStep;
+  nextActionName?: string;
+  onlyIfShippingRequired?: boolean;
+  withoutOwnView?: boolean;
+}
+
+export const CHECKOUT_STEPS: CheckoutStepDefinition[] = [
   {
     index: 0,
     link: paths.checkoutAddress,

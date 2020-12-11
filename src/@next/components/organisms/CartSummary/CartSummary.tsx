@@ -7,7 +7,7 @@ import { CartSummaryRow } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
-import { ICostLine, ICosts, IProps } from "./types";
+import { ICostLine, ICosts, CartSummaryProps } from "./types";
 
 const CostLine = ({
   name,
@@ -61,13 +61,13 @@ const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => {
 /**
  * Cart summary displayed in checkout page
  */
-const CartSummary: React.FC<IProps> = ({
+const CartSummary: React.FC<CartSummaryProps> = ({
   subtotal,
   total,
   shipping,
   promoCode,
   products,
-}: IProps) => {
+}) => {
   const [mobileCartOpened, setMobileCartOpened] = useState(false);
 
   return (
@@ -112,3 +112,4 @@ const CartSummary: React.FC<IProps> = ({
 };
 
 export { CartSummary };
+export type { CartSummaryProps };

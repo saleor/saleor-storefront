@@ -308,8 +308,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
           </div>
           <a
             className="c8"
-            href="/"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             Home
           </a>
@@ -340,22 +340,16 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
             </button>
           </li>
           <a
-            aria-current={null}
             className="c11 c12"
-            fullWidth={true}
-            href="/category/groceries/8/"
             onClick={[Function]}
-            type="side"
+            onMouseEnter={[Function]}
           >
             Groceries
           </a>
           <a
-            aria-current={null}
             className="c11 c12"
-            fullWidth={true}
-            href="/category/apparel/9/"
             onClick={[Function]}
-            type="side"
+            onMouseEnter={[Function]}
           >
             Apparel
           </a>
@@ -364,8 +358,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
           >
             <a
               className="c8"
-              href="/wishlist"
               onClick={[Function]}
+              onMouseEnter={[Function]}
             >
               <span
                 className="c13"
@@ -391,8 +385,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
           >
             <a
               className="c8"
-              href="/account"
               onClick={[Function]}
+              onMouseEnter={[Function]}
             >
               <span
                 className="c13"
@@ -418,8 +412,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
           >
             <a
               className="c8"
-              href="/"
               onClick={[Function]}
+              onMouseEnter={[Function]}
             >
               english
             </a>

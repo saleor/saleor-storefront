@@ -2,8 +2,8 @@ import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
 import { IntlProvider } from "react-intl";
-
 import { RouterContext } from "next/dist/next-server/lib/router-context";
+
 import { Thumbnail } from "..";
 
 import { OrderTable } from ".";

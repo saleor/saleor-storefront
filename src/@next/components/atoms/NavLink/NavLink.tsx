@@ -5,6 +5,7 @@
 // For external urls, use different component
 
 import React from "react";
+import Link from "next/link";
 
 import {
   generateCategoryUrl,
@@ -44,13 +45,10 @@ export const NavLink: React.FC<IProps> = ({
   const linkUrl = getLinkUrl({ category, collection, page });
 
   return linkUrl ? (
-    <S.Link
-      to={linkUrl}
-      activeClassName="navlink-active"
-      fullWidth={fullWidth}
-      {...props}
-    >
-      {name}
-    </S.Link>
+    <Link href={linkUrl}>
+      <S.Link activeClassName="navlink-active" fullWidth={fullWidth} {...props}>
+        {name}
+      </S.Link>
+    </Link>
   ) : null;
 };

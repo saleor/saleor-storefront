@@ -36,11 +36,9 @@ exports[`Storyshots @components/atoms/NavLink default 1`] = `
   className="c0"
 >
   <a
-    aria-current={null}
     className="c1"
-    fullWidth={false}
-    href="/page/undefined/"
     onClick={[Function]}
+    onMouseEnter={[Function]}
   >
     Route
   </a>

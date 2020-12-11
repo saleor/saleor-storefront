@@ -19,7 +19,7 @@ const CheckoutShipping: React.FC<IProps> = ({
   errors,
   formId,
   formRef,
-}: IProps) => {
+}) => {
   return (
     <section>
       <S.Title data-test="checkoutPageSubtitle">
