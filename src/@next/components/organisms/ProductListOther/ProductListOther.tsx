@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Button, Loader } from "@components/atoms";
-import { ProductTile } from "@components/molecules";
+import { ProductTileOther } from "@components/molecules";
 
 import { generateProductUrl } from "../../../../core/utils";
 
@@ -26,7 +26,7 @@ export const ProductListOther: React.FC<IProps> = ({
             id &&
             name && (
               <Link to={generateProductUrl(id, name)} key={id}>
-                <ProductTile product={product} />
+                <ProductTileOther product={product} />
               </Link>
             )
           );

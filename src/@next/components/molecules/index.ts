@@ -1,4 +1,5 @@
 export * from "./CachedImage";
+export * from "./CachedImageProduct";
 export * from "./CardHeader";
 export * from "./CreditCardNumberWithIcon";
 export * from "./CreditCardTile";
@@ -17,6 +18,7 @@ export * from "./InputSelect";
 export * from "./AttributeValuesChecklist";
 export * from "./ResetPasswordForm";
 export * from "./ProductTile";
+export * from "./ProductTileOther";
 export * from "./ProductTileSearch";
 export * from "./ProductDescription";
 export * from "./CartSummaryRow";
