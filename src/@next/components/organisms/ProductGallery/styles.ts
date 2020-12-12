@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
   width: 76px;
   display: flex;
-  border-width: 4px;
-  border-style: solid;
+  border-width: 2px;
+  border-bottom: solid;
   border-color: ${props =>
     props.activeThumbnail === true
       ? props.theme.colors.thumbnailBorder
