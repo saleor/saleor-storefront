@@ -15,6 +15,7 @@ declare interface Window {
   Stripe: any;
   Cypress?: any;
   AdyenCheckout: any;
+  version: string;
 }
 
 declare interface Navigator {

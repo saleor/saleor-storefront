@@ -13,9 +13,10 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => {
     target: "serverless",
     generateInDevMode: process.env.SERVICE_WORKER === "true",
     sourcemap: true,
+    dontAutoRegisterSw: true,
     transformManifest: manifest => ["/"].concat(manifest),
     workboxOpts: {
-      swDest,
+      swDest: process.env.NEXT_EXPORT ? "service-worker.js" : swDest,
       exclude: [
         /\.map$/,
         /\manifest.*\.js(?:on)?$/,
@@ -73,7 +74,7 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => {
       return [
         {
           source: "/service-worker.js",
-          destination: `/${nextConfig.distDir}/${swDest}`,
+          destination: `/_next/${swDest}`,
         },
       ];
     },

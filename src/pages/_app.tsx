@@ -18,9 +18,15 @@ import {
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
+  ssrMode,
 } from "../constants";
 import { LocaleProvider } from "../components/Locale";
 import { App as StorefrontApp } from "../app";
+import { version } from "../../package.json";
+
+if (!ssrMode) {
+  window.version = version;
+}
 
 if (process.env.GTM_ID) {
   TagManager.initialize({ gtmId: process.env.GTM_ID });
