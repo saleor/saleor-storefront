@@ -9,6 +9,7 @@ import {
   StripePaymentGateway,
   AdyenPaymentGateway,
 } from "..";
+import AuthorizeNetPaymentGateway from "../AuthorizeNetPaymentGateway/index";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -70,34 +71,60 @@ const PaymentGatewaysList: React.FC<IProps> = ({
 
           case PROVIDERS.DUMMY.label:
             return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-test="checkoutPaymentGatewayDummyInput"
+                      name="payment-method"
+                      value="dummy"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel
+                    >
+                      <span data-test="checkoutPaymentGatewayDummyName">
+                        {name}
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <DummyPaymentGateway
+                      formRef={formRef}
+                      formId={formId}
+                      processPayment={token => processPayment(id, token)}
+                      initialStatus={selectedPaymentGatewayToken}
+                    />
+                  )}
+                </div>
+            );
+
+          case PROVIDERS.AUTHORIZENET.label:
+            return (
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-test="checkoutPaymentGatewayDummyInput"
+                    data-test="checkoutPaymentGatewayAuthorizeNetInput"
                     name="payment-method"
-                    value="dummy"
+                    value="authorizeNet"
                     checked={checked}
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
                     customLabel
                   >
-                    <span data-test="checkoutPaymentGatewayDummyName">
+                    <span data-test="checkoutPaymentGatewayAuthorizeNetName">
                       {name}
                     </span>
                   </Radio>
                 </S.Tile>
                 {checked && (
-                  <DummyPaymentGateway
-                    formRef={formRef}
-                    formId={formId}
+                  <AuthorizeNetPaymentGateway
                     processPayment={token => processPayment(id, token)}
-                    initialStatus={selectedPaymentGatewayToken}
                   />
                 )}
               </div>
             );
-
           case PROVIDERS.STRIPE.label:
             return (
               <div key={index}>
