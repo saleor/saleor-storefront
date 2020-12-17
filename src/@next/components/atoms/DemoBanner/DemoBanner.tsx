@@ -41,7 +41,7 @@ export const DemoBanner: React.FC = () => {
               />
             </S.Link>
             <S.Divider />
-            <S.Link target="_blank" href="https://demo.saleor.io/graphql/">
+            <S.Link href="/graphql/">
               <FormattedMessage
                 defaultMessage="Play with <emphasis>GraphQL API</emphasis>"
                 values={{

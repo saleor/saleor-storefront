@@ -22,7 +22,7 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
     if (window.Cypress || !process.env.SERVICE_WORKER_EXISTS) {
       unregister();
     } else {
-      register("/service-worker.js", { registered, updated });
+      register(process.env.SERVICE_WORKER_URL!, { registered, updated });
       return () => unregister();
     }
   }, []);

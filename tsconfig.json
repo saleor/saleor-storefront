@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "jsx": "preserve",
-    "lib": ["es2017", "dom", "esnext"],
+    "lib": ["es2017", "dom", "esnext", "webworker"],
     "sourceMap": true,
     "target": "es6",
     "noUnusedLocals": true,

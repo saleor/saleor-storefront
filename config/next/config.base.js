@@ -1,6 +1,7 @@
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
+const { srcDir } = require("./constants");
 
 module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
