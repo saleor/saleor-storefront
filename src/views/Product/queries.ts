@@ -77,7 +77,6 @@ export const productVariantFragment = gql`
     id
     sku
     name
-    isAvailable
     quantityAvailable(countryCode: $countryCode)
     images {
       id
@@ -93,7 +92,7 @@ export const productVariantFragment = gql`
         ...Price
       }
     }
-    attributes {
+    attributes(variantSelection: VARIANT_SELECTION) {
       attribute {
         id
         name
