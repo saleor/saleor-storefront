@@ -3,7 +3,7 @@ const getVariantsStructuredData = variants => {
   const outOfStock = "https://schema.org/OutOfStock";
   return variants.map(variant => ({
     "@type": "Offer",
-    availability: variant.isAvailable ? inStock : outOfStock,
+    availability: variant.quantityAvailable > 0 ? inStock : outOfStock,
     itemCondition: "https://schema.org/NewCondition",
     price: variant.pricing.price.gross.amount.toFixed(2),
     priceCurrency: variant.pricing.price.gross.currency,

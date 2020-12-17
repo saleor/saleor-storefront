@@ -199,10 +199,6 @@ export interface VariantList_productVariants_edges_node {
   sku: string;
   name: string;
   /**
-   * Whether the variant is in stock and visible or not.
-   */
-  isAvailable: boolean | null;
-  /**
    * Quantity of a product available for sale in one checkout.
    */
   quantityAvailable: number;

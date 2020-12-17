@@ -11,7 +11,7 @@ import { generateProductUrl } from "../../core/utils";
 
 export type ILine = Omit<
   ProductVariant,
-  "__typename" | "sku" | "quantityAvailable" | "isAvailable"
+  "__typename" | "sku" | "quantityAvailable"
 > & {
   quantity: number;
   totalPrice: OrderByToken_orderByToken_lines_unitPrice;
