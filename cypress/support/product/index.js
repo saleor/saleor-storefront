@@ -3,11 +3,14 @@ import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU } from "../../elements/products/search-products-selectors";
 import { CART_SELECTORS } from "../../elements/cart/cart";
 
+const productWithShippingSearchQuery = "white%20pilmsolls";
+const productWithoutShippingSearchQuery = "tunes";
+
 Cypress.Commands.add("addItemWithShippingToTheBasket", () => {
   return cy
-
-    .get(PRODUCTS_SELECTORS.product_list)
-    .eq(1)
+    .visit(`/search/?q=${productWithShippingSearchQuery}`)
+    .get(PRODUCTS_SELECTORS.productTile)
+    .first()
     .click()
     .get(PRODUCTS_SELECTORS.first_selected_product_name)
     .first()
@@ -30,14 +33,8 @@ Cypress.Commands.add("addItemWithShippingToTheBasket", () => {
 
 Cypress.Commands.add("addItemWithNoShippingToTheBasket", () => {
   return cy
-
-    .get(HEADER_SELECTORS.mainMenuSearchButton)
-    .click()
-    .get(HEADER_SELECTORS.mainMenuSearchInput)
-    .type("tunes")
-    .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchProductsExpandedArea)
-    .should("exist")
-    .get(SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU.searchItems)
+    .visit(`/search/?q=${productWithoutShippingSearchQuery}`)
+    .get(PRODUCTS_SELECTORS.productTile)
     .first()
     .click()
     .get(PRODUCTS_SELECTORS.variantPicker)
