@@ -10,6 +10,8 @@ All notable, unreleased changes to this project will be documented in this file.
 - Support for multichannel - #937 by @AlicjaSzu
 - Add next.js to the Storefront - #955 by @piotrgrundas
 - Fixed image scaling in gallery and thumbnails - #959 by @MarekChoinski
+- Use only selection attributes in variant picker - #963 by @orzechdev
+- Drop deprecated `ProductVariant.isAvailable` field - #965 by @maarcingebala
 
 ## 2.11.0
 
