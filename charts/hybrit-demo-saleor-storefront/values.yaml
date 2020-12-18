@@ -1,0 +1,47 @@
+replicaCount: 1
+containerPort: 80
+
+image:
+  repository: docker.dev.hybrit.io/hybrit-demo-saleor-storefront
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+service:
+  type: ClusterIP
+  port: 80
+
+probes:
+  enabled: true
+  probePath: /dashboard/
+  livenessProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  readinessProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  terminationGracePeriodSeconds: 10
+
+env:
+  - name: API_URI
+    value: "https://ecommerce-portal.core.demo.hybrit.io/graphql/"
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: ecommerce-portal.demo.hybrit.io
+      paths: []
+  tls:
+    - hosts:
+        - "ecommerce-portal.demo.hybrit.io"
+      secretName: "ecommerce-portal-ingress-cert"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80

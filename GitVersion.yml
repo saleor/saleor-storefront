@@ -1,0 +1,8 @@
+mode: Mainline
+assembly-informational-format: '{Major}.{Minor}.{Patch}-{CommitsSinceVersionSource}'
+branches:
+  master:   
+    tag: ''
+ignore:
+  sha: []
+merge-message-formats: {}

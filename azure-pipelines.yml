@@ -1,0 +1,95 @@
+name: $(Date:yyyyMMdd)-$(Rev:r)
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - readme.md
+
+pr:
+  branches:
+    include:
+      - master
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: HybrIT-dev/hybrit-azuredevops-templates
+      ref: refs/heads/master
+      endpoint: HybrIT-dev
+
+variables:
+  - group: nexus
+  - name: artifactName
+    value: hybrit-demo-saleor-storefront
+
+stages:
+  - stage: Build
+    dependsOn: []
+    jobs:
+      - job: Docker
+        displayName: Build docker
+        steps:
+          - checkout: self
+            persistCredentials: true
+          - task: GitVersion@5
+            displayName: "Use GitVersion"
+            inputs:
+              runtime: "core"
+              configFilePath: "$(build.sourcesdirectory)/GitVersion.yml"
+              additionalArguments: "/output buildserver"
+          - template: docker.template.yml@templates
+            parameters:
+              imageName: $(artifactName)
+              imageVersion: $(GitVersion.SemVer)
+              dockerFile: $(build.sourcesdirectory)/Dockerfile
+              dockerRegistryEndpoint: "Docker - HybrIT - nexus"
+              arguments: --build-arg API_URI=https://ecommerce-portal.core.demo.hybrit.io/graphql/
+          - template: helm.template.yml@templates
+            parameters:
+              chartName: $(artifactName)
+              chartPath: "$(build.sourcesdirectory)/charts/$(artifactName)"
+              chartVersion: $(GitVersion.SemVer)
+              destination: "$(Build.ArtifactStagingDirectory)/charts"
+              nexusUsername: $(nexus-username)
+              nexusPassword: $(nexus-password)
+              nexusHost: $(nexus-host-helm)
+          - task: Bash@3
+            displayName: artifact files
+            inputs:
+              targetType: "inline"
+              script: |
+                mkdir -p $(build.artifactstagingdirectory)/drop
+                cp $(Build.ArtifactStagingDirectory)/charts/$(artifactName)-$(GitVersion.SemVer).tgz $(build.artifactstagingdirectory)/drop/$(artifactName).tgz
+          - publish: $(Build.ArtifactStagingDirectory)/drop
+            displayName: "publish artifact"
+            artifact: output
+  - stage: deploy
+    displayName: Deploy
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    dependsOn: Build
+    jobs:
+      - deployment: deploy
+        displayName: Deploy
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: output
+                - task: HelmInstaller@1
+                  inputs:
+                    helmVersionToInstall: "v3.1.0"
+                - task: HelmDeploy@0
+                  displayName: "Install or upgrade hybrit-demo-saleor-storefront"
+                  inputs:
+                    connectionType: 'Kubernetes Service Connection'
+                    kubernetesServiceConnection: 'GPC -  hybrit-dev-weu'
+                    namespace: "saleor-demo"
+                    command: "upgrade"
+                    chartType: "FilePath"
+                    chartPath: "$(Pipeline.Workspace)/output/$(artifactName).tgz"
+                    releaseName: "$(artifactName)"
