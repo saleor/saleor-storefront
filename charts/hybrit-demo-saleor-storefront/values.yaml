@@ -1,3 +1,6 @@
+nameOverride: ""
+fullnameOverride: ""
+
 replicaCount: 1
 containerPort: 80
 
@@ -7,6 +10,9 @@ image:
 
 imagePullSecrets:
   - name: docker-cfg
+
+serviceAccount:
+  create: false
 
 service:
   type: ClusterIP
