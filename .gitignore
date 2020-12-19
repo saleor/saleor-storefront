@@ -1,4 +1,3 @@
-.*
 !.dockerignore
 !.storybook
 !.circle
@@ -19,3 +18,5 @@ src/locales/_build
 cypress/videos
 cypress/screenshots
 cypress/fixtures/example.json
+.gitsecret/keys/random_seed
+!*.secret

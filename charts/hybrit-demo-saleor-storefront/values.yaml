@@ -5,7 +5,8 @@ image:
   repository: docker.dev.hybrit.io/hybrit-demo-saleor-storefront
   pullPolicy: Always
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: docker-cfg
 
 service:
   type: ClusterIP
@@ -28,16 +29,23 @@ probes:
 
 env:
   - name: API_URI
-    value: "https://ecommerce-portal.core.demo.hybrit.io/graphql/"
+    value: "https://demo.core.ecommerce-portal.hybrit.io/graphql/"
+
 ingress:
-  enabled: false
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: 50mb
+    nginx.ingress.kubernetes.io/client-max-body-size: 50m
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   annotations: {}
   hosts:
-    - host: ecommerce-portal.demo.hybrit.io
+    - host: demo.ecommerce-portal.hybrit.io
       paths: []
   tls:
     - hosts:
-        - "ecommerce-portal.demo.hybrit.io"
+        - "demo.ecommerce-portal.hybrit.io"
       secretName: "ecommerce-portal-ingress-cert"
 
 autoscaling:
