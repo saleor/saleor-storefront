@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-
 import { useCart, useCheckout } from "@saleor/sdk";
 import { CHECKOUT_STEPS } from "@temp/core/config";
 import { checkIfShippingRequiredForProducts } from "@utils/core";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useCheckoutStepState } from "./useCheckoutStepState";
 
 export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
@@ -21,8 +20,8 @@ export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
   const isShippingRequired = checkIfShippingRequiredForProducts(items);
 
   const isIncorrectStep =
-    (pathname !== CHECKOUT_STEPS[4].link &&
-      (!stepFromPath || (stepFromPath && maxPossibleStep < stepFromPath))) ||
+    !stepFromPath ||
+    stepFromPath > maxPossibleStep ||
     (pathname === CHECKOUT_STEPS[1].link && !isShippingRequired);
 
   const getStepLink = () =>
