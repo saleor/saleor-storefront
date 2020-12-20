@@ -52,7 +52,7 @@ ingress:
   tls:
     - hosts:
         - "demo.ecommerce-portal.hybrit.io"
-      secretName: "demo-ecommerce-portal-ingress-cert"
+      secretName: "ecommerce-portal-ingress-cert"
 
 autoscaling:
   enabled: false
