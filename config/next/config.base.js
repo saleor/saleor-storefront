@@ -1,7 +1,6 @@
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
-const { srcDir } = require("./constants");
 
 module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
@@ -9,9 +8,11 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   trailingSlash: true,
 
   webpack: (config, options) => {
-    const { isServer } = options;
+    const { isServer, dev } = options;
 
-    config.devtool = "source-map";
+    config.devtool = process.env.NEXT_EXPORT
+      ? "inline-source-map"
+      : "source-map";
 
     config.node = {
       fs: "empty",

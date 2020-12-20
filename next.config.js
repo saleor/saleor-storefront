@@ -18,5 +18,5 @@ module.exports = withPlugins([
   withBaseConfig,
   withServiceWorkerConfig,
   [withDevConfig, {}, [PHASE_DEVELOPMENT_SERVER]],
-  [withProdConfig, {}, [PHASE_PRODUCTION_SERVER, PHASE_PRODUCTION_BUILD]],
+  [withProdConfig, {}, ["!" + PHASE_DEVELOPMENT_SERVER]],
 ]);

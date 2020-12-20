@@ -108,7 +108,7 @@ self.addEventListener("install", () => {
 /*
  * Request caching.
  *
- * API calls -> NetworkFirst
+ * API, plugins etc calls -> NetworkFirst
  * Static assets -> CacheFirst
  * All others -> StaleWhileRevalidate
  */
