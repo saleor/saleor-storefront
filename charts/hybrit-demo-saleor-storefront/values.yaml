@@ -35,7 +35,7 @@ probes:
 
 env:
   - name: API_URI
-    value: "https://demo.core.ecommerce-portal.hybrit.io/graphql/"
+    value: "https://core.demo.ecommerce-portal.hybrit.io/graphql/"
 
 ingress:
   enabled: true
@@ -51,7 +51,7 @@ ingress:
   tls:
     - hosts:
         - "demo.ecommerce-portal.hybrit.io"
-      secretName: "ecommerce-portal-ingress-cert"
+      secretName: "ecommerce-portal-storefront-ingress-cert"
 
 autoscaling:
   enabled: false

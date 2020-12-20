@@ -47,7 +47,7 @@ stages:
               imageVersion: $(GitVersion.SemVer)
               dockerFile: $(build.sourcesdirectory)/Dockerfile
               dockerRegistryEndpoint: "Docker - HybrIT - nexus"
-              arguments: --build-arg API_URI=https://demo.core.ecommerce-portal.hybrit.io/graphql/
+              arguments: --build-arg API_URI=https://core.demo.ecommerce-portal.hybrit.io/graphql/
           - template: helm.template.yml@templates
             parameters:
               chartName: $(artifactName)
