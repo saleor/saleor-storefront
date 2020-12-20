@@ -101,6 +101,22 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
+  const filtersStories: IFilters = {
+    attributes: attributeFilters,
+    pageSize: PRODUCTS_PER_PAGE,
+    priceGte: null,
+    priceLte: null,
+    sortBy: sort || "updated_at",
+  };
+  const variablesStories = {
+    ...filtersStories,
+    attributes: filtersStories.attributes
+      ? convertToAttributeScalar(filtersStories.attributes)
+      : {},
+    id: getGraphqlIdFromDBId(match.params.id, "Collection"),
+    sortBy: convertSortByFromString(filtersStories.sortBy),
+  };
+
   const sortOptions = [
     {
       label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
@@ -121,6 +137,23 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     {
       label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
       value: "-name",
+    },
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
+      value: "updated_at",
+    },
+    {
+      label: intl.formatMessage(
+        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
+      ),
+      value: "-updated_at",
+    },
+  ];
+
+  const sortOptionsStories = [
+    {
+      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
+      value: null,
     },
     {
       label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
@@ -163,7 +196,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
               !!collectionData.data?.collection?.name;
 
             return (
-              <TypedCollectionProductsQuery variables={variables}>
+              <TypedCollectionProductsQuery
+                variables={
+                  collectionData.data.collection.id !== "Q29sbGVjdGlvbjo0OQ=="
+                    ? variables
+                    : variablesStories
+                }
+              >
                 {collectionProductsData => {
                   if (!canDisplayFilters && collectionProductsData.loading) {
                     return <Loader />;
@@ -214,9 +253,24 @@ export const View: React.FC<ViewProps> = ({ match }) => {
                                 .pageInfo.hasNextPage,
                             false
                           )}
-                          sortOptions={sortOptions}
-                          activeSortOption={filters.sortBy}
-                          filters={filters}
+                          sortOptions={
+                            collectionData.data.collection.id !==
+                            "Q29sbGVjdGlvbjo0OQ=="
+                              ? sortOptions
+                              : sortOptionsStories
+                          }
+                          activeSortOption={
+                            collectionData.data.collection.id !==
+                            "Q29sbGVjdGlvbjo0OQ=="
+                              ? filters.sortBy
+                              : filtersStories.sortBy
+                          }
+                          filters={
+                            collectionData.data.collection.id !==
+                            "Q29sbGVjdGlvbjo0OQ=="
+                              ? filters
+                              : filtersStories
+                          }
                           products={
                             collectionProductsData.data.collection.products
                           }

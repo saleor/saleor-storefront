@@ -2,6 +2,8 @@ import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
 import { Link } from "react-router-dom";
+import { usePreferences } from "@hooks";
+import { RichTextContent } from "@components/atoms";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
@@ -60,6 +62,10 @@ const Page: React.FC<
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
   const [variantId, setVariantId] = React.useState("");
+
+  const {
+    preferences: { locale },
+  } = usePreferences();
 
   const getImages = () => {
     if (product.variants && variantId) {
@@ -180,9 +186,10 @@ const Page: React.FC<
         </div>
       </div>
       {videoValues ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
+      <OtherProducts products={product.category.products.edges} />
       <div className="product-page__categories">
         <div className="container">
-          <h3>Shop by collection | category</h3>
+          <h3>Shop by Collection</h3>
           <div className="product-page__categories__list">
             <div key={product.collections[0].id}>
               <Link
@@ -212,37 +219,24 @@ const Page: React.FC<
               </Link>
             </div>
 
-            <div key={product.category.id}>
-              <Link
-                to={generateCategoryUrl(
-                  product.category.id,
-                  product.category.name
-                )}
-                key={product.category.id}
-              >
-                <div
-                  className={classNames(
-                    "product-page__categories__list__image",
-                    {
-                      "product-page__categories__list__image--no-photo": !product
-                        .category.backgroundImage,
-                    }
-                  )}
-                  style={{
-                    backgroundImage: `url(${
-                      product.category.backgroundImage
-                        ? product.category.backgroundImage.url
-                        : noPhotoImg
-                    })`,
-                  }}
-                />
-                <h3>{product.category.name}</h3>
-              </Link>
+            <div className="collection__content">
+              <h3>
+                {locale === "it" && product.collections[0].translation?.name
+                  ? product.collections[0].translation.name
+                  : product.collections[0].name}
+              </h3>
+              <RichTextContent
+                descriptionJson={
+                  locale === "it" &&
+                  product.collections[0].translation?.descriptionJson
+                    ? product.collections[0].translation.descriptionJson
+                    : product.collections[0].descriptionJson
+                }
+              />
             </div>
           </div>
         </div>
       </div>
-      <OtherProducts products={product.category.products.edges} />
     </div>
   );
 };

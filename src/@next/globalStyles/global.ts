@@ -61,6 +61,14 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
   ul {
     list-style: none;
+    & > li {
+      & > span {
+        font-weight: normal;
+        color: inherit;
+        font-family: "Allerta", sans-serif;
+        font-size: 1rem;
+      }
+    }
   }
 
   #root {

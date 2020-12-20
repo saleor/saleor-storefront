@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @components/molecules/ProductTile default 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background: #f1f5f5;
+  padding: 2.5rem;
+  text-align: center;
+  max-height: 30rem;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c1:hover {
+  background-color: rgba(6,132,123,0.25);
+}
+
+.c2 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+
+.c3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+
+.c4 {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.c4 > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+@media (max-width:992px) {
+  .c1 {
+    padding: 1.8rem;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    style={
+      Object {
+        "width": "400px",
+      }
+    }
+  >
+    <div
+      className="c1"
+    >
+      <h4
+        className="c2"
+        data-test="productTile"
+      >
+        Apple Juice
+      </h4>
+      <p
+        className="c3"
+        data-test="productPrice"
+      >
+        <span>
+          
+        </span>
+      </p>
+      <div
+        className="c4"
+        data-test="productThumbnail"
+      >
+        <img
+          alt=""
+          onError={[Function]}
+          src="http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-255x255.png"
+          srcSet="http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-255x255.png 1x, http://localhost:8000/media/__sized__/products/saleordemoproduct_fd_juice_06_102xcfi-thumbnail-510x510.png 2x"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="c5"
+  />
+</div>
+`;

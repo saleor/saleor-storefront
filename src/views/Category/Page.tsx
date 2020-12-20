@@ -144,7 +144,12 @@ const Page: React.FC<PageProps> = ({
         />
       )}
       <ScrollUpButton
-        style={{ width: 30, backgroundColor: "#ffffff00", fill: "#c4c4c4" }}
+        style={{
+          width: 30,
+          backgroundColor: "#ffffff00",
+          fill: "#c4c4c4",
+          outline: 0,
+        }}
         ToggledStyle={{ right: 50, bottom: 50 }}
       />
     </div>

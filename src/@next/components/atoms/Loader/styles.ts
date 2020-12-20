@@ -89,9 +89,10 @@ export const Items = styled.div`
 
   span {
     background-color: ${props => props.theme.colors.secondary};
+    background-image: url("../../../../../images/loader_storitalia.svg");
     width: 1rem;
     height: 1rem;
-    border-radius: 1rem;
+    border-radius: 0rem;
     position: absolute;
 
     &:nth-child(1) {

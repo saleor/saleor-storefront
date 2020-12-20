@@ -20,8 +20,14 @@ import { RichTextContent } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import { usePreferences } from "@hooks";
-import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
+import {
+  ProductListHeader,
+  ProductListHeaderStories,
+} from "../../@next/components/molecules";
+import {
+  ProductList,
+  ProductListStories,
+} from "../../@next/components/organisms";
 import { ProductsFeatured } from "../../components";
 import { maybe } from "../../core/utils";
 
@@ -102,6 +108,17 @@ const Page: React.FC<PageProps> = ({
       []
     );
 
+  const activeFiltersAttributesStories =
+    filters &&
+    filters.attributes &&
+    Object.keys(filters.attributes).reduce(
+      (acc, key) =>
+        acc.concat(
+          filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))
+        ),
+      []
+    );
+
   const videoValues = !(Object.keys(collection.metadata).length === 0);
   const srcVideo = videoValues
     ? `https://player.vimeo.com/video/${collection.metadata[0].value}?title=0&byline=0&portrait=0&loop=1&autopause=0`
@@ -110,63 +127,86 @@ const Page: React.FC<PageProps> = ({
   return (
     <div className="collection">
       <div className="container">
-        <div className="collection__container">
-          <div className="collection__image">
-            <img src={collection.backgroundImage.url} alt={collection.slug} />
-          </div>
-          <div className="collection__content">
-            <S.SocialShareSelection>
-              <S.SocialButton>
-                <FacebookShareButton url={window.location.href}>
-                  <FacebookIcon
-                    path="/"
-                    size={32}
-                    bgStyle={{ fill: "#0D233F" }}
-                  />
-                </FacebookShareButton>
-              </S.SocialButton>
-              <S.SocialButton>
-                <PinterestShareButton
-                  url={window.location.href}
-                  media="/images/favicons/favicon-16x16.png"
-                >
-                  <PinterestIcon
-                    path="/"
-                    size={32}
-                    bgStyle={{ fill: "#0D233F" }}
-                  />
-                </PinterestShareButton>
-              </S.SocialButton>
-              <S.SocialButton>
-                <TwitterShareButton url={window.location.href}>
-                  <TwitterIcon
-                    path="/"
-                    size={32}
-                    bgStyle={{ fill: "#0D233F" }}
-                  />
-                </TwitterShareButton>
-              </S.SocialButton>
-              <S.SocialButton>
-                <EmailShareButton url={window.location.href}>
-                  <EmailIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
-                </EmailShareButton>
-              </S.SocialButton>
-            </S.SocialShareSelection>
+        {canDisplayProducts && collection.id !== "Q29sbGVjdGlvbjo0OQ==" ? (
+          <div className="collection__container">
+            <div className="collection__image">
+              <img src={collection.backgroundImage.url} alt={collection.slug} />
+            </div>
+            <div className="collection__content">
+              <S.SocialShareSelection>
+                <S.SocialButton>
+                  <FacebookShareButton url={window.location.href}>
+                    <FacebookIcon
+                      path="/"
+                      size={32}
+                      bgStyle={{ fill: "#0D233F" }}
+                    />
+                  </FacebookShareButton>
+                </S.SocialButton>
+                <S.SocialButton>
+                  <PinterestShareButton
+                    url={window.location.href}
+                    media="/images/favicons/favicon-16x16.png"
+                  >
+                    <PinterestIcon
+                      path="/"
+                      size={32}
+                      bgStyle={{ fill: "#0D233F" }}
+                    />
+                  </PinterestShareButton>
+                </S.SocialButton>
+                <S.SocialButton>
+                  <TwitterShareButton url={window.location.href}>
+                    <TwitterIcon
+                      path="/"
+                      size={32}
+                      bgStyle={{ fill: "#0D233F" }}
+                    />
+                  </TwitterShareButton>
+                </S.SocialButton>
+                <S.SocialButton>
+                  <EmailShareButton url={window.location.href}>
+                    <EmailIcon
+                      path="/"
+                      size={32}
+                      bgStyle={{ fill: "#0D233F" }}
+                    />
+                  </EmailShareButton>
+                </S.SocialButton>
+              </S.SocialShareSelection>
 
-            <h3>
-              {locale === "it" && collection.translation?.name
-                ? collection.translation.name
-                : collection.name}
-            </h3>
-            <RichTextContent
-              descriptionJson={
-                locale === "it" && collection.translation?.descriptionJson
-                  ? collection.translation.descriptionJson
-                  : collection.descriptionJson
-              }
-            />
+              <h3>
+                {locale === "it" && collection.translation?.name
+                  ? collection.translation.name
+                  : collection.name}
+              </h3>
+              <RichTextContent
+                descriptionJson={
+                  locale === "it" && collection.translation?.descriptionJson
+                    ? collection.translation.descriptionJson
+                    : collection.descriptionJson
+                }
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div
+            className="article-page__header"
+            style={
+              collection.backgroundImage.url
+                ? { backgroundImage: `url(${collection.backgroundImage.url})` }
+                : null
+            }
+          >
+            <span className="article-page__header__title">
+              <h1>
+                {locale === "it" && collection.translation?.name
+                  ? collection.translation.name
+                  : collection.name}
+              </h1>
+            </span>
+          </div>
+        )}
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
@@ -174,20 +214,41 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
-        <ProductListHeader
-          activeSortOption={activeSortOption}
-          openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
-          activeFilters={activeFilters}
-          activeFiltersAttributes={activeFiltersAttributes}
-          clearFilters={clearFilters}
-          sortOptions={sortOptions}
-          onChange={onOrder}
-          onCloseFilterAttribute={onAttributeFiltersChange}
-        />
+        {canDisplayProducts && collection.id !== "Q29sbGVjdGlvbjo0OQ==" ? (
+          <ProductListHeader
+            activeSortOption={activeSortOption}
+            openFiltersMenu={() => setShowFilters(true)}
+            numberOfProducts={products ? products.totalCount : 0}
+            activeFilters={activeFilters}
+            activeFiltersAttributes={activeFiltersAttributes}
+            clearFilters={clearFilters}
+            sortOptions={sortOptions}
+            onChange={onOrder}
+            onCloseFilterAttribute={onAttributeFiltersChange}
+          />
+        ) : (
+          <ProductListHeaderStories
+            activeSortOption={activeSortOption}
+            openFiltersMenu={() => setShowFilters(true)}
+            numberOfProducts={products ? products.totalCount : 0}
+            activeFilters={activeFilters}
+            activeFiltersAttributes={activeFiltersAttributesStories}
+            clearFilters={clearFilters}
+            sortOptions={sortOptions}
+            onChange={onOrder}
+            onCloseFilterAttribute={onAttributeFiltersChange}
+          />
+        )}
         {videoValues ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
-        {canDisplayProducts && (
+        {canDisplayProducts && collection.id !== "Q29sbGVjdGlvbjo0OQ==" ? (
           <ProductList
+            products={products.edges.map(edge => edge.node)}
+            canLoadMore={hasNextPage}
+            loading={displayLoader}
+            onLoadMore={onLoadMore}
+          />
+        ) : (
+          <ProductListStories
             products={products.edges.map(edge => edge.node)}
             canLoadMore={hasNextPage}
             loading={displayLoader}
@@ -202,7 +263,12 @@ const Page: React.FC<PageProps> = ({
         />
       )}
       <ScrollUpButton
-        style={{ width: 30, backgroundColor: "#ffffff00", fill: "#c4c4c4" }}
+        style={{
+          width: 30,
+          backgroundColor: "#ffffff00",
+          fill: "#c4c4c4",
+          outline: 0,
+        }}
         ToggledStyle={{ right: 50, bottom: 50 }}
       />
     </div>

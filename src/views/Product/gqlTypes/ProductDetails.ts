@@ -8,6 +8,24 @@ import { CountryCode } from "./../../../../gqlTypes/globalTypes";
 // GraphQL query operation: ProductDetails
 // ====================================================
 
+export interface Product_collections_translation {
+  __typename: "Translation";
+  /**
+   * The URL of the image.
+   */
+  name: string;
+  descriptionJson: any;
+}
+
+export interface Product_product_translation {
+  __typename: "Translation";
+  /**
+   * The URL of the image.
+   */
+  name: string;
+  descriptionJson: any;
+}
+
 export interface ProductDetails_product_thumbnail {
   __typename: "Image";
   /**
@@ -694,8 +712,10 @@ export interface ProductDetails_product_collections {
   name: string | null;
   seoTitle: string;
   seoDescription: string;
+  descriptionJson: any;
   backgroundImage: Collection_collection_backgroundImage | null;
   metadata: (CollectionDetails_collection_metadata | null)[] | null;
+  translation: Product_collections_translation | null;
 }
 
 export interface ProductDetails_product_variants {
@@ -748,6 +768,7 @@ export interface ProductDetails_product {
    */
   pricing: ProductDetails_product_pricing | null;
   descriptionJson: any;
+  translation: Product_product_translation | null;
   category: ProductDetails_product_category | null;
   /**
    * List of images for the product.

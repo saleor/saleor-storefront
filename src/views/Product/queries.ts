@@ -29,6 +29,7 @@ export const basicProductFragment = gql`
     collections {
       id
       name
+      descriptionJson
       seoTitle
       seoDescription
       backgroundImage {

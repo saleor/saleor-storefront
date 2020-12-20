@@ -87,7 +87,10 @@
     "string": "ATTRIBUTI"
   },
   "@next_dot_components_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3317426832": {
-    "string": "Prodotti trovati:"
+    "string": "Prodotti:"
+  },
+  "@next_dot_components_dot_molecules_dot_ProductListHeaderStories_dot_ProductListHeaderStories_dot_2732471558": {
+    "string": "Storie:"
   },
   "@next_dot_components_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1865992141": {
     "string": "Inserire la nuova password"
@@ -589,22 +592,22 @@
     "string": "Cancella..."
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsName": {
-    "string": "Nome Crescente"
+    "string": "Nome ↓"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsNameDsc": {
-    "string": "Nome Decrescente"
+    "string": "Nome ↑"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsPrice": {
-    "string": "Prezzo Crescente"
+    "string": "Prezzo ↑"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsPriceDsc": {
-    "string": "Prezzo Decrescente"
+    "string": "Prezzo ↓"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAt": {
-    "string": "Data di creazione Crescente"
+    "string": "Inserimento ↓"
   },
   "intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAtDsc": {
-    "string": "Data di creazione Decrescente"
+    "string": "Inserimento ↑"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_1857586798": {
     "string": "Ordine no.: {orderNum}"
