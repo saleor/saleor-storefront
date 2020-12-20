@@ -48,7 +48,7 @@ ingress:
   annotations: {}
   hosts:
     - host: demo.ecommerce-portal.hybrit.io
-      paths: []
+      path: /
   tls:
     - hosts:
         - "demo.ecommerce-portal.hybrit.io"
