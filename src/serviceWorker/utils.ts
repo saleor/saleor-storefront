@@ -15,7 +15,9 @@ export const getBuildManifest = (): NextBuildManifest => {
 export const getBuildManifestPages = (): string[] => {
   const { sortedPages, __rewrites, ...manifest } = getBuildManifest();
 
-  return Object.keys(manifest).filter(url => !url.includes("/_"));
+  return Object.keys(manifest).filter(
+    url => !url.includes("/_") && url !== "/404"
+  );
 };
 
 export const getRequestedPageFromURL = (url: string): string | undefined => {

@@ -72,9 +72,9 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => {
             swDest: path.resolve(serviceWorkerDest),
             dontCacheBustURLsMatching: /^\/_next\/static\//,
             /*
-             * In development mode pre-cache files up-to 5MB
+             * In development mode pre-cache files up-to 10MB
              */
-            maximumFileSizeToCacheInBytes: dev ? 5000000 : undefined,
+            maximumFileSizeToCacheInBytes: dev ? 10000000 : undefined,
             additionalManifestEntries,
             webpackCompilationPlugins: [
               new webpack.DefinePlugin({

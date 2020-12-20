@@ -1,9 +1,7 @@
+import { mediumScreen } from "@styles/constants";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
-
-import { mediumScreen } from "@styles/constants";
-
 import LogoSmall from "../../../../images/logo-small.svg";
 import * as S from "./styles";
 
@@ -41,7 +39,7 @@ export const DemoBanner: React.FC = () => {
               />
             </S.Link>
             <S.Divider />
-            <S.Link href="/graphql/">
+            <S.Link target="_blank" href="https://demo.saleor.io/graphql/">
               <FormattedMessage
                 defaultMessage="Play with <emphasis>GraphQL API</emphasis>"
                 values={{

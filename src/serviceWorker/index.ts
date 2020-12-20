@@ -88,6 +88,7 @@ const documentFilesToCache = buildManifestPages
  * Set during build time using
  * workbox-webpack-plugin.
  */
+
 precacheAndRoute([
   ...(self.__WB_MANIFEST || []),
   ...documentURLsToCache,
@@ -114,7 +115,7 @@ self.addEventListener("install", () => {
  */
 const router = new Router(CACHE_NAME_RUNTIME);
 
-router.ignoredRoutes = /\/webpack|\/react-refresh/;
+router.ignoredRoutes = /\/(webpack|react-refresh)/;
 router.setRoute(
   /\/(graphql|dashboard|media|plugins|storybook|__)|\?(.+&)?no-cache=1$/,
   NetworkFirst

@@ -6,13 +6,12 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
 
   trailingSlash: true,
+  exportTrailingSlash: true,
 
   webpack: (config, options) => {
     const { isServer, dev } = options;
 
-    config.devtool = process.env.NEXT_EXPORT
-      ? "inline-source-map"
-      : "source-map";
+    config.devtool = dev ? "source-map" : "inline-source-map";
 
     config.node = {
       fs: "empty",
