@@ -221,13 +221,13 @@ const Page: React.FC<
 
             <div className="collection__content">
               <h3>
-                {locale === "it" && product.collections[0].translation?.name
+                {locale === "en" && product.collections[0].translation?.name
                   ? product.collections[0].translation.name
                   : product.collections[0].name}
               </h3>
               <RichTextContent
                 descriptionJson={
-                  locale === "it" &&
+                  locale === "en" &&
                   product.collections[0].translation?.descriptionJson
                     ? product.collections[0].translation.descriptionJson
                     : product.collections[0].descriptionJson

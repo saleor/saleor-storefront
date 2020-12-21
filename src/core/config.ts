@@ -55,7 +55,7 @@ export const META_DEFAULTS = {
   custom: [],
   description: "Unique Italian & Design & Home Décor",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title: "STORITALIA - Timeless Stories of Itealy -",
+  title: "STORITALIA - Timeless Stories of Italy -",
   type: "website",
   url: window.location.origin,
 };

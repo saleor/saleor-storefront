@@ -102,7 +102,7 @@ const Page: React.FC<PageProps> = ({
       >
         <span className="article-page__header__title">
           <h1>
-            {locale === "it" && category.translation?.name
+            {locale === "en" && category.translation?.name
               ? category.translation.name
               : category.name}
           </h1>

@@ -121,9 +121,10 @@
       font-size: 1.125rem;
       font-style: italic;
       background-color: $turquoise-light;
-      border-left: 0.5rem solid $darkGreen;
+      border-left: 0.5rem solid $blue-dark;
       margin: 1.875rem auto;
       padding: 3.75rem 2.5rem 3rem 2.5rem;
+      text-align: justify;
       &:before {
         content: "";
         display: block;

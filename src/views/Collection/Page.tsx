@@ -176,13 +176,13 @@ const Page: React.FC<PageProps> = ({
               </S.SocialShareSelection>
 
               <h3>
-                {locale === "it" && collection.translation?.name
+                {locale === "en" && collection.translation?.name
                   ? collection.translation.name
                   : collection.name}
               </h3>
               <RichTextContent
                 descriptionJson={
-                  locale === "it" && collection.translation?.descriptionJson
+                  locale === "en" && collection.translation?.descriptionJson
                     ? collection.translation.descriptionJson
                     : collection.descriptionJson
                 }
@@ -200,7 +200,7 @@ const Page: React.FC<PageProps> = ({
           >
             <span className="article-page__header__title">
               <h1>
-                {locale === "it" && collection.translation?.name
+                {locale === "en" && collection.translation?.name
                   ? collection.translation.name
                   : collection.name}
               </h1>

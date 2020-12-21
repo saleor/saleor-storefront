@@ -1,5 +1,6 @@
+import classNames from "classnames";
 import * as React from "react";
-
+import { Link } from "react-router-dom";
 import { usePreferences } from "@hooks";
 
 import { RichTextContent } from "@components/atoms";
@@ -41,7 +42,7 @@ export const Page: React.FC<PageProps> = ({
       >
         <span className="article-page__header__title">
           <h1>
-            {locale === "it" && page.translation?.title
+            {locale === "en" && page.translation?.title
               ? page.translation.title
               : page.title}
           </h1>
@@ -50,11 +51,26 @@ export const Page: React.FC<PageProps> = ({
       <div className="container">
         <Breadcrumbs breadcrumbs={breadcrumbs} />
         <div className="article-page__container">
-          <div className="article-page__navigation" />
+          <div className="article-page__navigation">
+            <ul>
+              {navigation.map(menuElement => (
+                <li
+                  className={classNames({
+                    "article-page__navigation-element": true,
+                    "article-page__navigation-element--active":
+                      menuElement.active,
+                  })}
+                  key={menuElement.url}
+                >
+                  <Link to={menuElement.url}>{menuElement.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="article-page__content">
             <RichTextContent
               descriptionJson={
-                locale === "it" && page.translation?.contentJson
+                locale === "en" && page.translation?.contentJson
                   ? page.translation.contentJson
                   : page.contentJson
               }
