@@ -14,7 +14,7 @@ export const Wrapper = styled.div<{ selected: boolean; disabled: boolean }>`
     !props.disabled &&
     `&:hover {
     background-color: ${props.theme.colors.primaryLight};
-    color: ${props.theme.colors.primaryDark};
+    color: white;
     font-weight: ${props.theme.typography.boldFontWeight};
   }`}
 `;

@@ -17,11 +17,7 @@ export const Wrapper = styled.div`
   transition: 0.3s;
 
   :hover {
-    // background-color: ${props => props.theme.colors.hoverLightBackground};
-    /* 
-    hybrit color
-    */
-    background: linear-gradient(315deg, rgba(241,82,39,0.1), rgba(246,116,29,1));
+    background: ${props => props.theme.colors.hoverLightBackground};
   }
 
   ${media.largeScreen`

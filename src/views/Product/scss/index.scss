@@ -22,7 +22,7 @@
     &__description {
       width: 100%;
       min-height: $spacer * 10;
-      margin-bottom: $spacer * 9; 
+      margin-bottom: $spacer * 9;
     }
 
     &__info {
@@ -88,7 +88,7 @@
           &.active {
             span {
               background-color: $turquoise;
-              border-color: $turquoise;
+              border-color: $hybrit-orange-dark;
             }
           }
         }
