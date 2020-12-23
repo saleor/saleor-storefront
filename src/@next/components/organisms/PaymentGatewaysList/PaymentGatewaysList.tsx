@@ -71,32 +71,32 @@ const PaymentGatewaysList: React.FC<IProps> = ({
 
           case PROVIDERS.DUMMY.label:
             return (
-                <div key={index}>
-                  <S.Tile checked={checked}>
-                    <Radio
-                      data-test="checkoutPaymentGatewayDummyInput"
-                      name="payment-method"
-                      value="dummy"
-                      checked={checked}
-                      onChange={() =>
-                        selectPaymentGateway && selectPaymentGateway(id)
-                      }
-                      customLabel
-                    >
-                      <span data-test="checkoutPaymentGatewayDummyName">
-                        {name}
-                      </span>
-                    </Radio>
-                  </S.Tile>
-                  {checked && (
-                    <DummyPaymentGateway
-                      formRef={formRef}
-                      formId={formId}
-                      processPayment={token => processPayment(id, token)}
-                      initialStatus={selectedPaymentGatewayToken}
-                    />
-                  )}
-                </div>
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayDummyInput"
+                    name="payment-method"
+                    value="dummy"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayDummyName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <DummyPaymentGateway
+                    formRef={formRef}
+                    formId={formId}
+                    processPayment={token => processPayment(id, token)}
+                    initialStatus={selectedPaymentGatewayToken}
+                  />
+                )}
+              </div>
             );
 
           case PROVIDERS.AUTHORIZENET.label:
@@ -120,6 +120,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 </S.Tile>
                 {checked && (
                   <AuthorizeNetPaymentGateway
+                    config={config}
                     processPayment={token => processPayment(id, token)}
                   />
                 )}
