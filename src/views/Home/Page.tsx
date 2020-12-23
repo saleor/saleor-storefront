@@ -45,9 +45,7 @@ const Page: React.FC<{
         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
-              </h1>
+              <h1> HybrIT Connecting your business</h1>
             </span>
           </div>
           <div>

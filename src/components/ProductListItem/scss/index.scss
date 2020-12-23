@@ -30,6 +30,15 @@
 
   &__image {
     background-color: $turquoise-light;
+
+    &:hover {
+      background: linear-gradient(
+        315deg,
+        rgba(241, 82, 39, 0.1),
+        rgba(246, 116, 29, 1)
+      );
+    }
+
     display: flex;
     height: 350px;
     justify-content: center;

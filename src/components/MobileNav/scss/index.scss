@@ -30,8 +30,8 @@
       align-self: center;
       padding: 0.75rem $spacer;
 
-      svg {
-        width: 5rem;
+      img {
+        width: 7rem;
       }
     }
 
@@ -42,7 +42,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $hybrit-orange;
       }
 
       svg * {
@@ -83,7 +83,7 @@
       }
 
       &:hover {
-        color: $turquoise;
+        color: $hybrit-orange-extra-light;
       }
     }
 

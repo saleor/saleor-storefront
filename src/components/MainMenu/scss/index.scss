@@ -45,11 +45,11 @@
   &__center {
     align-self: center;
 
-    svg {
-      width: 4rem;
+    img {
+      width: 7rem;
 
       @media (min-width: $small-screen) {
-        width: 6rem;
+        width: 9rem;
       }
     }
   }
@@ -66,7 +66,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $hybrit-orange;
       }
     }
   }
@@ -113,7 +113,7 @@
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $hybrit-orange;
       }
     }
 
@@ -144,7 +144,7 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $hybrit-orange;
       fill-rule: inherit;
     }
   }
@@ -193,9 +193,9 @@
     }
 
     &:hover {
-      color: $turquoise;
+      color: $hybrit-orange;
       svg * {
-        fill: $turquoise;
+        fill: $hybrit-orange;
       }
     }
 

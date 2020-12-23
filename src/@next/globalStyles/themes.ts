@@ -17,10 +17,16 @@ export const defaultTheme = {
     },
     colors: {
       primary: {
-        activeBackground: C.theme.primaryDark,
-        background: C.theme.primary,
+        // activeBackground: C.theme.primaryDark,
+        /*
+        hybrit color
+        */
+        activeBackground: C.hybritOrangeDark,
+        // background: C.theme.primary,
+        background: C.hybritOrange,
         color: C.white,
-        hoverBackground: C.theme.primaryDark,
+        // hoverBackground: C.theme.primaryDark,
+        hoverBackground: C.hybritOrangeDark,
         hoverColor: C.white,
       },
       secondary: {

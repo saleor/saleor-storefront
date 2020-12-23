@@ -1,3 +1,7 @@
+// hybrit colors
+export const hybritOrangeDark = "#f15227";
+export const hybritOrange = "#ff7e1d";
+
 // colors
 export const autofillColor = "rgb(250, 255, 189)";
 export const autofillColorSelected = "rgb(232, 240, 254)";
@@ -30,7 +34,7 @@ export const secondaryBlue = "#036DFF";
 
 // theme colors
 export const theme = {
-  activeMenuOption: darkGreen,
+  activeMenuOption: hybritOrange,
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
   bannerBackground: secondaryGrey,

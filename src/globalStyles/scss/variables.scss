@@ -11,6 +11,18 @@ $rose: #fe6e76;
 $turquoise-dark: #55c4b3;
 $turquoise-light: #f1f5f5;
 $turquoise: #51e9d2;
+
+$hybrit-orange-dark: #f15227;
+$hybrit-orange-light: #ff9b50;
+$hybrit-orange-extra-light: #ffaa6a;
+$hybrit-orange: #ff7e1d;
+$hybrit-orange-gradient: linear-gradient(315deg, #f15227, #f3741d);
+$hybrit-orange-gradient-transparent: linear-gradient(
+  315deg,
+  rgba(241, 82, 39, 0.1),
+  rgba(246, 116, 29, 1)
+);
+
 $white: #fff;
 $blue-overlay: rgba($blue, 0.15);
 $autofillColor: rgb(250, 255, 189);
@@ -24,6 +36,7 @@ $small-font-size: 0.875rem; // 14px
 $base-line-height: 1.25rem; // 20px
 $h1-font-size: 4rem; // 64px
 $h1-line-height: 1;
+$h2-font-size: 2.5rem;
 $h3-font-size: 1.5rem; // 24px
 $h4-font-size: 1.125rem; // 18px
 $bold-font-weight: 600;

@@ -20,6 +20,7 @@ export interface TextFieldProps
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   styleType?: Style;
+  border?: boolean;
 }
 
 const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
@@ -37,6 +38,7 @@ const TextField: React.FC<TextFieldProps> = ({
   errors,
   helpText,
   styleType = "white" as Style,
+  border = false,
   ...rest
 }) => (
   <div className="input">
