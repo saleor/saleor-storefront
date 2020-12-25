@@ -15,6 +15,13 @@ export interface Article_page_translation {
   contentJson: any;
 }
 
+export interface ArticleDetails_article_metadata {
+  __typename: "Metadata";
+
+  key: string;
+  value: string;
+}
+
 export interface Article_page {
   __typename: "Page";
   contentJson: any;
@@ -26,7 +33,8 @@ export interface Article_page {
   seoTitle: string | null;
   slug: string;
   title: string;
-  translation: Article_page_translation | null; 
+  translation: Article_page_translation | null;
+  metadata: (ArticleDetails_article_metadata | null)[] | null;
 }
 
 export interface Article_shop_homepageCollection_backgroundImage {

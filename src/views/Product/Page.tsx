@@ -103,11 +103,11 @@ const Page: React.FC<
     />
   );
 
-  const videoValues = !(
-    Object.keys(product.collections[0].metadata).length === 0
+  const MetaVideo = product.collections[0].metadata.find(
+    element => element.key === "vimeo_id"
   );
-  const srcVideo = videoValues
-    ? `https://player.vimeo.com/video/${product.collections[0].metadata[0].value}?title=0&byline=0&portrait=0&loop=1&autopause=0`
+  const srcVideo = MetaVideo
+    ? `https://player.vimeo.com/video/${MetaVideo.value}?title=0&byline=0&portrait=0&loop=1&autopause=0`
     : "";
 
   return (
@@ -185,7 +185,7 @@ const Page: React.FC<
           </Media>
         </div>
       </div>
-      {videoValues ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
+      {MetaVideo ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
       <OtherProducts products={product.category.products.edges} />
       <div className="product-page__categories">
         <div className="container">
@@ -215,7 +215,6 @@ const Page: React.FC<
                     })`,
                   }}
                 />
-                <h3>{product.collections[0].name}</h3>
               </Link>
             </div>
 

@@ -12,7 +12,11 @@ const articleQuery = gql`
       seoTitle
       slug
       title
-      translation(languageCode: IT) {
+      metadata {
+        key
+        value
+      }
+      translation(languageCode: EN) {
         title
         contentJson
       }

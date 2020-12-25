@@ -16,6 +16,7 @@ export * from "./ProductList";
 export * from "./ProductListOther";
 export * from "./ProductListSearch";
 export * from "./ProductListStories";
+export * from "./ProductListProjects";
 export * from "./CartSummary";
 export * from "./CartRow";
 export * from "./AddressGridSelector";

@@ -33,6 +33,24 @@ const LocaleSelect: React.FC = () => {
             | <FormattedMessage defaultMessage="CHANGE" />
           </button>
         </p>
+        <div className="footer-paymentMethods">
+          <div className="footer-paymentMethods__cards">
+            <img src="https://a-dam.com/storage/icons/visa.svg" alt="visa" />
+            <img src="https://a-dam.com/storage/icons/amex.svg" alt="amex" />
+            <img
+              src="https://a-dam.com/storage/icons/mastercard.svg"
+              alt="mastercard"
+            />
+            <img
+              src="https://www.mollie.com/external/icons/payment-methods/ideal.svg"
+              alt="ideal"
+            />
+            <img
+              src="https://www.mollie.com/external/icons/payment-methods/paypal.svg"
+              alt="paypal"
+            />
+          </div>
+        </div>
       </div>
       {displayModal && (
         <PreferencesFormModal

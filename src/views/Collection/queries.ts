@@ -27,7 +27,7 @@ export const collectionProductsDataQuery = gql`
       backgroundImage {
         url
       }
-      translation(languageCode: IT) {
+      translation(languageCode: EN) {
         name
         descriptionJson
       }

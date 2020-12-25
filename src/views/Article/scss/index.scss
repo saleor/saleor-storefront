@@ -5,11 +5,12 @@
   &__container {
     column-gap: $spacer * 1.5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 60px 0;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 60px 7rem;
 
     @media (max-width: $medium-screen) {
       display: block;
+      margin: 60px 0rem;
     }
   }
 
@@ -120,6 +121,7 @@
       position: relative;
       font-size: 1.125rem;
       font-style: italic;
+      font-family: Cardo, serif;
       background-color: $turquoise-light;
       border-left: 0.5rem solid $blue-dark;
       margin: 1.875rem auto;

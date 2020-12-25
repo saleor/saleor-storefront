@@ -25,8 +25,8 @@ const Footer: React.FC = () => (
       expires={30}
       buttonStyle={{
         color: "#ffffff",
-        fontSize: "13px",
-        background: "#666666",
+        fontSize: "15px",
+        background: "#0D233F",
       }}
     >
       <span style={{ fontSize: "0.7rem", color: "#000000" }}>

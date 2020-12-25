@@ -44,6 +44,14 @@
     }
   }
 
+  &-paymentMethods {
+    &__cards {
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+
   &-nav {
     background-color: $blue-dark;
     padding: $spacer * 3 0 $spacer * 2;

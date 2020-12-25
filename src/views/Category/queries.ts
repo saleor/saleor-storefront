@@ -22,7 +22,7 @@ export const categoryProductsDataQuery = gql`
       backgroundImage {
         url
       }
-      translation(languageCode: IT) {
+      translation(languageCode: EN) {
         name
         descriptionJson
       }

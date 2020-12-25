@@ -22,6 +22,7 @@ export * from "./ProductTile";
 export * from "./ProductTileOther";
 export * from "./ProductTileSearch";
 export * from "./ProductTileStories";
+export * from "./ProductTileProjects";
 export * from "./ProductDescription";
 export * from "./CartSummaryRow";
 export * from "./CheckoutProgressBar";

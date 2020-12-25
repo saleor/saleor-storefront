@@ -1,5 +1,13 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.collection-blog {
+  p {
+    margin-top: -3rem;
+    background-color: white;
+    padding: 3rem 5rem;
+  }
+}
+
 .collection {
   margin-top: 5.5rem;
   &__container {
