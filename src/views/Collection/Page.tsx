@@ -246,48 +246,46 @@ const Page: React.FC<PageProps> = ({
                 />
               )}
             <div className="home-page__collections">
-              <div className="container">
-                <div className="home-page__collections__list">
-                  {VertImg_1 && (
-                    <div key={VertImg_1.key}>
-                      <div
-                        className={classNames(
-                          "home-page__collections__list__image"
-                        )}
-                        style={{
-                          backgroundImage: `url(${VertImg_1.value})`,
-                        }}
-                      />
-                      <b>{VertImg_1Alt}</b>
-                    </div>
-                  )}
-                  {VertImg_2 && (
-                    <div key={VertImg_2.key}>
-                      <div
-                        className={classNames(
-                          "home-page__collections__list__image"
-                        )}
-                        style={{
-                          backgroundImage: `url(${VertImg_2.value})`,
-                        }}
-                      />
-                      <b>{VertImg_2Alt}</b>
-                    </div>
-                  )}
-                  {HorImg && (
-                    <div key={HorImg.key}>
-                      <div
-                        className={classNames(
-                          "home-page__collections__list__image"
-                        )}
-                        style={{
-                          backgroundImage: `url(${HorImg.value})`,
-                        }}
-                      />
-                      <b>{HorImg_Alt}</b>
-                    </div>
-                  )}
-                </div>
+              <div className="home-page__collections__list">
+                {VertImg_1 && (
+                  <div key={VertImg_1.key}>
+                    <div
+                      className={classNames(
+                        "home-page__collections__list__image"
+                      )}
+                      style={{
+                        backgroundImage: `url(${VertImg_1.value})`,
+                      }}
+                    />
+                    <b>{VertImg_1Alt}</b>
+                  </div>
+                )}
+                {VertImg_2 && (
+                  <div key={VertImg_2.key}>
+                    <div
+                      className={classNames(
+                        "home-page__collections__list__image"
+                      )}
+                      style={{
+                        backgroundImage: `url(${VertImg_2.value})`,
+                      }}
+                    />
+                    <b>{VertImg_2Alt}</b>
+                  </div>
+                )}
+                {HorImg && (
+                  <div key={HorImg.key}>
+                    <div
+                      className={classNames(
+                        "home-page__collections__list__image"
+                      )}
+                      style={{
+                        backgroundImage: `url(${HorImg.value})`,
+                      }}
+                    />
+                    <b>{HorImg_Alt}</b>
+                  </div>
+                )}
               </div>
             </div>
           </div>
