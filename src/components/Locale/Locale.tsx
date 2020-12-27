@@ -17,14 +17,14 @@ import { Locale } from "@types";
 // import locale_ET from "@locale/et.json";
 // import locale_FA from "@locale/fa.json";
 // import locale_FI from "@locale/fi.json";
-// import locale_FR from "@locale/fr.json";
+import locale_FR from "@locale/fr.json";
 // import locale_HI from "@locale/hi.json";
 // import locale_HU from "@locale/hu.json";
 // import locale_HY from "@locale/hy.json";
 // import locale_ID from "@locale/id.json";
 // import locale_IS from "@locale/is.json";
 import locale_IT from "@locale/it.json";
-// import locale_JA from "@locale/ja.json";
+import locale_JA from "@locale/ja.json";
 // import locale_KO from "@locale/ko.json";
 // import locale_LT from "@locale/lt.json";
 // import locale_MN from "@locale/mn.json";
@@ -70,14 +70,14 @@ const localeData: Record<Locale, LocaleMessages | undefined> = {
   // [Locale.ET]: locale_ET,
   // [Locale.FA]: locale_FA,
   // [Locale.FI]: locale_FI,
-  // [Locale.FR]: locale_FR,
+  [Locale.FR]: locale_FR,
   // [Locale.HI]: locale_HI,
   // [Locale.HU]: locale_HU,
   // [Locale.HY]: locale_HY,
   // [Locale.ID]: locale_ID,
   // [Locale.IS]: locale_IS,
   [Locale.IT]: locale_IT,
-  // [Locale.JA]: locale_JA,
+  [Locale.JA]: locale_JA,
   // [Locale.KO]: locale_KO,
   // [Locale.LT]: locale_LT,
   // [Locale.MN]: locale_MN,
@@ -116,7 +116,7 @@ export const localeNames: Record<Locale, string> = {
   // [Locale.ET]: "eesti",
   // [Locale.FA]: "فارسی",
   // [Locale.FI]: "suomi",
-  // [Locale.FR]: "français",
+  [Locale.FR]: "français",
   // [Locale.HI]: "Hindi",
   // [Locale.HU]: "Magyar",
   // [Locale.HY]: "հայերեն",
@@ -124,7 +124,7 @@ export const localeNames: Record<Locale, string> = {
   // [Locale.IS]: "Íslenska",
   // [Locale.LT]: "lietuvių",
   [Locale.IT]: "Italiano",
-  // [Locale.JA]: "日本語",
+  [Locale.JA]: "日本語",
   // [Locale.KO]: "한국어",
   // [Locale.MN]: "Mongolian",
   // [Locale.NB]: "norsk (bokmål)",
@@ -163,7 +163,7 @@ export const localeFlag: Record<Locale, string | null> = {
   // [Locale.ET]: "EE",
   // [Locale.FA]: "IR",
   // [Locale.FI]: "FI",
-  // [Locale.FR]: "FR",
+  [Locale.FR]: "FR",
   // [Locale.HI]: null,
   // [Locale.HU]: "HU",
   // [Locale.HY]: "AM",
@@ -171,7 +171,7 @@ export const localeFlag: Record<Locale, string | null> = {
   // [Locale.IS]: "IS",
   // [Locale.LT]: "LT",
   [Locale.IT]: "IT",
-  // [Locale.JA]: "JP",
+  [Locale.JA]: "JP",
   // [Locale.KO]: null,
   // [Locale.MN]: "MN",
   // [Locale.NB]: "NO",
@@ -223,7 +223,7 @@ const LocaleProvider: React.FC = ({ children }) => {
 
   return (
     <IntlProvider
-      defaultLocale={Locale.EN}
+      defaultLocale={Locale.IT}
       locale={locale}
       messages={getKeyValueJson(localeData[locale])}
       key={locale}

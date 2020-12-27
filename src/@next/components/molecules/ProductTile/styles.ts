@@ -21,6 +21,9 @@ export const Wrapper = styled.div`
   ${media.largeScreen`
     padding: 1.8rem;
   `}
+  ${media.smallScreen`
+    padding: 0rem;
+  `}
 `;
 
 export const Title = styled.h4`

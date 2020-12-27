@@ -113,4 +113,8 @@ export interface ProductsList {
   categories: ProductsList_categories | null;
 
   collections: ProductsList_collections | null;
+
+  latest_collections: ProductsList_collections | null;
+
+  projects: ProductsList_collections | null;
 }

@@ -5,6 +5,9 @@
     margin-top: -3rem;
     background-color: white;
     padding: 3rem 5rem;
+    @media (max-width: $small-screen) {
+      padding: 1rem 2rem;
+    }
   }
 }
 
@@ -86,6 +89,8 @@
     overflow: hidden;
     max-width: 100%;
     background: black;
+
+    margin-bottom: 3rem;
 
     iframe {
       position: absolute;

@@ -26,11 +26,22 @@ const Page: React.FC<{
   loading: boolean;
   categories: ProductsList_categories;
   collections: ProductsList_collections;
+  projects: ProductsList_collections;
   backgroundImage: ProductsList_shop_homepageCollection_backgroundImage;
   shop: ProductsList_shop;
-}> = ({ loading, categories, collections, backgroundImage, shop }) => {
+}> = ({
+  loading,
+  categories,
+  collections,
+  projects,
+  backgroundImage,
+  shop,
+}) => {
   const collectionsExist = () => {
     return collections && collections.edges && collections.edges.length > 0;
+  };
+  const ProjectsExist = () => {
+    return projects && projects.edges && projects.edges.length > 0;
   };
   const intl = useIntl();
 
@@ -122,6 +133,42 @@ const Page: React.FC<{
         </div>
       )}
       <ArtisanVideo srcVideo={srcVideo} />
+      {ProjectsExist() && (
+        <div className="home-page__collections">
+          <div className="container">
+            <h3>
+              <FormattedMessage defaultMessage="Ultimi Progetti" />
+            </h3>
+            <div className="home-page__collections__list">
+              {projects.edges.map(({ node: project }) => (
+                <div key={project.id}>
+                  <Link
+                    to={generateCollectionUrl(project.id, project.name)}
+                    key={project.id}
+                  >
+                    <div
+                      className={classNames(
+                        "home-page__collections__list__image",
+                        {
+                          "home-page__collections__list__image--no-photo": !project.backgroundImage,
+                        }
+                      )}
+                      style={{
+                        backgroundImage: `url(${
+                          project.backgroundImage
+                            ? project.backgroundImage.url
+                            : noPhotoImg
+                        })`,
+                      }}
+                    />
+                    <h3>{project.name}</h3>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

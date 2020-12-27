@@ -24,6 +24,7 @@ import { usePreferences } from "@hooks";
 import {
   ProductListHeader,
   ProductListHeaderStories,
+  ProductListHeaderProjects,
 } from "../../@next/components/molecules";
 import {
   ProductList,
@@ -311,8 +312,20 @@ const Page: React.FC<PageProps> = ({
             onChange={onOrder}
             onCloseFilterAttribute={onAttributeFiltersChange}
           />
-        ) : (
+        ) : collection.id === "Q29sbGVjdGlvbjo0OQ==" ? (
           <ProductListHeaderStories
+            activeSortOption={activeSortOption}
+            openFiltersMenu={() => setShowFilters(true)}
+            numberOfProducts={products ? products.totalCount : 0}
+            activeFilters={activeFilters}
+            activeFiltersAttributes={activeFiltersAttributesStories}
+            clearFilters={clearFilters}
+            sortOptions={sortOptions}
+            onChange={onOrder}
+            onCloseFilterAttribute={onAttributeFiltersChange}
+          />
+        ) : (
+          <ProductListHeaderProjects
             activeSortOption={activeSortOption}
             openFiltersMenu={() => setShowFilters(true)}
             numberOfProducts={products ? products.totalCount : 0}

@@ -27,10 +27,25 @@ export const homePageQuery = gql`
         }
       }
     }
-    collections(
+    latest_collections: collections(
       first: 2
       filter: { published: PUBLISHED }
       sortBy: { field: PUBLICATION_DATE, direction: DESC }
+    ) {
+      edges {
+        node {
+          id
+          name
+          backgroundImage {
+            url
+          }
+        }
+      }
+    }
+    projects: collections(
+      first: 3
+      filter: { published: PUBLISHED, search: "Progetto:" }
+      sortBy: { field: PUBLICATION_DATE, direction: ASC }
     ) {
       edges {
         node {

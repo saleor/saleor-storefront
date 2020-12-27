@@ -15,6 +15,7 @@ export * from "./AccountMenuMobile";
 export * from "./AccountTabTiles";
 export * from "./ProductListHeader";
 export * from "./ProductListHeaderStories";
+export * from "./ProductListHeaderProjects";
 export * from "./InputSelect";
 export * from "./AttributeValuesChecklist";
 export * from "./ResetPasswordForm";
