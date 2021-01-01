@@ -221,6 +221,15 @@ export interface CategoryProducts_products_edges_node_category {
   name: string;
 }
 
+export interface CategoryProducts_products_edges_node_translation {
+  __typename: "ProductTrans";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface CategoryProducts_products_edges_node {
   __typename: "Product";
   /**
@@ -241,6 +250,7 @@ export interface CategoryProducts_products_edges_node {
    */
   pricing: CategoryProducts_products_edges_node_pricing | null;
   category: CategoryProducts_products_edges_node_category | null;
+  translation: CategoryProducts_products_edges_node_translation | null;
 }
 
 export interface CategoryProducts_products_edges {

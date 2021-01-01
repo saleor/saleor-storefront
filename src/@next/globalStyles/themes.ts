@@ -87,8 +87,8 @@ export const defaultTheme = {
   },
   iconButton: {
     backgroundColor: C.theme.white,
-    hoverBackgroundColor: C.theme.secondary,
-    hoverForegroundColor: C.theme.white,
+    hoverBackgroundColor: C.theme.white,
+    hoverForegroundColor: C.theme.secondary,
     size: 36,
   },
   input: {

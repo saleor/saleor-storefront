@@ -22,15 +22,41 @@ const secondaryMenu = gql`
   }
 
   query SecondaryMenu {
-    shop {
-      navigation {
-        secondary {
-          items {
-            ...SecondaryMenuSubItem
-            children {
-              ...SecondaryMenuSubItem
-            }
-          }
+    menu(id: "TWVudToy") {
+      items {
+        ...SecondaryMenuSubItem
+        children {
+          ...SecondaryMenuSubItem
+        }
+      }
+    }
+  }
+`;
+
+const secondaryMenuEN = gql`
+  fragment SecondaryMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+  }
+
+  query SecondaryMenu {
+    menu(id: "TWVudToz") {
+      items {
+        ...SecondaryMenuSubItem
+        children {
+          ...SecondaryMenuSubItem
         }
       }
     }
@@ -39,4 +65,8 @@ const secondaryMenu = gql`
 
 export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, {}>(
   secondaryMenu
+);
+
+export const TypedSecondaryMenuQueryEN = TypedQuery<SecondaryMenu, {}>(
+  secondaryMenuEN
 );

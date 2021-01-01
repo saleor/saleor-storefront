@@ -152,7 +152,7 @@ export interface MainMenu_shop_navigation_main_items {
   children: (MainMenu_shop_navigation_main_items_children | null)[] | null;
 }
 
-export interface MainMenu_shop_navigation_main {
+export interface MainMenu_menu {
   __typename: "Menu";
   /**
    * The ID of the object.
@@ -161,25 +161,9 @@ export interface MainMenu_shop_navigation_main {
   items: (MainMenu_shop_navigation_main_items | null)[] | null;
 }
 
-export interface MainMenu_shop_navigation {
-  __typename: "Navigation";
-  /**
-   * Main navigation bar.
-   */
-  main: MainMenu_shop_navigation_main | null;
-}
-
-export interface MainMenu_shop {
-  __typename: "Shop";
-  /**
-   * Shop's navigation.
-   */
-  navigation: MainMenu_shop_navigation | null;
-}
-
 export interface MainMenu {
   /**
-   * Return information about the shop.
+   * Look up a navigation menu by ID or name.
    */
-  shop: MainMenu_shop;
+  menu: MainMenu_menu | null;
 }

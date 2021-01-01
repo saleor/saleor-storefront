@@ -4,7 +4,7 @@ import * as React from "react";
 import { useIntl, FormattedMessage } from "react-intl";
 import { usePreferences } from "@hooks";
 import { commonMessages } from "@temp/intl";
-import { localeNames, localeFlag } from "@temp/components/Locale";
+import { localeFlag } from "@temp/components/Locale";
 import { PreferencesFormModal } from "@components/organisms";
 
 const LocaleSelect: React.FC = () => {
@@ -20,17 +20,15 @@ const LocaleSelect: React.FC = () => {
       </h4>
       <div className="footer-nav__section-content">
         <p>
-          <FormattedMessage {...commonMessages.language} />:{" "}
           <button
             onClick={() => {
               setDisplayModal(true);
             }}
           >
-            {localeNames[locale]}{" "}
             {localeFlag[locale] && (
               <span className={`flag-icons dot ${localeFlag[locale]}`} />
             )}{" "}
-            | <FormattedMessage defaultMessage="CHANGE" />
+            <FormattedMessage defaultMessage="Lingua" />
           </button>
         </p>
         <div className="footer-paymentMethods">

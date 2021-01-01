@@ -212,8 +212,27 @@ export interface ProductList_products_edges_node_pricing {
   priceRange: ProductList_products_edges_node_pricing_priceRange | null;
 }
 
+export interface ProductList_products_edges_node_collections_translation {
+  __typename: "CollectionTrans";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductList_products_edges_node_collections {
   __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  translation: ProductList_products_edges_node_collections_translation | null;
+}
+
+export interface ProductList_products_edges_node_translation {
+  __typename: "ProductTrans";
   /**
    * The ID of the object.
    */
@@ -241,6 +260,7 @@ export interface ProductList_products_edges_node {
    */
   pricing: ProductList_products_edges_node_pricing | null;
   collections: (ProductList_products_edges_node_collections | null)[] | null;
+  translation: ProductList_products_edges_node_translation | null;
 }
 
 export interface ProductList_products_edges {

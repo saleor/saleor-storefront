@@ -2,6 +2,16 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
+import {
+  CarouselProvider,
+  DotGroup,
+  Slider,
+  Slide,
+  Image,
+  ButtonBack,
+  ButtonNext,
+} from "pure-react-carousel";
+import "pure-react-carousel/dist/react-carousel.es.css";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
@@ -169,6 +179,52 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <div className="container">
+        <h3>
+          <FormattedMessage defaultMessage="As Seen In" />
+        </h3>
+        <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={30}
+          visibleSlides={3}
+          totalSlides={3}
+          step={3}
+        >
+          <Slider
+            style={{
+              background: "#EFF5F8",
+              padding: "5%",
+              outline: "0px!important;",
+            }}
+            className="homepage-carousel-slider"
+          >
+            <Slide index={0}>
+              <Image
+                hasMasterSpinner
+                className="homepage-carousel-image"
+                src="https://storitalia.s3.eu-west-2.amazonaws.com/actv.jpg"
+              />
+            </Slide>
+            <Slide className="homepage-carousel-slide" index={1}>
+              <Image
+                hasMasterSpinner
+                className="homepage-carousel-image"
+                src="https://storitalia.s3.eu-west-2.amazonaws.com/vivimilano.svg"
+              />
+            </Slide>
+            <Slide className="homepage-carousel-slide" index={2}>
+              <Image
+                hasMasterSpinner
+                className="homepage-carousel-image"
+                src="https://storitalia.s3.eu-west-2.amazonaws.com/SVGLogo_livingworking.svg"
+              />
+            </Slide>
+          </Slider>
+          <ButtonBack>↼</ButtonBack>
+          <ButtonNext>⇀</ButtonNext>
+          <DotGroup />
+        </CarouselProvider>
+      </div>
     </>
   );
 };

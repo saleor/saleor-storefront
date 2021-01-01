@@ -174,7 +174,12 @@ const Page: React.FC<
                     >
                       {addToCartSection}
                       <ProductDescription
-                        descriptionJson={product.descriptionJson}
+                        descriptionJson={
+                          locale === "en" &&
+                          product.translation?.descriptionJson
+                            ? product.translation.descriptionJson
+                            : product.descriptionJson
+                        }
                         attributes={product.attributes}
                       />
                     </div>

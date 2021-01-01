@@ -157,6 +157,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 .c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 .c2 {
@@ -448,6 +449,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 .c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 .c2 {
@@ -729,6 +731,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 .c8 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 .c2 {

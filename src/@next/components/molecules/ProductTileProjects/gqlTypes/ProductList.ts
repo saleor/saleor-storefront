@@ -21,7 +21,7 @@ export interface Collection_collection_backgroundImage {
 }
 
 export interface Product_collection_translation {
-  __typename: "Translation";
+  __typename: "CollectionTrans";
   /**
    * The URL of the image.
    */

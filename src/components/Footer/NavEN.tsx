@@ -1,17 +1,17 @@
 import * as React from "react";
 
 import { NavLink } from "..";
-import { TypedSecondaryMenuQuery } from "./queries";
+import { TypedSecondaryMenuQueryEN } from "./queries";
 
 import "./scss/index.scss";
 import LocaleSelect from "./LocaleSelect";
 
-class Nav extends React.PureComponent {
+class NavEN extends React.PureComponent {
   render() {
     return (
       <footer className="footer-nav">
         <div className="container">
-          <TypedSecondaryMenuQuery>
+          <TypedSecondaryMenuQueryEN>
             {({ data }) => {
               return data.menu.items.map(item => (
                 <div className="footer-nav__section" key={item.id}>
@@ -28,7 +28,7 @@ class Nav extends React.PureComponent {
                 </div>
               ));
             }}
-          </TypedSecondaryMenuQuery>
+          </TypedSecondaryMenuQueryEN>
           <LocaleSelect />
         </div>
       </footer>
@@ -36,4 +36,4 @@ class Nav extends React.PureComponent {
   }
 }
 
-export default Nav;
+export default NavEN;

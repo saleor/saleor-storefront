@@ -10,6 +10,7 @@ export const Footer = styled.div<{ divider: boolean }>`
     &:last-child {
       margin-left: 2rem;
       margin-right: 0.7rem;
+      padding: 1rem;
     }
   }
 `;

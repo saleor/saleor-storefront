@@ -434,6 +434,15 @@ export interface ProductDetails_product_category_products_edges_node_pricing {
   priceRange: ProductDetails_product_category_products_edges_node_pricing_priceRange | null;
 }
 
+export interface ProductDetails_product_category_products_edges_node_translation {
+   __typename: "ProductTrans";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface ProductDetails_product_category_products_edges_node {
   __typename: "Product";
   /**
@@ -453,6 +462,7 @@ export interface ProductDetails_product_category_products_edges_node {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_category_products_edges_node_pricing | null;
+  translation: ProductDetails_product_category_products_edges_node_translation | null;
 }
 
 export interface ProductDetails_product_category_products_edges {

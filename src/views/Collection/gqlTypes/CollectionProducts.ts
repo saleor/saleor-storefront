@@ -221,6 +221,15 @@ export interface CollectionProducts_collection_products_edges_node_category {
   name: string;
 }
 
+export interface CollectionProducts_collection_products_edges_node_translation {
+  __typename: "ProductTrans";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface CollectionProducts_collection_products_edges_node {
   __typename: "Product";
   /**
@@ -241,6 +250,7 @@ export interface CollectionProducts_collection_products_edges_node {
    */
   pricing: CollectionProducts_collection_products_edges_node_pricing | null;
   category: CollectionProducts_collection_products_edges_node_category | null;
+  translation: CollectionProducts_collection_products_edges_node_translation | null;
 }
 
 export interface CollectionProducts_collection_products_edges {

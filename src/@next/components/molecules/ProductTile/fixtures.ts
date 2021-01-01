@@ -7,10 +7,20 @@ export const PRODUCT: ProductList_products_edges_node = {
       __typename: "Collection",
       id: "Q29sbGVjdGlvbjoyMw==",
       name: "Lucio Liguori | Ceramist",
+      translation: {
+        __typename: "CollectionTrans",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+      },
     },
   ],
   id: "UHJvZHVjdDo3Mg==",
   name: "Apple Juice",
+  translation: {
+    __typename: "ProductTrans",
+    id: "UHJvZHVjdDo3Mg==",
+    name: "Apple Juice",
+  },
   pricing: {
     __typename: "ProductPricingInfo",
     onSale: true,

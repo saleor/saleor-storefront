@@ -25,6 +25,7 @@ export const basicProductFragment = gql`
     name
     translation(languageCode: EN) {
       name
+      descriptionJson
     }
     collections {
       id
@@ -32,6 +33,10 @@ export const basicProductFragment = gql`
       descriptionJson
       seoTitle
       seoDescription
+      translation(languageCode: EN) {
+        name
+        descriptionJson
+      }
       backgroundImage {
         url
         alt
@@ -146,7 +151,7 @@ export const productDetailsQuery = gql`
           url
           alt
         }
-        products(first: 3) {
+        products(last: 3) {
           edges {
             node {
               ...BasicProductFields

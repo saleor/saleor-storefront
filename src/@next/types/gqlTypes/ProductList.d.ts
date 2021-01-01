@@ -13,10 +13,11 @@ export interface Collection_collection_backgroundImage {
 }
 
 export interface Product_collection_translation {
-  __typename: "Translation";
+  __typename: "CollectionTrans";
   /**
    * The URL of the image.
    */
+  id: string;
   name: string;
   descriptionJson: any;
 }
@@ -220,6 +221,11 @@ export interface ProductList_products_edges_node_pricing {
      */
     priceRange: ProductList_products_edges_node_pricing_priceRange | null;
 }
+export interface ProductList_products_edges_node_translation {
+    __typename: "ProductTrans";
+    id: string;
+    name: string;
+}
 export interface ProductList_products_edges_node {
     __typename: "Product";
     /**
@@ -243,6 +249,7 @@ export interface ProductList_products_edges_node {
      */
     pricing: ProductList_products_edges_node_pricing | null;
     collections: (ProductList_products_edges_node_collections | null)[] | null;
+    translation: ProductList_products_edges_node_translation | null;
 }
 export interface ProductList_products_edges {
     __typename: "ProductCountableEdge";

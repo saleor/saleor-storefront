@@ -21,6 +21,9 @@ export const featuredProducts = gql`
             category {
               id
               name
+              translation(languageCode: EN) {
+                name
+              }
             }
           }
         }

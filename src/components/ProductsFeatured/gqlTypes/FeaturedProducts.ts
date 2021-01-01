@@ -210,6 +210,15 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_pr
   priceRange: FeaturedProducts_shop_homepageCollection_products_edges_node_pricing_priceRange | null;
 }
 
+export interface FeaturedProducts_shop_homepageCollection_products_edges_node_category_translation {
+  __typename: "Category";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+}
+
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node_category {
   __typename: "Category";
   /**
@@ -217,6 +226,7 @@ export interface FeaturedProducts_shop_homepageCollection_products_edges_node_ca
    */
   id: string;
   name: string;
+  translation: FeaturedProducts_shop_homepageCollection_products_edges_node_category_translation | null;
 }
 
 export interface FeaturedProducts_shop_homepageCollection_products_edges_node {

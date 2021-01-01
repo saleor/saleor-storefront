@@ -1,6 +1,11 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .home-page {
+
+  h3 {
+    text-align: center;
+  }
+  
   &__hero {
     background-color: $blue-overlay;
     background-blend-mode: multiply;
@@ -63,6 +68,14 @@
         }
       }
     }
+  }
+
+  .homepage-carousel-image{
+    padding: 5%;
+  }
+
+  .homepage-carousel-slider{
+    outline: 0px!important;
   }
 
   &__collections {

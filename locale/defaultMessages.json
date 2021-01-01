@@ -185,6 +185,9 @@
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "More +"
   },
+  "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductListStories_dot_108342258": {
+    "string": "More +"
+  },
   "@next_dot_components_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
     "string": "Please select {selectLabel}"
   },
@@ -442,7 +445,7 @@
     "string": "Home"
   },
   "intl_dot_commonMessages_dot_language": {
-    "string": "Language"
+    "string": "Lang."
   },
   "intl_dot_commonMessages_dot_lastName": {
     "string": "Last Name"
@@ -511,7 +514,7 @@
     "string": "search"
   },
   "intl_dot_commonMessages_dot_shipping": {
-    "string": "Shipping"
+    "string": "Destn."
   },
   "intl_dot_commonMessages_dot_shortEmail": {
     "string": "Email"

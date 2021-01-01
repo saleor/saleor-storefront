@@ -19,10 +19,14 @@ export const ProductTileProjects: React.FC<IProps> = ({ product }: IProps) => {
         <ThumbnailCollection source={product.collections[1]} />
         <Thumbnail source={product} />
         <div>
-          <h3>{product.collections[1].name}</h3>
+          <h3>
+            {locale === "en" && product.collections[1].translation?.name
+              ? product.collections[1].translation.name
+              : product.collections[1].name}
+          </h3>
           <RichTextContent
             descriptionJson={
-              locale === "it" &&
+              locale === "en" &&
               product.collections[1].translation?.descriptionJson
                 ? product.collections[1].translation.descriptionJson
                 : product.collections[1].descriptionJson

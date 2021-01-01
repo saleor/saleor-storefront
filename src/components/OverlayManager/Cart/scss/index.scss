@@ -31,6 +31,7 @@
       border-bottom: 1px solid $gray-light;
       display: flex;
       align-content: stretch;
+      margin-right: 1.5rem;
 
       img {
         max-width: 6.25rem;
@@ -97,6 +98,8 @@
       font-weight: $bold-font-weight;
       justify-content: space-between;
       border-bottom: 1px solid $gray;
+      margin-right: 1.5rem;
+
     }
 
     &__button {

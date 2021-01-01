@@ -24,18 +24,49 @@ export const mainMenu = gql`
   }
 
   query MainMenu {
-    shop {
-      navigation {
-        main {
-          id
-          items {
+    menu(id: "TWVudTox") {
+      items {
+        ...MainMenuSubItem
+        children {
+          ...MainMenuSubItem
+          children {
             ...MainMenuSubItem
-            children {
-              ...MainMenuSubItem
-              children {
-                ...MainMenuSubItem
-              }
-            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const mainMenuEN = gql`
+  fragment MainMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+    parent {
+      id
+    }
+  }
+
+  query MainMenu {
+    menu(id: "TWVudTo0") {
+      items {
+        ...MainMenuSubItem
+        children {
+          ...MainMenuSubItem
+          children {
+            ...MainMenuSubItem
           }
         }
       }
@@ -44,3 +75,5 @@ export const mainMenu = gql`
 `;
 
 export const TypedMainMenuQuery = TypedQuery<MainMenu, {}>(mainMenu);
+
+export const TypedMainMenuQueryEN = TypedQuery<MainMenu, {}>(mainMenuEN);

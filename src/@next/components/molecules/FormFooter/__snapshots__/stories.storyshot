@@ -88,6 +88,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit and cancel butt
 .c1 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 @media (max-width:540px) {
@@ -201,6 +202,7 @@ exports[`Storyshots @components/molecules/FormFooter with submit button 1`] = `
 .c1 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 @media (max-width:540px) {
@@ -305,6 +307,7 @@ exports[`Storyshots @components/molecules/FormFooter with top divider 1`] = `
 .c1 button:last-child {
   margin-left: 2rem;
   margin-right: 0.7rem;
+  padding: 1.2rem;
 }
 
 @media (max-width:540px) {

@@ -34,9 +34,8 @@ export const PreferencesForm: React.FC<IProps> = ({
         if (handleSubmit) {
           const { locale, ...commonFields } = values;
           handleSubmit({ locale: locale.localeCode, ...commonFields });
-          preferences.locale = locale.localeCode;
         }
-        setSubmitting(true);
+        setSubmitting(false);
       }}
     >
       {({ handleSubmit, values, setFieldValue }) => (

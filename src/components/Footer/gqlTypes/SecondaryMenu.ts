@@ -85,30 +85,14 @@ export interface SecondaryMenu_shop_navigation_secondary_items {
   children: (SecondaryMenu_shop_navigation_secondary_items_children | null)[] | null;
 }
 
-export interface SecondaryMenu_shop_navigation_secondary {
+export interface SecondaryMenu_menu {
   __typename: "Menu";
   items: (SecondaryMenu_shop_navigation_secondary_items | null)[] | null;
 }
 
-export interface SecondaryMenu_shop_navigation {
-  __typename: "Navigation";
-  /**
-   * Secondary navigation bar.
-   */
-  secondary: SecondaryMenu_shop_navigation_secondary | null;
-}
-
-export interface SecondaryMenu_shop {
-  __typename: "Shop";
-  /**
-   * Shop's navigation.
-   */
-  navigation: SecondaryMenu_shop_navigation | null;
-}
-
 export interface SecondaryMenu {
   /**
-   * Return information about the shop.
+   * Look up a navigation menu by ID or name.
    */
-  shop: SecondaryMenu_shop;
+  menu: SecondaryMenu_menu | null;
 }

@@ -9,7 +9,7 @@ export const PRODUCT: ProductList_products_edges_node = {
       name: "Lucio Liguori | Ceramist",
       descriptionJson: "Lucio Liguori great artist",
       translation: {
-        __typename: "Translation",
+        __typename: "CollectionTrans",
         name: "Lucio Liguori | Ceramist",
         descriptionJson: "Lucio Liguori great artist",
       },

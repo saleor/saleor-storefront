@@ -191,7 +191,7 @@
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "Carica Altri"
   },
-  "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_108342258": {
+  "@next_dot_components_dot_organisms_dot_ProductListStories_dot_ProductListStories_dot_108342258": {
     "string": "Carica Altri"
   },
   "@next_dot_components_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
@@ -457,7 +457,10 @@
     "string": "Home"
   },
   "intl_dot_commonMessages_dot_language": {
-    "string": "Lingua"
+    "string": "Lang."
+  },
+  "intl_dot_commonMessages_dot_shippingto": {
+    "string": "Spedisci a"
   },
   "intl_dot_commonMessages_dot_lastName": {
     "string": "Cognome"
@@ -529,7 +532,7 @@
     "string": "cerca"
   },
   "intl_dot_commonMessages_dot_shipping": {
-    "string": "Spedizione"
+    "string": "Dest."
   },
   "intl_dot_commonMessages_dot_shortEmail": {
     "string": "Email"

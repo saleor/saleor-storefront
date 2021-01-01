@@ -1,10 +1,34 @@
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "../../../types/gqlTypes/ProductList";
 
 export const PRODUCTS: ProductList_products_edges_node[] = [
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==1",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
@@ -84,8 +108,32 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==2",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
@@ -165,8 +213,32 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==3",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
@@ -246,8 +318,32 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==4",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
@@ -327,8 +423,32 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==5",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
@@ -408,8 +528,32 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
-    id: "UHJvZHVjdDo3Mg==6",
+    collections: [
+      {
+        __typename: "Collection",
+        id: "Q29sbGVjdGlvbjoyMw==",
+        name: "Lucio Liguori | Ceramist",
+        descriptionJson: "hello world",
+        backgroundImage: {
+          __typename: "Image",
+          url: "amazon.com/678.jpg",
+          alt: "hello world",
+        },
+        translation: {
+          __typename: "CollectionTrans",
+          id: "Q29sbGVjdGlvbjoyMw==",
+          name: "Lucio Liguori | Ceramist",
+          descriptionJson: "hello world",
+        },
+      },
+    ],
+    id: "UHJvZHVjdDo3Mg==",
     name: "Apple Juice",
+    translation: {
+      __typename: "ProductTrans",
+      id: "UHJvZHVjdDo3Mg==",
+      name: "Apple Juice",
+    },
     slug: "apple-juice",
     seoDescription: "Apple Juice Description",
     seoTitle: "Apple Juice",
