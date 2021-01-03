@@ -18,10 +18,15 @@ const localeData: Record<Locale, LocaleMessages | undefined> = {
 
 export const localeNames: Record<Locale, string> = {
   [Locale.EN]: "English",
-  [Locale.IT]: "italiano",
+  [Locale.IT]: "Italiano",
 };
 
 export const localeFlag: Record<Locale, string | null> = {
+  [Locale.EN]: "GB",
+  [Locale.IT]: "IT",
+};
+
+export const localeFlagShipsTo: Record<Locale, string | null> = {
   [Locale.EN]: "GB",
   [Locale.IT]: "IT",
 };
