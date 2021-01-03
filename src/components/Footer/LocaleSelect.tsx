@@ -4,7 +4,7 @@ import * as React from "react";
 import { useIntl, FormattedMessage } from "react-intl";
 import { usePreferences } from "@hooks";
 import { commonMessages } from "@temp/intl";
-import { localeFlag, localeFlagShipsTo } from "@temp/components/Locale";
+import { localeFlag } from "@temp/components/Locale";
 import { PreferencesFormModal } from "@components/organisms";
 
 const LocaleSelect: React.FC = () => {
