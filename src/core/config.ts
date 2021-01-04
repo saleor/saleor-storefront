@@ -41,24 +41,9 @@ export const STATIC_PAGES = [
 ];
 export const SOCIAL_MEDIA = [
   {
-    ariaLabel: "facebook",
-    href: "https://www.facebook.com/mirumeelabs/",
-    path: require("../images/facebook-icon.svg"),
-  },
-  {
-    ariaLabel: "instagram",
-    href: "https://www.instagram.com/mirumeelabs/",
-    path: require("../images/instagram-icon.svg"),
-  },
-  {
-    ariaLabel: "twitter",
-    href: "https://twitter.com/getsaleor",
-    path: require("../images/twitter-icon.svg"),
-  },
-  {
-    ariaLabel: "youtube",
-    href: "https://www.youtube.com/channel/UCg_ptb-U75e7BprLCGS4s1g/videos",
-    path: require("../images/youtube-icon.svg"),
+    ariaLabel: "linkedin",
+    href: "https://nl.linkedin.com/company/hybrit-bv",
+    path: require("../images/linkedin-icon.svg"),
   },
 ];
 export const META_DEFAULTS = {
@@ -66,7 +51,7 @@ export const META_DEFAULTS = {
   description:
     "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
   image: `${window.location.origin}${require("../images/logo.svg")}`,
-  title: "Demo PWA Storefront – Saleor Commerce",
+  title: "Demo PWA Storefront – HybrIT e-commerce",
   type: "website",
   url: window.location.origin,
 };

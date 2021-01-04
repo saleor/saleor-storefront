@@ -19,7 +19,11 @@ const SocialMediaIcon: React.FC<IconProps> = ({ medium, target }) => (
     target={target || "_blank"}
     aria-label={medium.ariaLabel}
   >
-    <ReactSVG path={medium.path} className="social-icon" />
+    <ReactSVG
+      path={medium.path}
+      className="social-icon"
+      svgStyle={{ height: 40, width: 40 }}
+    />
   </a>
 );
 
