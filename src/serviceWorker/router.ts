@@ -1,5 +1,6 @@
 import { cacheNames, RouteHandler, RouteHandlerObject } from "workbox-core";
 import { RegExpRoute, Router as WorkboxRouter } from "workbox-routing";
+
 import { getRequestedPageFromURL } from "./utils";
 
 declare const self: ServiceWorkerGlobalScope;

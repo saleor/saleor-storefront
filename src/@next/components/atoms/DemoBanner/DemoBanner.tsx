@@ -1,7 +1,9 @@
-import { mediumScreen } from "@styles/constants";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
+
+import { mediumScreen } from "@styles/constants";
+
 import LogoSmall from "../../../../images/logo-small.svg";
 import * as S from "./styles";
 

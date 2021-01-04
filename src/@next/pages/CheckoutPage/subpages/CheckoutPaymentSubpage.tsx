@@ -11,6 +11,7 @@ import { CheckoutPayment } from "@components/organisms";
 import { useCheckout } from "@saleor/sdk";
 import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
+
 import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
 
 interface CheckoutPaymentSubpageProps extends SubpageBaseProps {

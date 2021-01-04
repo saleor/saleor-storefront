@@ -10,6 +10,7 @@ import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGat
 import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 import { CheckoutStep } from "@temp/core/config";
+
 import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
 
 export interface ISubmitCheckoutData {

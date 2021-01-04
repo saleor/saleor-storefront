@@ -1,6 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { NextRouter } from "next/router";
+import { ParsedUrlQueryInput } from "querystring";
 
 import type { CartSummaryProps } from "@components/organisms";
 import type { IItems } from "@saleor/sdk/lib/api/Cart/types";
@@ -12,7 +13,6 @@ import {
 } from "@temp/core/config";
 import { checkIfShippingRequiredForProducts } from "@utils/core";
 import { paths } from "@paths";
-import { ParsedUrlQueryInput } from "querystring";
 
 export type SubpageCompleteHandler = () => void | Promise<void>;
 

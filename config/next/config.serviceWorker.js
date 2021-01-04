@@ -67,7 +67,6 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => {
 
         config.plugins.push(
           new InjectManifest({
-            mode: "development",
             swSrc: path.resolve(srcDir, "serviceWorker", "index.ts"),
             swDest: path.resolve(serviceWorkerDest),
             dontCacheBustURLsMatching: /^\/_next\/static\//,
