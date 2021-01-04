@@ -10,6 +10,7 @@ interface IClassNameArgs {
   errors?: FormError[];
   iconLeft?: React.ReactNode;
   styleType?: Style;
+  className?: string;
 }
 
 export interface TextFieldProps
@@ -20,10 +21,16 @@ export interface TextFieldProps
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   styleType?: Style;
+  className?: string;
 }
 
-const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
-  const baseClass = "input__field";
+const generateClassName = ({
+  errors,
+  iconLeft,
+  styleType,
+  className,
+}: IClassNameArgs) => {
+  const baseClass = `input__field ${className}`;
   const errorsClass = errors && errors.length ? " input__field--error" : "";
   const iconLeftClass = iconLeft ? " input__field--left-icon" : "";
   const styleTypeClass = styleType === "grey" ? " input__field--grey" : "";
@@ -37,6 +44,7 @@ const TextField: React.FC<TextFieldProps> = ({
   errors,
   helpText,
   styleType = "white" as Style,
+  className = "",
   ...rest
 }) => (
   <div className="input">
@@ -45,7 +53,12 @@ const TextField: React.FC<TextFieldProps> = ({
     <div className="input__content">
       <input
         {...rest}
-        className={generateClassName({ errors, iconLeft, styleType })}
+        className={generateClassName({
+          errors,
+          iconLeft,
+          styleType,
+          className,
+        })}
       />
       {label ? <span className="input__label">{label}</span> : null}
     </div>
