@@ -46,23 +46,22 @@ export const prepareCartSummaryProducts = (
     },
   }));
 
-export const getContinueButtonText = (
-  step: CheckoutStep
-): JSX.Element | undefined =>
-  ({
-    [CheckoutStep.Address]: (
-      <FormattedMessage {...checkoutMessages.addressNextActionName} />
-    ),
-    [CheckoutStep.Shipping]: (
-      <FormattedMessage {...checkoutMessages.shippingNextActionName} />
-    ),
-    [CheckoutStep.Payment]: (
-      <FormattedMessage {...checkoutMessages.paymentNextActionName} />
-    ),
-    [CheckoutStep.Review]: (
-      <FormattedMessage {...checkoutMessages.reviewNextActionName} />
-    ),
-  }[step]);
+const continueButtonTextMap: Partial<Record<CheckoutStep, JSX.Element>> = {
+  [CheckoutStep.Address]: (
+    <FormattedMessage {...checkoutMessages.addressNextActionName} />
+  ),
+  [CheckoutStep.Shipping]: (
+    <FormattedMessage {...checkoutMessages.shippingNextActionName} />
+  ),
+  [CheckoutStep.Payment]: (
+    <FormattedMessage {...checkoutMessages.paymentNextActionName} />
+  ),
+  [CheckoutStep.Review]: (
+    <FormattedMessage {...checkoutMessages.reviewNextActionName} />
+  ),
+};
+export const getContinueButtonText = (step: CheckoutStep) =>
+  continueButtonTextMap[step];
 
 export const getAvailableSteps = (items: IItems | undefined) => {
   const isShippingRequired = checkIfShippingRequiredForProducts(items);
