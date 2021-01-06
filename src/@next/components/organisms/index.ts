@@ -27,6 +27,8 @@ export * from "./StripePaymentGateway";
 export * from "./PaymentGatewaysList";
 export * from "./PreferencesForm";
 export * from "./PreferencesFormModal";
+export * from "./PreferencesFormShipping";
+export * from "./PreferencesFormShippingModal";
 export * from "./CheckoutAddress";
 export * from "./CheckoutShipping";
 export * from "./CheckoutPayment";

@@ -21,8 +21,16 @@
   &__left {
     flex-basis: calc(50% - 2rem);
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (min-width: $medium-screen) {
+      padding-left: 5%;
+    }
+
+    @media (min-width: $large-screen) {
+      padding-left: 10%;
+    }
+
+    @media (min-width: $xlarge-screen) {
+      padding-left: 20%;
     }
 
     ul {
@@ -35,8 +43,16 @@
   &__right {
     flex-basis: calc(50% - 2rem);
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (min-width: $medium-screen) {
+      padding-right: 5%;
+    }
+
+    @media (min-width: $large-screen) {
+      padding-right: 10%;
+    }
+
+    @media (min-width: $xlarge-screen) {
+      padding-right: 20%;
     }
 
     ul {
@@ -220,7 +236,7 @@
   }
 
   &__nav-dropdown {
-    padding: 0 1.5rem;
+    padding: 0 0.9rem;
 
     &--active {
       background-color: $turquoise-light;
@@ -245,8 +261,22 @@
 
       &--visible {
         display: block;
-        width: 95%;
-        margin-left: 2.5%;
+
+        @media (min-width: $medium-screen) {
+          width: 95%;
+          margin-left: 2.5%;
+        }
+
+        @media (min-width: $large-screen) {
+          width: 90%;
+          margin-left: 5%;
+        }
+
+        @media (min-width: $xlarge-screen) {
+          width: 80%;
+          margin-left: 10%;
+        }
+
       }
 
       li *,
@@ -288,7 +318,7 @@
             font-size: $small-font-size;
             font-weight: normal;
             padding: 6px 0;
-            text-transform: capitalize;
+            text-transform: none;
             font-family: "Josefin Sans", sans-serif;
           }
 

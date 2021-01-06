@@ -1,1 +1,1 @@
-export * from "./PreferencesForm";
+export * from "./PreferencesFormShipping";

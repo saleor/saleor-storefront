@@ -457,10 +457,19 @@
     "string": "Home"
   },
   "intl_dot_commonMessages_dot_language": {
-    "string": "Lang."
+    "string": "Lingua"
+  },
+  "intl_dot_commonMessages_dot_shipping": {
+    "string": "Spedizione"
   },
   "intl_dot_commonMessages_dot_shippingto": {
-    "string": "Spedisci a"
+    "string": "Spedizione"
+  },
+  "intl_dot_commonMessages_dot_shippingtooptions_1": {
+    "string": "Spedizione Gratuita"
+  },
+  "intl_dot_commonMessages_dot_shippingtooptions_2": {
+    "string": "Possibili Spese Doganali"
   },
   "intl_dot_commonMessages_dot_lastName": {
     "string": "Cognome"
@@ -647,7 +656,7 @@
     "string": "Design & Home Décor"
   },
   "views_dot_Home_dot_Page_dot_1162691464": {
-    "string": "Unique Italian"
+    "string": "Scopri Collezioni Uniche di"
   },
   "views_dot_Home_dot_Page_dot_4294878092": {
     "string": "Tutte le Categorie"

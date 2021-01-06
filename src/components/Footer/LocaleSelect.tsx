@@ -4,8 +4,15 @@ import * as React from "react";
 import { useIntl, FormattedMessage } from "react-intl";
 import { usePreferences } from "@hooks";
 import { commonMessages } from "@temp/intl";
-import { localeFlag } from "@temp/components/Locale";
-import { PreferencesFormModal } from "@components/organisms";
+import {
+  localeNames,
+  localeFlag,
+  localeFlagShipsTo,
+} from "@temp/components/Locale";
+import {
+  PreferencesFormModal,
+  PreferencesFormShippingModal,
+} from "@components/organisms";
 
 const LocaleSelect: React.FC = () => {
   const intl = useIntl();
@@ -13,6 +20,8 @@ const LocaleSelect: React.FC = () => {
     preferences: { locale },
   } = usePreferences();
   const [displayModal, setDisplayModal] = React.useState(false);
+  const [displayModalShipsTo, setDisplayModalShipsTo] = React.useState(false);
+
   return (
     <div className="footer-nav__section right">
       <h4 className="footer-nav__section-header">
@@ -25,12 +34,35 @@ const LocaleSelect: React.FC = () => {
               setDisplayModal(true);
             }}
           >
-            <FormattedMessage defaultMessage="Language " />
             {localeFlag[locale] && (
               <span className={`flag-icons dot ${localeFlag[locale]}`} />
             )}{" "}
+            {intl.formatMessage(commonMessages.language)}
+            {": "}
+            {localeNames[locale]}
           </button>
         </p>
+        <p>
+          <button
+            onClick={() => {
+              setDisplayModalShipsTo(true);
+            }}
+          >
+            {localeFlagShipsTo[locale] && (
+              <span className={`flag-icons dot ${localeFlagShipsTo[locale]}`} />
+            )}{" "}
+            {intl.formatMessage(commonMessages.shippingto)}{" "}
+          </button>
+        </p>
+        {locale === "it" ? (
+          <b className="footer-nav__section-subheader">
+            {intl.formatMessage(commonMessages.shippingtooptions_1)}
+          </b>
+        ) : (
+          <b className="footer-nav__section-subheader">
+            {intl.formatMessage(commonMessages.shippingtooptions_2)}
+          </b>
+        )}
         <div className="footer-paymentMethods">
           <div className="footer-paymentMethods__cards">
             <img src="https://a-dam.com/storage/icons/visa.svg" alt="visa" />
@@ -54,6 +86,18 @@ const LocaleSelect: React.FC = () => {
         <PreferencesFormModal
           hideModal={() => {
             setDisplayModal(false);
+          }}
+          submitBtnText={intl.formatMessage({
+            defaultMessage: "Save preferences",
+          })}
+          title={intl.formatMessage(commonMessages.preferences)}
+          formId="preferences-form"
+        />
+      )}
+      {displayModalShipsTo && (
+        <PreferencesFormShippingModal
+          hideModal={() => {
+            setDisplayModalShipsTo(false);
           }}
           submitBtnText={intl.formatMessage({
             defaultMessage: "Save preferences",

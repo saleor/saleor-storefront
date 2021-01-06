@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 import { IntlProvider } from "react-intl";
 import styled from "styled-components";
 
-import { PreferencesForm } from ".";
+import { PreferencesFormShipping } from ".";
 import { preferencesEN, localesOptions } from "./fixtures";
 
 const Container = styled.div`
@@ -24,6 +24,6 @@ const PROPS = {
   handleSubmit: action("handleSubmit"),
 };
 
-storiesOf("@components/organisms/PreferencesForm", module)
-  .addParameters({ component: PreferencesForm })
-  .add("default", () => withContainer(<PreferencesForm {...PROPS} />));
+storiesOf("@components/organisms/PreferencesFormShipping", module)
+  .addParameters({ component: PreferencesFormShipping })
+  .add("default", () => withContainer(<PreferencesFormShipping {...PROPS} />));

@@ -13,7 +13,9 @@ const browserLang: IPreferences =
 const browserSetLang: IPreferences =
   window.localStorage.preferences === "it"
     ? { locale: Locale.IT }
-    : { locale: Locale.EN };
+    : window.localStorage.preferences === "en"
+    ? { locale: Locale.EN }
+    : { locale: Locale.IT };
 
 export const defaultPreferences: IPreferences = browserSetLang || browserLang;
 

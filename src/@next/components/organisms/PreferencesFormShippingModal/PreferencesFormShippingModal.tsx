@@ -1,12 +1,12 @@
 import React from "react";
 import { usePreferences } from "@hooks";
-import { localesOptions } from "@temp/components/Locale";
+import { localesOptionsShipsTo } from "@temp/components/Locale";
 import { IPreferences } from "@types";
 import { Modal } from "../Modal";
-import { PreferencesForm } from "../PreferencesForm";
+import { PreferencesFormShipping } from "../PreferencesFormShipping";
 import { IProps } from "./types";
 
-export const PreferencesFormModal: React.FC<IProps> = ({
+export const PreferencesFormShippingModal: React.FC<IProps> = ({
   hideModal,
   submitBtnText,
   target,
@@ -31,13 +31,13 @@ export const PreferencesFormModal: React.FC<IProps> = ({
       target={target}
       submitBtnText={submitBtnText}
     >
-      <PreferencesForm
+      <PreferencesFormShipping
         preferences={preferences}
-        localesOptions={localesOptions}
+        localesOptions={localesOptionsShipsTo}
         formId={formId}
         handleSubmit={(data: IPreferences) => {
           hideModal();
-          window.localStorage.setItem("preferences", data.locale);
+          window.localStorage.setItem("shipsTo", data.locale);
           setPreferences(data);
         }}
       />

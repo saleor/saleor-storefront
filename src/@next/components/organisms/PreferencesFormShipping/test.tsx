@@ -4,7 +4,7 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 import { Select } from "@components/atoms";
 import { IPreferences, Locale } from "@types";
-import { PreferencesForm } from ".";
+import { PreferencesFormShipping } from ".";
 import { preferencesEN, preferencesIT, localesOptions } from "./fixtures";
 
 const PROPS = {
@@ -13,11 +13,11 @@ const PROPS = {
   handleSubmit: jest.fn(),
 };
 
-describe("<PreferencesForm />", () => {
+describe("<PreferencesFormShipping />", () => {
   it("exists", () => {
     const wrapper = mount(
       <IntlProvider locale="en">
-        <PreferencesForm preferences={preferencesEN} {...PROPS} />
+        <PreferencesFormShipping preferences={preferencesEN} {...PROPS} />
       </IntlProvider>
     );
     expect(wrapper.exists()).toEqual(true);
@@ -33,7 +33,7 @@ describe("<PreferencesForm />", () => {
     ) => {
       const wrapper = mount(
         <IntlProvider locale="en">
-          <PreferencesForm preferences={preferences} {...PROPS} />
+          <PreferencesFormShipping preferences={preferences} {...PROPS} />
         </IntlProvider>
       );
       expect(wrapper.find(Select).at(0).exists()).toEqual(true);

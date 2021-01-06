@@ -76,6 +76,15 @@ export const commonMessages = defineMessages({
   shipping: {
     defaultMessage: "Shipping",
   },
+  shippingto: {
+    defaultMessage: "Shipping to",
+  },
+  shippingtooptions_1: {
+    defaultMessage: "Free shipping",
+  },
+  shippingtooptions_2: {
+    defaultMessage: "Custom duties may apply",
+  },
   promoCode: {
     defaultMessage: "Promo code",
   },

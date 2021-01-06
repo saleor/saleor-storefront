@@ -86,6 +86,8 @@ $product-item-price-margin: $spacer 0 0;
 // breakpoints
 $medium-screen: 992px;
 $small-screen: 540px;
+$large-screen: 1400px;
+$xlarge-screen: 1700px;
 
 // carousel
 $carousel-control-padding: 0.2rem 0.5rem;
@@ -101,4 +103,6 @@ $modal-min-height: 455px;
 :export {
   mediumScreen: $medium-screen;
   smallScreen: $small-screen;
+  largeScreen: $large-screen;
+  xlargeScreen: $xlarge-screen;
 }

@@ -1,1 +1,1 @@
-export * from "./PreferencesFormModal";
+export * from "./PreferencesFormShippingModal";

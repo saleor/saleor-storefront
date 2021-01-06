@@ -26,8 +26,13 @@ export const localeFlag: Record<Locale, string | null> = {
   [Locale.IT]: "IT",
 };
 
+export const localeNamesShipsTo: Record<Locale, string> = {
+  [Locale.EN]: "Worldwide",
+  [Locale.IT]: "Italy",
+};
+
 export const localeFlagShipsTo: Record<Locale, string | null> = {
-  [Locale.EN]: "GB",
+  [Locale.EN]: "WW",
   [Locale.IT]: "IT",
 };
 
@@ -37,6 +42,13 @@ export const localesOptions = (Object.keys(localeNames) as Array<Locale>).map(
     localeName: localeNames[locale],
   })
 );
+
+export const localesOptionsShipsTo = (Object.keys(localeNamesShipsTo) as Array<
+  Locale
+>).map(locale => ({
+  localeCode: locale,
+  localeName: localeNamesShipsTo[locale],
+}));
 
 const dotSeparator = "_dot_";
 const sepRegExp = new RegExp(dotSeparator, "g");

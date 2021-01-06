@@ -3,12 +3,12 @@ import React from "react";
 import { useIntl } from "react-intl";
 import { InputSelect } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
-import { localeNames } from "@temp/components/Locale";
+import { localeNamesShipsTo } from "@temp/components/Locale";
 import { Locale } from "@types";
 import * as S from "./styles";
 import { IProps, IPreferencesFormValues } from "./types";
 
-export const PreferencesForm: React.FC<IProps> = ({
+export const PreferencesFormShipping: React.FC<IProps> = ({
   preferences,
   handleSubmit,
   formId,
@@ -22,7 +22,7 @@ export const PreferencesForm: React.FC<IProps> = ({
   const formPreferences: IPreferencesFormValues = {
     locale: {
       localeCode,
-      localeName: localeNames[localeCode],
+      localeName: localeNamesShipsTo[localeCode],
     },
     ...commonFields,
   };
@@ -49,7 +49,7 @@ export const PreferencesForm: React.FC<IProps> = ({
             <S.RowWithOneCell>
               <InputSelect
                 defaultValue={preferences?.locale}
-                label={intl.formatMessage(commonMessages.language)}
+                label={intl.formatMessage(commonMessages.shippingto)}
                 name="locale"
                 options={localesOptions}
                 value={localesOptions?.find(

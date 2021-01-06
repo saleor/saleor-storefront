@@ -45,6 +45,8 @@
   }
 
   &-paymentMethods {
+    padding-top: 10px;
+    border-top: 1px solid #c4c4c4;
     &__cards {
       img {
         margin-right: 5px;
@@ -78,6 +80,12 @@
         margin-bottom: $spacer;
         text-transform: uppercase;
         color: $white;
+      }
+
+      &-subheader {
+        font-weight: $normal-font-weight;
+        margin-bottom: $spacer;
+        color: $white!important;
       }
 
       &-content {
