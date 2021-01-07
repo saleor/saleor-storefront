@@ -1,9 +1,5 @@
 const withPlugins = require("next-compose-plugins");
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-  PHASE_PRODUCTION_SERVER,
-} = require("next/constants");
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 const withOptimizedImages = require("next-optimized-images");
 const withTM = require("next-transpile-modules")(["register-service-worker"]);
 
