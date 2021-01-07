@@ -219,6 +219,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
           color="secondary"
           data-test="continueShoppingButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span
@@ -233,6 +234,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
           color="primary"
           data-test="gotoOrderDetailsButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span
@@ -470,6 +472,7 @@ exports[`Storyshots @components/organisms/ThankYou with order unconfirmed 1`] = 
           color="secondary"
           data-test="continueShoppingButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span
@@ -484,6 +487,7 @@ exports[`Storyshots @components/organisms/ThankYou with order unconfirmed 1`] = 
           color="primary"
           data-test="gotoOrderDetailsButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span
@@ -721,6 +725,7 @@ exports[`Storyshots @components/organisms/ThankYou with order unfulfilled 1`] = 
           color="secondary"
           data-test="continueShoppingButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span
@@ -735,6 +740,7 @@ exports[`Storyshots @components/organisms/ThankYou with order unfulfilled 1`] = 
           color="primary"
           data-test="gotoOrderDetailsButton"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           size="md"
         >
           <span

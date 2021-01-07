@@ -1,12 +1,15 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { stringify } from "query-string";
+import { ParsedUrlQueryInput } from "querystring";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { RouterContext } from "next/dist/next-server/lib/router-context";
-import { Thumbnail } from "..";
-
+import { paths } from "@paths";
+import { generatePath } from "@temp/core/utils";
 import { OrderTable } from ".";
+import { Thumbnail } from "..";
 import * as S from "./styles";
 
 const ORDERS = [
@@ -78,6 +81,19 @@ const ORDERS = [
   },
 ];
 
+const getLinkCalledProps = (
+  path: string,
+  query?: ParsedUrlQueryInput,
+  extra?: Partial<{ locale: string | false; shallow: boolean }>
+) => [
+  query ? `${path}?${stringify(query)}` : path,
+  generatePath("/", {
+    pathname: path,
+    query,
+  }),
+  { locale: undefined, shallow: undefined, ...extra },
+];
+
 (global as any).matchMedia = (media: any) => ({
   addListener: jest.fn(),
   matches: true,
@@ -112,7 +128,6 @@ describe("<OrderTable />", () => {
     expect(wrapper.text()).toContain("Fulfilled");
     expect(wrapper.text()).toContain("29.24");
   });
-
   it("should navigate to particular order when clicking on order row", () => {
     const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
     let wrapper = mount(
@@ -126,12 +141,8 @@ describe("<OrderTable />", () => {
 
     wrapper.find(S.Row).at(1).simulate("click");
 
-    expect(
-      pushSpy
-    ).toHaveBeenCalledWith(
-      `http://order-history/[token]?token=${token}`,
-      `/${token}`,
-      { locale: undefined, shallow: undefined }
+    expect(pushSpy).toHaveBeenCalledWith(
+      ...getLinkCalledProps(paths.guestOrderDetail, { token })
     );
 
     wrapper = mount(
@@ -145,12 +156,10 @@ describe("<OrderTable />", () => {
     pushSpy.mockClear();
     wrapper.find(S.Row).at(1).simulate("click");
 
-    expect(
-      pushSpy
-    ).toHaveBeenCalledWith(
-      `/account/order-history/[token]?token=${token}`,
-      `/account/order-history/${token}`,
-      { locale: undefined, shallow: undefined }
+    expect(pushSpy).toHaveBeenCalledWith(
+      ...getLinkCalledProps(paths.accountOrderDetail, {
+        token,
+      })
     );
   });
 

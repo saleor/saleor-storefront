@@ -21,7 +21,7 @@ const CheckoutPayment: React.FC<IProps> = ({
   addPromoCode,
   removeVoucherCode,
   submitUnchangedDiscount,
-}: IProps) => {
+}) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
     !!promoCodeDiscount?.voucherCode
   );
