@@ -3,5 +3,5 @@
   "compilerOptions": {
     "strict": true
   },
-  "include": ["../../webpack.d.ts","../../editorjs.d.ts", "**/*"]
+  "include": ["../../webpack.d.ts", "../../editorjs.d.ts", "**/*"]
 }

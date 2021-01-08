@@ -9,9 +9,12 @@ import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
-import { CheckoutStep } from "@temp/core/config";
 
-import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
+import {
+  CheckoutStep,
+  SubpageBaseProps,
+  SubpageCompleteHandler,
+} from "../utils";
 
 export interface ISubmitCheckoutData {
   id: string;

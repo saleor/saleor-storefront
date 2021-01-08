@@ -9,8 +9,12 @@ import React, {
 import { CheckoutShipping } from "@components/organisms";
 import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
-import { CheckoutStep } from "@temp/core/config";
-import { SubpageCompleteHandler, SubpageBaseProps } from "../utils";
+
+import {
+  CheckoutStep,
+  SubpageCompleteHandler,
+  SubpageBaseProps,
+} from "../utils";
 
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   SubpageCompleteHandler,

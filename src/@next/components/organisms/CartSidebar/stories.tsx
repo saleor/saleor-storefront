@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { CartSidebar } from ".";
+import { CartSidebar } from "./CartSidebar";
 import {
   ITEMS,
   PROMO_PRICE,

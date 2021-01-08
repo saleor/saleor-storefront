@@ -1,12 +1,12 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import Link from "next/link";
 
 import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
 import { checkoutMessages } from "@temp/intl";
-
 import { OrderStatus } from "@saleor/sdk";
-import Link from "next/link";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 

@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useIntl } from "react-intl";
+import { useRouter } from "next/router";
+import { NextPage } from "next";
 
 import { Button, Loader, Redirect } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
@@ -11,22 +13,15 @@ import {
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
 import { useCart, useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS, CheckoutStep } from "@temp/core/config";
-
 import { ICardData, IFormError } from "@types";
 import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 
-import { useRouter } from "next/router";
 import { paths } from "@paths";
-import { NextPage } from "next";
 import { useRedirectToCorrectCheckoutStep } from "@hooks";
+
 import {
-  CheckoutAddressSubpage,
-  CheckoutPaymentSubpage,
-  CheckoutReviewSubpage,
-  CheckoutShippingSubpage,
-} from "./subpages";
-import {
+  CHECKOUT_STEPS,
+  CheckoutStep,
   getAvailableSteps,
   getContinueButtonText,
   getCurrentStep,
@@ -34,6 +29,12 @@ import {
   stepSubmitSuccessHandler,
   SubpageCompleteHandler,
 } from "./utils";
+import {
+  CheckoutAddressSubpage,
+  CheckoutPaymentSubpage,
+  CheckoutReviewSubpage,
+  CheckoutShippingSubpage,
+} from "./subpages";
 
 const CHECKOUT_GETEWAY_FORM_ID = "gateway-form";
 
@@ -97,24 +98,27 @@ const CheckoutPage: React.FC<NextPage> = () => {
     onSubmitSuccess: handleStepSubmitSuccess,
   };
 
-  const checkoutSubpage = {
-    [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
-    [CheckoutStep.Shipping]: <CheckoutShippingSubpage {...pageProps} />,
-    [CheckoutStep.Payment]: (
-      <CheckoutPaymentSubpage
-        {...pageProps}
-        paymentGatewayFormRef={checkoutGatewayFormRef}
-        onPaymentGatewayError={setPaymentGatewayErrors}
-      />
-    ),
-    [CheckoutStep.Review]: (
-      <CheckoutReviewSubpage
-        {...pageProps}
-        paymentGatewayFormRef={checkoutGatewayFormRef}
-        selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-      />
-    ),
-  }[activeStep.step];
+  const checkoutSubpage = useMemo(() => {
+    const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
+      [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
+      [CheckoutStep.Shipping]: <CheckoutShippingSubpage {...pageProps} />,
+      [CheckoutStep.Payment]: (
+        <CheckoutPaymentSubpage
+          {...pageProps}
+          paymentGatewayFormRef={checkoutGatewayFormRef}
+          onPaymentGatewayError={setPaymentGatewayErrors}
+        />
+      ),
+      [CheckoutStep.Review]: (
+        <CheckoutReviewSubpage
+          {...pageProps}
+          paymentGatewayFormRef={checkoutGatewayFormRef}
+          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+        />
+      ),
+    };
+    return subpageMapping[activeStep.step];
+  }, [activeStep.step]);
 
   const handleProcessPayment = async (
     gateway: string,

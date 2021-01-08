@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { useCart, useCheckout } from "@saleor/sdk";
-import { CHECKOUT_STEPS } from "@temp/core/config";
+import { CHECKOUT_STEPS } from "@pages/CheckoutPage/utils";
 import { checkIfShippingRequiredForProducts } from "@utils/core";
 
 import { useCheckoutStepState } from "./useCheckoutStepState";

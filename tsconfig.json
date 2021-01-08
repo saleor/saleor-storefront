@@ -17,6 +17,7 @@
       "@components/containers": ["./src/@next/components/containers/index.ts"],
       "@paths": ["./src/paths.ts"],
       "@pages": ["./src/@next/pages/index.ts"],
+      "@pages/*": ["./src/@next/pages/*"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],

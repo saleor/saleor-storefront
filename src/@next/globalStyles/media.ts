@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, SimpleInterpolation } from "styled-components";
 
 import {
   largeScreen,
@@ -28,7 +28,7 @@ export const media = Object.keys(breakpoints).reduce(
   (acc, label) => {
     acc[label as Breakpoints] = (
       literals: TemplateStringsArray,
-      ...placeholders: any[]
+      ...placeholders: SimpleInterpolation[]
     ) =>
       css`
         @media (max-width: ${breakpoints[label as Breakpoints]}px) {
