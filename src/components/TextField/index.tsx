@@ -30,7 +30,7 @@ const generateClassName = ({
   styleType,
   className,
 }: IClassNameArgs) => {
-  const baseClass = `input__field ${className}`;
+  const baseClass = `input__field ${className}`.trim();
   const errorsClass = errors && errors.length ? " input__field--error" : "";
   const iconLeftClass = iconLeft ? " input__field--left-icon" : "";
   const styleTypeClass = styleType === "grey" ? " input__field--grey" : "";
