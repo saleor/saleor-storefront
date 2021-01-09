@@ -28,7 +28,7 @@ const generateClassName = ({
   errors,
   iconLeft,
   styleType,
-  className,
+  className = "",
 }: IClassNameArgs) => {
   const baseClass = `input__field ${className}`.trim();
   const errorsClass = errors && errors.length ? " input__field--error" : "";
