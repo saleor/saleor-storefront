@@ -6,7 +6,6 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
 
   trailingSlash: true,
-  exportTrailingSlash: true,
 
   webpack: (config, options) => {
     const { isServer, dev } = options;
