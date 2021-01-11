@@ -59,7 +59,7 @@ const Breadcrumbs: React.FC<{
           </li>
           {breadcrumbs.map((breadcrumb, index) => (
             <li
-              key={breadcrumb.value}
+              key={`${breadcrumb.value}-${index}`}
               className={classNames({
                 breadcrumbs__active: index === breadcrumbs.length - 1,
               })}
