@@ -1,5 +1,6 @@
-import { media, styled } from "@styles";
 import ReactSVG from "react-svg";
+
+import { media, styled } from "@styles";
 
 export const NAVBAR_HEIGHT = "3.55rem";
 

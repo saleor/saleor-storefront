@@ -1,9 +1,9 @@
 import { storiesOf } from "@storybook/react";
-import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { paths } from "@paths";
+import { styled } from "@styles";
 
 import { AccountMenuMobile } from ".";
 

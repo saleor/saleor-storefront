@@ -1,9 +1,10 @@
-import { defaultTheme } from "@styles";
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import React from "react";
 
 import { IconButton } from "@components/atoms";
+import { defaultTheme } from "@styles";
 
 import { CardHeader } from ".";
 import * as S from "./styles";

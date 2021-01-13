@@ -2,9 +2,8 @@ import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { items } from "./fixtures";
-
 import { SideNavbar } from ".";
+import { items } from "./fixtures";
 
 let portalRoot = document.getElementById("portal-root");
 if (!portalRoot) {

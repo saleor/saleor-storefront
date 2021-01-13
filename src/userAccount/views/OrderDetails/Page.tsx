@@ -1,18 +1,18 @@
-import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import Link from "next/link";
-
-import { TaxedMoney } from "@components/containers";
-import {
-  checkoutMessages,
-  translatePaymentStatus,
-  translateOrderStatus,
-} from "@temp/intl";
 import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
-import { DropdownMenu, IconButton } from "@components/atoms";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+import Link from "next/link";
+import * as React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+
+import { DropdownMenu, IconButton } from "@components/atoms";
+import { TaxedMoney } from "@components/containers";
 import { paths } from "@paths";
+import {
+  checkoutMessages,
+  translateOrderStatus,
+  translatePaymentStatus,
+} from "@temp/intl";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";

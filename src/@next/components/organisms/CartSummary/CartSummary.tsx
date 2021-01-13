@@ -7,7 +7,7 @@ import { CartSummaryRow } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
-import { ICostLine, ICosts, CartSummaryProps } from "./types";
+import { CartSummaryProps, ICostLine, ICosts } from "./types";
 
 const CostLine = ({
   name,

@@ -1,8 +1,10 @@
-import { shallow } from "enzyme";
 import "jest-styled-components";
+
+import { shallow } from "enzyme";
 import React from "react";
 
 import { Input } from "@components/atoms";
+
 import { TextField } from ".";
 import * as S from "./styles";
 import { IProps } from "./types";

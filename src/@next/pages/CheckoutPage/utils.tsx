@@ -1,13 +1,12 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import type { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { NextRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import type { CartSummaryProps } from "@components/organisms/CartSummary";
-import type { IItems } from "@saleor/sdk/lib/api/Cart/types";
-import { checkoutMessages } from "@temp/intl";
-
 import { paths } from "@paths";
+import { checkoutMessages } from "@temp/intl";
 
 export const checkIfShippingRequiredForProducts = (items?: IItems) =>
   items?.some(({ variant }) => variant.product?.productType.isShippingRequired);

@@ -1,21 +1,19 @@
-import "./scss/index.scss";
-
 import classNames from "classnames";
+import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import Link from "next/link";
-import { Button, Loader, ProductsFeatured } from "../../components";
-import { generateCategoryUrl } from "../../core/utils";
 
+import { Button, Loader, ProductsFeatured } from "../../components";
+import { structuredData } from "../../core/SEO/Homepage/structuredData";
+import { generateCategoryUrl } from "../../core/utils";
+import noPhotoImg from "../../images/no-photo.svg";
 import {
   ProductsList_categories,
-  ProductsList_shop,
   ProductsList_collection_backgroundImage,
+  ProductsList_shop,
 } from "./gqlTypes/ProductsList";
 
-import { structuredData } from "../../core/SEO/Homepage/structuredData";
-
-import noPhotoImg from "../../images/no-photo.svg";
+import "./scss/index.scss";
 
 const Page: React.FC<{
   loading: boolean;

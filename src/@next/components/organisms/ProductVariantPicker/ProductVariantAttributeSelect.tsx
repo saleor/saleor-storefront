@@ -1,10 +1,10 @@
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 
 import { Icon, Input } from "@components/atoms";
 import { InputSelect } from "@components/molecules";
 import { useSelectableProductVariantsAttributeValues } from "@hooks";
-import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import {
   IProductVariantsAttribute,
   IProductVariantsAttributesSelectedValues,

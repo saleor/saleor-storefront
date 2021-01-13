@@ -4,6 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, Chip, ErrorMessage, Input } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 

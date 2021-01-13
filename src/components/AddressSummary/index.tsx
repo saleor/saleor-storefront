@@ -1,10 +1,11 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
+
 import { commonMessages } from "@temp/intl";
 
 import { FormAddressType } from "./types";
+
+import "./scss/index.scss";
 
 const AddressSummary: React.FC<{
   address?: FormAddressType;

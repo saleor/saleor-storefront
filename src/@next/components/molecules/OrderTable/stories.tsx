@@ -1,6 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
+
 import { OrderTable } from ".";
 
 const ORDERS = [

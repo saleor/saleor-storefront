@@ -1,15 +1,23 @@
+import { useAuth, useCart } from "@saleor/sdk";
+import classNames from "classnames";
+import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { commonMessages } from "@temp/intl";
-import { useAuth, useCart } from "@saleor/sdk";
 import Media from "react-media";
-import Link from "next/link";
-import classNames from "classnames";
 import ReactSVG from "react-svg";
 
-import { paths } from "@paths";
 import { DemoBanner } from "@components/atoms";
+import { paths } from "@paths";
 import { channelSlug } from "@temp/constants";
+import { commonMessages } from "@temp/intl";
+
+import { maybe } from "../../core/utils";
+import cartImg from "../../images/cart.svg";
+import hamburgerImg from "../../images/hamburger.svg";
+import hamburgerHoverImg from "../../images/hamburger-hover.svg";
+import logoImg from "../../images/logo.svg";
+import searchImg from "../../images/search.svg";
+import userImg from "../../images/user.svg";
 import {
   MenuDropdown,
   Offline,
@@ -18,21 +26,14 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
-import { maybe } from "../../core/utils";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
 
-import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.svg";
-import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
+import "./scss/index.scss";
 import {
   mediumScreen,
   smallScreen,
 } from "../../globalStyles/scss/variables.scss";
-import "./scss/index.scss";
 
 interface MainMenuProps {
   demoMode: boolean;

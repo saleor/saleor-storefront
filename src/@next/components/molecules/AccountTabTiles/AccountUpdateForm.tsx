@@ -1,11 +1,11 @@
 import { Formik } from "formik";
 import React from "react";
-import { useIntl, FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+
 import { Button, ButtonLink } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 
 import { TextField } from "../TextField";
-
 import * as S from "./styles";
 
 export const AccountUpdateForm: React.FC<{

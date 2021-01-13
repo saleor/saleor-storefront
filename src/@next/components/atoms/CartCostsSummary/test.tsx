@@ -1,9 +1,10 @@
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import React from "react";
 
 import { CartCostsSummary } from ".";
-import { BASIC_COSTS, ALL_POSSIBLE_COSTS } from "./fixtures";
+import { ALL_POSSIBLE_COSTS, BASIC_COSTS } from "./fixtures";
 
 describe("<CartCostsSummary />", () => {
   it("exists", () => {

@@ -1,8 +1,8 @@
-import React from "react";
-import { useIntl } from "react-intl";
-import { useAlert } from "react-alert";
-
 import { useAuth } from "@saleor/sdk";
+import React from "react";
+import { useAlert } from "react-alert";
+import { useIntl } from "react-intl";
+
 import { ServiceWorkerContext } from "@components/containers";
 
 const Notifications: React.FC = () => {

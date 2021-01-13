@@ -1,14 +1,14 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { commonMessages } from "@temp/intl";
 
 import { paths } from "@paths";
+import { commonMessages } from "@temp/intl";
+
 import { Button, Form, TextField } from "..";
+import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
 import { TypedPasswordResetRequestMutation } from "./queries";
 
-import { ResetPasswordRequest } from "./gqlTypes/ResetPasswordRequest";
+import "./scss/index.scss";
 
 const PasswordResetRequestForm: React.FC = () => {
   const intl = useIntl();

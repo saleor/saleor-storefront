@@ -1,12 +1,11 @@
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import Link from "next/link";
 
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 
 import { generateProductUrl } from "../../../../core/utils";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 

@@ -1,3 +1,4 @@
+import { OrderStatus, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
@@ -7,7 +8,6 @@ import React, {
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 
 import {

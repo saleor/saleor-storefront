@@ -1,17 +1,22 @@
-import { ConfigInput } from "@saleor/sdk/lib/types";
-import { positions, Provider as AlertProvider } from "react-alert";
 import { SaleorProvider } from "@saleor/sdk";
-import * as React from "react";
-import type { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
+import { ConfigInput } from "@saleor/sdk/lib/types";
 import { Integrations as ApmIntegrations } from "@sentry/apm";
-import TagManager from "react-gtm-module";
 import * as Sentry from "@sentry/browser";
-import { defaultTheme, GlobalStyle } from "@styles";
-import { NotificationTemplate } from "@components/atoms";
-import { NextQueryParamProvider } from "@temp/components";
+import type { AppProps } from "next/app";
 import Head from "next/head";
+import * as React from "react";
+import { positions, Provider as AlertProvider } from "react-alert";
+import TagManager from "react-gtm-module";
+import { ThemeProvider } from "styled-components";
+
+import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
+import { defaultTheme, GlobalStyle } from "@styles";
+import { NextQueryParamProvider } from "@temp/components";
+
+import { version } from "../../package.json";
+import { App as StorefrontApp } from "../app";
+import { LocaleProvider } from "../components/Locale";
 import {
   apiUrl,
   channelSlug,
@@ -20,9 +25,6 @@ import {
   serviceWorkerTimeout,
   ssrMode,
 } from "../constants";
-import { LocaleProvider } from "../components/Locale";
-import { App as StorefrontApp } from "../app";
-import { version } from "../../package.json";
 
 if (!ssrMode) {
   window.version = version;

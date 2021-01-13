@@ -1,16 +1,17 @@
 import classNames from "classnames";
+import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
-import Link from "next/link";
-import { commonMessages } from "@temp/intl";
 
 import { paths } from "@paths";
+import { commonMessages } from "@temp/intl";
+
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Category_category } from "../../views/Category/gqlTypes/Category";
 
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import "./scss/index.scss";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 export interface Breadcrumb {
   value: string;

@@ -1,4 +1,5 @@
 import { styled } from "@styles";
+
 import { TitleSize } from "./types";
 
 export const Wrapper = styled.div<{ divider: boolean }>`

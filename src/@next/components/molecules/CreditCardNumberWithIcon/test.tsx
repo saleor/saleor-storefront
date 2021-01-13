@@ -1,8 +1,10 @@
-import { shallow } from "enzyme";
 import "jest-styled-components";
+
+import { shallow } from "enzyme";
 import React from "react";
 
 import { CreditCardIcon } from "@components/atoms";
+
 import { CreditCardNumberWithIcon } from "./CreditCardNumberWithIcon";
 
 describe("<CreditCardNumberWithIcon />", () => {

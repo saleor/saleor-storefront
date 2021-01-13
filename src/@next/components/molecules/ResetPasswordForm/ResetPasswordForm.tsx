@@ -3,8 +3,8 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
-import { TextField } from "../TextField";
 
+import { TextField } from "../TextField";
 import * as S from "./styles";
 import { IProps } from "./types";
 

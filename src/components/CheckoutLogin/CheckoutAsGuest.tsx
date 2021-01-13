@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import Link from "next/link";
 import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
 

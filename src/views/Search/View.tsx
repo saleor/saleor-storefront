@@ -1,12 +1,12 @@
+import { NextPage } from "next";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { StringParam, useQueryParam } from "use-query-params";
-import { NextPage } from "next";
 
-import { prodListHeaderCommonMsg } from "@temp/intl";
-import { IFilters } from "@types";
 import { OfflinePlaceholder } from "@components/atoms";
 import { channelSlug } from "@temp/constants";
+import { prodListHeaderCommonMsg } from "@temp/intl";
+import { IFilters } from "@types";
 
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";

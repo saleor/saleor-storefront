@@ -1,8 +1,10 @@
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import React from "react";
 
 import { AddNewTile, CCProviders, TileGrid } from "@components/atoms";
+
 import { CreditCardGrid } from "./CreditCardGrid";
 
 describe("<CreditCardGrid/>", () => {

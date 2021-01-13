@@ -1,9 +1,11 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { Attribute, IconButton } from "@components/atoms";
+
 import { TextField } from "..";
 import { AccountTile } from "./AccountTile";
 import { PasswordTile } from "./PasswordTile";

@@ -1,11 +1,12 @@
+import { NextPage } from "next";
+import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 import { useAlert } from "react-alert";
-import { NextPage } from "next";
 import { StringParam, useQueryParams } from "use-query-params";
-import { useRouter } from "next/router";
 
 import { Loader } from "@components/atoms";
 import { paths } from "@paths";
+
 import { TypedAccountConfirmMutation } from "./queries";
 
 import "./scss/index.scss";

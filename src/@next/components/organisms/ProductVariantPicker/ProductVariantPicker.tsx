@@ -1,11 +1,12 @@
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect } from "react";
 
 import {
   useProductVariantsAttributes,
   useProductVariantsAttributesValuesSelection,
 } from "@hooks";
-import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues } from "@types";
+
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";
 import * as S from "./styles";
 

@@ -1,24 +1,29 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
-import { useIntl } from "react-intl";
-import { useRouter } from "next/router";
+import { useCart, useCheckout } from "@saleor/sdk";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useIntl } from "react-intl";
 
 import { Button, Loader, Redirect } from "@components/atoms";
 import { CheckoutProgressBar } from "@components/molecules";
 import {
+  adyenNotNegativeConfirmationStatusCodes,
   CartSummary,
   PaymentGatewaysList,
   translateAdyenConfirmationError,
-  adyenNotNegativeConfirmationStatusCodes,
 } from "@components/organisms";
 import { Checkout } from "@components/templates";
-import { useCart, useCheckout } from "@saleor/sdk";
-import { ICardData, IFormError } from "@types";
-import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
-
-import { paths } from "@paths";
 import { useRedirectToCorrectCheckoutStep } from "@hooks";
+import { paths } from "@paths";
+import { ICardData, IFormError } from "@types";
 
+import {
+  CheckoutAddressSubpage,
+  CheckoutPaymentSubpage,
+  CheckoutReviewSubpage,
+  CheckoutShippingSubpage,
+} from "./subpages";
 import {
   CHECKOUT_STEPS,
   CheckoutStep,
@@ -29,12 +34,6 @@ import {
   stepSubmitSuccessHandler,
   SubpageCompleteHandler,
 } from "./utils";
-import {
-  CheckoutAddressSubpage,
-  CheckoutPaymentSubpage,
-  CheckoutReviewSubpage,
-  CheckoutShippingSubpage,
-} from "./subpages";
 
 const CHECKOUT_GETEWAY_FORM_ID = "gateway-form";
 

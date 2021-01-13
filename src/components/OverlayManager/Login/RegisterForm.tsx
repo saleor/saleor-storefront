@@ -1,16 +1,16 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
-import { useIntl, IntlShape } from "react-intl";
-
-import { commonMessages } from "@temp/intl";
+import { IntlShape, useIntl } from "react-intl";
 
 import { paths } from "@paths";
-import { Button, Form, TextField } from "../..";
+import { commonMessages } from "@temp/intl";
+
 import { maybe } from "../../../core/utils";
+import { Button, Form, TextField } from "../..";
 import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";
+
+import "./scss/index.scss";
 
 const showSuccessNotification = (
   data: RegisterAccount,

@@ -1,9 +1,9 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import ReactSVG from "react-svg";
 
 import closeImg from "../../images/x.svg";
+
+import "./scss/index.scss";
 
 interface MessageProps {
   title: string;

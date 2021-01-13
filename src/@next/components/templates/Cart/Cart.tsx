@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Container } from "../Container";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 

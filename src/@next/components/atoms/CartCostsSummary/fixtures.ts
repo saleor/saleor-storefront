@@ -1,4 +1,5 @@
 import { ITaxedMoney } from "@types";
+
 import { CartCostsSummaryProps } from "./CartCostsSummary";
 
 const getPrice = (amount: number): ITaxedMoney => ({

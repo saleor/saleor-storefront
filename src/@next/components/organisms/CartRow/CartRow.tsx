@@ -1,13 +1,12 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import Link from "next/link";
 
 import { ErrorMessage, Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
 import { generateProductUrl } from "../../../../core/utils";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 

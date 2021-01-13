@@ -1,13 +1,13 @@
-import "./scss/index.scss";
-
+import { useAuth } from "@saleor/sdk";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
-import { useAuth } from "@saleor/sdk";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
+
+import "./scss/index.scss";
 
 interface ILoginForm {
   hide?: () => void;

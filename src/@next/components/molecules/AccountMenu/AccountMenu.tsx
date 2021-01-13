@@ -1,9 +1,10 @@
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import Link from "next/link";
 
 import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 

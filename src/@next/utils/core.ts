@@ -1,6 +1,5 @@
-import { Base64 } from "js-base64";
-
 import type { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { Base64 } from "js-base64";
 
 export const slugify = (text: string | number): string =>
   text

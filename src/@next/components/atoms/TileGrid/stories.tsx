@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { TileGrid } from ".";
 import { Tile } from "..";
+import { TileGrid } from ".";
 
 const tile = (
   <Tile header={<>This is header</>} footer={<>This is footer</>}>

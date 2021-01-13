@@ -1,16 +1,15 @@
+import Link from "next/link";
 import React from "react";
-import { FormattedMessage, FormattedDate, useIntl } from "react-intl";
+import { FormattedDate, FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
 import { ThemeContext } from "styled-components";
-import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import { paths } from "@paths";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
 
-import { Thumbnail } from "..";
 import { generateProductUrl } from "../../../../core/utils";
-
+import { Thumbnail } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 

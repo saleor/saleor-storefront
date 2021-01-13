@@ -1,9 +1,9 @@
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import React, { useEffect, useRef, useState } from "react";
 import { defineMessages, IntlShape, useIntl } from "react-intl";
 
-import { IFormError, IPaymentGatewayConfig } from "@types";
-import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { ErrorMessage } from "@components/atoms";
+import { IFormError, IPaymentGatewayConfig } from "@types";
 
 export const adyenNotNegativeConfirmationStatusCodes = [
   "Authorised",

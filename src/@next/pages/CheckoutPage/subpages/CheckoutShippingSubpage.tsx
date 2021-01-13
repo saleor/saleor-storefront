@@ -1,3 +1,4 @@
+import { useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
@@ -7,13 +8,12 @@ import React, {
 } from "react";
 
 import { CheckoutShipping } from "@components/organisms";
-import { useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
 
 import {
   CheckoutStep,
-  SubpageCompleteHandler,
   SubpageBaseProps,
+  SubpageCompleteHandler,
 } from "../utils";
 
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<

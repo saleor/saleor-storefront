@@ -1,6 +1,7 @@
-import React, { memo, useMemo } from "react";
 import { useRouter } from "next/router";
+import React, { memo, useMemo } from "react";
 import { QueryParamProvider as ContextProvider } from "use-query-params";
+
 import { ssrMode } from "@temp/constants";
 
 interface NextQueryParamProviderProps {

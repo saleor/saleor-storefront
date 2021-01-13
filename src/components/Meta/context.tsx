@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { META_DEFAULTS } from "../../core/config";
 
 type MetaProps = JSX.IntrinsicElements["meta"];

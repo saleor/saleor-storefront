@@ -1,9 +1,9 @@
-import "./scss/index.scss";
-
 import classNames from "classnames";
 import * as React from "react";
 
 import { OverlayContextInterface } from "./context";
+
+import "./scss/index.scss";
 
 interface OverlayProps {
   context: OverlayContextInterface;

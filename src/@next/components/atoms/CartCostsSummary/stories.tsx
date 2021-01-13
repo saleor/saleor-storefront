@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { CartCostsSummary } from ".";
-import { BASIC_COSTS, ALL_POSSIBLE_COSTS } from "./fixtures";
+import { ALL_POSSIBLE_COSTS, BASIC_COSTS } from "./fixtures";
 
 storiesOf("@components/molecules/CartCostsSummary", module)
   .addParameters({ component: CartCostsSummary })

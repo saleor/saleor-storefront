@@ -3,11 +3,10 @@ import { FormattedMessage } from "react-intl";
 import { components } from "react-select";
 import { ThemeContext } from "styled-components";
 
-import { Label } from "../Label";
-import { Select } from "../Select";
-
 import { useHandlerWhenClickedOutside } from "../../../hooks";
 import { Icon } from "../Icon";
+import { Label } from "../Label";
+import { Select } from "../Select";
 import * as S from "./styles";
 import { IProps } from "./types";
 

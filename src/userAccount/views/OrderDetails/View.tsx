@@ -1,8 +1,8 @@
+import { useAuth, useOrderDetails } from "@saleor/sdk";
 import { NextPage } from "next";
 import * as React from "react";
 
 import { Loader } from "@components/atoms";
-import { useAuth, useOrderDetails } from "@saleor/sdk";
 
 import Page from "./Page";
 import { IProps } from "./types";

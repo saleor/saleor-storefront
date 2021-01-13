@@ -1,8 +1,10 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
 
 import { CreditCardIcon } from "@components/atoms";
+
 import { CreditCardTile } from "./CreditCardTile";
 
 describe("<CreditCardTile />", () => {

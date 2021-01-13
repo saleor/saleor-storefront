@@ -3,7 +3,6 @@ import React from "react";
 import { getBackgroundColor } from "@utils/styles";
 
 import { InputLabel } from "../InputLabel";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 

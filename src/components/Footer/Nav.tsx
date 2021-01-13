@@ -1,5 +1,6 @@
-import { channelSlug } from "@temp/constants";
 import * as React from "react";
+
+import { channelSlug } from "@temp/constants";
 
 import { NavLink } from "..";
 import { TypedSecondaryMenuQuery } from "./queries";

@@ -1,9 +1,12 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { CartCostsSummary } from "@components/atoms";
+
+import { CartRow } from "..";
 import { CartSidebar } from ".";
 import {
   ITEMS,
@@ -12,7 +15,6 @@ import {
   SUBTOTAL_PRICE,
   TOTAL_PRICE,
 } from "./fixtures";
-import { CartRow } from "..";
 
 let portalRoot = document.getElementById("portal-root");
 if (!portalRoot) {

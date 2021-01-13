@@ -1,7 +1,8 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import { styled } from "@styles";
 import React from "react";
+
+import { styled } from "@styles";
 
 import { AttributeValuesChecklist } from ".";
 import { DEFAULT_PROPS } from "./testData";

@@ -1,18 +1,18 @@
-import "../Category/scss/index.scss";
-
 import * as React from "react";
 import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
+
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
+import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
-
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Collection_collection } from "./gqlTypes/Collection";
 import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
+
+import "../Category/scss/index.scss";
 
 interface SortItem {
   label: string;

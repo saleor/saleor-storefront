@@ -1,4 +1,5 @@
 import { GetShop_shop_countries } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
+
 import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 
 export declare type Address = {
