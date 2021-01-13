@@ -17,11 +17,6 @@ exports[`Storyshots @components/atoms/DropdownMenu clickable 1`] = `
   box-sizing: border-box;
 }
 
-.c2 {
-  position: relative;
-  display: inline-block;
-}
-
 .c3 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -62,6 +57,11 @@ exports[`Storyshots @components/atoms/DropdownMenu clickable 1`] = `
 
 .c3:hover svg path {
   fill: #fff;
+}
+
+.c2 {
+  position: relative;
+  display: inline-block;
 }
 
 .c1 {
@@ -134,11 +134,6 @@ exports[`Storyshots @components/atoms/DropdownMenu hoverable 1`] = `
   box-sizing: border-box;
 }
 
-.c2 {
-  position: relative;
-  display: inline-block;
-}
-
 .c3 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -179,6 +174,11 @@ exports[`Storyshots @components/atoms/DropdownMenu hoverable 1`] = `
 
 .c3:hover svg path {
   fill: #fff;
+}
+
+.c2 {
+  position: relative;
+  display: inline-block;
 }
 
 .c1 {
