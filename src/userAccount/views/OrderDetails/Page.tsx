@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { TaxedMoney } from "@components/containers";
 import {
@@ -12,11 +12,10 @@ import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetai
 import { DropdownMenu, IconButton } from "@components/atoms";
 import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
+import { paths } from "@paths";
 
 import { AddressSummary, CartTable, NotFound } from "../../../components";
 import { ILine } from "../../../components/CartTable/ProductRow";
-
-import { orderHistoryUrl } from "../../../app/routes";
 
 const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
   return lines
@@ -38,8 +37,10 @@ const Page: React.FC<{
   return order ? (
     <>
       {!guest && (
-        <Link className="order-details__link" to={orderHistoryUrl}>
-          <FormattedMessage defaultMessage="Go back to Order History" />
+        <Link href={paths.accountOrderHistory}>
+          <a className="order-details__link">
+            <FormattedMessage defaultMessage="Go back to Order History" />
+          </a>
         </Link>
       )}
       <div className="order-details__header">

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
@@ -49,7 +49,7 @@ export const Page: React.FC<PageProps> = ({
                 })}
                 key={menuElement.url}
               >
-                <Link to={menuElement.url}>{menuElement.label}</Link>
+                <Link href={menuElement.url}>{menuElement.label}</Link>
               </li>
             ))}
           </ul>

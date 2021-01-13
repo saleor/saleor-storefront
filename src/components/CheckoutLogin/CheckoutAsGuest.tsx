@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
 
@@ -16,10 +16,12 @@ const CheckoutAsGuest: React.FC<{
     <p>
       <FormattedMessage defaultMessage="If you don’t wish to register an account, don’t worry. You can checkout as a guest. We care about you just as much as any registered user." />
     </p>
-    <Link to={checkoutUrl}>
-      <Button testingContext="continueAsGuestButton">
-        <FormattedMessage defaultMessage="Continue as a guest" />
-      </Button>
+    <Link href={checkoutUrl}>
+      <a>
+        <Button testingContext="continueAsGuestButton">
+          <FormattedMessage defaultMessage="Continue as a guest" />
+        </Button>
+      </a>
     </Link>
 
     <p>

@@ -60,12 +60,17 @@ jobs:
         run: |
           echo "::set-output name=custom_api_uri::$(echo $pull_request_body | grep -Eo "$prefix$pattern" | sed s/$prefix// | head -n 1)"
 
-      - name: Run build
-        env:
+      - name: Create env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
           # Use custom API_URI or the default one
-          API_URI: ${{ steps.api_uri.outputs.custom_api_uri || 'https://master.staging.saleor.rocks/graphql/' }}
+          envkey_NEXT_PUBLIC_API_URI: ${{ steps.api_uri.outputs.custom_api_uri || secrets.API_URI }}
+          envkey_NEXT_PUBLIC_SALEOR_CHANNEL_SLUG: "default-channel"
+          filename: env.local
+
+      - name: Run build
         run: |
-          npm run build
+          npm run build:export
 
       - name: Run build storybook
         env:

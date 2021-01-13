@@ -19,6 +19,8 @@ module.exports = api => {
   ];
   const plugins = [
     "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-typescript",
+    "babel-plugin-styled-components",
     "transform-class-properties",
     "@babel/transform-runtime",
     "@babel/plugin-proposal-optional-chaining",
@@ -39,6 +41,9 @@ module.exports = api => {
         messagesDir: "dist/locale/",
       },
     ]);
+  }
+  if (isStorybook) {
+    plugins.push("babel-plugin-styled-components");
   }
 
   plugins.push("macros");

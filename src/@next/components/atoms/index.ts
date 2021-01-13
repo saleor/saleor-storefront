@@ -30,5 +30,6 @@ export * from "./SocialMediaIcon";
 export * from "./StripeInputElement";
 export * from "./Tile";
 export * from "./TileGrid";
+export * from "./Redirect/Redirect";
 export * from "./CartCostsSummary";
 export * from "./OfflinePlaceholder";

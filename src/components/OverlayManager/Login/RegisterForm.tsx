@@ -1,12 +1,12 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-
 import { AlertManager, useAlert } from "react-alert";
 import { useIntl, IntlShape } from "react-intl";
-import { commonMessages } from "@temp/intl";
-import { accountConfirmUrl } from "../../../app/routes";
 
+import { commonMessages } from "@temp/intl";
+
+import { paths } from "@paths";
 import { Button, Form, TextField } from "../..";
 import { maybe } from "../../../core/utils";
 import { RegisterAccount } from "./gqlTypes/RegisterAccount";
@@ -50,7 +50,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
-              const redirectUrl = `${window.location.origin}${accountConfirmUrl}`;
+              const redirectUrl = `${location.origin}${paths.accountConfirm}`;
               registerCustomer({ variables: { email, password, redirectUrl } });
             }}
           >

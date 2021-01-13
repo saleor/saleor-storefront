@@ -45,7 +45,7 @@ export const Checkout = styled.div`
   padding: 3rem 0 0 0;
 `;
 export const PaymentGateways = styled.div<{ hide: boolean }>`
-  ${props => props.hide && "display: none;"}
+  ${props => props.hide && "display: none;"};
   grid-area: paymentGateways;
 `;
 export const CartSummary = styled.div`

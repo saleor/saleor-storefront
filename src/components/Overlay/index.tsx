@@ -1,10 +1,8 @@
 export { default as Overlay } from "./Overlay";
 export { default as OverlayProvider } from "./provider";
-export {
+export { OverlayContext, OverlayTheme, OverlayType } from "./context";
+export type {
   InnerOverlayContextInterface,
-  OverlayContext,
   OverlayContextInterface,
-  OverlayTheme,
-  OverlayType,
   ShowOverlayType,
 } from "./context";

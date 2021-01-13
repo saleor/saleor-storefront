@@ -1,2 +1,2 @@
 export * from "./Select";
-export { IProps as ISelect } from "./types";
+export type { IProps as ISelect } from "./types";

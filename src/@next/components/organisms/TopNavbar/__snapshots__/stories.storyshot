@@ -257,22 +257,18 @@ exports[`Storyshots @components/organisms/TopNavbar default 1`] = `
         </li>
         <li>
           <a
-            aria-current={null}
             className="c6"
-            fullWidth={false}
-            href="/category/groceries/8/"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             Groceries
           </a>
         </li>
         <li>
           <a
-            aria-current={null}
             className="c6"
-            fullWidth={false}
-            href="/category/apparel/9/"
             onClick={[Function]}
+            onMouseEnter={[Function]}
           >
             Apparel
           </a>

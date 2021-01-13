@@ -1,8 +1,6 @@
-// Rework this functionality once slugs are in use
-// @ts-ignore
 import { Base64 } from "js-base64";
 
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import type { IItems } from "@saleor/sdk/lib/api/Cart/types";
 
 export const slugify = (text: string | number): string =>
   text

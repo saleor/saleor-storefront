@@ -1,11 +1,11 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { register, unregister } from "register-service-worker";
 
 export const useServiceWorker = ({ timeout = 1000 }) => {
-  const [updateAvailable, setUpdateAvailable] = React.useState<boolean>(false);
-  const [registration, setRegistration] = React.useState<any>(null);
+  const [updateAvailable, setUpdateAvailable] = useState<boolean>(false);
+  const [registration, setRegistration] = useState<any>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval: number = setInterval(() => {
       if (registration) {
         registration.update();
@@ -15,13 +15,14 @@ export const useServiceWorker = ({ timeout = 1000 }) => {
   }, [registration]);
 
   const registered = (registration: any) => setRegistration(registration);
+
   const updated = () => setUpdateAvailable(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (window.Cypress || !process.env.SERVICE_WORKER_EXISTS) {
       unregister();
     } else {
-      register("/service-worker.js", { registered, updated });
+      register(process.env.SERVICE_WORKER_URL!, { registered, updated });
       return () => unregister();
     }
   }, []);

@@ -18,6 +18,8 @@
     "@components/containers": "<rootDir>/src/@next/components/containers/index.ts",
     "@components/templates": "<rootDir>/src/@next/components/templates/index.ts",
     "@types": "<rootDir>/src/@next/types/index.ts",
+    "@paths": "<rootDir>/src/paths.ts",
+    "@pages/([^\\.]*.*)$": "<rootDir>/src/@next/pages/$1",
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
     "react-syntax-highlighter/dist/esm/(.*)": "react-syntax-highlighter/dist/cjs/$1"
   },

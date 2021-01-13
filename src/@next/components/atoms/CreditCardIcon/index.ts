@@ -1,2 +1,2 @@
 export * from "./CreditCardIcon";
-export { CCProviders } from "./types";
+export type { CCProviders } from "./types";

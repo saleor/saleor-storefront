@@ -8,7 +8,6 @@ import React, {
   useEffect,
 } from "react";
 import { useIntl } from "react-intl";
-import { RouteComponentProps } from "react-router";
 
 import { CheckoutAddress } from "@components/organisms";
 import { useAuth, useCheckout, useCart } from "@saleor/sdk";
@@ -17,19 +16,16 @@ import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
-export interface ICheckoutAddressSubpageHandles {
-  submitAddress: () => void;
-}
-
-interface IProps extends RouteComponentProps<any> {
-  changeSubmitProgress: (submitInProgress: boolean) => void;
-  onSubmitSuccess: () => void;
-}
+import {
+  CheckoutStep,
+  SubpageBaseProps,
+  SubpageCompleteHandler,
+} from "../utils";
 
 const CheckoutAddressSubpageWithRef: RefForwardingComponent<
-  ICheckoutAddressSubpageHandles,
-  IProps
-> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
+  SubpageCompleteHandler,
+  SubpageBaseProps
+> = ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
   const checkoutShippingAddressFormId = "shipping-address-form";
   const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
   const checkoutBillingAddressFormId = "billing-address-form";
@@ -72,19 +68,17 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       }
     : undefined;
 
-  useImperativeHandle(ref, () => ({
-    submitAddress: () => {
-      if (isShippingRequiredForProducts) {
-        checkoutShippingAddressFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
-      } else {
-        checkoutBillingAddressFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
-      }
-    },
-  }));
+  useImperativeHandle(ref, () => () => {
+    if (isShippingRequiredForProducts) {
+      checkoutShippingAddressFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+    } else {
+      checkoutBillingAddressFormRef.current?.dispatchEvent(
+        new Event("submit", { cancelable: true })
+      );
+    }
+  });
 
   const [billingAsShippingState, setBillingAsShippingState] = useState(
     billingAsShipping
@@ -158,6 +152,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
           }),
         },
       ]);
+      changeSubmitProgress(false);
       return;
     }
 
@@ -197,7 +192,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
       setBillingErrors(errors);
     } else {
       setBillingErrors([]);
-      onSubmitSuccess();
+      onSubmitSuccess(CheckoutStep.Shipping);
     }
   };
 
@@ -216,7 +211,6 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
 
   return (
     <CheckoutAddress
-      {...props}
       shippingErrors={shippingErrors}
       billingErrors={billingErrors}
       shippingFormId={checkoutShippingAddressFormId}

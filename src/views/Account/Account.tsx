@@ -1,37 +1,35 @@
-import * as React from "react";
+import React from "react";
 import { useIntl } from "react-intl";
 import Media from "react-responsive";
-import { RouteComponentProps, withRouter } from "react-router";
 import { commonMessages } from "@temp/intl";
 import { useAuth } from "@saleor/sdk";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import { smallScreen } from "@styles/constants";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
+import { Redirect } from "@components/atoms";
+import { paths } from "@paths";
+
 import AddressBook from "../../account/AddressBook/AddressBook";
-import {
-  accountUrl,
-  addressBookUrl,
-  baseUrl,
-  orderHistoryUrl,
-} from "../../app/routes";
 import { Breadcrumbs, Loader } from "../../components";
 
 import "./scss/index.scss";
 
-const returnTab: any = (path: string, userDetails, history) => {
+const returnTab: any = (path: string, userDetails) => {
   let tabContent = <></>;
   switch (path) {
-    case accountUrl: {
+    case paths.account: {
       tabContent = <AccountTab />;
       break;
     }
-    case addressBookUrl: {
+    case paths.accountAddressBook: {
       tabContent = <AddressBook user={userDetails} />;
       break;
     }
-    case orderHistoryUrl: {
-      tabContent = <OrdersHistory {...{ history }} />;
+    case paths.accountOrderHistory: {
+      tabContent = <OrdersHistory />;
       break;
     }
     default:
@@ -41,26 +39,25 @@ const returnTab: any = (path: string, userDetails, history) => {
   return tabContent;
 };
 
-const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
+const Account: NextPage = () => {
   const intl = useIntl();
   const { user, loaded } = useAuth();
-
-  const links = [accountUrl, orderHistoryUrl, addressBookUrl];
-
-  if (!loaded) {
-    return <Loader />;
-  }
+  const { asPath, pathname } = useRouter();
+  const links = [
+    paths.account,
+    paths.accountOrderHistory,
+    paths.accountAddressBook,
+  ];
 
   if (!user) {
-    history.push(baseUrl);
+    return <Redirect url={paths.home} />;
   }
-
-  return (
+  return loaded ? (
     <div className="container">
       <Breadcrumbs
         breadcrumbs={[
           {
-            link: match.path,
+            link: asPath,
             value: intl.formatMessage(commonMessages.myAccount),
           },
         ]}
@@ -68,20 +65,22 @@ const Account: React.FC<RouteComponentProps> = ({ history, match }) => {
       <div className="account">
         <Media minWidth={smallScreen}>
           <div className="account__menu">
-            <AccountMenu links={links} active={match.path} />
+            <AccountMenu links={links} active={pathname} />
           </div>
         </Media>
         <Media maxWidth={smallScreen - 1}>
           <div className="account__menu_mobile">
-            <AccountMenuMobile links={links} active={match.path} />
+            <AccountMenuMobile links={links} active={pathname} />
           </div>
         </Media>
         <div className="account__content">
-          {user && returnTab(match.path, user, history)}
+          {user && returnTab(pathname, user)}
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 };
 
-export default withRouter(Account);
+export default Account;

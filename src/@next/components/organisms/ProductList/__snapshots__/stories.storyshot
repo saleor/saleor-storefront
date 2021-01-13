@@ -160,8 +160,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
     data-test-id="testCategory"
   >
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -194,8 +195,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -228,8 +230,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -262,8 +265,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -296,8 +300,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"
@@ -330,8 +335,9 @@ exports[`Storyshots @components/organisms/ProductList default 1`] = `
       </div>
     </a>
     <a
-      href="/product/apple-juice/72/"
+      href="/product/apple-juice/72"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       <div
         className="c2"

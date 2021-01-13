@@ -1,16 +1,16 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import ReactSVG from "react-svg";
-import { commonMessages } from "@temp/intl";
 
-import { baseUrl } from "../../app/routes";
+import { commonMessages } from "@temp/intl";
+import { paths } from "@paths";
 import NavItem, { INavItem } from "./NavItem";
 
 import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
+
+import "./scss/index.scss";
 
 interface NavListProps {
   items: INavItem[];
@@ -74,24 +74,22 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         ) : (
           <>
             <li className="side-nav__menu-item side-nav__menu-item--parent">
-              <Link
-                to={baseUrl}
-                className="side-nav__menu-item-logo"
-                onClick={hideOverlay}
-              >
-                <ReactSVG path={logoImg} />
+              <Link href={paths.home}>
+                <a className="side-nav__menu-item-logo">
+                  <ReactSVG path={logoImg} onClick={hideOverlay} />
+                </a>
               </Link>
-              <span className="side-nav__menu-item-close" onClick={hideOverlay}>
+              <span className="side-nav__menu-item-close">
                 <span />
               </span>
             </li>
             <li className="side-nav__menu-item">
-              <Link
-                to={baseUrl}
-                className="side-nav__menu-item-link"
-                onClick={hideOverlay}
-              >
-                <FormattedMessage {...commonMessages.home} />
+              <Link href={paths.home}>
+                <a className="side-nav__menu-item-link">
+                  <span onClick={hideOverlay}>
+                    <FormattedMessage {...commonMessages.home} />
+                  </span>
+                </a>
               </Link>
             </li>
           </>

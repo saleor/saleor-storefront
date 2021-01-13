@@ -3,8 +3,8 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
-    "jsx": "react",
-    "lib": ["es2017", "dom", "esnext"],
+    "jsx": "preserve",
+    "lib": ["es2017", "dom", "esnext", "webworker"],
     "sourceMap": true,
     "target": "es6",
     "noUnusedLocals": true,
@@ -15,7 +15,9 @@
       "@components/organisms": ["./src/@next/components/organisms/index.ts"],
       "@components/templates": ["./src/@next/components/templates/index.ts"],
       "@components/containers": ["./src/@next/components/containers/index.ts"],
+      "@paths": ["./src/paths.ts"],
       "@pages": ["./src/@next/pages/index.ts"],
+      "@pages/*": ["./src/@next/pages/*"],
       "@styles": ["./src/@next/globalStyles/index.ts"],
       "@styles/*": ["./src/@next/globalStyles/*"],
       "images/*": ["./src/images/*"],
@@ -29,7 +31,14 @@
       "@temp/*": ["./src/*"]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "isolatedModules": true
   },
   "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

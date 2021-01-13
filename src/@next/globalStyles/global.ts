@@ -63,7 +63,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     list-style: none;
   }
 
-  #root {
+  #root,
+  #__next {
     display: flex;
     min-height: 100vh;
     flex-direction: column;

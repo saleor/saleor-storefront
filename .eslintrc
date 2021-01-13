@@ -47,7 +47,6 @@
     "no-underscore-dangle": "off",
     "react/state-in-constructor": "off",
     "react/static-property-placement": "off",
-
     "sort-keys": "off",
     "no-prototype-builtins": "off",
     "no-shadow": "off",
@@ -67,7 +66,16 @@
     "no-param-reassign": "off",
     "no-empty-pattern": "off",
     "no-restricted-globals": "off",
-    "@typescript-eslint/no-unused-vars": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["href", "to"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-await-in-loop": "off"
   },
   "settings": {
     "import/resolver": {

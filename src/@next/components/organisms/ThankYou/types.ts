@@ -1,8 +1,9 @@
 import { OrderStatus } from "@saleor/sdk";
+import { UrlObject } from "url";
 
 export interface IProps {
   orderStatus: OrderStatus;
   orderNumber: string;
-  continueShopping: () => void;
-  orderDetails: () => void;
+  continueShoppingUrl: string | UrlObject;
+  orderDetailsUrl: string | UrlObject;
 }

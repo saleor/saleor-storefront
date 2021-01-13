@@ -1,8 +1,8 @@
 /* eslint-disable global-require */
 
+import { ssrMode } from "@temp/constants";
 import { generatePageUrl } from "./utils";
 
-export const BASE_URL = "/";
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
@@ -65,57 +65,10 @@ export const META_DEFAULTS = {
   custom: [],
   description:
     "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
-  image: `${window.location.origin}${require("../images/logo.svg")}`,
+  image: `${
+    !ssrMode ? window.location.origin : ""
+  }${require("../images/logo.svg")}`,
   title: "Demo PWA Storefront – Saleor Commerce",
   type: "website",
-  url: window.location.origin,
+  url: !ssrMode ? window.location.origin : "",
 };
-export enum CheckoutStep {
-  Address = 1,
-  Shipping,
-  Payment,
-  Review,
-  PaymentConfirm,
-}
-export const CHECKOUT_STEPS = [
-  {
-    index: 0,
-    link: "/checkout/address",
-    name: "Address",
-    nextActionName: "Continue to Shipping",
-    onlyIfShippingRequired: false,
-    step: CheckoutStep.Address,
-  },
-  {
-    index: 1,
-    link: "/checkout/shipping",
-    name: "Shipping",
-    nextActionName: "Continue to Payment",
-    onlyIfShippingRequired: true,
-    step: CheckoutStep.Shipping,
-  },
-  {
-    index: 2,
-    link: "/checkout/payment",
-    name: "Payment",
-    nextActionName: "Continue to Review",
-    onlyIfShippingRequired: false,
-    step: CheckoutStep.Payment,
-  },
-  {
-    index: 3,
-    link: "/checkout/review",
-    name: "Review",
-    nextActionName: "Place order",
-    onlyIfShippingRequired: false,
-    step: CheckoutStep.Review,
-  },
-  {
-    index: 4,
-    link: "/checkout/payment-confirm",
-    name: "Payment confirm",
-    onlyIfShippingRequired: false,
-    step: CheckoutStep.PaymentConfirm,
-    withoutOwnView: true,
-  },
-];

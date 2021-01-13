@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { channelSlug } from "@temp/constants";
 import { Carousel, ProductListItem } from "..";
@@ -29,10 +29,12 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                 <Carousel>
                   {products.map(({ node: product }) => (
                     <Link
-                      to={generateProductUrl(product.id, product.name)}
+                      href={generateProductUrl(product.id, product.name)}
                       key={product.id}
                     >
-                      <ProductListItem product={product} />
+                      <a>
+                        <ProductListItem product={product} />
+                      </a>
                     </Link>
                   ))}
                 </Carousel>

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
@@ -25,8 +25,10 @@ export const ProductList: React.FC<IProps> = ({
           return (
             id &&
             name && (
-              <Link to={generateProductUrl(id, name)} key={id}>
-                <ProductTile product={product} />
+              <Link href={generateProductUrl(id, name)} key={id}>
+                <a>
+                  <ProductTile product={product} />
+                </a>
               </Link>
             )
           );

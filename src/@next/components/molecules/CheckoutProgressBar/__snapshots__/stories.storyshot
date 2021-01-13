@@ -154,8 +154,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar first 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -174,8 +175,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar first 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c6"
@@ -198,8 +200,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar first 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c9"
@@ -218,8 +221,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar first 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c9"
@@ -392,8 +396,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar second 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -412,8 +417,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar second 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -432,8 +438,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar second 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c7"
@@ -456,8 +463,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar second 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c9"
@@ -615,8 +623,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar third 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -635,8 +644,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar third 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -655,8 +665,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar third 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c3"
@@ -675,8 +686,9 @@ exports[`Storyshots @components/molecules/CheckoutProgressBar third 1`] = `
       className="c2"
     >
       <a
-        href="/"
+        href="/#"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <div
           className="c7"

@@ -48,7 +48,8 @@ body {
     font-style: italic;
   }
 
-  #root {
+  #root,
+  #__next {
     display: flex;
     min-height: 100vh;
     flex-direction: column;

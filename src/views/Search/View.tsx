@@ -1,27 +1,23 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { RouteComponentProps } from "react-router";
+import { StringParam, useQueryParam } from "use-query-params";
+import { NextPage } from "next";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
-import { StringParam, useQueryParam } from "use-query-params";
 import { OfflinePlaceholder } from "@components/atoms";
 import { channelSlug } from "@temp/constants";
+
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  getGraphqlIdFromDBId,
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
 import { TypedSearchProductsQuery } from "./queries";
-
-type ViewProps = RouteComponentProps<{
-  id: string;
-}>;
 
 export const FilterQuerySet = {
   encode(valueObj) {
@@ -43,7 +39,7 @@ export const FilterQuerySet = {
   },
 };
 
-export const View: React.FC<ViewProps> = ({ match }) => {
+export const View: NextPage = () => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [search, setSearch] = useQueryParam("q", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
@@ -59,13 +55,13 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     priceLte: null,
     sortBy: sort || null,
   };
+
   const variables = {
     ...filters,
     attributes: filters.attributes
       ? convertToAttributeScalar(filters.attributes)
       : {},
     channel: channelSlug,
-    id: getGraphqlIdFromDBId(match.params.id, "Category"),
     query: search || null,
     sortBy: convertSortByFromString(filters.sortBy),
   };

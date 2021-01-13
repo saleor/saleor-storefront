@@ -15,8 +15,17 @@ declare interface Window {
   Stripe: any;
   Cypress?: any;
   AdyenCheckout: any;
+  version: string;
 }
 
 declare interface Navigator {
   credentials: any;
+}
+
+declare module ".*/scss/variables.scss" {
+  const content: {
+    mediumScreen: string;
+    smallScreen: string;
+  };
+  export = content;
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
+import Link from "next/link";
 
 import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
 import { checkoutMessages } from "@temp/intl";
-
 import { OrderStatus } from "@saleor/sdk";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -28,8 +29,8 @@ export const messages = defineMessages({
 const ThankYou: React.FC<IProps> = ({
   orderStatus,
   orderNumber,
-  continueShopping,
-  orderDetails,
+  continueShoppingUrl,
+  orderDetailsUrl,
 }: IProps) => {
   return (
     <Container data-test="thankYouView">
@@ -53,21 +54,20 @@ const ThankYou: React.FC<IProps> = ({
           />
         </S.Paragraph>
         <S.Buttons>
-          <Button
-            testingContext="continueShoppingButton"
-            onClick={continueShopping}
-            color="secondary"
-            fullWidth
-          >
-            <FormattedMessage {...checkoutMessages.continueShopping} />
-          </Button>
-          <Button
-            testingContext="gotoOrderDetailsButton"
-            onClick={orderDetails}
-            fullWidth
-          >
-            <FormattedMessage defaultMessage="ORDER DETAILS" />
-          </Button>
+          <Link href={continueShoppingUrl}>
+            <Button
+              testingContext="continueShoppingButton"
+              color="secondary"
+              fullWidth
+            >
+              <FormattedMessage {...checkoutMessages.continueShopping} />
+            </Button>
+          </Link>
+          <Link href={orderDetailsUrl}>
+            <Button testingContext="gotoOrderDetailsButton" fullWidth>
+              <FormattedMessage defaultMessage="ORDER DETAILS" />
+            </Button>
+          </Link>
         </S.Buttons>
       </S.Wrapper>
     </Container>

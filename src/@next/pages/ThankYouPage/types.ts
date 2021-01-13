@@ -1,5 +1,9 @@
-import * as H from "history";
+import { OrderStatus } from "@saleor/sdk";
 
-export interface IProps {
-  history: H.History;
-}
+export type IProps = {
+  query: {
+    orderNumber?: string;
+    token?: string;
+    orderStatus?: OrderStatus;
+  };
+};

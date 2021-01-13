@@ -1,20 +1,14 @@
 import * as React from "react";
-import { generatePath, useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 import { CartSidebar } from "@components/organisms";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
+import { paths } from "@paths";
 
 import { OverlayContextInterface } from "../..";
-import {
-  baseUrl,
-  cartUrl,
-  checkoutLoginUrl,
-  checkoutUrl,
-} from "../../../app/routes";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
-  const history = useHistory();
-
+  const { push } = useRouter();
   const { user } = useAuth();
   const { checkout } = useCheckout();
   const {
@@ -51,19 +45,15 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
       promoTaxedPrice={promoTaxedPrice}
       totalPrice={totalPrice}
       continueShopping={() => {
-        history.push(baseUrl);
+        push(paths.home);
         overlay.hide();
       }}
       goToCart={() => {
-        history.push(
-          generatePath(cartUrl, {
-            token: null,
-          })
-        );
+        push(paths.cart);
         overlay.hide();
       }}
       proceedToCheckout={() => {
-        history.push(user ? checkoutUrl : checkoutLoginUrl);
+        push(user ? paths.checkout : paths.login);
         overlay.hide();
       }}
     />

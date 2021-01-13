@@ -4,12 +4,17 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { RouteComponentProps } from "react-router";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
 import { OrderStatus, useCheckout } from "@saleor/sdk";
 import { IFormError } from "@types";
+
+import {
+  CheckoutStep,
+  SubpageBaseProps,
+  SubpageCompleteHandler,
+} from "../utils";
 
 export interface ISubmitCheckoutData {
   id: string;
@@ -18,28 +23,21 @@ export interface ISubmitCheckoutData {
   orderStatus: OrderStatus;
 }
 
-export interface ICheckoutReviewSubpageHandles {
-  complete: () => void;
-}
-
-interface IProps extends RouteComponentProps<any> {
+interface CheckoutReviewSubpageProps extends SubpageBaseProps {
   selectedPaymentGatewayToken?: string;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
-  changeSubmitProgress: (submitInProgress: boolean) => void;
-  onSubmitSuccess: (data: ISubmitCheckoutData) => void;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
-  ICheckoutReviewSubpageHandles,
-  IProps
+  SubpageCompleteHandler,
+  CheckoutReviewSubpageProps
 > = (
   {
     selectedPaymentGatewayToken,
     paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
-    ...props
-  }: IProps,
+  },
   ref
 ) => {
   const { checkout, payment, completeCheckout } = useCheckout();
@@ -77,39 +75,36 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     return ``;
   };
 
-  useImperativeHandle(ref, () => ({
-    complete: async () => {
-      changeSubmitProgress(true);
-      let data;
-      let dataError;
-      if (payment?.gateway === "mirumee.payments.adyen") {
-        paymentGatewayFormRef.current?.dispatchEvent(
-          new Event("submitComplete", { cancelable: true })
-        );
+  useImperativeHandle(ref, () => async () => {
+    changeSubmitProgress(true);
+    let data;
+    let dataError;
+    if (payment?.gateway === "mirumee.payments.adyen") {
+      paymentGatewayFormRef.current?.dispatchEvent(
+        new Event("submitComplete", { cancelable: true })
+      );
+    } else {
+      const response = await completeCheckout();
+      data = response.data;
+      dataError = response.dataError;
+      changeSubmitProgress(false);
+      const errors = dataError?.error;
+      if (errors) {
+        setErrors(errors);
       } else {
-        const response = await completeCheckout();
-        data = response.data;
-        dataError = response.dataError;
-        changeSubmitProgress(false);
-        const errors = dataError?.error;
-        if (errors) {
-          setErrors(errors);
-        } else {
-          setErrors([]);
-          onSubmitSuccess({
-            id: data?.order?.id,
-            orderStatus: data?.order?.status,
-            orderNumber: data?.order?.number,
-            token: data?.order?.token,
-          });
-        }
+        setErrors([]);
+        onSubmitSuccess(CheckoutStep.Review, {
+          id: data?.order?.id,
+          orderStatus: data?.order?.status,
+          orderNumber: data?.order?.number,
+          token: data?.order?.token,
+        });
       }
-    },
-  }));
+    }
+  });
 
   return (
     <CheckoutReview
-      {...props}
       shippingAddress={checkoutShippingAddress}
       billingAddress={checkoutBillingAddress}
       shippingMethodName={checkout?.shippingMethod?.name}

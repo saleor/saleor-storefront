@@ -2,6 +2,7 @@ import { OrderStatus } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
 
 import { ThankYou } from ".";
 import { messages } from "./ThankYou";
@@ -10,8 +11,8 @@ describe("<ThankYou />", () => {
   const props = {
     orderStatus: OrderStatus.UNFULFILLED,
     orderNumber: "123",
-    orderDetails: jest.fn(),
-    continueShopping: jest.fn(),
+    orderDetailsUrl: "/order/xyz",
+    continueShoppingUrl: "/",
   };
 
   it("exists", () => {
@@ -27,19 +28,35 @@ describe("<ThankYou />", () => {
   });
 
   it("should call orderDetails function when clicked", () => {
-    const wrapper = mount(<ThankYou {...props} />);
+    const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
+    const wrapper = mount(
+      <RouterContext.Provider value={{ push: pushSpy } as any}>
+        <ThankYou {...props} />
+      </RouterContext.Provider>
+    );
 
     wrapper.find("button").at(1).simulate("click");
 
-    expect(props.orderDetails).toHaveBeenCalled();
+    expect(pushSpy).toHaveBeenCalledWith("/order/xyz", "/order/xyz", {
+      locale: undefined,
+      shallow: undefined,
+    });
   });
 
   it("should call continueShopping function when clicked", () => {
-    const wrapper = mount(<ThankYou {...props} />);
+    const pushSpy = jest.fn().mockImplementation(() => new Promise(r => r()));
+    const wrapper = mount(
+      <RouterContext.Provider value={{ push: pushSpy } as any}>
+        <ThankYou {...props} />
+      </RouterContext.Provider>
+    );
 
     wrapper.find("button").at(0).simulate("click");
 
-    expect(props.continueShopping).toHaveBeenCalled();
+    expect(pushSpy).toHaveBeenCalledWith("/", "/", {
+      locale: undefined,
+      shallow: undefined,
+    });
   });
 
   it("should display proper subtitle when order status is UNCONFIRMED", () => {
