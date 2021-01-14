@@ -8,7 +8,7 @@ A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://
 
 ## Features
 
-- Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/)
+- Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/), [Next.js](https://nextjs.org/) and [Typescript](https://www.typescriptlang.org/)
 - Offline mode (beta)
 - Saleor GraphQL API integration
 - Single-page application experience
@@ -80,6 +80,26 @@ npm start
 ```
 
 Go to `http://localhost:3000` to access the storefront.
+
+##### Build
+
+To compile the app run:
+
+```
+$ npm run build
+```
+
+To compile the app and export storefront to the static HTML run:
+
+```
+$ npm run build:export
+```
+
+To compile the app and run it in production mode with next server run:
+
+```
+$ npm run build:start
+```
 
 ## Cypress tests
 
