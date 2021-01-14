@@ -1,22 +1,22 @@
-import "./scss/index.scss";
-
 import { useCart } from "@saleor/sdk";
-import { channelSlug } from "@temp/constants";
 import { isEmpty } from "lodash";
-import queryString from "query-string";
-import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import queryString from "query-string";
+import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
-import { MetaWrapper, NotFound } from "../../components";
+import { channelSlug } from "@temp/constants";
 
+import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
 import { IProps } from "./types";
+
+import "./scss/index.scss";
 
 const canDisplay = (product: ProductDetails_product) =>
   maybe(

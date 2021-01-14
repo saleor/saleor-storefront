@@ -6,8 +6,8 @@ import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 
-import { Overlay } from "..";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
+import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 

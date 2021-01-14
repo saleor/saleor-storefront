@@ -1,7 +1,8 @@
 import React from "react";
 
-import NoPhoto from "images/no-photo.svg";
 import { IProps } from "./types";
+
+import NoPhoto from "images/no-photo.svg";
 
 export const PlaceholderImage: React.FC<IProps> = ({
   alt = "placeholder",

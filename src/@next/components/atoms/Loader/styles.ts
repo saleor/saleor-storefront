@@ -1,6 +1,6 @@
-import { styled } from "@styles";
 import { keyframes } from "styled-components";
 
+import { styled } from "@styles";
 import { getContentWindowHeight } from "@utils/styles";
 
 const firstItem = keyframes`

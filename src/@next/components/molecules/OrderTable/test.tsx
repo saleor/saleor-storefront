@@ -1,5 +1,6 @@
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { stringify } from "query-string";
 import { ParsedUrlQueryInput } from "querystring";
@@ -8,8 +9,9 @@ import { IntlProvider } from "react-intl";
 
 import { paths } from "@paths";
 import { generatePath } from "@temp/core/utils";
-import { OrderTable } from ".";
+
 import { Thumbnail } from "..";
+import { OrderTable } from ".";
 import * as S from "./styles";
 
 const ORDERS = [

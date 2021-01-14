@@ -1,9 +1,10 @@
-import React from "react";
-import { useRouter } from "next/router";
-
 import { useAuth } from "@saleor/sdk";
+import { useRouter } from "next/router";
+import React from "react";
+
 import { Loader } from "@components/atoms";
 import { demoMode } from "@temp/constants";
+
 import {
   Footer,
   MainMenu,
@@ -12,8 +13,9 @@ import {
   OverlayProvider,
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
-import "../globalStyles/scss/index.scss";
 import Notifications from "./Notifications";
+
+import "../globalStyles/scss/index.scss";
 
 const App: React.FC = ({ children }) => {
   const { pathname } = useRouter();

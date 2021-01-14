@@ -5,7 +5,6 @@ import React, { useMemo, useState } from "react";
 import { IFormError } from "@types";
 
 import { StripeCreditCardForm } from "../StripeCreditCardForm";
-
 import { IProps } from "./types";
 
 /**

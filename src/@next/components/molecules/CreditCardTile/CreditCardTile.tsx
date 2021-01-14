@@ -1,8 +1,8 @@
 import React from "react";
 
 import { IconButton, Tile } from "@components/atoms/";
-import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
 
+import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
 import * as S from "./styles";
 import { IProps } from "./types";
 

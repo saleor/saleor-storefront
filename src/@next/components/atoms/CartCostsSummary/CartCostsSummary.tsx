@@ -1,9 +1,10 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { commonMessages } from "@temp/intl";
 
 import { TaxedMoney } from "@components/containers";
+import { commonMessages } from "@temp/intl";
 import { ITaxedMoney } from "@types";
+
 import * as S from "./styles";
 
 export interface CartCostsSummaryProps {

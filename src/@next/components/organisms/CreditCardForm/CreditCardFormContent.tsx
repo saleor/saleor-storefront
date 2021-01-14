@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import NumberFormat from "react-number-format";
 
 import { TextField } from "@components/molecules";
+
 import * as S from "./styles";
 import { CardErrors, PropsWithFormik } from "./types";
 

@@ -1,11 +1,11 @@
-import React from "react";
+import { useAuth } from "@saleor/sdk";
 import { NextPage } from "next";
+import React from "react";
 
 import { ThankYou } from "@components/organisms";
 import { paths } from "@paths";
-import { useAuth } from "@saleor/sdk";
-
 import NotFound from "@temp/components/NotFound";
+
 import { IProps } from "./types";
 
 export const ThankYouPage: NextPage<IProps> = ({

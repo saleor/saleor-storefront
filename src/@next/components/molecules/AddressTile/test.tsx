@@ -1,9 +1,11 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { IconButton } from "@components/atoms";
+
 import { AddressTile } from ".";
 
 const onEdit = jest.fn();

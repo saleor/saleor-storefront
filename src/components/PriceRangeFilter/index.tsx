@@ -1,10 +1,10 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { components } from "react-select";
 
-import { SelectField, TextField } from "..";
 import { getValueOrEmpty } from "../../core/utils";
+import { SelectField, TextField } from "..";
+
+import "./scss/index.scss";
 
 interface PriceRangeFilterProps {
   from: number;

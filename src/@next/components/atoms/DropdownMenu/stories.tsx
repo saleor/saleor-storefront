@@ -1,10 +1,11 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import { styled } from "@styles";
 import React from "react";
 
-import { DropdownMenu } from ".";
+import { styled } from "@styles";
+
 import { IconButton } from "../IconButton";
+import { DropdownMenu } from ".";
 
 const Container = styled.div`
   width: 600px;

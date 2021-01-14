@@ -1,3 +1,4 @@
+import { useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
@@ -8,7 +9,6 @@ import React, {
 import { useIntl } from "react-intl";
 
 import { CheckoutPayment } from "@components/organisms";
-import { useCheckout } from "@saleor/sdk";
 import { commonMessages } from "@temp/intl";
 import { IFormError } from "@types";
 

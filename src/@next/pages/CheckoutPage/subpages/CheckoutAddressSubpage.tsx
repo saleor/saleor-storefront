@@ -1,16 +1,16 @@
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
   useContext,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
-  useEffect,
 } from "react";
 import { useIntl } from "react-intl";
 
 import { CheckoutAddress } from "@components/organisms";
-import { useAuth, useCheckout, useCart } from "@saleor/sdk";
 import { ShopContext } from "@temp/components/ShopProvider/context";
 import { commonMessages } from "@temp/intl";
 import { IAddress, IFormError } from "@types";

@@ -1,7 +1,9 @@
-import { defaultTheme } from "@styles";
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import React from "react";
+
+import { defaultTheme } from "@styles";
 
 import { Message } from ".";
 import { Title } from "./styles";

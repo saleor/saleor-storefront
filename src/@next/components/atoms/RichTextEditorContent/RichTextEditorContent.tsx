@@ -1,9 +1,9 @@
+import type EditorJS from "@editorjs/editorjs";
 import {
   OutputData,
   ToolConstructable,
   ToolSettings,
 } from "@editorjs/editorjs";
-import type EditorJS from "@editorjs/editorjs";
 import createGenericInlineTool from "editorjs-inline-tool";
 import React from "react";
 

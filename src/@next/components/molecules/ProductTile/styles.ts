@@ -1,5 +1,6 @@
-import { media, styled } from "@styles";
 import { css } from "styled-components";
+
+import { media, styled } from "@styles";
 
 const textProps = css`
   font-size: ${props => props.theme.typography.baseFontSize};

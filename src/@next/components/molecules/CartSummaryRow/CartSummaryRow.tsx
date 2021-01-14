@@ -3,8 +3,8 @@ import { FormattedMessage } from "react-intl";
 
 import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
-import { CachedImage } from "../CachedImage";
 
+import { CachedImage } from "../CachedImage";
 import * as S from "./styles";
 import { IProps } from "./types";
 

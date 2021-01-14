@@ -1,11 +1,12 @@
-import "./scss/index.scss";
-
+import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import Link from "next/link";
 
 import { paths } from "@paths";
+
 import Button from "../Button";
+
+import "./scss/index.scss";
 
 interface NotFoundProps {
   message?: string;

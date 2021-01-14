@@ -1,15 +1,15 @@
 import React from "react";
 import ReactSVG from "react-svg";
 
+import * as S from "./styles";
+import { IProps } from "./types";
+
 import amexImg from "images/amex.svg";
 import discoverImg from "images/discover.svg";
 import jcbImg from "images/jcb.svg";
 import maestroImg from "images/maestro.svg";
 import mastercardImg from "images/mastercard.svg";
 import visaImg from "images/visa.svg";
-
-import * as S from "./styles";
-import { IProps } from "./types";
 
 const providers = new Map();
 

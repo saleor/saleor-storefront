@@ -58,11 +58,6 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
   font-weight: 600;
 }
 
-.c7 {
-  position: relative;
-  display: inline-block;
-}
-
 .c8 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -103,6 +98,11 @@ exports[`Storyshots @components/molecules/AddressTile default 1`] = `
 
 .c8:hover svg path {
   fill: #fff;
+}
+
+.c7 {
+  position: relative;
+  display: inline-block;
 }
 
 .c2 {
@@ -331,11 +331,6 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
   font-weight: 600;
 }
 
-.c7 {
-  position: relative;
-  display: inline-block;
-}
-
 .c8 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -376,6 +371,11 @@ exports[`Storyshots @components/molecules/AddressTile with default shipping and 
 
 .c8:hover svg path {
   fill: #fff;
+}
+
+.c7 {
+  position: relative;
+  display: inline-block;
 }
 
 .c2 {

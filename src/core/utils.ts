@@ -1,14 +1,14 @@
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { each } from "lodash";
+import { resolveHref } from "next/dist/next-server/lib/router/router";
 import {
   parse as parseQs,
-  stringify as stringifyQs,
   ParsedQuery,
+  stringify as stringifyQs,
 } from "query-string";
 import { FetchResult } from "react-apollo";
 import { UrlObject } from "url";
-import { resolveHref } from "next/dist/next-server/lib/router/router";
 
 import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";

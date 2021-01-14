@@ -1,8 +1,9 @@
+import "jest-styled-components";
+
 import { OrderStatus } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import { mount, shallow } from "enzyme";
-import "jest-styled-components";
-import React from "react";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
+import React from "react";
 
 import { ThankYou } from ".";
 import { messages } from "./ThankYou";

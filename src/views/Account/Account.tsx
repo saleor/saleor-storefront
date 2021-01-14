@@ -1,16 +1,16 @@
-import React from "react";
-import { useIntl } from "react-intl";
-import Media from "react-responsive";
-import { commonMessages } from "@temp/intl";
 import { useAuth } from "@saleor/sdk";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import React from "react";
+import { useIntl } from "react-intl";
+import Media from "react-responsive";
 
-import { smallScreen } from "@styles/constants";
+import { Redirect } from "@components/atoms";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
 import { AccountTab, OrdersHistory } from "@pages";
-import { Redirect } from "@components/atoms";
 import { paths } from "@paths";
+import { smallScreen } from "@styles/constants";
+import { commonMessages } from "@temp/intl";
 
 import AddressBook from "../../account/AddressBook/AddressBook";
 import { Breadcrumbs, Loader } from "../../components";

@@ -1,4 +1,5 @@
 import { media, styled } from "@styles";
+
 import { Size } from "./types";
 
 const padding = {

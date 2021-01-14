@@ -1,16 +1,17 @@
+import Link from "next/link";
 import React from "react";
 import Media from "react-responsive";
 import { Transition } from "react-transition-group";
-import Link from "next/link";
 
 import { Icon } from "@components/atoms";
-import { largeScreen } from "@styles/constants";
-import LogoSmall from "images/logo-small.svg";
 import { paths } from "@paths";
+import { largeScreen } from "@styles/constants";
 
 import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
+
+import LogoSmall from "images/logo-small.svg";
 
 const TopBar: React.FC<{ onHide: () => void }> = ({ children, onHide }) => (
   <S.Bar>

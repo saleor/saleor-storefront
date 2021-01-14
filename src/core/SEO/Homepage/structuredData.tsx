@@ -1,5 +1,6 @@
-import { paths } from "@paths";
 import urljoin from "url-join";
+
+import { paths } from "@paths";
 
 export const structuredData = shop => {
   return JSON.stringify({

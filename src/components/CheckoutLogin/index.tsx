@@ -1,16 +1,16 @@
-import "./scss/index.scss";
-
-import React, { useContext } from "react";
-import { NextPage } from "next";
-
 import { useAuth } from "@saleor/sdk";
-import { OfflinePlaceholder, Redirect } from "@components/atoms";
+import { NextPage } from "next";
+import React, { useContext } from "react";
 
+import { OfflinePlaceholder, Redirect } from "@components/atoms";
 import { paths } from "@paths";
+
 import { Offline, Online, OverlayContext } from "..";
+import { OverlayTheme, OverlayType } from "../Overlay";
 import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
-import { OverlayType, OverlayTheme } from "../Overlay";
+
+import "./scss/index.scss";
 
 const CheckoutLogin: NextPage = () => {
   const overlay = useContext(OverlayContext);

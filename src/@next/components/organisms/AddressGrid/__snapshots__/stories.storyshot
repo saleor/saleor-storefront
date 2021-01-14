@@ -122,11 +122,6 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
   font-weight: 600;
 }
 
-.c10 {
-  position: relative;
-  display: inline-block;
-}
-
 .c11 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -167,6 +162,11 @@ exports[`Storyshots @components/organisms/AddressGrid default 1`] = `
 
 .c11:hover svg path {
   fill: #fff;
+}
+
+.c10 {
+  position: relative;
+  display: inline-block;
 }
 
 .c1 {

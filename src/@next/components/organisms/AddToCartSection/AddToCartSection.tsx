@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import { useIntl } from "react-intl";
-
-import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+import React, { useState } from "react";
+import { useIntl } from "react-intl";
 
+import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
-import QuantityInput from "../../molecules/QuantityInput";
+
 import AddToCartButton from "../../molecules/AddToCartButton";
+import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
-import * as S from "./styles";
 import {
+  canAddToCart,
   getAvailableQuantity,
   getProductPrice,
-  canAddToCart,
 } from "./stockHelpers";
+import * as S from "./styles";
 
 const LOW_STOCK_QUANTITY: number = 5;
 

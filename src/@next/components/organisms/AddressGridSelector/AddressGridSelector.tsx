@@ -7,7 +7,6 @@ import { AddressTileOption } from "@components/molecules";
 import { checkoutMessages } from "@temp/intl";
 
 import { AddressFormModal } from "../AddressFormModal";
-
 import { IProps } from "./types";
 
 /**

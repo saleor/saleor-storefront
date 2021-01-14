@@ -1,12 +1,13 @@
+import { NextPage } from "next";
 import * as React from "react";
 import { useIntl } from "react-intl";
-import { NextPage } from "next";
-
-import { prodListHeaderCommonMsg } from "@temp/intl";
-import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
+
 import { Loader, OfflinePlaceholder } from "@components/atoms";
 import { channelSlug } from "@temp/constants";
+import { prodListHeaderCommonMsg } from "@temp/intl";
+import { IFilters } from "@types";
+
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";

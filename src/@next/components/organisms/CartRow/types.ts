@@ -1,5 +1,6 @@
-import { IImage } from "@types";
 import React from "react";
+
+import { IImage } from "@types";
 
 export type ICartRowType = "responsive" | "condense";
 

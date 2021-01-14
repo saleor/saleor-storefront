@@ -1,10 +1,10 @@
-import "./scss/index.scss";
-
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
+
+import closeImg from "../../../images/x.svg";
 import {
   LoginForm,
   Offline,
@@ -14,10 +14,10 @@ import {
   OverlayTheme,
   OverlayType,
 } from "../..";
+import ForgottenPassword from "./ForgottenPassword";
 import RegisterForm from "./RegisterForm";
 
-import closeImg from "../../../images/x.svg";
-import ForgottenPassword from "./ForgottenPassword";
+import "./scss/index.scss";
 
 class Login extends React.Component<
   { overlay: OverlayContextInterface; active?: "login" | "register" },

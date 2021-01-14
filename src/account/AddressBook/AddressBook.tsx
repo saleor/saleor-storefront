@@ -1,17 +1,19 @@
+import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
+import { User } from "@saleor/sdk/lib/fragments/gqlTypes/User";
+import {
+  AccountErrorCode,
+  AddressTypeEnum,
+} from "@saleor/sdk/lib/gqlTypes/globalTypes";
+import { getUserDetailsQuery } from "@saleor/sdk/lib/queries/user";
 import React from "react";
 import { useIntl } from "react-intl";
-import "./scss/index.scss";
 
 import { AddressFormModal, AddressGrid } from "@components/organisms";
 import { checkoutMessages, commonMessages } from "@temp/intl";
-import { useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
-import {
-  AddressTypeEnum,
-  AccountErrorCode,
-} from "@saleor/sdk/lib/gqlTypes/globalTypes";
-import { getUserDetailsQuery } from "@saleor/sdk/lib/queries/user";
-import { User } from "@saleor/sdk/lib/fragments/gqlTypes/User";
+
 import { ShopContext } from "../../components/ShopProvider/context";
+
+import "./scss/index.scss";
 
 const AddressBook: React.FC<{
   user: User;

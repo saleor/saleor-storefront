@@ -1,8 +1,8 @@
-import * as React from "react";
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { useRouter } from "next/router";
+import * as React from "react";
 
 import { CartSidebar } from "@components/organisms";
-import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 import { paths } from "@paths";
 
 import { OverlayContextInterface } from "../..";

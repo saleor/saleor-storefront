@@ -1,8 +1,8 @@
-import React from "react";
-import { useIntl, IntlShape } from "react-intl";
 import Link from "next/link";
-import { checkoutMessages } from "@temp/intl";
+import React from "react";
+import { IntlShape, useIntl } from "react-intl";
 
+import { checkoutMessages } from "@temp/intl";
 import { ICheckoutStep } from "@types";
 
 import * as S from "./styles";

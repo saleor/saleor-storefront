@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import { ssrMode } from "@temp/constants";
+
 import { generatePageUrl } from "./utils";
 
 export const PRODUCTS_PER_PAGE = 6;

@@ -2,6 +2,7 @@ import {
   ICheckoutModelLine,
   ICheckoutModelLineVariant,
 } from "@saleor/sdk/lib/helpers";
+
 import { ITaxedMoney } from "@types";
 
 import productImage from "./productImage.png";

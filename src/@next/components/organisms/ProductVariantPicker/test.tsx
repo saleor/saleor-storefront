@@ -1,5 +1,6 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
 import { IntlProvider } from "react-intl";
 import { components } from "react-select";

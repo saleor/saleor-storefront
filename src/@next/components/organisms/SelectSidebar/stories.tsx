@@ -1,7 +1,6 @@
+import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-
-import { action } from "@storybook/addon-actions";
 
 import { SelectSidebar } from ".";
 import { DEFAULT_PROPS } from "./testData";

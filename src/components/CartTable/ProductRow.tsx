@@ -1,11 +1,11 @@
+import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import classNames from "classnames";
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 
 import { generateProductUrl } from "../../core/utils";
 

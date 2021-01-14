@@ -1,4 +1,4 @@
-import { styled, DefaultTheme } from "@styles";
+import { DefaultTheme, styled } from "@styles";
 
 export const activeLabelStyles = (
   theme: DefaultTheme,

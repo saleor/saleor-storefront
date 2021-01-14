@@ -1,8 +1,8 @@
-import { styled } from "@styles";
 import ReactSVG from "react-svg";
 import { css } from "styled-components";
 
 import { NavLink as _NavLink } from "@components/atoms";
+import { styled } from "@styles";
 
 import { NAVBAR_HEIGHT } from "../TopNavbar/styles";
 

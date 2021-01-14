@@ -1,4 +1,5 @@
 import { createBrowserHistory, History } from "history";
+
 import { ssrMode } from "@temp/constants";
 
 const history = (() => {

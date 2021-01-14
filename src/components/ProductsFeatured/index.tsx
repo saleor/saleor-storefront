@@ -1,9 +1,10 @@
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
 
 import { channelSlug } from "@temp/constants";
-import { Carousel, ProductListItem } from "..";
+
 import { generateProductUrl } from "../../core/utils";
+import { Carousel, ProductListItem } from "..";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";

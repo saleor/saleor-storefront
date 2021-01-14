@@ -1,14 +1,14 @@
+import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
-import Link from "next/link";
 import ReactSVG from "react-svg";
 
-import { commonMessages } from "@temp/intl";
 import { paths } from "@paths";
-import NavItem, { INavItem } from "./NavItem";
+import { commonMessages } from "@temp/intl";
 
 import backImg from "../../images/arrow-back.svg";
 import logoImg from "../../images/logo.svg";
+import NavItem, { INavItem } from "./NavItem";
 
 import "./scss/index.scss";
 

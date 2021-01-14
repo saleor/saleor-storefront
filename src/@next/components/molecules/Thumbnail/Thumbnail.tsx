@@ -1,8 +1,8 @@
 import React from "react";
 
+import { PlaceholderImage } from "@components/atoms";
 import { maybe } from "@utils/misc";
 
-import { PlaceholderImage } from "@components/atoms";
 import { CachedImage } from "..";
 import { IProps } from "./types";
 

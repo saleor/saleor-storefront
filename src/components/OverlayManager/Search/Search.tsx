@@ -1,20 +1,22 @@
-import "./scss/index.scss";
-import { NextRouter, withRouter } from "next/router";
 import classNames from "classnames";
-import { channelSlug } from "@temp/constants";
+import { NextRouter, withRouter } from "next/router";
 import { stringify } from "query-string";
 import * as React from "react";
 import {
+  FormattedMessage,
   injectIntl,
   WrappedComponentProps,
-  FormattedMessage,
 } from "react-intl";
 import ReactSVG from "react-svg";
 
-import { commonMessages } from "@temp/intl";
-
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
+import { channelSlug } from "@temp/constants";
+import { commonMessages } from "@temp/intl";
+
+import { maybe } from "../../../core/utils";
+import searchImg from "../../../images/search.svg";
+import closeImg from "../../../images/x.svg";
 import {
   Button,
   Loader,
@@ -22,7 +24,6 @@ import {
   OverlayContextInterface,
   OverlayType,
 } from "../..";
-import { maybe } from "../../../core/utils";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
@@ -31,8 +32,7 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 
-import searchImg from "../../../images/search.svg";
-import closeImg from "../../../images/x.svg";
+import "./scss/index.scss";
 
 interface SearchProps extends WrappedComponentProps {
   overlay: OverlayContextInterface;

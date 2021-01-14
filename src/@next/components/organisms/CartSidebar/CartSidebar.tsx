@@ -1,3 +1,4 @@
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
@@ -8,16 +9,15 @@ import {
   Loader,
   OfflinePlaceholder,
 } from "@components/atoms";
-import { CardHeader } from "@components/molecules";
 import { TaxedMoney } from "@components/containers";
+import { CardHeader } from "@components/molecules";
 import { useHandlerWhenClickedOutside, useNetworkStatus } from "@hooks";
 import { ITaxedMoney } from "@types";
 
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
-
-import cartImg from "images/cart.svg";
 import { CartRow, Overlay } from "..";
 import * as S from "./styles";
+
+import cartImg from "images/cart.svg";
 
 const generateCart = (
   items: IItems,

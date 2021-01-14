@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+
 import { TypedMutation } from "../../core/mutations";
 import {
   AccountConfirm,

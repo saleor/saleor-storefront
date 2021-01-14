@@ -1,13 +1,14 @@
 import { setAuthToken, useSetPassword } from "@saleor/sdk";
 import { Formik } from "formik";
-import React from "react";
-import * as Yup from "yup";
-import { useRouter } from "next/router";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
+import React from "react";
 import { StringParam, useQueryParams } from "use-query-params";
+import * as Yup from "yup";
 
-import { paths } from "@paths";
 import { ResetPasswordForm } from "@components/molecules";
+import { paths } from "@paths";
+
 import * as S from "./styles";
 import { FormikProps } from "./types";
 

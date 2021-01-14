@@ -1,8 +1,9 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import { styled } from "@styles";
 import React from "react";
 import { IntlProvider } from "react-intl";
+
+import { styled } from "@styles";
 
 import { AddressTile } from ".";
 

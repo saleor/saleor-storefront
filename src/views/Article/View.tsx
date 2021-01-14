@@ -1,17 +1,17 @@
-import "./scss/index.scss";
-
-import * as React from "react";
-
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import * as React from "react";
 
 import { channelSlug } from "@temp/constants";
+
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
 import { generatePageUrl, maybe } from "../../core/utils";
 import { Article_collection } from "./gqlTypes/Article";
 import Page from "./Page";
 import { TypedArticleQuery } from "./query";
+
+import "./scss/index.scss";
 
 const canDisplay = page =>
   maybe(() => !!page && !!page.title && !!page.contentJson);

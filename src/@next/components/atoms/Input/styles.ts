@@ -1,4 +1,5 @@
 import { DefaultTheme, styled } from "@styles";
+
 import { activeLabelStyles } from "../InputLabel";
 
 type WrapperProps = {

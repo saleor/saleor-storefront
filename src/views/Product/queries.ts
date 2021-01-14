@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+
 import { TypedQuery } from "../../core/queries";
 import {
   ProductDetails,

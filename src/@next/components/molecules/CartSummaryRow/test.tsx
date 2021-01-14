@@ -1,10 +1,10 @@
-import { mount, shallow } from "enzyme";
 import "jest-styled-components";
+
+import { mount, shallow } from "enzyme";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { CachedImage } from "..";
-
 import { CartSummaryRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 

@@ -1,14 +1,15 @@
-import "./scss/index.scss";
-
-import * as React from "react";
 import { NextPage } from "next";
-
-import { channelSlug } from "@temp/constants";
-import { Loader } from "@components/atoms";
 import { useRouter } from "next/router";
+import * as React from "react";
+
+import { Loader } from "@components/atoms";
+import { channelSlug } from "@temp/constants";
+
 import { MetaWrapper } from "../../components";
 import Page from "./Page";
 import { TypedHomePageQuery } from "./queries";
+
+import "./scss/index.scss";
 
 const View: React.FC<NextPage> = () => {
   const { pathname, asPath, replace } = useRouter();

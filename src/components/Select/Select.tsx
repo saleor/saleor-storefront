@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import "./scss/index.scss";
-
 import classNames from "classnames";
 import { filter, find } from "lodash";
 import * as React from "react";
@@ -14,6 +12,8 @@ import {
   ISelectProps,
 } from "./customTypes";
 import SelectOptionsList from "./SelectOptionsList";
+
+import "./scss/index.scss";
 
 const updateOptions = (
   { label, value }: ISelectItem,

@@ -4,14 +4,15 @@
 // NOTE: This component should only be used for navigation inside application
 // For external urls, use different component
 
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 import {
   generateCategoryUrl,
   generateCollectionUrl,
   generatePageUrl,
 } from "@utils/core";
+
 import * as S from "./styles";
 import { IProps } from "./types";
 
