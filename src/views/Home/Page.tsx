@@ -147,7 +147,7 @@ const Page: React.FC<{
         <div className="home-page__collections">
           <div className="container">
             <h3>
-              <FormattedMessage defaultMessage="Ultimi Progetti" />
+              <FormattedMessage defaultMessage="Latest Projects" />
             </h3>
             <div className="home-page__collections__list">
               {projects.edges.map(({ node: project }) => (
@@ -181,7 +181,7 @@ const Page: React.FC<{
       )}
       <div className="container">
         <h3>
-          <FormattedMessage defaultMessage="As Seen In" />
+          <FormattedMessage defaultMessage="Parlano di noi" />
         </h3>
         <CarouselProvider
           naturalSlideWidth={100}

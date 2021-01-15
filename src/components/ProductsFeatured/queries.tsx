@@ -13,7 +13,7 @@ export const featuredProducts = gql`
   query FeaturedProducts {
     collection(id: "Q29sbGVjdGlvbjoyOQ==") {
       id
-      products(first: 20) {
+      products(first: 50) {
         edges {
           node {
             ...BasicProductFields
