@@ -8,7 +8,7 @@ A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://
 
 ## Features
 
-- Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/)
+- Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/), [Next.js](https://nextjs.org/) and [Typescript](https://www.typescriptlang.org/)
 - Offline mode (beta)
 - Saleor GraphQL API integration
 - Single-page application experience
@@ -81,6 +81,26 @@ npm start
 
 Go to `http://localhost:3000` to access the storefront.
 
+##### Build
+
+To compile the app run:
+
+```
+$ npm run build
+```
+
+To compile the app and export storefront to the static HTML run:
+
+```
+$ npm run build:export
+```
+
+To compile the app and run it in production mode with next server run:
+
+```
+$ npm run build:start
+```
+
 ## Cypress tests
 
 If you want to run [Cypress](https://www.cypress.io/) tests, make sure that all dependencies (including `Cypress`) are installed by running the install command.
@@ -140,11 +160,9 @@ npm run generate
 
 ### Important Files
 
-- **saleor-storefront/config/webpack/config.base.js** - Base webpack config file.
+- **saleor-storefront/config/next/config.base.js** - Base Next.js config file which contains webpack custom adjustments.
   - Can change name of the app (displayed when installed on mobile)
-- **saleor-storefront/src/index.html** - Main template file that contains the <div id="root"></div>
-  - Can change title of storefront here
-- **saleor-storefront/src/index.tsx** - Main entry point file. Render's the <App /> component, apollo-client, and others to the root div in index.html file above.
+- **saleor-storefront/src/pages/_app_.tsx** - Main entry point file. Render's the <App /> component, apollo-client, and others to the root div in index.html file above. Contains also head section - You can change the title of storefront here.
 - **saleor-storefront/src/core/config.ts** - Controls number of products shown per page, support email, gateway providers, social media, and some meta.
   - Can change support email
   - Can change products shown per page
@@ -158,10 +176,11 @@ npm run generate
 - **saleor-storefront/src/views/** - This folder controls the views, or what is displayed for each page. Most views have a file named "Page.tsx" that controls the layout of the page and a file named "View.tsx" that calls the query and renders the <Page /> component with the data.
   - Can add another view to storefront here. Requires adding a route (see routes below).
 - saleor-storefront/src/@next/pages/ - Second spot for modifying/adding different pages. This is the recommended directory to add new pages.
-- **saleor-storefront/src/app/routes/** - This folder contains the paths as well as holds the <Routes /> component. Here is where you add a new path and route.
+- **saleor-storefront/src/paths.ts** - This folder contains all the paths. Here is where you add a new one.
+- **saleor-storefront/src/pages/** - This folder contains files which are translated to [Next.js routing](https://nextjs.org/docs/basic-features/pages). Here is where you add a new route.
   1.  Export a new path in paths.ts
-  2.  Inside AppRoutes.tsx import your new view (see views above) and create a new route with path={paths.newPath} and component={newViewPage}
-  3.  To link to your new view import { Link } from "react-router-dom" and use new path you created in paths.ts (make sure to import it)
+  2.  Inside pages, create a new file with name correnspond to your desired route ([read more here](https://nextjs.org/docs/routing/dynamic-routes) about nested routes). Import your view in the created route file end export it as a default export.
+  3.  To link to your new view `import Link from "next/link"` and use new path you created in paths.ts (make sure to import it)
 - **saleor-storefront/src/app/App.tsx** - This is main <App /> component that renders the <MainMenu />, <Routes /> (explained below), <Footer /> and a couple other components.
 
 ### Adding a Payment Gateway
