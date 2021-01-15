@@ -42,7 +42,7 @@ export const ProductListProjects: React.FC<IProps> = ({
               color="secondary"
               onClick={onLoadMore}
             >
-              <FormattedMessage defaultMessage="Load More" />
+              <FormattedMessage defaultMessage="Carica Altri" />
             </Button>
           )
         )}
