@@ -160,7 +160,7 @@ npm run generate
 
 ### Important Files
 
-- **saleor-storefront/config/next/config.base.js** - Base next config file which contains webpack custom adjustments.
+- **saleor-storefront/config/next/config.base.js** - Base Next.js config file which contains webpack custom adjustments.
   - Can change name of the app (displayed when installed on mobile)
 - **saleor-storefront/src/pages/_app_.tsx** - Main entry point file. Render's the <App /> component, apollo-client, and others to the root div in index.html file above. Contains also head section - You can change the title of storefront here.
 - **saleor-storefront/src/core/config.ts** - Controls number of products shown per page, support email, gateway providers, social media, and some meta.
