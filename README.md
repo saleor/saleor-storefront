@@ -177,7 +177,7 @@ npm run generate
   - Can add another view to storefront here. Requires adding a route (see routes below).
 - saleor-storefront/src/@next/pages/ - Second spot for modifying/adding different pages. This is the recommended directory to add new pages.
 - **saleor-storefront/src/paths.ts** - This folder contains all the paths. Here is where you add a new one.
-- **saleor-storefront/src/pages/** - This folder contains files which are translated to [next.js routing](https://nextjs.org/docs/basic-features/pages). Here is where you add a new route.
+- **saleor-storefront/src/pages/** - This folder contains files which are translated to [Next.js routing](https://nextjs.org/docs/basic-features/pages). Here is where you add a new route.
   1.  Export a new path in paths.ts
   2.  Inside pages, create a new file with name correnspond to your desired route ([read more here](https://nextjs.org/docs/routing/dynamic-routes) about nested routes). Import your view in the created route file end export it as a default export.
   3.  To link to your new view `import Link from "next/link"` and use new path you created in paths.ts (make sure to import it)
