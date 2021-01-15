@@ -3,7 +3,7 @@ import React from "react";
 import { usePreferences } from "@hooks";
 import { RichTextContent } from "@components/atoms";
 
-import { Thumbnail, ThumbnailCollection } from "@components/molecules";
+import { ThumbnailCollection } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -16,8 +16,6 @@ export const ProductTileProjects: React.FC<IProps> = ({ product }: IProps) => {
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
-        <ThumbnailCollection source={product.collections[1]} />
-        <Thumbnail source={product} />
         <div>
           <h3>
             {locale === "en" && product.collections[1].translation?.name
@@ -33,6 +31,7 @@ export const ProductTileProjects: React.FC<IProps> = ({ product }: IProps) => {
             }
           />
         </div>
+        <ThumbnailCollection source={product.collections[1]} />
       </S.Image>
     </S.Wrapper>
   );

@@ -62,10 +62,9 @@ export const Image = styled.div`
   }
 
   > img {
-    width: 300px;
     height: auto;
     max-width: 100%;
-    grid-column-end: span 1;
+    grid-column-end: span 2;
   }
   > div {
     h3 {

@@ -194,7 +194,7 @@ const Page: React.FC<{
             style={{
               background: "#EFF5F8",
               padding: "5%",
-              outline: "0px!important;",
+              outline: "0px!important",
             }}
             className="homepage-carousel-slider"
           >
