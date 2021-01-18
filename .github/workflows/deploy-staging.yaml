@@ -7,15 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    env:
-      API_URI: https://master.staging.saleor.cloud/graphql/
     steps:
       - uses: actions/checkout@v2
       - name: Create env file
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_NEXT_PUBLIC_API_URI: https://master.staging.saleor.cloud/graphql/
-          filename: env.local
+          filename: .env.local
       - name: Package
         run: |
           npm ci
@@ -43,4 +41,3 @@ jobs:
         run: |
           aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/master.staging.saleor.cloud/
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_STAGING_CF_DIST_ID }} --paths '/*'
-
