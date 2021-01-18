@@ -11,6 +11,11 @@ jobs:
       API_URI: https://master.staging.saleor.cloud/graphql/
     steps:
       - uses: actions/checkout@v2
+      - name: Create env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_NEXT_PUBLIC_API_URI: https://master.staging.saleor.cloud/graphql/
+          filename: env.local
       - name: Package
         run: |
           npm ci
