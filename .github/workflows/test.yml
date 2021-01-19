@@ -93,7 +93,7 @@ jobs:
           # Use custom API_URI or the default one
           envkey_NEXT_PUBLIC_API_URI: ${{ steps.api_uri.outputs.custom_api_uri || secrets.API_URI }}
           envkey_NEXT_PUBLIC_SALEOR_CHANNEL_SLUG: "default-channel"
-          filename: env.local
+          filename: .env.local
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
