@@ -13,7 +13,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_NEXT_PUBLIC_API_URI: https://master.staging.saleor.cloud/graphql/
-          filename: .env.local
+          file_name: .env.local
       - name: Package
         run: |
           npm ci
