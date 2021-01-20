@@ -5,6 +5,10 @@ const path = require("path");
 module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
 
+  env: {
+    ...nextConfig.env,
+  },
+
   trailingSlash: true,
 
   webpack: (config, options) => {
