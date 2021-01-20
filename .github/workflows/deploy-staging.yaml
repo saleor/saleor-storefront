@@ -4,17 +4,15 @@ on:
     branches:
       - master
       - ci/staging/**
+
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name: Create env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          envkey_NEXT_PUBLIC_API_URI: https://master.staging.saleor.cloud/graphql/
-          file_name: .env.local
       - name: Package
+        env:
+          NEXT_PUBLIC_API_URI: ${{ secrets.API_URI }}
         run: |
           npm ci
           npm run build:export
