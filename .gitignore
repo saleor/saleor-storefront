@@ -15,6 +15,7 @@
 !.env
 !.env.development
 !.env.production
+!.nvmrc
 
 dist
 node_modules
