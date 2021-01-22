@@ -87,17 +87,10 @@ jobs:
         run: |
           echo "::set-output name=custom_api_uri::$(echo $pull_request_body | grep -Eo "$prefix$pattern" | sed s/$prefix// | head -n 1)"
 
-      - name: Create env file
-        uses: SpicyPizza/create-envfile@v1
-        with:
-          # Use custom API_URI or the default one
-          envkey_NEXT_PUBLIC_API_URI: ${{ steps.api_uri.outputs.custom_api_uri || secrets.API_URI }}
-          envkey_NEXT_PUBLIC_SALEOR_CHANNEL_SLUG: "default-channel"
-          file_name: .env.local
-
       - name: Cypress run
         uses: cypress-io/github-action@v2
         env:
+          NEXT_PUBLIC_API_URI: ${{ steps.api_uri.outputs.custom_api_uri || secrets.API_URI }}
           APP_MOUNT_URI: ${{ secrets.APP_MOUNT_URI }}
           CYPRESS_API_URI: ${{ secrets.CYPRESS_API_URI }}
           CYPRESS_USER_NAME: ${{ secrets.CYPRESS_USER_NAME }}
