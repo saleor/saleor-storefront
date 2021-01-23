@@ -12,7 +12,7 @@ import { TypedHomePageQuery } from "./queries";
 import "./scss/index.scss";
 
 const View: React.FC<NextPage> = () => {
-  const { pathname, asPath, replace } = useRouter();
+  const { pathname, asPath } = useRouter();
   const shouldRedirect = pathname === "/" && pathname !== asPath;
 
   /**
@@ -21,11 +21,11 @@ const View: React.FC<NextPage> = () => {
    * the goal is to generate all existing products, categories etc via static pages generation which will
    * be added in SALEOR-1566.
    */
-  React.useEffect(() => {
-    if (shouldRedirect) {
-      replace(asPath);
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (shouldRedirect) {
+  //     replace(asPath);
+  //   }
+  // }, []);
 
   return (
     <div className="home-page">

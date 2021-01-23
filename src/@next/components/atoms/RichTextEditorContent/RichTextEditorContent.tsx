@@ -51,7 +51,8 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
 
-  const data: OutputData = JSON.parse(jsonData);
+  // FIXME: Api bug?
+  const data: OutputData = JSON.parse(jsonData.replace(/'/g, '"'));
 
   React.useEffect(() => {
     if (data && editorContainer.current) {

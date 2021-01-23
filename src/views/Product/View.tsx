@@ -1,24 +1,22 @@
 import { useCart } from "@saleor/sdk";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { isEmpty } from "lodash";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
-import { Loader, OfflinePlaceholder } from "@components/atoms";
-import { channelSlug } from "@temp/constants";
+import { OfflinePlaceholder } from "@components/atoms";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
-import { ProductDetails_product } from "./gqlTypes/ProductDetails";
+import { maybe } from "../../core/utils";
 import Page from "./Page";
-import { TypedProductDetailsQuery } from "./queries";
 import { IProps } from "./types";
 
 import "./scss/index.scss";
 
-const canDisplay = (product: ProductDetails_product) =>
+const canDisplay = (product: ProductDetails) =>
   maybe(
     () =>
       !!product.descriptionJson &&
@@ -26,7 +24,7 @@ const canDisplay = (product: ProductDetails_product) =>
       !!product.pricing &&
       !!product.variants
   );
-const extractMeta = (product: ProductDetails_product, url: string) => ({
+const extractMeta = (product: ProductDetails, url: string) => ({
   custom: [
     {
       content: product.pricing?.priceRange?.start?.gross.amount.toString(),
@@ -106,56 +104,40 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 };
 
 export type ViewProps = {
-  query: { slug: string; id: string };
+  params: { slug: string; id: string };
+  data: ProductDetails;
 };
 
-const View: NextPage<ViewProps> = ({ query: { id } }) => {
+const View: NextPage<ViewProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
   const { asPath } = useRouter();
 
   return (
-    <TypedProductDetailsQuery
-      loaderFull
-      variables={{
-        channel: channelSlug,
-        id: getGraphqlIdFromDBId(id, "Product"),
+    <NetworkStatus>
+      {isOnline => {
+        if (canDisplay(product)) {
+          return (
+            <MetaWrapper
+              meta={extractMeta(product, queryString.parseUrl(asPath).url)}
+            >
+              <PageWithQueryAttributes
+                product={product}
+                add={addItem}
+                items={items}
+              />
+            </MetaWrapper>
+          );
+        }
+
+        if (product === null) {
+          return <NotFound />;
+        }
+
+        if (!isOnline) {
+          return <OfflinePlaceholder />;
+        }
       }}
-      errorPolicy="all"
-      key={id}
-    >
-      {({ data, loading }) => (
-        <NetworkStatus>
-          {isOnline => {
-            const { product } = data;
-            if (canDisplay(product)) {
-              return (
-                <MetaWrapper
-                  meta={extractMeta(product, queryString.parseUrl(asPath).url)}
-                >
-                  <PageWithQueryAttributes
-                    product={product}
-                    add={addItem}
-                    items={items}
-                  />
-                </MetaWrapper>
-              );
-            }
-
-            if (loading) {
-              return <Loader />;
-            }
-
-            if (product === null) {
-              return <NotFound />;
-            }
-
-            if (!isOnline) {
-              return <OfflinePlaceholder />;
-            }
-          }}
-        </NetworkStatus>
-      )}
-    </TypedProductDetailsQuery>
+    </NetworkStatus>
   );
 };
 
