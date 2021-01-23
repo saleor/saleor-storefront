@@ -125,6 +125,8 @@ const Page: React.FC<PageProps> = ({
 
       {!hasProducts && (
         <ProductsFeatured
+          // FIXME
+          products={[]}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}

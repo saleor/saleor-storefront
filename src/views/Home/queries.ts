@@ -1,18 +1,26 @@
 import gql from "graphql-tag";
 
-import { TypedQuery } from "../../core/queries";
-import { ProductsList } from "./gqlTypes/ProductsList";
+import { featuredProductFragment } from "@temp/components/ProductsFeatured/queries";
 
-export const homePageQuery = gql`
-  query ProductsList($channel: String) {
+export const homePageProductsQuery = gql`
+  ${featuredProductFragment}
+  query HomePageProducts($channel: String) {
     shop {
       description
       name
     }
     collection(slug: "featured-products", channel: $channel) {
+      name
       backgroundImage {
         url
         alt
+      }
+      products(first: 20) {
+        edges {
+          node {
+            ...FeaturedProduct
+          }
+        }
       }
     }
     categories(level: 0, first: 4) {
@@ -28,5 +36,3 @@ export const homePageQuery = gql`
     }
   }
 `;
-
-export const TypedHomePageQuery = TypedQuery<ProductsList, {}>(homePageQuery);

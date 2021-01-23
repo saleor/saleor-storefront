@@ -4,12 +4,12 @@ import * as React from "react";
 import { Thumbnail } from "@components/molecules";
 
 import { TaxedMoney } from "../../@next/components/containers";
-import { FeaturedProducts_collection_products_edges_node } from "../ProductsFeatured/gqlTypes/FeaturedProducts";
+import { FeaturedProduct } from "../ProductsFeatured/gqlTypes/FeaturedProduct";
 
 import "./scss/index.scss";
 
 interface ProductListItemProps {
-  product: FeaturedProducts_collection_products_edges_node;
+  product: FeaturedProduct;
 }
 
 const ProductListItem: React.FC<ProductListItemProps> = ({ product }) => {

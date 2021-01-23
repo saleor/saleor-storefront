@@ -1,21 +1,25 @@
 import { SaleorManager } from "@saleor/sdk";
 import { SaleorAPI } from "@saleor/sdk/lib/api";
 import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
+import ApolloClient from "apollo-client";
 
 import { apiUrl, channelSlug } from "@temp/constants";
 
-let API: SaleorAPI | null = null;
+let CONNECTION: {
+  api: SaleorAPI;
+  apolloClient: ApolloClient<any>;
+} | null = null;
 
 export const getSaleorApi = async () => {
-  if (!API) {
+  if (!CONNECTION) {
     const manager = new SaleorManager({
       apiUrl,
       channel: channelSlug,
     });
-    API = (await manager.connect()).api;
+    CONNECTION = await manager.connect();
   }
 
-  return API;
+  return CONNECTION;
 };
 
 export const exhaustList = async <

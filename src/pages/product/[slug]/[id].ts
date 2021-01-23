@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
   channelSlug,
+  exportMode,
   incrementalStaticRegenerationRevalidate,
 } from "@temp/constants";
 import { getDBIdFromGraphqlId } from "@utils/core";
@@ -14,7 +15,7 @@ export default ProductPage;
 export const getStaticPaths: GetStaticPaths<
   ProductPageProps["params"]
 > = async () => {
-  const api = await getSaleorApi();
+  const { api } = await getSaleorApi();
   const productsListApi = await api.products.getList({
     first: 20,
     channel: channelSlug,
@@ -26,14 +27,14 @@ export const getStaticPaths: GetStaticPaths<
     params: { slug, id: getDBIdFromGraphqlId(id, "Product").toString() },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: !exportMode };
 };
 
 export const getStaticProps: GetStaticProps<
   ProductPageProps,
   ProductPageProps["params"]
 > = async ({ params }) => {
-  const api = await getSaleorApi();
+  const { api } = await getSaleorApi();
   const { data } = await api.products.getDetails({
     slug: params.slug,
     channel: channelSlug,
