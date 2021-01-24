@@ -1,6 +1,6 @@
 import type EditorJS from "@editorjs/editorjs";
 import {
-  OutputData,
+  // OutputData,
   ToolConstructable,
   ToolSettings,
 } from "@editorjs/editorjs";
@@ -52,8 +52,8 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
   const editorContainer = React.useRef<HTMLDivElement>(null);
 
   // FIXME: Api bug?
-  const data: OutputData = JSON.parse(jsonData.replace(/'/g, '"'));
-
+  // const data: OutputData = JSON.parse(jsonData);
+  const data = "";
   React.useEffect(() => {
     if (data && editorContainer.current) {
       (async () => {

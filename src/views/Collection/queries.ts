@@ -1,10 +1,8 @@
 import gql from "graphql-tag";
 
+import { basicProductFragment, productPricingFragment } from "@graphql";
+
 import { TypedQuery } from "../../core/queries";
-import {
-  basicProductFragment,
-  productPricingFragment,
-} from "../Product/queries";
 import { Collection, CollectionVariables } from "./gqlTypes/Collection";
 import {
   CollectionProducts,

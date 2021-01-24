@@ -24,10 +24,6 @@ export interface HomePageProducts_collection_backgroundImage {
    * The URL of the image.
    */
   url: string;
-  /**
-   * Alt text for an image.
-   */
-  alt: string | null;
 }
 
 export interface HomePageProducts_collection_products_edges_node_thumbnail {
@@ -324,6 +320,7 @@ export interface HomePageProducts {
    * Return information about the shop.
    */
   shop: HomePageProducts_shop;
+  __typename: "Query";
   /**
    * Look up a collection by ID.
    */

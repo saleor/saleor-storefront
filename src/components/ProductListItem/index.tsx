@@ -2,9 +2,9 @@ import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { Thumbnail } from "@components/molecules";
+import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 
 import { TaxedMoney } from "../../@next/components/containers";
-import { FeaturedProduct } from "../ProductsFeatured/gqlTypes/FeaturedProduct";
 
 import "./scss/index.scss";
 

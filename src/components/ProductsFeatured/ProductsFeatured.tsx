@@ -1,9 +1,10 @@
 import Link from "next/link";
 import * as React from "react";
 
+import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
+
 import { generateProductUrl } from "../../core/utils";
 import { Carousel, ProductListItem } from "..";
-import { FeaturedProduct } from "./gqlTypes/FeaturedProduct";
 
 import "./scss/index.scss";
 

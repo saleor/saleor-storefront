@@ -96,7 +96,7 @@
           ["^[^. ]"],
           // ALiases.
           [
-            "^(@components|@paths|@pages|@utils|@hooks|@types|@app|@locale|@temp|@styles)(/.*|$)"
+            "^(@components|@paths|@pages|@utils|@hooks|@types|@app|@locale|@temp|@styles|@graphql)(/.*|$)"
           ],
           // Relative imports.
           // Anything that starts with a dot.

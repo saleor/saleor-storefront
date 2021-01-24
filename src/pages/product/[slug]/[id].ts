@@ -42,6 +42,6 @@ export const getStaticProps: GetStaticProps<
 
   return {
     revalidate: incrementalStaticRegenerationRevalidate,
-    props: { data, params },
+    props: { data: data || null, params },
   };
 };

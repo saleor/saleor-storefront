@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 
@@ -27,6 +28,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
+  featuredProducts: FeaturedProduct[];
   search?: string;
   setSearch?: (
     newValue: string,
@@ -55,6 +57,7 @@ const Page: React.FC<PageProps> = ({
   onOrder,
   sortOptions,
   onAttributeFiltersChange,
+  featuredProducts,
 }) => {
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
@@ -143,8 +146,7 @@ const Page: React.FC<PageProps> = ({
 
       {!hasProducts && (
         <ProductsFeatured
-          // FIXME
-          products={[]}
+          products={featuredProducts}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}

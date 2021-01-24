@@ -6,24 +6,21 @@ import { useRouter } from "next/router";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
-import { OfflinePlaceholder } from "@components/atoms";
+import { Loader, OfflinePlaceholder } from "@components/atoms";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { maybe } from "../../core/utils";
 import Page from "./Page";
 import { IProps } from "./types";
 
 import "./scss/index.scss";
 
 const canDisplay = (product: ProductDetails) =>
-  maybe(
-    () =>
-      !!product.descriptionJson &&
-      !!product.name &&
-      !!product.pricing &&
-      !!product.variants
-  );
+  !!product?.descriptionJson &&
+  !!product?.name &&
+  !!product?.pricing &&
+  !!product?.variants;
+
 const extractMeta = (product: ProductDetails, url: string) => ({
   custom: [
     {
@@ -52,7 +49,7 @@ const extractMeta = (product: ProductDetails, url: string) => ({
 
 const PageWithQueryAttributes: React.FC<IProps> = props => {
   const { product } = props;
-  const { pathname, push, query, replace, asPath } = useRouter();
+  const { pathname, push, query, asPath } = useRouter();
 
   const onAttributeChangeHandler = (slug: string | null, value: string) => {
     const newAsPath = queryString.stringifyUrl(
@@ -85,14 +82,10 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
           }
         });
       });
+
       setQueryAttributes(queryAttributes);
     }
   }, [product.variants.length]);
-
-  useEffect(() => {
-    const { url } = queryString.parseUrl(asPath);
-    replace({ pathname, query }, url);
-  }, [queryAttributes]);
 
   return (
     <Page
@@ -103,12 +96,12 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   );
 };
 
-export type ViewProps = {
+export type ProductPageProps = {
   params: { slug: string; id: string };
-  data: ProductDetails;
+  data: ProductDetails | undefined | null;
 };
 
-const View: NextPage<ViewProps> = ({ data: product }) => {
+export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
   const { asPath } = useRouter();
 
@@ -129,8 +122,8 @@ const View: NextPage<ViewProps> = ({ data: product }) => {
           );
         }
 
-        if (product === null) {
-          return <NotFound />;
+        if (!product) {
+          return product === null ? <NotFound /> : <Loader fullScreen />;
         }
 
         if (!isOnline) {
@@ -140,5 +133,3 @@ const View: NextPage<ViewProps> = ({ data: product }) => {
     </NetworkStatus>
   );
 };
-
-export default View;

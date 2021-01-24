@@ -1,28 +1,15 @@
 import gql from "graphql-tag";
 
-import { featuredProductFragment } from "@temp/components/ProductsFeatured/queries";
+import { featuredProductsFragment } from "@graphql";
 
 export const homePageProductsQuery = gql`
-  ${featuredProductFragment}
+  ${featuredProductsFragment}
   query HomePageProducts($channel: String) {
     shop {
       description
       name
     }
-    collection(slug: "featured-products", channel: $channel) {
-      name
-      backgroundImage {
-        url
-        alt
-      }
-      products(first: 20) {
-        edges {
-          node {
-            ...FeaturedProduct
-          }
-        }
-      }
-    }
+    ...FeaturedProducts
     categories(level: 0, first: 4) {
       edges {
         node {
