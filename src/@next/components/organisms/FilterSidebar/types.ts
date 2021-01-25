@@ -1,7 +1,7 @@
-import { IFilterAttributes, IFilters } from "@types";
+import { FilterAttributes, IFilters } from "@types";
 
 export interface IProps {
-  attributes: IFilterAttributes[];
+  attributes: FilterAttributes[];
   filters: IFilters;
   hide: () => void;
   onAttributeFiltersChange: (attributeSlug: string, values: string) => void;

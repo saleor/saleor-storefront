@@ -1,12 +1,11 @@
 import { NextPage } from "next";
 import * as React from "react";
-import { useIntl } from "react-intl";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
 import { channelSlug } from "@temp/constants";
-import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
+import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -23,26 +22,6 @@ import {
   TypedCollectionProductsQuery,
 } from "./queries";
 
-export const FilterQuerySet = {
-  encode(valueObj) {
-    const str = [];
-    Object.keys(valueObj).forEach(value => {
-      str.push(`${value}_${valueObj[value].join("_")}`);
-    });
-    return str.join(".");
-  },
-
-  decode(strValue) {
-    const obj = {};
-    const propsWithValues = strValue.split(".").filter(n => n);
-    propsWithValues.map(value => {
-      const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
-    });
-    return obj;
-  },
-};
-
 export type ViewProps = {
   query: { slug: string; id: string };
 };
@@ -53,7 +32,6 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
     "filters",
     FilterQuerySet
   );
-  const intl = useIntl();
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -103,39 +81,6 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
     sortBy: convertSortByFromString(filters.sortBy),
     channel: channelSlug,
   };
-
-  const sortOptions = [
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
-      value: null,
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPrice),
-      value: "price",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPriceDsc),
-      value: "-price",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsName),
-      value: "name",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
-      value: "-name",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
-      value: "updated_at",
-    },
-    {
-      label: intl.formatMessage(
-        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
-      ),
-      value: "-updated_at",
-    },
-  ];
 
   return (
     <NetworkStatus>
@@ -217,7 +162,7 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
                                 .pageInfo.hasNextPage,
                             false
                           )}
-                          sortOptions={sortOptions}
+                          sortOptions={SORT_OPTIONS}
                           activeSortOption={filters.sortBy}
                           filters={filters}
                           products={

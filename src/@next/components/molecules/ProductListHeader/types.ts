@@ -1,7 +1,4 @@
-interface SortOptions {
-  value?: string;
-  label: string;
-}
+import { SortOptions } from "@utils/collections";
 
 interface ActiveFiltersAttribute {
   attributeSlug: string;
@@ -14,7 +11,7 @@ export interface IProps {
   activeFilters: number;
   activeFiltersAttributes: ActiveFiltersAttribute[];
   numberOfProducts: number;
-  sortOptions: SortOptions[];
+  sortOptions: SortOptions;
   onChange: (order: { value?: string; label: string }) => void;
   onCloseFilterAttribute: (attributeSlug: string, valueSlug: string) => void;
   openFiltersMenu: () => void;

@@ -10,11 +10,13 @@ export const mainMenu = gql`
     category {
       id
       name
+      slug
     }
     url
     collection {
       id
       name
+      slug
     }
     page {
       slug

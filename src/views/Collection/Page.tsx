@@ -2,7 +2,7 @@ import * as React from "react";
 import { useIntl } from "react-intl";
 
 import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
+import { FilterAttributes, IFilters } from "@types";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
@@ -15,7 +15,7 @@ import { CollectionProducts_collection_products } from "./gqlTypes/CollectionPro
 import "../Category/scss/index.scss";
 
 interface SortItem {
-  label: string;
+  label: string | JSX.Element;
   value?: string;
 }
 
@@ -23,7 +23,7 @@ interface SortOptions extends Array<SortItem> {}
 
 interface PageProps {
   activeFilters: number;
-  attributes: IFilterAttributes[];
+  attributes: FilterAttributes[];
   activeSortOption: string;
   collection: Collection_collection;
   displayLoader: boolean;

@@ -1,11 +1,11 @@
 import type EditorJS from "@editorjs/editorjs";
 import {
-  // OutputData,
+  OutputData,
   ToolConstructable,
   ToolSettings,
 } from "@editorjs/editorjs";
 import createGenericInlineTool from "editorjs-inline-tool";
-import React from "react";
+import React, { useEffect } from "react";
 
 import * as S from "./styles";
 
@@ -50,11 +50,9 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
 }) => {
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
+  const data: OutputData = JSON.parse(jsonData);
 
-  // FIXME: Api bug?
-  // const data: OutputData = JSON.parse(jsonData);
-  const data = "";
-  React.useEffect(() => {
+  useEffect(() => {
     if (data && editorContainer.current) {
       (async () => {
         const Editor: typeof EditorJS = await require("@editorjs/editorjs"); // eslint-disable-line  global-require
@@ -62,10 +60,7 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
         editor.current = new Editor({
           data,
           holder: editorContainer.current!,
-          // FIXME:
-          // Causes Uncaught (in promise) TypeError: Cannot read property 'deactivate' of null
-          // Waiting for editor.js fix - codex-team/editor.js#1380
-          // readOnly: true,
+          readOnly: true,
           tools: await getTools(),
         });
       })();

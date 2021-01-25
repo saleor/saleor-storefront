@@ -1,9 +1,10 @@
 const baseUrl = "/";
-const slugUrl = "[slug]/[id]/";
+const slugUrl = "[slug]/";
 const accountBaseUrl = `${baseUrl}account/`;
 const checkoutBaseUrl = `${baseUrl}checkout/`;
 
 export const paths = {
+  notFound: `${baseUrl}404`,
   accountConfirm: `${baseUrl}account-confirm`,
   cart: `${baseUrl}cart`,
   category: `${baseUrl}category/${slugUrl}`,

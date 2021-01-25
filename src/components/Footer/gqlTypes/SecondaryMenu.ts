@@ -13,6 +13,7 @@ export interface SecondaryMenu_menu_items_category {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface SecondaryMenu_menu_items_collection {
@@ -22,6 +23,7 @@ export interface SecondaryMenu_menu_items_collection {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface SecondaryMenu_menu_items_page {
@@ -36,6 +38,7 @@ export interface SecondaryMenu_menu_items_children_category {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface SecondaryMenu_menu_items_children_collection {
@@ -45,6 +48,7 @@ export interface SecondaryMenu_menu_items_children_collection {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface SecondaryMenu_menu_items_children_page {

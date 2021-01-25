@@ -8,7 +8,6 @@ import { TaxedMoney } from "@components/containers";
 import { paths } from "@paths";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
 
-import { generateProductUrl } from "../../../../core/utils";
 import { Thumbnail } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -78,10 +77,13 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
                                 .slice(0, 5)
                                 .map((product: any) => (
                                   <Link
-                                    href={generateProductUrl(
-                                      product.variant.product.id,
-                                      product.variant.product.name
-                                    )}
+                                    // FIXME
+                                    href="/"
+                                    // href={{pathname: paths.product, query: {slug:product.variant.product}}
+                                    //   generateProductUrl(
+                                    //   product.variant.product.id,
+                                    //   product.variant.product.name
+                                    // )}
                                     key={product.variant.product.id}
                                   >
                                     <a>

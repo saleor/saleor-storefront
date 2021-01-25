@@ -225,6 +225,7 @@ export interface FeaturedProduct {
    * The ID of the object.
    */
   id: string;
+  slug: string;
   name: string;
   /**
    * The main thumbnail for a product.

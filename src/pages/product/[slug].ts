@@ -4,11 +4,11 @@ import {
   channelSlug,
   exportMode,
   incrementalStaticRegenerationRevalidate,
+  staticPathsFetchBatch,
 } from "@temp/constants";
-import { getDBIdFromGraphqlId } from "@utils/core";
 import { exhaustList, getSaleorApi } from "@utils/ssr";
 
-import { ProductPage, ProductPageProps } from "../../../views/Product";
+import { ProductPage, ProductPageProps } from "../../views/Product";
 
 export default ProductPage;
 
@@ -17,14 +17,14 @@ export const getStaticPaths: GetStaticPaths<
 > = async () => {
   const { api } = await getSaleorApi();
   const productsListApi = await api.products.getList({
-    first: 20,
+    first: staticPathsFetchBatch,
     channel: channelSlug,
   });
 
   await exhaustList(productsListApi);
 
-  const paths = productsListApi.data.map(({ slug, id }) => ({
-    params: { slug, id: getDBIdFromGraphqlId(id, "Product").toString() },
+  const paths = productsListApi.data.map(({ slug }) => ({
+    params: { slug },
   }));
 
   return { paths, fallback: !exportMode };

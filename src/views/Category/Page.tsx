@@ -1,39 +1,41 @@
+import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
+import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { ProductListHeader } from "@components/molecules";
+import { FilterSidebar, ProductList } from "@components/organisms";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
+import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
+import { SortOptions } from "@utils/collections";
 
-import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
+  Filters,
   ProductsFeatured,
 } from "../../components";
-import { maybe } from "../../core/utils";
-import { Category_category } from "./gqlTypes/Category";
-import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
 
 import "./scss/index.scss";
 
-interface SortItem {
-  label: string;
-  value?: string;
+export interface CategoryData {
+  details: CategoryDetails;
+  ancestors: BaseCategory[];
+  attributes: Attribute[];
+  products: ProductDetails[];
+  numberOfProducts: number;
+  featuredProducts: FeaturedProduct[];
 }
 
-interface SortOptions extends Array<SortItem> {}
-
 interface PageProps {
+  category: CategoryData;
   activeFilters: number;
-  attributes: IFilterAttributes[];
   activeSortOption: string;
-  category: Category_category;
   displayLoader: boolean;
-  filters: IFilters;
+  filters: Filters;
   hasNextPage: boolean;
-  products: CategoryProducts_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
@@ -41,25 +43,27 @@ interface PageProps {
   onOrder: (order: { value?: string; label: string }) => void;
 }
 
-const Page: React.FC<PageProps> = ({
+export const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
-  attributes,
-  category,
+  category: {
+    attributes,
+    details,
+    ancestors,
+    products,
+    numberOfProducts,
+    featuredProducts,
+  },
   displayLoader,
   hasNextPage,
   clearFilters,
   onLoadMore,
-  products,
   filters,
   onOrder,
   sortOptions,
   onAttributeFiltersChange,
 }) => {
-  const canDisplayProducts = maybe(
-    () => !!products.edges && products.totalCount !== undefined
-  );
-  const hasProducts = canDisplayProducts && !!products.totalCount;
+  const hasProducts = numberOfProducts > 0;
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
@@ -87,7 +91,7 @@ const Page: React.FC<PageProps> = ({
   return (
     <div className="category">
       <div className="container">
-        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+        <Breadcrumbs breadcrumbs={extractBreadcrumbs(details, ancestors)} />
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
@@ -98,7 +102,7 @@ const Page: React.FC<PageProps> = ({
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
+          numberOfProducts={numberOfProducts}
           activeFilters={activeFilters}
           activeFiltersAttributes={activeFiltersAttributes}
           clearFilters={clearFilters}
@@ -106,9 +110,9 @@ const Page: React.FC<PageProps> = ({
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
-        {canDisplayProducts && (
+        {hasProducts && (
           <ProductList
-            products={products.edges.map(edge => edge.node)}
+            products={products}
             canLoadMore={hasNextPage}
             loading={displayLoader}
             onLoadMore={onLoadMore}
@@ -118,13 +122,10 @@ const Page: React.FC<PageProps> = ({
 
       {!hasProducts && (
         <ProductsFeatured
-          // FIXME
-          products={[]}
+          products={featuredProducts}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}
     </div>
   );
 };
-
-export default Page;

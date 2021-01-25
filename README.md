@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Node.js 12.0+
+- Node.js between 12.0 & 14.0
 - A running instance of Saleor.
 
 To run the storefront, you have to set the `NEXT_PUBLIC_API_URI` environment variable to point to the Saleor GraphQL API.

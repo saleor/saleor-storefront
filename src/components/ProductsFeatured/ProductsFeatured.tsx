@@ -2,8 +2,8 @@ import Link from "next/link";
 import * as React from "react";
 
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
+import { paths } from "@paths";
 
-import { generateProductUrl } from "../../core/utils";
 import { Carousel, ProductListItem } from "..";
 
 import "./scss/index.scss";
@@ -24,7 +24,7 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
         <Carousel>
           {products.map(product => (
             <Link
-              href={generateProductUrl(product.id, product.name)}
+              href={{ pathname: paths.product, query: { slug: product.slug } }}
               key={product.id}
             >
               <a>

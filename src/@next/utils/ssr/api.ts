@@ -1,14 +1,15 @@
-import { SaleorManager } from "@saleor/sdk";
-import { SaleorAPI } from "@saleor/sdk/lib/api";
+import { ConnectResult, SaleorManager } from "@saleor/sdk";
 import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
-import ApolloClient from "apollo-client";
 
+import { featuredProductsQuery } from "@graphql";
+import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
+import {
+  FeaturedProductsQuery,
+  FeaturedProductsQueryVariables,
+} from "@graphql/gqlTypes/FeaturedProductsQuery";
 import { apiUrl, channelSlug } from "@temp/constants";
 
-let CONNECTION: {
-  api: SaleorAPI;
-  apolloClient: ApolloClient<any>;
-} | null = null;
+let CONNECTION: ConnectResult | null = null;
 
 export const getSaleorApi = async () => {
   if (!CONNECTION) {
@@ -47,3 +48,16 @@ export const exhaustList = async <
       fetch(listApi, --triesLeft);
     })(listApi, tries);
   });
+
+export const getFeaturedProducts = async (): Promise<FeaturedProduct[]> => {
+  const { apolloClient } = await getSaleorApi();
+  const { data } = await apolloClient.query<
+    FeaturedProductsQuery,
+    FeaturedProductsQueryVariables
+  >({
+    query: featuredProductsQuery,
+    variables: { channel: channelSlug },
+  });
+
+  return data?.collection?.products?.edges.map(e => e.node) || [];
+};

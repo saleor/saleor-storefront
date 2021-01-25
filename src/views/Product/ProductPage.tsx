@@ -97,7 +97,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 };
 
 export type ProductPageProps = {
-  params: { slug: string; id: string };
+  params: { slug: string } | undefined;
   data: ProductDetails | undefined | null;
 };
 

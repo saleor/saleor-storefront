@@ -1,3 +1,5 @@
+import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
+import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
@@ -6,9 +8,7 @@ import Media from "react-media";
 
 import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
-
-import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
-import { Category_category } from "../../views/Category/gqlTypes/Category";
+import { generatePath } from "@utils/core";
 
 import "./scss/index.scss";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
@@ -18,29 +18,28 @@ export interface Breadcrumb {
   link: string;
 }
 
-export const extractBreadcrumbs = (category: Category_category) => {
-  const constructLink = item => ({
-    link: [
-      `/category`,
-      `/${slugify(item.name)}`,
-      `/${getDBIdFromGraphqlId(item.id, "Category")}/`,
-    ].join(""),
-    value: item.name,
+export const extractBreadcrumbs = (
+  category: CategoryDetails,
+  ancestors: BaseCategory[]
+) => {
+  const constructLink = ({ slug, name }: CategoryDetails | BaseCategory) => ({
+    link: generatePath(paths.category, { slug }),
+    value: name,
   });
 
   let breadcrumbs = [constructLink(category)];
 
-  if (category.ancestors.edges.length) {
-    const ancestorsList = category.ancestors.edges.map(edge =>
-      constructLink(edge.node)
-    );
+  if (ancestors.length) {
+    const ancestorsList = ancestors.map(category => constructLink(category));
     breadcrumbs = ancestorsList.concat(breadcrumbs);
   }
   return breadcrumbs;
 };
 
 const getBackLink = (breadcrumbs: Breadcrumb[]) =>
-  breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : "/";
+  breadcrumbs.length > 1
+    ? breadcrumbs[breadcrumbs.length - 2].link
+    : paths.home;
 
 const Breadcrumbs: React.FC<{
   breadcrumbs: Breadcrumb[];

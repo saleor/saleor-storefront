@@ -1,3 +1,4 @@
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
@@ -20,7 +21,7 @@ import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
-const populateBreadcrumbs = product => [
+const populateBreadcrumbs = (product: ProductDetails) => [
   {
     link: generateCategoryUrl(product.category.id, product.category.name),
     value: product.category.name,
@@ -74,10 +75,8 @@ const Page: React.FC<
       variantId={variantId}
       onAddToCart={handleAddToCart}
       onAttributeChangeHandler={onAttributeChangeHandler}
-      // isAvailableForPurchase={product.isAvailableForPurchase}
-      // availableForPurchase={product.availableForPurchase}
-      isAvailableForPurchase
-      availableForPurchase={null}
+      isAvailableForPurchase={product.isAvailableForPurchase}
+      availableForPurchase={product.availableForPurchase}
     />
   );
 

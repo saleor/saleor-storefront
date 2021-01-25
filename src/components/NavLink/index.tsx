@@ -1,11 +1,9 @@
 import Link from "next/link";
 import * as React from "react";
+import { Url } from "url";
 
-import {
-  generateCategoryUrl,
-  generateCollectionUrl,
-  generatePageUrl,
-} from "../../core/utils";
+import { paths } from "@paths";
+
 import {
   SecondaryMenu_menu_items,
   SecondaryMenu_menu_items_children,
@@ -22,7 +20,7 @@ interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page } = item;
-  const link = (url: string) => (
+  const link = (url: Url) => (
     <Link passHref href={url}>
       <a {...props}>{name}</a>
     </Link>
@@ -36,13 +34,19 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
     );
   }
   if (category) {
-    return link(generateCategoryUrl(category.id, category.name));
+    return link({
+      pathname: paths.category,
+      query: { slug: category.slug },
+    });
   }
   if (collection) {
-    return link(generateCollectionUrl(collection.id, collection.name));
+    return link({
+      pathname: paths.collection,
+      query: { slug: collection.slug },
+    });
   }
   if (page) {
-    return link(generatePageUrl(page.slug));
+    return link({ pathname: paths.page, query: { slug: page.slug } });
   }
 
   return <span {...props}>{name}</span>;

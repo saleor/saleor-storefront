@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
+import { FilterAttributes, IFilters } from "@types";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
@@ -23,7 +23,7 @@ interface SortOptions extends Array<SortItem> {}
 
 interface PageProps {
   activeFilters: number;
-  attributes: IFilterAttributes[];
+  attributes: FilterAttributes[];
   activeSortOption: string;
   displayLoader: boolean;
   filters: IFilters;
@@ -123,7 +123,7 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
-        <ProductListHeader
+        {/* <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={products ? products.totalCount : 0}
@@ -133,7 +133,7 @@ const Page: React.FC<PageProps> = ({
           sortOptions={sortOptions}
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
-        />
+        /> */}
         {canDisplayProducts && (
           <ProductList
             products={products.edges.map(edge => edge.node)}
