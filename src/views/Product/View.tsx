@@ -21,7 +21,7 @@ import "./scss/index.scss";
 const canDisplay = (product: ProductDetails_product) =>
   maybe(
     () =>
-      !!product.descriptionJson &&
+      !!product.description &&
       !!product.name &&
       !!product.pricing &&
       !!product.variants
@@ -45,7 +45,7 @@ const extractMeta = (product: ProductDetails_product, url: string) => ({
       property: "product:category",
     },
   ],
-  description: product.seoDescription || product.descriptionJson,
+  description: product.seoDescription || product.description,
   image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
   type: "product.item",

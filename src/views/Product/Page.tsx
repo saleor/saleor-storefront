@@ -124,7 +124,7 @@ const Page: React.FC<
       <div className="container">
         <div className="product-page__product__description">
           <ProductDescription
-            descriptionJson={product.descriptionJson}
+            description={product.description}
             attributes={product.attributes}
           />
         </div>
