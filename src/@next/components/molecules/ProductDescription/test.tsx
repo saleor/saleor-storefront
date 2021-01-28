@@ -1,11 +1,11 @@
 import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
+import React from "react";
 import renderer from "react-test-renderer";
 import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "@styles";
 
-import React from "react";
+import { defaultTheme } from "@styles";
 
 import { ProductDescription } from ".";
 import { attributes, descriptionJSON } from "./fixtures";
