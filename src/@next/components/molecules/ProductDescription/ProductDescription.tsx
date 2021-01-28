@@ -7,8 +7,8 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 enum TABS {
-  DESCRIPTION,
-  ATTRIBUTES,
+  DESCRIPTION = "DESCRIPION",
+  ATTRIBUTES = "ATTRIBUTES",
 }
 
 export const ProductDescription: React.FC<IProps> = ({
@@ -17,6 +17,7 @@ export const ProductDescription: React.FC<IProps> = ({
 }: IProps) => {
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
 
+  console.log({ activeTab });
   return (
     <S.Wrapper>
       <S.Tabs>

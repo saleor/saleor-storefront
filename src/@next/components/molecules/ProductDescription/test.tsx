@@ -1,10 +1,14 @@
 import "jest-styled-components";
 
 import { mount, shallow } from "enzyme";
+import renderer from "react-test-renderer";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "@styles";
+
 import React from "react";
 
 import { ProductDescription } from ".";
-import { attributes, description, descriptionJSON } from "./fixtures";
+import { attributes, descriptionJSON } from "./fixtures";
 import * as S from "./styles";
 
 describe("<ProductDescription />", () => {
@@ -19,16 +23,18 @@ describe("<ProductDescription />", () => {
     expect(wrapper.exists()).toEqual(true);
   });
 
-  it("should contain and show by default product description", () => {
-    const wrapper = mount(
-      <ProductDescription
-        attributes={attributes}
-        description={descriptionJSON}
-      />
-    );
-
-    console.log(123, wrapper.debug());
-    expect(wrapper.text()).toContain(description);
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <ThemeProvider theme={defaultTheme}>
+          <ProductDescription
+            attributes={attributes}
+            description={descriptionJSON}
+          />
+        </ThemeProvider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it("should show product attributes when clicking on attributes tab", () => {
