@@ -17,7 +17,7 @@ describe("<ProductDescription />", () => {
   });
 
   it("should contain and show by default product description", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <ProductDescription attributes={attributes} description={description} />
     );
 

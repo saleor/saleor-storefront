@@ -12,7 +12,7 @@ enum TABS {
 }
 
 export const ProductDescription: React.FC<IProps> = ({
-  description = "",
+  description,
   attributes,
 }: IProps) => {
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
@@ -48,11 +48,7 @@ export const ProductDescription: React.FC<IProps> = ({
         </S.TabTitle>
       </S.Tabs>
       <div hidden={activeTab !== TABS.DESCRIPTION}>
-        {description ? (
-          <RichTextEditorContent jsonData={description} />
-        ) : (
-          <p>{description}</p>
-        )}
+        {description && <RichTextEditorContent jsonData={description} />}
       </div>
       <div hidden={activeTab !== TABS.ATTRIBUTES}>
         <S.AttributeList>
