@@ -55,7 +55,6 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
 
   React.useEffect(() => {
     if (data && editorContainer.current) {
-      console.log(111, { e: editorContainer.current });
       (async () => {
         const Editor: typeof EditorJS = await require("@editorjs/editorjs"); // eslint-disable-line  global-require
 

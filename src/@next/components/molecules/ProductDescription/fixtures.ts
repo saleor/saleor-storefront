@@ -52,12 +52,14 @@ export const attributes = [
   },
 ];
 
-export const description = JSON.stringify({
+export const description =
+  "Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.";
+
+export const descriptionJSON = JSON.stringify({
   blocks: [
     {
       data: {
-        text:
-          "Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.",
+        text: description,
       },
       type: "paragraph",
     },
