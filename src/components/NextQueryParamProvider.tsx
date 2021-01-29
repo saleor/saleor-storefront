@@ -5,7 +5,7 @@ import { QueryParamProvider as ContextProvider } from "use-query-params";
 import { ssrMode } from "@temp/constants";
 
 interface NextQueryParamProviderProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const NextQueryParamProviderComponent = (
