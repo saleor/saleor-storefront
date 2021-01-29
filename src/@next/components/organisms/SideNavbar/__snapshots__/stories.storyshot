@@ -17,7 +17,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   box-sizing: border-box;
 }
 
-.c12 {
+.c11 {
   position: relative;
   font-weight: 600;
   text-transform: uppercase;
@@ -28,8 +28,8 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   width: 100%;
 }
 
-.c12:hover,
-.c12:focus {
+.c11:hover,
+.c11:focus {
   outline: none;
   color: #13bebb;
 }
@@ -156,7 +156,7 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   fill: #13bebb;
 }
 
-.c11 {
+.c12 {
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
@@ -178,19 +178,19 @@ exports[`Storyshots @components/organisms/SideNavbar default 1`] = `
   font-size: 1rem;
 }
 
-.c11 path {
+.c12 path {
   -webkit-transition: 300ms;
   transition: 300ms;
 }
 
-.c11:hover,
-.c11:focus {
+.c12:hover,
+.c12:focus {
   color: #13bebb;
   background-color: rgba(6,132,123,0.25);
 }
 
-.c11:hover path,
-.c11:focus path {
+.c12:hover path,
+.c12:focus path {
   fill: #13bebb;
 }
 
