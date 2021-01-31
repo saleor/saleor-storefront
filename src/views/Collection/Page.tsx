@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { FilterSidebar, ProductList } from "@components/organisms";
 import { commonMessages } from "@temp/intl";
-import { FilterAttributes, IFilters } from "@types";
+import { IFilterAttributes, IFilters } from "@types";
+import { SortOptions } from "@utils/collections";
 
 import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 import { Collection_collection } from "./gqlTypes/Collection";
@@ -14,16 +14,9 @@ import { CollectionProducts_collection_products } from "./gqlTypes/CollectionPro
 
 import "../Category/scss/index.scss";
 
-interface SortItem {
-  label: string | JSX.Element;
-  value?: string;
-}
-
-interface SortOptions extends Array<SortItem> {}
-
 interface PageProps {
   activeFilters: number;
-  attributes: FilterAttributes[];
+  attributes: IFilterAttributes[];
   activeSortOption: string;
   collection: Collection_collection;
   displayLoader: boolean;

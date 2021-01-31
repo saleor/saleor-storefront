@@ -1,29 +1,22 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { ProductListHeader } from "@components/molecules";
+import { FilterSidebar, ProductList } from "@components/organisms";
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { FilterAttributes, IFilters } from "@types";
+import { IFilterAttributes, IFilters } from "@types";
+import { SortOptions } from "@utils/collections";
 
-import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 import { maybe } from "../../core/utils";
 import { SearchProducts_products } from "./gqlTypes/SearchProducts";
 
 import "./scss/index.scss";
 
-interface SortItem {
-  label: string;
-  value?: string;
-}
-
-interface SortOptions extends Array<SortItem> {}
-
 interface PageProps {
   activeFilters: number;
-  attributes: FilterAttributes[];
+  attributes: IFilterAttributes[];
   activeSortOption: string;
   displayLoader: boolean;
   filters: IFilters;
@@ -123,7 +116,7 @@ const Page: React.FC<PageProps> = ({
           attributes={attributes}
           filters={filters}
         />
-        {/* <ProductListHeader
+        <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={products ? products.totalCount : 0}
@@ -133,7 +126,7 @@ const Page: React.FC<PageProps> = ({
           sortOptions={sortOptions}
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
-        /> */}
+        />
         {canDisplayProducts && (
           <ProductList
             products={products.edges.map(edge => edge.node)}

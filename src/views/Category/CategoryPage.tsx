@@ -6,14 +6,50 @@ import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { channelSlug } from "@temp/constants";
-import { convertSortByFromString } from "@temp/core/utils";
+import {
+  convertSortByFromString,
+  convertToAttributeScalar,
+} from "@temp/core/utils";
 import { IFilters } from "@types";
 import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
+import { UknownObject } from "@utils/tsUtils";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { CategoryData, Page } from "./Page";
+
+const handleFiltersChange = (
+  filters: IFilters,
+  attributeFilters: UknownObject<string[]>,
+  setAttributeFilters: (newValue: UknownObject<string[]>) => void
+) => (name: string, value: string) => {
+  if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
+    if (attributeFilters[name].includes(value)) {
+      if (filters.attributes[`${name}`].length === 1) {
+        const att = { ...attributeFilters };
+        delete att[`${name}`];
+        setAttributeFilters({
+          ...att,
+        });
+      } else {
+        setAttributeFilters({
+          ...attributeFilters,
+          [`${name}`]: attributeFilters[`${name}`].filter(
+            item => item !== value
+          ),
+        });
+      }
+    } else {
+      setAttributeFilters({
+        ...attributeFilters,
+        [`${name}`]: [...attributeFilters[`${name}`], value],
+      });
+    }
+  } else {
+    setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
+  }
+};
 
 export type CategoryPageProps = {
   params: { slug: string } | undefined;
@@ -21,6 +57,7 @@ export type CategoryPageProps = {
 };
 
 export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
+  const { products: ssrProducts, ...category } = data;
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
@@ -34,81 +71,75 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
     sortBy: sort || null,
   };
   const variables: ProductListVariables = {
-    ...filters,
-    first: PRODUCTS_PER_PAGE,
+    filter: {
+      price: {
+        lte: filters.priceLte,
+        gte: filters.priceGte,
+      },
+      categories: [category?.id],
+      channel: channelSlug,
+      attributes: filters.attributes
+        ? convertToAttributeScalar(filters.attributes)
+        : {},
+    },
     channel: channelSlug,
+    first: PRODUCTS_PER_PAGE,
     sortBy: convertSortByFromString(filters.sortBy),
   };
-  const x = useProductList(variables);
+  const { next, data: clientProducts = [], pageInfo, loading } = useProductList(
+    variables
+  );
 
-  const checkIfHasNextPage = () =>
-    sort || attributeFilters
-      ? true
-      : data.numberOfProducts > data.products.length;
+  /**
+   * For best UX, when there are no filters/sorting applied,
+   * initial batch of products is served from SSR.
+   */
+  const useClientProducts =
+    !!sort || !!attributeFilters || clientProducts?.length > PRODUCTS_PER_PAGE;
+
+  const hasNextPage = useClientProducts
+    ? pageInfo?.hasNextPage
+    : category.numberOfProducts > ssrProducts.length;
 
   const clearFilters = () => setAttributeFilters({});
 
-  const handleLoadMore = () => {};
-
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
-          const att = { ...attributeFilters };
-          delete att[`${name}`];
-          setAttributeFilters({
-            ...att,
-          });
-        } else {
-          setAttributeFilters({
-            ...attributeFilters,
-            [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
-            ),
-          });
-        }
-      } else {
-        setAttributeFilters({
-          ...attributeFilters,
-          [`${name}`]: [...attributeFilters[`${name}`], value],
-        });
-      }
-    } else {
-      setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
-    }
-  };
+  const handleLoadMore = () => next();
 
   return (
     <NetworkStatus>
       {isOnline =>
         isOnline ? (
-          data ? (
+          category ? (
             <MetaWrapper
               meta={{
-                description: data.categoryDetails.seoDescription,
-                title: data.categoryDetails.seoTitle,
+                description: category.details.seoDescription,
+                title: category.details.seoTitle,
                 type: "product.category",
               }}
             >
               <Page
                 clearFilters={clearFilters}
-                data={data}
-                // displayLoader={loading}
-                displayLoader={false}
-                hasNextPage={checkIfHasNextPage()}
+                category={{
+                  ...category,
+                  products: useClientProducts ? clientProducts : ssrProducts,
+                }}
+                displayLoader={useClientProducts ? loading : false}
+                hasNextPage={hasNextPage}
                 sortOptions={SORT_OPTIONS}
                 activeSortOption={filters.sortBy}
                 filters={filters}
-                onAttributeFiltersChange={onFiltersChange}
+                onAttributeFiltersChange={handleFiltersChange(
+                  filters,
+                  attributeFilters,
+                  setAttributeFilters
+                )}
                 onLoadMore={handleLoadMore}
                 activeFilters={
                   filters!.attributes
                     ? Object.keys(filters!.attributes).length
                     : 0
                 }
-                onOrder={value => {
-                  setSort(value.value);
-                }}
+                onOrder={value => setSort(value.value)}
               />
             </MetaWrapper>
           ) : (
@@ -120,104 +151,4 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
       }
     </NetworkStatus>
   );
-  // return (
-  //   <NetworkStatus>
-  //     {isOnline =>
-  //       isOnline ? (
-  //         <TypedCategoryProductsDataQuery
-  //           variables={variables}
-  //           errorPolicy="all"
-  //           loaderFull
-  //         >
-  //           {categoryData => {
-  //             if (categoryData.loading) {
-  //               return <Loader />;
-  //             }
-
-  //             if (categoryData.data && categoryData.data.category === null) {
-  //               return <NotFound />;
-  //             }
-
-  //             const canDisplayFilters =
-  //               !!categoryData.data?.attributes?.edges &&
-  //               !!categoryData.data?.category?.name;
-
-  //             return (
-  //               <TypedCategoryProductsQuery variables={variables}>
-  //                 {categoryProducts => {
-  //                   if (!canDisplayFilters && categoryProducts.loading) {
-  //                     return <Loader />;
-  //                   }
-
-  //                   if (canDisplayFilters) {
-  //                     const handleLoadMore = () =>
-  //                       categoryProducts.loadMore(
-  //                         (prev, next) => ({
-  //                           ...prev,
-  //                           products: {
-  //                             ...prev.products,
-  //                             edges: [
-  //                               ...prev.products.edges,
-  //                               ...next.products.edges,
-  //                             ],
-  //                             pageInfo: next.products.pageInfo,
-  //                           },
-  //                         }),
-  //                         {
-  //                           after:
-  //                             categoryProducts.data.products.pageInfo.endCursor,
-  //                         }
-  //                       );
-
-  //                     return (
-  //                       <MetaWrapper
-  //                         meta={{
-  //                           description:
-  //                             categoryData.data.category.seoDescription,
-  //                           title: categoryData.data.category.seoTitle,
-  //                           type: "product.category",
-  //                         }}
-  //                       >
-  //                         <Page
-  //                           clearFilters={clearFilters}
-  //                           attributes={categoryData.data.attributes.edges.map(
-  //                             edge => edge.node
-  //                           )}
-  //                           category={categoryData.data.category}
-  //                           displayLoader={categoryData.loading}
-  //                           hasNextPage={
-  //                             categoryProducts.data?.products?.pageInfo
-  //                               .hasNextPage
-  //                           }
-  //                           sortOptions={sortOptions}
-  //                           activeSortOption={filters.sortBy}
-  //                           filters={filters}
-  //                           products={categoryProducts.data.products}
-  //                           onAttributeFiltersChange={onFiltersChange}
-  //                           onLoadMore={handleLoadMore}
-  //                           activeFilters={
-  //                             filters!.attributes
-  //                               ? Object.keys(filters!.attributes).length
-  //                               : 0
-  //                           }
-  //                           onOrder={value => {
-  //                             setSort(value.value);
-  //                           }}
-  //                         />
-  //                       </MetaWrapper>
-  //                     );
-  //                   }
-
-  //                   return null;
-  //                 }}
-  //               </TypedCategoryProductsQuery>
-  //             );
-  //           }}
-  //         </TypedCategoryProductsDataQuery>
-  //       ) : (
-  //         <OfflinePlaceholder />
-  //       )
-  //     }
-  //   </NetworkStatus>
-  // );
 };

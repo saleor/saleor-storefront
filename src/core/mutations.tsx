@@ -1,13 +1,13 @@
 import { ApolloError, MutationUpdaterFn } from "apollo-client";
 import { DocumentNode } from "graphql";
 import * as React from "react";
-import { Mutation, MutationFn, MutationResult } from "react-apollo";
+import { Mutation, MutationFunction, MutationResult } from "react-apollo";
 
 export interface TypedMutationInnerProps<TData, TVariables> {
   children: (
-    mutateFn: MutationFn<TData, TVariables>,
+    mutateFn: MutationFunction<TData, TVariables>,
     result: MutationResult<TData>
-  ) => React.ReactNode;
+  ) => JSX.Element;
   onCompleted?: (data: TData) => void;
   onError?: (error: ApolloError) => void;
   variables?: TVariables;
@@ -18,15 +18,8 @@ export function TypedMutation<TData, TVariables>(
   update?: MutationUpdaterFn<TData>
 ) {
   return (props: TypedMutationInnerProps<TData, TVariables>) => {
-    const {
-      children,
-      onCompleted,
-      onError,
-      variables,
-    } = props as JSX.LibraryManagedAttributes<
-      typeof TypedMutation,
-      typeof props
-    >;
+    const { children, onCompleted, onError, variables } = props;
+
     return (
       <Mutation
         mutation={mutation}

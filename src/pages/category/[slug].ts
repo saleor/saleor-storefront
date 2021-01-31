@@ -59,10 +59,14 @@ export const getStaticProps: GetStaticProps<
       ancestors,
       [products, numberOfProducts],
     ] = await Promise.all([
+      // TODO: make util fn
       apolloClient
         .query<ShopAttributesQuery, ShopAttributesQueryVariables>({
           query: shopAttributesQuery,
-          variables: { categoryId: id, channel: channelSlug },
+          variables: {
+            categoryId: id,
+            channel: channelSlug,
+          },
         })
         .then(({ data }) => data.attributes?.edges.map(e => e.node) || []),
       getFeaturedProducts(),

@@ -46,7 +46,7 @@ export const generatePath = (path: string, params: UknownObject = {}) => {
   const used = new Set();
 
   const appendTraillingSlash = (path: string) =>
-    path?.endsWith("/") ? `${path}/` : path;
+    path?.endsWith("/") ? path : `${path}/`;
 
   // Replace the parts in [xxx]
   path = path.replace(/\[([^\]]+)]/g, (m, c0) => {

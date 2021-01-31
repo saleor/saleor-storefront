@@ -47,7 +47,7 @@ export const SORT_OPTIONS: SortOptions = [
 ];
 
 export const FilterQuerySet = {
-  encode(valueObj: UknownObject) {
+  encode(valueObj: UknownObject<string[]>) {
     const str: string[] = [];
     Object.keys(valueObj).forEach(value => {
       str.push(`${value}_${valueObj[value].join("_")}`);

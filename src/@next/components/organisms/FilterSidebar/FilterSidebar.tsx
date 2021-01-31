@@ -6,14 +6,14 @@ import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
 
-import { FilterAttribute, FilterAttributes, IFilters } from "../../../types";
+import { IFilterAttribute, IFilters } from "../../../types";
 import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const checkIfAttributeIsChecked = (
   filters: IFilters,
-  value: FilterAttribute,
+  value: IFilterAttribute,
   slug: string
 ) => {
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
@@ -58,7 +58,7 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        {attributes.map(({ id, slug, name, values }: FilterAttributes) => (
+        {attributes.map(({ id, slug, name, values }) => (
           <AttributeValuesChecklist
             key={id}
             title={name}

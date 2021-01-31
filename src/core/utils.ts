@@ -1,3 +1,5 @@
+import { ProductOrder } from "@saleor/sdk";
+import { FetchResult } from "apollo-link";
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { each } from "lodash";
@@ -7,8 +9,9 @@ import {
   ParsedQuery,
   stringify as stringifyQs,
 } from "query-string";
-import { FetchResult } from "react-apollo";
 import { UrlObject } from "url";
+
+import { channelSlug } from "@temp/constants";
 
 import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";
@@ -95,15 +98,20 @@ export const getAttributesFromQs = (qs: QueryString) =>
 export const getValueOrEmpty = <T>(value: T): T | string =>
   value === undefined || value === null ? "" : value;
 
-export const convertSortByFromString = (sortBy: string) => {
+export const convertSortByFromString = (
+  sortBy: string,
+  channel = channelSlug
+): ProductOrder => {
   if (!sortBy) {
     return null;
   }
+
   const direction = sortBy.startsWith("-")
     ? OrderDirection.DESC
     : OrderDirection.ASC;
 
   let field;
+
   switch (sortBy.replace(/^-/, "")) {
     case "name":
       field = ProductOrderField.NAME;
@@ -120,7 +128,7 @@ export const convertSortByFromString = (sortBy: string) => {
     default:
       return null;
   }
-  return { field, direction };
+  return { field, direction, channel };
 };
 
 export const maybe = <T>(exp: () => T, d?: T) => {

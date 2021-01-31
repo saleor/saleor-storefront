@@ -1,6 +1,7 @@
 import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
@@ -24,7 +25,7 @@ export interface CategoryData {
   details: CategoryDetails;
   ancestors: BaseCategory[];
   attributes: Attribute[];
-  products: ProductDetails[];
+  products: (ProductDetails | ProductList_products_edges_node)[];
   numberOfProducts: number;
   featuredProducts: FeaturedProduct[];
 }
@@ -63,23 +64,20 @@ export const Page: React.FC<PageProps> = ({
   sortOptions,
   onAttributeFiltersChange,
 }) => {
-  const hasProducts = numberOfProducts > 0;
+  const hasProducts = products.length > 0;
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
-  const getAttribute = (attributeSlug: string, valueSlug: string) => {
-    return {
-      attributeSlug,
-      valueName: attributes
-        .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
-      valueSlug,
-    };
-  };
+  const getAttribute = (attributeSlug: string, valueSlug: string) => ({
+    attributeSlug,
+    valueName: attributes
+      .find(({ slug }) => attributeSlug === slug)
+      .values.find(({ slug }) => valueSlug === slug).name,
+    valueSlug,
+  });
 
   const activeFiltersAttributes =
-    filters &&
-    filters.attributes &&
+    filters?.attributes &&
     Object.keys(filters.attributes).reduce(
       (acc, key) =>
         acc.concat(
