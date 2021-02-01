@@ -101,7 +101,7 @@ export const getValueOrEmpty = <T>(value: T): T | string =>
 export const convertSortByFromString = (
   sortBy: string,
   channel = channelSlug
-): ProductOrder => {
+): ProductOrder | null => {
   if (!sortBy) {
     return null;
   }

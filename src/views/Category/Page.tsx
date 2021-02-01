@@ -18,6 +18,7 @@ import {
   Filters,
   ProductsFeatured,
 } from "../../components";
+import { getActiveFilterAttributes } from "./utils";
 
 import "./scss/index.scss";
 
@@ -68,24 +69,6 @@ export const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
 
-  const getAttribute = (attributeSlug: string, valueSlug: string) => ({
-    attributeSlug,
-    valueName: attributes
-      .find(({ slug }) => attributeSlug === slug)
-      .values.find(({ slug }) => valueSlug === slug).name,
-    valueSlug,
-  });
-
-  const activeFiltersAttributes =
-    filters?.attributes &&
-    Object.keys(filters.attributes).reduce(
-      (acc, key) =>
-        acc.concat(
-          filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))
-        ),
-      []
-    );
-
   return (
     <div className="category">
       <div className="container">
@@ -102,7 +85,10 @@ export const Page: React.FC<PageProps> = ({
           openFiltersMenu={() => setShowFilters(true)}
           numberOfProducts={numberOfProducts}
           activeFilters={activeFilters}
-          activeFiltersAttributes={activeFiltersAttributes}
+          activeFiltersAttributes={getActiveFilterAttributes(
+            filters?.attributes,
+            attributes
+          )}
           clearFilters={clearFilters}
           sortOptions={sortOptions}
           onChange={onOrder}

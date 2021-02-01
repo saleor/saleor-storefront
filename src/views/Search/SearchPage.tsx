@@ -1,13 +1,12 @@
 import { NextPage } from "next";
 import * as React from "react";
-import { useIntl } from "react-intl";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { FeaturedProducts } from "@graphql/gqlTypes/FeaturedProducts";
 import { channelSlug } from "@temp/constants";
-import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
+import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
 
 import { NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -17,28 +16,9 @@ import {
   convertToAttributeScalar,
   maybe,
 } from "../../core/utils";
+import { handleFiltersChange } from "../Category/utils";
 import Page from "./Page";
 import { TypedSearchProductsQuery } from "./queries";
-
-export const FilterQuerySet = {
-  encode(valueObj) {
-    const str = [];
-    Object.keys(valueObj).forEach(value => {
-      str.push(`${value}_${valueObj[value].join("_")}`);
-    });
-    return str.join(".");
-  },
-
-  decode(strValue) {
-    const obj = {};
-    const propsWithValues = strValue.split(".").filter(n => n);
-    propsWithValues.map(value => {
-      const propWithValues = value.split("_").filter(n => n);
-      obj[propWithValues[0]] = propWithValues.slice(1);
-    });
-    return obj;
-  },
-};
 
 export interface SearchPageProps {
   data: FeaturedProducts;
@@ -53,7 +33,6 @@ export const SearchPage: NextPage<SearchPageProps> = ({
     "filters",
     FilterQuerySet
   );
-  const intl = useIntl();
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
@@ -72,70 +51,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
     sortBy: convertSortByFromString(filters.sortBy),
   };
 
-  const sortOptions = [
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
-      value: null,
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPrice),
-      value: "price",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPriceDsc),
-      value: "-price",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsName),
-      value: "name",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
-      value: "-name",
-    },
-    {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
-      value: "updated_at",
-    },
-    {
-      label: intl.formatMessage(
-        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
-      ),
-      value: "-updated_at",
-    },
-  ];
-
-  const clearFilters = () => {
-    setAttributeFilters({});
-  };
-
-  const onFiltersChange = (name, value) => {
-    if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-      if (attributeFilters[name].includes(value)) {
-        if (filters.attributes[`${name}`].length === 1) {
-          const att = { ...attributeFilters };
-          delete att[`${name}`];
-          setAttributeFilters({
-            ...att,
-          });
-        } else {
-          setAttributeFilters({
-            ...attributeFilters,
-            [`${name}`]: attributeFilters[`${name}`].filter(
-              item => item !== value
-            ),
-          });
-        }
-      } else {
-        setAttributeFilters({
-          ...attributeFilters,
-          [`${name}`]: [...attributeFilters[`${name}`], value],
-        });
-      }
-    } else {
-      setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
-    }
-  };
+  const clearFilters = () => setAttributeFilters({});
 
   return (
     <NetworkStatus>
@@ -172,7 +88,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
                     () => data.products.pageInfo.hasNextPage,
                     false
                   )}
-                  sortOptions={sortOptions}
+                  sortOptions={SORT_OPTIONS}
                   setSearch={setSearch}
                   search={search}
                   activeSortOption={filters.sortBy}
@@ -181,7 +97,11 @@ export const SearchPage: NextPage<SearchPageProps> = ({
                   featuredProducts={featuredProducts.collection.products.edges.map(
                     e => e.node
                   )}
-                  onAttributeFiltersChange={onFiltersChange}
+                  onAttributeFiltersChange={handleFiltersChange(
+                    filters,
+                    attributeFilters,
+                    setAttributeFilters
+                  )}
                   onLoadMore={handleLoadMore}
                   activeFilters={
                     filters!.attributes

@@ -1,10 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { shopAttributesQuery } from "@graphql";
-import {
-  ShopAttributesQuery,
-  ShopAttributesQueryVariables,
-} from "@graphql/gqlTypes/ShopAttributesQuery";
 import {
   channelSlug,
   exportMode,
@@ -13,7 +8,12 @@ import {
 } from "@temp/constants";
 import { PRODUCTS_PER_PAGE } from "@temp/core/config";
 import { CategoryPage, CategoryPageProps } from "@temp/views/Category";
-import { exhaustList, getFeaturedProducts, getSaleorApi } from "@utils/ssr";
+import {
+  exhaustList,
+  getFeaturedProducts,
+  getSaleorApi,
+  getShopAttributes,
+} from "@utils/ssr";
 
 export default CategoryPage;
 
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<
   CategoryPageProps["params"]
 > = async ({ params: { slug } }) => {
   let data = null;
-  const { api, apolloClient } = await getSaleorApi();
+  const { api } = await getSaleorApi();
   const { data: details } = await api.categories.getDetails({ slug });
 
   if (details) {
@@ -59,16 +59,7 @@ export const getStaticProps: GetStaticProps<
       ancestors,
       [products, numberOfProducts],
     ] = await Promise.all([
-      // TODO: make util fn
-      apolloClient
-        .query<ShopAttributesQuery, ShopAttributesQueryVariables>({
-          query: shopAttributesQuery,
-          variables: {
-            categoryId: id,
-            channel: channelSlug,
-          },
-        })
-        .then(({ data }) => data.attributes?.edges.map(e => e.node) || []),
+      getShopAttributes({ categoryId: id }),
       getFeaturedProducts(),
       api.categories.getAncestors({ first: 5, id }).then(({ data }) => data),
       api.products

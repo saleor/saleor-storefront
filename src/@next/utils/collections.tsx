@@ -2,8 +2,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { prodListHeaderCommonMsg } from "@temp/intl";
-
-import { UknownObject } from "./tsUtils";
+import { UknownObject } from "@utils/tsUtils";
 
 export type SortOptions = {
   label: string | JSX.Element;

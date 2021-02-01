@@ -1,13 +1,19 @@
 import { ConnectResult, SaleorManager } from "@saleor/sdk";
 import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
 
-import { featuredProductsQuery } from "@graphql";
+import { featuredProductsQuery, shopAttributesQuery } from "@graphql";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import {
   FeaturedProductsQuery,
   FeaturedProductsQueryVariables,
 } from "@graphql/gqlTypes/FeaturedProductsQuery";
+import {
+  ShopAttributesQuery,
+  ShopAttributesQueryVariables,
+} from "@graphql/gqlTypes/ShopAttributesQuery";
 import { apiUrl, channelSlug } from "@temp/constants";
+import { RequireOnlyOne } from "@utils/tsUtils";
 
 let CONNECTION: ConnectResult | null = null;
 
@@ -60,4 +66,26 @@ export const getFeaturedProducts = async (): Promise<FeaturedProduct[]> => {
   });
 
   return data?.collection?.products?.edges.map(e => e.node) || [];
+};
+
+export const getShopAttributes = async ({
+  categoryId = null,
+  collectionId = null,
+}: RequireOnlyOne<{
+  categoryId: string | null;
+  collectionId: string | null;
+}>): Promise<Attribute[]> => {
+  const { apolloClient } = await getSaleorApi();
+  const { data } = await apolloClient.query<
+    ShopAttributesQuery,
+    ShopAttributesQueryVariables
+  >({
+    query: shopAttributesQuery,
+    variables: {
+      categoryId,
+      collectionId,
+      channel: channelSlug,
+    },
+  });
+  return data?.attributes?.edges.map(e => e.node) || [];
 };

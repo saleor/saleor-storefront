@@ -1,7 +1,7 @@
 import { useProductList } from "@saleor/sdk";
 import { ProductListVariables } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import { NextPage } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
@@ -12,57 +12,26 @@ import {
 } from "@temp/core/utils";
 import { IFilters } from "@types";
 import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
-import { UknownObject } from "@utils/tsUtils";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { CategoryData, Page } from "./Page";
-
-const handleFiltersChange = (
-  filters: IFilters,
-  attributeFilters: UknownObject<string[]>,
-  setAttributeFilters: (newValue: UknownObject<string[]>) => void
-) => (name: string, value: string) => {
-  if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-    if (attributeFilters[name].includes(value)) {
-      if (filters.attributes[`${name}`].length === 1) {
-        const att = { ...attributeFilters };
-        delete att[`${name}`];
-        setAttributeFilters({
-          ...att,
-        });
-      } else {
-        setAttributeFilters({
-          ...attributeFilters,
-          [`${name}`]: attributeFilters[`${name}`].filter(
-            item => item !== value
-          ),
-        });
-      }
-    } else {
-      setAttributeFilters({
-        ...attributeFilters,
-        [`${name}`]: [...attributeFilters[`${name}`], value],
-      });
-    }
-  } else {
-    setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
-  }
-};
+import { handleFiltersChange } from "./utils";
 
 export type CategoryPageProps = {
   params: { slug: string } | undefined;
   data: ({ id: string } & CategoryData) | undefined | null;
 };
 
-export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
+export const CategoryPage: NextPage<CategoryPageProps> = ({ data }) => {
   const { products: ssrProducts, ...category } = data;
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
+
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
@@ -86,24 +55,30 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
     first: PRODUCTS_PER_PAGE,
     sortBy: convertSortByFromString(filters.sortBy),
   };
+
   const { next, data: clientProducts = [], pageInfo, loading } = useProductList(
     variables
   );
-
   /**
    * For best UX, when there are no filters/sorting applied,
    * initial batch of products is served from SSR.
    */
-  const useClientProducts =
-    !!sort || !!attributeFilters || clientProducts?.length > PRODUCTS_PER_PAGE;
+  const [serveClientProducts, setServeClientProducts] = useState(
+    !!sort || !!attributeFilters || clientProducts?.length > PRODUCTS_PER_PAGE
+  );
 
-  const hasNextPage = useClientProducts
+  const hasNextPage = serveClientProducts
     ? pageInfo?.hasNextPage
     : category.numberOfProducts > ssrProducts.length;
 
   const clearFilters = () => setAttributeFilters({});
 
-  const handleLoadMore = () => next();
+  const handleLoadMore = () => {
+    next();
+    if (!serveClientProducts) {
+      setServeClientProducts(true);
+    }
+  };
 
   return (
     <NetworkStatus>
@@ -121,9 +96,9 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ params, data }) => {
                 clearFilters={clearFilters}
                 category={{
                   ...category,
-                  products: useClientProducts ? clientProducts : ssrProducts,
+                  products: serveClientProducts ? clientProducts : ssrProducts,
                 }}
-                displayLoader={useClientProducts ? loading : false}
+                displayLoader={serveClientProducts ? loading : false}
                 hasNextPage={hasNextPage}
                 sortOptions={SORT_OPTIONS}
                 activeSortOption={filters.sortBy}
