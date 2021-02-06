@@ -16,6 +16,7 @@ export const ProductTileProjects: React.FC<IProps> = ({ product }: IProps) => {
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
+        <ThumbnailCollection source={product.collections[1]} />
         <div>
           <h3>
             {locale === "en" && product.collections[1].translation?.name
@@ -31,7 +32,6 @@ export const ProductTileProjects: React.FC<IProps> = ({ product }: IProps) => {
             }
           />
         </div>
-        <ThumbnailCollection source={product.collections[1]} />
       </S.Image>
     </S.Wrapper>
   );
