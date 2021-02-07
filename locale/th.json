@@ -1,9 +1,9 @@
 {
   "@next_dot_components_dot_atoms_dot_AddNewTile_dot_AddNewTile_dot_2493765518": {
-    "string": "Add new {type}"
+    "string": "สร้าง{type}ใหม่"
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
-    "string": "Play with <emphasis>GraphQL API</emphasis>"
+    "string": "เล่นกับ <emphasis>GraphQL API</emphasis>"
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
     "string": "API"
@@ -15,46 +15,46 @@
     "string": "แดชบอร์ด"
   },
   "@next_dot_components_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
-    "string": "Sort by:"
+    "string": "เรียงตาม:"
   },
   "@next_dot_components_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
-    "string": "Go to"
+    "string": "ไปที่"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
-    "string": "Personal details"
+    "string": "ข้อมูลส่วนตัว"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3843483622": {
-    "string": "MY DATA"
+    "string": "ข้อมูลของฉัน"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_1254879564": {
-    "string": "New Password"
+    "string": "พาสเวิร์ดใหม่"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2218114941": {
-    "string": "Old Password"
+    "string": "พาสเวิร์ดเก่า"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2369435044": {
-    "string": "Required field"
+    "string": "ข้อมูลจำเป็น"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2799926859": {
-    "string": "Confirm Password"
+    "string": "ยืนยันพาสเวิร์ด"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_4253911811": {
-    "string": "Passwords do not match"
+    "string": "พาสเวิร์ดไม่ตรงกัน"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_3445609170": {
-    "string": "MY PASSWORD"
+    "string": "พาสเวิร์ดของฉัน"
   },
   "@next_dot_components_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
-    "string": "Add to basket"
+    "string": "ใส่ตะกร้า"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1224809208": {
-    "string": "Default Address"
+    "string": "ที่อยู่หลัก"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_1578192486": {
     "string": "Default Billing Address"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_2131178753": {
-    "string": "Set as default shipping address"
+    "string": "ตั้งเป็นที่อยู่หลักในการจัดส่ง"
   },
   "@next_dot_components_dot_molecules_dot_AddressTile_dot_AddressTile_dot_3096438859": {
     "string": "Set as default billing address"
@@ -436,13 +436,13 @@
     "string": "FILTERS"
   },
   "intl_dot_commonMessages_dot_firstName": {
-    "string": "First Name"
+    "string": "ชื่อ"
   },
   "intl_dot_commonMessages_dot_home": {
     "string": "หน้าแรก"
   },
   "intl_dot_commonMessages_dot_lastName": {
-    "string": "Last Name"
+    "string": "นามสกุล"
   },
   "intl_dot_commonMessages_dot_loading": {
     "string": "Loading"
