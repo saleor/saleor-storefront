@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductDescription /> renders correctly 1`] = `
+.c3 .ce-block__content {
+  max-width: 100%;
+}
+
+.c4 {
+  -webkit-columns: 2;
+  columns: 2;
+  -webkit-column-width: 50%;
+  column-width: 50%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.c4 li {
+  margin-bottom: 30px;
+  font-size: 1.125rem;
+}
+
+.c4 li::before {
+  content: "•";
+  margin-right: 20px;
+  color: #06847B;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: none;
+  -ms-flex-wrap: none;
+  flex-wrap: none;
+  width: 100%;
+  border-bottom: 1px solid rgba(50,50,50,0.1);
+  margin-bottom: 70px;
+  overflow: hidden;
+}
+
+.c1 {
+  cursor: pointer;
+  min-width: 230px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.02em;
+  -moz-letter-spacing: 0.02em;
+  -ms-letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+  color: #06847B;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: #06847B;
+  padding-bottom: 25px;
+  margin-right: 60px;
+}
+
+.c2 {
+  cursor: pointer;
+  min-width: 230px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.02em;
+  -moz-letter-spacing: 0.02em;
+  -ms-letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  padding-bottom: 25px;
+  margin-right: 60px;
+}
+
+.c5 {
+  color: rgba(50,50,50,0.6);
+}
+
+@media (max-width:992px) {
+  .c4 {
+    -webkit-column-width: 100%;
+    column-width: 100%;
+    -webkit-columns: 1;
+    columns: 1;
+  }
+}
+
+@media (max-width:540px) {
+  .c1 {
+    font-size: 1.125rem;
+    min-width: 150px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width:540px) {
+  .c2 {
+    font-size: 1.125rem;
+    min-width: 150px;
+    margin-right: 20px;
+  }
+}
+
+<div
+  className=""
+>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      DESCRIPTION
+    </div>
+    <div
+      className="c2"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      ATTRIBUTES
+    </div>
+  </div>
+  <div
+    hidden={false}
+  >
+    <div
+      className="c3"
+    />
+  </div>
+  <div
+    hidden={true}
+  >
+    <ul
+      className="c4"
+    >
+      <li>
+        <span
+          className="c5"
+        >
+          Author
+          : 
+        </span>
+         
+        John Doe
+      </li>
+      <li>
+        <span
+          className="c5"
+        >
+          Country of Manufacture
+          : 
+        </span>
+         
+        Poland, China
+      </li>
+      <li>
+        <span
+          className="c5"
+        >
+          Size
+          : 
+        </span>
+         
+        40x40cm
+      </li>
+      <li>
+        <span
+          className="c5"
+        >
+          Material
+          : 
+        </span>
+         
+        Polystyrene
+      </li>
+      <li>
+        <span
+          className="c5"
+        >
+          Manufacture time
+          : 
+        </span>
+         
+        2 to 4 weeks
+      </li>
+      <li>
+        <span
+          className="c5"
+        >
+          SKU
+          : 
+        </span>
+         
+        1244-SGG
+      </li>
+    </ul>
+  </div>
+</div>
+`;

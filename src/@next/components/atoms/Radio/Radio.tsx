@@ -15,6 +15,7 @@ const Radio: React.FC<IProps> = ({
   const StyledInput = customLabel ? S.Input : S.LabeledInput;
 
   return (
+    // @ts-ignore
     <StyledInput checked={checked || false}>
       <input type="radio" checked={checked} {...props} />{" "}
       <div>

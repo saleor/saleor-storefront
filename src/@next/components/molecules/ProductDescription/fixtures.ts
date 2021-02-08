@@ -53,4 +53,15 @@ export const attributes = [
 ];
 
 export const description =
-  "This is some cool product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  "Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether.";
+
+export const descriptionJSON = JSON.stringify({
+  blocks: [
+    {
+      data: {
+        text: description,
+      },
+      type: "paragraph",
+    },
+  ],
+});

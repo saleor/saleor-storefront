@@ -40,6 +40,7 @@ describe("<ThankYou />", () => {
 
     expect(pushSpy).toHaveBeenCalledWith("/order/xyz", "/order/xyz", {
       locale: undefined,
+      scroll: true,
       shallow: undefined,
     });
   });
@@ -56,6 +57,7 @@ describe("<ThankYou />", () => {
 
     expect(pushSpy).toHaveBeenCalledWith("/", "/", {
       locale: undefined,
+      scroll: true,
       shallow: undefined,
     });
   });

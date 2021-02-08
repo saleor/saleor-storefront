@@ -14,7 +14,7 @@ import { TypedArticleQuery } from "./query";
 import "./scss/index.scss";
 
 const canDisplay = page =>
-  maybe(() => !!page && !!page.title && !!page.contentJson);
+  maybe(() => !!page && !!page.title && !!page.content);
 const getHeaderImage = (collection: Article_collection) =>
   maybe(() => collection.backgroundImage.url);
 
