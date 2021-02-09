@@ -3,35 +3,33 @@ import { AttributeList } from "@temp/components/ProductFilters";
 import { IFilters } from "@types";
 import { UknownObject } from "@utils/tsUtils";
 
-export const handleFiltersChange = (
+export const filtersChangeHandler = (
   filters: IFilters,
   attributeFilters: UknownObject<string[]>,
   setAttributeFilters: (newValue: UknownObject<string[]>) => void
 ) => (name: string, value: string) => {
   if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
     if (attributeFilters[name].includes(value)) {
-      if (filters.attributes[`${name}`].length === 1) {
+      if (filters.attributes[name].length === 1) {
         const att = { ...attributeFilters };
-        delete att[`${name}`];
+        delete att[name];
         setAttributeFilters({
           ...att,
         });
       } else {
         setAttributeFilters({
           ...attributeFilters,
-          [`${name}`]: attributeFilters[`${name}`].filter(
-            item => item !== value
-          ),
+          [name]: attributeFilters[name].filter(item => item !== value),
         });
       }
     } else {
       setAttributeFilters({
         ...attributeFilters,
-        [`${name}`]: [...attributeFilters[`${name}`], value],
+        [name]: [...attributeFilters[name], value],
       });
     }
   } else {
-    setAttributeFilters({ ...attributeFilters, [`${name}`]: [value] });
+    setAttributeFilters({ ...attributeFilters, [name]: [value] });
   }
 };
 

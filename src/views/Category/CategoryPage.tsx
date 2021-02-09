@@ -1,37 +1,31 @@
-import { useProductList } from "@saleor/sdk";
-import { ProductListVariables } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import { NextPage } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
-import { channelSlug } from "@temp/constants";
-import {
-  convertSortByFromString,
-  convertToAttributeScalar,
-} from "@temp/core/utils";
 import { IFilters } from "@types";
-import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
+import { FilterQuerySet } from "@utils/collections";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { CategoryData, Page } from "./Page";
-import { handleFiltersChange } from "./utils";
+import { useProductsQuery } from "./queries";
+import { filtersChangeHandler } from "./utils";
 
 export type CategoryPageProps = {
   params: { slug: string } | undefined;
   data: ({ id: string } & CategoryData) | undefined | null;
 };
 
-export const CategoryPage: NextPage<CategoryPageProps> = ({ data }) => {
-  const { products: ssrProducts, ...category } = data;
+export const CategoryPage: NextPage<CategoryPageProps> = ({
+  data: { products: ssrProducts, ...category },
+}) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
-
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
@@ -39,46 +33,68 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ data }) => {
     priceLte: null,
     sortBy: sort || null,
   };
-  const variables: ProductListVariables = {
-    filter: {
-      price: {
-        lte: filters.priceLte,
-        gte: filters.priceGte,
-      },
-      categories: [category?.id],
-      channel: channelSlug,
-      attributes: filters.attributes
-        ? convertToAttributeScalar(filters.attributes)
-        : {},
-    },
-    channel: channelSlug,
-    first: PRODUCTS_PER_PAGE,
-    sortBy: convertSortByFromString(filters.sortBy),
-  };
 
-  const { next, data: clientProducts = [], pageInfo, loading } = useProductList(
-    variables
+  const { data, loadMore, loading } = useProductsQuery(filters, category?.id);
+
+  const { clientProducts, pageInfo } = useMemo(
+    () => ({
+      clientProducts: data?.products?.edges.map(e => e.node) || [],
+      pageInfo: data?.products?.pageInfo,
+    }),
+    [data]
   );
+
   /**
    * For best UX, when there are no filters/sorting applied,
    * initial batch of products is served from SSR.
    */
-  const [serveClientProducts, setServeClientProducts] = useState(
-    !!sort || !!attributeFilters || clientProducts?.length > PRODUCTS_PER_PAGE
+
+  const serveClientProducts = !!sort || !!attributeFilters;
+  const [products, setProducts] = useState<CategoryData["products"]>(
+    serveClientProducts ? clientProducts : ssrProducts
   );
 
   const hasNextPage = serveClientProducts
     ? pageInfo?.hasNextPage
     : category.numberOfProducts > ssrProducts.length;
 
-  const clearFilters = () => setAttributeFilters({});
+  const handleClearFilters = () => {
+    setAttributeFilters({});
+    setProducts([]);
+  };
+
+  const handleFiltersChange = (attributeSlug: string, value: string) => {
+    setProducts([]);
+    filtersChangeHandler(
+      filters,
+      attributeFilters,
+      setAttributeFilters
+    )(attributeSlug, value);
+  };
 
   const handleLoadMore = () => {
-    next();
+    loadMore(
+      (prev, next) => ({
+        products: {
+          ...prev.products,
+          edges: [...prev.products.edges, ...next.products.edges],
+          pageInfo: next.products.pageInfo,
+        },
+      }),
+      pageInfo.endCursor
+    );
+
     if (!serveClientProducts) {
       setServeClientProducts(true);
     }
   };
+
+  useEffect(() => {
+    // console.log(clientProducts);
+    if (!loading) {
+      setProducts(serveClientProducts ? clientProducts : ssrProducts);
+    }
+  }, [data]);
 
   return (
     <NetworkStatus>
@@ -93,27 +109,15 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({ data }) => {
               }}
             >
               <Page
-                clearFilters={clearFilters}
-                category={{
-                  ...category,
-                  products: serveClientProducts ? clientProducts : ssrProducts,
-                }}
+                clearFilters={handleClearFilters}
+                category={{ ...category, products }}
                 displayLoader={serveClientProducts ? loading : false}
                 hasNextPage={hasNextPage}
-                sortOptions={SORT_OPTIONS}
                 activeSortOption={filters.sortBy}
                 filters={filters}
-                onAttributeFiltersChange={handleFiltersChange(
-                  filters,
-                  attributeFilters,
-                  setAttributeFilters
-                )}
+                onAttributeFiltersChange={handleFiltersChange}
                 onLoadMore={handleLoadMore}
-                activeFilters={
-                  filters!.attributes
-                    ? Object.keys(filters!.attributes).length
-                    : 0
-                }
+                activeFilters={Object.keys(filters?.attributes || {}).length}
                 onOrder={value => setSort(value.value)}
               />
             </MetaWrapper>

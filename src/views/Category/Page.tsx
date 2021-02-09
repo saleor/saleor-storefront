@@ -10,7 +10,7 @@ import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
-import { SortOptions } from "@utils/collections";
+import { SORT_OPTIONS, SortOptions } from "@utils/collections";
 
 import {
   Breadcrumbs,
@@ -38,7 +38,6 @@ interface PageProps {
   displayLoader: boolean;
   filters: Filters;
   hasNextPage: boolean;
-  sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
@@ -62,7 +61,6 @@ export const Page: React.FC<PageProps> = ({
   onLoadMore,
   filters,
   onOrder,
-  sortOptions,
   onAttributeFiltersChange,
 }) => {
   const hasProducts = products.length > 0;
@@ -90,7 +88,7 @@ export const Page: React.FC<PageProps> = ({
             attributes
           )}
           clearFilters={clearFilters}
-          sortOptions={sortOptions}
+          sortOptions={SORT_OPTIONS}
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />

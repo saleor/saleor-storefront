@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { useQuery } from "react-apollo";
 
 import { basicProductFragment, productPricingFragment } from "@graphql";
 
@@ -96,6 +97,11 @@ export const collectionProductsQuery = gql`
     }
   }
 `;
+
+export const useCollectionProductsQuery = useQuery<
+  CollectionProducts,
+  CollectionProductsVariables
+>(collectionProductsQuery);
 
 export const TypedCollectionProductsQuery = TypedQuery<
   CollectionProducts,

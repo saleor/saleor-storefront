@@ -80,6 +80,7 @@ export const getStaticProps: GetStaticProps<
       numberOfProducts,
     };
   }
+  console.log("RELOAD");
 
   return {
     revalidate: incrementalStaticRegenerationRevalidate,

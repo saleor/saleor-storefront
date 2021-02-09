@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Category_attributes_edges_node } from "../../views/Category/gqlTypes/Category";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
+
 import { Collection_attributes_edges_node } from "../../views/Collection/gqlTypes/Collection";
 import { SearchProducts_attributes_edges_node } from "../../views/Search/gqlTypes/SearchProducts";
 import PriceRangeFilter from "../PriceRangeFilter";
@@ -22,7 +23,7 @@ export interface Filters {
 
 export interface ProductFiltersProps {
   attributes:
-    | Category_attributes_edges_node[]
+    | Attribute[]
     | Collection_attributes_edges_node[]
     | SearchProducts_attributes_edges_node[];
   filters: Filters;
