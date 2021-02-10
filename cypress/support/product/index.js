@@ -3,7 +3,7 @@ import { HEADER_SELECTORS } from "../../elements/main-header/header-selectors";
 import { SEARCH_PRODUCTS_SELECTORS_RIGHT_MENU } from "../../elements/products/search-products-selectors";
 import { CART_SELECTORS } from "../../elements/cart/cart";
 
-const productWithShippingSearchQuery = "white%20pilmsolls";
+const productWithShippingSearchQuery = "white%20plimsolls";
 const productWithoutShippingSearchQuery = "tunes";
 
 Cypress.Commands.add("addItemWithShippingToTheBasket", () => {
