@@ -50,8 +50,7 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
 }) => {
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
-  // const data: OutputData = JSON.parse(jsonData);
-  const data: OutputData = JSON.parse('""');
+  const data: OutputData = JSON.parse(jsonData);
 
   useEffect(() => {
     if (data && editorContainer.current) {

@@ -71,7 +71,7 @@ export const productDetailsQuery = gql`
     product(id: $id, channel: $channel) {
       ...BasicProductFields
       ...ProductPricingField
-      descriptionJson
+      description
       category {
         id
         name

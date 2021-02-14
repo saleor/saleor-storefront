@@ -16,7 +16,7 @@ import { IProps } from "./types";
 import "./scss/index.scss";
 
 const canDisplay = (product: ProductDetails) =>
-  !!product?.descriptionJson &&
+  !!product?.description &&
   !!product?.name &&
   !!product?.pricing &&
   !!product?.variants;
@@ -40,7 +40,7 @@ const extractMeta = (product: ProductDetails, url: string) => ({
       property: "product:category",
     },
   ],
-  description: product.seoDescription || product.descriptionJson,
+  description: product.seoDescription || product.description,
   image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
   type: "product.item",

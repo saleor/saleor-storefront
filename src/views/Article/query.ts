@@ -6,7 +6,7 @@ import { Article, ArticleVariables } from "./gqlTypes/Article";
 const articleQuery = gql`
   query Article($slug: String!, $channel: String) {
     page(slug: $slug) {
-      contentJson
+      content
       id
       seoDescription
       seoTitle

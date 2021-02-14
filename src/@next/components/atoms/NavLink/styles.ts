@@ -17,7 +17,7 @@ export const Link = styled.a<{ fullWidth: boolean; activeClassName?: string }>`
   &:hover, &:focus {
     outline: none;
     color: ${({ theme }) => theme.colors.primary};
-  }       
+  }
 
   /* Active URL styles
   &.${props => props.activeClassName} {

@@ -31,6 +31,7 @@ interface TypedQueryInnerProps<TData, TVariables> {
   onCompleted?: (data: TData) => void;
 }
 
+/* eslint react/require-default-props: 0 */
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
   return (props: TypedQueryInnerProps<TData, TVariables>) => {
     const {

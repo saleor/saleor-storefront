@@ -6,7 +6,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
   margin: 20px;
 }
 
-.c6 {
+.c7 {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -17,7 +17,11 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
   box-sizing: border-box;
 }
 
-.c4 {
+.c4 .ce-block__content {
+  max-width: 100%;
+}
+
+.c5 {
   -webkit-columns: 2;
   columns: 2;
   -webkit-column-width: 50%;
@@ -27,12 +31,12 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
   margin: 0;
 }
 
-.c4 li {
+.c5 li {
   margin-bottom: 30px;
   font-size: 1.125rem;
 }
 
-.c4 li::before {
+.c5 li::before {
   content: "•";
   margin-right: 20px;
   color: #06847B;
@@ -85,12 +89,12 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
   margin-right: 60px;
 }
 
-.c5 {
+.c6 {
   color: rgba(50,50,50,0.6);
 }
 
 @media (max-width:992px) {
-  .c4 {
+  .c5 {
     -webkit-column-width: 100%;
     column-width: 100%;
     -webkit-columns: 1;
@@ -141,19 +145,19 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
     <div
       hidden={false}
     >
-      <p>
-        This is some cool product description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div
+        className="c4"
+      />
     </div>
     <div
       hidden={true}
     >
       <ul
-        className="c4"
+        className="c5"
       >
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             Author
             : 
@@ -163,7 +167,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
         </li>
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             Country of Manufacture
             : 
@@ -173,7 +177,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
         </li>
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             Size
             : 
@@ -183,7 +187,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
         </li>
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             Material
             : 
@@ -193,7 +197,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
         </li>
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             Manufacture time
             : 
@@ -203,7 +207,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
         </li>
         <li>
           <span
-            className="c5"
+            className="c6"
           >
             SKU
             : 
@@ -215,7 +219,7 @@ exports[`Storyshots @components/molecules/ProductDescription default 1`] = `
     </div>
   </div>
   <div
-    className="c6"
+    className="c7"
   />
 </div>
 `;

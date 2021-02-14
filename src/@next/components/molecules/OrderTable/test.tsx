@@ -93,7 +93,7 @@ const getLinkCalledProps = (
     pathname: path,
     query,
   }),
-  { locale: undefined, shallow: undefined, ...extra },
+  { locale: undefined, scroll: true, shallow: undefined, ...extra },
 ];
 
 (global as any).matchMedia = (media: any) => ({
@@ -180,7 +180,7 @@ describe("<OrderTable />", () => {
     expect(pushSpy).toHaveBeenCalledWith(
       "/product/apple-juice/72",
       "/product/apple-juice/72",
-      { locale: undefined, shallow: undefined }
+      { locale: undefined, scroll: true, shallow: undefined }
     );
   });
 });

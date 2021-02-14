@@ -37,6 +37,7 @@ if (process.env.GTM_ID) {
 if (sentryDsn) {
   Sentry.init({
     dsn: sentryDsn,
+    // @ts-ignore
     integrations: [new ApmIntegrations.Tracing()],
     tracesSampleRate: sentrySampleRate,
   });
