@@ -27,7 +27,7 @@ export const useTypedQuery = <TData = any, TVariables = OperationVariables>(
         }
         return mergeFn(previousResults, fetchMoreResult);
       },
-      variables: { ...options?.variables, endCursor },
+      variables: { ...options?.variables, after: endCursor },
     });
 
   return { loadMore, ...queryResult };

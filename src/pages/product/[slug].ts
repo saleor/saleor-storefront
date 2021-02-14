@@ -16,14 +16,14 @@ export const getStaticPaths: GetStaticPaths<
   ProductPageProps["params"]
 > = async () => {
   const { api } = await getSaleorApi();
-  const productsListApi = await api.products.getList({
-    first: staticPathsFetchBatch,
-    channel: channelSlug,
-  });
+  const { data } = await exhaustList(
+    api.products.getList({
+      first: staticPathsFetchBatch,
+      channel: channelSlug,
+    })
+  );
 
-  await exhaustList(productsListApi);
-
-  const paths = productsListApi.data.map(({ slug }) => ({
+  const paths = data.map(({ slug }) => ({
     params: { slug },
   }));
 

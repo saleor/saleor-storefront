@@ -1,25 +1,25 @@
 import { NextPage } from "next";
-import React, { useMemo } from "react";
+import * as React from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { IFilters } from "@types";
-import { FilterQuerySet } from "@utils/collections";
+import { FilterQuerySet, SORT_OPTIONS } from "@utils/collections";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
-import { CategoryData, Page } from "./Page";
-import { useProductsQuery } from "./queries";
-import { filtersChangeHandler } from "./utils";
+import { useProductsQuery } from "../Category/queries";
+import { filtersChangeHandler } from "../Category/utils";
+import { CollectionData, Page } from "./Page";
 
-export type CategoryPageProps = {
+export type CollectionPageProps = {
   params: { slug: string } | undefined;
-  data: ({ id: string } & CategoryData) | undefined | null;
+  data: ({ id: string } & CollectionData) | undefined | null;
 };
 
-export const CategoryPage: NextPage<CategoryPageProps> = ({
-  data: category,
+export const CollectionPage: NextPage<CollectionPageProps> = ({
+  data: collection,
 }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
@@ -35,9 +35,9 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({
   };
 
   const { data, loadMore, loading } = useProductsQuery(filters, {
-    categoryId: category?.id,
+    collectionId: collection?.id,
   });
-  const [products, pageInfo, numberOfProducts] = useMemo(
+  const [products, pageInfo, numberOfProducts] = React.useMemo(
     () => [
       data?.products?.edges.map(e => e.node) || [],
       data?.products?.pageInfo,
@@ -73,23 +73,24 @@ export const CategoryPage: NextPage<CategoryPageProps> = ({
     <NetworkStatus>
       {isOnline =>
         isOnline ? (
-          category ? (
+          collection ? (
             <MetaWrapper
               meta={{
-                description: category.details.seoDescription,
-                title: category.details.seoTitle,
-                type: "product.category",
+                description: collection.details.seoDescription,
+                title: collection.details.seoTitle,
+                type: "product.collection",
               }}
             >
               <Page
+                numberOfProducts={numberOfProducts}
                 clearFilters={handleClearFilters}
-                category={category}
-                products={products}
+                collection={collection}
                 displayLoader={loading}
                 hasNextPage={!!pageInfo?.hasNextPage}
-                numberOfProducts={numberOfProducts}
+                sortOptions={SORT_OPTIONS}
                 activeSortOption={filters.sortBy}
                 filters={filters}
+                products={products}
                 onAttributeFiltersChange={handleFiltersChange}
                 onLoadMore={handleLoadMore}
                 activeFilters={Object.keys(filters?.attributes || {}).length}

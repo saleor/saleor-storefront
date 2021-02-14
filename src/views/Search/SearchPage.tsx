@@ -16,7 +16,7 @@ import {
   convertToAttributeScalar,
   maybe,
 } from "../../core/utils";
-import { handleFiltersChange } from "../Category/utils";
+import { filtersChangeHandler } from "../Category/utils";
 import Page from "./Page";
 import { TypedSearchProductsQuery } from "./queries";
 
@@ -97,7 +97,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({
                   featuredProducts={featuredProducts.collection.products.edges.map(
                     e => e.node
                   )}
-                  onAttributeFiltersChange={handleFiltersChange(
+                  onAttributeFiltersChange={filtersChangeHandler(
                     filters,
                     attributeFilters,
                     setAttributeFilters

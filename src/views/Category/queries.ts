@@ -3,6 +3,7 @@ import {
   ProductListVariables,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import { productList } from "@saleor/sdk/lib/queries/products";
+import { RequireOnlyOne } from "@saleor/sdk/lib/tsHelpers";
 
 import { useTypedQuery } from "@graphql";
 import { channelSlug } from "@temp/constants";
@@ -15,15 +16,21 @@ import { IFilters } from "@types";
 
 export const useProductsQuery = (
   filters: IFilters,
-  categoryId: string | undefined
+  ids: RequireOnlyOne<{
+    categoryId: string | undefined;
+    collectionId: string | undefined;
+  }>
 ) => {
-  const variables = {
+  const { categoryId, collectionId } = ids;
+
+  const variables: ProductListVariables = {
     filter: {
       price: {
         lte: filters.priceLte,
         gte: filters.priceGte,
       },
-      categories: [categoryId],
+      collections: collectionId ? [collectionId] : [],
+      categories: categoryId ? [categoryId] : [],
       channel: channelSlug,
       attributes: filters.attributes
         ? convertToAttributeScalar(filters.attributes)
@@ -37,6 +44,6 @@ export const useProductsQuery = (
   return useTypedQuery<ProductList, ProductListVariables>(productList, {
     variables,
     fetchPolicy: "cache-and-network",
-    skip: !categoryId,
+    skip: !(categoryId || collectionId),
   });
 };

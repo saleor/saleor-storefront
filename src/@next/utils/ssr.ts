@@ -29,20 +29,24 @@ export const getSaleorApi = async () => {
   return CONNECTION;
 };
 
+/**
+ * Fetches all data from collection based API which extends BaseList abstraction.
+ */
 export const exhaustList = async <
   TQuery,
   TObject,
   TVariables extends BaseListVariables
 >(
-  listApi: BaseList<TQuery, TObject, TVariables>,
+  listApi: Promise<BaseList<TQuery, TObject, TVariables>>,
   tries = 60
-): Promise<void> =>
+): Promise<BaseList<TQuery, TObject, TVariables>> =>
   new Promise((resolve, reject) => {
     (async function fetch(listApi, triesLeft) {
-      const { pageInfo, next } = listApi;
+      const result = await listApi;
+      const { pageInfo, next } = result;
 
       if (pageInfo?.hasNextPage === false) {
-        return resolve();
+        return resolve(result);
       }
 
       if (!triesLeft) {

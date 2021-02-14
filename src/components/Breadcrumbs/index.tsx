@@ -1,4 +1,3 @@
-import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import classNames from "classnames";
 import Link from "next/link";
@@ -17,19 +16,19 @@ export interface Breadcrumb {
   value: string;
   link: string;
 }
-
+type BreadcrumbCategory = Pick<CategoryDetails, "slug" | "name">;
 export const extractBreadcrumbs = (
-  category: CategoryDetails,
-  ancestors: BaseCategory[]
+  category: BreadcrumbCategory,
+  ancestors?: BreadcrumbCategory[]
 ) => {
-  const constructLink = ({ slug, name }: CategoryDetails | BaseCategory) => ({
+  const constructLink = ({ slug, name }: BreadcrumbCategory) => ({
     link: generatePath(paths.category, { slug }),
     value: name,
   });
 
   let breadcrumbs = [constructLink(category)];
 
-  if (ancestors.length) {
+  if (ancestors && ancestors.length) {
     const ancestorsList = ancestors.map(category => constructLink(category));
     breadcrumbs = ancestorsList.concat(breadcrumbs);
   }
