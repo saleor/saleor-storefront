@@ -3,9 +3,10 @@ import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
 
 import { featuredProductsQuery, shopAttributesQuery } from "@graphql";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import {
   FeaturedProductsQuery,
+  FeaturedProductsQuery_collection,
+  FeaturedProductsQuery_collection_products_edges_node,
   FeaturedProductsQueryVariables,
 } from "@graphql/gqlTypes/FeaturedProductsQuery";
 import {
@@ -59,7 +60,11 @@ export const exhaustList = async <
     })(listApi, tries);
   });
 
-export const getFeaturedProducts = async (): Promise<FeaturedProduct[]> => {
+export type FeaturedProducts = {
+  products: FeaturedProductsQuery_collection_products_edges_node[];
+} & Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">;
+
+export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<
     FeaturedProductsQuery,
@@ -69,7 +74,10 @@ export const getFeaturedProducts = async (): Promise<FeaturedProduct[]> => {
     variables: { channel: channelSlug },
   });
 
-  return data?.collection?.products?.edges.map(e => e.node) || [];
+  return {
+    ...data.collection!,
+    products: data.collection!.products!.edges.map(e => e.node) || [],
+  };
 };
 
 export const getShopAttributes = async ({

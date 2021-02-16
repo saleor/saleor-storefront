@@ -7,23 +7,15 @@ module.exports = api => {
     isTest || isStorybook
       ? []
       : ["**/*.test.ts", "**/*.test.tsx", "src/storybook"];
-  const presets = [
-    "@babel/preset-env",
-    "@babel/preset-react",
+  const presets = ["next/babel"];
+  const plugins = [
     [
-      "@babel/preset-typescript",
+      "styled-components",
       {
-        allowNamespaces: true,
+        ssr: true,
+        displayName: true,
       },
     ],
-  ];
-  const plugins = [
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-typescript",
-    "babel-plugin-styled-components",
-    "transform-class-properties",
-    "@babel/transform-runtime",
-    "@babel/plugin-proposal-optional-chaining",
     [
       "react-intl-auto",
       {
@@ -32,21 +24,14 @@ module.exports = api => {
         removePrefix: "src/",
       },
     ],
-  ];
-  if (isExtract) {
-    plugins.push([
+    isExtract && [
       "react-intl",
       {
         extractFromFormatMessageCall: true,
         messagesDir: "dist/locale/",
       },
-    ]);
-  }
-  if (isStorybook) {
-    plugins.push("babel-plugin-styled-components");
-  }
-
-  plugins.push("macros");
+    ],
+  ].filter(Boolean);
 
   return {
     ignore,

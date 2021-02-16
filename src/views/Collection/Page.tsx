@@ -5,10 +5,10 @@ import { useIntl } from "react-intl";
 
 import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
 import { commonMessages } from "@temp/intl";
 import { IFilters } from "@types";
 import { SortOptions } from "@utils/collections";
+import { FeaturedProducts } from "@utils/ssr";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import {
@@ -23,7 +23,7 @@ import "../Category/scss/index.scss";
 export interface CollectionData {
   details: CollectionDetails;
   attributes: Attribute[];
-  featuredProducts: FeaturedProduct[];
+  featuredProducts: FeaturedProducts;
 }
 
 interface PageProps {
@@ -97,7 +97,7 @@ export const Page: React.FC<PageProps> = ({
 
       {!displayLoader && !hasProducts && (
         <ProductsFeatured
-          products={featuredProducts}
+          products={featuredProducts.products}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}

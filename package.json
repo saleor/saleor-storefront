@@ -7,8 +7,6 @@
   "main": "dist/index.js",
   "browserslist": "last 2 versions",
   "dependencies": {
-    "@babel/plugin-transform-typescript": "^7.12.1",
-    "@babel/runtime": "^7.5.5",
     "@editorjs/editorjs": "^2.19.1",
     "@editorjs/header": "^2.6.0",
     "@editorjs/image": "^2.6.0",
@@ -32,7 +30,6 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "apollo-link-retry": "^2.2.16",
-    "babel-plugin-transform-class-properties": "^6.24.1",
     "braintree-web": "^3.38.1",
     "classnames": "^2.2.6",
     "core-js": "^2.6.12",
@@ -84,13 +81,6 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
     "@hot-loader/react-dom": "^16.9.0",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-essentials": "^6.0.28",
@@ -123,7 +113,6 @@
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "apollo-storybook-react": "^0.2.4",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-react-intl": "^7.5.20",
