@@ -24,6 +24,6 @@ export const incrementalStaticRegenerationRevalidate = parseInt(
 
 export const staticPathsFetchBatch = 50;
 
-export const staticPathsFallback = (process.env.NEXT_PUBLIC_DEMO_MODE === "true"
+export const staticPathsFallback = (exportMode
   ? false
   : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK) as boolean | "blocking";

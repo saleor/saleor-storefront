@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
+import { useMutation } from "react-apollo";
 
-import { TypedMutation } from "../../core/mutations";
 import {
   AccountConfirm,
   AccountConfirmVariables,
@@ -17,7 +17,7 @@ const accountConfirmMutation = gql`
   }
 `;
 
-export const TypedAccountConfirmMutation = TypedMutation<
-  AccountConfirm,
-  AccountConfirmVariables
->(accountConfirmMutation);
+export const useAccountConfirmMutation = (variables: AccountConfirmVariables) =>
+  useMutation<AccountConfirm, AccountConfirmVariables>(accountConfirmMutation, {
+    variables,
+  });

@@ -2,8 +2,8 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
   channelSlug,
-  exportMode,
   incrementalStaticRegenerationRevalidate,
+  staticPathsFallback,
   staticPathsFetchBatch,
 } from "@temp/constants";
 import { exhaustList, getSaleorApi } from "@utils/ssr";
@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths<
     params: { slug },
   }));
 
-  return { paths, fallback: !exportMode };
+  return { paths, fallback: staticPathsFallback };
 };
 
 export const getStaticProps: GetStaticProps<
