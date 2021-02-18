@@ -52,9 +52,7 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
             <>
               <S.Row>{header(matches)}</S.Row>
               {orders.map(
-                ({
-                  node: { created, token, number, lines, total, statusDisplay },
-                }) => {
+                ({ created, token, number, lines, total, statusDisplay }) => {
                   const date = new Date(created);
                   return (
                     <Link
