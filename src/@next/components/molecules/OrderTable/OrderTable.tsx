@@ -51,64 +51,64 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
           return (
             <>
               <S.Row>{header(matches)}</S.Row>
-              {orders &&
-                orders.map(order => {
-                  const date = new Date(order.node.created);
+              {orders.map(
+                ({
+                  node: { created, token, number, lines, total, statusDisplay },
+                }) => {
+                  const date = new Date(created);
                   return (
                     <Link
                       href={{
                         pathname: isGuest
                           ? paths.guestOrderDetail
                           : paths.accountOrderDetail,
-                        query: { token: order.node.token },
+                        query: { token },
                       }}
-                      key={order.node.number}
+                      key={number!}
                     >
                       <S.Row
                         data-test="orderEntry"
-                        data-test-id={order.node.number}
-                        key={order.node.number}
+                        data-test-id={number!}
+                        key={number!}
                       >
-                        <S.IndexNumber>{order.node.number}</S.IndexNumber>
+                        <S.IndexNumber>{number!}</S.IndexNumber>
                         {matches ? (
                           <>
                             <S.ProductsOrdered>
-                              {order.node.lines
-                                .slice(0, 5)
-                                .map((product: any) => (
-                                  <Link
-                                    // FIXME
-                                    href="/"
-                                    // href={{pathname: paths.product, query: {slug:product.variant.product}}
-                                    //   generateProductUrl(
-                                    //   product.variant.product.id,
-                                    //   product.variant.product.name
-                                    // )}
-                                    key={product.variant.product.id}
-                                  >
-                                    <a>
-                                      <Thumbnail source={product} />
-                                    </a>
-                                  </Link>
-                                ))}
+                              {lines.slice(0, 5).map(product => (
+                                <Link
+                                  href={{
+                                    pathname: paths.product,
+                                    query: {
+                                      slug: product!.variant!.product.slug,
+                                    },
+                                  }}
+                                  key={product!.variant!.product.id}
+                                >
+                                  <a>
+                                    <Thumbnail source={product!} />
+                                  </a>
+                                </Link>
+                              ))}
                             </S.ProductsOrdered>
                             <S.DateOfOrder>
                               <FormattedDate value={date} />
                             </S.DateOfOrder>
                             <S.Value>
-                              <TaxedMoney taxedMoney={order.node.total} />
+                              <TaxedMoney taxedMoney={total} />
                             </S.Value>
                           </>
                         ) : (
                           ""
                         )}
                         <S.Status>
-                          {translateOrderStatus(order.node.statusDisplay, intl)}
+                          {translateOrderStatus(statusDisplay!, intl)}
                         </S.Status>
                       </S.Row>
                     </Link>
                   );
-                })}
+                }
+              )}
             </>
           );
         }}

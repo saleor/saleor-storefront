@@ -107,6 +107,7 @@
     "@types/react-responsive": "^3.0.3",
     "@types/react-select": "^2.0.19",
     "@types/react-svg": "^5.0.0",
+    "@types/react-test-renderer": "^17.0.1",
     "@types/react-transition-group": "^4.4.0",
     "@types/styled-components": "^4.1.16",
     "@types/url-join": "^4.0.0",

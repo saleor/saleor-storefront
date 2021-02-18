@@ -1,5 +1,6 @@
 import "jest-styled-components";
 
+import { OrdersByUser_me_orders_edges } from "@saleor/sdk/lib/queries/gqlTypes/OrdersByUser";
 import { mount, shallow } from "enzyme";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import { stringify } from "query-string";
@@ -34,6 +35,7 @@ const ORDERS = [
             product: {
               id: "UHJvZHVjdDo3Mg==",
               name: "Apple Juice",
+              slug: "apple-juice",
             },
           },
         },
@@ -68,6 +70,7 @@ const ORDERS = [
             product: {
               id: "UHJvZHVjdDo3OQ==",
               name: "Bean Juice",
+              slug: "bean-juice",
             },
           },
         },
@@ -178,8 +181,8 @@ describe("<OrderTable />", () => {
     wrapper.find(Thumbnail).first().simulate("click");
 
     expect(pushSpy).toHaveBeenCalledWith(
-      "/product/apple-juice/72",
-      "/product/apple-juice/72",
+      "/product/[slug]?slug=apple-juice",
+      "/product/apple-juice",
       { locale: undefined, scroll: true, shallow: undefined }
     );
   });
