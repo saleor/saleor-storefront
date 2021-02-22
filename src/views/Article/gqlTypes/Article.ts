@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -8,7 +9,7 @@
 
 export interface Article_page {
   __typename: "Page";
-  content: any;
+  content: any | null;
   /**
    * The ID of the object.
    */

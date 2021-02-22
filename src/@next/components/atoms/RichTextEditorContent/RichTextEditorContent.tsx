@@ -10,7 +10,7 @@ import React from "react";
 import * as S from "./styles";
 
 export interface RichTextEditorContentProps {
-  jsonData: string;
+  jsonData?: string;
 }
 
 export const getTools = async (): Promise<
@@ -48,6 +48,10 @@ export const getTools = async (): Promise<
 export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
   jsonData,
 }) => {
+  if (!jsonData) {
+    return null;
+  }
+
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
 
