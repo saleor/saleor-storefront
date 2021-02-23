@@ -15,11 +15,8 @@ import { IProps } from "./types";
 
 import "./scss/index.scss";
 
-const canDisplay = (product: ProductDetails) =>
-  !!product?.description &&
-  !!product?.name &&
-  !!product?.pricing &&
-  !!product?.variants;
+const canDisplay = (product?: ProductDetails) =>
+  !!product?.name && !!product?.pricing && !!product?.variants;
 
 const extractMeta = (product: ProductDetails, url: string) => ({
   custom: [

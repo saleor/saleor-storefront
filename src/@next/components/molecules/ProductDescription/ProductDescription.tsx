@@ -48,7 +48,7 @@ export const ProductDescription: React.FC<IProps> = ({
         </S.TabTitle>
       </S.Tabs>
       <div hidden={activeTab !== TABS.DESCRIPTION}>
-        {description && <RichTextEditorContent jsonData={description} />}
+        <RichTextEditorContent jsonData={description} />
       </div>
       <div hidden={activeTab !== TABS.ATTRIBUTES}>
         <S.AttributeList>

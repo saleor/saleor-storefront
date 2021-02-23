@@ -16,7 +16,7 @@ interface PageProps {
   headerImage: string | null;
   navigation: PageNavigationElement[];
   page: {
-    content: any;
+    content: any | null;
     title: string;
   };
 }
@@ -55,7 +55,7 @@ export const Page: React.FC<PageProps> = ({
           </ul>
         </div>
         <div className="article-page__content">
-          {page.content && <RichTextEditorContent jsonData={page.content} />}
+          <RichTextEditorContent jsonData={page.content} />
         </div>
       </div>
     </div>
