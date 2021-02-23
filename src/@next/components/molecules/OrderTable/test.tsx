@@ -87,10 +87,7 @@ const getLinkCalledProps = (
   extra?: Partial<{ locale: string | false; shallow: boolean }>
 ) => [
   query ? `${path}?${stringify(query)}` : path,
-  generatePath(path, {
-    pathname: path,
-    query,
-  }),
+  generatePath(path, query, false),
   { locale: undefined, scroll: true, shallow: undefined, ...extra },
 ];
 

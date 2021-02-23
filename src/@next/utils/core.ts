@@ -31,7 +31,11 @@ export const getDBIdFromGraphqlId = (
 export const checkIfShippingRequiredForProducts = (items?: IItems) =>
   items?.some(({ variant }) => variant.product?.productType.isShippingRequired);
 
-export const generatePath = (path: string, params: UknownObject = {}) => {
+export const generatePath = (
+  path: string,
+  params: UknownObject = {},
+  traillingSlash = true
+) => {
   const used = new Set();
 
   const appendTraillingSlash = (path: string) =>
@@ -55,5 +59,5 @@ export const generatePath = (path: string, params: UknownObject = {}) => {
     return queryParams.length ? `?${stringify(queryObject)}` : "";
   })();
 
-  return `${appendTraillingSlash(path)}${queryString}`;
+  return `${traillingSlash ? appendTraillingSlash(path) : path}${queryString}`;
 };

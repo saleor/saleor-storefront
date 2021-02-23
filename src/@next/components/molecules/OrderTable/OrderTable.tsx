@@ -73,18 +73,18 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
                         {matches ? (
                           <>
                             <S.ProductsOrdered>
-                              {lines.slice(0, 5).map(product => (
+                              {lines.slice(0, 5).map(line => (
                                 <Link
                                   href={{
                                     pathname: paths.product,
                                     query: {
-                                      slug: product!.variant!.product.slug,
+                                      slug: line!.variant!.product.slug,
                                     },
                                   }}
-                                  key={product!.variant!.product.id}
+                                  key={line!.variant!.product.id}
                                 >
                                   <a>
-                                    <Thumbnail source={product!} />
+                                    <Thumbnail source={line!} />
                                   </a>
                                 </Link>
                               ))}
