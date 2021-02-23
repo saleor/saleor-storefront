@@ -19,13 +19,8 @@ import { IProps } from "./types";
 import "./scss/index.scss";
 
 const canDisplay = (product: ProductDetails_product) =>
-  maybe(
-    () =>
-      !!product.description &&
-      !!product.name &&
-      !!product.pricing &&
-      !!product.variants
-  );
+  maybe(() => !!product.name && !!product.pricing && !!product.variants);
+
 const extractMeta = (product: ProductDetails_product, url: string) => ({
   custom: [
     {
@@ -127,6 +122,7 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
+
             if (canDisplay(product)) {
               return (
                 <MetaWrapper
@@ -152,6 +148,8 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
+
+            return <NotFound />;
           }}
         </NetworkStatus>
       )}
