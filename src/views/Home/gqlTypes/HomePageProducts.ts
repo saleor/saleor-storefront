@@ -301,6 +301,7 @@ export interface HomePageProducts_categories_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
   backgroundImage: HomePageProducts_categories_edges_node_backgroundImage | null;
 }
 

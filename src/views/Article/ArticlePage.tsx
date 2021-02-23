@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { useMemo } from "react";
 
+import { paths } from "@paths";
+import { generatePath } from "@utils/core";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper, NotFound } from "../../components";
 import { STATIC_PAGES } from "../../core/config";
-import { generatePageUrl } from "../../core/utils";
 import { Article_page } from "./gqlTypes/Article";
 import Page from "./Page";
 
@@ -24,10 +25,7 @@ export interface ArticlePageProps {
 export const ArticlePage: NextPage<ArticlePageProps> = ({ data }) => {
   const { pathname } = useRouter();
   const [canDisplay, headerImage] = useMemo(
-    () => [
-      data?.article && data?.article,
-      data?.featuredProducts?.backgroundImage.url,
-    ],
+    () => [data?.article, data?.featuredProducts?.backgroundImage.url],
     [data]
   );
 
@@ -38,7 +36,7 @@ export const ArticlePage: NextPage<ArticlePageProps> = ({ data }) => {
 
   const getBreadcrumbs = (article: Article_page) => [
     {
-      link: generatePageUrl(article.slug),
+      link: generatePath(paths.page, { slug: article.slug }),
       value: article.title,
     },
   ];

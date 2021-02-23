@@ -13,6 +13,7 @@ const searchResultsQuery = gql`
         node {
           id
           name
+          slug
           thumbnail {
             url
             alt

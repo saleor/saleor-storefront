@@ -15,6 +15,7 @@ export const homePageProductsQuery = gql`
         node {
           id
           name
+          slug
           backgroundImage {
             url
           }

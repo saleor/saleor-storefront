@@ -1,3 +1,4 @@
+import { VariantAttributeScope } from "@saleor/sdk";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
@@ -38,6 +39,7 @@ export const getStaticProps: GetStaticProps<
   const { data } = await api.products.getDetails({
     slug: params.slug,
     channel: channelSlug,
+    variantSelection: VariantAttributeScope.VARIANT_SELECTION,
   });
 
   return {

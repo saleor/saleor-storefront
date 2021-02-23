@@ -1,8 +1,7 @@
 /* eslint-disable global-require */
-
+import { paths } from "@paths";
 import { ssrMode } from "@temp/constants";
-
-import { generatePageUrl } from "./utils";
+import { generatePath } from "@utils/core";
 
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
@@ -37,7 +36,7 @@ export const PROVIDERS = {
 export const STATIC_PAGES = [
   {
     label: "About",
-    url: generatePageUrl("about"),
+    url: generatePath(paths.page, { slug: "about" }),
   },
 ];
 export const SOCIAL_MEDIA = [

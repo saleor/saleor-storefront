@@ -98,6 +98,7 @@ const ITEM_VARIANT = (id: string): ICheckoutModelLineVariant => ({
   product: {
     id: "UHJvZHVjdDo3Mg==",
     name: "The Great Square Table",
+    slug: "the-great-square-table",
     productType: {
       id: `${id}-product-type`,
       isShippingRequired: true,

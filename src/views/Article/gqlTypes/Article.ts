@@ -9,7 +9,7 @@
 
 export interface Article_page {
   __typename: "Page";
-  content: any;
+  content: any | null;
   /**
    * The ID of the object.
    */

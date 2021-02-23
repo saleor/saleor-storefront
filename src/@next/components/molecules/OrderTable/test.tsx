@@ -9,7 +9,7 @@ import React from "react";
 import { IntlProvider } from "react-intl";
 
 import { paths } from "@paths";
-import { generatePath } from "@temp/core/utils";
+import { generatePath } from "@utils/core";
 
 import { Thumbnail } from "..";
 import { OrderTable } from ".";
@@ -87,7 +87,7 @@ const getLinkCalledProps = (
   extra?: Partial<{ locale: string | false; shallow: boolean }>
 ) => [
   query ? `${path}?${stringify(query)}` : path,
-  generatePath("/", {
+  generatePath(path, {
     pathname: path,
     query,
   }),

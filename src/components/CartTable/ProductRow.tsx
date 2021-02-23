@@ -6,8 +6,8 @@ import * as React from "react";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
-
-import { generateProductUrl } from "../../core/utils";
+import { paths } from "@paths";
+import { generatePath } from "@utils/core";
 
 export type ILine = Omit<
   ProductVariant,
@@ -32,7 +32,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   processing,
   line,
 }) => {
-  const productUrl = generateProductUrl(line.product.id, line.product.name);
+  const productUrl = generatePath(paths.product, { slug: line.product.slug });
 
   return (
     <tr

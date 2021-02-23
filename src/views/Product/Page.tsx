@@ -6,6 +6,8 @@ import Media from "react-media";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
+import { paths } from "@paths";
+import { generatePath } from "@utils/core";
 
 import {
   Breadcrumbs,
@@ -14,7 +16,6 @@ import {
   OverlayType,
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
-import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { IProps } from "./types";
@@ -23,11 +24,11 @@ import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 const populateBreadcrumbs = (product: ProductDetails) => [
   {
-    link: generateCategoryUrl(product.category.id, product.category.name),
+    link: generatePath(paths.category, { slug: product.category.slug }),
     value: product.category.name,
   },
   {
-    link: generateProductUrl(product.id, product.name),
+    link: generatePath(paths.product, { slug: product.slug }),
     value: product.name,
   },
 ];

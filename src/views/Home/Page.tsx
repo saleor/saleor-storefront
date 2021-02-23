@@ -3,9 +3,10 @@ import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { paths } from "@paths";
+
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
-import { generateCategoryUrl } from "../../core/utils";
 import noPhotoImg from "../../images/no-photo.svg";
 import {
   HomePageProducts_categories,
@@ -57,10 +58,12 @@ const Page: React.FC<{
         <div className="home-page__hero-action">
           {categoriesExist() && (
             <Link
-              href={generateCategoryUrl(
-                categories.edges[0].node.id,
-                categories.edges[0].node.name
-              )}
+              href={{
+                pathname: paths.category,
+                query: {
+                  slug: categories.edges[0].node.slug,
+                },
+              }}
             >
               <a>
                 <Button testingContext="homepageHeroActionButton">
@@ -85,7 +88,12 @@ const Page: React.FC<{
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>
                   <Link
-                    href={generateCategoryUrl(category.id, category.name)}
+                    href={{
+                      pathname: paths.category,
+                      query: {
+                        slug: category.slug,
+                      },
+                    }}
                     key={category.id}
                   >
                     <a>

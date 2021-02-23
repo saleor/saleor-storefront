@@ -4,9 +4,10 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import { ErrorMessage, Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
+import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
+import { generatePath } from "@utils/core";
 
-import { generateProductUrl } from "../../../../core/utils";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -41,6 +42,7 @@ export const CartRow: React.FC<IProps> = ({
   attributes = [],
   onRemove,
   id,
+  slug,
   type = "responsive",
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
@@ -96,7 +98,7 @@ export const CartRow: React.FC<IProps> = ({
       ]
     : undefined;
 
-  const productUrl = generateProductUrl(id, name);
+  const productUrl = generatePath(paths.product, { slug });
 
   return (
     <S.Wrapper cartRowType={type} data-test="cartRow" data-test-id={sku}>

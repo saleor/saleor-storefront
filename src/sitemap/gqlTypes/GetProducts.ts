@@ -26,6 +26,7 @@ export interface GetProducts_products_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface GetProducts_products_edges {

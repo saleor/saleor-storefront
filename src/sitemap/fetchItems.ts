@@ -3,11 +3,8 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-fetch";
 
-import {
-  generateCategoryUrl,
-  generateCollectionUrl,
-  generateProductUrl,
-} from "../core/utils";
+import { generatePath } from "../@next/utils/core";
+import { paths } from "../paths";
 import {
   getCategoriesQuery,
   getCollectionsQuery,
@@ -39,19 +36,19 @@ const fetchItems = async ({ query, perPage = 100 }, callback: any) => {
 };
 
 export const getCategories = async callback => {
-  await fetchItems({ query: getCategoriesQuery }, ({ id, name }) => {
-    callback({ url: generateCategoryUrl(id, name) });
+  await fetchItems({ query: getCategoriesQuery }, ({ slug }) => {
+    callback({ url: generatePath(paths.category, { slug }) });
   });
 };
 
 export const getCollections = async callback => {
-  await fetchItems({ query: getCollectionsQuery }, ({ id, name }) => {
-    callback({ url: generateCollectionUrl(id, name) });
+  await fetchItems({ query: getCollectionsQuery }, ({ slug }) => {
+    callback({ url: generatePath(paths.collection, { slug }) });
   });
 };
 
 export const getProducts = async callback => {
-  await fetchItems({ query: getProductsQuery }, ({ id, name }) => {
-    callback({ url: generateProductUrl(id, name) });
+  await fetchItems({ query: getProductsQuery }, ({ slug }) => {
+    callback({ url: generatePath(paths.product, { slug }) });
   });
 };

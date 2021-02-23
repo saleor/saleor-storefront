@@ -43,6 +43,7 @@ export interface SearchResults_products_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
   /**
    * The main thumbnail for a product.
    */
