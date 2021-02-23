@@ -10,7 +10,7 @@ import { channelSlug } from "@temp/constants";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { getGraphqlIdFromDBId, maybe } from "../../core/utils";
+import { getGraphqlIdFromDBId } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
@@ -18,14 +18,9 @@ import { IProps } from "./types";
 
 import "./scss/index.scss";
 
-const canDisplay = (product: ProductDetails_product) =>
-  maybe(
-    () =>
-      !!product.description &&
-      !!product.name &&
-      !!product.pricing &&
-      !!product.variants
-  );
+const canDisplay = (product?: ProductDetails_product) =>
+  !!product?.name && !!product?.pricing && !!product?.variants;
+
 const extractMeta = (product: ProductDetails_product, url: string) => ({
   custom: [
     {
@@ -127,6 +122,7 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
         <NetworkStatus>
           {isOnline => {
             const { product } = data;
+
             if (canDisplay(product)) {
               return (
                 <MetaWrapper
@@ -152,6 +148,8 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
+
+            return <NotFound />;
           }}
         </NetworkStatus>
       )}
