@@ -655,7 +655,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -673,7 +673,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -881,7 +881,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="totalPrice"
                 >
                   <span>
-                    PLN 37.50
+                    
                   </span>
                 </p>
               </div>
@@ -902,7 +902,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="unitPrice"
                 >
                   <span>
-                    PLN 12.50
+                    
                   </span>
                 </p>
               </div>
@@ -916,7 +916,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -934,7 +934,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1142,7 +1142,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="totalPrice"
                 >
                   <span>
-                    PLN 37.50
+                    
                   </span>
                 </p>
               </div>
@@ -1163,7 +1163,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="unitPrice"
                 >
                   <span>
-                    PLN 12.50
+                    
                   </span>
                 </p>
               </div>
@@ -1177,7 +1177,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1195,7 +1195,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1403,7 +1403,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="totalPrice"
                 >
                   <span>
-                    PLN 37.50
+                    
                   </span>
                 </p>
               </div>
@@ -1424,7 +1424,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                   data-test="unitPrice"
                 >
                   <span>
-                    PLN 12.50
+                    
                   </span>
                 </p>
               </div>
@@ -1448,7 +1448,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               <span
                 data-test="subtotalPrice"
               >
-                PLN 112.50
+                
               </span>
             </div>
             <div
@@ -1462,7 +1462,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               <span
                 data-test="shippingPrice"
               >
-                PLN 30.00
+                
               </span>
             </div>
             <div
@@ -1476,7 +1476,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               <span
                 data-test="discountPrice"
               >
-                PLN 15.00
+                
               </span>
             </div>
             <div
@@ -1490,7 +1490,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
               <span
                 data-test="totalPrice"
               >
-                PLN 127.50
+                
               </span>
             </div>
           </div>
@@ -1530,6 +1530,327 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
   </div>
   <div
     className="c43"
+  />
+</div>
+`;
+
+exports[`Storyshots @components/organisms/CartSidebar empty 1`] = `
+.c0 {
+  position: relative;
+  margin: 20px;
+}
+
+.c14 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid rgba(0,0,0,0.2);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.c12 {
+  background-color: #fff;
+  padding: 0.9rem 3.7rem;
+  border: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  cursor: pointer;
+  color: rgb(33,18,94);
+  width: 100%;
+  box-shadow: inset 0px 0px 0px 3px rgb(33,18,94);
+  border-left: 1px solid rgb(33,18,94);
+  border-right: 1px solid rgb(33,18,94);
+}
+
+.c12:hover {
+  background-color: rgb(33,18,94);
+  color: #fff;
+}
+
+.c12:active {
+  background-color: #190c4e;
+  box-shadow: -3px 3px 14px 0px rgba(129,67,67,0.2);
+}
+
+.c12:disabled {
+  background-color: #7d7d7d;
+}
+
+.c12:disabled,
+.c12:disabled:hover {
+  cursor: default;
+}
+
+.c13 {
+  display: inline-block;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.25rem;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  border-radius: 50%;
+  border-width: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7 svg {
+  display: block;
+}
+
+.c7 svg path {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c7:hover {
+  background-color: rgb(33,18,94);
+}
+
+.c7:hover svg path {
+  fill: #fff;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.1rem 1.875rem;
+  border-bottom: 1px solid #f1f5f5;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.c6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #323232;
+  text-transform: uppercase;
+  padding-right: 0.6rem;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: auto;
+  min-height: 455px;
+  height: 100%;
+  background-color: #fff;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-animation: brnJVY 0.4s both;
+  animation: brnJVY 0.4s both;
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  z-index: 2;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  -webkit-transition-delay: 0;
+  transition-delay: 0;
+  background-color: rgba(199,207,207,0.8);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  opacity: 1;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 26rem;
+  max-width: 100vw;
+  box-shadow: 6px 0px 30px rgba(0,0,0,0.15);
+}
+
+.c8 {
+  overflow: auto;
+  height: 100%;
+}
+
+.c9 {
+  margin: 1.875rem;
+}
+
+.c10 {
+  margin-bottom: 1rem;
+}
+
+.c11 {
+  color: #7d7d7d;
+  margin-bottom: 1rem;
+}
+
+@media (max-width:540px) {
+  .c12 {
+    padding: 0.9rem 1rem;
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    data-test="cartOverlay"
+    onClick={[Function]}
+    open={true}
+  >
+    <div
+      className="c2"
+      onClick={[Function]}
+      open={true}
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div />
+            <h4
+              className="c6"
+              size="md"
+            >
+              <span>
+                My Cart
+              </span>
+            </h4>
+          </div>
+          <div
+            className="c7"
+            data-test="closeOverlayButton"
+            onClick={[Function]}
+          >
+            <svg
+              height={19}
+              viewBox="0 0 32 32"
+              width={19}
+            >
+              <path
+                d="M16 12.8l-12.8-12.8-3.2 3.2 12.8 12.8-12.8 12.8 3.2 3.2 12.8-12.8 12.8 12.8 3.2-3.2-12.8-12.8 12.8-12.8-3.2-3.2-12.8 12.8z"
+                fill="#c4c4c4"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          className="c8"
+        >
+          <div
+            className="c9"
+          >
+            <h3
+              className="c10"
+            >
+              Your cart is empty
+            </h3>
+            <p
+              className="c11"
+            >
+              You haven’t added anything to your bag. We’re sure you’ll find something in our store
+            </p>
+            <button
+              className="c12"
+              color="secondary"
+              data-test="emptyCartHideOverlayButton"
+              name="continueShopping"
+              onClick={[Function]}
+              size="md"
+            >
+              <span
+                className="c13"
+                size="md"
+              >
+                Continue shopping
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c14"
   />
 </div>
 `;
