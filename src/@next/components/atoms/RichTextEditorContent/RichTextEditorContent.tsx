@@ -48,14 +48,10 @@ export const getTools = async (): Promise<
 export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
   jsonData,
 }) => {
-  if (!jsonData) {
-    return null;
-  }
-
   const editor = React.useRef<EditorJS>();
   const editorContainer = React.useRef<HTMLDivElement>(null);
 
-  const data: OutputData = JSON.parse(jsonData);
+  const data: OutputData | null = jsonData ? JSON.parse(jsonData) : null;
 
   React.useEffect(() => {
     if (data && editorContainer.current) {
@@ -74,5 +70,5 @@ export const RichTextEditorContent: React.FC<RichTextEditorContentProps> = ({
     return editor.current?.destroy;
   }, [jsonData]);
 
-  return <S.Content ref={editorContainer} />;
+  return jsonData ? <S.Content ref={editorContainer} /> : null;
 };
