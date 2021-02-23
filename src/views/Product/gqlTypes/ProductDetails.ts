@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { CountryCode } from "./../../../../gqlTypes/globalTypes";
@@ -702,7 +703,7 @@ export interface ProductDetails_product {
    * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
    */
   pricing: ProductDetails_product_pricing | null;
-  description: any;
+  description: any | null;
   category: ProductDetails_product_category | null;
   /**
    * List of images for the product.
