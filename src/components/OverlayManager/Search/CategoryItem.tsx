@@ -13,7 +13,7 @@ const CategoryItem: React.FC<SearchResults_categories_edges> = ({
     <Link to={generateCategoryUrl(category.id, category.name)}>
       <ThumbnailCollection source={category} />
       <span>
-        <h4>{category.name}</h4>
+        <h3>{category.name}</h3>
         <p>Category</p>
       </span>
     </Link>

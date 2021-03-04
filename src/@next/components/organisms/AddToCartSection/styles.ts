@@ -6,7 +6,13 @@ export const SocialShareSelection = styled.div`
   margin-bottom: 20px;
 `;
 
-export const ProductNameHeader = styled.h3`
+export const ProductNameHeader = styled.h4`
+  text-transform: uppercase;
+  font-weight: ${props => props.theme.typography.boldFontWeight};
+  margin-bottom: ${props => props.theme.spacing.spacer};
+`;
+
+export const CollectionNameHeader = styled.h3`
   text-transform: uppercase;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};

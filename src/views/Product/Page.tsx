@@ -1,9 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
-import { Link } from "react-router-dom";
 import { usePreferences } from "@hooks";
-import { RichTextContent } from "@components/atoms";
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
@@ -24,17 +22,11 @@ import {
   OverlayTheme,
   OverlayType,
 } from "../../components";
-import {
-  generateCategoryUrl,
-  generateCollectionUrl,
-  generateProductUrl,
-} from "../../core/utils";
+import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 
 import ArtisanVideo from "./Video";
-
-import noPhotoImg from "../../images/no-photo.svg";
 
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { IProps } from "./types";
@@ -91,6 +83,7 @@ const Page: React.FC<
       items={items}
       productId={product.id}
       name={product.name}
+      collections={product.collections}
       productVariants={product.variants}
       productPricing={product.pricing}
       queryAttributes={queryAttributes}
@@ -192,55 +185,6 @@ const Page: React.FC<
       </div>
       {MetaVideo ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
       <OtherProducts products={product.category.products.edges} />
-      <div className="product-page__categories">
-        <div className="container">
-          <h3>Shop by Collection</h3>
-          <div className="product-page__categories__list">
-            <div key={product.collections[0].id}>
-              <Link
-                to={generateCollectionUrl(
-                  product.collections[0].id,
-                  product.collections[0].name
-                )}
-                key={product.collections[0].id}
-              >
-                <div
-                  className={classNames(
-                    "product-page__categories__list__image",
-                    {
-                      "product-page__categories__list__image--no-photo": !product
-                        .collections[0].backgroundImage,
-                    }
-                  )}
-                  style={{
-                    backgroundImage: `url(${
-                      product.collections[0].backgroundImage
-                        ? product.collections[0].backgroundImage.url
-                        : noPhotoImg
-                    })`,
-                  }}
-                />
-              </Link>
-            </div>
-
-            <div className="collection__content">
-              <h3>
-                {locale === "en" && product.collections[0].translation?.name
-                  ? product.collections[0].translation.name
-                  : product.collections[0].name}
-              </h3>
-              <RichTextContent
-                descriptionJson={
-                  locale === "en" &&
-                  product.collections[0].translation?.descriptionJson
-                    ? product.collections[0].translation.descriptionJson
-                    : product.collections[0].descriptionJson
-                }
-              />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

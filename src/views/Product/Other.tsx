@@ -10,9 +10,9 @@ const OtherProducts: React.FC<{
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">
-      <h4 className="product-page__other-products__title">
+      <h3 className="product-page__other-products__title">
         <FormattedMessage defaultMessage="Other products you might like" />
-      </h4>
+      </h3>
       <ProductListOther products={products.map(({ node }) => node)} />
     </div>
   </div>

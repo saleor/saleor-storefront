@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
+import { Link } from "react-router-dom";
 
 import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
@@ -9,6 +10,8 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues } from "@types";
+import { ProductDetails_product_collections } from "../../../../views/Product/gqlTypes/ProductDetails";
+import { generateCollectionUrl } from "../../../../core/utils";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import ProductVariantPicker from "../ProductVariantPicker";
@@ -25,6 +28,7 @@ export interface IAddToCartSection {
   productId: string;
   productVariants: ProductDetails_product_variants[];
   name: string;
+  collections: ProductDetails_product_collections[] | null;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
@@ -41,6 +45,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   isAvailableForPurchase,
   items,
   name,
+  collections,
   productPricing,
   productVariants,
   queryAttributes,
@@ -111,6 +116,14 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
+      <Link
+        to={generateCollectionUrl(collections[0]!.id, collections[0]!.name)}
+        key={collections[0].id}
+      >
+        <S.CollectionNameHeader data-test="productName">
+          {collections![0].name}
+        </S.CollectionNameHeader>
+      </Link>
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),

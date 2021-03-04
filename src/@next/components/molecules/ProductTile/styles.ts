@@ -34,7 +34,7 @@ export const Title = styled.h4`
 
 export const ArtisanName = styled.p`
   font-weight: normal;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Cinzel";
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-size: 0.9rem !important;

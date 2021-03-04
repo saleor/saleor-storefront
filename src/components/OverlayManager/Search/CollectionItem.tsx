@@ -13,7 +13,7 @@ const CollectionItem: React.FC<SearchResults_collections_edges> = ({
     <Link to={generateCollectionUrl(collection.id, collection.name)}>
       <ThumbnailCollection source={collection} />
       <span>
-        <h4>{collection.name}</h4>
+        <h3>{collection.name}</h3>
         <p>Collection</p>
       </span>
     </Link>
