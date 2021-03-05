@@ -2,8 +2,8 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-fetch";
+import { generatePath } from "react-router";
 
-import { generatePath } from "../@next/utils/core";
 import { paths } from "../paths";
 import {
   getCategoriesQuery,

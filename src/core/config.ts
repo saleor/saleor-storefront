@@ -1,7 +1,8 @@
 /* eslint-disable global-require */
+import { generatePath } from "react-router";
+
 import { paths } from "@paths";
 import { ssrMode } from "@temp/constants";
-import { generatePath } from "@utils/core";
 
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";

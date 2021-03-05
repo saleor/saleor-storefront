@@ -37,11 +37,12 @@ export const AccountConfirmPage: NextPage = () => {
     (async () => {
       const { data, errors } = await mutation();
 
-      if (errors.length) {
+      if (errors?.length) {
         displayConfirmationAlert([
           { message: "Something went wrong while activating your account." },
         ]);
       }
+
       if (data.confirmAccount.errors.length) {
         displayConfirmationAlert(data.confirmAccount.errors);
       }

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+import { generatePath } from "react-router";
 
 import { paths } from "@paths";
 
@@ -58,12 +59,9 @@ const Page: React.FC<{
         <div className="home-page__hero-action">
           {categoriesExist() && (
             <Link
-              href={{
-                pathname: paths.category,
-                query: {
-                  slug: categories.edges[0].node.slug,
-                },
-              }}
+              href={generatePath(paths.category, {
+                slug: categories.edges[0].node.slug,
+              })}
             >
               <a>
                 <Button testingContext="homepageHeroActionButton">
@@ -88,12 +86,9 @@ const Page: React.FC<{
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>
                   <Link
-                    href={{
-                      pathname: paths.category,
-                      query: {
-                        slug: category.slug,
-                      },
-                    }}
+                    href={generatePath(paths.category, {
+                      slug: category.slug,
+                    })}
                     key={category.id}
                   >
                     <a>

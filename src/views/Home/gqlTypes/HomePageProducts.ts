@@ -278,6 +278,10 @@ export interface HomePageProducts_collection_products {
 
 export interface HomePageProducts_collection {
   __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   name: string;
   backgroundImage: HomePageProducts_collection_backgroundImage | null;
   /**

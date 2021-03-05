@@ -4,10 +4,10 @@ import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
+import { generatePath } from "react-router";
 
 import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
-import { generatePath } from "@utils/core";
 
 import "./scss/index.scss";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";

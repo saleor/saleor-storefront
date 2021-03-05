@@ -266,6 +266,10 @@ export interface FeaturedProductsQuery_collection_products {
 
 export interface FeaturedProductsQuery_collection {
   __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   name: string;
   backgroundImage: FeaturedProductsQuery_collection_backgroundImage | null;
   /**

@@ -1,6 +1,7 @@
 import { useAuth } from "@saleor/sdk";
 import { NextPage } from "next";
 import React from "react";
+import { generatePath } from "react-router";
 
 import { ThankYou } from "@components/organisms";
 import { paths } from "@paths";
@@ -17,10 +18,10 @@ export const ThankYouPage: NextPage<IProps> = ({
     <ThankYou
       continueShoppingUrl={paths.home}
       orderNumber={orderNumber}
-      orderDetailsUrl={{
-        pathname: user ? paths.accountOrderDetail : paths.guestOrderDetail,
-        query: { token },
-      }}
+      orderDetailsUrl={generatePath(
+        user ? paths.accountOrderDetail : paths.guestOrderDetail,
+        { token }
+      )}
       orderStatus={orderStatus}
     />
   ) : (

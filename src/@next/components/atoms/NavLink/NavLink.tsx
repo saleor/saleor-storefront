@@ -6,9 +6,9 @@
 
 import Link from "next/link";
 import React from "react";
+import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { generatePath } from "@utils/core";
 
 import * as S from "./styles";
 import { IProps } from "./types";

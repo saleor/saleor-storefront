@@ -3,11 +3,11 @@ import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queri
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
+import { generatePath } from "react-router";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 import { paths } from "@paths";
-import { generatePath } from "@utils/core";
 
 export type ILine = Omit<
   ProductVariant,

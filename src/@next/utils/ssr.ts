@@ -20,10 +20,10 @@ let CONNECTION: ConnectResult | null = null;
 
 export const getSaleorApi = async () => {
   if (!CONNECTION) {
-    const manager = new SaleorManager({
-      apiUrl,
-      channel: channelSlug,
-    });
+    const manager = new SaleorManager(
+      { apiUrl, channel: channelSlug },
+      { options: { ssrMode: true } }
+    );
     CONNECTION = await manager.connect();
   }
 

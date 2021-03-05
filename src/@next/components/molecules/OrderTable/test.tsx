@@ -3,13 +3,12 @@ import "jest-styled-components";
 import { OrdersByUser_me_orders_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/OrdersByUser";
 import { mount, shallow } from "enzyme";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
-import { stringify } from "query-string";
-import { ParsedUrlQueryInput } from "querystring";
 import React from "react";
 import { IntlProvider } from "react-intl";
+import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { generatePath } from "@utils/core";
+import { UknownObject } from "@utils/tsUtils";
 
 import { Thumbnail } from "..";
 import { OrderTable } from ".";
@@ -81,14 +80,10 @@ const ORDERS = [
   },
 ] as OrdersByUser_me_orders_edges_node[];
 
-const getLinkCalledProps = (
-  path: string,
-  query?: ParsedUrlQueryInput,
-  extra?: Partial<{ locale: string | false; shallow: boolean }>
-) => [
-  query ? `${path}?${stringify(query)}` : path,
-  generatePath(path, query, false),
-  { locale: undefined, scroll: true, shallow: undefined, ...extra },
+const getLinkCalledProps = (path: string, query?: UknownObject) => [
+  generatePath(path, query),
+  generatePath(path, query),
+  { locale: undefined, scroll: true, shallow: undefined },
 ];
 
 (global as any).matchMedia = (media: any) => ({
@@ -173,9 +168,7 @@ describe("<OrderTable />", () => {
     wrapper.find(Thumbnail).first().simulate("click");
 
     expect(pushSpy).toHaveBeenCalledWith(
-      "/product/[slug]?slug=apple-juice",
-      "/product/apple-juice",
-      { locale: undefined, scroll: true, shallow: undefined }
+      ...getLinkCalledProps(paths.product, { slug: "apple-juice" })
     );
   });
 });

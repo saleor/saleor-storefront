@@ -2,12 +2,12 @@ import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetail
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
+import { generatePath } from "react-router";
 
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
-import { generatePath } from "@utils/core";
 
 import {
   Breadcrumbs,

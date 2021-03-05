@@ -1,5 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
+import { generatePath } from "react-router";
 
 import { Thumbnail } from "@components/molecules";
 import { paths } from "@paths";
@@ -10,14 +11,7 @@ const ProductItem: React.FC<SearchResults_products_edges> = ({
   node: product,
 }) => (
   <li className="search__products__item">
-    <Link
-      href={{
-        pathname: paths.product,
-        query: {
-          slug: product.slug,
-        },
-      }}
-    >
+    <Link href={generatePath(paths.product, { slug: product.slug })}>
       <a>
         <Thumbnail source={product} />
         <span>

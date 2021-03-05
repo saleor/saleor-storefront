@@ -34,6 +34,7 @@ const Page: React.FC<{
   downloadInvoice: () => void;
 }> = ({ guest, order, downloadInvoice }) => {
   const intl = useIntl();
+
   return order ? (
     <>
       {!guest && (
@@ -98,7 +99,6 @@ const Page: React.FC<{
           <AddressSummary
             address={order.shippingAddress}
             email={order.userEmail}
-            paragraphRef={this.shippingAddressRef}
           />
         </div>
       </div>

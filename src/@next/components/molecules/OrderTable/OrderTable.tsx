@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FormattedDate, FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
+import { generatePath } from "react-router";
 import { ThemeContext } from "styled-components";
 
 import { TaxedMoney } from "@components/containers";
@@ -56,12 +57,12 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
                   const date = new Date(created);
                   return (
                     <Link
-                      href={{
-                        pathname: isGuest
+                      href={generatePath(
+                        isGuest
                           ? paths.guestOrderDetail
                           : paths.accountOrderDetail,
-                        query: { token },
-                      }}
+                        { token }
+                      )}
                       key={number!}
                     >
                       <S.Row
@@ -75,12 +76,9 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
                             <S.ProductsOrdered>
                               {lines.slice(0, 5).map(line => (
                                 <Link
-                                  href={{
-                                    pathname: paths.product,
-                                    query: {
-                                      slug: line!.variant!.product.slug,
-                                    },
-                                  }}
+                                  href={generatePath(paths.product, {
+                                    slug: line!.variant!.product.slug,
+                                  })}
                                   key={line!.variant!.product.id}
                                 >
                                   <a>

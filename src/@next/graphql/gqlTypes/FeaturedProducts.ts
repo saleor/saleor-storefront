@@ -266,6 +266,10 @@ export interface FeaturedProducts_collection_products {
 
 export interface FeaturedProducts_collection {
   __typename: "Collection";
+  /**
+   * The ID of the object.
+   */
+  id: string;
   name: string;
   backgroundImage: FeaturedProducts_collection_backgroundImage | null;
   /**

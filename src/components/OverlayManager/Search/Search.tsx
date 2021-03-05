@@ -61,10 +61,6 @@ class Search extends React.Component<SearchProps, SearchState> {
     return this.state.search.length > 0;
   }
 
-  get redirectTo() {
-    return { pathname: paths.search, search: `?${this.searchQs}` };
-  }
-
   get searchQs() {
     return stringify({ q: this.state.search });
   }

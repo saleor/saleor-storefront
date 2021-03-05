@@ -76,6 +76,7 @@ export const featuredProductsFragment = gql`
   ${featuredProductFragment}
   fragment FeaturedProducts on Query {
     collection(slug: "featured-products", channel: $channel) {
+      id
       name
       backgroundImage {
         url

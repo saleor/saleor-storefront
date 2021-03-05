@@ -2,9 +2,9 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import * as React from "react";
 import { useMemo } from "react";
+import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { generatePath } from "@utils/core";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper, NotFound } from "../../components";
