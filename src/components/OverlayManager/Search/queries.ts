@@ -8,7 +8,7 @@ import {
 
 const searchResultsQuery = gql`
   query SearchResults($query: String!) {
-    collections(filter: { search: $query }, first: 5) {
+    collections(filter: { search: $query, published: PUBLISHED }, first: 5) {
       edges {
         node {
           id
@@ -44,7 +44,7 @@ const searchResultsQuery = gql`
         startCursor
       }
     }
-    products(filter: { search: $query }, first: 15) {
+    products(filter: { search: $query, isPublished: true }, first: 15) {
       edges {
         node {
           id

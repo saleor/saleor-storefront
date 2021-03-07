@@ -45,6 +45,14 @@ export const basicProductFragment = gql`
         key
         value
       }
+      products(first: 3) {
+        edges {
+          node {
+            name
+            id
+          }
+        }
+      }
     }
     thumbnail {
       url

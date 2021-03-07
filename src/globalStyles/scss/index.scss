@@ -33,8 +33,10 @@ body {
 
   h4 {
     font-size: $h4-font-size;
-    font-family: $title-font-family;
+    font-family: "Palanquin Dark", sans-serif;
+    letter-spacing: 0.04rem;
     text-align: left;
+    font-weight: 100;
   }
 
   h5 {

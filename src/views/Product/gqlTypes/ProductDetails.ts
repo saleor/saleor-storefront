@@ -726,6 +726,7 @@ export interface ProductDetails_product_collections {
   backgroundImage: Collection_collection_backgroundImage | null;
   metadata: (CollectionDetails_collection_metadata | null)[] | null;
   translation: Product_collections_translation | null;
+  products: ProductDetails_product_category_products | null;
 }
 
 export interface ProductDetails_product_variants {
