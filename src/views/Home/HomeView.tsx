@@ -7,11 +7,11 @@ import Page from "./Page";
 
 import "./scss/index.scss";
 
-export interface HomePageProps {
+export interface HomeViewProps {
   data: HomePageProducts;
 }
 
-export const HomePage: NextPage<HomePageProps> = ({
+export const HomeView: NextPage<HomeViewProps> = ({
   data: { shop, collection, categories },
 }) => (
   <div className="home-page">

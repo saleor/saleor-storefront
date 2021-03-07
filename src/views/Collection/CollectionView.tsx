@@ -13,12 +13,12 @@ import { useProductsQuery } from "../Category/queries";
 import { filtersChangeHandler } from "../Category/utils";
 import { CollectionData, Page } from "./Page";
 
-export type CollectionPageProps = {
+export type CollectionViewProps = {
   params: { slug: string } | undefined;
   data: ({ id: string } & CollectionData) | undefined | null;
 };
 
-export const CollectionPage: NextPage<CollectionPageProps> = ({
+export const CollectionView: NextPage<CollectionViewProps> = ({
   data: collection,
 }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);

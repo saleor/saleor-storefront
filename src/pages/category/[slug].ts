@@ -5,7 +5,7 @@ import {
   staticPathsFallback,
   staticPathsFetchBatch,
 } from "@temp/constants";
-import { CategoryPage, CategoryPageProps } from "@temp/views/Category";
+import { CategoryView, CategoryViewProps } from "@temp/views/Category";
 import {
   exhaustList,
   getFeaturedProducts,
@@ -13,10 +13,10 @@ import {
   getShopAttributes,
 } from "@utils/ssr";
 
-export default CategoryPage;
+export default CategoryView;
 
 export const getStaticPaths: GetStaticPaths<
-  CategoryPageProps["params"]
+  CategoryViewProps["params"]
 > = async () => {
   const { api } = await getSaleorApi();
   const { data } = await exhaustList(
@@ -33,8 +33,8 @@ export const getStaticPaths: GetStaticPaths<
 };
 
 export const getStaticProps: GetStaticProps<
-  CategoryPageProps,
-  CategoryPageProps["params"]
+  CategoryViewProps,
+  CategoryViewProps["params"]
 > = async ({ params: { slug } }) => {
   let data = null;
   const { api } = await getSaleorApi();

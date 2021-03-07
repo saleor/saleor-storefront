@@ -11,7 +11,7 @@ import { useAccountConfirmMutation } from "./mutations";
 
 import "./scss/index.scss";
 
-export const AccountConfirmPage: NextPage = () => {
+export const AccountConfirmView: NextPage = () => {
   const [query] = useQueryParams({
     email: StringParam,
     token: StringParam,
@@ -39,7 +39,9 @@ export const AccountConfirmPage: NextPage = () => {
 
       if (errors?.length) {
         displayConfirmationAlert([
-          { message: "Something went wrong while activating your account." },
+          {
+            message: "Something went wrong while activating your account.",
+          },
         ]);
       }
 

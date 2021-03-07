@@ -13,12 +13,12 @@ import { CategoryData, Page } from "./Page";
 import { useProductsQuery } from "./queries";
 import { filtersChangeHandler } from "./utils";
 
-export type CategoryPageProps = {
+export type CategoryViewProps = {
   params: { slug: string } | undefined;
   data: ({ id: string } & CategoryData) | undefined | null;
 };
 
-export const CategoryPage: NextPage<CategoryPageProps> = ({
+export const CategoryView: NextPage<CategoryViewProps> = ({
   data: category,
 }) => {
   const [sort, setSort] = useQueryParam("sortBy", StringParam);

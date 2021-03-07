@@ -1,3 +1,3 @@
-import { AccountConfirmPage } from "../views/Account";
+import { AccountConfirmView } from "../views/Account";
 
-export default AccountConfirmPage;
+export default AccountConfirmView;

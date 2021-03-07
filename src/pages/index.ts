@@ -6,15 +6,15 @@ import {
 } from "@temp/constants";
 import { getSaleorApi } from "@utils/ssr";
 
-import { HomePage, homePageProductsQuery } from "../views/Home";
+import { homePageProductsQuery, HomeView, HomeViewProps } from "../views/Home";
 import {
   HomePageProducts,
   HomePageProductsVariables,
 } from "../views/Home/gqlTypes/HomePageProducts";
 
-export default HomePage;
+export default HomeView;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<
     HomePageProducts,

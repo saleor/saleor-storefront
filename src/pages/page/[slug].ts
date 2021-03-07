@@ -4,7 +4,7 @@ import {
   incrementalStaticRegenerationRevalidate,
   staticPathsFallback,
 } from "@temp/constants";
-import { ArticlePage, ArticlePageProps } from "@temp/views/Article";
+import { ArticleView, ArticleViewProps } from "@temp/views/Article";
 import {
   Article,
   ArticleVariables,
@@ -13,7 +13,7 @@ import { Pages } from "@temp/views/Article/gqlTypes/Pages";
 import { articleQuery, pagesQuery } from "@temp/views/Article/query";
 import { getFeaturedProducts, getSaleorApi } from "@utils/ssr";
 
-export default ArticlePage;
+export default ArticleView;
 
 export const getStaticPaths: GetStaticPaths<any> = async () => {
   const { apolloClient } = await getSaleorApi();
@@ -27,8 +27,8 @@ export const getStaticPaths: GetStaticPaths<any> = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  ArticlePageProps,
-  ArticlePageProps["params"]
+  ArticleViewProps,
+  ArticleViewProps["params"]
 > = async ({ params: { slug } }) => {
   const { apolloClient } = await getSaleorApi();
 

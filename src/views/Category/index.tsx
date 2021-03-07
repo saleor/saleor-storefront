@@ -1,1 +1,1 @@
-export * from "./CategoryPage";
+export * from "./CategoryView";

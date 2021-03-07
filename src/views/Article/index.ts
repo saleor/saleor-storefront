@@ -1,1 +1,1 @@
-export * from "./ArticlePage";
+export * from "./ArticleView";

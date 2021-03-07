@@ -14,7 +14,7 @@ import Page from "./Page";
 
 import "./scss/index.scss";
 
-export interface ArticlePageProps {
+export interface ArticleViewProps {
   params: { slug: string };
   data: {
     article: Article_page | null;
@@ -22,7 +22,7 @@ export interface ArticlePageProps {
   };
 }
 
-export const ArticlePage: NextPage<ArticlePageProps> = ({ data }) => {
+export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
   const { pathname } = useRouter();
   const [canDisplay, headerImage] = useMemo(
     () => [data?.article, data?.featuredProducts?.backgroundImage.url],

@@ -1,3 +1,3 @@
-import { Account } from "../../../views/Account";
+import { AccountView } from "../../../views/Account";
 
-export default Account;
+export default AccountView;
