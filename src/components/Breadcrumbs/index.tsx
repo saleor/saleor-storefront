@@ -16,7 +16,9 @@ export interface Breadcrumb {
   value: string;
   link: string;
 }
+
 type BreadcrumbCategory = Pick<CategoryDetails, "slug" | "name">;
+
 export const extractBreadcrumbs = (
   category: BreadcrumbCategory,
   ancestors?: BreadcrumbCategory[]

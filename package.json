@@ -194,7 +194,7 @@
     "start:worker": "cross-env SERVICE_WORKER=true npm run start",
     "build": "next build",
     "build:start": "npm run build && next start",
-    "build:export": "cross-env NEXT_EXPORT=true NODE_ENV=development npm run build && cross-env NEXT_EXPORT=true NODE_ENV=development next export -o dist",
+    "build:export": "cross-env NEXT_EXPORT=true npm run build && cross-env NEXT_EXPORT=true next export -o dist",
     "storybook": "start-storybook -p 9002",
     "build-storybook": "build-storybook -o ./dist/storybook",
     "codegen": "apollo codegen:generate --target=typescript gqlTypes",

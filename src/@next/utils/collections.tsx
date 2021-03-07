@@ -8,6 +8,7 @@ export type SortOptions = {
   label: string | JSX.Element;
   value: string | null;
 }[];
+
 export const SORT_OPTIONS: SortOptions = [
   {
     label: <FormattedMessage {...prodListHeaderCommonMsg.sortOptionsClear} />,
