@@ -2,7 +2,7 @@
 
 ![1 copy 2x](https://user-images.githubusercontent.com/5421321/47798207-30aeea00-dd28-11e8-9398-3d8426836a83.png)
 
-_**Note:** This project is beta quality. We don't advise using it in production._
+_**Note:** This project is a demonstration on how Saleor can be used. It’s not ready to be a starter but rather show how different cases can be handled and could be used as a recipe book. There **will** be breaking changes and the code is constantly evolving, so use at your own risk._
 
 A GraphQL-powered, PWA, single-page application storefront for [Saleor](https://github.com/mirumee/saleor/).
 
