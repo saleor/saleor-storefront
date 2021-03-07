@@ -24,6 +24,7 @@ const ORDERS = [
           product: {
             id: "UHJvZHVjdDo3Mg==",
             name: "Apple Juice",
+            slug: "apple-juice",
           },
         },
       },
@@ -55,6 +56,7 @@ const ORDERS = [
           product: {
             id: "UHJvZHVjdDo3OQ==",
             name: "Bean Juice",
+            slug: "bean-juice",
           },
         },
       },

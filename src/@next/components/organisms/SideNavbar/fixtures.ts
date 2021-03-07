@@ -6,6 +6,7 @@ export const items = [
     category: {
       id: "Q2F0ZWdvcnk6Nw==",
       name: "Accessories",
+      slug: "accessories",
       __typename: "Category",
     },
     url: null,
@@ -17,10 +18,12 @@ export const items = [
       {
         id: "123",
         name: "Subcategory I",
+        slug: "subcategoryi",
         category: {
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
           __typename: "Category",
+          slug: "accessories",
         },
         url: null,
         collection: null,
@@ -31,9 +34,11 @@ export const items = [
           {
             id: "TWVudUl0ZW01Mjcx",
             name: "Subsubcategory I",
+            slug: "subsubcategoryi",
             category: {
               id: "Q2F0ZWdvcnk6Nw==",
               name: "Accessories",
+              slug: "accessories",
               __typename: "Category",
             },
           },
@@ -42,9 +47,11 @@ export const items = [
       {
         id: "TWVudUl0ZW01Mjcx",
         name: "Subcategory II",
+        slug: "subcategoryii",
         category: {
           id: "Q2F0ZWdvcnk6Nw==",
           name: "Accessories",
+          slug: "accessories",
           __typename: "Category",
         },
         url: null,
@@ -59,9 +66,11 @@ export const items = [
   {
     id: "TWVudUl0ZW06Mjcy",
     name: "Groceries",
+    slug: "groceries",
     category: {
       id: "Q2F0ZWdvcnk6OA==",
       name: "Groceries",
+      slug: "groceries",
       __typename: "Category",
     },
     url: null,
@@ -74,9 +83,11 @@ export const items = [
   {
     id: "TWVudUl0ZW06Mjcz",
     name: "Apparel",
+    slug: "apparel",
     category: {
       id: "Q2F0ZWdvcnk6OQ==",
       name: "Apparel",
+      slug: "apparel",
       __typename: "Category",
     },
     url: null,
