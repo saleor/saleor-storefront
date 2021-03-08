@@ -8,18 +8,12 @@
 
 export interface MainMenu_menu_items_category {
   __typename: "Category";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
 
 export interface MainMenu_menu_items_collection {
   __typename: "Collection";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
@@ -31,26 +25,17 @@ export interface MainMenu_menu_items_page {
 
 export interface MainMenu_menu_items_parent {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
 }
 
 export interface MainMenu_menu_items_children_category {
   __typename: "Category";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
 
 export interface MainMenu_menu_items_children_collection {
   __typename: "Collection";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
@@ -62,26 +47,17 @@ export interface MainMenu_menu_items_children_page {
 
 export interface MainMenu_menu_items_children_parent {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
 }
 
 export interface MainMenu_menu_items_children_children_category {
   __typename: "Category";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
 
 export interface MainMenu_menu_items_children_children_collection {
   __typename: "Collection";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
 }
@@ -93,23 +69,14 @@ export interface MainMenu_menu_items_children_children_page {
 
 export interface MainMenu_menu_items_children_children_parent {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
 }
 
 export interface MainMenu_menu_items_children_children {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
   category: MainMenu_menu_items_children_children_category | null;
-  /**
-   * URL to the menu item.
-   */
   url: string | null;
   collection: MainMenu_menu_items_children_children_collection | null;
   page: MainMenu_menu_items_children_children_page | null;
@@ -118,15 +85,9 @@ export interface MainMenu_menu_items_children_children {
 
 export interface MainMenu_menu_items_children {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
   category: MainMenu_menu_items_children_category | null;
-  /**
-   * URL to the menu item.
-   */
   url: string | null;
   collection: MainMenu_menu_items_children_collection | null;
   page: MainMenu_menu_items_children_page | null;
@@ -136,15 +97,9 @@ export interface MainMenu_menu_items_children {
 
 export interface MainMenu_menu_items {
   __typename: "MenuItem";
-  /**
-   * The ID of the object.
-   */
   id: string;
   name: string;
   category: MainMenu_menu_items_category | null;
-  /**
-   * URL to the menu item.
-   */
   url: string | null;
   collection: MainMenu_menu_items_collection | null;
   page: MainMenu_menu_items_page | null;
@@ -154,17 +109,11 @@ export interface MainMenu_menu_items {
 
 export interface MainMenu_menu {
   __typename: "Menu";
-  /**
-   * The ID of the object.
-   */
   id: string;
   items: (MainMenu_menu_items | null)[] | null;
 }
 
 export interface MainMenu {
-  /**
-   * Look up a navigation menu by ID or name.
-   */
   menu: MainMenu_menu | null;
 }
 

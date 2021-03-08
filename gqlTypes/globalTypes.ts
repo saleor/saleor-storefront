@@ -6,9 +6,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-/**
- * An enumeration.
- */
 export enum CountryCode {
   AD = "AD",
   AE = "AE",
@@ -275,6 +272,7 @@ export enum ProductOrderField {
   PRICE = "PRICE",
   PUBLICATION_DATE = "PUBLICATION_DATE",
   PUBLISHED = "PUBLISHED",
+  RANK = "RANK",
   RATING = "RATING",
   TYPE = "TYPE",
 }
