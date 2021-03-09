@@ -76,6 +76,7 @@ export const collectionProductsQuery = gql`
         first: $pageSize
         sortBy: $sortBy
         filter: {
+          isPublished: true
           attributes: $attributes
           minimalPrice: { gte: $priceGte, lte: $priceLte }
         }
