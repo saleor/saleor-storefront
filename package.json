@@ -174,7 +174,7 @@
     "workbox-webpack-plugin": "^6.0.2"
   },
   "engines": {
-    "node": ">=12 <14"
+    "node": "14.16"
   },
   "husky": {
     "hooks": {
