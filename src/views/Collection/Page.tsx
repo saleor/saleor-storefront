@@ -165,6 +165,7 @@ const Page: React.FC<PageProps> = ({
                 ? collection.translation.name
                 : collection.name}
             </h1>
+            <h1>{process.env.API_URI}</h1>
           </span>
         </div>
       )}

@@ -55,6 +55,10 @@ const Page: React.FC<{
   };
   const intl = useIntl();
 
+  console.log("print processes");
+  console.log(process.env);
+  console.log(process.env.URL_LOGO);
+
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">

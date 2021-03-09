@@ -6,6 +6,7 @@ COPY . .
 ARG API_URI
 ARG DEFAULT_LOCALE
 ENV API_URI ${API_URI:-http://localhost:8000/graphql/}
+ENV SOCIAL_INSTAGRAM ${API_URI:-http://localhost:8000/graphql/}
 
 EXPOSE 3000
 CMD npm start -- --host 0.0.0.0

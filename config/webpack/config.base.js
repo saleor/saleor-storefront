@@ -9,6 +9,9 @@ const path = require("path");
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
 }
+if (!process.env.URL_LOGO) {
+  throw new Error("Environment variable URL_LOGO not set");
+}
 const STATIC_URL = process.env.STATIC_URL || "/";
 
 module.exports = ({ sourceDir, distDir }) => ({
@@ -120,6 +123,14 @@ module.exports = ({ sourceDir, distDir }) => ({
       SENTRY_APM: "0",
       SENTRY_DSN: null,
       DEFAULT_LOCALE: "it",
+      SOCIAL_FACEBOOK: undefined,
+      SOCIAL_INSTAGRAM: undefined,
+      SOCIAL_VIMEO: undefined,
+      URL_FAVICON: undefined,
+      URL_LOGO: undefined,
+      COMPANY_NAME: undefined,
+      COLLECTION_ID: undefined,
+      COMPANY_PIVA: undefined,
     }),
   ],
   resolve: {

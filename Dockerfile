@@ -10,7 +10,7 @@ ARG DEMO_MODE
 ARG GTM_ID
 ARG DEFAULT_LOCALE
 ENV API_URI ${API_URI:-http://localhost:8000/graphql/}
-ENV COLLECTION_ID ${COLLECTION_ID:-IFNUIN}
+ENV SOCIAL_INSTAGRAM ${API_URI:-http://localhost:8000/graphql/}
 RUN API_URI=${API_URI} npm run build
 
 FROM nginx:stable
