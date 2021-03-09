@@ -98,6 +98,8 @@ module.exports = ({ sourceDir, distDir }) => ({
       API_URI: process.env.API_URI,
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
+      SOCIAL_INSTAGRAM: undefined,
+      SOCIAL_VIMEO: undefined,
     }),
     new ForkTsCheckerWebpackPlugin({
       eslint: true,

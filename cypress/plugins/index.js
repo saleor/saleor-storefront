@@ -13,6 +13,7 @@
 
 module.exports = (on, config) => {
   config.env.API_URI = process.env.API_URI;
+  config.env.SOCIAL_INSTAGRAM = process.env.SOCIAL_INSTAGRAM;
 
   return config;
 };
