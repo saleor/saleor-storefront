@@ -54,12 +54,12 @@ export const STATIC_PAGES = [
 export const SOCIAL_MEDIA = [
   {
     ariaLabel: "instagram",
-    href: "https://www.instagram.com/" + process.env.INSTAGRAM_LINK,
+    href: "https://www.instagram.com/",
     path: require("../images/instagram-icon.svg"),
   },
   {
     ariaLabel: "vimeo",
-    href: "https://www.vimeo.com/" + process.env.VIMEO_LINK,
+    href: "https://www.vimeo.com/",
     path: require("../images/vimeo-icon.svg"),
   },
 ];
