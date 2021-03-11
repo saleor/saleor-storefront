@@ -8,7 +8,9 @@ import { FormattedMessage } from "react-intl";
 import { SocialMediaIcon } from "..";
 import { SOCIAL_MEDIA } from "../../core/config";
 import Nav from "./Nav";
+import NavPartner from "./NavPartner";
 import NavEN from "./NavEN";
+import NavPartnerEN from "./NavPartnerEN";
 
 const Footer: React.FC = () => {
   const {
@@ -21,7 +23,15 @@ const Footer: React.FC = () => {
           <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
         ))}
       </div>
-      {locale === "en" ? <NavEN /> : <Nav />}
+      {locale === "en" && process.env.COLLECTION_ID === "false" ? (
+        <NavEN />
+      ) : locale === "en" && process.env.COLLECTION_ID ? (
+        <NavPartnerEN />
+      ) : locale !== "en" && process.env.COLLECTION_ID === "false" ? (
+        <Nav />
+      ) : (
+        <NavPartner />
+      )}
       {locale === "en" ? (
         <CookieConsent
           location="bottom"

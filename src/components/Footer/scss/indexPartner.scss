@@ -1,0 +1,113 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.footer {
+  &__favicons {
+    border-top: 1px solid $gray-light;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__menu {
+    background-color: $gray-light;
+    padding: $spacer * 3 0 $spacer * 2;
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+
+      div {
+        &:not(:last-of-type) {
+          padding-right: $spacer * 3;
+        }
+      }
+    }
+
+    &-section {
+      &-header {
+        font-weight: $bold-font-weight;
+        margin-bottom: $spacer;
+      }
+
+      &-content {
+        p {
+          font-weight: $bold-font-weight;
+          margin-bottom: $spacer;
+          font-size: $small-font-size;
+          color: $gray;
+
+          a {
+            text-decoration: none;
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+
+  &-paymentMethods {
+    padding-top: 10px;
+    border-top: 1px solid #c4c4c4;
+    &__cards {
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &-nav {
+    background-color: $blue-dark;
+    padding: $spacer * 3 0 $spacer * 2;
+    border-top: solid #c4c4c4;
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+
+      div:not(:last-of-type) {
+        padding-right: $spacer * 3;
+      }
+
+      .right {
+        @media (min-width: $medium-screen) {
+          margin-left: auto;
+        }
+      }
+    }
+
+    &__section {
+      &-header {
+        font-weight: $bold-font-weight;
+        margin-bottom: $spacer;
+        text-transform: uppercase;
+        color: $white;
+      }
+
+      &-subheader {
+        font-weight: $normal-font-weight;
+        margin-bottom: $spacer;
+        color: $white!important;
+      }
+
+      &-content {
+        p {
+          margin-bottom: $spacer;
+          font-size: $small-font-size;
+          color: $gray;
+
+          button {
+            color: white;
+          }
+
+          a {
+            text-decoration: none;
+            color: $white;
+            letter-spacing: 0.1px;
+            text-align: justify;
+            font-family: "Josefin Sans", sans-serif;
+
+          }
+        }
+      }
+    }
+  }
+}

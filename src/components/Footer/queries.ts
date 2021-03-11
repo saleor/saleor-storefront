@@ -63,10 +63,78 @@ const secondaryMenuEN = gql`
   }
 `;
 
+const secondaryMenuPartner = gql`
+  fragment SecondaryMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+  }
+
+  query SecondaryMenu {
+    menu(id: "TWVudTo2") {
+      items {
+        ...SecondaryMenuSubItem
+        children {
+          ...SecondaryMenuSubItem
+        }
+      }
+    }
+  }
+`;
+
+const secondaryMenuPartnerEN = gql`
+  fragment SecondaryMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+  }
+
+  query SecondaryMenu {
+    menu(id: "TWVudTo4") {
+      items {
+        ...SecondaryMenuSubItem
+        children {
+          ...SecondaryMenuSubItem
+        }
+      }
+    }
+  }
+`;
+
 export const TypedSecondaryMenuQuery = TypedQuery<SecondaryMenu, {}>(
   secondaryMenu
 );
 
 export const TypedSecondaryMenuQueryEN = TypedQuery<SecondaryMenu, {}>(
   secondaryMenuEN
+);
+
+export const TypedSecondaryMenuQueryPartner = TypedQuery<SecondaryMenu, {}>(
+  secondaryMenuPartner
+);
+
+export const TypedSecondaryMenuQueryPartnerEN = TypedQuery<SecondaryMenu, {}>(
+  secondaryMenuPartnerEN
 );
