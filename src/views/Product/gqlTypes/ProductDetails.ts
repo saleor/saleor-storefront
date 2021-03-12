@@ -443,6 +443,28 @@ export interface ProductDetails_product_category_products_edges_node_translation
   name: string;
 }
 
+export interface ProductDetails_product_collection_products_edges_node {
+  __typename: "Product";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  /**
+   * The main thumbnail for a product.
+   */
+  thumbnail: ProductDetails_product_category_products_edges_node_thumbnail | null;
+  /**
+   * The main thumbnail for a product.
+   */
+  thumbnail2x: ProductDetails_product_category_products_edges_node_thumbnail2x | null;
+  /**
+   * Lists the storefront product's pricing, the current price and discounts, only meant for displaying.
+   */
+  pricing: ProductDetails_product_category_products_edges_node_pricing | null;
+  translation: ProductDetails_product_category_products_edges_node_translation | null;
+}
+
 export interface ProductDetails_product_category_products_edges_node {
   __typename: "Product";
   /**
@@ -465,12 +487,25 @@ export interface ProductDetails_product_category_products_edges_node {
   translation: ProductDetails_product_category_products_edges_node_translation | null;
 }
 
+export interface ProductDetails_product_collection_products_edges {
+  __typename: "ProductCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: ProductDetails_product_collection_products_edges_node;
+}
+
 export interface ProductDetails_product_category_products_edges {
   __typename: "ProductCountableEdge";
   /**
    * The item at the end of the edge.
    */
   node: ProductDetails_product_category_products_edges_node;
+}
+
+export interface ProductDetails_product_collection_products {
+  __typename: "ProductCountableConnection";
+  edges: ProductDetails_product_collection_products_edges[];
 }
 
 export interface ProductDetails_product_category_products {
@@ -726,7 +761,7 @@ export interface ProductDetails_product_collections {
   backgroundImage: Collection_collection_backgroundImage | null;
   metadata: (CollectionDetails_collection_metadata | null)[] | null;
   translation: Product_collections_translation | null;
-  products: ProductDetails_product_category_products | null;
+  products: ProductDetails_product_collection_products | null;
 }
 
 export interface ProductDetails_product_variants {

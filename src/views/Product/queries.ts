@@ -45,14 +45,6 @@ export const basicProductFragment = gql`
         key
         value
       }
-      products(first: 3) {
-        edges {
-          node {
-            name
-            id
-          }
-        }
-      }
     }
     thumbnail {
       url
@@ -149,6 +141,16 @@ export const productDetailsQuery = gql`
       ...BasicProductFields
       ...ProductPricingField
       descriptionJson
+      collections {
+        products(last: 3) {
+          edges {
+            node {
+              ...BasicProductFields
+              ...ProductPricingField
+            }
+          }
+        }
+      }
       category {
         id
         name

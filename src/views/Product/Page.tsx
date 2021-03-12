@@ -184,7 +184,7 @@ const Page: React.FC<
         </div>
       </div>
       {MetaVideo ? <ArtisanVideo srcVideo={srcVideo} /> : ""}
-      <OtherProducts products={product.category.products.edges} />
+      <OtherProducts products={product.collections[0].products.edges} />
     </div>
   );
 };

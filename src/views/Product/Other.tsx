@@ -3,10 +3,10 @@ import { FormattedMessage } from "react-intl";
 
 import { ProductListOther } from "@components/organisms";
 
-import { ProductDetails_product_category_products_edges } from "./gqlTypes/ProductDetails";
+import { ProductDetails_product_collection_products_edges } from "./gqlTypes/ProductDetails";
 
 const OtherProducts: React.FC<{
-  products: ProductDetails_product_category_products_edges[];
+  products: ProductDetails_product_collection_products_edges[];
 }> = ({ products }) => (
   <div className="product-page__other-products">
     <div className="container">
