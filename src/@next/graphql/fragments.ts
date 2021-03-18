@@ -104,3 +104,27 @@ export const attributeFragment = gql`
     }
   }
 `;
+
+export const menuItemFragment = gql`
+  fragment MenuItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+      slug
+    }
+    url
+    collection {
+      id
+      name
+      slug
+    }
+    page {
+      slug
+    }
+    parent {
+      id
+    }
+  }
+`;

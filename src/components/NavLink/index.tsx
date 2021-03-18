@@ -2,21 +2,11 @@ import Link from "next/link";
 import * as React from "react";
 import { generatePath } from "react-router";
 
+import { MenuItem } from "@graphql/gqlTypes/MenuItem";
 import { paths } from "@paths";
 
-import {
-  SecondaryMenu_menu_items,
-  SecondaryMenu_menu_items_children,
-} from "../Footer/gqlTypes/SecondaryMenu";
-import { MainMenu_menu_items } from "../MainMenu/gqlTypes/MainMenu";
-import { MainMenuSubItem } from "../MainMenu/gqlTypes/MainMenuSubItem";
-
 interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  item:
-    | MainMenu_menu_items
-    | MainMenuSubItem
-    | SecondaryMenu_menu_items
-    | SecondaryMenu_menu_items_children;
+  item: MenuItem;
 }
 export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
   const { name, url, category, collection, page } = item;

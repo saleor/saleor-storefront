@@ -51,7 +51,7 @@ const Page: React.FC<
         variant => variant.id === variantId
       );
 
-      if (variant.images.length > 0) {
+      if (variant?.images.length > 0) {
         return variant.images;
       }
     }

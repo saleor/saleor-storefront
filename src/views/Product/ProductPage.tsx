@@ -1,6 +1,5 @@
 import { useCart } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import { isEmpty } from "lodash";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import queryString from "query-string";
@@ -58,7 +57,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
   const [queryAttributes, setQueryAttributes] = useState({});
 
   useEffect(() => {
-    if (!isEmpty(query)) {
+    if (!Object.keys(query).length) {
       const queryAttributes: Record<string, string> = {};
       product.variants.forEach(({ attributes }) => {
         attributes.forEach(({ attribute, values }) => {
@@ -68,7 +67,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
             values[0].value === selectedAttributeValue
           ) {
             if (
-              isEmpty(queryAttributes) ||
+              !Object.keys(queryAttributes).length ||
               !attributes.filter(
                 ({ attribute: { id }, values }) =>
                   queryAttributes[id] && queryAttributes[id] !== values[0].value

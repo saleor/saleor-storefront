@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: SecondaryMenuSubItem
+// GraphQL fragment: MenuItem
 // ====================================================
 
-export interface SecondaryMenuSubItem_category {
+export interface MenuItem_category {
   __typename: "Category";
   /**
    * The ID of the object.
@@ -17,7 +17,7 @@ export interface SecondaryMenuSubItem_category {
   slug: string;
 }
 
-export interface SecondaryMenuSubItem_collection {
+export interface MenuItem_collection {
   __typename: "Collection";
   /**
    * The ID of the object.
@@ -27,23 +27,32 @@ export interface SecondaryMenuSubItem_collection {
   slug: string;
 }
 
-export interface SecondaryMenuSubItem_page {
+export interface MenuItem_page {
   __typename: "Page";
   slug: string;
 }
 
-export interface SecondaryMenuSubItem {
+export interface MenuItem_parent {
+  __typename: "MenuItem";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+}
+
+export interface MenuItem {
   __typename: "MenuItem";
   /**
    * The ID of the object.
    */
   id: string;
   name: string;
-  category: SecondaryMenuSubItem_category | null;
+  category: MenuItem_category | null;
   /**
    * URL to the menu item.
    */
   url: string | null;
-  collection: SecondaryMenuSubItem_collection | null;
-  page: SecondaryMenuSubItem_page | null;
+  collection: MenuItem_collection | null;
+  page: MenuItem_page | null;
+  parent: MenuItem_parent | null;
 }

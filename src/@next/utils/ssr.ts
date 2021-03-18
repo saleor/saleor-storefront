@@ -1,7 +1,13 @@
 import { ConnectResult, SaleorManager } from "@saleor/sdk";
 import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
+import { GetShop } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
+import { getShop } from "@saleor/sdk/lib/queries/shop";
 
-import { featuredProductsQuery, shopAttributesQuery } from "@graphql";
+import {
+  featuredProductsQuery,
+  shopAttributesQuery,
+  shopMenusQuery,
+} from "@graphql";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
 import {
   FeaturedProductsQuery,
@@ -13,6 +19,10 @@ import {
   ShopAttributesQuery,
   ShopAttributesQueryVariables,
 } from "@graphql/gqlTypes/ShopAttributesQuery";
+import {
+  ShopMenusQuery,
+  ShopMenusQueryVariables,
+} from "@graphql/gqlTypes/ShopMenusQuery";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { RequireOnlyOne } from "@utils/tsUtils";
 
@@ -100,4 +110,45 @@ export const getShopAttributes = async ({
     },
   });
   return data?.attributes?.edges.map(e => e.node) || [];
+};
+
+export const getShopMenus = async (): Promise<ShopMenusQuery> => {
+  const { apolloClient } = await getSaleorApi();
+  const { data } = await apolloClient.query<
+    ShopMenusQuery,
+    ShopMenusQueryVariables
+  >({
+    query: shopMenusQuery,
+    variables: {
+      channel: channelSlug,
+      footerSlug: "footer",
+      mainMenuSlug: "navbar",
+    },
+  });
+  return data;
+};
+
+export type ShopConfig = ShopMenusQuery & { shopConfig: GetShop["shop"] };
+
+export const getShopConfig = async (): Promise<any> => {
+  const { apolloClient } = await getSaleorApi();
+  const [{ footer, mainMenu }, shopConfig] = await Promise.all([
+    apolloClient
+      .query<ShopMenusQuery, ShopMenusQueryVariables>({
+        query: shopMenusQuery,
+        variables: {
+          channel: channelSlug,
+          footerSlug: "footer",
+          mainMenuSlug: "navbar",
+        },
+      })
+      .then(({ data }) => data),
+    apolloClient
+      .query<GetShop>({
+        query: getShop,
+      })
+      .then(({ data }) => data?.shop),
+  ]);
+
+  return { footer, mainMenu, shopConfig };
 };

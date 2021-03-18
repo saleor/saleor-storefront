@@ -3,7 +3,11 @@ import { DocumentNode } from "graphql";
 import gql from "graphql-tag";
 import { QueryHookOptions, QueryResult, useQuery } from "react-apollo";
 
-import { attributeFragment, featuredProductsFragment } from "./fragments";
+import {
+  attributeFragment,
+  featuredProductsFragment,
+  menuItemFragment,
+} from "./fragments";
 
 type LoadMore<TData> = (
   mergeFn: (prev: TData, next: TData) => TData,
@@ -59,6 +63,36 @@ export const shopAttributesQuery = gql`
       edges {
         node {
           ...Attribute
+        }
+      }
+    }
+  }
+`;
+
+export const shopMenusQuery = gql`
+  ${menuItemFragment}
+  query ShopMenusQuery(
+    $channel: String!
+    $footerSlug: String!
+    $mainMenuSlug: String!
+  ) {
+    footer: menu(channel: $channel, slug: $footerSlug) {
+      id
+      items {
+        ...MenuItem
+        children {
+          ...MenuItem
+        }
+      }
+    }
+    mainMenu: menu(channel: $channel, slug: $mainMenuSlug) {
+      items {
+        ...MenuItem
+        children {
+          ...MenuItem
+          children {
+            ...MenuItem
+          }
         }
       }
     }

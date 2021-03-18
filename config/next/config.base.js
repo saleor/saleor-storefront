@@ -54,6 +54,32 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
     config.resolve = {
       alias: {
         ...config.resolve.alias,
+        "@babel/runtime": path.resolve(
+          "./node_modules/next/node_modules/@babel/runtime/"
+        ),
+        "react-is": path.resolve("./node_modules/next/node_modules/react-is/"),
+        "strip-ansi": path.resolve(
+          "./node_modules/next/dist/compiled/strip-ansi/"
+        ),
+        "prop-types": path.resolve("./node_modules/prop-types/"),
+        "tiny-warning": path.resolve("./node_modules/tiny-warning/"),
+        "memoize-one": path.resolve("./node_modules/memoize-one/"),
+        "query-string": path.resolve("./node_modules/query-string/"),
+        "hoist-non-react-statics": path.resolve(
+          "./node_modules/hoist-non-react-statics/"
+        ),
+        "strict-uri-encode": path.resolve(
+          "./node_modules/query-string/node_modules/strict-uri-encode/"
+        ),
+        "@emotion/memoize": path.resolve(
+          "./node_modules/styled-components/node_modules/@emotion/memoize/"
+        ),
+        "@emotion/unitless": path.resolve(
+          "./node_modules/styled-components/node_modules/@emotion/unitless/"
+        ),
+        tslib: path.resolve(
+          "./node_modules/@apollo/react-components/node_modules/tslib/"
+        ),
         // Explicitly set react's path here because npm-link doesn't do well
         // when it comes to peer dependencies, and we need to somehow develop
         // @saleor/sdk package
