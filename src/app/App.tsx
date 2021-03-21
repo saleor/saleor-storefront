@@ -12,7 +12,7 @@ import {
 } from "../components";
 import ShopProvider from "../components/ShopProvider";
 import "../globalStyles/scss/index.scss";
-import { Routes } from "./routes";
+import { Routes, RoutesPartner } from "./routes";
 import Notifications from "./Notifications";
 
 const App: React.FC = () => {
@@ -22,12 +22,15 @@ const App: React.FC = () => {
     return <Loader />;
   }
 
+  const collectionId =
+    process.env.COLLECTION_ID !== "false" ? process.env.COLLECTION_ID : null;
+
   return (
     <ShopProvider>
       <OverlayProvider>
         <MetaConsumer />
         <MainMenu demoMode={demoMode} />
-        <Routes />
+        {collectionId ? <RoutesPartner /> : <Routes />}
         <Footer />
         <OverlayManager />
         <Notifications />

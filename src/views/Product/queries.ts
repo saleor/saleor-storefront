@@ -142,7 +142,7 @@ export const productDetailsQuery = gql`
       ...ProductPricingField
       descriptionJson
       collections {
-        products(last: 3) {
+        products(last: 3, filter: { isPublished: true }) {
           edges {
             node {
               ...BasicProductFields

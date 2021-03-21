@@ -9,6 +9,7 @@ import { Account, AccountConfirm } from "../../views/Account";
 import { ArticlePage } from "../../views/Article";
 import { CategoryPage } from "../../views/Category";
 import { CollectionPage } from "../../views/Collection";
+import { CollectionPartnerPage } from "../../views/CollectionPartner";
 import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
@@ -39,4 +40,28 @@ export const Routes: React.FC = () => (
   </Switch>
 );
 
-export default Routes;
+export const RoutesPartner: React.FC = () => (
+  <Switch>
+    <Route exact path={paths.baseUrl} component={CollectionPartnerPage} />
+    <Route path={paths.searchUrl} component={NotFound} />
+    <Route path={paths.categoryUrl} component={NotFound} />
+    <Route path={paths.collectionUrl} component={NotFound} />
+    <Route path={paths.productUrl} component={ProductPage} />
+    <Route path={paths.cartUrl} component={CartPage} />
+    <Route path={paths.checkoutLoginUrl} component={CheckoutLogin} />
+    <Route path={paths.pageUrl} component={ArticlePage} />
+    <Route path={accountPaths.baseUrl} component={UserAccount} />
+    <Route path={accountPaths.userOrderDetailsUrl} component={OrderDetails} />
+    <Route path={paths.guestOrderDetailsUrl} component={OrderDetails} />
+    <Route path={paths.accountUrl} component={Account} />
+    <Route path={paths.accountConfirmUrl} component={AccountConfirm} />
+    <Route path={paths.orderHistoryUrl} component={Account} />
+    <Route path={paths.addressBookUrl} component={Account} />
+    <Route path={paths.passwordResetUrl} component={PasswordReset} />
+    <Route path={paths.checkoutUrl} component={CheckoutPage} />
+    <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
+    <Route component={NotFound} />
+  </Switch>
+);
+
+export default { Routes, RoutesPartner };

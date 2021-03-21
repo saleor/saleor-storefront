@@ -74,6 +74,86 @@ export const mainMenuEN = gql`
   }
 `;
 
+export const mainMenuPartner = gql`
+  fragment MainMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+    parent {
+      id
+    }
+  }
+
+  query MainMenu {
+    menu(id: "TWVudTo2") {
+      items {
+        ...MainMenuSubItem
+        children {
+          ...MainMenuSubItem
+          children {
+            ...MainMenuSubItem
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const mainMenuPartnerEN = gql`
+  fragment MainMenuSubItem on MenuItem {
+    id
+    name
+    category {
+      id
+      name
+    }
+    url
+    collection {
+      id
+      name
+    }
+    page {
+      slug
+    }
+    parent {
+      id
+    }
+  }
+
+  query MainMenu {
+    menu(id: "TWVudTo3") {
+      items {
+        ...MainMenuSubItem
+        children {
+          ...MainMenuSubItem
+          children {
+            ...MainMenuSubItem
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const TypedMainMenuQuery = TypedQuery<MainMenu, {}>(mainMenu);
 
 export const TypedMainMenuQueryEN = TypedQuery<MainMenu, {}>(mainMenuEN);
+
+export const TypedMainMenuQueryPartner = TypedQuery<MainMenu, {}>(
+  mainMenuPartner
+);
+
+export const TypedMainMenuQueryPartnerEN = TypedQuery<MainMenu, {}>(
+  mainMenuPartnerEN
+);

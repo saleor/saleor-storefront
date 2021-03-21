@@ -113,17 +113,23 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     setVariantStock(selectedVariant?.quantityAvailable);
   };
 
+  const mailToUrl = `mailto:concierge@storitalia.com?&subject=${name}`;
+
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
-      <Link
-        to={generateCollectionUrl(collections[0]!.id, collections[0]!.name)}
-        key={collections[0].id}
-      >
-        <S.CollectionNameHeader data-test="productName">
-          {collections![0].name}
-        </S.CollectionNameHeader>
-      </Link>
+      {!process.env.COLLECTION_ID ? (
+        <Link
+          to={generateCollectionUrl(collections[0]!.id, collections[0]!.name)}
+          key={collections[0].id}
+        >
+          <S.CollectionNameHeader data-test="productName">
+            {collections![0].name}
+          </S.CollectionNameHeader>
+        </Link>
+      ) : (
+        ""
+      )}
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
@@ -134,6 +140,13 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
       )}
+      <div data-test="customizeProductEmail" className="main-menu__search">
+        <div>
+          <div>
+            <a href={mailToUrl}>✎ Customize </a>
+          </div>
+        </div>
+      </div>
       {noPurchaseAvailable &&
         renderErrorMessage(
           intl.formatMessage(commonMessages.noPurchaseAvailable),

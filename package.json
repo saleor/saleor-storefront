@@ -36,6 +36,7 @@
     "dompurify": "^2.0.7",
     "draftjs-to-html": "^0.8.4",
     "formik": "^1.5.7",
+    "google-map-react": "^2.1.9",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.3",
     "history": "^4.7.2",

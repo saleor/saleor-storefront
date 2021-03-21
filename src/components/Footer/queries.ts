@@ -82,7 +82,7 @@ const secondaryMenuPartner = gql`
   }
 
   query SecondaryMenu {
-    menu(id: "TWVudTo2") {
+    menu(id: "TWVudTo1") {
       items {
         ...SecondaryMenuSubItem
         children {

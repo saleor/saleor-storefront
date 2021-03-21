@@ -127,6 +127,8 @@
   &__icon {
     padding: 0 $spacer;
     cursor: pointer;
+    padding-top: $spacer;
+    padding-bottom: $spacer;
 
     svg * {
       transition: 0.3s;
@@ -160,6 +162,7 @@
       text-align: center;
       line-height: 1rem;
       transition: 0.3s;
+      margin-top: $spacer;
     }
   }
 
