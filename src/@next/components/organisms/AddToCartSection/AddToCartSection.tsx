@@ -121,7 +121,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
-      {!process.env.COLLECTION_ID ? (
+      {collectionId ? (
         <Link
           to={generateCollectionUrl(collections[0]!.id, collections[0]!.name)}
           key={collections[0].id}
