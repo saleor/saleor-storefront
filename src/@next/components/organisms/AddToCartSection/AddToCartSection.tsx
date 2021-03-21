@@ -115,6 +115,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
   const mailToUrl = `mailto:concierge@storitalia.com?&subject=${name}`;
 
+  const collectionId =
+    process.env.COLLECTION_ID !== "false" ? process.env.COLLECTION_ID : null;
+
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
