@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Package
         env:
-          NEXT_PUBLIC_API_URI: ${{ secrets.API_URI }}
+          NEXT_PUBLIC_API_URI: ${{ secrets.STAGING_API_URI }}
         run: |
           npm ci
           npm run build:export
@@ -37,5 +37,6 @@ jobs:
           aws-region: us-east-1
       - name: Deploy
         run: |
-          aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/master.staging.saleor.cloud/
+          aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/qa.staging.saleor.cloud/
+          aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/master.staging.saleor.cloud/          
           aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_STAGING_CF_DIST_ID }} --paths '/*'
