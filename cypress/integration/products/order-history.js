@@ -32,8 +32,6 @@ describe("Buy a product and check the order history", () => {
         return cy
           .get(PRODUCTS_SELECTORS.proceedToCheckoutBtn)
           .click()
-          .get(CHECKOUT_SELECTORS.CHECKOUT_LINKS.address)
-          .click()
           .get(CHECKOUT_SELECTORS.addNewShippingAddress)
           .first()
           .click()
