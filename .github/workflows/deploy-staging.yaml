@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Package
         env:
-          NEXT_PUBLIC_API_URI: /graphql/
+          NEXT_PUBLIC_API_URI: ${{ secrets.STAGING_API_URI }}
         run: |
           npm ci
           npm run build:export
