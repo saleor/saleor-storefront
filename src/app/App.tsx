@@ -28,17 +28,14 @@ const App: React.FC<AppProps> = ({
 }) => {
   const { pathname } = useRouter();
   const { tokenRefreshing, tokenVerifying } = useAuth();
-
-  if (tokenRefreshing || tokenVerifying) {
-    return <Loader />;
-  }
+  const loading = tokenRefreshing || tokenVerifying;
 
   return (
     <ShopProvider shopConfig={shopConfig}>
       <OverlayProvider pathname={pathname}>
         <MetaConsumer />
-        <MainMenu demoMode={demoMode} menu={mainMenu} />
-        {children}
+        <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
+        {loading ? <Loader fullScreen /> : children}
         <Footer menu={footer} />
         <OverlayManager />
         <Notifications />

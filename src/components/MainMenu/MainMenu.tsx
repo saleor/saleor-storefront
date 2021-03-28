@@ -36,9 +36,14 @@ import {
 interface MainMenuProps {
   demoMode: boolean;
   menu: ShopMenusQuery["mainMenu"];
+  loading: boolean;
 }
 
-export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu }) => {
+export const MainMenu: React.FC<MainMenuProps> = ({
+  demoMode,
+  menu,
+  loading,
+}) => {
   const overlayContext = useContext(OverlayContext);
   const { user, signOut } = useAuth();
   const { items } = useCart();
@@ -137,70 +142,72 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu }) => {
             <Online>
               <Media
                 query={{ maxWidth: smallScreen }}
-                render={() => (
-                  <>
-                    {user ? (
-                      <MenuDropdown
-                        suffixClass="__rightdown"
-                        head={
-                          <li className="main-menu__icon main-menu__user--active">
-                            <ReactSVG path={userImg} />
-                          </li>
-                        }
-                        content={
-                          <ul className="main-menu__dropdown">
-                            <li data-test="mobileMenuMyAccountLink">
-                              <Link href={paths.account}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.myAccount}
-                                  />
-                                </a>
-                              </Link>
+                render={() =>
+                  !loading && (
+                    <>
+                      {user ? (
+                        <MenuDropdown
+                          suffixClass="__rightdown"
+                          head={
+                            <li className="main-menu__icon main-menu__user--active">
+                              <ReactSVG path={userImg} />
                             </li>
-                            <li data-test="mobileMenuOrderHistoryLink">
-                              <Link href={paths.accountOrderHistory}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.orderHistory}
-                                  />
-                                </a>
-                              </Link>
-                            </li>
-                            <li data-test="mobileMenuAddressBookLink">
-                              <Link href={paths.accountAddressBook}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.addressBook}
-                                  />
-                                </a>
-                              </Link>
-                            </li>
-                            <li
-                              onClick={handleSignOut}
-                              data-test="mobileMenuLogoutLink"
-                            >
-                              <FormattedMessage {...commonMessages.logOut} />
-                            </li>
-                          </ul>
-                        }
-                      />
-                    ) : (
-                      <li
-                        data-test="mobileMenuLoginLink"
-                        className="main-menu__icon"
-                        onClick={() =>
-                          overlayContext.show(
-                            OverlayType.login,
-                            OverlayTheme.left
-                          )
-                        }
-                      >
-                        <ReactSVG path={userImg} />
-                      </li>
-                    )}
-                  </>
-                )}
+                          }
+                          content={
+                            <ul className="main-menu__dropdown">
+                              <li data-test="mobileMenuMyAccountLink">
+                                <Link href={paths.account}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.myAccount}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li data-test="mobileMenuOrderHistoryLink">
+                                <Link href={paths.accountOrderHistory}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.orderHistory}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li data-test="mobileMenuAddressBookLink">
+                                <Link href={paths.accountAddressBook}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.addressBook}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li
+                                onClick={handleSignOut}
+                                data-test="mobileMenuLogoutLink"
+                              >
+                                <FormattedMessage {...commonMessages.logOut} />
+                              </li>
+                            </ul>
+                          }
+                        />
+                      ) : (
+                        <li
+                          data-test="mobileMenuLoginLink"
+                          className="main-menu__icon"
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.left
+                            )
+                          }
+                        >
+                          <ReactSVG path={userImg} />
+                        </li>
+                      )}
+                    </>
+                  )
+                }
               />
             </Online>
           </ul>
@@ -219,69 +226,71 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu }) => {
             <Online>
               <Media
                 query={{ minWidth: smallScreen }}
-                render={() => (
-                  <>
-                    {user ? (
-                      <MenuDropdown
-                        head={
-                          <li className="main-menu__icon main-menu__user--active">
-                            <ReactSVG path={userImg} />
-                          </li>
-                        }
-                        content={
-                          <ul className="main-menu__dropdown">
-                            <li data-test="desktopMenuMyAccountLink">
-                              <Link href={paths.account}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.myAccount}
-                                  />
-                                </a>
-                              </Link>
+                render={() =>
+                  !loading && (
+                    <>
+                      {user ? (
+                        <MenuDropdown
+                          head={
+                            <li className="main-menu__icon main-menu__user--active">
+                              <ReactSVG path={userImg} />
                             </li>
-                            <li data-test="desktopMenuOrderHistoryLink">
-                              <Link href={paths.accountOrderHistory}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.orderHistory}
-                                  />
-                                </a>
-                              </Link>
-                            </li>
-                            <li data-test="desktopMenuAddressBookLink">
-                              <Link href={paths.accountAddressBook}>
-                                <a>
-                                  <FormattedMessage
-                                    {...commonMessages.addressBook}
-                                  />
-                                </a>
-                              </Link>
-                            </li>
-                            <li
-                              onClick={handleSignOut}
-                              data-test="desktopMenuLogoutLink"
-                            >
-                              <FormattedMessage {...commonMessages.logOut} />
-                            </li>
-                          </ul>
-                        }
-                      />
-                    ) : (
-                      <li
-                        data-test="desktopMenuLoginOverlayLink"
-                        className="main-menu__icon"
-                        onClick={() =>
-                          overlayContext.show(
-                            OverlayType.login,
-                            OverlayTheme.right
-                          )
-                        }
-                      >
-                        <ReactSVG path={userImg} />
-                      </li>
-                    )}
-                  </>
-                )}
+                          }
+                          content={
+                            <ul className="main-menu__dropdown">
+                              <li data-test="desktopMenuMyAccountLink">
+                                <Link href={paths.account}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.myAccount}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li data-test="desktopMenuOrderHistoryLink">
+                                <Link href={paths.accountOrderHistory}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.orderHistory}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li data-test="desktopMenuAddressBookLink">
+                                <Link href={paths.accountAddressBook}>
+                                  <a>
+                                    <FormattedMessage
+                                      {...commonMessages.addressBook}
+                                    />
+                                  </a>
+                                </Link>
+                              </li>
+                              <li
+                                onClick={handleSignOut}
+                                data-test="desktopMenuLogoutLink"
+                              >
+                                <FormattedMessage {...commonMessages.logOut} />
+                              </li>
+                            </ul>
+                          }
+                        />
+                      ) : (
+                        <li
+                          data-test="desktopMenuLoginOverlayLink"
+                          className="main-menu__icon"
+                          onClick={() =>
+                            overlayContext.show(
+                              OverlayType.login,
+                              OverlayTheme.right
+                            )
+                          }
+                        >
+                          <ReactSVG path={userImg} />
+                        </li>
+                      )}
+                    </>
+                  )
+                }
               />
               <li
                 data-test="menuCartOverlayLink"
@@ -290,12 +299,16 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu }) => {
                   overlayContext.show(OverlayType.cart, OverlayTheme.right);
                 }}
               >
-                <ReactSVG path={cartImg} />
-                {cartItemsQuantity > 0 ? (
-                  <span className="main-menu__cart__quantity">
-                    {cartItemsQuantity}
-                  </span>
-                ) : null}
+                {!loading && (
+                  <>
+                    <ReactSVG path={cartImg} />
+                    {cartItemsQuantity > 0 ? (
+                      <span className="main-menu__cart__quantity">
+                        {cartItemsQuantity}
+                      </span>
+                    ) : null}
+                  </>
+                )}
               </li>
             </Online>
             <Offline>

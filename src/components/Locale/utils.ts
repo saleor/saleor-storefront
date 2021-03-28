@@ -120,7 +120,7 @@ const dotSeparator = "_dot_";
 const sepRegExp = new RegExp(dotSeparator, "g");
 
 export function getKeyValueJson(
-  messages: LocaleMessages
+  messages: LocaleMessages | undefined
 ): Record<string, string> {
   if (messages) {
     const keyValueMessages: Record<string, string> = {};
