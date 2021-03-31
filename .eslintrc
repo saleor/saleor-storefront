@@ -44,7 +44,9 @@
     "import/order": "off",
     "import/prefer-default-export": "off",
     "no-nested-ternary": "off",
-    "prettier/prettier": ["error"],
+    "prettier/prettier": ["error", {
+      "endOfLine":"auto"
+    }],
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-wrap-multilines": "off",
