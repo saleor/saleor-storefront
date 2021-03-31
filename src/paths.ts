@@ -36,3 +36,11 @@ export const paths = {
   accountOrderDetail: `${accountBaseUrl}order-history/:token`,
   accountOrderHistory: `${accountBaseUrl}order-history`,
 };
+
+/**
+ * Paths which should not be generated at build time.
+ */
+export const DYNAMIC_REDIRECT_PATHS = [
+  paths.accountOrderDetail,
+  paths.guestOrderDetail,
+];

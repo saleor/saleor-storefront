@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { useDynamicRouteRedirect } from "@hooks";
 import { demoMode } from "@temp/constants";
 import { ShopConfig } from "@utils/ssr";
 
@@ -28,8 +29,9 @@ const App: React.FC<AppProps> = ({
 }) => {
   const { pathname } = useRouter();
   const { tokenRefreshing, tokenVerifying } = useAuth();
+  const willRedirect = useDynamicRouteRedirect();
 
-  if (tokenRefreshing || tokenVerifying) {
+  if (tokenRefreshing || tokenVerifying || willRedirect) {
     return <Loader />;
   }
 
