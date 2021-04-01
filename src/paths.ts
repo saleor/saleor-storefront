@@ -3,6 +3,7 @@ const slugUrl = "[slug]/[id]/";
 const accountBaseUrl = `${baseUrl}account/`;
 const checkoutBaseUrl = `${baseUrl}checkout/`;
 
+
 export const paths = {
   accountConfirm: `${baseUrl}account-confirm`,
   cart: `${baseUrl}cart`,
@@ -34,4 +35,9 @@ export const paths = {
   // FIXME: User order should be accessible via order id
   accountOrderDetail: `${accountBaseUrl}order-history/[token]`,
   accountOrderHistory: `${accountBaseUrl}order-history`,
+  accountStore: `${accountBaseUrl}store`,
+  /*
+  Store 
+  */
+  // store: storeBaseUrl,
 };

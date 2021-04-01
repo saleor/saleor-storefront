@@ -13,6 +13,10 @@ export const TileWrapper = styled.div`
   margin-bottom: 1.5rem;
 `;
 
+export const FilePicker = styled.input`
+  margin-top: 1.5rem;
+`
+
 export const Header = styled.div`
   width: 95%;
   padding-bottom: 1rem;
@@ -71,10 +75,10 @@ export const ContentEditOneLine = styled.div`
 `;
 
 export const ContentExtendInput = styled.div`
-  width: 60%;
+  width: 100%;
 `;
 
-export const Form = styled.form` 
+export const Form = styled.form`
   background-color: ${props => props.theme.tile.backgroundColor};
 `;
 
