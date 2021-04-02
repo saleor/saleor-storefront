@@ -15,7 +15,7 @@ export const TileWrapper = styled.div`
 
 export const FilePicker = styled.input`
   margin-top: 1.5rem;
-`
+`;
 
 export const Header = styled.div`
   width: 95%;
