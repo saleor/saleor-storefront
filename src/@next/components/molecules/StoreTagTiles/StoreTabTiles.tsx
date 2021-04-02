@@ -1,7 +1,9 @@
-import { IconButton, Tile } from "@components/atoms";
 import { useAccountUpdate } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+
+import { IconButton, Tile } from "@components/atoms";
+
 import { StoreForm } from "./StoreForm";
 import * as S from "./styles";
 
