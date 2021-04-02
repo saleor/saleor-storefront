@@ -1,1 +1,1 @@
-export * from './StoreTabTiles';
+export * from "./StoreTabTiles";
