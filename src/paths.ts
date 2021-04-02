@@ -3,7 +3,6 @@ const slugUrl = "[slug]/[id]/";
 const accountBaseUrl = `${baseUrl}account/`;
 const checkoutBaseUrl = `${baseUrl}checkout/`;
 
-
 export const paths = {
   accountConfirm: `${baseUrl}account-confirm`,
   cart: `${baseUrl}cart`,
