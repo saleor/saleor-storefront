@@ -18,7 +18,7 @@ const Map = () => {
   );
 };
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
 export const StoreForm: React.FC<{
   handleSubmit: (data: any) => void;
