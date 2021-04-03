@@ -48,7 +48,7 @@ export const Image = styled.div`
   max-width: 100%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   ${media.mediumScreen`
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   `}
   ${media.smallScreen`
     grid-template-columns: 1fr 1fr;
@@ -62,28 +62,42 @@ export const Image = styled.div`
   }
 
   > img {
-    width: 300px;
     height: auto;
     max-width: 100%;
-    grid-column-end: span 1;
+    grid-column-end: span 3;
+    ${media.mediumScreen`
+      grid-column-end: span 3;
+    `}
+    ${media.smallScreen`
+      grid-column-end: span 3;
+    `}
   }
   > div {
     h3 {
       margin-bottom: 10px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      ${media.smallScreen`
+        writing-mode: unset;
+      `}
     }
 
     p {
-      ${media.mediumScreen`
-        display: none;
-      `}
       ${media.smallScreen`
         display: none;
       `}
     }
 
+    ${media.mediumScreen`
+      grid-column-end: span 1;
+    `}
+    ${media.smallScreen`
+      grid-column-end: span 1;
+    `}
+
     height: auto;
     max-width: 100%;
-    grid-column-end: span 2;
+    grid-column-end: span 1;
     padding: 10px;
     overflow: hidden;
     line-height: 2rem;

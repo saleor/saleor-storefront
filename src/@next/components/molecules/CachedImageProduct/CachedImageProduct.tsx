@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SideBySideMagnifier } from "react-image-magnifiers";
+import { Magnifier } from "react-image-magnifiers";
 
 import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
@@ -48,7 +48,7 @@ export const CachedImageProduct: React.FC<IImage> = ({
   }
 
   return (
-    <SideBySideMagnifier
+    <Magnifier
       imageSrc={url}
       imageAlt="Example"
       alwaysInPlace

@@ -32,13 +32,14 @@ export const Wrapper = styled.div<WrapperProps>`
   border: 1px solid ${props => getEdgeColor(props)};
   color: ${props => getEdgeColor(props)};
   outline: ${props =>
-    props.active ? `1px solid ${getEdgeColor(props)};` : "none"};
+    props.active ? `2px solid ${getEdgeColor(props)};` : "none"};
   transition: all 0.3s ease;
+  outline-style: none;
 
   &:hover {
     color: ${props => getEdgeColor(props, true)};
     outline-width: ${props => (props.disabled ? 0 : 1)}px;
-    outline-style: solid;
+    outline-style: none;
     border-color: ${props => getEdgeColor(props, true)};
     outline-color: ${props => getEdgeColor(props, true)};
   }
@@ -63,6 +64,7 @@ export const Input = styled.input<{ labelBackground: string | null }>`
   outline: none;
   background-color: transparent;
   &:-webkit-autofill {
+    border-radius: 5px;
     & + label {
       ${props => activeLabelStyles(props.theme, props.labelBackground)};
     }

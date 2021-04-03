@@ -1,6 +1,17 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
+import {
+  FacebookShareButton,
+  PinterestShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  PinterestIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "react-share";
 
 import { commonMessages } from "@temp/intl";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
@@ -14,6 +25,7 @@ import { ProductDetails_product_collections } from "../../../../views/Product/gq
 import { generateCollectionUrl } from "../../../../core/utils";
 import QuantityInput from "../../molecules/QuantityInput";
 import AddToCartButton from "../../molecules/AddToCartButton";
+import CustomizeButton from "../../molecules/CustomizeButton";
 import ProductVariantPicker from "../ProductVariantPicker";
 import * as S from "./styles";
 import {
@@ -126,13 +138,38 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           to={generateCollectionUrl(collections[0]!.id, collections[0]!.name)}
           key={collections[0].id}
         >
-          <S.CollectionNameHeader data-test="productName">
+          <S.CollectionNameHeader data-test="productCollection">
             {collections![0].name}
           </S.CollectionNameHeader>
         </Link>
       ) : (
         ""
       )}
+      <S.SocialShareSelection>
+        <S.SocialButton>
+          <FacebookShareButton url={window.location.href}>
+            <FacebookIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </FacebookShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <PinterestShareButton
+            url={window.location.href}
+            media="/images/favicons/favicon-16x16.png"
+          >
+            <PinterestIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </PinterestShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <TwitterShareButton url={window.location.href}>
+            <TwitterIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </TwitterShareButton>
+        </S.SocialButton>
+        <S.SocialButton>
+          <EmailShareButton url={window.location.href}>
+            <EmailIcon path="/" size={32} bgStyle={{ fill: "#0D233F" }} />
+          </EmailShareButton>
+        </S.SocialButton>
+      </S.SocialShareSelection>
       {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
@@ -143,13 +180,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
       )}
-      <div data-test="customizeProductEmail" className="main-menu__search">
-        <div>
-          <div>
-            <a href={mailToUrl}>✎ Customize </a>
-          </div>
-        </div>
-      </div>
+      <a href={mailToUrl}>
+        <CustomizeButton
+          onSubmit={() => <Redirect to="/" />}
+          disabled={disableButton}
+        />
+      </a>
       {noPurchaseAvailable &&
         renderErrorMessage(
           intl.formatMessage(commonMessages.noPurchaseAvailable),

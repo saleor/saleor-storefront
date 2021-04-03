@@ -34,6 +34,19 @@ export const ProductDescription: React.FC<IProps> = ({
         >
           <FormattedMessage defaultMessage="DESCRIPTION" />
         </S.TabTitle>
+        <S.TabTitle
+          active={activeTab === TABS.ATTRIBUTES}
+          onMouseEnter={evt => {
+            evt.stopPropagation();
+            setActiveTab(TABS.ATTRIBUTES);
+          }}
+          onClick={evt => {
+            evt.stopPropagation();
+            setActiveTab(TABS.ATTRIBUTES);
+          }}
+        >
+          <FormattedMessage defaultMessage="ATTRIBUTES" />
+        </S.TabTitle>
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&
         (descriptionJson ? (

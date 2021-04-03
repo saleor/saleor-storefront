@@ -1,9 +1,7 @@
 import React from "react";
 
 import { usePreferences } from "@hooks";
-import { RichTextContent } from "@components/atoms";
-
-import { Thumbnail, ThumbnailCollection } from "@components/molecules";
+import { ThumbnailCollection } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -17,21 +15,12 @@ export const ProductTileStories: React.FC<IProps> = ({ product }: IProps) => {
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
         <ThumbnailCollection source={product.collections[0]} />
-        <Thumbnail source={product} />
         <div>
           <h3>
             {locale === "en" && product.collections[0].translation?.name
               ? product.collections[0].translation.name
               : product.collections[0].name}
           </h3>
-          <RichTextContent
-            descriptionJson={
-              locale === "en" &&
-              product.collections[0].translation?.descriptionJson
-                ? product.collections[0].translation.descriptionJson
-                : product.collections[0].descriptionJson
-            }
-          />
         </div>
       </S.Image>
     </S.Wrapper>

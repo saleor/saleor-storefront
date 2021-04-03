@@ -4,6 +4,7 @@ export const AddToCartSelection = styled.div``;
 
 export const SocialShareSelection = styled.div`
   margin-bottom: 20px;
+  text-align: left;
 `;
 
 export const ProductNameHeader = styled.h4`

@@ -2,12 +2,12 @@ import { media, styled } from "@styles";
 
 export const List = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   margin: 25px;
   background-color: #f6f6f6;
 
   ${media.largeScreen`
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   `}
 
   ${media.smallScreen`
