@@ -109,10 +109,6 @@ const Page: React.FC<
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
                     {addToCartSection}
-                    <ProductDescription
-                      descriptionJson={product.descriptionJson}
-                      attributes={product.attributes}
-                    />
                   </div>
                 </>
               ) : (

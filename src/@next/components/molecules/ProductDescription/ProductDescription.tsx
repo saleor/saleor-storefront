@@ -9,6 +9,7 @@ import { IProps } from "./types";
 enum TABS {
   DESCRIPTION,
   ATTRIBUTES,
+  SHIPPINGRETURNS,
 }
 
 export const ProductDescription: React.FC<IProps> = ({
