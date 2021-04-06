@@ -143,6 +143,7 @@ const View: NextPage<ViewProps> = ({ query: { id } }) => {
 
             if (product === null) {
               return <NotFound />;
+              // return <ListProduct />;
             }
 
             if (!isOnline) {
