@@ -1,12 +1,12 @@
 import { useAuth } from "@saleor/sdk";
 import * as React from "react";
 import { useIntl } from "react-intl";
-
+import { FormattedMessage } from "react-intl";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
-import { FormattedMessage } from "react-intl";
+
 import "./scss/index.scss";
 
 interface ILoginForm {
@@ -43,7 +43,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form data={formData} errors={errors || []} onSubmit={handleOnSubmit}>
-        Account:
+        <p className="account">
+          Account:
+        </p>
         <TextField
           name="email"
           autoComplete="email"
@@ -51,8 +53,16 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           type="email"
           required
         />
-        Password:
-        <a href="#">Forgot Password?</a>
+
+        <div className="passWord">
+          <span>
+            Password:
+          </span>
+          <span className="u-link" style={{ float: "right" }}>
+            <FormattedMessage defaultMessage="Forgot Password"></FormattedMessage>
+          </span>
+        </div>
+
         <TextField
           name="password"
           autoComplete="password"
@@ -62,9 +72,12 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         />
         <div>
           <input type="checkbox" />
-          <p>
-            stay signed in. <a href="#">Details</a>
-          </p>
+          <label>
+            <span> Stay signed in. </span>
+            <span className="u-link">
+              <FormattedMessage defaultMessage=" Details"></FormattedMessage>
+            </span>
+          </label>
         </div>
         <div className="login-form__button">
           <Button
@@ -77,28 +90,34 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
               : intl.formatMessage({ defaultMessage: "Sign in" })}
           </Button>
         </div>
-        <div>
-          <a>
-            Mobile number sign in
-          </a>
+        <div className="mobileNumber">
+          <span className="u-link">
+            <FormattedMessage defaultMessage="Mobile number sign in"></FormattedMessage>
+          </span>
         </div>
         <hr />
-        <div>
-          <span>
-            Sign in with: Zalo
-          </span>
+        <div className="signInWithZalo">
+          <p className="signInWith">
+            Sign in with:
+          </p>
+          <div>
+            <a href="https://id.zalo.me/account?continue=https%3A%2F%2Fchat.zalo.me%2F">
+              <img src="https://seeklogo.com/images/Z/zalo-logo-B0A0B2B326-seeklogo.com.png"
+                alt="zalo" width="45px" />
+            </a>
+          </div>
         </div>
         <div>
           <input type="checkbox" />
-          <span>
+          <label>
             I agree to Free Membership Agreement
-          </span>
+          </label>
         </div>
         <div>
           <input type="checkbox" />
-          <span>
+          <label>
             I agree to Receive marketing materials
-          </span>
+          </label>
         </div>
       </Form>
     </div>
