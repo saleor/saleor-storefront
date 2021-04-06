@@ -16,7 +16,9 @@ $blue-overlay: rgba($blue, 0.15);
 $autofillColor: rgb(250, 255, 189);
 $autofillColorSelected: rgb(232, 240, 254);
 $darkGreen: #06847b;
-$orange: #ed9121;
+$orange: #ff6a00;
+
+$darkBlue: #445268;
 
 // typography
 $base-font-family: "Inter", sans-serif;
@@ -35,6 +37,8 @@ $spacer: 1rem; // 16px
 
 // grid
 $container-width: 1140px;
+
+$container-width-full: 1440px;
 
 // button
 $button-font-size: 1.125rem;

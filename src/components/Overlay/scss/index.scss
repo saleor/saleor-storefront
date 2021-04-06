@@ -37,6 +37,11 @@
     height: 100%;
     animation: sidenavRightOpen 0.3s;
   }
+  &__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__header {
     align-items: center;

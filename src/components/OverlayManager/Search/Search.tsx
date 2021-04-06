@@ -48,7 +48,7 @@ function Search(props: SearchProps) {
           }}
           placeholder={props.intl.formatMessage(commonMessages.search)}
         />
-        <div>
+        <div className="search-button">
           <button
             className="btn-search"
             onClick={() => searchTerms?.length && setHasSearchPhrase(true)}

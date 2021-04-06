@@ -46,8 +46,9 @@ const TextField: React.FC<TextFieldProps> = ({
       <input
         {...rest}
         className={generateClassName({ errors, iconLeft, styleType })}
+        placeholder={label}
       />
-      {label ? <span className="input__label">{label}</span> : null}
+      {/* {label ? <span className="input__label">{label}</span> : null} */}
     </div>
     {errors && (
       <span className="input__error">
