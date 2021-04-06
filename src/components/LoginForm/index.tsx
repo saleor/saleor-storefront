@@ -6,7 +6,7 @@ import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
-
+import { FormattedMessage } from "react-intl";
 import "./scss/index.scss";
 
 interface ILoginForm {
@@ -33,9 +33,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
 
   const formData = demoMode
     ? {
-        email: "admin@example.com",
-        password: "admin",
-      }
+      email: "admin@example.com",
+      password: "admin",
+    }
     : {};
 
   const intl = useIntl();
@@ -43,6 +43,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form data={formData} errors={errors || []} onSubmit={handleOnSubmit}>
+        Account:
         <TextField
           name="email"
           autoComplete="email"
@@ -50,6 +51,8 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           type="email"
           required
         />
+        Password:
+        <a href="#">Forgot Password?</a>
         <TextField
           name="password"
           autoComplete="password"
@@ -57,6 +60,12 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           type="password"
           required
         />
+        <div>
+          <input type="checkbox" />
+          <p>
+            stay signed in. <a href="#">Details</a>
+          </p>
+        </div>
         <div className="login-form__button">
           <Button
             testingContext="submit"
@@ -67,6 +76,29 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
               ? intl.formatMessage(commonMessages.loading)
               : intl.formatMessage({ defaultMessage: "Sign in" })}
           </Button>
+        </div>
+        <div>
+          <a>
+            Mobile number sign in
+          </a>
+        </div>
+        <hr />
+        <div>
+          <span>
+            Sign in with: Zalo
+          </span>
+        </div>
+        <div>
+          <input type="checkbox" />
+          <span>
+            I agree to Free Membership Agreement
+          </span>
+        </div>
+        <div>
+          <input type="checkbox" />
+          <span>
+            I agree to Receive marketing materials
+          </span>
         </div>
       </Form>
     </div>
