@@ -18,6 +18,8 @@ $drawer-width: 25rem;
   }
 
   &__input {
+    display: inline-flex;
+
     .input__icon-right {
       svg * {
         fill: $turquoise;
@@ -37,6 +39,9 @@ $drawer-width: 25rem;
       padding-bottom: 1.2rem;
       padding-top: 1.25rem;
       width: 100%;
+      border: 2px solid $orange;
+      border-radius: 4px;
+      min-width: 350px;
 
       &:focus {
         box-shadow: none;
@@ -46,6 +51,24 @@ $drawer-width: 25rem;
         text-transform: uppercase;
         font-size: $base-font-size;
         color: $black;
+      }
+    }
+
+    .btn-search {
+      display: inline-flex;
+      background-color: $orange;
+      padding: 1.2rem 1.7rem;
+      border-radius: 4px;
+      color: $white;
+      margin-left: 0.5rem;
+
+      svg * {
+        fill: $white;
+      }
+
+      &--title {
+        font-size: 1rem;
+        margin-left: 12px;
       }
     }
   }

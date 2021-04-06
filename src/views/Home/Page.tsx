@@ -3,6 +3,8 @@ import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import Search from "@temp/components/OverlayManager/Search";
+
 import { Button, Loader, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import { generateCategoryUrl } from "../../core/utils";
@@ -39,6 +41,7 @@ const Page: React.FC<{
             : null
         }
       >
+        <Search />
         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
