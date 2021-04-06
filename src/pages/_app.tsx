@@ -2,7 +2,11 @@ import { SaleorProvider } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import type { AppProps as NextAppProps } from "next/app";
+import type {
+  AppContext as NextAppContext,
+  AppProps as NextAppProps,
+} from "next/app";
+import NextApp from "next/app";
 import Head from "next/head";
 import * as React from "react";
 import { positions, Provider as AlertProvider } from "react-alert";
@@ -19,6 +23,7 @@ import { version } from "../../package.json";
 import { App as StorefrontApp } from "../app";
 import {
   loadMessagesJson,
+  Locale,
   LocaleMessages,
   LocaleProvider,
 } from "../components/Locale";
@@ -99,7 +104,11 @@ const App = ({
 // Fetch shop config only once and cache it.
 let shopConfig: ShopConfig | null = null;
 
-App.getInitialProps = async ({ router: { locale } }) => {
+App.getInitialProps = async (appContext: NextAppContext) => {
+  const {
+    router: { locale },
+  } = appContext;
+  const appProps = await NextApp.getInitialProps(appContext);
   let messages: LocaleMessages;
 
   if (ssrMode) {
@@ -107,10 +116,10 @@ App.getInitialProps = async ({ router: { locale } }) => {
       shopConfig = await getShopConfig();
     }
 
-    messages = await loadMessagesJson(locale);
+    messages = await loadMessagesJson(locale as Locale);
   }
 
-  return { ...shopConfig, messages };
+  return { ...appProps, ...shopConfig, messages };
 };
 
 export default App;
