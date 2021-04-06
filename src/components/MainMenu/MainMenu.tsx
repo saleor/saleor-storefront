@@ -48,7 +48,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
       items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
     0;
 
-  const [activeDropdown, setActiveDropdown] = useState<string>(undefined);
+  const [activeDropdown] = useState<string>(undefined);
 
   useEffect(() => {
     if (activeDropdown) {
