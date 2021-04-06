@@ -28,19 +28,16 @@ const App: React.FC<AppProps> = ({
   children,
 }) => {
   const { pathname } = useRouter();
-  const { tokenRefreshing, tokenVerifying } = useAuth();
   const willRedirect = useDynamicRouteRedirect();
-
-  if (tokenRefreshing || tokenVerifying || willRedirect) {
-    return <Loader />;
-  }
+  const { tokenRefreshing, tokenVerifying } = useAuth();
+  const loading = tokenRefreshing || tokenVerifying || willRedirect;
 
   return (
     <ShopProvider shopConfig={shopConfig}>
       <OverlayProvider pathname={pathname}>
         <MetaConsumer />
-        <MainMenu demoMode={demoMode} menu={mainMenu} />
-        {children}
+        <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
+        {loading ? <Loader fullScreen /> : children}
         <Footer menu={footer} />
         <OverlayManager />
         <Notifications />
