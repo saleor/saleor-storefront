@@ -9,15 +9,10 @@ import Search from "@temp/components/OverlayManager/Search";
 
 import { DemoBanner } from "@components/atoms";
 import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
-import { maybe } from "../../core/utils";
 import cartImg from "../../images/cart.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import logoImg from "../../images/logo.svg";
-import searchImg from "../../images/search.svg";
 import userImg from "../../images/user.svg";
 import {
   MenuDropdown,
@@ -27,8 +22,6 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
-import NavDropdown from "./NavDropdown";
-import { TypedMainMenuQuery } from "./queries";
 
 import "./scss/index.scss";
 import {
@@ -64,18 +57,6 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
       overlayContext.hide();
     }
   }, [activeDropdown]);
-
-  const showDropdownHandler = (itemId: string, hasSubNavigation: boolean) => {
-    if (hasSubNavigation) {
-      setActiveDropdown(itemId);
-    }
-  };
-
-  const hideDropdownHandler = () => {
-    if (activeDropdown) {
-      setActiveDropdown(undefined);
-    }
-  };
 
   return (
     <header
