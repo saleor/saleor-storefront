@@ -1,7 +1,11 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.checkout-login__user {
+  margin: auto;
+}
+
 .checkout-login {
-  margin: $spacer * 10 0;
+  margin: $spacer * 3 0;
   display: flex;
 
   @media (max-width: $medium-screen) {

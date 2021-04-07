@@ -5,7 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
-import { Button, Form, TextField } from "..";
+import { Form, TextField } from "..";
 
 import "./scss/index.scss";
 
@@ -80,15 +80,15 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           </label>
         </div>
         <div className="login-form__button">
-          <Button
-            testingContext="submit"
+          <button className="login"
+            // testingContext="submit"
             type="submit"
             {...(loading && { disabled: true })}
           >
             {loading
               ? intl.formatMessage(commonMessages.loading)
               : intl.formatMessage({ defaultMessage: "Sign in" })}
-          </Button>
+          </button>
         </div>
         <div className="mobileNumber">
           <span className="u-link">

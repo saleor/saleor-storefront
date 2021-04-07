@@ -7,7 +7,7 @@ import { paths } from "@paths";
 
 import { Offline, Online, OverlayContext } from "..";
 import { OverlayTheme, OverlayType } from "../Overlay";
-import CheckoutAsGuest from "./CheckoutAsGuest";
+// import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
 
 import "./scss/index.scss";
@@ -27,7 +27,7 @@ const CheckoutLogin: NextPage = () => {
     <div className="container">
       <Online>
         <div className="checkout-login">
-          <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
+          {/* <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" /> */}
           <div className="checkout-login__user">
             <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
           </div>
