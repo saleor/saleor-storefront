@@ -5,10 +5,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import ReactSVG from "react-svg";
-import Search from "@temp/components/OverlayManager/Search";
 
 import { DemoBanner } from "@components/atoms";
 import { paths } from "@paths";
+import Search from "@temp/components/OverlayManager/Search";
 import { commonMessages } from "@temp/intl";
 
 import cartImg from "../../images/cart.svg";
