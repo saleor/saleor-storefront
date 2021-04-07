@@ -1,14 +1,7 @@
-import { History, LocationState } from "history";
-import { Base64 } from "js-base64";
-import { each } from "lodash";
-import { resolveHref } from "next/dist/next-server/lib/router/router";
-import {
-  parse as parseQs,
-  ParsedQuery,
-  stringify as stringifyQs,
-} from "query-string";
-import { FetchResult } from "react-apollo";
-import { UrlObject } from "url";
+import { ProductOrder } from "@saleor/sdk";
+import { FetchResult } from "apollo-link";
+
+import { channelSlug } from "@temp/constants";
 
 import { OrderDirection, ProductOrderField } from "../../gqlTypes/globalTypes";
 import { IFilterAttributes } from "../@next/types";
@@ -24,24 +17,6 @@ export const slugify = (text: string | number): string =>
     .replace(/[^\w\-]+/g, "") // Remove all non-word chars
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 
-export const getDBIdFromGraphqlId = (
-  graphqlId: string,
-  schema?: string
-): number => {
-  // This is temporary solution, we will use slugs in the future
-  const rawId = Base64.decode(graphqlId);
-  const regexp = /(\w+):(\d+)/;
-  const arr = regexp.exec(rawId);
-  if (schema && schema !== arr![1]) {
-    throw new Error("Schema is not correct");
-  }
-  return parseInt(arr![2], 10);
-};
-
-export const getGraphqlIdFromDBId = (id: string, schema: string): string =>
-  // This is temporary solution, we will use slugs in the future
-  Base64.encode(`${schema}:${id}`);
-
 export const priceToString = (
   price: { amount: number; currency: string },
   locale?: string
@@ -55,17 +30,6 @@ export const priceToString = (
   }
   return `${price.currency} ${amount.toFixed(2)}`;
 };
-
-export const generateProductUrl = (id: string, name: string) =>
-  `/product/${slugify(name)}/${getDBIdFromGraphqlId(id, "Product")}/`;
-
-export const generateCategoryUrl = (id: string, name: string) =>
-  `/category/${slugify(name)}/${getDBIdFromGraphqlId(id, "Category")}/`;
-
-export const generateCollectionUrl = (id: string, name: string) =>
-  `/collection/${slugify(name)}/${getDBIdFromGraphqlId(id, "Collection")}/`;
-
-export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
 interface AttributeDict {
   [attributeSlug: string]: string[];
@@ -95,15 +59,20 @@ export const getAttributesFromQs = (qs: QueryString) =>
 export const getValueOrEmpty = <T>(value: T): T | string =>
   value === undefined || value === null ? "" : value;
 
-export const convertSortByFromString = (sortBy: string) => {
+export const convertSortByFromString = (
+  sortBy: string,
+  channel = channelSlug
+): ProductOrder | null => {
   if (!sortBy) {
     return null;
   }
+
   const direction = sortBy.startsWith("-")
     ? OrderDirection.DESC
     : OrderDirection.ASC;
 
   let field;
+
   switch (sortBy.replace(/^-/, "")) {
     case "name":
       field = ProductOrderField.NAME;
@@ -120,7 +89,7 @@ export const convertSortByFromString = (sortBy: string) => {
     default:
       return null;
   }
-  return { field, direction };
+  return { field, direction, channel };
 };
 
 export const maybe = <T>(exp: () => T, d?: T) => {
@@ -130,38 +99,6 @@ export const maybe = <T>(exp: () => T, d?: T) => {
   } catch {
     return d;
   }
-};
-
-export const parseQueryString = (
-  location: LocationState
-): ParsedQuery<string> => {
-  let query: ParsedQuery<string> = parseQs(window.location.search.substr(1));
-
-  each(query, (value, key) => {
-    if (Array.isArray(value)) {
-      query = {
-        ...query,
-        [key]: value[0],
-      };
-    }
-  });
-  return query;
-};
-
-export const updateQueryString = (
-  location: LocationState,
-  history: History
-) => {
-  const querystring = parseQueryString(location);
-
-  return (key: string, value?: any) => {
-    if (value === "") {
-      delete querystring[key];
-    } else {
-      querystring[key] = value || key;
-    }
-    history.replace(`?${stringifyQs(querystring)}`);
-  };
 };
 
 export const findFormErrors = (result: void | FetchResult): FormError[] => {
@@ -178,13 +115,3 @@ export const findFormErrors = (result: void | FetchResult): FormError[] => {
 };
 
 export const removeEmptySpaces = (text: string) => text.replace(/\s+/g, "");
-
-/**
- * Next `push` does not generate properly urls like `<Link />`. So use `Link` internal mechanism
- * from the server router to generate it.
- * Might be improved in the future?
- * @param curentPathname - current pathname from the `useRouter`
- * @param url - UrlObject
- */
-export const generatePath = (curentPathname: string, url: UrlObject) =>
-  resolveHref(curentPathname, url, true)[1];

@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { useDynamicRouteRedirect } from "@hooks";
 import { demoMode } from "@temp/constants";
+import { ShopConfig } from "@utils/ssr";
 
 import {
   Footer,
@@ -17,21 +19,26 @@ import Notifications from "./Notifications";
 
 import "../globalStyles/scss/index.scss";
 
-const App: React.FC = ({ children }) => {
-  const { pathname } = useRouter();
-  const { tokenRefreshing, tokenVerifying } = useAuth();
+type AppProps = ShopConfig;
 
-  if (tokenRefreshing || tokenVerifying) {
-    return <Loader />;
-  }
+const App: React.FC<AppProps> = ({
+  footer,
+  mainMenu,
+  shopConfig,
+  children,
+}) => {
+  const { pathname } = useRouter();
+  const willRedirect = useDynamicRouteRedirect();
+  const { tokenRefreshing, tokenVerifying } = useAuth();
+  const loading = tokenRefreshing || tokenVerifying || willRedirect;
 
   return (
-    <ShopProvider>
+    <ShopProvider shopConfig={shopConfig}>
       <OverlayProvider pathname={pathname}>
         <MetaConsumer />
-        <MainMenu demoMode={demoMode} />
-        {children}
-        <Footer />
+        <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
+        {loading ? <Loader fullScreen /> : children}
+        <Footer menu={footer} />
         <OverlayManager />
         <Notifications />
       </OverlayProvider>

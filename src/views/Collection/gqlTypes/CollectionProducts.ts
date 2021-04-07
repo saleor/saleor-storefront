@@ -228,6 +228,7 @@ export interface CollectionProducts_collection_products_edges_node {
    * The ID of the object.
    */
   id: string;
+  slug: string;
   name: string;
   /**
    * The main thumbnail for a product.

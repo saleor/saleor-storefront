@@ -2,13 +2,13 @@ import Link from "next/link";
 import React from "react";
 import { FormattedDate, FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
+import { generatePath } from "react-router";
 import { ThemeContext } from "styled-components";
 
 import { TaxedMoney } from "@components/containers";
 import { paths } from "@paths";
 import { commonMessages, translateOrderStatus } from "@temp/intl";
 
-import { generateProductUrl } from "../../../../core/utils";
 import { Thumbnail } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -52,61 +52,59 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
           return (
             <>
               <S.Row>{header(matches)}</S.Row>
-              {orders &&
-                orders.map(order => {
-                  const date = new Date(order.node.created);
+              {orders.map(
+                ({ created, token, number, lines, total, statusDisplay }) => {
+                  const date = new Date(created);
                   return (
                     <Link
-                      href={{
-                        pathname: isGuest
+                      href={generatePath(
+                        isGuest
                           ? paths.guestOrderDetail
                           : paths.accountOrderDetail,
-                        query: { token: order.node.token },
-                      }}
-                      key={order.node.number}
+                        { token }
+                      )}
+                      key={number!}
                     >
                       <S.Row
                         data-test="orderEntry"
-                        data-test-id={order.node.number}
-                        key={order.node.number}
+                        data-test-id={number!}
+                        key={number!}
                       >
-                        <S.IndexNumber>{order.node.number}</S.IndexNumber>
+                        <S.IndexNumber>{number!}</S.IndexNumber>
                         {matches ? (
                           <>
                             <S.ProductsOrdered>
-                              {order.node.lines
-                                .slice(0, 5)
-                                .map((product: any) => (
-                                  <Link
-                                    href={generateProductUrl(
-                                      product.variant.product.id,
-                                      product.variant.product.name
-                                    )}
-                                    key={product.variant.product.id}
-                                  >
-                                    <a>
-                                      <Thumbnail source={product} />
-                                    </a>
-                                  </Link>
-                                ))}
+                              {lines.slice(0, 5).map(line => (
+                                <Link
+                                  href={generatePath(paths.product, {
+                                    slug: line!.variant!.product.slug,
+                                  })}
+                                  key={line!.variant!.product.id}
+                                >
+                                  <a>
+                                    <Thumbnail source={line!} />
+                                  </a>
+                                </Link>
+                              ))}
                             </S.ProductsOrdered>
                             <S.DateOfOrder>
                               <FormattedDate value={date} />
                             </S.DateOfOrder>
                             <S.Value>
-                              <TaxedMoney taxedMoney={order.node.total} />
+                              <TaxedMoney taxedMoney={total} />
                             </S.Value>
                           </>
                         ) : (
                           ""
                         )}
                         <S.Status>
-                          {translateOrderStatus(order.node.statusDisplay, intl)}
+                          {translateOrderStatus(statusDisplay!, intl)}
                         </S.Status>
                       </S.Row>
                     </Link>
                   );
-                })}
+                }
+              )}
             </>
           );
         }}

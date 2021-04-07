@@ -26,6 +26,8 @@
       "@hooks/*": ["./src/@next/hooks/*"],
       "@types": ["./src/@next/types/index.ts"],
       "@types/*": ["./src/@next/types/*"],
+      "@graphql": ["./src/@next/graphql/index.ts"],
+      "@graphql/*": ["./src/@next/graphql/*"],
       "@app/*": ["./src/@next/*"],
       "@locale/*": ["./locale/*"],
       "@temp/*": ["./src/*"]

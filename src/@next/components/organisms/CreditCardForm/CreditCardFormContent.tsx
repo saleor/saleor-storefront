@@ -1,4 +1,3 @@
-import { compact } from "lodash";
 import React, { useCallback } from "react";
 import NumberFormat from "react-number-format";
 
@@ -13,7 +12,7 @@ const getInputProps = (
 ) => (label: string, errors: CardErrors, value: string) => ({
   customInput: TextField,
   disabled,
-  errors: compact(errors),
+  errors: errors.filter(Boolean),
   label,
   onChange: handleChange,
   value,

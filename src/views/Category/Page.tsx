@@ -1,93 +1,70 @@
+import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
+import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import { ProductListHeader } from "@components/molecules";
+import { FilterSidebar, ProductList } from "@components/organisms";
+import { Attribute } from "@graphql/gqlTypes/Attribute";
 import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
+import { SORT_OPTIONS } from "@utils/collections";
+import { FeaturedProducts } from "@utils/ssr";
 
-import { ProductListHeader } from "../../@next/components/molecules";
-import { ProductList } from "../../@next/components/organisms";
-import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
+  Filters,
   ProductsFeatured,
 } from "../../components";
-import { maybe } from "../../core/utils";
-import { Category_category } from "./gqlTypes/Category";
-import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
+import { getActiveFilterAttributes } from "./utils";
 
 import "./scss/index.scss";
 
-interface SortItem {
-  label: string;
-  value?: string;
+export interface CategoryData {
+  details: CategoryDetails;
+  ancestors: BaseCategory[];
+  attributes: Attribute[];
+  featuredProducts: FeaturedProducts;
 }
 
-interface SortOptions extends Array<SortItem> {}
-
 interface PageProps {
+  category: CategoryData;
   activeFilters: number;
-  attributes: IFilterAttributes[];
   activeSortOption: string;
-  category: Category_category;
   displayLoader: boolean;
-  filters: IFilters;
+  filters: Filters;
   hasNextPage: boolean;
-  products: CategoryProducts_products;
-  sortOptions: SortOptions;
+  products: ProductList_products_edges_node[];
+  numberOfProducts: number;
   clearFilters: () => void;
   onLoadMore: () => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
   onOrder: (order: { value?: string; label: string }) => void;
 }
 
-const Page: React.FC<PageProps> = ({
+export const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
-  attributes,
-  category,
+  category: { attributes, details, ancestors, featuredProducts },
+  numberOfProducts,
+  products,
   displayLoader,
   hasNextPage,
   clearFilters,
   onLoadMore,
-  products,
   filters,
   onOrder,
-  sortOptions,
   onAttributeFiltersChange,
 }) => {
-  const canDisplayProducts = maybe(
-    () => !!products.edges && products.totalCount !== undefined
-  );
-  const hasProducts = canDisplayProducts && !!products.totalCount;
+  const hasProducts = products.length > 0;
   const [showFilters, setShowFilters] = React.useState(false);
   const intl = useIntl();
-
-  const getAttribute = (attributeSlug: string, valueSlug: string) => {
-    return {
-      attributeSlug,
-      valueName: attributes
-        .find(({ slug }) => attributeSlug === slug)
-        .values.find(({ slug }) => valueSlug === slug).name,
-      valueSlug,
-    };
-  };
-
-  const activeFiltersAttributes =
-    filters &&
-    filters.attributes &&
-    Object.keys(filters.attributes).reduce(
-      (acc, key) =>
-        acc.concat(
-          filters.attributes[key].map(valueSlug => getAttribute(key, valueSlug))
-        ),
-      []
-    );
 
   return (
     <div className="category">
       <div className="container">
-        <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+        <Breadcrumbs breadcrumbs={extractBreadcrumbs(details, ancestors)} />
         <FilterSidebar
           show={showFilters}
           hide={() => setShowFilters(false)}
@@ -98,31 +75,32 @@ const Page: React.FC<PageProps> = ({
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={products ? products.totalCount : 0}
+          numberOfProducts={numberOfProducts}
           activeFilters={activeFilters}
-          activeFiltersAttributes={activeFiltersAttributes}
+          activeFiltersAttributes={getActiveFilterAttributes(
+            filters?.attributes,
+            attributes
+          )}
           clearFilters={clearFilters}
-          sortOptions={sortOptions}
+          sortOptions={SORT_OPTIONS}
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
-        {canDisplayProducts && (
-          <ProductList
-            products={products.edges.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
-          />
-        )}
+
+        <ProductList
+          products={products}
+          canLoadMore={hasNextPage}
+          loading={displayLoader}
+          onLoadMore={onLoadMore}
+        />
       </div>
 
-      {!hasProducts && (
+      {!displayLoader && !hasProducts && (
         <ProductsFeatured
+          products={featuredProducts.products}
           title={intl.formatMessage(commonMessages.youMightLike)}
         />
       )}
     </div>
   );
 };
-
-export default Page;

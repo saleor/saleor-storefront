@@ -7,3 +7,4 @@ export * from "./useProductVariantsAttributesValuesSelection";
 export * from "./useSelectableProductVariantsAttributeValues";
 export * from "./useCheckoutStepState";
 export * from "./useRedirectToCorrectCheckoutStep";
+export * from "./useDynamicRouteRedirect";

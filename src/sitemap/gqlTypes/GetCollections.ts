@@ -26,6 +26,7 @@ export interface GetCollections_collections_edges_node {
    */
   id: string;
   name: string;
+  slug: string;
 }
 
 export interface GetCollections_collections_edges {

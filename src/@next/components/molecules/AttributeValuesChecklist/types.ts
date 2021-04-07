@@ -1,10 +1,10 @@
-import { ISingleFilterAttribute } from "@types";
+import { IFilterAttribute } from "@types";
 
 export interface IProps {
   title?: React.ReactNode;
   name: string;
-  values: ISingleFilterAttribute[];
+  values: IFilterAttribute[];
   valuesShowLimit?: boolean;
   valuesShowLimitNumber?: number;
-  onValueClick: (value: ISingleFilterAttribute) => void;
+  onValueClick: (value: IFilterAttribute) => void;
 }

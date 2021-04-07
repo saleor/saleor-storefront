@@ -11,6 +11,7 @@ export const getProductsQuery = gql`
         node {
           id
           name
+          slug
         }
       }
     }
@@ -28,6 +29,7 @@ export const getCategoriesQuery = gql`
         node {
           id
           name
+          slug
         }
       }
     }
@@ -45,6 +47,7 @@ export const getCollectionsQuery = gql`
         node {
           id
           name
+          slug
         }
       }
     }

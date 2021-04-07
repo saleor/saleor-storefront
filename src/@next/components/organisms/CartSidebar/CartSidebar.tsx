@@ -30,6 +30,7 @@ const generateCart = (
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       id={variant?.product?.id || ""}
+      slug={variant.product?.slug || ""}
       name={variant?.product?.name || ""}
       maxQuantity={variant.quantityAvailable || quantity}
       quantity={quantity}

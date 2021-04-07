@@ -233,7 +233,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                     <div
                       className="c14"
                     >
-                       
+                      
                     </div>
                     <div
                       className="c15"
@@ -523,7 +523,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                     <div
                       className="c15"
                     >
-                       
+                      
                     </div>
                     <div
                       className="c16"

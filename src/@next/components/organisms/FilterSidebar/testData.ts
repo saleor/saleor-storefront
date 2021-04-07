@@ -1,36 +1,45 @@
-export const DEFAULT_PROPS = {
+import { IProps } from "./types";
+
+export const DEFAULT_PROPS: Pick<IProps, "attributes" | "filters" | "show"> = {
   attributes: [
     {
+      __typename: "Attribute",
       id: "1",
       name: "Size",
       slug: "size",
       values: [
         {
+          __typename: "AttributeValue",
           id: "2",
           name: "41",
           slug: "41",
         },
         {
+          __typename: "AttributeValue",
           id: "3",
           name: "42",
           slug: "42",
         },
         {
+          __typename: "AttributeValue",
           id: "4",
           name: "43",
           slug: "43",
         },
         {
+          __typename: "AttributeValue",
           id: "5",
           name: "44",
           slug: "44",
         },
         {
+          __typename: "AttributeValue",
           id: "6",
           name: "45",
           slug: "45",
         },
         {
+          __typename: "AttributeValue",
           id: "7",
           name: "46",
           slug: "46",

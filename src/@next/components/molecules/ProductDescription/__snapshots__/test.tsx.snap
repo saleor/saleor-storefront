@@ -128,6 +128,11 @@ exports[`<ProductDescription /> renders correctly 1`] = `
   >
     <div
       className="c3"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p> Tonight, my love, let us take fat brushes and paint the skies with the shades of nebula tides. Get the dark, moody shades of the ether. </p>",
+        }
+      }
     />
   </div>
   <div

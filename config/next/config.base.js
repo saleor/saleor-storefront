@@ -5,7 +5,13 @@ const path = require("path");
 module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
   ...nextConfig,
 
+  env: {
+    ...nextConfig.env,
+    NEXT_EXPORT: process.env.NEXT_EXPORT,
+  },
+
   trailingSlash: true,
+  productionBrowserSourceMaps: true,
 
   webpack: (config, options) => {
     const { isServer, dev } = options;
@@ -17,36 +23,22 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
       module: "empty",
     };
 
-    config.module.rules = [
-      !isServer && {
-        exclude: /node_modules/,
-        loader: "ts-loader",
-        options: {
-          experimentalWatchApi: true,
-          transpileOnly: true,
-        },
-        test: /\.tsx?$/,
-      },
-      ...config.module.rules,
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              publicPath: "/_next/static/images/",
-              outputPath: "static/images/",
-            },
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            publicPath: "/_next/static/images/",
+            outputPath: "static/images/",
           },
-        ],
-      },
-    ].filter(Boolean);
+        },
+      ],
+    });
 
-    config.plugins = [
-      ...config.plugins,
-
-      !isServer &&
+    if (!isServer) {
+      config.plugins.push(
         new ForkTsCheckerWebpackPlugin({
           typescript: {
             mode: "write-references",
@@ -55,12 +47,39 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
             files: "./src/**/*.{ts,tsx}",
             exclude: "node_modules",
           },
-        }),
-    ].filter(Boolean);
+        })
+      );
+    }
 
     config.resolve = {
       alias: {
         ...config.resolve.alias,
+        "@babel/runtime": path.resolve(
+          "./node_modules/next/node_modules/@babel/runtime/"
+        ),
+        "react-is": path.resolve("./node_modules/next/node_modules/react-is/"),
+        "strip-ansi": path.resolve(
+          "./node_modules/next/dist/compiled/strip-ansi/"
+        ),
+        "prop-types": path.resolve("./node_modules/prop-types/"),
+        "tiny-warning": path.resolve("./node_modules/tiny-warning/"),
+        "memoize-one": path.resolve("./node_modules/memoize-one/"),
+        "query-string": path.resolve("./node_modules/query-string/"),
+        "hoist-non-react-statics": path.resolve(
+          "./node_modules/hoist-non-react-statics/"
+        ),
+        "strict-uri-encode": path.resolve(
+          "./node_modules/query-string/node_modules/strict-uri-encode/"
+        ),
+        "@emotion/memoize": path.resolve(
+          "./node_modules/styled-components/node_modules/@emotion/memoize/"
+        ),
+        "@emotion/unitless": path.resolve(
+          "./node_modules/styled-components/node_modules/@emotion/unitless/"
+        ),
+        tslib: path.resolve(
+          "./node_modules/@apollo/react-components/node_modules/tslib/"
+        ),
         // Explicitly set react's path here because npm-link doesn't do well
         // when it comes to peer dependencies, and we need to somehow develop
         // @saleor/sdk package

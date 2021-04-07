@@ -169,7 +169,7 @@ exports[`Storyshots @components/molecules/OrderTable default 1`] = `
         className="c4"
       >
         <a
-          href="/product/apple-juice/72"
+          href="/product/apple-juice"
           onClick={[Function]}
           onMouseEnter={[Function]}
         >
@@ -215,7 +215,7 @@ exports[`Storyshots @components/molecules/OrderTable default 1`] = `
         className="c4"
       >
         <a
-          href="/product/bean-juice/79"
+          href="/product/bean-juice"
           onClick={[Function]}
           onMouseEnter={[Function]}
         >

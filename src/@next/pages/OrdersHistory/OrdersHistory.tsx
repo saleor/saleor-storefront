@@ -24,7 +24,7 @@ export const OrdersHistory: React.FC = () => {
     <Loader />
   ) : (
     <>
-      <OrderTable orders={data?.edges} isGuest={!user} />
+      <OrderTable orders={data?.edges.map(e => e.node) || []} isGuest={!user} />
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button

@@ -655,7 +655,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -673,7 +673,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -916,7 +916,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -934,7 +934,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1177,7 +1177,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c11"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >
@@ -1195,7 +1195,7 @@ exports[`Storyshots @components/organisms/CartSidebar default 1`] = `
                 className="c12"
               >
                 <a
-                  href="/product/the-great-square-table/72"
+                  href="/product/the-great-square-table"
                   onClick={[Function]}
                   onMouseEnter={[Function]}
                 >

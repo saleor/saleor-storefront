@@ -6,25 +6,22 @@
 
 import Link from "next/link";
 import React from "react";
+import { generatePath } from "react-router";
 
-import {
-  generateCategoryUrl,
-  generateCollectionUrl,
-  generatePageUrl,
-} from "@utils/core";
+import { paths } from "@paths";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const getLinkUrl = ({ category, collection, page }: IProps["item"]) => {
   if (category) {
-    return generateCategoryUrl(category.id, category.name);
+    return generatePath(paths.category, { slug: category.slug });
   }
   if (collection) {
-    return generateCollectionUrl(collection.id, collection.name);
+    return generatePath(paths.collection, { slug: collection.slug });
   }
   if (page) {
-    return generatePageUrl(page.slug);
+    return generatePath(paths.page, { slug: page.slug });
   }
 };
 

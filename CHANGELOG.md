@@ -13,6 +13,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Use only selection attributes in variant picker - #963 by @orzechdev
 - Drop deprecated `ProductVariant.isAvailable` field - #965 by @maarcingebala
 - Add eslint import sort - #979 by @pitorgrundas
+- Enable incremental server-side regeneration for store pages - #988 by @pitorgrundas
 
 ## 2.11.0
 

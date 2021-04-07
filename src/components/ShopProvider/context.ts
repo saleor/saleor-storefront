@@ -1,5 +1,6 @@
-import { GetShop_shop } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
 import { createContext } from "react";
+
+import { ShopConfig } from "@utils/ssr";
 
 export const defaultCountry = {
   __typename: "CountryDisplay" as "CountryDisplay",
@@ -7,13 +8,15 @@ export const defaultCountry = {
   country: "United States of America",
 };
 
-export const defaultContext: GetShop_shop = {
+export const defaultContext: ShopConfig["shopConfig"] = {
   __typename: "Shop",
   countries: [],
   defaultCountry,
   displayGrossPrices: true,
 };
 
-export const ShopContext = createContext<GetShop_shop>(defaultContext);
+export const ShopContext = createContext<ShopConfig["shopConfig"]>(
+  defaultContext
+);
 
 ShopContext.displayName = "ShopContext";
