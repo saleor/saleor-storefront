@@ -18,6 +18,24 @@ $drawer-width: 25rem;
   }
 
   &__input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .input {
+      margin-bottom: 0;
+      flex: 0 0 80%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 50%;
+      }
+    }
+
+    .search-button {
+      flex: 0 0 10%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 5%;
+      }
+    }
+
     .input__icon-right {
       svg * {
         fill: $turquoise;
@@ -32,11 +50,11 @@ $drawer-width: 25rem;
 
     .input__field {
       background-color: $turquoise-light;
-      border: none;
       box-shadow: none;
-      padding-bottom: 1.2rem;
-      padding-top: 1.25rem;
+      padding: 1rem 0;
       width: 100%;
+      border: 1px solid $orange;
+      border-radius: 20px 0 0 20px;
 
       &:focus {
         box-shadow: none;
@@ -46,6 +64,23 @@ $drawer-width: 25rem;
         text-transform: uppercase;
         font-size: $base-font-size;
         color: $black;
+      }
+    }
+
+    .btn-search {
+      display: inline-flex;
+      background-color: $orange;
+      padding: 0.8rem 1.7rem;
+      border-radius: 0 20px 20px 0;
+      color: $white;
+
+      svg * {
+        fill: $white;
+      }
+
+      &--title {
+        font-size: 1rem;
+        margin-left: 12px;
       }
     }
   }
