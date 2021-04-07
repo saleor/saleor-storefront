@@ -1,10 +1,143 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .footer {
+  background-color: $darkBlue;
+  color: $white;
+  &-email {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    .formEmail {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      .input__field {
+        background: #313d51;
+        border: 1px solid #c4c6cf;
+        color: #fff;
+        box-shadow: none;
+        &:hover {
+          box-shadow: none;
+        }
+      }
+      .input__field--error {
+        border: 1px solid #fe6e76;
+      }
+      .email-form__button {
+        .button {
+          transform: none;
+          margin-left: 5px;
+          background: 0 0;
+          border: 1px solid #c6cad1;
+          box-shadow: none;
+          padding: 12px 20px;
+          span {
+            font-size: 16px;
+            transform: none;
+            text-transform: capitalize;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+  &-siteMap {
+    border-bottom: 1px solid #313d52;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: $small-screen) {
+      flex-direction: column;
+    }
+    .siteMap-col {
+      flex: 0 0 20%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 100%;
+      }
+
+      @media (min-width: $small-screen) and (max-width: $medium-screen) {
+        flex: 0 0 50%;
+      }
+    }
+    dl {
+      margin: 0 0 20px 20px;
+    }
+    dt {
+      font-size: 18px;
+      line-height: 14px;
+      padding: 10px 0;
+      margin-bottom: 5px;
+    }
+    dd {
+      padding: 5px 0;
+      line-height: 12px;
+      margin: 0;
+      a {
+        font-size: 12px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
   &__favicons {
-    border-top: 1px solid $gray-light;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 25px 0 10px;
+    @media (max-width: $small-screen) {
+      flex-direction: column;
+    }
+    .favicons-col {
+      flex: 0 0 50%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 100%;
+        margin: 10px 0;
+      }
+      .favicons-col-main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        .social-icon {
+          padding: 0 0.3rem;
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+      .social-main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        a {
+          text-indent: -9999px;
+        }
+      }
+    }
+    .app-store {
+      background: url(../images/vers0.5x.png) no-repeat;
+      background-position: 0 -100px;
+      margin-top: -1px;
+      width: 130px;
+      height: 30px;
+      margin-right: 7px;
+      margin-left: 10px;
+    }
+    .android {
+      background: url(../images/vers0.5x.png) no-repeat;
+      background-position: 0 -150px;
+      margin-top: -1px;
+      width: 130px;
+      height: 30px;
+      margin-right: 7px;
+      margin-left: 10px;
+    }
+  }
+  &__copyright {
+    margin: 20px 0;
   }
 
   &__menu {
@@ -45,7 +178,6 @@
   }
 
   &-nav {
-    background-color: $gray-light;
     padding: $spacer * 3 0 $spacer * 2;
 
     .container {

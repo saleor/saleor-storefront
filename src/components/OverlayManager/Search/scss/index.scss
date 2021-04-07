@@ -18,7 +18,23 @@ $drawer-width: 25rem;
   }
 
   &__input {
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .input {
+      margin-bottom: 0;
+      flex: 0 0 80%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 50%;
+      }
+    }
+
+    .search-button {
+      flex: 0 0 10%;
+      @media (max-width: $small-screen) {
+        flex: 0 0 5%;
+      }
+    }
 
     .input__icon-right {
       svg * {
@@ -34,14 +50,11 @@ $drawer-width: 25rem;
 
     .input__field {
       background-color: $turquoise-light;
-      border: none;
       box-shadow: none;
-      padding-bottom: 1.2rem;
-      padding-top: 1.25rem;
+      padding: 1rem 0;
       width: 100%;
-      border: 2px solid $orange;
-      border-radius: 4px;
-      min-width: 350px;
+      border: 1px solid $orange;
+      border-radius: 20px 0 0 20px;
 
       &:focus {
         box-shadow: none;
@@ -57,10 +70,9 @@ $drawer-width: 25rem;
     .btn-search {
       display: inline-flex;
       background-color: $orange;
-      padding: 1.2rem 1.7rem;
-      border-radius: 4px;
+      padding: 0.8rem 1.7rem;
+      border-radius: 0 20px 20px 0;
       color: $white;
-      margin-left: 0.5rem;
 
       svg * {
         fill: $white;

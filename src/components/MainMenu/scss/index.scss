@@ -6,19 +6,26 @@
 
 .main-menu {
   align-items: center;
-  align-items: stretch;
+  justify-content: space-between;
   background-color: $white;
   border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
-  height: 3.55rem;
+  height: 5rem;
   position: relative;
+  @media (max-width: $small-screen) {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 0;
+  }
 
   &__left {
-    flex-basis: calc(50% - 2rem);
+    order: 1;
+    flex-basis: calc(20% - 2rem);
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (max-width: $small-screen) {
+      flex-basis: calc(100% - 4rem);
+      padding-bottom: 10px;
     }
 
     ul {
@@ -29,10 +36,11 @@
   }
 
   &__right {
-    flex-basis: calc(50% - 2rem);
+    flex-basis: calc(20% - 2rem);
+    order: 3;
 
-    @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
+    @media (max-width: $small-screen) {
+      flex-basis: calc(20% - 4rem);
     }
 
     ul {
@@ -44,13 +52,16 @@
 
   &__center {
     align-self: center;
+    order: 2;
+    flex-basis: calc(60% - 2rem);
+
+    @media (max-width: $small-screen) {
+      flex-basis: calc(80% - 4rem);
+      padding-bottom: 10px;
+    }
 
     svg {
-      width: 4rem;
-
-      @media (min-width: $small-screen) {
-        width: 6rem;
-      }
+      width: 2rem;
     }
   }
 
@@ -179,14 +190,14 @@
   }
 
   &__search {
-    padding: $spacer;
+    padding: $spacer / 2 $spacer;
     cursor: pointer;
     line-height: 24px;
     transition: 0.3s;
-
-    @media (min-width: $medium-screen) {
-      border-left: 1px solid $gray-light;
-    }
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #21125e;
+    border-radius: 20px;
 
     svg * {
       transition: 0.3s;
