@@ -220,9 +220,9 @@
     "cy:run": "cypress run",
     "cy:run:record": "npm run cy:run -- --record",
     "cy:open": "cypress open",
-    "test:e2e:run": "start-server-and-test start http://172.16.11.19:8080/graphql/ cy:run",
-    "test:e2e:run:record": "start-server-and-test start http://172.16.11.19:8080/graphql/ cy:run:record",
-    "test:e2e:dev": "start-server-and-test start http://172.16.11.19:8080/graphql/ cy:open",
+    "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
+    "test:e2e:run:record": "start-server-and-test start http://localhost:3000 cy:run:record",
+    "test:e2e:dev": "start-server-and-test start http://localhost:3000 cy:open",
     "extract-json-messages": "rimraf dist/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /dev/null",
     "transpile-messages": "node scripts/transpile-tx.js",
     "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
