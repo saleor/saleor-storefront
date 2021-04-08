@@ -1,13 +1,14 @@
 import { useAuth } from "@saleor/sdk";
-import * as React from "react";
-import { useIntl } from "react-intl";
-import { FormattedMessage } from "react-intl";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-
+import * as React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Form, TextField } from "..";
-
 import "./scss/index.scss";
+
+
+
+
 
 interface ILoginForm {
   hide?: () => void;
@@ -80,7 +81,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           </label>
         </div>
         <div className="login-form__button">
-          <button className="login"
+          <button className="signIn"
             // testingContext="submit"
             type="submit"
             {...(loading && { disabled: true })}
