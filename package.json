@@ -35,6 +35,7 @@
     "apollo-link-retry": "^2.2.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "braintree-web": "^3.38.1",
+    "caniuse-lite": "^1.0.30001204",
     "classnames": "^2.2.6",
     "core-js": "^2.6.12",
     "cross-env": "^5.2.0",
