@@ -83,7 +83,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Checkout",
   },
   eMail: {
-    defaultMessage: "Email Address",
+    defaultMessage: "Email address or member ID",
   },
   shortEmail: {
     defaultMessage: "Email",

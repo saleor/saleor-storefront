@@ -1,13 +1,14 @@
 import { useAuth } from "@saleor/sdk";
-import * as React from "react";
-import { useIntl } from "react-intl";
-
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-
-import { Button, Form, TextField } from "..";
-
+import * as React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { Form, TextField } from "..";
 import "./scss/index.scss";
+
+
+
+
 
 interface ILoginForm {
   hide?: () => void;
@@ -33,9 +34,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
 
   const formData = demoMode
     ? {
-        email: "admin@example.com",
-        password: "admin",
-      }
+      email: "admin@example.com",
+      password: "admin",
+    }
     : {};
 
   const intl = useIntl();
@@ -43,6 +44,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form data={formData} errors={errors || []} onSubmit={handleOnSubmit}>
+        <p className="account">
+          Account:
+        </p>
         <TextField
           name="email"
           autoComplete="email"
@@ -50,6 +54,16 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           type="email"
           required
         />
+
+        <div className="passWord">
+          <span>
+            Password:
+          </span>
+          <span className="u-link" style={{ float: "right" }}>
+            <FormattedMessage defaultMessage="Forgot Password"></FormattedMessage>
+          </span>
+        </div>
+
         <TextField
           name="password"
           autoComplete="password"
@@ -57,16 +71,43 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           type="password"
           required
         />
+        <div>
+          <input type="checkbox" />
+          <label>
+            <span> Stay signed in. </span>
+            <span className="u-link">
+              <FormattedMessage defaultMessage=" Details"></FormattedMessage>
+            </span>
+          </label>
+        </div>
         <div className="login-form__button">
-          <Button
-            testingContext="submit"
+          <button className="signIn"
+            // testingContext="submit"
             type="submit"
             {...(loading && { disabled: true })}
           >
             {loading
               ? intl.formatMessage(commonMessages.loading)
               : intl.formatMessage({ defaultMessage: "Sign in" })}
-          </Button>
+          </button>
+        </div>
+        <div className="mobileNumber">
+          <span className="u-link">
+            <FormattedMessage defaultMessage="Mobile number sign in"></FormattedMessage>
+          </span>
+        </div>
+        <hr />
+        <div>
+          <input type="checkbox" />
+          <label>
+            I agree to Free Membership Agreement
+          </label>
+        </div>
+        <div>
+          <input type="checkbox" />
+          <label>
+            I agree to Receive marketing materials
+          </label>
         </div>
       </Form>
     </div>
