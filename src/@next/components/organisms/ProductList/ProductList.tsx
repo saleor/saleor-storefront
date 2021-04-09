@@ -17,18 +17,20 @@ export const ProductList: React.FC<IProps> = ({
   onLoadMore = () => null,
 }: IProps) => {
   return (
-    <>
+    <S.Wrapper>
       <S.List data-test="productList" data-test-id={testingContextId}>
         {products.map(product => {
           const { id, name } = product;
           return (
             id &&
             name && (
-              <Link href={generateProductUrl(id, name)} key={id}>
-                <a>
-                  <ProductTile product={product} />
-                </a>
-              </Link>
+              <S.ListItem>
+                <Link href={generateProductUrl(id, name)} key={id}>
+                  <a>
+                    <ProductTile product={product} />
+                  </a>
+                </Link>
+              </S.ListItem>
             )
           );
         })}
@@ -48,6 +50,6 @@ export const ProductList: React.FC<IProps> = ({
           )
         )}
       </S.Loader>
-    </>
+    </S.Wrapper>
   );
 };

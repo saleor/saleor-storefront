@@ -1,19 +1,45 @@
-import { media, styled } from "@styles";
+import { styled } from "@styles";
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+  min-height: 100vh;
+  background: #f1f5f5;
+  flex-wrap: wrap !important;
+
+  @media (max-width: 1380px) {
+    padding: 0 80px;
+  }
+  @media (max-width: 1024px) {
+    padding: 0 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 0 40px;
+  }
+`;
 
 export const List = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  width: 100%;
+`;
 
-  ${media.largeScreen`
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1.5rem;
-  `}
-
-  ${media.smallScreen`
-    grid-template-columns: 1fr;
-    grid-gap: 1rem;
-  `}
+export const ListItem = styled.div`
+  width: 20%;
+  @media (max-width: 1600px) {
+    width: 25%;
+  }
+  @media (max-width: 1368px) {
+    width: 33.3%;
+  }
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Loader = styled.div`
