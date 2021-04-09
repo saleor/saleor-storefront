@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { AddNewTile } from ".";
 
+import { AddNewTile } from ".";
 
 storiesOf("@components/atoms/AddNewTile", module)
   .addParameters({ component: AddNewTile })
