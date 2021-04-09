@@ -97,17 +97,6 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
           </span>
         </div>
         <hr />
-        <div className="signInWithZalo">
-          <p className="signInWith">
-            Sign in with:
-          </p>
-          <div>
-            <a href="https://id.zalo.me/account?continue=https%3A%2F%2Fchat.zalo.me%2F">
-              <img src="https://seeklogo.com/images/Z/zalo-logo-B0A0B2B326-seeklogo.com.png"
-                alt="zalo" width="45px" />
-            </a>
-          </div>
-        </div>
         <div>
           <input type="checkbox" />
           <label>
