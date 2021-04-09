@@ -9,13 +9,13 @@ export const Wrapper = styled.div`
   flex-wrap: wrap !important;
 
   @media (max-width: 1380px) {
-    padding: 0 80px;
+    padding: 0 30px;
   }
   @media (max-width: 1024px) {
-    padding: 0 40px;
+    padding: 0 20px;
   }
   @media (max-width: 768px) {
-    padding: 0 40px;
+    padding: 0 10px;
   }
 `;
 
