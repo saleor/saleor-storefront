@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 import { storiesOf } from "@storybook/react";
 import React from "react";
-
 import { AddNewTile } from ".";
+
 
 storiesOf("@components/atoms/AddNewTile", module)
   .addParameters({ component: AddNewTile })
