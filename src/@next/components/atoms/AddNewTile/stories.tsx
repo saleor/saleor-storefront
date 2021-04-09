@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { AddNewTile } from ".";
