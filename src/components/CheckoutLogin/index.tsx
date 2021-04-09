@@ -1,16 +1,16 @@
+import { OfflinePlaceholder, Redirect } from "@components/atoms";
+import { paths } from "@paths";
 import { useAuth } from "@saleor/sdk";
 import { NextPage } from "next";
 import React, { useContext } from "react";
-
-import { OfflinePlaceholder, Redirect } from "@components/atoms";
-import { paths } from "@paths";
-
 import { Offline, Online, OverlayContext } from "..";
 import { OverlayTheme, OverlayType } from "../Overlay";
+import "./scss/index.scss";
 // import CheckoutAsGuest from "./CheckoutAsGuest";
 import SignInForm from "./SignInForm";
 
-import "./scss/index.scss";
+
+
 
 const CheckoutLogin: NextPage = () => {
   const overlay = useContext(OverlayContext);
@@ -22,7 +22,7 @@ const CheckoutLogin: NextPage = () => {
   };
 
   return user ? (
-    <Redirect url={paths.checkout} />
+    <Redirect url={paths.home} />
   ) : (
     <div className="container">
       <Online>
