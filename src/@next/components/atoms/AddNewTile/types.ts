@@ -1,4 +1,4 @@
-export interface IProps {
+sexport interface IProps {
   type: string;
   onClick?: () => void;
 }
