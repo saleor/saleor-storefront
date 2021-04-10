@@ -86,22 +86,27 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
     }
   };
 
+  const [pageSize, setPageSize] = React.useState(PRODUCTS_PER_PAGE);
+
   const filters: IFilters = {
     attributes: attributeFilters,
-    pageSize: PRODUCTS_PER_PAGE,
+    pageSize: pageSize,
     priceGte: null,
     priceLte: null,
     sortBy: sort || null,
   };
-  const variables = {
-    ...filters,
-    attributes: filters.attributes
-      ? convertToAttributeScalar(filters.attributes)
-      : {},
-    channel: channelSlug,
-    id: getGraphqlIdFromDBId(id, "Category"),
-    sortBy: convertSortByFromString(filters.sortBy),
-  };
+
+  const variables = React.useMemo(() => {
+    return {
+      ...filters,
+      attributes: filters.attributes
+        ? convertToAttributeScalar(filters.attributes)
+        : {},
+      channel: channelSlug,
+      id: getGraphqlIdFromDBId(id, "Category"),
+      sortBy: convertSortByFromString(filters.sortBy),
+    };
+  }, [pageSize]);
 
   const sortOptions = [
     {
@@ -222,6 +227,8 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
                           onOrder={value => {
                             setSort(value.value);
                           }}
+                          page={pageSize}
+                          setPage={setPageSize}
                         />
                       </MetaWrapper>
                     );
