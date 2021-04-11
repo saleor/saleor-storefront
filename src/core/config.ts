@@ -4,7 +4,7 @@ import { ssrMode } from "@temp/constants";
 
 import { generatePageUrl } from "./utils";
 
-export const PRODUCTS_PER_PAGE = 6;
+export const PRODUCTS_PER_PAGE = 5;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
   BRAINTREE: {

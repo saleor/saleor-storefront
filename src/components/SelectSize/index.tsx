@@ -12,6 +12,8 @@ const SelectPageSize: React.FC<IProps> = ({
   page,
   setPage,
 }: IProps) => {
+  console.log(page);
+  
   return (
     <S.SelectWrapper>
       <S.Title>Item per page</S.Title>
@@ -20,16 +22,14 @@ const SelectPageSize: React.FC<IProps> = ({
         onChange={e => {
           const value = parseInt(e.target.value);
           setPage(value);
-          //   onChangePageSize(value);
         }}
       >
-        <S.Option value={0} disabled>
-          Please select a value
-        </S.Option>
-        <S.Option value={5}>5</S.Option>
-        <S.Option value={10}>10</S.Option>
-        <S.Option value={15}>15</S.Option>
-        <S.Option value={20}>20</S.Option>
+        {[5,10,15,20].map((item,index)=>{
+          return(
+            <S.Option key={index} value={item} disabled={page===item}>{item}</S.Option>
+          )
+        })}
+        
       </S.Select>
     </S.SelectWrapper>
   );
