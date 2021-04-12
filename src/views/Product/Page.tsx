@@ -13,6 +13,7 @@ import {
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
 // import OtherProducts from "./Other";
 import SlideCarousel from "./SlideCarousel";
@@ -132,6 +133,9 @@ const Page: React.FC<
       </div>
       {/* <OtherProducts products={product.category.products.edges} /> */}
       <SlideCarousel products={product.category.products.edges} />
+      <div className="container">
+        <ContactSupplier/>
+      </div>
     </div>
   );
 };
