@@ -5,12 +5,7 @@ import { commonMessages } from "@temp/intl";
 import { Formik } from "formik";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import styled from "styled-components";
 import * as S from "./styles";
-
-const Content = styled.div`
-  padding: 1rem 2rem;
-`;
 
 type FormType = {
   message: string;
