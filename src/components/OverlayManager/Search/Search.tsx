@@ -1,4 +1,5 @@
 import { OfflinePlaceholder } from "@components/atoms";
+import { paths } from "@paths";
 import { grayMedium } from "@styles/constants";
 import TextField from "@temp/components/TextField";
 import { channelSlug } from "@temp/constants";
@@ -55,6 +56,10 @@ function Search(props: SearchProps) {
 
   const wrapperRef = React.useRef(null);
   useOutsideAlerter(wrapperRef);
+
+  const handleClickShowAll = () =>{
+    props.router.push(`${paths.search}?q=${searchTerms}`)
+  }
 
   return (
     <>
@@ -128,6 +133,7 @@ function Search(props: SearchProps) {
                                 testingContext="searchProductsButton"
                                 btnRef={submitBtnRef}
                                 type="submit"
+                                onClick={()=>handleClickShowAll()}
                               >
                                 <FormattedMessage defaultMessage="Show all results" />
                               </Button>
