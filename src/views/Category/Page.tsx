@@ -1,29 +1,29 @@
-import * as React from "react";
-import { useIntl } from "react-intl";
-
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
-
+import * as React from "react";
+import { useIntl } from "react-intl";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import {
   Breadcrumbs,
   extractBreadcrumbs,
-  ProductsFeatured,
+  ProductsFeatured
 } from "../../components";
 import { maybe } from "../../core/utils";
 import { Category_category } from "./gqlTypes/Category";
 import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
-
 import "./scss/index.scss";
+
+
+
 
 interface SortItem {
   label: string;
   value?: string;
 }
 
-interface SortOptions extends Array<SortItem> {}
+type SortOptions = Array<SortItem>
 
 interface PageProps {
   activeFilters: number;

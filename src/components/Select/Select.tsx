@@ -1,19 +1,18 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 
 import classNames from "classnames";
 import { filter, find } from "lodash";
 import * as React from "react";
-
 import { useClickedOutside } from "../../hooks";
 import {
   IFilteredListArgs,
   ISelectChange,
   ISelectItem,
-  ISelectProps,
+  ISelectProps
 } from "./customTypes";
+import "./scss/index.scss";
 import SelectOptionsList from "./SelectOptionsList";
 
-import "./scss/index.scss";
+
 
 const updateOptions = (
   { label, value }: ISelectItem,
