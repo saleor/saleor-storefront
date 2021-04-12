@@ -17,6 +17,7 @@ import { Category_category } from "./gqlTypes/Category";
 import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
 
 import "./scss/index.scss";
+import SelectPageSize from "@temp/components/SelectSize";
 
 interface SortItem {
   label: string;
@@ -39,6 +40,8 @@ interface PageProps {
   onLoadMore: () => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
   onOrder: (order: { value?: string; label: string }) => void;
+  page: number;
+  setPage: (data) => void;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -55,6 +58,8 @@ const Page: React.FC<PageProps> = ({
   onOrder,
   sortOptions,
   onAttributeFiltersChange,
+  page,
+  setPage,
 }) => {
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
@@ -107,12 +112,18 @@ const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
         {canDisplayProducts && (
-          <ProductList
-            products={products.edges.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
-          />
+          <>
+            <SelectPageSize
+              page={page}
+              setPage={setPage}
+            />
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              canLoadMore={hasNextPage}
+              loading={displayLoader}
+              onLoadMore={onLoadMore}
+            />
+          </>
         )}
       </div>
 

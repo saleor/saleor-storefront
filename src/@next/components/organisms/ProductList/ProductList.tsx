@@ -17,39 +17,41 @@ export const ProductList: React.FC<IProps> = ({
   onLoadMore = () => null,
 }: IProps) => {
   return (
-    <S.Wrapper>
-      <S.List data-test="productList" data-test-id={testingContextId}>
-        {products.map(product => {
-          const { id, name } = product;
-          return (
-            id &&
-            name && (
-              <S.ListItem>
-                <Link href={generateProductUrl(id, name)} key={id}>
-                  <a>
-                    <ProductTile product={product} />
-                  </a>
-                </Link>
-              </S.ListItem>
+    <>
+      <S.Wrapper>
+        <S.List data-test="productList" data-test-id={testingContextId}>
+          {products.map(product => {
+            const { id, name } = product;
+            return (
+              id &&
+              name && (
+                <S.ListItem>
+                  <Link href={generateProductUrl(id, name)} key={id}>
+                    <a>
+                      <ProductTile product={product} />
+                    </a>
+                  </Link>
+                </S.ListItem>
+              )
+            );
+          })}
+        </S.List>
+        <S.Loader>
+          {loading ? (
+            <Loader />
+          ) : (
+            canLoadMore && (
+              <Button
+                testingContext="loadMoreProductsButton"
+                color="secondary"
+                onClick={onLoadMore}
+              >
+                <FormattedMessage defaultMessage="More +" />
+              </Button>
             )
-          );
-        })}
-      </S.List>
-      <S.Loader>
-        {loading ? (
-          <Loader />
-        ) : (
-          canLoadMore && (
-            <Button
-              testingContext="loadMoreProductsButton"
-              color="secondary"
-              onClick={onLoadMore}
-            >
-              <FormattedMessage defaultMessage="More +" />
-            </Button>
-          )
-        )}
-      </S.Loader>
-    </S.Wrapper>
+          )}
+        </S.Loader>
+      </S.Wrapper>
+    </>
   );
 };
