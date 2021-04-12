@@ -58,6 +58,7 @@
     "react-image-magnifiers": "^1.4.0",
     "react-intersection-observer": "^8.25.2",
     "react-intl": "^4.6.9",
+    "react-lazy-load-image-component": "^1.5.1",
     "react-media": "^1.8.0",
     "react-native": "^0.63.4",
     "react-native-animatable": "^1.3.3",

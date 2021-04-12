@@ -61,21 +61,23 @@ export const Image = styled.div`
     color: black;
   }
 
+  padding: 20px;
+
   > img {
     height: auto;
     max-width: 100%;
-    grid-column-end: span 3;
+    grid-column-end: span 4;
     ${media.mediumScreen`
-      grid-column-end: span 3;
+      grid-column-end: span 4;
     `}
     ${media.smallScreen`
-      grid-column-end: span 3;
+      grid-column-end: span 4;
     `}
   }
   > div {
     h3 {
       margin-bottom: 10px;
-      writing-mode: vertical-rl;
+      writing-mode: unset;
       text-orientation: mixed;
       ${media.smallScreen`
         writing-mode: unset;
@@ -89,24 +91,26 @@ export const Image = styled.div`
     }
 
     ${media.mediumScreen`
-      grid-column-end: span 1;
+      grid-column-end: span 0;
     `}
     ${media.smallScreen`
-      grid-column-end: span 1;
+      grid-column-end: span 0;
     `}
 
     height: auto;
     max-width: 100%;
-    grid-column-end: span 1;
+    grid-column-end: span 0;
     padding: 10px;
     overflow: hidden;
     line-height: 2rem;
     max-height: 8rem;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: unset;
     display: block;
     display: -webkit-box;
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
+    position: absolute;
+    color: white;
   }
 `;
