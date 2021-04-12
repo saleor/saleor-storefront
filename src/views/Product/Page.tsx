@@ -1,24 +1,25 @@
-import classNames from "classnames";
-import React from "react";
-import Media from "react-media";
-
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
-
+import classNames from "classnames";
+import React from "react";
+import Media from "react-media";
 import {
   Breadcrumbs,
   OverlayContext,
   OverlayTheme,
-  OverlayType,
+  OverlayType
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
+import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { IProps } from "./types";
 
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
+
+
 
 const populateBreadcrumbs = product => [
   {
@@ -128,6 +129,10 @@ const Page: React.FC<
             attributes={product.attributes}
           />
         </div>
+      </div>
+
+      <div className="container">
+        <ContactSupplier/>
       </div>
       <OtherProducts products={product.category.products.edges} />
     </div>
