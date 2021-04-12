@@ -2,11 +2,11 @@ import { ApolloQueryResult, ErrorPolicy, FetchPolicy } from "apollo-client";
 import { DocumentNode } from "graphql";
 import * as React from "react";
 import { Query, QueryProps, QueryResult } from "react-apollo";
-
 import { Error } from "../components/Error";
 import Loader from "../components/Loader";
 import { RequireAtLeastOne } from "./tsUtils";
 import { maybe } from "./utils";
+
 
 interface LoadMore<TData, TVariables> {
   loadMore: (
@@ -31,7 +31,6 @@ interface TypedQueryInnerProps<TData, TVariables> {
   onCompleted?: (data: TData) => void;
 }
 
-/* eslint react/require-default-props: 0 */
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
   return (props: TypedQueryInnerProps<TData, TVariables>) => {
     const {

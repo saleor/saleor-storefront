@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { ISelect } from "@components/atoms";
 import { IFormError } from "@types";
 

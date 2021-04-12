@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react";
-
 import * as S from "./styles";
 import { IProps } from "./types";
+
 
 /**
  * Radio input.
@@ -27,3 +28,4 @@ const Radio: React.FC<IProps> = ({
 };
 
 export { Radio };
+

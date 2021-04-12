@@ -1,11 +1,12 @@
-import "jest-styled-components";
-
-import { shallow } from "enzyme";
-import React from "react";
-
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { AddNewTile, TileGrid } from "@components/atoms";
-
+import { shallow } from "enzyme";
+import "jest-styled-components";
+import React from "react";
 import { AddressGrid } from ".";
+
+
+
 
 const address = {
   address: {

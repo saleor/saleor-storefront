@@ -1,22 +1,22 @@
+import { Loader, OfflinePlaceholder } from "@components/atoms";
 import { useCart } from "@saleor/sdk";
+import { channelSlug } from "@temp/constants";
 import { isEmpty } from "lodash";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
-
-import { Loader, OfflinePlaceholder } from "@components/atoms";
-import { channelSlug } from "@temp/constants";
-
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { getGraphqlIdFromDBId } from "../../core/utils";
 import { ProductDetails_product } from "./gqlTypes/ProductDetails";
 import Page from "./Page";
 import { TypedProductDetailsQuery } from "./queries";
+import "./scss/index.scss";
 import { IProps } from "./types";
 
-import "./scss/index.scss";
+
+
 
 const canDisplay = (product?: ProductDetails_product) =>
   !!product?.name && !!product?.pricing && !!product?.variants;

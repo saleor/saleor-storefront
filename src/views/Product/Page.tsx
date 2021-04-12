@@ -15,7 +15,8 @@ import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
-import OtherProducts from "./Other";
+// import OtherProducts from "./Other";
+import SlideCarousel from "./SlideCarousel";
 import { IProps } from "./types";
 
 
@@ -130,11 +131,11 @@ const Page: React.FC<
           />
         </div>
       </div>
-
+      {/* <OtherProducts products={product.category.products.edges} /> */}
+      <SlideCarousel products={product.category.products.edges} />
       <div className="container">
         <ContactSupplier/>
       </div>
-      <OtherProducts products={product.category.products.edges} />
     </div>
   );
 };
