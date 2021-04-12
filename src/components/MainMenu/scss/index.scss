@@ -54,6 +54,7 @@
     align-self: center;
     order: 2;
     flex-basis: calc(60% - 2rem);
+    position: relative;
 
     @media (max-width: $small-screen) {
       flex-basis: calc(80% - 4rem);

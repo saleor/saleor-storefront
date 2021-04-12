@@ -51,7 +51,7 @@ $drawer-width: 25rem;
     .input__field {
       background-color: $turquoise-light;
       box-shadow: none;
-      padding: 1rem 0;
+      padding: 1rem 1rem;
       width: 100%;
       border: 1px solid $orange;
       border-radius: 20px 0 0 20px;
@@ -143,17 +143,11 @@ $drawer-width: 25rem;
     }
 
     &__footer {
-      position: fixed;
-      bottom: 0px;
       border-top: 1px solid $gray-light;
       text-align: center;
       padding: $spacer 0;
-      background-color: $white;
-      width: 100vw;
-
-      @media (min-width: $medium-screen) {
-        width: 25rem;
-      }
+      flex: 1;
+      justify-content: center;
     }
   }
 }

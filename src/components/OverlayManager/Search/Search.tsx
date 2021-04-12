@@ -36,17 +36,38 @@ function Search(props: SearchProps) {
   const hasResults = (data: SearchResults) =>
     maybe(() => !!data.products.edges.length);
 
+  const [showResult, setShowResult] = React.useState(false);
+
+  const useOutsideAlerter = ref => {
+    React.useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setShowResult(false);
+        }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  };
+
+  const wrapperRef = React.useRef(null);
+  useOutsideAlerter(wrapperRef);
+
   return (
     <>
       <div className="search__input">
         <TextField
           onChange={evt => {
             setSearchTerms(evt.target.value.toLowerCase());
-            setHasSearchPhrase(false)
+            setHasSearchPhrase(false);
           }}
           onKeyPress={e => {
             if (e.key === "Enter") {
               setHasSearchPhrase(true);
+              setShowResult(true);
             }
           }}
           placeholder={props.intl.formatMessage(commonMessages.search)}
@@ -54,7 +75,12 @@ function Search(props: SearchProps) {
         <div className="search-button">
           <button
             className="btn-search"
-            onClick={() => searchTerms?.length && setHasSearchPhrase(true)}
+            onClick={() => {
+              if (searchTerms?.length) {
+                setHasSearchPhrase(true);
+                setShowResult(true);
+              }
+            }}
           >
             <ReactSVG path={searchImg} />
             <span className="btn-search--title">Search</span>
@@ -78,7 +104,17 @@ function Search(props: SearchProps) {
                   {({ data, error, loading }) => {
                     if (hasResults(data)) {
                       return (
-                        <div style={{position:'fixed',width:'50%',background:grayMedium,borderRadius:4}}>
+                        <div
+                          ref={wrapperRef}
+                          style={{
+                            position: "absolute",
+                            width: "100%",
+                            background: grayMedium,
+                            borderRadius: 4,
+                            zIndex: 9999,
+                            display: showResult ? "block" : "none",
+                          }}
+                        >
                           <ul>
                             {data.products.edges.map(product => (
                               <ProductItem {...product} key={product.node.id} />
