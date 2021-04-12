@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from "react";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 
-const ENTER_KEY: number = 13;
-const SPACE_KEY: number = 32;
+
+const ENTER_KEY = 13;
+const SPACE_KEY = 32;
 
 export const Checkbox: React.FC<IProps> = ({
   name,

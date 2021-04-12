@@ -2,13 +2,12 @@
 
 .carousel {
   &__control {
-    padding: $carousel-control-padding;
     background-color: $white;
-    box-shadow: $carousel-control-shadow;
 
     &:hover {
       cursor: pointer;
     }
+
 
     &--right {
       margin-right: -1.3rem;
@@ -18,7 +17,7 @@
       }
 
       svg {
-        transform: rotate(180deg);
+        
         margin-top: 0.5rem;
       }
     }
@@ -31,12 +30,19 @@
       }
 
       svg {
+        transform: rotate(180deg);
         margin-top: 0.4rem;
       }
     }
   }
+  &:focus {
+    outline: unset;
+  }
 
   .slider-slide {
     text-align: center;
+    &:focus {
+      outline: unset;
+    }
   }
 }
