@@ -1,11 +1,10 @@
-import classNames from "classnames";
-import React from "react";
-import Media from "react-media";
-
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
-
+import ProductDetail from "@components/organisms/ProductDetail";
+import classNames from "classnames";
+import React from "react";
+import Media from "react-media";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -14,11 +13,10 @@ import {
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
+import { smallScreen } from "../../globalStyles/scss/variables.scss";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
 import { IProps } from "./types";
-
-import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 const populateBreadcrumbs = product => [
   {
@@ -97,10 +95,11 @@ const Page: React.FC<
                   <div className="product-page__product__info">
                     {addToCartSection}
                   </div>
+                  {/* <ProductDetail /> */}
                 </>
               ) : (
                 <>
-                  <div
+                  {/* <div
                     className="product-page__product__gallery"
                     ref={productGallery}
                   >
@@ -114,7 +113,8 @@ const Page: React.FC<
                     >
                       {addToCartSection}
                     </div>
-                  </div>
+                  </div> */}
+                  <ProductDetail />
                 </>
               )
             }

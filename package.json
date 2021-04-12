@@ -66,6 +66,7 @@
     "react-gtm-module": "^2.0.8",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.9.0",
+    "react-image-gallery": "^1.0.9",
     "react-intersection-observer": "^8.25.2",
     "react-intl": "^4.6.9",
     "react-media": "^1.8.0",
