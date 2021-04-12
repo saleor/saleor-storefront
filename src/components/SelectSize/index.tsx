@@ -1,19 +1,17 @@
 import React from "react";
 import * as S from "./styles";
 
-interface IProps {
-  onChangePageSize?: (data: number) => void;
+type Props = {
   page: number;
   setPage: (data: number) => void;
 }
 
-const SelectPageSize: React.FC<IProps> = ({
-  onChangePageSize = data => null,
+const ARR_PAGE = [5,10,15,20]
+
+const SelectPageSize: React.FC<Props> = ({
   page,
   setPage,
-}: IProps) => {
-  console.log(page);
-  
+}) => {
   return (
     <S.SelectWrapper>
       <S.Title>Item per page</S.Title>
@@ -24,7 +22,7 @@ const SelectPageSize: React.FC<IProps> = ({
           setPage(value);
         }}
       >
-        {[5,10,15,20].map((item,index)=>{
+        {ARR_PAGE.map((item,index)=>{
           return(
             <S.Option key={index} value={item} disabled={page===item}>{item}</S.Option>
           )
