@@ -28,12 +28,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Node.js 14.16
+- Node.js 12.0+
 - A running instance of Saleor.
 
 To run the storefront, you have to set the `NEXT_PUBLIC_API_URI` environment variable to point to the Saleor GraphQL API.
 If you are running Saleor locally, with the default settings, `NEXT_PUBLIC_API_URI` is set to: `http://localhost:8000/graphql/`.
-To change it, either create a [.env.local` file](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) and add it there or set an env variable using `export` command.
+To change it, either create a [`.env.local` file](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) and add it there or set an env variable using `export` command.
 
 ### Installing
 
@@ -181,7 +181,7 @@ npm run generate
   1.  Export a new path in paths.ts
   2.  Inside pages, create a new file with name correnspond to your desired route ([read more here](https://nextjs.org/docs/routing/dynamic-routes) about nested routes). Import your view in the created route file end export it as a default export.
   3.  To link to your new view `import Link from "next/link"` and use new path you created in paths.ts (make sure to import it)
-- **saleor-storefront/src/app/App.tsx** - This is main <App /> component that renders the <MainMenu />, <Routes /> (explained below), <Footer /> and a couple other components.
+Ŕ- **saleor-storefront/src/app/App.tsx** - This is main <App /> component that renders the <MainMenu />, <Routes /> (explained below), <Footer /> and a couple other components.
 
 ### Adding a Payment Gateway
 
