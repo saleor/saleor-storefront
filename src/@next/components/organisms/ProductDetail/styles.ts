@@ -28,7 +28,6 @@ export const InfoDetail = styled.div`
   box-sizing: border-box;
   @media (max-width: 1380px) {
     width: 50%;
-   
   }
   @media (max-width: 1024px) {
     width: 50%;
@@ -84,8 +83,8 @@ export const Price = styled(StrongerText)`
 export const Table = styled.table`
   border: 1px solid grey;
   border-collapse: collapse;
-  margin-left: 15px;
-  max-width: 3rem;
+  margin: 0 0 0 15px;
+  // min-width: 3rem;
 `;
 
 export const Td = styled.td`
