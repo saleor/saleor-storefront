@@ -41,7 +41,7 @@ export const InfoDetail = styled.div`
   }
   @media (max-width: 414px) {
     width: 100%;
-    display:block;
+    display: block;
   }
 `;
 
@@ -60,9 +60,14 @@ export const Text = styled.p`
   font-weight: lighter;
 `;
 
-export const StrongerText = styled(Text)`
+export const StrongerText = styled.p`
   font-weight: 700;
   color: #000;
+  font-size: 1rem;
+  display: inline-block;
+  margin: 0;
+  color: grey;
+  font-weight: lighter;
 `;
 
 export const Link = styled.a`
@@ -120,8 +125,8 @@ export const LogoIcon = styled.img`
 `;
 
 export const Popup = styled.div`
-  position:absolute;
-  width:100%;
-  height:100vh;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
   background: #00000050;
-`
+`;
