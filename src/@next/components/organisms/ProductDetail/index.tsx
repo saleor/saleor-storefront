@@ -1,32 +1,74 @@
-import React from "react";
-import * as S from "./styles";
-import { Logo } from "./icon";
+import React, { useState } from "react";
 import ImageGallery from "react-image-gallery";
+import ReactImageZoom from "react-image-zoom";
+import { Carousel } from "react-responsive-carousel";
+import { Logo } from "./icon";
 import "./style.css";
+import * as S from "./styles";
 
 interface IProps {}
 
 const ProductDetail: React.FC<IProps> = (props: IProps) => {
-  const images = [
+  const propsss = {
+    width: 700,
+    // height:800,
+    zoomWidth: 200,
+    scale: 1.2,
+    img: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+    zoomPosition: "original",
+  };
+
+  const imgs = [
     {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
+      original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+      thumbnail:
+        "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
     },
     {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
+      original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+      thumbnail:
+        "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
     },
   ];
+
+  const getImg = imgs => {
+    return imgs.map(item => {
+      return {
+        sizes: 10,
+        original: item.original,
+        thumbnail: item.thumbnail,
+        renderItem: () => {
+          propsss.img = item.thumbnail;
+          return <ReactImageZoom {...propsss} />;
+        },
+      };
+    });
+  };
+
+  const [stt, setStt] = useState(false);
+  const imgGallery = React.createRef<any>();
   return (
     <div>
       <S.Wraper>
         <S.ImgSlide>
-          <ImageGallery items={images} />
+          <ImageGallery
+            ref={imgGallery}
+            items={stt ? imgs : getImg(imgs)}
+            showPlayButton={false}
+            showNav={false}
+            onClick={() => {
+              imgGallery.current.fullScreen();
+            }}
+            onScreenChange={e => {
+              if (e) {
+                setStt(true);
+              } else {
+                setStt(false);
+              }
+            }}
+          />
         </S.ImgSlide>
+
         <S.InfoDetail>
           <S.ProductName>thanghoian123</S.ProductName>
           <S.Text style={{ paddingLeft: "15px" }}>

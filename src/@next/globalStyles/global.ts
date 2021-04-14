@@ -74,4 +74,16 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
       flex: 1;
     }
   }
+  
+  .image-gallery-slides{
+    // overflow-x: visible !important;
+    // overflow-y: visible !important;
+    // overflow:visible !important;
+  }
+  img{
+    max-width:100% !important;
+    heigth:100% !important;
+    object-fit:contain;
+  }
+ 
 `;

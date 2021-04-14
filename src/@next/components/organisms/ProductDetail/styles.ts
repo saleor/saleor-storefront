@@ -18,6 +18,9 @@ export const ImgSlide = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
+  @media (max-width: 414px) {
+    width: 100%;
+  }
 `;
 
 export const InfoDetail = styled.div`
@@ -35,6 +38,10 @@ export const InfoDetail = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     padding: 0;
+  }
+  @media (max-width: 414px) {
+    width: 100%;
+    display:block;
   }
 `;
 
@@ -111,3 +118,10 @@ export const LogoIcon = styled.img`
   border: 1px solid #f2f2f2;
   margin-left: 5px;
 `;
+
+export const Popup = styled.div`
+  position:absolute;
+  width:100%;
+  height:100vh;
+  background: #00000050;
+`
