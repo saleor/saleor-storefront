@@ -1,7 +1,9 @@
-import { IconButton } from "@components/atoms/IconButton/IconButton";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
+
+import { IconButton } from "@components/atoms/IconButton/IconButton";
+
 const Flex = styled.div`
   display: flex;
   align-items: center;

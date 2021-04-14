@@ -1,13 +1,13 @@
-
+/* eslint-disable react/no-unused-state */
 import * as React from "react";
+
 import {
   InnerOverlayContextInterface,
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "./context";
-
 
 class Provider extends React.Component<
   { pathname: string },

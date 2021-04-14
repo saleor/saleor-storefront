@@ -4,6 +4,7 @@
 import fs from "fs";
 import { chunk } from "lodash";
 import path from "path";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { buildSitemapIndex, createSitemap } from "sitemap";
 
 class SitemapGenerator {

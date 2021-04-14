@@ -1,12 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
-import { SocialMediaIcon } from "..";
+
 import { SOCIAL_MEDIA } from "../../core/config";
+import { SocialMediaIcon } from "..";
 // import Nav from "./Nav";
 import Email from "./Email";
-import "./scss/index.scss";
 import SiteMap from "./SiteMap";
 
-
+import "./scss/index.scss";
 
 const Footer: React.FC = () => (
   <div className="footer" id="footer">
