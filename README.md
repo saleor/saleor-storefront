@@ -33,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 To run the storefront, you have to set the `NEXT_PUBLIC_API_URI` environment variable to point to the Saleor GraphQL API.
 If you are running Saleor locally, with the default settings, `NEXT_PUBLIC_API_URI` is set to: `http://localhost:8000/graphql/`.
-To change it, either create a [.env.local` file](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) and add it there or set an env variable using `export` command.
+To change it, either create a [`.env.local` file](https://nextjs.org/docs/basic-features/environment-variables#loading-environment-variables) and add it there or set an env variable using `export` command.
 
 ### Installing
 
