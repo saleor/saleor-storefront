@@ -1,12 +1,12 @@
-import { Attribute, IconButton, Tile } from "@components/atoms";
 import { useAccountUpdate, useAuth } from "@saleor/sdk";
-import { commonMessages } from "@temp/intl";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import { Attribute, IconButton, Tile } from "@components/atoms";
+import { commonMessages } from "@temp/intl";
+
 import { AccountUpdateForm } from "./AccountUpdateForm";
 import * as S from "./styles";
-
-
 
 export const AccountTile: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
