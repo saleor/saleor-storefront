@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
 `;
 
+export const Layout = styled.div`
+  display: flex;
+`;
+
 export const TileWrapper = styled.div`
   height: auto;
   margin-bottom: 1.5rem;
