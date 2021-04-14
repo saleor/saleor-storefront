@@ -130,6 +130,12 @@ export const commonMessages = defineMessages({
   home: {
     defaultMessage: "Home",
   },
+  message: {
+    defaultMessage: "Message",
+  },
+  quantityType: {
+    defaultMessage: "Quantity Type",
+  },
 });
 
 export const checkoutMessages = defineMessages({

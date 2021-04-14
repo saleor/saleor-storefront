@@ -2,7 +2,7 @@ import { GetShop_shop } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
 import { createContext } from "react";
 
 export const defaultCountry = {
-  __typename: "CountryDisplay" as "CountryDisplay",
+  __typename: "CountryDisplay" as const,
   code: "US",
   country: "United States of America",
 };

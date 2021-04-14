@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import gql from "graphql-tag";
 
 import { TypedQuery } from "../../core/queries";

@@ -1,9 +1,10 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/ban-types */
 
 import fs from "fs";
 import { chunk } from "lodash";
 import path from "path";
-/* eslint-disable-next-line import/no-extraneous-dependencies */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { buildSitemapIndex, createSitemap } from "sitemap";
 
 class SitemapGenerator {
@@ -61,7 +62,7 @@ class SitemapGenerator {
     fs.writeFileSync(path.join(this.destinationDir, filename), data);
   }
 
-  generate(filename: string = "sitemap.xml") {
+  generate(filename = "sitemap.xml") {
     this.chunks = chunk(this.urls, this.sitemapSize);
 
     if (this.chunks.length > 1) {

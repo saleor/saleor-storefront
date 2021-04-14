@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { ApolloQueryResult, ErrorPolicy, FetchPolicy } from "apollo-client";
 import { DocumentNode } from "graphql";
 import * as React from "react";
@@ -31,7 +32,6 @@ interface TypedQueryInnerProps<TData, TVariables> {
   onCompleted?: (data: TData) => void;
 }
 
-/* eslint react/require-default-props: 0 */
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
   return (props: TypedQueryInnerProps<TData, TVariables>) => {
     const {

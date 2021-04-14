@@ -1,6 +1,6 @@
+/* eslint-disable simple-import-sort/imports */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
-
 import "./scss/index.scss";
 
 const SiteMap: React.FC<any> = () => {

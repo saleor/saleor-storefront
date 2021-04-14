@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
+import SelectPageSize from "@temp/components/SelectSize";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 
@@ -23,7 +24,7 @@ interface SortItem {
   value?: string;
 }
 
-interface SortOptions extends Array<SortItem> {}
+type SortOptions = Array<SortItem>;
 
 interface PageProps {
   activeFilters: number;
@@ -39,6 +40,8 @@ interface PageProps {
   onLoadMore: () => void;
   onAttributeFiltersChange: (attributeSlug: string, value: string) => void;
   onOrder: (order: { value?: string; label: string }) => void;
+  page: number;
+  setPage: (data) => void;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -55,6 +58,8 @@ const Page: React.FC<PageProps> = ({
   onOrder,
   sortOptions,
   onAttributeFiltersChange,
+  page,
+  setPage,
 }) => {
   const canDisplayProducts = maybe(
     () => !!products.edges && products.totalCount !== undefined
@@ -107,12 +112,15 @@ const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
         {canDisplayProducts && (
-          <ProductList
-            products={products.edges.map(edge => edge.node)}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
-          />
+          <>
+            <SelectPageSize page={page} setPage={setPage} />
+            <ProductList
+              products={products.edges.map(edge => edge.node)}
+              canLoadMore={hasNextPage}
+              loading={displayLoader}
+              onLoadMore={onLoadMore}
+            />
+          </>
         )}
       </div>
 

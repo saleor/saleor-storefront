@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import "jest-styled-components";
 
 import { shallow } from "enzyme";

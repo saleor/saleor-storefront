@@ -1,9 +1,9 @@
-import { mount } from "enzyme";
 import "jest-styled-components";
+
+import { mount } from "enzyme";
 import React from "react";
+
 import { AddNewTile } from ".";
-
-
 
 describe("<AddNewTile />", () => {
   it("should display child component with card type passed as prop and rendered inside it as a text", () => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { NextPage } from "next";
 import * as React from "react";
 import { useIntl } from "react-intl";

@@ -51,7 +51,7 @@ $drawer-width: 25rem;
     .input__field {
       background-color: $turquoise-light;
       box-shadow: none;
-      padding: 1rem 1rem;
+      padding: 0.95rem 1rem;
       width: 100%;
       border: 1px solid $orange;
       border-radius: 20px 0 0 20px;
@@ -81,6 +81,7 @@ $drawer-width: 25rem;
       &--title {
         font-size: 1rem;
         margin-left: 12px;
+        padding-top: 3px;
       }
     }
   }

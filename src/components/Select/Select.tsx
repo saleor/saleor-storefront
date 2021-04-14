@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import classNames from "classnames";
 import { filter, find } from "lodash";
 import * as React from "react";
@@ -67,6 +65,7 @@ export const Select = (props: ISelectProps) => {
   const shouldSearch = defaultValue.label !== searchPhrase;
 
   const renderLabel = (label?: string) =>
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     label && <label className="input__label">{label}</label>;
 
   const changeSelectionRange = (e: React.ChangeEvent<any>) =>
