@@ -1,20 +1,22 @@
+import { NextRouter, withRouter } from "next/router";
+import React, { useState } from "react";
+import {
+  FormattedMessage,
+  injectIntl,
+  WrappedComponentProps,
+} from "react-intl";
+import ReactSVG from "react-svg";
+
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
 import { grayMedium } from "@styles/constants";
 import TextField from "@temp/components/TextField";
 import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-import { NextRouter, withRouter } from "next/router";
-import React, { useState } from "react";
-import {
-  FormattedMessage,
-  injectIntl,
-  WrappedComponentProps
-} from "react-intl";
-import ReactSVG from "react-svg";
-import { Loader } from "../..";
+
 import { maybe } from "../../../core/utils";
 import searchImg from "../../../images/search.svg";
+import { Loader } from "../..";
 import Button from "../../Button/index";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
@@ -22,6 +24,7 @@ import { SearchResults } from "./gqlTypes/SearchResults";
 import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
+
 import "./scss/index.scss";
 
 interface SearchProps extends WrappedComponentProps {
@@ -41,11 +44,11 @@ function Search(props: SearchProps) {
 
   const useOutsideAlerter = ref => {
     React.useEffect(() => {
-      const handleClickOutside = (event) => {
+      const handleClickOutside = event => {
         if (ref.current && !ref.current.contains(event.target)) {
           setShowResult(false);
         }
-      }
+      };
 
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
@@ -57,9 +60,9 @@ function Search(props: SearchProps) {
   const wrapperRef = React.useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  const handleClickShowAll = () =>{
-    props.router.push(`${paths.search}?q=${searchTerms}`)
-  }
+  const handleClickShowAll = () => {
+    props.router.push(`${paths.search}?q=${searchTerms}`);
+  };
 
   return (
     <>
@@ -133,7 +136,7 @@ function Search(props: SearchProps) {
                                 testingContext="searchProductsButton"
                                 btnRef={submitBtnRef}
                                 type="submit"
-                                onClick={()=>handleClickShowAll()}
+                                onClick={() => handleClickShowAll()}
                               >
                                 <FormattedMessage defaultMessage="Show all results" />
                               </Button>

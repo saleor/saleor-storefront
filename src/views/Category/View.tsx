@@ -1,27 +1,27 @@
 /* eslint-disable no-prototype-builtins */
-import { Loader, OfflinePlaceholder } from "@components/atoms";
-import { channelSlug } from "@temp/constants";
-import { prodListHeaderCommonMsg } from "@temp/intl";
-import { IFilters } from "@types";
 import { NextPage } from "next";
 import * as React from "react";
 import { useIntl } from "react-intl";
 import { StringParam, useQueryParam } from "use-query-params";
+
+import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { channelSlug } from "@temp/constants";
+import { prodListHeaderCommonMsg } from "@temp/intl";
+import { IFilters } from "@types";
+
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
 import {
   convertSortByFromString,
   convertToAttributeScalar,
-  getGraphqlIdFromDBId
+  getGraphqlIdFromDBId,
 } from "../../core/utils";
 import Page from "./Page";
 import {
   TypedCategoryProductsDataQuery,
-  TypedCategoryProductsQuery
+  TypedCategoryProductsQuery,
 } from "./queries";
-
-
 
 export const FilterQuerySet = {
   encode(valueObj) {
@@ -91,7 +91,7 @@ export const View: NextPage<ViewProps> = ({ query: { id } }) => {
 
   const filters: IFilters = {
     attributes: attributeFilters,
-    pageSize: pageSize,
+    pageSize,
     priceGte: null,
     priceLte: null,
     sortBy: sort || null,

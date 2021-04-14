@@ -1,10 +1,10 @@
-import { RichTextEditorContent } from "@components/atoms";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+
+import { RichTextEditorContent } from "@components/atoms";
+
 import * as S from "./styles";
 import { IProps } from "./types";
-
-
 
 enum TABS {
   DESCRIPTION = "DESCRIPION",

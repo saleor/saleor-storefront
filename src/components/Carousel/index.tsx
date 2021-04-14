@@ -2,14 +2,14 @@ import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
 import ReactSVG from "react-svg";
+
+import arrowImg from "../../images/next.svg";
+
+import "./scss/index.scss";
 import {
   mediumScreen,
-  smallScreen
+  smallScreen,
 } from "../../globalStyles/scss/variables.scss";
-import arrowImg from "../../images/next.svg";
-import "./scss/index.scss";
-
-
 
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;
@@ -45,7 +45,12 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
     ...rest,
   };
   const carousel = (slides: number) => (
-    <NukaCarousel slidesToShow={slides} slidesToScroll={slides} autoplay={true} {...settings}>
+    <NukaCarousel
+      slidesToShow={slides}
+      slidesToScroll={slides}
+      autoplay
+      {...settings}
+    >
       {children}
     </NukaCarousel>
   );

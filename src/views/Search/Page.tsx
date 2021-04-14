@@ -1,24 +1,24 @@
-import { commonMessages } from "@temp/intl";
-import { IFilterAttributes, IFilters } from "@types";
 import * as React from "react";
 import { useIntl } from "react-intl";
+
+import { commonMessages } from "@temp/intl";
+import { IFilterAttributes, IFilters } from "@types";
+
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 import { DebounceChange, ProductsFeatured, TextField } from "../../components";
 import { maybe } from "../../core/utils";
 import { SearchProducts_products } from "./gqlTypes/SearchProducts";
+
 import "./scss/index.scss";
-
-
-
 
 interface SortItem {
   label: string;
   value?: string;
 }
 
-type SortOptions = Array<SortItem>
+type SortOptions = Array<SortItem>;
 
 interface PageProps {
   activeFilters: number;

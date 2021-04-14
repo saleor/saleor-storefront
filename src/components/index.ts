@@ -33,12 +33,12 @@ export {
   OverlayContext,
   OverlayProvider,
   OverlayTheme,
-  OverlayType
+  OverlayType,
 } from "./Overlay";
 export type {
   InnerOverlayContextInterface,
   OverlayContextInterface,
-  ShowOverlayType
+  ShowOverlayType,
 } from "./Overlay";
 export { OverlayManager } from "./OverlayManager";
 export { default as PasswordResetRequestForm } from "./PasswordResetRequestForm";
@@ -51,4 +51,3 @@ export { default as Select } from "./Select";
 export { default as SelectField } from "./SelectField";
 export { default as SocialMediaIcon } from "./SocialMediaIcon";
 export { default as TextField } from "./TextField";
-
