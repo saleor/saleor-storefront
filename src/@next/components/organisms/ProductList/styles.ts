@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   background: #f1f5f5;
   flex-wrap: wrap !important;
+  margin-bottom: 2rem;
 
   @media (max-width: 1380px) {
     padding: 0 30px;
