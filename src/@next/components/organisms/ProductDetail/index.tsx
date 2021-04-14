@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ImageGallery from "react-image-gallery";
 import ReactImageZoom from "react-image-zoom";
-import { Carousel } from "react-responsive-carousel";
+
 import { Logo } from "./icon";
-import "./style.css";
 import * as S from "./styles";
+
+import "./style.css";
 
 interface IProps {}
 
@@ -31,7 +32,7 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
     },
   ];
 
-  const getImg = imgs => {
+  const getImg = (imgs: any[]) => {
     return imgs.map(item => {
       return {
         sizes: 10,
@@ -59,7 +60,7 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
             onClick={() => {
               imgGallery.current.fullScreen();
             }}
-            onScreenChange={e => {
+            onScreenChange={(e: any) => {
               if (e) {
                 setStt(true);
               } else {
