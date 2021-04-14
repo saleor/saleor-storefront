@@ -1,10 +1,12 @@
+import { Formik } from "formik";
+import React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+
 import { Button, Checkbox } from "@components/atoms";
 import { InputSelect } from "@components/molecules/InputSelect";
 import { TextField } from "@components/molecules/TextField";
 import { commonMessages } from "@temp/intl";
-import { Formik } from "formik";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+
 import * as S from "./styles";
 
 type FormType = {
@@ -117,27 +119,24 @@ export const ContactSupplier: React.FC = () => {
                     />
                   </S.ContentExtendInput>
                 </S.ContentEditOneLine>
-                
-                  <Checkbox
-                    name="recommend"
-                    checked={values.recommend}
-                    onChange={() =>
-                      setFieldValue("recommend", !values.recommend)
-                    }
-                  >
-                    <FormattedMessage defaultMessage="Recommend matching suppliers if this supplier doesn’t contact me on Message Center within 24 hours. Request for Quotation" />
-                  </Checkbox>
-               
-                  <Checkbox
-                    name="agreeShare"
-                    checked={values.agreeShare}
-                    onChange={() =>
-                      setFieldValue("agreeShare", !values.agreeShare)
-                    }
-                  >
-                    <FormattedMessage defaultMessage="I agree to share my Business Card to the supplier." />
-                  </Checkbox>
-               
+
+                <Checkbox
+                  name="recommend"
+                  checked={values.recommend}
+                  onChange={() => setFieldValue("recommend", !values.recommend)}
+                >
+                  <FormattedMessage defaultMessage="Recommend matching suppliers if this supplier doesn’t contact me on Message Center within 24 hours. Request for Quotation" />
+                </Checkbox>
+
+                <Checkbox
+                  name="agreeShare"
+                  checked={values.agreeShare}
+                  onChange={() =>
+                    setFieldValue("agreeShare", !values.agreeShare)
+                  }
+                >
+                  <FormattedMessage defaultMessage="I agree to share my Business Card to the supplier." />
+                </Checkbox>
 
                 <S.FormButtons>
                   <Button

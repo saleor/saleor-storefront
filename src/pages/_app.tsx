@@ -1,17 +1,19 @@
-import { NotificationTemplate } from "@components/atoms";
-import { ServiceWorkerProvider } from "@components/containers";
 import { SaleorProvider } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
 import { Integrations as ApmIntegrations } from "@sentry/apm";
 import * as Sentry from "@sentry/browser";
-import { defaultTheme, GlobalStyle } from "@styles";
-import { NextQueryParamProvider } from "@temp/components";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import * as React from "react";
 import { positions, Provider as AlertProvider } from "react-alert";
 import TagManager from "react-gtm-module";
 import { ThemeProvider } from "styled-components";
+
+import { NotificationTemplate } from "@components/atoms";
+import { ServiceWorkerProvider } from "@components/containers";
+import { defaultTheme, GlobalStyle } from "@styles";
+import { NextQueryParamProvider } from "@temp/components";
+
 import { version } from "../../package.json";
 import { App as StorefrontApp } from "../app";
 import { LocaleProvider } from "../components/Locale";
@@ -21,10 +23,8 @@ import {
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
-  ssrMode
+  ssrMode,
 } from "../constants";
-
-
 
 if (!ssrMode) {
   window.version = version;

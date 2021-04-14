@@ -1,14 +1,13 @@
 import { useAuth } from "@saleor/sdk";
-import { demoMode } from "@temp/constants";
-import { commonMessages } from "@temp/intl";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import { demoMode } from "@temp/constants";
+import { commonMessages } from "@temp/intl";
+
 import { Form, TextField } from "..";
+
 import "./scss/index.scss";
-
-
-
-
 
 interface ILoginForm {
   hide?: () => void;
@@ -34,9 +33,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
 
   const formData = demoMode
     ? {
-      email: "admin@example.com",
-      password: "admin",
-    }
+        email: "admin@example.com",
+        password: "admin",
+      }
     : {};
 
   const intl = useIntl();
@@ -44,9 +43,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   return (
     <div className="login-form">
       <Form data={formData} errors={errors || []} onSubmit={handleOnSubmit}>
-        <p className="account">
-          Account:
-        </p>
+        <p className="account">Account:</p>
         <TextField
           name="email"
           autoComplete="email"
@@ -56,11 +53,9 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         />
 
         <div className="passWord">
-          <span>
-            Password:
-          </span>
+          <span>Password:</span>
           <span className="u-link" style={{ float: "right" }}>
-            <FormattedMessage defaultMessage="Forgot Password"></FormattedMessage>
+            <FormattedMessage defaultMessage="Forgot Password" />
           </span>
         </div>
 
@@ -73,15 +68,16 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         />
         <div>
           <input type="checkbox" />
-          <label>
+          <span>
             <span> Stay signed in. </span>
             <span className="u-link">
-              <FormattedMessage defaultMessage=" Details"></FormattedMessage>
+              <FormattedMessage defaultMessage=" Details" />
             </span>
-          </label>
+          </span>
         </div>
         <div className="login-form__button">
-          <button className="signIn"
+          <button
+            className="signIn"
             // testingContext="submit"
             type="submit"
             {...(loading && { disabled: true })}
@@ -93,21 +89,17 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         </div>
         <div className="mobileNumber">
           <span className="u-link">
-            <FormattedMessage defaultMessage="Mobile number sign in"></FormattedMessage>
+            <FormattedMessage defaultMessage="Mobile number sign in" />
           </span>
         </div>
         <hr />
         <div>
           <input type="checkbox" />
-          <label>
-            I agree to Free Membership Agreement
-          </label>
+          <span>I agree to Free Membership Agreement</span>
         </div>
         <div>
           <input type="checkbox" />
-          <label>
-            I agree to Receive marketing materials
-          </label>
+          <span>I agree to Receive marketing materials</span>
         </div>
       </Form>
     </div>

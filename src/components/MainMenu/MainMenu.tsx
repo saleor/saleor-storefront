@@ -1,41 +1,43 @@
-import { DemoBanner } from '@components/atoms';
-import { paths } from '@paths';
-import { useAuth, useCart } from '@saleor/sdk';
-import Search from '@temp/components/OverlayManager/Search';
-import { commonMessages } from '@temp/intl';
-import classNames from 'classnames';
-import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
-import Media from 'react-media';
-import ReactSVG from 'react-svg';
+import { useAuth, useCart } from "@saleor/sdk";
+import classNames from "classnames";
+import Link from "next/link";
+import React, { useContext, useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
+import Media from "react-media";
+import ReactSVG from "react-svg";
+
+import { DemoBanner } from "@components/atoms";
+import { paths } from "@paths";
+import Search from "@temp/components/OverlayManager/Search";
+import { commonMessages } from "@temp/intl";
+
+import cartImg from "../../images/cart.svg";
+import logoImg from "../../images/logo.svg";
+import userImg from "../../images/user.svg";
 import {
   MenuDropdown,
   Offline,
   Online,
   OverlayContext,
   OverlayTheme,
-  OverlayType
-} from '..';
+  OverlayType,
+} from "..";
+
+import "./scss/index.scss";
 import {
   mediumScreen,
-  smallScreen
-} from '../../globalStyles/scss/variables.scss';
-import cartImg from '../../images/cart.svg';
-import logoImg from '../../images/logo.svg';
-import userImg from '../../images/user.svg';
-import './scss/index.scss';
-
+  smallScreen,
+} from "../../globalStyles/scss/variables.scss";
 
 interface MainMenuProps {
   demoMode: boolean;
 }
 
-const MainMenu: React.FC<MainMenuProps> = ({demoMode}) => {
+const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
   const overlayContext = useContext(OverlayContext);
 
-  const {user, signOut} = useAuth();
-  const {items} = useCart();
+  const { user, signOut } = useAuth();
+  const { items } = useCart();
 
   const handleSignOut = () => {
     signOut();
@@ -59,7 +61,7 @@ const MainMenu: React.FC<MainMenuProps> = ({demoMode}) => {
   return (
     <header
       className={classNames({
-        'header-with-dropdown': !!activeDropdown,
+        "header-with-dropdown": !!activeDropdown,
       })}
     >
       {demoMode && <DemoBanner />}
@@ -221,7 +223,7 @@ const MainMenu: React.FC<MainMenuProps> = ({demoMode}) => {
             <ul>
               <Online>
                 <Media
-                  query={{minWidth: smallScreen}}
+                  query={{ minWidth: smallScreen }}
                   render={() => (
                     <>
                       {user ? (
@@ -275,8 +277,8 @@ const MainMenu: React.FC<MainMenuProps> = ({demoMode}) => {
                           className="main-menu__icon"
                           onClick={() =>
                             overlayContext.show(
-                                OverlayType.login,
-                                OverlayTheme.right,
+                              OverlayType.login,
+                              OverlayTheme.right
                             )
                           }
                         >
@@ -304,7 +306,7 @@ const MainMenu: React.FC<MainMenuProps> = ({demoMode}) => {
               <Offline>
                 <li className="main-menu__offline">
                   <Media
-                    query={{minWidth: mediumScreen}}
+                    query={{ minWidth: mediumScreen }}
                     render={() => (
                       <span>
                         <FormattedMessage defaultMessage="Offline" />

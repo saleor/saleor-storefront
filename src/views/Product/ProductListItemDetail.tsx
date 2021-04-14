@@ -1,18 +1,19 @@
-import { Thumbnail } from "@components/molecules";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
+
+import { Thumbnail } from "@components/molecules";
+
 import { TaxedMoney } from "../../@next/components/containers";
 import { ProductDetails_product_category_products_edges_node } from "./gqlTypes/ProductDetails";
+
 import "./scss/index.scss";
-
-
 
 interface ProductListItemProps {
   product: ProductDetails_product_category_products_edges_node;
 }
 
 const ProductListItemDetail: React.FC<ProductListItemProps> = ({ product }) => {
-  console.log(product)
+  console.log(product);
   const price = product.pricing?.priceRange?.start;
   const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
   const getProductPrice = () => {
