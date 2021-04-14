@@ -29,9 +29,17 @@ export const Header = styled.div`
   height: 4rem;
 `;
 
-export const HeaderSmall = styled(Header)`
+export const HeaderSmall = styled.div`
   width: 100%;
   border-bottom: none;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid ${props => props.theme.colors.dividerDark};
+  font-weight: ${props => props.theme.typography.boldFontWeight};
+  font-size: ${props => props.theme.typography.h4FontSize};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
 `;
 
 export const Content = styled.div`
