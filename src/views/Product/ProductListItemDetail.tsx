@@ -13,7 +13,6 @@ interface ProductListItemProps {
 }
 
 const ProductListItemDetail: React.FC<ProductListItemProps> = ({ product }) => {
-  console.log(product);
   const price = product.pricing?.priceRange?.start;
   const priceUndiscounted = product.pricing?.priceRangeUndiscounted?.start;
   const getProductPrice = () => {
