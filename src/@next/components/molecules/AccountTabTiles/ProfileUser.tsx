@@ -14,7 +14,7 @@ export const ProfileUser: React.FC = () => {
         <S.FlexDiv>
           <S.UpLoadPhoto>
             <S.WrapperUpload>
-              <S.Img
+              <img
                 src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
                 alt=""
               />

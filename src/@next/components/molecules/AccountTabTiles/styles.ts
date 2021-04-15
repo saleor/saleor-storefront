@@ -1,4 +1,5 @@
 import { media, styled } from "@styles";
+import { gray } from "@styles/constants";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -23,10 +24,6 @@ export const MarginTop = styled.div`
   margin-top: 32px;
 `;
 
-export const Img = styled.img`
-  margin-left: 20px;
-`;
-
 export const UpLoadPhoto = styled.div`
   border-right: 1px solid #dae3ed;
   margin-right: 30px;
@@ -34,8 +31,9 @@ export const UpLoadPhoto = styled.div`
 `;
 
 export const WrapperUpload = styled.div`
-  width: 50%;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
 `;
 
 export const TextAlign = styled.p`
@@ -82,6 +80,7 @@ export const FlexDiv = styled.div`
 `;
 
 export const LinkTag = styled.a`
+  color: ${gray};
   :hover {
     color: orange;
   }
