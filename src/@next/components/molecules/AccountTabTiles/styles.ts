@@ -24,7 +24,7 @@ export const MarginTop = styled.div`
 `;
 
 export const Img = styled.img`
-  margin-left:20px;
+  margin-left: 20px;
 `;
 
 export const UpLoadPhoto = styled.div`
@@ -43,12 +43,12 @@ export const TextAlign = styled.p`
 `;
 
 export const FlexOneCol = styled.div`
-  flex:1;
+  flex: 1;
 `;
 
 export const DisplayMarginP = styled.p`
   display: flex;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 `;
 export const DisplayP = styled.p`
   display: flex;
@@ -59,7 +59,7 @@ export const FlexDivTwoCol = styled.div`
 `;
 
 export const FlexSpanOneCol = styled.span`
-color: #999999;
+  color: #999999;
   flex: 1;
 `;
 
