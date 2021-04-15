@@ -11,47 +11,44 @@ export const ProfileUser: React.FC = () => {
   return (
     <S.TileWrapper>
       <Tile>
-        <S.Layout>
-          <S.UpLoadPhoto style={{ flex: 1 }}>
-            <div>
-              <img src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png" alt="" style={{ marginLeft: "20px" }} />
-            </div>
-            <S.LinkTagPU href="#">
-              Upload Photo
-            </S.LinkTagPU>
+        <S.FlexDiv>
+          <S.UpLoadPhoto>
+            <S.WrapperUpload>
+              <S.Img
+                src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
+                alt=""
+              />
+            </S.WrapperUpload>
+            <S.TextAlign>
+              <S.LinkTagPU href="#">Upload Photo</S.LinkTagPU>
+            </S.TextAlign>
           </S.UpLoadPhoto>
 
-          <div style={{ flex: 1 }}>
-            <p>Your Member ID:</p>
-            <p>Email: </p>
-            <p>
-              Linked Mobile:
-            </p>
-          </div>
+          <S.FlexChild>
+            <S.FlexFourCol>
+              <S.DisplayMarginP>
+                <S.FlexSpanOneCol>Your Member ID:</S.FlexSpanOneCol>
+                <S.FlexSpanThreeCol>{user?.id}</S.FlexSpanThreeCol>
+              </S.DisplayMarginP>
+              <S.DisplayMarginP>
+                <S.FlexSpanOneCol>Email:</S.FlexSpanOneCol>
+                <S.FlexSpanThreeCol>{user?.email}</S.FlexSpanThreeCol>
+              </S.DisplayMarginP>
+              <S.DisplayP>
+                <S.FlexSpanOneCol>Linked Mobile:</S.FlexSpanOneCol>
+                <S.FlexSpanThreeCol>
+                  <S.LinkTagPU href="#">Enter Mobile Number</S.LinkTagPU>
+                </S.FlexSpanThreeCol>
+              </S.DisplayP>
+            </S.FlexFourCol>
 
-          <div style={{ flex: 2 }}>
-            <p>
-              {user?.id}
-            </p>
-            <p>
-              {user?.email}
-            </p>
-            <p>
-              <S.LinkTagPU
-                href="#"
-                style={{ marginLeft: "5px" }}
-              >
-                Enter Mobile Number
-              </S.LinkTagPU>
-            </p>
-          </div>
-
-          <div style={{ flex: 3, paddingTop: "32px" }}>
-            <S.LinkTagPU href="#">
-              Change Email Address
-            </S.LinkTagPU>
-          </div>
-        </S.Layout>
+            <S.FlexDivTwoCol>
+              <S.MarginTop>
+                <S.LinkTagPU href="#">Change Email Address</S.LinkTagPU>
+              </S.MarginTop>
+            </S.FlexDivTwoCol>
+          </S.FlexChild>
+        </S.FlexDiv>
       </Tile>
     </S.TileWrapper>
   );
