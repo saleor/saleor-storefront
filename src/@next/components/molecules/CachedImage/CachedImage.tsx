@@ -1,4 +1,5 @@
 import React from "react";
+import ReactImageZoom from "react-image-zoom";
 
 import { PlaceholderImage } from "@components/atoms";
 import { useNetworkStatus } from "@hooks";
@@ -15,6 +16,13 @@ export const CachedImage: React.FC<IImage> = ({
   ...props
 }: IImage) => {
   const [isUnavailable, setUnavailable] = React.useState(false);
+  const propsImg = {
+    width: 400,
+    height: 250,
+    zoomWidth: 500,
+    img: url,
+    srcSet: url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`,
+  };
   const { online } = useNetworkStatus();
 
   React.useEffect(() => {

@@ -85,5 +85,21 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     heigth:100% !important;
     object-fit:contain;
   }
+
+  .customize-zoomimg{
+    div{
+      width:fit-content;
+      z-index:1000;
+      img{
+        min-width:500px;
+        height:auto;
+      }
+    }
+  }
+
+  .wrapper{
+    overflow:visible !important;
+    min-height: 400px;
+  }
  
 `;

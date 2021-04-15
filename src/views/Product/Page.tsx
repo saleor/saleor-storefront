@@ -1,10 +1,12 @@
+import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
 
 import { ProductDescription } from "@components/molecules";
+import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
-import ProductDetail from "@components/organisms/ProductDetail";
 
+// import ProductDetail from "@components/organisms/ProductDetail";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -39,6 +41,8 @@ const Page: React.FC<
   }
 > = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const overlayContext = React.useContext(OverlayContext);
+
+  const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
   const [variantId, setVariantId] = React.useState("");
 
@@ -96,11 +100,10 @@ const Page: React.FC<
                   <div className="product-page__product__info">
                     {addToCartSection}
                   </div>
-                  {/* <ProductDetail /> */}
                 </>
               ) : (
                 <>
-                  {/* <div
+                  <div
                     className="product-page__product__gallery"
                     ref={productGallery}
                   >
@@ -114,8 +117,8 @@ const Page: React.FC<
                     >
                       {addToCartSection}
                     </div>
-                  </div> */}
-                  <ProductDetail />
+                  </div>
+                  {/* <ProductDetail /> */}
                 </>
               )
             }

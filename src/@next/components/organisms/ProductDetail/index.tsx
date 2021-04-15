@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ImageGallery from "react-image-gallery";
-import ReactImageZoom from "react-image-zoom";
 
+// import ImageGallery from "react-image-gallery";
+// import ReactImageZoom from "react-image-zoom";
 import { Logo } from "./icon";
 import * as S from "./styles";
 
@@ -10,49 +10,50 @@ import "./style.css";
 interface IProps {}
 
 const ProductDetail: React.FC<IProps> = (props: IProps) => {
-  const propsss = {
-    width: 700,
-    // height:800,
-    zoomWidth: 200,
-    scale: 1.2,
-    img: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-    zoomPosition: "original",
-  };
+  // const propsss = {
+  //   width: 700,
+  //   // height:800,
+  //   zoomWidth: 200,
+  //   scale: 1.2,
+  //   img: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+  //   zoomPosition: "right",
+  // };
 
-  const imgs = [
-    {
-      original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-      thumbnail:
-        "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-    },
-    {
-      original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-      thumbnail:
-        "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-    },
-  ];
+  // const imgs = [
+  //   {
+  //     original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+  //     thumbnail:
+  //       "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+  //   },
+  //   {
+  //     original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+  //     thumbnail:
+  //       "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
+  //   },
+  // ];
 
-  const getImg = (imgs: any[]) => {
-    return imgs.map(item => {
-      return {
-        sizes: 10,
-        original: item.original,
-        thumbnail: item.thumbnail,
-        renderItem: () => {
-          propsss.img = item.thumbnail;
-          return <ReactImageZoom {...propsss} />;
-        },
-      };
-    });
-  };
+  // const getImg = (imgs: any[]) => {
+  //   return imgs.map(item => {
+  //     return {
+  //       sizes: 10,
+  //       original: item.original,
+  //       thumbnail: item.thumbnail,
+  //       renderItem: () => {
+  //         propsss.img = item.thumbnail;
+  //         return <ReactImageZoom {...propsss} />;
+  //       },
+  //     };
+  //   });
+  // };
 
-  const [stt, setStt] = useState(false);
-  const imgGallery = React.createRef<any>();
+  // const [stt, setStt] = useState(false);
+  // const imgGallery = React.createRef<any>();
   return (
     <div>
       <S.Wraper>
         <S.ImgSlide>
-          <ImageGallery
+          {/* <ReactImageZoom {...propsss} /> */}
+          {/* <ImageGallery
             ref={imgGallery}
             items={stt ? imgs : getImg(imgs)}
             showPlayButton={false}
@@ -67,7 +68,7 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
                 setStt(false);
               }
             }}
-          />
+          /> */}
         </S.ImgSlide>
 
         <S.InfoDetail>
