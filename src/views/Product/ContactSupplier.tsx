@@ -33,9 +33,7 @@ export const ContactSupplier: React.FC = () => {
   };
   const intl = useIntl();
 
-  const handleSubmit = (data: Partial<FormType>) => {
-    console.log({ data });
-  };
+  const handleSubmit = (data: Partial<FormType>) => {};
 
   return (
     <S.Wrapper>

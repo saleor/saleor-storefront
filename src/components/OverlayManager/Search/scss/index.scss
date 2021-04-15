@@ -54,6 +54,7 @@ $drawer-width: 25rem;
       padding: 0.95rem 1rem;
       width: 100%;
       border: 1px solid $orange;
+      border-right: none;
       border-radius: 20px 0 0 20px;
 
       &:focus {
@@ -70,7 +71,7 @@ $drawer-width: 25rem;
     .btn-search {
       display: inline-flex;
       background-color: $orange;
-      padding: 0.8rem 1.7rem;
+      padding: 0.745rem 1.7rem;
       border-radius: 0 20px 20px 0;
       color: $white;
 

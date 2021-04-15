@@ -12,7 +12,7 @@ import Search from "@temp/components/OverlayManager/Search";
 import { commonMessages } from "@temp/intl";
 
 import cartImg from "../../images/cart.svg";
-import logoImg from "../../images/logo.svg";
+import logoImg from "../../images/logothachsanh.svg";
 import userImg from "../../images/user.svg";
 import {
   MenuDropdown,

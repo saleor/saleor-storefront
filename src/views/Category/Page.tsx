@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
-import SelectPageSize from "@temp/components/SelectSize";
+// import SelectPageSize from "@temp/components/SelectSize";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 
@@ -113,7 +113,7 @@ const Page: React.FC<PageProps> = ({
         />
         {canDisplayProducts && (
           <>
-            <SelectPageSize page={page} setPage={setPage} />
+            {/* <SelectPageSize page={page} setPage={setPage} /> */}
             <ProductList
               products={products.edges.map(edge => edge.node)}
               canLoadMore={hasNextPage}

@@ -1,12 +1,13 @@
 import { media, styled } from "@styles";
-import { boldFontWeight, grayLight } from "@styles/constants";
+import { boldFontWeight, white } from "@styles/constants";
 
 export const Wrapper = styled.div`
-  background-color: ${grayLight};
-  padding: 1rem 0;
+  background-color: ${white};
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  border: 1px solid #cccccc;
 `;
 
 export const TileWrapper = styled.div`

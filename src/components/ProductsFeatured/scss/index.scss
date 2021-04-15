@@ -1,18 +1,42 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .products-featured {
-  padding: 2rem 0 4rem;
+  padding: 2rem 0;
 
   h3 {
     font-weight: $bold-font-weight;
     margin-bottom: $spacer * 2;
     text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:after {
+      content: "";
+      background: #dcdee3;
+      border-radius: 3px;
+      height: 3px;
+      overflow: hidden;
+      flex: 1 1;
+      margin-left: 15px;
+    }
   }
+  .list__product {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    a {
+      color: $base-font-color;
+      text-decoration: none;
+    }
+    @media (min-width: $small-screen) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      > a {
 
-  a {
-    color: $base-font-color;
-    display: inline-block;
-    max-width: 255px;
-    text-decoration: none;
+        &:nth-child(n + 5) {
+          display: none;
+        }
+      }
+    }
+
   }
 }

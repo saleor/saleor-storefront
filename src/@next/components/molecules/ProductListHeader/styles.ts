@@ -1,19 +1,18 @@
 import { styled } from "@styles";
 
-export const Wrapper = styled.div`
-  margin-bottom: 1.4rem;
-`;
+export const Wrapper = styled.div``;
 
 export const Bar = styled.div`
-  height: 5rem;
   background-color: ${props => props.theme.tile.backgroundColor};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
+  padding: 1.5rem 2rem;
   font-size: ${props => props.theme.typography.smallFontSize};
-  margin-top: 1rem;
-  margin-bottom: 1.4rem;
+  margin: 0 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  @media (min-width: 540px) {
+    grid-template-columns: 0.5fr 1fr;
+  }
 `;
 
 export const LeftSide = styled.div`
@@ -22,7 +21,9 @@ export const LeftSide = styled.div`
 `;
 
 export const RightSide = styled.div`
-  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 export const FiltersButton = styled.button`
