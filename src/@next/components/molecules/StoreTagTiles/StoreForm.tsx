@@ -5,7 +5,10 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Button, ButtonLink } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 
+import { InputSelect } from "../InputSelect";
 import { TextField } from "../TextField";
+import { RegisterStoreVariables } from "./gqlTypes/RegisterStore";
+import { TypedListStoreTypeQuery } from "./queries";
 import * as S from "./styles";
 
 // const Map = () => {
@@ -19,36 +22,36 @@ import * as S from "./styles";
 
 // const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
-export const StoreForm: React.FC<{
-  handleSubmit: (data: any) => void;
+type Props = {
+  handleSubmit: (data: RegisterStoreVariables) => void;
   hide: () => void;
-  initialValues: {
-    storeName: string;
-    storeAddress: string;
-    storeCategory: string;
-    storeDescription: string;
-    storeImageFarm: string;
-    storePhonenumber: string;
-    storeCoordinates: number;
-    storeAcreage: number;
-  };
-}> = ({ handleSubmit, hide, initialValues }) => {
+  initialValues: RegisterStoreVariables;
+  isLoadingSubmit: boolean;
+};
+
+export const StoreForm: React.FC<Props> = ({
+  handleSubmit,
+  hide,
+  initialValues,
+  isLoadingSubmit,
+}) => {
   const intl = useIntl();
   return (
     <>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
-          handleSubmit({
-            storeName: values.storeName,
-            storeAddress: values.storeAddress,
-            storeCategory: values.storeCategory,
-            storeDescription: values.storeDescription,
-            storeImageFarm: values.storeImageFarm,
-            storePhonenumber: values.storePhonenumber,
-            storeCoordinates: values.storeCoordinates,
-            storeAcreage: values.storeAcreage,
-          });
+          const dataSubmit: RegisterStoreVariables = {
+            name: values.name,
+            description: values.description,
+            storeTypeId: values.storeTypeId,
+            phone: values.phone,
+            acreage: values.acreage,
+            latlong: values.latlong,
+            backgroundImage: values.backgroundImage,
+            backgroundImageAlt: values.backgroundImageAlt,
+          };
+          handleSubmit(dataSubmit);
           setSubmitting(false);
         }}
       >
@@ -56,64 +59,88 @@ export const StoreForm: React.FC<{
           handleChange,
           handleSubmit,
           handleBlur,
+          setFieldValue,
           values,
           isSubmitting,
           isValid,
         }) => {
           return (
-            <S.Form onSubmit={handleSubmit} data-test="accountUpdateForm">
-              <S.ContentExtendInput>
-                <TextField
-                  name="storeName"
-                  label={intl.formatMessage(commonMessages.storeName)}
-                  type="text"
-                  value={values.storeName}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
+            <TypedListStoreTypeQuery
+              alwaysRender
+              displayLoader={false}
+              errorPolicy="all"
+            >
+              {({ data: dataType, loading }) => {
+                console.log({ dataType });
+                const storeTypeOptions = dataType?.storeTypes?.edges.map(
+                  item => ({ value: item.node.id, text: item.node.name })
+                );
+                return (
+                  <S.Form onSubmit={handleSubmit} data-test="accountUpdateForm">
+                    <S.ContentExtendInput>
+                      <TextField
+                        name="name"
+                        label={intl.formatMessage(commonMessages.storeName)}
+                        type="text"
+                        value={values.name}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                      />
+                    </S.ContentExtendInput>
 
-              <S.ContentExtendInput>
-                <TextField
-                  name="storeCategory"
-                  label={intl.formatMessage(commonMessages.storeCategory)}
-                  type="text"
-                  value={values.storeCategory}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
-              <S.ContentExtendInput>
-                <TextField
-                  name="storeDescription"
-                  label={intl.formatMessage(commonMessages.storeDescription)}
-                  type="text"
-                  value={values.storeDescription}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
-              <S.ContentExtendInput>
-                <TextField
-                  name="storeCoordinates"
-                  label={intl.formatMessage(commonMessages.storeCoordinates)}
-                  type="text"
-                  value={values.storeCoordinates}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
-              <S.ContentExtendInput>
-                <TextField
-                  name="storePhonenumber"
-                  label={intl.formatMessage(commonMessages.storePhonenumber)}
-                  type="text"
-                  value={values.storePhonenumber}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
-              <S.ContentExtendInput>
+                    <S.ContentExtendInput>
+                      <TextField
+                        name="description"
+                        label={intl.formatMessage(
+                          commonMessages.storeDescription
+                        )}
+                        type="text"
+                        value={values.description}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                      />
+                    </S.ContentExtendInput>
+                    <S.ContentExtendInput>
+                      <InputSelect
+                        label={intl.formatMessage(commonMessages.storeType)}
+                        name="storeTypeId"
+                        options={storeTypeOptions}
+                        value={
+                          values!.storeTypeId &&
+                          storeTypeOptions &&
+                          storeTypeOptions!.find(
+                            option => option.value === values!.storeTypeId
+                          )
+                        }
+                        onChange={(value: any, name: any) =>
+                          setFieldValue(name, value.value)
+                        }
+                        optionLabelKey="text"
+                        optionValueKey="value"
+                        autoComplete="value"
+                      />
+                    </S.ContentExtendInput>
+                    <S.ContentExtendInput>
+                      <TextField
+                        name="phone"
+                        label={intl.formatMessage(commonMessages.phone)}
+                        type="text"
+                        value={values.phone}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                      />
+                    </S.ContentExtendInput>
+                    <S.ContentExtendInput>
+                      <TextField
+                        name="acreage"
+                        label={intl.formatMessage(commonMessages.storeAcreage)}
+                        type="number"
+                        value={values.acreage}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                      />
+                    </S.ContentExtendInput>
+                    {/* <S.ContentExtendInput>
                 <TextField
                   name="storeAcreage"
                   label={intl.formatMessage(commonMessages.storeAcreage)}
@@ -132,8 +159,8 @@ export const StoreForm: React.FC<{
                   onBlur={handleBlur}
                   onChange={handleChange}
                 />
-              </S.ContentExtendInput>
-              {/* <S.ContentExtendInput>
+              </S.ContentExtendInput> */}
+                    {/* <S.ContentExtendInput>
                 <WrappedMap
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe38lpcvEH7pLWIbgNUPNHsPnyIYwkc60&v=3.exp&libraries=geometry,drawing,places"
                   loadingElement={<div style={{ width: `100%` }} />}
@@ -142,30 +169,32 @@ export const StoreForm: React.FC<{
                 />
               </S.ContentExtendInput> */}
 
-              <S.ContentExtendInput>
+                    {/* <S.ContentExtendInput>
                 <S.FilePicker type="file" />
-                {/* <input type="file" /> */}
-              </S.ContentExtendInput>
+              </S.ContentExtendInput> */}
 
-              <S.FormButtons>
-                <ButtonLink
-                  testingContext="cancelButton"
-                  type="button"
-                  color="secondary"
-                  onClick={hide}
-                >
-                  <FormattedMessage {...commonMessages.cancel} />
-                </ButtonLink>
-                <Button
-                  testingContext="submit"
-                  type="submit"
-                  disabled={isSubmitting || !isValid}
-                  size="sm"
-                >
-                  <FormattedMessage {...commonMessages.save} />
-                </Button>
-              </S.FormButtons>
-            </S.Form>
+                    <S.FormButtons>
+                      <ButtonLink
+                        testingContext="cancelButton"
+                        type="button"
+                        color="secondary"
+                        onClick={hide}
+                      >
+                        <FormattedMessage {...commonMessages.cancel} />
+                      </ButtonLink>
+                      <Button
+                        testingContext="submit"
+                        type="submit"
+                        disabled={isSubmitting || !isValid || isLoadingSubmit}
+                        size="sm"
+                      >
+                        <FormattedMessage {...commonMessages.save} />
+                      </Button>
+                    </S.FormButtons>
+                  </S.Form>
+                );
+              }}
+            </TypedListStoreTypeQuery>
           );
         }}
       </Formik>

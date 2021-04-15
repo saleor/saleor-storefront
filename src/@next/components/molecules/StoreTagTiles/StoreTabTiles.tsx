@@ -4,12 +4,17 @@ import { FormattedMessage } from "react-intl";
 
 import { IconButton, Tile } from "@components/atoms";
 
+import { RegisterStoreVariables } from "./gqlTypes/RegisterStore";
+import { TypedStoreRegisterMutation } from "./queries";
 import { StoreForm } from "./StoreForm";
 import * as S from "./styles";
 
 export const StoreTabTiles: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
-  const [setAccountUpdate] = useAccountUpdate();
+  const initialValues: RegisterStoreVariables = {
+    name: "",
+    storeTypeId: "",
+  };
   return (
     <S.TileWrapper>
       <Tile>
@@ -30,24 +35,25 @@ export const StoreTabTiles: React.FC = () => {
               )}
             </S.HeaderSmall>
             {isEditing ? (
-              <StoreForm
-                initialValues={{
-                  storeName: "" || "",
-                  storeAddress: "" || "",
-                  storeCategory: "",
-                  storeDescription: "",
-                  storeImageFarm: "",
-                  storePhonenumber: "",
-                  storeCoordinates: 0,
-                  storeAcreage: 0,
+              <TypedStoreRegisterMutation>
+                {(createStore, { loading, data }) => {
+                  console.log({ data });
+                  return (
+                    <StoreForm
+                      isLoadingSubmit={loading}
+                      initialValues={initialValues}
+                      handleSubmit={data => {
+                        createStore({
+                          variables: data,
+                        });
+                      }}
+                      hide={() => {
+                        setIsEditing(false);
+                      }}
+                    />
+                  );
                 }}
-                handleSubmit={data => {
-                  setAccountUpdate({ input: data });
-                }}
-                hide={() => {
-                  setIsEditing(false);
-                }}
-              />
+              </TypedStoreRegisterMutation>
             ) : null}
           </S.Content>
         </S.Wrapper>

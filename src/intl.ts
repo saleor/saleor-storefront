@@ -4,6 +4,9 @@ export const commonMessages = defineMessages({
   store: {
     defaultMessage: "Store",
   },
+  storeType: {
+    defaultMessage: "Store Type",
+  },
   storeName: {
     defaultMessage: "Store Name",
   },
