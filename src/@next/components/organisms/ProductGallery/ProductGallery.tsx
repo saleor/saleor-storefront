@@ -1,4 +1,5 @@
 import React from "react";
+import ReactImageZoom from "react-image-zoom";
 import { useInView } from "react-intersection-observer";
 
 import { Icon } from "@components/atoms";
@@ -55,6 +56,16 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         return setBottomRef;
       }
     }
+  };
+
+  const propsImg = {
+    width: 500,
+    // height: 500,
+    zoomWidth: 500,
+    img: images[imageIndex].url,
+    scale: 1.5,
+    // zoomPosition: "original",
+    // srcSet: url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`,
   };
 
   return (
@@ -116,12 +127,16 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         </S.ThumbnailList>
       </S.ThumbnailsContainer>
 
-      <S.Preview data-test="imagePreview">
+      <S.Preview data-test="imagePreview" className="wrapper">
         {images && images.length > 0 && imageIndex < images.length && (
-          <CachedImage
-            alt={images[imageIndex].alt}
-            url={images[imageIndex].url}
-          />
+          // <CachedImage
+          //   alt={images[imageIndex].alt}
+          //   url={images[imageIndex].url}
+
+          // />
+          <div className="customize-zoomimg" style={{ maxWidth: "100%" }}>
+            <ReactImageZoom {...propsImg} />
+          </div>
         )}
         {images.length === 0 && <CachedImage />}
       </S.Preview>

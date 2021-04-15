@@ -74,4 +74,32 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
       flex: 1;
     }
   }
+  
+  .image-gallery-slides{
+    // overflow-x: visible !important;
+    // overflow-y: visible !important;
+    // overflow:visible !important;
+  }
+  img{
+    max-width:100% !important;
+    heigth:100% !important;
+    object-fit:contain;
+  }
+
+  .customize-zoomimg{
+    div{
+      width:fit-content;
+      z-index:1000;
+      img{
+        min-width:500px;
+        height:auto;
+      }
+    }
+  }
+
+  .wrapper{
+    overflow:visible !important;
+    min-height: 400px;
+  }
+ 
 `;

@@ -11,12 +11,12 @@ import ProductListItemDetail from "./ProductListItemDetail";
 const SlideCarousel: React.FC<{
   products: ProductDetails_product_category_products_edges[];
 }> = ({ products }) => (
-  <div className="products-featured">
+  <div className="products-featured-slide">
     <div className="container">
       <h4 className="product-page__other-products__title">
         <FormattedMessage defaultMessage="Supplier's popular products" />
       </h4>
-      <Carousel>
+      <Carousel renderCenterRightControls={() => null}>
         {products.map(({ node: product }) => (
           <Link
             href={generateProductUrl(product.id, product.name)}

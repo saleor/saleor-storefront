@@ -4,7 +4,7 @@ import * as React from "react";
 import { channelSlug } from "@temp/constants";
 
 import { generateProductUrl } from "../../core/utils";
-import { Carousel, ProductListItem } from "..";
+import { ProductListItem } from "..";
 import { TypedFeaturedProductsQuery } from "./queries";
 
 import "./scss/index.scss";
@@ -27,7 +27,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
             <div className="products-featured">
               <div className="container">
                 <h3>{title}</h3>
-                <Carousel>
+                <div className="list__product">
                   {products.map(({ node: product }) => (
                     <Link
                       href={generateProductUrl(product.id, product.name)}
@@ -38,7 +38,7 @@ const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title }) => {
                       </a>
                     </Link>
                   ))}
-                </Carousel>
+                </div>
               </div>
             </div>
           );

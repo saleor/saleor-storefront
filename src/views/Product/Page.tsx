@@ -6,6 +6,7 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 
+// import ProductDetail from "@components/organisms/ProductDetail";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -85,8 +86,6 @@ const Page: React.FC<
     <div className="product-page">
       <div className="container">
         <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
-      </div>
-      <div className="container">
         <div className="product-page__product">
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
@@ -117,24 +116,21 @@ const Page: React.FC<
                       {addToCartSection}
                     </div>
                   </div>
+                  {/* <ProductDetail /> */}
                 </>
               )
             }
           </Media>
         </div>
-      </div>
-      <div className="container">
         <div className="product-page__product__description">
           <ProductDescription
             description={product.description}
             attributes={product.attributes}
           />
         </div>
-      </div>
-      {/* <OtherProducts products={product.category.products.edges} /> */}
-      <SlideCarousel products={product.category.products.edges} />
-      <div className="container">
         <ContactSupplier />
+        {/* <OtherProducts products={product.category.products.edges} /> */}
+        <SlideCarousel products={product.category.products.edges} />
       </div>
     </div>
   );

@@ -32,51 +32,38 @@ export const Image = styled.div`
 // test
 export const Wrapper = styled.div`
   background-color: white;
-  margin: 7px;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 12px;
   transition: 0.3s ease;
+  height: 100%;
   &:hover {
     transform: translateY(-5px);
   }
 `;
 
 export const ImgContainer = styled.div`
-  max-width: 100%;
-  height: 230px;
-  padding: 30px 10px;
-  margin: 0 auto;
+  background-color: #f1f5f5;
   display: flex;
-  align-item: center;
+  height: 250px;
   justify-content: center;
-  overflow: hidden;
-`;
-
-export const ImgProduct = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  transition: 0.3s ease;
-  &:hover {
-    transform: scale(1.2);
+  img {
+    object-fit: contain;
+    max-width: 100%;
   }
 `;
 
 export const ProductInfo = styled.div``;
 
-export const NameProduct = styled.h3`
-  font-size: 20px;
-  font-weight: lighter;
-  white-space: nowrap;
-  color: grey;
-  overflow: hidden;
-  text-overflow: ellipsis;
+export const NameProduct = styled.h4`
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 1rem;
+  text-align: left;
 `;
 export const Price = styled.p`
-  font-size: 25px;
-  padding: 20px 0;
-  margin: 0;
+  font-size: 1rem;
+  margin: 1rem 0 0;
 `;
 export const Category = styled.p`
   font-size: 18px;

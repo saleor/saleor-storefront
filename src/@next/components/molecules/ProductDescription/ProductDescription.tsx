@@ -1,8 +1,9 @@
+/* eslint-disable import/namespace */
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { RichTextEditorContent } from "@components/atoms";
-
+import { CompanyProfile } from "./CompanyProfile";
+import { ProductDetailTab } from "./ProductDetailTab";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -27,7 +28,7 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.DESCRIPTION);
           }}
         >
-          <FormattedMessage defaultMessage="DESCRIPTION" />
+          <FormattedMessage defaultMessage="Product Detail" />
         </S.TabTitle>
         <S.TabTitle
           active={activeTab === TABS.ATTRIBUTES}
@@ -36,23 +37,24 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.ATTRIBUTES);
           }}
         >
-          <FormattedMessage defaultMessage="ATTRIBUTES" />
+          <FormattedMessage defaultMessage="Company Profile" />
         </S.TabTitle>
       </S.Tabs>
-      <div hidden={activeTab !== TABS.DESCRIPTION}>
-        <RichTextEditorContent jsonData={description} />
-      </div>
-      <div hidden={activeTab !== TABS.ATTRIBUTES}>
-        <S.AttributeList>
-          {attributes &&
+      <S.WrapperContent hidden={activeTab !== TABS.DESCRIPTION}>
+        <ProductDetailTab description={description} />
+      </S.WrapperContent>
+      <S.WrapperContent hidden={activeTab !== TABS.ATTRIBUTES}>
+        {/* <S.AttributeList> */}
+        {/* {attributes &&
             attributes.map((attribute, index) => (
               <li key={index}>
                 <S.AttributeName>{attribute.attribute.name}: </S.AttributeName>{" "}
                 {attribute.values.map(value => value.name).join(", ")}
               </li>
-            ))}
-        </S.AttributeList>
-      </div>
+              ))} */}
+        <CompanyProfile attributes={attributes} />
+        {/* </S.AttributeList> */}
+      </S.WrapperContent>
     </S.Wrapper>
   );
 };
