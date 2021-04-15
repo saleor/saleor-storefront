@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useIntl } from "react-intl";
 
-import SelectPageSize from "@temp/components/SelectSize";
+// import SelectPageSize from "@temp/components/SelectSize";
 import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 
