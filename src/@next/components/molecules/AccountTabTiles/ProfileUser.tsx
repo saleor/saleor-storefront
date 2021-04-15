@@ -5,8 +5,6 @@ import { Tile } from "@components/atoms";
 
 import * as S from "./styles";
 
-import "./css/styles.scss";
-
 export const ProfileUser: React.FC = () => {
   const { user } = useAuth();
 
@@ -14,31 +12,44 @@ export const ProfileUser: React.FC = () => {
     <S.TileWrapper>
       <Tile>
         <S.Layout>
-          <div style={{ flex: 1 }}>
-            <a href="1" className="linkProfileUser">
+          <S.UpLoadPhoto style={{ flex: 1 }}>
+            <div>
+              <img src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png" alt="" style={{ marginLeft: "20px" }} />
+            </div>
+            <S.LinkTagPU href="#">
               Upload Photo
-            </a>
-          </div>
+            </S.LinkTagPU>
+          </S.UpLoadPhoto>
 
-          <div style={{ flex: 3 }}>
-            <p>Your Member ID: {user?.id}</p>
-            <p>Email: {user?.email}</p>
+          <div style={{ flex: 1 }}>
+            <p>Your Member ID:</p>
+            <p>Email: </p>
             <p>
               Linked Mobile:
-              <a
-                href="2"
-                className="linkProfileUser"
-                style={{ marginLeft: "5px" }}
-              >
-                Enter Mobile Number
-              </a>
             </p>
           </div>
 
-          <div style={{ flex: 3 }}>
-            <a href="3" className="linkProfileUser">
+          <div style={{ flex: 2 }}>
+            <p>
+              {user?.id}
+            </p>
+            <p>
+              {user?.email}
+            </p>
+            <p>
+              <S.LinkTagPU
+                href="#"
+                style={{ marginLeft: "5px" }}
+              >
+                Enter Mobile Number
+              </S.LinkTagPU>
+            </p>
+          </div>
+
+          <div style={{ flex: 3, paddingTop: "32px" }}>
+            <S.LinkTagPU href="#">
               Change Email Address
-            </a>
+            </S.LinkTagPU>
           </div>
         </S.Layout>
       </Tile>

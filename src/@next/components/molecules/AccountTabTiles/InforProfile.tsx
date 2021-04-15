@@ -4,8 +4,6 @@ import { Tile } from "@components/atoms";
 
 import * as S from "./styles";
 
-import "./css/styles.scss";
-
 export const InforProfile = () => {
   return (
     <div>
@@ -13,75 +11,75 @@ export const InforProfile = () => {
         <S.Layout>
           <div style={{ flex: 1 }}>
             <S.Header>Personal Information</S.Header>
-            <p>
-              <a href="1" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 My Profile
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="2" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Member Profile
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="3" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Upload My Photo
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="4" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Privacy Setting
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="5" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Email Services
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
           </div>
           <div style={{ flex: 1 }}>
             <S.Header>Account Security</S.Header>
-            <p>
-              <a href="6" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Change Email Address
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="7" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Change Password
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="8" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Set Security Question
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="9" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Manage Verification Phones
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
 
-            <p>
-              <a href="10" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 Manage My Connected Accounts
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
           </div>
           <div style={{ flex: 1 }}>
             <S.Header>Finance Account</S.Header>
-            <p>
-              <a href="11" className="linkInforProfile">
+            <S.MarginLink>
+              <S.LinkTag href="#">
                 My Transactions Center
-              </a>
-            </p>
+              </S.LinkTag>
+            </S.MarginLink>
           </div>
         </S.Layout>
       </Tile>

@@ -12,6 +12,28 @@ export const Layout = styled.div`
   display: flex;
 `;
 
+export const LinkTagPU = styled.a`
+  :hover {
+    color: orange;
+    text-decoration: underline;
+  }
+`
+
+export const UpLoadPhoto = styled.a`
+  border-right: 1px solid #dae3ed;
+  margin-right: 30px;
+`
+
+export const LinkTag = styled.a`
+  :hover {
+    color: orange;
+  }
+`
+
+export const MarginLink = styled.p`
+  margin-bottom: 5px;
+`
+
 export const TileWrapper = styled.div`
   height: auto;
   margin-bottom: 1.5rem;
