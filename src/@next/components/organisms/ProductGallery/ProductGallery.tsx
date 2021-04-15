@@ -1,4 +1,5 @@
 import React from "react";
+import ReactImageZoom from "react-image-zoom";
 import { useInView } from "react-intersection-observer";
 
 import { Icon } from "@components/atoms";
@@ -57,6 +58,14 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
     }
   };
 
+  const propsImg = {
+    width: 450,
+    height: 450,
+    zoomWidth: 500,
+    img: images[imageIndex].url,
+    scale: 1.5,
+  };
+
   return (
     <S.Wrapper data-test="productPhotosGallery">
       <S.ThumbnailsContainer>
@@ -108,6 +117,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
                       activeThumbnail={Boolean(index === imageIndex)}
                     >
                       <CachedImage alt={image.alt} url={image.url} />
+                      {/* <ReactImageZoom {...propsImg} /> */}
                     </S.Thumbnail>
                   </li>
                 );
@@ -116,12 +126,16 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         </S.ThumbnailList>
       </S.ThumbnailsContainer>
 
-      <S.Preview data-test="imagePreview">
+      <S.Preview data-test="imagePreview" className="wrapper">
         {images && images.length > 0 && imageIndex < images.length && (
-          <CachedImage
-            alt={images[imageIndex].alt}
-            url={images[imageIndex].url}
-          />
+          // <CachedImage
+          //   alt={images[imageIndex].alt}
+          //   url={images[imageIndex].url}
+
+          // />
+          <div className="customize-zoomimg" style={{ maxWidth: "30%" }}>
+            <ReactImageZoom {...propsImg} />
+          </div>
         )}
         {images.length === 0 && <CachedImage />}
       </S.Preview>
