@@ -1,6 +1,33 @@
 import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
+  store: {
+    defaultMessage: "Store",
+  },
+  storeName: {
+    defaultMessage: "Store Name",
+  },
+  storeDescription: {
+    defaultMessage: "Store Description",
+  },
+  storeCategory: {
+    defaultMessage: "Store Category",
+  },
+  storeAddress: {
+    defaultMessage: "Store Address",
+  },
+  storePhonenumber: {
+    defaultMessage: "Store Phonenumber",
+  },
+  storeAcreage: {
+    defaultMessage: "Store Acreage",
+  },
+  storeImageFarm: {
+    defaultMessage: "Store Image Farm",
+  },
+  storeCoordinates: {
+    defaultMessage: "Store Coordinates",
+  },
   search: {
     defaultMessage: "search",
   },
