@@ -85,29 +85,13 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     heigth:100% !important;
     object-fit:contain;
   }
-  @media screen and (max-width: 1080px) {
-    .customize-zoomimg{
-      div{
-        min-width:300px !important;
-      }
-    }
-  }
 
-  @media screen and (max-width: 768px) {
-    .customize-zoomimg{
-      div{
-        min-width:200px !important;
-      }
-    }
-  }
- 
   .customize-zoomimg{
     div{
       width:fit-content;
       z-index:1000;
-      min-width:450px;
       img{
-        width:100%;
+        min-width:500px;
         height:auto;
       }
     }
@@ -117,42 +101,5 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     overflow:visible !important;
     min-height: 400px;
   }
-
-  .product-page__product__info{
-    width:50% !important;
-  }
-
-  .product-page__product__info--fixed {
-    width:100% !important;
-  }
-
-  .product-page__product__gallery{
-    width:50% !important;
-  }
-
-  @media screen and (max-width: 540px){
-    .product-page__product__gallery {
-      width: 100% !important;
-    }
-    .product-page__product__info--fixed {
-      width:100% !important;
-    }
-    .product-page__product__info {
-      width:100% !important;
-    }
-  }
-  @media and screen (max-width: 992px){
-    .product-page__product__info--fixed {
-      width:100% !important;
-    }
-  }
  
-  @media and screen (min-width: 1140px){
-    .product-page__product__info--fixed {
-      width:100% !important;
-    }
-  }
-
- 
-
 `;
