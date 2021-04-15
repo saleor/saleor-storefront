@@ -17,79 +17,79 @@ export const LinkTagPU = styled.a`
     color: orange;
     text-decoration: underline;
   }
-`
+`;
 
 export const MarginTop = styled.div`
   margin-top: 32px;
-`
+`;
 
 export const Img = styled.img`
   margin-left:20px;
-`
+`;
 
 export const UpLoadPhoto = styled.div`
   border-right: 1px solid #dae3ed;
   margin-right: 30px;
   flex: 1;
-`
+`;
 
 export const WrapperUpload = styled.div`
   width: 50%;
   margin: auto;
-`
+`;
 
 export const TextAlign = styled.p`
   text-align: center;
-`
+`;
 
 export const FlexOneCol = styled.div`
   flex:1;
-`
+`;
 
 export const DisplayMarginP = styled.p`
   display: flex;
   margin-bottom:8px;
-`
+`;
 export const DisplayP = styled.p`
   display: flex;
-`
+`;
 
 export const FlexDivTwoCol = styled.div`
   flex: 2;
-`
+`;
 
 export const FlexSpanOneCol = styled.span`
 color: #999999;
   flex: 1;
-`
+`;
 
 export const FlexSpanThreeCol = styled.span`
   flex: 3;
-`
+`;
 
 export const FlexFourCol = styled.div`
   flex: 4;
-`
+`;
 
 export const FlexChild = styled.div`
   flex: 5;
   display: flex;
-`
+`;
 
 export const FlexDiv = styled.div`
   flex: 6;
   display: flex;
-`
+`;
 
 export const LinkTag = styled.a`
   :hover {
     color: orange;
   }
-`
+`;
 
 export const MarginLink = styled.p`
   margin-bottom: 5px;
-`
+`;
 
 export const TileWrapper = styled.div`
   height: auto;
