@@ -76,23 +76,24 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      <ProductsFeatured
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>
+            {/* <h3>
               <FormattedMessage defaultMessage="Shop by category" />
-            </h3>
+            </h3> */}
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
-                <div key={category.id}>
+                <div
+                  key={category.id}
+                  className="home-page__categories__list__item"
+                >
                   <Link
                     href={generateCategoryUrl(category.id, category.name)}
                     key={category.id}
                   >
                     <a>
+                      <h3>{category.name}</h3>
                       <div
                         className={classNames(
                           "home-page__categories__list__image",
@@ -108,7 +109,6 @@ const Page: React.FC<{
                           })`,
                         }}
                       />
-                      <h3>{category.name}</h3>
                     </a>
                   </Link>
                 </div>
@@ -117,6 +117,9 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <ProductsFeatured
+        title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
     </>
   );
 };

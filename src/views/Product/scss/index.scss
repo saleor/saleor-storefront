@@ -1,18 +1,13 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .product-page {
-  background-color: $white;
-
-  .breadcrumbs {
-    background-color: $white;
-    padding: $spacer / 2 $spacer $spacer / 2 $spacer * 1.5;
-    margin-top: $spacer * 2;
-  }
+  background-color: $base-body;
 
   &__product {
     display: flex;
-    margin-top: $spacer;
-    padding-bottom: $spacer * 5;
+    background-color: $white;
+    padding: $spacer;
+    border: 1px solid #cccccc;
 
     @media (max-width: $small-screen) {
       display: block;
@@ -22,7 +17,8 @@
     &__description {
       width: 100%;
       min-height: $spacer * 10;
-      margin-bottom: $spacer * 9; 
+      margin-bottom: $spacer;
+      margin-top: $spacer;
     }
 
     &__info {
@@ -150,4 +146,11 @@
       height: 210px;
     }
   }
+}
+
+.products-featured-slide {
+  background-color: $white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
 }

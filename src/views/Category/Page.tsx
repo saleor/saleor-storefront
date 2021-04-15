@@ -113,7 +113,7 @@ const Page: React.FC<PageProps> = ({
         />
         {canDisplayProducts && (
           <>
-            <SelectPageSize page={page} setPage={setPage} />
+            {/* <SelectPageSize page={page} setPage={setPage} /> */}
             <ProductList
               products={products.edges.map(edge => edge.node)}
               canLoadMore={hasNextPage}

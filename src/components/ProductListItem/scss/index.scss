@@ -2,6 +2,11 @@
 
 .product-list-item {
   text-align: center;
+  background: $white;
+  padding: 12px;
+  border-radius: 3px;
+  border: 1px solid #ebecf0;
+  height: 100%;
 
   &__title {
     text-transform: $product-item-title-text-transform;

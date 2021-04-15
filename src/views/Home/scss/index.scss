@@ -1,6 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .home-page {
+  background-color: $base-body;
   &__hero {
     background-color: $blue-overlay;
     background-blend-mode: multiply;
@@ -68,7 +69,7 @@
     margin: 2rem 0;
 
     h3 {
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-weight: $bold-font-weight;
       margin-bottom: 1rem;
     }
@@ -79,17 +80,19 @@
       grid-gap: 2rem;
 
       @media (min-width: $small-screen) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
 
         > div {
-          &:nth-child(3) {
-            grid-column: 3 / 1;
-          }
 
           &:nth-child(n + 4) {
             display: none;
           }
         }
+      }
+      &__item {
+        background: $white;
+        padding: 12px;
+        border-radius: 8px;
       }
 
       a {
@@ -97,11 +100,11 @@
         color: $base-font-color;
 
         h3 {
-          text-transform: uppercase;
+          // text-transform: uppercase;
           font-weight: $bold-font-weight;
 
           &:after {
-            content: url("../../../images/carousel-arrow.svg");
+            // content: url("../../../images/carousel-arrow.svg");
             display: inline-block;
             transform: rotate(180deg);
             margin-left: 1rem;
@@ -111,10 +114,9 @@
 
       &__image {
         width: 100%;
-        height: 30rem;
+        height: 20rem;
         background-size: cover;
         background-position: center;
-        margin-bottom: 1rem;
 
         &--no-photo {
           background-color: $turquoise-light;

@@ -33,6 +33,13 @@
       align-items: center;
       height: 100%;
     }
+    svg {
+      width: 200px;
+      height: 70px;
+      path {
+        fill: #FF6A00;
+      }
+    }
   }
 
   &__right {
@@ -55,6 +62,8 @@
     order: 2;
     flex-basis: calc(60% - 2rem);
     position: relative;
+    height: 50px;
+    min-height: 50px;
 
     @media (max-width: $small-screen) {
       flex-basis: calc(80% - 4rem);
@@ -125,7 +134,7 @@
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $orange;
       }
     }
 

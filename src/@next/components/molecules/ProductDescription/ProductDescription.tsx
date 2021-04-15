@@ -1,3 +1,4 @@
+/* eslint-disable import/namespace */
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -39,10 +40,10 @@ export const ProductDescription: React.FC<IProps> = ({
           <FormattedMessage defaultMessage="Company Profile" />
         </S.TabTitle>
       </S.Tabs>
-      <div hidden={activeTab !== TABS.DESCRIPTION}>
+      <S.WrapperContent hidden={activeTab !== TABS.DESCRIPTION}>
         <ProductDetailTab description={description} />
-      </div>
-      <div hidden={activeTab !== TABS.ATTRIBUTES}>
+      </S.WrapperContent>
+      <S.WrapperContent hidden={activeTab !== TABS.ATTRIBUTES}>
         {/* <S.AttributeList> */}
         {/* {attributes &&
             attributes.map((attribute, index) => (
@@ -53,7 +54,7 @@ export const ProductDescription: React.FC<IProps> = ({
               ))} */}
         <CompanyProfile attributes={attributes} />
         {/* </S.AttributeList> */}
-      </div>
+      </S.WrapperContent>
     </S.Wrapper>
   );
 };

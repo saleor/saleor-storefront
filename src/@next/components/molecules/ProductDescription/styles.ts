@@ -30,8 +30,6 @@ export const Tabs = styled.div`
   display: flex;
   flex-wrap: none;
   width: 100%;
-  border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
-  margin-bottom: 20px;
   overflow: hidden;
 `;
 
@@ -50,6 +48,7 @@ export const TabTitle = styled.div<{ active?: boolean }>`
   border-left: 1px solid #dcdee3;
   border-right: 1px solid #dcdee3;
   border-radius: 8px 8px 0 0;
+  background-color: ${props => (props.active ? "#ffffff" : "transparent")};
 
   ${media.smallScreen`
     font-size: ${(props: any) => props.theme.typography.baseFontSize};
@@ -99,4 +98,9 @@ export const CompanyInfoTd = styled.td`
 export const CompanyLocation = styled.div`
   display: flex;
   flex-direction: column;
+`;
+export const WrapperContent = styled.div`
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 12px;
 `;
