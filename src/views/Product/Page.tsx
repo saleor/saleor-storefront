@@ -85,8 +85,6 @@ const Page: React.FC<
     <div className="product-page">
       <div className="container">
         <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
-      </div>
-      <div className="container">
         <div className="product-page__product">
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
@@ -122,19 +120,15 @@ const Page: React.FC<
             }
           </Media>
         </div>
-      </div>
-      <div className="container">
         <div className="product-page__product__description">
           <ProductDescription
             description={product.description}
             attributes={product.attributes}
           />
         </div>
-      </div>
-      {/* <OtherProducts products={product.category.products.edges} /> */}
-      <SlideCarousel products={product.category.products.edges} />
-      <div className="container">
         <ContactSupplier />
+        {/* <OtherProducts products={product.category.products.edges} /> */}
+        <SlideCarousel products={product.category.products.edges} />
       </div>
     </div>
   );

@@ -31,31 +31,72 @@ export const Tabs = styled.div`
   flex-wrap: none;
   width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.tabsBorder};
-  margin-bottom: 70px;
+  margin-bottom: 20px;
   overflow: hidden;
 `;
 
 export const TabTitle = styled.div<{ active?: boolean }>`
   cursor: pointer;
-  min-width: 230px;
-  font-size: ${props => props.theme.typography.h3FontSize};
-  font-weight: ${props => props.theme.typography.boldFontWeight};
+  font-size: ${props => props.theme.typography.baseFontSize};
   letter-spacing: 0.02em;
   color: ${props => props.active && props.theme.colors.tabTitle};
-  border-bottom-width: 4px;
+  border-bottom-width: ${props => (props.active ? "4px" : "0")};
   border-bottom-style: solid;
   border-bottom-color: ${props =>
     props.active ? props.theme.colors.tabTitle : "transparent"};
-  padding-bottom: 25px;
-  margin-right: 60px;
+  padding: 12px 16px;
+  margin-right: 4px;
+  border-top: 1px solid #dcdee3;
+  border-left: 1px solid #dcdee3;
+  border-right: 1px solid #dcdee3;
+  border-radius: 8px 8px 0 0;
 
   ${media.smallScreen`
-    font-size: ${(props: any) => props.theme.typography.h4FontSize};
-    min-width: 150px;
-    margin-right: 20px;
+    font-size: ${(props: any) => props.theme.typography.baseFontSize};
   `};
 `;
 
 export const AttributeName = styled.span`
   color: ${props => props.theme.colors.listAttributeName};
+`;
+
+export const WrapBox = styled.div`
+  padding: 0 1rem;
+`;
+export const CompanyImage = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const TitleText = styled.h3`
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+`;
+export const SubTitleText = styled.h4`
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+`;
+export const CompanyWrapInfo = styled.div`
+  position: relative;
+`;
+export const CompanyInfo = styled.table`
+  width: 100%;
+  margin: 1rem 0;
+`;
+export const CompanyInfoBody = styled.tbody``;
+export const CompanyInfoTr = styled.tr`
+  border-bottom: none;
+`;
+export const CompanyInfoTd = styled.td`
+  background-color: #fafafa;
+  border: 1px solid #f4f4f4;
+  &: nth-child(2n) {
+    background-color: #fff;
+  }
+`;
+export const CompanyLocation = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
