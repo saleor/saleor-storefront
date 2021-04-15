@@ -59,6 +59,7 @@ export const FlexDivTwoCol = styled.div`
 `
 
 export const FlexSpanOneCol = styled.span`
+color: #999999;
   flex: 1;
 `
 
