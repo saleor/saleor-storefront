@@ -1,9 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { RichTextEditorContent } from "@components/atoms";
-
 import { CompanyProfile } from "./CompanyProfile";
+import { ProductDetailTab } from "./ProductDetailTab";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -41,7 +40,7 @@ export const ProductDescription: React.FC<IProps> = ({
         </S.TabTitle>
       </S.Tabs>
       <div hidden={activeTab !== TABS.DESCRIPTION}>
-        <RichTextEditorContent jsonData={description} />
+        <ProductDetailTab description={description} />
       </div>
       <div hidden={activeTab !== TABS.ATTRIBUTES}>
         {/* <S.AttributeList> */}
