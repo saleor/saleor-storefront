@@ -1,4 +1,3 @@
-import { useAccountUpdate } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
