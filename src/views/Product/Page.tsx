@@ -4,14 +4,14 @@ import Media from "react-media";
 
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
-import AddToCartSection from "@components/organisms/AddToCartSection";
+// import AddToCartSection from "@components/organisms/AddToCartSection";
+import ProductDetail from "@components/organisms/ProductDetail";
 
-// import ProductDetail from "@components/organisms/ProductDetail";
 import {
   Breadcrumbs,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType,
+  // OverlayContext,
+  // OverlayTheme,
+  // OverlayType,
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
@@ -39,13 +39,13 @@ const Page: React.FC<
     queryAttributes: Record<string, string>;
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
-> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
-  const overlayContext = React.useContext(OverlayContext);
+> = ({ product }) => {
+  // const overlayContext = React.useContext(OverlayContext);
 
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
-  const [variantId, setVariantId] = React.useState("");
-
+  // const [variantId, setVariantId] = React.useState("");
+  const variantId = "";
   const getImages = () => {
     if (product.variants && variantId) {
       const variant = product.variants.find(
@@ -60,27 +60,27 @@ const Page: React.FC<
     return product.images;
   };
 
-  const handleAddToCart = (variantId, quantity) => {
-    add(variantId, quantity);
-    overlayContext.show(OverlayType.cart, OverlayTheme.right);
-  };
+  // const handleAddToCart = (variantId, quantity) => {
+  //   add(variantId, quantity);
+  //   overlayContext.show(OverlayType.cart, OverlayTheme.right);
+  // };
 
-  const addToCartSection = (
-    <AddToCartSection
-      items={items}
-      productId={product.id}
-      name={product.name}
-      productVariants={product.variants}
-      productPricing={product.pricing}
-      queryAttributes={queryAttributes}
-      setVariantId={setVariantId}
-      variantId={variantId}
-      onAddToCart={handleAddToCart}
-      onAttributeChangeHandler={onAttributeChangeHandler}
-      isAvailableForPurchase={product.isAvailableForPurchase}
-      availableForPurchase={product.availableForPurchase}
-    />
-  );
+  // const addToCartSection = (
+  //   <AddToCartSection
+  //     items={items}
+  //     productId={product.id}
+  //     name={product.name}
+  //     productVariants={product.variants}
+  //     productPricing={product.pricing}
+  //     queryAttributes={queryAttributes}
+  //     setVariantId={setVariantId}
+  //     variantId={variantId}
+  //     onAddToCart={handleAddToCart}
+  //     onAttributeChangeHandler={onAttributeChangeHandler}
+  //     isAvailableForPurchase={product.isAvailableForPurchase}
+  //     availableForPurchase={product.availableForPurchase}
+  //   />
+  // );
 
   return (
     <div className="product-page">
@@ -98,7 +98,8 @@ const Page: React.FC<
                 <>
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
-                    {addToCartSection}
+                    {/* {addToCartSection} */}
+                    <ProductDetail />
                   </div>
                 </>
               ) : (
@@ -115,10 +116,10 @@ const Page: React.FC<
                         "product-page__product__info--fixed"
                       )}
                     >
-                      {addToCartSection}
+                      {/* {addToCartSection} */}
+                      <ProductDetail />
                     </div>
                   </div>
-                  {/* <ProductDetail /> */}
                 </>
               )
             }

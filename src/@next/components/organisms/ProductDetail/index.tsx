@@ -10,66 +10,12 @@ import "./style.css";
 interface IProps {}
 
 const ProductDetail: React.FC<IProps> = (props: IProps) => {
-  // const propsss = {
-  //   width: 700,
-  //   // height:800,
-  //   zoomWidth: 200,
-  //   scale: 1.2,
-  //   img: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-  //   zoomPosition: "right",
-  // };
-
-  // const imgs = [
-  //   {
-  //     original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-  //     thumbnail:
-  //       "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-  //   },
-  //   {
-  //     original: "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-  //     thumbnail:
-  //       "https://miro.medium.com/max/1135/1*E5VQSUDJZ-mfc_G7NkIZIw.png",
-  //   },
-  // ];
-
-  // const getImg = (imgs: any[]) => {
-  //   return imgs.map(item => {
-  //     return {
-  //       sizes: 10,
-  //       original: item.original,
-  //       thumbnail: item.thumbnail,
-  //       renderItem: () => {
-  //         propsss.img = item.thumbnail;
-  //         return <ReactImageZoom {...propsss} />;
-  //       },
-  //     };
-  //   });
-  // };
-
-  // const [stt, setStt] = useState(false);
-  // const imgGallery = React.createRef<any>();
   return (
     <div>
       <S.Wraper>
-        <S.ImgSlide>
-          {/* <ReactImageZoom {...propsss} /> */}
-          {/* <ImageGallery
-            ref={imgGallery}
-            items={stt ? imgs : getImg(imgs)}
-            showPlayButton={false}
-            showNav={false}
-            onClick={() => {
-              imgGallery.current.fullScreen();
-            }}
-            onScreenChange={(e: any) => {
-              if (e) {
-                setStt(true);
-              } else {
-                setStt(false);
-              }
-            }}
-          /> */}
-        </S.ImgSlide>
+        {/* <S.ImgSlide>
+          
+        </S.ImgSlide> */}
 
         <S.InfoDetail>
           <S.ProductName>thanghoian123</S.ProductName>

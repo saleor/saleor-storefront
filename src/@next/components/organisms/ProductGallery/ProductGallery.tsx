@@ -59,13 +59,11 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   };
 
   const propsImg = {
-    width: 500,
-    // height: 500,
+    width: 450,
+    height: 450,
     zoomWidth: 500,
     img: images[imageIndex].url,
     scale: 1.5,
-    // zoomPosition: "original",
-    // srcSet: url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`,
   };
 
   return (
@@ -119,6 +117,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
                       activeThumbnail={Boolean(index === imageIndex)}
                     >
                       <CachedImage alt={image.alt} url={image.url} />
+                      {/* <ReactImageZoom {...propsImg} /> */}
                     </S.Thumbnail>
                   </li>
                 );
@@ -134,7 +133,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
           //   url={images[imageIndex].url}
 
           // />
-          <div className="customize-zoomimg" style={{ maxWidth: "100%" }}>
+          <div className="customize-zoomimg" style={{ maxWidth: "30%" }}>
             <ReactImageZoom {...propsImg} />
           </div>
         )}
