@@ -1,11 +1,10 @@
 import { styled } from "@styles";
+import { grayLight } from "@styles/constants";
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-areas: "sidebar preview";
-  height: 100%;
-  grid-template-columns: 76px 1fr;
-  grid-column-gap: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
@@ -31,49 +30,54 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
 
 export const Button = styled.div`
   height: 50px;
-  width: 100%;
+  width: 50px;
   position: absolute;
   z-index: 1;
-  background-color: rgba(50, 50, 50, 0.3);
+  background-color: ${grayLight};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 50%;
+  top: 45px;
 `;
 
 export const TopButton = styled(Button)`
-  top: 0%;
-
-  transform: rotate(180deg);
+  left: 0;
 `;
 
 export const BottomButton = styled(Button)`
-  bottom: 0%;
+  right: 0;
 `;
 
 export const ThumbnailsContainer = styled.div`
   position: relative;
+  // border: 1px solid;
+  order: 2;
 `;
 
 export const ThumbnailList = styled.div`
   position: relative;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: 140px;
+  overflow-x: scroll;
+  overflow-y: hidden;
   scrollbar-width: none;
+  margin: 0 4rem;
   ::-webkit-scrollbar {
     width: 0px;
   }
 
   ul {
     position: absolute;
-    display: block;
+    display: flex;
     padding: 0;
     margin: 0;
   }
 `;
 
 export const Preview = styled.div`
+  display: flex;
+  justify-content: center;
   grid-area: preview;
   width: auto;
   max-height: 560px;
@@ -83,4 +87,5 @@ export const Preview = styled.div`
     width: 100%;
     object-fit: contain;
   }
+  order: 1;
 `;

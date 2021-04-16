@@ -97,7 +97,7 @@ const Page: React.FC<
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
                     {/* {addToCartSection} */}
-                    <ProductDetail />
+                    <ProductDetail product={product} />
                   </div>
                 </>
               ) : (
@@ -115,7 +115,7 @@ const Page: React.FC<
                       )}
                     >
                       {/* {addToCartSection} */}
-                      <ProductDetail />
+                      <ProductDetail product={product} />
                     </div>
                   </div>
                 </>
