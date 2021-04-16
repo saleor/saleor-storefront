@@ -53,28 +53,30 @@ const Account: NextPage = () => {
     return <Redirect url={paths.home} />;
   }
   return loaded ? (
-    <div className="container">
-      <Breadcrumbs
-        breadcrumbs={[
-          {
-            link: asPath,
-            value: intl.formatMessage(commonMessages.myAccount),
-          },
-        ]}
-      />
-      <div className="account">
-        <Media minWidth={smallScreen}>
-          <div className="account__menu">
-            <AccountMenu links={links} active={pathname} />
+    <div className="accountWrapper">
+      <div className="container">
+        <Breadcrumbs
+          breadcrumbs={[
+            {
+              link: asPath,
+              value: intl.formatMessage(commonMessages.myAccount),
+            },
+          ]}
+        />
+        <div className="account">
+          <Media minWidth={smallScreen}>
+            <div className="account__menu">
+              <AccountMenu links={links} active={pathname} />
+            </div>
+          </Media>
+          <Media maxWidth={smallScreen - 1}>
+            <div className="account__menu_mobile">
+              <AccountMenuMobile links={links} active={pathname} />
+            </div>
+          </Media>
+          <div className="account__content">
+            {user && returnTab(pathname, user)}
           </div>
-        </Media>
-        <Media maxWidth={smallScreen - 1}>
-          <div className="account__menu_mobile">
-            <AccountMenuMobile links={links} active={pathname} />
-          </div>
-        </Media>
-        <div className="account__content">
-          {user && returnTab(pathname, user)}
         </div>
       </div>
     </div>
