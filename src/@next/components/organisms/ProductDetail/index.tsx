@@ -90,7 +90,6 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
             <S.Text>Payments: </S.Text>
             <S.FlexWraper>
               {Logo.map((item, index) => {
-                console.log(item);
                 return <S.LogoIcon key={index} src={item} alt="" />;
               })}
             </S.FlexWraper>
