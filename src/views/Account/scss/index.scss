@@ -1,4 +1,8 @@
 @import "../../../globalStyles/scss/variables.scss";
+
+.accountWrapper {
+  background-color: $base-body;
+}
 .account {
   display: flex;
   flex-direction: row;

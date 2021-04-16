@@ -1,8 +1,13 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.category {
+  background-color: $base-body;
+}
+
 .search-page {
+  margin-bottom: 1rem;
   &__header {
-    background-color: $blue-dark;
+    background-color: $orange;
     padding: $spacer * 4 0;
 
     &__input {

@@ -10,7 +10,12 @@ export const Wrapper = styled.div`
 `;
 
 export const Layout = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  @media (min-width: 540px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 export const LinkTagPU = styled.a`
@@ -25,24 +30,30 @@ export const MarginTop = styled.div`
 `;
 
 export const UpLoadPhoto = styled.div`
-  border-right: 1px solid #dae3ed;
-  margin-right: 30px;
-  flex: 1;
-`;
-
-export const WrapperUpload = styled.div`
+  border-right: none;
   display: flex;
-  justify-content: center;
-  margin-bottom: 4px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  @media (min-width: 540px) {
+    border-right: 1px solid #dae3ed;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    margin-right: 10px;
+    @media (min-width: 540px) {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
-export const TextAlign = styled.p`
-  text-align: center;
-`;
-
-export const FlexOneCol = styled.div`
-  flex: 1;
-`;
+export const FlexOneCol = styled.div``;
 
 export const DisplayMarginP = styled.p`
   display: flex;
@@ -70,13 +81,21 @@ export const FlexFourCol = styled.div`
 `;
 
 export const FlexChild = styled.div`
-  flex: 5;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  @media (min-width: 540px) {
+    grid-template-columns: 2fr 1fr;
+  }
 `;
 
 export const FlexDiv = styled.div`
-  flex: 6;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  @media (min-width: 540px) {
+    grid-template-columns: 0.5fr 2fr;
+  }
 `;
 
 export const LinkTag = styled.a`
@@ -104,7 +123,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  margin-bottom: 1rem;
 `;
 
 export const HeaderSmall = styled.div`

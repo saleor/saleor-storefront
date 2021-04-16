@@ -13,15 +13,11 @@ export const ProfileUser: React.FC = () => {
       <Tile>
         <S.FlexDiv>
           <S.UpLoadPhoto>
-            <S.WrapperUpload>
-              <img
-                src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
-                alt=""
-              />
-            </S.WrapperUpload>
-            <S.TextAlign>
-              <S.LinkTagPU href="#">Upload Photo</S.LinkTagPU>
-            </S.TextAlign>
+            <img
+              src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
+              alt=""
+            />
+            <S.LinkTagPU href="#">Upload Photo</S.LinkTagPU>
           </S.UpLoadPhoto>
 
           <S.FlexChild>
