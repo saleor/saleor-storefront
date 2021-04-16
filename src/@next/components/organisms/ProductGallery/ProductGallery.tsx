@@ -76,6 +76,10 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
     setListImage(imgUrl);
   };
 
+  const onChangeIndex = (index: number) => {
+    setImageIndex(index);
+  };
+
   return (
     <S.Wrapper data-test="productPhotosGallery">
       <S.ThumbnailsContainer>
@@ -158,6 +162,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         showModal={showModal}
         setShowModal={setShowModal}
         listImage={listImage}
+        onChangeIndex={onChangeIndex}
       />
     </S.Wrapper>
   );

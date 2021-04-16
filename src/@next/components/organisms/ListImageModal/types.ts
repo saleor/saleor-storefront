@@ -3,4 +3,5 @@ export interface IProps {
   setShowModal: (stt: boolean) => void;
   selectedImage: number;
   listImage: any;
+  onChangeIndex: (index: number) => void;
 }

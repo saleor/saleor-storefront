@@ -11,6 +11,7 @@ export const ListImageModal: React.FC<IProps> = ({
   setShowModal,
   listImage,
   selectedImage,
+  onChangeIndex,
 }: IProps) => {
   const images = listImage.map((item: any) => ({
     original: item.url,
@@ -35,7 +36,7 @@ export const ListImageModal: React.FC<IProps> = ({
           showPlayButton={false}
           startIndex={selectedImage}
           onSlide={(index: number) => {
-            console.log(index);
+            onChangeIndex(index);
           }}
         />
       </Modal>
