@@ -153,4 +153,10 @@
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid #ccc;
+  a {
+    color: #323232;
+    display: inline-block;
+    max-width: 255px;
+    text-decoration: none;
+  }
 }

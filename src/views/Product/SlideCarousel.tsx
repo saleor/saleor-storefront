@@ -16,7 +16,7 @@ const SlideCarousel: React.FC<{
       <h4 className="product-page__other-products__title">
         <FormattedMessage defaultMessage="Supplier's popular products" />
       </h4>
-      <Carousel renderCenterRightControls={() => null}>
+      <Carousel>
         {products.map(({ node: product }) => (
           <Link
             href={generateProductUrl(product.id, product.name)}
