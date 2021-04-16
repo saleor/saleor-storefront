@@ -28,7 +28,8 @@ export const ListImageModal: React.FC<IProps> = ({
         }}
         disabled={false}
         show={showModal}
-        submitBtnText=""
+        submitBtnText="Close"
+        onSubmit={() => setShowModal(false)}
       >
         <ImageGallery
           items={images}

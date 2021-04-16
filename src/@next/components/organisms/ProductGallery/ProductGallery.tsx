@@ -1,6 +1,7 @@
 import "./styles";
 
 import React from "react";
+// @ts-ignore
 import ReactImageZoom from "react-image-zoom";
 import { useInView } from "react-intersection-observer";
 
@@ -66,7 +67,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   const propsImg = {
     width: 450,
     height: 450,
-    zoomWidth: 500,
+    zoomWidth: 100,
     img: images[imageIndex].url,
     scale: 1.5,
   };
@@ -131,7 +132,6 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
                     <S.Thumbnail
                       ref={setIntersectionObserver(index, images.length)}
                       onClick={() => setImageIndex(index)}
-                      // onMouseEnter={() => setImageIndex(index)}
                       activeThumbnail={Boolean(index === imageIndex)}
                     >
                       <CachedImage alt={image.alt} url={image.url} />
@@ -141,14 +141,12 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               })}
           </ul>
         </S.ThumbnailList>
-        {/* <p>Thumbnail</p> */}
       </S.ThumbnailsContainer>
 
       <S.Preview data-test="imagePreview" className="wrapper">
         {images && images.length > 0 && imageIndex < images.length && (
           <div
             className="customize-zoomimg"
-            style={{ maxWidth: "30%" }}
             onClick={() => onShowModal(images)}
           >
             <ReactImageZoom {...propsImg} />
@@ -157,13 +155,15 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         {images.length === 0 && <CachedImage />}
       </S.Preview>
 
-      <ListImageModal
-        selectedImage={imageIndex}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        listImage={listImage}
-        onChangeIndex={onChangeIndex}
-      />
+      {showModal && (
+        <ListImageModal
+          selectedImage={imageIndex}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          listImage={listImage}
+          onChangeIndex={onChangeIndex}
+        />
+      )}
     </S.Wrapper>
   );
 };
