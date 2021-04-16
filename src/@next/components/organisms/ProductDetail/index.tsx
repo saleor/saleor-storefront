@@ -7,7 +7,9 @@ import * as S from "./styles";
 
 import "./style.css";
 
-interface IProps {}
+interface IProps {
+  product: any;
+}
 
 const ProductDetail: React.FC<IProps> = (props: IProps) => {
   return (
@@ -18,7 +20,7 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
         </S.ImgSlide> */}
 
         <S.InfoDetail>
-          <S.ProductName>thanghoian123</S.ProductName>
+          <S.ProductName>{props.product.name}</S.ProductName>
           <S.Text style={{ paddingLeft: "15px" }}>
             FOB <S.StrongerText>reference </S.StrongerText> Price:{" "}
             <S.Link>Get Latest Price</S.Link>

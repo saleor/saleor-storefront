@@ -104,7 +104,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   .customize-zoomimg{
     div{
       width:fit-content;
-      z-index:1000;
+      // z-index:1000;
       min-width:450px;
       img{
         width:100%;
@@ -112,7 +112,9 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
       }
     }
   }
-
+  .js-image-zoom__zoomed-image{
+    z-index:1000;
+  }
   .wrapper{
     overflow:visible !important;
     min-height: 400px;

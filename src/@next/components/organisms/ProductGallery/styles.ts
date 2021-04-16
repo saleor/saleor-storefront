@@ -1,11 +1,15 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-areas: "sidebar preview";
-  height: 100%;
-  grid-template-columns: 76px 1fr;
-  grid-column-gap: 40px;
+  // display: grid;
+  // grid-template-areas: "sidebar preview";
+  // height: 100%;
+  // // grid-template-columns: 76px 1fr;
+  // grid-template-rows: 76px 1fr;
+  // grid-column-gap: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
@@ -30,8 +34,8 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
 `;
 
 export const Button = styled.div`
-  height: 50px;
-  width: 100%;
+  height: 150px;
+  width: 50px;
   position: absolute;
   z-index: 1;
   background-color: rgba(50, 50, 50, 0.3);
@@ -43,23 +47,27 @@ export const Button = styled.div`
 
 export const TopButton = styled(Button)`
   top: 0%;
+  left: 0;
 
-  transform: rotate(180deg);
+  // transform: rotate(90deg);
 `;
 
 export const BottomButton = styled(Button)`
   bottom: 0%;
+  right: 0;
 `;
 
 export const ThumbnailsContainer = styled.div`
   position: relative;
+  // border: 1px solid;
+  order: 2;
 `;
 
 export const ThumbnailList = styled.div`
   position: relative;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  height: 140px;
+  overflow-x: scroll;
+  overflow-y: hidden;
   scrollbar-width: none;
   ::-webkit-scrollbar {
     width: 0px;
@@ -67,13 +75,14 @@ export const ThumbnailList = styled.div`
 
   ul {
     position: absolute;
-    display: block;
+    display: flex;
     padding: 0;
     margin: 0;
   }
 `;
 
 export const Preview = styled.div`
+  // border: 1px solid;
   grid-area: preview;
   width: auto;
   max-height: 560px;
@@ -83,4 +92,5 @@ export const Preview = styled.div`
     width: 100%;
     object-fit: contain;
   }
+  order: 1;
 `;
