@@ -14,7 +14,7 @@
   padding: 1rem 0;
   justify-items: center;
   @media (min-width: $small-screen) {
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 4fr 0.5fr;
     height: auto;
     padding: 0.5rem 0;
     justify-items: normal;
