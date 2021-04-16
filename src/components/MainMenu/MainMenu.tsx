@@ -1,6 +1,7 @@
 import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
@@ -28,7 +29,6 @@ import {
   mediumScreen,
   smallScreen,
 } from "../../globalStyles/scss/variables.scss";
-import { useRouter } from "next/router";
 
 interface MainMenuProps {
   demoMode: boolean;
