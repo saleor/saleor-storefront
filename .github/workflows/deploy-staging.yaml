@@ -6,37 +6,32 @@ on:
       - ci/staging/**
 
 jobs:
-  build:
+  deploy-staging:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        domain:
+          - master.staging.saleor.cloud
+          - qa.staging.saleor.cloud
+
     steps:
       - uses: actions/checkout@v2
-      - name: Package
+  
+      - name: Build
         env:
-          NEXT_PUBLIC_API_URI: ${{ secrets.STAGING_API_URI }}
+          NEXT_PUBLIC_API_URI: https://${{ matrix.domain }}/graphql/
         run: |
           npm ci
           npm run build:export
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: dist
-  deploy:
-    needs:
-      - build
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
+  
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_STAGING_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_STAGING_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+
       - name: Deploy
         run: |
-          aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/qa.staging.saleor.cloud/
-          aws s3 sync build s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/master.staging.saleor.cloud/          
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_STAGING_CF_DIST_ID }} --paths '/*'
+          aws s3 sync dist s3://${{ secrets.AWS_STAGING_DEPLOYMENT_BUCKET }}/${{ matrix.domain }}/        
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_STAGING_CF_DIST_ID }} --paths '/${{ matrix.domain }}/*'
