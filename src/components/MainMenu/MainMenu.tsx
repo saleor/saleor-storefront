@@ -28,6 +28,7 @@ import {
   mediumScreen,
   smallScreen,
 } from "../../globalStyles/scss/variables.scss";
+import { useRouter } from "next/router";
 
 interface MainMenuProps {
   demoMode: boolean;
@@ -37,6 +38,8 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
   const overlayContext = useContext(OverlayContext);
 
   const { user, signOut } = useAuth();
+  const { push } = useRouter();
+
   const { items } = useCart();
 
   const handleSignOut = () => {
@@ -275,12 +278,7 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                         <li
                           data-test="desktopMenuLoginOverlayLink"
                           className="main-menu__icon"
-                          onClick={() =>
-                            overlayContext.show(
-                              OverlayType.login,
-                              OverlayTheme.right
-                            )
-                          }
+                          onClick={() => push(paths.login)}
                         >
                           <ReactSVG path={userImg} />
                         </li>
