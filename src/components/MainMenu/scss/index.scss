@@ -5,44 +5,41 @@
 }
 
 .main-menu {
-  align-items: center;
-  justify-content: space-between;
   background-color: $white;
   border-bottom: 1px solid $gray-light;
-  display: flex;
-  flex-direction: row;
-  height: 5rem;
   position: relative;
-  @media (max-width: $small-screen) {
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  padding: 1rem 0;
+  justify-items: center;
+  @media (min-width: $small-screen) {
+    grid-template-columns: 1fr 2fr 1fr;
     height: auto;
-    padding: 20px 0;
+    padding: 0.5rem 0;
+    justify-items: normal;
   }
 
   &__left {
-    order: 1;
-    flex-basis: calc(20% - 2rem);
-
-    @media (max-width: $small-screen) {
-      flex-basis: calc(100% - 4rem);
-      padding-bottom: 10px;
-    }
 
     ul {
       display: flex;
       align-items: center;
       height: 100%;
     }
+    svg {
+      width: 200px;
+      height: 70px;
+      path {
+        fill: #ff6a00;
+      }
+    }
   }
 
   &__right {
-    flex-basis: calc(20% - 2rem);
-    order: 3;
-
-    @media (max-width: $small-screen) {
-      flex-basis: calc(20% - 4rem);
-    }
-
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     ul {
       display: flex;
       justify-content: flex-end;
@@ -52,14 +49,7 @@
 
   &__center {
     align-self: center;
-    order: 2;
-    flex-basis: calc(60% - 2rem);
     position: relative;
-
-    @media (max-width: $small-screen) {
-      flex-basis: calc(80% - 4rem);
-      padding-bottom: 10px;
-    }
 
     svg {
       width: 2rem;
@@ -125,7 +115,7 @@
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $orange;
       }
     }
 
@@ -156,7 +146,7 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $orange;
       fill-rule: inherit;
     }
   }

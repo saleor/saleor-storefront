@@ -1,7 +1,7 @@
 import { styled } from "@styles";
 
 export const Wrapper = styled.div`
-  background-color: ${props => props.theme.colors.light};
+  background-color: ${props => props.theme.colors.white};
   padding: 1.25rem;
   font-weight: ${props => props.theme.typography.boldFontWeight};
   display: flex;

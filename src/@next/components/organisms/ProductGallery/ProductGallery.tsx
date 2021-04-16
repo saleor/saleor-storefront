@@ -1,9 +1,14 @@
+import "./styles";
+
 import React from "react";
+// @ts-ignore
+import ReactImageZoom from "react-image-zoom";
 import { useInView } from "react-intersection-observer";
 
 import { Icon } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
 
+import { ListImageModal } from "../ListImageModal";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -11,6 +16,8 @@ const MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS = 4;
 
 export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
   const [imageIndex, setImageIndex] = React.useState<number>(0);
+  const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [listImage, setListImage] = React.useState<any>([]);
 
   const displayButtons = images.length > MINIMAL_NUMBER_OF_IMAGES_FOR_BUTTONS;
 
@@ -57,6 +64,23 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
     }
   };
 
+  const propsImg = {
+    width: 450,
+    height: 450,
+    zoomWidth: 100,
+    img: images[imageIndex].url,
+    scale: 1.5,
+  };
+
+  const onShowModal = (imgUrl: any) => {
+    setShowModal(true);
+    setListImage(imgUrl);
+  };
+
+  const onChangeIndex = (index: number) => {
+    setImageIndex(index);
+  };
+
   return (
     <S.Wrapper data-test="productPhotosGallery">
       <S.ThumbnailsContainer>
@@ -72,7 +96,9 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               }
             }}
           >
-            <Icon name="select_arrow" size={10} />
+            <div style={{ transform: " rotate(90deg)" }}>
+              <Icon name="select_arrow" size={10} />
+            </div>
           </S.TopButton>
         )}
         {!bottomImageInView && displayButtons && (
@@ -87,7 +113,9 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
               }
             }}
           >
-            <Icon name="select_arrow" size={10} />
+            <div style={{ transform: " rotate(-90deg)" }}>
+              <Icon name="select_arrow" size={10} />
+            </div>
           </S.BottomButton>
         )}
         <S.ThumbnailList>
@@ -104,7 +132,6 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
                     <S.Thumbnail
                       ref={setIntersectionObserver(index, images.length)}
                       onClick={() => setImageIndex(index)}
-                      onMouseEnter={() => setImageIndex(index)}
                       activeThumbnail={Boolean(index === imageIndex)}
                     >
                       <CachedImage alt={image.alt} url={image.url} />
@@ -116,15 +143,27 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
         </S.ThumbnailList>
       </S.ThumbnailsContainer>
 
-      <S.Preview data-test="imagePreview">
+      <S.Preview data-test="imagePreview" className="wrapper">
         {images && images.length > 0 && imageIndex < images.length && (
-          <CachedImage
-            alt={images[imageIndex].alt}
-            url={images[imageIndex].url}
-          />
+          <div
+            className="customize-zoomimg"
+            onClick={() => onShowModal(images)}
+          >
+            <ReactImageZoom {...propsImg} />
+          </div>
         )}
         {images.length === 0 && <CachedImage />}
       </S.Preview>
+
+      {showModal && (
+        <ListImageModal
+          selectedImage={imageIndex}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          listImage={listImage}
+          onChangeIndex={onChangeIndex}
+        />
+      )}
     </S.Wrapper>
   );
 };

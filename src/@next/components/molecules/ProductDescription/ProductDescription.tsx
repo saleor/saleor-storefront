@@ -1,9 +1,9 @@
+/* eslint-disable import/namespace */
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { RichTextEditorContent } from "@components/atoms";
-
 import { CompanyProfile } from "./CompanyProfile";
+import { ProductDetailTab } from "./ProductDetailTab";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -40,10 +40,10 @@ export const ProductDescription: React.FC<IProps> = ({
           <FormattedMessage defaultMessage="Company Profile" />
         </S.TabTitle>
       </S.Tabs>
-      <div hidden={activeTab !== TABS.DESCRIPTION}>
-        <RichTextEditorContent jsonData={description} />
-      </div>
-      <div hidden={activeTab !== TABS.ATTRIBUTES}>
+      <S.WrapperContent hidden={activeTab !== TABS.DESCRIPTION}>
+        <ProductDetailTab description={description} />
+      </S.WrapperContent>
+      <S.WrapperContent hidden={activeTab !== TABS.ATTRIBUTES}>
         {/* <S.AttributeList> */}
         {/* {attributes &&
             attributes.map((attribute, index) => (
@@ -54,7 +54,7 @@ export const ProductDescription: React.FC<IProps> = ({
               ))} */}
         <CompanyProfile attributes={attributes} />
         {/* </S.AttributeList> */}
-      </div>
+      </S.WrapperContent>
     </S.Wrapper>
   );
 };
