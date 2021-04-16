@@ -4,8 +4,7 @@
   background-color: $darkBlue;
   color: $white;
   &-email {
-    padding-top: 50px;
-    padding-bottom: 10px;
+    margin: 3rem 0 1rem;
     .formEmail {
       display: flex;
       justify-content: center;
@@ -42,23 +41,14 @@
   }
   &-siteMap {
     border-bottom: 1px solid #313d52;
-    margin-top: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    @media (max-width: $small-screen) {
-      flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 0.5rem;
+    @media (min-width: $small-screen) and (max-width: $medium-screen) {
+      grid-template-columns: 1fr 1fr;
     }
-    .siteMap-col {
-      flex: 0 0 20%;
-      @media (max-width: $small-screen) {
-        flex: 0 0 100%;
-      }
-
-      @media (min-width: $small-screen) and (max-width: $medium-screen) {
-        flex: 0 0 50%;
-      }
+    @media (max-width: $small-screen) {
+      grid-template-columns: 1fr;
     }
     dl {
       margin: 0 0 20px 20px;
@@ -82,18 +72,19 @@
     }
   }
   &__favicons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 0 10px;
-    @media (max-width: $small-screen) {
-      flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin: 1rem 0;
+    @media (min-width: $small-screen) {
+      grid-template-columns: 1fr 1fr;
     }
     .favicons-col {
-      flex: 0 0 50%;
-      @media (max-width: $small-screen) {
-        flex: 0 0 100%;
-        margin: 10px 0;
+      margin: 10px 0;
+      width: 95%;
+      @media (min-width: $small-screen) {
+        margin: 0;
+        width: 100%;
       }
       .favicons-col-main {
         display: flex;
@@ -137,7 +128,7 @@
     }
   }
   &__copyright {
-    margin: 20px 0;
+    margin: 0 0 2rem;
   }
 
   &__menu {
