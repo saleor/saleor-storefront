@@ -18,22 +18,11 @@ $drawer-width: 25rem;
   }
 
   &__input {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
     .input {
       margin-bottom: 0;
-      flex: 0 0 80%;
-      @media (max-width: $small-screen) {
-        flex: 0 0 50%;
-      }
-    }
-
-    .search-button {
-      flex: 0 0 10%;
-      @media (max-width: $small-screen) {
-        flex: 0 0 5%;
-      }
     }
 
     .input__icon-right {
@@ -51,7 +40,7 @@ $drawer-width: 25rem;
     .input__field {
       background-color: $turquoise-light;
       box-shadow: none;
-      padding: 0.95rem 1rem;
+      padding: 1rem;
       width: 100%;
       border: 1px solid $orange;
       border-right: none;
@@ -71,7 +60,10 @@ $drawer-width: 25rem;
     .btn-search {
       display: inline-flex;
       background-color: $orange;
-      padding: 0.73rem 1.7rem;
+      padding: 0 1.5rem;
+      height: 52px;
+      justify-content: center;
+      align-items: center;
       border-radius: 0 20px 20px 0;
       color: $white;
 
