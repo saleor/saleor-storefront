@@ -27,6 +27,7 @@ export const darkGreen = "#06847B";
 export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
+export const orange = "#ff6a00";
 
 // theme colors
 export const theme = {

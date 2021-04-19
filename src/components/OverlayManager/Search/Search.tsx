@@ -1,27 +1,21 @@
 import { NextRouter, withRouter } from "next/router";
 import React, { useState } from "react";
-import {
-  FormattedMessage,
-  injectIntl,
-  WrappedComponentProps,
-} from "react-intl";
+import { injectIntl, WrappedComponentProps } from "react-intl";
 import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
 import { grayMedium } from "@styles/constants";
+import { DebounceChange } from "@temp/components/Debounce";
 import TextField from "@temp/components/TextField";
 import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
 import searchImg from "../../../images/search.svg";
-import { Loader } from "../..";
-import Button from "../../Button/index";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import { SearchResults } from "./gqlTypes/SearchResults";
-import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { TypedSearchResults } from "./queries";
 
@@ -34,8 +28,6 @@ interface SearchProps extends WrappedComponentProps {
 function Search(props: SearchProps) {
   const [searchTerms, setSearchTerms] = useState("");
   const [hasSearchPhrase, setHasSearchPhrase] = useState(false);
-
-  const submitBtnRef = React.createRef<HTMLButtonElement>();
 
   const hasResults = (data: SearchResults) =>
     maybe(() => !!data.products.edges.length);
@@ -64,26 +56,40 @@ function Search(props: SearchProps) {
     props.router.push(`${paths.search}?q=${searchTerms}`);
   };
 
+  React.useEffect(() => {
+    if (searchTerms.length > 0) {
+      setShowResult(true);
+      setHasSearchPhrase(true);
+    }
+  }, [searchTerms]);
+
   return (
     <>
       <div className="search__input">
-        <TextField
-          onChange={evt => {
-            setSearchTerms(evt.target.value.toLowerCase());
-            setHasSearchPhrase(false);
+        <DebounceChange
+          debounce={evt =>
+            setSearchTerms((evt.target.value as string).toLowerCase())
+          }
+          value={searchTerms}
+          time={500}
+        >
+          {({ change, value }) => {
+            return (
+              <TextField
+                autoFocus
+                onChange={change}
+                placeholder={props.intl.formatMessage(commonMessages.search)}
+                value={value}
+              />
+            );
           }}
-          onKeyPress={e => {
-            if (e.key === "Enter") {
-              setHasSearchPhrase(true);
-              setShowResult(true);
-            }
-          }}
-          placeholder={props.intl.formatMessage(commonMessages.search)}
-        />
+        </DebounceChange>
+
         <div className="search-button">
           <button
             className="btn-search"
             onClick={() => {
+              handleClickShowAll();
               if (searchTerms?.length) {
                 setHasSearchPhrase(true);
                 setShowResult(true);
@@ -109,7 +115,7 @@ function Search(props: SearchProps) {
                     query: searchTerms,
                   }}
                 >
-                  {({ data, error, loading }) => {
+                  {({ data, error }) => {
                     if (hasResults(data)) {
                       return (
                         <div
@@ -128,20 +134,6 @@ function Search(props: SearchProps) {
                               <ProductItem {...product} key={product.node.id} />
                             ))}
                           </ul>
-                          <div className="search__products__footer">
-                            {loading ? (
-                              <Loader />
-                            ) : (
-                              <Button
-                                testingContext="searchProductsButton"
-                                btnRef={submitBtnRef}
-                                type="submit"
-                                onClick={() => handleClickShowAll()}
-                              >
-                                <FormattedMessage defaultMessage="Show all results" />
-                              </Button>
-                            )}
-                          </div>
                         </div>
                       );
                     }
@@ -154,14 +146,13 @@ function Search(props: SearchProps) {
                       );
                     }
 
-                    return (
-                      <NothingFound
-                        search={searchTerms}
-                        closeSearch={() => {
-                          setHasSearchPhrase(false);
-                        }}
-                      />
-                    );
+                    return null;
+                    // <NothingFound
+                    //   search={searchTerms}
+                    //   closeSearch={() => {
+                    //     setHasSearchPhrase(false);
+                    //   }}
+                    // />
                   }}
                 </TypedSearchResults>
               );

@@ -42,7 +42,6 @@
 
       &--fixed {
         top: 0;
-        position: sticky;
         width: auto;
 
         @media (min-width: $container-width) {
@@ -153,4 +152,10 @@
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid #ccc;
+  a {
+    color: #323232;
+    display: inline-block;
+    max-width: 255px;
+    text-decoration: none;
+  }
 }
