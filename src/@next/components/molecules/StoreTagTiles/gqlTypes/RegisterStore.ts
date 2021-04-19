@@ -62,3 +62,11 @@ export interface StoreType_edges_node {
   id: string;
   name: string;
 }
+
+export interface IStoreUser{
+  user:StoreUser | null
+}
+
+export interface StoreUser {
+  store:{id:string, name:string}
+}

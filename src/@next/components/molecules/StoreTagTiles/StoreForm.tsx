@@ -1,5 +1,6 @@
 import { Formik } from "formik";
 import React from "react";
+import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, ButtonLink } from "@components/atoms";
@@ -10,17 +11,6 @@ import { TextField } from "../TextField";
 import { RegisterStoreVariables } from "./gqlTypes/RegisterStore";
 import { TypedListStoreTypeQuery } from "./queries";
 import * as S from "./styles";
-
-// const Map = () => {
-//   return (
-//     <GoogleMap
-//       defaultZoom={10}
-//       defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
-//     />
-//   );
-// };
-
-// const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
 type Props = {
   handleSubmit: (data: RegisterStoreVariables) => void;
@@ -36,6 +26,28 @@ export const StoreForm: React.FC<Props> = ({
   isLoadingSubmit,
 }) => {
   const intl = useIntl();
+
+  const Map = () => {
+    return (
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
+        onClick={e => handleClick(e)}
+      />
+    );
+  };
+  let lat = "";
+  let lng = "";
+
+  const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
+
+  const handleClick = (
+    event: google.maps.MapMouseEvent | google.maps.IconMouseEvent
+  ) => {
+    lat = event.latLng.lat().toString();
+    lng = event.latLng.lng().toString();
+  };
+
   return (
     <>
       <Formik
@@ -47,7 +59,7 @@ export const StoreForm: React.FC<Props> = ({
             storeTypeId: values.storeTypeId,
             phone: values.phone,
             acreage: values.acreage,
-            latlong: values.latlong,
+            latlong: `${lat},${lng}`,
             backgroundImage: values.backgroundImage,
             backgroundImageAlt: values.backgroundImageAlt,
           };
@@ -70,8 +82,7 @@ export const StoreForm: React.FC<Props> = ({
               displayLoader={false}
               errorPolicy="all"
             >
-              {({ data: dataType, loading }) => {
-                console.log({ dataType });
+              {({ data: dataType }) => {
                 const storeTypeOptions = dataType?.storeTypes?.edges.map(
                   item => ({ value: item.node.id, text: item.node.name })
                 );
@@ -101,24 +112,26 @@ export const StoreForm: React.FC<Props> = ({
                       />
                     </S.ContentExtendInput>
                     <S.ContentExtendInput>
-                      <InputSelect
-                        label={intl.formatMessage(commonMessages.storeType)}
-                        name="storeTypeId"
-                        options={storeTypeOptions}
-                        value={
-                          values!.storeTypeId &&
-                          storeTypeOptions &&
-                          storeTypeOptions!.find(
-                            option => option.value === values!.storeTypeId
-                          )
-                        }
-                        onChange={(value: any, name: any) =>
-                          setFieldValue(name, value.value)
-                        }
-                        optionLabelKey="text"
-                        optionValueKey="value"
-                        autoComplete="value"
-                      />
+                      <div style={{ marginBottom: "1.875rem" }}>
+                        <InputSelect
+                          label={intl.formatMessage(commonMessages.storeType)}
+                          name="storeTypeId"
+                          options={storeTypeOptions}
+                          value={
+                            values!.storeTypeId &&
+                            storeTypeOptions &&
+                            storeTypeOptions!.find(
+                              option => option.value === values!.storeTypeId
+                            )
+                          }
+                          onChange={(value: any, name: any) =>
+                            setFieldValue(name, value.value)
+                          }
+                          optionLabelKey="text"
+                          optionValueKey="value"
+                          autoComplete="value"
+                        />
+                      </div>
                     </S.ContentExtendInput>
                     <S.ContentExtendInput>
                       <TextField
@@ -140,38 +153,18 @@ export const StoreForm: React.FC<Props> = ({
                         onChange={handleChange}
                       />
                     </S.ContentExtendInput>
-                    {/* <S.ContentExtendInput>
-                <TextField
-                  name="storeAcreage"
-                  label={intl.formatMessage(commonMessages.storeAcreage)}
-                  type="text"
-                  value={values.storeAcreage}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput>
-              <S.ContentExtendInput>
-                <TextField
-                  name="storeAddress"
-                  label={intl.formatMessage(commonMessages.storeAddress)}
-                  type="text"
-                  value={values.storeAddress}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                />
-              </S.ContentExtendInput> */}
-                    {/* <S.ContentExtendInput>
-                <WrappedMap
-                  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe38lpcvEH7pLWIbgNUPNHsPnyIYwkc60&v=3.exp&libraries=geometry,drawing,places"
-                  loadingElement={<div style={{ width: `100%` }} />}
-                  containerElement={<div style={{ height: `400px` }} />}
-                  mapElement={<div style={{ height: `100%` }} />}
-                />
-              </S.ContentExtendInput> */}
+                    <S.ContentExtendInput>
+                      <WrappedMap
+                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe38lpcvEH7pLWIbgNUPNHsPnyIYwkc60&v=3.exp&libraries=geometry,drawing,places"
+                        loadingElement={<div style={{ width: `100%` }} />}
+                        containerElement={<div style={{ height: `400px` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}
+                      />
+                    </S.ContentExtendInput>
 
                     {/* <S.ContentExtendInput>
-                <S.FilePicker type="file" />
-              </S.ContentExtendInput> */}
+                      <S.FilePicker name="" type="file" />
+                    </S.ContentExtendInput> */}
 
                     <S.FormButtons>
                       <ButtonLink

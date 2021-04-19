@@ -1,59 +1,53 @@
+import { useAuth } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { IconButton, Tile } from "@components/atoms";
+import { Loader, Tile } from "@components/atoms";
 
-import { RegisterStoreVariables } from "./gqlTypes/RegisterStore";
-import { TypedStoreRegisterMutation } from "./queries";
-import { StoreForm } from "./StoreForm";
+import { TypeListStoreUserQuery } from "./queries";
+import { StoreDetail } from "./StoreDetails";
 import * as S from "./styles";
 
 export const StoreTabTiles: React.FC = () => {
-  const [isEditing, setIsEditing] = React.useState(false);
-  const initialValues: RegisterStoreVariables = {
-    name: "",
-    storeTypeId: "",
-  };
+  const { user } = useAuth();
+
   return (
     <S.TileWrapper>
       <Tile>
         <S.Wrapper>
           <S.Header>
-            <FormattedMessage defaultMessage="STORE" />
+            <FormattedMessage defaultMessage="User Store" />
           </S.Header>
           <S.Content>
-            <S.HeaderSmall>
-              <FormattedMessage defaultMessage="Store details" />
-              {!isEditing && (
-                <IconButton
-                  testingContext="editDetailsButton"
-                  name="edit"
-                  size={22}
-                  onClick={() => setIsEditing(isEditing => !isEditing)}
-                />
-              )}
-            </S.HeaderSmall>
-            {isEditing ? (
-              <TypedStoreRegisterMutation>
-                {(createStore, { loading, data }) => {
-                  console.log({ data });
-                  return (
-                    <StoreForm
-                      isLoadingSubmit={loading}
-                      initialValues={initialValues}
-                      handleSubmit={data => {
-                        createStore({
-                          variables: data,
-                        });
-                      }}
-                      hide={() => {
-                        setIsEditing(false);
-                      }}
-                    />
-                  );
-                }}
-              </TypedStoreRegisterMutation>
-            ) : null}
+            <TypeListStoreUserQuery
+              alwaysRender
+              displayLoader={false}
+              errorPolicy="all"
+              variables={{ id: user?.id }}
+            >
+              {({ data, loading }) => {
+                const listStore = data?.user?.store;
+
+                if (loading) {
+                  return <Loader />;
+                }
+
+                if (listStore && Object.keys(listStore).length === 0) {
+                  return <StoreDetail />;
+                }
+
+                return (
+                  <>
+                    {listStore && (
+                      <StoreDetail
+                        storeId={listStore.id}
+                        storeName={listStore.name}
+                      />
+                    )}
+                  </>
+                );
+              }}
+            </TypeListStoreUserQuery>
           </S.Content>
         </S.Wrapper>
       </Tile>

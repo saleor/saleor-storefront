@@ -4,6 +4,7 @@ import { TypedMutation } from "../../../../core/mutations";
 import { TypedQuery } from "../../../../core/queries";
 import {
   IStoreType,
+  IStoreUser,
   RegisterStore,
   RegisterStoreVariables,
 } from "./gqlTypes/RegisterStore";
@@ -69,4 +70,18 @@ export const storeTypeQuery = gql`
 
 export const TypedListStoreTypeQuery = TypedQuery<IStoreType, {}>(
   storeTypeQuery
+);
+
+export const listStoreUserQuery = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      store {
+        id
+        name
+      }
+    }
+  }
+`;
+export const TypeListStoreUserQuery = TypedQuery<IStoreUser, {}>(
+  listStoreUserQuery
 );
