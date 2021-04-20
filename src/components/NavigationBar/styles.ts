@@ -92,6 +92,8 @@ export const DropDownContent = styled.div`
   display: none;
   transform: translateY(100%);
   height: fit-content;
+  background: #fff;
+  z-index: 1000;
   ${NavListItem}:hover & {
     display: block;
     .sub {
