@@ -72,11 +72,11 @@ export const TitleText = styled.h3`
   margin-bottom: 16px;
   text-transform: uppercase;
 `;
-export const SubTitleText = styled.h4`
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: #666;
-`;
+// export const SubTitleText = styled.h4`
+//   font-size: 14px;
+//   margin-bottom: 20px;
+//   color: #666;
+// `;
 export const CompanyWrapInfo = styled.div`
   position: relative;
 `;
@@ -95,10 +95,10 @@ export const CompanyInfoTd = styled.td`
     background-color: #fff;
   }
 `;
-export const CompanyLocation = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+// export const CompanyLocation = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
 export const WrapperContent = styled.div`
   background-color: #ffffff;
   border: 1px solid #cccccc;
