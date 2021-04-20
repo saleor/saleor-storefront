@@ -736,6 +736,7 @@ export interface ProductDetails_product {
 
 export interface StoreVariables {
   name: string;
+  id:string;
   description?: string;
   storeTypeId: string;
   phone?: string;
