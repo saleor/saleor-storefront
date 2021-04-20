@@ -92,6 +92,20 @@ export const TabBox = styled.div`
   display: flex;
 `;
 
+export const PriceBox = styled.div`
+  margin-top: 10px;
+`;
+
+export const Price = styled.p`
+  font-size: 15px;
+  font-weight: 750;
+`;
+
+export const Type = styled.span`
+  color: #888888;
+  font-size: 12px;
+`;
+
 export const Tab = styled.p`
   padding: 3px;
   font-size: 12px;

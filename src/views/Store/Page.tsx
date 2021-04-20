@@ -96,35 +96,130 @@ function Page(props: IProps) {
       id: 1,
       imgUrl:
         "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
-      name: "name 1",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
       tab: ["tab1", "tab2"],
     },
     {
       id: 2,
       imgUrl:
         "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
-      name: "name 1",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
       tab: ["tab1", "tab2"],
     },
     {
       id: 3,
       imgUrl:
         "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
-      name: "name 1",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
       tab: ["tab1", "tab2"],
     },
     {
       id: 4,
       imgUrl:
         "https://cdn.tgdd.vn/2020/08/CookProductThumb/Untitled-2-620x620-119.jpg",
-      name: "name 1",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
       tab: ["tab1", "tab2"],
     },
     {
       id: 5,
       imgUrl:
         "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
-      name: "name 1",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 6,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 7,
+      imgUrl:
+        "https://cdn.tgdd.vn/2020/08/CookProductThumb/Untitled-2-620x620-119.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 8,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      tab: ["tab1", "tab2"],
+    },
+  ];
+  const ListProductByCategory = [
+    {
+      id: 1,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 2,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 3,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 4,
+      imgUrl:
+        "https://cdn.tgdd.vn/2020/08/CookProductThumb/Untitled-2-620x620-119.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 5,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 6,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 7,
+      imgUrl:
+        "https://cdn.tgdd.vn/2020/08/CookProductThumb/Untitled-2-620x620-119.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
+      tab: ["tab1", "tab2"],
+    },
+    {
+      id: 8,
+      imgUrl:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      name: "Contrary to popular belief, Lorem Ipsum is not simply random text",
+      prices: 100000,
+      type: "kg",
       tab: ["tab1", "tab2"],
     },
   ];
@@ -135,8 +230,9 @@ function Page(props: IProps) {
       {/* carousel */}
       {/*  */}
       {/* MainProductList */}
-      <MainProductList listProduct={ListProduct} />
+      <MainProductList title="Main Product" listProduct={ListProduct} />
       {/*  */}
+      <MainProductList title="Tile" listProduct={ListProductByCategory} />
     </div>
   );
 }

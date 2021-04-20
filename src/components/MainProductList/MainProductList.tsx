@@ -4,12 +4,13 @@ import * as S from "./styles";
 
 interface IProps {
   listProduct: any;
+  title: string;
 }
-function MainProductList({ listProduct }: IProps) {
+function MainProductList({ listProduct, title }: IProps) {
   return (
     <S.Wrapper>
       <S.WrapperContainer style={{ margin: "20px 0" }}>
-        <S.Title>Main Product</S.Title>
+        <S.Title>{title}</S.Title>
         <S.List>
           {listProduct.map(item => {
             return (
@@ -23,6 +24,22 @@ function MainProductList({ listProduct }: IProps) {
                     return <S.Tab key={index}>{item}</S.Tab>;
                   })}
                 </S.TabBox>
+                {item.prices ? (
+                  <>
+                    <S.PriceBox>
+                      <S.Price>
+                        {item.prices}
+                        <S.Type>/ {item.type}</S.Type>
+                      </S.Price>
+                    </S.PriceBox>
+                    <S.PriceBox>
+                      <S.Price>
+                        {item.prices}
+                        <S.Type>/ (Min, Order)</S.Type>
+                      </S.Price>
+                    </S.PriceBox>
+                  </>
+                ) : null}
               </S.Item>
             );
           })}
