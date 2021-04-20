@@ -731,6 +731,18 @@ export interface ProductDetails_product {
    * Date when product is available for purchase. 
    */
   availableForPurchase: any | null;
+  store: StoreVariables | null
+}
+
+export interface StoreVariables {
+  name: string;
+  description?: string;
+  storeTypeId: string;
+  phone?: string;
+  acreage?: number;
+  latlong?: string;
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
 }
 
 export interface ProductDetails {
