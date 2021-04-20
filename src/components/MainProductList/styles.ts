@@ -38,7 +38,7 @@ export const Item = styled.div`
   border-right: 1px solid #d3d3d3;
   border-top: 1px solid #d3d3d3;
   border-bottom: 1px solid #d3d3d3;
-  &:nth-child(n + 4) {
+  &:nth-child(n + 5) {
     border-top: none;
   }
   &:nth-child(4n + 1) {
@@ -46,10 +46,14 @@ export const Item = styled.div`
   }
   @media screen and (max-width: 1080px) {
     max-width: 50%;
+    &:nth-child(4n + 3) {
+      border-left: 1px solid #d3d3d3;
+    }
   }
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
+    border: 1px solid #d3d3d3;
   }
 `;
 
