@@ -42,7 +42,6 @@
 
       &--fixed {
         top: 0;
-        position: sticky;
         width: auto;
 
         @media (min-width: $container-width) {

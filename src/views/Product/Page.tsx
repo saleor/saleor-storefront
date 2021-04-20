@@ -1,27 +1,31 @@
 import classNames from "classnames";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import Media from "react-media";
+import styled from "styled-components";
 
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
-// import AddToCartSection from "@components/organisms/AddToCartSection";
 import ProductDetail from "@components/organisms/ProductDetail";
+import { orange, white } from "@styles/constants";
 
-import {
-  Breadcrumbs,
-  // OverlayContext,
-  // OverlayTheme,
-  // OverlayType,
-} from "../../components";
+import { Breadcrumbs } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import { ContactSupplier } from "./ContactSupplier";
 import GalleryCarousel from "./GalleryCarousel";
-// import OtherProducts from "./Other";
 import SlideCarousel from "./SlideCarousel";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
+
+const StyledButton = styled.div`
+  cursor: pointer;
+  border-radius: 30px;
+  background: ${orange};
+  padding: 0.75rem;
+  color: ${white};
+`;
 
 const populateBreadcrumbs = product => [
   {
@@ -40,11 +44,8 @@ const Page: React.FC<
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
 > = ({ product }) => {
-  // const overlayContext = React.useContext(OverlayContext);
-
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
 
-  // const [variantId, setVariantId] = React.useState("");
   const variantId = "";
   const getImages = () => {
     if (product.variants && variantId) {
@@ -60,27 +61,9 @@ const Page: React.FC<
     return product.images;
   };
 
-  // const handleAddToCart = (variantId, quantity) => {
-  //   add(variantId, quantity);
-  //   overlayContext.show(OverlayType.cart, OverlayTheme.right);
-  // };
+  const contactSupplierRef = React.useRef(null);
 
-  // const addToCartSection = (
-  //   <AddToCartSection
-  //     items={items}
-  //     productId={product.id}
-  //     name={product.name}
-  //     productVariants={product.variants}
-  //     productPricing={product.pricing}
-  //     queryAttributes={queryAttributes}
-  //     setVariantId={setVariantId}
-  //     variantId={variantId}
-  //     onAddToCart={handleAddToCart}
-  //     onAttributeChangeHandler={onAttributeChangeHandler}
-  //     isAvailableForPurchase={product.isAvailableForPurchase}
-  //     availableForPurchase={product.availableForPurchase}
-  //   />
-  // );
+  const executeScroll = () => contactSupplierRef.current.scrollIntoView();
 
   return (
     <div className="product-page">
@@ -96,8 +79,18 @@ const Page: React.FC<
                 <>
                   <GalleryCarousel images={getImages()} />
                   <div className="product-page__product__info">
-                    {/* {addToCartSection} */}
                     <ProductDetail product={product} />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: 16,
+                      }}
+                    >
+                      <StyledButton onClick={() => executeScroll()}>
+                        <FormattedMessage defaultMessage="Contact Supplier" />
+                      </StyledButton>
+                    </div>
                   </div>
                 </>
               ) : (
@@ -114,8 +107,18 @@ const Page: React.FC<
                         "product-page__product__info--fixed"
                       )}
                     >
-                      {/* {addToCartSection} */}
                       <ProductDetail product={product} />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginTop: 16,
+                        }}
+                      >
+                        <StyledButton onClick={() => executeScroll()}>
+                          <FormattedMessage defaultMessage="Contact Supplier" />
+                        </StyledButton>
+                      </div>
                     </div>
                   </div>
                 </>
@@ -129,8 +132,10 @@ const Page: React.FC<
             attributes={product.attributes}
           />
         </div>
-        <ContactSupplier />
-        {/* <OtherProducts products={product.category.products.edges} /> */}
+        <div ref={contactSupplierRef}>
+          <ContactSupplier />
+        </div>
+
         <SlideCarousel products={product.category.products.edges} />
       </div>
     </div>
