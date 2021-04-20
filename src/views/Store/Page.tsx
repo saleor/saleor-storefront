@@ -1,8 +1,10 @@
 import React from "react";
 
-import CustomizCarousel from "@temp/components/CustomizeCarousel";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
+
+import GalleryCarousel from "../Product/GalleryCarousel";
+import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 
 interface IProps {}
 function Page(props: IProps) {
@@ -225,17 +227,38 @@ function Page(props: IProps) {
     },
   ];
 
-  const listImg = [
-    "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
-    "https://cdn.benhvienthucuc.vn/wp-content/uploads/2020/04/uong-nuoc-cam-co-tac-dung-gi-4.jpg",
-    "https://luankha.com/wp-content/uploads/2020/04/cam-1054.jpg",
+  const listImg: ProductDetails_product_images[] = [
+    {
+      id: "1",
+      alt: "",
+      url:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+      __typename: "ProductImage",
+    },
+    {
+      id: "2",
+      alt: "",
+      url:
+        "https://cdn.benhvienthucuc.vn/wp-content/uploads/2020/04/uong-nuoc-cam-co-tac-dung-gi-4.jpg",
+      __typename: "ProductImage",
+    },
+    {
+      id: "3",
+      alt: "",
+      url: "https://luankha.com/wp-content/uploads/2020/04/cam-1054.jpg",
+      __typename: "ProductImage",
+    },
   ];
   return (
     <div>
       <NavigationBar listNav={ListNav} />
 
       {/* carousel */}
-      <CustomizCarousel listImg={listImg} />
+      <div style={{ maxHeight: "70vh" }}>
+        <div style={{ height: "100%" }}>
+          <GalleryCarousel images={listImg} />
+        </div>
+      </div>
       {/*  */}
       {/* MainProductList */}
       <MainProductList title="Main Product" listProduct={ListProduct} />
