@@ -15,6 +15,7 @@ enum TABS {
 export const ProductDescription: React.FC<IProps> = ({
   description,
   attributes,
+  store,
 }: IProps) => {
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
 
@@ -52,7 +53,7 @@ export const ProductDescription: React.FC<IProps> = ({
                 {attribute.values.map(value => value.name).join(", ")}
               </li>
               ))} */}
-        <CompanyProfile attributes={attributes} />
+        <CompanyProfile store={store} />
         {/* </S.AttributeList> */}
       </S.WrapperContent>
     </S.Wrapper>
