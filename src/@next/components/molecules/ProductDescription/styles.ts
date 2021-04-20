@@ -1,4 +1,5 @@
 import { media, styled } from "@styles";
+import { orange, white } from "@styles/constants";
 
 export const Wrapper = styled.div``;
 
@@ -103,4 +104,12 @@ export const WrapperContent = styled.div`
   background-color: #ffffff;
   border: 1px solid #cccccc;
   padding: 12px;
+`;
+
+export const ButtonStore = styled.div`
+  padding: 0.75rem;
+  border-radius: 2rem;
+  background: ${orange};
+  color: ${white};
+  cursor: pointer;
 `;

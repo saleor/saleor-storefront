@@ -1,5 +1,8 @@
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+
+import { paths } from "@paths";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -98,6 +101,19 @@ export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
               </S.SubTitleText>
             </S.CompanyLocation> */}
         </S.CompanyWrapInfo>
+
+        {store?.id && (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link
+              href={{
+                pathname: paths.store,
+                query: { id: store.id },
+              }}
+            >
+              <S.ButtonStore>Go To Store Page</S.ButtonStore>
+            </Link>
+          </div>
+        )}
       </S.WrapBox>
     </S.Wrapper>
   );
