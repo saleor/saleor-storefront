@@ -33,11 +33,12 @@ export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
                   <FormattedMessage defaultMessage="Description" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  {store ? (
+                  {store?.description &&
+                  JSON.parse(store.description).description ? (
                     <>
                       <S.AttributeName>
-                        {store.description.description}
-                      </S.AttributeName>{" "}
+                        {JSON.parse(store.description).description}
+                      </S.AttributeName>
                     </>
                   ) : (
                     "-"
