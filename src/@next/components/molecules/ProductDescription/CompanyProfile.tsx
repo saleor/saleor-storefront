@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const CompanyProfile: React.FC<IProps> = ({ attributes }: IProps) => {
+export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
   return (
     <S.Wrapper>
       <S.WrapBox>
@@ -18,53 +18,85 @@ export const CompanyProfile: React.FC<IProps> = ({ attributes }: IProps) => {
             <S.CompanyInfoBody>
               <S.CompanyInfoTr>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store Name" />
+                  <FormattedMessage defaultMessage="Name" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
+                  {store ? (
+                    <>
+                      <S.AttributeName>{store.name}</S.AttributeName>{" "}
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store Category" />
+                  <FormattedMessage defaultMessage="Description" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
+                  {store?.description &&
+                  JSON.parse(store.description).description ? (
+                    <>
+                      <S.AttributeName>
+                        {JSON.parse(store.description).description}
+                      </S.AttributeName>
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </S.CompanyInfoTd>
               </S.CompanyInfoTr>
               <S.CompanyInfoTr>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store Description" />
+                  <FormattedMessage defaultMessage="Phone" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
+                  {store ? (
+                    <>
+                      <S.AttributeName>{store.phone}</S.AttributeName>{" "}
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store Coordinates" />
+                  <FormattedMessage defaultMessage="Coordinates" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
+                  {store ? (
+                    <>
+                      <S.AttributeName>{store.latlong}</S.AttributeName>{" "}
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </S.CompanyInfoTd>
               </S.CompanyInfoTr>
               <S.CompanyInfoTr>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store PhoneNumber" />
+                  <FormattedMessage defaultMessage="acreage" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
-                </S.CompanyInfoTd>
-                <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="Store Address" />
-                </S.CompanyInfoTd>
-                <S.CompanyInfoTd>
-                  <FormattedMessage defaultMessage="-" />
+                  {store ? (
+                    <>
+                      <S.AttributeName>{store.acreage}</S.AttributeName>{" "}
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </S.CompanyInfoTd>
               </S.CompanyInfoTr>
             </S.CompanyInfoBody>
           </S.CompanyInfo>
-          <S.CompanyLocation>
-            <S.SubTitleText>
-              <FormattedMessage defaultMessage="Store Location" />
-            </S.SubTitleText>
-          </S.CompanyLocation>
+          {/* <S.CompanyLocation>
+              <S.SubTitleText>
+                <FormattedMessage defaultMessage="Location" />
+              </S.SubTitleText>
+            </S.CompanyLocation>
+            <S.CompanyLocation>
+              <S.SubTitleText>
+                <FormattedMessage defaultMessage="Images" />
+              </S.SubTitleText>
+            </S.CompanyLocation> */}
         </S.CompanyWrapInfo>
       </S.WrapBox>
     </S.Wrapper>
