@@ -32,7 +32,10 @@ export const StoreTabTiles: React.FC = () => {
                   return <Loader />;
                 }
 
-                if (listStore && Object.keys(listStore).length === 0) {
+                if (
+                  (listStore && Object.keys(listStore).length === 0) ||
+                  !listStore
+                ) {
                   return <StoreDetail />;
                 }
 

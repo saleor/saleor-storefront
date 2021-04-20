@@ -15,7 +15,7 @@ import * as S from "./styles";
 type Props = {
   handleSubmit: (data: RegisterStoreVariables) => void;
   hide: () => void;
-  initialValues: RegisterStoreVariables;
+  initialValues?: RegisterStoreVariables;
   isLoadingSubmit: boolean;
 };
 
@@ -28,6 +28,15 @@ export const StoreForm: React.FC<Props> = ({
   const intl = useIntl();
 
   const Map = () => {
+    const lat = initialValues?.latlong
+      ? parseFloat(initialValues.latlong.split(",")[0])
+      : 0;
+    const lng = initialValues?.latlong
+      ? parseFloat(initialValues?.latlong?.split(",")[1])
+      : 0;
+
+    console.log(lat, lng);
+
     return (
       <GoogleMap
         defaultZoom={10}
@@ -48,10 +57,15 @@ export const StoreForm: React.FC<Props> = ({
     lng = event.latLng.lng().toString();
   };
 
+  const initialForm = initialValues || {
+    name: "",
+    storeTypeId: "",
+  };
+
   return (
     <>
       <Formik
-        initialValues={initialValues}
+        initialValues={initialForm}
         onSubmit={(values, { setSubmitting }) => {
           const dataSubmit: RegisterStoreVariables = {
             name: values.name,
@@ -59,7 +73,7 @@ export const StoreForm: React.FC<Props> = ({
             storeTypeId: values.storeTypeId,
             phone: values.phone,
             acreage: values.acreage,
-            latlong: `${lat},${lng}`,
+            latlong: lat === "" ? initialForm.latlong : `${lat},${lng}`,
             backgroundImage: values.backgroundImage,
             backgroundImageAlt: values.backgroundImageAlt,
           };

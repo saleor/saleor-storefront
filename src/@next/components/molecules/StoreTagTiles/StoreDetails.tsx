@@ -1,9 +1,10 @@
 import React from "react";
 
+import { Loader } from "@components/atoms";
 import { IconButton } from "@components/atoms/IconButton";
 
 import { RegisterStoreVariables } from "./gqlTypes/RegisterStore";
-import { TypedStoreRegisterMutation } from "./queries";
+import { TypedStoreRegisterMutation, TypeStoreForUserQuery } from "./queries";
 import { StoreForm } from "./StoreForm";
 import * as S from "./styles";
 
@@ -14,49 +15,118 @@ type Props = {
 export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
   const [isEditing, setIsEditing] = React.useState(false);
 
-  const initialValues: RegisterStoreVariables = {
-    name: "",
-    storeTypeId: "",
-  };
-
   const NO_STORE = `You don't have Store`;
 
   return (
     <>
-      <S.HeaderSmall>
-        <div>{storeName || NO_STORE}</div>
-        {!isEditing && (
-          <IconButton
-            testingContext="editDetailsButton"
-            name="edit"
-            size={22}
-            onClick={() => setIsEditing(isEditing => !isEditing)}
-          />
-        )}
-      </S.HeaderSmall>
-      {isEditing ? (
-        <TypedStoreRegisterMutation>
-          {(createStore, { loading, data }) => {
+      {storeId ? (
+        <TypeStoreForUserQuery
+          alwaysRender
+          displayLoader={false}
+          errorPolicy="all"
+          variables={{ id: storeId }}
+        >
+          {({ data: dataStore }) => {
+            console.log({ dataStore });
+            if (!dataStore?.store) {
+              return <Loader />;
+            }
+
+            const initialData: RegisterStoreVariables = {
+              name: dataStore.store.name || "",
+              description: dataStore.store.description
+                ? JSON.parse(dataStore.store.description).description
+                : "",
+              phone: dataStore?.store.phone,
+              acreage: dataStore?.store.acreage,
+              latlong: dataStore?.store.latlong,
+              storeTypeId: dataStore.store.storeType.id,
+            };
+
             return (
-              <StoreForm
-                isLoadingSubmit={loading}
-                initialValues={initialValues}
-                handleSubmit={data => {
-                  createStore({
-                    variables: {
-                      ...data,
-                      description: `{}`,
-                    },
-                  });
-                }}
-                hide={() => {
-                  setIsEditing(false);
-                }}
-              />
+              <>
+                <S.HeaderSmall>
+                  <div>{storeName || NO_STORE}</div>
+                  {!isEditing && (
+                    <IconButton
+                      testingContext="editDetailsButton"
+                      name="edit"
+                      size={22}
+                      onClick={() => setIsEditing(isEditing => !isEditing)}
+                    />
+                  )}
+                </S.HeaderSmall>
+                {isEditing ? (
+                  <TypedStoreRegisterMutation>
+                    {(createStore, { loading, data }) => {
+                      console.log({ data });
+                      return (
+                        <StoreForm
+                          isLoadingSubmit={loading}
+                          initialValues={initialData}
+                          handleSubmit={data => {
+                            createStore({
+                              variables: {
+                                ...data,
+                                description: JSON.stringify({
+                                  description: data.description,
+                                }),
+                              },
+                            });
+                            setIsEditing(false);
+                          }}
+                          hide={() => {
+                            setIsEditing(false);
+                          }}
+                        />
+                      );
+                    }}
+                  </TypedStoreRegisterMutation>
+                ) : null}
+              </>
             );
           }}
-        </TypedStoreRegisterMutation>
-      ) : null}
+        </TypeStoreForUserQuery>
+      ) : (
+        <>
+          <S.HeaderSmall>
+            <div>{storeName || NO_STORE}</div>
+            {!isEditing && (
+              <IconButton
+                testingContext="editDetailsButton"
+                name="edit"
+                size={22}
+                onClick={() => setIsEditing(isEditing => !isEditing)}
+              />
+            )}
+          </S.HeaderSmall>
+          {isEditing ? (
+            <TypedStoreRegisterMutation>
+              {(createStore, { loading, data }) => {
+                return (
+                  <StoreForm
+                    isLoadingSubmit={loading}
+                    handleSubmit={data => {
+                      createStore({
+                        variables: {
+                          ...data,
+                          description: JSON.stringify({
+                            description: data.description,
+                          }),
+                        },
+                      });
+                      setIsEditing(false);
+                    }}
+                    hide={() => {
+                      setIsEditing(false);
+                    }}
+                  />
+                );
+              }}
+            </TypedStoreRegisterMutation>
+          ) : null}
+        </>
+      )}
     </>
   );
 };

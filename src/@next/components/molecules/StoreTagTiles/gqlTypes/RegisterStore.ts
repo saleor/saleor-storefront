@@ -70,3 +70,19 @@ export interface IStoreUser{
 export interface StoreUser {
   store:{id:string, name:string}
 }
+
+export interface IStoreForUser{
+  store:{
+    name: string;
+    description?: string;
+    storeType:{
+      id:string;
+      name:string;
+    }
+    phone?: string;
+    acreage?: number;
+    latlong?: string;
+    backgroundImage?: string;
+    backgroundImageAlt?: string;
+  }
+}

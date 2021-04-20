@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { TypedMutation } from "../../../../core/mutations";
 import { TypedQuery } from "../../../../core/queries";
 import {
+  IStoreForUser,
   IStoreType,
   IStoreUser,
   RegisterStore,
@@ -84,4 +85,24 @@ export const listStoreUserQuery = gql`
 `;
 export const TypeListStoreUserQuery = TypedQuery<IStoreUser, {}>(
   listStoreUserQuery
+);
+
+export const storeForUser = gql`
+  query stores($id: ID!) {
+    store(id: $id) {
+      name
+      description
+      phone
+      acreage
+      latlong
+      storeType {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const TypeStoreForUserQuery = TypedQuery<IStoreForUser, {}>(
+  storeForUser
 );
