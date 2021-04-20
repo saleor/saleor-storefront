@@ -91,7 +91,14 @@ function Page(props: IProps) {
     },
   ];
 
-  const ListProduct = [
+  const listProduct: {
+    id: number;
+    imgUrl: string;
+    name: string;
+    prices?: number;
+    type?: string;
+    tab: string[];
+  }[] = [
     {
       id: 1,
       imgUrl:
@@ -227,11 +234,8 @@ function Page(props: IProps) {
     <div>
       <NavigationBar listNav={ListNav} />
 
-      {/* carousel */}
-      {/*  */}
-      {/* MainProductList */}
-      <MainProductList title="Main Product" listProduct={ListProduct} />
-      {/*  */}
+      <MainProductList title="Main Product" listProduct={listProduct} />
+
       <MainProductList title="Tile" listProduct={ListProductByCategory} />
     </div>
   );
