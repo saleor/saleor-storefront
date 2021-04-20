@@ -1,5 +1,6 @@
 import React from "react";
 
+import CustomizCarousel from "@temp/components/CustomizeCarousel";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 
@@ -223,11 +224,18 @@ function Page(props: IProps) {
       tab: ["tab1", "tab2"],
     },
   ];
+
+  const listImg = [
+    "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+    "https://cdn.benhvienthucuc.vn/wp-content/uploads/2020/04/uong-nuoc-cam-co-tac-dung-gi-4.jpg",
+    "https://luankha.com/wp-content/uploads/2020/04/cam-1054.jpg",
+  ];
   return (
     <div>
       <NavigationBar listNav={ListNav} />
 
       {/* carousel */}
+      <CustomizCarousel listImg={listImg} />
       {/*  */}
       {/* MainProductList */}
       <MainProductList title="Main Product" listProduct={ListProduct} />

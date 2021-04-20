@@ -132,6 +132,14 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     width:50% !important;
   }
 
+  .carousel.carousel-slider .control-arrow {
+    padding: 40px !important;
+  }
+
+  .carousel .slider-wrapper{
+    max-height: 60vh !important;
+  }
+
   @media screen and (max-width: 540px){
     .product-page__product__gallery {
       width: 100% !important;
