@@ -66,6 +66,7 @@ export const CompanyProfile: React.FC<IProps> = ({ attributes }: IProps) => {
             </S.SubTitleText>
           </S.CompanyLocation>
         </S.CompanyWrapInfo>
+        <button>go to store page</button>
       </S.WrapBox>
     </S.Wrapper>
   );
