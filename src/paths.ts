@@ -17,6 +17,7 @@ export const paths = {
   product: `${baseUrl}product/${slugUrl}`,
   search: `${baseUrl}search`,
   wishlist: `${baseUrl}wishlist`,
+  store: `${baseUrl}store/[id]`,
   /**
    * Checkout
    */
