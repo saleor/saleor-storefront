@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import * as loupe from "./loupe.svg";
 import * as S from "./styles";
 
 interface IProps {
@@ -73,13 +72,6 @@ function NavigationBar({ listNav }: IProps) {
             })}
           </S.NavList>
         </S.NavBox>
-
-        <S.SearchWrapper>
-          <S.SearchInput placeholder="type something" />
-          <S.SearchBtn>
-            <img style={{ width: "15px" }} src={loupe.default} alt="" />
-          </S.SearchBtn>
-        </S.SearchWrapper>
       </S.Wrapper>
     </S.WrapperAll>
   );
