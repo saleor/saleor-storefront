@@ -27,18 +27,22 @@ export const Title = styled.h3`
 export const List = styled.div`
   display: flex;
   flex-wrap: wrap;
-  border-left: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
-  border-top: 1px solid #d3d3d3;
+  // border-left: 1px solid #d3d3d3;
+  // border-right: 1px solid #d3d3d3;
+  // border-top: 1px solid #d3d3d3;
 `;
 
 export const Item = styled.div`
   max-width: 25%;
   padding: 0 20px 15px 20px;
   border-right: 1px solid #d3d3d3;
+  border-top: 1px solid #d3d3d3;
   border-bottom: 1px solid #d3d3d3;
-  &::nth-child(4n) {
-    border-right: none;
+  &:nth-child(n + 4) {
+    border-top: none;
+  }
+  &:nth-child(4n + 1) {
+    border-left: 1px solid #d3d3d3;
   }
   @media screen and (max-width: 1080px) {
     max-width: 50%;
