@@ -3,7 +3,14 @@ import React from "react";
 import * as S from "./styles";
 
 interface IProps {
-  listProduct: any;
+  listProduct: {
+    id: number;
+    imgUrl: string;
+    name: string;
+    prices?: number;
+    type?: string;
+    tab: string[];
+  }[];
   title: string;
 }
 function MainProductList({ listProduct, title }: IProps) {

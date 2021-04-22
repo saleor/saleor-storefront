@@ -1,8 +1,6 @@
-import React from "react";
-
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
-
+import React from "react";
 import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 
@@ -94,7 +92,14 @@ function Page(props: IProps) {
     },
   ];
 
-  const ListProduct = [
+  const listProduct: {
+    id: number;
+    imgUrl: string;
+    name: string;
+    prices?: number;
+    type?: string;
+    tab: string[];
+  }[] = [
     {
       id: 1,
       imgUrl:
@@ -261,7 +266,7 @@ function Page(props: IProps) {
       </div>
       {/*  */}
       {/* MainProductList */}
-      <MainProductList title="Main Product" listProduct={ListProduct} />
+      <MainProductList title="Main Product" listProduct={listProduct} />
       {/*  */}
       <MainProductList title="Tile" listProduct={ListProductByCategory} />
     </div>

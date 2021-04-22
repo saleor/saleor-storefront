@@ -130,6 +130,7 @@ const Page: React.FC<
           <ProductDescription
             description={product.description}
             attributes={product.attributes}
+            store={product.store}
           />
         </div>
         <div ref={contactSupplierRef}>

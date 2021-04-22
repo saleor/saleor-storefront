@@ -141,6 +141,14 @@ export const productDetailsQuery = gql`
       variants {
         ...ProductVariantFields
       }
+      store {
+        id
+        name
+        description
+        phone
+        acreage
+        latlong
+      }
       seoDescription
       seoTitle
       isAvailable
