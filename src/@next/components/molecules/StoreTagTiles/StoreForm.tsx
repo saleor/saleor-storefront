@@ -51,6 +51,7 @@ export const StoreForm: React.FC<Props> = ({
   const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
   const handleClick = (
+    // @ts-ignore
     event: google.maps.MapMouseEvent | google.maps.IconMouseEvent
   ) => {
     lat = event.latLng.lat().toString();
