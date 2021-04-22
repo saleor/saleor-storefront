@@ -1,5 +1,6 @@
 import React from "react";
 
+import FollowButton from "@temp/components/FollowButton";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 
@@ -230,9 +231,13 @@ function Page(props: IProps) {
       tab: ["tab1", "tab2"],
     },
   ];
+
+  const [stt, setStt] = React.useState(false);
   return (
     <div>
       <NavigationBar listNav={ListNav} />
+
+      <FollowButton isActive={stt} setStt={setStt} />
 
       <MainProductList title="Main Product" listProduct={listProduct} />
 

@@ -9,6 +9,7 @@ interface IStyleProps {
   position: Position;
   state: TransitionState;
   transparent?: boolean;
+  minHeight?: number;
 }
 
 const getTranslate = (side: "left" | "right") =>
@@ -57,7 +58,8 @@ export const Lightbox = styled.div<IStyleProps>`
   position: relative;
   width: ${({ position, theme: { modal } }) =>
     lightboxHeight(modal.modalWidth)[position]};
-  min-height: ${props => props.theme.modal.modalMinHeight}px;
+  min-height: ${props =>
+    props.minHeight ? props.minHeight : props.theme.modal.modalMinHeight}px;
   height: ${({ position }) => lightboxWidth[position]};
   background-color: ${props => props.theme.colors.white};
   ${({ open, position }) => {

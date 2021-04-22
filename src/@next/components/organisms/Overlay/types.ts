@@ -17,6 +17,7 @@ export interface IProps {
    * multiple elements in the same view from each other
    */
   testingContextId?: string;
+  minHeight?: number;
 }
 
 export type TransitionState =
