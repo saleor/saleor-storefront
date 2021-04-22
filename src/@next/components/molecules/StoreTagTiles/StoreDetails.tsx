@@ -21,6 +21,8 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
 
   const NO_STORE = `You don't have Store`;
 
+  const [reRender, setRerender] = React.useState(false);
+
   return (
     <>
       {storeId ? (
@@ -30,7 +32,11 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
           errorPolicy="all"
           variables={{ id: storeId }}
         >
-          {({ data: dataStore }) => {
+          {({ data: dataStore, refetch }) => {
+            if (reRender) {
+              refetch();
+              setRerender(false);
+            }
             if (!dataStore?.store) {
               return <Loader />;
             }
@@ -65,9 +71,13 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
                   )}
                 </S.HeaderSmall>
                 {isEditing ? (
-                  <TypedStoreUpdateMutation>
+                  <TypedStoreUpdateMutation
+                    onCompleted={() => {
+                      setIsEditing(false);
+                      setRerender(true);
+                    }}
+                  >
                     {(updateStore, { loading, data }) => {
-                      console.log({ data });
                       return (
                         <StoreForm
                           isLoadingSubmit={loading}
@@ -82,7 +92,6 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
                                 }),
                               },
                             });
-                            setIsEditing(false);
                           }}
                           hide={() => {
                             setIsEditing(false);
@@ -110,7 +119,12 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
             )}
           </S.HeaderSmall>
           {isEditing ? (
-            <TypedStoreRegisterMutation>
+            <TypedStoreRegisterMutation
+              onCompleted={() => {
+                setIsEditing(false);
+                setRerender(true);
+              }}
+            >
               {(createStore, { loading, data }) => {
                 return (
                   <StoreForm
@@ -124,7 +138,6 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
                           }),
                         },
                       });
-                      setIsEditing(false);
                     }}
                     hide={() => {
                       setIsEditing(false);
