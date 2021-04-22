@@ -4,3 +4,4 @@ export * from "./PasswordReset";
 export * from "./CartPage";
 export * from "./CheckoutPage";
 export * from "./ThankYouPage";
+export * from "./StorePage";
