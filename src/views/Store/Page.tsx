@@ -240,7 +240,7 @@ function Page(props: IProps) {
       <FollowButton isActive={stt} setStt={setStt} />
 
       <MainProductList title="Main Product" listProduct={listProduct} />
-
+      {/*  */}
       <MainProductList title="Tile" listProduct={ListProductByCategory} />
     </div>
   );

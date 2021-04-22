@@ -20,7 +20,7 @@ $orange: #ff6a00;
 
 $darkBlue: #445268;
 
-$base-body: #F2F3F7;
+$base-body: #f2f3f7;
 
 // typography
 $base-font-family: Roboto, Helvetica, Tahoma, Arial, "Microsoft YaHei";
@@ -88,6 +88,7 @@ $product-item-price-margin: $spacer 0 0;
 // breakpoints
 $medium-screen: 992px;
 $small-screen: 540px;
+$xxxLargeScreen: 1920px;
 
 // carousel
 $carousel-control-padding: 0.2rem 0.5rem;
@@ -103,4 +104,5 @@ $modal-min-height: 455px;
 :export {
   mediumScreen: $medium-screen;
   smallScreen: $small-screen;
+  xxxLargeScreen: $xxxLargeScreen;
 }

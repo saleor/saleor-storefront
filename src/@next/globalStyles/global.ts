@@ -129,7 +129,21 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   .product-page__product__gallery{
-    width:50% !important;
+    // width:50% !important;
+  }
+
+  .carousel.carousel-slider .control-arrow {
+    padding: 40px !important;
+  }
+
+  .carousel .slider-wrapper{
+    max-height: 60vh !important;
+  }
+
+  .slider-slide > img {
+    height:100%;
+    // height:fit-content;
+    object-fit: cover;
   }
 
   @media screen and (max-width: 540px){
