@@ -8,6 +8,8 @@ import {
   IStoreUser,
   RegisterStore,
   RegisterStoreVariables,
+  UpdateStore,
+  UpdateStoreVariables,
 } from "./gqlTypes/RegisterStore";
 
 const storeRegisterMutation = gql`
@@ -55,6 +57,54 @@ export const TypedStoreRegisterMutation = TypedMutation<
   RegisterStore,
   RegisterStoreVariables
 >(storeRegisterMutation);
+
+const storeUpdateMutation = gql`
+  mutation storeUpdate(
+    $id: ID!
+    $storeTypeId: ID!
+    $name: String
+    $description: JSONString
+    $phone: String
+    $acreage: Float
+    $latlong: String
+    $backgroundImage: Upload
+    $backgroundImageAlt: String
+  ) {
+    storeUpdate(
+      id: $id
+      input: {
+        name: $name
+        description: $description
+        storeType: $storeTypeId
+        phone: $phone
+        acreage: $acreage
+        latlong: $latlong
+        backgroundImage: $backgroundImage
+        backgroundImageAlt: $backgroundImageAlt
+      }
+    ) {
+      store {
+        id
+        name
+        description
+        phone
+        latlong
+        backgroundImage {
+          alt
+        }
+      }
+      storeErrors {
+        message
+        field
+      }
+    }
+  }
+`;
+
+export const TypedStoreUpdateMutation = TypedMutation<
+  UpdateStore,
+  UpdateStoreVariables
+>(storeUpdateMutation);
 
 export const storeTypeQuery = gql`
   query stores {

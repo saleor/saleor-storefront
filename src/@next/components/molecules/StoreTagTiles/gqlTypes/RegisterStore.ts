@@ -29,6 +29,50 @@ export interface RegisterStore_storeRegister {
      */
     accountRegister: RegisterStore_storeRegister | null;
   }
+
+  export interface UpdateStore {
+    /**
+     * Register a new user.
+     */
+     storeUpdate: UpdateStore_storeUpdate | null;
+  }
+
+  export interface UpdateStore_storeUpdate {
+    __typename: "StoreUpdate";
+    /**
+     * List of errors that occurred executing the mutation.
+     */
+    StoreErrors: UpdateStore_storeUpdate_errors[];
+    /**
+     * Informs whether users need to confirm their email address.
+     */
+    requiresConfirmation: boolean | null;
+    store:StoreResponse
+  }
+
+
+  export interface StoreResponse {
+    backgroundImage:{alt: string; __typename: "Image";};
+    description: string;
+    id: string;
+    latlong: string;
+    name: string;
+    phone: string;
+    __typename: "Store";
+  }
+
+  export interface UpdateStore_storeUpdate_errors {
+    __typename: "StoreError";
+    /**
+     * Name of a field that caused the error. A value of `null` indicates that the
+     * error isn't associated with a particular field.
+     */
+    field: string | null;
+    /**
+     * The error message.
+     */
+    message: string | null;
+  }
   
 
 export interface RegisterStoreVariables { 
@@ -40,6 +84,17 @@ export interface RegisterStoreVariables {
     latlong?: string;
     backgroundImage?: string;
     backgroundImageAlt?: string;
+}
+export interface UpdateStoreVariables { 
+  name: string;
+  id:string
+  description?: string;
+  storeTypeId: string;
+  phone?: string;
+  acreage?: number;
+  latlong?: string;
+  backgroundImage?: string;
+  backgroundImageAlt?: string;
 }
 
 
