@@ -8,6 +8,8 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
+  const tempDescription =
+    store?.description && store.description.replace(/'/g, '"');
   return (
     <S.Wrapper>
       <S.WrapBox>
@@ -36,11 +38,11 @@ export const CompanyProfile: React.FC<IProps> = ({ store }: IProps) => {
                   <FormattedMessage defaultMessage="Description" />
                 </S.CompanyInfoTd>
                 <S.CompanyInfoTd>
-                  {store?.description &&
-                  JSON.parse(store.description).description ? (
+                  {tempDescription &&
+                  JSON.parse(tempDescription).description ? (
                     <>
                       <S.AttributeName>
-                        {JSON.parse(store.description).description}
+                        {JSON.parse(tempDescription).description}
                       </S.AttributeName>
                     </>
                   ) : (
