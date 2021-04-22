@@ -57,7 +57,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
   );
 
   return (
-    <Media query={{ maxWidth: smallScreen }}>
+    <Media query={{ minWidth: smallScreen }}>
       {matches =>
         matches ? (
           carousel(1)
@@ -66,7 +66,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
             {matches ? (
               carousel(1)
             ) : (
-              <Media query={{ maxWidth: xxxLargeScreen }}>
+              <Media query={{ maxWidth: "4096px" }}>
                 {!matches && carousel(1)}
               </Media>
             )}
