@@ -26,6 +26,7 @@ declare module ".*/scss/variables.scss" {
   const content: {
     mediumScreen: string;
     smallScreen: string;
+    xxxLargeScreen: string;
   };
   export = content;
 }
