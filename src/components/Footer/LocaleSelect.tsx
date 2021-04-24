@@ -65,10 +65,10 @@ const LocaleSelect: React.FC = () => {
         )}
         <div className="footer-paymentMethods">
           <div className="footer-paymentMethods__cards">
-            <img src="https://a-dam.com/storage/icons/visa.svg" alt="visa" />
-            <img src="https://a-dam.com/storage/icons/amex.svg" alt="amex" />
+            <img src="https://api.a-dam.com/storage/icons/visa.svg" alt="visa" />
+            <img src="https://api.a-dam.com/storage/icons/amex.svg" alt="amex" />
             <img
-              src="https://a-dam.com/storage/icons/mastercard.svg"
+              src="https://api.a-dam.com/storage/icons/mastercard.svg"
               alt="mastercard"
             />
             <img
