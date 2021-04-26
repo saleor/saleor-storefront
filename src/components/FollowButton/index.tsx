@@ -7,7 +7,7 @@ import * as S from "./styles";
 
 interface IProps {
   isActive: boolean;
-  setStt: any;
+  setStt: (value: boolean) => void;
 }
 
 function FollowButton({ isActive, setStt }: IProps) {

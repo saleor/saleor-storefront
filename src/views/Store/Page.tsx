@@ -1,8 +1,9 @@
 import React from "react";
 
-import FollowButton from "@temp/components/FollowButton";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
+
+import FollowButton from "../../components/FollowButton";
 
 interface IProps {}
 function Page(props: IProps) {
