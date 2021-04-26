@@ -8,9 +8,11 @@ import { ProductDetails_product_images } from "./gqlTypes/ProductDetails";
 
 const GalleryCarousel: React.FC<{
   images: ProductDetails_product_images[];
-}> = ({ images }) => (
+  isSlide?: boolean;
+}> = ({ images, isSlide }) => (
   <div className="product-page__product__gallery">
     <Carousel
+      isSlide={isSlide}
       renderCenterLeftControls={() => null}
       renderCenterRightControls={() => null}
       renderBottomCenterControls={props => {
