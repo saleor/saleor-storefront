@@ -4,6 +4,7 @@ import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 
 import FollowButton from "../../components/FollowButton";
+import GalleryCarousel from "../Product/GalleryCarousel";
 
 interface IProps {}
 function Page(props: IProps) {
@@ -233,10 +234,41 @@ function Page(props: IProps) {
     },
   ];
 
+  const images: {
+    __typename: "ProductImage";
+    id: string;
+    alt: string;
+    url: string;
+  }[] = [
+    {
+      __typename: "ProductImage",
+      id: "1",
+      alt: "",
+      url:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+    },
+    {
+      __typename: "ProductImage",
+      id: "2",
+      alt: "",
+      url:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+    },
+    {
+      __typename: "ProductImage",
+      id: "3",
+      alt: "",
+      url:
+        "https://icdn.dantri.com.vn/thumb_w/640/2019/08/06/cam-1565062520965.jpg",
+    },
+  ];
+
   const [stt, setStt] = React.useState(false);
   return (
     <div>
       <NavigationBar listNav={ListNav} />
+
+      <GalleryCarousel images={images} isSlide />
 
       <FollowButton isActive={stt} setStt={setStt} />
 
