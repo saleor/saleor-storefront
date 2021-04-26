@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import React from "react";
 import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
+import Marker from "react-google-maps/lib/components/Marker";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, ButtonLink } from "@components/atoms";
@@ -26,27 +27,29 @@ export const StoreForm: React.FC<Props> = ({
   isLoadingSubmit,
 }) => {
   const intl = useIntl();
+  const lat = initialValues?.latlong
+    ? parseFloat(initialValues.latlong.split(",")[0])
+    : 0;
+  const lng = initialValues?.latlong
+    ? parseFloat(initialValues?.latlong?.split(",")[1])
+    : 0;
+
+  const [position, setPosition] = React.useState({
+    lat: 45.421532,
+    lng: -75.697189,
+  });
 
   const Map = () => {
-    const lat = initialValues?.latlong
-      ? parseFloat(initialValues.latlong.split(",")[0])
-      : 0;
-    const lng = initialValues?.latlong
-      ? parseFloat(initialValues?.latlong?.split(",")[1])
-      : 0;
-
-    console.log(lat, lng);
-
     return (
       <GoogleMap
         defaultZoom={10}
-        defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
+        defaultCenter={position}
         onClick={e => handleClick(e)}
-      />
+      >
+        <Marker position={position} />
+      </GoogleMap>
     );
   };
-  let lat = "";
-  let lng = "";
 
   const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
@@ -54,8 +57,7 @@ export const StoreForm: React.FC<Props> = ({
     // @ts-ignore
     event: google.maps.MapMouseEvent | google.maps.IconMouseEvent
   ) => {
-    lat = event.latLng.lat().toString();
-    lng = event.latLng.lng().toString();
+    setPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   };
 
   const initialForm = initialValues || {
@@ -74,7 +76,9 @@ export const StoreForm: React.FC<Props> = ({
             storeTypeId: values.storeTypeId,
             phone: values.phone,
             acreage: values.acreage,
-            latlong: lat === "" ? initialForm.latlong : `${lat},${lng}`,
+            latlong: position.lat
+              ? initialForm.latlong
+              : `${position.lat},${position.lng}`,
             backgroundImage: values.backgroundImage,
             backgroundImageAlt: values.backgroundImageAlt,
           };
