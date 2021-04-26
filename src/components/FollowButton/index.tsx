@@ -45,6 +45,7 @@ function FollowButton({ isActive, setStt }: IProps) {
               setStt(false);
             }}
             minHeight={155}
+            padding="1rem 1.8rem"
           >
             Do you want to unfollow ?
           </Modal>

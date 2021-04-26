@@ -43,6 +43,7 @@ export const Modal: React.FC<IProps> = ({
   testingContext,
   title,
   minHeight,
+  padding,
 }: IProps) => {
   return (
     <Overlay
@@ -57,7 +58,7 @@ export const Modal: React.FC<IProps> = ({
         <CardHeader divider onHide={hide}>
           {title}
         </CardHeader>
-        <S.Content>{children}</S.Content>
+        <S.Content padding={padding}>{children}</S.Content>
         <FormFooter
           divider
           disabled={disabled}
