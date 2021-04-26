@@ -11,23 +11,13 @@ interface IProps {
 }
 
 function FollowButton({ isActive, setStt }: IProps) {
-  const styles: any = {
-    display: "inline-block",
-    backgroundColor: isActive ? orange : "#fff",
-    width: "120px",
-    padding: "8px 0",
-    color: isActive ? "#fff" : orange,
-    border: `1px solid`,
-    borderRadius: "5px",
-    cursor: "pointer",
-    textAlign: "center",
-  };
   const [showModal, setShowModal] = React.useState(false);
   return (
     <S.Wrapper>
       <S.WrapperContainer style={{ marginTop: "20px" }}>
-        <p
-          style={styles}
+        <S.Button
+          isActive={isActive}
+          color={orange}
           onClick={() => {
             if (isActive) {
               setShowModal(true);
@@ -37,7 +27,7 @@ function FollowButton({ isActive, setStt }: IProps) {
           }}
         >
           {isActive ? "Unfollow" : "Follow"}
-        </p>
+        </S.Button>
         <div className="modal">
           <Modal
             submitButtonTestingContext="submitAddressFormModalButton"
