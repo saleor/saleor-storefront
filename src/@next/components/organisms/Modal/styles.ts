@@ -7,7 +7,7 @@ export const Modal = styled.div`
   width: 100%;
 `;
 
-export const Content = styled.div`
-  padding: ${({ theme: { spacing } }) =>
-    `4rem ${spacing.gutter} 1.8rem ${spacing.gutter}`};
+export const Content = styled.div<{ padding?: string }>`
+  padding: ${({ theme: { spacing }, padding }) =>
+    padding || `4rem ${spacing.gutter} 1.8rem ${spacing.gutter}`};
 `;
