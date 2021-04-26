@@ -27,12 +27,12 @@ export const StoreForm: React.FC<Props> = ({
   isLoadingSubmit,
 }) => {
   const intl = useIntl();
-  const lat = initialValues?.latlong
-    ? parseFloat(initialValues.latlong.split(",")[0])
-    : 0;
-  const lng = initialValues?.latlong
-    ? parseFloat(initialValues?.latlong?.split(",")[1])
-    : 0;
+  // const lat = initialValues?.latlong
+  //   ? parseFloat(initialValues.latlong.split(",")[0])
+  //   : 0;
+  // const lng = initialValues?.latlong
+  //   ? parseFloat(initialValues?.latlong?.split(",")[1])
+  //   : 0;
 
   const [position, setPosition] = React.useState({
     lat: 45.421532,
@@ -42,7 +42,7 @@ export const StoreForm: React.FC<Props> = ({
   const Map = () => {
     return (
       <GoogleMap
-        defaultZoom={10}
+        defaultZoom={15}
         defaultCenter={position}
         onClick={e => handleClick(e)}
       >
