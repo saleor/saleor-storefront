@@ -86,7 +86,7 @@ const Page: React.FC<PageProps> = ({
 
   return (
     <div className="category">
-      <div className="search-page">
+      {/* <div className="search-page">
         <div className="search-page__header">
           <div className="search-page__header__input container">
             <DebounceChange
@@ -111,7 +111,7 @@ const Page: React.FC<PageProps> = ({
             </DebounceChange>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="container">
         <FilterSidebar
           show={showFilters}

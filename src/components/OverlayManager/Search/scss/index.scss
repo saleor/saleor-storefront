@@ -22,12 +22,13 @@ $drawer-width: 25rem;
     grid-template-columns: 4fr 1fr;
     align-items: center;
     .input {
+      position: relative;
       margin-bottom: 0;
     }
 
     .input__icon-right {
       svg * {
-        fill: $turquoise;
+        fill: $base-font-color;
       }
     }
 

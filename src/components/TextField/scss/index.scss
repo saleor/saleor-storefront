@@ -129,6 +129,7 @@
     position: absolute;
     z-index: 100;
     right: $spacer;
-    transform: translate(0, 60%);
+    transform: translate(0, 100%);
+    cursor: pointer;
   }
 }
