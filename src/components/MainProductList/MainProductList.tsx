@@ -1,16 +1,11 @@
 import React from "react";
 
+import { ListProductType } from "@temp/views/StorePage/Page";
+
 import * as S from "./styles";
 
 interface IProps {
-  listProduct: {
-    id: number;
-    imgUrl: string;
-    name: string;
-    prices?: number;
-    type?: string;
-    tab: string[];
-  }[];
+  listProduct: ListProductType[];
   title: string;
 }
 function MainProductList({ listProduct, title }: IProps) {
@@ -31,22 +26,6 @@ function MainProductList({ listProduct, title }: IProps) {
                     return <S.Tab key={index}>{item}</S.Tab>;
                   })}
                 </S.TabBox>
-                {item.prices ? (
-                  <>
-                    <S.PriceBox>
-                      <S.Price>
-                        {item.prices}
-                        <S.Type>/ {item.type}</S.Type>
-                      </S.Price>
-                    </S.PriceBox>
-                    <S.PriceBox>
-                      <S.Price>
-                        {item.prices}
-                        <S.Type>/ (Min, Order)</S.Type>
-                      </S.Price>
-                    </S.PriceBox>
-                  </>
-                ) : null}
               </S.Item>
             );
           })}

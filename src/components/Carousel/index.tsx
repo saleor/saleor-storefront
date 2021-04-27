@@ -9,7 +9,6 @@ import "./scss/index.scss";
 import {
   mediumScreen,
   smallScreen,
-  xxxLargeScreen,
 } from "../../globalStyles/scss/variables.scss";
 
 interface CarouselType extends CarouselProps {
