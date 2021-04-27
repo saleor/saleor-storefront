@@ -7,7 +7,7 @@ import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
-import { DebounceChange, ProductsFeatured, TextField } from "../../components";
+import { ProductsFeatured } from "../../components";
 import { maybe } from "../../core/utils";
 import { SearchProducts_products } from "./gqlTypes/SearchProducts";
 
