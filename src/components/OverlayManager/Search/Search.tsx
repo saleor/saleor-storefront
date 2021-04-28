@@ -63,6 +63,9 @@ function Search(props: SearchProps) {
     if (searchTerms.length > 0 && props.router.pathname !== "/search") {
       setShowResult(true);
       setHasSearchPhrase(true);
+    } else {
+      setShowResult(false);
+      setHasSearchPhrase(false);
     }
   }, [searchTerms]);
 
@@ -70,6 +73,7 @@ function Search(props: SearchProps) {
 
   React.useEffect(() => {
     if (searchTerms.length === 0) {
+      props.router.push(`/`);
       setReset(false);
     }
   }, [searchTerms]);
@@ -79,7 +83,13 @@ function Search(props: SearchProps) {
       <div className="search__input">
         <DebouncedTextField
           onChange={e => {
-            setSearchTerms(e.target.value);
+            setSearchTerms((e.target.value as string).toLowerCase());
+          }}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              setShowResult(false);
+              props.router.push(`${paths.search}?q=${searchTerms}`);
+            }
           }}
           value={searchTerms}
           resetValue={reset}
@@ -89,6 +99,7 @@ function Search(props: SearchProps) {
               <ReactSVG
                 path={closeImg}
                 onClick={() => {
+                  props.router.push(`/`);
                   setReset(true);
                   setSearchTerms("");
                 }}
