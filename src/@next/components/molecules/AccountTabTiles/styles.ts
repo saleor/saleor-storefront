@@ -25,8 +25,20 @@ export const LinkTagPU = styled.a`
   }
 `;
 
-export const MarginTop = styled.div`
-  margin-top: 32px;
+export const InputUploadPhoto = styled.input`
+  :hover {
+    color: orange;
+    text-decoration: underline;
+  }
+`;
+
+export const LinkUserProfile = styled.a`
+  font-size: 15px;
+  color: white;
+  // :hover {
+  //   color: orange;
+  //   text-decoration: underline;
+  // }
 `;
 
 export const UpLoadPhoto = styled.div`
@@ -55,16 +67,28 @@ export const UpLoadPhoto = styled.div`
 
 export const FlexOneCol = styled.div``;
 
-export const DisplayMarginP = styled.p`
+export const DisplayMarginP = styled.div`
   display: flex;
   margin-bottom: 8px;
 `;
-export const DisplayP = styled.p`
+
+export const DisplayProfile = styled.div`
   display: flex;
 `;
 
 export const FlexDivTwoCol = styled.div`
   flex: 2;
+`;
+
+export const UpdateProfile = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const BtnUserProfile = styled.button`
+  padding: 12px;
+  border-radius: 20px;
+  background-color: #ff6a00;
 `;
 
 export const FlexSpanOneCol = styled.span`
@@ -105,7 +129,7 @@ export const LinkTag = styled.a`
   }
 `;
 
-export const MarginLink = styled.p`
+export const MarginLink = styled.div`
   margin-bottom: 5px;
 `;
 
@@ -183,6 +207,10 @@ export const ContentExtendInput = styled.div`
   width: 60%;
 `;
 
+export const InforProfileInput = styled.div`
+  width: 100%;
+`;
+
 export const Form = styled.form`
   background-color: ${props => props.theme.tile.backgroundColor};
 `;
@@ -196,4 +224,17 @@ export const FormButtons = styled.div`
   button {
     margin-left: 2rem;
   }
+`;
+
+export const BtnSaveProfile = styled.button`
+  padding: 10px 32px;
+  background-color: #ff6a00;
+  color: white;
+  font-size: 15px;
+`;
+
+export const BtnCancelProfile = styled.button`
+  padding: 10px 32px;
+  color: #ff6a00;
+  font-size: 18px;
 `;

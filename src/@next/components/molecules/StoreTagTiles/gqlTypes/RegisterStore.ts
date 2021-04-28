@@ -123,6 +123,9 @@ export interface IStoreUser{
 }
 
 export interface StoreUser {
+  addresses:{
+    phone:string
+  }
   store:{id:string, name:string}
 }
 

@@ -126,6 +126,9 @@ export const TypedListStoreTypeQuery = TypedQuery<IStoreType, {}>(
 export const listStoreUserQuery = gql`
   query User($id: ID!) {
     user(id: $id) {
+      addresses {
+        phone
+      }
       store {
         id
         name
