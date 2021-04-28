@@ -1,7 +1,9 @@
 import { Formik } from "formik";
 import React from "react";
 import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
+import Marker from "react-google-maps/lib/components/Marker";
 import { FormattedMessage, useIntl } from "react-intl";
+import * as Yup from "yup";
 
 import { Button, ButtonLink } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
@@ -26,36 +28,41 @@ export const StoreForm: React.FC<Props> = ({
   isLoadingSubmit,
 }) => {
   const intl = useIntl();
+  const lat = initialValues?.latlong
+    ? parseFloat(initialValues.latlong.split(",")[0])
+    : 0;
+  const lng = initialValues?.latlong
+    ? parseFloat(initialValues?.latlong?.split(",")[1])
+    : 0;
 
-  const Map = () => {
-    const lat = initialValues?.latlong
-      ? parseFloat(initialValues.latlong.split(",")[0])
-      : 0;
-    const lng = initialValues?.latlong
-      ? parseFloat(initialValues?.latlong?.split(",")[1])
-      : 0;
+  const [position, setPosition] = React.useState({
+    lat,
+    lng,
+  });
 
-    console.log(lat, lng);
-
+  const Map = (props: any) => {
     return (
       <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: 45.421532, lng: -75.697189 }}
-        onClick={e => handleClick(e)}
-      />
+        defaultZoom={15}
+        defaultCenter={position}
+        onClick={e => handleClick(e, props)}
+      >
+        <Marker position={position} />
+      </GoogleMap>
     );
   };
-  let lat = "";
-  let lng = "";
 
   const WrappedMap = withScriptjs<any>(withGoogleMap(Map));
 
   const handleClick = (
     // @ts-ignore
-    event: google.maps.MapMouseEvent | google.maps.IconMouseEvent
+    event: google.maps.MapMouseEvent | google.maps.IconMouseEvent,
+    props: any
   ) => {
-    lat = event.latLng.lat().toString();
-    lng = event.latLng.lng().toString();
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    setPosition({ lat, lng });
+    props.onChange(props.name, `${lat},${lng}`);
   };
 
   const initialForm = initialValues || {
@@ -63,10 +70,21 @@ export const StoreForm: React.FC<Props> = ({
     storeTypeId: "",
   };
 
+  const validateSchema = Yup.object().shape({
+    name: Yup.string().min(2, "Too Short!").required("Required"),
+    description: Yup.string().min(2, "Too Short!").required("Required"),
+    phone: Yup.string().min(2, "Too Short!").required("Required"),
+    acreage: Yup.number()
+      .required("Required")
+      .min(1, "Acreage must be more than 0!"),
+    storeTypeId: Yup.string().required("Required"),
+  });
+
   return (
     <>
       <Formik
         initialValues={initialForm}
+        validationSchema={validateSchema}
         onSubmit={(values, { setSubmitting }) => {
           const dataSubmit: RegisterStoreVariables = {
             name: values.name,
@@ -74,7 +92,7 @@ export const StoreForm: React.FC<Props> = ({
             storeTypeId: values.storeTypeId,
             phone: values.phone,
             acreage: values.acreage,
-            latlong: lat === "" ? initialForm.latlong : `${lat},${lng}`,
+            latlong: values.latlong,
             backgroundImage: values.backgroundImage,
             backgroundImageAlt: values.backgroundImageAlt,
           };
@@ -90,6 +108,8 @@ export const StoreForm: React.FC<Props> = ({
           values,
           isSubmitting,
           isValid,
+          errors,
+          touched,
         }) => {
           return (
             <TypedListStoreTypeQuery
@@ -106,6 +126,11 @@ export const StoreForm: React.FC<Props> = ({
                     <S.ContentExtendInput>
                       <TextField
                         name="name"
+                        errors={
+                          !!errors.name && touched.name
+                            ? [{ message: errors.name || "" }]
+                            : []
+                        }
                         label={intl.formatMessage(commonMessages.storeName)}
                         type="text"
                         value={values.name}
@@ -117,6 +142,11 @@ export const StoreForm: React.FC<Props> = ({
                     <S.ContentExtendInput>
                       <TextField
                         name="description"
+                        errors={
+                          !!errors.description && touched.description
+                            ? [{ message: errors.description || "" }]
+                            : []
+                        }
                         label={intl.formatMessage(
                           commonMessages.storeDescription
                         )}
@@ -145,6 +175,11 @@ export const StoreForm: React.FC<Props> = ({
                           optionLabelKey="text"
                           optionValueKey="value"
                           autoComplete="value"
+                          errors={
+                            errors.storeTypeId
+                              ? [{ message: errors.storeTypeId || "" }]
+                              : []
+                          }
                         />
                       </div>
                     </S.ContentExtendInput>
@@ -156,6 +191,11 @@ export const StoreForm: React.FC<Props> = ({
                         value={values.phone}
                         onBlur={handleBlur}
                         onChange={handleChange}
+                        errors={
+                          !!errors.phone && touched.phone
+                            ? [{ message: errors.phone || "" }]
+                            : []
+                        }
                       />
                     </S.ContentExtendInput>
                     <S.ContentExtendInput>
@@ -166,14 +206,23 @@ export const StoreForm: React.FC<Props> = ({
                         value={values.acreage}
                         onBlur={handleBlur}
                         onChange={handleChange}
+                        errors={
+                          !!errors.acreage && touched.acreage
+                            ? [{ message: errors.acreage || "" }]
+                            : []
+                        }
                       />
                     </S.ContentExtendInput>
                     <S.ContentExtendInput>
                       <WrappedMap
+                        name="latlong"
                         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe38lpcvEH7pLWIbgNUPNHsPnyIYwkc60&v=3.exp&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ width: `100%` }} />}
                         containerElement={<div style={{ height: `400px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
+                        onChange={(name: any, value: any) => {
+                          setFieldValue(name, value);
+                        }}
                       />
                     </S.ContentExtendInput>
 
