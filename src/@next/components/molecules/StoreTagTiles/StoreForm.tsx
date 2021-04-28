@@ -67,13 +67,7 @@ export const StoreForm: React.FC<Props> = ({
 
   const initialForm = initialValues || {
     name: "",
-    description: "",
     storeTypeId: "",
-    phone: "",
-    acreage: 0,
-    latlong: "0,0",
-    backgroundImage: "",
-    backgroundImageAlt: "",
   };
 
   const validateSchema = Yup.object().shape({
