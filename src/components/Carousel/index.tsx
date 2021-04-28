@@ -7,15 +7,16 @@ import arrowImg from "../../images/next.svg";
 
 import "./scss/index.scss";
 import {
+  mediumScreen,
   smallScreen,
-  xxxLargeScreen,
 } from "../../globalStyles/scss/variables.scss";
 
 interface CarouselType extends CarouselProps {
   children: React.ReactNode;
+  isSlide?: boolean;
 }
 
-const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
+const Carousel: React.FC<CarouselType> = ({ isSlide, children, ...rest }) => {
   const settings = {
     className: "carousel",
     renderBottomCenterControls: () => null,
@@ -57,19 +58,13 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
   );
 
   return (
-    <Media query={{ minWidth: smallScreen }}>
+    <Media query={{ maxWidth: smallScreen }}>
       {matches =>
         matches ? (
           carousel(1)
         ) : (
-          <Media query={{ maxWidth: xxxLargeScreen }}>
-            {matches ? (
-              carousel(1)
-            ) : (
-              <Media query={{ maxWidth: "4096px" }}>
-                {!matches && carousel(1)}
-              </Media>
-            )}
+          <Media query={{ maxWidth: mediumScreen }}>
+            {matches => carousel(isSlide ? 1 : matches ? 2 : 5)}
           </Media>
         )
       }

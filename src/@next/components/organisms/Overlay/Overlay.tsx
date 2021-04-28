@@ -15,6 +15,7 @@ export const Overlay: React.FC<IProps> = ({
   target,
   testingContext,
   testingContextId,
+  minHeight,
 }: IProps) => {
   const [portalTarget, setPortalTarget] = useState(
     target || document.getElementById("modal-root")
@@ -48,6 +49,7 @@ export const Overlay: React.FC<IProps> = ({
               {...animationProps}
               state={state}
               onClick={e => e.stopPropagation()}
+              minHeight={minHeight}
             >
               {children}
             </S.Lightbox>

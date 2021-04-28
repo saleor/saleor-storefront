@@ -8,12 +8,7 @@ export type ViewProps = {
 };
 
 const View: NextPage<ViewProps> = ({ query: { id } }) => {
-  console.log({ id });
-  return (
-    <div>
-      <Page />
-    </div>
-  );
+  return <Page storeId={id} />;
 };
 
 export default View;

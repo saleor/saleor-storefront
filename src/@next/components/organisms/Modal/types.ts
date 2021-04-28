@@ -11,4 +11,6 @@ export interface IProps {
   formId?: string;
   show: boolean;
   onSubmit?: () => void;
+  minHeight?: number;
+  padding?: string;
 }
