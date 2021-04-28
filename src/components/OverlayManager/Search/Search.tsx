@@ -6,13 +6,13 @@ import ReactSVG from "react-svg";
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
 import { grayMedium } from "@styles/constants";
-import { DebounceChange } from "@temp/components/Debounce";
-import TextField from "@temp/components/TextField";
+import { DebouncedTextField } from "@temp/components/Debounce";
 import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
 import searchImg from "../../../images/search.svg";
+import closeImg from "../../../images/x.svg";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
 import { SearchResults } from "./gqlTypes/SearchResults";
@@ -26,7 +26,8 @@ interface SearchProps extends WrappedComponentProps {
 }
 
 function Search(props: SearchProps) {
-  const [searchTerms, setSearchTerms] = useState("");
+  const [searchTerms, setSearchTerms] = useState(props.router.query.q || "");
+
   const [hasSearchPhrase, setHasSearchPhrase] = useState(false);
 
   const hasResults = (data: SearchResults) =>
@@ -53,47 +54,68 @@ function Search(props: SearchProps) {
   useOutsideAlerter(wrapperRef);
 
   const handleClickShowAll = () => {
-    props.router.push(`${paths.search}?q=${searchTerms}`);
+    if (searchTerms.length > 0) {
+      props.router.push(`${paths.search}?q=${searchTerms}`);
+    }
   };
 
   React.useEffect(() => {
-    if (searchTerms.length > 0) {
+    if (searchTerms.length > 0 && props.router.pathname !== "/search") {
       setShowResult(true);
       setHasSearchPhrase(true);
+    } else {
+      setShowResult(false);
+      setHasSearchPhrase(false);
+    }
+  }, [searchTerms]);
+
+  const [reset, setReset] = React.useState(false);
+
+  React.useEffect(() => {
+    if (searchTerms.length === 0) {
+      props.router.push(`/`);
+      setReset(false);
     }
   }, [searchTerms]);
 
   return (
-    <>
+    <div ref={wrapperRef}>
       <div className="search__input">
-        <DebounceChange
-          debounce={evt =>
-            setSearchTerms((evt.target.value as string).toLowerCase())
-          }
-          value={searchTerms}
-          time={500}
-        >
-          {({ change, value }) => {
-            return (
-              <TextField
-                autoFocus
-                onChange={change}
-                placeholder={props.intl.formatMessage(commonMessages.search)}
-                value={value}
-              />
-            );
+        <DebouncedTextField
+          onChange={e => {
+            setSearchTerms((e.target.value as string).toLowerCase());
           }}
-        </DebounceChange>
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              setShowResult(false);
+              props.router.push(`${paths.search}?q=${searchTerms}`);
+            }
+          }}
+          value={searchTerms}
+          resetValue={reset}
+          iconRight={
+            searchTerms &&
+            searchTerms.length > 0 && (
+              <ReactSVG
+                path={closeImg}
+                onClick={() => {
+                  props.router.push(`/`);
+                  setReset(true);
+                  setSearchTerms("");
+                }}
+                className="search__input__close-btn"
+              />
+            )
+          }
+          placeholder={props.intl.formatMessage(commonMessages.search)}
+        />
 
         <div className="search-button">
           <button
             className="btn-search"
             onClick={() => {
               handleClickShowAll();
-              if (searchTerms?.length) {
-                setHasSearchPhrase(true);
-                setShowResult(true);
-              }
+              setShowResult(false);
             }}
           >
             <ReactSVG path={searchImg} />
@@ -119,7 +141,6 @@ function Search(props: SearchProps) {
                     if (hasResults(data)) {
                       return (
                         <div
-                          ref={wrapperRef}
                           style={{
                             position: "absolute",
                             width: "100%",
@@ -161,7 +182,7 @@ function Search(props: SearchProps) {
           }}
         </NetworkStatus>
       </div>
-    </>
+    </div>
   );
 }
 

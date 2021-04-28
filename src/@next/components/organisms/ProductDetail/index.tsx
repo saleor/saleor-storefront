@@ -1,32 +1,29 @@
 import React from "react";
 
-// import ImageGallery from "react-image-gallery";
-// import ReactImageZoom from "react-image-zoom";
+import { gray } from "@styles/constants";
+import { ProductDetails_product } from "@temp/views/Product/gqlTypes/ProductDetails";
+
 import { Logo } from "./icon";
 import * as S from "./styles";
 
 import "./style.css";
 
-interface IProps {
-  product: any;
-}
+type Props = {
+  product: ProductDetails_product;
+};
 
-const ProductDetail: React.FC<IProps> = (props: IProps) => {
+const ProductDetail: React.FC<Props> = ({ product }) => {
   return (
     <div>
       <S.Wraper>
-        {/* <S.ImgSlide>
-          
-        </S.ImgSlide> */}
-
         <S.InfoDetail>
-          <S.ProductName>{props.product.name}</S.ProductName>
-          <S.Text style={{ paddingLeft: "15px" }}>
-            FOB <S.StrongerText>reference </S.StrongerText> Price:{" "}
+          <S.ProductName>{product.name}</S.ProductName>
+          <S.Text>
+            FOB <S.StrongerText>reference </S.StrongerText> Price:
             <S.Link>Get Latest Price</S.Link>
           </S.Text>
-          {/* <S.Divider/> */}
-          <S.PriceContainer>
+
+          {/* <S.PriceContainer>
             <S.PriceBox>
               <S.Text>1000-9999 Kilogram</S.Text>
               <S.Price>$ 1.00</S.Price>
@@ -39,19 +36,56 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
               <S.Text>1000-9999 Kilogram</S.Text>
               <S.Price>$ 1.00</S.Price>
             </S.PriceBox>
-          </S.PriceContainer>
+          </S.PriceContainer> */}
+          <S.Text style={{ marginBottom: 10 }}>Product Price: </S.Text>
           <S.FlexWraper>
-            <S.Text>Lead Time: </S.Text>
             <S.Table>
               <S.Tr>
-                <S.Td>Quantity (Kilograms)</S.Td>
-                <S.Td>1-1000000</S.Td>
-                <S.Td>{">"} 10000000</S.Td>
+                <S.Td>Variants</S.Td>
+                {product.variants?.map(item => {
+                  return <S.Td key={item?.id}>{item?.name}</S.Td>;
+                })}
               </S.Tr>
               <S.Tr>
-                <S.Td>Quantity (Kilograms)</S.Td>
-                <S.Td>1-1000000</S.Td>
-                <S.Td>{">"} 10000000</S.Td>
+                <S.Td>Quantity Available</S.Td>
+                {product.variants?.map(item => {
+                  return <S.Td key={item?.id}>{item?.quantityAvailable}</S.Td>;
+                })}
+              </S.Tr>
+              <S.Tr>
+                <S.Td>Price</S.Td>
+                {product.variants?.map(item => {
+                  const price = item?.pricing;
+                  if (!price) {
+                    return;
+                  }
+                  const currency =
+                    price.priceUndiscounted?.gross.currency === "USD"
+                      ? "$"
+                      : price.priceUndiscounted?.gross.currency;
+                  return (
+                    <S.Td key={item?.id}>
+                      {price?.onSale ? (
+                        <div style={{ display: "flex" }}>
+                          <div
+                            style={{
+                              color: gray,
+                              marginRight: 4,
+                              textDecorationLine: "line-through",
+                            }}
+                          >
+                            {`${price.priceUndiscounted?.gross.amount}${currency} `}
+                          </div>
+                          <div>{`${price.price?.gross.amount}${currency}`}</div>
+                        </div>
+                      ) : (
+                        <>
+                          {`${price.priceUndiscounted?.gross.amount}${currency}`}
+                        </>
+                      )}
+                    </S.Td>
+                  );
+                })}
               </S.Tr>
             </S.Table>
           </S.FlexWraper>
@@ -90,7 +124,7 @@ const ProductDetail: React.FC<IProps> = (props: IProps) => {
           </S.FlexWraper>
           <S.FlexWraper>
             <S.Text>Payments: </S.Text>
-            <S.FlexWraper>
+            <S.FlexWraper style={{ alignItems: "center" }}>
               {Logo.map((item, index) => {
                 return <S.LogoIcon key={index} src={item} alt="" />;
               })}

@@ -6,7 +6,7 @@ export const Bar = styled.div`
   background-color: ${props => props.theme.tile.backgroundColor};
   padding: 1.5rem 2rem;
   font-size: ${props => props.theme.typography.smallFontSize};
-  margin: 0 0 1rem;
+  margin: 1rem 0;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
