@@ -88,7 +88,7 @@
     "workbox-precaching": "^6.0.2",
     "workbox-routing": "^6.0.2",
     "workbox-strategies": "^6.0.2",
-    "yup": "^0.28.0"
+    "yup": "^0.28.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
