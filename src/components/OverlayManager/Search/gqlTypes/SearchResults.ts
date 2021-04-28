@@ -99,6 +99,6 @@ export interface SearchResults {
 }
 
 export interface SearchResultsVariables {
-  query: string;
+  query: string | string[];
   channel?: string | null;
 }
