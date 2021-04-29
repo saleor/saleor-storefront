@@ -14,7 +14,9 @@ function FollowButton({ isActive, setStt }: IProps) {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <S.Wrapper>
-      <S.WrapperContainer style={{ marginTop: "20px" }}>
+      <S.WrapperContainer
+        style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
+      >
         <S.Button
           isActive={isActive}
           color={orange}
