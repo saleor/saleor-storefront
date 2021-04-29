@@ -4,9 +4,9 @@ import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 
 import FollowButton from "../../components/FollowButton";
-import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { TypedListCarousel, TypedProductListQuery } from "./queries";
+import StoreCarousel from "./StoreCarousel";
 
 type Props = {
   storeId: string;
@@ -141,7 +141,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
                   return (
                     <>
                       <NavigationBar listNav={ListNav} />
-                      <GalleryCarousel
+                      <StoreCarousel
                         images={
                           dataCarousel
                             ? dataCarousel.length > 5
