@@ -110,18 +110,16 @@ const Page: React.FC<Props> = ({ storeId }) => {
     <>
       <TypedListCarousel>
         {data => {
+          // TODO : mock list carousel
           const dataCarousel: ProductDetails_product_images[] =
             data &&
-            data.data?.pages?.edges?.reduce((acc, key) => {
-              const listImage = key.node?.media?.map(item => ({
-                id: item.id,
-                alt: item.alt,
-                __typename: item.__typename,
-                url: `http://thachsanh.store:8080/media/${item.image}`,
-              }));
+            data.data?.pages?.edges[0]?.node?.media?.map(item => ({
+              id: item.id,
+              alt: item.alt,
+              __typename: "ProductImage",
+              url: `http://thachsanh.store:8080/media/${item.image}`,
+            }));
 
-              return [...acc, ...listImage];
-            }, []);
           return (
             <>
               <TypedProductListQuery
@@ -143,7 +141,16 @@ const Page: React.FC<Props> = ({ storeId }) => {
                   return (
                     <>
                       <NavigationBar listNav={ListNav} />
-                      <GalleryCarousel images={dataCarousel} isSlide />
+                      <GalleryCarousel
+                        images={
+                          dataCarousel
+                            ? dataCarousel.length > 5
+                              ? dataCarousel.slice(0, 5)
+                              : dataCarousel
+                            : []
+                        }
+                        isSlide
+                      />
                       <FollowButton isActive={stt} setStt={setStt} />
                       <MainProductList
                         title="Main Product"
