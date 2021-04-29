@@ -2,7 +2,11 @@ import gql from "graphql-tag";
 
 import { TypedQuery } from "@temp/core/queries";
 
-import { ProductList, ProductListVariables } from "./gqlTypes/ProductList";
+import {
+  ListCarouselRes,
+  ProductList,
+  ProductListVariables,
+} from "./gqlTypes/ProductList";
 
 export const fragmentMoney = gql`
   fragment Money on Money {
@@ -133,3 +137,22 @@ export const TypedProductListQuery = TypedQuery<
   ProductList,
   ProductListVariables
 >(productListQuery);
+
+const getListCarousel = gql`
+  query pages {
+    pages(first: 10) {
+      edges {
+        node {
+          id
+          media {
+            id
+            image
+          }
+        }
+      }
+    }
+  }
+`;
+export const TypedListCarousel = TypedQuery<ListCarouselRes, {}>(
+  getListCarousel
+);
