@@ -114,3 +114,25 @@ export interface ProductList_products {
     __typename: "TaxedMoney";
     net: ProductList_products_edges_node_channelListings_pricing_priceRange_stop_net;
   }
+
+  export interface ListCarouselRes{
+    pages: {
+      edges:DataListCarouselEdges[]
+    }
+  }
+  export interface DataListCarouselEdges{
+    node:{
+      id:string
+      title:string
+      content:string
+      media:DataListCarouselMedia[]
+    }
+  }
+  
+  export interface DataListCarouselMedia{
+    id:string
+    alt:string
+    image:string
+    __typename:string
+    sortOrder:number
+  }
