@@ -6,7 +6,6 @@ import NavigationBar from "@temp/components/NavigationBar";
 import { channelSlug } from "@temp/constants";
 
 import FollowButton from "../../components/FollowButton";
-import { TypedCategoryProductsQuery } from "../Category/queries";
 import { TypedHomePageQuery } from "../Home/queries";
 import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
