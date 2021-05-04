@@ -140,7 +140,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
         alwaysRender
         displayLoader={false}
         errorPolicy="all"
-        variables={{ first: 10 }}
+        variables={{ first: 8 }}
       >
         {({ data }) => {
           const listMainProduct: ListProductType[] =
@@ -156,7 +156,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
             <>
               <NavigationBar listNav={ListNav} />
               <GalleryCarousel images={images} isSlide />
-              <FollowButton isActive={stt} setStt={setStt} />
+              <FollowButton isActive={stt} setStt={setStt} storeId={storeId} />
               <MainProductList
                 title="Main Product"
                 listProduct={listMainProduct}
@@ -169,7 +169,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
         alwaysRender
         displayLoader={false}
         errorPolicy="all"
-        variables={{ last: 10 }}
+        variables={{ last: 8 }}
       >
         {({ data }) => {
           const listMainProduct: ListProductType[] =
