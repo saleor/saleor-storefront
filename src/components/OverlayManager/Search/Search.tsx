@@ -27,6 +27,7 @@ interface SearchProps extends WrappedComponentProps {
 
 function Search(props: SearchProps) {
   const [searchTerms, setSearchTerms] = useState(props.router.query.q || "");
+  const [isSearch, setIsSearch] = React.useState(false);
 
   const [hasSearchPhrase, setHasSearchPhrase] = useState(false);
 
@@ -63,13 +64,17 @@ function Search(props: SearchProps) {
     if (searchTerms.length > 0 && props.router.pathname !== "/search") {
       setShowResult(true);
       setHasSearchPhrase(true);
+    } else {
+      setShowResult(false);
+      setHasSearchPhrase(false);
     }
   }, [searchTerms]);
 
   const [reset, setReset] = React.useState(false);
 
   React.useEffect(() => {
-    if (searchTerms.length === 0) {
+    if (searchTerms.length === 0 && isSearch) {
+      props.router.push(`/`);
       setReset(false);
     }
   }, [searchTerms]);
@@ -79,7 +84,16 @@ function Search(props: SearchProps) {
       <div className="search__input">
         <DebouncedTextField
           onChange={e => {
-            setSearchTerms(e.target.value);
+            if (e.target.value.length > 0) {
+              setIsSearch(true);
+            }
+            setSearchTerms((e.target.value as string).toLowerCase());
+          }}
+          onKeyPress={e => {
+            if (e.key === "Enter") {
+              setShowResult(false);
+              props.router.push(`${paths.search}?q=${searchTerms}`);
+            }
           }}
           value={searchTerms}
           resetValue={reset}
@@ -89,6 +103,8 @@ function Search(props: SearchProps) {
               <ReactSVG
                 path={closeImg}
                 onClick={() => {
+                  props.router.push(`/`);
+                  setIsSearch(false);
                   setReset(true);
                   setSearchTerms("");
                 }}

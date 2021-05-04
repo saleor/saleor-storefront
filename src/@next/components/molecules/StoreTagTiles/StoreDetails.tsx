@@ -1,4 +1,5 @@
 import React from "react";
+import { useAlert } from "react-alert";
 
 import { Loader } from "@components/atoms";
 import { IconButton } from "@components/atoms/IconButton";
@@ -18,7 +19,7 @@ type Props = {
 };
 export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
   const [isEditing, setIsEditing] = React.useState(false);
-
+  const alert = useAlert();
   const NO_STORE = `You don't have Store`;
 
   const [reRender, setRerender] = React.useState(false);
@@ -137,6 +138,23 @@ export const StoreDetail: React.FC<Props> = ({ storeId, storeName }) => {
                             description: data.description,
                           }),
                         },
+                      }).then((resp: any) => {
+                        const errors = resp.data.storeCreate.storeErrors;
+                        if (errors.length === 0) {
+                          alert.show(
+                            {
+                              title: "Success",
+                            },
+                            { type: "success" }
+                          );
+                        } else {
+                          alert.show(
+                            {
+                              title: errors[0].message,
+                            },
+                            { type: "error" }
+                          );
+                        }
                       });
                     }}
                     hide={() => {

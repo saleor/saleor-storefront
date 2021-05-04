@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
+import { black } from "@styles/constants";
+
 export const Wraper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  color: ${black};
 `;
 
 export const ImgSlide = styled.div`
@@ -24,7 +27,7 @@ export const ImgSlide = styled.div`
 `;
 
 export const InfoDetail = styled.div`
-  width: 100%%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 0 30px;
@@ -56,7 +59,7 @@ export const Text = styled.p`
   font-size: 1rem;
   display: inline-block;
   margin: 0;
-  color: grey;
+
   font-weight: lighter;
 `;
 
@@ -66,7 +69,7 @@ export const StrongerText = styled.p`
   font-size: 1rem;
   display: inline-block;
   margin: 0;
-  color: grey;
+
   font-weight: lighter;
 `;
 
@@ -88,14 +91,11 @@ export const PriceBox = styled.div`
   flex-direction: column;
 `;
 
-export const Price = styled(StrongerText)`
-  font-size: 1rem;
-`;
-
 export const Table = styled.table`
   border: 1px solid grey;
   border-collapse: collapse;
-  margin: 0 0 0 15px;
+  font-weight: bold;
+  margin: 0;
   // min-width: 3rem;
 `;
 
@@ -113,13 +113,12 @@ export const Tr = styled.tr``;
 
 export const FlexWraper = styled.div`
   display: flex;
-  padding-left: 15px;
+  padding: 4px 0;
 `;
 
 export const LogoIcon = styled.img`
   width: auto;
   height: 23px;
-  padding: 1px 3px;
   border: 1px solid #f2f2f2;
   margin-left: 5px;
 `;

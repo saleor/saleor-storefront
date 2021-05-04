@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Button = styled.p<{ isActive: boolean; color: string }>`
-  min-width: 130px;
+  min-width: 200px;
   position: relative;
   display: inline-block;
   text-align: center;
