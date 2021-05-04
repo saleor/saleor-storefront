@@ -1,5 +1,4 @@
 import React from "react";
-import { useQueryParam } from "use-query-params";
 
 import { MainProductList } from "@temp/components/MainProductList";
 import { channelSlug } from "@temp/constants";
