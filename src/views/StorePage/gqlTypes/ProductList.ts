@@ -13,7 +13,7 @@ export interface ProductList_products {
     after?: string | null;
     last?: number | null;
     before?: string | null;
-    channel?:string
+    channel?:string;
   }
   export interface ProductList_products_edges {
     __typename: "ProductCountableEdge";
