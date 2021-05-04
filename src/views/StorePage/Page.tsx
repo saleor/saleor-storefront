@@ -11,6 +11,7 @@ import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
 import { TypedListCarousel, TypedProductListQuery } from "./queries";
+import StoreCarousel from "./StoreCarousel";
 
 type Props = {
   storeId: string;
