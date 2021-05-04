@@ -1,11 +1,16 @@
 import React from "react";
 
+import { Loader } from "@components/atoms";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
+import { channelSlug } from "@temp/constants";
 
 import FollowButton from "../../components/FollowButton";
+import { TypedCategoryProductsQuery } from "../Category/queries";
+import { TypedHomePageQuery } from "../Home/queries";
 import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
+import { CategorySection } from "./CategorySection";
 import { TypedListCarousel, TypedProductListQuery } from "./queries";
 
 type Props = {
@@ -19,6 +24,7 @@ export type ListProductType = {
   tab: string[];
 };
 const Page: React.FC<Props> = ({ storeId }) => {
+  console.log({ storeId });
   const ListNav = [
     {
       title: "Home",
@@ -122,49 +128,23 @@ const Page: React.FC<Props> = ({ storeId }) => {
 
           return (
             <>
+              <NavigationBar listNav={ListNav} />
+              <GalleryCarousel
+                images={
+                  dataCarousel
+                    ? dataCarousel.length > 5
+                      ? dataCarousel.slice(0, 5)
+                      : dataCarousel
+                    : []
+                }
+                isSlide
+              />
+              <FollowButton isActive={stt} setStt={setStt} />
               <TypedProductListQuery
                 alwaysRender
                 displayLoader={false}
                 errorPolicy="all"
-                variables={{ first: 8 }}
-              >
-                {({ data }) => {
-                  const listMainProduct: ListProductType[] =
-                    data?.products?.edges?.map(item => ({
-                      id: item.node.id,
-                      imgUrl:
-                        item.node?.thumbnail?.url ||
-                        "https://thailamlandscape.vn/wp-content/uploads/2017/10/no-image.png",
-                      name: item.node.name,
-                      tab: [item.node.productType.name],
-                    })) || [];
-                  return (
-                    <>
-                      <NavigationBar listNav={ListNav} />
-                      <GalleryCarousel
-                        images={
-                          dataCarousel
-                            ? dataCarousel.length > 5
-                              ? dataCarousel.slice(0, 5)
-                              : dataCarousel
-                            : []
-                        }
-                        isSlide
-                      />
-                      <FollowButton isActive={stt} setStt={setStt} />
-                      <MainProductList
-                        title="Main Product"
-                        listProduct={listMainProduct}
-                      />
-                    </>
-                  );
-                }}
-              </TypedProductListQuery>
-              <TypedProductListQuery
-                alwaysRender
-                displayLoader={false}
-                errorPolicy="all"
-                variables={{ last: 8 }}
+                variables={{ first: 8, channel: channelSlug }}
               >
                 {({ data }) => {
                   const listMainProduct: ListProductType[] =
@@ -179,13 +159,29 @@ const Page: React.FC<Props> = ({ storeId }) => {
                   return (
                     <>
                       <MainProductList
-                        title="Tile"
+                        title="Verify Main Product"
                         listProduct={listMainProduct}
                       />
                     </>
                   );
                 }}
               </TypedProductListQuery>
+              <TypedHomePageQuery variables={{ channel: channelSlug }}>
+                {({ data }) => {
+                  const categoryInfo = data.categories.edges.map(item => ({
+                    categoryId: item.node.id,
+                    categoryName: item.node.name,
+                  }));
+                  if (
+                    !data.categories.edges ||
+                    data.categories.edges.length === 0
+                  ) {
+                    return <Loader />;
+                  }
+
+                  return <CategorySection categoryInfo={categoryInfo} />;
+                }}
+              </TypedHomePageQuery>
             </>
           );
         }}
