@@ -1,4 +1,7 @@
+import { useAuth } from "@saleor/sdk";
 import React from "react";
+import { useAlert } from "react-alert";
+import { useIntl } from "react-intl";
 
 import { Modal } from "@components/organisms";
 import { orange } from "@styles/constants";
@@ -15,6 +18,9 @@ interface IProps {
 function FollowButton({ isActive, setStt, storeId }: IProps) {
   const [showModal, setShowModal] = React.useState(false);
   const [reRender, setRerender] = React.useState(false);
+  const { user } = useAuth();
+  const alert = useAlert();
+  const intl = useIntl();
 
   return (
     <S.Wrapper>
@@ -37,11 +43,22 @@ function FollowButton({ isActive, setStt, storeId }: IProps) {
                     isActive={isActive}
                     color={orange}
                     onClick={() => {
+                      if (!user) {
+                        return alert.show(
+                          {
+                            title: intl.formatMessage({
+                              defaultMessage: "You must login first!",
+                            }),
+                          },
+                          { type: "error" }
+                        );
+                      }
                       if (isActive) {
                         setShowModal(true);
                         return;
                       }
                       setStt(true);
+
                       followStore({
                         variables: { store: storeId, follow: true },
                       });
