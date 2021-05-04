@@ -1,0 +1,43 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.store_carousel {
+  display: flex;
+  &_container {
+    flex-grow: 2;
+    width: 60%;
+    padding: 0 $spacer 0 0;
+    box-sizing: border-box;
+  
+    @media (max-width: $medium-screen) {
+      width: 50%;
+    }
+  
+    @media (max-width: $small-screen) {
+      width: 100%;
+      padding: 0;
+      margin-bottom: $spacer * 2;
+      padding: 0;
+    }
+    &__nav {
+      li {
+        display: inline-block;
+        padding: $spacer / 2;
+
+        span {
+          width: $spacer / 2;
+          height: $spacer / 2;
+          background-color: $gray;
+          border-radius: $spacer / 2;
+          display: block;
+        }
+
+        &.active {
+          span {
+            background-color: $orange;
+            border-color: $orange;
+          }
+        }
+      }
+    }
+  }
+}
