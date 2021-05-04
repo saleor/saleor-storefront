@@ -7,7 +7,6 @@ import { channelSlug } from "@temp/constants";
 
 import FollowButton from "../../components/FollowButton";
 import { TypedHomePageQuery } from "../Home/queries";
-import GalleryCarousel from "../Product/GalleryCarousel";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
 import { TypedListCarousel, TypedProductListQuery } from "./queries";
@@ -129,7 +128,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
           return (
             <>
               <NavigationBar listNav={ListNav} />
-              <GalleryCarousel
+              <StoreCarousel
                 images={
                   dataCarousel
                     ? dataCarousel.length > 5
