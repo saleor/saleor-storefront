@@ -137,3 +137,26 @@ export interface ProductList_products {
     __typename:string
     sortOrder:number
   }
+
+  export interface ListFollow{
+    socials:{
+      edges: DataListFollowEdges[]
+    }
+  }
+
+  export interface DataListFollowEdges{
+    node:{
+      follow:boolean
+      store: DataListFollowStore
+      user: DataListFollowUser
+    }
+  }
+
+  export interface DataListFollowStore{
+    id: string
+    name: string
+  }
+
+  export interface DataListFollowUser{
+    email: string
+  }
