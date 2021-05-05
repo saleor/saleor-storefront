@@ -4,6 +4,7 @@ import { TypedQuery } from "@temp/core/queries";
 
 import {
   ListCarouselRes,
+  ListFollow,
   ProductList,
   ProductListVariables,
 } from "./gqlTypes/ProductList";
@@ -156,3 +157,24 @@ const getListCarousel = gql`
 export const TypedListCarousel = TypedQuery<ListCarouselRes, {}>(
   getListCarousel
 );
+
+const getFollowList = gql`
+  query socials {
+    socials(first: 100) {
+      edges {
+        node {
+          follow
+          user {
+            email
+          }
+          store {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const TypedListFollow = TypedQuery<ListFollow, {}>(getFollowList);

@@ -47,7 +47,7 @@ function FollowButton({ isActive, setStt, storeId }: IProps) {
                       });
                     }}
                   >
-                    {loading ? "Waiting" : isActive ? "Unfollow" : "Follow"}
+                    {loading ? "Waiting" : isActive ? "Following" : "Follow"}
                   </S.Button>
 
                   <div className="modal">

@@ -9,7 +9,11 @@ import FollowButton from "../../components/FollowButton";
 import { TypedHomePageQuery } from "../Home/queries";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
-import { TypedListCarousel, TypedProductListQuery } from "./queries";
+import {
+  TypedListCarousel,
+  TypedListFollow,
+  TypedProductListQuery,
+} from "./queries";
 import StoreCarousel from "./StoreCarousel";
 
 type Props = {
@@ -138,7 +142,26 @@ const Page: React.FC<Props> = ({ storeId }) => {
                 }
                 isSlide
               />
-              <FollowButton isActive={stt} setStt={setStt} storeId={storeId} />
+              <TypedListFollow>
+                {({ data, refetch }) => {
+                  const listData =
+                    data.socials.edges.find(
+                      item => item.node.store.id === storeId
+                    ) || null;
+                  if (listData) {
+                    setStt(listData.node.follow);
+                    refetch();
+                  }
+
+                  return (
+                    <FollowButton
+                      isActive={stt}
+                      setStt={setStt}
+                      storeId={storeId}
+                    />
+                  );
+                }}
+              </TypedListFollow>
               <TypedProductListQuery
                 alwaysRender
                 displayLoader={false}
