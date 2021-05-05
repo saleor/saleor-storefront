@@ -24,9 +24,7 @@ function FollowButton({ isActive, storeId, setRerender }: IProps) {
 
   return (
     <S.Wrapper>
-      <S.WrapperContainer
-        style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
-      >
+      <S.WrapperContainer>
         {storeId ? (
           <TypedFollowMutation
             onCompleted={() => {
