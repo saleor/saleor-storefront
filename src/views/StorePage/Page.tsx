@@ -2,6 +2,7 @@ import { useAuth } from "@saleor/sdk";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { TypeStoreForUserQuery } from "@components/molecules/StoreTagTiles/queries";
 import { orange } from "@styles/constants";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
@@ -12,7 +13,6 @@ import { TypedHomePageQuery } from "../Home/queries";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
 import {
-  TypedGetStore,
   TypedListCarousel,
   TypedListFollow,
   TypedProductListQuery,
@@ -151,7 +151,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
               />
               {user ? (
                 <S.Wrapper>
-                  <TypedGetStore variables={{ id: storeId }}>
+                  <TypeStoreForUserQuery variables={{ id: storeId }}>
                     {({ data }) => {
                       return (
                         <S.StoreName color={orange}>
@@ -159,7 +159,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
                         </S.StoreName>
                       );
                     }}
-                  </TypedGetStore>
+                  </TypeStoreForUserQuery>
 
                   <TypedListFollow>
                     {({ data, refetch }) => {
@@ -184,7 +184,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
                 </S.Wrapper>
               ) : (
                 <S.Wrapper>
-                  <TypedGetStore variables={{ id: storeId }}>
+                  <TypeStoreForUserQuery variables={{ id: storeId }}>
                     {({ data }) => {
                       return (
                         <S.StoreName color={orange}>
@@ -192,7 +192,7 @@ const Page: React.FC<Props> = ({ storeId }) => {
                         </S.StoreName>
                       );
                     }}
-                  </TypedGetStore>
+                  </TypeStoreForUserQuery>
                   <FollowButton
                     isActive={false}
                     storeId={storeId}
