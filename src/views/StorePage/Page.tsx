@@ -2,6 +2,7 @@ import { useAuth } from "@saleor/sdk";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { orange } from "@styles/constants";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 import { channelSlug } from "@temp/constants";
@@ -11,11 +12,13 @@ import { TypedHomePageQuery } from "../Home/queries";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
 import {
+  TypedGetStore,
   TypedListCarousel,
   TypedListFollow,
   TypedProductListQuery,
 } from "./queries";
 import StoreCarousel from "./StoreCarousel";
+import * as S from "./styles";
 
 type Props = {
   storeId: string;
@@ -147,32 +150,55 @@ const Page: React.FC<Props> = ({ storeId }) => {
                 isSlide
               />
               {user ? (
-                <TypedListFollow>
-                  {({ data, refetch }) => {
-                    if (reRender) {
-                      refetch();
-                      setRerender(false);
-                    }
-                    const listData =
-                      data.socials.edges.find(
-                        item => item?.node?.store?.id === storeId
-                      ) || null;
+                <S.Wrapper>
+                  <TypedGetStore variables={{ id: storeId }}>
+                    {({ data }) => {
+                      return (
+                        <S.StoreName color={orange}>
+                          {data.store && data.store.name}
+                        </S.StoreName>
+                      );
+                    }}
+                  </TypedGetStore>
 
-                    return (
-                      <FollowButton
-                        isActive={listData.node.follow || false}
-                        storeId={storeId}
-                        setRerender={setRerender}
-                      />
-                    );
-                  }}
-                </TypedListFollow>
+                  <TypedListFollow>
+                    {({ data, refetch }) => {
+                      if (reRender) {
+                        refetch();
+                        setRerender(false);
+                      }
+                      const listData =
+                        data.socials.edges.find(
+                          item => item?.node?.store?.id === storeId
+                        ) || null;
+
+                      return (
+                        <FollowButton
+                          isActive={(listData && listData.node.follow) || false}
+                          storeId={storeId}
+                          setRerender={setRerender}
+                        />
+                      );
+                    }}
+                  </TypedListFollow>
+                </S.Wrapper>
               ) : (
-                <FollowButton
-                  isActive={false}
-                  storeId={storeId}
-                  setRerender={setRerender}
-                />
+                <S.Wrapper>
+                  <TypedGetStore variables={{ id: storeId }}>
+                    {({ data }) => {
+                      return (
+                        <S.StoreName color={orange}>
+                          {data.store && data.store.name}
+                        </S.StoreName>
+                      );
+                    }}
+                  </TypedGetStore>
+                  <FollowButton
+                    isActive={false}
+                    storeId={storeId}
+                    setRerender={setRerender}
+                  />
+                </S.Wrapper>
               )}
 
               <TypedProductListQuery

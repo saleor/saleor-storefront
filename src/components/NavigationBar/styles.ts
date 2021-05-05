@@ -5,7 +5,7 @@ export const WrapperAll = styled.div`
   display: flex;
   justify-content: center;
   min-height: 40px;
-  z-index: 0;
+  z-index: 1;
 `;
 export const Wrapper = styled.div`
   width: 80%;

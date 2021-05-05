@@ -180,3 +180,21 @@ const getFollowList = gql`
 `;
 
 export const TypedListFollow = TypedQuery<ListFollow, {}>(getFollowList);
+
+const getStoreById = gql`
+  query stores($id: ID!) {
+    store(id: $id) {
+      name
+      description
+      phone
+      acreage
+      latlong
+      storeType {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const TypedGetStore = TypedQuery<any, {}>(getStoreById);
