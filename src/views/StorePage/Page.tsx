@@ -1,3 +1,4 @@
+import { useAuth } from "@saleor/sdk";
 import React from "react";
 
 import { Loader } from "@components/atoms";
@@ -28,6 +29,10 @@ export type ListProductType = {
 };
 const Page: React.FC<Props> = ({ storeId }) => {
   console.log({ storeId });
+
+  const [reRender, setRerender] = React.useState(false);
+
+  const { user } = useAuth();
   const ListNav = [
     {
       title: "Home",
@@ -114,7 +119,6 @@ const Page: React.FC<Props> = ({ storeId }) => {
     },
   ];
 
-  const [stt, setStt] = React.useState(false);
   return (
     <>
       <TypedListCarousel>
@@ -142,26 +146,35 @@ const Page: React.FC<Props> = ({ storeId }) => {
                 }
                 isSlide
               />
-              <TypedListFollow>
-                {({ data, refetch }) => {
-                  const listData =
-                    data.socials.edges.find(
-                      item => item.node.store.id === storeId
-                    ) || null;
-                  if (listData) {
-                    setStt(listData.node.follow);
-                    refetch();
-                  }
+              {user ? (
+                <TypedListFollow>
+                  {({ data, refetch }) => {
+                    if (reRender) {
+                      refetch();
+                      setRerender(false);
+                    }
+                    const listData =
+                      data.socials.edges.find(
+                        item => item?.node?.store?.id === storeId
+                      ) || null;
 
-                  return (
-                    <FollowButton
-                      isActive={stt}
-                      setStt={setStt}
-                      storeId={storeId}
-                    />
-                  );
-                }}
-              </TypedListFollow>
+                    return (
+                      <FollowButton
+                        isActive={listData.node.follow || false}
+                        storeId={storeId}
+                        setRerender={setRerender}
+                      />
+                    );
+                  }}
+                </TypedListFollow>
+              ) : (
+                <FollowButton
+                  isActive={false}
+                  storeId={storeId}
+                  setRerender={setRerender}
+                />
+              )}
+
               <TypedProductListQuery
                 alwaysRender
                 displayLoader={false}

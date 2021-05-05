@@ -11,13 +11,13 @@ import * as S from "./styles";
 
 interface IProps {
   isActive: boolean;
-  setStt: (value: boolean) => void;
   storeId: string;
+  setRerender: (value: boolean) => void;
 }
 
-function FollowButton({ isActive, setStt, storeId }: IProps) {
+function FollowButton({ isActive, storeId, setRerender }: IProps) {
   const [showModal, setShowModal] = React.useState(false);
-  const [reRender, setRerender] = React.useState(false);
+
   const { user } = useAuth();
   const alert = useAlert();
   const intl = useIntl();
@@ -34,9 +34,6 @@ function FollowButton({ isActive, setStt, storeId }: IProps) {
             }}
           >
             {(followStore, { data, loading }) => {
-              if (reRender) {
-                setRerender(false);
-              }
               return (
                 <>
                   <S.Button
@@ -57,8 +54,6 @@ function FollowButton({ isActive, setStt, storeId }: IProps) {
                         setShowModal(true);
                         return;
                       }
-                      setStt(true);
-
                       followStore({
                         variables: { store: storeId, follow: true },
                       });
@@ -81,7 +76,6 @@ function FollowButton({ isActive, setStt, storeId }: IProps) {
                       cancelBtnText="No"
                       onSubmit={() => {
                         setShowModal(false);
-                        setStt(false);
                         followStore({
                           variables: { store: storeId, follow: false },
                         });
