@@ -27,7 +27,7 @@ interface SearchProps extends WrappedComponentProps {
 
 function Search(props: SearchProps) {
   const [searchTerms, setSearchTerms] = useState(props.router.query.q || "");
-  const [isSearch, setIsSearch] = React.useState(false);
+  const [, setIsSearch] = React.useState(false);
 
   const [hasSearchPhrase, setHasSearchPhrase] = useState(false);
 
@@ -73,10 +73,7 @@ function Search(props: SearchProps) {
   const [reset, setReset] = React.useState(false);
 
   React.useEffect(() => {
-    if (searchTerms.length === 0 && isSearch) {
-      props.router.push(`/`);
-      setReset(false);
-    }
+    setReset(false);
   }, [searchTerms]);
 
   return (
@@ -84,9 +81,10 @@ function Search(props: SearchProps) {
       <div className="search__input">
         <DebouncedTextField
           onChange={e => {
-            if (e.target.value.length > 0) {
-              setIsSearch(true);
-            }
+            // if (e.target.value.length > 0) {
+            //   setIsSearch(true);
+            // }
+            setIsSearch(true);
             setSearchTerms((e.target.value as string).toLowerCase());
           }}
           onKeyPress={e => {
@@ -103,7 +101,7 @@ function Search(props: SearchProps) {
               <ReactSVG
                 path={closeImg}
                 onClick={() => {
-                  props.router.push(`/`);
+                  // props.router.push(`/`);
                   setIsSearch(false);
                   setReset(true);
                   setSearchTerms("");
