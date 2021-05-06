@@ -31,8 +31,6 @@ export type ListProductType = {
   tab: string[];
 };
 const Page: React.FC<Props> = ({ storeId }) => {
-  console.log({ storeId });
-
   const [reRender, setRerender] = React.useState(false);
 
   const { user } = useAuth();
