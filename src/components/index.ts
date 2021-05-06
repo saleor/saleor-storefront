@@ -6,6 +6,7 @@ export type { ButtonProps } from "./Button";
 export { default as Carousel } from "./Carousel";
 export { CartTable } from "./CartTable";
 export { default as CheckoutLogin } from "./CheckoutLogin";
+export { default as Register } from "./Register/Register";
 export { default as ContentPage } from "./ContentPage";
 export { DebounceChange, DebouncedTextField } from "./Debounce";
 export { default as Dropdown } from "./Dropdown";

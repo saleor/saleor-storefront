@@ -87,6 +87,11 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
               : intl.formatMessage({ defaultMessage: "Sign In" })}
           </button>
         </div>
+        <div className="register-button">
+          <button className="register">
+            {intl.formatMessage({ defaultMessage: "Register Now" })}
+          </button>
+        </div>
         <div className="mobileNumber">
           <span className="u-link">
             <FormattedMessage defaultMessage="Mobile number sign in" />

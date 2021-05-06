@@ -14,14 +14,12 @@ import "./scss/index.scss";
 
 const showSuccessNotification = (
   data: RegisterAccount,
-  hide: () => void,
   alert: AlertManager,
   intl: IntlShape
 ) => {
   const successful = maybe(() => !data.accountRegister.errors.length);
 
   if (successful) {
-    hide();
     alert.show(
       {
         title: data.accountRegister.requiresConfirmation
@@ -36,13 +34,13 @@ const showSuccessNotification = (
   }
 };
 
-const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
+const RegisterForm: React.FC = () => {
   const alert = useAlert();
   const intl = useIntl();
 
   return (
     <TypedAccountRegisterMutation
-      onCompleted={data => showSuccessNotification(data, hide, alert, intl)}
+      onCompleted={data => showSuccessNotification(data, alert, intl)}
     >
       {(registerCustomer, { loading, data }) => {
         return (
@@ -50,6 +48,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             errors={maybe(() => data.accountRegister.errors, [])}
             onSubmit={(event, { email, password }) => {
               event.preventDefault();
+
               const redirectUrl = `${location.origin}${paths.accountConfirm}`;
               registerCustomer({ variables: { email, password, redirectUrl } });
             }}
