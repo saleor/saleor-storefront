@@ -126,6 +126,7 @@ export interface ProductList_products {
       id:string
       title:string
       content:string
+      isPublished:boolean
       media:DataListCarouselMedia[]
     }
   }

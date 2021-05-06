@@ -127,14 +127,19 @@ const Page: React.FC<Props> = ({ storeId }) => {
       <TypedListCarousel>
         {data => {
           // TODO : mock list carousel
+          const index = data.data?.pages?.edges?.findIndex(
+            item => item.node.isPublished
+          );
           const dataCarousel: ProductDetails_product_images[] =
             data &&
-            data.data?.pages?.edges[0]?.node?.media?.map(item => ({
-              id: item.id,
-              alt: item.alt,
-              __typename: "ProductImage",
-              url: `http://thachsanh.store:8080/media/${item.image}`,
-            }));
+            data.data?.pages?.edges[index > -1 ? index : 0]?.node?.media?.map(
+              item => ({
+                id: item.id,
+                alt: item.alt,
+                __typename: "ProductImage",
+                url: `http://thachsanh.store:8080/media/${item.image}`,
+              })
+            );
 
           return (
             <>

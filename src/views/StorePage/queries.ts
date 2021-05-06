@@ -147,6 +147,7 @@ const getListCarousel = gql`
       edges {
         node {
           id
+          isPublished
           media {
             id
             image
