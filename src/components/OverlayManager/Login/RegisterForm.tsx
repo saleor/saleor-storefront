@@ -15,7 +15,7 @@ import { COUNTRY_LIST } from "@temp/country";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
-import { Form, TextField } from "../..";
+import { TextField } from "../..";
 import {
   RegisterAccount,
   RegisterAccountVariables,
