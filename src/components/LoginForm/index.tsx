@@ -1,7 +1,9 @@
 import { useAuth } from "@saleor/sdk";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import { paths } from "@paths";
 import { demoMode } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
@@ -17,6 +19,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
   const { signIn } = useAuth();
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState(null);
+  const { push } = useRouter();
 
   const handleOnSubmit = async (evt, { email, password }) => {
     evt.preventDefault();
@@ -87,26 +90,26 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
               : intl.formatMessage({ defaultMessage: "Sign In" })}
           </button>
         </div>
-        <div className="register-button">
-          <button className="register">
-            {intl.formatMessage({ defaultMessage: "Register Now" })}
-          </button>
-        </div>
-        <div className="mobileNumber">
-          <span className="u-link">
-            <FormattedMessage defaultMessage="Mobile number sign in" />
-          </span>
-        </div>
-        <hr />
-        <div>
-          <input type="checkbox" />
-          <span>I agree to Free Membership Agreement</span>
-        </div>
-        <div>
-          <input type="checkbox" />
-          <span>I agree to Receive marketing materials</span>
-        </div>
       </Form>
+      <div className="register-button" onClick={() => push(paths.register)}>
+        <button className="register">
+          {intl.formatMessage({ defaultMessage: "Register Now" })}
+        </button>
+      </div>
+      <div className="mobileNumber">
+        <span className="u-link">
+          <FormattedMessage defaultMessage="Mobile number sign in" />
+        </span>
+      </div>
+      <hr />
+      <div>
+        <input type="checkbox" />
+        <span>I agree to Free Membership Agreement</span>
+      </div>
+      <div>
+        <input type="checkbox" />
+        <span>I agree to Receive marketing materials</span>
+      </div>
     </div>
   );
 };

@@ -40,7 +40,13 @@ export interface RegisterAccount {
 }
 
 export interface RegisterAccountVariables {
+  country?: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  phone: string;
   password: string;
-  redirectUrl: string;
+  supplier?: boolean;
+  storeName?: string;
+  redirectUrl:string;
 }
