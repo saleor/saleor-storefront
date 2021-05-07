@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface RegisterAccount_accountRegister_errors {
-  __typename: "Error";
+  __typename: "AccountError";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -22,9 +22,6 @@ export interface RegisterAccount_accountRegister_errors {
 
 export interface RegisterAccount_accountRegister {
   __typename: "AccountRegister";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: RegisterAccount_accountRegister_errors[];
   /**
    * Informs whether users need to confirm their email address.

@@ -2,6 +2,7 @@ import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { paths } from "@paths";
+import { channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { Button, Form, TextField } from "..";
@@ -42,6 +43,7 @@ const PasswordResetRequestForm: React.FC = () => {
                   variables: {
                     email,
                     redirectUrl: `${location.origin}${paths.passwordReset}`,
+                    channel: channelSlug,
                   },
                 });
               }}

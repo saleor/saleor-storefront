@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface AccountConfirm_confirmAccount_errors {
-  __typename: "Error";
+  __typename: "AccountError";
   /**
    * Name of a field that caused the error. A value of `null` indicates that the
    * error isn't associated with a particular field.
@@ -22,9 +22,6 @@ export interface AccountConfirm_confirmAccount_errors {
 
 export interface AccountConfirm_confirmAccount {
   __typename: "ConfirmAccount";
-  /**
-   * List of errors that occurred executing the mutation.
-   */
   errors: AccountConfirm_confirmAccount_errors[];
 }
 
