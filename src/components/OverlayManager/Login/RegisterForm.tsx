@@ -1,5 +1,6 @@
 import { useAuth } from "@saleor/sdk";
 import { Formik } from "formik";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { AlertManager, useAlert } from "react-alert";
 import { FormattedMessage, IntlShape, useIntl } from "react-intl";
@@ -53,7 +54,8 @@ const Divider = styled.div`
 const showSuccessNotification = (
   data: RegisterAccount,
   alert: AlertManager,
-  intl: IntlShape
+  intl: IntlShape,
+  push: (val: string) => void
 ) => {
   const successful = maybe(() => !data.accountRegister.errors.length);
 
@@ -69,6 +71,15 @@ const showSuccessNotification = (
       },
       { type: "success", timeout: 5000 }
     );
+    push(paths.login);
+  } else {
+    const error = data.accountRegister?.errors[0]?.message;
+    alert.show(
+      {
+        title: error || "Created Failed! Try Again!",
+      },
+      { type: "error", timeout: 5000 }
+    );
   }
 };
 
@@ -79,7 +90,7 @@ interface RegisterFormType {
   email?: string;
   phone?: string;
   password?: string;
-  supplier?: boolean;
+  isSupplier?: boolean;
   storeName?: string;
   confirmPassword?: string;
 }
@@ -88,27 +99,35 @@ const RegisterForm: React.FC = () => {
   const alert = useAlert();
   const intl = useIntl();
   const { user } = useAuth();
+  const { push } = useRouter();
 
   if (user) {
     <Redirect url={paths.home} />;
   }
 
   const initialForm: RegisterFormType = {};
-  const validateSchema: Yup.ObjectSchema<RegisterFormType> = Yup.object().shape(
-    {
+  const [isSupplier, setIsSupplier] = React.useState(false);
+  const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
+    const validate = {
       email: Yup.string().required("Required"),
       password: Yup.string().min(8, "Password Too Short!").required("Required"),
       phone: Yup.string().required("Required"),
       firstName: Yup.string().required("Required"),
       lastName: Yup.string().required("Required"),
       confirmPassword: Yup.string().required("Required"),
-    }
-  );
+    };
+    return isSupplier
+      ? Yup.object().shape({
+          ...validate,
+          storeName: Yup.string().required("Required"),
+        })
+      : Yup.object().shape(validate);
+  }, [isSupplier]);
 
   return (
     <Wrapper>
       <TypedAccountRegisterMutation
-        onCompleted={data => showSuccessNotification(data, alert, intl)}
+        onCompleted={data => showSuccessNotification(data, alert, intl, push)}
       >
         {(registerCustomer, { loading, data }) => {
           return (
@@ -116,7 +135,7 @@ const RegisterForm: React.FC = () => {
               initialValues={initialForm}
               validationSchema={validateSchema}
               onSubmit={values => {
-                const redirectUrl = `${location.origin}${paths.accountConfirm}`;
+                const redirectUrl = `${location.origin}`;
                 const dataSubmit: RegisterAccountVariables = {
                   country: values.country,
                   email: values.email,
@@ -124,11 +143,9 @@ const RegisterForm: React.FC = () => {
                   lastName: values.lastName,
                   phone: values.phone,
                   password: values.password,
-                  supplier: values.supplier,
-                  storeName: values.storeName,
                   redirectUrl,
                 };
-                console.log({ dataSubmit });
+
                 if (values.password !== values.confirmPassword) {
                   alert.show(
                     {
@@ -139,7 +156,15 @@ const RegisterForm: React.FC = () => {
                     { type: "error" }
                   );
                 } else {
-                  registerCustomer({ variables: dataSubmit });
+                  registerCustomer({
+                    variables: values.isSupplier
+                      ? {
+                          ...dataSubmit,
+                          isSupplier: true,
+                          storeName: values.storeName,
+                        }
+                      : { ...dataSubmit, isSupplier: false },
+                  });
                 }
               }}
             >
@@ -149,8 +174,6 @@ const RegisterForm: React.FC = () => {
                 handleBlur,
                 setFieldValue,
                 values,
-                isSubmitting,
-
                 errors,
                 touched,
               }) => {
@@ -279,17 +302,18 @@ const RegisterForm: React.FC = () => {
                     </div>
                     <div>
                       <Checkbox
-                        name="supplier"
-                        checked={values.supplier}
-                        onChange={() =>
-                          setFieldValue("supplier", !values.supplier)
-                        }
+                        name="isSupplier"
+                        checked={values.isSupplier}
+                        onChange={() => {
+                          setIsSupplier(!values.isSupplier);
+                          setFieldValue("isSupplier", !values.isSupplier);
+                        }}
                       >
-                        <FormattedMessage defaultMessage="Supplier" />
+                        <FormattedMessage defaultMessage="isSupplier" />
                       </Checkbox>
                     </div>
                     <div>
-                      {values.supplier && (
+                      {values.isSupplier && (
                         <TextField
                           name="storeName"
                           label={intl.formatMessage(commonMessages.storeName)}
@@ -297,7 +321,7 @@ const RegisterForm: React.FC = () => {
                           errors={
                             !!errors.storeName &&
                             touched.storeName &&
-                            values.supplier
+                            (values.isSupplier || values.storeName.length === 0)
                               ? [{ message: errors.storeName || "" }]
                               : []
                           }

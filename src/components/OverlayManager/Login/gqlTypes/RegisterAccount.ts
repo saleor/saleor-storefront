@@ -46,7 +46,7 @@ export interface RegisterAccountVariables {
   email: string;
   phone: string;
   password: string;
-  supplier?: boolean;
+  isSupplier?: boolean;
   storeName?: string;
   redirectUrl:string;
 }
