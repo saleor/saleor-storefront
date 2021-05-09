@@ -67,13 +67,23 @@ export const UpLoadPhoto = styled.div`
 
 export const FlexOneCol = styled.div``;
 
-export const DisplayMarginP = styled.div`
+export const YourMemberID = styled.div`
   display: flex;
-  margin-bottom: 8px;
+  margin-bottom: 22px;
+  flex: 1;
 `;
 
-export const DisplayProfile = styled.div`
+export const Email = styled.div`
   display: flex;
+  margin-bottom: 22px;
+  flex: 1;
+  align-items: center;
+`;
+
+export const Mobile = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
 `;
 
 export const FlexDivTwoCol = styled.div`
@@ -102,6 +112,8 @@ export const FlexSpanThreeCol = styled.span`
 
 export const FlexFourCol = styled.div`
   flex: 4;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const FlexChild = styled.div`
@@ -237,4 +249,15 @@ export const BtnCancelProfile = styled.button`
   padding: 10px 32px;
   color: #ff6a00;
   font-size: 18px;
+`;
+
+export const BtnUpload = styled.button`
+  font-size: 15px;
+  color: #ff6a00;
+`;
+
+export const UserAvatar = styled.img`
+  border: 1px solid;
+  width: 100px;
+  height: 100px;
 `;

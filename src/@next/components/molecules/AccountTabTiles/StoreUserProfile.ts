@@ -8,3 +8,6 @@ export interface UpdateStaffInfoVariables {
 export interface updateUserAddressVar {
   addressInput: string;
 }
+export interface UploadPhoto {
+  image: File;
+}

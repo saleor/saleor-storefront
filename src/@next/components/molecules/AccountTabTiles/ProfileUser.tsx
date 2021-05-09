@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useAuth } from "@saleor/sdk";
 import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
@@ -6,40 +5,20 @@ import { FormattedMessage } from "react-intl";
 import { Loader, Tile } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 
-import { TypeListStoreUserQuery } from "../StoreTagTiles/queries";
 import { TextField } from "../TextField";
-import { TypeUpdateUserAddress } from "./queries";
+import { TypeUpdateAvatarMutation, TypeUpdateUserAddress } from "./queries";
 import * as S from "./styles";
 
 export const ProfileUser: React.FC = () => {
   const { user } = useAuth();
-  console.log("user", user);
   const [updateProfile, setUpdateProfile] = useState(false);
-  const [, setSelectedFile] = useState(null);
-  const [, setLoaded] = useState(0);
-  const [rerender, setRerender] = useState(false);
-
-  // const handleChangeValueEmail = (e: {
-  //   target: { value: React.SetStateAction<string | undefined> };
-  // }) => {
-  //   setEmail(e.target.value);
-  // };
-
-  const handleSaveUpdate = () => {
-    setUpdateProfile(false);
-  };
+  const [, setRerender] = useState(false);
 
   const [phoneNumber, setPhoneNumber] = useState("Enter Mobile Number");
 
-  const handleUploadPhoto = (e: {
-    target: { files: React.SetStateAction<null>[] };
-  }) => {
-    // {
-    //   target: { files: React.SetStateAction<null>[] };
-    // }
-    setSelectedFile(e.target.files[0]);
-    setLoaded(0);
-  };
+  const anchor = React.useRef<HTMLInputElement>(null);
+
+  const handleImageUploadButtonClick = () => anchor.current?.click();
 
   if (!user) {
     return <Loader />;
@@ -48,52 +27,62 @@ export const ProfileUser: React.FC = () => {
   return (
     <S.TileWrapper>
       <Tile>
-        {/* <TypeListStoreUserQuery
-          alwaysRender
-          displayLoader={false}
-          errorPolicy="all"
-          variables={{ id: user?.id }}
-        >
-          {({ data, loading }) => {
-            console.log({ data });
-            return ( */}
         <S.FlexDiv>
-          <div />
-          {/* <TypedUploadProfileMutation>
-                    {(updatePhoto, { loading, data }) => {
-                      console.log("data", data);
+          <TypeUpdateAvatarMutation
+            onCompleted={() => {
+              setUpdateProfile(false);
+              setRerender(true);
+            }}
+          >
+            {(updatePhoto, { loading, data }) => {
+              return (
+                <S.UpLoadPhoto>
+                  <S.UserAvatar
+                    src={
+                      data
+                        ? data?.userAvatarUpdate?.user?.avatar?.url
+                        : "//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
+                    }
+                    alt=""
+                  />
+
+                  <S.BtnUpload onClick={handleImageUploadButtonClick}>
+                    <FormattedMessage {...commonMessages.upLoadPhoto} />
+                  </S.BtnUpload>
+                  <input
+                    id="fileUpload"
+                    style={{ display: "none" }}
+                    onChange={event => {
                       return (
-                        <S.UpLoadPhoto>
-                          <img
-                            src="//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
-                            alt=""
-                          />
-                          <S.InputUploadPhoto
-                            type="file"
-                            id="avatar"
-                            name="avatar"
-                            accept="image/png, image/jpeg"
-                            onChange={() => handleUploadPhoto}
-                          />
-                        </S.UpLoadPhoto>
+                        event.target?.files?.[0] &&
+                        updatePhoto({
+                          variables: { image: event.target.files[0] },
+                        })
                       );
                     }}
-                  </TypedUploadProfileMutation> */}
+                    type="file"
+                    ref={anchor}
+                    accept="image/*"
+                  />
+                </S.UpLoadPhoto>
+              );
+            }}
+          </TypeUpdateAvatarMutation>
           <S.FlexChild>
             <S.FlexFourCol>
-              <S.DisplayMarginP>
+              <S.YourMemberID>
                 <S.FlexSpanOneCol>Your Member ID:</S.FlexSpanOneCol>
                 <S.FlexSpanThreeCol>{user?.id}</S.FlexSpanThreeCol>
-              </S.DisplayMarginP>
+              </S.YourMemberID>
 
-              <S.DisplayMarginP>
+              <S.Email>
                 <S.FlexSpanOneCol>Email:</S.FlexSpanOneCol>
                 <S.FlexSpanThreeCol>
                   <S.FlexSpanThreeCol>{user?.email}</S.FlexSpanThreeCol>
                 </S.FlexSpanThreeCol>
-              </S.DisplayMarginP>
+              </S.Email>
 
-              <S.DisplayProfile>
+              <S.Mobile>
                 <S.FlexSpanOneCol>Mobile:</S.FlexSpanOneCol>
                 <S.FlexSpanThreeCol>
                   {updateProfile ? (
@@ -108,7 +97,7 @@ export const ProfileUser: React.FC = () => {
                     <S.LinkTagPU href="#">{phoneNumber}</S.LinkTagPU>
                   )}
                 </S.FlexSpanThreeCol>
-              </S.DisplayProfile>
+              </S.Mobile>
 
               {updateProfile && (
                 <TypeUpdateUserAddress
@@ -118,7 +107,6 @@ export const ProfileUser: React.FC = () => {
                   }}
                 >
                   {(updateStaff, { loading, data }) => {
-                    console.log("data", data);
                     return (
                       <S.FormButtons>
                         <S.BtnCancelProfile
@@ -159,9 +147,6 @@ export const ProfileUser: React.FC = () => {
             )}
           </S.FlexChild>
         </S.FlexDiv>
-
-        {/* }} */}
-        {/* </TypeListStoreUserQuery> */}
       </Tile>
     </S.TileWrapper>
   );

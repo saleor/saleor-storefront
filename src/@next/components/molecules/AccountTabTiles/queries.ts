@@ -5,6 +5,7 @@ import { TypedMutation } from "../../../../core/mutations";
 import {
   UpdateStaffInfoVariables,
   updateUserAddressVar,
+  UploadPhoto,
 } from "./StoreUserProfile";
 
 const updateUserAddress = gql`
@@ -58,23 +59,18 @@ export const TypeUpdateStaffUser = TypedMutation<any, UpdateStaffInfoVariables>(
   updateStaffContact
 );
 
-// const updateCustomerContact = gql`
-//   mutation UpdateStaff($id: ID!, $phone: String) {
-//     staffUpdate(id: $id, input: { adre: $phone }) {
-//       staffErrors {
-//         field
-//         message
-//       }
-//       user {
-//         addresses {
-//           phone
-//         }
-//       }
-//     }
-//   }
-// `;
+const updateAvatar = gql`
+  mutation userAvatarUpdate($image: Upload!) {
+    userAvatarUpdate(image: $image) {
+      user {
+        avatar {
+          url
+        }
+      }
+    }
+  }
+`;
 
-// export const TypeUpdateCustomerUser = TypedMutation<
-//   any,
-//   UpdateStaffInfoVariables
-// >(updateCustomerContact);
+export const TypeUpdateAvatarMutation = TypedMutation<any, UploadPhoto>(
+  updateAvatar
+);
