@@ -105,6 +105,7 @@
     "@storybook/cli": "^6.0.28",
     "@storybook/react": "^6.0.28",
     "@storybook/theming": "^6.0.28",
+    "@types/apollo-upload-client": "^14.1.0",
     "@types/braintree-web": "^3.47.0",
     "@types/classnames": "^2.2.6",
     "@types/dompurify": "0.0.33",
