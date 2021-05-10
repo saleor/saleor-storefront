@@ -76,6 +76,9 @@ export const commonMessages = defineMessages({
   logOut: {
     defaultMessage: "Log Out",
   },
+  fullName: {
+    defaultMessage: "Full Name",
+  },
   firstName: {
     defaultMessage: "First Name",
   },
