@@ -6,11 +6,16 @@ import { Loader, Tile } from "@components/atoms";
 import { commonMessages } from "@temp/intl";
 
 import { TextField } from "../TextField";
-import { TypeUpdateAvatarMutation, TypeUpdateUserAddress } from "./queries";
+import {
+  TypeUpdateAvatarMutation,
+  TypeUpdateAvatarQuery,
+  TypeUpdateUserAddress,
+} from "./queries";
 import * as S from "./styles";
 
 export const ProfileUser: React.FC = () => {
   const { user } = useAuth();
+
   const [updateProfile, setUpdateProfile] = useState(false);
   const [, setRerender] = useState(false);
 
@@ -28,46 +33,53 @@ export const ProfileUser: React.FC = () => {
     <S.TileWrapper>
       <Tile>
         <S.FlexDiv>
-          <TypeUpdateAvatarMutation
-            onCompleted={() => {
-              setUpdateProfile(false);
-              setRerender(true);
-            }}
-          >
-            {(updatePhoto, { loading, data }) => {
+          <TypeUpdateAvatarQuery variables={{ id: user.id }}>
+            {({ data: avatar, refetch }) => {
+              const avatarUrl = avatar?.user?.avatar?.url;
               return (
-                <S.UpLoadPhoto>
-                  <S.UserAvatar
-                    src={
-                      data
-                        ? data?.userAvatarUpdate?.user?.avatar?.url
-                        : "//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
-                    }
-                    alt=""
-                  />
+                <TypeUpdateAvatarMutation
+                  onCompleted={() => {
+                    setUpdateProfile(false);
+                    refetch();
+                    setRerender(true);
+                  }}
+                >
+                  {(updatePhoto, { loading, data }) => {
+                    return (
+                      <S.UpLoadPhoto>
+                        <S.UserAvatar
+                          src={
+                            avatarUrl ||
+                            "//gtms01.alicdn.com/tps/i1/TB1vdHdIpXXXXXYXXXXF5vTHFXX-60-59.png"
+                          }
+                          alt=""
+                        />
 
-                  <S.BtnUpload onClick={handleImageUploadButtonClick}>
-                    <FormattedMessage {...commonMessages.upLoadPhoto} />
-                  </S.BtnUpload>
-                  <input
-                    id="fileUpload"
-                    style={{ display: "none" }}
-                    onChange={event => {
-                      return (
-                        event.target?.files?.[0] &&
-                        updatePhoto({
-                          variables: { image: event.target.files[0] },
-                        })
-                      );
-                    }}
-                    type="file"
-                    ref={anchor}
-                    accept="image/*"
-                  />
-                </S.UpLoadPhoto>
+                        <S.BtnUpload onClick={handleImageUploadButtonClick}>
+                          <FormattedMessage {...commonMessages.upLoadPhoto} />
+                        </S.BtnUpload>
+                        <input
+                          id="fileUpload"
+                          style={{ display: "none" }}
+                          onChange={event => {
+                            return (
+                              event.target?.files?.[0] &&
+                              updatePhoto({
+                                variables: { image: event.target.files[0] },
+                              })
+                            );
+                          }}
+                          type="file"
+                          ref={anchor}
+                          accept="image/*"
+                        />
+                      </S.UpLoadPhoto>
+                    );
+                  }}
+                </TypeUpdateAvatarMutation>
               );
             }}
-          </TypeUpdateAvatarMutation>
+          </TypeUpdateAvatarQuery>
           <S.FlexChild>
             <S.FlexFourCol>
               <S.YourMemberID>

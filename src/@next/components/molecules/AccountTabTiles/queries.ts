@@ -1,8 +1,11 @@
 import gql from "graphql-tag";
 
+import { TypedQuery } from "@temp/core/queries";
+
 import { TypedMutation } from "../../../../core/mutations";
 // import { TypedQuery } from "../../../../core/queries";
 import {
+  TypedAvatarVar,
   UpdateStaffInfoVariables,
   updateUserAddressVar,
   UploadPhoto,
@@ -74,3 +77,16 @@ const updateAvatar = gql`
 export const TypeUpdateAvatarMutation = TypedMutation<any, UploadPhoto>(
   updateAvatar
 );
+
+const getAvatar = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      avatar {
+        url
+        alt
+      }
+    }
+  }
+`;
+
+export const TypeUpdateAvatarQuery = TypedQuery<any, TypedAvatarVar>(getAvatar);

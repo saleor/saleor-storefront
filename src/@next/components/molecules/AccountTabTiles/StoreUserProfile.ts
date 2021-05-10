@@ -11,3 +11,6 @@ export interface updateUserAddressVar {
 export interface UploadPhoto {
   image: File;
 }
+export interface TypedAvatarVar {
+  id: string;
+}
