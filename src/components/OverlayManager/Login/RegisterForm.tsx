@@ -105,7 +105,9 @@ const RegisterForm: React.FC = () => {
     <Redirect url={paths.home} />;
   }
 
-  const initialForm: RegisterFormType = {};
+  const initialForm: RegisterFormType = {
+    email: "",
+  };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
     const validate = {
@@ -309,7 +311,7 @@ const RegisterForm: React.FC = () => {
                           setFieldValue("isSupplier", !values.isSupplier);
                         }}
                       >
-                        <FormattedMessage defaultMessage="isSupplier" />
+                        <FormattedMessage defaultMessage="Supplier" />
                       </Checkbox>
                     </div>
                     <div>
