@@ -10,7 +10,7 @@ const accountRegisterMutation = gql`
   mutation RegisterAccount(
     $email: String!
     $password: String!
-    $redirectUrl: String!
+    $redirectUrl: String
   ) {
     accountRegister(
       input: { email: $email, password: $password, redirectUrl: $redirectUrl }
