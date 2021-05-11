@@ -75,8 +75,8 @@ function Search(props: SearchProps) {
   React.useEffect(() => {
     if (searchTerms.length === 0 && isSearch) {
       props.router.push(`/`);
-      setReset(false);
     }
+    setReset(false);
   }, [searchTerms]);
 
   return (

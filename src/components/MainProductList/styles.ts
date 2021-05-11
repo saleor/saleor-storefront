@@ -27,13 +27,10 @@ export const Title = styled.h3`
 export const List = styled.div`
   display: flex;
   flex-wrap: wrap;
-  // border-left: 1px solid #d3d3d3;
-  // border-right: 1px solid #d3d3d3;
-  // border-top: 1px solid #d3d3d3;
 `;
 
 export const Item = styled.div`
-  max-width: 25%;
+  width: 25%;
   padding: 0 20px 15px 20px;
   border-right: 1px solid #d3d3d3;
   border-top: 1px solid #d3d3d3;
@@ -45,14 +42,14 @@ export const Item = styled.div`
     border-left: 1px solid #d3d3d3;
   }
   @media screen and (max-width: 1080px) {
-    max-width: 50%;
+    width: 50%;
     &:nth-child(4n + 3) {
       border-left: 1px solid #d3d3d3;
     }
   }
 
   @media screen and (max-width: 768px) {
-    max-width: 100%;
+    width: 100%;
     border: 1px solid #d3d3d3;
   }
 `;

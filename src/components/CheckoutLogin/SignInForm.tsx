@@ -2,17 +2,15 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { LoginForm } from "..";
-import ForgottenPassword from "../OverlayManager/Login/ForgottenPassword";
 
-const SignInForm: React.FC<{
-  onForgottenPasswordClick: () => void;
-}> = ({ onForgottenPasswordClick }) => (
+const SignInForm: React.FC = () => (
   <>
-    <h3 className="checkout__header">
-      <FormattedMessage defaultMessage="Login User" />
-    </h3>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <h3 className="checkout__header">
+        <FormattedMessage defaultMessage="Login" />
+      </h3>
+    </div>
     <LoginForm />
-    <ForgottenPassword onClick={onForgottenPasswordClick} />
   </>
 );
 

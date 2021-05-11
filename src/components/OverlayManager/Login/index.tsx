@@ -83,7 +83,7 @@ class Login extends React.Component<
                   />
                 </>
               ) : (
-                <RegisterForm hide={hide} />
+                <RegisterForm />
               )}
             </div>
           </Online>

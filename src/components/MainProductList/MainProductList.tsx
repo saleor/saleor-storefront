@@ -1,5 +1,7 @@
+import { useRouter } from "next/router";
 import React from "react";
 
+import { generateProductUrl } from "@temp/core/utils";
 import { ListProductType } from "@temp/views/StorePage/Page";
 
 import * as S from "./styles";
@@ -9,6 +11,10 @@ interface IProps {
   title: string;
 }
 function MainProductList({ listProduct, title }: IProps) {
+  const { push } = useRouter();
+  const handleClick = (id: string, name: string) => {
+    push(generateProductUrl(id, name));
+  };
   return (
     <S.Wrapper>
       <S.WrapperContainer style={{ margin: "20px 0" }}>
@@ -20,7 +26,9 @@ function MainProductList({ listProduct, title }: IProps) {
                 <S.ImgBox>
                   <S.Img src={item.imgUrl} />
                 </S.ImgBox>
-                <S.NameProduct>{item.name}</S.NameProduct>
+                <S.NameProduct onClick={() => handleClick(item.id, item.name)}>
+                  {item.name}
+                </S.NameProduct>
                 <S.TabBox>
                   {item.tab.map((item, index) => {
                     return <S.Tab key={index}>{item}</S.Tab>;
