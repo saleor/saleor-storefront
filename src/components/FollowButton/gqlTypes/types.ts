@@ -1,3 +1,7 @@
-export interface IProps {
+export interface IFollowProps {
+    
+}
+
+export interface FollowVariables {
     
 }

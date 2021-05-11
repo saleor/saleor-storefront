@@ -1,6 +1,9 @@
 import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
+  country: {
+    defaultMessage: "Country",
+  },
   store: {
     defaultMessage: "Store",
   },
@@ -73,6 +76,9 @@ export const commonMessages = defineMessages({
   logOut: {
     defaultMessage: "Log Out",
   },
+  fullName: {
+    defaultMessage: "Full Name",
+  },
   firstName: {
     defaultMessage: "First Name",
   },
@@ -81,6 +87,9 @@ export const commonMessages = defineMessages({
   },
   password: {
     defaultMessage: "Password",
+  },
+  confirmPassword: {
+    defaultMessage: "Confirm Password",
   },
   quantity: {
     defaultMessage: "Quantity",

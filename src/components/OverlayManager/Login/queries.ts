@@ -10,10 +10,26 @@ const accountRegisterMutation = gql`
   mutation RegisterAccount(
     $email: String!
     $password: String!
+    $firstName: String!
+    $lastName: String!
+    $phone: String!
     $redirectUrl: String!
+    $country: CountryCode
+    $isSupplier: Boolean!
+    $storeName: String
   ) {
     accountRegister(
-      input: { email: $email, password: $password, redirectUrl: $redirectUrl }
+      input: {
+        isSupplier: $isSupplier
+        storeName: $storeName
+        country: $country
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+        phone: $phone
+        redirectUrl: $redirectUrl
+      }
     ) {
       errors {
         field

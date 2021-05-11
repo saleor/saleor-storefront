@@ -1,6 +1,9 @@
+import { useAuth } from "@saleor/sdk";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { TypeStoreForUserQuery } from "@components/molecules/StoreTagTiles/queries";
+import { orange } from "@styles/constants";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
 import { channelSlug } from "@temp/constants";
@@ -9,8 +12,13 @@ import FollowButton from "../../components/FollowButton";
 import { TypedHomePageQuery } from "../Home/queries";
 import { ProductDetails_product_images } from "../Product/gqlTypes/ProductDetails";
 import { CategorySection } from "./CategorySection";
-import { TypedListCarousel, TypedProductListQuery } from "./queries";
+import {
+  TypedListCarousel,
+  TypedListFollow,
+  TypedProductListQuery,
+} from "./queries";
 import StoreCarousel from "./StoreCarousel";
+import * as S from "./styles";
 
 type Props = {
   storeId: string;
@@ -23,7 +31,9 @@ export type ListProductType = {
   tab: string[];
 };
 const Page: React.FC<Props> = ({ storeId }) => {
-  console.log({ storeId });
+  const [reRender, setRerender] = React.useState(false);
+
+  const { user } = useAuth();
   const ListNav = [
     {
       title: "Home",
@@ -110,20 +120,24 @@ const Page: React.FC<Props> = ({ storeId }) => {
     },
   ];
 
-  const [stt, setStt] = React.useState(false);
   return (
     <>
       <TypedListCarousel>
         {data => {
           // TODO : mock list carousel
+          const index = data.data?.pages?.edges?.findIndex(
+            item => item.node.isPublished
+          );
           const dataCarousel: ProductDetails_product_images[] =
             data &&
-            data.data?.pages?.edges[0]?.node?.media?.map(item => ({
-              id: item.id,
-              alt: item.alt,
-              __typename: "ProductImage",
-              url: `http://thachsanh.store:8080/media/${item.image}`,
-            }));
+            data.data?.pages?.edges[index > -1 ? index : 0]?.node?.media?.map(
+              item => ({
+                id: item.id,
+                alt: item.alt,
+                __typename: "ProductImage",
+                url: `http://thachsanh.store:8080/media/${item.image}`,
+              })
+            );
 
           return (
             <>
@@ -138,7 +152,58 @@ const Page: React.FC<Props> = ({ storeId }) => {
                 }
                 isSlide
               />
-              <FollowButton isActive={stt} setStt={setStt} />
+              {user ? (
+                <S.Wrapper>
+                  <TypeStoreForUserQuery variables={{ id: storeId }}>
+                    {({ data }) => {
+                      return (
+                        <S.StoreName color={orange}>
+                          {data.store && data.store.name}
+                        </S.StoreName>
+                      );
+                    }}
+                  </TypeStoreForUserQuery>
+
+                  <TypedListFollow>
+                    {({ data, refetch }) => {
+                      if (reRender) {
+                        refetch();
+                        setRerender(false);
+                      }
+                      const listData =
+                        data.socials.edges.find(
+                          item => item?.node?.store?.id === storeId
+                        ) || null;
+
+                      return (
+                        <FollowButton
+                          isActive={(listData && listData.node.follow) || false}
+                          storeId={storeId}
+                          setRerender={setRerender}
+                        />
+                      );
+                    }}
+                  </TypedListFollow>
+                </S.Wrapper>
+              ) : (
+                <S.Wrapper>
+                  <TypeStoreForUserQuery variables={{ id: storeId }}>
+                    {({ data }) => {
+                      return (
+                        <S.StoreName color={orange}>
+                          {data.store && data.store.name}
+                        </S.StoreName>
+                      );
+                    }}
+                  </TypeStoreForUserQuery>
+                  <FollowButton
+                    isActive={false}
+                    storeId={storeId}
+                    setRerender={setRerender}
+                  />
+                </S.Wrapper>
+              )}
+
               <TypedProductListQuery
                 alwaysRender
                 displayLoader={false}

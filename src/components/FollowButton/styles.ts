@@ -12,9 +12,8 @@ export const WrapperContainer = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  // width: 100%;
+  // display: flex;
 `;
 
 export const Button = styled.p<{ isActive: boolean; color: string }>`
