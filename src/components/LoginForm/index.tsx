@@ -71,12 +71,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         />
         <div>
           <input type="checkbox" />
-          <span>
-            <span> Stay signed in. </span>
-            <span className="u-link">
-              <FormattedMessage defaultMessage=" Details" />
-            </span>
-          </span>
+          <span> Stay signed in. </span>
         </div>
         <div className="login-form__button">
           <button
@@ -95,20 +90,6 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         <button className="register">
           {intl.formatMessage({ defaultMessage: "Register Now" })}
         </button>
-      </div>
-      <div className="mobileNumber">
-        <span className="u-link">
-          <FormattedMessage defaultMessage="Mobile number sign in" />
-        </span>
-      </div>
-      <hr />
-      <div>
-        <input type="checkbox" />
-        <span>I agree to Free Membership Agreement</span>
-      </div>
-      <div>
-        <input type="checkbox" />
-        <span>I agree to Receive marketing materials</span>
       </div>
     </div>
   );

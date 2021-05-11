@@ -51,6 +51,23 @@ const Divider = styled.div`
   width: 2rem;
 `;
 
+const Label = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const Flex = styled.div`
+  display: flex;
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
+
 const showSuccessNotification = (
   data: RegisterAccount,
   alert: AlertManager,
@@ -105,7 +122,9 @@ const RegisterForm: React.FC = () => {
     <Redirect url={paths.home} />;
   }
 
-  const initialForm: RegisterFormType = {};
+  const initialForm: RegisterFormType = {
+    email: "",
+  };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
     const validate = {
@@ -126,6 +145,9 @@ const RegisterForm: React.FC = () => {
 
   return (
     <Wrapper>
+      <Title>
+        <h3>Register</h3>
+      </Title>
       <TypedAccountRegisterMutation
         onCompleted={data => showSuccessNotification(data, alert, intl, push)}
       >
@@ -179,24 +201,29 @@ const RegisterForm: React.FC = () => {
               }) => {
                 return (
                   <form onSubmit={handleSubmit} data-test="accountUpdateForm">
-                    <div style={{ marginBottom: "1.875rem" }}>
-                      <InputSelect
-                        label={intl.formatMessage(commonMessages.country)}
-                        name="country"
-                        options={COUNTRY_LIST}
-                        optionLabelKey="text"
-                        optionValueKey="value"
-                        autoComplete="value"
-                        value={
-                          values!.country &&
-                          COUNTRY_LIST.find(
-                            option => option.value === values!.country
-                          )
-                        }
-                        onChange={(value: any, name: any) =>
-                          setFieldValue(name, value.value)
-                        }
-                      />
+                    <div style={{ marginBottom: "1rem", display: "flex" }}>
+                      <Label style={{ margin: 0 }}>
+                        {intl.formatMessage(commonMessages.country)} :
+                      </Label>
+                      <div style={{ flex: 4 }}>
+                        <InputSelect
+                          label={intl.formatMessage(commonMessages.country)}
+                          name="country"
+                          options={COUNTRY_LIST}
+                          optionLabelKey="text"
+                          optionValueKey="value"
+                          autoComplete="value"
+                          value={
+                            values!.country &&
+                            COUNTRY_LIST.find(
+                              option => option.value === values!.country
+                            )
+                          }
+                          onChange={(value: any, name: any) =>
+                            setFieldValue(name, value.value)
+                          }
+                        />
+                      </div>
                     </div>
                     <div
                       style={{
@@ -204,133 +231,185 @@ const RegisterForm: React.FC = () => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <div style={{ flex: 1 }}>
+                      <div style={{ flex: 1, display: "flex" }}>
+                        <div
+                          style={{
+                            flex: 2,
+                            display: "flex",
+                            alignItems: "center",
+                            marginBottom: "1rem",
+                          }}
+                        >
+                          {intl.formatMessage(commonMessages.fullName)} :
+                        </div>
+                        <div style={{ flex: 3 }}>
+                          <TextField
+                            name="firstName"
+                            label={intl.formatMessage(commonMessages.firstName)}
+                            type="text"
+                            errors={
+                              !values.firstName && touched.firstName
+                                ? [{ message: errors.firstName || "" }]
+                                : []
+                            }
+                            value={values.firstName}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{ flex: 1, display: "flex" }}>
+                        <div style={{ flex: 2 }}>
+                          <Divider />
+                        </div>
+                        <div style={{ flex: 3 }}>
+                          <TextField
+                            name="lastName"
+                            label={intl.formatMessage(commonMessages.lastName)}
+                            type="text"
+                            errors={
+                              !values.lastName && touched.lastName
+                                ? [{ message: errors.lastName || "" }]
+                                : []
+                            }
+                            value={values.lastName}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <Flex>
+                      <Label>
+                        {intl.formatMessage(commonMessages.shortEmail)} :
+                      </Label>
+                      <div style={{ flex: 4 }}>
                         <TextField
-                          name="firstName"
-                          label={intl.formatMessage(commonMessages.firstName)}
-                          type="text"
+                          name="email"
+                          label={intl.formatMessage(commonMessages.shortEmail)}
+                          type="email"
                           errors={
-                            !values.firstName && touched.firstName
-                              ? [{ message: errors.firstName || "" }]
+                            !values.email && touched.email
+                              ? [{ message: errors.email || "" }]
                               : []
                           }
-                          value={values.firstName}
+                          value={values.email}
                           onBlur={handleBlur}
                           onChange={handleChange}
                         />
                       </div>
-                      <Divider />
-                      <div style={{ flex: 1 }}>
+                    </Flex>
+                    <Flex>
+                      <Label>
+                        {intl.formatMessage(commonMessages.phone)} :
+                      </Label>
+                      <div style={{ flex: 4 }}>
                         <TextField
-                          name="lastName"
-                          label={intl.formatMessage(commonMessages.lastName)}
+                          name="phone"
+                          label={intl.formatMessage(commonMessages.phone)}
                           type="text"
                           errors={
-                            !values.lastName && touched.lastName
-                              ? [{ message: errors.lastName || "" }]
+                            !values.phone && touched.phone
+                              ? [{ message: errors.phone || "" }]
                               : []
                           }
-                          value={values.lastName}
+                          value={values.phone}
                           onBlur={handleBlur}
                           onChange={handleChange}
                         />
                       </div>
-                    </div>
-                    <div>
-                      <TextField
-                        name="email"
-                        label={intl.formatMessage(commonMessages.eMail)}
-                        type="email"
-                        errors={
-                          !values.email && touched.email
-                            ? [{ message: errors.email || "" }]
-                            : []
-                        }
-                        value={values.email}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div>
-                      <TextField
-                        name="phone"
-                        label={intl.formatMessage(commonMessages.phone)}
-                        type="text"
-                        errors={
-                          !values.phone && touched.phone
-                            ? [{ message: errors.phone || "" }]
-                            : []
-                        }
-                        value={values.phone}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div>
-                      <TextField
-                        name="password"
-                        label={intl.formatMessage(commonMessages.password)}
-                        type="password"
-                        errors={
-                          !values.password && touched.password
-                            ? [{ message: errors.password || "" }]
-                            : []
-                        }
-                        value={values.password}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div>
-                      <TextField
-                        name="confirmPassword"
-                        label={intl.formatMessage(
-                          commonMessages.confirmPassword
-                        )}
-                        type="password"
-                        value={values.confirmPassword}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        errors={
-                          (!values.confirmPassword &&
-                            touched.confirmPassword) ||
-                          values.confirmPassword !== values.password
-                            ? [{ message: errors.password || "" }]
-                            : []
-                        }
-                      />
-                    </div>
-                    <div>
-                      <Checkbox
-                        name="isSupplier"
-                        checked={values.isSupplier}
-                        onChange={() => {
-                          setIsSupplier(!values.isSupplier);
-                          setFieldValue("isSupplier", !values.isSupplier);
-                        }}
-                      >
-                        <FormattedMessage defaultMessage="isSupplier" />
-                      </Checkbox>
-                    </div>
-                    <div>
-                      {values.isSupplier && (
+                    </Flex>
+                    <Flex>
+                      <Label>
+                        {intl.formatMessage(commonMessages.password)} :
+                      </Label>
+                      <div style={{ flex: 4 }}>
                         <TextField
-                          name="storeName"
-                          label={intl.formatMessage(commonMessages.storeName)}
-                          type="text"
+                          name="password"
+                          label={intl.formatMessage(commonMessages.password)}
+                          type="password"
                           errors={
-                            !!errors.storeName &&
-                            touched.storeName &&
-                            (values.isSupplier || values.storeName.length === 0)
-                              ? [{ message: errors.storeName || "" }]
+                            !values.password && touched.password
+                              ? [{ message: errors.password || "" }]
                               : []
                           }
-                          value={values.storeName}
+                          value={values.password}
                           onBlur={handleBlur}
                           onChange={handleChange}
                         />
-                      )}
-                    </div>
+                      </div>
+                    </Flex>
+                    <Flex>
+                      <Label>
+                        {intl.formatMessage(commonMessages.confirmPassword)} :
+                      </Label>
+                      <div style={{ flex: 4 }}>
+                        <TextField
+                          name="confirmPassword"
+                          label={intl.formatMessage(
+                            commonMessages.confirmPassword
+                          )}
+                          type="password"
+                          value={values.confirmPassword}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          errors={
+                            (!values.confirmPassword &&
+                              touched.confirmPassword) ||
+                            values.confirmPassword !== values.password
+                              ? [{ message: errors.password || "" }]
+                              : []
+                          }
+                        />
+                      </div>
+                    </Flex>
+                    <Flex>
+                      <Label>
+                        <FormattedMessage defaultMessage="Supplier :" />
+                      </Label>
+                      <div style={{ flex: 4 }}>
+                        <Checkbox
+                          name="isSupplier"
+                          checked={values.isSupplier}
+                          onChange={() => {
+                            setIsSupplier(!values.isSupplier);
+                            setFieldValue("isSupplier", !values.isSupplier);
+                          }}
+                        />
+                      </div>
+                    </Flex>
+                    {values.isSupplier && (
+                      <Flex>
+                        <div
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {intl.formatMessage(commonMessages.storeName)} :
+                        </div>
+                        <div style={{ flex: 4 }}>
+                          <TextField
+                            name="storeName"
+                            label={intl.formatMessage(commonMessages.storeName)}
+                            type="text"
+                            errors={
+                              !!errors.storeName &&
+                              touched.storeName &&
+                              (values.isSupplier ||
+                                values.storeName.length === 0)
+                                ? [{ message: errors.storeName || "" }]
+                                : []
+                            }
+                            value={values.storeName}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </Flex>
+                    )}
                     <div className="login__content__button">
                       <StyledButton
                         type="submit"
