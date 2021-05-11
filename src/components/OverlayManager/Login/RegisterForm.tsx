@@ -330,7 +330,8 @@ const RegisterForm: React.FC = () => {
                           label={intl.formatMessage(commonMessages.password)}
                           type="password"
                           errors={
-                            !values.password && touched.password
+                            (!values.password && touched.password) ||
+                            (values.password && values.password.length < 8)
                               ? [{ message: errors.password || "" }]
                               : []
                           }
@@ -358,7 +359,7 @@ const RegisterForm: React.FC = () => {
                             (!values.confirmPassword &&
                               touched.confirmPassword) ||
                             values.confirmPassword !== values.password
-                              ? [{ message: errors.password || "" }]
+                              ? [{ message: errors.confirmPassword || "" }]
                               : []
                           }
                         />
