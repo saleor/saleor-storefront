@@ -18,13 +18,6 @@ export const Layout = styled.div`
   }
 `;
 
-export const LinkTagPU = styled.a`
-  :hover {
-    color: orange;
-    text-decoration: underline;
-  }
-`;
-
 export const InputUploadPhoto = styled.input`
   :hover {
     color: orange;
@@ -65,25 +58,19 @@ export const UpLoadPhoto = styled.div`
   }
 `;
 
-export const FlexOneCol = styled.div``;
+export const FlexOneCol = styled.div`
+  flex: 1;
+`;
 
 export const YourMemberID = styled.div`
-  display: flex;
-  margin-bottom: 22px;
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 `;
 
 export const Email = styled.div`
-  display: flex;
-  margin-bottom: 22px;
-  flex: 1;
-  align-items: center;
-`;
-
-export const Mobile = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  grid-gap: 5px;
 `;
 
 export const FlexDivTwoCol = styled.div`
@@ -95,19 +82,8 @@ export const UpdateProfile = styled.div`
   align-items: center;
 `;
 
-export const BtnUserProfile = styled.button`
-  padding: 12px;
-  border-radius: 20px;
-  background-color: #ff6a00;
-`;
-
-export const FlexSpanOneCol = styled.span`
+export const TextColor = styled.span`
   color: #999999;
-  flex: 1;
-`;
-
-export const FlexSpanThreeCol = styled.span`
-  flex: 3;
 `;
 
 export const FlexFourCol = styled.div`
@@ -116,16 +92,17 @@ export const FlexFourCol = styled.div`
   flex-direction: column;
 `;
 
-export const FlexChild = styled.div`
+export const WrapperChildUP = styled.div`
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   @media (min-width: 540px) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
-export const FlexDiv = styled.div`
+export const WrapperUP = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
@@ -219,10 +196,6 @@ export const ContentExtendInput = styled.div`
   width: 60%;
 `;
 
-export const InforProfileInput = styled.div`
-  width: 100%;
-`;
-
 export const Form = styled.form`
   background-color: ${props => props.theme.tile.backgroundColor};
 `;
@@ -236,19 +209,6 @@ export const FormButtons = styled.div`
   button {
     margin-left: 2rem;
   }
-`;
-
-export const BtnSaveProfile = styled.button`
-  padding: 10px 32px;
-  background-color: #ff6a00;
-  color: white;
-  font-size: 15px;
-`;
-
-export const BtnCancelProfile = styled.button`
-  padding: 10px 32px;
-  color: #ff6a00;
-  font-size: 18px;
 `;
 
 export const BtnUpload = styled.button`
