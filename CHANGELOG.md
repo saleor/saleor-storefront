@@ -14,6 +14,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Drop deprecated `ProductVariant.isAvailable` field - #965 by @maarcingebala
 - Add eslint import sort - #979 by @pitorgrundas
 - Enable incremental server-side regeneration for store pages - #988 by @pitorgrundas
+- Update account mutations with channel slug - #1039 by @orzechdev
 
 ## 2.11.0
 

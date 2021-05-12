@@ -283,8 +283,13 @@ export enum ProductOrderField {
 
 export interface AttributeInput {
   slug: string;
-  value?: string | null;
   values?: (string | null)[] | null;
+  valuesRange?: IntRangeInput | null;
+}
+
+export interface IntRangeInput {
+  gte?: number | null;
+  lte?: number | null;
 }
 
 export interface ProductOrder {
