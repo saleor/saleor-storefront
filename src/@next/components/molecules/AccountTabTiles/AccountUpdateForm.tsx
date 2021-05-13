@@ -28,12 +28,33 @@ export const AccountUpdateForm: React.FC<{
           });
           setSubmitting(false);
         }}
+        validateOnChange
+        validate={values => {
+          const errors: {
+            firstName?: string;
+            lastName?: string;
+          } = {};
+          if (!values.firstName || values.firstName.length === 0) {
+            errors.firstName = intl.formatMessage({
+              defaultMessage: "Required field",
+            });
+          }
+          if (!values.lastName || values.lastName.length === 0) {
+            errors.lastName = intl.formatMessage({
+              defaultMessage: "Required field",
+            });
+          }
+
+          return errors;
+        }}
       >
         {({
           handleChange,
           handleSubmit,
           handleBlur,
           values,
+          errors,
+          touched,
           isSubmitting,
           isValid,
         }) => {
@@ -48,6 +69,11 @@ export const AccountUpdateForm: React.FC<{
                     value={values.firstName}
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    errors={
+                      touched.firstName && errors.firstName
+                        ? [{ message: errors.firstName }]
+                        : []
+                    }
                   />
                 </S.ContentExtendInput>
                 <S.ContentExtendInput>
@@ -58,6 +84,11 @@ export const AccountUpdateForm: React.FC<{
                     value={values.lastName}
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    errors={
+                      touched.lastName && errors.lastName
+                        ? [{ message: errors.lastName }]
+                        : []
+                    }
                   />
                 </S.ContentExtendInput>
               </S.ContentEditOneLine>
