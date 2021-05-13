@@ -123,7 +123,7 @@ function Search(props: SearchProps) {
             className="btn-search"
             onClick={() => {
               handleClickShowAll();
-              setShowResult(true);
+              setShowResult(false);
             }}
           >
             <ReactSVG path={searchImg} />
