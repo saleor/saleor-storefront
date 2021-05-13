@@ -12,7 +12,7 @@ export const Input: React.FC<IProps> = ({
   contentLeft = null,
   contentRight = null,
   error = false,
-  disabled = false,
+  disabled,
   placeholder,
   label,
   value,
@@ -53,7 +53,7 @@ export const Input: React.FC<IProps> = ({
     <S.Wrapper
       active={active}
       error={error}
-      disabled={disabled}
+      disabled={disabled === undefined && false}
       ref={elementRef}
     >
       {contentLeft && <S.Content>{contentLeft}</S.Content>}
