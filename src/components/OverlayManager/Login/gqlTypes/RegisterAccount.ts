@@ -40,4 +40,5 @@ export interface RegisterAccountVariables {
   email: string;
   password: string;
   redirectUrl?: string | null;
+  channel?: string | null;
 }
