@@ -36,6 +36,9 @@ function Search(props: SearchProps) {
 
   const [showResult, setShowResult] = React.useState(false);
 
+  const handleHideResult = () => {
+    setShowResult(false);
+  };
   const useOutsideAlerter = ref => {
     React.useEffect(() => {
       const handleClickOutside = event => {
@@ -120,7 +123,7 @@ function Search(props: SearchProps) {
             className="btn-search"
             onClick={() => {
               handleClickShowAll();
-              setShowResult(false);
+              setShowResult(true);
             }}
           >
             <ReactSVG path={searchImg} />
@@ -155,11 +158,16 @@ function Search(props: SearchProps) {
                             display: showResult ? "block" : "none",
                           }}
                         >
-                          <ul>
-                            {data.products.edges.map(product => (
-                              <ProductItem {...product} key={product.node.id} />
-                            ))}
-                          </ul>
+                          {showResult && (
+                            <ul onClick={handleHideResult}>
+                              {data.products.edges.map(product => (
+                                <ProductItem
+                                  {...product}
+                                  key={product.node.id}
+                                />
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       );
                     }
