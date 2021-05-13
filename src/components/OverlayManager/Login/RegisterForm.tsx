@@ -308,7 +308,7 @@ const RegisterForm: React.FC = () => {
                         <TextField
                           name="phone"
                           label={intl.formatMessage(commonMessages.phone)}
-                          type="text"
+                          type="number"
                           errors={
                             !values.phone && touched.phone
                               ? [{ message: errors.phone || "" }]
