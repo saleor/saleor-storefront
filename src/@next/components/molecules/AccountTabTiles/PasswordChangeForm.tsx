@@ -41,7 +41,7 @@ export const PasswordChangeForm: React.FC<{
           });
           setSubmitting(false);
         }}
-        validateOnChange={false}
+        validateOnChange
         validate={values => {
           const errors: {
             oldPassword?: string;
