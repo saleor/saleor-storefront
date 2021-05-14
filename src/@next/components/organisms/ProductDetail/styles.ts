@@ -30,22 +30,8 @@ export const InfoDetail = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
+  // padding: 0 30px;
   box-sizing: border-box;
-  // @media (max-width: 1380px) {
-  //   width: 50%;
-  // }
-  // @media (max-width: 1024px) {
-  //   width: 50%;
-  // }
-  // @media (max-width: 768px) {
-  //   width: 100%;
-  //   padding: 0;
-  // }
-  // @media (max-width: 414px) {
-  //   width: 100%;
-  //   display: block;
-  // }
 `;
 
 export const ProductName = styled.h3`
