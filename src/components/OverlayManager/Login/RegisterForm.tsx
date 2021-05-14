@@ -170,15 +170,31 @@ const RegisterForm: React.FC = () => {
                   redirectUrl,
                 };
 
-                if (values.password !== values.confirmPassword) {
-                  alert.show(
-                    {
-                      title: intl.formatMessage({
-                        defaultMessage: "Please confirm Password again!",
-                      }),
-                    },
-                    { type: "error" }
-                  );
+                if (
+                  values.password !== values.confirmPassword ||
+                  !values.country
+                ) {
+                  if (!values.country) {
+                    alert.show(
+                      {
+                        title: intl.formatMessage({
+                          defaultMessage: "Please Select Country!",
+                        }),
+                      },
+                      { type: "error" }
+                    );
+                  }
+
+                  if (values.password !== values.confirmPassword) {
+                    alert.show(
+                      {
+                        title: intl.formatMessage({
+                          defaultMessage: "Please confirm Password again!",
+                        }),
+                      },
+                      { type: "error" }
+                    );
+                  }
                 } else {
                   registerCustomer({
                     variables: values.isSupplier
@@ -314,7 +330,7 @@ const RegisterForm: React.FC = () => {
                           flex: 4,
                         }}
                       >
-                        <div style={{ marginRight: "10px", flex: 1 }}>
+                        <div style={{ marginRight: "0.5rem", flex: 1 }}>
                           <TextField
                             name="phoneCode"
                             disabled
@@ -324,11 +340,13 @@ const RegisterForm: React.FC = () => {
                           />
                         </div>
 
-                        <div style={{ flex: 7 }}>
+                        <div style={{ flex: 4 }}>
                           <TextField
                             name="phone"
                             label={intl.formatMessage(commonMessages.phone)}
-                            type="number"
+                            type="text"
+                            title="Enter Number Only"
+                            pattern="[0-9]+"
                             errors={
                               !values.phone && touched.phone
                                 ? [{ message: errors.phone || "" }]
