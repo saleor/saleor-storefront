@@ -13,11 +13,7 @@ import { IProductVariantsAttributesSelectedValues } from "@types";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
-import {
-  canAddToCart,
-  getAvailableQuantity,
-  getProductPrice,
-} from "./stockHelpers";
+import { canAddToCart, getAvailableQuantity } from "./stockHelpers";
 import * as S from "./styles";
 
 const LOW_STOCK_QUANTITY: number = 5;
@@ -55,7 +51,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const [quantity, setQuantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
   const [
-    variantPricing,
+    ,
     setVariantPricing,
   ] = useState<ProductDetails_product_variants_pricing | null>(null);
 
@@ -111,8 +107,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
   return (
     <S.AddToCartSelection>
-      <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
-      {isOutOfStock ? (
+      {/* <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader> */}
+      {/* {isOutOfStock ? (
         renderErrorMessage(
           intl.formatMessage(commonMessages.outOfStock),
           "outOfStock"
@@ -121,7 +117,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         <S.ProductPricing>
           {getProductPrice(productPricing, variantPricing)}
         </S.ProductPricing>
-      )}
+      )} */}
       {noPurchaseAvailable &&
         renderErrorMessage(
           intl.formatMessage(commonMessages.noPurchaseAvailable),
