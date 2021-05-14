@@ -24,43 +24,44 @@ import Notifications from "./Notifications";
 
 import "../globalStyles/scss/index.scss";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URI || "/graphql/";
+const linkOptions = {
+  credentials: "include",
+  uri: API_URL,
+};
+const uploadLink = createUploadLink(linkOptions);
+
+const batchLink = new BatchHttpLink({
+  batchInterval: 100,
+  ...linkOptions,
+});
+
+const link = ApolloLink.split(
+  operation => operation.getContext().useBatching,
+  batchLink,
+  uploadLink
+);
+
+const apolloClient = new ApolloClient({
+  cache: new InMemoryCache({
+    dataIdFromObject: (obj: any) => {
+      // We need to set manually shop's ID, since it is singleton and
+      // API does not return its ID
+      if (obj.__typename === "Shop") {
+        return "shop";
+      }
+      return defaultDataIdFromObject(obj);
+    },
+  }),
+  link: authLink.concat(link),
+});
+
 const App: React.FC = ({ children }) => {
   const { pathname } = useRouter();
   const { tokenRefreshing, tokenVerifying } = useAuth();
   if (tokenRefreshing || tokenVerifying) {
     return <Loader />;
   }
-  const API_URL = process.env.NEXT_PUBLIC_API_URI || "/graphql/";
-  const linkOptions = {
-    credentials: "include",
-    uri: API_URL,
-  };
-  const uploadLink = createUploadLink(linkOptions);
-
-  const batchLink = new BatchHttpLink({
-    batchInterval: 100,
-    ...linkOptions,
-  });
-
-  const link = ApolloLink.split(
-    operation => operation.getContext().useBatching,
-    batchLink,
-    uploadLink
-  );
-
-  const apolloClient = new ApolloClient({
-    cache: new InMemoryCache({
-      dataIdFromObject: (obj: any) => {
-        // We need to set manually shop's ID, since it is singleton and
-        // API does not return its ID
-        if (obj.__typename === "Shop") {
-          return "shop";
-        }
-        return defaultDataIdFromObject(obj);
-      },
-    }),
-    link: authLink.concat(link),
-  });
 
   return (
     <ApolloProvider client={apolloClient}>
