@@ -4,9 +4,6 @@ export const commonMessages = defineMessages({
   country: {
     defaultMessage: "Country",
   },
-  store: {
-    defaultMessage: "Store",
-  },
   storeType: {
     defaultMessage: "Store Type",
   },

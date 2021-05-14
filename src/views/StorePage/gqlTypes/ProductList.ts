@@ -161,3 +161,19 @@ export interface ProductList_products {
   export interface DataListFollowUser{
     email: string
   }
+
+  export interface IStoreForUser{
+    store:{
+      name: string;
+      description?: string;
+      storeType:{
+        id:string;
+        name:string;
+      }
+      phone?: string;
+      acreage?: number;
+      latlong?: string;
+      backgroundImage?: string;
+      backgroundImageAlt?: string;
+    }
+  }

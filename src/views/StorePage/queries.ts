@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import { TypedQuery } from "@temp/core/queries";
 
 import {
+  IStoreForUser,
   ListCarouselRes,
   ListFollow,
   ProductList,
@@ -181,3 +182,23 @@ const getFollowList = gql`
 `;
 
 export const TypedListFollow = TypedQuery<ListFollow, {}>(getFollowList);
+
+export const storeForUser = gql`
+  query stores($id: ID!) {
+    store(id: $id) {
+      name
+      description
+      phone
+      acreage
+      latlong
+      storeType {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const TypeStoreForUserQuery = TypedQuery<IStoreForUser, {}>(
+  storeForUser
+);
