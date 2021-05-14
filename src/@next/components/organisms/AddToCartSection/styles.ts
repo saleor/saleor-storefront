@@ -1,6 +1,8 @@
 import { styled } from "@styles";
 
-export const AddToCartSelection = styled.div``;
+export const AddToCartSelection = styled.div`
+  padding: 0 !important;
+`;
 
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
@@ -31,7 +33,6 @@ export const VariantPicker = styled.div`
 `;
 
 export const QuantityInput = styled.div`
-  margin-top: 20px;
   padding-top: 20px;
 `;
 

@@ -110,6 +110,7 @@ interface RegisterFormType {
   isSupplier?: boolean;
   storeName?: string;
   confirmPassword?: string;
+  phoneCode?: string;
 }
 
 const RegisterForm: React.FC = () => {
@@ -124,6 +125,7 @@ const RegisterForm: React.FC = () => {
 
   const initialForm: RegisterFormType = {
     email: "",
+    phoneCode: "",
   };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
@@ -163,20 +165,36 @@ const RegisterForm: React.FC = () => {
                   email: values.email,
                   firstName: values.firstName,
                   lastName: values.lastName,
-                  phone: values.phone,
+                  phone: values.phoneCode + values.phone,
                   password: values.password,
                   redirectUrl,
                 };
 
-                if (values.password !== values.confirmPassword) {
-                  alert.show(
-                    {
-                      title: intl.formatMessage({
-                        defaultMessage: "Please confirm Password again!",
-                      }),
-                    },
-                    { type: "error" }
-                  );
+                if (
+                  values.password !== values.confirmPassword ||
+                  !values.country
+                ) {
+                  if (!values.country) {
+                    alert.show(
+                      {
+                        title: intl.formatMessage({
+                          defaultMessage: "Please Select Country!",
+                        }),
+                      },
+                      { type: "error" }
+                    );
+                  }
+
+                  if (values.password !== values.confirmPassword) {
+                    alert.show(
+                      {
+                        title: intl.formatMessage({
+                          defaultMessage: "Please confirm Password again!",
+                        }),
+                      },
+                      { type: "error" }
+                    );
+                  }
                 } else {
                   registerCustomer({
                     variables: values.isSupplier
@@ -219,9 +237,10 @@ const RegisterForm: React.FC = () => {
                               option => option.value === values!.country
                             )
                           }
-                          onChange={(value: any, name: any) =>
-                            setFieldValue(name, value.value)
-                          }
+                          onChange={(value: any, name: any) => {
+                            setFieldValue(name, value.value);
+                            setFieldValue("phoneCode", value.code);
+                          }}
                         />
                       </div>
                     </div>
@@ -304,20 +323,40 @@ const RegisterForm: React.FC = () => {
                       <Label>
                         {intl.formatMessage(commonMessages.phone)} :
                       </Label>
-                      <div style={{ flex: 4 }}>
-                        <TextField
-                          name="phone"
-                          label={intl.formatMessage(commonMessages.phone)}
-                          type="text"
-                          errors={
-                            !values.phone && touched.phone
-                              ? [{ message: errors.phone || "" }]
-                              : []
-                          }
-                          value={values.phone}
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                        />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          flex: 4,
+                        }}
+                      >
+                        <div style={{ marginRight: "0.5rem", flex: 1 }}>
+                          <TextField
+                            name="phoneCode"
+                            disabled
+                            label=""
+                            type="text"
+                            value={values.phoneCode}
+                          />
+                        </div>
+
+                        <div style={{ flex: 4 }}>
+                          <TextField
+                            name="phone"
+                            label={intl.formatMessage(commonMessages.phone)}
+                            type="text"
+                            title="Enter Number Only"
+                            pattern="[0-9]+"
+                            errors={
+                              !values.phone && touched.phone
+                                ? [{ message: errors.phone || "" }]
+                                : []
+                            }
+                            value={values.phone}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                          />
+                        </div>
                       </div>
                     </Flex>
                     <Flex>

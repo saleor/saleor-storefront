@@ -6,10 +6,16 @@ import styled from "styled-components";
 
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
+import AddToCartSection from "@components/organisms/AddToCartSection";
 import ProductDetail from "@components/organisms/ProductDetail";
 import { orange, white } from "@styles/constants";
 
-import { Breadcrumbs } from "../../components";
+import {
+  Breadcrumbs,
+  OverlayContext,
+  OverlayTheme,
+  OverlayType,
+} from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import { generateCategoryUrl, generateProductUrl } from "../../core/utils";
 import { ContactSupplier } from "./ContactSupplier";
@@ -21,10 +27,15 @@ import { smallScreen } from "../../globalStyles/scss/variables.scss";
 
 const StyledButton = styled.div`
   cursor: pointer;
-  border-radius: 30px;
+  // border-radius: 30px;
   background: ${orange};
   padding: 0.75rem;
   color: ${white};
+  text-align: center;
+  // margin-right: 2rem;
+  position: absolute;
+  top: 0;
+  right: 1rem;
 `;
 
 const populateBreadcrumbs = product => [
@@ -43,10 +54,11 @@ const Page: React.FC<
     queryAttributes: Record<string, string>;
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
-> = ({ product }) => {
+> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
+  const overlayContext = React.useContext(OverlayContext);
+  const [variantId, setVariantId] = React.useState("");
 
-  const variantId = "";
   const getImages = () => {
     if (product.variants && variantId) {
       const variant = product.variants.find(
@@ -64,6 +76,28 @@ const Page: React.FC<
   const contactSupplierRef = React.useRef(null);
 
   const executeScroll = () => contactSupplierRef.current.scrollIntoView();
+
+  const handleAddToCart = (variantId, quantity) => {
+    add(variantId, quantity);
+    overlayContext.show(OverlayType.cart, OverlayTheme.right);
+  };
+
+  const addToCartSection = (
+    <AddToCartSection
+      items={items}
+      productId={product.id}
+      name={product.name}
+      productVariants={product.variants}
+      productPricing={product.pricing}
+      queryAttributes={queryAttributes}
+      setVariantId={setVariantId}
+      variantId={variantId}
+      onAddToCart={handleAddToCart}
+      onAttributeChangeHandler={onAttributeChangeHandler}
+      isAvailableForPurchase={product.isAvailableForPurchase}
+      availableForPurchase={product.availableForPurchase}
+    />
+  );
 
   return (
     <div className="product-page">
@@ -83,13 +117,15 @@ const Page: React.FC<
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "center",
                         marginTop: 16,
                       }}
                     >
                       <StyledButton onClick={() => executeScroll()}>
                         <FormattedMessage defaultMessage="Contact Supplier" />
                       </StyledButton>
+                      <div className="product-page__product__info">
+                        {addToCartSection}
+                      </div>
                     </div>
                   </div>
                 </>
@@ -111,13 +147,18 @@ const Page: React.FC<
                       <div
                         style={{
                           display: "flex",
-                          justifyContent: "center",
                           marginTop: 16,
                         }}
                       >
                         <StyledButton onClick={() => executeScroll()}>
                           <FormattedMessage defaultMessage="Contact Supplier" />
                         </StyledButton>
+                        <div
+                          className="product-page__product__info"
+                          style={{ width: "100% !important" }}
+                        >
+                          {addToCartSection}
+                        </div>
                       </div>
                     </div>
                   </div>
