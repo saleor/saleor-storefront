@@ -18,15 +18,20 @@ export const Layout = styled.div`
   }
 `;
 
-export const LinkTagPU = styled.a`
+export const InputUploadPhoto = styled.input`
   :hover {
     color: orange;
     text-decoration: underline;
   }
 `;
 
-export const MarginTop = styled.div`
-  margin-top: 32px;
+export const LinkUserProfile = styled.a`
+  font-size: 15px;
+  color: white;
+  // :hover {
+  //   color: orange;
+  //   text-decoration: underline;
+  // }
 `;
 
 export const UpLoadPhoto = styled.div`
@@ -53,43 +58,51 @@ export const UpLoadPhoto = styled.div`
   }
 `;
 
-export const FlexOneCol = styled.div``;
-
-export const DisplayMarginP = styled.p`
-  display: flex;
-  margin-bottom: 8px;
+export const FlexOneCol = styled.div`
+  flex: 1;
 `;
-export const DisplayP = styled.p`
-  display: flex;
+
+export const YourMemberID = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+`;
+
+export const Email = styled.div`
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  grid-gap: 5px;
 `;
 
 export const FlexDivTwoCol = styled.div`
   flex: 2;
 `;
 
-export const FlexSpanOneCol = styled.span`
-  color: #999999;
-  flex: 1;
+export const UpdateProfile = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
-export const FlexSpanThreeCol = styled.span`
-  flex: 3;
+export const TextColor = styled.span`
+  color: #999999;
 `;
 
 export const FlexFourCol = styled.div`
   flex: 4;
+  display: flex;
+  flex-direction: column;
 `;
 
-export const FlexChild = styled.div`
+export const WrapperChildUP = styled.div`
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
   @media (min-width: 540px) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
-export const FlexDiv = styled.div`
+export const WrapperUP = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
@@ -105,7 +118,7 @@ export const LinkTag = styled.a`
   }
 `;
 
-export const MarginLink = styled.p`
+export const MarginLink = styled.div`
   margin-bottom: 5px;
 `;
 
@@ -196,4 +209,15 @@ export const FormButtons = styled.div`
   button {
     margin-left: 2rem;
   }
+`;
+
+export const BtnUpload = styled.button`
+  font-size: 15px;
+  color: #ff6a00;
+`;
+
+export const UserAvatar = styled.img`
+  border: 1px solid;
+  width: 100px;
+  height: 100px;
 `;

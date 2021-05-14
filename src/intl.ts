@@ -154,6 +154,9 @@ export const commonMessages = defineMessages({
   add: {
     defaultMessage: "Add",
   },
+  upLoadPhoto: {
+    defaultMessage: "Upload Photo",
+  },
   filterHeader: {
     defaultMessage: "FILTERS",
   },
