@@ -110,6 +110,7 @@ interface RegisterFormType {
   isSupplier?: boolean;
   storeName?: string;
   confirmPassword?: string;
+  phoneCode?: string;
 }
 
 const RegisterForm: React.FC = () => {
@@ -124,6 +125,7 @@ const RegisterForm: React.FC = () => {
 
   const initialForm: RegisterFormType = {
     email: "",
+    phoneCode: "",
   };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
@@ -163,7 +165,7 @@ const RegisterForm: React.FC = () => {
                   email: values.email,
                   firstName: values.firstName,
                   lastName: values.lastName,
-                  phone: values.phone,
+                  phone: values.phoneCode + values.phone,
                   password: values.password,
                   redirectUrl,
                 };
@@ -219,9 +221,10 @@ const RegisterForm: React.FC = () => {
                               option => option.value === values!.country
                             )
                           }
-                          onChange={(value: any, name: any) =>
-                            setFieldValue(name, value.value)
-                          }
+                          onChange={(value: any, name: any) => {
+                            setFieldValue(name, value.value);
+                            setFieldValue("phoneCode", value.code);
+                          }}
                         />
                       </div>
                     </div>
@@ -304,20 +307,38 @@ const RegisterForm: React.FC = () => {
                       <Label>
                         {intl.formatMessage(commonMessages.phone)} :
                       </Label>
-                      <div style={{ flex: 4 }}>
-                        <TextField
-                          name="phone"
-                          label={intl.formatMessage(commonMessages.phone)}
-                          type="text"
-                          errors={
-                            !values.phone && touched.phone
-                              ? [{ message: errors.phone || "" }]
-                              : []
-                          }
-                          value={values.phone}
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                        />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          flex: 4,
+                        }}
+                      >
+                        <div style={{ marginRight: "10px", flex: 1 }}>
+                          <TextField
+                            name="phoneCode"
+                            disabled
+                            label=""
+                            type="text"
+                            value={values.phoneCode}
+                          />
+                        </div>
+
+                        <div style={{ flex: 7 }}>
+                          <TextField
+                            name="phone"
+                            label={intl.formatMessage(commonMessages.phone)}
+                            type="number"
+                            errors={
+                              !values.phone && touched.phone
+                                ? [{ message: errors.phone || "" }]
+                                : []
+                            }
+                            value={values.phone}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                          />
+                        </div>
                       </div>
                     </Flex>
                     <Flex>
@@ -330,7 +351,8 @@ const RegisterForm: React.FC = () => {
                           label={intl.formatMessage(commonMessages.password)}
                           type="password"
                           errors={
-                            !values.password && touched.password
+                            (!values.password && touched.password) ||
+                            (values.password && values.password.length < 8)
                               ? [{ message: errors.password || "" }]
                               : []
                           }
@@ -358,7 +380,7 @@ const RegisterForm: React.FC = () => {
                             (!values.confirmPassword &&
                               touched.confirmPassword) ||
                             values.confirmPassword !== values.password
-                              ? [{ message: errors.password || "" }]
+                              ? [{ message: errors.confirmPassword || "" }]
                               : []
                           }
                         />
