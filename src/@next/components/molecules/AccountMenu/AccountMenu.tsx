@@ -18,7 +18,6 @@ export const AccountMenu: React.FC<IProps> = ({ links, active }: IProps) => {
       {links.map(link => {
         const text = {
           [paths.account]: intl.formatMessage(commonMessages.account),
-          [paths.accountStore]: intl.formatMessage(commonMessages.store),
           [paths.accountOrderHistory]: intl.formatMessage(
             commonMessages.orderHistory
           ),

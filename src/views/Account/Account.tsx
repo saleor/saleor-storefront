@@ -7,7 +7,7 @@ import Media from "react-responsive";
 
 import { Redirect } from "@components/atoms";
 import { AccountMenu, AccountMenuMobile } from "@components/molecules";
-import { AccountTab, OrdersHistory, StorePage } from "@pages";
+import { AccountTab, OrdersHistory } from "@pages";
 import { paths } from "@paths";
 import { smallScreen } from "@styles/constants";
 import { commonMessages } from "@temp/intl";
@@ -32,10 +32,6 @@ const returnTab: any = (path: string, userDetails) => {
       tabContent = <OrdersHistory />;
       break;
     }
-    case paths.accountStore: {
-      tabContent = <StorePage />;
-      break;
-    }
     default:
       tabContent = <AccountTab />;
       break;
@@ -51,7 +47,6 @@ const Account: NextPage = () => {
     paths.account,
     paths.accountOrderHistory,
     paths.accountAddressBook,
-    paths.accountStore,
   ];
 
   if (!user) {

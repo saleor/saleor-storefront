@@ -2,7 +2,6 @@ import { useAuth } from "@saleor/sdk";
 import React from "react";
 
 import { Loader } from "@components/atoms";
-import { TypeStoreForUserQuery } from "@components/molecules/StoreTagTiles/queries";
 import { orange } from "@styles/constants";
 import { MainProductList } from "@temp/components/MainProductList";
 import NavigationBar from "@temp/components/NavigationBar";
@@ -16,6 +15,7 @@ import {
   TypedListCarousel,
   TypedListFollow,
   TypedProductListQuery,
+  TypeStoreForUserQuery,
 } from "./queries";
 import StoreCarousel from "./StoreCarousel";
 import * as S from "./styles";
