@@ -10,7 +10,6 @@ import * as S from "./styles";
 
 export const ProfileUser: React.FC = () => {
   const { user } = useAuth();
-  const [, setRerender] = useState(false);
 
   const anchor = React.useRef<HTMLInputElement>(null);
 
@@ -31,10 +30,9 @@ export const ProfileUser: React.FC = () => {
                 <TypeUpdateAvatarMutation
                   onCompleted={() => {
                     refetch();
-                    setRerender(true);
                   }}
                 >
-                  {(updatePhoto, { loading, data }) => {
+                  {(updatePhoto, {}) => {
                     return (
                       <S.UpLoadPhoto>
                         <S.UserAvatar
