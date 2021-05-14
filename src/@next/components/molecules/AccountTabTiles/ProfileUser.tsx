@@ -1,5 +1,5 @@
 import { useAuth } from "@saleor/sdk";
-import React, { useState } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Loader, Tile } from "@components/atoms";
