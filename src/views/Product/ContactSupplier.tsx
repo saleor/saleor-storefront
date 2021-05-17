@@ -65,7 +65,7 @@ export const ContactSupplier: React.FC = () => {
                     <TextField
                       name="message"
                       label={intl.formatMessage(commonMessages.message)}
-                      type="text"
+                      type="textarea"
                       value={values.message}
                       onBlur={handleBlur}
                       onChange={handleChange}
