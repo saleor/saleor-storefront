@@ -71,11 +71,11 @@ export const ProfileUser: React.FC = () => {
           <S.WrapperChildUP>
             <S.YourMemberID>
               <S.TextColor>Your Member ID:</S.TextColor>
-              <span>{user?.id}</span>
+              <span style={{ marginLeft: "0.5rem" }}>{user?.id}</span>
             </S.YourMemberID>
             <S.Email>
               <S.TextColor>Email:</S.TextColor>
-              <span>{user?.email}</span>
+              <span style={{ marginLeft: "0.5rem" }}>{user?.email}</span>
             </S.Email>
           </S.WrapperChildUP>
         </S.WrapperUP>

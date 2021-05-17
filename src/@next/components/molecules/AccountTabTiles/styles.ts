@@ -63,14 +63,15 @@ export const FlexOneCol = styled.div`
 `;
 
 export const YourMemberID = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `;
 
 export const Email = styled.div`
-  display: grid;
-  grid-template-columns: 0fr 1fr;
-  grid-gap: 5px;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `;
 
 export const FlexDivTwoCol = styled.div`
@@ -93,13 +94,7 @@ export const FlexFourCol = styled.div`
 `;
 
 export const WrapperChildUP = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
-  @media (min-width: 540px) {
-    grid-template-columns: 1fr 1fr;
-  }
+  display: flex;
 `;
 
 export const WrapperUP = styled.div`
