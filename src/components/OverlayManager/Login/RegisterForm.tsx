@@ -345,16 +345,14 @@ const RegisterForm: React.FC = () => {
                             name="phone"
                             label={intl.formatMessage(commonMessages.phone)}
                             type="text"
-                            title="Enter Number Only"
-                            pattern="[0-9]+"
-                            errors={
-                              !values.phone && touched.phone
-                                ? [{ message: errors.phone || "" }]
-                                : []
-                            }
                             value={values.phone}
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={e => {
+                              const isNum = /^\d+$/.test(e.target.value);
+                              if (isNum || e.target.value.length === 0) {
+                                handleChange(e);
+                              }
+                            }}
                           />
                         </div>
                       </div>
