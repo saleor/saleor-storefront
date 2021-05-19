@@ -1,13 +1,12 @@
-import GifOutlinedIcon from "@material-ui/icons/GifOutlined";
-import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
-import PollOutlinedIcon from "@material-ui/icons/PollOutlined";
-import ScheduleOutlinedIcon from "@material-ui/icons/ScheduleOutlined";
-import SentimentSatisfiedOutlinedIcon from "@material-ui/icons/SentimentSatisfiedOutlined";
-import React from "react";
+import React, { useState } from "react";
 
 import * as S from "./styles";
 
 const MainContent = () => {
+  const [like, setLike] = useState(true);
+  const LikeAction = () => {
+    setLike(!like);
+  };
   return (
     <div>
       <div
@@ -52,11 +51,17 @@ const MainContent = () => {
                     alignItems: "center",
                   }}
                 >
-                  <ImageOutlinedIcon />
-                  <GifOutlinedIcon />
-                  <PollOutlinedIcon />
-                  <SentimentSatisfiedOutlinedIcon />
-                  <ScheduleOutlinedIcon />
+                  <img
+                    style={{ color: "#ff6a00" }}
+                    src="./Image/landscape.png"
+                    alt=""
+                  />
+                  {/* <GifOutlinedIcon style={{ color: "#ff6a00" }} />
+                  <PollOutlinedIcon style={{ color: "#ff6a00" }} />
+                  <SentimentSatisfiedOutlinedIcon
+                    style={{ color: "#ff6a00" }}
+                  />
+                  <ScheduleOutlinedIcon style={{ color: "#ff6a00" }} /> */}
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <S.BtnUpStatus>
@@ -95,6 +100,21 @@ const MainContent = () => {
                   width="100%"
                   height="100%"
                 />
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+                {/* {like ? (
+                  <FavoriteBorderIcon
+                    onClick={LikeAction}
+                    style={{ color: "#ff6a00", cursor: "pointer" }}
+                  />
+                ) : (
+                  <FavoriteIcon
+                    onClick={LikeAction}
+                    style={{ color: "#ff6a00", cursor: "pointer" }}
+                  />
+                )}
+                <ChatBubbleOutlineIcon style={{ color: "#ff6a00" }} /> */}
+                <i className="far fa-heart" />a
               </div>
             </div>
           </div>
