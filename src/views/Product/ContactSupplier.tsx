@@ -95,7 +95,7 @@ export const ContactSupplier: React.FC = () => {
                   </S.ContentExtendInput>
                 </S.ContentEditOneLine>
                 <S.ContentEditOneLine>
-                  <S.ContentExtendInput>
+                  <S.ContentExtendInput style={{ marginBottom: "1.875rem" }}>
                     <InputSelect
                       defaultValue={initialValues.quantityType}
                       label={intl.formatMessage(commonMessages.quantityType)}
