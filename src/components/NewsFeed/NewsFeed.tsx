@@ -1,13 +1,11 @@
 import React from "react";
 
 import MainContent from "./MainContent";
-import SidebarLeft from "./SidebarLeft";
 
 const NewsFeed = () => {
   return (
     <div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr" }}>
-        <SidebarLeft />
+      <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
         <MainContent />
       </div>
     </div>
