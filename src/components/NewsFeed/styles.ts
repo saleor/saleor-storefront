@@ -26,8 +26,28 @@ export const BtnUpStatus = styled.button`
   font-size: 15px;
 `;
 
-export const IMG = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+export const Comment = styled.input`
+  width: 100%;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+`;
+
+export const ImageUpLoad = styled.img`
+  width:100%
+  height:100%
+  border-radius: 15px
+`;
+
+export const WrapperImageUpload = styled.div`
+  width: 527px;
+  height: 297px;
+  margin: 10px 0px 12px 0px;
+`;
+
+export const Reaction = styled.img`
+  color: #ff6a00;
+  width: 20px;
+  cursor: pointer;
 `;
