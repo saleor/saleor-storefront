@@ -38,11 +38,17 @@ export const ImageUpLoad = styled.img`
   width:100%
   height:100%
   border-radius: 15px
+  object-fit: cover;
 `;
 
 export const WrapperImageUpload = styled.div`
+<<<<<<< HEAD
   width: 100%;
   // height: 297px;
+=======
+  // width: 527px;
+  height: 297px;
+>>>>>>> 203e964a6013dd24103e9c0f0b2309bfc744b884
   margin: 10px 0px 12px 0px;
 `;
 

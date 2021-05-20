@@ -1,5 +1,6 @@
 import React from "react";
 
+import CommentBox from "../CommentBox";
 import * as I from "../Image/index";
 import * as S from "../styles";
 
@@ -7,7 +8,12 @@ const Post = props => {
   const { LikeAction, like } = props;
   return (
     <div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 8fr" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 8fr",
+        }}
+      >
         <div>
           <img
             src="https://ggstorage.oxii.vn/images/oxii-2019-3-29/728x436/cristiano-ronaldo-pics_1564_1064_949.jpg"
@@ -46,6 +52,7 @@ const Post = props => {
               )}
             </div>
           </div>
+          <CommentBox />
         </div>
       </div>
     </div>
