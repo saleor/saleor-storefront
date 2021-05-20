@@ -4,8 +4,17 @@ import MainContent from "./MainContent";
 
 const NewsFeed = () => {
   return (
-    <div className="container">
-      <MainContent />
+    <div style={{ background: "#f2f2f2" }}>
+      <div className="container">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+          }}
+        >
+          <MainContent />
+        </div>
+      </div>
     </div>
   );
 };
