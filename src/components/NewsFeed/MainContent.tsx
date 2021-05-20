@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import * as I from "./Image/index";
 import Post from "./Post/Post";
 import Status from "./Status/Status";
 import * as S from "./styles";
@@ -10,6 +9,10 @@ const MainContent = () => {
   const LikeAction = () => {
     setLike(!like);
   };
+  const [privacy, setPrivacy] = useState(false);
+  const changePrivacy = () => {
+    setPrivacy(true);
+  };
   return (
     <div>
       <div
@@ -18,13 +21,13 @@ const MainContent = () => {
           gridTemplateColumns: "1fr",
         }}
       >
-        <div style={{ display: "grid", justifyContent: "center" }}>
+        <S.WrapMaincontent>
           <div>
             <h3>Home</h3>
           </div>
-          <Status />
+          <Status privacy={privacy} changePrivacy={changePrivacy} />
           <Post like={like} LikeAction={LikeAction} />
-        </div>
+        </S.WrapMaincontent>
       </div>
     </div>
   );

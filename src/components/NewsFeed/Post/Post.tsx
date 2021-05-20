@@ -5,7 +5,6 @@ import * as S from "../styles";
 
 const Post = props => {
   const { LikeAction, like } = props;
-  console.log("like", like);
   return (
     <div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 8fr" }}>

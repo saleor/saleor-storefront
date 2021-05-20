@@ -41,8 +41,8 @@ export const ImageUpLoad = styled.img`
 `;
 
 export const WrapperImageUpload = styled.div`
-  width: 527px;
-  height: 297px;
+  width: 100%;
+  // height: 297px;
   margin: 10px 0px 12px 0px;
 `;
 
@@ -50,4 +50,62 @@ export const Reaction = styled.img`
   color: #ff6a00;
   width: 20px;
   cursor: pointer;
+`;
+
+export const ActionStatus = styled.img`
+  color: #ff6a00;
+  width: 20px;
+`;
+
+export const PrivacyStatus = styled.img`
+  color: #ff6a00;
+  width: 20px;
+  vertical-align: bottom;
+`;
+
+export const WrapperPrivacy = styled.div`
+  padding: 20px 0px;
+`;
+
+export const BtnPrivacy = styled.button`
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+`;
+
+export const TextPrivacy = styled.span`
+  color: #ff6a00;
+  font-weight: bold;
+`;
+
+export const WrapperActionStatus = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+`;
+
+export const Avatar = styled.img`
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+  border-radius: 50px;
+  outline: none;
+`;
+
+export const WrapperAvatar = styled.div`
+  width: 48px;
+  height: 48px;
+`;
+
+export const WrapPost = styled.div`
+  text-align: right;
+`;
+
+export const WrapActionStatus = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+`;
+
+export const WrapMaincontent = styled.div`
+  display: grid;
+  justify-content: center;
 `;
