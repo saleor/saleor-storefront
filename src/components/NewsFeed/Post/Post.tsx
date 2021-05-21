@@ -1,12 +1,18 @@
 import React from "react";
 
 import CommentBox from "../CommentBox";
+import CommentInput from "../CommentInput";
 import * as I from "../Image/index";
 import * as S from "../styles";
 
-const Post = props => {
-  const { LikeAction, like } = props;
-  console.log("like", like);
+interface IProps {
+  LikeAction: any;
+  like: boolean;
+  posts: any;
+}
+
+const Post = (props: IProps) => {
+  const { LikeAction, like, posts } = props;
   return (
     <div>
       <div
@@ -16,11 +22,12 @@ const Post = props => {
           background: "#fff",
           borderRadius: "15px",
           padding: "1rem 1.875rem",
+          marginBottom: "1.975rem",
         }}
       >
         <div>
           <img
-            src="https://ggstorage.oxii.vn/images/oxii-2019-3-29/728x436/cristiano-ronaldo-pics_1564_1064_949.jpg"
+            src={posts?.imgAvatar}
             alt="123"
             width="100%"
             height="100%"
@@ -34,14 +41,11 @@ const Post = props => {
         </div>
         <div>
           <div>
-            <p>Name User</p>
-            <p>Caption Title</p>
+            <p>{posts.name}</p>
+            <p>{posts.caption}</p>
           </div>
           <S.WrapperImageUpload>
-            <S.ImageUpLoad
-              src="https://www.almaghreb24.com/wp-content/uploads/2019/05/21.jpg"
-              alt=""
-            />
+            <S.ImageUpLoad src={posts?.imgUpload} alt="" />
           </S.WrapperImageUpload>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
             <div>
@@ -56,6 +60,7 @@ const Post = props => {
               )}
             </div>
           </div>
+          <CommentInput />
           <CommentBox />
         </div>
       </div>
