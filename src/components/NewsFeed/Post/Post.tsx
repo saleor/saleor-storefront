@@ -5,13 +5,7 @@ import CommentInput from "../CommentInput";
 import * as I from "../Image/index";
 import * as S from "../styles";
 
-interface IProps {
-  LikeAction: any;
-  like: boolean;
-  posts: any;
-}
-
-const Post = (props: IProps) => {
+const Post = props => {
   const { LikeAction, like, posts } = props;
   return (
     <div>
@@ -19,10 +13,6 @@ const Post = (props: IProps) => {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 8fr",
-          background: "#fff",
-          borderRadius: "15px",
-          padding: "1rem 1.875rem",
-          marginBottom: "1.975rem",
         }}
       >
         <div>
