@@ -105,7 +105,7 @@ interface RegisterFormType {
   firstName?: string;
   lastName?: string;
   email?: string;
-  phone?: string;
+  phone?: any;
   password?: string;
   isSupplier?: boolean;
   storeName?: string;
@@ -126,6 +126,7 @@ const RegisterForm: React.FC = () => {
   const initialForm: RegisterFormType = {
     email: "",
     phoneCode: "",
+    phone: "",
   };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {

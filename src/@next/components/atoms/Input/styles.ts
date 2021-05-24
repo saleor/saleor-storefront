@@ -69,3 +69,20 @@ export const Input = styled.input<{ labelBackground: string | null }>`
     }
   }
 `;
+
+export const Textarea = styled.textarea<{ labelBackground: string | null }>`
+  padding: 0.8rem 1rem;
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: 200px;
+  resize: none;
+  font-size: ${props => props.theme.typography.baseFontSize};
+  outline: none;
+  background-color: transparent;
+  &:-webkit-autofill {
+    & + label {
+      ${props => activeLabelStyles(props.theme, props.labelBackground)};
+    }
+  }
+`;

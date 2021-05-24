@@ -16,6 +16,7 @@ export const Input: React.FC<IProps> = ({
   placeholder,
   label,
   value,
+  type,
   onChange,
   ...props
 }: IProps) => {
@@ -58,15 +59,28 @@ export const Input: React.FC<IProps> = ({
     >
       {contentLeft && <S.Content>{contentLeft}</S.Content>}
       <S.InputWrapper>
-        <S.Input
-          {...props}
-          value={value}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          disabled={disabled}
-          onChange={onChange}
-          labelBackground={labelBackground}
-        />
+        {type === "textarea" ? (
+          <S.Textarea
+            {...props}
+            value={value}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            disabled={disabled}
+            onChange={onChange}
+            labelBackground={labelBackground}
+          />
+        ) : (
+          <S.Input
+            {...props}
+            value={value}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            disabled={disabled}
+            onChange={onChange}
+            labelBackground={labelBackground}
+          />
+        )}
+
         {label && (
           <InputLabel
             labelBackground={labelBackground}
