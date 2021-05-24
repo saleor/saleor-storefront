@@ -13,11 +13,15 @@ import { IProps } from "./types";
 export const InputSelect: React.FC<IProps> = ({
   label,
   inputProps,
+  errors,
   ...props
 }: IProps) => {
   const customTheme = React.useContext(ThemeContext);
   const secondaryColor = customTheme.colors.secondary;
-  const borderColor = customTheme.input.border;
+  let borderColor = customTheme.input.border;
+  if (errors) {
+    borderColor = errors?.length > 0 ? "#fe6e76" : customTheme.input.border;
+  }
 
   const customStyles = {
     control: (provided: any, state: { menuIsOpen: any }) => ({
@@ -100,6 +104,7 @@ export const InputSelect: React.FC<IProps> = ({
       customComponents={customComponents}
       {...props}
       customStyles={customStyles}
+      errors={errors}
     />
   );
 };

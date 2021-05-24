@@ -127,6 +127,10 @@ const RegisterForm: React.FC = () => {
     email: "",
     phoneCode: "",
     phone: "",
+    firstName: "",
+    lastName: "",
+    confirmPassword: "",
+    country: "",
   };
   const [isSupplier, setIsSupplier] = React.useState(false);
   const validateSchema: Yup.ObjectSchema<RegisterFormType> = React.useMemo(() => {
@@ -136,7 +140,10 @@ const RegisterForm: React.FC = () => {
       phone: Yup.string().required("Required"),
       firstName: Yup.string().required("Required"),
       lastName: Yup.string().required("Required"),
-      confirmPassword: Yup.string().required("Required"),
+      confirmPassword: Yup.string()
+        .required("Required")
+        .oneOf([Yup.ref("password"), null], "Passwords must match"),
+      country: Yup.string().required("Required"),
     };
     return isSupplier
       ? Yup.object().shape({
@@ -242,6 +249,11 @@ const RegisterForm: React.FC = () => {
                             setFieldValue(name, value.value);
                             setFieldValue("phoneCode", value.code);
                           }}
+                          errors={
+                            !values.country && touched.country
+                              ? [{ message: errors.country || "" }]
+                              : []
+                          }
                         />
                       </div>
                     </div>
@@ -346,6 +358,11 @@ const RegisterForm: React.FC = () => {
                             name="phone"
                             label={intl.formatMessage(commonMessages.phone)}
                             type="text"
+                            errors={
+                              !values.phone && touched.phone
+                                ? [{ message: (errors.phone as any) || "" }]
+                                : []
+                            }
                             value={values.phone}
                             onBlur={handleBlur}
                             onChange={e => {
