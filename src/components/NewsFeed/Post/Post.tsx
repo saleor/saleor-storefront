@@ -16,18 +16,7 @@ const Post = props => {
         }}
       >
         <div>
-          <img
-            src={posts?.imgAvatar}
-            alt="123"
-            width="100%"
-            height="100%"
-            style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              border: "1px solid",
-            }}
-          />
+          <S.PostImg src={posts?.imgAvatar} alt="123" />
         </div>
         <div>
           <div>

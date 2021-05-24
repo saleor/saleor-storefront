@@ -112,4 +112,18 @@ export const WrapActionStatus = styled.div`
 export const WrapMaincontent = styled.div`
   display: grid;
   justify-content: center;
+  background-color: white;
+  padding: 0px 20px;
+`;
+
+export const WrapperNewsFeed = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+`;
+
+export const PostImg = styled.img`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid;
 `;
