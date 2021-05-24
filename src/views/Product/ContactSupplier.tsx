@@ -87,10 +87,15 @@ export const ContactSupplier: React.FC = () => {
                     <TextField
                       name="quantityNumber"
                       label={intl.formatMessage(commonMessages.quantity)}
-                      type="number"
+                      type="text"
                       value={values.quantityNumber}
                       onBlur={handleBlur}
-                      onChange={handleChange}
+                      onChange={e => {
+                        const isNum = /^\d+$/.test(e.target.value);
+                        if (isNum || e.target.value.length === 0) {
+                          handleChange(e);
+                        }
+                      }}
                     />
                   </S.ContentExtendInput>
                 </S.ContentEditOneLine>
